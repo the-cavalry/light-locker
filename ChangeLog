@@ -1,3 +1,9 @@
+2005-04-14  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-grab-x11.c (gs_grab_get_mouse) 
+	(gs_grab_get_keyboard_and_mouse):
+	Grab and release pointer initially.
+
 2005-04-14  Christian Rose  <menthos@menthos.com>
 
 	* configure.ac: Added "sv" to ALL_LINGUAS.

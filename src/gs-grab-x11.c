@@ -130,9 +130,6 @@ gs_grab_get_mouse (GdkWindow *window,
         g_return_val_if_fail (window != NULL, FALSE);
         g_return_val_if_fail (screen != NULL, FALSE);
 
-        /* FIXME: GTK doesn't like it when the pointer is grabbed */
-        return GDK_GRAB_SUCCESS;
-
         /*g_message ("Grabbing mouse widget=%X", (guint32) GDK_WINDOW_XID (window));*/
         status = gdk_pointer_grab (window, TRUE, 0, NULL,
                                    (hide_cursor ? cursor : NULL),
@@ -309,6 +306,8 @@ gs_grab_get_keyboard_and_mouse (GdkWindow *window,
                 g_warning ("Couldn't grab pointer!  (%s)",
                            grab_string (mstatus));
 
+        /* FIXME: release the pointer grab so GTK will work */
+        gs_grab_release_mouse ();
 
         /* When should we allow blanking to proceed?  The current theory
            is that a keyboard grab is manditory; a mouse grab is optional.
