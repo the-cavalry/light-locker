@@ -1,0 +1,669 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
+ *
+ * Copyright (C) 2004-2005 William Jon McCann <mccann@jhu.edu>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ *
+ * Authors: William Jon McCann <mccann@jhu.edu>
+ *
+ */
+
+#include "config.h"
+
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <string.h>
+
+#include <gdk/gdkx.h>
+#include <gtk/gtk.h>
+
+#include "gs-window.h"
+#include "subprocs.h"
+
+static void gs_window_class_init (GSWindowClass *klass);
+static void gs_window_init       (GSWindow      *window);
+static void gs_window_finalize   (GObject       *object);
+
+enum {
+        DIALOG_RESPONSE_CANCEL,
+        DIALOG_RESPONSE_OK
+};
+
+#define GS_WINDOW_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_WINDOW, GSWindowPrivate))
+
+struct GSWindowPrivate
+{
+        guint      lock_enabled : 1;
+
+        GtkWidget *box;
+        GtkWidget *socket;
+
+        guint      request_unlock_idle_id;
+        guint      popup_dialog_idle_id;
+
+        guint      dialog_map_signal_id;
+        guint      dialog_unmap_signal_id;
+        guint      dialog_response_signal_id;
+
+        gint       pid;
+        gint       watch_id;
+        gint       dialog_response;
+};
+
+enum {
+        UNBLANKED,
+        DIALOG_UP,
+        DIALOG_DOWN,
+        MAP_EVENT,
+        UNMAP_EVENT,
+        MOTION_NOTIFY_EVENT,
+        KEY_PRESS_EVENT,
+        LAST_SIGNAL
+};
+
+enum {
+        PROP_0,
+        PROP_LOCK_ENABLED,
+        PROP_SCREEN
+};
+
+static GObjectClass   *parent_class = NULL;
+static guint           signals [LAST_SIGNAL] = { 0, };
+
+G_DEFINE_TYPE (GSWindow, gs_window, GTK_TYPE_WINDOW);
+
+static void
+set_invisible_cursor (GdkWindow *window,
+                      gboolean   invisible)
+{
+        GdkBitmap *empty_bitmap;
+        GdkCursor *cursor = NULL;
+        GdkColor   useless;
+        char       invisible_cursor_bits [] = { 0x0 };
+
+        if (invisible) {
+                useless.red = useless.green = useless.blue = 0;
+                useless.pixel = 0;
+
+                empty_bitmap = gdk_bitmap_create_from_data (window,
+                                                            invisible_cursor_bits,
+                                                            1, 1);
+
+                cursor = gdk_cursor_new_from_pixmap (empty_bitmap,
+                                                     empty_bitmap,
+                                                     &useless,
+                                                     &useless, 0, 0);
+
+                g_object_unref (empty_bitmap);
+        }
+
+        gdk_window_set_cursor (window, cursor);
+
+        if (cursor)
+                gdk_cursor_unref (cursor);
+}
+
+static void
+gs_window_clear (GSWindow *window)
+{
+        GdkColor     color = { 0, 0, 0 };
+        GdkColormap *colormap;
+
+        gtk_widget_modify_bg (GTK_WIDGET (window), GTK_STATE_NORMAL, &color);
+        colormap = gdk_drawable_get_colormap (GTK_WIDGET (window)->window);
+        gdk_colormap_alloc_color (colormap, &color, FALSE, TRUE);
+        gdk_window_set_background (GTK_WIDGET (window)->window, &color);
+        gdk_window_clear (GTK_WIDGET (window)->window);
+        gdk_flush ();
+}
+
+static void
+gs_window_real_realize (GtkWidget *widget)
+{
+        if (GTK_WIDGET_CLASS (parent_class)->realize)
+                GTK_WIDGET_CLASS (parent_class)->realize (widget);
+
+        gs_window_clear (GS_WINDOW (widget));
+}
+
+static void
+gs_window_real_show (GtkWidget *widget)
+{
+        if (GTK_WIDGET_CLASS (parent_class)->show)
+                GTK_WIDGET_CLASS (parent_class)->show (widget);
+
+        set_invisible_cursor (widget->window, TRUE);
+}
+
+void
+gs_window_show (GSWindow *window)
+{
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        gtk_widget_show (GTK_WIDGET (window));
+}
+
+void
+gs_window_destroy (GSWindow *window)
+{
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        gtk_widget_destroy (GTK_WIDGET (window));
+}
+
+GdkWindow *
+gs_window_get_gdk_window (GSWindow *window)
+{
+        g_return_val_if_fail (GS_IS_WINDOW (window), NULL);
+
+        return GTK_WIDGET (window)->window;
+}
+
+static gboolean
+emit_unblanked_idle (GSWindow *window)
+{
+        g_signal_emit (window, signals [UNBLANKED], 0);
+        return FALSE;
+}
+
+static gboolean
+spawn_on_window (GSWindow *window,
+                 char     *command,
+                 int      *pid,
+                 GIOFunc   watch_func,
+                 gpointer  user_data,
+                 gint     *watch_id)
+{
+        int         argc;
+        char      **argv;
+        char       *envp[5];
+        int         nenv = 0;
+        int         i;
+        gboolean    result;
+        GIOChannel *channel;
+        int         standard_output;
+        int         child_pid;
+        int         id;
+
+        if (!g_shell_parse_argv (command, &argc, &argv, NULL))
+                return FALSE;
+
+        envp[nenv++] = g_strdup_printf ("DISPLAY=%s",
+                                        gdk_display_get_name (gdk_display_get_default ()));
+        envp[nenv++] = g_strdup_printf ("HOME=%s",
+                                        g_get_home_dir ());
+        envp[nenv++] = g_strdup_printf ("PATH=%s", g_getenv ("PATH"));
+        envp[nenv++] = NULL;
+
+        result = gdk_spawn_on_screen_with_pipes (GTK_WINDOW (window)->screen,
+                                                 g_get_home_dir (),
+                                                 argv,
+                                                 envp,
+                                                 G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
+                                                 NULL,
+                                                 NULL,
+                                                 &child_pid,
+                                                 NULL,
+                                                 &standard_output,
+                                                 NULL,
+                                                 NULL);
+
+        if (!result)
+                return FALSE;
+
+        if (pid)
+                *pid = child_pid;
+
+        channel = g_io_channel_unix_new (standard_output);
+        g_io_channel_set_flags (channel,
+                                g_io_channel_get_flags (channel) | G_IO_FLAG_NONBLOCK,
+                                NULL);
+        id = g_io_add_watch (channel,
+                             G_IO_IN | G_IO_HUP | G_IO_ERR | G_IO_NVAL,
+                             watch_func,
+                             user_data);
+        if (watch_id)
+                *watch_id = id;
+
+        g_io_channel_unref (channel);
+
+        for (i = 0; i < nenv; i++)
+                g_free (envp[i]);
+
+        g_strfreev (argv);
+
+        return result;
+}
+
+static void
+plug_added (GtkWidget *widget,
+            GSWindow  *window)
+{
+        gtk_widget_show (window->priv->socket);
+}
+
+static gboolean
+plug_removed (GtkWidget *widget,
+              GSWindow  *window)
+{
+        gtk_widget_hide (window->priv->socket);
+        gtk_container_remove (GTK_CONTAINER (window), GTK_WIDGET (window->priv->box));
+
+        return TRUE;
+}
+
+static void
+socket_show (GtkWidget *widget,
+             GSWindow  *window)
+{
+        gtk_widget_child_focus (window->priv->socket, GTK_DIR_TAB_FORWARD);
+}
+
+static void
+socket_destroyed (GtkWidget *widget,
+                  GSWindow  *window)
+{
+        window->priv->socket = NULL;
+}
+
+static void
+create_socket (GSWindow *window,
+               guint32   id)
+{
+        window->priv->socket = gtk_socket_new ();
+        window->priv->box = gtk_alignment_new (0.5, 0.5, 0, 0);
+        gtk_widget_show (window->priv->box);
+
+        gtk_container_add (GTK_CONTAINER (window), window->priv->box);
+
+        gtk_container_add (GTK_CONTAINER (window->priv->box), window->priv->socket);
+
+        g_signal_connect (window->priv->socket, "show",
+                          G_CALLBACK (socket_show), window);
+        g_signal_connect (window->priv->socket, "destroy",
+                          G_CALLBACK (socket_destroyed), window);
+        g_signal_connect (window->priv->socket, "plug_added",
+                          G_CALLBACK (plug_added), window);
+        g_signal_connect (window->priv->socket, "plug_removed",
+                          G_CALLBACK (plug_removed), window);
+
+        gtk_socket_add_id (GTK_SOCKET (window->priv->socket), id);
+}
+
+static gboolean
+command_watch (GIOChannel   *source,
+               GIOCondition  condition,
+               GSWindow     *window)
+{
+        gboolean finished = FALSE;
+
+        g_return_val_if_fail (GS_IS_WINDOW (window), FALSE);
+
+        if (condition & G_IO_IN) {
+                GIOStatus status;
+                GError   *error = NULL;
+                char     *line;
+
+                status = g_io_channel_read_line (source, &line, NULL, NULL, &error);
+
+                switch (status) {
+                case G_IO_STATUS_NORMAL:
+                        /*g_message ("LINE: %s", line);*/
+
+                        if (strstr (line, "WINDOW ID=")) {
+                                guint32 id;
+                                char    c;
+                                if (1 == sscanf (line, " WINDOW ID= 0x%x %c", &id, &c)) {
+                                        create_socket (window, id);
+                                }
+                        } else if (strstr (line, "RESPONSE=")) {
+                                if (strstr (line, "RESPONSE=OK")) {
+                                        window->priv->dialog_response = DIALOG_RESPONSE_OK;
+                                } else {
+                                        window->priv->dialog_response = DIALOG_RESPONSE_CANCEL;
+                                }
+                                finished = TRUE;
+                        }
+
+                        g_free (line);
+                        break;
+                case G_IO_STATUS_EOF:
+                        finished = TRUE;
+                        break;
+                case G_IO_STATUS_ERROR:
+                        finished = TRUE;
+                        fprintf (stderr, "Error reading fd from child: %s\n", error->message);
+                        return FALSE;
+                case G_IO_STATUS_AGAIN:
+                default:
+                        break;
+                }
+
+        }
+
+        if (condition & G_IO_HUP)
+                finished = TRUE;
+
+        if (finished) {
+                int wait_status;
+
+                waitpid (window->priv->pid, &wait_status, 0);
+
+                window->priv->pid = 0;
+                window->priv->watch_id = 0;
+
+                if (window->priv->dialog_response == DIALOG_RESPONSE_OK) {
+                        g_idle_add ((GSourceFunc)emit_unblanked_idle, window);
+                }
+
+                gs_window_clear (window);
+                set_invisible_cursor (GTK_WIDGET (window)->window, TRUE);
+                g_signal_emit (window, signals [DIALOG_DOWN], 0);
+
+                return FALSE;
+        }
+
+        return TRUE;
+}
+
+static gboolean
+popup_dialog_idle (GSWindow *window)
+{
+        gboolean  result;
+        char     *command;
+
+        command = g_build_filename (LIBEXECDIR, "gnome-screensaver-dialog", NULL);
+
+        gs_window_clear (window);
+        set_invisible_cursor (GTK_WIDGET (window)->window, FALSE);
+
+        result = spawn_on_window (window,
+                                  command,
+                                  &window->priv->pid,
+                                  (GIOFunc)command_watch,
+                                  window,
+                                  &window->priv->watch_id);
+        if (!result)
+                g_warning ("Could not start command: %s", command);
+
+        g_free (command);
+
+        window->priv->popup_dialog_idle_id = 0;
+
+        return FALSE;
+}
+
+void
+gs_window_request_unlock (GSWindow *window)
+{
+        g_return_if_fail (GS_WINDOW (window));
+
+        if (window->priv->watch_id)
+                return;
+
+        if (! window->priv->lock_enabled) {
+                g_idle_add ((GSourceFunc)emit_unblanked_idle, window);
+                return;
+        }
+
+        if (window->priv->popup_dialog_idle_id == 0) {
+                window->priv->popup_dialog_idle_id = g_idle_add ((GSourceFunc)popup_dialog_idle, window);
+        }
+
+        g_signal_emit (window, signals [DIALOG_UP], 0);
+}
+
+void
+gs_window_set_lock_enabled (GSWindow *window,
+                            gboolean  lock_enabled)
+{
+        g_return_if_fail (GS_WINDOW (window));
+
+        if (window->priv->lock_enabled == lock_enabled)
+                return;
+
+        window->priv->lock_enabled = lock_enabled;
+        g_object_notify (G_OBJECT (window), "lock-enabled");
+}
+
+void
+gs_window_set_screen (GSWindow  *window,
+                      GdkScreen *screen)
+{
+
+        g_return_if_fail (GS_IS_WINDOW (window));
+        g_return_if_fail (GDK_IS_SCREEN (screen));
+
+        gtk_window_set_screen (GTK_WINDOW (window), screen);
+}
+
+GdkScreen *
+gs_window_get_screen (GSWindow  *window)
+{
+        g_return_val_if_fail (GS_IS_WINDOW (window), NULL);
+
+        return GTK_WINDOW (window)->screen;
+}
+
+static void
+gs_window_set_property (GObject            *object,
+                        guint               prop_id,
+                        const GValue       *value,
+                        GParamSpec         *pspec)
+{
+        GSWindow *self;
+
+        self = GS_WINDOW (object);
+
+        switch (prop_id) {
+        case PROP_LOCK_ENABLED:
+                gs_window_set_lock_enabled (self, g_value_get_boolean (value));
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
+
+static void
+gs_window_get_property (GObject    *object,
+                        guint       prop_id,
+                        GValue     *value,
+                        GParamSpec *pspec)
+{
+        GSWindow *self;
+
+        self = GS_WINDOW (object);
+
+        switch (prop_id) {
+        case PROP_LOCK_ENABLED:
+                g_value_set_boolean (value, self->priv->lock_enabled);
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
+
+static gboolean
+gs_window_request_unlock_idle (GSWindow *window)
+{
+        gs_window_request_unlock (window);
+
+        window->priv->request_unlock_idle_id = 0;
+
+        return FALSE;
+}
+
+static gboolean
+gs_window_real_key_press_event (GtkWidget   *widget,
+                                GdkEventKey *event)
+{
+        /*g_message ("KEY PRESS state: %u keyval %u", event->state, event->keyval);*/
+
+        if (GS_WINDOW (widget)->priv->request_unlock_idle_id == 0) {
+                GS_WINDOW (widget)->priv->request_unlock_idle_id = g_idle_add ((GSourceFunc)gs_window_request_unlock_idle, widget);
+        }
+
+        if (GTK_WIDGET_CLASS (parent_class)->key_press_event)
+                GTK_WIDGET_CLASS (parent_class)->key_press_event (widget, event);
+
+        return TRUE;
+}
+
+static gboolean
+gs_window_real_motion_notify_event (GtkWidget      *widget,
+                                    GdkEventMotion *event)
+{
+        if (GS_WINDOW (widget)->priv->request_unlock_idle_id == 0) {
+                GS_WINDOW (widget)->priv->request_unlock_idle_id = g_idle_add ((GSourceFunc)gs_window_request_unlock_idle, widget);
+        }
+
+        return FALSE;
+}
+
+static void
+gs_window_class_init (GSWindowClass *klass)
+{
+        GObjectClass   *object_class = G_OBJECT_CLASS (klass);
+        GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+        parent_class = g_type_class_peek_parent (klass);
+
+        object_class->finalize     = gs_window_finalize;
+        object_class->get_property = gs_window_get_property;
+        object_class->set_property = gs_window_set_property;
+
+        widget_class->show                = gs_window_real_show;
+        widget_class->realize             = gs_window_real_realize;
+        widget_class->key_press_event     = gs_window_real_key_press_event;
+        widget_class->motion_notify_event = gs_window_real_motion_notify_event;
+
+        g_type_class_add_private (klass, sizeof (GSWindowPrivate));
+
+        signals [UNBLANKED] =
+                g_signal_new ("unblanked",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSWindowClass, unblanked),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals [DIALOG_UP] =
+                g_signal_new ("dialog-up",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSWindowClass, dialog_up),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals [DIALOG_DOWN] =
+                g_signal_new ("dialog-down",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSWindowClass, dialog_down),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+
+        g_object_class_install_property (object_class,
+                                         PROP_LOCK_ENABLED,
+                                         g_param_spec_boolean ("lock-enabled",
+                                                               NULL,
+                                                               NULL,
+                                                               TRUE,
+                                                               G_PARAM_READWRITE));
+}
+
+static void
+gs_window_init (GSWindow *window)
+{
+        window->priv = GS_WINDOW_GET_PRIVATE (window);
+
+        gtk_window_set_modal (GTK_WINDOW (window), TRUE);
+        gtk_window_stick (GTK_WINDOW (window));
+        gtk_window_set_focus_on_map (GTK_WINDOW (window), TRUE);
+        gtk_window_fullscreen (GTK_WINDOW (window));
+        gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
+        gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER_ALWAYS);
+        gtk_window_set_skip_taskbar_hint (GTK_WINDOW (window), TRUE);
+        gtk_window_set_skip_pager_hint (GTK_WINDOW (window), TRUE);
+
+        gtk_window_set_keep_above (GTK_WINDOW (window), TRUE);
+
+        gtk_widget_set_events (GTK_WIDGET (window),
+                               gtk_widget_get_events (GTK_WIDGET (window))
+                               | GDK_POINTER_MOTION_MASK
+                               | GDK_BUTTON_PRESS_MASK
+                               | GDK_BUTTON_RELEASE_MASK
+                               | GDK_KEY_PRESS_MASK
+                               | GDK_KEY_RELEASE_MASK
+                               | GDK_EXPOSURE_MASK
+                               | GDK_ENTER_NOTIFY_MASK
+                               | GDK_LEAVE_NOTIFY_MASK);
+}
+
+static void
+gs_window_finalize (GObject *object)
+{
+        GSWindow *window;
+
+        g_return_if_fail (object != NULL);
+        g_return_if_fail (GS_IS_WINDOW (object));
+
+        window = GS_WINDOW (object);
+
+        g_return_if_fail (window->priv != NULL);
+
+        if (window->priv->request_unlock_idle_id)
+                g_source_remove (window->priv->request_unlock_idle_id);
+        if (window->priv->popup_dialog_idle_id)
+                g_source_remove (window->priv->popup_dialog_idle_id);
+
+        G_OBJECT_CLASS (parent_class)->finalize (object);
+}
+
+GSWindow *
+gs_window_new (GdkScreen *screen,
+               gboolean   lock_enabled)
+{
+        GObject *result;
+
+        result = g_object_new (GS_TYPE_WINDOW,
+                               "screen", screen,
+                               "lock-enabled", lock_enabled,
+                               NULL);
+
+        return GS_WINDOW (result);
+}
+
+char *
+gs_window_get_id_string (GSWindow *window)
+{
+        char *id = NULL;
+
+        g_return_val_if_fail (window != NULL, NULL);
+        g_return_val_if_fail (GS_IS_WINDOW (window), NULL);
+
+        id = g_strdup_printf ("0x%X",
+                              (guint32)GDK_WINDOW_XID (gs_window_get_gdk_window (window)));
+        return id;
+}

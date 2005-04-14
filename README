@@ -1,0 +1,29 @@
+gnome-screensaver
+=================
+
+***gnome-screensaver is experimental***
+
+gnome-screensaver is a screensaver that is well integrated with the
+desktop.  It is designed to support:
+
+        * locking down blanking and locking options
+        * translation into other languages
+        * user switching
+        * integration with DBUS
+
+Known Issues
+============
+
+The fix for <http://bugzilla.gnome.org/show_bug.cgi?id=172998> is
+required for the screensaver to work properly.
+
+Installation
+============
+
+See the file 'INSTALL'
+
+How to report bugs
+==================
+
+Send email to mccann@jhu.edu
+ 

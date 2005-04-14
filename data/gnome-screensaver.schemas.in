@@ -1,0 +1,116 @@
+<gconfschemafile>
+  <schemalist>
+
+    <schema>
+      <key>/schemas/apps/gnome-screensaver/lock</key>
+      <applyto>/apps/gnome-screensaver/lock</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>bool</type>
+      <default>TRUE</default>
+      <locale name="C">
+        <short>Whether or not to lock as well as save</short>
+        <long>Whether or not to lock as well as save.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-screensaver/mode</key>
+      <applyto>/apps/gnome-screensaver/mode</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>string</type>
+      <default>blank-only</default>
+      <locale name="C">
+        <short>The screensaver selection mode</short>
+        <long>
+            This key specifies the selection mode used by the screensaver.
+            Possible values are "disabled", "blank-only", "single", and "random".
+        </long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-screensaver/blank_delay</key>
+      <applyto>/apps/gnome-screensaver/blank_delay</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>long</type>
+      <default>10</default>
+      <locale name="C">
+        <short>The number of minutes of idle time before blanking the screen</short>
+        <long>The number of minutes of idle time before blanking the screen.</long>
+      </locale>
+     </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-screensaver/cycle_delay</key>
+      <applyto>/apps/gnome-screensaver/cycle_delay</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>long</type>
+      <default>10</default>
+      <locale name="C">
+        <short>The number of minutes to run before changing the screensaver</short>
+        <long>The number of minutes to run before changing the screensaver.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-screensaver/lock_delay</key>
+      <applyto>/apps/gnome-screensaver/lock_delay</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>long</type>
+      <default>0</default>
+      <locale name="C">
+        <short>The number of minutes after blanking the screen before locking</short>
+        <long>The number of minutes after blanking the screen before locking.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-screensaver/dpms_enabled</key>
+      <applyto>/apps/gnome-screensaver/dpms_enabled</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>bool</type>
+      <default>FALSE</default>
+      <locale name="C">
+        <short>Whether to power down the monitor</short>
+        <long>Whether to power down the monitor.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-screensaver/dpms_standby</key>
+      <applyto>/apps/gnome-screensaver/dpms_standby</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>long</type>
+      <default>120</default>
+      <locale name="C">
+        <short>How many minutes until the monitor goes black</short>
+        <long>How many minutes until the monitor goes black.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-screensaver/dpms_suspend</key>
+      <applyto>/apps/gnome-screensaver/dpms_suspend</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>long</type>
+      <default>120</default>
+      <locale name="C">
+        <short>How many minutes until the monitor power-saves</short>
+        <long>How many minutes until the monitor power-saves.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-screensaver/dpms_off</key>
+      <applyto>/apps/gnome-screensaver/dpms_off</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>long</type>
+      <default>240</default>
+      <locale name="C">
+        <short>How many minutes until the monitor powers down</short>
+        <long>How many minutes until the monitor powers down.</long>
+      </locale>
+    </schema>
+
+  </schemalist>
+</gconfschemafile>

@@ -1,0 +1,128 @@
+## We require new-style dependency handling.
+AUTOMAKE_OPTIONS = 1.7
+
+SUBDIRS = \
+	cut-n-paste
+
+NULL =
+
+INCLUDES =							\
+	-I.							\
+	-I$(srcdir)						\
+        -I$(top_srcdir)/src/cut-n-paste				\
+	$(GNOME_SCREENSAVER_CFLAGS)				\
+	$(GNOME_SCREENSAVER_DIALOG_CFLAGS)			\
+	$(DISABLE_DEPRECATED_CFLAGS)				\
+        -DLIBEXECDIR=\""$(libexecdir)"\"			\
+        -DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"  \
+	-DPAM_SERVICE_NAME=\""xscreensaver"\"			\
+        $(WARN_CFLAGS)                                          \
+	$(AUTH_CFLAGS)						\
+	$(FAST_USER_SWITCH_CFLAGS)				\
+	$(NULL)
+
+bin_PROGRAMS = \
+	gnome-screensaver		\
+	gnome-screensaver-command
+
+libexec_PROGRAMS = \
+	gnome-screensaver-dialog
+
+gnome_screensaver_command_SOURCES = 	\
+	gnome-screensaver-command.c
+
+gnome_screensaver_command_LDADD =	\
+	$(GNOME_SCREENSAVER_COMMAND_LIBS)
+
+AUTH_SOURCES = 			\
+	passwd.c		\
+	passwd.h		\
+	passwd-pwent.c		\
+	passwd-pwent.h
+
+if HAVE_PAM
+AUTH_SOURCES += 		\
+	passwd-pam.c		\
+	passwd-pam.h
+endif
+
+if HAVE_PASSWD_HELPER
+AUTH_SOURCES += 		\
+	passwd-helper.c		\
+	passwd-helper.h
+endif
+
+gnome_screensaver_dialog_SOURCES = 	\
+	gnome-screensaver-dialog.c	\
+	gs-lock-plug.c			\
+	gs-lock-plug.h			\
+	gs-grab-x11.c			\
+	gs-grab.h			\
+	setuid.c			\
+	setuid.h			\
+	subprocs.c			\
+	subprocs.h			\
+	$(AUTH_SOURCES)			\
+	$(NULL)
+
+gnome_screensaver_dialog_LDADD =	\
+	$(GNOME_SCREENSAVER_DIALOG_LIBS)\
+	$(FAST_USER_SWITCH_LIBS)	\
+	$(AUTH_LIBS)			\
+        $(top_builddir)/src/cut-n-paste/libfast-user-switch.a \
+	$(NULL)
+
+gnome_screensaver_SOURCES =	\
+	gnome-screensaver.c	\
+	gnome-screensaver.h	\
+	gs-monitor.c		\
+	gs-monitor.h		\
+	gs-watcher-x11.c	\
+	gs-watcher-x11.h	\
+	gs-listener-dbus.c	\
+	gs-listener-dbus.h	\
+	gs-manager.c		\
+	gs-manager.h		\
+	gs-window-x11.c		\
+	gs-window.h		\
+	gs-prefs.c		\
+	gs-prefs.h		\
+	gs-job.c		\
+	gs-job.h		\
+	gs-grab-x11.c		\
+	gs-grab.h		\
+	subprocs.c		\
+	subprocs.h		\
+	dpms.c			\
+	dpms.h			\
+	$(NULL)
+
+gnome_screensaver_LDADD =		\
+	$(GNOME_SCREENSAVER_LIBS)	\
+	$(SAVER_LIBS)			\
+	$(X_LIBS)
+
+gnome_screensaver_LDFLAGS = -export-dynamic
+
+EXTRA_DIST =
+
+MAINTAINERCLEANFILES =			\
+	*~				\
+	Makefile.in
+
+install-exec-hook:
+	@if [ "x@NEED_SETUID@" = "xyes" ]; then \
+	    echo "***" ; \
+	    echo "***  Warning: gnome-screensaver has been compiled with support for" ; \
+	    echo "***           shadow passwords.  If your system actually uses shadow" ; \
+	    echo "***           passwords then it must be installed as a setuid root" ; \
+	    echo "***           program in order for locking to work.  To do this, you" ; \
+	    echo "***           must run:" ; \
+	    echo "***" ; \
+	    echo "***           chown root $(DESTDIR)$(libexecdir)/gnome-screensaver-dialog" ; \
+	    echo "***           chmod +s $(DESTDIR)$(libexecdir)/gnome-screensaver-dialog" ; \
+	    echo "***" ; \
+	    echo "***           For now, it will be installed non-setuid, which" ; \
+	    echo "***           means that locking might not work." ; \
+	    echo "***" ; \
+	fi
