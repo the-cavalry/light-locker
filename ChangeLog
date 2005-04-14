@@ -1,0 +1,4 @@
+2005-04-14  Christian Rose  <menthos@menthos.com>
+
+	* configure.ac: Added "sv" to ALL_LINGUAS.
+
