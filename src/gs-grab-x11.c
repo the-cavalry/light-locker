@@ -180,6 +180,9 @@ gs_grab_move_mouse (GdkWindow *window,
         GdkScreen *old_screen;
         gboolean   old_hide_cursor;
 
+        /* FIXME: GTK doesn't like having the pointer grabbed */
+        return TRUE;
+
         gdk_x11_grab_server ();
 
         old_window = mouse_grab_window;

@@ -1,5 +1,10 @@
 2005-04-14  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-grab-x11.c (gs_grab_move_mouse):
+	Don't regrab pointer here.
+
+2005-04-14  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-grab-x11.c (gs_grab_get_mouse) 
 	(gs_grab_get_keyboard_and_mouse):
 	Grab and release pointer initially.
