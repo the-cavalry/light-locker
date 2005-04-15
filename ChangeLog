@@ -1,3 +1,7 @@
+2005-04-15  Raphael Higino  <raphaelh@cvs.gnome.org>
+
+	* configure.ac: Added pt_BR to ALL_LINGUAS.
+
 2005-04-15  Funda Wang  <fundawang@linux.net.cn>
 
 	* configure.ac: Added "zh_CN" to ALL_LINGUAS.

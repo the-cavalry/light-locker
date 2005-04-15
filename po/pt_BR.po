@@ -1,0 +1,377 @@
+# Brazilian Portuguese translation of gnome-screensaver.
+# Copyright (C) 2005 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-screensaver package.
+# Raphael Higino <raphaelh@uai.com.br>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-04-15 12:27-0300\n"
+"PO-Revision-Date: 2005-04-15 12:53-0300\n"
+"Last-Translator: Raphael Higino <raphaelh@uai.com.br>\n"
+"Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "How many minutes until the monitor goes black"
+msgstr "Quantos minutos até o monitor apagar"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "How many minutes until the monitor goes black."
+msgstr "Quantos minutos até o monitor apagar."
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "How many minutes until the monitor power-saves"
+msgstr "Quantos minutos até o monitor entrar em modo de economia"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "How many minutes until the monitor power-saves."
+msgstr "Quantos minutos até o monitor entrar em modo de economia."
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "How many minutes until the monitor powers down"
+msgstr "Quantos minutos até o monitor desligar"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "How many minutes until the monitor powers down."
+msgstr "Quantos minutos até o monitor desligar."
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "The number of minutes after blanking the screen before locking"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "The number of minutes after blanking the screen before locking."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "The number of minutes of idle time before blanking the screen"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "The number of minutes of idle time before blanking the screen."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "The number of minutes to run before changing the screensaver"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid "The number of minutes to run before changing the screensaver."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid "The screensaver selection mode"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid ""
+"This key specifies the selection mode used by the screensaver. Possible "
+"values are \"disabled\", \"blank-only\", \"single\", and \"random\"."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid "Whether or not to lock as well as save"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid "Whether or not to lock as well as save."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid "Whether to power down the monitor"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid "Whether to power down the monitor."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
+msgid "Manager"
+msgstr "Gerenciador"
+
+#: ../src/cut-n-paste/fusa-display.c:120
+msgid "The manager which owns this object."
+msgstr "O gerenciador dono deste objeto."
+
+#: ../src/cut-n-paste/fusa-display.c:127
+msgid "Name"
+msgstr "Nome"
+
+#: ../src/cut-n-paste/fusa-display.c:128
+msgid "The name of the X11 display this object refers to."
+msgstr "O nome da tela X11 a que esse objeto se refere."
+
+#: ../src/cut-n-paste/fusa-display.c:134
+#: ../src/cut-n-paste/fusa-user-menu-item.c:152
+msgid "User"
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-display.c:135
+msgid "The user currently logged in on this virtual terminal."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-display.c:141
+msgid "Console"
+msgstr "Console"
+
+#: ../src/cut-n-paste/fusa-display.c:142
+msgid "The number of the virtual console this display can be found on, or %-1."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-display.c:148
+msgid "Nested"
+msgstr "Aninhado"
+
+#: ../src/cut-n-paste/fusa-display.c:149
+msgid "Whether or not this display is a windowed (Xnest) display."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1263
+msgid "The display manager could not be contacted for unknown reasons."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1270
+msgid "The display manager is not running or too old."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1273
+msgid "The configured limit of flexible servers has been reached."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1276
+msgid "There was an unknown error starting X."
+msgstr "Houve um erro desconhecido ao iniciar o X."
+
+#: ../src/cut-n-paste/fusa-manager.c:1279
+msgid "The X server failed to finish starting."
+msgstr "O servidor X falhou em iniciar."
+
+#: ../src/cut-n-paste/fusa-manager.c:1282
+msgid "There are too many X sessions running."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1285
+msgid "The nested X server (Xnest) cannot connect to your current X server."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1288
+msgid "The X server in the GDM configuration could not be found."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
+msgid ""
+"Trying to set an unknown logout action, or trying to set a logout action "
+"which is not available."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
+msgid "Virtual terminals not supported."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1297
+msgid "Invalid virtual terminal number."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
+msgid "Trying to update an unsupported configuration key."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1303
+msgid "~/.Xauthority file badly configured or missing."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1306
+#, fuzzy
+msgid "Too many messages were sent to the display manager, and it hung up."
+msgstr "Foram enviadas mensagens demais para o gerenciador de telas e ele "
+
+#: ../src/cut-n-paste/fusa-manager.c:1310
+msgid "The display manager sent an unknown error message."
+msgstr "O gerenciador de telas enviou uma mensagem de erro desconhecida."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:153
+msgid "The user this menu item represents."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:160
+msgid "Icon Size"
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:161
+msgid "The size of the icon to use."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-user.c:151
+msgid "The user manager object this user is controlled by."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-utils.c:80
+msgid "Show Details"
+msgstr "Exibir Detalhes"
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:413
+msgid "GDM (The GNOME Display Manager) is not running."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:416
+msgid ""
+"You might in fact be using a different display manager, such as KDM (KDE "
+"Display Manager) or xdm."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:419
+msgid ""
+"If you still wish to use this feature, either start GDM yourself or ask your "
+"system administrator to start GDM."
+msgstr ""
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:441
+msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:444
+msgid "Perhaps you have an old version of GDM running."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
+msgid "Cannot communicate with gdm, perhaps you have an old version running."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:469
+msgid "The allowed limit of flexible X servers reached."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:471
+msgid "There were errors trying to start the X server."
+msgstr "Ocorreram erros ao tentar iniciar o servidor X."
+
+#: ../src/cut-n-paste/gdmcomm.c:473
+msgid "The X server failed.  Perhaps it is not configured well."
+msgstr "O servidor X falhou. Talvez ele esteja mal configurado."
+
+#: ../src/cut-n-paste/gdmcomm.c:476
+msgid "Too many X sessions running."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:478
+msgid ""
+"The nested X server (Xnest) cannot connect to your current X server.  You "
+"may be missing an X authorization file."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:483
+msgid ""
+"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
+"Please install the Xnest package in order to use the nested login."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:488
+msgid ""
+"The X server is not available, it is likely that gdm is badly configured."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:497
+msgid "Trying to change to an invalid virtual terminal number."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:501
+msgid ""
+"You do not seem to have authentication needed be for this operation.  "
+"Perhaps your .Xauthority file is not set up correctly."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:505
+#, fuzzy
+msgid "Too many messages were sent to gdm and it hung upon us."
+msgstr "Foram enviadas mensagens demais para o gdm e ele "
+
+#: ../src/cut-n-paste/gdmcomm.c:508
+msgid "Unknown error occured."
+msgstr "Ocorreu um erro desconhecido."
+
+#: ../src/gnome-screensaver-command.c:48
+msgid "Causes the screensaver to exit gracefully"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:50
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:52
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:54
+msgid "Turn the screensaver on (blank the screen)"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:56
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:57
+#: ../src/gnome-screensaver.c:86
+msgid "Version of this application"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:55
+msgid "Show debugging output"
+msgstr ""
+
+#: ../src/gs-lock-plug.c:169
+msgid "Verifying password..."
+msgstr "Verificando senha..."
+
+#: ../src/gs-lock-plug.c:232
+#, c-format
+msgid "About %ld seconds left"
+msgstr "Em torno de %ld segundos restantes"
+
+#: ../src/gs-lock-plug.c:239
+msgid "Time expired!"
+msgstr "Tempo expirado!"
+
+#: ../src/gs-lock-plug.c:264
+msgid "You have the Caps Lock key on."
+msgstr ""
+
+#: ../src/gs-lock-plug.c:362
+msgid "Password verification failed!"
+msgstr ""
+
+#: ../src/gs-lock-plug.c:387 ../src/gs-lock-plug.c:427
+msgid "_Unlock"
+msgstr "_Desbloquear"
+
+#: ../src/gs-lock-plug.c:391 ../src/gs-lock-plug.c:423
+msgid "_Login Screen"
+msgstr "Tela de _Login"
+
+#: ../src/gs-lock-plug.c:688
+msgid "Enter password to unlock screen"
+msgstr "Digite a senha para desbloquear a tela"
+
+#: ../src/gs-lock-plug.c:717
+msgid "Name:"
+msgstr "Nome:"
+
+#: ../src/gs-lock-plug.c:721
+msgid "_Password:"
+msgstr "_Senha:"
+
+#: ../src/gs-lock-plug.c:768
+msgid "Log in as another user?"
+msgstr ""
+
+#: ../src/gs-lock-plug.c:786
+msgid ""
+"This option will bring you to the Login Screen.\n"
+"From the Login Screen you may log in to this system\n"
+"as another user or select 'Quit' to return to this screen."
+msgstr ""
