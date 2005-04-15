@@ -639,14 +639,15 @@ gs_lock_plug_set_default_response (GSLockPlug *plug,
 static void
 gs_lock_plug_init (GSLockPlug *plug)
 {
-        GtkWidget      *widget;
-        GtkWidget      *password_label;
-        GtkWidget      *hbox;
-        GtkWidget      *vbox;
-        GtkWidget      *table;
-        int             font_size;
-	PangoAttrList  *pattrlist;
-	PangoAttribute *attr;
+        GtkWidget            *widget;
+        GtkWidget            *password_label;
+        GtkWidget            *hbox;
+        GtkWidget            *vbox;
+        GtkWidget            *table;
+        int                   font_size;
+        PangoAttrList        *pattrlist;
+        PangoAttribute       *attr;
+        PangoFontDescription *fontdesc;
 
         plug->priv = GS_LOCK_PLUG_GET_PRIVATE (plug);
 
@@ -706,11 +707,11 @@ gs_lock_plug_init (GSLockPlug *plug)
         hbox = gtk_hbox_new (FALSE, 0);
         gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
-        widget = gtk_label_new ("    ");
+        widget = gtk_label_new ("");
         gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
 
         table = gtk_table_new (3, 2, FALSE);
-        gtk_table_set_row_spacings (GTK_TABLE (table), 12);
+        gtk_table_set_row_spacings (GTK_TABLE (table), 6);
         gtk_table_set_col_spacings (GTK_TABLE (table), 6);
         gtk_box_pack_start (GTK_BOX (hbox), table, TRUE, TRUE, 0);
 
@@ -793,6 +794,12 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         gtk_box_pack_start (GTK_BOX (plug->vbox), plug->priv->progress_bar,
                             FALSE, FALSE, 0);
+
+        fontdesc = pango_font_description_copy (GTK_WIDGET (plug->priv->progress_bar)->style->font_desc);
+        font_size = pango_font_description_get_size (fontdesc) * 0.75;
+        pango_font_description_set_size (fontdesc, font_size);
+        gtk_widget_modify_font (plug->priv->progress_bar, fontdesc);
+        pango_font_description_free (fontdesc);
 
         /* Buttons */
 

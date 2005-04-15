@@ -1,6 +1,13 @@
 2005-04-15  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (gs_lock_plug_init):
+	Don't indent the password entry.  Use a
+	smaller font for the progress text so that
+	it isn't too distracting.
+
+2005-04-15  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c (gs_lock_plug_init):
 	Use label instead of entry for username.
 
 	* configure.ac: Use variable for dbus version.
