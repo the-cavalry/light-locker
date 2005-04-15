@@ -55,7 +55,7 @@ static gboolean password_check_idle_cb (GSLockPlug *plug);
 struct GSLockPlugPrivate
 {
         GtkWidget   *notebook;
-        GtkWidget   *username_entry;
+        GtkWidget   *username_label;
         GtkWidget   *password_entry;
         GtkWidget   *capslock_label;
         GtkWidget   *progress_bar;
@@ -728,16 +728,11 @@ gs_lock_plug_init (GSLockPlug *plug)
         gtk_table_attach (GTK_TABLE (table), plug->priv->capslock_label, 1, 2, 2, 3,
                           GTK_FILL, 0, 0, 0);
 
-        plug->priv->username_entry = gtk_entry_new ();
-        /* button press handler used to inhibit popup menu */
-        g_signal_connect (plug->priv->username_entry, "button_press_event",
-                          G_CALLBACK (entry_button_press), NULL);
-
-        gtk_widget_set_sensitive (plug->priv->username_entry, FALSE);
-        gtk_editable_set_editable (GTK_EDITABLE (plug->priv->username_entry), FALSE);
-        gtk_table_attach (GTK_TABLE (table), plug->priv->username_entry, 1, 2, 0, 1,
+        plug->priv->username_label = gtk_label_new ("");
+        gtk_misc_set_alignment (GTK_MISC (plug->priv->username_label), 0, 0.5);
+        gtk_table_attach (GTK_TABLE (table), plug->priv->username_label, 1, 2, 0, 1,
                           GTK_EXPAND | GTK_FILL, 0, 0, 0);
-        gtk_entry_set_text (GTK_ENTRY (plug->priv->username_entry), g_get_real_name ());
+        gtk_label_set_text (GTK_LABEL (plug->priv->username_label), g_get_real_name ());
 
         plug->priv->password_entry = gtk_entry_new ();
 

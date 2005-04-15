@@ -1,3 +1,10 @@
+2005-04-15  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c (gs_lock_plug_init):
+	Use label instead of entry for username.
+
+	* configure.ac: Use variable for dbus version.
+
 2005-04-15  Adam Weinberger  <adamw@gnome.org>
 
 	* configure.ac: Added en_CA to ALL_LINGUAS.
