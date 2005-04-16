@@ -66,10 +66,6 @@ enum {
         UNBLANKED,
         DIALOG_UP,
         DIALOG_DOWN,
-        MAP_EVENT,
-        UNMAP_EVENT,
-        MOTION_NOTIFY_EVENT,
-        KEY_PRESS_EVENT,
         LAST_SIGNAL
 };
 

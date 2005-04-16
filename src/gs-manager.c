@@ -167,10 +167,10 @@ gs_manager_set_lock_delay (GSManager *manager,
         }
 }
 
-static char *
+static const char *
 select_saver (GSManager *manager)
 {
-        char *command = NULL;
+        const char *command = NULL;
 
         g_return_val_if_fail (manager != NULL, NULL);
         g_return_val_if_fail (GS_IS_MANAGER (manager), NULL);
@@ -194,9 +194,9 @@ select_saver (GSManager *manager)
 gboolean
 gs_manager_cycle (GSManager *manager)
 {
-        GSList  *l;
-        char    *command = NULL;
-        gboolean success = FALSE;
+        GSList     *l;
+        const char *command;
+        gboolean    success = FALSE;
 
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
@@ -486,7 +486,7 @@ window_dialog_up_cb (GSWindow  *window,
 
 static void
 window_dialog_down_cb (GSWindow  *window,
-                     GSManager *manager)
+                       GSManager *manager)
 {
         GSList *l;
 
@@ -498,6 +498,72 @@ window_dialog_down_cb (GSWindow  *window,
         }
 
         manager->priv->dialog_up = FALSE;
+}
+
+static gboolean
+window_map_event_cb (GSWindow  *window,
+                     GdkEvent  *event,
+                     GSManager *manager)
+{
+        GdkDisplay *display;
+        GdkScreen  *screen;
+
+        g_return_val_if_fail (manager != NULL, FALSE);
+        g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
+        g_return_val_if_fail (window != NULL, FALSE);
+        g_return_val_if_fail (GS_IS_WINDOW (window), FALSE);
+
+        display = gdk_display_get_default ();
+        gdk_display_get_pointer (display, &screen, NULL, NULL, NULL);
+
+        if (gs_window_get_screen (window) == screen)
+                gs_grab_window (gs_window_get_gdk_window (window),
+                                gs_window_get_screen (window),
+                                FALSE);
+        return FALSE;
+}
+
+static void
+window_show_cb (GSWindow  *window,
+                GSManager *manager)
+{
+        GSJob      *job;
+        const char *command;
+
+        g_return_if_fail (manager != NULL);
+        g_return_if_fail (GS_IS_MANAGER (manager));
+        g_return_if_fail (window != NULL);
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        command = select_saver (manager);
+        job = gs_job_new_for_window (window, command);
+
+        g_object_ref (job);
+        gs_job_start (job);
+
+        manager->priv->jobs = g_slist_append (manager->priv->jobs, job);
+
+        manager->priv->blank_time = time (NULL);
+
+        if (manager->priv->lock_delay >= 0) {
+                if (manager->priv->lock_timeout_id)
+                        g_source_remove (manager->priv->lock_timeout_id);
+
+                manager->priv->lock_timeout_id = g_timeout_add (manager->priv->lock_delay,
+                                                                (GSourceFunc)enable_lock_timeout,
+                                                                manager);
+        }
+
+        if (manager->priv->cycle_delay >= 10000) {
+                if (manager->priv->cycle_timeout_id)
+                        g_source_remove (manager->priv->cycle_timeout_id);
+
+                manager->priv->cycle_timeout_id = g_timeout_add (manager->priv->cycle_delay,
+                                                                 (GSourceFunc)cycle_timeout,
+                                                                 manager);
+        }
+
+        g_signal_emit (manager, signals [BLANKED], 0);
 }
 
 static void
@@ -519,6 +585,10 @@ gs_manager_create_window (GSManager *manager,
                                  G_CALLBACK (window_dialog_up_cb), manager, 0);
         g_signal_connect_object (window, "dialog-down",
                                  G_CALLBACK (window_dialog_down_cb), manager, 0);
+        g_signal_connect_object (window, "show",
+                                 G_CALLBACK (window_show_cb), manager, 0);
+        g_signal_connect_object (window, "map_event",
+                                 G_CALLBACK (window_map_event_cb), manager, 0);
 
         manager->priv->windows = g_slist_append (manager->priv->windows, window);
         g_object_unref (screen);
@@ -529,6 +599,7 @@ static void
 gs_manager_create (GSManager *manager)
 {
         GdkDisplay  *display;
+        GSList      *l;
         int          n_screens, i;
 
         g_return_if_fail (manager != NULL);
@@ -537,6 +608,11 @@ gs_manager_create (GSManager *manager)
         display = gdk_display_get_default ();
 
         n_screens = gdk_display_get_n_screens (display);
+
+        for (l = manager->priv->windows; l; l = l->next) {
+                gs_window_destroy (l->data);
+        }
+        g_slist_free (manager->priv->windows);
 
         for (i = 0; i < n_screens; i++)
                 gs_manager_create_window (manager, gdk_display_get_screen (display, i));
@@ -560,16 +636,6 @@ gs_manager_new (int lock_delay,
         return GS_MANAGER (manager);
 }
 
-static gboolean
-grab_window_cb (GSWindow *window)
-{
-        gs_grab_window (gs_window_get_gdk_window (window),
-                        gs_window_get_screen (window),
-                        FALSE);
-
-        return FALSE;
-}
-
 gboolean
 gs_manager_blank (GSManager *manager)
 {
@@ -577,7 +643,6 @@ gs_manager_blank (GSManager *manager)
         GdkScreen  *screen;
         GSList     *l;
         GdkWindow  *root;
-        char       *command;
 
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
@@ -597,45 +662,9 @@ gs_manager_blank (GSManager *manager)
         if (! manager->priv->windows)
                 gs_manager_create (GS_MANAGER (manager));
 
-        command = select_saver (manager);
-
         for (l = manager->priv->windows; l; l = l->next) {
-                GSJob *job;
-
                 gs_window_show (GS_WINDOW (l->data));
-
-                if (gs_window_get_screen (GS_WINDOW (l->data)) == screen)
-                        g_signal_connect (GS_WINDOW (l->data), "map_event",
-                                          G_CALLBACK (grab_window_cb), NULL);
-
-                job = gs_job_new_for_window (GS_WINDOW (l->data),
-                                             command);
-                g_object_ref (job);
-                gs_job_start (job);
-                manager->priv->jobs = g_slist_append (manager->priv->jobs, job);
         }
-
-        manager->priv->blank_time = time (NULL);
-
-        if (manager->priv->lock_delay >= 0) {
-                if (manager->priv->lock_timeout_id)
-                        g_source_remove (manager->priv->lock_timeout_id);
-
-                manager->priv->lock_timeout_id = g_timeout_add (manager->priv->lock_delay,
-                                                                (GSourceFunc)enable_lock_timeout,
-                                                                manager);
-        }
-
-        if (manager->priv->cycle_delay >= 10000) {
-                if (manager->priv->cycle_timeout_id)
-                        g_source_remove (manager->priv->cycle_timeout_id);
-
-                manager->priv->cycle_timeout_id = g_timeout_add (manager->priv->cycle_delay,
-                                                                 (GSourceFunc)cycle_timeout,
-                                                                 manager);
-        }
-
-        g_signal_emit (manager, signals [BLANKED], 0);
 
         return TRUE;
 }

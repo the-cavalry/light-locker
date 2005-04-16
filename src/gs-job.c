@@ -117,8 +117,8 @@ gs_job_set_window  (GSJob    *job,
 }
 
 void
-gs_job_set_command  (GSJob *job,
-                     char  *command)
+gs_job_set_command  (GSJob      *job,
+                     const char *command)
 {
         g_return_if_fail (job != NULL);
         g_return_if_fail (GS_IS_JOB (job));
@@ -129,8 +129,8 @@ gs_job_set_command  (GSJob *job,
 }
 
 GSJob *
-gs_job_new_for_window (GSWindow *window,
-                       char     *command)
+gs_job_new_for_window (GSWindow   *window,
+                       const char *command)
 {
         GObject *job;
 
@@ -143,12 +143,12 @@ gs_job_new_for_window (GSWindow *window,
 }
 
 static gboolean
-spawn_on_window (GSWindow *window,
-                 char     *command,
-                 int      *pid,
-                 GIOFunc   watch_func,
-                 gpointer  user_data,
-                 guint    *watch_id)
+spawn_on_window (GSWindow   *window,
+                 const char *command,
+                 int        *pid,
+                 GIOFunc     watch_func,
+                 gpointer    user_data,
+                 guint      *watch_id)
 {
         int         argc;
         char      **argv;
@@ -276,7 +276,7 @@ gs_job_start (GSJob *job)
                 return FALSE;
 
         result = spawn_on_window (job->priv->window,
-                                  job->priv->command,
+                                  (const char *)job->priv->command,
                                   &job->priv->pid,
                                   (GIOFunc)command_watch,
                                   job,

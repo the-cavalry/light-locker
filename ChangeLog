@@ -1,5 +1,17 @@
 2005-04-15  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-manager.c (window_show_cb, window_map_event_cb) 
+	(gs_manager_create_window, gs_manager_create, gs_manager_blank):
+	Set up windows and jobs only after showing and lock only
+	after map-event.
+
+	* src/gs-manager.c (select_saver, gs_manager_cycle): 
+	* src/gs-job.c (gs_job_set_command, gs_job_new_for_window) 
+	(spawn_on_window):
+	Use const where appropriate.
+
+2005-04-15  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (gs_lock_plug_init):
 	Don't indent the password entry.  Use a
 	smaller font for the progress text so that

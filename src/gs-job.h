@@ -45,19 +45,17 @@ typedef struct
         GObjectClass  parent_class;
 } GSJobClass;
 
-GType       gs_job_get_type (void);
+GType       gs_job_get_type       (void);
 
-GSJob      *gs_job_new_for_window (GSWindow *window,
-                                   char     *command);
-gboolean    gs_job_start          (GSJob   *job);
-gboolean    gs_job_stop           (GSJob   *job);
-gboolean    gs_job_suspend        (GSJob   *job,
-                                   gboolean suspend);
+GSJob      *gs_job_new_for_window (GSWindow   *window,
+                                   const char *command);
+gboolean    gs_job_start          (GSJob      *job);
+gboolean    gs_job_stop           (GSJob      *job);
+gboolean    gs_job_suspend        (GSJob      *job,
+                                   gboolean    suspend);
 
-void        gs_job_set_command    (GSJob *job,
-                                   char  *command);
-void        gs_job_set_name       (GSJob *job,
-                                   char  *name);
+void        gs_job_set_command    (GSJob      *job,
+                                   const char *command);
 
 G_END_DECLS
 
