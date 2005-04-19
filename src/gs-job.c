@@ -107,8 +107,7 @@ gs_job_finalize (GObject *object)
 
         g_return_if_fail (job->priv != NULL);
 
-        if (job->priv->status == GS_JOB_RUNNING
-            || job->priv->status == GS_JOB_KILLED) {
+        if (job->priv->pid > 0) {
                 signal_pid (job->priv->pid, SIGTERM);
                 waitpid (job->priv->pid, NULL, WNOHANG);
         }

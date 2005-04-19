@@ -1,5 +1,10 @@
 2005-04-19  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-job.c (gs_job_finalize):
+	Only signal if pid > 0.
+
+2005-04-19  William Jon McCann  <mccann@jhu.edu>
+
 	* .cvsignore: Updated.
 	
 	* src/gs-prefs.c (key_changed_cb, gs_prefs_init) 
