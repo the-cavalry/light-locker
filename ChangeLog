@@ -1,5 +1,10 @@
 2005-04-19  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-job.c (gs_job_set_command):
+	Handle NULL commands.
+
+2005-04-19  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-job.c (gs_job_finalize):
 	Only signal if pid > 0.
 

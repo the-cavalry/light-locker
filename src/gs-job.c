@@ -166,16 +166,21 @@ gs_job_set_command  (GSJob      *job,
         g_return_if_fail (GS_IS_JOB (job));
 
         g_free (job->priv->command);
+        job->priv->command = NULL;
+
+        if (! command)
+                return;
 
         /* try to find command in well known locations */
         path = find_command (command, known_locations);
 
         /* TODO: parse configuration file to determine default args */
 
-        line = g_strdup_printf ("%s -root", path);
-        g_free (path);
-
-        job->priv->command = line;
+        if (path) {
+                line = g_strdup_printf ("%s -root", path);
+                g_free (path);
+                job->priv->command = line;
+        }
 }
 
 GSJob *
