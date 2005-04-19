@@ -144,13 +144,22 @@ listener_deactivate_cb (GSListener *listener,
 }
 
 static void
+prefs_changed_cb (GSPrefs   *prefs,
+                  GSMonitor *monitor)
+{
+        gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
+        gs_manager_set_savers (monitor->priv->manager, monitor->priv->prefs->savers);
+}
+
+static void
 gs_monitor_init (GSMonitor *monitor)
 {
 
         monitor->priv = GS_MONITOR_GET_PRIVATE (monitor);
 
         monitor->priv->prefs = gs_prefs_new ();
-        /*gs_prefs_load_from_gconf (monitor->priv->prefs);*/
+        g_signal_connect (monitor->priv->prefs, "changed",
+                          G_CALLBACK (prefs_changed_cb), monitor);
 
         monitor->priv->listener = gs_listener_new ();
         g_signal_connect (monitor->priv->listener, "lock",

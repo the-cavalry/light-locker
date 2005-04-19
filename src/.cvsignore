@@ -5,3 +5,7 @@
 .libs
 Makefile
 Makefile.in
+gnome-screensaver
+gnome-screensaver-command
+gnome-screensaver-dialog
+gnome-screensaver-preferences

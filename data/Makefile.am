@@ -4,6 +4,15 @@ schemasdir   = @GCONF_SCHEMA_FILE_DIR@
 schemas_in_files = gnome-screensaver.schemas.in
 schemas_DATA = $(schemas_in_files:.schemas.in=.schemas)
 
+@INTLTOOL_DESKTOP_RULE@
+
+desktopdir = $(datadir)/applications
+desktop_in_files = gnome-screensaver-preferences.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+
+gladedir = $(pkgdatadir)
+glade_DATA = gnome-screensaver-preferences.glade
+
 EXTRA_DIST = $(schemas_in_files)
 
 DISTCLEANFILES = $(schemas_DATA)

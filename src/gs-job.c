@@ -28,8 +28,8 @@
 #include <sys/wait.h>
 
 #include <gdk/gdk.h>
+#include <gdk/gdkx.h>
 
-#include "gs-window.h"
 #include "gs-job.h"
 
 #include "subprocs.h"
@@ -50,7 +50,7 @@ typedef enum {
 
 struct GSJobPrivate
 {
-        GSWindow   *window;
+        GtkWidget  *widget;
         char       *command;
 
         GSJobStatus status;
@@ -62,6 +62,18 @@ struct GSJobPrivate
 static GObjectClass *parent_class = NULL;
 
 G_DEFINE_TYPE (GSJob, gs_job, G_TYPE_OBJECT);
+
+static char *
+widget_get_id_string (GtkWidget *widget)
+{
+        char *id = NULL;
+
+        g_return_val_if_fail (widget != NULL, NULL);
+
+        id = g_strdup_printf ("0x%X",
+                              (guint32)GDK_WINDOW_XID (widget->window));
+        return id;
+}
 
 static void
 gs_job_class_init (GSJobClass *klass)
@@ -106,44 +118,93 @@ gs_job_finalize (GObject *object)
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
-static void
-gs_job_set_window  (GSJob    *job,
-                    GSWindow *window)
+void
+gs_job_set_widget  (GSJob     *job,
+                    GtkWidget *widget)
 {
         g_return_if_fail (job != NULL);
         g_return_if_fail (GS_IS_JOB (job));
 
-        job->priv->window = window;
+        job->priv->widget = widget;
+}
+
+static const char *known_locations [] = {
+        "/usr/X11R6/lib/xscreensaver",
+        "/usr/lib/xscreensaver",
+        NULL
+};
+
+/* Returns the full path to the queried command */
+static char *
+find_command (const char  *command,
+              const char **known_locations)
+{
+        int i;
+
+        for (i = 0; known_locations [i]; i++){
+                char *path;
+
+                path = g_build_filename (known_locations [i], command, NULL);
+
+                if (g_file_test (path, G_FILE_TEST_IS_EXECUTABLE)
+                    && !g_file_test (path, G_FILE_TEST_IS_DIR))
+                        return path;
+
+                g_free (path);
+        }
+
+        return NULL;
 }
 
 void
 gs_job_set_command  (GSJob      *job,
                      const char *command)
 {
+        char *path;
+        char *line;
+
         g_return_if_fail (job != NULL);
         g_return_if_fail (GS_IS_JOB (job));
 
         g_free (job->priv->command);
 
-        job->priv->command = g_strdup (command);
+        /* try to find command in well known locations */
+        path = find_command (command, known_locations);
+
+        /* TODO: parse configuration file to determine default args */
+
+        line = g_strdup_printf ("%s -root", path);
+        g_free (path);
+
+        job->priv->command = line;
 }
 
 GSJob *
-gs_job_new_for_window (GSWindow   *window,
+gs_job_new (void)
+{
+        GObject *job;
+
+        job = g_object_new (GS_TYPE_JOB, NULL);
+
+        return GS_JOB (job);
+}
+
+GSJob *
+gs_job_new_for_widget (GtkWidget  *widget,
                        const char *command)
 {
         GObject *job;
 
         job = g_object_new (GS_TYPE_JOB, NULL);
 
-        gs_job_set_window  (GS_JOB (job), window);
+        gs_job_set_widget  (GS_JOB (job), widget);
         gs_job_set_command (GS_JOB (job), command);
 
         return GS_JOB (job);
 }
 
 static gboolean
-spawn_on_window (GSWindow   *window,
+spawn_on_widget (GtkWidget  *widget,
                  const char *command,
                  int        *pid,
                  GIOFunc     watch_func,
@@ -152,29 +213,30 @@ spawn_on_window (GSWindow   *window,
 {
         int         argc;
         char      **argv;
-        char       *envp[5];
+        char       *envp [5];
         int         nenv = 0;
         int         i;
         char       *window_id;
         gboolean    result;
         GIOChannel *channel;
+        GError     *error = NULL;
         int         standard_error;
         int         child_pid;
         int         id;
 
-        if (!g_shell_parse_argv (command, &argc, &argv, NULL))
+        if (! g_shell_parse_argv (command, &argc, &argv, NULL))
                 return FALSE;
 
-        window_id = gs_window_get_id_string (window);
-        envp[nenv++] = g_strdup_printf ("XSCREENSAVER_WINDOW=%s", window_id);
-        envp[nenv++] = g_strdup_printf ("DISPLAY=%s",
-                                        gdk_display_get_name (gdk_display_get_default ()));
-        envp[nenv++] = g_strdup_printf ("HOME=%s",
-                                        g_get_home_dir ());
-        envp[nenv++] = g_strdup_printf ("PATH=%s", g_getenv ("PATH"));
-        envp[nenv++] = NULL;
+        window_id = widget_get_id_string (widget);
+        envp [nenv++] = g_strdup_printf ("XSCREENSAVER_WINDOW=%s", window_id);
+        envp [nenv++] = g_strdup_printf ("DISPLAY=%s",
+                                         gdk_display_get_name (gdk_display_get_default ()));
+        envp [nenv++] = g_strdup_printf ("HOME=%s",
+                                         g_get_home_dir ());
+        envp [nenv++] = g_strdup_printf ("PATH=%s", g_getenv ("PATH"));
+        envp [nenv++] = NULL;
 
-        result = gdk_spawn_on_screen_with_pipes (gs_window_get_screen (window),
+        result = gdk_spawn_on_screen_with_pipes (gtk_widget_get_screen (widget),
                                                  g_get_home_dir (),
                                                  argv,
                                                  envp,
@@ -185,10 +247,13 @@ spawn_on_window (GSWindow   *window,
                                                  NULL,
                                                  NULL,
                                                  &standard_error,
-                                                 NULL);
+                                                 &error);
 
-        if (!result)
+        if (! result) {
+                g_message ("Could not start command '%s': %s", command, error->message);
+                g_error_free (error);
                 return FALSE;
+        }
 
         if (pid)
                 *pid = child_pid;
@@ -272,10 +337,10 @@ gs_job_start (GSJob *job)
         if (!job->priv->command)
                 return FALSE;
 
-        if (!job->priv->window)
+        if (!job->priv->widget)
                 return FALSE;
 
-        result = spawn_on_window (job->priv->window,
+        result = spawn_on_widget (job->priv->widget,
                                   (const char *)job->priv->command,
                                   &job->priv->pid,
                                   (GIOFunc)command_watch,

@@ -12,9 +12,11 @@ INCLUDES =							\
         -I$(top_srcdir)/src/cut-n-paste				\
 	$(GNOME_SCREENSAVER_CFLAGS)				\
 	$(GNOME_SCREENSAVER_DIALOG_CFLAGS)			\
+	$(GNOME_SCREENSAVER_CAPPLET_CFLAGS)			\
 	$(DISABLE_DEPRECATED_CFLAGS)				\
         -DLIBEXECDIR=\""$(libexecdir)"\"			\
         -DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"  \
+        -DGLADEDIR=\"$(pkgdatadir)\"				\
 	-DPAM_SERVICE_NAME=\""xscreensaver"\"			\
         $(WARN_CFLAGS)                                          \
 	$(AUTH_CFLAGS)						\
@@ -23,7 +25,8 @@ INCLUDES =							\
 
 bin_PROGRAMS = \
 	gnome-screensaver		\
-	gnome-screensaver-command
+	gnome-screensaver-command	\
+	gnome-screensaver-preferences
 
 libexec_PROGRAMS = \
 	gnome-screensaver-dialog
@@ -89,10 +92,10 @@ gnome_screensaver_SOURCES =	\
 	gs-prefs.h		\
 	gs-job.c		\
 	gs-job.h		\
-	gs-grab-x11.c		\
-	gs-grab.h		\
 	subprocs.c		\
 	subprocs.h		\
+	gs-grab-x11.c		\
+	gs-grab.h		\
 	dpms.c			\
 	dpms.h			\
 	$(NULL)
@@ -103,6 +106,17 @@ gnome_screensaver_LDADD =		\
 	$(X_LIBS)
 
 gnome_screensaver_LDFLAGS = -export-dynamic
+
+gnome_screensaver_preferences_SOURCES =	\
+	gnome-screensaver-preferences.c	\
+	gs-job.c			\
+	gs-job.h			\
+	subprocs.c			\
+	subprocs.h			\
+	$(NULL)
+
+gnome_screensaver_preferences_LDADD =	\
+	$(GNOME_SCREENSAVER_CAPPLET_LIBS)
 
 EXTRA_DIST =
 

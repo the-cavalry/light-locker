@@ -22,6 +22,8 @@
 
 #include "config.h"
 
+#include <string.h>
+
 #include <glib.h>
 #include <glib-object.h>
 #include <gconf/gconf-client.h>
@@ -135,70 +137,6 @@ gs_prefs_class_init (GSPrefsClass *klass)
 }
 
 static void
-gs_prefs_init (GSPrefs *prefs)
-{
-        prefs->priv = GS_PREFS_GET_PRIVATE (prefs);
-
-        prefs->priv->gconf_client      = gconf_client_get_default ();
-
-        prefs->use_sgi_saver_extension = FALSE;
-        prefs->use_mit_saver_extension = FALSE;
-        prefs->use_xidle_extension     = FALSE;
-        prefs->use_proc_interrupts     = FALSE;
-
-        prefs->pointer_timeout         = 5000;
-
-        prefs->lock                    = TRUE;
-
-        prefs->verbose                 = FALSE;
-        prefs->debug                   = FALSE;
-
-        prefs->timeout                 = 600000;
-        prefs->lock_timeout            = 0;
-        prefs->cycle                   = 60000;
-
-        prefs->dpms_enabled            = TRUE;
-        prefs->dpms_standby            = 7200000;
-        prefs->dpms_suspend            = 7200000;
-        prefs->dpms_off                = 14400000;
-
-        prefs->mode                    = GS_MODE_RANDOM;
-
-        /* FIXME: for testing only */
-        prefs->savers = g_slist_append (prefs->savers, "/usr/X11R6/lib/xscreensaver/popsquares -root");
-}
-
-static void
-gs_prefs_finalize (GObject *object)
-{
-        GSPrefs *prefs;
-
-        g_return_if_fail (object != NULL);
-        g_return_if_fail (GS_IS_PREFS (object));
-
-        prefs = GS_PREFS (object);
-
-        g_return_if_fail (prefs->priv != NULL);
-
-        if (prefs->priv->gconf_client) {
-                g_object_unref (prefs->priv->gconf_client);
-                prefs->priv->gconf_client = NULL;
-        }
-
-        G_OBJECT_CLASS (parent_class)->finalize (object);
-}
-
-GSPrefs *
-gs_prefs_new (void)
-{
-        GObject *prefs;
-
-        prefs = g_object_new (GS_TYPE_PREFS, NULL);
-
-        return GS_PREFS (prefs);
-}
-
-void
 gs_prefs_load_from_gconf (GSPrefs *prefs)
 {
         glong value;
@@ -227,6 +165,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 prefs->mode = mode;
         else
                 prefs->mode = GS_MODE_BLANK_ONLY;
+        g_free (string);
 
         if (prefs->savers) {
                 g_slist_foreach (prefs->savers, (GFunc)g_free, NULL);
@@ -237,3 +176,155 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                                                KEY_SAVERS, GCONF_VALUE_STRING, NULL);
 }
 
+static void
+key_changed_cb (GConfClient *client,
+                guint        cnxn_id,
+                GConfEntry  *entry,
+                GSPrefs     *prefs)
+{
+        gboolean    changed = FALSE;
+        const char *key;
+        GConfValue *value;
+
+        key = gconf_entry_get_key (entry);
+
+        if (! g_str_has_prefix (key, KEY_DIR))
+                return;
+
+        value = gconf_entry_get_value (entry);
+
+        if (strcmp (key, KEY_MODE) == 0) {
+                const char *str;
+                int         mode;
+
+                str = gconf_value_get_string (value);
+
+                if (str && gconf_string_to_enum (mode_enum_map, str, &mode))
+                        prefs->mode = mode;
+                else
+                        prefs->mode = GS_MODE_BLANK_ONLY;
+
+                changed = TRUE;
+
+        } else if (strcmp (key, KEY_SAVERS) == 0) {
+                GSList *list    = NULL;
+
+                if (value == NULL
+                    || value->type != GCONF_VALUE_LIST) {
+                        return;
+                }
+                            
+                list = gconf_value_get_list (value);
+
+                if (list
+                    && gconf_value_get_list_type (value) == GCONF_VALUE_STRING) {
+                        GSList *l;
+
+                        changed = TRUE;
+
+                        if (prefs->savers) {
+                                g_slist_foreach (prefs->savers, (GFunc)g_free, NULL);
+                                g_slist_free (prefs->savers);
+                                prefs->savers = NULL;
+                        }
+
+                        for (l = list; l; l = l->next) {
+                                char *s;
+
+                                s = gconf_value_to_string (l->data);
+
+                                prefs->savers = g_slist_append (prefs->savers, g_strdup (s));
+
+                                g_free (s);
+                        }
+                }
+        } else {
+                g_message ("Config key not handled: %s", key);
+        }
+
+        if (changed && prefs) {
+                g_signal_emit (prefs, signals [CHANGED], 0);
+        }
+}
+
+static void
+gs_prefs_init (GSPrefs *prefs)
+{
+        prefs->priv = GS_PREFS_GET_PRIVATE (prefs);
+
+        prefs->priv->gconf_client      = gconf_client_get_default ();
+
+        prefs->use_sgi_saver_extension = FALSE;
+        prefs->use_mit_saver_extension = FALSE;
+        prefs->use_xidle_extension     = FALSE;
+        prefs->use_proc_interrupts     = FALSE;
+
+        prefs->pointer_timeout         = 5000;
+
+        prefs->lock                    = TRUE;
+
+        prefs->verbose                 = FALSE;
+        prefs->debug                   = FALSE;
+
+        prefs->timeout                 = 600000;
+        prefs->lock_timeout            = 0;
+        prefs->cycle                   = 60000;
+
+        prefs->dpms_enabled            = TRUE;
+        prefs->dpms_standby            = 7200000;
+        prefs->dpms_suspend            = 7200000;
+        prefs->dpms_off                = 14400000;
+
+        prefs->mode                    = GS_MODE_SINGLE;
+
+        /* FIXME: for testing only */
+        prefs->savers = g_slist_append (prefs->savers, g_strdup ("popsquares"));
+
+        /* GConf setup */
+        gconf_client_add_dir (prefs->priv->gconf_client,
+                              KEY_DIR,
+                              GCONF_CLIENT_PRELOAD_NONE, NULL);
+
+        gconf_client_notify_add (prefs->priv->gconf_client,
+                                 KEY_DIR,
+                                 (GConfClientNotifyFunc)key_changed_cb,
+                                 prefs,
+                                 NULL, NULL);
+
+        gs_prefs_load_from_gconf (prefs);
+}
+
+static void
+gs_prefs_finalize (GObject *object)
+{
+        GSPrefs *prefs;
+
+        g_return_if_fail (object != NULL);
+        g_return_if_fail (GS_IS_PREFS (object));
+
+        prefs = GS_PREFS (object);
+
+        g_return_if_fail (prefs->priv != NULL);
+
+        if (prefs->priv->gconf_client) {
+                g_object_unref (prefs->priv->gconf_client);
+                prefs->priv->gconf_client = NULL;
+        }
+
+        if (prefs->savers) {
+                g_slist_foreach (prefs->savers, (GFunc)g_free, NULL);
+                g_slist_free (prefs->savers);
+        }
+
+        G_OBJECT_CLASS (parent_class)->finalize (object);
+}
+
+GSPrefs *
+gs_prefs_new (void)
+{
+        GObject *prefs;
+
+        prefs = g_object_new (GS_TYPE_PREFS, NULL);
+
+        return GS_PREFS (prefs);
+}

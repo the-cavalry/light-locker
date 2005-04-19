@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+_Name=Screensaver
+_Comment=Configure screen blanking and locking
+Icon=gnome-lockscreen
+Exec=gnome-screensaver-preferences
+Terminal=false
+Type=Application
+Categories=Application;Settings;
+OnlyShowIn=GNOME;
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=gnome-screensaver
+X-GNOME-Bugzilla-Component=general

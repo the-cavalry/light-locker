@@ -1,3 +1,28 @@
+2005-04-19  William Jon McCann  <mccann@jhu.edu>
+
+	* .cvsignore: Updated.
+	
+	* src/gs-prefs.c (key_changed_cb, gs_prefs_init) 
+	(gs_prefs_finalize): 
+	* src/gs-monitor.c (prefs_changed_cb, gs_monitor_init):
+	Enable monitoring of gconf settings.
+
+	* src/gs-manager.c (window_show_cb): 
+	* src/gs-job.c (widget_get_id_string, gs_job_set_widget) 
+	(find_command, gs_job_set_command, gs_job_new) 
+	(gs_job_new_for_widget, spawn_on_widget, gs_job_start):
+	Change jobs to run on a widget instead of GSWindow in
+	order to support capplet.  Interpret gconf saver value
+	as a full path for security.
+
+	* src/gnome-screensaver-preferences.c: 
+	* src/Makefile.am: 
+	* data/gnome-screensaver-preferences.glade: 
+	* data/gnome-screensaver-preferences.desktop.in: 
+	* data/Makefile.am: 
+	* configure.ac:
+	Add screensaver preferences capplet.
+
 2005-04-15  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-manager.c (window_show_cb, window_map_event_cb) 

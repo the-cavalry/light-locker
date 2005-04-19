@@ -650,16 +650,3 @@ gs_window_new (GdkScreen *screen,
 
         return GS_WINDOW (result);
 }
-
-char *
-gs_window_get_id_string (GSWindow *window)
-{
-        char *id = NULL;
-
-        g_return_val_if_fail (window != NULL, NULL);
-        g_return_val_if_fail (GS_IS_WINDOW (window), NULL);
-
-        id = g_strdup_printf ("0x%X",
-                              (guint32)GDK_WINDOW_XID (gs_window_get_gdk_window (window)));
-        return id;
-}

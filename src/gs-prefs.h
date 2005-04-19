@@ -87,10 +87,8 @@ typedef struct
 } GSPrefsClass;
 
 GType       gs_prefs_get_type        (void);
-
 GSPrefs   * gs_prefs_new             (void);
-
-void        gs_prefs_load_from_gconf (GSPrefs *prefs);
+void        gs_prefs_load            (GSPrefs *prefs);
 
 G_END_DECLS
 

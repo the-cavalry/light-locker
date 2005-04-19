@@ -536,7 +536,7 @@ window_show_cb (GSWindow  *window,
         g_return_if_fail (GS_IS_WINDOW (window));
 
         command = select_saver (manager);
-        job = gs_job_new_for_window (window, command);
+        job = gs_job_new_for_widget (GTK_WIDGET (window), command);
 
         g_object_ref (job);
         gs_job_start (job);

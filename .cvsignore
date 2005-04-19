@@ -12,6 +12,7 @@ config.status
 config.sub
 configure
 configure.scan
+compile
 depcomp
 intl
 libtool

@@ -65,7 +65,6 @@ void        gs_window_request_unlock   (GSWindow  *window);
 
 GSWindow  * gs_window_new              (GdkScreen *screen,
                                         gboolean   lock_enabled);
-char      * gs_window_get_id_string    (GSWindow  *window);
 void        gs_window_show             (GSWindow  *window);
 void        gs_window_destroy          (GSWindow  *window);
 GdkWindow * gs_window_get_gdk_window   (GSWindow  *window);
