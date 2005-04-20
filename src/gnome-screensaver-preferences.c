@@ -69,6 +69,36 @@ static GConfEnumStringPair mode_enum_map [] = {
 static GladeXML *xml = NULL;
 static GSJob    *job = NULL;
 
+static gint32
+config_get_blank_delay (void)
+{
+        GConfClient *client;
+        gint32       delay;
+
+        client = gconf_client_get_default ();
+
+        delay = gconf_client_get_int (client, KEY_BLANK_DELAY, NULL);
+
+        if (delay < 1)
+                delay = 1;
+
+        g_object_unref (client);
+
+        return delay;
+}
+
+static void
+config_set_blank_delay (gint32 timeout)
+{
+        GConfClient *client;
+
+        client = gconf_client_get_default ();
+
+        gconf_client_set_int (client, KEY_BLANK_DELAY, timeout, NULL);
+
+        g_object_unref (client);
+}
+
 static char *
 config_get_command (void)
 {
@@ -254,6 +284,16 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
 }
 
 static void
+blank_delay_value_changed_cb (GtkRange *range,
+                              gpointer  user_data)
+{
+        gdouble value;
+
+        value = gtk_range_get_value (range);
+        config_set_blank_delay ((gint32)value);
+}
+
+static void
 setup_treeview (GtkWidget *tree,
                 GtkWidget *preview)
 {
@@ -331,7 +371,9 @@ init_capplet (void)
         GtkWidget *dialog;
         GtkWidget *preview;
         GtkWidget *treeview;
+        GtkWidget *blank_delay_hscale;
         char      *glade_file;
+        gdouble    blank_delay;
 
         glade_file = g_build_filename (GLADEDIR, GLADE_XML_FILE, NULL);
         xml = glade_xml_new (glade_file, NULL, PACKAGE);
@@ -353,20 +395,26 @@ init_capplet (void)
                 exit (1);
         }
 
-        dialog   = glade_xml_get_widget (xml, "prefs_dialog");
-        preview  = glade_xml_get_widget (xml, "preview_area");
-        treeview = glade_xml_get_widget (xml, "savers_treeview");
+        preview            = glade_xml_get_widget (xml, "preview_area");
+        dialog             = glade_xml_get_widget (xml, "prefs_dialog");
+        treeview           = glade_xml_get_widget (xml, "savers_treeview");
+        blank_delay_hscale = glade_xml_get_widget (xml, "blank_delay_hscale");
+
+        blank_delay = config_get_blank_delay ();
+        gtk_range_set_value (GTK_RANGE (blank_delay_hscale), blank_delay);
 
         gtk_window_set_icon_name (GTK_WINDOW (dialog), "gnome-lockscreen");
 
         gtk_widget_show_all (dialog);
 
-        gtk_widget_set_size_request (preview, 300, 300);
         preview_clear (preview);
         gs_job_set_widget (job, preview);
 
         setup_treeview (treeview, preview);
         setup_treeview_selection (treeview);
+
+        g_signal_connect (blank_delay_hscale, "value-changed",
+                          G_CALLBACK (blank_delay_value_changed_cb), NULL);
 
         g_signal_connect (dialog, "response",
                           G_CALLBACK (response_cb), NULL);
