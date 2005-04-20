@@ -111,6 +111,29 @@ set_invisible_cursor (GdkWindow *window,
                 gdk_cursor_unref (cursor);
 }
 
+/* derived from tomboy */
+static void
+gs_window_override_user_time (GSWindow *window)
+{
+        guint32 ev_time = gtk_get_current_event_time ();
+
+        if (ev_time == 0) {
+                gint ev_mask = gtk_widget_get_events (GTK_WIDGET (window));
+                if (!(ev_mask & GDK_PROPERTY_CHANGE_MASK)) {
+                        gtk_widget_add_events (GTK_WIDGET (window),
+                                               GDK_PROPERTY_CHANGE_MASK);
+                }
+
+                /* 
+                 * NOTE: Last resort for D-BUS or other non-interactive
+                 *       openings.  Causes roundtrip to server.  Lame. 
+                 */
+                ev_time = gdk_x11_get_server_time (GTK_WIDGET (window)->window);
+        }
+
+        gdk_x11_window_set_user_time (GTK_WIDGET (window)->window, ev_time);
+}
+
 static void
 gs_window_clear (GSWindow *window)
 {
@@ -131,6 +154,7 @@ gs_window_real_realize (GtkWidget *widget)
         if (GTK_WIDGET_CLASS (parent_class)->realize)
                 GTK_WIDGET_CLASS (parent_class)->realize (widget);
 
+        gs_window_override_user_time (GS_WINDOW (widget));
         gs_window_clear (GS_WINDOW (widget));
 }
 

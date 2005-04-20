@@ -1,5 +1,11 @@
 2005-04-20  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (gs_window_override_user_time) 
+	(gs_window_real_realize):
+	Try to work around focus stealing prevention.
+
+2005-04-20  William Jon McCann  <mccann@jhu.edu>
+
 	* README: Added bugzilla info, etc.
 
 2005-04-20  William Jon McCann  <mccann@jhu.edu>
