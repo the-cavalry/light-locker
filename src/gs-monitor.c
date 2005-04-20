@@ -149,6 +149,7 @@ prefs_changed_cb (GSPrefs   *prefs,
 {
         gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
         gs_manager_set_savers (monitor->priv->manager, monitor->priv->prefs->savers);
+        gs_watcher_set_timeout (monitor->priv->watcher, monitor->priv->prefs->timeout);
 }
 
 static void

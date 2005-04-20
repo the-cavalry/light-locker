@@ -1,5 +1,12 @@
 2005-04-20  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c (gs_watcher_set_timeout): 
+	* src/gs-prefs.c (key_changed_cb): 
+	* src/gs-monitor.c (prefs_changed_cb):
+	Make daemon respond to blank delay gconf changes.
+
+2005-04-20  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-preferences.c (init_capplet): 
 	* data/gnome-screensaver-preferences.glade:
 	Make keyboard mnemonic activation work.

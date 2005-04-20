@@ -207,7 +207,7 @@ key_changed_cb (GConfClient *client,
                 changed = TRUE;
 
         } else if (strcmp (key, KEY_SAVERS) == 0) {
-                GSList *list    = NULL;
+                GSList *list = NULL;
 
                 if (value == NULL
                     || value->type != GCONF_VALUE_LIST) {
@@ -238,6 +238,14 @@ key_changed_cb (GConfClient *client,
                                 g_free (s);
                         }
                 }
+        } else if (strcmp (key, KEY_BLANK_DELAY) == 0) {
+                int delay;
+
+                delay = gconf_value_get_int (value);
+                if (delay < 1)
+                        delay = 1;
+                prefs->timeout = delay * 60000;
+                changed = TRUE;
         } else {
                 g_message ("Config key not handled: %s", key);
         }

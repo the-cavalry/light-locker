@@ -130,6 +130,12 @@ gs_watcher_set_timeout (GSWatcher  *watcher,
         g_return_if_fail (GS_WATCHER (watcher));
 
         watcher->priv->timeout = timeout;
+
+        /* restart if necessary */
+        if (watcher->priv->timer_id > 0) {
+                gs_watcher_set_active (watcher, FALSE);
+                gs_watcher_set_active (watcher, TRUE);
+        }
 }
 
 
