@@ -372,6 +372,7 @@ init_capplet (void)
         GtkWidget *preview;
         GtkWidget *treeview;
         GtkWidget *blank_delay_hscale;
+        GtkWidget *label;
         char      *glade_file;
         gdouble    blank_delay;
 
@@ -399,6 +400,11 @@ init_capplet (void)
         dialog             = glade_xml_get_widget (xml, "prefs_dialog");
         treeview           = glade_xml_get_widget (xml, "savers_treeview");
         blank_delay_hscale = glade_xml_get_widget (xml, "blank_delay_hscale");
+
+        label              = glade_xml_get_widget (xml, "blank_delay_label");
+        gtk_label_set_mnemonic_widget (GTK_LABEL (label), blank_delay_hscale);
+        label              = glade_xml_get_widget (xml, "savers_label");
+        gtk_label_set_mnemonic_widget (GTK_LABEL (label), treeview);
 
         blank_delay = config_get_blank_delay ();
         gtk_range_set_value (GTK_RANGE (blank_delay_hscale), blank_delay);

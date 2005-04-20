@@ -140,10 +140,10 @@
 		  </child>
 
 		  <child>
-		    <widget class="GtkLabel" id="label4">
+		    <widget class="GtkLabel" id="savers_label">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">&lt;b&gt;Screen Savers&lt;/b&gt;</property>
-		      <property name="use_underline">False</property>
+		      <property name="label" translatable="yes">&lt;b&gt;_Screen Savers&lt;/b&gt;</property>
+		      <property name="use_underline">True</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
 		      <property name="wrap">False</property>
@@ -286,9 +286,9 @@
 			      <property name="spacing">6</property>
 
 			      <child>
-				<widget class="GtkLabel" id="label7">
+				<widget class="GtkLabel" id="blank_delay_label">
 				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">_Start after:</property>
+				  <property name="label" translatable="yes">_Blank screen after:</property>
 				  <property name="use_underline">True</property>
 				  <property name="use_markup">False</property>
 				  <property name="justify">GTK_JUSTIFY_LEFT</property>

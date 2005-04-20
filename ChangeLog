@@ -1,5 +1,11 @@
 2005-04-20  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-preferences.c (init_capplet): 
+	* data/gnome-screensaver-preferences.glade:
+	Make keyboard mnemonic activation work.
+
+2005-04-20  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-preferences.c (config_get_blank_delay) 
 	(config_set_blank_delay, blank_delay_value_changed_cb) 
 	(init_capplet): Add support for the blank delay.
