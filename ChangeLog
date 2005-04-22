@@ -1,5 +1,11 @@
 2005-04-22  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-preferences.c (saver_entry_free) 
+	(get_saver_list, populate_model):
+	Construct saver list more dynamically.
+
+2005-04-22  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/Makefile.am: 
 	* savers/popsquares.c: 
 	* src/gs-job.c: 

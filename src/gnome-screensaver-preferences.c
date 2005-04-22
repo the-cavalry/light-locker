@@ -216,11 +216,43 @@ response_cb (GtkWidget *widget,
         gtk_main_quit ();
 }
 
+struct saver_entry {
+        char *name;
+        char *command;
+};
+
+static void
+saver_entry_free (struct saver_entry *entry)
+{
+        if (! entry)
+                return;
+
+        g_free (entry->name);
+        g_free (entry->command);
+        g_free (entry);
+}
+
+static GSList *
+get_saver_list (void)
+{
+        GSList             *savers = NULL;
+        struct saver_entry *entry;
+
+        entry = g_new0 (struct saver_entry, 1);
+        entry->name    = g_strdup ("Pop art squares");
+        entry->command = g_strdup ("popsquares");
+        savers = g_slist_append (savers, entry);
+
+        return savers;
+}
+
 static void
 populate_model (GtkTreeStore *store)
 {
         GtkTreeIter iter;
         gboolean    show_disabled = TRUE;
+        GSList     *savers        = NULL;
+        GSList     *l;
 
         if (show_disabled) {
                 gtk_tree_store_append (store, &iter, NULL);
@@ -232,33 +264,29 @@ populate_model (GtkTreeStore *store)
 
         gtk_tree_store_append (store, &iter, NULL);
         gtk_tree_store_set (store, &iter,
-                            NAME_COLUMN, "Blank only",
+                            NAME_COLUMN, "Blank screen",
                             COMMAND_COLUMN, "__blank-only",
                             -1);
 
-        gtk_tree_store_append (store, &iter, NULL);
-        gtk_tree_store_set (store, &iter,
-                            NAME_COLUMN, "Flurry",
-                            COMMAND_COLUMN, "flurry",
-                            -1);
+        savers = get_saver_list ();
 
-        gtk_tree_store_append (store, &iter, NULL);
-        gtk_tree_store_set (store, &iter,
-                            NAME_COLUMN, "Pop squares",
-                            COMMAND_COLUMN, "popsquares",
-                            -1);
+        if (! savers)
+                return;
+        
+        for (l = savers; l; l = l->next) {
+                struct saver_entry *saver;
 
-        gtk_tree_store_append (store, &iter, NULL);
-        gtk_tree_store_set (store, &iter,
-                            NAME_COLUMN, "Slide screen",
-                            COMMAND_COLUMN, "slidescreen",
-                            -1);
+                saver = l->data;
 
-        gtk_tree_store_append (store, &iter, NULL);
-        gtk_tree_store_set (store, &iter,
-                            NAME_COLUMN, "Slide show",
-                            COMMAND_COLUMN, "glslideshow",
-                            -1);
+                gtk_tree_store_append (store, &iter, NULL);
+                gtk_tree_store_set (store, &iter,
+                                    NAME_COLUMN, saver->name,
+                                    COMMAND_COLUMN, saver->command,
+                                    -1);
+        }
+
+        g_slist_foreach (savers, (GFunc)saver_entry_free, NULL);
+        g_slist_free (savers);
 }
 
 static void
