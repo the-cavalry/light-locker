@@ -1,6 +1,13 @@
 2005-04-22  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/popsquares.c (screenhack_init, screenhack_iter) 
+	(screenhack_destroy, new_window, get_window, do_restart) 
+	(do_configure_event, do_event, main):
+	Add support for configuration events.
+
+2005-04-22  William Jon McCann  <mccann@jhu.edu>
+
+	* savers/popsquares.c (screenhack_init, screenhack_iter) 
 	(screenhack_destroy): Make functions static for now.
 
 2005-04-22  William Jon McCann  <mccann@jhu.edu>

@@ -32,12 +32,17 @@ typedef struct _square {
         int color;
 } square;
 
-static GdkGC    *gc;
-static GdkColor *colors   = NULL;
-static square   *squares  = NULL;
-static int       ncolors  = 128;
-static int       nsquares = 0;
-static int       sw, sh, gw, gh;
+GdkWindow *screenhack_window     = NULL;
+guint      screenhack_timeout_id = 0;
+
+static int ncolors     = 128;
+static int subdivision = 5;
+
+GdkGC     *gc            = NULL;
+GdkColor  *colors        = NULL;
+square    *squares       = NULL;
+int        window_width  = 400;
+int        window_height = 400;
 
 static void
 hsv_to_rgb (int             h,
@@ -64,12 +69,14 @@ hsv_to_rgb (int             h,
         p1 = V * (1 - S);
         p2 = V * (1 - (S * f));
         p3 = V * (1 - (S * (1 - f)));
+
         if	  (i == 0) { R = V;  G = p3; B = p1; }
         else if (i == 1) { R = p2; G = V;  B = p1; }
         else if (i == 2) { R = p1; G = V;  B = p3; }
         else if (i == 3) { R = p1; G = p2; B = V;  }
         else if (i == 4) { R = p3; G = p1; B = V;  }
         else		   { R = V;  G = p1; B = p2; }
+
         *r = R * 65535;
         *g = G * 65535;
         *b = B * 65535;
@@ -86,16 +93,20 @@ rgb_to_hsv (unsigned short r,
         double R, G, B, H, S, V;
         double cmax, cmin;
         double cmm;
-        int imax;
+        int    imax;
+
         R = ((double) r) / 65535.0;
         G = ((double) g) / 65535.0;
         B = ((double) b) / 65535.0;
         cmax = R; cmin = G; imax = 1;
+
         if  ( cmax < G ) { cmax = G; cmin = R; imax = 2; }
         if  ( cmax < B ) { cmax = B; imax = 3; }
         if  ( cmin > B ) { cmin = B; }
+
         cmm = cmax - cmin;
         V = cmax;
+
         if (cmm == 0)
                 S = H = 0;
         else {
@@ -209,28 +220,28 @@ set_colors (GdkWindow *window,
 static guint
 screenhack_init (GdkWindow *window)
 {
-        int       subdivision = 5;
         double    s1, v1, s2, v2 = 0;
         int       x, y;
         int       h1, h2 = 0;
-        int       width, height;
+        int       sw, sh, gw, gh;
+        int       nsquares;
         GdkColor  fg;
         GdkColor  bg;
 
-        gdk_drawable_get_size (window, &width, &height);
+        gdk_drawable_get_size (window, &window_width, &window_height);
 
         set_colors (window, &fg, &bg);
 
-        sw = width / subdivision;
-        sh = height / subdivision;
-        gw = width / sw;
-        gh = height / sh;
+        sw = window_width / subdivision;
+        sh = window_height / subdivision;
+        gw = window_width / sw;
+        gh = window_height / sh;
         nsquares = gw * gh;
 
         gc = gdk_gc_new (window);
 
         colors = g_new0 (GdkColor, ncolors);
-        squares = (square *) calloc (nsquares, sizeof (square));
+        squares = g_new0 (square, nsquares);
 
         rgb_to_hsv (fg.red, fg.green, fg.blue, &h1, &s1, &v1);
         rgb_to_hsv (bg.red, bg.green, bg.blue, &h2, &s2, &v2);
@@ -265,6 +276,14 @@ screenhack_iter (GdkWindow *window)
         int      border = 1;
         gboolean twitch = FALSE;
         int      x, y;
+        int      sw, sh, gw, gh;
+        int      nsquares;
+
+        sw = window_width / subdivision;
+        sh = window_height / subdivision;
+        gw = window_width / sw;
+        gh = window_height / sh;
+        nsquares = gw * gh;
 
         for (y = 0; y < gh; y++) {
                 for (x = 0; x < gw; x++) {
@@ -291,6 +310,11 @@ screenhack_iter (GdkWindow *window)
 static void
 screenhack_destroy (void)
 {
+        gdk_window_clear (screenhack_window);
+
+        g_free (squares);
+        g_free (colors);
+        g_object_unref (gc);
 }
 
 static GdkWindow *
@@ -307,7 +331,7 @@ new_window (void)
         attributes_mask = 0;
         attributes.window_type = GDK_WINDOW_TOPLEVEL;
         attributes.wclass = GDK_INPUT_OUTPUT;
-        attributes.event_mask = (GDK_EXPOSURE_MASK);
+        attributes.event_mask = (GDK_EXPOSURE_MASK | GDK_STRUCTURE_MASK);
         attributes.width = 400;
         attributes.height = 400;
 
@@ -336,6 +360,7 @@ use_window (const char *str)
         if (1 == sscanf (str, " 0x%lx %c", &id, &c)
             || 1 == sscanf (str, " %lu %c",   &id, &c)) {
                 window = gdk_window_foreign_new ((Window)id);
+                gdk_window_set_events (window, GDK_EXPOSURE_MASK | GDK_STRUCTURE_MASK);
         }
 
         return window;
@@ -360,6 +385,42 @@ get_window (void)
 }
 
 static void
+do_restart (void)
+{
+        guint delay;
+
+        if (screenhack_timeout_id > 0) {
+                g_source_remove (screenhack_timeout_id);
+                screenhack_timeout_id = 0;
+        }
+
+        if (screenhack_window)
+                screenhack_destroy ();
+        else
+                screenhack_window = get_window ();
+
+        delay = screenhack_init (screenhack_window);
+
+        screenhack_timeout_id = g_timeout_add (delay, (GSourceFunc)screenhack_iter, screenhack_window);
+}
+
+static void
+do_configure_event (GdkEvent *event)
+{
+        int width;
+        int height;
+
+        width  = event->configure.width;
+        height = event->configure.height;
+
+        if (window_width == width
+            && window_height == height)
+                return;
+
+        do_restart ();
+}
+
+static void
 do_event (GdkEvent *event)
 {
         switch (event->type) {
@@ -369,6 +430,11 @@ do_event (GdkEvent *event)
                 break;
         case GDK_DESTROY:
                 break;
+        case GDK_EXPOSE:
+                break;
+        case GDK_CONFIGURE:
+                do_configure_event (event);
+                break;
         default:
                 break;
         }
@@ -377,10 +443,7 @@ do_event (GdkEvent *event)
 int
 main (int argc, char **argv)
 {
-        GdkWindow *window;
         GMainLoop *main_loop = NULL;
-        guint      delay;
-        guint      timeout_id;
 
         gtk_init (&argc, &argv);
         
@@ -388,11 +451,7 @@ main (int argc, char **argv)
 
         gdk_event_handler_set ((GdkEventFunc)do_event, NULL, NULL);
 
-        window = get_window ();
-
-        delay = screenhack_init (window);
-
-        timeout_id = g_timeout_add (delay, (GSourceFunc)screenhack_iter, window);
+        do_restart ();
 
         main_loop = g_main_loop_new (NULL, FALSE);
         GDK_THREADS_LEAVE ();
