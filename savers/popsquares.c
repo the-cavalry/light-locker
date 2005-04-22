@@ -206,7 +206,7 @@ set_colors (GdkWindow *window,
         bg->blue  = color.blue;
 }
 
-guint
+static guint
 screenhack_init (GdkWindow *window)
 {
         int       subdivision = 5;
@@ -259,7 +259,7 @@ screenhack_init (GdkWindow *window)
         return 25;
 }
 
-gboolean
+static gboolean
 screenhack_iter (GdkWindow *window)
 {
         int      border = 1;
@@ -288,7 +288,7 @@ screenhack_iter (GdkWindow *window)
         return TRUE;
 }
 
-void
+static void
 screenhack_destroy (void)
 {
 }

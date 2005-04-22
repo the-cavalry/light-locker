@@ -1,5 +1,10 @@
 2005-04-22  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/popsquares.c (screenhack_init, screenhack_iter) 
+	(screenhack_destroy): Make functions static for now.
+
+2005-04-22  William Jon McCann  <mccann@jhu.edu>
+
 	* data/gnome-screensaver-preferences.glade:
 	Use vbox/hbox instead of frame.
 
