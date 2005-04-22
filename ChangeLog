@@ -1,5 +1,10 @@
 2005-04-22  William Jon McCann  <mccann@jhu.edu>
 
+	* data/gnome-screensaver-preferences.glade:
+	Use vbox/hbox instead of frame.
+
+2005-04-22  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-preferences.c (saver_entry_free) 
 	(get_saver_list, populate_model):
 	Construct saver list more dynamically.
