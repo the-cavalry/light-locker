@@ -1,3 +1,14 @@
+2005-04-22  William Jon McCann  <mccann@jhu.edu>
+
+	* savers/Makefile.am: 
+	* savers/popsquares.c: 
+	* src/gs-job.c: 
+	* src/Makefile.am: 
+	* configure.ac: 
+	* Makefile.am:
+	Add gdk port of popsquares saver that uses the
+	desktop theme and doesn't support configuration.
+
 2005-04-20  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (gs_window_override_user_time) 

@@ -4,6 +4,7 @@ AUTOMAKE_OPTIONS = 1.7
 
 SUBDIRS =			\
 	src			\
+	savers			\
 	data
 
 EXTRA_DIST =			\

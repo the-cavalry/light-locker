@@ -128,6 +128,8 @@ gs_job_set_widget  (GSJob     *job,
 }
 
 static const char *known_locations [] = {
+        SAVERDIR,
+        LIBEXECDIR "/xscreensaver",
         "/usr/X11R6/lib/xscreensaver",
         "/usr/lib/xscreensaver",
         NULL
