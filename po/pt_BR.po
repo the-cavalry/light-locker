@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-04-15 12:27-0300\n"
-"PO-Revision-Date: 2005-04-15 12:53-0300\n"
+"POT-Creation-Date: 2005-04-24 14:48-0300\n"
+"PO-Revision-Date: 2005-04-24 14:50-0300\n"
 "Last-Translator: Raphael Higino <raphaelh@uai.com.br>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -108,11 +108,11 @@ msgstr "O nome da tela X11 a que esse objeto se refere."
 #: ../src/cut-n-paste/fusa-display.c:134
 #: ../src/cut-n-paste/fusa-user-menu-item.c:152
 msgid "User"
-msgstr ""
+msgstr "Usuário"
 
 #: ../src/cut-n-paste/fusa-display.c:135
 msgid "The user currently logged in on this virtual terminal."
-msgstr ""
+msgstr "O usuário logado atualmente neste terminal virtual."
 
 #: ../src/cut-n-paste/fusa-display.c:141
 msgid "Console"
@@ -121,6 +121,7 @@ msgstr "Console"
 #: ../src/cut-n-paste/fusa-display.c:142
 msgid "The number of the virtual console this display can be found on, or %-1."
 msgstr ""
+"O número do console virtual em que essa tela pode ser encontrada, ou %-1."
 
 #: ../src/cut-n-paste/fusa-display.c:148
 msgid "Nested"
@@ -128,19 +129,20 @@ msgstr "Aninhado"
 
 #: ../src/cut-n-paste/fusa-display.c:149
 msgid "Whether or not this display is a windowed (Xnest) display."
-msgstr ""
+msgstr "Se essa sessão ficará ou não numa janela (Xnest)."
 
 #: ../src/cut-n-paste/fusa-manager.c:1263
 msgid "The display manager could not be contacted for unknown reasons."
 msgstr ""
+"O gerenciador de sessões não pôde ser contatado por razões desconhecidas."
 
 #: ../src/cut-n-paste/fusa-manager.c:1270
 msgid "The display manager is not running or too old."
-msgstr ""
+msgstr "O gerenciador de sessões não está sendo executado ou é muito antigo."
 
 #: ../src/cut-n-paste/fusa-manager.c:1273
 msgid "The configured limit of flexible servers has been reached."
-msgstr ""
+msgstr "O limite configurado de servidores flexíveis foi alcançado."
 
 #: ../src/cut-n-paste/fusa-manager.c:1276
 msgid "There was an unknown error starting X."
@@ -152,42 +154,44 @@ msgstr "O servidor X falhou em iniciar."
 
 #: ../src/cut-n-paste/fusa-manager.c:1282
 msgid "There are too many X sessions running."
-msgstr ""
+msgstr "Há sessões do X demais sendo executadas."
 
 #: ../src/cut-n-paste/fusa-manager.c:1285
 msgid "The nested X server (Xnest) cannot connect to your current X server."
-msgstr ""
+msgstr "O servidor X aninhado (Xnest) não pode se conectar ao seu servidor X."
 
 #: ../src/cut-n-paste/fusa-manager.c:1288
 msgid "The X server in the GDM configuration could not be found."
-msgstr ""
+msgstr "O servidor X na configuração do GDM não pôde ser encontrado."
 
 #: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
 msgstr ""
+"Tentando definir uma ação de logout desconhecida ou que não está disponível."
 
 #: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
-msgstr ""
+msgstr "Terminais virtuais não suportados."
 
 #: ../src/cut-n-paste/fusa-manager.c:1297
 msgid "Invalid virtual terminal number."
-msgstr ""
+msgstr "Número do terminal virtual inválido."
 
 #: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
-msgstr ""
+msgstr "Tentando atualizar uma chave de configuração não suportada."
 
 #: ../src/cut-n-paste/fusa-manager.c:1303
 msgid "~/.Xauthority file badly configured or missing."
-msgstr ""
+msgstr "O arquivo ~/.Xauthority está configurado incorretamente ou faltando."
 
 #: ../src/cut-n-paste/fusa-manager.c:1306
-#, fuzzy
 msgid "Too many messages were sent to the display manager, and it hung up."
-msgstr "Foram enviadas mensagens demais para o gerenciador de telas e ele "
+msgstr ""
+"Foram enviadas mensagens demais para o gerenciador de sessões e ele não "
+"suportou."
 
 #: ../src/cut-n-paste/fusa-manager.c:1310
 msgid "The display manager sent an unknown error message."
@@ -195,19 +199,19 @@ msgstr "O gerenciador de telas enviou uma mensagem de erro desconhecida."
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:153
 msgid "The user this menu item represents."
-msgstr ""
+msgstr "O usuário que este item de menu representa."
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:160
 msgid "Icon Size"
-msgstr ""
+msgstr "Tamanho do Ícone"
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:161
 msgid "The size of the icon to use."
-msgstr ""
+msgstr "O tamanho de ícone que deve ser usado."
 
 #: ../src/cut-n-paste/fusa-user.c:151
 msgid "The user manager object this user is controlled by."
-msgstr ""
+msgstr "O objeto gerenciador de usuários pelo qual o usuário é controlado."
 
 #: ../src/cut-n-paste/fusa-utils.c:80
 msgid "Show Details"
@@ -216,7 +220,7 @@ msgstr "Exibir Detalhes"
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:413
 msgid "GDM (The GNOME Display Manager) is not running."
-msgstr ""
+msgstr "O GDM (O Gerenciador de Sessões do GNOME) não está sendo executado."
 
 #: ../src/cut-n-paste/gdmcomm.c:416
 msgid ""
@@ -234,18 +238,21 @@ msgstr ""
 #: ../src/cut-n-paste/gdmcomm.c:441
 msgid "Cannot communicate with GDM (The GNOME Display Manager)"
 msgstr ""
+"Não é possível se comunicar com o GDM (O Gerenciador de Sessões do GNOME)."
 
 #: ../src/cut-n-paste/gdmcomm.c:444
 msgid "Perhaps you have an old version of GDM running."
-msgstr ""
+msgstr "Talvez você tenha uma versão antiga do GDM sendo executada."
 
 #: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
 msgid "Cannot communicate with gdm, perhaps you have an old version running."
 msgstr ""
+"Não é possível se comunicar com o GDM. Talvez você tenha uma versão antiga "
+"do GDM sendo executada."
 
 #: ../src/cut-n-paste/gdmcomm.c:469
 msgid "The allowed limit of flexible X servers reached."
-msgstr ""
+msgstr "O limite permitido de servidores X flexíveis foi alcançado."
 
 #: ../src/cut-n-paste/gdmcomm.c:471
 msgid "There were errors trying to start the X server."
@@ -257,7 +264,7 @@ msgstr "O servidor X falhou. Talvez ele esteja mal configurado."
 
 #: ../src/cut-n-paste/gdmcomm.c:476
 msgid "Too many X sessions running."
-msgstr ""
+msgstr "Sessões do X demais sendo executadas."
 
 #: ../src/cut-n-paste/gdmcomm.c:478
 msgid ""
@@ -287,9 +294,8 @@ msgid ""
 msgstr ""
 
 #: ../src/cut-n-paste/gdmcomm.c:505
-#, fuzzy
 msgid "Too many messages were sent to gdm and it hung upon us."
-msgstr "Foram enviadas mensagens demais para o gdm e ele "
+msgstr "Foram enviadas mensagens demais para o gdm e ele não suportou."
 
 #: ../src/cut-n-paste/gdmcomm.c:508
 msgid "Unknown error occured."
@@ -353,23 +359,23 @@ msgstr "_Desbloquear"
 msgid "_Login Screen"
 msgstr "Tela de _Login"
 
-#: ../src/gs-lock-plug.c:688
+#: ../src/gs-lock-plug.c:754
 msgid "Enter password to unlock screen"
 msgstr "Digite a senha para desbloquear a tela"
 
-#: ../src/gs-lock-plug.c:717
+#: ../src/gs-lock-plug.c:783
 msgid "Name:"
 msgstr "Nome:"
 
-#: ../src/gs-lock-plug.c:721
+#: ../src/gs-lock-plug.c:787
 msgid "_Password:"
 msgstr "_Senha:"
 
-#: ../src/gs-lock-plug.c:768
+#: ../src/gs-lock-plug.c:829
 msgid "Log in as another user?"
 msgstr ""
 
-#: ../src/gs-lock-plug.c:786
+#: ../src/gs-lock-plug.c:847
 msgid ""
 "This option will bring you to the Login Screen.\n"
 "From the Login Screen you may log in to this system\n"
