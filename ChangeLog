@@ -1,5 +1,13 @@
 2005-04-23  William Jon McCann  <mccann@jhu.edu>
 
+	* data/gnome-screensaver-preferences.desktop.in:
+	Use screensaver icon.  Fix comment.
+
+	Patch from Jaap A. Haitsma <jaap@haitsma.org>.
+	Fixes #301709
+
+2005-04-23  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (button_get_label_widget) 
 	(button_mnemonic_activate_click, switch_page, gs_lock_plug_init):
 	Allow mnemonic activation with keyboard grabbed.
