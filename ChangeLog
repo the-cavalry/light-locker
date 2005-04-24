@@ -1,3 +1,10 @@
+2005-04-23  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c (button_get_label_widget) 
+	(button_mnemonic_activate_click, switch_page, gs_lock_plug_init):
+	Allow mnemonic activation with keyboard grabbed.
+	Work around bug 172998.
+
 2005-04-22  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/popsquares.c (screenhack_init, screenhack_iter) 

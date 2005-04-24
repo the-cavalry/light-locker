@@ -440,12 +440,60 @@ get_switch_button_for_page (gint page)
         return align;
 }
 
+static GtkWidget *
+button_get_label_widget (GtkButton *button)
+{
+        GtkWidget    *label = NULL;
+        GtkWidget    *box;
+        GtkWidget    *align;
+        GList        *list;
+        GList        *l;
+
+        g_return_val_if_fail (GTK_IS_BUTTON (button), NULL);
+
+        if (! GTK_BIN (button)->child)
+                return NULL;
+
+        align = GTK_BIN (button)->child;
+        box = GTK_BIN (align)->child;
+
+        list = gtk_container_get_children (GTK_CONTAINER (box));
+
+        for (l = list; l; l = l->next) {
+                GtkWidget *child;
+
+                child = l->data;
+                if (g_type_is_a (GTK_WIDGET_TYPE (child), GTK_TYPE_LABEL)) {
+                        label = child;
+                        break;
+                }
+        }
+
+        g_list_free (list);
+
+        return label;
+}
+
+/* work around http://bugzilla.gnome.org/show_bug.cgi?id=172998 */
+static gboolean
+button_mnemonic_activate_click (GtkWidget *child,
+                                gboolean   overload,
+                                GtkButton *button)
+{
+        if (GTK_WIDGET_REALIZED (button) && !button->activate_timeout) {
+                gtk_button_clicked (button);
+        }
+
+        return TRUE;
+}
+
 static void
 switch_page (GtkButton  *button,
              GSLockPlug *plug)
 {
         GtkWidget *ok_widget;
         GtkWidget *other_widget;
+        GtkWidget *label;
         gint       current_page;
         gint       next_page;
 
@@ -465,6 +513,22 @@ switch_page (GtkButton  *button,
         gtk_widget_destroy (GTK_BIN (plug->priv->ok_button)->child);
         gtk_widget_show_all (ok_widget);
         gtk_container_add (GTK_CONTAINER (plug->priv->ok_button), ok_widget);
+
+        /* work around http://bugzilla.gnome.org/show_bug.cgi?id=172998 */
+        label = button_get_label_widget (GTK_BUTTON (plug->priv->switch_button));
+        if (label) {
+                g_signal_connect (label,
+                                  "mnemonic_activate",
+                                  G_CALLBACK (button_mnemonic_activate_click),
+                                  plug->priv->switch_button);
+        }
+        label = button_get_label_widget (GTK_BUTTON (plug->priv->ok_button));
+        if (label) {
+                g_signal_connect (label,
+                                  "mnemonic_activate",
+                                  G_CALLBACK (button_mnemonic_activate_click),
+                                  plug->priv->ok_button);
+        }
 
         gtk_notebook_set_current_page (GTK_NOTEBOOK (plug->priv->notebook), next_page);
 }
@@ -644,6 +708,7 @@ gs_lock_plug_init (GSLockPlug *plug)
         GtkWidget            *hbox;
         GtkWidget            *vbox;
         GtkWidget            *table;
+        GtkWidget            *label;
         int                   font_size;
         PangoAttrList        *pattrlist;
         PangoAttribute       *attr;
@@ -842,6 +907,28 @@ gs_lock_plug_init (GSLockPlug *plug)
         g_signal_connect (plug->priv->switch_button, "clicked",
                           G_CALLBACK (switch_page), plug);
 
+        /* work around http://bugzilla.gnome.org/show_bug.cgi?id=172998 */
+        label = button_get_label_widget (GTK_BUTTON (plug->priv->switch_button));
+        if (label) {
+                g_signal_connect (label,
+                                  "mnemonic_activate",
+                                  G_CALLBACK (button_mnemonic_activate_click),
+                                  plug->priv->switch_button);
+        }
+        label = button_get_label_widget (GTK_BUTTON (plug->priv->cancel_button));
+        if (label) {
+                g_signal_connect (label,
+                                  "mnemonic_activate",
+                                  G_CALLBACK (button_mnemonic_activate_click),
+                                  plug->priv->cancel_button);
+        }
+        label = button_get_label_widget (GTK_BUTTON (plug->priv->ok_button));
+        if (label) {
+                g_signal_connect (label,
+                                  "mnemonic_activate",
+                                  G_CALLBACK (button_mnemonic_activate_click),
+                                  plug->priv->ok_button);
+        }
 }
 
 static void
