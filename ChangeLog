@@ -1,5 +1,10 @@
 2005-04-23  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-preferences.c (init_capplet):
+	Use screensaver icon here too.
+
+2005-04-23  William Jon McCann  <mccann@jhu.edu>
+
 	* data/gnome-screensaver-preferences.desktop.in:
 	Use screensaver icon.  Fix comment.
 

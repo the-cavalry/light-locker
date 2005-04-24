@@ -437,7 +437,7 @@ init_capplet (void)
         blank_delay = config_get_blank_delay ();
         gtk_range_set_value (GTK_RANGE (blank_delay_hscale), blank_delay);
 
-        gtk_window_set_icon_name (GTK_WINDOW (dialog), "gnome-lockscreen");
+        gtk_window_set_icon_name (GTK_WINDOW (dialog), "screensaver");
 
         gtk_widget_show_all (dialog);
 
