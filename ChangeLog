@@ -1,5 +1,13 @@
 2005-04-25  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (spawn_on_window, wait_on_child) 
+	(gs_window_dialog_finish, command_watch):
+	Don't leak pipe fds.  Be more correct about handling pids.
+
+	* src/gs-job.c (spawn_on_widget): Uncomment channel unref.
+
+2005-04-25  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-job.c (wait_on_child, gs_job_died, gs_job_finalize) 
 	(spawn_on_widget, command_watch, gs_job_stop):
 	Don't leak pipe fds.  Be more correct about handling pids.

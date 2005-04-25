@@ -23,6 +23,7 @@
 #include "config.h"
 
 #include <sys/types.h>
+#include <errno.h>
 #include <sys/wait.h>
 #include <string.h>
 
@@ -245,8 +246,11 @@ spawn_on_window (GSWindow *window,
 
         if (pid)
                 *pid = child_pid;
+        else
+                g_spawn_close_pid (child_pid);
 
         channel = g_io_channel_unix_new (standard_output);
+        g_io_channel_set_close_on_unref (channel, TRUE);
         g_io_channel_set_flags (channel,
                                 g_io_channel_get_flags (channel) | G_IO_FLAG_NONBLOCK,
                                 NULL);
@@ -260,7 +264,7 @@ spawn_on_window (GSWindow *window,
         g_io_channel_unref (channel);
 
         for (i = 0; i < nenv; i++)
-                g_free (envp[i]);
+                g_free (envp [i]);
 
         g_strfreev (argv);
 
@@ -322,6 +326,40 @@ create_socket (GSWindow *window,
         gtk_socket_add_id (GTK_SOCKET (window->priv->socket), id);
 }
 
+/* adapted from gspawn.c */
+static int
+wait_on_child (int pid)
+{
+        int status;
+
+ wait_again:
+        if (waitpid (pid, &status, 0) < 0) {
+                if (errno == EINTR)
+                        goto wait_again;
+                else if (errno == ECHILD)
+                        ; /* do nothing, child already reaped */
+                else
+                        g_warning ("waitpid () should not fail in 'GSJob'");
+        }
+
+        return status;
+}
+
+static void
+gs_window_dialog_finish (GSWindow *window)
+{
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        if (window->priv->pid > 0) {
+                int exit_status;
+                        
+                exit_status = wait_on_child (window->priv->pid);
+        }
+
+        g_spawn_close_pid (window->priv->pid);
+        window->priv->pid = 0;
+}
+
 static gboolean
 command_watch (GIOChannel   *source,
                GIOCondition  condition,
@@ -371,18 +409,11 @@ command_watch (GIOChannel   *source,
                         break;
                 }
 
-        }
-
-        if (condition & G_IO_HUP)
+        } else if (condition & G_IO_HUP)
                 finished = TRUE;
 
         if (finished) {
-                int wait_status;
-
-                waitpid (window->priv->pid, &wait_status, 0);
-
-                window->priv->pid = 0;
-                window->priv->watch_id = 0;
+                gs_window_dialog_finish (window);
 
                 if (window->priv->dialog_response == DIALOG_RESPONSE_OK) {
                         g_idle_add ((GSourceFunc)emit_unblanked_idle, window);
@@ -392,6 +423,7 @@ command_watch (GIOChannel   *source,
                 set_invisible_cursor (GTK_WIDGET (window)->window, TRUE);
                 g_signal_emit (window, signals [DIALOG_DOWN], 0);
 
+                window->priv->watch_id = 0;
                 return FALSE;
         }
 

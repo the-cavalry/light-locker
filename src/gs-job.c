@@ -318,7 +318,7 @@ spawn_on_widget (GtkWidget  *widget,
         if (watch_id)
                 *watch_id = id;
 
-        /*g_io_channel_unref (channel);*/
+        g_io_channel_unref (channel);
 
         for (i = 0; i < nenv; i++)
                 g_free (envp [i]);
