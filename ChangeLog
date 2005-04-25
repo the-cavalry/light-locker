@@ -1,3 +1,9 @@
+2005-04-25  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-job.c (wait_on_child, gs_job_died, gs_job_finalize) 
+	(spawn_on_widget, command_watch, gs_job_stop):
+	Don't leak pipe fds.  Be more correct about handling pids.
+
 2005-04-23  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-preferences.c (init_capplet):

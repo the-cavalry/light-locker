@@ -26,6 +26,7 @@
 #include <signal.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <errno.h>
 
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
@@ -95,6 +96,45 @@ gs_job_init (GSJob *job)
         /* zero is fine for everything */
 }
 
+/* adapted from gspawn.c */
+static int
+wait_on_child (int pid)
+{
+        int status;
+
+ wait_again:
+        if (waitpid (pid, &status, 0) < 0) {
+                if (errno == EINTR)
+                        goto wait_again;
+                else if (errno == ECHILD)
+                        ; /* do nothing, child already reaped */
+                else
+                        g_warning ("waitpid () should not fail in 'GSJob'");
+        }
+
+        return status;
+}
+
+static void
+gs_job_died (GSJob *job)
+{
+        if (job->priv->pid > 0) {
+                int exit_status;
+                        
+                exit_status = wait_on_child (job->priv->pid);
+
+                job->priv->status = GS_JOB_DEAD;
+
+                if (WIFEXITED (exit_status) && (WEXITSTATUS (exit_status) != 0)) {
+                } else {
+                        /* exited normally */
+                }
+        }
+
+        g_spawn_close_pid (job->priv->pid);
+        job->priv->pid = 0;
+}
+
 static void
 gs_job_finalize (GObject *object)
 {
@@ -109,7 +149,7 @@ gs_job_finalize (GObject *object)
 
         if (job->priv->pid > 0) {
                 signal_pid (job->priv->pid, SIGTERM);
-                waitpid (job->priv->pid, NULL, WNOHANG);
+                gs_job_died (job);
         }
 
         g_free (job->priv->command);
@@ -263,10 +303,11 @@ spawn_on_widget (GtkWidget  *widget,
 
         if (pid)
                 *pid = child_pid;
-
-
+        else
+                g_spawn_close_pid (child_pid);
 
         channel = g_io_channel_unix_new (standard_error);
+        g_io_channel_set_close_on_unref (channel, TRUE);
         g_io_channel_set_flags (channel,
                                 g_io_channel_get_flags (channel) | G_IO_FLAG_NONBLOCK,
                                 NULL);
@@ -277,10 +318,10 @@ spawn_on_widget (GtkWidget  *widget,
         if (watch_id)
                 *watch_id = id;
 
-        g_io_channel_unref (channel);
+        /*g_io_channel_unref (channel);*/
 
         for (i = 0; i < nenv; i++)
-                g_free (envp[i]);
+                g_free (envp [i]);
 
         g_strfreev (argv);
 
@@ -292,35 +333,30 @@ command_watch (GIOChannel   *source,
                GIOCondition  condition,
                GSJob        *job)
 {
-        GIOStatus io_status;
+        GIOStatus status;
         GError   *error = NULL;
+        gboolean  done  = FALSE;
 
         g_return_val_if_fail (job != NULL, FALSE);
 
         if (condition & G_IO_IN) {
                 char *str;
 
-                io_status = g_io_channel_read_line (source, &str, NULL, NULL, &error);
+                status = g_io_channel_read_line (source, &str, NULL, NULL, &error);
+		if (status == G_IO_STATUS_NORMAL) {
+		} else if (status == G_IO_STATUS_EOF) {
+                        done = TRUE;
+		}
+
                 g_free (str);
+        } else if (condition & G_IO_HUP) {
+                done = TRUE;
         }
 
-        if (condition & G_IO_HUP) {
-                if (job->priv->pid > 0) {
-                        int status;
-                        
-                        waitpid (job->priv->pid, &status, WNOHANG);
+        if (done) {
+                gs_job_died (job);
 
-                        job->priv->status = GS_JOB_DEAD;
-
-                        if (WIFEXITED (status) && (WEXITSTATUS (status) != 0)) {
-                        } else {
-                                /* exited normally */
-                        }
-                }
-
-                job->priv->pid = 0;
                 job->priv->watch_id = 0;
-
                 return FALSE;
         }
 
@@ -378,8 +414,7 @@ gs_job_stop (GSJob *job)
 
         job->priv->status = GS_JOB_KILLED;
 
-        await_dying_children (job->priv->pid, FALSE);
-        job->priv->pid = 0;
+        gs_job_died (job);
 
         return TRUE;
 }
