@@ -174,6 +174,20 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
 
         prefs->savers = gconf_client_get_list (prefs->priv->gconf_client,
                                                KEY_SAVERS, GCONF_VALUE_STRING, NULL);
+
+        prefs->dpms_enabled = gconf_client_get_bool (prefs->priv->gconf_client, KEY_DPMS_ENABLED, NULL);
+        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_DPMS_STANDBY, NULL);
+        if (value < 0)
+                value = 0;
+        prefs->dpms_standby = value * 60000;
+        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_DPMS_SUSPEND, NULL);
+        if (value < 0)
+                value = 0;
+        prefs->dpms_suspend = value * 60000;
+        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_DPMS_OFF, NULL);
+        if (value < 0)
+                value = 0;
+        prefs->dpms_off = value * 60000;
 }
 
 static void
@@ -245,6 +259,36 @@ key_changed_cb (GConfClient *client,
                 if (delay < 1)
                         delay = 1;
                 prefs->timeout = delay * 60000;
+                changed = TRUE;
+        } else if (strcmp (key, KEY_DPMS_ENABLED) == 0) {
+                gboolean enabled;
+
+                enabled = gconf_value_get_bool (value);
+                prefs->dpms_enabled = enabled;
+                changed = TRUE;
+        } else if (strcmp (key, KEY_DPMS_STANDBY) == 0) {
+                int timeout;
+
+                timeout = gconf_value_get_int (value);
+                if (timeout < 1)
+                        timeout = 1;
+                prefs->dpms_standby = timeout * 60000;
+                changed = TRUE;
+        } else if (strcmp (key, KEY_DPMS_SUSPEND) == 0) {
+                int timeout;
+
+                timeout = gconf_value_get_int (value);
+                if (timeout < 1)
+                        timeout = 1;
+                prefs->dpms_suspend = timeout * 60000;
+                changed = TRUE;
+        } else if (strcmp (key, KEY_DPMS_OFF) == 0) {
+                int timeout;
+
+                timeout = gconf_value_get_int (value);
+                if (timeout < 1)
+                        timeout = 1;
+                prefs->dpms_off = timeout * 60000;
                 changed = TRUE;
         } else {
                 g_message ("Config key not handled: %s", key);

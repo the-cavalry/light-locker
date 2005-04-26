@@ -106,6 +106,10 @@ struct GSWatcherPrivate
         int            sgi_saver_ext_error_number;
 # endif
 
+        gboolean       dpms_enabled;
+        guint          dpms_standby;
+        guint          dpms_suspend;
+        guint          dpms_off;
 };
 
 enum {
@@ -127,7 +131,7 @@ void
 gs_watcher_set_timeout (GSWatcher  *watcher,
                         guint       timeout)
 {
-        g_return_if_fail (GS_WATCHER (watcher));
+        g_return_if_fail (GS_IS_WATCHER (watcher));
 
         watcher->priv->timeout = timeout;
 
@@ -138,6 +142,27 @@ gs_watcher_set_timeout (GSWatcher  *watcher,
         }
 }
 
+void
+gs_watcher_set_dpms (GSWatcher *watcher,
+                     gboolean   enabled,
+                     guint      standby,
+                     guint      suspend,
+                     guint      off)
+{
+        g_return_if_fail (GS_IS_WATCHER (watcher));
+
+        watcher->priv->dpms_enabled = enabled;
+        watcher->priv->dpms_standby = standby;
+        watcher->priv->dpms_suspend = suspend;
+        watcher->priv->dpms_off     = off;
+
+        sync_server_dpms_settings (GDK_DISPLAY (),
+                                   watcher->priv->dpms_enabled,
+                                   watcher->priv->dpms_standby / 1000,
+                                   watcher->priv->dpms_suspend / 1000,
+                                   watcher->priv->dpms_off / 1000,
+                                   TRUE);
+}
 
 static void
 gs_watcher_set_property (GObject            *object,
@@ -555,11 +580,11 @@ monitor_power_on (void)
                 DPMSForceLevel (GDK_DISPLAY (), DPMSModeOn);
                 XSync (GDK_DISPLAY (), FALSE);
                 if (! monitor_powered_on ())
-                        g_message ("DPMSForceLevel (dpy, DPMSModeOn) did not power the watcher on?");
+                        g_message ("DPMSForceLevel (dpy, DPMSModeOn) did not power the monitor on?");
         }
 }
 
-#else  /* !HAVE_DPMS_EXTENSION */
+#else  /* HAVE_DPMS_EXTENSION */
 
 static gboolean
 monitor_powered_on (void) 
@@ -1130,15 +1155,12 @@ watchdog_timer (GSWatcher *watcher)
 
         /* If the DPMS settings on the server have changed, change them back to
            configuration says they should be. */
-#if 0
         sync_server_dpms_settings (GDK_DISPLAY (),
-                                   (watcher->priv->dpms_enabled
-                                    && watcher->priv->mode != GS_MODE_DONT_BLANK),
+                                   watcher->priv->dpms_enabled,
                                    watcher->priv->dpms_standby / 1000,
                                    watcher->priv->dpms_suspend / 1000,
                                    watcher->priv->dpms_off / 1000,
                                    TRUE);
-#endif
 
         return TRUE;
 }

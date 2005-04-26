@@ -47,36 +47,36 @@ typedef struct
 
         GSPrefsPrivate  *priv;
 
-        gboolean debug;
-        gboolean verbose;		/* whether to print out lots of status info */
+        gboolean         debug;
+        gboolean         verbose;		/* whether to print out lots of status info */
 
-        gboolean lock;			/* whether to lock as well as save */
+        gboolean         lock;			/* whether to lock as well as save */
 
-        gboolean fade;			/* whether to fade to black, if possible */
-        gboolean unfade;		/* whether to fade from black, if possible */
+        gboolean         fade;			/* whether to fade to black, if possible */
+        gboolean         unfade;		/* whether to fade from black, if possible */
 
-        GSList *savers;			/* the programs to run */
+        GSList          *savers;       		/* the programs to run */
 
-        GSSaverMode mode;		/* hack-selection mode */
+        GSSaverMode      mode;			/* hack-selection mode */
 
-        guint timeout;			/* how much idle time before activation */
-        guint lock_timeout;		/* how long after activation locking starts */
-        guint cycle;			/* how long each hack should run */
+        guint            timeout;	       	/* how much idle time before activation */
+        guint            lock_timeout;		/* how long after activation locking starts */
+        guint            cycle;			/* how long each hack should run */
 
-        guint passwd_timeout;		/* how much time before pw dialog goes down */
-        guint pointer_timeout;		/* how often to check mouse position */
-        guint notice_events_timeout;	/* how long after window creation to select */
-        guint watchdog_timeout;		/* how often to re-raise and re-blank screen */
+        guint            passwd_timeout;	/* how much time before pw dialog goes down */
+        guint            pointer_timeout;	/* how often to check mouse position */
+        guint            notice_events_timeout;	/* how long after window creation to select */
+        guint            watchdog_timeout;     	/* how often to re-raise and re-blank screen */
 
-        gboolean dpms_enabled;		/* Whether to power down the monitor */
-        guint    dpms_standby;		/* how long until monitor goes black */
-        guint    dpms_suspend;		/* how long until monitor power-saves */
-        guint    dpms_off;		/* how long until monitor powers down */
+        gboolean         dpms_enabled;		/* Whether to power down the monitor */
+        guint            dpms_standby;		/* how long until monitor goes black */
+        guint            dpms_suspend;		/* how long until monitor power-saves */
+        guint            dpms_off;		/* how long until monitor powers down */
 
-        gboolean use_xidle_extension;	/* which extension to use, if possible */
-        gboolean use_mit_saver_extension;
-        gboolean use_sgi_saver_extension;
-        gboolean use_proc_interrupts;
+        gboolean         use_xidle_extension;	/* which extension to use, if possible */
+        gboolean         use_mit_saver_extension;
+        gboolean         use_sgi_saver_extension;
+        gboolean         use_proc_interrupts;
 } GSPrefs;
 
 typedef struct

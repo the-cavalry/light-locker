@@ -150,6 +150,11 @@ prefs_changed_cb (GSPrefs   *prefs,
         gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
         gs_manager_set_savers (monitor->priv->manager, monitor->priv->prefs->savers);
         gs_watcher_set_timeout (monitor->priv->watcher, monitor->priv->prefs->timeout);
+        gs_watcher_set_dpms (monitor->priv->watcher,
+                             monitor->priv->prefs->dpms_enabled,
+                             monitor->priv->prefs->dpms_standby,
+                             monitor->priv->prefs->dpms_suspend,
+                             monitor->priv->prefs->dpms_off);
 }
 
 static void
@@ -175,6 +180,11 @@ gs_monitor_init (GSMonitor *monitor)
                           G_CALLBACK (listener_deactivate_cb), monitor);
 
         monitor->priv->watcher = gs_watcher_new (monitor->priv->prefs->timeout);
+        gs_watcher_set_dpms (monitor->priv->watcher,
+                             monitor->priv->prefs->dpms_enabled,
+                             monitor->priv->prefs->dpms_standby,
+                             monitor->priv->prefs->dpms_suspend,
+                             monitor->priv->prefs->dpms_off);
         g_signal_connect (monitor->priv->watcher, "idle",
                           G_CALLBACK (watcher_idle_cb), monitor);
 

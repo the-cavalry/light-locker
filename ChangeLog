@@ -1,3 +1,10 @@
+2005-04-26  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-watcher-x11.c (gs_watcher_set_dpms): 
+	* src/gs-prefs.c (gs_prefs_load_from_gconf, key_changed_cb): 
+	* src/gs-monitor.c (prefs_changed_cb, gs_monitor_init):
+	Enable DPMS support.
+
 2005-04-25  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-manager.c (gs_manager_cycle, cycle_timeout) 

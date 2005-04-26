@@ -54,5 +54,10 @@ void        gs_watcher_set_active       (GSWatcher *watcher,
                                          gboolean   active);
 void        gs_watcher_set_timeout      (GSWatcher *watcher,
                                          guint      timeout);
+void        gs_watcher_set_dpms         (GSWatcher *watcher,
+                                         gboolean   enabled,
+                                         guint      standby,
+                                         guint      suspend,
+                                         guint      off);
 
 #endif /* __GS_WATCHER_H */
