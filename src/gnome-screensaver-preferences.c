@@ -346,6 +346,43 @@ blank_delay_value_changed_cb (GtkRange *range,
         config_set_blank_delay ((gint32)value);
 }
 
+static int
+compare_theme  (GtkTreeModel *model,
+                GtkTreeIter  *a,
+                GtkTreeIter  *b,
+                gpointer      user_data)
+{
+        char *name_a;
+        char *name_b;
+        char *label_a;
+        char *label_b;
+        int   result;
+
+        gtk_tree_model_get (model, a, NAME_COLUMN, &name_a, -1);
+        gtk_tree_model_get (model, b, NAME_COLUMN, &name_b, -1);
+        gtk_tree_model_get (model, a, LABEL_COLUMN, &label_a, -1);
+        gtk_tree_model_get (model, b, LABEL_COLUMN, &label_b, -1);
+
+        if (strcmp (name_a, "__disabled") == 0)
+                return -1;
+        else if (strcmp (name_b, "__disabled") == 0)
+                return 1;
+        else if (strcmp (name_a, "__blank-only") == 0)
+                return -1;
+        else if (strcmp (name_b, "__blank-only") == 0)
+                return 1;
+
+        result = strcmp (label_a, label_b);
+
+        g_free (label_a);
+        g_free (label_b);
+        g_free (name_a);
+        g_free (name_b);
+
+        return result;
+}
+
+
 static void
 setup_treeview (GtkWidget *tree,
                 GtkWidget *preview)
@@ -370,6 +407,15 @@ setup_treeview (GtkWidget *tree,
                                                            "text", LABEL_COLUMN,
                                                            NULL);
         gtk_tree_view_append_column (GTK_TREE_VIEW (tree), column);
+
+        gtk_tree_view_column_set_sort_column_id (column, 0);
+        gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (store),
+                                         0,
+                                         compare_theme,
+                                         NULL, NULL);
+        gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store),
+                                              0,
+                                              GTK_SORT_ASCENDING);
 
         select = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
         gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);

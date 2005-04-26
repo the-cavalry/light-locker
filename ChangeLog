@@ -1,5 +1,10 @@
 2005-04-26  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-preferences.c (compare_theme) 
+	(setup_treeview): Sort the theme list.
+
+2005-04-26  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-prefs.c (gs_prefs_load_from_gconf, key_changed_cb) 
 	(gs_prefs_init, gs_prefs_finalize): 
 	* src/gs-monitor.c (prefs_changed_cb, gs_monitor_init):
