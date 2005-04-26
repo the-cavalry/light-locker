@@ -339,7 +339,7 @@ wait_on_child (int pid)
                 else if (errno == ECHILD)
                         ; /* do nothing, child already reaped */
                 else
-                        g_warning ("waitpid () should not fail in 'GSJob'");
+                        g_warning ("waitpid () should not fail in 'GSWindow'");
         }
 
         return status;

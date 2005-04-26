@@ -204,6 +204,9 @@ gs_manager_cycle (GSManager *manager)
         if (! manager->priv->blank_active)
                 return FALSE;
 
+        if (manager->priv->dialog_up)
+                return FALSE;
+
         command = select_saver (manager);
 
         for (l = manager->priv->jobs; l; l = l->next) {
@@ -224,7 +227,7 @@ cycle_timeout (GSManager *manager)
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
-        if (!manager->priv->dialog_up)
+        if (! manager->priv->dialog_up)
                 gs_manager_cycle (manager);
 
         return TRUE;
@@ -241,7 +244,7 @@ gs_manager_set_cycle_delay (GSManager *manager,
                 manager->priv->cycle_delay = cycle_delay;
 
                 if (manager->priv->blank_active && (cycle_delay >= 0)) {
-
+                        glong timeout;
                         glong elapsed = (time (NULL) - manager->priv->blank_time) * 1000;
 
                         if (manager->priv->cycle_timeout_id) {
@@ -250,14 +253,13 @@ gs_manager_set_cycle_delay (GSManager *manager,
                         }
 
                         if (elapsed >= cycle_delay) {
-                                gs_manager_cycle (manager);
+                                timeout = 0;
                         } else {
-                                manager->priv->cycle_timeout_id = g_timeout_add (cycle_delay - elapsed,
-                                                                                (GSourceFunc)cycle_timeout,
-                                                                                 manager);
+                                timeout = cycle_delay - elapsed;
                         }
-                } else {
-                        gs_manager_set_lock_enabled (manager, FALSE);
+                        manager->priv->cycle_timeout_id = g_timeout_add (timeout,
+                                                                         (GSourceFunc)cycle_timeout,
+                                                                         manager);
                 }
         }
 }

@@ -1,5 +1,11 @@
 2005-04-25  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-manager.c (gs_manager_cycle, cycle_timeout) 
+	(gs_manager_set_cycle_delay): Don't cycle the theme
+	while the lock dialog is up.
+
+2005-04-25  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (spawn_on_window, wait_on_child) 
 	(gs_window_dialog_finish, command_watch):
 	Don't leak pipe fds.  Be more correct about handling pids.
