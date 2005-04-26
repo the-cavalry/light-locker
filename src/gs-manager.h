@@ -67,8 +67,8 @@ void        gs_manager_set_lock_delay   (GSManager  *manager,
                                          glong       lock_delay);
 void        gs_manager_set_cycle_delay  (GSManager  *manager,
                                          glong       cycle_delay);
-void        gs_manager_set_savers       (GSManager  *manager,
-                                         GSList     *savers);
+void        gs_manager_set_themes       (GSManager  *manager,
+                                         GSList     *themes);
 void        gs_manager_set_mode         (GSManager  *manager,
                                          GSSaverMode mode);
 

@@ -1,5 +1,12 @@
 2005-04-26  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-prefs.c (gs_prefs_load_from_gconf, key_changed_cb) 
+	(gs_prefs_init, gs_prefs_finalize): 
+	* src/gs-monitor.c (prefs_changed_cb, gs_monitor_init):
+	More renaming savers to themes.
+
+2005-04-26  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c (gs_manager_set_themes, select_theme) 
 	(gs_manager_cycle, window_show_cb): 
 	* src/gs-job.c (getnodeset, get_first_xpath_prop) 

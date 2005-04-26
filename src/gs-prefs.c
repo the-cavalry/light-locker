@@ -44,7 +44,7 @@ static void gs_prefs_finalize   (GObject      *object);
 #define KEY_DPMS_STANDBY KEY_DIR "/dpms_standby"
 #define KEY_DPMS_SUSPEND KEY_DIR "/dpms_suspend"
 #define KEY_DPMS_OFF     KEY_DIR "/dpms_off"
-#define KEY_SAVERS       KEY_DIR "/savers"
+#define KEY_THEMES       KEY_DIR "/savers"
 
 #define GS_PREFS_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_PREFS, GSPrefsPrivate))
 
@@ -167,13 +167,13 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 prefs->mode = GS_MODE_BLANK_ONLY;
         g_free (string);
 
-        if (prefs->savers) {
-                g_slist_foreach (prefs->savers, (GFunc)g_free, NULL);
-                g_slist_free (prefs->savers);
+        if (prefs->themes) {
+                g_slist_foreach (prefs->themes, (GFunc)g_free, NULL);
+                g_slist_free (prefs->themes);
         }
 
-        prefs->savers = gconf_client_get_list (prefs->priv->gconf_client,
-                                               KEY_SAVERS, GCONF_VALUE_STRING, NULL);
+        prefs->themes = gconf_client_get_list (prefs->priv->gconf_client,
+                                               KEY_THEMES, GCONF_VALUE_STRING, NULL);
 
         prefs->dpms_enabled = gconf_client_get_bool (prefs->priv->gconf_client, KEY_DPMS_ENABLED, NULL);
         value = gconf_client_get_int (prefs->priv->gconf_client, KEY_DPMS_STANDBY, NULL);
@@ -220,7 +220,7 @@ key_changed_cb (GConfClient *client,
 
                 changed = TRUE;
 
-        } else if (strcmp (key, KEY_SAVERS) == 0) {
+        } else if (strcmp (key, KEY_THEMES) == 0) {
                 GSList *list = NULL;
 
                 if (value == NULL
@@ -236,10 +236,10 @@ key_changed_cb (GConfClient *client,
 
                         changed = TRUE;
 
-                        if (prefs->savers) {
-                                g_slist_foreach (prefs->savers, (GFunc)g_free, NULL);
-                                g_slist_free (prefs->savers);
-                                prefs->savers = NULL;
+                        if (prefs->themes) {
+                                g_slist_foreach (prefs->themes, (GFunc)g_free, NULL);
+                                g_slist_free (prefs->themes);
+                                prefs->themes = NULL;
                         }
 
                         for (l = list; l; l = l->next) {
@@ -247,7 +247,7 @@ key_changed_cb (GConfClient *client,
 
                                 s = gconf_value_to_string (l->data);
 
-                                prefs->savers = g_slist_append (prefs->savers, g_strdup (s));
+                                prefs->themes = g_slist_append (prefs->themes, g_strdup (s));
 
                                 g_free (s);
                         }
@@ -330,7 +330,7 @@ gs_prefs_init (GSPrefs *prefs)
         prefs->mode                    = GS_MODE_SINGLE;
 
         /* FIXME: for testing only */
-        prefs->savers = g_slist_append (prefs->savers, g_strdup ("popsquares"));
+        prefs->themes = g_slist_append (prefs->themes, g_strdup ("popsquares"));
 
         /* GConf setup */
         gconf_client_add_dir (prefs->priv->gconf_client,
@@ -363,9 +363,9 @@ gs_prefs_finalize (GObject *object)
                 prefs->priv->gconf_client = NULL;
         }
 
-        if (prefs->savers) {
-                g_slist_foreach (prefs->savers, (GFunc)g_free, NULL);
-                g_slist_free (prefs->savers);
+        if (prefs->themes) {
+                g_slist_foreach (prefs->themes, (GFunc)g_free, NULL);
+                g_slist_free (prefs->themes);
         }
 
         G_OBJECT_CLASS (parent_class)->finalize (object);

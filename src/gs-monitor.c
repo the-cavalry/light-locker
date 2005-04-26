@@ -148,7 +148,7 @@ prefs_changed_cb (GSPrefs   *prefs,
                   GSMonitor *monitor)
 {
         gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
-        gs_manager_set_savers (monitor->priv->manager, monitor->priv->prefs->savers);
+        gs_manager_set_themes (monitor->priv->manager, monitor->priv->prefs->themes);
         gs_watcher_set_timeout (monitor->priv->watcher, monitor->priv->prefs->timeout);
         gs_watcher_set_dpms (monitor->priv->watcher,
                              monitor->priv->prefs->dpms_enabled,
@@ -192,7 +192,7 @@ gs_monitor_init (GSMonitor *monitor)
                                                  monitor->priv->prefs->cycle);
 
         gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
-        gs_manager_set_savers (monitor->priv->manager, monitor->priv->prefs->savers);
+        gs_manager_set_themes (monitor->priv->manager, monitor->priv->prefs->themes);
 
         g_signal_connect (monitor->priv->manager, "blanked",
                           G_CALLBACK (manager_blanked_cb), monitor);

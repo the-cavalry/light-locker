@@ -55,7 +55,7 @@ typedef struct
         gboolean         fade;			/* whether to fade to black, if possible */
         gboolean         unfade;		/* whether to fade from black, if possible */
 
-        GSList          *savers;       		/* the programs to run */
+        GSList          *themes;       		/* the screensaver themes to run */
 
         GSSaverMode      mode;			/* hack-selection mode */
 
