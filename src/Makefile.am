@@ -16,6 +16,7 @@ INCLUDES =							\
 	$(DISABLE_DEPRECATED_CFLAGS)				\
         -DLIBEXECDIR=\""$(libexecdir)"\"			\
         -DSAVERDIR=\""$(libexecdir)"/gnome-screensaver\"	\
+        -DTHEMESDIR=\""$(pkgdatadir)"/themes\"			\
         -DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"  \
         -DGLADEDIR=\"$(pkgdatadir)\"				\
 	-DPAM_SERVICE_NAME=\""xscreensaver"\"			\

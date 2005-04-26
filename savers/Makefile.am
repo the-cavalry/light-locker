@@ -16,6 +16,9 @@ INCLUDES =							\
 saverdir = $(libexecdir)/gnome-screensaver
 saver_PROGRAMS = popsquares
 
+themesdir = $(pkgdatadir)/themes
+themes_DATA = popsquares.xml
+
 popsquares_SOURCES = 	\
 	popsquares.c
 

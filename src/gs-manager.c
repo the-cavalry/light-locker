@@ -56,7 +56,7 @@ struct GSManagerPrivate
 
         time_t       blank_time;
 
-        GSList      *savers;
+        GSList      *themes;
         GSSaverMode  saver_mode;
         GConfClient *gconf_client;
 };
@@ -90,21 +90,21 @@ gs_manager_set_mode (GSManager  *manager,
 }
 
 void
-gs_manager_set_savers (GSManager *manager,
-                       GSList    *savers)
+gs_manager_set_themes (GSManager *manager,
+                       GSList    *themes)
 {
         GSList *l;
 
         g_return_if_fail (GS_MANAGER (manager));
 
-        if (manager->priv->savers) {
-                g_slist_foreach (manager->priv->savers, (GFunc)g_free, NULL);
-                g_slist_free (manager->priv->savers);
+        if (manager->priv->themes) {
+                g_slist_foreach (manager->priv->themes, (GFunc)g_free, NULL);
+                g_slist_free (manager->priv->themes);
         }
-        manager->priv->savers = NULL;
+        manager->priv->themes = NULL;
 
-        for (l = savers; l; l = l->next) {
-                manager->priv->savers = g_slist_append (manager->priv->savers, g_strdup (l->data));
+        for (l = themes; l; l = l->next) {
+                manager->priv->themes = g_slist_append (manager->priv->themes, g_strdup (l->data));
         }
 }
 
@@ -168,9 +168,9 @@ gs_manager_set_lock_delay (GSManager *manager,
 }
 
 static const char *
-select_saver (GSManager *manager)
+select_theme (GSManager *manager)
 {
-        const char *command = NULL;
+        const char *theme = NULL;
 
         g_return_val_if_fail (manager != NULL, NULL);
         g_return_val_if_fail (GS_IS_MANAGER (manager), NULL);
@@ -178,24 +178,24 @@ select_saver (GSManager *manager)
         if (manager->priv->saver_mode == GS_MODE_BLANK_ONLY)
                 return NULL;
 
-        if (manager->priv->savers) {
+        if (manager->priv->themes) {
                 int number = 0;
 
                 if (manager->priv->saver_mode == GS_MODE_RANDOM) {
                         g_random_set_seed (time (NULL));
-                        number = g_random_int_range (0, g_slist_length (manager->priv->savers));
+                        number = g_random_int_range (0, g_slist_length (manager->priv->themes));
                 }
-                command = g_slist_nth_data (manager->priv->savers, number);
+                theme = g_slist_nth_data (manager->priv->themes, number);
         }
 
-        return command;
+        return theme;
 }
 
 gboolean
 gs_manager_cycle (GSManager *manager)
 {
         GSList     *l;
-        const char *command;
+        const char *theme;
         gboolean    success = FALSE;
 
         g_return_val_if_fail (manager != NULL, FALSE);
@@ -207,11 +207,11 @@ gs_manager_cycle (GSManager *manager)
         if (manager->priv->dialog_up)
                 return FALSE;
 
-        command = select_saver (manager);
+        theme = select_theme (manager);
 
         for (l = manager->priv->jobs; l; l = l->next) {
                 gs_job_stop (GS_JOB (l->data));
-                gs_job_set_command (GS_JOB (l->data), command);
+                gs_job_set_theme (GS_JOB (l->data), theme);
 
                 /* this success flag is kinda bogus */
                 if (gs_job_start (GS_JOB (l->data)))
@@ -530,15 +530,15 @@ window_show_cb (GSWindow  *window,
                 GSManager *manager)
 {
         GSJob      *job;
-        const char *command;
+        const char *theme;
 
         g_return_if_fail (manager != NULL);
         g_return_if_fail (GS_IS_MANAGER (manager));
         g_return_if_fail (window != NULL);
         g_return_if_fail (GS_IS_WINDOW (window));
 
-        command = select_saver (manager);
-        job = gs_job_new_for_widget (GTK_WIDGET (window), command);
+        theme = select_theme (manager);
+        job = gs_job_new_for_widget (GTK_WIDGET (window), theme);
 
         g_object_ref (job);
         gs_job_start (job);

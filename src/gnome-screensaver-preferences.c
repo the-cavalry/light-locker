@@ -50,11 +50,11 @@
 #define KEY_DPMS_STANDBY KEY_DIR "/dpms_standby"
 #define KEY_DPMS_SUSPEND KEY_DIR "/dpms_suspend"
 #define KEY_DPMS_OFF     KEY_DIR "/dpms_off"
-#define KEY_SAVERS       KEY_DIR "/savers"
+#define KEY_THEMES       KEY_DIR "/savers"
 
 enum {
         NAME_COLUMN,
-        COMMAND_COLUMN,
+        LABEL_COLUMN,
         N_COLUMNS
 };
 
@@ -100,11 +100,11 @@ config_set_blank_delay (gint32 timeout)
 }
 
 static char *
-config_get_command (void)
+config_get_theme (void)
 {
         GConfClient *client;
         char        *string;
-        char        *command = NULL;
+        char        *name = NULL;
         int          mode;
 
         client = gconf_client_get_default ();
@@ -117,17 +117,17 @@ config_get_command (void)
                 mode = GS_MODE_BLANK_ONLY;
 
         if (mode == GS_MODE_BLANK_ONLY) {
-                command = g_strdup ("__blank-only");
+                name = g_strdup ("__blank-only");
         } else if (mode == GS_MODE_DONT_BLANK) {
-                command = g_strdup ("__disabled");
+                name = g_strdup ("__disabled");
         } else {
                 GSList *list;
                 list = gconf_client_get_list (client,
-                                              KEY_SAVERS,
+                                              KEY_THEMES,
                                               GCONF_VALUE_STRING,
                                               NULL);
                 if (list) {
-                        command = g_strdup (list->data);
+                        name = g_strdup (list->data);
                 } else {
                         /* TODO: handle error */
                 }
@@ -138,11 +138,11 @@ config_get_command (void)
 
         g_object_unref (client);
 
-        return command;
+        return name;
 }
 
 static void
-config_set_command (const char *command)
+config_set_theme (const char *name)
 {
         GConfClient *client;
         GSList      *list = NULL;
@@ -151,20 +151,20 @@ config_set_command (const char *command)
 
         client = gconf_client_get_default ();
 
-        if (strcmp (command, "__disabled") == 0) {
+        if (strcmp (name, "__disabled") == 0) {
                 mode = GS_MODE_DONT_BLANK;
-        } else if (strcmp (command, "__blank-only") == 0) {
+        } else if (strcmp (name, "__blank-only") == 0) {
                 mode = GS_MODE_BLANK_ONLY;
         } else {
                 mode = GS_MODE_SINGLE;
-                list = g_slist_append (list, g_strdup (command));
+                list = g_slist_append (list, g_strdup (name));
         }
 
         mode_string = gconf_enum_to_string (mode_enum_map, mode);
         gconf_client_set_string (client, KEY_MODE, mode_string, NULL);
 
         gconf_client_set_list (client,
-                               KEY_SAVERS,
+                               KEY_THEMES,
                                GCONF_VALUE_STRING,
                                list,
                                NULL);
@@ -185,8 +185,8 @@ preview_clear (GtkWidget *widget)
 }
 
 static void
-preview_set_command (GtkWidget  *widget,
-                     const char *command)
+preview_set_theme (GtkWidget  *widget,
+                   const char *theme)
 {
         if (job) {
                 gs_job_stop (job);
@@ -194,12 +194,12 @@ preview_set_command (GtkWidget  *widget,
 
         preview_clear (widget);
 
-        if (strcmp (command, "__disabled") == 0) {
+        if (strcmp (theme, "__disabled") == 0) {
                 /* TODO: change sensitivities */
-        } else if (strcmp (command, "__blank-only") == 0) {
+        } else if (strcmp (theme, "__blank-only") == 0) {
 
         } else {
-                gs_job_set_command (job, command);
+                gs_job_set_theme (job, theme);
                 gs_job_start (job);
         }
 }
@@ -216,34 +216,59 @@ response_cb (GtkWidget *widget,
         gtk_main_quit ();
 }
 
-struct saver_entry {
+static const char *
+get_themes_dir (void)
+{
+        return THEMESDIR;
+}
+
+struct theme_entry {
         char *name;
-        char *command;
+        char *label;
 };
 
 static void
-saver_entry_free (struct saver_entry *entry)
+theme_entry_free (struct theme_entry *entry)
 {
         if (! entry)
                 return;
 
         g_free (entry->name);
-        g_free (entry->command);
+        g_free (entry->label);
         g_free (entry);
 }
 
 static GSList *
-get_saver_list (void)
+get_theme_list (void)
 {
-        GSList             *savers = NULL;
-        struct saver_entry *entry;
+        GSList     *themes = NULL;
+        GDir       *dir;
+        const char *filename;
 
-        entry = g_new0 (struct saver_entry, 1);
-        entry->name    = g_strdup ("Pop art squares");
-        entry->command = g_strdup ("popsquares");
-        savers = g_slist_append (savers, entry);
+        dir = g_dir_open (get_themes_dir (), 0, NULL);
+        if (! dir)
+                return NULL;
 
-        return savers;
+        while ((filename = g_dir_read_name (dir)) != NULL) {
+                char               *path;
+                char               *name;
+                char               *label;
+                struct theme_entry *entry;
+
+                path = g_build_filename (get_themes_dir (), filename, NULL);
+                if (! gs_job_theme_parse (path, &name, &label, NULL)) {
+                        g_free (path);
+                        continue;
+                }
+                g_free (path);
+
+                entry = g_new0 (struct theme_entry, 1);
+                entry->name    = name;
+                entry->label   = label;
+                themes = g_slist_append (themes, entry);
+        }
+
+        return themes;
 }
 
 static void
@@ -251,42 +276,42 @@ populate_model (GtkTreeStore *store)
 {
         GtkTreeIter iter;
         gboolean    show_disabled = TRUE;
-        GSList     *savers        = NULL;
+        GSList     *themes        = NULL;
         GSList     *l;
 
         if (show_disabled) {
                 gtk_tree_store_append (store, &iter, NULL);
                 gtk_tree_store_set (store, &iter,
-                                    NAME_COLUMN, "Disabled",
-                                    COMMAND_COLUMN, "__disabled",
+                                    LABEL_COLUMN, "Disabled",
+                                    NAME_COLUMN, "__disabled",
                                     -1);
         }
 
         gtk_tree_store_append (store, &iter, NULL);
         gtk_tree_store_set (store, &iter,
-                            NAME_COLUMN, "Blank screen",
-                            COMMAND_COLUMN, "__blank-only",
+                            LABEL_COLUMN, "Blank screen",
+                            NAME_COLUMN, "__blank-only",
                             -1);
 
-        savers = get_saver_list ();
+        themes = get_theme_list ();
 
-        if (! savers)
+        if (! themes)
                 return;
         
-        for (l = savers; l; l = l->next) {
-                struct saver_entry *saver;
+        for (l = themes; l; l = l->next) {
+                struct theme_entry *theme;
 
-                saver = l->data;
+                theme = l->data;
 
                 gtk_tree_store_append (store, &iter, NULL);
                 gtk_tree_store_set (store, &iter,
-                                    NAME_COLUMN, saver->name,
-                                    COMMAND_COLUMN, saver->command,
+                                    NAME_COLUMN, theme->name,
+                                    LABEL_COLUMN, theme->label,
                                     -1);
         }
 
-        g_slist_foreach (savers, (GFunc)saver_entry_free, NULL);
-        g_slist_free (savers);
+        g_slist_foreach (themes, (GFunc)theme_entry_free, NULL);
+        g_slist_free (themes);
 }
 
 static void
@@ -295,20 +320,20 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
 {
         GtkTreeIter   iter;
         GtkTreeModel *model;
-        char         *command;
+        char         *theme;
 
-        if (!gtk_tree_selection_get_selected (selection, &model, &iter))
+        if (! gtk_tree_selection_get_selected (selection, &model, &iter))
                 return;
 
-        gtk_tree_model_get (model, &iter, COMMAND_COLUMN, &command, -1);
+        gtk_tree_model_get (model, &iter, NAME_COLUMN, &theme, -1);
 
-        if (!command)
+        if (! theme)
                 return;
 
-        preview_set_command (preview, command);
-        config_set_command (command);
+        preview_set_theme (preview, theme);
+        config_set_theme (theme);
 
-        g_free (command);
+        g_free (theme);
 }
 
 static void
@@ -342,7 +367,7 @@ setup_treeview (GtkWidget *tree,
 
         renderer = gtk_cell_renderer_text_new ();
         column = gtk_tree_view_column_new_with_attributes ("Name", renderer,
-                                                           "text", NAME_COLUMN,
+                                                           "text", LABEL_COLUMN,
                                                            NULL);
         gtk_tree_view_append_column (GTK_TREE_VIEW (tree), column);
 
@@ -357,22 +382,22 @@ setup_treeview (GtkWidget *tree,
 static void
 setup_treeview_selection (GtkWidget *tree)
 {
-        char         *command;
+        char         *theme;
         GtkTreeModel *model;
         GtkTreeIter   iter;
         GtkTreePath  *path = NULL;
   
-        command = config_get_command ();
+        theme = config_get_theme ();
 
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (tree));
 
         if (gtk_tree_model_get_iter_first (model, &iter)) {
-                char *cmd;
+                char *name;
 
                 do {
                         gtk_tree_model_get (model, &iter,
-                                            COMMAND_COLUMN, &cmd, -1);
-                        if (strcmp (cmd, command) == 0) {
+                                            NAME_COLUMN, &name, -1);
+                        if (strcmp (name, theme) == 0) {
                                 path = gtk_tree_model_get_path (model, &iter);
                                 break;
                         }
@@ -390,7 +415,7 @@ setup_treeview_selection (GtkWidget *tree)
                                   FALSE);
 
         gtk_tree_path_free (path);
-        g_free (command);
+        g_free (theme);
 }
 
 static void

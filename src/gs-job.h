@@ -60,7 +60,15 @@ gboolean    gs_job_suspend        (GSJob      *job,
 void        gs_job_set_widget     (GSJob      *job,
                                    GtkWidget  *widget);
 void        gs_job_set_command    (GSJob      *job,
-                                   const char *command);
+                                   char      **argv);
+void        gs_job_set_theme      (GSJob      *job,
+                                   const char *theme);
+gboolean    gs_job_theme_parse    (const char *path,
+                                   char      **name,
+                                   char      **label,
+                                   char     ***argv);
+
+
 
 G_END_DECLS
 

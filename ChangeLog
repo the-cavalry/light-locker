@@ -1,5 +1,24 @@
 2005-04-26  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-manager.c (gs_manager_set_themes, select_theme) 
+	(gs_manager_cycle, window_show_cb): 
+	* src/gs-job.c (getnodeset, get_first_xpath_prop) 
+	(get_xml_config_string, gs_job_theme_parse, gs_job_finalize) 
+	(gs_job_set_command, gs_job_set_theme, gs_job_new_for_widget) 
+	(spawn_on_widget, gs_job_start): 
+	* src/gnome-screensaver-preferences.c (config_get_theme) 
+	(config_set_theme, preview_set_theme, get_themes_dir) 
+	(theme_entry_free, get_theme_list, populate_model) 
+	(tree_selection_changed_cb, setup_treeview) 
+	(setup_treeview_selection): 
+	* src/Makefile.am: 
+	* savers/Makefile.am: 
+	* configure.ac:
+	Add support for XML theme configuration.  Only support configuration
+	via theme names.  The mapping to a command is done by the XML config.
+
+2005-04-26  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c (gs_watcher_set_dpms): 
 	* src/gs-prefs.c (gs_prefs_load_from_gconf, key_changed_cb): 
 	* src/gs-monitor.c (prefs_changed_cb, gs_monitor_init):

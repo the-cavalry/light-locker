@@ -28,6 +28,9 @@
 #include <sys/wait.h>
 #include <errno.h>
 
+#include <libxml/tree.h>
+#include <libxml/parser.h>
+#include <libxml/xpath.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 
@@ -52,7 +55,7 @@ typedef enum {
 struct GSJobPrivate
 {
         GtkWidget  *widget;
-        char       *command;
+        char      **argv;
 
         GSJobStatus status;
         gint        pid;
@@ -63,6 +66,139 @@ struct GSJobPrivate
 static GObjectClass *parent_class = NULL;
 
 G_DEFINE_TYPE (GSJob, gs_job, G_TYPE_OBJECT);
+
+
+static xmlXPathObjectPtr
+getnodeset (xmlDocPtr      doc,
+            const xmlChar *xpath)
+{	
+	xmlXPathContextPtr context;
+	xmlXPathObjectPtr  result;
+
+	context = xmlXPathNewContext (doc);
+	result = xmlXPathEvalExpression (xpath, context);
+	if (xmlXPathNodeSetIsEmpty (result->nodesetval)) {
+                g_warning ("Node set is empty for %s", xpath);
+		return NULL;
+        }
+
+	xmlXPathFreeContext (context);
+
+	return result;
+}
+
+static xmlChar *
+get_first_xpath_prop (xmlDocPtr      doc,
+                      const xmlChar *xpath,
+                      const xmlChar *prop)
+{ 
+        xmlChar          *keyword = NULL;
+	xmlXPathObjectPtr result;
+	xmlNodeSetPtr     nodeset;
+
+	result = getnodeset (doc, xpath);
+        if (result) {
+		nodeset = result->nodesetval;
+                if (nodeset->nodeNr > 0)
+                        keyword = xmlGetProp (nodeset->nodeTab [0], prop);
+	}
+
+        return keyword;
+}
+
+static xmlChar *
+get_xml_config_string (xmlDocPtr   doc,
+                       const char *xpath,
+                       const char *prop)
+{
+        xmlChar *str;
+
+        str = get_first_xpath_prop (doc,
+                                    (const xmlChar  *)xpath,
+                                    (const xmlChar  *)prop);
+
+        return str;
+}
+
+gboolean
+gs_job_theme_parse (const char *path,
+                    char      **name,
+                    char      **label,
+                    char     ***argv)
+{
+        xmlDocPtr  doc;
+        xmlNodePtr node;
+        char      *contents;
+        char      *name_val;
+        char      *label_val;
+        char      *cmd_val;
+        char      *arg_val;
+        gsize      length;
+        GError    *error = NULL;
+
+        if (name)
+                *name = NULL;
+        if (label)
+                *label = NULL;
+        if (argv)
+                *argv = NULL;
+
+        if (! g_file_get_contents (path, &contents, &length, &error))
+                return FALSE;
+
+        contents = (char *)g_realloc (contents, length + 1);
+        contents [length] = '\0';
+
+        doc = xmlParseMemory (contents, length);
+        if (doc == NULL)
+                doc = xmlRecoverMemory (contents, length);
+
+        g_free (contents);
+
+        /* If the document has no root, or no name */
+        if (!doc || !doc->children || !doc->children->name) {
+                if (doc != NULL)
+                        xmlFreeDoc (doc);
+                return FALSE;
+        }
+
+        node = xmlDocGetRootElement (doc);
+        if (! node)
+                return FALSE;
+
+        label_val = get_xml_config_string (doc, "/screensaver", "_label");
+        name_val  = get_xml_config_string (doc, "/screensaver", "name");
+        cmd_val   = get_xml_config_string (doc, "/screensaver/command", "name");
+        arg_val   = get_xml_config_string (doc, "/screensaver/command", "arg");
+
+        if (! cmd_val) {
+                /* this is to support the xscreensaver config format where
+                   the command and name are the same */
+                cmd_val = g_strdup (name_val);
+        }
+
+        if (name)
+                *name = g_strdup (name_val);
+
+        if (label)
+                *label = g_strdup (label_val);
+
+        if (argv) {
+                char *command;
+
+                command = g_strdup_printf ("%s %s", cmd_val, arg_val);
+                g_shell_parse_argv (command, NULL, argv, NULL);
+                g_free (command);
+        }
+
+        xmlFree (label_val);
+        xmlFree (name_val);
+        xmlFree (cmd_val);
+        xmlFree (arg_val);
+        xmlFreeDoc (doc);
+
+        return TRUE;
+}
 
 static char *
 widget_get_id_string (GtkWidget *widget)
@@ -152,7 +288,7 @@ gs_job_finalize (GObject *object)
                 gs_job_died (job);
         }
 
-        g_free (job->priv->command);
+        g_strfreev (job->priv->argv);
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -198,31 +334,62 @@ find_command (const char  *command,
 }
 
 void
-gs_job_set_command  (GSJob      *job,
-                     const char *command)
+gs_job_set_command (GSJob *job,
+                    char **argv)
 {
-        char *path;
-        char *line;
+        char  *path;
+        char **new_argv;
 
         g_return_if_fail (job != NULL);
         g_return_if_fail (GS_IS_JOB (job));
 
-        g_free (job->priv->command);
-        job->priv->command = NULL;
+        g_strfreev (job->priv->argv);
+        job->priv->argv = NULL;
 
-        if (! command)
+        if (! argv)
                 return;
 
+        new_argv = g_strdupv (argv);
         /* try to find command in well known locations */
-        path = find_command (command, known_locations);
-
-        /* TODO: parse configuration file to determine default args */
+        path = find_command (new_argv [0], known_locations);
 
         if (path) {
-                line = g_strdup_printf ("%s -root", path);
-                g_free (path);
-                job->priv->command = line;
+                g_free (new_argv [0]);
+                new_argv [0] = path;
+                job->priv->argv = new_argv;
         }
+}
+
+void
+gs_job_set_theme  (GSJob      *job,
+                   const char *theme)
+{
+        char  *filename;
+        char  *path;
+        char **argv;
+
+        g_return_if_fail (GS_IS_JOB (job));
+        g_return_if_fail (theme != NULL);
+
+        /* for now assume theme name -> command mapping */
+        filename = g_strdup_printf ("%s.xml", theme);
+        path = g_build_filename (THEMESDIR, filename, NULL);
+
+        if (! gs_job_theme_parse (path,
+                                  NULL,
+                                  NULL,
+                                  &argv)) {
+                g_free (path);
+                return;
+        }
+        g_free (path);
+
+        if (! argv)
+                return;
+
+        gs_job_set_command (job, argv);
+
+        g_strfreev (argv);
 }
 
 GSJob *
@@ -237,28 +404,26 @@ gs_job_new (void)
 
 GSJob *
 gs_job_new_for_widget (GtkWidget  *widget,
-                       const char *command)
+                       const char *theme)
 {
         GObject *job;
 
         job = g_object_new (GS_TYPE_JOB, NULL);
 
-        gs_job_set_widget  (GS_JOB (job), widget);
-        gs_job_set_command (GS_JOB (job), command);
+        gs_job_set_widget (GS_JOB (job), widget);
+        gs_job_set_theme (GS_JOB (job), theme);
 
         return GS_JOB (job);
 }
 
 static gboolean
 spawn_on_widget (GtkWidget  *widget,
-                 const char *command,
+                 char      **argv,
                  int        *pid,
                  GIOFunc     watch_func,
                  gpointer    user_data,
                  guint      *watch_id)
 {
-        int         argc;
-        char      **argv;
         char       *envp [5];
         int         nenv = 0;
         int         i;
@@ -270,7 +435,7 @@ spawn_on_widget (GtkWidget  *widget,
         int         child_pid;
         int         id;
 
-        if (! g_shell_parse_argv (command, &argc, &argv, NULL))
+        if (! argv)
                 return FALSE;
 
         window_id = widget_get_id_string (widget);
@@ -296,7 +461,7 @@ spawn_on_widget (GtkWidget  *widget,
                                                  &error);
 
         if (! result) {
-                g_message ("Could not start command '%s': %s", command, error->message);
+                g_message ("Could not start command '%s': %s", argv [0], error->message);
                 g_error_free (error);
                 return FALSE;
         }
@@ -322,8 +487,6 @@ spawn_on_widget (GtkWidget  *widget,
 
         for (i = 0; i < nenv; i++)
                 g_free (envp [i]);
-
-        g_strfreev (argv);
 
         return result;
 }
@@ -376,14 +539,14 @@ gs_job_start (GSJob *job)
                 return FALSE;
         }
 
-        if (!job->priv->command)
+        if (! job->priv->argv)
                 return FALSE;
 
-        if (!job->priv->widget)
+        if (! job->priv->widget)
                 return FALSE;
 
         result = spawn_on_widget (job->priv->widget,
-                                  (const char *)job->priv->command,
+                                  job->priv->argv,
                                   &job->priv->pid,
                                   (GIOFunc)command_watch,
                                   job,
