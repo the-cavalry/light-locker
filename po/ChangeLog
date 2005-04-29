@@ -1,3 +1,8 @@
+2005-04-29  Christian Rose  <menthos@menthos.com>
+
+	* POTFILES.in: Added missing files.
+	* sv.po: Updated Swedish translation.
+
 2005-04-24  Raphael Higino  <raphaelh@cvs.gnome.org>
 
 	* pt_BR.po: Updated Brazilian Portuguese translation.

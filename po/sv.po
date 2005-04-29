@@ -8,14 +8,42 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-04-14 23:42+0200\n"
-"PO-Revision-Date: 2005-03-11 22:24+0100\n"
+"POT-Creation-Date: 2005-04-29 23:45+0200\n"
+"PO-Revision-Date: 2005-04-29 23:45+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "Skärmsläckare"
+
+#: data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "Ställ in dina skärmsläckarinställningar"
+
+#: data/gnome-screensaver-preferences.glade.h:1
+msgid "    "
+msgstr "    "
+
+#: data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>_Screensaver</b>"
+msgstr "<b>_Skärmsläckare</b>"
+
+#: data/gnome-screensaver-preferences.glade.h:3
+msgid "Screensaver Preferences"
+msgstr "Skärmsläckarinställningar"
+
+#: data/gnome-screensaver-preferences.glade.h:4
+msgid "_Activate after:"
+msgstr "_Aktivera efter:"
+
+#: data/gnome-screensaver-preferences.glade.h:5
+msgid "minutes"
+msgstr "minuter"
 
 #: data/gnome-screensaver.schemas.in.h:1
 #, fuzzy
@@ -102,13 +130,22 @@ msgstr "Växla om genvägsraden ska visas"
 msgid "Whether to power down the monitor."
 msgstr "Huruvida veckonummer ska visas i datumbläddraren."
 
+#: savers/popsquares.xml.h:1
+msgid "Pop art squares"
+msgstr ""
+
+#: savers/popsquares.xml.h:2
+msgid ""
+"This draws a pop-art-ish looking grid of pulsing colors. By Levi Burton."
+msgstr ""
+
 #: src/cut-n-paste/fusa-display.c:119 src/cut-n-paste/fusa-user.c:150
 msgid "Manager"
 msgstr "Hanterare"
 
 #: src/cut-n-paste/fusa-display.c:120
 msgid "The manager which owns this object."
-msgstr ""
+msgstr "Hanteraren som äger detta objekt."
 
 #: src/cut-n-paste/fusa-display.c:127
 msgid "Name"
@@ -136,9 +173,8 @@ msgid "The number of the virtual console this display can be found on, or %-1."
 msgstr ""
 
 #: src/cut-n-paste/fusa-display.c:148
-#, fuzzy
 msgid "Nested"
-msgstr "Listad"
+msgstr "Nästlad"
 
 #: src/cut-n-paste/fusa-display.c:149
 msgid "Whether or not this display is a windowed (Xnest) display."
@@ -149,9 +185,8 @@ msgid "The display manager could not be contacted for unknown reasons."
 msgstr ""
 
 #: src/cut-n-paste/fusa-manager.c:1270
-#, fuzzy
 msgid "The display manager is not running or too old."
-msgstr "GDM (GNOME:s displayhanterare) kör inte."
+msgstr "Displayhanteraren kör inte eller är för gammal."
 
 #: src/cut-n-paste/fusa-manager.c:1273
 #, fuzzy
@@ -220,18 +255,16 @@ msgid "The display manager sent an unknown error message."
 msgstr ""
 
 #: src/cut-n-paste/fusa-user-menu-item.c:153
-#, fuzzy
 msgid "The user this menu item represents."
-msgstr "Huruvida menyposten är käsnlig"
+msgstr "Den användare som denna menypost representerar."
 
 #: src/cut-n-paste/fusa-user-menu-item.c:160
 msgid "Icon Size"
 msgstr "Ikonstorlek"
 
 #: src/cut-n-paste/fusa-user-menu-item.c:161
-#, fuzzy
 msgid "The size of the icon to use."
-msgstr "Storleken på filen."
+msgstr "Storleken på ikonen att använda."
 
 #: src/cut-n-paste/fusa-user.c:151
 msgid "The user manager object this user is controlled by."
@@ -350,9 +383,8 @@ msgid "If the screensaver is active then switch to another graphics demo"
 msgstr ""
 
 #: src/gnome-screensaver-command.c:54
-#, fuzzy
 msgid "Turn the screensaver on (blank the screen)"
-msgstr "Vid mitten på skärmen"
+msgstr "Slå på skärmsläckaren (töm skärmen)"
 
 #: src/gnome-screensaver-command.c:56
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
@@ -360,14 +392,21 @@ msgstr ""
 
 #: src/gnome-screensaver-command.c:58 src/gnome-screensaver-dialog.c:57
 #: src/gnome-screensaver.c:86
-#, fuzzy
 msgid "Version of this application"
-msgstr "Hur man använder detta program"
+msgstr "Detta programs versionsnummer"
 
 #: src/gnome-screensaver-dialog.c:55
-#, fuzzy
 msgid "Show debugging output"
-msgstr "Felsökningsutdata"
+msgstr "Visa felsökningsutdata"
+
+#: src/gnome-screensaver-preferences.c:512
+msgid "Could not load the main interface"
+msgstr "Kunde inte läsa in huvudgränssnittet"
+
+#: src/gnome-screensaver-preferences.c:514
+#, fuzzy
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "Försäkra dig om att Caps Lock inte är på."
 
 #: src/gs-lock-plug.c:169
 msgid "Verifying password..."
@@ -379,19 +418,16 @@ msgid "About %ld seconds left"
 msgstr "Ungefär %ld sekunder kvar"
 
 #: src/gs-lock-plug.c:239
-#, fuzzy
 msgid "Time expired!"
-msgstr "Tidsserver"
+msgstr "Tiden gick ut!"
 
 #: src/gs-lock-plug.c:264
-#, fuzzy
 msgid "You have the Caps Lock key on."
-msgstr "Du har CapsLock på!"
+msgstr "Du har CapsLock-tangenten på."
 
 #: src/gs-lock-plug.c:362
-#, fuzzy
 msgid "Password verification failed!"
-msgstr "Lösenordsgiltighet"
+msgstr "Lösenordsverifieringen misslyckades!"
 
 #: src/gs-lock-plug.c:387 src/gs-lock-plug.c:427
 msgid "_Unlock"
@@ -401,29 +437,44 @@ msgstr "Lås _upp"
 msgid "_Login Screen"
 msgstr "_Inloggningsskärm"
 
-#: src/gs-lock-plug.c:688
-#, fuzzy
+#: src/gs-lock-plug.c:754
 msgid "Enter password to unlock screen"
-msgstr "_Kräv lösenord för att låsa upp skärmen"
+msgstr "Ange lösenord för att låsa upp skärmen"
 
-#: src/gs-lock-plug.c:717
+#: src/gs-lock-plug.c:783
 msgid "Name:"
 msgstr "Namn:"
 
-#: src/gs-lock-plug.c:721
+#: src/gs-lock-plug.c:787
 msgid "_Password:"
 msgstr "_Lösenord:"
 
-#: src/gs-lock-plug.c:768
+#: src/gs-lock-plug.c:829
 msgid "Log in as another user?"
 msgstr "Logga in som en annan användare?"
 
-#: src/gs-lock-plug.c:786
+#: src/gs-lock-plug.c:847
 msgid ""
 "This option will bring you to the Login Screen.\n"
 "From the Login Screen you may log in to this system\n"
 "as another user or select 'Quit' to return to this screen."
 msgstr ""
+"Detta alternativ kommer att ta dig till inloggningsskärmen.\n"
+"Från inloggningsskärmen kan du logga in på detta system\n"
+"som en annan användare, eller välja \"Avsluta\" för att\n"
+"återvända till denna skärm."
+
+#~ msgid "Screensavers"
+#~ msgstr "Skärmsläckare"
+
+#~ msgid "<b>Screensaver</b>"
+#~ msgstr "<b>Skärmsläckare</b>"
+
+#~ msgid "_Screensaver"
+#~ msgstr "_Skärmsläckare"
+
+#~ msgid "Turn the screensaver on"
+#~ msgstr "Slå på skärmsläckaren"
 
 #~ msgid "Log in as another user"
 #~ msgstr "Logga in som en annan användare"
@@ -1371,9 +1422,6 @@ msgstr ""
 #~ "\n"
 #~ "Ogiltigt användarnamn eller lösenord. Bokstäver måste skrivas med rätt "
 #~ "skiftläge."
-
-#~ msgid "Please make sure the Caps Lock key is not enabled."
-#~ msgstr "Försäkra dig om att Caps Lock inte är på."
 
 #~ msgid "Please enter your username"
 #~ msgstr "Ange ditt användarnamn"
@@ -2533,9 +2581,6 @@ msgstr ""
 #~ msgid "Greeter"
 #~ msgstr "Hälsare"
 
-#~ msgid "    "
-#~ msgstr "    "
-
 #~ msgid "L_ocal: "
 #~ msgstr "L_okal: "
 
@@ -3024,9 +3069,6 @@ msgstr ""
 #~ msgid "(memory buffer"
 #~ msgstr "(minnesbuffert"
 
-#~ msgid "Cannot load user interface"
-#~ msgstr "Kan inte läsa in användargränssnitt"
-
 #~ msgid ""
 #~ "An error occured while loading the user interface element %s%s from file %"
 #~ "s.  Possibly the glade interface description was corrupted.  %s cannot "
@@ -3492,9 +3534,6 @@ msgstr ""
 #~ "exempel KDM (KDE:s displayhanterare eller xdm).\n"
 #~ "Om du fortfarande vill använda denna funktion bör du antingen själv "
 #~ "starta GDM eller be din systemadministratör att starta GDM."
-
-#~ msgid "<b>Greeter</b>"
-#~ msgstr "<b>Hälsare</b>"
 
 #~ msgid "<b>Automatic Login</b>"
 #~ msgstr "<b>Automatisk inloggning</b>"
@@ -4752,9 +4791,6 @@ msgstr ""
 
 #~ msgid "GDM runs as this group: "
 #~ msgstr "GDM kör som denna grupp: "
-
-#~ msgid "Limits"
-#~ msgstr "Begränsningar"
 
 #~ msgid ""
 #~ "The number of seconds before a login is allowed after an unsuccesful try."

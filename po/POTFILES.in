@@ -1,6 +1,9 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
+data/gnome-screensaver-preferences.desktop.in
+data/gnome-screensaver-preferences.glade
 data/gnome-screensaver.schemas.in
+savers/popsquares.xml
 src/cut-n-paste/fusa-display.c
 src/cut-n-paste/fusa-manager.c
 src/cut-n-paste/fusa-user-menu-item.c
@@ -9,5 +12,6 @@ src/cut-n-paste/fusa-utils.c
 src/cut-n-paste/gdmcomm.c
 src/gnome-screensaver-command.c
 src/gnome-screensaver-dialog.c
+src/gnome-screensaver-preferences.c
 src/gnome-screensaver.c
 src/gs-lock-plug.c
