@@ -389,7 +389,7 @@
 			      <property name="spacing">0</property>
 
 			      <child>
-				<widget class="GtkHBox" id="hbox3">
+				<widget class="GtkHBox" id="blank_delay_hbox">
 				  <property name="visible">True</property>
 				  <property name="homogeneous">False</property>
 				  <property name="spacing">6</property>
@@ -397,7 +397,7 @@
 				  <child>
 				    <widget class="GtkLabel" id="blank_delay_label">
 				      <property name="visible">True</property>
-				      <property name="label" translatable="yes">_Blank screen after:</property>
+				      <property name="label" translatable="yes">_Activate after:</property>
 				      <property name="use_underline">True</property>
 				      <property name="use_markup">False</property>
 				      <property name="justify">GTK_JUSTIFY_LEFT</property>

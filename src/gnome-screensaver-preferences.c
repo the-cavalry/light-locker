@@ -70,12 +70,18 @@ static GladeXML *xml = NULL;
 static GSJob    *job = NULL;
 
 static gint32
-config_get_blank_delay (void)
+config_get_blank_delay (gboolean *is_writable)
 {
         GConfClient *client;
         gint32       delay;
 
         client = gconf_client_get_default ();
+
+        if (is_writable) {
+                *is_writable = gconf_client_key_is_writable (client,
+                                                             KEY_BLANK_DELAY,
+                                                             NULL);
+        }
 
         delay = gconf_client_get_int (client, KEY_BLANK_DELAY, NULL);
 
@@ -100,7 +106,7 @@ config_set_blank_delay (gint32 timeout)
 }
 
 static char *
-config_get_theme (void)
+config_get_theme (gboolean *is_writable)
 {
         GConfClient *client;
         char        *string;
@@ -108,6 +114,19 @@ config_get_theme (void)
         int          mode;
 
         client = gconf_client_get_default ();
+
+        if (is_writable) {
+                gboolean can_write_theme;
+                gboolean can_write_mode;
+
+                can_write_theme = gconf_client_key_is_writable (client,
+                                                                KEY_THEMES,
+                                                                NULL);
+                can_write_mode = gconf_client_key_is_writable (client,
+                                                               KEY_MODE,
+                                                               NULL);
+                *is_writable = can_write_theme && can_write_mode;
+        }
 
         string = gconf_client_get_string (client, KEY_MODE, NULL);
         if (string) {
@@ -432,8 +451,12 @@ setup_treeview_selection (GtkWidget *tree)
         GtkTreeModel *model;
         GtkTreeIter   iter;
         GtkTreePath  *path = NULL;
-  
-        theme = config_get_theme ();
+        gboolean      is_writable;
+
+        theme = config_get_theme (&is_writable);
+
+        if (! is_writable)
+                gtk_widget_set_sensitive (tree, FALSE);
 
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (tree));
 
@@ -471,9 +494,11 @@ init_capplet (void)
         GtkWidget *preview;
         GtkWidget *treeview;
         GtkWidget *blank_delay_hscale;
+        GtkWidget *blank_delay_hbox;
         GtkWidget *label;
         char      *glade_file;
         gdouble    blank_delay;
+        gboolean   is_writable;
 
         glade_file = g_build_filename (GLADEDIR, GLADE_XML_FILE, NULL);
         xml = glade_xml_new (glade_file, NULL, PACKAGE);
@@ -499,14 +524,17 @@ init_capplet (void)
         dialog             = glade_xml_get_widget (xml, "prefs_dialog");
         treeview           = glade_xml_get_widget (xml, "savers_treeview");
         blank_delay_hscale = glade_xml_get_widget (xml, "blank_delay_hscale");
+        blank_delay_hbox   = glade_xml_get_widget (xml, "blank_delay_hbox");
 
         label              = glade_xml_get_widget (xml, "blank_delay_label");
         gtk_label_set_mnemonic_widget (GTK_LABEL (label), blank_delay_hscale);
         label              = glade_xml_get_widget (xml, "savers_label");
         gtk_label_set_mnemonic_widget (GTK_LABEL (label), treeview);
 
-        blank_delay = config_get_blank_delay ();
+        blank_delay = config_get_blank_delay (&is_writable);
         gtk_range_set_value (GTK_RANGE (blank_delay_hscale), blank_delay);
+        if (! is_writable)
+                gtk_widget_set_sensitive (blank_delay_hbox, FALSE);
 
         gtk_window_set_icon_name (GTK_WINDOW (dialog), "screensaver");
 
