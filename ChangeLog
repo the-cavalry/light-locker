@@ -1,5 +1,10 @@
 2005-04-29  William Jon McCann  <mccann@jhu.edu>
 
+	* data/gnome-screensaver-preferences.glade:
+	Now even simpler.
+
+2005-04-29  William Jon McCann  <mccann@jhu.edu>
+
 	* data/gnome-screensaver-preferences.glade: 
 	* src/gnome-screensaver-preferences.c (config_get_blank_delay) 
 	(config_get_theme, setup_treeview_selection, init_capplet):
