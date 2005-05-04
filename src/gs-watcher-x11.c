@@ -128,6 +128,18 @@ static guint         signals [LAST_SIGNAL] = { 0, };
 G_DEFINE_TYPE (GSWatcher, gs_watcher, G_TYPE_OBJECT);
 
 void
+gs_watcher_reset (GSWatcher *watcher)
+{
+        g_return_if_fail (GS_IS_WATCHER (watcher));
+
+        /* restart if necessary */
+        if (watcher->priv->timer_id > 0) {
+                gs_watcher_set_active (watcher, FALSE);
+                gs_watcher_set_active (watcher, TRUE);
+        }
+}
+
+void
 gs_watcher_set_timeout (GSWatcher  *watcher,
                         guint       timeout)
 {
@@ -135,11 +147,7 @@ gs_watcher_set_timeout (GSWatcher  *watcher,
 
         watcher->priv->timeout = timeout;
 
-        /* restart if necessary */
-        if (watcher->priv->timer_id > 0) {
-                gs_watcher_set_active (watcher, FALSE);
-                gs_watcher_set_active (watcher, TRUE);
-        }
+        gs_watcher_reset (watcher);
 }
 
 void

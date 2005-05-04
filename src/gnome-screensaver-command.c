@@ -42,6 +42,7 @@ static gboolean do_cycle      = FALSE;
 static gboolean do_activate   = FALSE;
 static gboolean do_deactivate = FALSE;
 static gboolean do_version    = FALSE;
+static gboolean do_ping       = FALSE;
 
 static GOptionEntry entries [] = {
         { "exit", 0, 0, G_OPTION_ARG_NONE, &do_quit,
@@ -54,6 +55,8 @@ static GOptionEntry entries [] = {
           N_("Turn the screensaver on (blank the screen)"), NULL },
         { "deactivate", 0, 0, G_OPTION_ARG_NONE, &do_deactivate,
           N_("If the screensaver is active then deactivate it (un-blank the screen)"), NULL },
+        { "ping", 0, 0, G_OPTION_ARG_NONE, &do_ping,
+          N_("Ping the running screensaver to simulate user activity"), NULL },
         { "version", 0, 0, G_OPTION_ARG_NONE, &do_version,
           N_("Version of this application"), NULL },
         { NULL }
@@ -97,7 +100,7 @@ screensaver_send_message (DBusConnection *connection,
                 return NULL;
         }
 
-        if (!expect_reply) {
+        if (! expect_reply) {
                 if (!dbus_connection_send (connection, message, NULL))
                         g_warning ("could not send message");
                 reply = NULL;
@@ -114,6 +117,7 @@ screensaver_send_message (DBusConnection *connection,
 
         dbus_message_unref (message);
         dbus_error_free (&error);
+
         return reply;
 }
 
@@ -132,6 +136,8 @@ do_command (DBusConnection *connection)
                 name = "deactivate";
         else if (do_cycle)
                 name = "cycle";
+        else if (do_ping)
+                name = "ping";
 
         if (name) {
                 DBusMessage *reply;
@@ -182,13 +188,13 @@ main (int    argc,
         if (! connection) {
                 g_message ("Failed to connect to the D-BUS daemon: %s", dbus_error.message);
                 dbus_error_free (&dbus_error);
-                return 1;
+                exit (1);
         }
 
         dbus_connection_setup_with_g_main (connection, NULL);
 
-        if (!screensaver_is_running (connection)) {
-                g_critical ("Screensaver is not running!");
+        if (! screensaver_is_running (connection)) {
+                g_message ("Screensaver is not running!");
                 exit (1);
         }
 

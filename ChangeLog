@@ -1,3 +1,17 @@
+2005-05-04  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-watcher-x11.c (gs_watcher_reset):
+	Add a convenience function for resetting the idle
+	watcher.
+
+	* src/gs-monitor.c (listener_ping_cb, gs_monitor_init): 
+	* src/gs-listener-dbus.c (gs_listener_message_handler) 
+	(gs_listener_class_init): 
+	* src/gnome-screensaver-command.c (do_command):
+	Add ping dbus method that can be used to simulate user
+	activity or as a safe way to probe if the screensaver is
+	running.
+
 2005-05-01  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
 
 	* configure.ac: Added Spanish (es) to ALL_LINGUAS.

@@ -144,6 +144,13 @@ listener_deactivate_cb (GSListener *listener,
 }
 
 static void
+listener_ping_cb (GSListener *listener,
+                  GSMonitor  *monitor)
+{
+        gs_watcher_reset (monitor->priv->watcher);
+}
+
+static void
 prefs_changed_cb (GSPrefs   *prefs,
                   GSMonitor *monitor)
 {
@@ -178,6 +185,8 @@ gs_monitor_init (GSMonitor *monitor)
                           G_CALLBACK (listener_activate_cb), monitor);
         g_signal_connect (monitor->priv->listener, "deactivate",
                           G_CALLBACK (listener_deactivate_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "ping",
+                          G_CALLBACK (listener_ping_cb), monitor);
 
         monitor->priv->watcher = gs_watcher_new (monitor->priv->prefs->timeout);
         gs_watcher_set_dpms (monitor->priv->watcher,
