@@ -135,104 +135,9 @@ AC_DEFINE_PATH(GDMCONFIGFILE, "$gdmconfigfile", [The location of the GDM configu
 
 ###############################################################################
 #
-#       Functions to check for various X11 crap.
+#       Functions to check for various X11 things
 #
 ###############################################################################
-
-# Try and find the app-defaults directory.
-# It sucks that autoconf doesn't do this already...
-#
-AC_DEFUN(AC_PATH_X_APP_DEFAULTS_XMKMF,[
-  rm -fr conftestdir
-  if mkdir conftestdir; then
-    cd conftestdir 2>/dev/null
-    # Make sure to not put "make" in the Imakefile rules, since we grep it out.
-    cat > Imakefile <<'EOF'
-acfindx:
-	@echo 'ac_x_app_defaults="${XAPPLOADDIR}"'
-EOF
-    if (xmkmf) >/dev/null 2>&1 && test -f Makefile; then
-      # GNU make sometimes prints "make[1]: Entering...", which'd confuse us.
-      eval `${MAKE-make} acfindx 2>/dev/null | grep -v make`
-    fi
-    cd .. 2>/dev/null
-    rm -fr conftestdir
-  fi])
-
-AC_DEFUN(AC_PATH_X_APP_DEFAULTS_DIRECT,[
-  # Look for the directory under a standard set of common directories.
-  # Check X11 before X11Rn because it's often a symlink to the current release.
-  for ac_dir in                                 \
-    /usr/X11/lib/app-defaults                   \
-    /usr/X11R6/lib/app-defaults                 \
-    /usr/X11R6/lib/X11/app-defaults             \
-    /usr/X11R5/lib/app-defaults                 \
-    /usr/X11R5/lib/X11/app-defaults             \
-    /usr/X11R4/lib/app-defaults                 \
-    /usr/X11R4/lib/X11/app-defaults             \
-                                                \
-    /usr/lib/X11/app-defaults                   \
-    /usr/lib/X11R6/app-defaults                 \
-    /usr/lib/X11R5/app-defaults                 \
-    /usr/lib/X11R4/app-defaults                 \
-                                                \
-    /usr/local/X11/lib/app-defaults             \
-    /usr/local/X11R6/lib/app-defaults           \
-    /usr/local/X11R5/lib/app-defaults           \
-    /usr/local/X11R4/lib/app-defaults           \
-                                                \
-    /usr/local/lib/X11/app-defaults             \
-    /usr/local/lib/X11R6/app-defaults           \
-    /usr/local/lib/X11R6/X11/app-defaults       \
-    /usr/local/lib/X11R5/app-defaults           \
-    /usr/local/lib/X11R5/X11/app-defaults       \
-    /usr/local/lib/X11R4/app-defaults           \
-    /usr/local/lib/X11R4/X11/app-defaults       \
-                                                \
-    /usr/X386/lib/X11/app-defaults              \
-    /usr/x386/lib/X11/app-defaults              \
-    /usr/XFree86/lib/X11/app-defaults           \
-                                                \
-    /usr/lib/X11/app-defaults                   \
-    /usr/local/lib/X11/app-defaults             \
-    /usr/unsupported/lib/X11/app-defaults       \
-    /usr/athena/lib/X11/app-defaults            \
-    /usr/local/x11r5/lib/X11/app-defaults       \
-    /usr/lpp/Xamples/lib/X11/app-defaults       \
-    /lib/usr/lib/X11/app-defaults               \
-                                                \
-    /usr/openwin/lib/app-defaults               \
-    /usr/openwin/lib/X11/app-defaults           \
-    /usr/openwin/share/lib/app-defaults         \
-    /usr/openwin/share/lib/X11/app-defaults     \
-                                                \
-    /X11R6/lib/app-defaults                     \
-    /X11R5/lib/app-defaults                     \
-    /X11R4/lib/app-defaults                     \
-    ; \
-  do
-    if test -d "$ac_dir"; then
-      ac_x_app_defaults=$ac_dir
-      break
-    fi
-  done
-])
-
-AC_DEFUN(AC_PATH_X_APP_DEFAULTS,
-  [AC_REQUIRE_CPP()
-    AC_CACHE_CHECK([for X app-defaults directory], ac_cv_x_app_defaults,
-     [AC_PATH_X_APP_DEFAULTS_XMKMF
-      if test x"$ac_x_app_defaults" = x; then
-        AC_PATH_X_APP_DEFAULTS_DIRECT
-      fi
-      if test x"$ac_x_app_defaults" = x; then
-        ac_cv_x_app_defaults="/usr/lib/X11/app-defaults"
-      else
-        # Record where we found app-defaults for the cache.
-        ac_cv_x_app_defaults="$ac_x_app_defaults"
-      fi])
-    eval ac_x_app_defaults="$ac_cv_x_app_defaults"])
-
 
 AC_DEFUN(AC_XPOINTER,
  [AC_CACHE_CHECK([for XPointer], ac_cv_xpointer,
@@ -246,8 +151,7 @@ AC_DEFUN(AC_XPOINTER,
 
 
 # Random special-cases for X on certain pathological OSes.
-# You know who you are.
-#
+
 AC_DEFUN(AC_X_RANDOM_PATHS,
  [case "$host" in
     *-hpux*)
