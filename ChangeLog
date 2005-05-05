@@ -1,5 +1,13 @@
 2005-05-05  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-monitor.c (listener_poke_cb, gs_monitor_init): 
+	* src/gs-listener-dbus.c (gs_listener_message_handler) 
+	(gs_listener_class_init): 
+	* src/gnome-screensaver-command.c (do_command):
+	Rename ping to poke to avoid confustion with dbus .Ping.
+
+2005-05-05  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Remove app-default stuff.
 
 2005-05-05  William Jon McCann  <mccann@jhu.edu>

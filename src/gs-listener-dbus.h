@@ -49,7 +49,7 @@ typedef struct
         void            (* deactivate)  (GSListener *listener);
         void            (* cycle)       (GSListener *listener);
         void            (* quit)        (GSListener *listener);
-        void            (* ping)        (GSListener *listener);
+        void            (* poke)        (GSListener *listener);
 
 } GSListenerClass;
 

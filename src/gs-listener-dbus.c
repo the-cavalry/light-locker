@@ -61,7 +61,7 @@ enum {
         DEACTIVATE,
         CYCLE,
         QUIT,
-        PING,
+        POKE,
         LAST_SIGNAL
 };
 
@@ -128,8 +128,8 @@ gs_listener_message_handler (DBusConnection *connection,
                 g_signal_emit (listener, signals [DEACTIVATE], 0);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "ping")) {
-                g_signal_emit (listener, signals [PING], 0);
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "poke")) {
+                g_signal_emit (listener, signals [POKE], 0);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
         return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
@@ -230,11 +230,11 @@ gs_listener_class_init (GSListenerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
-        signals [PING] =
-                g_signal_new ("ping",
+        signals [POKE] =
+                g_signal_new ("poke",
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, ping),
+                              G_STRUCT_OFFSET (GSListenerClass, poke),
                               NULL,
                               NULL,
                               g_cclosure_marshal_VOID__VOID,
