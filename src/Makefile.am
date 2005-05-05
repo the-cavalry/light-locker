@@ -14,6 +14,7 @@ INCLUDES =							\
 	$(GNOME_SCREENSAVER_DIALOG_CFLAGS)			\
 	$(GNOME_SCREENSAVER_CAPPLET_CFLAGS)			\
 	$(DISABLE_DEPRECATED_CFLAGS)				\
+        -DBINDIR=\""$(bindir)"\"				\
         -DLIBEXECDIR=\""$(libexecdir)"\"			\
         -DSAVERDIR=\""$(libexecdir)"/gnome-screensaver\"	\
         -DTHEMESDIR=\""$(pkgdatadir)"/themes\"			\

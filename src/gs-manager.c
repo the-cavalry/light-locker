@@ -43,10 +43,12 @@ struct GSManagerPrivate
         GSList      *windows;
         GSList      *jobs;
 
-        glong        lock_delay;
-        glong        cycle_delay;
+        glong        lock_timeout;
+        glong        cycle_timeout;
+        glong        logout_timeout;
 
         guint        lock_enabled : 1;
+        guint        logout_enabled : 1;
         guint        blank_active : 1;
 
         guint        dialog_up : 1;
@@ -70,8 +72,10 @@ enum {
 enum {
         PROP_0,
         PROP_LOCK_ENABLED,
-        PROP_LOCK_DELAY,
-        PROP_CYCLE_DELAY,
+        PROP_LOGOUT_ENABLED,
+        PROP_LOCK_TIMEOUT,
+        PROP_CYCLE_TIMEOUT,
+        PROP_LOGOUT_TIMEOUT,
         PROP_BLANK_ACTIVE,
 };
 
@@ -84,7 +88,7 @@ void
 gs_manager_set_mode (GSManager  *manager,
                      GSSaverMode mode)
 {
-        g_return_if_fail (GS_MANAGER (manager));
+        g_return_if_fail (GS_IS_MANAGER (manager));
 
         manager->priv->saver_mode = mode;
 }
@@ -95,7 +99,7 @@ gs_manager_set_themes (GSManager *manager,
 {
         GSList *l;
 
-        g_return_if_fail (GS_MANAGER (manager));
+        g_return_if_fail (GS_IS_MANAGER (manager));
 
         if (manager->priv->themes) {
                 g_slist_foreach (manager->priv->themes, (GFunc)g_free, NULL);
@@ -112,7 +116,7 @@ void
 gs_manager_set_lock_enabled (GSManager *manager,
                              gboolean   lock_enabled)
 {
-        g_return_if_fail (GS_MANAGER (manager));
+        g_return_if_fail (GS_IS_MANAGER (manager));
 
         if (manager->priv->lock_enabled != lock_enabled) {
                 GSList *l;
@@ -120,6 +124,21 @@ gs_manager_set_lock_enabled (GSManager *manager,
                 manager->priv->lock_enabled = lock_enabled;
                 for (l = manager->priv->windows; l; l = l->next)
                         gs_window_set_lock_enabled (l->data, lock_enabled);
+        }
+}
+
+void
+gs_manager_set_logout_enabled (GSManager *manager,
+                               gboolean   logout_enabled)
+{
+        g_return_if_fail (GS_IS_MANAGER (manager));
+
+        if (manager->priv->logout_enabled != logout_enabled) {
+                GSList *l;
+
+                manager->priv->logout_enabled = logout_enabled;
+                for (l = manager->priv->windows; l; l = l->next)
+                        gs_window_set_logout_enabled (l->data, logout_enabled);
         }
 }
 
@@ -134,18 +153,18 @@ enable_lock_timeout (GSManager *manager)
 }
 
 void
-gs_manager_set_lock_delay (GSManager *manager,
-                           glong      lock_delay)
+gs_manager_set_lock_timeout (GSManager *manager,
+                             glong      lock_timeout)
 {
-        g_return_if_fail (GS_MANAGER (manager));
+        g_return_if_fail (GS_IS_MANAGER (manager));
 
-        if (manager->priv->lock_delay != lock_delay) {
+        if (manager->priv->lock_timeout != lock_timeout) {
 
-                manager->priv->lock_delay = lock_delay;
+                manager->priv->lock_timeout = lock_timeout;
 
                 if (manager->priv->blank_active
                     && !manager->priv->lock_enabled
-                    && (lock_delay >= 0)) {
+                    && (lock_timeout >= 0)) {
 
                         glong elapsed = (time (NULL) - manager->priv->blank_time) * 1000;
 
@@ -154,16 +173,31 @@ gs_manager_set_lock_delay (GSManager *manager,
                                 manager->priv->lock_timeout_id = 0;
                         }
 
-                        if (elapsed >= lock_delay) {
+                        if (elapsed >= lock_timeout) {
                                 gs_manager_set_lock_enabled (manager, TRUE);
                         } else {
-                                manager->priv->lock_timeout_id = g_timeout_add (lock_delay - elapsed,
+                                manager->priv->lock_timeout_id = g_timeout_add (lock_timeout - elapsed,
                                                                                 (GSourceFunc)enable_lock_timeout,
                                                                                 manager);
                         }
                 } else {
                         gs_manager_set_lock_enabled (manager, FALSE);
                 }
+        }
+}
+
+void
+gs_manager_set_logout_timeout (GSManager *manager,
+                               glong      logout_timeout)
+{
+        g_return_if_fail (GS_IS_MANAGER (manager));
+
+        if (manager->priv->logout_timeout != logout_timeout) {
+                GSList *l;
+
+                manager->priv->logout_timeout = logout_timeout;
+                for (l = manager->priv->windows; l; l = l->next)
+                        gs_window_set_logout_timeout (l->data, logout_timeout);
         }
 }
 
@@ -234,16 +268,16 @@ cycle_timeout (GSManager *manager)
 }
 
 void
-gs_manager_set_cycle_delay (GSManager *manager,
-                            glong      cycle_delay)
+gs_manager_set_cycle_timeout (GSManager *manager,
+                              glong      cycle_timeout)
 {
-        g_return_if_fail (GS_MANAGER (manager));
+        g_return_if_fail (GS_IS_MANAGER (manager));
 
-        if (manager->priv->cycle_delay != cycle_delay) {
+        if (manager->priv->cycle_timeout != cycle_timeout) {
 
-                manager->priv->cycle_delay = cycle_delay;
+                manager->priv->cycle_timeout = cycle_timeout;
 
-                if (manager->priv->blank_active && (cycle_delay >= 0)) {
+                if (manager->priv->blank_active && (cycle_timeout >= 0)) {
                         glong timeout;
                         glong elapsed = (time (NULL) - manager->priv->blank_time) * 1000;
 
@@ -252,10 +286,10 @@ gs_manager_set_cycle_delay (GSManager *manager,
                                 manager->priv->cycle_timeout_id = 0;
                         }
 
-                        if (elapsed >= cycle_delay) {
+                        if (elapsed >= cycle_timeout) {
                                 timeout = 0;
                         } else {
-                                timeout = cycle_delay - elapsed;
+                                timeout = cycle_timeout - elapsed;
                         }
                         manager->priv->cycle_timeout_id = g_timeout_add (timeout,
                                                                          (GSourceFunc)cycle_timeout,
@@ -278,11 +312,17 @@ gs_manager_set_property (GObject            *object,
         case PROP_LOCK_ENABLED:
                 gs_manager_set_lock_enabled (self, g_value_get_boolean (value));
                 break;
-        case PROP_LOCK_DELAY:
-                gs_manager_set_lock_delay (self, g_value_get_long (value));
+        case PROP_LOCK_TIMEOUT:
+                gs_manager_set_lock_timeout (self, g_value_get_long (value));
                 break;
-        case PROP_CYCLE_DELAY:
-                gs_manager_set_cycle_delay (self, g_value_get_long (value));
+        case PROP_LOGOUT_ENABLED:
+                gs_manager_set_logout_enabled (self, g_value_get_boolean (value));
+                break;
+        case PROP_LOGOUT_TIMEOUT:
+                gs_manager_set_logout_timeout (self, g_value_get_long (value));
+                break;
+        case PROP_CYCLE_TIMEOUT:
+                gs_manager_set_cycle_timeout (self, g_value_get_long (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -304,11 +344,17 @@ gs_manager_get_property (GObject            *object,
         case PROP_LOCK_ENABLED:
                 g_value_set_boolean (value, self->priv->lock_enabled);
                 break;
-        case PROP_LOCK_DELAY:
-                g_value_set_long (value, self->priv->lock_delay);
+        case PROP_LOCK_TIMEOUT:
+                g_value_set_long (value, self->priv->lock_timeout);
                 break;
-        case PROP_CYCLE_DELAY:
-                g_value_set_long (value, self->priv->cycle_delay);
+        case PROP_LOGOUT_ENABLED:
+                g_value_set_boolean (value, self->priv->logout_enabled);
+                break;
+        case PROP_LOGOUT_TIMEOUT:
+                g_value_set_long (value, self->priv->logout_timeout);
+                break;
+        case PROP_CYCLE_TIMEOUT:
+                g_value_set_long (value, self->priv->cycle_timeout);
                 break;
         case PROP_BLANK_ACTIVE:
                 g_value_set_boolean (value, self->priv->blank_active);
@@ -365,8 +411,8 @@ gs_manager_class_init (GSManagerClass *klass)
                                                                TRUE,
                                                                G_PARAM_READWRITE));
         g_object_class_install_property (object_class,
-                                         PROP_LOCK_DELAY,
-                                         g_param_spec_long ("lock-delay",
+                                         PROP_LOCK_TIMEOUT,
+                                         g_param_spec_long ("lock-timeout",
                                                             NULL,
                                                             NULL,
                                                             -1,
@@ -374,8 +420,24 @@ gs_manager_class_init (GSManagerClass *klass)
                                                             0,
                                                             G_PARAM_READWRITE));
         g_object_class_install_property (object_class,
-                                         PROP_CYCLE_DELAY,
-                                         g_param_spec_long ("cycle-delay",
+                                         PROP_LOGOUT_ENABLED,
+                                         g_param_spec_boolean ("logout-enabled",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_LOGOUT_TIMEOUT,
+                                         g_param_spec_long ("logout-timeout",
+                                                            NULL,
+                                                            NULL,
+                                                            -1,
+                                                            G_MAXLONG,
+                                                            0,
+                                                            G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_CYCLE_TIMEOUT,
+                                         g_param_spec_long ("cycle-timeout",
                                                             NULL,
                                                             NULL,
                                                             10000,
@@ -547,20 +609,20 @@ window_show_cb (GSWindow  *window,
 
         manager->priv->blank_time = time (NULL);
 
-        if (manager->priv->lock_delay >= 0) {
+        if (manager->priv->lock_timeout >= 0) {
                 if (manager->priv->lock_timeout_id)
                         g_source_remove (manager->priv->lock_timeout_id);
 
-                manager->priv->lock_timeout_id = g_timeout_add (manager->priv->lock_delay,
+                manager->priv->lock_timeout_id = g_timeout_add (manager->priv->lock_timeout,
                                                                 (GSourceFunc)enable_lock_timeout,
                                                                 manager);
         }
 
-        if (manager->priv->cycle_delay >= 10000) {
+        if (manager->priv->cycle_timeout >= 10000) {
                 if (manager->priv->cycle_timeout_id)
                         g_source_remove (manager->priv->cycle_timeout_id);
 
-                manager->priv->cycle_timeout_id = g_timeout_add (manager->priv->cycle_delay,
+                manager->priv->cycle_timeout_id = g_timeout_add (manager->priv->cycle_timeout,
                                                                  (GSourceFunc)cycle_timeout,
                                                                  manager);
         }
@@ -581,6 +643,9 @@ gs_manager_create_window (GSManager *manager,
         g_object_ref (manager);
         g_object_ref (screen);
         window = gs_window_new (screen, manager->priv->lock_enabled);
+        gs_window_set_logout_enabled (window, manager->priv->logout_enabled);
+        gs_window_set_logout_timeout (window, manager->priv->logout_timeout);
+
         g_signal_connect_object (window, "unblanked",
                                  G_CALLBACK (window_unblanked_cb), manager, 0);
         g_signal_connect_object (window, "dialog-up",
@@ -621,18 +686,18 @@ gs_manager_create (GSManager *manager)
 }
 
 GSManager *
-gs_manager_new (int lock_delay,
-                int cycle_delay)
+gs_manager_new (int lock_timeout,
+                int cycle_timeout)
 {
         GObject *manager;
         gboolean lock_enabled;
 
-        lock_enabled = (lock_delay == 0) ? TRUE : FALSE;
+        lock_enabled = (lock_timeout == 0) ? TRUE : FALSE;
 
         manager = g_object_new (GS_TYPE_MANAGER,
                                 "lock_enabled", lock_enabled,
-                                "lock_delay",   lock_delay,
-                                "cycle_delay",  cycle_delay,
+                                "lock_timeout",   lock_timeout,
+                                "cycle_timeout",  cycle_timeout,
                                 NULL);
 
         return GS_MANAGER (manager);

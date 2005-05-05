@@ -62,9 +62,11 @@ struct GSLockPlugPrivate
 
         GtkWidget   *ok_button;
         GtkWidget   *cancel_button;
+        GtkWidget   *logout_button;
         GtkWidget   *switch_button;
 
         gboolean     caps_lock_on;
+        gboolean     logout_enabled;
 
         guint        timeout;
 
@@ -86,6 +88,11 @@ struct _ResponseData
 enum {
         RESPONSE,
         LAST_SIGNAL
+};
+
+enum {
+        PROP_0,
+        PROP_LOGOUT_ENABLED
 };
 
 static GObjectClass *parent_class = NULL;
@@ -305,6 +312,64 @@ gs_lock_plug_hide (GtkWidget *widget)
 }
 
 static void
+gs_lock_plug_set_logout_enabled (GSLockPlug *plug,
+                                 gboolean    logout_enabled)
+{
+        g_return_if_fail (GS_LOCK_PLUG (plug));
+
+        if (plug->priv->logout_enabled == logout_enabled)
+                return;
+
+        plug->priv->logout_enabled = logout_enabled;
+        g_object_notify (G_OBJECT (plug), "logout-enabled");
+
+        if (logout_enabled)
+                gtk_widget_show (plug->priv->logout_button);
+        else
+                gtk_widget_hide (plug->priv->logout_button);
+}
+
+static void
+gs_lock_plug_set_property (GObject            *object,
+                           guint               prop_id,
+                           const GValue       *value,
+                           GParamSpec         *pspec)
+{
+        GSLockPlug *self;
+
+        self = GS_LOCK_PLUG (object);
+
+        switch (prop_id) {
+        case PROP_LOGOUT_ENABLED:
+                gs_lock_plug_set_logout_enabled (self, g_value_get_boolean (value));
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
+
+static void
+gs_lock_plug_get_property (GObject    *object,
+                           guint       prop_id,
+                           GValue     *value,
+                           GParamSpec *pspec)
+{
+        GSLockPlug *self;
+
+        self = GS_LOCK_PLUG (object);
+
+        switch (prop_id) {
+        case PROP_LOGOUT_ENABLED:
+                g_value_set_boolean (value, self->priv->logout_enabled);
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
+
+static void
 gs_lock_plug_class_init (GSLockPlugClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
@@ -312,7 +377,9 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
 
         parent_class = g_type_class_peek_parent (klass);
 
-        object_class->finalize  = gs_lock_plug_finalize;
+        object_class->finalize     = gs_lock_plug_finalize;
+        object_class->get_property = gs_lock_plug_get_property;
+        object_class->set_property = gs_lock_plug_set_property;
 
         widget_class->style_set  = gs_lock_plug_style_set;
         widget_class->show       = gs_lock_plug_show;
@@ -329,6 +396,14 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
                                                      g_cclosure_marshal_VOID__INT,
                                                      G_TYPE_NONE, 1,
                                                      G_TYPE_INT);
+
+        g_object_class_install_property (object_class,
+                                         PROP_LOGOUT_ENABLED,
+                                         g_param_spec_boolean ("logout-enabled",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE));
 }
 
 static gboolean
@@ -531,6 +606,32 @@ switch_page (GtkButton  *button,
         }
 
         gtk_notebook_set_current_page (GTK_NOTEBOOK (plug->priv->notebook), next_page);
+}
+
+static void
+logout_button_clicked (GtkButton  *button,
+                       GSLockPlug *plug)
+{
+        char   *argv [4];
+        GError *error = NULL;
+
+        argv [0] = BINDIR "/gnome-session-save";
+        argv [1] = "--kill";
+        argv [2] = "--silent";
+        argv [3] = NULL;
+
+        g_spawn_async (g_get_home_dir (),
+                       argv,
+                       NULL,
+                       0,
+                       NULL,
+                       NULL,
+                       NULL,
+                       &error);
+        if (error) {
+                g_warning ("Could not run logout command: %s", error->message);
+                g_error_free (error);
+        }
 }
 
 /* button press handler used to inhibit popup menu */
@@ -882,12 +983,19 @@ gs_lock_plug_init (GSLockPlug *plug)
                                             plug->priv->switch_button,
                                             TRUE);
 
+        plug->priv->logout_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
+                                                              _("Log _Out"),
+                                                              GS_LOCK_PLUG_RESPONSE_CANCEL);
+        widget = gtk_image_new_from_stock (GTK_STOCK_QUIT, GTK_ICON_SIZE_BUTTON);
+        gtk_button_set_image (GTK_BUTTON (plug->priv->logout_button), widget);
+        gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->logout_button), FALSE);
+
         plug->priv->cancel_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
                                                               GTK_STOCK_CANCEL,
                                                               GS_LOCK_PLUG_RESPONSE_CANCEL);
         gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->cancel_button), FALSE);
 
-        plug->priv->ok_button =  gtk_button_new ();
+        plug->priv->ok_button = gtk_button_new ();
         gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->ok_button), FALSE);
 
         widget = get_ok_button_for_page (AUTH_PAGE);
@@ -902,10 +1010,16 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         gtk_widget_show_all (plug->vbox);
 
+        if (! plug->priv->logout_enabled)
+                gtk_widget_hide (plug->priv->logout_button);
+
         plug->priv->timeout = 30000;
 
         g_signal_connect (plug->priv->switch_button, "clicked",
                           G_CALLBACK (switch_page), plug);
+
+        g_signal_connect (plug->priv->logout_button, "clicked",
+                          G_CALLBACK (logout_button_clicked), plug);
 
         /* work around http://bugzilla.gnome.org/show_bug.cgi?id=172998 */
         label = button_get_label_widget (GTK_BUTTON (plug->priv->switch_button));
@@ -914,6 +1028,13 @@ gs_lock_plug_init (GSLockPlug *plug)
                                   "mnemonic_activate",
                                   G_CALLBACK (button_mnemonic_activate_click),
                                   plug->priv->switch_button);
+        }
+        label = button_get_label_widget (GTK_BUTTON (plug->priv->logout_button));
+        if (label) {
+                g_signal_connect (label,
+                                  "mnemonic_activate",
+                                  G_CALLBACK (button_mnemonic_activate_click),
+                                  plug->priv->logout_button);
         }
         label = button_get_label_widget (GTK_BUTTON (plug->priv->cancel_button));
         if (label) {

@@ -47,14 +47,17 @@
 #include "passwd.h"
 #include "setuid.h"
 
-static gboolean verbose      = FALSE;
-static gboolean show_version = FALSE;
+static gboolean verbose       = FALSE;
+static gboolean show_version  = FALSE;
+static gboolean enable_logout = FALSE;
 
 static GOptionEntry entries [] = {
         { "verbose", 0, 0, G_OPTION_ARG_NONE, &verbose,
           N_("Show debugging output"), NULL },
         { "version", 0, 0, G_OPTION_ARG_NONE, &show_version,
           N_("Version of this application"), NULL },
+        { "enable-logout", 0, 0, G_OPTION_ARG_NONE, &enable_logout,
+          N_("Show the logout button"), NULL },
         { NULL }
 };
 
@@ -124,6 +127,10 @@ popup_dialog_idle (void)
         GtkWidget *widget;
 
         widget = gs_lock_plug_new ();
+
+        if (enable_logout) {
+                g_object_set (widget, "logout-enabled", TRUE, NULL);
+        }
 
         g_signal_connect (GS_LOCK_PLUG (widget), "response", G_CALLBACK (response_cb), NULL);
 

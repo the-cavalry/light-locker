@@ -34,17 +34,19 @@ static void gs_prefs_class_init (GSPrefsClass *klass);
 static void gs_prefs_init       (GSPrefs      *prefs);
 static void gs_prefs_finalize   (GObject      *object);
 
-#define KEY_DIR          "/apps/gnome-screensaver"
-#define KEY_LOCK         KEY_DIR "/lock"
-#define KEY_MODE         KEY_DIR "/mode"
-#define KEY_BLANK_DELAY  KEY_DIR "/blank_delay"
-#define KEY_LOCK_DELAY   KEY_DIR "/lock_delay"
-#define KEY_CYCLE_DELAY  KEY_DIR "/cycle_delay"
-#define KEY_DPMS_ENABLED KEY_DIR "/dpms_enabled"
-#define KEY_DPMS_STANDBY KEY_DIR "/dpms_standby"
-#define KEY_DPMS_SUSPEND KEY_DIR "/dpms_suspend"
-#define KEY_DPMS_OFF     KEY_DIR "/dpms_off"
-#define KEY_THEMES       KEY_DIR "/savers"
+#define KEY_DIR            "/apps/gnome-screensaver"
+#define KEY_LOCK           KEY_DIR "/lock"
+#define KEY_MODE           KEY_DIR "/mode"
+#define KEY_BLANK_DELAY    KEY_DIR "/blank_delay"
+#define KEY_LOCK_DELAY     KEY_DIR "/lock_delay"
+#define KEY_CYCLE_DELAY    KEY_DIR "/cycle_delay"
+#define KEY_DPMS_ENABLED   KEY_DIR "/dpms_enabled"
+#define KEY_DPMS_STANDBY   KEY_DIR "/dpms_standby"
+#define KEY_DPMS_SUSPEND   KEY_DIR "/dpms_suspend"
+#define KEY_DPMS_OFF       KEY_DIR "/dpms_off"
+#define KEY_THEMES         KEY_DIR "/savers"
+#define KEY_LOGOUT_ENABLED KEY_DIR "/logout_enabled"
+#define KEY_LOGOUT_DELAY   KEY_DIR "/logout_delay"
 
 #define GS_PREFS_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_PREFS, GSPrefsPrivate))
 
@@ -77,9 +79,9 @@ G_DEFINE_TYPE (GSPrefs, gs_prefs, G_TYPE_OBJECT);
 
 static void
 gs_prefs_set_property (GObject            *object,
-                         guint               prop_id,
-                         const GValue       *value,
-                         GParamSpec         *pspec)
+                       guint               prop_id,
+                       const GValue       *value,
+                       GParamSpec         *pspec)
 {
         GSPrefs *self;
 
@@ -94,9 +96,9 @@ gs_prefs_set_property (GObject            *object,
 
 static void
 gs_prefs_get_property (GObject            *object,
-                         guint               prop_id,
-                         GValue             *value,
-                         GParamSpec         *pspec)
+                       guint               prop_id,
+                       GValue             *value,
+                       GParamSpec         *pspec)
 {
         GSPrefs *self;
 
@@ -175,6 +177,8 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
         prefs->themes = gconf_client_get_list (prefs->priv->gconf_client,
                                                KEY_THEMES, GCONF_VALUE_STRING, NULL);
 
+        /* DPMS options */
+
         prefs->dpms_enabled = gconf_client_get_bool (prefs->priv->gconf_client, KEY_DPMS_ENABLED, NULL);
         value = gconf_client_get_int (prefs->priv->gconf_client, KEY_DPMS_STANDBY, NULL);
         if (value < 0)
@@ -188,6 +192,15 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
         if (value < 0)
                 value = 0;
         prefs->dpms_off = value * 60000;
+
+
+        /* Logout options */
+
+        prefs->logout_enabled = gconf_client_get_bool (prefs->priv->gconf_client, KEY_LOGOUT_ENABLED, NULL);
+        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_LOGOUT_DELAY, NULL);
+        if (value < 0)
+                value = 0;
+        prefs->logout_timeout = value * 60000;
 }
 
 static void
@@ -289,6 +302,20 @@ key_changed_cb (GConfClient *client,
                 if (timeout < 1)
                         timeout = 1;
                 prefs->dpms_off = timeout * 60000;
+                changed = TRUE;
+        } else if (strcmp (key, KEY_LOGOUT_ENABLED) == 0) {
+                gboolean enabled;
+
+                enabled = gconf_value_get_bool (value);
+                prefs->logout_enabled = enabled;
+                changed = TRUE;
+        } else if (strcmp (key, KEY_LOGOUT_DELAY) == 0) {
+                int delay;
+
+                delay = gconf_value_get_int (value);
+                if (delay < 1)
+                        delay = 1;
+                prefs->logout_timeout = delay * 60000;
                 changed = TRUE;
         } else {
                 g_message ("Config key not handled: %s", key);

@@ -8,8 +8,8 @@
       <type>bool</type>
       <default>TRUE</default>
       <locale name="C">
-        <short>Whether or not to lock as well as save</short>
-        <long>Whether or not to lock as well as save.</long>
+        <short>Whether to lock as well as blank</short>
+        <long>Whether to lock as well as blank.</long>
       </locale>
     </schema>
 
@@ -109,6 +109,30 @@
       <locale name="C">
         <short>How many minutes until the monitor powers down</short>
         <long>How many minutes until the monitor powers down.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-screensaver/logout_enabled</key>
+      <applyto>/apps/gnome-screensaver/logout_enabled</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>bool</type>
+      <default>FALSE</default>
+      <locale name="C">
+        <short>Whether to offer the option of logging out after logout_delay</short>
+        <long>Whether to offer the option of logging out after logout_delay.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-screensaver/logout_delay</key>
+      <applyto>/apps/gnome-screensaver/logout_delay</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>long</type>
+      <default>120</default>
+      <locale name="C">
+        <short>The number of minutes after blanking the screen before a logout option will appear</short>
+        <long>The number of minutes after blanking the screen before a logout option will appear.</long>
       </locale>
     </schema>
 

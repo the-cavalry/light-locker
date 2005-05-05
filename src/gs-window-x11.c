@@ -47,6 +47,8 @@ enum {
 struct GSWindowPrivate
 {
         guint      lock_enabled : 1;
+        guint      logout_enabled : 1;
+        guint64    logout_timeout;
 
         GtkWidget *box;
         GtkWidget *socket;
@@ -61,6 +63,8 @@ struct GSWindowPrivate
         gint       pid;
         gint       watch_id;
         gint       dialog_response;
+
+        GTimer    *timer;
 };
 
 enum {
@@ -73,6 +77,8 @@ enum {
 enum {
         PROP_0,
         PROP_LOCK_ENABLED,
+        PROP_LOGOUT_ENABLED,
+        PROP_LOGOUT_TIMEOUT,
         PROP_SCREEN
 };
 
@@ -162,10 +168,17 @@ gs_window_real_realize (GtkWidget *widget)
 static void
 gs_window_real_show (GtkWidget *widget)
 {
+        GSWindow *window;
+
         if (GTK_WIDGET_CLASS (parent_class)->show)
                 GTK_WIDGET_CLASS (parent_class)->show (widget);
 
         set_invisible_cursor (widget->window, TRUE);
+
+        window = GS_WINDOW (widget);
+        if (window->priv->timer)
+                g_timer_destroy (window->priv->timer);
+        window->priv->timer = g_timer_new ();
 }
 
 void
@@ -209,7 +222,7 @@ spawn_on_window (GSWindow *window,
 {
         int         argc;
         char      **argv;
-        char       *envp[5];
+        char       *envp [5];
         int         nenv = 0;
         int         i;
         gboolean    result;
@@ -226,6 +239,7 @@ spawn_on_window (GSWindow *window,
         envp[nenv++] = g_strdup_printf ("HOME=%s",
                                         g_get_home_dir ());
         envp[nenv++] = g_strdup_printf ("PATH=%s", g_getenv ("PATH"));
+        envp[nenv++] = g_strdup_printf ("SESSION_MANAGER=%s", g_getenv ("SESSION_MANAGER"));
         envp[nenv++] = NULL;
 
         result = gdk_spawn_on_screen_with_pipes (GTK_WINDOW (window)->screen,
@@ -431,12 +445,36 @@ command_watch (GIOChannel   *source,
 }
 
 static gboolean
+is_logout_enabled (GSWindow *window)
+{
+        double elapsed;
+
+        if (! window->priv->logout_enabled)
+                return FALSE;
+
+        elapsed = g_timer_elapsed (window->priv->timer, NULL);
+
+        if (window->priv->logout_timeout < (elapsed * 1000))
+                return TRUE;
+
+        return FALSE;
+}
+
+static gboolean
 popup_dialog_idle (GSWindow *window)
 {
         gboolean  result;
         char     *command;
 
         command = g_build_filename (LIBEXECDIR, "gnome-screensaver-dialog", NULL);
+
+        if (is_logout_enabled (window)) {
+                char *cmd;
+
+                cmd = g_strdup_printf ("%s --enable-logout", command);
+                g_free (command);
+                command = cmd;
+        }
 
         gs_window_clear (window);
         set_invisible_cursor (GTK_WIDGET (window)->window, FALSE);
@@ -460,7 +498,7 @@ popup_dialog_idle (GSWindow *window)
 void
 gs_window_request_unlock (GSWindow *window)
 {
-        g_return_if_fail (GS_WINDOW (window));
+        g_return_if_fail (GS_IS_WINDOW (window));
 
         if (window->priv->watch_id)
                 return;
@@ -481,7 +519,7 @@ void
 gs_window_set_lock_enabled (GSWindow *window,
                             gboolean  lock_enabled)
 {
-        g_return_if_fail (GS_WINDOW (window));
+        g_return_if_fail (GS_IS_WINDOW (window));
 
         if (window->priv->lock_enabled == lock_enabled)
                 return;
@@ -509,6 +547,27 @@ gs_window_get_screen (GSWindow  *window)
         return GTK_WINDOW (window)->screen;
 }
 
+void
+gs_window_set_logout_enabled (GSWindow *window,
+                              gboolean  logout_enabled)
+{
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        window->priv->logout_enabled = logout_enabled;
+}
+
+void
+gs_window_set_logout_timeout (GSWindow *window,
+                              glong     logout_timeout)
+{
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        if (logout_timeout < 0)
+                window->priv->logout_timeout = 0;
+        else
+                window->priv->logout_timeout = logout_timeout;
+}
+
 static void
 gs_window_set_property (GObject            *object,
                         guint               prop_id,
@@ -522,6 +581,12 @@ gs_window_set_property (GObject            *object,
         switch (prop_id) {
         case PROP_LOCK_ENABLED:
                 gs_window_set_lock_enabled (self, g_value_get_boolean (value));
+                break;
+        case PROP_LOGOUT_ENABLED:
+                gs_window_set_logout_enabled (self, g_value_get_boolean (value));
+                break;
+        case PROP_LOGOUT_TIMEOUT:
+                gs_window_set_logout_timeout (self, g_value_get_long (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -542,6 +607,12 @@ gs_window_get_property (GObject    *object,
         switch (prop_id) {
         case PROP_LOCK_ENABLED:
                 g_value_set_boolean (value, self->priv->lock_enabled);
+                break;
+        case PROP_LOGOUT_ENABLED:
+                g_value_set_boolean (value, self->priv->logout_enabled);
+                break;
+        case PROP_LOGOUT_TIMEOUT:
+                g_value_set_long (value, self->priv->logout_timeout);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -689,6 +760,9 @@ gs_window_finalize (GObject *object)
                 g_source_remove (window->priv->request_unlock_idle_id);
         if (window->priv->popup_dialog_idle_id)
                 g_source_remove (window->priv->popup_dialog_idle_id);
+
+        if (window->priv->timer)
+                g_timer_destroy (window->priv->timer);
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }

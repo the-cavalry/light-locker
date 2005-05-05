@@ -73,6 +73,9 @@ typedef struct
         guint            dpms_suspend;		/* how long until monitor power-saves */
         guint            dpms_off;		/* how long until monitor powers down */
 
+        gboolean         logout_enabled;	/* Whether to offer the logout option */
+        guint            logout_timeout;	/* how long until the logout option appears */
+
         gboolean         use_xidle_extension;	/* which extension to use, if possible */
         gboolean         use_mit_saver_extension;
         gboolean         use_sgi_saver_extension;

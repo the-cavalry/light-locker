@@ -156,6 +156,9 @@ prefs_changed_cb (GSPrefs   *prefs,
 {
         gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
         gs_manager_set_themes (monitor->priv->manager, monitor->priv->prefs->themes);
+        gs_manager_set_logout_enabled (monitor->priv->manager, monitor->priv->prefs->logout_enabled);
+        gs_manager_set_logout_timeout (monitor->priv->manager, monitor->priv->prefs->logout_timeout);
+
         gs_watcher_set_timeout (monitor->priv->watcher, monitor->priv->prefs->timeout);
         gs_watcher_set_dpms (monitor->priv->watcher,
                              monitor->priv->prefs->dpms_enabled,
@@ -199,6 +202,8 @@ gs_monitor_init (GSMonitor *monitor)
 
         monitor->priv->manager = gs_manager_new (monitor->priv->prefs->lock_timeout,
                                                  monitor->priv->prefs->cycle);
+        gs_manager_set_logout_enabled (monitor->priv->manager, monitor->priv->prefs->logout_enabled);
+        gs_manager_set_logout_timeout (monitor->priv->manager, monitor->priv->prefs->logout_timeout);
 
         gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
         gs_manager_set_themes (monitor->priv->manager, monitor->priv->prefs->themes);
