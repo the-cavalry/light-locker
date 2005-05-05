@@ -159,7 +159,6 @@
 			      <property name="right_attach">2</property>
 			      <property name="top_attach">0</property>
 			      <property name="bottom_attach">1</property>
-			      <property name="y_options">fill</property>
 			    </packing>
 			  </child>
 
@@ -167,7 +166,7 @@
 			    <widget class="GtkScrolledWindow" id="scrolledwindow1">
 			      <property name="visible">True</property>
 			      <property name="can_focus">True</property>
-			      <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+			      <property name="hscrollbar_policy">GTK_POLICY_NEVER</property>
 			      <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
 			      <property name="shadow_type">GTK_SHADOW_IN</property>
 			      <property name="window_placement">GTK_CORNER_TOP_LEFT</property>
@@ -191,6 +190,7 @@
 			      <property name="right_attach">1</property>
 			      <property name="top_attach">0</property>
 			      <property name="bottom_attach">1</property>
+			      <property name="x_options">fill</property>
 			    </packing>
 			  </child>
 			</widget>
