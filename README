@@ -15,9 +15,6 @@ It is designed to support:
 Known Issues
 ============
 
-The fix for <http://bugzilla.gnome.org/show_bug.cgi?id=172998> is
-required for keyboard activation of buttons on the screen lock dialog.
-
 
 Installation
 ============

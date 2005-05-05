@@ -1,5 +1,9 @@
 2005-05-05  William Jon McCann  <mccann@jhu.edu>
 
+	* README: Removed GTK bug as known issue since we work around it.
+
+2005-05-05  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-preferences.c (config_set_theme) 
 	(preview_set_theme, setup_treeview_selection): Guard against
 	calling strcmp with null.
