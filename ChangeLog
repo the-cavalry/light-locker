@@ -1,5 +1,16 @@
 2005-05-05  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-preferences.c (config_set_theme) 
+	(preview_set_theme, setup_treeview_selection): Guard against
+	calling strcmp with null.
+
+	* src/gs-prefs.c:
+	* src/gnome-screensaver-preferences.c:
+	* data/gnome-screensaver.schemas.in:
+	Rename gconf key to "themes" and add it to schemas.
+
+2005-05-05  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (gs_window_real_show, spawn_on_window) 
 	(is_logout_enabled, popup_dialog_idle) 
 	(gs_window_set_logout_enabled, gs_window_set_logout_timeout) 

@@ -29,6 +29,21 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gnome-screensaver/themes</key>
+      <applyto>/apps/gnome-screensaver/themes</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>list</type>
+      <list_type>string</list_type>
+      <default>[]</default>
+      <locale name="C">
+        <short>The selected screensaver themes</short>
+        <long>
+            This key specifies the selected themes to used by the screensaver.
+        </long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gnome-screensaver/blank_delay</key>
       <applyto>/apps/gnome-screensaver/blank_delay</applyto>
       <owner>gnome-screensaver</owner>

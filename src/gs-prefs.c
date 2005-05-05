@@ -44,7 +44,7 @@ static void gs_prefs_finalize   (GObject      *object);
 #define KEY_DPMS_STANDBY   KEY_DIR "/dpms_standby"
 #define KEY_DPMS_SUSPEND   KEY_DIR "/dpms_suspend"
 #define KEY_DPMS_OFF       KEY_DIR "/dpms_off"
-#define KEY_THEMES         KEY_DIR "/savers"
+#define KEY_THEMES         KEY_DIR "/themes"
 #define KEY_LOGOUT_ENABLED KEY_DIR "/logout_enabled"
 #define KEY_LOGOUT_DELAY   KEY_DIR "/logout_delay"
 

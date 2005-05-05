@@ -50,7 +50,7 @@
 #define KEY_DPMS_STANDBY KEY_DIR "/dpms_standby"
 #define KEY_DPMS_SUSPEND KEY_DIR "/dpms_suspend"
 #define KEY_DPMS_OFF     KEY_DIR "/dpms_off"
-#define KEY_THEMES       KEY_DIR "/savers"
+#define KEY_THEMES       KEY_DIR "/themes"
 
 enum {
         NAME_COLUMN,
@@ -170,9 +170,9 @@ config_set_theme (const char *name)
 
         client = gconf_client_get_default ();
 
-        if (strcmp (name, "__disabled") == 0) {
+        if (name && strcmp (name, "__disabled") == 0) {
                 mode = GS_MODE_DONT_BLANK;
-        } else if (strcmp (name, "__blank-only") == 0) {
+        } else if (name && strcmp (name, "__blank-only") == 0) {
                 mode = GS_MODE_BLANK_ONLY;
         } else {
                 mode = GS_MODE_SINGLE;
@@ -213,9 +213,9 @@ preview_set_theme (GtkWidget  *widget,
 
         preview_clear (widget);
 
-        if (strcmp (theme, "__disabled") == 0) {
+        if (theme && strcmp (theme, "__disabled") == 0) {
                 /* TODO: change sensitivities */
-        } else if (strcmp (theme, "__blank-only") == 0) {
+        } else if (theme && strcmp (theme, "__blank-only") == 0) {
 
         } else {
                 gs_job_set_theme (job, theme);
@@ -460,13 +460,13 @@ setup_treeview_selection (GtkWidget *tree)
 
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (tree));
 
-        if (gtk_tree_model_get_iter_first (model, &iter)) {
+        if (theme && gtk_tree_model_get_iter_first (model, &iter)) {
                 char *name;
 
                 do {
                         gtk_tree_model_get (model, &iter,
                                             NAME_COLUMN, &name, -1);
-                        if (strcmp (name, theme) == 0) {
+                        if (name && strcmp (name, theme) == 0) {
                                 path = gtk_tree_model_get_path (model, &iter);
                                 break;
                         }
@@ -474,16 +474,15 @@ setup_treeview_selection (GtkWidget *tree)
                 } while (gtk_tree_model_iter_next (model, &iter));
         }
 
-        if (! path) {
-                path = gtk_tree_path_new_from_indices (0, -1);
+        if (path) {
+                gtk_tree_view_set_cursor (GTK_TREE_VIEW (tree),
+                                          path,
+                                          NULL,
+                                          FALSE);
+
+                gtk_tree_path_free (path);
         }
 
-        gtk_tree_view_set_cursor (GTK_TREE_VIEW (tree),
-                                  path,
-                                  NULL,
-                                  FALSE);
-
-        gtk_tree_path_free (path);
         g_free (theme);
 }
 
