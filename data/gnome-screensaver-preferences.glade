@@ -4,7 +4,7 @@
 <glade-interface>
 
 <widget class="GtkDialog" id="prefs_dialog">
-  <property name="border_width">10</property>
+  <property name="border_width">5</property>
   <property name="visible">True</property>
   <property name="title" translatable="yes">Screensaver Preferences</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
@@ -26,7 +26,7 @@
     <widget class="GtkVBox" id="dialog-vbox1">
       <property name="visible">True</property>
       <property name="homogeneous">False</property>
-      <property name="spacing">0</property>
+      <property name="spacing">2</property>
 
       <child internal-child="action_area">
 	<widget class="GtkHButtonBox" id="dialog-action_area1">
@@ -69,6 +69,7 @@
 
       <child>
 	<widget class="GtkVBox" id="vbox1">
+	  <property name="border_width">5</property>
 	  <property name="visible">True</property>
 	  <property name="homogeneous">False</property>
 	  <property name="spacing">12</property>
@@ -282,7 +283,7 @@
 				<widget class="GtkHBox" id="blank_delay_hbox">
 				  <property name="visible">True</property>
 				  <property name="homogeneous">False</property>
-				  <property name="spacing">6</property>
+				  <property name="spacing">12</property>
 
 				  <child>
 				    <widget class="GtkLabel" id="blank_delay_label">

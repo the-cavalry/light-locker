@@ -1,3 +1,8 @@
+2005-05-05  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* data/gnome-screensaver-preferences.glade: Adjust widget
+	spacing according to HIG.
+
 2005-05-05  William Jon McCann  <mccann@jhu.edu>
 
 	* data/gnome-screensaver-preferences.glade: Don't use a
