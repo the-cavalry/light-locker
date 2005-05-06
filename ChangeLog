@@ -1,3 +1,7 @@
+2005-05-05  William Jon McCann  <mccann@jhu.edu>
+
+	* savers/.cvsignore: Added.
+
 2005-05-05  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* data/gnome-screensaver-preferences.glade: Adjust widget
