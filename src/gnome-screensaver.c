@@ -40,6 +40,11 @@
 #include "gnome-screensaver.h"
 #include "gs-monitor.h"
 
+/* this is for dbus < 0.3 */
+#if ((DBUS_VERSION_MAJOR == 0) && (DBUS_VERSION_MINOR < 30))
+#define dbus_bus_name_has_owner(connection, name, err) dbus_bus_service_exists(connection, name, err)
+#endif
+
 static gboolean
 check_dbus ()
 {
@@ -59,7 +64,7 @@ check_dbus ()
         }
 
         dbus_error_init (&error);
-        already_running = dbus_bus_service_exists (connection, GS_LISTENER_SERVICE, &error);
+        already_running = dbus_bus_name_has_owner (connection, GS_LISTENER_SERVICE, &error);
         if (dbus_error_is_set (&error))
                 dbus_error_free (&error);
         if (already_running)

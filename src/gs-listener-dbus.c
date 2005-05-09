@@ -33,6 +33,12 @@
 
 #include "gs-listener-dbus.h"
 
+/* this is for dbus < 0.3 */
+#if ((DBUS_VERSION_MAJOR == 0) && (DBUS_VERSION_MINOR < 30))
+#define dbus_bus_name_has_owner(connection, name, err)      dbus_bus_service_exists(connection, name, err)
+#define dbus_bus_request_name(connection, name, flags, err) dbus_bus_acquire_service(connection, name, flags, err)
+#endif
+
 static void     gs_listener_class_init (GSListenerClass *klass);
 static void     gs_listener_init       (GSListener      *listener);
 static void     gs_listener_finalize   (GObject         *object);
@@ -254,7 +260,7 @@ screensaver_is_running (DBusConnection *connection)
         g_return_val_if_fail (connection != NULL, FALSE);
 
         dbus_error_init (&error);
-        exists = dbus_bus_service_exists (connection, GS_LISTENER_SERVICE, &error);
+        exists = dbus_bus_name_has_owner (connection, GS_LISTENER_SERVICE, &error);
         if (dbus_error_is_set (&error))
                 dbus_error_free (&error);
 
@@ -286,9 +292,9 @@ gs_listener_acquire (GSListener *listener,
                                                   listener) == FALSE)
                 g_critical ("out of memory registering object path");
 
-        acquired = dbus_bus_acquire_service (listener->priv->connection,
-                                             GS_LISTENER_SERVICE,
-                                             0, &buserror) != -1;
+        acquired = dbus_bus_request_name (listener->priv->connection,
+                                          GS_LISTENER_SERVICE,
+                                          0, &buserror) != -1;
         if (dbus_error_is_set (&buserror))
                 g_set_error (error,
                              GS_LISTENER_ERROR,

@@ -36,6 +36,11 @@
 #define GS_PATH      "/org/gnome/ScreenSaver"
 #define GS_INTERFACE "org.gnome.ScreenSaver"
 
+/* this is for dbus < 0.3 */
+#if ((DBUS_VERSION_MAJOR == 0) && (DBUS_VERSION_MINOR < 30))
+#define dbus_bus_name_has_owner(connection, name, err) dbus_bus_service_exists(connection, name, err)
+#endif
+
 static gboolean do_quit       = FALSE;
 static gboolean do_lock       = FALSE;
 static gboolean do_cycle      = FALSE;
@@ -73,7 +78,7 @@ screensaver_is_running (DBusConnection *connection)
         g_return_val_if_fail (connection != NULL, FALSE);
 
         dbus_error_init (&error);
-        exists = dbus_bus_service_exists (connection, GS_SERVICE, &error);
+        exists = dbus_bus_name_has_owner (connection, GS_SERVICE, &error);
         if (dbus_error_is_set (&error))
                 dbus_error_free (&error);
 

@@ -1,3 +1,14 @@
+2005-05-09  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac: 
+	* src/gnome-screensaver-command.c (screensaver_is_running): 
+	* src/gnome-screensaver.c (check_dbus): 
+	* src/gs-listener-dbus.c (screensaver_is_running) 
+	(gs_listener_acquire):
+	Support the both the 0.23 and 0.3 dbus APIs.  Fixes #303288.
+
+	Patch from Diego Gonzalez <diego@pemas.net>.
+
 2005-05-05  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/.cvsignore: Added.

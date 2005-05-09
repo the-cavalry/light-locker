@@ -92,6 +92,37 @@ AM_GCONF_SOURCE_2
 
 GNOME_COMPILE_WARNINGS(yes)
 
+##### Find out the version of DBUS we're using
+dbus_version=`pkg-config --modversion dbus-1`
+DBUS_VERSION_MAJOR=`echo $dbus_version | awk -F. '{print $1}'`
+DBUS_VERSION_MINOR=`echo $dbus_version | awk -F. '{print $2}'`
+DBUS_VERSION_MICRO=`echo $dbus_version | awk -F. '{print $3}'`
+if test "z$DBUS_VERSION_MAJOR" = "z"; then
+        DBUS_VERSION_MAJOR="0"
+fi
+if test "z$DBUS_VERSION_MINOR" = "z"; then
+        DBUS_VERSION_MINOR="0"
+fi
+if test "z$DBUS_VERSION_MICRO" = "z"; then
+        DBUS_VERSION_MICRO="0"
+fi
+
+if test "z$DBUS_VERSION_MAJOR" = "z0" -a "z$DBUS_VERSION_MINOR" = "z0" -a "z$DBUS_VERSION_MICRO" = "z0"; then        echo "Error: Couldn't determine the version of your DBUS package."
+        echo "  This is probably an error in this script, please report it"
+        echo "  along with the following information:"
+        echo "      Base DBUS version ='$dbus_version'"
+        echo "      DBUS_VERSION_MAJOR='$DBUS_VERSION_MAJOR'"
+        echo "      DBUS_VERSION_MINOR='$DBUS_VERSION_MINOR'"
+        echo "      DBUS_VERSION_MICRO='$DBUS_VERSION_MICRO'"
+        exit 1
+else
+
+        echo "Your dbus version is $DBUS_VERSION_MAJOR,$DBUS_VERSION_MINOR,$DBUS_VERSION_MICRO."
+        DBUS_CFLAGS="$DBUS_CFLAGS -DDBUS_VERSION_MAJOR=$DBUS_VERSION_MAJOR"
+        DBUS_CFLAGS="$DBUS_CFLAGS -DDBUS_VERSION_MINOR=$DBUS_VERSION_MINOR"
+        DBUS_CFLAGS="$DBUS_CFLAGS -DDBUS_VERSION_MICRO=$DBUS_VERSION_MICRO"
+fi
+
 #############################
 # Fast User Switching
 #############################
