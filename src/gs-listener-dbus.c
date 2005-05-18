@@ -310,6 +310,8 @@ gs_listener_acquire (GSListener *listener,
         gboolean acquired;
         DBusError buserror;
 
+        g_return_val_if_fail (listener != NULL, FALSE);
+
         if (!listener->priv->connection) {
                 g_warning ("failed to register, we're not on DBus...");
                 return FALSE;
