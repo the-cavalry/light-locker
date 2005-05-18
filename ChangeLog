@@ -1,3 +1,10 @@
+2005-05-18  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-monitor.c (manager_blanked_cb, manager_unblanked_cb): 
+	* src/gs-listener-dbus.[ch] (gs_listener_send_signal_activated) 
+	(gs_listener_send_signal_deactivated):
+	Send Activated or Deactivated signals over dbus.
+
 2005-05-09  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: 

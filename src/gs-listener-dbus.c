@@ -141,11 +141,47 @@ gs_listener_message_handler (DBusConnection *connection,
         return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
 }
 
+void
+gs_listener_send_signal_activated (GSListener *listener)
+{
+        DBusMessage *message;
+
+        g_return_if_fail (listener != NULL);
+
+        message = dbus_message_new_signal (GS_LISTENER_PATH,
+                                           GS_LISTENER_SERVICE,
+                                           "Activated");
+
+        if (! dbus_connection_send (listener->priv->connection, message, NULL)) {
+                g_warning ("Could not send Activated signal");
+        }
+
+        dbus_message_unref (message);
+}
+
+void
+gs_listener_send_signal_deactivated (GSListener *listener)
+{
+        DBusMessage *message;
+
+        g_return_if_fail (listener != NULL);
+
+        message = dbus_message_new_signal (GS_LISTENER_PATH,
+                                           GS_LISTENER_SERVICE,
+                                           "Deactivated");
+
+        if (! dbus_connection_send (listener->priv->connection, message, NULL)) {
+                g_warning ("Could not send Deactivated signal");
+        }
+
+        dbus_message_unref (message);
+}
+
 static void
 gs_listener_set_property (GObject            *object,
-                         guint               prop_id,
-                         const GValue       *value,
-                         GParamSpec         *pspec)
+                          guint               prop_id,
+                          const GValue       *value,
+                          GParamSpec         *pspec)
 {
         GSListener *self;
 
@@ -160,9 +196,9 @@ gs_listener_set_property (GObject            *object,
 
 static void
 gs_listener_get_property (GObject            *object,
-                         guint               prop_id,
-                         GValue             *value,
-                         GParamSpec         *pspec)
+                          guint               prop_id,
+                          GValue             *value,
+                          GParamSpec         *pspec)
 {
         GSListener *self;
 

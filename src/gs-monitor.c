@@ -85,6 +85,7 @@ static void
 manager_blanked_cb (GSManager *manager,
                     GSMonitor *monitor)
 {
+        gs_listener_send_signal_activated (monitor->priv->listener);
 }
 
 static void
@@ -92,6 +93,7 @@ manager_unblanked_cb (GSManager *manager,
                       GSMonitor *monitor)
 {
         gs_watcher_set_active (monitor->priv->watcher, TRUE);
+        gs_listener_send_signal_deactivated (monitor->priv->listener);
 }
 
 static void
