@@ -1,3 +1,16 @@
+2005-05-20  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-monitor.c (gs_monitor_new, gs_monitor_start):
+	Split out monitor start.
+
+	* src/gs-listener-dbus.c: Use lowercase name and path.
+	(gs_listener_acquire): Set error correctly.
+
+	* src/gnome-screensaver.c (main): Remove dbus stuff and let
+	gs-monitor fail if it cannot get the service.
+
+	* src/gnome-screensaver-command.c: Use lowercase name and path.
+
 2005-05-18  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-listener-dbus.c (gs_listener_acquire):

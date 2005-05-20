@@ -240,16 +240,23 @@ GSMonitor *
 gs_monitor_new (void)
 {
         GSMonitor *monitor;
-        GError    *error = NULL;
 
         monitor = g_object_new (GS_TYPE_MONITOR, NULL);
 
-        if (! gs_listener_acquire (monitor->priv->listener, &error)) {
-                g_object_unref (monitor);
-                return NULL;
+        return GS_MONITOR (monitor);
+}
+
+gboolean
+gs_monitor_start (GSMonitor *monitor,
+                  GError   **error)
+{
+        g_return_val_if_fail (GS_IS_MONITOR (monitor), FALSE);
+
+        if (! gs_listener_acquire (monitor->priv->listener, error)) {
+                return FALSE;
         }
 
         gs_watcher_set_active (monitor->priv->watcher, TRUE);
 
-        return GS_MONITOR (monitor);
+        return TRUE;
 }

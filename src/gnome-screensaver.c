@@ -32,46 +32,10 @@
 #include <sys/wait.h>
 
 #include <glib/gi18n.h>
-#define DBUS_API_SUBJECT_TO_CHANGE
-#include <dbus/dbus.h>
-#include <dbus/dbus-glib.h>
 #include <gtk/gtk.h>
 
 #include "gnome-screensaver.h"
 #include "gs-monitor.h"
-
-/* this is for dbus < 0.3 */
-#if ((DBUS_VERSION_MAJOR == 0) && (DBUS_VERSION_MINOR < 30))
-#define dbus_bus_name_has_owner(connection, name, err) dbus_bus_service_exists(connection, name, err)
-#endif
-
-static gboolean
-check_dbus ()
-{
-#define GS_LISTENER_SERVICE   "org.gnome.ScreenSaver"
-        DBusConnection *connection;
-        DBusError       error;
-        gboolean        already_running;
-
-        dbus_error_init (&error);
-        connection = dbus_bus_get (DBUS_BUS_SESSION, &error);
-
-        if (!connection) {
-                if (dbus_error_is_set (&error))
-                        dbus_error_free (&error);                
-                g_warning ("Could not connect to the session message bus");
-                return FALSE;
-        }
-
-        dbus_error_init (&error);
-        already_running = dbus_bus_name_has_owner (connection, GS_LISTENER_SERVICE, &error);
-        if (dbus_error_is_set (&error))
-                dbus_error_free (&error);
-        if (already_running)
-                g_warning ("Screensaver is already running in this session");
-
-        return !already_running;
-}
 
 void
 gnome_screensaver_quit (void)
@@ -100,10 +64,6 @@ main (int    argc,
         textdomain (GETTEXT_PACKAGE);
 #endif 
 
-        if (!check_dbus ()) {
-                exit (1);
-        }
-
         if (! gtk_init_with_args (&argc, &argv, NULL, entries, NULL, &error)) {
                 g_warning ("%s", error->message);
                 g_error_free (error);
@@ -117,8 +77,14 @@ main (int    argc,
 
         monitor = gs_monitor_new ();
 
-        if (!monitor)
+        if (! monitor)
                 exit (1);
+
+        if (! gs_monitor_start (monitor, &error)) {
+                g_warning ("%s", error->message);
+                g_error_free (error);
+                exit (1);
+        }
 
         gtk_main ();
 

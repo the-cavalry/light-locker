@@ -26,6 +26,8 @@
 #include <time.h>
 #include <string.h>
 
+#include <glib/gi18n.h>
+
 #define DBUS_API_SUBJECT_TO_CHANGE
 #include <dbus/dbus.h>
 #include <dbus/dbus-glib.h>
@@ -50,9 +52,9 @@ static DBusHandlerResult gs_listener_message_handler    (DBusConnection *connect
                                                          DBusMessage    *message,
                                                          void           *user_data);
 
-#define GS_LISTENER_SERVICE   "org.gnome.ScreenSaver"
-#define GS_LISTENER_PATH      "/org/gnome/ScreenSaver"
-#define GS_LISTENER_INTERFACE "org.gnome.ScreenSaver"
+#define GS_LISTENER_SERVICE   "org.gnome.screensaver"
+#define GS_LISTENER_PATH      "/org/gnome/screensaver"
+#define GS_LISTENER_INTERFACE "org.gnome.screensaver"
 
 #define GS_LISTENER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_LISTENER, GSListenerPrivate))
 
@@ -313,12 +315,20 @@ gs_listener_acquire (GSListener *listener,
         g_return_val_if_fail (listener != NULL, FALSE);
 
         if (!listener->priv->connection) {
-                g_warning ("failed to register, we're not on DBus...");
+                g_set_error (error,
+                             GS_LISTENER_ERROR,
+                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
+                             "%s",
+                             _("failed to register with the message bus"));
                 return FALSE;
         }
 
         if (screensaver_is_running (listener->priv->connection)) {
-                g_error ("Screensaver already running in this session");
+                g_set_error (error,
+                             GS_LISTENER_ERROR,
+                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
+                             "%s",
+                             _("screensaver already running in this session"));
                 return FALSE;
         }
 
