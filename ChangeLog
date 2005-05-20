@@ -1,5 +1,10 @@
 2005-05-20  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-job.c (nice_process, spawn_on_widget):
+	Set subprocess priority.
+
+2005-05-20  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-monitor.c (gs_monitor_new, gs_monitor_start):
 	Split out monitor start.
 

@@ -23,10 +23,15 @@
 #include "config.h"
 
 #include <stdlib.h>
+#include <unistd.h>
 #include <signal.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <errno.h>
+
+#if defined(HAVE_SETPRIORITY) && defined(PRIO_PROCESS)
+#include <sys/resource.h>
+#endif
 
 #include <libxml/tree.h>
 #include <libxml/parser.h>
@@ -416,6 +421,34 @@ gs_job_new_for_widget (GtkWidget  *widget,
         return GS_JOB (job);
 }
 
+static void
+nice_process (int pid,
+              int nice_level)
+{
+        if (nice_level == 0)
+                return;
+
+#if defined(HAVE_NICE)
+        {
+                int old_nice = nice (0);
+                int n = nice_level - old_nice;
+
+                errno = 0;
+
+                if (nice (n) == -1 && errno != 0) {
+                        g_warning ("nice(%d) failed", n);
+                }
+        }
+#elif defined(HAVE_SETPRIORITY) && defined(PRIO_PROCESS)
+        if (setpriority (PRIO_PROCESS, getpid (), nice_level) != 0) {
+                g_warning ("setpriority(PRIO_PROCESS, %lu, %d) failed",
+                           (unsigned long) getpid (), nice_level);
+        }
+#else
+        g_warning ("don't know how to change process priority on this system.");
+#endif
+}
+
 static gboolean
 spawn_on_widget (GtkWidget  *widget,
                  char      **argv,
@@ -465,6 +498,8 @@ spawn_on_widget (GtkWidget  *widget,
                 g_error_free (error);
                 return FALSE;
         }
+
+        nice_process (child_pid, 10);
 
         if (pid)
                 *pid = child_pid;
