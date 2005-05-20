@@ -425,24 +425,15 @@ static void
 nice_process (int pid,
               int nice_level)
 {
+        g_return_if_fail (pid > 0);
+
         if (nice_level == 0)
                 return;
 
-#if defined(HAVE_NICE)
-        {
-                int old_nice = nice (0);
-                int n = nice_level - old_nice;
-
-                errno = 0;
-
-                if (nice (n) == -1 && errno != 0) {
-                        g_warning ("nice(%d) failed", n);
-                }
-        }
-#elif defined(HAVE_SETPRIORITY) && defined(PRIO_PROCESS)
-        if (setpriority (PRIO_PROCESS, getpid (), nice_level) != 0) {
+#if defined(HAVE_SETPRIORITY) && defined(PRIO_PROCESS)
+        if (setpriority (PRIO_PROCESS, pid, nice_level) != 0) {
                 g_warning ("setpriority(PRIO_PROCESS, %lu, %d) failed",
-                           (unsigned long) getpid (), nice_level);
+                           (unsigned long) pid, nice_level);
         }
 #else
         g_warning ("don't know how to change process priority on this system.");
