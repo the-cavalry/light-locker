@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-19 14:24-0400\n"
-"PO-Revision-Date: 2005-05-19 11:55-0400\n"
+"POT-Creation-Date: 2005-05-23 18:51-0400\n"
+"PO-Revision-Date: 2005-05-23 11:55-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -404,7 +404,7 @@ msgid "Poke the running screensaver to simulate user activity"
 msgstr "Poke the running screensaver to simulate user activity"
 
 #: ../src/gnome-screensaver-command.c:66 ../src/gnome-screensaver-dialog.c:58
-#: ../src/gnome-screensaver.c:91
+#: ../src/gnome-screensaver.c:55
 msgid "Version of this application"
 msgstr "Version of this application"
 
@@ -423,6 +423,14 @@ msgstr "Could not load the main interface"
 #: ../src/gnome-screensaver-preferences.c:513
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Please make sure that the screensaver is properly installed"
+
+#: ../src/gs-listener-dbus.c:322
+msgid "failed to register with the message bus"
+msgstr "Failed to register with the message bus"
+
+#: ../src/gs-listener-dbus.c:331
+msgid "screensaver already running in this session"
+msgstr "Screensaver already running in this session"
 
 #: ../src/gs-lock-plug.c:176
 msgid "Verifying password..."
