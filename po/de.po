@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-21 12:50+0200\n"
-"PO-Revision-Date: 2005-05-21 12:46+0200\n"
+"POT-Creation-Date: 2005-05-24 17:05+0200\n"
+"PO-Revision-Date: 2005-05-24 17:04+0200\n"
 "Last-Translator: Frank Arnold <frank@scirocco-5v-turbo.de>\n"
 "Language-Team: German GNOME Translations <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -468,6 +468,14 @@ msgstr "Die Hauptschnittstelle konnte nicht geladen werden"
 msgid "Please make sure that the screensaver is properly installed"
 msgstr ""
 "Bitte stellen Sie sicher, dass der Bildschirmschoner korrekt installiert ist"
+
+#: ../src/gs-listener-dbus.c:322
+msgid "failed to register with the message bus"
+msgstr "Registrierung am Message-Bus fehlgeschlagen"
+
+#: ../src/gs-listener-dbus.c:331
+msgid "screensaver already running in this session"
+msgstr "Der Bildschirmschoner ist in dieser Sitzung bereits aktiv"
 
 #: ../src/gs-lock-plug.c:176
 msgid "Verifying password..."
