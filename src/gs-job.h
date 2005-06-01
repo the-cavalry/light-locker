@@ -47,28 +47,42 @@ typedef struct
         GObjectClass  parent_class;
 } GSJobClass;
 
-GType       gs_job_get_type       (void);
+typedef struct {
+        char  *name;
+        char  *title;
+        char **argv;
+} GSJobThemeInfo;
 
-GSJob      *gs_job_new            (void);
-GSJob      *gs_job_new_for_widget (GtkWidget  *widget,
-                                   const char *command);
-gboolean    gs_job_start          (GSJob      *job);
-gboolean    gs_job_stop           (GSJob      *job);
-gboolean    gs_job_suspend        (GSJob      *job,
-                                   gboolean    suspend);
+GType           gs_job_get_type                  (void);
 
-void        gs_job_set_widget     (GSJob      *job,
-                                   GtkWidget  *widget);
-void        gs_job_set_command    (GSJob      *job,
-                                   char      **argv);
-void        gs_job_set_theme      (GSJob      *job,
-                                   const char *theme);
-gboolean    gs_job_theme_parse    (const char *path,
-                                   char      **name,
-                                   char      **label,
-                                   char     ***argv);
+GSJob          *gs_job_new                       (void);
+GSJob          *gs_job_new_for_widget            (GtkWidget  *widget,
+                                                  const char *command);
+gboolean        gs_job_start                     (GSJob      *job);
+gboolean        gs_job_stop                      (GSJob      *job);
+gboolean        gs_job_suspend                   (GSJob      *job,
+                                                  gboolean    suspend);
 
+void            gs_job_set_widget                (GSJob      *job,
+                                                  GtkWidget  *widget);
 
+gboolean        gs_job_set_theme                 (GSJob          *job,
+                                                  const char     *theme,
+                                                  GError        **error);
+
+void            gs_job_set_theme_path            (GSJob          *job,
+                                                  const char     *path[],
+                                                  int             n_elements);
+void            gs_job_get_theme_path            (GSJob          *job,
+                                                  char          **path[],
+                                                  int            *n_elements);
+void            gs_job_prepend_theme_path        (GSJob          *job,
+                                                  const char     *path);
+
+GSList         *gs_job_get_theme_list            (GSJob          *job);
+GSJobThemeInfo *gs_job_lookup_theme_info         (GSJob          *job,
+                                                  const char     *theme);
+void            gs_job_theme_info_free           (GSJobThemeInfo *info);
 
 G_END_DECLS
 

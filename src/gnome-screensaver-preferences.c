@@ -207,6 +207,8 @@ static void
 preview_set_theme (GtkWidget  *widget,
                    const char *theme)
 {
+        GError *error = NULL;
+
         if (job) {
                 gs_job_stop (job);
         }
@@ -218,7 +220,13 @@ preview_set_theme (GtkWidget  *widget,
         } else if (theme && strcmp (theme, "__blank-only") == 0) {
 
         } else {
-                gs_job_set_theme (job, theme);
+                if (! gs_job_set_theme (job, theme, &error)) {
+                        if (error) {
+                                g_warning ("Could not set theme: %s", error->message);
+                                g_error_free (error);
+                        }
+                        return;
+                }
                 gs_job_start (job);
         }
 }
@@ -235,59 +243,10 @@ response_cb (GtkWidget *widget,
         gtk_main_quit ();
 }
 
-static const char *
-get_themes_dir (void)
-{
-        return THEMESDIR;
-}
-
-struct theme_entry {
-        char *name;
-        char *label;
-};
-
-static void
-theme_entry_free (struct theme_entry *entry)
-{
-        if (! entry)
-                return;
-
-        g_free (entry->name);
-        g_free (entry->label);
-        g_free (entry);
-}
-
 static GSList *
 get_theme_list (void)
 {
-        GSList     *themes = NULL;
-        GDir       *dir;
-        const char *filename;
-
-        dir = g_dir_open (get_themes_dir (), 0, NULL);
-        if (! dir)
-                return NULL;
-
-        while ((filename = g_dir_read_name (dir)) != NULL) {
-                char               *path;
-                char               *name;
-                char               *label;
-                struct theme_entry *entry;
-
-                path = g_build_filename (get_themes_dir (), filename, NULL);
-                if (! gs_job_theme_parse (path, &name, &label, NULL)) {
-                        g_free (path);
-                        continue;
-                }
-                g_free (path);
-
-                entry = g_new0 (struct theme_entry, 1);
-                entry->name    = name;
-                entry->label   = label;
-                themes = g_slist_append (themes, entry);
-        }
-
-        return themes;
+        return gs_job_get_theme_list (job);
 }
 
 static void
@@ -318,18 +277,24 @@ populate_model (GtkTreeStore *store)
                 return;
         
         for (l = themes; l; l = l->next) {
-                struct theme_entry *theme;
+                GSJobThemeInfo *info;
 
-                theme = l->data;
+                info = gs_job_lookup_theme_info (job,
+                                                 (const char *) l->data);
+
+                if (! info)
+                        continue;
 
                 gtk_tree_store_append (store, &iter, NULL);
                 gtk_tree_store_set (store, &iter,
-                                    NAME_COLUMN, theme->name,
-                                    LABEL_COLUMN, theme->label,
+                                    NAME_COLUMN, info->name,
+                                    LABEL_COLUMN, info->title,
                                     -1);
+
+                gs_job_theme_info_free (info);
         }
 
-        g_slist_foreach (themes, (GFunc)theme_entry_free, NULL);
+        g_slist_foreach (themes, (GFunc)g_free, NULL);
         g_slist_free (themes);
 }
 

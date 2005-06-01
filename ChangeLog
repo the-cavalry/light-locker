@@ -1,3 +1,22 @@
+2005-06-01  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-manager.c (gs_manager_cycle): Use GError.
+
+	* src/gs-job.c (gs_job_set_theme_path, gs_job_get_theme_path)
+	(gs_job_prepend_theme_path): Add ability to extend the theme
+	search path.
+	(theme_info_new, gs_job_theme_info_free, gs_job_theme_info_copy):
+	Add ThemeInfo API to handle getting information about themes.
+	(load_themes, gs_job_theme_rescan_if_needed, ensure_valid_themes) 
+	(gs_job_lookup_theme_info, hash2slist_foreach) 
+	(g_hash_table_slist_keys, gs_job_get_theme_list, gs_job_init) 
+	(gs_job_finalize, check_command, gs_job_set_theme) 
+	(gs_job_new_for_widget, spawn_on_widget, gs_job_start):
+	Use a hash table to store theme info.
+
+	* src/gnome-screensaver-preferences.c (preview_set_theme): Handle errors.
+	(populate_model): Use new ThemeInfo API.
+
 2005-05-21  Frank Arnold  <farnold@cvs.gnome.org>
 
 	* configure.ac: Added German (de) to ALL_LINGUAS.

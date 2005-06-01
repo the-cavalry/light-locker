@@ -245,7 +245,7 @@ gs_manager_cycle (GSManager *manager)
 
         for (l = manager->priv->jobs; l; l = l->next) {
                 gs_job_stop (GS_JOB (l->data));
-                gs_job_set_theme (GS_JOB (l->data), theme);
+                gs_job_set_theme (GS_JOB (l->data), theme, NULL);
 
                 /* this success flag is kinda bogus */
                 if (gs_job_start (GS_JOB (l->data)))

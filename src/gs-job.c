@@ -36,6 +36,9 @@
 #include <libxml/tree.h>
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
+
+#include <glib.h>
+#include <glib/gstdio.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 
@@ -59,14 +62,29 @@ typedef enum {
 
 struct GSJobPrivate
 {
-        GtkWidget  *widget;
-        char      **argv;
+        GtkWidget      *widget;
 
-        GSJobStatus status;
-        gint        pid;
-        guint       watch_id;
+        GSJobStatus     status;
+        gint            pid;
+        guint           watch_id;
 
+        char           *current_theme;
+
+        char          **search_path;
+        int             search_path_len;
+
+        gboolean        themes_valid;
+        GHashTable     *all_themes;
+
+        long            last_stat_time;
+        GList          *dir_mtimes;
 };
+
+typedef struct 
+{
+        char  *dir;
+        time_t mtime; /* 0 == not existing or not a dir */
+} ThemeDirMtime;
 
 static GObjectClass *parent_class = NULL;
 
@@ -125,11 +143,111 @@ get_xml_config_string (xmlDocPtr   doc,
         return str;
 }
 
-gboolean
-gs_job_theme_parse (const char *path,
-                    char      **name,
-                    char      **label,
-                    char     ***argv)
+void
+gs_job_set_theme_path (GSJob      *job,
+                       const char *path [],
+                       int         n_elements)
+{
+        int i;
+
+        g_return_if_fail (GS_IS_JOB (job));
+
+        for (i = 0; i < job->priv->search_path_len; i++)
+                g_free (job->priv->search_path [i]);
+
+        g_free (job->priv->search_path);
+
+        job->priv->search_path = g_new (char *, n_elements);
+        job->priv->search_path_len = n_elements;
+        for (i = 0; i < job->priv->search_path_len; i++)
+                job->priv->search_path [i] = g_strdup (path [i]);
+
+        /*do_theme_change (job);*/
+}
+
+void
+gs_job_get_theme_path (GSJob *job,
+                       char **path [],
+                       int   *n_elements)
+{
+        int i;
+
+        g_return_if_fail (GS_IS_JOB (job));
+
+        if (n_elements)
+                *n_elements = job->priv->search_path_len;
+  
+        if (path) {
+                *path = g_new (char *, job->priv->search_path_len + 1);
+                for (i = 0; i < job->priv->search_path_len; i++)
+                        (*path) [i] = g_strdup (job->priv->search_path [i]);
+                (*path) [i] = NULL;
+        }
+}
+
+void
+gs_job_prepend_theme_path (GSJob      *job,
+                           const char *path)
+{
+        int i;
+
+        g_return_if_fail (GS_IS_JOB (job));
+        g_return_if_fail (path != NULL);
+
+        job->priv->search_path_len++;
+        job->priv->search_path = g_renew (char *, job->priv->search_path, job->priv->search_path_len);
+
+        for (i = job->priv->search_path_len - 1; i > 0; i--)
+                job->priv->search_path [i] = job->priv->search_path [i - 1];
+  
+        job->priv->search_path [0] = g_strdup (path);
+
+        /*do_theme_change (job);*/
+}
+
+static GSJobThemeInfo *
+theme_info_new (void)
+{
+        GSJobThemeInfo *info = g_new0 (GSJobThemeInfo, 1);
+
+        return info;
+}
+
+void
+gs_job_theme_info_free (GSJobThemeInfo *info)
+{
+        g_return_if_fail (info != NULL);
+
+        g_free (info->name);
+        g_free (info->title);
+        g_strfreev (info->argv);
+
+        g_free (info);
+}
+
+static GSJobThemeInfo *
+gs_job_theme_info_copy (const GSJobThemeInfo *info)
+{
+        GSJobThemeInfo *copy;
+
+        g_return_val_if_fail (info != NULL, NULL);
+
+        copy = g_memdup (info, sizeof (GSJobThemeInfo));
+        if (copy->name)
+                copy->name = g_strdup (copy->name);
+        if (copy->title)
+                copy->title = g_strdup (copy->title);
+        if (copy->argv)
+                copy->argv = g_strdupv (copy->argv);
+
+        return copy;
+}
+
+static gboolean
+parse_theme (const char *path,
+             char      **name,
+             char      **label,
+             char     ***argv)
 {
         xmlDocPtr  doc;
         xmlNodePtr node;
@@ -205,6 +323,178 @@ gs_job_theme_parse (const char *path,
         return TRUE;
 }
 
+static void
+load_themes (GSJob *job)
+{
+        GDir       *gdir;
+        int         i;
+        const char *file;
+        GTimeVal    tv;
+  
+        job->priv->all_themes = g_hash_table_new_full (g_str_hash,
+                                                       g_str_equal,
+                                                       g_free,
+                                                       (GDestroyNotify)gs_job_theme_info_free);
+  
+        for (i = 0; i < job->priv->search_path_len; i++) {
+                char *dir;
+
+                dir = job->priv->search_path [i];
+
+                gdir = g_dir_open (dir, 0, NULL);
+
+                if (gdir == NULL)
+                        continue;
+      
+                while ((file = g_dir_read_name (gdir))) {
+                        GSJobThemeInfo *info = NULL;
+                        char           *path;
+                        char           *name;
+                        char           *title;
+                        char          **argv;
+
+                        path = g_build_filename (dir, file, NULL);
+
+                        if (! parse_theme (path,
+                                           &name,
+                                           &title,
+                                           &argv)) {
+                                g_free (path);
+                                continue;
+                        }
+                        g_free (path);
+
+                        info = theme_info_new ();
+                        info->name  = g_strdup (name);
+                        info->title = g_strdup (title);
+                        info->argv  = g_strdupv (argv);
+
+                        g_free (title);
+                        g_free (name);
+                        g_strfreev (argv);
+
+                        g_hash_table_insert (job->priv->all_themes,
+                                             info->name,
+                                             info);
+		}
+
+                g_dir_close (gdir);
+        }
+
+        job->priv->themes_valid = TRUE;
+  
+        g_get_current_time (&tv);
+        job->priv->last_stat_time = tv.tv_sec;
+}
+
+static gboolean
+gs_job_theme_rescan_if_needed (GSJob *job)
+{
+        ThemeDirMtime *dir_mtime;
+        GList         *d;
+        int            stat_res;
+        struct stat    stat_buf;
+        GTimeVal       tv;
+
+        g_return_val_if_fail (GS_IS_JOB (job), FALSE);
+
+        for (d = job->priv->dir_mtimes; d != NULL; d = d->next) {
+                dir_mtime = d->data;
+
+                stat_res = g_lstat (dir_mtime->dir, &stat_buf);
+
+                /* dir mtime didn't change */
+                if (stat_res == 0 && 
+                    S_ISDIR (stat_buf.st_mode) &&
+                    dir_mtime->mtime == stat_buf.st_mtime)
+                        continue;
+                /* didn't exist before, and still doesn't */
+                if (dir_mtime->mtime == 0 &&
+                    (stat_res != 0 || !S_ISDIR (stat_buf.st_mode)))
+                        continue;
+	  
+                /*do_theme_change (job);*/
+                return TRUE;
+        }
+  
+        g_get_current_time (&tv);
+        job->priv->last_stat_time = tv.tv_sec;
+
+        return FALSE;
+}
+
+static void
+ensure_valid_themes (GSJob *job)
+{
+        GTimeVal tv;
+  
+        if (job->priv->themes_valid) {
+                g_get_current_time (&tv);
+
+                if (ABS (tv.tv_sec - job->priv->last_stat_time) > 5)
+                        gs_job_theme_rescan_if_needed (job);
+        }
+  
+        if (! job->priv->themes_valid)
+                load_themes (job);
+}
+
+GSJobThemeInfo *
+gs_job_lookup_theme_info (GSJob      *job,
+                          const char *theme)
+{
+        GSJobThemeInfo       *info = NULL;
+        const GSJobThemeInfo *value;
+
+        g_return_val_if_fail (GS_IS_JOB (job), NULL);
+        g_return_val_if_fail (theme != NULL, NULL);
+
+        ensure_valid_themes (job);
+
+        value = g_hash_table_lookup (job->priv->all_themes, theme);
+
+        if (value)
+                info = gs_job_theme_info_copy (value);
+
+        return info;
+}
+
+static void
+hash2slist_foreach (gpointer  key,
+                    gpointer  value,
+                    gpointer  user_data)
+{
+        GSList **slist_p = user_data;
+
+        *slist_p = g_slist_prepend (*slist_p, g_strdup (key));
+}
+
+static GSList *
+g_hash_table_slist_keys (GHashTable *hash_table)
+{
+        GSList *slist = NULL;
+
+        g_return_val_if_fail (hash_table != NULL, NULL);
+
+        g_hash_table_foreach (hash_table, hash2slist_foreach, &slist);
+
+        return slist;
+}
+
+GSList *
+gs_job_get_theme_list (GSJob *job)
+{
+        GSList *l;
+
+        g_return_val_if_fail (GS_IS_JOB (job), NULL);
+
+        ensure_valid_themes (job);
+
+        l = g_hash_table_slist_keys (job->priv->all_themes);
+
+        return l;
+}
+
 static char *
 widget_get_id_string (GtkWidget *widget)
 {
@@ -220,7 +510,7 @@ widget_get_id_string (GtkWidget *widget)
 static void
 gs_job_class_init (GSJobClass *klass)
 {
-        GObjectClass   *object_class = G_OBJECT_CLASS (klass);
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
         parent_class = g_type_class_peek_parent (klass);
 
@@ -232,9 +522,19 @@ gs_job_class_init (GSJobClass *klass)
 static void
 gs_job_init (GSJob *job)
 {
+        int i;
+
         job->priv = GS_JOB_GET_PRIVATE (job);
 
-        /* zero is fine for everything */
+        i = 1;
+        job->priv->search_path_len = i;
+
+        job->priv->search_path = g_new (char *, job->priv->search_path_len);
+
+        i = 0;
+        job->priv->search_path [i++] = g_strdup (THEMESDIR);
+
+        job->priv->themes_valid = FALSE;
 }
 
 /* adapted from gspawn.c */
@@ -280,6 +580,7 @@ static void
 gs_job_finalize (GObject *object)
 {
         GSJob *job;
+        int    i;
 
         g_return_if_fail (object != NULL);
         g_return_if_fail (GS_IS_JOB (object));
@@ -293,7 +594,14 @@ gs_job_finalize (GObject *object)
                 gs_job_died (job);
         }
 
-        g_strfreev (job->priv->argv);
+        g_free (job->priv->current_theme);
+        job->priv->current_theme = NULL;
+
+        for (i = 0; i < job->priv->search_path_len; i++)
+                g_free (job->priv->search_path [i]);
+
+        g_free (job->priv->search_path);
+        job->priv->search_path = NULL;
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -338,63 +646,51 @@ find_command (const char  *command,
         return NULL;
 }
 
-void
-gs_job_set_command (GSJob *job,
-                    char **argv)
+static gboolean
+check_command (char **argv)
 {
-        char  *path;
-        char **new_argv;
+        char *path;
 
-        g_return_if_fail (job != NULL);
-        g_return_if_fail (GS_IS_JOB (job));
+        g_return_val_if_fail (argv != NULL, FALSE);
 
-        g_strfreev (job->priv->argv);
-        job->priv->argv = NULL;
-
-        if (! argv)
-                return;
-
-        new_argv = g_strdupv (argv);
-        /* try to find command in well known locations */
-        path = find_command (new_argv [0], known_locations);
+        path = find_command (argv [0], known_locations);
 
         if (path) {
-                g_free (new_argv [0]);
-                new_argv [0] = path;
-                job->priv->argv = new_argv;
+                g_free (path);
+                return TRUE;
         }
+
+        return FALSE;
 }
 
-void
+gboolean
 gs_job_set_theme  (GSJob      *job,
-                   const char *theme)
+                   const char *theme,
+                   GError    **error)
 {
-        char  *filename;
-        char  *path;
-        char **argv;
+        GSJobThemeInfo *info;
 
-        g_return_if_fail (GS_IS_JOB (job));
-        g_return_if_fail (theme != NULL);
+        g_return_val_if_fail (GS_IS_JOB (job), FALSE);
+        g_return_val_if_fail (theme != NULL, FALSE);
 
-        /* for now assume theme name -> command mapping */
-        filename = g_strdup_printf ("%s.xml", theme);
-        path = g_build_filename (THEMESDIR, filename, NULL);
+        info = gs_job_lookup_theme_info (job, theme);
 
-        if (! gs_job_theme_parse (path,
-                                  NULL,
-                                  NULL,
-                                  &argv)) {
-                g_free (path);
-                return;
+        if (! info) {
+                /* FIXME: set error */
+                return FALSE;
         }
-        g_free (path);
 
-        if (! argv)
-                return;
+        if (! check_command (info->argv)) {
+                /* FIXME: set error */
+                return FALSE;
+        }
 
-        gs_job_set_command (job, argv);
+        gs_job_theme_info_free (info);
 
-        g_strfreev (argv);
+        g_free (job->priv->current_theme);
+        job->priv->current_theme = g_strdup (theme);
+
+        return TRUE;
 }
 
 GSJob *
@@ -416,7 +712,7 @@ gs_job_new_for_widget (GtkWidget  *widget,
         job = g_object_new (GS_TYPE_JOB, NULL);
 
         gs_job_set_widget (GS_JOB (job), widget);
-        gs_job_set_theme (GS_JOB (job), theme);
+        gs_job_set_theme (GS_JOB (job), theme, NULL);
 
         return GS_JOB (job);
 }
@@ -449,6 +745,8 @@ spawn_on_widget (GtkWidget  *widget,
                  guint      *watch_id)
 {
         char       *envp [5];
+        char       *path;
+        char      **new_argv;
         int         nenv = 0;
         int         i;
         char       *window_id;
@@ -462,6 +760,14 @@ spawn_on_widget (GtkWidget  *widget,
         if (! argv)
                 return FALSE;
 
+        new_argv = g_strdupv (argv);
+        /* try to find command in well known locations */
+        path = find_command (new_argv [0], known_locations);
+        if (path) {
+                g_free (new_argv [0]);
+                new_argv [0] = path;
+        }
+
         window_id = widget_get_id_string (widget);
         envp [nenv++] = g_strdup_printf ("XSCREENSAVER_WINDOW=%s", window_id);
         envp [nenv++] = g_strdup_printf ("DISPLAY=%s",
@@ -473,7 +779,7 @@ spawn_on_widget (GtkWidget  *widget,
 
         result = gdk_spawn_on_screen_with_pipes (gtk_widget_get_screen (widget),
                                                  g_get_home_dir (),
-                                                 argv,
+                                                 new_argv,
                                                  envp,
                                                  G_SPAWN_DO_NOT_REAP_CHILD,
                                                  NULL,
@@ -485,7 +791,7 @@ spawn_on_widget (GtkWidget  *widget,
                                                  &error);
 
         if (! result) {
-                g_message ("Could not start command '%s': %s", argv [0], error->message);
+                g_message ("Could not start command '%s': %s", new_argv [0], error->message);
                 g_error_free (error);
                 return FALSE;
         }
@@ -555,7 +861,8 @@ command_watch (GIOChannel   *source,
 gboolean
 gs_job_start (GSJob *job)
 {
-        gboolean result;
+        gboolean        result;
+        GSJobThemeInfo *info;
 
         g_return_val_if_fail (job != NULL, FALSE);
         g_return_val_if_fail (GS_IS_JOB (job), FALSE);
@@ -565,14 +872,16 @@ gs_job_start (GSJob *job)
                 return FALSE;
         }
 
-        if (! job->priv->argv)
+        if (! job->priv->current_theme)
                 return FALSE;
 
         if (! job->priv->widget)
                 return FALSE;
 
+        info = gs_job_lookup_theme_info (job, job->priv->current_theme);
+
         result = spawn_on_widget (job->priv->widget,
-                                  job->priv->argv,
+                                  info->argv,
                                   &job->priv->pid,
                                   (GIOFunc)command_watch,
                                   job,
@@ -580,6 +889,8 @@ gs_job_start (GSJob *job)
 
         if (result)
                 job->priv->status = GS_JOB_RUNNING;
+
+        gs_job_theme_info_free (info);
 
         return result;
 }
