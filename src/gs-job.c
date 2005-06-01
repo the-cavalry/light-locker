@@ -373,8 +373,14 @@ load_themes (GSJob *job)
                         g_free (name);
                         g_strfreev (argv);
 
+                        if (g_hash_table_lookup (job->priv->all_themes,
+                                                 info->name)) {
+                                gs_job_theme_info_free (info);
+                                continue;
+                        }
+                                
                         g_hash_table_insert (job->priv->all_themes,
-                                             info->name,
+                                             g_strdup (info->name),
                                              info);
 		}
 

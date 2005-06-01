@@ -1,5 +1,10 @@
 2005-06-01  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-job.c (load_themes): Only use first theme in search path
+	for any given name.
+
+2005-06-01  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c (window_show_cb): 
 	* src/gnome-screensaver-preferences.c (init_capplet):
 	Look for user themes in g_get_user_data_dir/gnome-screensaver/themes.
