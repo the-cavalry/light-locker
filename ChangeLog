@@ -1,5 +1,11 @@
 2005-06-01  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-manager.c (window_show_cb): 
+	* src/gnome-screensaver-preferences.c (init_capplet):
+	Look for user themes in g_get_user_data_dir/gnome-screensaver/themes.
+
+2005-06-01  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c (gs_manager_cycle): Use GError.
 
 	* src/gs-job.c (gs_job_set_theme_path, gs_job_get_theme_path)

@@ -461,6 +461,7 @@ init_capplet (void)
         GtkWidget *blank_delay_hbox;
         GtkWidget *label;
         char      *glade_file;
+        char      *path;
         gdouble    blank_delay;
         gboolean   is_writable;
 
@@ -506,6 +507,13 @@ init_capplet (void)
 
         preview_clear (preview);
         gs_job_set_widget (job, preview);
+
+        /* Add user configuration path */
+        /* FIXME: disable this if locked down */
+        path = g_build_filename (g_get_user_data_dir (), "gnome-screensaver", "themes", NULL);
+        g_message ("Adding theme path: %s", path);
+        gs_job_prepend_theme_path (job, path);
+        g_free (path);
 
         setup_treeview (treeview, preview);
         setup_treeview_selection (treeview);

@@ -593,6 +593,7 @@ window_show_cb (GSWindow  *window,
 {
         GSJob      *job;
         const char *theme;
+        char       *path;
 
         g_return_if_fail (manager != NULL);
         g_return_if_fail (GS_IS_MANAGER (manager));
@@ -601,6 +602,12 @@ window_show_cb (GSWindow  *window,
 
         theme = select_theme (manager);
         job = gs_job_new_for_widget (GTK_WIDGET (window), theme);
+
+        /* Add user configuration path */
+        /* FIXME: disable this if locked down */
+        path = g_build_filename (g_get_user_data_dir (), "gnome-screensaver", "themes", NULL);
+        gs_job_prepend_theme_path (job, path);
+        g_free (path);
 
         g_object_ref (job);
         gs_job_start (job);
