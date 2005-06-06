@@ -23,6 +23,7 @@ INCLUDES =							\
 	-DPAM_SERVICE_NAME=\""xscreensaver"\"			\
         $(WARN_CFLAGS)                                          \
 	$(AUTH_CFLAGS)						\
+	$(DBUS_CFLAGS)						\
 	$(FAST_USER_SWITCH_CFLAGS)				\
 	$(NULL)
 

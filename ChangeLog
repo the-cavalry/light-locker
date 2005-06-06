@@ -1,3 +1,11 @@
+2005-06-06  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac: 
+	* src/Makefile.am: Add missing DBUS_CFLAGS.
+
+	Patch from Jaap A. Haitsma <jaap@haitsma.org>.
+	Fixes #306487.
+
 2005-06-01  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-job.c (load_themes): Only use first theme in search path
