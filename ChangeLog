@@ -1,3 +1,9 @@
+2005-06-07  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gnome-screensaver-preferences.c (preview_set_theme):
+	Make activation time slider insensitive when screensaver is
+	disabled.
+
 2005-06-06  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: 

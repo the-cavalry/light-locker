@@ -207,7 +207,8 @@ static void
 preview_set_theme (GtkWidget  *widget,
                    const char *theme)
 {
-        GError *error = NULL;
+        GtkWidget *box   = glade_xml_get_widget (xml, "blank_delay_hbox");
+        GError    *error = NULL;
 
         if (job) {
                 gs_job_stop (job);
@@ -216,10 +217,11 @@ preview_set_theme (GtkWidget  *widget,
         preview_clear (widget);
 
         if (theme && strcmp (theme, "__disabled") == 0) {
-                /* TODO: change sensitivities */
+                gtk_widget_set_sensitive (box, FALSE);
         } else if (theme && strcmp (theme, "__blank-only") == 0) {
-
+                gtk_widget_set_sensitive (box, TRUE);
         } else {
+                gtk_widget_set_sensitive (box, TRUE);
                 if (! gs_job_set_theme (job, theme, &error)) {
                         if (error) {
                                 g_warning ("Could not set theme: %s", error->message);
