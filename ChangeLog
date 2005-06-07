@@ -1,3 +1,14 @@
+==== 0.5 ====
+	
+2005-06-07  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for release
+
+2005-06-07  William Jon McCann  <mccann@jhu.edu>
+
+	* savers/Makefile.am (EXTRA_DIST): Add theme data.
+	* data/Makefile.am (EXTRA_DIST): Add glade and desktop data.
+
 2005-06-07  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-preferences.c (preview_set_theme):

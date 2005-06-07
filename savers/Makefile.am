@@ -25,7 +25,8 @@ popsquares_SOURCES = 	\
 popsquares_LDADD =	\
 	$(GNOME_SCREENSAVER_SAVER_LIBS)
 
-EXTRA_DIST =
+EXTRA_DIST =		\
+	$(themes_DATA)
 
 MAINTAINERCLEANFILES =			\
 	*~				\

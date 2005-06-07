@@ -8,5 +8,10 @@ gnome-screensaver-dialog
 
 * Add user list for fast switching
 
+gnome-screensaver-preferences
+=============================
+
+* Support drag-n-drop of user themes
+
 gnome-screensaver-command
 =========================

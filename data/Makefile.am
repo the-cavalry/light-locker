@@ -13,7 +13,10 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 gladedir = $(pkgdatadir)
 glade_DATA = gnome-screensaver-preferences.glade
 
-EXTRA_DIST = $(schemas_in_files)
+EXTRA_DIST = 				\
+	$(schemas_in_files)		\
+	$(glade_DATA)			\
+	$(desktop_DATA)
 
 DISTCLEANFILES = $(schemas_DATA)
 

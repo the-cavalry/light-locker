@@ -1,0 +1,21 @@
+===========
+Version 0.5
+===========
+
+  gnome-screensaver
+
+        * Support user themes in USER_DATA_DIR/gnome-screensaver/themes/
+        * Send activation/deactivation signals on session message bus
+        * Added DPMS support
+        * Added xscreensaver compatible XML configuration for themes
+        * Add optional logout button after a specified amount of time
+        * Fix leaking of file descriptors
+
+  gnome-screensaver-preferences
+
+        * Added configuration applet
+        * Use screensaver icon
+
+  themes
+
+        * Added version of popsquares that follows GNOME theme
