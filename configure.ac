@@ -1,5 +1,5 @@
 AC_INIT([gnome-screensaver],
-        [0.0.5],
+        [0.0.6],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver])
 
 AC_CONFIG_SRCDIR(src/gnome-screensaver.c)
