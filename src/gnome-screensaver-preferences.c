@@ -518,15 +518,11 @@ theme_installer_run (GtkWidget *parent,
         char         *user_dir;
         char         *base;
 
-        g_message ("Installing theme %s", filename);
-
         src_uri = gnome_vfs_uri_new (filename);
         src = g_list_append (NULL, src_uri);
 
         user_dir = g_build_filename (g_get_user_data_dir (), "gnome-screensaver", "themes", NULL);
         base = gnome_vfs_uri_extract_short_name (src_uri);
-
-        g_message ("base: %s", base);
 
         target_path = NULL;
 
@@ -556,7 +552,6 @@ theme_installer_run (GtkWidget *parent,
                 }
 
                 target_path = g_build_filename (user_dir, file_tmp, NULL);
-                g_message ("trying %s", target_path);
 
                 g_free (file_tmp);
                 if (! gnome_vfs_uri_exists (gnome_vfs_uri_new (target_path)))
@@ -722,7 +717,7 @@ init_capplet (void)
         /* Add user configuration path */
         /* FIXME: disable this if locked down */
         path = g_build_filename (g_get_user_data_dir (), "gnome-screensaver", "themes", NULL);
-        g_message ("Adding theme path: %s", path);
+
         gs_job_prepend_theme_path (job, path);
         g_free (path);
 

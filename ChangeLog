@@ -1,5 +1,10 @@
 2005-06-10  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-preferences.c (theme_installer_run) 
+	(init_capplet): Remove spurious debug messages.
+
+2005-06-10  William Jon McCann  <mccann@jhu.edu>
+
 	* src/file-transfer-dialog.[ch]: New files copied from
 	gnome-control-center.
 
