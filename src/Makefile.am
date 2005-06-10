@@ -113,6 +113,8 @@ gnome_screensaver_LDFLAGS = -export-dynamic
 
 gnome_screensaver_preferences_SOURCES =	\
 	gnome-screensaver-preferences.c	\
+	file-transfer-dialog.c		\
+	file-transfer-dialog.h		\
 	gs-job.c			\
 	gs-job.h			\
 	subprocs.c			\

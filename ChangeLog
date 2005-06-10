@@ -1,3 +1,16 @@
+2005-06-10  William Jon McCann  <mccann@jhu.edu>
+
+	* src/file-transfer-dialog.[ch]: New files copied from
+	gnome-control-center.
+
+	* src/gnome-screensaver-preferences.c (reload_themes) 
+	(transfer_done_cb, transfer_cancel_cb, theme_installer_run) 
+	(drag_motion_cb, drag_leave_cb, drag_data_received_cb) 
+	(init_capplet): 
+	* src/Makefile.am:
+	Add basic support for drag and drop of screensaver themes
+	onto the capplet.
+
 2005-06-07  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.

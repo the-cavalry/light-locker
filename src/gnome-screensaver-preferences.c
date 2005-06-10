@@ -34,6 +34,11 @@
 #include <gconf/gconf-client.h>
 #include <libgnome/gnome-help.h>
 #include <libgnomeui/gnome-ui-init.h>
+#include <libgnomevfs/gnome-vfs-async-ops.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
+#include <libgnomevfs/gnome-vfs-utils.h>
+
+#include "file-transfer-dialog.h"
 
 #include "gs-job.h"
 #include "gs-prefs.h" /* for GS_MODE enum */
@@ -64,6 +69,18 @@ static GConfEnumStringPair mode_enum_map [] = {
        { GS_MODE_SINGLE,           "single"     },
        { GS_MODE_DONT_BLANK,       "disabled"   },
        { 0, NULL }
+};
+
+/* Drag and drop info */
+enum {
+        TARGET_URI_LIST,
+        TARGET_NS_URL
+};
+
+static GtkTargetEntry drop_types [] =
+{
+        { "text/uri-list", 0, TARGET_URI_LIST },
+        { "_NETSCAPE_URL", 0, TARGET_NS_URL }
 };
 
 static GladeXML *xml = NULL;
@@ -454,6 +471,186 @@ setup_treeview_selection (GtkWidget *tree)
 }
 
 static void
+reload_themes (void)
+{
+        GtkWidget    *treeview;
+        GtkTreeModel *model;
+
+        treeview = glade_xml_get_widget (xml, "savers_treeview");
+        model = gtk_tree_view_get_model (GTK_TREE_VIEW (treeview));
+        gtk_tree_store_clear (GTK_TREE_STORE (model));
+        populate_model (GTK_TREE_STORE (model));
+
+        gtk_tree_view_set_model (GTK_TREE_VIEW (treeview),
+                                 GTK_TREE_MODEL (model));
+}
+
+static void
+transfer_done_cb (GtkWidget *dialog,
+                  char      *path)
+{
+
+        g_free (path);
+
+        gtk_widget_destroy (dialog);
+
+        reload_themes ();
+}
+
+static void
+transfer_cancel_cb (GtkWidget *dialog,
+                    char      *path)
+{
+        gnome_vfs_unlink (path);
+        g_free (path);
+
+        gtk_widget_destroy (dialog);
+}
+
+static void
+theme_installer_run (GtkWidget *parent,
+                     char      *filename)
+{
+        GtkWidget    *dialog;
+        GnomeVFSURI  *src_uri;
+        GList        *src, *target;
+        char         *target_path;
+        char         *user_dir;
+        char         *base;
+
+        g_message ("Installing theme %s", filename);
+
+        src_uri = gnome_vfs_uri_new (filename);
+        src = g_list_append (NULL, src_uri);
+
+        user_dir = g_build_filename (g_get_user_data_dir (), "gnome-screensaver", "themes", NULL);
+        base = gnome_vfs_uri_extract_short_name (src_uri);
+
+        g_message ("base: %s", base);
+
+        target_path = NULL;
+
+        while (TRUE) {
+                char      *file_tmp;
+                GtkWidget *dialog;
+                int        len = strlen (base);
+
+                if (base && len > 4 && (!strcmp (base + len - 4, ".xml"))) {
+                        file_tmp = g_strdup_printf ("screensaver-theme-%d.xml", rand ());
+                } else {
+                        dialog = gtk_message_dialog_new (GTK_WINDOW (parent),
+                                                         GTK_DIALOG_MODAL,
+                                                         GTK_MESSAGE_ERROR,
+                                                         GTK_BUTTONS_OK,
+                                                         _("Invalid screensaver theme"));
+                        gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+                                                                  "%s",
+                                                                  _("This file does not appear to be a valid screensaver theme."));
+                        gtk_window_set_title (GTK_WINDOW (dialog), "");
+                        gtk_window_set_icon_name (GTK_WINDOW (dialog), "screensaver");
+
+                        gtk_dialog_run (GTK_DIALOG (dialog));
+                        gtk_widget_destroy (dialog);
+                        g_free (target_path);
+                        return;
+                }
+
+                target_path = g_build_filename (user_dir, file_tmp, NULL);
+                g_message ("trying %s", target_path);
+
+                g_free (file_tmp);
+                if (! gnome_vfs_uri_exists (gnome_vfs_uri_new (target_path)))
+                        break;
+        }
+                
+        g_free (user_dir);
+
+        target = g_list_append (NULL, gnome_vfs_uri_new (target_path));
+
+        dialog = file_transfer_dialog_new ();
+        gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (parent));
+        gtk_window_set_icon_name (GTK_WINDOW (dialog), "screensaver");
+
+        file_transfer_dialog_wrap_async_xfer (FILE_TRANSFER_DIALOG (dialog),
+                                              src, target,
+                                              GNOME_VFS_XFER_RECURSIVE,
+                                              GNOME_VFS_XFER_ERROR_MODE_QUERY,
+                                              GNOME_VFS_XFER_OVERWRITE_MODE_QUERY,
+                                              GNOME_VFS_PRIORITY_DEFAULT);
+        gnome_vfs_uri_list_unref (src);
+        gnome_vfs_uri_list_unref (target);
+
+        g_signal_connect (dialog, "cancel",
+                          G_CALLBACK (transfer_cancel_cb), target_path);
+        g_signal_connect (dialog, "done",
+                          G_CALLBACK (transfer_done_cb), target_path);
+
+        gtk_widget_show (dialog);
+}
+
+/* Callback issued during drag movements */
+static gboolean
+drag_motion_cb (GtkWidget      *widget,
+                GdkDragContext *context,
+                int             x,
+                int             y,
+                guint           time,
+                gpointer        data)
+{
+        return FALSE;
+}
+
+/* Callback issued during drag leaves */
+static void
+drag_leave_cb (GtkWidget      *widget,
+               GdkDragContext *context,
+	       guint           time,
+               gpointer        data)
+{
+        gtk_widget_queue_draw (widget);
+}
+
+/* Callback issued on actual drops. Attempts to load the file dropped. */
+static void
+drag_data_received_cb (GtkWidget        *widget,
+                       GdkDragContext   *context,
+                       int               x,
+                       int               y,
+                       GtkSelectionData *selection_data,
+                       guint             info,
+                       guint             time,
+                       gpointer          data)
+{
+        GtkWidget *dialog;
+        GList     *uris;
+        char      *filename = NULL;
+
+        if (!(info == TARGET_URI_LIST || info == TARGET_NS_URL))
+                return;
+
+        uris = gnome_vfs_uri_list_parse ((char *) selection_data->data);
+        if (uris != NULL && uris->data != NULL) {
+                GnomeVFSURI *uri = (GnomeVFSURI *) uris->data;
+
+                if (gnome_vfs_uri_is_local (uri))
+                        filename = gnome_vfs_unescape_string (
+                                        gnome_vfs_uri_get_path (uri),
+                                        G_DIR_SEPARATOR_S);
+                else
+                        filename = gnome_vfs_unescape_string (
+                                        gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE),
+                                        G_DIR_SEPARATOR_S);
+
+                gnome_vfs_uri_list_unref (uris);
+        }
+
+        dialog = glade_xml_get_widget (xml, "prefs_dialog");
+        theme_installer_run (dialog, filename);
+
+        g_free (filename);
+}
+
+static void
 init_capplet (void)
 {
         GtkWidget *dialog;
@@ -504,6 +701,18 @@ init_capplet (void)
                 gtk_widget_set_sensitive (blank_delay_hbox, FALSE);
 
         gtk_window_set_icon_name (GTK_WINDOW (dialog), "screensaver");
+
+
+        gtk_drag_dest_set (dialog, GTK_DEST_DEFAULT_ALL,
+                           drop_types, G_N_ELEMENTS (drop_types),
+                           GDK_ACTION_COPY | GDK_ACTION_LINK | GDK_ACTION_MOVE);
+
+        g_signal_connect (dialog, "drag-motion",
+                          G_CALLBACK (drag_motion_cb), NULL);
+        g_signal_connect (dialog, "drag-leave",
+                          G_CALLBACK (drag_leave_cb), NULL);
+        g_signal_connect (dialog, "drag-data-received",
+                          G_CALLBACK (drag_data_received_cb), NULL);
 
         gtk_widget_show_all (dialog);
 
