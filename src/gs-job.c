@@ -289,10 +289,11 @@ parse_theme (const char *path,
         if (! node)
                 return FALSE;
 
-        label_val = get_xml_config_string (doc, "/screensaver", "_label");
-        name_val  = get_xml_config_string (doc, "/screensaver", "name");
-        cmd_val   = get_xml_config_string (doc, "/screensaver/command", "name");
-        arg_val   = get_xml_config_string (doc, "/screensaver/command", "arg");
+        /* xmlChar and char differ in sign */
+        label_val = (char *) get_xml_config_string (doc, "/screensaver", "_label");
+        name_val  = (char *) get_xml_config_string (doc, "/screensaver", "name");
+        cmd_val   = (char *) get_xml_config_string (doc, "/screensaver/command", "name");
+        arg_val   = (char *) get_xml_config_string (doc, "/screensaver/command", "arg");
 
         if (! cmd_val) {
                 /* this is to support the xscreensaver config format where

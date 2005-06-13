@@ -1,3 +1,8 @@
+2005-06-13  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-job.c (parse_theme): Cast xmlChar* to char* (unsigned to
+	signed) to fix building with gcc4.  Fixes #307450.
+
 2005-06-10  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-preferences.c (theme_installer_run) 
