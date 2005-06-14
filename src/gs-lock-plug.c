@@ -223,6 +223,7 @@ monitor_progress (GSLockPlug *plug)
         GTimeVal now;
         glong    elapsed;
         glong    remaining;
+        glong    secs;
         gdouble  fraction;
         char    *message;
 
@@ -236,8 +237,10 @@ monitor_progress (GSLockPlug *plug)
 
         gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (plug->priv->progress_bar), fraction);
 
-        message = g_strdup_printf (_("About %ld seconds left"),
-                                   remaining / 1000 + 1);
+        secs = remaining / 1000 + 1;
+        message = g_strdup_printf (ngettext ("About %ld second left",
+                                             "About %ld seconds left", secs),
+                                   secs);
         gtk_progress_bar_set_text (GTK_PROGRESS_BAR (plug->priv->progress_bar),
                                    message);
         g_free (message);

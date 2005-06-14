@@ -1,3 +1,8 @@
+2005-06-14  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c (monitor_progress): Use ngettext to handle
+	plurals.  Fixes #307560.
+
 2005-06-13  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-job.c (parse_theme): Cast xmlChar* to char* (unsigned to
