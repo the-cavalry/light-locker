@@ -1,5 +1,10 @@
 2005-06-15  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c: Check if sys/select.h is present.
+	* src/gs-monitor.c: Remove unneeded includes.
+
+2005-06-15  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-preferences.c (populate_model) 
 	(compare_theme, separator_func, setup_treeview):
 	Add a separator between the builtin screensaver modes

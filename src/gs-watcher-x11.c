@@ -28,11 +28,16 @@
 #include <stdio.h>
 #include <time.h>
 #include <errno.h>
-#include <sys/select.h>
+
+#include <string.h>
 #include <sys/time.h>
 #include <sys/types.h>
+#ifdef HAVE_SYS_SELECT_H
+#include <sys/select.h>
+#endif /* HAVE_SYS_SELECT_H */
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>
-#include <string.h>
+#endif /* HAVE_UNISTD_H */
 
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
