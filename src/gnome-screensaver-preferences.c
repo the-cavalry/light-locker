@@ -290,6 +290,12 @@ populate_model (GtkTreeStore *store)
                             NAME_COLUMN, "__blank-only",
                             -1);
 
+        gtk_tree_store_append (store, &iter, NULL);
+        gtk_tree_store_set (store, &iter,
+                            LABEL_COLUMN, NULL,
+                            NAME_COLUMN, "__separator",
+                            -1);
+
         themes = get_theme_list ();
 
         if (! themes)
@@ -366,6 +372,11 @@ compare_theme  (GtkTreeModel *model,
         gtk_tree_model_get (model, a, LABEL_COLUMN, &label_a, -1);
         gtk_tree_model_get (model, b, LABEL_COLUMN, &label_b, -1);
 
+        if (! name_a)
+                return 1;
+        else if (! name_b)
+                return -1;
+
         if (strcmp (name_a, "__disabled") == 0)
                 return -1;
         else if (strcmp (name_b, "__disabled") == 0)
@@ -374,6 +385,15 @@ compare_theme  (GtkTreeModel *model,
                 return -1;
         else if (strcmp (name_b, "__blank-only") == 0)
                 return 1;
+        else if (strcmp (name_a, "__separator") == 0)
+                return -1;
+        else if (strcmp (name_b, "__separator") == 0)
+                return 1;
+
+        if (! label_a)
+                return 1;
+        else if (! label_b)
+                return -1;
 
         result = strcmp (label_a, label_b);
 
@@ -385,6 +405,23 @@ compare_theme  (GtkTreeModel *model,
         return result;
 }
 
+static gboolean
+separator_func (GtkTreeModel *model,
+                GtkTreeIter  *iter,
+                gpointer      data)
+{
+        int   column = GPOINTER_TO_INT (data);
+        char *text;
+        
+        gtk_tree_model_get (model, iter, column, &text, -1);
+        
+        if (text && strcmp (text, "__separator") == 0)
+                return TRUE;
+        
+        g_free (text);
+
+        return FALSE;
+}
 
 static void
 setup_treeview (GtkWidget *tree,
@@ -419,6 +456,11 @@ setup_treeview (GtkWidget *tree,
         gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store),
                                               0,
                                               GTK_SORT_ASCENDING);
+
+        gtk_tree_view_set_row_separator_func (GTK_TREE_VIEW (tree),
+                                              separator_func,
+                                              GINT_TO_POINTER (NAME_COLUMN),
+                                              NULL);
 
         select = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
         gtk_tree_selection_set_mode (select, GTK_SELECTION_SINGLE);
