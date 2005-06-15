@@ -466,7 +466,7 @@ get_ok_button_for_page (gint page)
                 break;
         case (SWITCH_PAGE):
                 stock_id = GTK_STOCK_REFRESH;
-                label = N_("_Login Screen");
+                label = N_("_New Login");
                 break;
         default:
                 g_assert ("Invalid notebook page");
@@ -498,7 +498,7 @@ get_switch_button_for_page (gint page)
         switch (page) {
         case (AUTH_PAGE):
                 stock_id = GTK_STOCK_REFRESH;
-                label = N_("_Login Screen");
+                label = N_("_New Login");
                 break;
         case (SWITCH_PAGE):
                 stock_id = GTK_STOCK_DIALOG_AUTHENTICATION;
@@ -948,8 +948,8 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         gtk_label_set_attributes (GTK_LABEL (widget), pattrlist);
 
-        widget = gtk_label_new (_("This option will bring you to the Login Screen.\n"
-                                  "From the Login Screen you may log in to this system\n"
+        widget = gtk_label_new (_("This option will bring you to the login screen.\n"
+                                  "From the login screen you may log in to this system\n"
                                   "as another user or select 'Quit' to return to this screen."));
         gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
 

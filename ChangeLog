@@ -1,3 +1,9 @@
+2005-06-15  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c (get_ok_button_for_page) 
+	(get_switch_button_for_page, gs_lock_plug_init):
+	Use New Login instead of Login Screen.
+
 2005-06-14  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (monitor_progress): Use ngettext to handle
