@@ -1916,7 +1916,7 @@ fusa_manager_activate_display (FusaManager                *manager,
 	      if (!client || !XGetWMName (xdisplay, client, &tp) || !tp.value)
 		continue;
 	      
-	      if (strcmp ("Xnest", tp.value) == 0 &&
+	      if (strcmp ("Xnest", (const char *) tp.value) == 0 &&
 		  XGetCommand (xdisplay, client, &client_argv, &client_argc) &&
 		  client_argc > 1 &&
 		  strcmp (display_name, client_argv[1]) == 0)

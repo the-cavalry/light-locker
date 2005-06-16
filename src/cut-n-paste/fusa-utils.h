@@ -1,5 +1,5 @@
 /* 
- * Fast User Switch Applet: fusa-vt-manager.h
+ * Fast User Switch Applet: fusa-utils.h
  * 
  * Copyright (C) 2004-2005 James M. Cape <jcape@ignore-your.tv>.
  *

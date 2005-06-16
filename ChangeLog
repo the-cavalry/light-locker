@@ -1,3 +1,9 @@
+2005-06-16  William Jon McCann  <mccann@jhu.edu>
+
+	* src/cut-n-paste/fusa-utils.h: 
+	* src/cut-n-paste/fusa-manager.c (fusa_manager_activate_display):
+	Sync up with fusa CVS.
+
 2005-06-15  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-watcher-x11.c: Check if sys/select.h is present.
