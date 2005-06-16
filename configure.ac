@@ -1293,7 +1293,7 @@ else
         set_more_warnings=no
 fi
 ])
-AC_MSG_CHECKING(for more warnings, including -Werror)
+AC_MSG_CHECKING(for more warnings)
 if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
         AC_MSG_RESULT(yes)
         CFLAGS="\
@@ -1301,7 +1301,6 @@ if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
         -Wchar-subscripts -Wmissing-declarations -Wmissing-prototypes \
         -Wnested-externs -Wpointer-arith \
         -Wcast-align -Wsign-compare \
-        -Werror \
         $CFLAGS"
 
         for option in -Wno-strict-aliasing -Wno-sign-compare; do

@@ -1,5 +1,9 @@
 2005-06-16  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac: Remove Werror.
+
+2005-06-16  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (gs_lock_plug_set_switch_enabled) 
 	(gs_lock_plug_set_property, gs_lock_plug_get_property) 
 	(gs_lock_plug_class_init): 
