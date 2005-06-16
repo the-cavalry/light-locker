@@ -52,7 +52,7 @@ install-data-hook:
 	             echo "***" ; \
 	             echo "***  Warning: gnome-screensaver has been compiled with support for" ; \
 	             echo "***           Pluggable Authentication Modules (PAM).  However, you may need to" ; \
-	             echo "***           manually install $(PAM_PREFIX)/pam.d/gnome-screensaver" ;\
+	             echo "***           manually install $(PAM_PREFIX)/pam.d/gnome-screensaver" ; \
 	             echo "***           to /etc/pam.d/gnome-screensaver.  Otherwise, unlocking might" ; \
 	             echo "***           not work." ; \
 	             echo "***" ; \
@@ -62,8 +62,9 @@ install-data-hook:
 	        echo "***" ; \
 	        echo "***  Warning: gnome-screensaver has been compiled with support for" ; \
 	        echo "***           Pluggable Authentication Modules (PAM).  However, you" ; \
-	        echo "***           need to manually add authentication for gnome-screensaver in" ;\
-	        echo "***           $(PAM_PREFIX)/pam.conf.  Otherwise, unlocking might not work." ; \
+	        echo "***           need to manually add authentication for gnome-screensaver in" ; \
+	        echo "***           $(PAM_PREFIX)/pam.conf or /etc/pam.conf.  Otherwise, " ; \
+	        echo "***           unlocking might not work." ; \
 	        echo "***" ; \
 	   fi; \
 	fi

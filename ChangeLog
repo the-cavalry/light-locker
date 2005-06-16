@@ -1,5 +1,10 @@
 2005-06-16  William Jon McCann  <mccann@jhu.edu>
 
+	* data/Makefile.am (install-data-hook): Wrap text in Solaris
+	warning message better.
+
+2005-06-16  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Add HAVE_USER_SWITCHING back.
 
 2005-06-16  William Jon McCann  <mccann@jhu.edu>
