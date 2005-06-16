@@ -184,6 +184,7 @@ AC_DEFINE_PATH(GDMCONFIGFILE, "$gdmconfigfile", [The location of the GDM configu
 
 if test -f "$gdmconfigfile"; then
 	enable_user_switching=yes
+	AC_DEFINE(HAVE_USER_SWITCHING, 1, [Define if user switching is available])
 else
 	enable_user_switching=no
 fi
@@ -1405,9 +1406,9 @@ fi
 
 dnl <= Setuid =>
 if test "x$need_setuid" = "xyes" -a "x$have_pam" != "xyes" ; then
-	echo "setuid gnome-screensaver-dialog required: yes"
+	echo "setuid dialog required: yes"
 else
-	echo "setuid gnome-screensaver-dialog required: no"
+	echo "setuid dialog required: no"
 fi
 
 echo ""

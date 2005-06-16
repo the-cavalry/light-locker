@@ -1,5 +1,9 @@
 2005-06-16  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac: Add HAVE_USER_SWITCHING back.
+
+2005-06-16  William Jon McCann  <mccann@jhu.edu>
+
 	* data/gnome-screensaver: Add PAM configuration file
 	copied from GDM.
 
