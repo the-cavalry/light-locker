@@ -112,14 +112,14 @@ struct pam_closure {
 
    On Solaris 2.6 systems, unknown services default to authenticating normally.
 
-   So, we could simply require that the person who installs xscreensaver
-   set up an "xscreensaver" PAM service.  However, if we went that route,
+   So, we could simply require that the person who installs gnome-screensaver
+   set up an "gnome-screensaver" PAM service.  However, if we went that route,
    it would have a really awful failure mode: the failure mode would be that
-   xscreensaver was willing to *lock* the screen, but would be unwilling to
+   the screensaver was willing to *lock* the screen, but would be unwilling to
    *unlock* the screen.  (With the non-PAM password code, the analagous
    situation -- security not being configured properly, for example do to the
    executable not being installed as setuid root -- the failure mode is much
-   more palettable, in that xscreensaver will refuse to *lock* the screen,
+   more palettable, in that the screensaver will refuse to *lock* the screen,
    because it can know up front that there is no password that will work.)
 
    Another route would be to have the service name to consult be computed at
@@ -361,11 +361,11 @@ pam_priv_init (int      argc,
    Really, this function should be the thing that pops up dialog boxes
    as needed, and prompts for various strings.
 
-   But, for now, xscreensaver uses its normal password-prompting dialog
+   But, for now, the screensaver uses its normal password-prompting dialog
    first, and then this function simply returns the result that has been
    typed.
 
-   This means that if PAM was using a retina scanner for auth, xscreensaver
+   This means that if PAM was using a retina scanner for auth, the screensaver
    would prompt for a password; then pam_conversation() would be called
    with a string like "Please look into the retina scanner".  The user
    would never see this string, and the prompted-for password would be

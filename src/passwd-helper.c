@@ -14,7 +14,7 @@
  * implied warranty.
  */
 
-/* The idea here is to be able to run xscreensaver without any setuid bits.
+/* The idea here is to be able to run gnome-screensaver-dialog without any setuid bits.
  * Password verification happens through an external program that you feed
  * your password to on stdin.  The external command is invoked with a user
  * name argument.
@@ -84,7 +84,7 @@ ext_run (const char *user,
                         dup2 (pfd [0], 0);
 
                 /* Helper is invoked as helper service-name [user] */
-                execlp (PASSWD_HELPER_PROGRAM, PASSWD_HELPER_PROGRAM, "xscreensaver", user, NULL);
+                execlp (PASSWD_HELPER_PROGRAM, PASSWD_HELPER_PROGRAM, "gnome-screensaver", user, NULL);
                 if (verbose)
                         g_message ("%s: %s", PASSWD_HELPER_PROGRAM, strerror (errno));
                 exit (1);

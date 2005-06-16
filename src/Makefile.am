@@ -9,19 +9,19 @@ NULL =
 INCLUDES =							\
 	-I.							\
 	-I$(srcdir)						\
-        -I$(top_srcdir)/src/cut-n-paste				\
+	-I$(top_srcdir)/src/cut-n-paste				\
 	$(GNOME_SCREENSAVER_CFLAGS)				\
 	$(GNOME_SCREENSAVER_DIALOG_CFLAGS)			\
 	$(GNOME_SCREENSAVER_CAPPLET_CFLAGS)			\
 	$(DISABLE_DEPRECATED_CFLAGS)				\
-        -DBINDIR=\""$(bindir)"\"				\
-        -DLIBEXECDIR=\""$(libexecdir)"\"			\
-        -DSAVERDIR=\""$(libexecdir)"/gnome-screensaver\"	\
-        -DTHEMESDIR=\""$(pkgdatadir)"/themes\"			\
-        -DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"  \
-        -DGLADEDIR=\"$(pkgdatadir)\"				\
-	-DPAM_SERVICE_NAME=\""xscreensaver"\"			\
-        $(WARN_CFLAGS)                                          \
+	-DBINDIR=\""$(bindir)"\"				\
+	-DLIBEXECDIR=\""$(libexecdir)"\"			\
+	-DSAVERDIR=\""$(libexecdir)"/gnome-screensaver\"	\
+	-DTHEMESDIR=\""$(pkgdatadir)"/themes\"			\
+	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
+	-DGLADEDIR=\"$(pkgdatadir)\"				\
+	-DPAM_SERVICE_NAME=\""gnome-screensaver"\"		\
+	$(WARN_CFLAGS)						\
 	$(AUTH_CFLAGS)						\
 	$(DBUS_CFLAGS)						\
 	$(FAST_USER_SWITCH_CFLAGS)				\

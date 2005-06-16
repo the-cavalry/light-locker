@@ -1,5 +1,22 @@
 2005-06-16  William Jon McCann  <mccann@jhu.edu>
 
+	* data/gnome-screensaver: Add PAM configuration file
+	copied from GDM.
+
+	* src/passwd-pam.c: Update comments for gnome-screensaver.
+
+	* src/passwd-helper.c (ext_run): Use gnome-screensaver as
+	helper service name.
+
+	* src/Makefile.am: Use gnome-screensaver as PAM service name.
+
+	* data/Makefile.am (install-data-hook): Install PAM files.
+
+	* configure.ac: Determine PAM conf dir.  Show configuration
+	summary.
+
+2005-06-16  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver.c (main): Don't use error if NULL.
 	For some reason gtk_init is failing without setting an error
 	when unable to open display.

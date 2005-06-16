@@ -16,7 +16,8 @@ glade_DATA = gnome-screensaver-preferences.glade
 EXTRA_DIST = 				\
 	$(schemas_in_files)		\
 	$(glade_DATA)			\
-	$(desktop_DATA)
+	$(desktop_DATA)			\
+	gnome-screensaver
 
 DISTCLEANFILES = $(schemas_DATA)
 
@@ -35,3 +36,34 @@ install-data-local: $(schemas_DATA)
 else
 install-data-local:
 endif
+
+install-data-hook:
+	@system=`uname`; \
+	if test -f /usr/include/security/pam_appl.h; then \
+	  if test '!' -d $(DESTDIR)$(PAM_PREFIX)/pam.d; then \
+		$(mkinstalldirs) $(DESTDIR)$(PAM_PREFIX)/pam.d; \
+		chmod 755 $(DESTDIR)$(PAM_PREFIX)/pam.d; \
+	   fi; \
+	   if test $$system = Linux; then \
+		if test '!' -f $(DESTDIR)$(PAM_PREFIX)/pam.d/gnome-screensaver; then \
+		     $(INSTALL_DATA) gnome-screensaver $(DESTDIR)$(PAM_PREFIX)/pam.d/gnome-screensaver; \
+		fi; \
+		if test "x$(PAM_PREFIX)" != "x/etc/pam.d"; then \
+	             echo "***" ; \
+	             echo "***  Warning: gnome-screensaver has been compiled with support for" ; \
+	             echo "***           Pluggable Authentication Modules (PAM).  However, you may need to" ; \
+	             echo "***           manually install $(PAM_PREFIX)/pam.d/gnome-screensaver" ;\
+	             echo "***           to /etc/pam.d/gnome-screensaver.  Otherwise, unlocking might" ; \
+	             echo "***           not work." ; \
+	             echo "***" ; \
+		fi; \
+	   fi; \
+	   if test $$system = SunOS; then \
+	        echo "***" ; \
+	        echo "***  Warning: gnome-screensaver has been compiled with support for" ; \
+	        echo "***           Pluggable Authentication Modules (PAM).  However, you" ; \
+	        echo "***           need to manually add authentication for gnome-screensaver in" ;\
+	        echo "***           $(PAM_PREFIX)/pam.conf.  Otherwise, unlocking might not work." ; \
+	        echo "***" ; \
+	   fi; \
+	fi

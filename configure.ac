@@ -125,6 +125,23 @@ else
         AC_SUBST(DBUS_CFLAGS)
 fi
 
+dnl
+dnl PAM prefix
+dnl
+withval=""
+AC_ARG_WITH(pam-prefix,
+[  --with-pam-prefix=<prefix>   specify where pam files go],[
+if test x$withval != x; then
+   AC_MSG_RESULT("PAM files will be installed in prefix ${withval}.")
+fi])
+if test x$withval != x; then
+	PAM_PREFIX_UNEXPANDED="$withval"
+else
+	PAM_PREFIX_UNEXPANDED="$sysconfdir"
+fi
+PAM_PREFIX=`eval echo $PAM_PREFIX_UNEXPANDED`
+AC_SUBST(PAM_PREFIX)
+
 #############################
 # Fast User Switching
 #############################
@@ -166,8 +183,13 @@ fi
 AC_DEFINE_PATH(GDMCONFIGFILE, "$gdmconfigfile", [The location of the GDM configuration file])
 
 if test -f "$gdmconfigfile"; then
-	AC_DEFINE(HAVE_USER_SWITCHING, 1, [Define if user switching is available])
+	enable_user_switching=yes
+else
+	enable_user_switching=no
 fi
+
+AM_CONDITIONAL(HAVE_USER_SWITCHING, test x$enable_user_switching = xyes)
+AC_SUBST(HAVE_USER_SWITCHING)
 
 ###############################################################################
 #
@@ -1341,3 +1363,51 @@ src/cut-n-paste/Makefile
 data/Makefile
 savers/Makefile
 ])
+
+echo ""
+echo "gnome-screensaver configuration summary:"
+echo "========================================"
+echo ""
+
+dnl <= Prefixes =>
+echo "prefix : $prefix"
+echo "sysconf dir : "`eval echo $sysconfdir`
+echo "PAM prefix : $PAM_PREFIX"
+echo "data dir : "`eval echo $datadir`
+echo ""
+
+dnl <= Locking =>
+if test "x$enable_locking" = "xyes"; then
+	echo "Screen locking enabled: yes"
+else
+	echo "Screen locking enabled: no"
+fi
+dnl <= DPMS =>
+if test "x$have_dpms" = "xyes"; then
+	echo "Power management enabled: yes"
+else
+	echo "Power management enabled: no"
+fi
+
+dnl <= User Switching =>
+if test "x$enable_user_switching" = "xyes"; then
+	echo "User switching enabled: yes"
+else
+	echo "User switching enabled: no"
+fi
+
+dnl <= PAM =>
+if test "x$have_pam" = "xyes"; then
+	echo "PAM support: yes"
+else
+	echo "PAM support: no"
+fi
+
+dnl <= Setuid =>
+if test "x$need_setuid" = "xyes" -a "x$have_pam" != "xyes" ; then
+	echo "setuid gnome-screensaver-dialog required: yes"
+else
+	echo "setuid gnome-screensaver-dialog required: no"
+fi
+
+echo ""
