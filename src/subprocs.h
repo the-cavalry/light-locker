@@ -16,6 +16,8 @@
 #ifndef __GS_SUBPROCS_H
 #define __GS_SUBPROCS_H
 
+#include <signal.h>
+
 G_BEGIN_DECLS
 
 void unblock_sigchld (void);

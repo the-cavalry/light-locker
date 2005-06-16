@@ -65,8 +65,12 @@ main (int    argc,
 #endif 
 
         if (! gtk_init_with_args (&argc, &argv, NULL, entries, NULL, &error)) {
-                g_warning ("%s", error->message);
-                g_error_free (error);
+                if (error) {
+                        g_warning ("%s", error->message);
+                        g_error_free (error);
+                } else {
+                        g_warning ("Unable to initialize GTK+");
+                }
                 exit (1);
         }
 
@@ -80,9 +84,14 @@ main (int    argc,
         if (! monitor)
                 exit (1);
 
+        error = NULL;
         if (! gs_monitor_start (monitor, &error)) {
-                g_warning ("%s", error->message);
-                g_error_free (error);
+                if (error) {
+                        g_warning ("%s", error->message);
+                        g_error_free (error);
+                } else {
+                        g_warning ("Unable to start screensaver");
+                }
                 exit (1);
         }
 

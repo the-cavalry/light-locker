@@ -1,5 +1,13 @@
 2005-06-16  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver.c (main): Don't use error if NULL.
+	For some reason gtk_init is failing without setting an error
+	when unable to open display.
+
+	* src/subprocs.h: Add missing include.
+
+2005-06-16  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Remove Werror.
 
 2005-06-16  William Jon McCann  <mccann@jhu.edu>
