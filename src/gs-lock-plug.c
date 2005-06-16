@@ -37,6 +37,7 @@
 #include "gs-lock-plug.h"
 
 #include "passwd.h"
+
 #include "fusa-manager.h"
 
 enum { 
@@ -66,6 +67,7 @@ struct GSLockPlugPrivate
         GtkWidget   *switch_button;
 
         gboolean     caps_lock_on;
+        gboolean     switch_enabled;
         gboolean     logout_enabled;
 
         guint        timeout;
@@ -92,7 +94,8 @@ enum {
 
 enum {
         PROP_0,
-        PROP_LOGOUT_ENABLED
+        PROP_LOGOUT_ENABLED,
+        PROP_SWITCH_ENABLED
 };
 
 static GObjectClass *parent_class = NULL;
@@ -333,6 +336,24 @@ gs_lock_plug_set_logout_enabled (GSLockPlug *plug,
 }
 
 static void
+gs_lock_plug_set_switch_enabled (GSLockPlug *plug,
+                                 gboolean    switch_enabled)
+{
+        g_return_if_fail (GS_LOCK_PLUG (plug));
+
+        if (plug->priv->switch_enabled == switch_enabled)
+                return;
+
+        plug->priv->switch_enabled = switch_enabled;
+        g_object_notify (G_OBJECT (plug), "switch-enabled");
+
+        if (switch_enabled)
+                gtk_widget_show (plug->priv->switch_button);
+        else
+                gtk_widget_hide (plug->priv->switch_button);
+}
+
+static void
 gs_lock_plug_set_property (GObject            *object,
                            guint               prop_id,
                            const GValue       *value,
@@ -345,6 +366,9 @@ gs_lock_plug_set_property (GObject            *object,
         switch (prop_id) {
         case PROP_LOGOUT_ENABLED:
                 gs_lock_plug_set_logout_enabled (self, g_value_get_boolean (value));
+                break;
+        case PROP_SWITCH_ENABLED:
+                gs_lock_plug_set_switch_enabled (self, g_value_get_boolean (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -365,6 +389,9 @@ gs_lock_plug_get_property (GObject    *object,
         switch (prop_id) {
         case PROP_LOGOUT_ENABLED:
                 g_value_set_boolean (value, self->priv->logout_enabled);
+                break;
+        case PROP_SWITCH_ENABLED:
+                g_value_set_boolean (value, self->priv->switch_enabled);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -403,6 +430,13 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
         g_object_class_install_property (object_class,
                                          PROP_LOGOUT_ENABLED,
                                          g_param_spec_boolean ("logout-enabled",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_SWITCH_ENABLED,
+                                         g_param_spec_boolean ("switch-enabled",
                                                                NULL,
                                                                NULL,
                                                                FALSE,
@@ -1015,6 +1049,8 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         if (! plug->priv->logout_enabled)
                 gtk_widget_hide (plug->priv->logout_button);
+        if (! plug->priv->switch_enabled)
+                gtk_widget_hide (plug->priv->switch_button);
 
         plug->priv->timeout = 30000;
 

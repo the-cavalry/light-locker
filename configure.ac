@@ -155,7 +155,7 @@ if test "x$gdmconfigfile" == "x" -o "x$gdmconfigfile" == "xno"; then
 	elif test -f "/etc/X11/gdm/gdm.conf"; then
 		gdmconfigfile="/etc/X11/gdm/gdm.conf"
 	else
-		AC_MSG_ERROR([The GDM config file could not be found, please specify it manually])
+		gdmconfigfile=""
 	fi
 
 	AC_MSG_RESULT([$gdmconfigfile])
@@ -165,6 +165,9 @@ fi
 
 AC_DEFINE_PATH(GDMCONFIGFILE, "$gdmconfigfile", [The location of the GDM configuration file])
 
+if test -f "$gdmconfigfile"; then
+	AC_DEFINE(HAVE_USER_SWITCHING, 1, [Define if user switching is available])
+fi
 
 ###############################################################################
 #

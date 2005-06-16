@@ -1,5 +1,16 @@
 2005-06-16  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (gs_lock_plug_set_switch_enabled) 
+	(gs_lock_plug_set_property, gs_lock_plug_get_property) 
+	(gs_lock_plug_class_init): 
+	* src/gnome-screensaver-dialog.c (popup_dialog_idle, main):
+	Make showing the New Login button a property.
+
+	* configure.ac: Only enable user switching if the system
+	has the capability.
+
+2005-06-16  William Jon McCann  <mccann@jhu.edu>
+
 	* src/cut-n-paste/fusa-utils.h: 
 	* src/cut-n-paste/fusa-manager.c (fusa_manager_activate_display):
 	Sync up with fusa CVS.

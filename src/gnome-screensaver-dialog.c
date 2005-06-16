@@ -50,6 +50,7 @@
 static gboolean verbose       = FALSE;
 static gboolean show_version  = FALSE;
 static gboolean enable_logout = FALSE;
+static gboolean enable_switch = FALSE;
 
 static GOptionEntry entries [] = {
         { "verbose", 0, 0, G_OPTION_ARG_NONE, &verbose,
@@ -130,6 +131,10 @@ popup_dialog_idle (void)
 
         if (enable_logout) {
                 g_object_set (widget, "logout-enabled", TRUE, NULL);
+        }
+
+        if (enable_switch) {
+                g_object_set (widget, "switch-enabled", TRUE, NULL);
         }
 
         g_signal_connect (GS_LOCK_PLUG (widget), "response", G_CALLBACK (response_cb), NULL);
@@ -271,6 +276,10 @@ main (int    argc,
                 g_error_free (error);
                 exit (1);
         }
+
+#ifdef HAVE_USER_SWITCHING
+        enable_switch = TRUE;
+#endif
 
         if (show_version) {
                 g_print ("%s %s\n", argv [0], VERSION);
