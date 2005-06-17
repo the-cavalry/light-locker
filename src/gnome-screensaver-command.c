@@ -46,6 +46,8 @@ static gboolean do_lock       = FALSE;
 static gboolean do_cycle      = FALSE;
 static gboolean do_activate   = FALSE;
 static gboolean do_deactivate = FALSE;
+static gboolean do_throttle   = FALSE;
+static gboolean do_unthrottle = FALSE;
 static gboolean do_version    = FALSE;
 static gboolean do_poke       = FALSE;
 
@@ -60,6 +62,10 @@ static GOptionEntry entries [] = {
           N_("Turn the screensaver on (blank the screen)"), NULL },
         { "deactivate", 0, 0, G_OPTION_ARG_NONE, &do_deactivate,
           N_("If the screensaver is active then deactivate it (un-blank the screen)"), NULL },
+        { "throttle", 0, 0, G_OPTION_ARG_NONE, &do_throttle,
+          N_("Disable running graphical themes while blanked"), NULL },
+        { "unthrottle", 0, 0, G_OPTION_ARG_NONE, &do_unthrottle,
+          N_("Enable running graphical themes while blanked (if applicable)"), NULL },
         { "poke", 0, 0, G_OPTION_ARG_NONE, &do_poke,
           N_("Poke the running screensaver to simulate user activity"), NULL },
         { "version", 0, 0, G_OPTION_ARG_NONE, &do_version,
@@ -139,6 +145,10 @@ do_command (DBusConnection *connection)
                 name = "activate";
         else if (do_deactivate)
                 name = "deactivate";
+        else if (do_throttle)
+                name = "throttle";
+        else if (do_unthrottle)
+                name = "unthrottle";
         else if (do_cycle)
                 name = "cycle";
         else if (do_poke)

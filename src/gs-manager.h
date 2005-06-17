@@ -51,30 +51,32 @@ typedef struct
 
 } GSManagerClass;
 
-GType       gs_manager_get_type (void);
+GType       gs_manager_get_type             (void);
 
-GSManager * gs_manager_new                (gint       lock_delay,
-                                           gint       cycle_delay);
+GSManager * gs_manager_new                  (gint       lock_delay,
+                                             gint       cycle_delay);
 
-gboolean    gs_manager_blank              (GSManager  *manager);
-gboolean    gs_manager_unblank            (GSManager  *manager);
-gboolean    gs_manager_cycle              (GSManager  *manager);
+gboolean    gs_manager_blank                (GSManager  *manager);
+gboolean    gs_manager_unblank              (GSManager  *manager);
+gboolean    gs_manager_cycle                (GSManager  *manager);
 
-gboolean    gs_manager_is_blanked         (GSManager  *manager);
-void        gs_manager_set_lock_enabled   (GSManager  *manager,
-                                           gboolean    lock_enabled);
-void        gs_manager_set_lock_timeout   (GSManager  *manager,
-                                           glong       lock_timeout);
-void        gs_manager_set_logout_enabled (GSManager  *manager,
-                                           gboolean    logout_enabled);
-void        gs_manager_set_logout_timeout (GSManager  *manager,
-                                           glong       logout_timeout);
-void        gs_manager_set_cycle_timeout  (GSManager  *manager,
-                                           glong       cycle_timeout);
-void        gs_manager_set_themes         (GSManager  *manager,
-                                           GSList     *themes);
-void        gs_manager_set_mode           (GSManager  *manager,
-                                           GSSaverMode mode);
+gboolean    gs_manager_is_blanked           (GSManager  *manager);
+void        gs_manager_set_lock_enabled     (GSManager  *manager,
+                                             gboolean    lock_enabled);
+void        gs_manager_set_lock_timeout     (GSManager  *manager,
+                                             glong       lock_timeout);
+void        gs_manager_set_logout_enabled   (GSManager  *manager,
+                                             gboolean    logout_enabled);
+void        gs_manager_set_logout_timeout   (GSManager  *manager,
+                                             glong       logout_timeout);
+void        gs_manager_set_throttle_enabled (GSManager  *manager,
+                                             gboolean    lock_enabled);
+void        gs_manager_set_cycle_timeout    (GSManager  *manager,
+                                             glong       cycle_timeout);
+void        gs_manager_set_themes           (GSManager  *manager,
+                                             GSList     *themes);
+void        gs_manager_set_mode             (GSManager  *manager,
+                                             GSSaverMode mode);
 
 G_END_DECLS
 

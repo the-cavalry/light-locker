@@ -49,6 +49,7 @@ struct GSManagerPrivate
 
         guint        lock_enabled : 1;
         guint        logout_enabled : 1;
+        guint        throttle_enabled : 1;
         guint        blank_active : 1;
 
         guint        dialog_up : 1;
@@ -77,6 +78,7 @@ enum {
         PROP_CYCLE_TIMEOUT,
         PROP_LOGOUT_TIMEOUT,
         PROP_BLANK_ACTIVE,
+        PROP_THROTTLE_ENABLED,
 };
 
 static GObjectClass *parent_class = NULL;
@@ -109,6 +111,27 @@ gs_manager_set_themes (GSManager *manager,
 
         for (l = themes; l; l = l->next) {
                 manager->priv->themes = g_slist_append (manager->priv->themes, g_strdup (l->data));
+        }
+}
+
+void
+gs_manager_set_throttle_enabled (GSManager *manager,
+                                 gboolean   throttle_enabled)
+{
+        g_return_if_fail (GS_IS_MANAGER (manager));
+
+        if (manager->priv->throttle_enabled != throttle_enabled) {
+                GSList *l;
+
+                manager->priv->throttle_enabled = throttle_enabled;
+
+                for (l = manager->priv->jobs; l; l = l->next) {
+                        if (throttle_enabled) {
+                                gs_job_stop (GS_JOB (l->data));
+                        } else {
+                                gs_job_start (GS_JOB (l->data));
+                        }
+                }
         }
 }
 
@@ -241,6 +264,9 @@ gs_manager_cycle (GSManager *manager)
         if (manager->priv->dialog_up)
                 return FALSE;
 
+        if (manager->priv->throttle_enabled)
+                return FALSE;
+
         theme = select_theme (manager);
 
         for (l = manager->priv->jobs; l; l = l->next) {
@@ -309,6 +335,9 @@ gs_manager_set_property (GObject            *object,
         self = GS_MANAGER (object);
 
         switch (prop_id) {
+        case PROP_THROTTLE_ENABLED:
+                gs_manager_set_throttle_enabled (self, g_value_get_boolean (value));
+                break;
         case PROP_LOCK_ENABLED:
                 gs_manager_set_lock_enabled (self, g_value_get_boolean (value));
                 break;
@@ -341,6 +370,9 @@ gs_manager_get_property (GObject            *object,
         self = GS_MANAGER (object);
 
         switch (prop_id) {
+        case PROP_THROTTLE_ENABLED:
+                g_value_set_boolean (value, self->priv->throttle_enabled);
+                break;
         case PROP_LOCK_ENABLED:
                 g_value_set_boolean (value, self->priv->lock_enabled);
                 break;
@@ -444,6 +476,13 @@ gs_manager_class_init (GSManagerClass *klass)
                                                             G_MAXLONG,
                                                             300000,
                                                             G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_THROTTLE_ENABLED,
+                                         g_param_spec_boolean ("throttle-enabled",
+                                                               NULL,
+                                                               NULL,
+                                                               TRUE,
+                                                               G_PARAM_READWRITE));
 
         g_type_class_add_private (klass, sizeof (GSManagerPrivate));
 }
@@ -542,10 +581,11 @@ window_dialog_up_cb (GSWindow  *window,
 
         manager->priv->dialog_up = TRUE;
 
-        for (l = manager->priv->jobs; l; l = l->next) {
-                gs_job_suspend (GS_JOB (l->data), TRUE);
+        if (! manager->priv->throttle_enabled) {
+                for (l = manager->priv->jobs; l; l = l->next) {
+                        gs_job_suspend (GS_JOB (l->data), TRUE);
+                }
         }
-
 }
 
 static void
@@ -557,8 +597,10 @@ window_dialog_down_cb (GSWindow  *window,
         g_return_if_fail (manager != NULL);
         g_return_if_fail (GS_IS_MANAGER (manager));
 
-        for (l = manager->priv->jobs; l; l = l->next) {
-                gs_job_suspend (GS_JOB (l->data), FALSE);
+        if (! manager->priv->throttle_enabled) {
+                for (l = manager->priv->jobs; l; l = l->next) {
+                        gs_job_suspend (GS_JOB (l->data), FALSE);
+                }
         }
 
         manager->priv->dialog_up = FALSE;
@@ -610,7 +652,10 @@ window_show_cb (GSWindow  *window,
         g_free (path);
 
         g_object_ref (job);
-        gs_job_start (job);
+
+        if (! manager->priv->throttle_enabled) {
+                gs_job_start (job);
+        }
 
         manager->priv->jobs = g_slist_append (manager->priv->jobs, job);
 
@@ -774,6 +819,7 @@ gs_manager_unblank (GSManager *manager)
         manager->priv->blank_active = FALSE;
         manager->priv->blank_time = 0;
         manager->priv->lock_enabled = FALSE;
+        manager->priv->throttle_enabled = FALSE;
 
         g_signal_emit (manager, signals [UNBLANKED], 0);
 

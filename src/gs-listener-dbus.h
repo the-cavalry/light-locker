@@ -50,6 +50,8 @@ typedef struct
         void            (* cycle)       (GSListener *listener);
         void            (* quit)        (GSListener *listener);
         void            (* poke)        (GSListener *listener);
+        void            (* throttle)    (GSListener *listener);
+        void            (* unthrottle)  (GSListener *listener);
 
 } GSListenerClass;
 

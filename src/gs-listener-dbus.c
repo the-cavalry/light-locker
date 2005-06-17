@@ -70,6 +70,8 @@ enum {
         CYCLE,
         QUIT,
         POKE,
+        THROTTLE,
+        UNTHROTTLE,
         LAST_SIGNAL
 };
 
@@ -134,6 +136,14 @@ gs_listener_message_handler (DBusConnection *connection,
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "deactivate")) {
                 g_signal_emit (listener, signals [DEACTIVATE], 0);
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "throttle")) {
+                g_signal_emit (listener, signals [THROTTLE], 0);
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "unthrottle")) {
+                g_signal_emit (listener, signals [UNTHROTTLE], 0);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "poke")) {
@@ -269,6 +279,26 @@ gs_listener_class_init (GSListenerClass *klass)
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GSListenerClass, deactivate),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals [THROTTLE] =
+                g_signal_new ("throttle",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, throttle),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals [UNTHROTTLE] =
+                g_signal_new ("unthrottle",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, unthrottle),
                               NULL,
                               NULL,
                               g_cclosure_marshal_VOID__VOID,

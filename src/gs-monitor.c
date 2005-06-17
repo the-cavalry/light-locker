@@ -141,6 +141,20 @@ listener_deactivate_cb (GSListener *listener,
 }
 
 static void
+listener_throttle_cb (GSListener *listener,
+                      GSMonitor  *monitor)
+{
+        gs_manager_set_throttle_enabled (monitor->priv->manager, TRUE);
+}
+
+static void
+listener_unthrottle_cb (GSListener *listener,
+                        GSMonitor  *monitor)
+{
+        gs_manager_set_throttle_enabled (monitor->priv->manager, FALSE);
+}
+
+static void
 listener_poke_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
@@ -185,6 +199,10 @@ gs_monitor_init (GSMonitor *monitor)
                           G_CALLBACK (listener_activate_cb), monitor);
         g_signal_connect (monitor->priv->listener, "deactivate",
                           G_CALLBACK (listener_deactivate_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "throttle",
+                          G_CALLBACK (listener_throttle_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "unthrottle",
+                          G_CALLBACK (listener_unthrottle_cb), monitor);
         g_signal_connect (monitor->priv->listener, "poke",
                           G_CALLBACK (listener_poke_cb), monitor);
 

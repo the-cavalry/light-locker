@@ -1,3 +1,19 @@
+2005-06-17  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-monitor.c (listener_throttle_cb, listener_unthrottle_cb) 
+	(gs_monitor_init): 
+	* src/gs-manager.c (gs_manager_set_throttle_enabled) 
+	(gs_manager_cycle, gs_manager_set_property) 
+	(gs_manager_get_property, gs_manager_class_init) 
+	(window_dialog_up_cb, window_dialog_down_cb, window_show_cb): 
+	* src/gs-listener-dbus.c (gs_listener_message_handler) 
+	(gs_listener_class_init): 
+	* src/gnome-screensaver-command.c (do_command):
+	Add support for throttling the screensaver.  When throttling is
+	enabled the screensaver will do its best to use as few resources
+	as possible.  At the moment this only involves stopping themes
+	from running.
+
 2005-06-16  William Jon McCann  <mccann@jhu.edu>
 
 	* data/Makefile.am (install-data-hook): Wrap text in Solaris
