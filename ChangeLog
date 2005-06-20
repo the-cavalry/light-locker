@@ -1,3 +1,24 @@
+2005-06-20  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-monitor.c (manager_blanked_cb, manager_unblanked_cb) 
+	(watcher_idle_cb, listener_lock_cb, listener_quit_cb) 
+	(listener_active_changed_cb, listener_throttled_changed_cb) 
+	(gs_monitor_init, gs_monitor_start): Use listener to hold state.
+
+	* src/gs-listener-dbus.c (gs_listener_send_signal_active_changed) 
+	(gs_listener_send_signal_throttle_enabled_changed) 
+	(gs_listener_set_active, gs_listener_set_throttle_enabled) 
+	(listener_property_set_bool, raise_property_type_error) 
+	(listener_set_property, listener_get_property) 
+	(gs_listener_message_handler, gs_listener_set_property) 
+	(gs_listener_get_property, gs_listener_class_init): Use a property
+	based approach for the dbus object interface.  This makes it much
+	easier to handle getting values as well as setting them.
+
+	* src/gnome-screensaver-command.c (screensaver_send_message_bool) 
+	(screensaver_send_message_void, do_command): Use new dbus object
+	methods.
+
 2005-06-17  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-monitor.c (listener_throttle_cb, listener_unthrottle_cb) 

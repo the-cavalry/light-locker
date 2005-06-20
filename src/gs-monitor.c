@@ -80,40 +80,35 @@ static void
 manager_blanked_cb (GSManager *manager,
                     GSMonitor *monitor)
 {
-        gs_listener_send_signal_activated (monitor->priv->listener);
 }
 
 static void
 manager_unblanked_cb (GSManager *manager,
                       GSMonitor *monitor)
 {
-        gs_watcher_set_active (monitor->priv->watcher, TRUE);
-        gs_listener_send_signal_deactivated (monitor->priv->listener);
+        gs_listener_set_active (monitor->priv->listener, FALSE);
 }
 
 static void
 watcher_idle_cb (GSWatcher *watcher,
                  GSMonitor *monitor)
 {
-        gs_watcher_set_active (monitor->priv->watcher, FALSE);
-        gs_manager_blank (monitor->priv->manager);
+        gs_listener_set_active (monitor->priv->listener, TRUE);
 }
 
 static void
 listener_lock_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
-        gs_watcher_set_active (monitor->priv->watcher, FALSE);
         gs_manager_set_lock_enabled (monitor->priv->manager, TRUE);
-        gs_manager_blank (monitor->priv->manager);
+        gs_listener_set_active (monitor->priv->listener, TRUE);
 }
 
 static void
 listener_quit_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
-        gs_watcher_set_active (monitor->priv->watcher, FALSE);
-        gs_manager_unblank (monitor->priv->manager);
+        gs_listener_set_active (monitor->priv->listener, FALSE);
         gnome_screensaver_quit ();
 }
 
@@ -125,33 +120,25 @@ listener_cycle_cb (GSListener *listener,
 }
 
 static void
-listener_activate_cb (GSListener *listener,
-                      GSMonitor  *monitor)
+listener_active_changed_cb (GSListener *listener,
+                            gboolean    active,
+                            GSMonitor  *monitor)
 {
-        gs_watcher_set_active (monitor->priv->watcher, FALSE);
-        gs_manager_blank (monitor->priv->manager);
+        if (active) {
+                gs_watcher_set_active (monitor->priv->watcher, FALSE);
+                gs_manager_blank (monitor->priv->manager);
+        } else {
+                gs_manager_unblank (monitor->priv->manager);
+                gs_watcher_set_active (monitor->priv->watcher, TRUE);
+        }
 }
 
 static void
-listener_deactivate_cb (GSListener *listener,
-                        GSMonitor  *monitor)
+listener_throttled_changed_cb (GSListener *listener,
+                               gboolean    enabled,
+                               GSMonitor  *monitor)
 {
-        gs_manager_unblank (monitor->priv->manager);
-        gs_watcher_set_active (monitor->priv->watcher, TRUE);
-}
-
-static void
-listener_throttle_cb (GSListener *listener,
-                      GSMonitor  *monitor)
-{
-        gs_manager_set_throttle_enabled (monitor->priv->manager, TRUE);
-}
-
-static void
-listener_unthrottle_cb (GSListener *listener,
-                        GSMonitor  *monitor)
-{
-        gs_manager_set_throttle_enabled (monitor->priv->manager, FALSE);
+        gs_manager_set_throttle_enabled (monitor->priv->manager, enabled);
 }
 
 static void
@@ -195,14 +182,10 @@ gs_monitor_init (GSMonitor *monitor)
                           G_CALLBACK (listener_quit_cb), monitor);
         g_signal_connect (monitor->priv->listener, "cycle",
                           G_CALLBACK (listener_cycle_cb), monitor);
-        g_signal_connect (monitor->priv->listener, "activate",
-                          G_CALLBACK (listener_activate_cb), monitor);
-        g_signal_connect (monitor->priv->listener, "deactivate",
-                          G_CALLBACK (listener_deactivate_cb), monitor);
-        g_signal_connect (monitor->priv->listener, "throttle",
-                          G_CALLBACK (listener_throttle_cb), monitor);
-        g_signal_connect (monitor->priv->listener, "unthrottle",
-                          G_CALLBACK (listener_unthrottle_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "active-changed",
+                          G_CALLBACK (listener_active_changed_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "throttle-enabled-changed",
+                          G_CALLBACK (listener_throttled_changed_cb), monitor);
         g_signal_connect (monitor->priv->listener, "poke",
                           G_CALLBACK (listener_poke_cb), monitor);
 
@@ -269,7 +252,7 @@ gs_monitor_start (GSMonitor *monitor,
                 return FALSE;
         }
 
-        gs_watcher_set_active (monitor->priv->watcher, TRUE);
+        gs_listener_set_active (monitor->priv->listener, FALSE);
 
         return TRUE;
 }

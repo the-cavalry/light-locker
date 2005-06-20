@@ -61,23 +61,27 @@ static DBusHandlerResult gs_listener_message_handler    (DBusConnection *connect
 struct GSListenerPrivate
 {
         DBusConnection *connection;
+
+        guint           active : 1;
+        guint           throttle_enabled : 1;
 };
 
 enum {
         LOCK,
-        ACTIVATE,
-        DEACTIVATE,
         CYCLE,
         QUIT,
         POKE,
-        THROTTLE,
-        UNTHROTTLE,
+        ACTIVE_CHANGED,
+        THROTTLE_ENABLED_CHANGED,
         LAST_SIGNAL
 };
 
 enum {
         PROP_0,
+        PROP_ACTIVE,
+        PROP_THROTTLE_ENABLED,
 };
+
 
 static DBusObjectPathVTable
 gs_listener_vtable = { &gs_listener_unregister_handler,
@@ -108,15 +112,242 @@ gs_listener_unregister_handler (DBusConnection *connection,
 {
 }
 
+static void
+gs_listener_send_signal_active_changed (GSListener *listener)
+{
+        DBusMessage    *message;
+	DBusMessageIter iter;
+        dbus_bool_t     active;
+
+        g_return_if_fail (listener != NULL);
+
+        message = dbus_message_new_signal (GS_LISTENER_PATH,
+                                           GS_LISTENER_SERVICE,
+                                           "ActiveChanged");
+
+        active = listener->priv->active;
+	dbus_message_iter_init_append (message, &iter);
+	dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &active);
+
+        if (! dbus_connection_send (listener->priv->connection, message, NULL)) {
+                g_warning ("Could not send ActiveChanged signal");
+        }
+
+        dbus_message_unref (message);
+}
+
+static void
+gs_listener_send_signal_throttle_enabled_changed (GSListener *listener)
+{
+        DBusMessage    *message;
+	DBusMessageIter iter;
+        dbus_bool_t     enabled;
+
+        g_return_if_fail (listener != NULL);
+
+        message = dbus_message_new_signal (GS_LISTENER_PATH,
+                                           GS_LISTENER_SERVICE,
+                                           "ThrottleEnabledChanged");
+
+        enabled = listener->priv->throttle_enabled;
+	dbus_message_iter_init_append (message, &iter);
+	dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &enabled);
+
+        if (! dbus_connection_send (listener->priv->connection, message, NULL)) {
+                g_warning ("Could not send ThrottleEnabledChanged signal");
+        }
+
+        dbus_message_unref (message);
+}
+
+void
+gs_listener_set_active (GSListener *listener,
+                        gboolean    active)
+{
+        g_return_if_fail (GS_IS_LISTENER (listener));
+
+        if (listener->priv->active != active) {
+
+                listener->priv->active = active;
+
+                g_signal_emit (listener, signals [ACTIVE_CHANGED], 0, active);
+                gs_listener_send_signal_active_changed (listener);
+        }
+}
+
+void
+gs_listener_set_throttle_enabled (GSListener *listener,
+                                  gboolean    enabled)
+{
+        g_return_if_fail (GS_IS_LISTENER (listener));
+
+        if (listener->priv->throttle_enabled != enabled) {
+
+                listener->priv->throttle_enabled = enabled;
+
+                g_signal_emit (listener, signals [THROTTLE_ENABLED_CHANGED], 0, enabled);
+                gs_listener_send_signal_throttle_enabled_changed (listener);
+        }
+}
+
+static dbus_bool_t
+listener_property_set_bool (GSListener *listener,
+                            guint       prop_id,
+                            dbus_bool_t value)
+{
+        switch (prop_id) {
+        case PROP_ACTIVE:
+                gs_listener_set_active (listener, value);
+                return TRUE;
+                break;
+        case PROP_THROTTLE_ENABLED:
+                gs_listener_set_throttle_enabled (listener, value);
+                return TRUE;
+                break;
+        default:
+                break;
+        }
+
+        return FALSE;
+}
+
+static void
+raise_property_type_error (DBusConnection *connection,
+                           DBusMessage    *in_reply_to,
+                           const char     *device_id)
+{
+        char         buf [512];
+        DBusMessage *reply;
+
+        snprintf (buf, 511,
+                  "Type mismatch setting property with id %s",
+                  device_id);
+        g_warning (buf);
+
+        reply = dbus_message_new_error (in_reply_to,
+                                        "org.gnome.screensaver.TypeMismatch",
+                                        buf);
+        if (reply == NULL)
+                g_error ("No memory");
+        if (!dbus_connection_send (connection, reply, NULL))
+                g_error ("No memory");
+
+        dbus_message_unref (reply);
+}
+
+static DBusHandlerResult
+listener_set_property (GSListener     *listener,
+                       DBusConnection *connection,
+                       DBusMessage    *message,
+                       guint           prop_id)
+{
+        const char     *path;
+        int             type;
+        gboolean        rc;
+        DBusMessageIter iter;
+        DBusMessage    *reply;
+
+        path = dbus_message_get_path (message);
+
+        dbus_message_iter_init (message, &iter);
+        type = dbus_message_iter_get_arg_type (&iter);
+        rc = FALSE;
+
+        switch (type) {
+        case DBUS_TYPE_BOOLEAN:
+                {
+                        dbus_bool_t v;
+                        dbus_message_iter_get_basic (&iter, &v);
+                        rc = listener_property_set_bool (listener, prop_id, v);
+                        break;
+                }
+        default:
+                g_warning ("Unsupported property type %d", type);
+                break;
+        }
+
+        if (! rc) {
+                raise_property_type_error (connection, message, path);
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+
+        reply = dbus_message_new_method_return (message);
+
+        if (reply == NULL)
+                g_error ("No memory");
+
+        if (!dbus_connection_send (connection, reply, NULL))
+                g_error ("No memory");
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
+listener_get_property (GSListener     *listener,
+                       DBusConnection *connection,
+                       DBusMessage    *message,
+                       guint           prop_id)
+{
+        const char     *path;
+        DBusMessageIter iter;
+        DBusMessage    *reply;
+
+        path = dbus_message_get_path (message);
+
+        reply = dbus_message_new_method_return (message);
+
+	dbus_message_iter_init_append (reply, &iter);
+
+        if (reply == NULL)
+                g_error ("No memory");
+
+	switch (prop_id) {
+	case PROP_ACTIVE:
+                {
+                        dbus_bool_t b;
+                        b = listener->priv->active;
+                        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &b);
+                }
+                break;
+	case PROP_THROTTLE_ENABLED:
+                {
+                        dbus_bool_t b;
+                        b = listener->priv->throttle_enabled;
+                        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &b);
+                }
+                break;
+        default:
+                g_warning ("Unsupported property id %d", prop_id);
+                break;
+        }
+
+        if (!dbus_connection_send (connection, reply, NULL))
+                g_error ("No memory");
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
 static DBusHandlerResult
 gs_listener_message_handler (DBusConnection *connection,
                              DBusMessage    *message,
                              void           *user_data)
 {
-        GSListener  *listener = GS_LISTENER (user_data);
+        GSListener *listener = GS_LISTENER (user_data);
 
 	g_return_val_if_fail (connection != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
 	g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
+
+        /*
+        g_message ("obj_path=%s interface=%s method=%s destination=%s", 
+                   dbus_message_get_path (message), 
+                   dbus_message_get_interface (message),
+                   dbus_message_get_member (message),
+                   dbus_message_get_destination (message));
+        */
 
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "lock")) {
                 g_signal_emit (listener, signals [LOCK], 0);
@@ -130,63 +361,23 @@ gs_listener_message_handler (DBusConnection *connection,
                 g_signal_emit (listener, signals [CYCLE], 0);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "activate")) {
-                g_signal_emit (listener, signals [ACTIVATE], 0);
-                return DBUS_HANDLER_RESULT_HANDLED;
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "setActive")) {
+                return listener_set_property (listener, connection, message, PROP_ACTIVE);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "deactivate")) {
-                g_signal_emit (listener, signals [DEACTIVATE], 0);
-                return DBUS_HANDLER_RESULT_HANDLED;
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getActive")) {
+                return listener_get_property (listener, connection, message, PROP_ACTIVE);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "throttle")) {
-                g_signal_emit (listener, signals [THROTTLE], 0);
-                return DBUS_HANDLER_RESULT_HANDLED;
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "setThrottleEnabled")) {
+                return listener_set_property (listener, connection, message, PROP_THROTTLE_ENABLED);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "unthrottle")) {
-                g_signal_emit (listener, signals [UNTHROTTLE], 0);
-                return DBUS_HANDLER_RESULT_HANDLED;
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getThrottleEnabled")) {
+                return listener_get_property (listener, connection, message, PROP_THROTTLE_ENABLED);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "poke")) {
                 g_signal_emit (listener, signals [POKE], 0);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
         return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
-}
-
-void
-gs_listener_send_signal_activated (GSListener *listener)
-{
-        DBusMessage *message;
-
-        g_return_if_fail (listener != NULL);
-
-        message = dbus_message_new_signal (GS_LISTENER_PATH,
-                                           GS_LISTENER_SERVICE,
-                                           "Activated");
-
-        if (! dbus_connection_send (listener->priv->connection, message, NULL)) {
-                g_warning ("Could not send Activated signal");
-        }
-
-        dbus_message_unref (message);
-}
-
-void
-gs_listener_send_signal_deactivated (GSListener *listener)
-{
-        DBusMessage *message;
-
-        g_return_if_fail (listener != NULL);
-
-        message = dbus_message_new_signal (GS_LISTENER_PATH,
-                                           GS_LISTENER_SERVICE,
-                                           "Deactivated");
-
-        if (! dbus_connection_send (listener->priv->connection, message, NULL)) {
-                g_warning ("Could not send Deactivated signal");
-        }
-
-        dbus_message_unref (message);
 }
 
 static void
@@ -200,6 +391,12 @@ gs_listener_set_property (GObject            *object,
         self = GS_LISTENER (object);
 
         switch (prop_id) {
+        case PROP_ACTIVE:
+                gs_listener_set_active (self, g_value_get_boolean (value));
+                break;
+        case PROP_THROTTLE_ENABLED:
+                gs_listener_set_throttle_enabled (self, g_value_get_boolean (value));
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -217,6 +414,12 @@ gs_listener_get_property (GObject            *object,
         self = GS_LISTENER (object);
 
         switch (prop_id) {
+        case PROP_ACTIVE:
+                g_value_set_boolean (value, self->priv->active);
+                break;
+        case PROP_THROTTLE_ENABLED:
+                g_value_set_boolean (value, self->priv->throttle_enabled);
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -264,46 +467,6 @@ gs_listener_class_init (GSListenerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
-        signals [ACTIVATE] =
-                g_signal_new ("activate",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, activate),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-        signals [DEACTIVATE] =
-                g_signal_new ("deactivate",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, deactivate),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-        signals [THROTTLE] =
-                g_signal_new ("throttle",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, throttle),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-        signals [UNTHROTTLE] =
-                g_signal_new ("unthrottle",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, unthrottle),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
         signals [POKE] =
                 g_signal_new ("poke",
                               G_TYPE_FROM_CLASS (object_class),
@@ -314,6 +477,43 @@ gs_listener_class_init (GSListenerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
+        signals [ACTIVE_CHANGED] =
+                g_signal_new ("active-changed",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, active_changed),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__BOOLEAN,
+                              G_TYPE_NONE,
+                              1,
+                              G_TYPE_BOOLEAN);
+        signals [THROTTLE_ENABLED_CHANGED] =
+                g_signal_new ("throttle-enabled-changed",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, throttle_enabled_changed),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__BOOLEAN,
+                              G_TYPE_NONE,
+                              1,
+                              G_TYPE_BOOLEAN);
+
+        g_object_class_install_property (object_class,
+                                         PROP_ACTIVE,
+                                         g_param_spec_boolean ("active",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_THROTTLE_ENABLED,
+                                         g_param_spec_boolean ("throttle-enabled",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE));
 
         g_type_class_add_private (klass, sizeof (GSListenerPrivate));
 }

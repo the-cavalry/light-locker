@@ -51,9 +51,13 @@ static gboolean do_unthrottle = FALSE;
 static gboolean do_version    = FALSE;
 static gboolean do_poke       = FALSE;
 
+static gboolean do_query      = FALSE;
+
 static GOptionEntry entries [] = {
         { "exit", 0, 0, G_OPTION_ARG_NONE, &do_quit,
           N_("Causes the screensaver to exit gracefully"), NULL },
+        { "query", 0, 0, G_OPTION_ARG_NONE, &do_query,
+          N_("Query the state of the screensaver"), NULL },
         { "lock", 0, 0, G_OPTION_ARG_NONE, &do_lock,
           N_("Tells the running screensaver process to lock the screen immediately"), NULL },
         { "cycle", 0, 0, G_OPTION_ARG_NONE, &do_cycle,
@@ -92,9 +96,49 @@ screensaver_is_running (DBusConnection *connection)
 }
 
 static DBusMessage *
-screensaver_send_message (DBusConnection *connection,
-                          const char     *name,
-                          gboolean        expect_reply)
+screensaver_send_message_bool (DBusConnection *connection,
+                               const char     *name,
+                               gboolean        value)
+{
+        DBusMessage    *message;
+        DBusMessage    *reply;
+        DBusError       error;
+	DBusMessageIter iter;
+
+        g_return_val_if_fail (connection != NULL, NULL);
+        g_return_val_if_fail (name != NULL, NULL);
+
+        dbus_error_init (&error);
+
+        message = dbus_message_new_method_call (GS_SERVICE, GS_PATH, GS_INTERFACE, name);
+        if (message == NULL) {
+                g_warning ("Couldn't allocate the dbus message");
+                return NULL;
+        }
+
+	dbus_message_iter_init_append (message, &iter);
+	dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &value);
+
+        reply = dbus_connection_send_with_reply_and_block (connection,
+                                                           message,
+                                                           -1, &error);
+        if (dbus_error_is_set (&error)) {
+                g_warning ("%s raised:\n %s\n\n", error.name, error.message);
+                reply = NULL;
+        }
+
+        dbus_connection_flush (connection);
+
+        dbus_message_unref (message);
+        dbus_error_free (&error);
+
+        return reply;
+}
+
+static DBusMessage *
+screensaver_send_message_void (DBusConnection *connection,
+                               const char     *name,
+                               gboolean        expect_reply)
 {
         DBusMessage *message;
         DBusMessage *reply;
@@ -135,34 +179,79 @@ screensaver_send_message (DBusConnection *connection,
 static gboolean
 do_command (DBusConnection *connection)
 {
-        const char *name = NULL;
+        DBusMessage *reply;
 
-        if (do_quit)
-                name = "quit";
-        else if (do_lock)
-                name = "lock";
-        else if (do_activate)
-                name = "activate";
-        else if (do_deactivate)
-                name = "deactivate";
-        else if (do_throttle)
-                name = "throttle";
-        else if (do_unthrottle)
-                name = "unthrottle";
-        else if (do_cycle)
-                name = "cycle";
-        else if (do_poke)
-                name = "poke";
-
-        if (name) {
-                DBusMessage *reply;
-                gboolean     expect_reply = FALSE;
-                reply = screensaver_send_message (connection, name, expect_reply);
-                if (expect_reply && !reply) {
-                        g_message ("Did not receive a reply from the screensaver.");
-                }
+        if (do_quit) {
+                reply = screensaver_send_message_void (connection, "quit", FALSE);
+                goto done;
         }
 
+        if (do_query) {
+                DBusMessageIter iter;
+                dbus_bool_t     v;
+
+                reply = screensaver_send_message_void (connection, "getActive", TRUE);
+                if (! reply) {
+                        g_message ("Did not receive a reply from the screensaver.");
+                        goto done;
+                }
+
+                dbus_message_iter_init (reply, &iter);
+                dbus_message_iter_get_basic (&iter, &v);
+                g_print (_("The screensaver is %s\n"), v ? _("active") : _("inactive"));
+
+                dbus_message_unref (reply);
+        }
+
+        if (do_lock) {
+                reply = screensaver_send_message_void (connection, "lock", FALSE);
+        }
+
+        if (do_cycle) {
+                reply = screensaver_send_message_void (connection, "cycle", FALSE);
+        }
+
+        if (do_poke) {
+                reply = screensaver_send_message_void (connection, "poke", FALSE);
+        }
+
+        if (do_activate) {
+                reply = screensaver_send_message_bool (connection, "setActive", TRUE);
+                if (! reply) {
+                        g_message ("Did not receive a reply from the screensaver.");
+                        goto done;
+                }
+                dbus_message_unref (reply);
+        }
+
+        if (do_deactivate) {
+                reply = screensaver_send_message_bool (connection, "setActive", FALSE);
+                if (! reply) {
+                        g_message ("Did not receive a reply from the screensaver.");
+                        goto done;
+                }
+                dbus_message_unref (reply);
+        }
+
+        if (do_throttle) {
+                reply = screensaver_send_message_bool (connection, "setThrottleEnabled", TRUE);
+                if (! reply) {
+                        g_message ("Did not receive a reply from the screensaver.");
+                        goto done;
+                }
+                dbus_message_unref (reply);
+        }
+
+        if (do_unthrottle) {
+                reply = screensaver_send_message_bool (connection, "setThrottleEnabled", FALSE);
+                if (! reply) {
+                        g_message ("Did not receive a reply from the screensaver.");
+                        goto done;
+                }
+                dbus_message_unref (reply);
+        }
+
+ done:
         g_main_loop_quit (loop);
 
         return FALSE;

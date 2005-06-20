@@ -45,13 +45,11 @@ typedef struct
         GObjectClass       parent_class;
 
         void            (* lock)        (GSListener *listener);
-        void            (* activate)    (GSListener *listener);
-        void            (* deactivate)  (GSListener *listener);
         void            (* cycle)       (GSListener *listener);
         void            (* quit)        (GSListener *listener);
         void            (* poke)        (GSListener *listener);
-        void            (* throttle)    (GSListener *listener);
-        void            (* unthrottle)  (GSListener *listener);
+        void            (* active_changed)           (GSListener *listener, gboolean active);
+        void            (* throttle_enabled_changed) (GSListener *listener, gboolean enabled);
 
 } GSListenerClass;
 
@@ -71,8 +69,11 @@ GType       gs_listener_get_type                (void);
 GSListener *gs_listener_new                     (void);
 gboolean    gs_listener_acquire                 (GSListener *listener,
                                                  GError    **error);
-void        gs_listener_send_signal_activated   (GSListener *listener);
-void        gs_listener_send_signal_deactivated (GSListener *listener);
+void        gs_listener_set_active              (GSListener *listener,
+                                                 gboolean    active);
+void        gs_listener_set_throttle_enabled    (GSListener *listener,
+                                                 gboolean    enabled);
+
 
 G_END_DECLS
 
