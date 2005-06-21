@@ -1,3 +1,7 @@
+2005-06-21  William Jon McCann  <mccann@jhu.edu>
+
+	* TODO: Remove done dnd item. 
+
 2005-06-20  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (gs_lock_plug_init)
