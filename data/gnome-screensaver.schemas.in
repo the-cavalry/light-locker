@@ -38,7 +38,7 @@
       <locale name="C">
         <short>The selected screensaver themes</short>
         <long>
-            This key specifies the selected themes to used by the screensaver.
+            This key specifies the themes to be used by the screensaver.
         </long>
       </locale>
     </schema>

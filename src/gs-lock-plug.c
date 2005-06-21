@@ -176,7 +176,7 @@ gs_lock_plug_response (GSLockPlug *plug,
 
                 if (current_page == 0) {
                         gtk_widget_set_sensitive (plug->priv->password_entry, FALSE);
-                        gtk_progress_bar_set_text (GTK_PROGRESS_BAR (plug->priv->progress_bar), _("Verifying password..."));
+                        gtk_progress_bar_set_text (GTK_PROGRESS_BAR (plug->priv->progress_bar), _("Checking password..."));
 
                         plug->priv->password_check_idle_id = g_idle_add ((GSourceFunc)password_check_idle_cb,
                                                                          plug);
@@ -471,7 +471,7 @@ password_check_idle_cb (GSLockPlug *plug)
                                                                       (GSourceFunc)response_idle_cb,
                                                                       plug);
 
-                gtk_progress_bar_set_text (GTK_PROGRESS_BAR (plug->priv->progress_bar), _("Password verification failed!"));
+                gtk_progress_bar_set_text (GTK_PROGRESS_BAR (plug->priv->progress_bar), _("Password check failed!"));
         }
 
         memset (local_password, '\b', strlen (local_password));
@@ -889,7 +889,7 @@ gs_lock_plug_init (GSLockPlug *plug)
         vbox = gtk_vbox_new (FALSE, 12);
         gtk_box_pack_start (GTK_BOX (hbox), vbox, TRUE, TRUE, 0);
 
-        widget = gtk_label_new (_("Enter password to unlock screen"));
+        widget = gtk_label_new (_("Enter a password to unlock the screen"));
         gtk_misc_set_alignment (GTK_MISC (widget), 0, 0.5);
         gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
 
