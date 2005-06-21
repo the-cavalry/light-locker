@@ -33,9 +33,6 @@
 #include <sys/wait.h>
 
 #include <glib/gi18n.h>
-#define DBUS_API_SUBJECT_TO_CHANGE
-#include <dbus/dbus.h>
-#include <dbus/dbus-glib.h>
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
 

@@ -1,5 +1,9 @@
 2005-06-20  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-dialog.c: Remove dbus includes.
+
+2005-06-20  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c (gs_manager_init, gs_manager_finalize):
 	Remove unused and unneeded gconf client.
 
