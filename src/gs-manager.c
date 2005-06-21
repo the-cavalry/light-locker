@@ -22,7 +22,6 @@
 
 #include "config.h"
 #include <time.h>
-#include <gconf/gconf-client.h>
 #include <gdk/gdk.h>
 
 #include "gs-prefs.h"        /* for GSSaverMode */
@@ -61,7 +60,6 @@ struct GSManagerPrivate
 
         GSList      *themes;
         GSSaverMode  saver_mode;
-        GConfClient *gconf_client;
 };
 
 enum {
@@ -491,7 +489,6 @@ static void
 gs_manager_init (GSManager *manager)
 {
         manager->priv = GS_MANAGER_GET_PRIVATE (manager);
-        manager->priv->gconf_client = gconf_client_get_default ();
 }
 
 static void
@@ -521,9 +518,6 @@ gs_manager_finalize (GObject *object)
         manager = GS_MANAGER (object);
 
         g_return_if_fail (manager->priv != NULL);
-
-        if (manager->priv->gconf_client)
-                g_object_unref (manager->priv->gconf_client);
 
         remove_blank_timers (manager);
 

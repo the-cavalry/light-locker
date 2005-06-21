@@ -1,5 +1,10 @@
 2005-06-20  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-manager.c (gs_manager_init, gs_manager_finalize):
+	Remove unused and unneeded gconf client.
+
+2005-06-20  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-monitor.c (manager_blanked_cb, manager_unblanked_cb) 
 	(watcher_idle_cb, listener_lock_cb, listener_quit_cb) 
 	(listener_active_changed_cb, listener_throttled_changed_cb) 
