@@ -1,3 +1,5 @@
+dnl -*- mode: m4 -*-
+
 AC_INIT([gnome-screensaver],
         [0.0.6],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver])
@@ -19,9 +21,17 @@ AC_HEADER_STDC
 
 AC_SUBST(VERSION)
 
-##############################
+# Save flags to aclocal
+ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
+
+GETTEXT_PACKAGE=gnome-screensaver
+AC_SUBST(GETTEXT_PACKAGE)
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Name of default gettext domain])
+
+ALL_LINGUAS="de en_CA en_GB es pt_BR sv zh_CN"
+AM_GLIB_GNU_GETTEXT
+
 # Custom Junk
-##############################
 
 AC_DEFUN([AC_DEFINE_PATH], [
   test "x$prefix" = xNONE && prefix="$ac_default_prefix"
@@ -35,9 +45,7 @@ AC_DEFUN([AC_DEFINE_PATH], [
     AC_DEFINE_UNQUOTED($1, "$ac_define_path", $3))
 ])
 
-##############################
 # Dependencies
-##############################
 
 DBUS_REQUIRED_VERSION=0.30
 LIBXML_REQUIRED_VERSION=2.6.0
@@ -92,7 +100,8 @@ AM_GCONF_SOURCE_2
 
 GNOME_COMPILE_WARNINGS(yes)
 
-##### Find out the version of DBUS we're using
+# Find out the version of DBUS we're using
+
 dbus_version=`pkg-config --modversion dbus-1`
 DBUS_VERSION_MAJOR=`echo $dbus_version | awk -F. '{print $1}'`
 DBUS_VERSION_MINOR=`echo $dbus_version | awk -F. '{print $2}'`
@@ -125,9 +134,8 @@ else
         AC_SUBST(DBUS_CFLAGS)
 fi
 
-dnl
-dnl PAM prefix
-dnl
+# Determine PAM prefix
+
 withval=""
 AC_ARG_WITH(pam-prefix,
 [  --with-pam-prefix=<prefix>   specify where pam files go],[
@@ -142,9 +150,7 @@ fi
 PAM_PREFIX=`eval echo $PAM_PREFIX_UNEXPANDED`
 AC_SUBST(PAM_PREFIX)
 
-#############################
 # Fast User Switching
-#############################
 
 PKG_CHECK_MODULES(FAST_USER_SWITCH,
         gtk+-2.0 >= $GTK_REQUIRED_VERSION
@@ -153,9 +159,7 @@ PKG_CHECK_MODULES(FAST_USER_SWITCH,
 AC_SUBST(FAST_USER_SWITCH_CFLAGS)
 AC_SUBST(FAST_USER_SWITCH_LIBS)
 
-##############################
 # GDM Config File
-##############################
 
 GDMCONFIGFILE=
 
@@ -1042,6 +1046,11 @@ AC_SUBST(HAVE_PAM)
 need_setuid=no
 
 have_shadow=no
+have_shadow_enhanced=no
+have_shadow_adjunct=no
+have_shadow_hpux=no
+have_passwd_helper=no
+
 with_shadow_req=unspecified
 
 AC_ARG_WITH(shadow,
@@ -1267,24 +1276,7 @@ AC_SUBST(NEED_SETUID)
 AC_SUBST(AUTH_LIBS)
 AC_SUBST(SAVER_LIBS)
 
-##############################
-# I18n
-##############################
 
-GETTEXT_PACKAGE=gnome-screensaver
-AC_SUBST(GETTEXT_PACKAGE)
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Name of default gettext domain])
-
-ALL_LINGUAS="de en_CA en_GB es pt_BR sv zh_CN"
-AM_GLIB_GNU_GETTEXT
-
-
-##############################
-# ./configure Flags messings
-##############################
-
-cflags_set=${CFLAGS+set}
-# find the actual value for $prefix that we'll end up with
 REAL_PREFIX=
 if test "x$prefix" = "xNONE"; then
   REAL_PREFIX=$ac_default_prefix
@@ -1292,19 +1284,44 @@ else
   REAL_PREFIX=$prefix
 fi
 
-# Have to go $sysconfdir->$prefix/etc->/usr/local/etc   
-# if you actually know how to code shell then fix this :-)
-SYSCONFDIR_TMP="$sysconfdir"
+## temporarily change prefix and exec_prefix
 old_prefix=$prefix
 prefix=$REAL_PREFIX
+
+if test "x$exec_prefix" = xNONE ; then
+   REAL_EXEC_PREFIX=$REAL_PREFIX
+else
+   REAL_EXEC_PREFIX=$exec_prefix
+fi
+old_exec_prefix=$exec_prefix
+exec_prefix=$REAL_EXEC_PREFIX
+
+## eval everything
+LOCALSTATEDIR_TMP="$localstatedir"
+EXPANDED_LOCALSTATEDIR=`eval echo $LOCALSTATEDIR_TMP`
+AC_SUBST(EXPANDED_LOCALSTATEDIR)
+
+SYSCONFDIR_TMP="$sysconfdir"
 EXPANDED_SYSCONFDIR=`eval echo $SYSCONFDIR_TMP`
-prefix=$old_prefix
 AC_SUBST(EXPANDED_SYSCONFDIR)
 
-dnl Save flags to aclocal
-ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
+BINDIR_TMP="$bindir"
+EXPANDED_BINDIR=`eval echo $BINDIR_TMP`
+AC_SUBST(EXPANDED_BINDIR)
 
-dnl Turn on the additional warnings last, so -Werror doesn't affect other tests.
+LIBDIR_TMP="$libdir"
+EXPANDED_LIBDIR=`eval echo $LIBDIR_TMP`
+AC_SUBST(EXPANDED_LIBDIR)
+
+DATADIR_TMP="$datadir"
+EXPANDED_DATADIR=`eval echo $DATADIR_TMP`
+AC_SUBST(EXPANDED_DATADIR)
+
+## put prefix and exec_prefix back
+prefix=$old_prefix
+exec_prefix=$old_exec_prefix
+
+# Turn on the additional warnings last, so -Werror doesn't affect other tests.
 
 AC_ARG_ENABLE(more-warnings,
   AC_HELP_STRING([--enable-more-warnings], [Maximum compiler warnings]),
@@ -1345,17 +1362,13 @@ else
         AC_MSG_RESULT(no)
 fi
 
-##############################
 # Flags
-##############################
 
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
-##############################
 # Files
-##############################
 
 AC_OUTPUT([
 Makefile
@@ -1365,50 +1378,42 @@ data/Makefile
 savers/Makefile
 ])
 
-echo ""
-echo "gnome-screensaver configuration summary:"
-echo "========================================"
-echo ""
+echo "
+                    gnome-screensaver $VERSION
+                    ========================
 
-dnl <= Prefixes =>
-echo "prefix : $prefix"
-echo "sysconf dir : "`eval echo $sysconfdir`
-echo "PAM prefix : $PAM_PREFIX"
-echo "data dir : "`eval echo $datadir`
-echo ""
+	prefix:                   ${prefix}
+	exec_prefix:              ${exec_prefix}
+        libdir:                   ${EXPANDED_LIBDIR}
+        bindir:                   ${EXPANDED_BINDIR}
+        sysconfdir:               ${EXPANDED_SYSCONFDIR}
+        localstatedir:            ${EXPANDED_LOCALSTATEDIR}
+        datadir:                  ${EXPANDED_DATADIR}
+        PAM prefix:               ${PAM_PREFIX}
+	source code location:	  ${srcdir}
+	compiler:		  ${CC}
+	cflags:		          ${CFLAGS}
+        Maintainer mode:          ${USE_MAINTAINER_MODE}
 
-dnl <= Locking =>
-if test "x$enable_locking" = "xyes"; then
-	echo "Screen locking enabled: yes"
-else
-	echo "Screen locking enabled: no"
-fi
-dnl <= DPMS =>
-if test "x$have_dpms" = "xyes"; then
-	echo "Power management enabled: yes"
-else
-	echo "Power management enabled: no"
-fi
+        Screen locking enabled:   ${enable_locking}
+        Power management enabled: ${have_dpms}
+        User switching enabled:   ${enable_user_switching}
+        PAM support:              ${have_pam}
+        Have shadow passords:     ${have_shadow}
+        Have adjuct shadow:       ${have_shadow_adjunct}
+        Have enhanced shadow:     ${have_shadow_enhanced}
+        Have HPUX shadow:         ${have_shadow_hpux}
+        Have password helper:     ${have_passwd_helper}"
 
-dnl <= User Switching =>
-if test "x$enable_user_switching" = "xyes"; then
-	echo "User switching enabled: yes"
-else
-	echo "User switching enabled: no"
-fi
-
-dnl <= PAM =>
-if test "x$have_pam" = "xyes"; then
-	echo "PAM support: yes"
-else
-	echo "PAM support: no"
-fi
-
-dnl <= Setuid =>
 if test "x$need_setuid" = "xyes" -a "x$have_pam" != "xyes" ; then
-	echo "setuid dialog required: yes"
+echo \
+"        Need setuid dialog:       yes
+"
 else
-	echo "setuid dialog required: no"
+echo \
+"        Need setuid dialog:       no
+"
 fi
+
 
 echo ""
