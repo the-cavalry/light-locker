@@ -1,3 +1,7 @@
+2005-06-22  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac: Up dbus dependency to 0.30.
+
 2005-06-21  William Jon McCann  <mccann@jhu.edu>
 
 	* TODO: Remove done dnd item. 
