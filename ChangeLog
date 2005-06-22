@@ -1,5 +1,11 @@
 2005-06-22  William Jon McCann  <mccann@jhu.edu>
 
+	* data/Makefile.am (install-data-hook): Wrap text better.
+
+	* configure.ac: Fix typo from last commit.
+
+2005-06-22  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Clean up checks and summary text.
 
 2005-06-22  William Jon McCann  <mccann@jhu.edu>
