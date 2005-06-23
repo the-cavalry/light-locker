@@ -1,5 +1,15 @@
 2005-06-23  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-preferences.c (time_to_string_text): Don't
+	display hanging zeros in time string.
+	(format_value_callback_time, init_capplet): Format the activation
+	time string more nicely.
+
+	* data/gnome-screensaver-preferences.glade: Display activation time
+	text on top of slider and remove hard-coded units.
+
+2005-06-23  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.[ch] (gs_window_clear): Add to public API.
 
 	* src/gs-manager.c (gs_manager_set_throttle_enabled): Clear

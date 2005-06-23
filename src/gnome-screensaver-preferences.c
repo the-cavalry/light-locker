@@ -687,6 +687,72 @@ drag_data_received_cb (GtkWidget        *widget,
         g_free (filename);
 }
 
+/* Adapted from totem_time_to_string_text */
+static char *
+time_to_string_text (long time)
+{
+        char *secs, *mins, *hours, *string;
+        int   sec, min, hour;
+
+        sec = time % 60;
+        time = time - sec;
+        min = (time % (60 * 60)) / 60;
+        time = time - (min * 60);
+        hour = time / (60 * 60);
+
+        hours = g_strdup_printf (ngettext ("%d hour",
+                                           "%d hours", hour), hour);
+
+        mins = g_strdup_printf (ngettext ("%d minute",
+                                          "%d minutes", min), min);
+
+        secs = g_strdup_printf (ngettext ("%d second",
+                                          "%d seconds", sec), sec);
+
+        if (hour > 0) {
+                if (sec > 0) {
+                        /* hour:minutes:seconds */
+                        string = g_strdup_printf (_("%s %s %s"), hours, mins, secs);
+                } else if (min > 0) {
+                        /* hour:minutes */
+                        string = g_strdup_printf (_("%s %s"), hours, mins);
+                } else {
+                        /* hour */
+                        string = g_strdup_printf (_("%s"), hours);
+                }
+        } else if (min > 0) {
+                if (sec > 0) {
+                        /* minutes:seconds */
+                        string = g_strdup_printf (_("%s %s"), mins, secs);
+                } else {
+                        /* minutes */
+                        string = g_strdup_printf (_("%s"), mins);
+                }
+        } else if (sec > 0) {
+                /* seconds */
+                string = g_strdup_printf (_("%s"), secs);
+        } else {
+                /* 0 seconds */
+                string = g_strdup (_("0 seconds"));
+        }
+
+        g_free (hours);
+        g_free (mins);
+        g_free (secs);
+
+        return string;
+}
+
+static char *
+format_value_callback_time (GtkScale *scale,
+                            gdouble   value)
+{
+        if (value == 0)
+                return g_strdup_printf (_("Never"));
+
+        return time_to_string_text (value * 60.0);
+}
+
 static void
 init_capplet (void)
 {
@@ -736,6 +802,8 @@ init_capplet (void)
         gtk_range_set_value (GTK_RANGE (blank_delay_hscale), blank_delay);
         if (! is_writable)
                 gtk_widget_set_sensitive (blank_delay_hbox, FALSE);
+        g_signal_connect (blank_delay_hscale, "format-value",
+                          G_CALLBACK (format_value_callback_time), NULL);
 
         gtk_window_set_icon_name (GTK_WINDOW (dialog), "screensaver");
 
