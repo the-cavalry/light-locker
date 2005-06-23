@@ -1,5 +1,10 @@
 2005-06-23  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-monitor.c (prefs_changed_cb): Update the idle watcher
+	state when configuration changes.
+
+2005-06-23  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/popsquares.c (screenhack_init, screenhack_iter):
 	Don't crash when window size is zero.  Remove unnecessary division.
 

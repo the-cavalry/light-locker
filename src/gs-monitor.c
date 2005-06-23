@@ -157,6 +157,9 @@ prefs_changed_cb (GSPrefs   *prefs,
         gs_manager_set_logout_enabled (monitor->priv->manager, monitor->priv->prefs->logout_enabled);
         gs_manager_set_logout_timeout (monitor->priv->manager, monitor->priv->prefs->logout_timeout);
 
+        gs_watcher_set_active (monitor->priv->watcher,
+                               monitor->priv->prefs->mode != GS_MODE_DONT_BLANK);
+
         gs_watcher_set_timeout (monitor->priv->watcher, monitor->priv->prefs->timeout);
         gs_watcher_set_dpms (monitor->priv->watcher,
                              monitor->priv->prefs->dpms_enabled,
