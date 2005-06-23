@@ -72,6 +72,7 @@ GSWindow  * gs_window_new                (GdkScreen *screen,
 void        gs_window_show               (GSWindow  *window);
 void        gs_window_destroy            (GSWindow  *window);
 GdkWindow * gs_window_get_gdk_window     (GSWindow  *window);
+void        gs_window_clear              (GSWindow  *window);
 
 G_END_DECLS
 

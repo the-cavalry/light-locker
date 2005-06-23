@@ -130,6 +130,10 @@ gs_manager_set_throttle_enabled (GSManager *manager,
                                 gs_job_start (GS_JOB (l->data));
                         }
                 }
+
+                for (l = manager->priv->windows; l; l = l->next) {
+                        gs_window_clear (l->data);
+                }
         }
 }
 

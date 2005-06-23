@@ -141,7 +141,7 @@ gs_window_override_user_time (GSWindow *window)
         gdk_x11_window_set_user_time (GTK_WIDGET (window)->window, ev_time);
 }
 
-static void
+void
 gs_window_clear (GSWindow *window)
 {
         GdkColor     color = { 0, 0, 0 };
