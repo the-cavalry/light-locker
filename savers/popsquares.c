@@ -232,12 +232,6 @@ screenhack_init (GdkWindow *window)
 
         set_colors (window, &fg, &bg);
 
-        sw = window_width / subdivision;
-        sh = window_height / subdivision;
-        gw = window_width / sw;
-        gh = window_height / sh;
-        nsquares = gw * gh;
-
         gc = gdk_gc_new (window);
 
         colors = g_new0 (GdkColor, ncolors);
@@ -254,6 +248,13 @@ screenhack_init (GdkWindow *window)
                          TRUE,
                          TRUE,
                          FALSE);
+
+        sw = window_width / subdivision;
+        sh = window_height / subdivision;
+
+        gw = subdivision;
+        gh = subdivision;
+        nsquares = gw * gh;
 
         for (y = 0; y < gh; y++) {
                 for (x = 0; x < gw; x++) {
@@ -281,8 +282,9 @@ screenhack_iter (GdkWindow *window)
 
         sw = window_width / subdivision;
         sh = window_height / subdivision;
-        gw = window_width / sw;
-        gh = window_height / sh;
+
+        gw = subdivision;
+        gh = subdivision;
         nsquares = gw * gh;
 
         for (y = 0; y < gh; y++) {

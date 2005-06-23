@@ -1,5 +1,10 @@
 2005-06-23  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/popsquares.c (screenhack_init, screenhack_iter):
+	Don't crash when window size is zero.  Remove unnecessary division.
+
+2005-06-23  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-preferences.c (time_to_string_text): Don't
 	display hanging zeros in time string.
 	(format_value_callback_time, init_capplet): Format the activation
