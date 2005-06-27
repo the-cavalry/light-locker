@@ -1,3 +1,7 @@
+2005-06-27  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-job.c: Add /usr/libexec to known hack locations.
+
 2005-06-27  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* data/gnome-screensaver-preferences.glade: Fix small HIG widget
