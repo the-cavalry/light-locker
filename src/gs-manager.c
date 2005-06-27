@@ -237,6 +237,11 @@ select_theme (GSManager *manager)
         if (manager->priv->saver_mode == GS_MODE_BLANK_ONLY)
                 return NULL;
 
+        if (manager->priv->saver_mode == GS_MODE_DONT_BLANK) {
+                g_warning ("Selecting no screensaver theme since screensaver is disabled.");
+                return NULL;
+        }
+
         if (manager->priv->themes) {
                 int number = 0;
 
@@ -640,8 +645,7 @@ window_show_cb (GSWindow  *window,
         g_return_if_fail (window != NULL);
         g_return_if_fail (GS_IS_WINDOW (window));
 
-        theme = select_theme (manager);
-        job = gs_job_new_for_widget (GTK_WIDGET (window), theme);
+        job = gs_job_new_for_widget (GTK_WIDGET (window));
 
         /* Add user configuration path */
         /* FIXME: disable this if locked down */
@@ -650,6 +654,9 @@ window_show_cb (GSWindow  *window,
         g_free (path);
 
         g_object_ref (job);
+
+        theme = select_theme (manager);
+        gs_job_set_theme (job, theme, NULL);
 
         if (! manager->priv->throttle_enabled) {
                 gs_job_start (job);

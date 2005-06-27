@@ -1,5 +1,17 @@
 2005-06-27  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-manager.c (select_theme): In the odd case the the
+	screensaver is activated when it is disabled don't use a
+	theme.
+	(window_show_cb): Set theme after prepending to search path.
+
+	* src/gs-job.c (gs_job_set_theme): Add warning messages.
+	(gs_job_new_for_widget): Don't set theme here.
+	(spawn_on_widget): Use g_warning instead of g_message.
+	(gs_job_start): Add warning messages.
+
+2005-06-27  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-job.c: Add /usr/libexec to known hack locations.
 
 2005-06-27  Dennis Cranston <dennis_cranston@yahoo.com>

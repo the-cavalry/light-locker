@@ -685,11 +685,13 @@ gs_job_set_theme  (GSJob      *job,
 
         if (! info) {
                 /* FIXME: set error */
+                g_warning ("Could not lookup info for theme: %s", theme);
                 return FALSE;
         }
 
         if (! check_command (info->argv)) {
                 /* FIXME: set error */
+                g_warning ("Could not verify safety of command for theme: %s", theme);
                 return FALSE;
         }
 
@@ -712,15 +714,13 @@ gs_job_new (void)
 }
 
 GSJob *
-gs_job_new_for_widget (GtkWidget  *widget,
-                       const char *theme)
+gs_job_new_for_widget (GtkWidget  *widget)
 {
         GObject *job;
 
         job = g_object_new (GS_TYPE_JOB, NULL);
 
         gs_job_set_widget (GS_JOB (job), widget);
-        gs_job_set_theme (GS_JOB (job), theme, NULL);
 
         return GS_JOB (job);
 }
@@ -799,7 +799,7 @@ spawn_on_widget (GtkWidget  *widget,
                                                  &error);
 
         if (! result) {
-                g_message ("Could not start command '%s': %s", new_argv [0], error->message);
+                g_warning ("Could not start command '%s': %s", new_argv [0], error->message);
                 g_error_free (error);
                 return FALSE;
         }
@@ -880,11 +880,15 @@ gs_job_start (GSJob *job)
                 return FALSE;
         }
 
-        if (! job->priv->current_theme)
+        if (! job->priv->current_theme) {
+                g_warning ("Could not start job: screensaver theme is not set.");
                 return FALSE;
+        }
 
-        if (! job->priv->widget)
+        if (! job->priv->widget) {
+                g_warning ("Could not start job: screensaver window is not set.");
                 return FALSE;
+        }
 
         info = gs_job_lookup_theme_info (job, job->priv->current_theme);
 
