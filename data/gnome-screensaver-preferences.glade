@@ -274,7 +274,6 @@
 
 			  <child>
 			    <widget class="GtkVBox" id="vbox3">
-			      <property name="border_width">6</property>
 			      <property name="visible">True</property>
 			      <property name="homogeneous">False</property>
 			      <property name="spacing">0</property>

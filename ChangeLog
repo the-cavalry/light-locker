@@ -1,3 +1,8 @@
+2005-06-27  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* data/gnome-screensaver-preferences.glade: Fix small HIG widget
+	spacing regression.
+	
 2005-06-23  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-monitor.c (prefs_changed_cb): Update the idle watcher
