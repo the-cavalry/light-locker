@@ -46,6 +46,10 @@ enum {
 
 struct GSWindowPrivate
 {
+        int        monitor;
+
+        GdkRectangle geometry;
+
         guint      lock_enabled : 1;
         guint      logout_enabled : 1;
         guint64    logout_timeout;
@@ -79,7 +83,7 @@ enum {
         PROP_LOCK_ENABLED,
         PROP_LOGOUT_ENABLED,
         PROP_LOGOUT_TIMEOUT,
-        PROP_SCREEN
+        PROP_MONITOR
 };
 
 static GObjectClass   *parent_class = NULL;
@@ -156,6 +160,56 @@ gs_window_clear (GSWindow *window)
 }
 
 static void
+update_geometry (GSWindow *window)
+{
+        GdkRectangle geometry;
+
+        gdk_screen_get_monitor_geometry (GTK_WINDOW (window)->screen,
+                                         window->priv->monitor,
+                                         &geometry);
+
+        window->priv->geometry.x = geometry.x;
+        window->priv->geometry.y = geometry.y;
+        window->priv->geometry.width = geometry.width;
+        window->priv->geometry.height = geometry.height;
+}
+
+static void
+screen_size_changed (GdkScreen *screen,
+                     GSWindow  *window)
+{
+        gtk_widget_queue_resize (GTK_WIDGET (window));
+}
+
+/* copied from panel-toplevel.c */
+static void
+gs_window_move_resize_window (GSWindow *window,
+                              gboolean  move,
+                              gboolean  resize)
+{
+        GtkWidget *widget;
+
+        widget = GTK_WIDGET (window);
+
+        g_assert (GTK_WIDGET_REALIZED (widget));
+
+        if (move && resize)
+                gdk_window_move_resize (widget->window,
+                                        window->priv->geometry.x,
+                                        window->priv->geometry.y,
+                                        window->priv->geometry.width,
+                                        window->priv->geometry.height);
+        else if (move)
+                gdk_window_move (widget->window,
+                                 window->priv->geometry.x,
+                                 window->priv->geometry.y);
+        else if (resize)
+                gdk_window_resize (widget->window,
+                                   window->priv->geometry.width,
+                                   window->priv->geometry.height);
+}
+
+static void
 gs_window_real_realize (GtkWidget *widget)
 {
         if (GTK_WIDGET_CLASS (parent_class)->realize)
@@ -163,6 +217,13 @@ gs_window_real_realize (GtkWidget *widget)
 
         gs_window_override_user_time (GS_WINDOW (widget));
         gs_window_clear (GS_WINDOW (widget));
+
+        gs_window_move_resize_window (GS_WINDOW (widget), TRUE, TRUE);
+
+        g_signal_connect (gtk_window_get_screen (GTK_WINDOW (widget)),
+                          "size_changed",
+                          G_CALLBACK (screen_size_changed),
+                          widget);
 }
 
 static void
@@ -209,6 +270,7 @@ static gboolean
 emit_unblanked_idle (GSWindow *window)
 {
         g_signal_emit (window, signals [UNBLANKED], 0);
+
         return FALSE;
 }
 
@@ -568,6 +630,30 @@ gs_window_set_logout_timeout (GSWindow *window,
                 window->priv->logout_timeout = logout_timeout;
 }
 
+void
+gs_window_set_monitor (GSWindow *window,
+                       int       monitor)
+{
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        if (window->priv->monitor == monitor)
+                return;
+
+        window->priv->monitor = monitor;
+
+        gtk_widget_queue_resize (GTK_WIDGET (window));
+
+        g_object_notify (G_OBJECT (window), "monitor");
+}
+
+int
+gs_window_get_monitor (GSWindow *window)
+{
+        g_return_val_if_fail (GS_IS_WINDOW (window), -1);
+
+        return window->priv->monitor;
+}
+
 static void
 gs_window_set_property (GObject            *object,
                         guint               prop_id,
@@ -587,6 +673,9 @@ gs_window_set_property (GObject            *object,
                 break;
         case PROP_LOGOUT_TIMEOUT:
                 gs_window_set_logout_timeout (self, g_value_get_long (value));
+                break;
+        case PROP_MONITOR:
+                gs_window_set_monitor (self, g_value_get_int (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -613,6 +702,9 @@ gs_window_get_property (GObject    *object,
                 break;
         case PROP_LOGOUT_TIMEOUT:
                 g_value_set_long (value, self->priv->logout_timeout);
+                break;
+        case PROP_MONITOR:
+                g_value_set_int (value, self->priv->monitor);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -658,6 +750,43 @@ gs_window_real_motion_notify_event (GtkWidget      *widget,
 }
 
 static void
+gs_window_real_size_request (GtkWidget      *widget,
+                             GtkRequisition *requisition)
+{
+        GSWindow      *window;
+        GtkBin        *bin;
+	GdkRectangle   old_geometry;
+        int            position_changed = FALSE;
+        int            size_changed = FALSE;
+
+        window = GS_WINDOW (widget);
+        bin = GTK_BIN (widget);
+
+        if (bin->child && GTK_WIDGET_VISIBLE (bin->child))
+                gtk_widget_size_request (bin->child, requisition);
+
+	old_geometry = window->priv->geometry;
+
+        update_geometry (window);
+
+        requisition->width  = window->priv->geometry.width;
+        requisition->height = window->priv->geometry.height;
+
+        if (! GTK_WIDGET_REALIZED (widget))
+                return;
+
+        if (old_geometry.width  != window->priv->geometry.width ||
+            old_geometry.height != window->priv->geometry.height)
+                size_changed = TRUE;
+
+        if (old_geometry.x != window->priv->geometry.x ||
+            old_geometry.y != window->priv->geometry.y)
+                position_changed = TRUE;
+
+        gs_window_move_resize_window (window, position_changed, size_changed);
+}
+
+static void
 gs_window_class_init (GSWindowClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
@@ -673,6 +802,7 @@ gs_window_class_init (GSWindowClass *klass)
         widget_class->realize             = gs_window_real_realize;
         widget_class->key_press_event     = gs_window_real_key_press_event;
         widget_class->motion_notify_event = gs_window_real_motion_notify_event;
+        widget_class->size_request        = gs_window_real_size_request;
 
         g_type_class_add_private (klass, sizeof (GSWindowPrivate));
 
@@ -714,6 +844,16 @@ gs_window_class_init (GSWindowClass *klass)
                                                                NULL,
                                                                TRUE,
                                                                G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_MONITOR,
+                                         g_param_spec_int ("monitor",
+                                                           "Xinerama monitor",
+                                                           "The monitor (in terms of Xinerama) which the panel is on",
+                                                           0,
+                                                           G_MAXINT,
+                                                           0,
+                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
 }
 
 static void
@@ -721,16 +861,19 @@ gs_window_init (GSWindow *window)
 {
         window->priv = GS_WINDOW_GET_PRIVATE (window);
 
-        gtk_window_set_modal (GTK_WINDOW (window), TRUE);
-        gtk_window_stick (GTK_WINDOW (window));
-        gtk_window_set_focus_on_map (GTK_WINDOW (window), TRUE);
-        gtk_window_fullscreen (GTK_WINDOW (window));
+        window->priv->geometry.x      = -1;
+        window->priv->geometry.y      = -1;
+        window->priv->geometry.width  = -1;
+        window->priv->geometry.height = -1;
+
         gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
-        gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER_ALWAYS);
+
         gtk_window_set_skip_taskbar_hint (GTK_WINDOW (window), TRUE);
         gtk_window_set_skip_pager_hint (GTK_WINDOW (window), TRUE);
 
         gtk_window_set_keep_above (GTK_WINDOW (window), TRUE);
+
+        gtk_window_fullscreen (GTK_WINDOW (window));
 
         gtk_widget_set_events (GTK_WIDGET (window),
                                gtk_widget_get_events (GTK_WIDGET (window))
@@ -769,12 +912,14 @@ gs_window_finalize (GObject *object)
 
 GSWindow *
 gs_window_new (GdkScreen *screen,
+               int        monitor,
                gboolean   lock_enabled)
 {
-        GObject *result;
+        GObject     *result;
 
         result = g_object_new (GS_TYPE_WINDOW,
                                "screen", screen,
+                               "monitor", monitor,
                                "lock-enabled", lock_enabled,
                                NULL);
 

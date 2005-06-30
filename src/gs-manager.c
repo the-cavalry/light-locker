@@ -584,6 +584,17 @@ window_dialog_up_cb (GSWindow  *window,
 
         manager->priv->dialog_up = TRUE;
 
+        /* Grab keyboard so dialog can be used */
+        gs_grab_window (gs_window_get_gdk_window (window),
+                        gs_window_get_screen (window),
+                        FALSE);
+
+        /* Make all other windows insensitive so we don't get events */
+        for (l = manager->priv->windows; l; l = l->next) {
+                if (l->data != window)
+                        gtk_widget_set_sensitive (GTK_WIDGET (l->data), FALSE);
+        }
+
         if (! manager->priv->throttle_enabled) {
                 for (l = manager->priv->jobs; l; l = l->next) {
                         gs_job_suspend (GS_JOB (l->data), TRUE);
@@ -599,6 +610,11 @@ window_dialog_down_cb (GSWindow  *window,
 
         g_return_if_fail (manager != NULL);
         g_return_if_fail (GS_IS_MANAGER (manager));
+
+        /* Make all windows sensitive so we get events */
+        for (l = manager->priv->windows; l; l = l->next) {
+                gtk_widget_set_sensitive (GTK_WIDGET (l->data), TRUE);
+        }
 
         if (! manager->priv->throttle_enabled) {
                 for (l = manager->priv->jobs; l; l = l->next) {
@@ -616,6 +632,8 @@ window_map_event_cb (GSWindow  *window,
 {
         GdkDisplay *display;
         GdkScreen  *screen;
+        int         monitor;
+        int         x, y;
 
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
@@ -623,12 +641,16 @@ window_map_event_cb (GSWindow  *window,
         g_return_val_if_fail (GS_IS_WINDOW (window), FALSE);
 
         display = gdk_display_get_default ();
-        gdk_display_get_pointer (display, &screen, NULL, NULL, NULL);
+        gdk_display_get_pointer (display, &screen, &x, &y, NULL);
+        monitor = gdk_screen_get_monitor_at_point (screen, x, y);
 
-        if (gs_window_get_screen (window) == screen)
+        if (gs_window_get_screen (window) == screen
+            && gs_window_get_monitor (window) == monitor) {
                 gs_grab_window (gs_window_get_gdk_window (window),
                                 gs_window_get_screen (window),
                                 FALSE);
+        }
+
         return FALSE;
 }
 
@@ -684,6 +706,7 @@ window_show_cb (GSWindow  *window,
                                                                  manager);
         }
 
+        /* FIXME: only emit signal once */
         g_signal_emit (manager, signals [BLANKED], 0);
 }
 
@@ -692,6 +715,8 @@ gs_manager_create_window (GSManager *manager,
                           GdkScreen *screen)
 {
         GSWindow *window;
+        int       n_monitors;
+        int       i;
 
         g_return_if_fail (manager != NULL);
         g_return_if_fail (GS_IS_MANAGER (manager));
@@ -699,22 +724,29 @@ gs_manager_create_window (GSManager *manager,
 
         g_object_ref (manager);
         g_object_ref (screen);
-        window = gs_window_new (screen, manager->priv->lock_enabled);
-        gs_window_set_logout_enabled (window, manager->priv->logout_enabled);
-        gs_window_set_logout_timeout (window, manager->priv->logout_timeout);
 
-        g_signal_connect_object (window, "unblanked",
-                                 G_CALLBACK (window_unblanked_cb), manager, 0);
-        g_signal_connect_object (window, "dialog-up",
-                                 G_CALLBACK (window_dialog_up_cb), manager, 0);
-        g_signal_connect_object (window, "dialog-down",
-                                 G_CALLBACK (window_dialog_down_cb), manager, 0);
-        g_signal_connect_object (window, "show",
-                                 G_CALLBACK (window_show_cb), manager, 0);
-        g_signal_connect_object (window, "map_event",
-                                 G_CALLBACK (window_map_event_cb), manager, 0);
+        n_monitors = gdk_screen_get_n_monitors (screen);
 
-        manager->priv->windows = g_slist_append (manager->priv->windows, window);
+        for (i = 0; i < n_monitors; i++) {
+                window = gs_window_new (screen, i, manager->priv->lock_enabled);
+
+                gs_window_set_logout_enabled (window, manager->priv->logout_enabled);
+                gs_window_set_logout_timeout (window, manager->priv->logout_timeout);
+
+                g_signal_connect_object (window, "unblanked",
+                                         G_CALLBACK (window_unblanked_cb), manager, 0);
+                g_signal_connect_object (window, "dialog-up",
+                                         G_CALLBACK (window_dialog_up_cb), manager, 0);
+                g_signal_connect_object (window, "dialog-down",
+                                         G_CALLBACK (window_dialog_down_cb), manager, 0);
+                g_signal_connect_object (window, "show",
+                                         G_CALLBACK (window_show_cb), manager, 0);
+                g_signal_connect_object (window, "map_event",
+                                         G_CALLBACK (window_map_event_cb), manager, 0);
+
+                manager->priv->windows = g_slist_append (manager->priv->windows, window);
+        }
+
         g_object_unref (screen);
         g_object_unref (manager);
 }
@@ -780,7 +812,7 @@ gs_manager_blank (GSManager *manager)
         gdk_display_get_pointer (display, &screen, NULL, NULL, NULL);
         root = gdk_screen_get_root_window (screen);
 
-        if (!gs_grab_get_keyboard_and_mouse (root, screen))
+        if (! gs_grab_get_keyboard_and_mouse (root, screen))
                 return FALSE;
 
         if (! manager->priv->windows)
@@ -801,7 +833,7 @@ gs_manager_unblank (GSManager *manager)
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
-        if (!manager->priv->blank_active)
+        if (! manager->priv->blank_active)
                 return FALSE;
 
         remove_blank_timers (manager);

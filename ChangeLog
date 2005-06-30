@@ -1,5 +1,42 @@
 2005-06-30  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (update_geometry): New function to keep
+	track of the window geometry.
+	(screen_size_changed): New function to handle screen size changes.
+	(gs_window_move_resize_window): New function to nicely handle
+	window moving and resizing.
+	(gs_window_real_realize): Queue a window resize and connect to the
+	screen-size-changed signal.
+	(gs_window_set_monitor): New function to set the monitor the window
+	should appear on.
+	(gs_window_get_monitor): New function to get the monitor the window
+	appears on.
+	(gs_window_set_property, gs_window_get_property): Add monitor.
+	(gs_window_real_size_request): Handle window size requests to
+	make the window fill the monitor.
+	(gs_window_class_init): Implement size-request handler and add
+	monitor property.
+	(gs_window_init): Initialize window geometry.  Don't make the
+	window modal.  Don't make the window stick.  Don't take focus
+	on map.  Don't set the window position to CENTER_ALWAYS.
+	(gs_window_new): Set monitor value.
+
+	* src/gs-manager.c (window_dialog_up_cb): Transfer grabs to window
+	where dialog goes up so the password can be typed in.  Make all
+	other windows insensitive so events won't be triggered while
+	dialog is up.
+	(window_dialog_down_cb): Make all windows sensitive when dialog
+	goes down.
+	(window_map_event_cb): Only transfer grabs to window on monitor
+	with the pointer.
+	(gs_manager_create_window): Create a separate window for each
+	monitor of the screen instead of spanning the entire virtual
+	desktop with one screensaver window.
+
+	This patch adds multihead/xinerama support.
+
+2005-06-30  William Jon McCann  <mccann@jhu.edu>
+
 	* src/file-transfer-dialog.c: Don't include gnome.h
 	(file_transfer_dialog_update_num_files) 
 	(file_transfer_dialog_set_prop, eel_gtk_label_make_bold) 
