@@ -1,3 +1,13 @@
+2005-06-30  William Jon McCann  <mccann@jhu.edu>
+
+	* src/file-transfer-dialog.c: Don't include gnome.h
+	(file_transfer_dialog_update_num_files) 
+	(file_transfer_dialog_set_prop, eel_gtk_label_make_bold) 
+	(create_titled_label, file_transfer_dialog_init) 
+	(file_transfer_dialog_update_cb):
+	HIG updates and make consistent with nautilus transfer
+	progress dialog.
+
 2005-06-27  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-manager.c (select_theme): In the odd case the the
