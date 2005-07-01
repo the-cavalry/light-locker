@@ -1,6 +1,35 @@
-===========
-Version 0.5
-===========
+=============
+Version 0.0.6
+=============
+
+  gnome-screensaver
+
+        * Added Multi-head/Xinerama support
+        * Added screensaver throttle capability
+        * Depend on dbus >= 0.3
+        * Use property based dbus methods/signals
+        * Fix Solaris build
+        * Install own PAM configuration instead of relying on xscreensaver
+        * Add ability to disable 'New Login' button
+
+  gnome-screensaver-preferences
+
+        * Support drag and drop of theme configuration files
+        * Display a nicer form of the activation time value
+
+  Translators
+
+        * Frank Arnold (de)
+        * Adam Weinberger (en_CA)
+        * James Ogley (en_GB)
+        * Francisco Javier F. Serrador (es)
+        * Raphael Higino (pt_BR)
+        * Christian Rose (sv)
+        * Funda Wang (zh_CN)
+
+=============
+Version 0.0.5
+=============
 
   gnome-screensaver
 

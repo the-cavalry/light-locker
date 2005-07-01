@@ -1,3 +1,9 @@
+==== 0.0.6 ====
+
+2005-07-01  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 0.0.6 release.
+
 2005-06-30  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (update_geometry): New function to keep
@@ -272,7 +278,7 @@
 
 	* configure.ac: Post release version bump.
 
-==== 0.5 ====
+==== 0.0.5 ====
 	
 2005-06-07  William Jon McCann  <mccann@jhu.edu>
 
