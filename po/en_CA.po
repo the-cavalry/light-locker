@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-23 19:36-0400\n"
-"PO-Revision-Date: 2005-06-23 11:55-0400\n"
+"POT-Creation-Date: 2005-07-03 18:53-0400\n"
+"PO-Revision-Date: 2005-07-03 11:55-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -376,73 +376,71 @@ msgstr "Too many messages were sent to GDM and it hung up on us."
 msgid "Unknown error occured."
 msgstr "Unknown error occurred."
 
-#: src/file-transfer-dialog.c:95
+#: src/file-transfer-dialog.c:94
 #, c-format
-msgid "%i of %i"
-msgstr "%i of %i"
+msgid "Copying file: %i of %i"
+msgstr "Copying file: %i of %i"
 
-#: src/file-transfer-dialog.c:119
+#: src/file-transfer-dialog.c:122
 #, c-format
-msgid "Transferring: %s"
-msgstr "Transferring: %s"
+msgid "Copying '%s'"
+msgstr "Copying '%s'"
 
-#: src/file-transfer-dialog.c:126
-#, c-format
-msgid "From: %s"
-msgstr "From: %s"
-
-#: src/file-transfer-dialog.c:134
-#, c-format
-msgid "To: %s"
-msgstr "To: %s"
-
-#: src/file-transfer-dialog.c:185
+#: src/file-transfer-dialog.c:193
 msgid "From URI"
 msgstr "From URI"
 
-#: src/file-transfer-dialog.c:186
+#: src/file-transfer-dialog.c:194
 msgid "URI currently transferring from"
 msgstr "URI currently transferring from"
 
-#: src/file-transfer-dialog.c:193
+#: src/file-transfer-dialog.c:201
 msgid "To URI"
 msgstr "To URI"
 
-#: src/file-transfer-dialog.c:194
+#: src/file-transfer-dialog.c:202
 msgid "URI currently transferring to"
 msgstr "URI currently transferring to"
 
-#: src/file-transfer-dialog.c:201
+#: src/file-transfer-dialog.c:209
 msgid "Fraction completed"
 msgstr "Fraction completed"
 
-#: src/file-transfer-dialog.c:202
+#: src/file-transfer-dialog.c:210
 msgid "Fraction of transfer currently completed"
 msgstr "Fraction of transfer currently completed"
 
-#: src/file-transfer-dialog.c:209
+#: src/file-transfer-dialog.c:217
 msgid "Current URI index"
 msgstr "Current URI index"
 
-#: src/file-transfer-dialog.c:210
+#: src/file-transfer-dialog.c:218
 msgid "Current URI index - starts from 1"
 msgstr "Current URI index - starts from 1"
 
-#: src/file-transfer-dialog.c:217
+#: src/file-transfer-dialog.c:225
 msgid "Total URIs"
 msgstr "Total URIs"
 
-#: src/file-transfer-dialog.c:218
+#: src/file-transfer-dialog.c:226
 msgid "Total number of URIs"
 msgstr "Total number of URIs"
 
-#: src/file-transfer-dialog.c:372 src/file-transfer-dialog.c:374
+#: src/file-transfer-dialog.c:327 src/file-transfer-dialog.c:369
+msgid "Copying files"
+msgstr "Copying files"
+
+#: src/file-transfer-dialog.c:345
+msgid "From:"
+msgstr "From:"
+
+#: src/file-transfer-dialog.c:349
+msgid "To:"
+msgstr "To:"
+
+#: src/file-transfer-dialog.c:448
 msgid "Connecting..."
 msgstr "Connecting..."
-
-#: src/file-transfer-dialog.c:379 src/file-transfer-dialog.c:381
-msgid "Downloading..."
-msgstr "Downloading..."
 
 #: src/gnome-screensaver-command.c:58
 msgid "Causes the screensaver to exit gracefully"
