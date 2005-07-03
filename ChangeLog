@@ -1,3 +1,7 @@
+2005-07-03  Takeshi AIHANA <aihana@gnome.gr.jp
+
+	* configure.ac: Added 'ja' (Japanese) to ALL_LINGUAS.
+
 2005-07-01  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.
