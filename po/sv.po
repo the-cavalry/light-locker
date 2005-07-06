@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-04-29 23:45+0200\n"
-"PO-Revision-Date: 2005-04-29 23:45+0200\n"
+"POT-Creation-Date: 2005-07-06 22:18+0200\n"
+"PO-Revision-Date: 2005-07-06 22:18+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -41,10 +41,6 @@ msgstr "Skärmsläckarinställningar"
 msgid "_Activate after:"
 msgstr "_Aktivera efter:"
 
-#: data/gnome-screensaver-preferences.glade.h:5
-msgid "minutes"
-msgstr "minuter"
-
 #: data/gnome-screensaver.schemas.in.h:1
 #, fuzzy
 msgid "How many minutes until the monitor goes black"
@@ -74,58 +70,87 @@ msgid "How many minutes until the monitor powers down."
 msgstr ""
 
 #: data/gnome-screensaver.schemas.in.h:7
-msgid "The number of minutes after blanking the screen before locking"
+msgid ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear"
 msgstr ""
 
 #: data/gnome-screensaver.schemas.in.h:8
-msgid "The number of minutes after blanking the screen before locking."
+msgid ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear."
 msgstr ""
 
 #: data/gnome-screensaver.schemas.in.h:9
-msgid "The number of minutes of idle time before blanking the screen"
+msgid "The number of minutes after blanking the screen before locking"
 msgstr ""
 
 #: data/gnome-screensaver.schemas.in.h:10
-msgid "The number of minutes of idle time before blanking the screen."
+msgid "The number of minutes after blanking the screen before locking."
 msgstr ""
 
 #: data/gnome-screensaver.schemas.in.h:11
-msgid "The number of minutes to run before changing the screensaver"
+msgid "The number of minutes of idle time before blanking the screen"
 msgstr ""
 
 #: data/gnome-screensaver.schemas.in.h:12
-msgid "The number of minutes to run before changing the screensaver."
+msgid "The number of minutes of idle time before blanking the screen."
 msgstr ""
 
 #: data/gnome-screensaver.schemas.in.h:13
+msgid "The number of minutes to run before changing the screensaver"
+msgstr ""
+
+#: data/gnome-screensaver.schemas.in.h:14
+msgid "The number of minutes to run before changing the screensaver."
+msgstr ""
+
+#: data/gnome-screensaver.schemas.in.h:15
 #, fuzzy
 msgid "The screensaver selection mode"
 msgstr "den aktuella markeringen"
 
-#: data/gnome-screensaver.schemas.in.h:14
+#: data/gnome-screensaver.schemas.in.h:16
+#, fuzzy
+msgid "The selected screensaver themes"
+msgstr "Slå på skärmsläckaren"
+
+#: data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "This key specifies the selection mode used by the screensaver. Possible "
 "values are \"disabled\", \"blank-only\", \"single\", and \"random\"."
 msgstr ""
 
-#: data/gnome-screensaver.schemas.in.h:15
+#: data/gnome-screensaver.schemas.in.h:18
+msgid "This key specifies the themes to be used by the screensaver."
+msgstr ""
+
+#: data/gnome-screensaver.schemas.in.h:19
 #, fuzzy
-msgid "Whether or not to lock as well as save"
+msgid "Whether to lock as well as blank"
 msgstr "Huruvida expanderaren är expanderad eller inte"
 
-#: data/gnome-screensaver.schemas.in.h:16
+#: data/gnome-screensaver.schemas.in.h:20
 #, fuzzy
-msgid "Whether or not to lock as well as save."
+msgid "Whether to lock as well as blank."
 msgstr "Huruvida expanderaren är expanderad eller inte"
 
-#: data/gnome-screensaver.schemas.in.h:17
+#: data/gnome-screensaver.schemas.in.h:21
+msgid "Whether to offer the option of logging out after logout_delay"
+msgstr ""
+
+#: data/gnome-screensaver.schemas.in.h:22
+msgid "Whether to offer the option of logging out after logout_delay."
+msgstr ""
+
+#: data/gnome-screensaver.schemas.in.h:23
 #, fuzzy
 msgid "Whether to power down the monitor"
 msgstr "Växla om genvägsraden ska visas"
 
 # Detta borde bero på lokalen?!
 # http://bugzilla.ximian.com/show_bug.cgi?id=61073
-#: data/gnome-screensaver.schemas.in.h:18
+#: data/gnome-screensaver.schemas.in.h:24
 #, fuzzy
 msgid "Whether to power down the monitor."
 msgstr "Huruvida veckonummer ska visas i datumbläddraren."
@@ -369,100 +394,297 @@ msgstr "För många meddelanden skickades till gdm och det hängde oss."
 msgid "Unknown error occured."
 msgstr "Ett okänt fel inträffade."
 
-#: src/gnome-screensaver-command.c:48
+#: src/file-transfer-dialog.c:94
+#, c-format
+msgid "Copying file: %i of %i"
+msgstr ""
+
+#: src/file-transfer-dialog.c:122
+#, c-format
+msgid "Copying '%s'"
+msgstr ""
+
+#: src/file-transfer-dialog.c:193
+msgid "From URI"
+msgstr ""
+
+#: src/file-transfer-dialog.c:194
+msgid "URI currently transferring from"
+msgstr ""
+
+#: src/file-transfer-dialog.c:201
+msgid "To URI"
+msgstr ""
+
+#: src/file-transfer-dialog.c:202
+msgid "URI currently transferring to"
+msgstr ""
+
+#: src/file-transfer-dialog.c:209
+msgid "Fraction completed"
+msgstr ""
+
+#: src/file-transfer-dialog.c:210
+msgid "Fraction of transfer currently completed"
+msgstr ""
+
+#: src/file-transfer-dialog.c:217
+msgid "Current URI index"
+msgstr ""
+
+#: src/file-transfer-dialog.c:218
+msgid "Current URI index - starts from 1"
+msgstr ""
+
+#: src/file-transfer-dialog.c:225
+msgid "Total URIs"
+msgstr ""
+
+#: src/file-transfer-dialog.c:226
+msgid "Total number of URIs"
+msgstr ""
+
+#: src/file-transfer-dialog.c:327 src/file-transfer-dialog.c:369
+#, fuzzy
+msgid "Copying files"
+msgstr "Kan inte öppna fil"
+
+#: src/file-transfer-dialog.c:345
+msgid "From:"
+msgstr ""
+
+#: src/file-transfer-dialog.c:349
+msgid "To:"
+msgstr ""
+
+#: src/file-transfer-dialog.c:448
+msgid "Connecting..."
+msgstr "Ansluter..."
+
+#: src/gnome-screensaver-command.c:58
 #, fuzzy
 msgid "Causes the screensaver to exit gracefully"
 msgstr "Anpassad skärmsläckare. Ingen beskrivning finns tillgänglig"
 
-#: src/gnome-screensaver-command.c:50
+#: src/gnome-screensaver-command.c:60
+#, fuzzy
+msgid "Query the state of the screensaver"
+msgstr "Slå på skärmsläckaren"
+
+#: src/gnome-screensaver-command.c:62
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr ""
 
-#: src/gnome-screensaver-command.c:52
+#: src/gnome-screensaver-command.c:64
 msgid "If the screensaver is active then switch to another graphics demo"
 msgstr ""
 
-#: src/gnome-screensaver-command.c:54
+#: src/gnome-screensaver-command.c:66
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "Slå på skärmsläckaren (töm skärmen)"
 
-#: src/gnome-screensaver-command.c:56
+#: src/gnome-screensaver-command.c:68
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr ""
 
-#: src/gnome-screensaver-command.c:58 src/gnome-screensaver-dialog.c:57
-#: src/gnome-screensaver.c:86
+#: src/gnome-screensaver-command.c:70
+msgid "Disable running graphical themes while blanked"
+msgstr ""
+
+#: src/gnome-screensaver-command.c:72
+msgid "Enable running graphical themes while blanked (if applicable)"
+msgstr ""
+
+#: src/gnome-screensaver-command.c:74
+msgid "Poke the running screensaver to simulate user activity"
+msgstr ""
+
+#: src/gnome-screensaver-command.c:76 src/gnome-screensaver-dialog.c:56
+#: src/gnome-screensaver.c:55
 msgid "Version of this application"
 msgstr "Detta programs versionsnummer"
 
-#: src/gnome-screensaver-dialog.c:55
+#: src/gnome-screensaver-command.c:201
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "Skärmsläckaren är %s\n"
+
+#: src/gnome-screensaver-command.c:201
+msgid "active"
+msgstr "aktiv"
+
+#: src/gnome-screensaver-command.c:201
+msgid "inactive"
+msgstr "inaktiv"
+
+#: src/gnome-screensaver-dialog.c:54
 msgid "Show debugging output"
 msgstr "Visa felsökningsutdata"
 
-#: src/gnome-screensaver-preferences.c:512
+#: src/gnome-screensaver-dialog.c:58
+msgid "Show the logout button"
+msgstr "Visa utloggningsknappen"
+
+#: src/gnome-screensaver-preferences.c:583
+msgid "Invalid screensaver theme"
+msgstr "Ogiltigt skärmsläckartema"
+
+#: src/gnome-screensaver-preferences.c:586
+msgid "This file does not appear to be a valid screensaver theme."
+msgstr "Denna fil verkar inte vara ett giltigt skärmsläckartema."
+
+#: src/gnome-screensaver-preferences.c:703
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d timme"
+msgstr[1] "%d timmar"
+
+#: src/gnome-screensaver-preferences.c:706
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minut"
+msgstr[1] "%d minuter"
+
+#: src/gnome-screensaver-preferences.c:709
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekund"
+msgstr[1] "%d sekunder"
+
+#. hour:minutes:seconds
+#: src/gnome-screensaver-preferences.c:715
+#, c-format
+msgid "%s %s %s"
+msgstr ""
+
+#. hour:minutes
+#. minutes:seconds
+#: src/gnome-screensaver-preferences.c:718
+#: src/gnome-screensaver-preferences.c:726
+#, c-format
+msgid "%s %s"
+msgstr ""
+
+#. hour
+#. minutes
+#. seconds
+#: src/gnome-screensaver-preferences.c:721
+#: src/gnome-screensaver-preferences.c:729
+#: src/gnome-screensaver-preferences.c:733
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#. 0 seconds
+#: src/gnome-screensaver-preferences.c:736
+msgid "0 seconds"
+msgstr "0 sekunder"
+
+#: src/gnome-screensaver-preferences.c:751
+msgid "Never"
+msgstr "Aldrig"
+
+#: src/gnome-screensaver-preferences.c:779
 msgid "Could not load the main interface"
 msgstr "Kunde inte läsa in huvudgränssnittet"
 
-#: src/gnome-screensaver-preferences.c:514
-#, fuzzy
+#: src/gnome-screensaver-preferences.c:781
 msgid "Please make sure that the screensaver is properly installed"
-msgstr "Försäkra dig om att Caps Lock inte är på."
+msgstr "Försäkra dig om att skärmsläckaren är korrekt installerad"
 
-#: src/gs-lock-plug.c:169
-msgid "Verifying password..."
-msgstr "Verifierar lösenord..."
+#: src/gs-listener-dbus.c:552
+msgid "failed to register with the message bus"
+msgstr ""
 
-#: src/gs-lock-plug.c:232
+#: src/gs-listener-dbus.c:561
+msgid "screensaver already running in this session"
+msgstr "skärmsläckaren kör redan i denna session"
+
+#: src/gs-lock-plug.c:179
+msgid "Checking password..."
+msgstr "Kontrollerar lösenord..."
+
+#: src/gs-lock-plug.c:244
 #, c-format
-msgid "About %ld seconds left"
-msgstr "Ungefär %ld sekunder kvar"
+msgid "About %ld second left"
+msgid_plural "About %ld seconds left"
+msgstr[0] "Ungefär %ld sekund kvar"
+msgstr[1] "Ungefär %ld sekunder kvar"
 
-#: src/gs-lock-plug.c:239
+#: src/gs-lock-plug.c:252
 msgid "Time expired!"
 msgstr "Tiden gick ut!"
 
-#: src/gs-lock-plug.c:264
+#: src/gs-lock-plug.c:277
 msgid "You have the Caps Lock key on."
 msgstr "Du har CapsLock-tangenten på."
 
-#: src/gs-lock-plug.c:362
-msgid "Password verification failed!"
-msgstr "Lösenordsverifieringen misslyckades!"
+#: src/gs-lock-plug.c:474
+msgid "Password check failed!"
+msgstr "Lösenordskontrollen misslyckades!"
 
-#: src/gs-lock-plug.c:387 src/gs-lock-plug.c:427
+#: src/gs-lock-plug.c:499 src/gs-lock-plug.c:539
 msgid "_Unlock"
 msgstr "Lås _upp"
 
-#: src/gs-lock-plug.c:391 src/gs-lock-plug.c:423
-msgid "_Login Screen"
-msgstr "_Inloggningsskärm"
+#: src/gs-lock-plug.c:503 src/gs-lock-plug.c:535
+msgid "_New Login"
+msgstr "_Ny inloggning"
 
-#: src/gs-lock-plug.c:754
-msgid "Enter password to unlock screen"
-msgstr "Ange lösenord för att låsa upp skärmen"
+#: src/gs-lock-plug.c:892
+msgid "Enter a password to unlock the screen"
+msgstr "Ange ett lösenord för att låsa upp skärmen"
 
-#: src/gs-lock-plug.c:783
+#: src/gs-lock-plug.c:921
 msgid "Name:"
 msgstr "Namn:"
 
-#: src/gs-lock-plug.c:787
+#: src/gs-lock-plug.c:925
 msgid "_Password:"
 msgstr "_Lösenord:"
 
-#: src/gs-lock-plug.c:829
+#: src/gs-lock-plug.c:967
 msgid "Log in as another user?"
 msgstr "Logga in som en annan användare?"
 
-#: src/gs-lock-plug.c:847
+#: src/gs-lock-plug.c:985
 msgid ""
-"This option will bring you to the Login Screen.\n"
-"From the Login Screen you may log in to this system\n"
+"This option will bring you to the login screen.\n"
+"From the login screen you may log in to this system\n"
 "as another user or select 'Quit' to return to this screen."
 msgstr ""
 "Detta alternativ kommer att ta dig till inloggningsskärmen.\n"
 "Från inloggningsskärmen kan du logga in på detta system\n"
 "som en annan användare, eller välja \"Avsluta\" för att\n"
 "återvända till denna skärm."
+
+#: src/gs-lock-plug.c:1024
+msgid "Log _Out"
+msgstr "Logga _ut"
+
+#~ msgid "The screensaver is active"
+#~ msgstr "Skärmsläckaren är aktiv"
+
+#~ msgid "The screensaver is inactive"
+#~ msgstr "Skärmsläckaren är inaktiv"
+
+#~ msgid "New Login"
+#~ msgstr "Ny inloggning"
+
+#~ msgid "Log Out"
+#~ msgstr "Logga ut"
+
+#~ msgid "Log out"
+#~ msgstr "Logga ut"
+
+#~ msgid "Log _out"
+#~ msgstr "Logga _ut"
+
+#~ msgid "_Login Screen"
+#~ msgstr "_Inloggningsskärm"
 
 #~ msgid "Screensavers"
 #~ msgstr "Skärmsläckare"
@@ -472,9 +694,6 @@ msgstr ""
 
 #~ msgid "_Screensaver"
 #~ msgstr "_Skärmsläckare"
-
-#~ msgid "Turn the screensaver on"
-#~ msgstr "Slå på skärmsläckaren"
 
 #~ msgid "Log in as another user"
 #~ msgstr "Logga in som en annan användare"
@@ -1781,9 +2000,6 @@ msgstr ""
 #~ msgid "Open a session to the selected host"
 #~ msgstr "Öppna en session till den valda värden"
 
-#~ msgid "C_onnect"
-#~ msgstr "_Anslut"
-
 #~ msgid "Status"
 #~ msgstr "Status"
 
@@ -1973,9 +2189,6 @@ msgstr ""
 
 #~ msgid "Cannot start new display"
 #~ msgstr "Kan inte starta ny display"
-
-#~ msgid "New Login"
-#~ msgstr "Ny inloggning"
 
 #~ msgid "A-M|Afrikaans"
 #~ msgstr "A-M|Afrikaans"
@@ -2566,9 +2779,6 @@ msgstr ""
 #~ msgid "No picture selected."
 #~ msgstr "Ingen bild är vald."
 
-#~ msgid "Cannot open file"
-#~ msgstr "Kan inte öppna fil"
-
 #~ msgid "File %s cannot be open for writing\n"
 #~ msgstr "Filen %s kan inte öppnas för skrivning\n"
 
@@ -2703,9 +2913,6 @@ msgstr ""
 
 #~ msgid "copyright"
 #~ msgstr "copyright"
-
-#~ msgid "_Install new theme"
-#~ msgstr "_Installera nytt tema"
 
 #~ msgid "_Delete theme"
 #~ msgstr "_Ta bort tema"
@@ -4206,9 +4413,6 @@ msgstr ""
 #~ msgid "Error reading session script!"
 #~ msgstr "Fel vid läsning av sessionsskript!"
 
-#~ msgid "Error reading this session script"
-#~ msgstr "Fel vid läsning av detta sessionsskript"
-
 #~ msgid "Yes"
 #~ msgstr "Ja"
 
@@ -4877,9 +5081,6 @@ msgstr ""
 #~ msgid "No."
 #~ msgstr "Nr."
 
-#~ msgid "Server"
-#~ msgstr "Server"
-
 #~ msgid "Extra arguments"
 #~ msgstr "Extra argument"
 
@@ -4960,9 +5161,6 @@ msgstr ""
 
 #~ msgid "Xterm Failsafe"
 #~ msgstr "Felsäker Xterm"
-
-#~ msgid "Add session"
-#~ msgstr "Lägg till session"
 
 #~ msgid "Remove session"
 #~ msgstr "Ta bort session"
