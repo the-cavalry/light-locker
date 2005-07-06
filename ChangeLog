@@ -1,5 +1,10 @@
 2005-07-06  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-listener-dbus.c (gs_listener_set_active):
+	Reset the throttle state after deactivation.
+
+2005-07-06  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac (have_pam): Initialize have_pam to "no".
 
 2005-07-03  Takeshi AIHANA <aihana@gnome.gr.jp
