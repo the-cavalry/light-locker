@@ -1,5 +1,10 @@
 2005-07-06  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/popsquares.c (screenhack_init):
+	Don't use nsquares before initializing.  Fixes #309655.
+
+2005-07-06  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-listener-dbus.c (gs_listener_set_active):
 	Reset the throttle state after deactivation.
 
