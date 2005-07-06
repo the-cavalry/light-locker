@@ -999,6 +999,7 @@ fi
 
 #       Check for PAM.
 
+have_pam=no
 AC_ARG_ENABLE(pam, AC_HELP_STRING([--enable-pam],
                    [Enable PAM support @<:@default=auto@:>@],
                    ),,enable_pam=auto)
