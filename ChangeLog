@@ -1,5 +1,12 @@
 2005-07-06  William Jon McCann  <mccann@jhu.edu>
 
+	* data/gnome-screensaver.schemas.in: Use int types.
+
+	Patch from Sebastien Bacher <seb128@debian.org>.
+	Fixes #309656.
+
+2005-07-06  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/popsquares.c (screenhack_init):
 	Don't use nsquares before initializing.  Fixes #309655.
 

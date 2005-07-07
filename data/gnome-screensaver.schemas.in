@@ -47,7 +47,7 @@
       <key>/schemas/apps/gnome-screensaver/blank_delay</key>
       <applyto>/apps/gnome-screensaver/blank_delay</applyto>
       <owner>gnome-screensaver</owner>
-      <type>long</type>
+      <type>int</type>
       <default>10</default>
       <locale name="C">
         <short>The number of minutes of idle time before blanking the screen</short>
@@ -59,7 +59,7 @@
       <key>/schemas/apps/gnome-screensaver/cycle_delay</key>
       <applyto>/apps/gnome-screensaver/cycle_delay</applyto>
       <owner>gnome-screensaver</owner>
-      <type>long</type>
+      <type>int</type>
       <default>10</default>
       <locale name="C">
         <short>The number of minutes to run before changing the screensaver</short>
@@ -71,7 +71,7 @@
       <key>/schemas/apps/gnome-screensaver/lock_delay</key>
       <applyto>/apps/gnome-screensaver/lock_delay</applyto>
       <owner>gnome-screensaver</owner>
-      <type>long</type>
+      <type>int</type>
       <default>0</default>
       <locale name="C">
         <short>The number of minutes after blanking the screen before locking</short>
@@ -95,7 +95,7 @@
       <key>/schemas/apps/gnome-screensaver/dpms_standby</key>
       <applyto>/apps/gnome-screensaver/dpms_standby</applyto>
       <owner>gnome-screensaver</owner>
-      <type>long</type>
+      <type>int</type>
       <default>120</default>
       <locale name="C">
         <short>How many minutes until the monitor goes black</short>
@@ -107,7 +107,7 @@
       <key>/schemas/apps/gnome-screensaver/dpms_suspend</key>
       <applyto>/apps/gnome-screensaver/dpms_suspend</applyto>
       <owner>gnome-screensaver</owner>
-      <type>long</type>
+      <type>int</type>
       <default>120</default>
       <locale name="C">
         <short>How many minutes until the monitor power-saves</short>
@@ -119,7 +119,7 @@
       <key>/schemas/apps/gnome-screensaver/dpms_off</key>
       <applyto>/apps/gnome-screensaver/dpms_off</applyto>
       <owner>gnome-screensaver</owner>
-      <type>long</type>
+      <type>int</type>
       <default>240</default>
       <locale name="C">
         <short>How many minutes until the monitor powers down</short>
@@ -143,7 +143,7 @@
       <key>/schemas/apps/gnome-screensaver/logout_delay</key>
       <applyto>/apps/gnome-screensaver/logout_delay</applyto>
       <owner>gnome-screensaver</owner>
-      <type>long</type>
+      <type>int</type>
       <default>120</default>
       <locale name="C">
         <short>The number of minutes after blanking the screen before a logout option will appear</short>
