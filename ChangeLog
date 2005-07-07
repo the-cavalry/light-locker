@@ -1,3 +1,8 @@
+2005-07-07  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac (enable_user_switching): Don't require
+	the gdm.conf file to exist at build time.  Fixes #309730.
+
 2005-07-06  William Jon McCann  <mccann@jhu.edu>
 
 	* Makefile.am: 

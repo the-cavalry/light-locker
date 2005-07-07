@@ -186,11 +186,10 @@ fi
 
 AC_DEFINE_PATH(GDMCONFIGFILE, "$gdmconfigfile", [The location of the GDM configuration file])
 
-if test -f "$gdmconfigfile"; then
+enable_user_switching=no
+if test "x$gdmconfigfile" != "x" -a "x$gdmconfigfile" != "xno"; then
 	enable_user_switching=yes
 	AC_DEFINE(HAVE_USER_SWITCHING, 1, [Define if user switching is available])
-else
-	enable_user_switching=no
 fi
 
 AM_CONDITIONAL(HAVE_USER_SWITCHING, test x$enable_user_switching = xyes)
