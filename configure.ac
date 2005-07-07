@@ -1373,6 +1373,7 @@ AC_SUBST(LDFLAGS)
 
 AC_OUTPUT([
 Makefile
+po/Makefile.in
 src/Makefile
 src/cut-n-paste/Makefile
 data/Makefile

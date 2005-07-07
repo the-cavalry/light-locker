@@ -1,5 +1,13 @@
 2005-07-06  William Jon McCann  <mccann@jhu.edu>
 
+	* Makefile.am: 
+	* configure.ac: Actually ship the translations.
+
+	Patch from Sebastien Bacher <seb128@debian.org>.
+	Fixes #309658.
+
+2005-07-06  William Jon McCann  <mccann@jhu.edu>
+
 	* data/gnome-screensaver.schemas.in: Use int types.
 
 	Patch from Sebastien Bacher <seb128@debian.org>.
