@@ -1,5 +1,10 @@
 2005-07-08  William Jon McCann  <mccann@jhu.edu>
 
+	* data/gnome-screensaver: Also include SuSE/Novell
+	example PAM configuration.
+
+2005-07-08  William Jon McCann  <mccann@jhu.edu>
+
 	* src/passwd-helper.c: Include subprocs.h.
 
 2005-07-08  William Jon McCann  <mccann@jhu.edu>
