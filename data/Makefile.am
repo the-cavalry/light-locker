@@ -15,11 +15,13 @@ glade_DATA = gnome-screensaver-preferences.glade
 
 EXTRA_DIST = 				\
 	$(schemas_in_files)		\
+	$(desktop_in_files)		\
 	$(glade_DATA)			\
-	$(desktop_DATA)			\
 	gnome-screensaver
 
-DISTCLEANFILES = $(schemas_DATA)
+DISTCLEANFILES = 			\
+	$(schemas_DATA)			\
+	$(desktop_DATA)
 
 MAINTAINERCLEANFILES =			\
 	*~				\

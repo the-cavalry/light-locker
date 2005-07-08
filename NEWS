@@ -1,4 +1,24 @@
 =============
+Version 0.0.7
+=============
+
+  gnome-screensaver
+
+        * Fix authentication on SuSE/Novell
+        * Automatically find the SuSE/Novell gdm.conf file
+        * Don't require the gdm.conf file to exist at build time
+        * Actually ship the translations
+        * Fix crash in popsquares
+        * Reset throttle value after deactivation
+
+  Translators
+
+        * Hendrik Richter (de)
+        * Adam Weinberger (en_CA)
+        * Takeshi AIHANA (ja)
+        * Christian Rose (sv)
+
+=============
 Version 0.0.6
 =============
 

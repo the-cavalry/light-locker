@@ -1,3 +1,11 @@
+==== 0.0.7 ====
+
+2005-07-08  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 0.0.7 release.
+
+	* data/Makefile.am: Fix dist for desktop files.
+
 2005-07-08  William Jon McCann  <mccann@jhu.edu>
 
 	* src/.cvsignore: Add test-passwd.
