@@ -35,6 +35,9 @@ bin_PROGRAMS = \
 libexec_PROGRAMS = \
 	gnome-screensaver-dialog
 
+noinst_PROGRAMS = \
+	test-passwd
+
 gnome_screensaver_command_SOURCES = 	\
 	gnome-screensaver-command.c
 
@@ -58,6 +61,20 @@ AUTH_SOURCES += 		\
 	passwd-helper.c		\
 	passwd-helper.h
 endif
+
+test_passwd_SOURCES = 			\
+	test-passwd.c 			\
+	$(AUTH_SOURCES)			\
+	setuid.c			\
+	setuid.h			\
+	subprocs.c			\
+	subprocs.h			\
+	$(NULL)
+
+test_passwd_LDADD =			\
+	$(GNOME_SCREENSAVER_LIBS)	\
+	$(AUTH_LIBS)			\
+	$(NULL)
 
 gnome_screensaver_dialog_SOURCES = 	\
 	gnome-screensaver-dialog.c	\
