@@ -51,9 +51,7 @@
 #include <glib.h>
 
 #include "passwd-helper.h"
-
-extern void block_sigchld (void);
-extern void unblock_sigchld (void);
+#include "subprocs.h"
 
 static gboolean
 ext_run (const char *user,

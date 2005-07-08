@@ -1,5 +1,9 @@
 2005-07-08  William Jon McCann  <mccann@jhu.edu>
 
+	* src/passwd-helper.c: Include subprocs.h.
+
+2005-07-08  William Jon McCann  <mccann@jhu.edu>
+
 	* src/Makefile.am: 
 	* src/test-passwd.c: New file to test authentication.
 
