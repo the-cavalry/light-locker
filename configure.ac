@@ -175,6 +175,8 @@ if test "x$gdmconfigfile" == "x" -o "x$gdmconfigfile" == "xno"; then
 		gdmconfigfile="/etc/gdm/gdm.conf"
 	elif test -f "/etc/X11/gdm/gdm.conf"; then
 		gdmconfigfile="/etc/X11/gdm/gdm.conf"
+	elif test -f "/etc/opt/gnome/gdm/gdm.conf"; then
+		gdmconfigfile="/etc/opt/gnome/gdm/gdm.conf"
 	else
 		gdmconfigfile=""
 	fi

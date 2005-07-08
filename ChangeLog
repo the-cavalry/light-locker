@@ -1,5 +1,9 @@
 2005-07-08  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac (GDMCONFIGFILE): Check SuSE gdm.conf location.
+
+2005-07-08  William Jon McCann  <mccann@jhu.edu>
+
 	* data/Makefile.am (install-data-hook):
 	Added note that PAM file must be updated for SuSE/Novell.
 
