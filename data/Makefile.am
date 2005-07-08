@@ -56,6 +56,8 @@ install-data-hook:
 	             echo "***           to /etc/pam.d/gnome-screensaver.  Otherwise, unlocking might" ; \
 	             echo "***           not work." ; \
 	             echo "***" ; \
+	             echo "***           Note: If you are using SuSE/Novell you may have to modify this file." ; \
+	             echo "***" ; \
 		fi; \
 	   fi; \
 	   if test $$system = SunOS; then \

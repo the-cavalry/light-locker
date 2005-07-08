@@ -1,5 +1,10 @@
 2005-07-08  William Jon McCann  <mccann@jhu.edu>
 
+	* data/Makefile.am (install-data-hook):
+	Added note that PAM file must be updated for SuSE/Novell.
+
+2005-07-08  William Jon McCann  <mccann@jhu.edu>
+
 	* data/gnome-screensaver: Also include SuSE/Novell
 	example PAM configuration.
 
