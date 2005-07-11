@@ -675,8 +675,6 @@ window_show_cb (GSWindow  *window,
         gs_job_prepend_theme_path (job, path);
         g_free (path);
 
-        g_object_ref (job);
-
         theme = select_theme (manager);
         gs_job_set_theme (job, theme, NULL);
 

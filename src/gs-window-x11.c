@@ -284,19 +284,24 @@ spawn_on_window (GSWindow *window,
 {
         int         argc;
         char      **argv;
+        char       *str;
         GPtrArray  *env;
         gboolean    result;
         GIOChannel *channel;
         int         standard_output;
         int         child_pid;
         int         id;
+        int         i;
 
         if (!g_shell_parse_argv (command, &argc, &argv, NULL))
                 return FALSE;
 
         env = g_ptr_array_new ();
-        g_ptr_array_add (env, g_strdup_printf ("DISPLAY=%s",
-                                               gdk_screen_make_display_name (GTK_WINDOW (window)->screen)));
+
+        str = gdk_screen_make_display_name (GTK_WINDOW (window)->screen);
+        g_ptr_array_add (env, g_strdup_printf ("DISPLAY=%s", str));
+        g_free (str);
+
         g_ptr_array_add (env, g_strdup_printf ("HOME=%s",
                                                g_get_home_dir ()));
         g_ptr_array_add (env, g_strdup_printf ("PATH=%s", g_getenv ("PATH")));
@@ -316,6 +321,10 @@ spawn_on_window (GSWindow *window,
                                                  &standard_output,
                                                  NULL,
                                                  NULL);
+
+        for (i = 0; i < env->len; i++)
+                g_free (g_ptr_array_index (env, i));
+        g_ptr_array_free (env, TRUE);
 
         if (!result)
                 return FALSE;
@@ -338,8 +347,6 @@ spawn_on_window (GSWindow *window,
                 *watch_id = id;
 
         g_io_channel_unref (channel);
-
-        g_ptr_array_free (env, TRUE);
 
         g_strfreev (argv);
 

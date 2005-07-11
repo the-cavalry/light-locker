@@ -94,20 +94,24 @@ G_DEFINE_TYPE (GSJob, gs_job, G_TYPE_OBJECT);
 static xmlXPathObjectPtr
 getnodeset (xmlDocPtr      doc,
             const xmlChar *xpath)
-{	
-	xmlXPathContextPtr context;
-	xmlXPathObjectPtr  result;
+{
+        xmlXPathContextPtr context;
+        xmlXPathObjectPtr  result;
 
-	context = xmlXPathNewContext (doc);
-	result = xmlXPathEvalExpression (xpath, context);
-	if (xmlXPathNodeSetIsEmpty (result->nodesetval)) {
+        context = xmlXPathNewContext (doc);
+        result = xmlXPathEvalExpression (xpath, context);
+        xmlXPathFreeContext (context);
+
+        if (! result)
+                return NULL;
+
+        if (xmlXPathNodeSetIsEmpty (result->nodesetval)) {
                 g_warning ("Node set is empty for %s", xpath);
-		return NULL;
+                xmlXPathFreeObject (result);
+                return NULL;
         }
 
-	xmlXPathFreeContext (context);
-
-	return result;
+        return result;
 }
 
 static xmlChar *
@@ -116,15 +120,17 @@ get_first_xpath_prop (xmlDocPtr      doc,
                       const xmlChar *prop)
 { 
         xmlChar          *keyword = NULL;
-	xmlXPathObjectPtr result;
-	xmlNodeSetPtr     nodeset;
+        xmlXPathObjectPtr result;
+        xmlNodeSetPtr     nodeset;
 
-	result = getnodeset (doc, xpath);
+        result = getnodeset (doc, xpath);
         if (result) {
-		nodeset = result->nodesetval;
+                nodeset = result->nodesetval;
                 if (nodeset->nodeNr > 0)
                         keyword = xmlGetProp (nodeset->nodeTab [0], prop);
-	}
+
+                xmlXPathFreeObject (result);
+        }
 
         return keyword;
 }
@@ -610,6 +616,8 @@ gs_job_finalize (GObject *object)
         g_free (job->priv->search_path);
         job->priv->search_path = NULL;
 
+        g_hash_table_destroy (job->priv->all_themes);
+
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
@@ -755,13 +763,14 @@ spawn_on_widget (GtkWidget  *widget,
         char       *path;
         char      **new_argv;
         GPtrArray  *env;
-        char       *window_id;
+        char       *str;
         gboolean    result;
         GIOChannel *channel;
         GError     *error = NULL;
         int         standard_error;
         int         child_pid;
         int         id;
+        int         i;
 
         if (! argv)
                 return FALSE;
@@ -776,10 +785,14 @@ spawn_on_widget (GtkWidget  *widget,
 
         env = g_ptr_array_new ();
 
-        window_id = widget_get_id_string (widget);
-        g_ptr_array_add (env, g_strdup_printf ("XSCREENSAVER_WINDOW=%s", window_id));
-        g_ptr_array_add (env, g_strdup_printf ("DISPLAY=%s",
-                                               gdk_screen_make_display_name (gtk_widget_get_screen (widget))));
+        str = widget_get_id_string (widget);
+        g_ptr_array_add (env, g_strdup_printf ("XSCREENSAVER_WINDOW=%s", str));
+        g_free (str);
+
+        str = gdk_screen_make_display_name (gtk_widget_get_screen (widget));
+        g_ptr_array_add (env, g_strdup_printf ("DISPLAY=%s", str));
+        g_free (str);
+
         g_ptr_array_add (env, g_strdup_printf ("HOME=%s",
                                                g_get_home_dir ()));
         g_ptr_array_add (env, g_strdup_printf ("PATH=%s", g_getenv ("PATH")));
@@ -798,12 +811,18 @@ spawn_on_widget (GtkWidget  *widget,
                                                  NULL,
                                                  &standard_error,
                                                  &error);
+        for (i = 0; i < env->len; i++)
+                g_free (g_ptr_array_index (env, i));
+        g_ptr_array_free (env, TRUE);
 
         if (! result) {
                 g_warning ("Could not start command '%s': %s", new_argv [0], error->message);
                 g_error_free (error);
+                g_strfreev (new_argv);
                 return FALSE;
         }
+
+        g_strfreev (new_argv);
 
         nice_process (child_pid, 10);
 
@@ -825,8 +844,6 @@ spawn_on_widget (GtkWidget  *widget,
                 *watch_id = id;
 
         g_io_channel_unref (channel);
-
-        g_ptr_array_free (env, TRUE);
 
         return result;
 }

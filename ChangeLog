@@ -1,5 +1,15 @@
 2005-07-11  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-job.c (gs_job_finalize): Destroy the hash table.
+	(getnodeset, get_first_xpath_prop): Fix leaks.
+
+	* src/gs-manager.c (window_show_cb): Don't do an extra ref.
+
+	* src/gs-job.c (spawn_on_widget): 
+	* src/gs-window-x11.c (spawn_on_window): Fix leaks.
+
+2005-07-11  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-job.c (spawn_on_widget): Add XAUTHORITY
 	to child environment.  Use gdk_screen_make_display_name
 	for DISPLAY variable.
