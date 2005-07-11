@@ -752,11 +752,9 @@ spawn_on_widget (GtkWidget  *widget,
                  gpointer    user_data,
                  guint      *watch_id)
 {
-        char       *envp [5];
         char       *path;
         char      **new_argv;
-        int         nenv = 0;
-        int         i;
+        GPtrArray  *env;
         char       *window_id;
         gboolean    result;
         GIOChannel *channel;
@@ -776,19 +774,22 @@ spawn_on_widget (GtkWidget  *widget,
                 new_argv [0] = path;
         }
 
+        env = g_ptr_array_new ();
+
         window_id = widget_get_id_string (widget);
-        envp [nenv++] = g_strdup_printf ("XSCREENSAVER_WINDOW=%s", window_id);
-        envp [nenv++] = g_strdup_printf ("DISPLAY=%s",
-                                         gdk_display_get_name (gdk_display_get_default ()));
-        envp [nenv++] = g_strdup_printf ("HOME=%s",
-                                         g_get_home_dir ());
-        envp [nenv++] = g_strdup_printf ("PATH=%s", g_getenv ("PATH"));
-        envp [nenv++] = NULL;
+        g_ptr_array_add (env, g_strdup_printf ("XSCREENSAVER_WINDOW=%s", window_id));
+        g_ptr_array_add (env, g_strdup_printf ("DISPLAY=%s",
+                                               gdk_screen_make_display_name (gtk_widget_get_screen (widget))));
+        g_ptr_array_add (env, g_strdup_printf ("HOME=%s",
+                                               g_get_home_dir ()));
+        g_ptr_array_add (env, g_strdup_printf ("PATH=%s", g_getenv ("PATH")));
+        g_ptr_array_add (env, g_strdup_printf ("XAUTHORITY=%s", g_getenv ("XAUTHORITY")));
+        g_ptr_array_add (env, NULL);
 
         result = gdk_spawn_on_screen_with_pipes (gtk_widget_get_screen (widget),
                                                  g_get_home_dir (),
                                                  new_argv,
-                                                 envp,
+                                                 (char **)env->pdata,
                                                  G_SPAWN_DO_NOT_REAP_CHILD,
                                                  NULL,
                                                  NULL,
@@ -825,8 +826,7 @@ spawn_on_widget (GtkWidget  *widget,
 
         g_io_channel_unref (channel);
 
-        for (i = 0; i < nenv; i++)
-                g_free (envp [i]);
+        g_ptr_array_free (env, TRUE);
 
         return result;
 }

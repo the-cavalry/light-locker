@@ -1,5 +1,11 @@
 2005-07-11  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-job.c (spawn_on_widget): Add XAUTHORITY
+	to child environment.  Use gdk_screen_make_display_name
+	for DISPLAY variable.
+
+2005-07-11  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (spawn_on_window): Add XAUTHORITY
 	to child environment.  Use gdk_screen_make_display_name
 	for DISPLAY variable.
