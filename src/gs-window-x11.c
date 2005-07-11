@@ -284,9 +284,7 @@ spawn_on_window (GSWindow *window,
 {
         int         argc;
         char      **argv;
-        char       *envp [5];
-        int         nenv = 0;
-        int         i;
+        GPtrArray  *env;
         gboolean    result;
         GIOChannel *channel;
         int         standard_output;
@@ -296,18 +294,20 @@ spawn_on_window (GSWindow *window,
         if (!g_shell_parse_argv (command, &argc, &argv, NULL))
                 return FALSE;
 
-        envp[nenv++] = g_strdup_printf ("DISPLAY=%s",
-                                        gdk_display_get_name (gdk_display_get_default ()));
-        envp[nenv++] = g_strdup_printf ("HOME=%s",
-                                        g_get_home_dir ());
-        envp[nenv++] = g_strdup_printf ("PATH=%s", g_getenv ("PATH"));
-        envp[nenv++] = g_strdup_printf ("SESSION_MANAGER=%s", g_getenv ("SESSION_MANAGER"));
-        envp[nenv++] = NULL;
+        env = g_ptr_array_new ();
+        g_ptr_array_add (env, g_strdup_printf ("DISPLAY=%s",
+                                               gdk_screen_make_display_name (GTK_WINDOW (window)->screen)));
+        g_ptr_array_add (env, g_strdup_printf ("HOME=%s",
+                                               g_get_home_dir ()));
+        g_ptr_array_add (env, g_strdup_printf ("PATH=%s", g_getenv ("PATH")));
+        g_ptr_array_add (env, g_strdup_printf ("SESSION_MANAGER=%s", g_getenv ("SESSION_MANAGER")));
+        g_ptr_array_add (env, g_strdup_printf ("XAUTHORITY=%s", g_getenv ("XAUTHORITY")));
+        g_ptr_array_add (env, NULL);
 
         result = gdk_spawn_on_screen_with_pipes (GTK_WINDOW (window)->screen,
                                                  g_get_home_dir (),
                                                  argv,
-                                                 envp,
+                                                 (char **)env->pdata,
                                                  G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
                                                  NULL,
                                                  NULL,
@@ -339,8 +339,7 @@ spawn_on_window (GSWindow *window,
 
         g_io_channel_unref (channel);
 
-        for (i = 0; i < nenv; i++)
-                g_free (envp [i]);
+        g_ptr_array_free (env, TRUE);
 
         g_strfreev (argv);
 
