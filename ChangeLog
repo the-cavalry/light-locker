@@ -1,5 +1,14 @@
 2005-07-13  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (do_user_switch, switch_user_response) 
+	(gs_lock_plug_response, get_ok_button_for_page) 
+	(get_switch_button_for_page, user_displays_changed_cb) 
+	(populate_model, compare_users, separator_func, setup_treeview) 
+	(gs_lock_plug_init, gs_lock_plug_finalize):
+	Integrate fast-user-switching directly into the unlock dialog.
+
+2005-07-13  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (restart_monitor_progress) 
 	(gs_lock_plug_show, entry_key_press): Restart the timer
 	after each keypress.  This helps slow typists.
