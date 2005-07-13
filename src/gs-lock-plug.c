@@ -46,6 +46,7 @@ enum {
 };
 
 #define FACE_ICON_SIZE 24
+#define DIALOG_TIMEOUT_MSEC 60000
 
 static void gs_lock_plug_class_init (GSLockPlugClass *klass);
 static void gs_lock_plug_init       (GSLockPlug      *plug);
@@ -1331,7 +1332,7 @@ gs_lock_plug_init (GSLockPlug *plug)
         if (! plug->priv->switch_enabled)
                 gtk_widget_hide (plug->priv->switch_button);
 
-        plug->priv->timeout = 30000;
+        plug->priv->timeout = DIALOG_TIMEOUT_MSEC;
 
         g_signal_connect (plug->priv->switch_button, "clicked",
                           G_CALLBACK (switch_page), plug);

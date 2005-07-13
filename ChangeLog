@@ -1,5 +1,10 @@
 2005-07-13  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (gs_lock_plug_init): Increase dialog
+	timeout to 60 secs.
+
+2005-07-13  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (do_user_switch, switch_user_response) 
 	(gs_lock_plug_response, get_ok_button_for_page) 
 	(get_switch_button_for_page, user_displays_changed_cb) 
