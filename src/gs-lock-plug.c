@@ -296,6 +296,20 @@ is_capslock_on (void)
 }
 
 static void
+restart_monitor_progress (GSLockPlug *plug)
+{
+        if (plug->priv->idle_id > 0) {
+                g_source_remove (plug->priv->idle_id);
+                plug->priv->idle_id = 0;
+        }
+
+        g_get_current_time (&plug->priv->start_time);
+        plug->priv->idle_id = g_timeout_add (50,
+                                             (GSourceFunc)monitor_progress,
+                                             plug);
+}
+
+static void
 gs_lock_plug_show (GtkWidget *widget)
 {
 
@@ -304,10 +318,7 @@ gs_lock_plug_show (GtkWidget *widget)
 
         capslock_update (GS_LOCK_PLUG (widget), is_capslock_on ());
 
-        g_get_current_time (&(GS_LOCK_PLUG (widget)->priv->start_time));
-        GS_LOCK_PLUG (widget)->priv->idle_id = g_timeout_add (50,
-                                                              (GSourceFunc)monitor_progress,
-                                                              GS_LOCK_PLUG (widget));
+        restart_monitor_progress (GS_LOCK_PLUG (widget));
 }
 
 static void
@@ -688,6 +699,8 @@ entry_key_press (GtkWidget   *widget,
                  GSLockPlug  *plug)
 {
         gboolean capslock_on;
+
+        restart_monitor_progress (plug);
 
         capslock_on = is_capslock_on ();
 

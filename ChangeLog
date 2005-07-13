@@ -1,3 +1,9 @@
+2005-07-13  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c (restart_monitor_progress) 
+	(gs_lock_plug_show, entry_key_press): Restart the timer
+	after each keypress.  This helps slow typists.
+
 2005-07-11  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-job.c (gs_job_finalize): Destroy the hash table.
