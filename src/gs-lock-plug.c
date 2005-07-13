@@ -548,10 +548,9 @@ static GtkWidget *
 get_ok_button_for_page (gint page)
 {
         GtkWidget *align;
-        GtkWidget *widget;
+        GtkWidget *widget = NULL;
         GtkWidget *hbox;
-        const char *stock_id = NULL;
-        const char *label    = NULL;
+        const char *label = NULL;
 
         align = gtk_alignment_new (0.5, 0.5, 0, 0);
         hbox = gtk_hbox_new (FALSE, 2);
@@ -559,19 +558,20 @@ get_ok_button_for_page (gint page)
 
         switch (page) {
         case (AUTH_PAGE):
-                stock_id = GTK_STOCK_DIALOG_AUTHENTICATION;
                 label = N_("_Unlock");
+                widget = gtk_image_new_from_stock (GTK_STOCK_DIALOG_AUTHENTICATION,
+                                                   GTK_ICON_SIZE_BUTTON);
                 break;
         case (SWITCH_PAGE):
-                stock_id = GTK_STOCK_REFRESH;
                 label = N_("_Switch User");
+                widget = gtk_image_new_from_icon_name ("stock_people",
+                                                       GTK_ICON_SIZE_BUTTON);
                 break;
         default:
                 g_assert ("Invalid notebook page");
                 break;
         }
 
-        widget = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_BUTTON);
         gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
 
         widget = gtk_label_new_with_mnemonic (label);
@@ -584,10 +584,9 @@ static GtkWidget *
 get_switch_button_for_page (gint page)
 {
         GtkWidget *align;
-        GtkWidget *widget;
+        GtkWidget *widget = NULL;
         GtkWidget *hbox;
-        const char *stock_id = NULL;
-        const char *label    = NULL;
+        const char *label = NULL;
 
         align = gtk_alignment_new (0.5, 0.5, 0, 0);
         hbox = gtk_hbox_new (FALSE, 2);
@@ -595,19 +594,20 @@ get_switch_button_for_page (gint page)
 
         switch (page) {
         case (AUTH_PAGE):
-                stock_id = GTK_STOCK_REFRESH;
                 label = N_("_Switch User");
+                widget = gtk_image_new_from_icon_name ("stock_people",
+                                                       GTK_ICON_SIZE_BUTTON);
                 break;
         case (SWITCH_PAGE):
-                stock_id = GTK_STOCK_DIALOG_AUTHENTICATION;
                 label = N_("_Unlock");
+                widget = gtk_image_new_from_stock (GTK_STOCK_DIALOG_AUTHENTICATION,
+                                                   GTK_ICON_SIZE_BUTTON);
                 break;
         default:
                 g_assert ("Invalid notebook page");
                 break;
         }
 
-        widget = gtk_image_new_from_stock (stock_id, GTK_ICON_SIZE_BUTTON);
         gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
 
         widget = gtk_label_new_with_mnemonic (label);
@@ -1237,7 +1237,7 @@ gs_lock_plug_init (GSLockPlug *plug)
         hbox = gtk_hbox_new (FALSE, 12);
         gtk_notebook_append_page (GTK_NOTEBOOK (plug->priv->notebook), hbox, NULL);
 
-        widget = gtk_image_new_from_stock (GTK_STOCK_REFRESH, GTK_ICON_SIZE_DIALOG);
+        widget = gtk_image_new_from_icon_name ("stock_people", GTK_ICON_SIZE_DIALOG);
         gtk_misc_set_alignment (GTK_MISC (widget), 0.5, 0);
         gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
 

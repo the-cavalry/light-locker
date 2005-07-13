@@ -1,5 +1,11 @@
 2005-07-13  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (get_ok_button_for_page) 
+	(get_switch_button_for_page, gs_lock_plug_init):
+	Use stock_people icon instead of GTK_STOCK_REFRESH.
+
+2005-07-13  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (gs_lock_plug_init): Increase dialog
 	timeout to 60 secs.
 
