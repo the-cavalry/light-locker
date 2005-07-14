@@ -45,7 +45,7 @@ enum {
         SWITCH_PAGE
 };
 
-#define FACE_ICON_SIZE 24
+#define FACE_ICON_SIZE 32
 #define DIALOG_TIMEOUT_MSEC 60000
 
 static void gs_lock_plug_class_init (GSLockPlugClass *klass);
@@ -1070,12 +1070,43 @@ separator_func (GtkTreeModel *model,
         return FALSE;
 }
 
+static gboolean
+filter_out_users (GtkTreeModel *model,
+                  GtkTreeIter  *iter,
+                  GSLockPlug   *plug)
+{
+        gboolean is_active;
+        gboolean visible;
+        char    *name;
+
+        gtk_tree_model_get (model, iter,
+                            NAME_COLUMN, &name,
+                            ACTIVE_COLUMN, &is_active,
+                            -1);
+        if (! name)
+                return FALSE;
+
+        if (strcmp (name, "__new_user") == 0
+            || strcmp (name, "__separator") == 0) {
+                visible = TRUE;
+        } else {
+                /* FIXME: do we show all users or only active ones? */
+                visible = TRUE;
+                /*visible = is_active;*/
+        }
+
+        g_free (name);
+
+        return visible;
+}
+
 static void
 setup_treeview (GSLockPlug *plug)
 {
         GtkListStore      *store;
         GtkTreeViewColumn *column;
         GtkCellRenderer   *renderer;
+        GtkTreeModel      *filter;
 
         store = gtk_list_store_new (N_COLUMNS,
                                     G_TYPE_STRING,
@@ -1084,10 +1115,18 @@ setup_treeview (GSLockPlug *plug)
                                     GDK_TYPE_PIXBUF);
         populate_model (plug, store);
 
+        filter = gtk_tree_model_filter_new (GTK_TREE_MODEL (store), NULL);
+
+        gtk_tree_model_filter_set_visible_func (GTK_TREE_MODEL_FILTER (filter),
+                                                (GtkTreeModelFilterVisibleFunc) filter_out_users,
+                                                plug,
+                                                NULL);
+
         gtk_tree_view_set_model (GTK_TREE_VIEW (plug->priv->user_treeview),
-                                 GTK_TREE_MODEL (store));
+                                 filter);
 
         g_object_unref (store);
+        g_object_unref (filter);
 
         renderer = gtk_cell_renderer_pixbuf_new ();
         column = gtk_tree_view_column_new_with_attributes ("Image", renderer,
