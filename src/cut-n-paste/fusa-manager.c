@@ -1,4 +1,5 @@
-/* 
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 2 -*-
+ * 
  * Fast User Switch Applet: fusa-manager.c
  * 
  * Copyright (C) 2005 James M. Cape <jcape@ignore-your.tv>.
@@ -1600,30 +1601,35 @@ real_get_display (FusaManager *manager,
   return display;
 }
 
-
 /* ************************************************************************** *
  *  Semi-Private API                                                          *
  * ************************************************************************** */
 
-GdkPixbuf *
-_fusa_manager_render_icon (FusaManager  *manager,
-			   FusaUser     *user,
-			   GtkWidget    *widget,
-			   gint          icon_size)
+static GdkPixbuf *
+render_icon_from_home (FusaManager  *manager,
+		       FusaUser     *user,
+		       GtkWidget    *widget,
+		       gint          icon_size)
 {
   GdkPixbuf *retval;
   const gchar *homedir, *username;
   uid_t uid;
   gchar *path;
-
-  g_return_val_if_fail (FUSA_IS_MANAGER (manager), NULL);
-  g_return_val_if_fail (FUSA_IS_USER (user), NULL);
-  g_return_val_if_fail (widget == NULL || GTK_IS_WIDGET (widget), NULL);
-  g_return_val_if_fail (icon_size > 12, NULL);
+  GnomeVFSURI *uri;
+  gboolean is_local;
 
   homedir = fusa_user_get_home_directory (user);
   uid = fusa_user_get_uid (user);
   username = NULL;
+
+  uri = gnome_vfs_uri_new (homedir);
+  is_local = gnome_vfs_uri_is_local (uri);
+  gnome_vfs_uri_unref (uri);
+
+  /* only look at local home directories so we don't try to
+     mount remote (e.g. NFS) volumes */
+  if (! is_local)
+    return NULL;
 
   /* First, try "~/.face" */
   path = g_build_filename (homedir, ".face", NULL);
@@ -1692,6 +1698,29 @@ _fusa_manager_render_icon (FusaManager  *manager,
 
       g_free (path);
     }
+
+  return retval;
+}
+
+GdkPixbuf *
+_fusa_manager_render_icon (FusaManager  *manager,
+			   FusaUser     *user,
+			   GtkWidget    *widget,
+			   gint          icon_size)
+{
+  GdkPixbuf *retval;
+  const gchar *username;
+  uid_t uid;
+  gchar *path;
+
+  g_return_val_if_fail (FUSA_IS_MANAGER (manager), NULL);
+  g_return_val_if_fail (FUSA_IS_USER (user), NULL);
+  g_return_val_if_fail (widget == NULL || GTK_IS_WIDGET (widget), NULL);
+  g_return_val_if_fail (icon_size > 12, NULL);
+
+  retval = render_icon_from_home (manager, user, widget, icon_size);
+
+  uid = fusa_user_get_uid (user);
 
   /* Try ${GlobalFaceDir}/${username} */
   if (!retval)

@@ -1,3 +1,11 @@
+2005-07-14  William Jon McCann  <mccann@jhu.edu>
+
+	* src/cut-n-paste/fusa-manager.c (render_icon_from_home) 
+	(_fusa_manager_render_icon): Don't try to read face
+	file from remote home directories.  Trying to mount
+	the NFS home for every user on large systems just doesn't
+	work.
+
 2005-07-13  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c: Put face size back to 24px.
