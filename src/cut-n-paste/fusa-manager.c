@@ -1622,9 +1622,20 @@ render_icon_from_home (FusaManager  *manager,
   uid = fusa_user_get_uid (user);
   username = NULL;
 
-  uri = gnome_vfs_uri_new (homedir);
+  /* special case: look at parent of home to detect autofs
+     this is so we don't try to trigger an automount */
+  path = g_path_get_dirname (homedir);
+  uri = gnome_vfs_uri_new (path);
   is_local = gnome_vfs_uri_is_local (uri);
   gnome_vfs_uri_unref (uri);
+  g_free (path);
+
+  /* now check that home dir itself is local */
+  if (is_local) {
+    uri = gnome_vfs_uri_new (homedir);
+    is_local = gnome_vfs_uri_is_local (uri);
+    gnome_vfs_uri_unref (uri);
+  }
 
   /* only look at local home directories so we don't try to
      mount remote (e.g. NFS) volumes */

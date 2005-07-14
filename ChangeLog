@@ -1,5 +1,13 @@
 2005-07-14  William Jon McCann  <mccann@jhu.edu>
 
+	* src/cut-n-paste/fusa-manager.c (render_icon_from_home):
+	Check that parent of home dir is local too.  This
+	avoids a stat on autofs home dirs triggering a mount.
+	Requires a fix for:
+	http://bugzilla.gnome.org/show_bug.cgi?id=310418
+
+2005-07-14  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (gs_lock_plug_style_set):
 	Set vbox spacing to 12 instead of 24.
 	(populate_model): Don't put a new login item
