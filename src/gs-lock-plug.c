@@ -1301,9 +1301,18 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         gtk_label_set_attributes (GTK_LABEL (widget), pattrlist);
 
+        widget = gtk_scrolled_window_new (NULL, NULL);
+        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (widget),
+                                             GTK_SHADOW_IN);
+        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (widget),
+                                        GTK_POLICY_NEVER,
+                                        GTK_POLICY_AUTOMATIC);
+        gtk_box_pack_start (GTK_BOX (vbox), widget, TRUE, TRUE, 0);
+
         plug->priv->user_treeview = gtk_tree_view_new ();
         gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (plug->priv->user_treeview), FALSE);
-        gtk_box_pack_start (GTK_BOX (vbox), plug->priv->user_treeview, FALSE, FALSE, 0);
+        gtk_container_add (GTK_CONTAINER (widget), plug->priv->user_treeview);
+
         setup_treeview (plug);
 
         /* Progress bar */

@@ -1,5 +1,10 @@
 2005-07-13  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (gs_lock_plug_init): Put user list
+	in a scrolled window.
+
+2005-07-13  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (filter_out_users, setup_treeview):
 	Add ability to filter out users.  Could be used to only
 	show users already logged in.
