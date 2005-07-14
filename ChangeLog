@@ -1,5 +1,13 @@
 2005-07-14  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (user_displays_changed_cb):
+	Get the real store from the filter.
+	(populate_model): Don't load the face icon
+	synchronously before realization since this doesn't
+	scale to large systems.
+
+2005-07-14  William Jon McCann  <mccann@jhu.edu>
+
 	* src/cut-n-paste/fusa-manager.c (render_icon_from_home) 
 	(_fusa_manager_render_icon): Don't try to read face
 	file from remote home directories.  Trying to mount

@@ -919,6 +919,7 @@ user_displays_changed_cb (FusaUser           *user,
         int           n_displays;
         GdkPixbuf    *pixbuf;
         int           icon_size = FACE_ICON_SIZE;
+        GtkTreeModel *filter_model;
         GtkTreeModel *model;
 
         name = fusa_user_get_user_name (user);
@@ -926,8 +927,9 @@ user_displays_changed_cb (FusaUser           *user,
         is_active = n_displays > 0;
         pixbuf = fusa_user_render_icon (user, data->tree, icon_size, is_active);
 
-        model = gtk_tree_view_get_model (GTK_TREE_VIEW (data->tree));
-
+        filter_model = gtk_tree_view_get_model (GTK_TREE_VIEW (data->tree));
+        model = gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (filter_model));
+        g_message ("Disp changed");
         gtk_list_store_set (GTK_LIST_STORE (model), &data->iter,
                             NAME_COLUMN, name,
                             DISPLAY_NAME_COLUMN, fusa_user_get_display_name (user),
@@ -984,7 +986,10 @@ populate_model (GSLockPlug   *plug,
                 n_displays = fusa_user_get_n_displays (user);
                 is_active = n_displays > 0;
 
-                pixbuf = fusa_user_render_icon (user, plug->priv->user_treeview, icon_size, is_active);
+                /* FIXME: loading pixbufs synchronously doesn't
+                   scale */
+                /*pixbuf = fusa_user_render_icon (user, plug->priv->user_treeview, icon_size, is_active);*/
+                pixbuf = NULL;
 
                 gtk_list_store_append (store, &iter);
                 gtk_list_store_set (store, &iter,
