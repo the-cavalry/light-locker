@@ -988,10 +988,9 @@ populate_model (GSLockPlug   *plug,
                 n_displays = fusa_user_get_n_displays (user);
                 is_active = n_displays > 0;
 
-                /* FIXME: loading pixbufs synchronously doesn't
-                   scale */
-                /*pixbuf = fusa_user_render_icon (user, plug->priv->user_treeview, icon_size, is_active);*/
-                pixbuf = NULL;
+                /* this requires the following to scale well:
+                   http://bugzilla.gnome.org/show_bug.cgi?id=310418 */
+                pixbuf = fusa_user_render_icon (user, plug->priv->user_treeview, icon_size, is_active);
 
                 gtk_list_store_append (store, &iter);
                 gtk_list_store_set (store, &iter,

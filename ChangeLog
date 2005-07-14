@@ -1,5 +1,10 @@
 2005-07-14  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (populate_model):
+	Re-enable pixbufs with the hope that 310418 gets fixed.
+
+2005-07-14  William Jon McCann  <mccann@jhu.edu>
+
 	* src/cut-n-paste/fusa-manager.c (render_icon_from_home):
 	Check that parent of home dir is local too.  This
 	avoids a stat on autofs home dirs triggering a mount.
