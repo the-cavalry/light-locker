@@ -121,7 +121,7 @@ gs_lock_plug_style_set (GtkWidget *widget,
         plug = GS_LOCK_PLUG (widget);
 
         gtk_container_set_border_width (GTK_CONTAINER (plug->vbox), 24);
-        gtk_box_set_spacing (GTK_BOX (plug->vbox), 24);
+        gtk_box_set_spacing (GTK_BOX (plug->vbox), 12);
 
         gtk_container_set_border_width (GTK_CONTAINER (plug->action_area), 0);
         gtk_box_set_spacing (GTK_BOX (plug->action_area), 5);
@@ -955,6 +955,7 @@ populate_model (GSLockPlug   *plug,
         
         pixbuf = gtk_icon_theme_load_icon (theme, "gdm", icon_size, 0, NULL);
 
+#if 0
         gtk_list_store_append (store, &iter);
         gtk_list_store_set (store, &iter,
                             DISPLAY_NAME_COLUMN, _("Log in as a new user"),
@@ -966,6 +967,7 @@ populate_model (GSLockPlug   *plug,
                             DISPLAY_NAME_COLUMN, NULL,
                             NAME_COLUMN, "__separator",
                             -1);
+#endif
 
         users = fusa_manager_list_users (plug->priv->fusa_manager);
 

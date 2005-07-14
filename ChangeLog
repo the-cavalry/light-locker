@@ -1,5 +1,12 @@
 2005-07-14  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (gs_lock_plug_style_set):
+	Set vbox spacing to 12 instead of 24.
+	(populate_model): Don't put a new login item
+	in the list for now.  There isn't enough space.
+
+2005-07-14  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (user_displays_changed_cb):
 	Get the real store from the filter.
 	(populate_model): Don't load the face icon
