@@ -1,5 +1,9 @@
 2005-07-13  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c: Put face size back to 24px.
+
+2005-07-13  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (gs_lock_plug_init): Put user list
 	in a scrolled window.
 

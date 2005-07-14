@@ -45,7 +45,7 @@ enum {
         SWITCH_PAGE
 };
 
-#define FACE_ICON_SIZE 32
+#define FACE_ICON_SIZE 24
 #define DIALOG_TIMEOUT_MSEC 60000
 
 static void gs_lock_plug_class_init (GSLockPlugClass *klass);
