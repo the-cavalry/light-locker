@@ -1,0 +1,629 @@
+# traditional Chinese translation of gnome-screensaver.
+# Copyright (C) 2005 Free Software Foundation, Inc.
+# Abel Cheung <abel@oaka.org>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver 0.0.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-06-24 05:36+0800\n"
+"PO-Revision-Date: 2005-06-24 07:11+0800\n"
+"Last-Translator: Abel Cheung <abel@oaka.org>\n"
+"Language-Team: Chinese (traditional) <community@linuxhall.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "螢幕保護程式"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "設定螢幕保護程式"
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "    "
+msgstr "    "
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>_Screensaver</b>"
+msgstr "<b>螢幕保護程式(_S)</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Screensaver Preferences"
+msgstr "螢幕保護程式偏好設定"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "_Activate after:"
+msgstr "指定時間後啟用(_A):"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "How many minutes until the monitor goes black"
+msgstr "螢幕會在多少分鐘之後變黑"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "How many minutes until the monitor goes black."
+msgstr "螢幕會在多少分鐘之後變黑。"
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "How many minutes until the monitor power-saves"
+msgstr "多少分鐘後螢幕進入待命狀態"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "How many minutes until the monitor power-saves."
+msgstr "多少分鐘後螢幕進入待命狀態。"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "How many minutes until the monitor powers down"
+msgstr "多少分鐘後關掉螢幕"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "How many minutes until the monitor powers down."
+msgstr "多少分鐘後關掉螢幕。"
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear"
+msgstr "畫面變黑後相隔多少分鐘會顯示「登出」選項"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear."
+msgstr "畫面變黑後相隔多少分鐘會顯示「登出」選項"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "The number of minutes after blanking the screen before locking"
+msgstr "畫面變黑後相隔多少分鐘會鎖定畫面"
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "The number of minutes after blanking the screen before locking."
+msgstr "畫面變黑後相隔多少分鐘會鎖定畫面。"
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "The number of minutes of idle time before blanking the screen"
+msgstr "閑置多少分鐘後會令畫面變黑"
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid "The number of minutes of idle time before blanking the screen."
+msgstr "閑置多少分鐘後會令畫面變黑。"
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid "The number of minutes to run before changing the screensaver"
+msgstr "執行多少分鐘後會切換螢幕保護程式畫面"
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid "The number of minutes to run before changing the screensaver."
+msgstr "執行多少分鐘後會切換螢幕保護程式畫面"
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid "The screensaver selection mode"
+msgstr "螢幕保護程式運作模式"
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid "The selected screensaver themes"
+msgstr "使用中的螢幕保護程式主題"
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"This key specifies the selection mode used by the screensaver. Possible "
+"values are \"disabled\", \"blank-only\", \"single\", and \"random\"."
+msgstr ""
+"本設定指定螢幕保護程式以甚麼模式運作。可接受的值為 ‘disabled’, ‘blank-only’, "
+"‘single’ 或 ‘random’。"
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid "This key specifies the themes to be used by the screensaver."
+msgstr "本設定鍵指定使用哪個螢幕保護程式畫面主題。"
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid "Whether to lock as well as blank"
+msgstr "令畫面變黑之餘，是否同時鎖定畫面"
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid "Whether to lock as well as blank."
+msgstr "令畫面變黑之餘，是否同時鎖定畫面"
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid "Whether to offer the option of logging out after logout_delay"
+msgstr "是否過了 logout_delay 所指定的時間後提供登出的選項"
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid "Whether to offer the option of logging out after logout_delay."
+msgstr "是否過了 logout_delay 所指定的時間後提供登出的選項。"
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "Whether to power down the monitor"
+msgstr "是否完全關閉螢幕"
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid "Whether to power down the monitor."
+msgstr "是否完全關閉螢幕。"
+
+#: ../savers/popsquares.xml.h:1
+msgid "Pop art squares"
+msgstr "閃方陣"
+
+#: ../savers/popsquares.xml.h:2
+msgid ""
+"This draws a pop-art-ish looking grid of pulsing colors. By Levi Burton."
+msgstr "它顯示一個交替轉換深淺色的方陣。由 Levi Burton 提供。"
+
+#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
+msgid "Manager"
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-display.c:120
+msgid "The manager which owns this object."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-display.c:127
+msgid "Name"
+msgstr "名稱"
+
+#: ../src/cut-n-paste/fusa-display.c:128
+msgid "The name of the X11 display this object refers to."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-display.c:134
+#: ../src/cut-n-paste/fusa-user-menu-item.c:152
+msgid "User"
+msgstr "用戶"
+
+#: ../src/cut-n-paste/fusa-display.c:135
+msgid "The user currently logged in on this virtual terminal."
+msgstr "目前登入了這個虛擬終端機的用戶。"
+
+#: ../src/cut-n-paste/fusa-display.c:141
+msgid "Console"
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-display.c:142
+msgid "The number of the virtual console this display can be found on, or %-1."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-display.c:148
+msgid "Nested"
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-display.c:149
+msgid "Whether or not this display is a windowed (Xnest) display."
+msgstr "這個畫面是否屬於另一個畫面的某個視窗 (Xnest) 之內。"
+
+#: ../src/cut-n-paste/fusa-manager.c:1263
+msgid "The display manager could not be contacted for unknown reasons."
+msgstr "無法連接登入總管，原因不明。"
+
+#: ../src/cut-n-paste/fusa-manager.c:1270
+msgid "The display manager is not running or too old."
+msgstr "登入總管沒有執行，或者版本太舊。"
+
+#: ../src/cut-n-paste/fusa-manager.c:1273
+msgid "The configured limit of flexible servers has been reached."
+msgstr "已達到可開啟的靈活模式伺服器數目上限。"
+
+#: ../src/cut-n-paste/fusa-manager.c:1276
+msgid "There was an unknown error starting X."
+msgstr "啟動 X 伺服器時出現原因不明的錯誤。"
+
+#: ../src/cut-n-paste/fusa-manager.c:1279
+msgid "The X server failed to finish starting."
+msgstr "X 伺服器無法完成啟動程序。"
+
+#: ../src/cut-n-paste/fusa-manager.c:1282
+msgid "There are too many X sessions running."
+msgstr "X 伺服器執行次數太多。"
+
+#: ../src/cut-n-paste/fusa-manager.c:1285
+msgid "The nested X server (Xnest) cannot connect to your current X server."
+msgstr "Xnest 伺服器無法連上目前的 X 伺服器。"
+
+#: ../src/cut-n-paste/fusa-manager.c:1288
+msgid "The X server in the GDM configuration could not be found."
+msgstr "GDM 組態中所指定的 X 伺服器並不存在。"
+
+#: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
+msgid ""
+"Trying to set an unknown logout action, or trying to set a logout action "
+"which is not available."
+msgstr "嘗試設定不明的或不存在的登出行動。"
+
+#: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
+msgid "Virtual terminals not supported."
+msgstr "不支援虛擬終端機"
+
+#: ../src/cut-n-paste/fusa-manager.c:1297
+msgid "Invalid virtual terminal number."
+msgstr "虛擬終端機編號無效。"
+
+#: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
+msgid "Trying to update an unsupported configuration key."
+msgstr "嘗試更新不支援的設定鍵。"
+
+#: ../src/cut-n-paste/fusa-manager.c:1303
+msgid "~/.Xauthority file badly configured or missing."
+msgstr "~/.Xauthority 檔案內容錯誤，或者根本不存在。"
+
+#: ../src/cut-n-paste/fusa-manager.c:1306
+msgid "Too many messages were sent to the display manager, and it hung up."
+msgstr "太多訊息傳送至登入總管，令它當掉。"
+
+#: ../src/cut-n-paste/fusa-manager.c:1310
+msgid "The display manager sent an unknown error message."
+msgstr "登入總管傳回不明的錯誤訊息。"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:153
+msgid "The user this menu item represents."
+msgstr "這個選單項目所表示的用戶。"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:160
+msgid "Icon Size"
+msgstr "圖示大小"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:161
+msgid "The size of the icon to use."
+msgstr "圖示大小"
+
+#: ../src/cut-n-paste/fusa-user.c:151
+msgid "The user manager object this user is controlled by."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-utils.c:80
+msgid "Show Details"
+msgstr "顯示詳細資訊"
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:413
+msgid "GDM (The GNOME Display Manager) is not running."
+msgstr "GDM (GNOME 登入總管) 並未執行。"
+
+#: ../src/cut-n-paste/gdmcomm.c:416
+msgid ""
+"You might in fact be using a different display manager, such as KDM (KDE "
+"Display Manager) or xdm."
+msgstr "您可能是正在使用另一個登入總管，例如 KDM (KDE 登入總管) 或者 xdm。"
+
+#: ../src/cut-n-paste/gdmcomm.c:419
+msgid ""
+"If you still wish to use this feature, either start GDM yourself or ask your "
+"system administrator to start GDM."
+msgstr "如果您想使用此項功能，請自行啟動 GDM 或要求系統管理員啟動 GDM。"
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:441
+msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+msgstr "無法與 GDM (GNOME 登入總管) 溝通"
+
+#: ../src/cut-n-paste/gdmcomm.c:444
+msgid "Perhaps you have an old version of GDM running."
+msgstr "可能是正在使用的 GDM 版本比較舊。"
+
+#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
+msgid "Cannot communicate with gdm, perhaps you have an old version running."
+msgstr "無法與 GDM 溝通，可能是正在使用的 GDM 版本比較舊。"
+
+#: ../src/cut-n-paste/gdmcomm.c:469
+msgid "The allowed limit of flexible X servers reached."
+msgstr "已達到可開啟的靈活模式伺服器數目上限"
+
+#: ../src/cut-n-paste/gdmcomm.c:471
+msgid "There were errors trying to start the X server."
+msgstr "嘗試啟動 X 伺服程式時發生錯誤。"
+
+#: ../src/cut-n-paste/gdmcomm.c:473
+msgid "The X server failed.  Perhaps it is not configured well."
+msgstr "X 伺服程式發生錯誤。可能是未設定好。"
+
+#: ../src/cut-n-paste/gdmcomm.c:476
+msgid "Too many X sessions running."
+msgstr "正在執行的 X 作業階段太多了。"
+
+#: ../src/cut-n-paste/gdmcomm.c:478
+msgid ""
+"The nested X server (Xnest) cannot connect to your current X server.  You "
+"may be missing an X authorization file."
+msgstr "Xnest 無法連接至目前的 X 伺服程式。可能是缺少了 X 認證資料檔。"
+
+#: ../src/cut-n-paste/gdmcomm.c:483
+msgid ""
+"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
+"Please install the Xnest package in order to use the nested login."
+msgstr ""
+"Xnest 無法提供服務，或是 GDM 設定出錯。\n"
+"請重新安裝 Xnest 套件，使得以視窗模式重新登入的功能可以繼續使用。"
+
+#: ../src/cut-n-paste/gdmcomm.c:488
+msgid ""
+"The X server is not available, it is likely that gdm is badly configured."
+msgstr "無法提供 X 伺服程式服務，可能是設定出錯。"
+
+#: ../src/cut-n-paste/gdmcomm.c:497
+msgid "Trying to change to an invalid virtual terminal number."
+msgstr "嘗試更改無效的虛擬終端機號碼。"
+
+#: ../src/cut-n-paste/gdmcomm.c:501
+msgid ""
+"You do not seem to have authentication needed be for this operation.  "
+"Perhaps your .Xauthority file is not set up correctly."
+msgstr ""
+"您沒有此項操作程序所需的認證資料。可能是沒有正確設定 .Xauthority 檔案。"
+
+#: ../src/cut-n-paste/gdmcomm.c:505
+msgid "Too many messages were sent to gdm and it hung upon us."
+msgstr "太多信息傳送到 gdm 令到它當了機。"
+
+#: ../src/cut-n-paste/gdmcomm.c:508
+msgid "Unknown error occured."
+msgstr "出現原因不明的錯誤。"
+
+#: ../src/file-transfer-dialog.c:95
+#, c-format
+msgid "%i of %i"
+msgstr "%2$i 之 %1$i"
+
+#: ../src/file-transfer-dialog.c:119
+#, c-format
+msgid "Transferring: %s"
+msgstr "正在傳送：%s"
+
+#: ../src/file-transfer-dialog.c:126
+#, c-format
+msgid "From: %s"
+msgstr "由：%s"
+
+#: ../src/file-transfer-dialog.c:134
+#, c-format
+msgid "To: %s"
+msgstr "至：%s"
+
+#: ../src/file-transfer-dialog.c:185
+msgid "From URI"
+msgstr "來源 URI"
+
+#: ../src/file-transfer-dialog.c:186
+msgid "URI currently transferring from"
+msgstr "代表傳送來源的 URI"
+
+#: ../src/file-transfer-dialog.c:193
+msgid "To URI"
+msgstr "目的地 URI"
+
+#: ../src/file-transfer-dialog.c:194
+msgid "URI currently transferring to"
+msgstr "代表傳送目的地的 URI"
+
+#: ../src/file-transfer-dialog.c:201
+msgid "Fraction completed"
+msgstr "完成比例"
+
+#: ../src/file-transfer-dialog.c:202
+msgid "Fraction of transfer currently completed"
+msgstr "完成傳送檔案的比例"
+
+#: ../src/file-transfer-dialog.c:209
+msgid "Current URI index"
+msgstr "目前的 URI 索引編號"
+
+#: ../src/file-transfer-dialog.c:210
+msgid "Current URI index - starts from 1"
+msgstr "目前的 URI 索引編號 - 由 1 開始"
+
+#: ../src/file-transfer-dialog.c:217
+msgid "Total URIs"
+msgstr "URI 總數"
+
+#: ../src/file-transfer-dialog.c:218
+msgid "Total number of URIs"
+msgstr "URI 總數"
+
+#: ../src/file-transfer-dialog.c:372 ../src/file-transfer-dialog.c:374
+msgid "Connecting..."
+msgstr "連線中..."
+
+#: ../src/file-transfer-dialog.c:379 ../src/file-transfer-dialog.c:381
+msgid "Downloading..."
+msgstr "下載中..."
+
+#: ../src/gnome-screensaver-command.c:58
+msgid "Causes the screensaver to exit gracefully"
+msgstr "令螢幕保護程式正常結束"
+
+#: ../src/gnome-screensaver-command.c:60
+msgid "Query the state of the screensaver"
+msgstr "查詢螢幕保護程式狀態"
+
+#: ../src/gnome-screensaver-command.c:62
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "要求螢幕保護程式立刻鎖定畫定"
+
+#: ../src/gnome-screensaver-command.c:64
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "如果螢幕保護程已經啟動，立刻切換直另一種畫面"
+
+#: ../src/gnome-screensaver-command.c:66
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "啟動螢幕保護程式 (畫面變黑)"
+
+#: ../src/gnome-screensaver-command.c:68
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "如果螢幕保護程已經啟動，立刻回復狀態 (不變黑)"
+
+#: ../src/gnome-screensaver-command.c:70
+msgid "Disable running graphical themes while blanked"
+msgstr "畫面變黑時不會使用任何畫面主題"
+
+#: ../src/gnome-screensaver-command.c:72
+msgid "Enable running graphical themes while blanked (if applicable)"
+msgstr "畫面變黑時可能使用其它畫面主題 (如適用)"
+
+#: ../src/gnome-screensaver-command.c:74
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "模擬用家使用電腦，令螢幕保護程式重設計時器"
+
+#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:56
+#: ../src/gnome-screensaver.c:55
+msgid "Version of this application"
+msgstr "本程式的版本"
+
+#: ../src/gnome-screensaver-command.c:201
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "螢幕保護程式目前%s\n"
+
+#: ../src/gnome-screensaver-command.c:201
+msgid "active"
+msgstr "啟動中"
+
+#: ../src/gnome-screensaver-command.c:201
+msgid "inactive"
+msgstr "暫停運作"
+
+#: ../src/gnome-screensaver-dialog.c:54
+msgid "Show debugging output"
+msgstr "顯示詳細偵錯訊息"
+
+#: ../src/gnome-screensaver-dialog.c:58
+msgid "Show the logout button"
+msgstr "顯示「登出」按鈕"
+
+#: ../src/gnome-screensaver-preferences.c:583
+msgid "Invalid screensaver theme"
+msgstr "螢幕保護程式主題無效"
+
+#: ../src/gnome-screensaver-preferences.c:586
+msgid "This file does not appear to be a valid screensaver theme."
+msgstr "這個檔案似乎不是有效的螢幕保護程式主題檔案。"
+
+#: ../src/gnome-screensaver-preferences.c:703
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d 時"
+
+#: ../src/gnome-screensaver-preferences.c:706
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d 分"
+
+#: ../src/gnome-screensaver-preferences.c:709
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d 秒"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:715
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:718
+#: ../src/gnome-screensaver-preferences.c:726
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:721
+#: ../src/gnome-screensaver-preferences.c:729
+#: ../src/gnome-screensaver-preferences.c:733
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#. 0 seconds
+#: ../src/gnome-screensaver-preferences.c:736
+msgid "0 seconds"
+msgstr "0 秒"
+
+#: ../src/gnome-screensaver-preferences.c:751
+msgid "Never"
+msgstr "不會"
+
+#: ../src/gnome-screensaver-preferences.c:779
+msgid "Could not load the main interface"
+msgstr "無法載入主視窗介面"
+
+#: ../src/gnome-screensaver-preferences.c:781
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "請確保螢幕保護程式已經正確安裝"
+
+# (Abel) 我真是無恥，連 dbus 的運作也未清楚就譯了
+#: ../src/gs-listener-dbus.c:552
+msgid "failed to register with the message bus"
+msgstr "無法向 message bus 登記"
+
+#: ../src/gs-listener-dbus.c:561
+msgid "screensaver already running in this session"
+msgstr "螢幕保護程式已經執行中"
+
+#: ../src/gs-lock-plug.c:179
+msgid "Checking password..."
+msgstr "檢驗密碼..."
+
+#: ../src/gs-lock-plug.c:244
+#, c-format
+msgid "About %ld second left"
+msgid_plural "About %ld seconds left"
+msgstr[0] "大約剩餘 %ld 秒"
+
+#: ../src/gs-lock-plug.c:252
+msgid "Time expired!"
+msgstr "時間過了！"
+
+#: ../src/gs-lock-plug.c:277
+msgid "You have the Caps Lock key on."
+msgstr "您按了 Caps Lock 鍵。"
+
+#: ../src/gs-lock-plug.c:474
+msgid "Password check failed!"
+msgstr "密碼檢驗失敗！"
+
+#: ../src/gs-lock-plug.c:499 ../src/gs-lock-plug.c:539
+msgid "_Unlock"
+msgstr "解除封鎖(_U)"
+
+#: ../src/gs-lock-plug.c:503 ../src/gs-lock-plug.c:535
+msgid "_New Login"
+msgstr "重新登入(_N)"
+
+#: ../src/gs-lock-plug.c:892
+msgid "Enter a password to unlock the screen"
+msgstr "請輸入密碼來將畫面解鎖"
+
+#: ../src/gs-lock-plug.c:921
+msgid "Name:"
+msgstr "名稱:"
+
+#: ../src/gs-lock-plug.c:925
+msgid "_Password:"
+msgstr "密碼(_P):"
+
+#: ../src/gs-lock-plug.c:967
+msgid "Log in as another user?"
+msgstr "是否以另一個身分登入？"
+
+#: ../src/gs-lock-plug.c:985
+msgid ""
+"This option will bring you to the login screen.\n"
+"From the login screen you may log in to this system\n"
+"as another user or select 'Quit' to return to this screen."
+msgstr ""
+"這個選項會顯示登入畫面。\n"
+"在登入畫面中，您可以用另一個用家的身分\n"
+"登入，或者選擇「離開」回到這個畫面。"
+
+#: ../src/gs-lock-plug.c:1024
+msgid "Log _Out"
+msgstr "登出(_O)"
+
+#~ msgid "_Login Screen"
+#~ msgstr "登入畫面(_L)"
