@@ -1,3 +1,7 @@
+2005-07-15  Abel Cheung  <maddog@linuxhall.org>
+
+	* configure.ac: Added "zh_TW" to ALL_LINGUAS.
+
 2005-07-14  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (populate_model):
