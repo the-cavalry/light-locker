@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-03 18:53-0400\n"
-"PO-Revision-Date: 2005-07-03 11:55-0400\n"
+"POT-Creation-Date: 2005-07-18 04:52-0400\n"
+"PO-Revision-Date: 2005-07-18 11:55-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -201,39 +201,39 @@ msgstr "Nested"
 msgid "Whether or not this display is a windowed (Xnest) display."
 msgstr "Whether or not this display is a windowed (Xnest) display."
 
-#: src/cut-n-paste/fusa-manager.c:1263
+#: src/cut-n-paste/fusa-manager.c:1264
 msgid "The display manager could not be contacted for unknown reasons."
 msgstr "The display manager could not be contacted for unknown reasons."
 
-#: src/cut-n-paste/fusa-manager.c:1270
+#: src/cut-n-paste/fusa-manager.c:1271
 msgid "The display manager is not running or too old."
 msgstr "The display manager is not running or too old."
 
-#: src/cut-n-paste/fusa-manager.c:1273
+#: src/cut-n-paste/fusa-manager.c:1274
 msgid "The configured limit of flexible servers has been reached."
 msgstr "The configured limit of flexible servers has been reached."
 
-#: src/cut-n-paste/fusa-manager.c:1276
+#: src/cut-n-paste/fusa-manager.c:1277
 msgid "There was an unknown error starting X."
 msgstr "There was an unknown error starting X."
 
-#: src/cut-n-paste/fusa-manager.c:1279
+#: src/cut-n-paste/fusa-manager.c:1280
 msgid "The X server failed to finish starting."
 msgstr "The X server failed to finish starting."
 
-#: src/cut-n-paste/fusa-manager.c:1282
+#: src/cut-n-paste/fusa-manager.c:1283
 msgid "There are too many X sessions running."
 msgstr "There are too many X sessions running."
 
-#: src/cut-n-paste/fusa-manager.c:1285
+#: src/cut-n-paste/fusa-manager.c:1286
 msgid "The nested X server (Xnest) cannot connect to your current X server."
 msgstr "The nested X server (Xnest) cannot connect to your current X server."
 
-#: src/cut-n-paste/fusa-manager.c:1288
+#: src/cut-n-paste/fusa-manager.c:1289
 msgid "The X server in the GDM configuration could not be found."
 msgstr "The X server in the GDM configuration could not be found."
 
-#: src/cut-n-paste/fusa-manager.c:1291 src/cut-n-paste/gdmcomm.c:492
+#: src/cut-n-paste/fusa-manager.c:1292 src/cut-n-paste/gdmcomm.c:492
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
@@ -241,27 +241,27 @@ msgstr ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
 
-#: src/cut-n-paste/fusa-manager.c:1294 src/cut-n-paste/gdmcomm.c:495
+#: src/cut-n-paste/fusa-manager.c:1295 src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
 msgstr "Virtual terminals not supported."
 
-#: src/cut-n-paste/fusa-manager.c:1297
+#: src/cut-n-paste/fusa-manager.c:1298
 msgid "Invalid virtual terminal number."
 msgstr "Invalid virtual terminal number."
 
-#: src/cut-n-paste/fusa-manager.c:1300 src/cut-n-paste/gdmcomm.c:499
+#: src/cut-n-paste/fusa-manager.c:1301 src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
 msgstr "Trying to update an unsupported configuration key."
 
-#: src/cut-n-paste/fusa-manager.c:1303
+#: src/cut-n-paste/fusa-manager.c:1304
 msgid "~/.Xauthority file badly configured or missing."
 msgstr "~/.Xauthority file badly configured or missing."
 
-#: src/cut-n-paste/fusa-manager.c:1306
+#: src/cut-n-paste/fusa-manager.c:1307
 msgid "Too many messages were sent to the display manager, and it hung up."
 msgstr "Too many messages were sent to the display manager, and it hung up."
 
-#: src/cut-n-paste/fusa-manager.c:1310
+#: src/cut-n-paste/fusa-manager.c:1311
 msgid "The display manager sent an unknown error message."
 msgstr "The display manager sent an unknown error message."
 
@@ -574,71 +574,65 @@ msgstr "Could not load the main interface"
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Please make sure that the screensaver is properly installed"
 
-#: src/gs-listener-dbus.c:552
+#: src/gs-listener-dbus.c:557
 msgid "failed to register with the message bus"
 msgstr "Failed to register with the message bus"
 
-#: src/gs-listener-dbus.c:561
+#: src/gs-listener-dbus.c:566
 msgid "screensaver already running in this session"
 msgstr "Screensaver already running in this session"
 
-#: src/gs-lock-plug.c:179
+#: src/gs-lock-plug.c:248
 msgid "Checking password..."
 msgstr "Checking password..."
 
-#: src/gs-lock-plug.c:244
+#: src/gs-lock-plug.c:297
 #, c-format
 msgid "About %ld second left"
 msgid_plural "About %ld seconds left"
 msgstr[0] "About %ld second left"
 msgstr[1] "About %ld seconds left"
 
-#: src/gs-lock-plug.c:252
+#: src/gs-lock-plug.c:305
 msgid "Time expired!"
 msgstr "Time expired!"
 
-#: src/gs-lock-plug.c:277
+#: src/gs-lock-plug.c:330
 msgid "You have the Caps Lock key on."
 msgstr "You have the Caps Lock key on."
 
-#: src/gs-lock-plug.c:474
+#: src/gs-lock-plug.c:538
 msgid "Password check failed!"
 msgstr "Password check failed!"
 
-#: src/gs-lock-plug.c:499 src/gs-lock-plug.c:539
+#: src/gs-lock-plug.c:561 src/gs-lock-plug.c:602
 msgid "_Unlock"
 msgstr "_Unlock"
 
-#: src/gs-lock-plug.c:503 src/gs-lock-plug.c:535
-msgid "_New Login"
-msgstr "_New Login"
+#: src/gs-lock-plug.c:566 src/gs-lock-plug.c:597
+msgid "_Switch User"
+msgstr "_Switch User"
 
-#: src/gs-lock-plug.c:892
+#: src/gs-lock-plug.c:961
+msgid "Log in as a new user"
+msgstr "Log in as a new user"
+
+#: src/gs-lock-plug.c:1217
 msgid "Enter a password to unlock the screen"
 msgstr "Enter a password to unlock the screen"
 
-#: src/gs-lock-plug.c:921
+#: src/gs-lock-plug.c:1246
 msgid "Name:"
 msgstr "Name:"
 
-#: src/gs-lock-plug.c:925
+#: src/gs-lock-plug.c:1250
 msgid "_Password:"
 msgstr "_Password:"
 
-#: src/gs-lock-plug.c:967
-msgid "Log in as another user?"
-msgstr "Log in as another user?"
+#: src/gs-lock-plug.c:1292
+msgid "Switch to another user?"
+msgstr "Switch to another user?"
 
-#: src/gs-lock-plug.c:985
-msgid ""
-"This option will bring you to the login screen.\n"
-"From the login screen you may log in to this system\n"
-"as another user or select 'Quit' to return to this screen."
-msgstr ""
-"This option will bring you to the login screen.\n"
-"From the login screen you may log into this system\n"
-"as another user or select 'Quit' to return to this screen."
-
-#: src/gs-lock-plug.c:1024
+#: src/gs-lock-plug.c:1358
 msgid "Log _Out"
 msgstr "Log _Out"
