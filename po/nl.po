@@ -1,0 +1,906 @@
+# Dutch translation of gnome-screensaver.
+# Copyright (C) 2005 The Free Software Foundation
+# This file is distributed under the same license as the 
+# gnome-screensaver package.
+# Tino Meinen <a.t.meinen@chello.nl>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: GNOME 2.12\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-07-16 11:43+0000\n"
+"PO-Revision-Date: 2005-07-17 18:24+0200\n"
+"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
+"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "Schermbeveiliging"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "Uw schermbeveiliging-voorkeuren instellen"
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "    "
+msgstr "    "
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>_Screensaver</b>"
+msgstr "<b>_Schermbeveiliging</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Screensaver Preferences"
+msgstr "Schermbeveiliging voorkeuren"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "_Activate after:"
+msgstr "_Activeren na:"
+
+# het beeld zwart wordt
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "How many minutes until the monitor goes black"
+msgstr "Na hoeveel minuten de monitor op zwart gaat"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "How many minutes until the monitor goes black."
+msgstr "Na hoeveel minuten de monitor op zwart gaat."
+
+# energie-zuinig
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "How many minutes until the monitor power-saves"
+msgstr "Na hoeveel minuten de monitor op power-save gaat"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "How many minutes until the monitor power-saves."
+msgstr "Na hoeveel minuten de monitor op power-save gaat."
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "How many minutes until the monitor powers down"
+msgstr "Na hoeveel minuten de monitor uitgezet wordt"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "How many minutes until the monitor powers down."
+msgstr "Na hoeveel minuten de monitor uitgezet wordt."
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear"
+msgstr ""
+"Het aantal minuten na zwartmaken van het scherm dat een afmeldoptie zal "
+"verschijnen"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear."
+msgstr ""
+"Het aantal minuten na zwartmaken van het scherm dat een afmeldoptie zal "
+"verschijnen."
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "The number of minutes after blanking the screen before locking"
+msgstr "Het aantal minuten na zwartmaken van het scherm dat het scherm wordt geblokkeerd"
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "The number of minutes after blanking the screen before locking."
+msgstr "Het aantal minuten na zwartmaken van het scherm dat het scherm wordt geblokkeerd."
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "The number of minutes of idle time before blanking the screen"
+msgstr "Het aantal minuten inactiviteit voordat het scherm wordt zwartgemaakt"
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid "The number of minutes of idle time before blanking the screen."
+msgstr "Het aantal minuten inactiviteit voordat het scherm wordt zwartgemaakt."
+
+# screensaver hier mooier...
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid "The number of minutes to run before changing the screensaver"
+msgstr "Het aantal minuten waarna wordt gewisseld van schermbeveiliging"
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid "The number of minutes to run before changing the screensaver."
+msgstr "Het aantal minuten waarna wordt gewisseld van schermbeveiliging."
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid "The screensaver selection mode"
+msgstr "De schermbeveiliging selectiemodus"
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid "The selected screensaver themes"
+msgstr "De geselecteerde schermbeveiligingthemas"
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"This key specifies the selection mode used by the screensaver. Possible "
+"values are \"disabled\", \"blank-only\", \"single\", and \"random\"."
+msgstr ""
+"Deze sleutel geeft de selectiemodus van de schermbeveiliging. Mogelijk "
+"waarden zijn \"disabled\", \"blank-only\", \"single\", en \"random\"."
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid "This key specifies the themes to be used by the screensaver."
+msgstr "Deze sleutel geeft het thema dat de schermbeveiliging gebruikt."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid "Whether to lock as well as blank"
+msgstr "Of zowel geblokkeerd als zwartgemaakt wordt"
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid "Whether to lock as well as blank."
+msgstr "Of zowel geblokkeerd als zwartgemaakt wordt."
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid "Whether to offer the option of logging out after logout_delay"
+msgstr "Of een afmeldoptie geboden wordt na logout_delay"
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid "Whether to offer the option of logging out after logout_delay."
+msgstr "Of een afmeldoptie geboden wordt na logout_delay."
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "Whether to power down the monitor"
+msgstr "Of het beeldscherm wordt uitgezet"
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid "Whether to power down the monitor."
+msgstr "Of het beeldscherm wordt uitgezet."
+
+#: ../savers/popsquares.xml.h:1
+msgid "Pop art squares"
+msgstr "Pop-art blokken"
+
+#: ../savers/popsquares.xml.h:2
+msgid ""
+"This draws a pop-art-ish looking grid of pulsing colors. By Levi Burton."
+msgstr ""
+"Dit toont pop-art-achtige blokken in pulserende kleuren. Door Levi Burton."
+
+#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
+msgid "Manager"
+msgstr "Beheerder"
+
+#: ../src/cut-n-paste/fusa-display.c:120
+msgid "The manager which owns this object."
+msgstr "De beheerder van dit object."
+
+#: ../src/cut-n-paste/fusa-display.c:127
+msgid "Name"
+msgstr "Naam"
+
+#: ../src/cut-n-paste/fusa-display.c:128
+msgid "The name of the X11 display this object refers to."
+msgstr "De naam van het X11-display waarnaar dit object verwijst."
+
+#: ../src/cut-n-paste/fusa-display.c:134
+#: ../src/cut-n-paste/fusa-user-menu-item.c:152
+msgid "User"
+msgstr "Gebruiker"
+
+#: ../src/cut-n-paste/fusa-display.c:135
+msgid "The user currently logged in on this virtual terminal."
+msgstr "De gebruiker die momenteel op deze virtuele terminal is aangemeld."
+
+#: ../src/cut-n-paste/fusa-display.c:141
+msgid "Console"
+msgstr "Console"
+
+#: ../src/cut-n-paste/fusa-display.c:142
+msgid "The number of the virtual console this display can be found on, or %-1."
+msgstr ""
+"Het nummer van de virtuele console waaronder dit display kan worden "
+"gevonden, of %-1."
+
+#: ../src/cut-n-paste/fusa-display.c:148
+msgid "Nested"
+msgstr "Ingebed"
+
+#: ../src/cut-n-paste/fusa-display.c:149
+msgid "Whether or not this display is a windowed (Xnest) display."
+msgstr "Of deze display een display in een venster is (Xnest)."
+
+#: ../src/cut-n-paste/fusa-manager.c:1264
+msgid "The display manager could not be contacted for unknown reasons."
+msgstr ""
+"Om onbekende redenen kon er geen contact worden gemaakt met de display-"
+"beheerder."
+
+#: ../src/cut-n-paste/fusa-manager.c:1271
+msgid "The display manager is not running or too old."
+msgstr "De display-manager is niet actief of te oud."
+
+#: ../src/cut-n-paste/fusa-manager.c:1274
+msgid "The configured limit of flexible servers has been reached."
+msgstr "De ingestelde limiet van het aantal flexibele servers is bereikt."
+
+#: ../src/cut-n-paste/fusa-manager.c:1277
+msgid "There was an unknown error starting X."
+msgstr "Er was een onbekende fout bij het starten van X."
+
+#: ../src/cut-n-paste/fusa-manager.c:1280
+msgid "The X server failed to finish starting."
+msgstr "De X-server kon niet volledig worden gestart."
+
+#: ../src/cut-n-paste/fusa-manager.c:1283
+msgid "There are too many X sessions running."
+msgstr "Er zijn te veel actieve X-sessies."
+
+#: ../src/cut-n-paste/fusa-manager.c:1286
+msgid "The nested X server (Xnest) cannot connect to your current X server."
+msgstr ""
+"De ingebedde X-server (Xnest) kon geen verbinding maken met uw huidige X-"
+"server."
+
+# kon niet worden/werd
+#: ../src/cut-n-paste/fusa-manager.c:1289
+msgid "The X server in the GDM configuration could not be found."
+msgstr "De X-server in de GDM-configuratie werd niet gevonden."
+
+#: ../src/cut-n-paste/fusa-manager.c:1292 ../src/cut-n-paste/gdmcomm.c:492
+msgid ""
+"Trying to set an unknown logout action, or trying to set a logout action "
+"which is not available."
+msgstr ""
+"Trachten een onbekende afmeldactie, of trachten een afmeldactie die niet "
+"beschikbaar is, in te stellen."
+
+# zijn/worden niet ondersteunden
+#: ../src/cut-n-paste/fusa-manager.c:1295 ../src/cut-n-paste/gdmcomm.c:495
+msgid "Virtual terminals not supported."
+msgstr "Virtuele terminals niet ondersteund."
+
+#: ../src/cut-n-paste/fusa-manager.c:1298
+msgid "Invalid virtual terminal number."
+msgstr "Ongeldig getal voor virtuele terminal."
+
+#: ../src/cut-n-paste/fusa-manager.c:1301 ../src/cut-n-paste/gdmcomm.c:499
+msgid "Trying to update an unsupported configuration key."
+msgstr "Trachten een niet-ondersteunde configuratiesleutel bij te werken."
+
+#: ../src/cut-n-paste/fusa-manager.c:1304
+msgid "~/.Xauthority file badly configured or missing."
+msgstr "Bestand ~/.Xauthority foutief geconfigureerd of ontbrekend."
+
+#: ../src/cut-n-paste/fusa-manager.c:1307
+msgid "Too many messages were sent to the display manager, and it hung up."
+msgstr ""
+"Er werden te veel berichten naar de display-manager verstuurd welke vervolgs "
+"heeft opgehanden."
+
+# gestuurd/verstuurd
+#: ../src/cut-n-paste/fusa-manager.c:1311
+msgid "The display manager sent an unknown error message."
+msgstr "De display-manager heeft een onbekende foutmelding gestuurd."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:153
+msgid "The user this menu item represents."
+msgstr "De gebruiker waar dit menu-onderdeel voor is."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:160
+msgid "Icon Size"
+msgstr "Pictogramgrootte"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:161
+msgid "The size of the icon to use."
+msgstr "De afmeting van het gebruikte pictogram."
+
+#: ../src/cut-n-paste/fusa-user.c:151
+msgid "The user manager object this user is controlled by."
+msgstr "Het gebruiksbeheerderobject door welke deze gebruiker wordt beheerd."
+
+#: ../src/cut-n-paste/fusa-utils.c:80
+msgid "Show Details"
+msgstr "Details tonen"
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:413
+msgid "GDM (The GNOME Display Manager) is not running."
+msgstr "GDM (de display-manager van GNOME) is niet actief."
+
+#: ../src/cut-n-paste/gdmcomm.c:416
+msgid ""
+"You might in fact be using a different display manager, such as KDM (KDE "
+"Display Manager) or xdm."
+msgstr ""
+"Mogelijkerwijs gebruikt u een andere display-manager zoals KDM (de display-"
+"manager van KDE) of xdm."
+
+#: ../src/cut-n-paste/gdmcomm.c:419
+msgid ""
+"If you still wish to use this feature, either start GDM yourself or ask your "
+"system administrator to start GDM."
+msgstr ""
+"Indien u toch deze applet wilt gebruiken, moet u zelf GDM opstarten of uw "
+"systeembeheerder vragen deze op te starten."
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:441
+msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+msgstr "Kan niet communiceren met GDM (de display-manager van GNOME)"
+
+#: ../src/cut-n-paste/gdmcomm.c:444
+msgid "Perhaps you have an old version of GDM running."
+msgstr "Misschien is er momenteel een oude versie van GDM actief."
+
+#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
+msgid "Cannot communicate with gdm, perhaps you have an old version running."
+msgstr "Kan niet communiceren met gdm, misschien is er een oude versie actief."
+
+#: ../src/cut-n-paste/gdmcomm.c:469
+msgid "The allowed limit of flexible X servers reached."
+msgstr "Het maximum toegestane aantal flexibele X-servers is bereikt."
+
+#: ../src/cut-n-paste/gdmcomm.c:471
+msgid "There were errors trying to start the X server."
+msgstr "Er waren fouten bij het opstarten van de X-server."
+
+#: ../src/cut-n-paste/gdmcomm.c:473
+msgid "The X server failed.  Perhaps it is not configured well."
+msgstr "De X-server is mislukt.  Mogelijk is deze niet goed geconfigureerd."
+
+#: ../src/cut-n-paste/gdmcomm.c:476
+msgid "Too many X sessions running."
+msgstr "Te veel X-sessies actief."
+
+#: ../src/cut-n-paste/gdmcomm.c:478
+msgid ""
+"The nested X server (Xnest) cannot connect to your current X server.  You "
+"may be missing an X authorization file."
+msgstr ""
+"De ingebedde X-server (Xnest) kan geen verbinding maken met uw huidige X-"
+"server.  Mogelijk bezit u geen X-authorisatie-bestand."
+
+#: ../src/cut-n-paste/gdmcomm.c:483
+msgid ""
+"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
+"Please install the Xnest package in order to use the nested login."
+msgstr ""
+"De ingebedde X-server (Xnest) is niet beschikbaar, of gdm is foutief "
+"geconfigureerd.\n"
+"Installeer het pakket Xnest om ingebed aan te kunnen melden."
+
+#: ../src/cut-n-paste/gdmcomm.c:488
+msgid ""
+"The X server is not available, it is likely that gdm is badly configured."
+msgstr ""
+"De X-server is niet beschikbaar, waarschijnlijk is gdm foutief "
+"geconfigureerd."
+
+#: ../src/cut-n-paste/gdmcomm.c:497
+msgid "Trying to change to an invalid virtual terminal number."
+msgstr ""
+"Trachten te schakelen naar een ongeldig nummer voor een virtuele terminal."
+
+#: ../src/cut-n-paste/gdmcomm.c:501
+msgid ""
+"You do not seem to have authentication needed be for this operation.  "
+"Perhaps your .Xauthority file is not set up correctly."
+msgstr ""
+"Er is schijnbaar geen aanmeldcontrole nodig voor deze bewerking.  "
+"Mogelijkerwijs is uw .Xauthority-bestand foutief ingesteld."
+
+#: ../src/cut-n-paste/gdmcomm.c:505
+msgid "Too many messages were sent to gdm and it hung upon us."
+msgstr ""
+"Er zijn te veel berichten gestuurd naar gdm welke vervolgens heeft "
+"opgehangen."
+
+#: ../src/cut-n-paste/gdmcomm.c:508
+msgid "Unknown error occured."
+msgstr "Er was een onbekende fout."
+
+#: ../src/file-transfer-dialog.c:94
+#, c-format
+msgid "Copying file: %i of %i"
+msgstr "Bestand kopiëren: %i van %i"
+
+#: ../src/file-transfer-dialog.c:122
+#, c-format
+msgid "Copying '%s'"
+msgstr "kopiëren '%s'"
+
+#: ../src/file-transfer-dialog.c:193
+msgid "From URI"
+msgstr "Via URI"
+
+# binnengehaald/overgedragen
+#: ../src/file-transfer-dialog.c:194
+msgid "URI currently transferring from"
+msgstr "URI waarvan wordt overgedragen"
+
+#: ../src/file-transfer-dialog.c:201
+msgid "To URI"
+msgstr "Naar URI"
+
+# verstuurd/overgedragen
+#: ../src/file-transfer-dialog.c:202
+msgid "URI currently transferring to"
+msgstr "URI waarnaar wordt overgedragen"
+
+#: ../src/file-transfer-dialog.c:209
+msgid "Fraction completed"
+msgstr "Voltooide deel"
+
+#: ../src/file-transfer-dialog.c:210
+msgid "Fraction of transfer currently completed"
+msgstr "Voltooide deel van de overdracht"
+
+#: ../src/file-transfer-dialog.c:217
+msgid "Current URI index"
+msgstr "Huidige URI-index"
+
+#: ../src/file-transfer-dialog.c:218
+msgid "Current URI index - starts from 1"
+msgstr "Huidige URI-index - begint bij 1"
+
+#: ../src/file-transfer-dialog.c:225
+msgid "Total URIs"
+msgstr "Totaal URI's"
+
+#: ../src/file-transfer-dialog.c:226
+msgid "Total number of URIs"
+msgstr "Totaal aantal URI's"
+
+#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+msgid "Copying files"
+msgstr "Bestanden kopiëren"
+
+#: ../src/file-transfer-dialog.c:345
+msgid "From:"
+msgstr "Van:"
+
+#: ../src/file-transfer-dialog.c:349
+msgid "To:"
+msgstr "Naar:"
+
+#: ../src/file-transfer-dialog.c:448
+msgid "Connecting..."
+msgstr "Verbinden..."
+
+#: ../src/gnome-screensaver-command.c:58
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Zorgt dat de schermbeveiliging netjes afsluit"
+
+#: ../src/gnome-screensaver-command.c:60
+msgid "Query the state of the screensaver"
+msgstr "De toestand van de schermbeveiliging opvragen"
+
+#: ../src/gnome-screensaver-command.c:62
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "Geeft de actieve schermbeveiliging opdracht om het scherm onmiddellijk te blokkeren"
+
+#: ../src/gnome-screensaver-command.c:64
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "Indien de schermbeveiliging actief is, wisselen naar een andere grafische demo"
+
+#: ../src/gnome-screensaver-command.c:66
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "De schermbeveiliging activeren (het scherm zwartmaken)"
+
+#: ../src/gnome-screensaver-command.c:68
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "Indien de schermbeveiliging actief is, deze deactiveren (het scherm zichtbaar maken)"
+
+#: ../src/gnome-screensaver-command.c:70
+msgid "Disable running graphical themes while blanked"
+msgstr "Actieve grafische thema's uitzetten wanneer het scherm zwart is"
+
+#: ../src/gnome-screensaver-command.c:72
+msgid "Enable running graphical themes while blanked (if applicable)"
+msgstr "Actieve grafische thema's aanzetten wanneer het scherm zwart is (indien toepasbaar)"
+
+#: ../src/gnome-screensaver-command.c:74
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "De actieve schermbeveiling laten denken dat er gebruikersactiviteit is"
+
+#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:56
+#: ../src/gnome-screensaver.c:55
+msgid "Version of this application"
+msgstr "Versie van deze toepassing"
+
+#: ../src/gnome-screensaver-command.c:201
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "De schermbeveiliging is %s\n"
+
+#: ../src/gnome-screensaver-command.c:201
+msgid "active"
+msgstr "actief"
+
+#: ../src/gnome-screensaver-command.c:201
+msgid "inactive"
+msgstr "inactief"
+
+#: ../src/gnome-screensaver-dialog.c:54
+msgid "Show debugging output"
+msgstr "Debug uitvoer tonen"
+
+#: ../src/gnome-screensaver-dialog.c:58
+msgid "Show the logout button"
+msgstr "Een afmeldknop tonen"
+
+#: ../src/gnome-screensaver-preferences.c:583
+msgid "Invalid screensaver theme"
+msgstr "Ongeldig schermbeveiligingsthema"
+
+# geen geldige schermbeveiliging/screensaver
+#: ../src/gnome-screensaver-preferences.c:586
+msgid "This file does not appear to be a valid screensaver theme."
+msgstr "Dit bestand is waarschijnlijk geen geldig schermbeveiligingsthema."
+
+#  1 uur, 2 uur
+#: ../src/gnome-screensaver-preferences.c:703
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d uur"
+msgstr[1] "%d uur"
+
+#: ../src/gnome-screensaver-preferences.c:706
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minuut"
+msgstr[1] "%d minuten"
+
+#: ../src/gnome-screensaver-preferences.c:709
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d seconde"
+msgstr[1] "%d seconden"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:715
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:718
+#: ../src/gnome-screensaver-preferences.c:726
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:721
+#: ../src/gnome-screensaver-preferences.c:729
+#: ../src/gnome-screensaver-preferences.c:733
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#. 0 seconds
+#: ../src/gnome-screensaver-preferences.c:736
+msgid "0 seconds"
+msgstr "0 seconden"
+
+#: ../src/gnome-screensaver-preferences.c:751
+msgid "Never"
+msgstr "Nooit"
+
+#: ../src/gnome-screensaver-preferences.c:779
+msgid "Could not load the main interface"
+msgstr "Kon de hoofd-interface niet laden"
+
+#: ../src/gnome-screensaver-preferences.c:781
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "Controleer of de schermbeveiliging correct is geïnstalleerd"
+
+#: ../src/gs-listener-dbus.c:557
+msgid "failed to register with the message bus"
+msgstr "kon niet aanmelden bij de berichtenbus"
+
+#: ../src/gs-listener-dbus.c:566
+msgid "screensaver already running in this session"
+msgstr "schermbeveiliging al actief in deze sessie"
+
+#: ../src/gs-lock-plug.c:248
+msgid "Checking password..."
+msgstr "Wachtwoordcontrole..."
+
+#: ../src/gs-lock-plug.c:297
+#, c-format
+msgid "About %ld second left"
+msgid_plural "About %ld seconds left"
+msgstr[0] "Ongeveer %ld seconde over"
+msgstr[1] "Ongeveer %ld seconden over<"
+
+#: ../src/gs-lock-plug.c:305
+msgid "Time expired!"
+msgstr "Tijd is verlopten!"
+
+#: ../src/gs-lock-plug.c:330
+msgid "You have the Caps Lock key on."
+msgstr "De Caps Lock staat aan."
+
+# bedoelen ze hier dat het wachtwoord onjuist is? of
+# Wachtwoord controle mislukt!
+#: ../src/gs-lock-plug.c:538
+msgid "Password check failed!"
+msgstr "Wachtwoord of gebruikersnaam onjuist!"
+
+#: ../src/gs-lock-plug.c:561 ../src/gs-lock-plug.c:602
+msgid "_Unlock"
+msgstr "_Deblokkeren"
+
+#: ../src/gs-lock-plug.c:566 ../src/gs-lock-plug.c:597
+msgid "_Switch User"
+msgstr "_Gebruikers wisselen"
+
+#: ../src/gs-lock-plug.c:961
+msgid "Log in as a new user"
+msgstr "Aanmelden als nieuwe gebruiker"
+
+#: ../src/gs-lock-plug.c:1217
+msgid "Enter a password to unlock the screen"
+msgstr "Geef het wachtwoord om het scherm te deblokkeren"
+
+#: ../src/gs-lock-plug.c:1246
+msgid "Name:"
+msgstr "Naam:"
+
+#: ../src/gs-lock-plug.c:1250
+msgid "_Password:"
+msgstr "_Wachtwoord:"
+
+#: ../src/gs-lock-plug.c:1292
+msgid "Switch to another user?"
+msgstr "Wisselen naar andere gebruiker?"
+
+#: ../src/gs-lock-plug.c:1358
+msgid "Log _Out"
+msgstr "_Afmelden"
+
+#~ msgid "A menu to quickly switch between users"
+#~ msgstr "Een menu om snel te wisselen tussen gebruikers"
+
+#~ msgid "User Switcher Applet Factory"
+#~ msgstr "Gebruikers wisselen applet-fabriek"
+
+#~ msgid "_About"
+#~ msgstr "I_nfo"
+
+#~ msgid "_Change Photo..."
+#~ msgstr "_Foto wijzigen..."
+
+#~ msgid "_Edit Users and Groups..."
+#~ msgstr "Gebruikers en groepen be_werken..."
+
+#~ msgid "_Help"
+#~ msgstr "_Hulp"
+
+#~ msgid "_Login Screen Setup..."
+#~ msgstr "Aanmeldscherm setup..."
+
+#~ msgid "_Preferences"
+#~ msgstr "_Voorkeuren"
+
+#~ msgid "Display Style"
+#~ msgstr "Weergavestijl"
+
+#~ msgid "Lock Screen After Switch"
+#~ msgstr "Scherm beveiligen na wisseling"
+
+# item/onderdeel
+#~ msgid "Show \"Login Screen\" Menuitem"
+#~ msgstr "Menu-onderdeel \"Aanmeldscherm\" tonen"
+
+#~ msgid "Show \"Login Window\" Menuitem"
+#~ msgstr "Menu-onderdeel \"Aanmeldvenster\" tonen"
+
+# actieve/aangemeldde/?
+#~ msgid "Show Active Users Only"
+#~ msgstr "Alleen actieve gebruikers tonen"
+
+#~ msgid ""
+#~ "Specifies how to display the applet in the panel. Use \"username\" to "
+#~ "display the current user's name, \"icon\" to show the people icon, or "
+#~ "\"text\" to use the word `Users.'"
+#~ msgstr ""
+#~ "Geeft aan hoe het applet in het paneel wordt weergegeven. Gebruik "
+#~ "\"username\" om de huidige gebruikersnaam te tonen, \"icon\" om het "
+#~ "pictogram te tonen, of \"text\" om woord 'Gebruikers' te tonen."
+
+#~ msgid "Use Xnest"
+#~ msgstr "Xnest gebruiken"
+
+#~ msgid ""
+#~ "When to show the \"Login Window\" item. Possible values include: \"always"
+#~ "\" to always show the item, \"never\" to never show the item, and \"auto"
+#~ "\" (the default) to show the item when the applet is in Xnest mode."
+#~ msgstr ""
+#~ "Wanneer het \"Aanmeldvenster\" wordt getoond. Mogelijke waardes zijn: "
+#~ "\"always\" om het altijd te tonen, \"never\" om het nooit te tonen, en "
+#~ "\"auto\" (de standaard) om het item te tonen wanneer het applet in Xnest-"
+#~ "modus is."
+
+#~ msgid ""
+#~ "When to show the \"Login Window\" item. Possible values include: \"always"
+#~ "\" to always show the item, \"never\" to never show the item, and \"auto"
+#~ "\" (the default) to show the item when the applet is in console (not "
+#~ "Xnest) mode."
+#~ msgstr ""
+#~ "Wanneer het \"Aanmeldvenster\" wordt getoond. Mogelijke waardes zijn: "
+#~ "\"always\" om het altijd te tonen, \"never\" om het nooit te tonen, en "
+#~ "\"auto\" (de standaard) om het item te tonen wanneer het applet in "
+#~ "console-modus (niet Xnest-modus) is."
+
+#~ msgid ""
+#~ "Whether or not to create new Xnest windows instead of spawning new "
+#~ "consoles when switching users."
+#~ msgstr ""
+#~ "Of nieuwe Xnest-vensters worden aangemaakt in plaats van het ceeeren van "
+#~ "nieuwe consoles bij het wisselen van gebruiker."
+
+#~ msgid ""
+#~ "Whether or not to lock the screen after switching to a different console."
+#~ msgstr ""
+#~ "Of het scherm wordt beveiligd bij het wisselen naar een andere console."
+
+# aangemeld/ingelogd
+#~ msgid ""
+#~ "Whether to show only users who are currently logged in, or all users."
+#~ msgstr ""
+#~ "Of alleen gebruikers worden getoond die momenteel zijn aangemeld, of alle "
+#~ "gebruikers."
+
+#~ msgid "<span weight=\"bold\" size=\"larger\">Multiple Logins Found</span>"
+#~ msgstr ""
+#~ "<span weight=\"bold\" size=\"larger\">Meerder aanmeldingen gevonden</span>"
+
+#~ msgid "Appearance"
+#~ msgstr "Uiterlijk"
+
+#~ msgid "Continue"
+#~ msgstr "Doorgaan"
+
+#~ msgid "Create new logins in _nested windows"
+#~ msgstr "_Nieuwe aanmeldingen aanmaken in ingebedde vensters"
+
+#~ msgid "Details"
+#~ msgstr "Details"
+
+#~ msgid "Multiple Logins Found - User Switcher"
+#~ msgstr "Meerdere aanmeldingen gevonden - Gebruikers wisselen"
+
+#~ msgid "Options"
+#~ msgstr "Opties"
+
+#~ msgid "Some preferences have been locked by the system adminstrator."
+#~ msgstr "Bepaalde voorkeuren zijn beveiligd door de systeembeheerder."
+
+#~ msgid ""
+#~ "The user you want to switch to is logged in multiple times on this "
+#~ "computer. Which login do you want to switch to?"
+#~ msgstr ""
+#~ "De gebruikers waarnaar u wilt wisselen is meerdere malen op deze computer "
+#~ "aangemeld. Naar welke aanmelding wilt u wisselen?"
+
+#~ msgid "Use the `people' icon for the menu title"
+#~ msgstr "Gebruik het pictogram voor de menutitel"
+
+#~ msgid "Use the current user's name for the menu title"
+#~ msgstr "Gebruik de huidige gebruikersnaam voor de menutitel"
+
+#~ msgid "Use the word `Users' as the menu title"
+#~ msgstr "Gebruik het woord 'Gebruikers' als menutitel"
+
+#~ msgid "User Switcher Error"
+#~ msgstr "Gebruikers wisselen fout"
+
+#~ msgid "Users"
+#~ msgstr "Gebruikers"
+
+#~ msgid ""
+#~ "When a new login must be created to switch users, create it in a window "
+#~ "instead of on a new screen"
+#~ msgstr ""
+#~ "Wanneer een nieuwe aanmelding moet worden aangemaakt om te wisselen van "
+#~ "gebruiker, maak deze dan in een venster in plaats van in een nieuw scherm"
+
+#~ msgid ""
+#~ "When changing to a different display, activate the screensaver for this "
+#~ "display."
+#~ msgstr ""
+#~ "De schermbeveiliging aanzetten bij het wisselen naar een ander display."
+
+#~ msgid "_Lock the screen after switching users"
+#~ msgstr "Het scherm _beveiligen bij het wisselen van gebruikers"
+
+#~ msgid "Login Screen"
+#~ msgstr "Aanmeldscherm"
+
+#~ msgid "Login Window"
+#~ msgstr "Aanmeldvenster"
+
+#~ msgid "A menu to quickly switch between users."
+#~ msgstr "Een menu om snel te wisselen tussen gebruikers."
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Tino Meinen\n"
+#~ "zie ook: nl.gnome.org"
+
+#~ msgid "Multiple Logins Found - Fast User-Switch"
+#~ msgstr "Meerdere aanmeldingen gevonden - Snel gebruikers wisselen"
+
+#~ msgid "Multiple Logins Found"
+#~ msgstr "Meerdere aanmeldingen gevonden"
+
+#~ msgid "%s in a nested window on console %d"
+#~ msgstr "%s in een ingebed venster op console %d"
+
+#~ msgid "%s on console %d"
+#~ msgstr "%s op console %d"
+
+#~ msgid "Display Manager Unavailable"
+#~ msgstr "Display-beheer niet beschikbaar"
+
+#~ msgid ""
+#~ "In order for the User Selector to function properly, the GNOME Display "
+#~ "Manager must be running, but it is not."
+#~ msgstr ""
+#~ "Om de gebruikers-kiezer correct te kunnen laten werken, moet de GNOME "
+#~ "Display Manager in werking zijn, maar dat is niet het geval."
+
+#~ msgid "Multiple Consoles Not Supported"
+#~ msgstr "Meerdere consoles niet ondersteund"
+
+#~ msgid "Too Many Sessions"
+#~ msgstr "Te veel sessies"
+
+#~ msgid ""
+#~ "There are currently too many sessions running to create a new one. "
+#~ "Someone must log out, or the system configuration must be changed to "
+#~ "allow for more."
+#~ msgstr ""
+#~ "Er zijn momenteel te veel sessies actief om een nieuwe te kunnen "
+#~ "aanmaken. Iemand moet zich afmelden, of de systeemconfiguratie moet "
+#~ "worden gewijzigd om meer sessies toe te laten."
+
+#~ msgid "Graphical System Error"
+#~ msgstr "Grafische systeemfout"
+
+#~ msgid ""
+#~ "The X Windows graphical system did not properly start, which prevents new "
+#~ "graphical logins. It is likely that X or GDM is not properly configured."
+#~ msgstr ""
+#~ "Het X Windows grafische systeem kon niet goed opstarten waardoor nieuwe "
+#~ "grafische aanmeldingen mislukken. Mogelijkerwijs is X of GDM niet correct "
+#~ "geconfigureerd."
+
+#~ msgid "Permissions Error"
+#~ msgstr "Toegangsrechten-fout"
+
+#~ msgid ""
+#~ "Your user does not have permissions to create additional logins.  Check "
+#~ "your <i>~/.Xauthority</i> setup."
+#~ msgstr ""
+#~ "Uw gebruiker heeft geen rechten om extra aanmeldingen te kunnen "
+#~ "aanmaken.  Controleer de instellingen in uw bestand <i>~/.Xauthority</i>."
+
+#~ msgid "Missing Required File"
+#~ msgstr "Vereist bestand ontbreekt"
+
+#~ msgid ""
+#~ "The User Selector's interfaces file, `%s', could not be opened. It is "
+#~ "likely that this application was not properly installed or configured."
+#~ msgstr ""
+#~ "Het interface-bestand %s voor de gebruikers-kiezer, kon niet worden "
+#~ "geopend. Waarschijnlijk is deze toepassing niet correct geïnstalleerd of "
+#~ "geconfigureerd."
+
+# is s hier de naam van het scherm, of de foutmelding die verschijnt?
+#~ msgid "Can't lock screen: %s"
+#~ msgstr "Kan scherm niet beveiligen: %s"
