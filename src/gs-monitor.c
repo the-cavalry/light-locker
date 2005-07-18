@@ -93,7 +93,7 @@ static void
 watcher_idle_cb (GSWatcher *watcher,
                  GSMonitor *monitor)
 {
-        gs_listener_set_active (monitor->priv->listener, TRUE);
+        gs_listener_set_idle (monitor->priv->listener, TRUE);
 }
 
 static void

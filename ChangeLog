@@ -1,3 +1,25 @@
+2005-07-18  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-monitor.c (watcher_idle_cb):  Decouple the
+	idle watcher from the screensaver activation by only
+	setting an idle flag.  Setting this flag triggers
+	an activation only when all the inhibitors are removed.
+
+	* src/gs-listener-dbus.[ch] (listener_check_activation) 
+	(gs_listener_set_active, gs_listener_set_idle) 
+	(listener_property_set_bool, raise_error, raise_syntax) 
+	(listener_add_inhibitor, listener_remove_inhibitor) 
+	(listener_service_deleted, raise_property_type_error) 
+	(listener_get_property, listener_dbus_filter_handle_methods) 
+	(gs_listener_message_handler, listener_dbus_filter_function) 
+	(gs_listener_set_property, gs_listener_get_property) 
+	(gs_listener_acquire, gs_listener_finalize):
+	Add the concept of activation inhibitors.  An application
+	on the bus can request to block the timed activation of the
+	screensaver.  The implementation is essentially copied
+	from HAL's device locking.  When the remote application
+	is removed from the bus the inhibition is removed.
+
 2005-07-15  Abel Cheung  <maddog@linuxhall.org>
 
 	* configure.ac: Added "zh_TW" to ALL_LINGUAS.

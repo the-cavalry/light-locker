@@ -41,16 +41,16 @@
 #define dbus_bus_request_name(connection, name, flags, err) dbus_bus_acquire_service(connection, name, flags, err)
 #endif
 
-static void     gs_listener_class_init (GSListenerClass *klass);
-static void     gs_listener_init       (GSListener      *listener);
-static void     gs_listener_finalize   (GObject         *object);
+static void              gs_listener_class_init         (GSListenerClass *klass);
+static void              gs_listener_init               (GSListener      *listener);
+static void              gs_listener_finalize           (GObject         *object);
 
-static void              gs_listener_unregister_handler (DBusConnection *connection,
-                                                         void           *data);
+static void              gs_listener_unregister_handler (DBusConnection  *connection,
+                                                         void            *data);
 
-static DBusHandlerResult gs_listener_message_handler    (DBusConnection *connection,
-                                                         DBusMessage    *message,
-                                                         void           *user_data);
+static DBusHandlerResult gs_listener_message_handler    (DBusConnection  *connection,
+                                                         DBusMessage     *message,
+                                                         void            *user_data);
 
 #define GS_LISTENER_SERVICE   "org.gnome.screensaver"
 #define GS_LISTENER_PATH      "/org/gnome/screensaver"
@@ -62,8 +62,10 @@ struct GSListenerPrivate
 {
         DBusConnection *connection;
 
+        guint           idle : 1;
         guint           active : 1;
         guint           throttle_enabled : 1;
+        GHashTable     *inhibitors;
 };
 
 enum {
@@ -79,6 +81,7 @@ enum {
 enum {
         PROP_0,
         PROP_ACTIVE,
+        PROP_IDLE,
         PROP_THROTTLE_ENABLED,
 };
 
@@ -116,7 +119,7 @@ static void
 gs_listener_send_signal_active_changed (GSListener *listener)
 {
         DBusMessage    *message;
-	DBusMessageIter iter;
+        DBusMessageIter iter;
         dbus_bool_t     active;
 
         g_return_if_fail (listener != NULL);
@@ -126,8 +129,8 @@ gs_listener_send_signal_active_changed (GSListener *listener)
                                            "ActiveChanged");
 
         active = listener->priv->active;
-	dbus_message_iter_init_append (message, &iter);
-	dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &active);
+        dbus_message_iter_init_append (message, &iter);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &active);
 
         if (! dbus_connection_send (listener->priv->connection, message, NULL)) {
                 g_warning ("Could not send ActiveChanged signal");
@@ -140,7 +143,7 @@ static void
 gs_listener_send_signal_throttle_enabled_changed (GSListener *listener)
 {
         DBusMessage    *message;
-	DBusMessageIter iter;
+        DBusMessageIter iter;
         dbus_bool_t     enabled;
 
         g_return_if_fail (listener != NULL);
@@ -150,14 +153,41 @@ gs_listener_send_signal_throttle_enabled_changed (GSListener *listener)
                                            "ThrottleEnabledChanged");
 
         enabled = listener->priv->throttle_enabled;
-	dbus_message_iter_init_append (message, &iter);
-	dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &enabled);
+        dbus_message_iter_init_append (message, &iter);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &enabled);
 
         if (! dbus_connection_send (listener->priv->connection, message, NULL)) {
                 g_warning ("Could not send ThrottleEnabledChanged signal");
         }
 
         dbus_message_unref (message);
+}
+
+#if 0
+static void
+list_inhibitors (gpointer key,
+                 gpointer value,
+                 gpointer user_data)
+{
+        g_message ("Inhibited by bus %s for reason: %s", (char *)key, (char *)value);
+}
+#endif
+
+static void
+listener_check_activation (GSListener *listener)
+{
+        guint n_inhibitors = 0;
+
+        /* if we aren't inhibited then activate */
+        if (listener->priv->inhibitors)
+                n_inhibitors = g_hash_table_size (listener->priv->inhibitors);
+
+        /*g_hash_table_foreach (listener->priv->inhibitors, list_inhibitors, NULL);*/
+
+        if (listener->priv->idle
+            && n_inhibitors == 0) {
+                gs_listener_set_active (listener, TRUE);
+        }
 }
 
 void
@@ -176,7 +206,22 @@ gs_listener_set_active (GSListener *listener,
                 if (! active) {
                         /* if we are deactivating then reset the throttle */
                         gs_listener_set_throttle_enabled (listener, FALSE);
+                        /* if we are deactivating then reset the idle */
+                        listener->priv->idle = active;
                 }
+        }
+}
+
+void
+gs_listener_set_idle (GSListener *listener,
+                      gboolean    idle)
+{
+        g_return_if_fail (GS_IS_LISTENER (listener));
+
+        if (listener->priv->idle != idle) {
+                listener->priv->idle = idle;
+
+                listener_check_activation (listener);
         }
 }
 
@@ -205,6 +250,10 @@ listener_property_set_bool (GSListener *listener,
                 gs_listener_set_active (listener, value);
                 return TRUE;
                 break;
+        case PROP_IDLE:
+                gs_listener_set_idle (listener, value);
+                return TRUE;
+                break;
         case PROP_THROTTLE_ENABLED:
                 gs_listener_set_throttle_enabled (listener, value);
                 return TRUE;
@@ -214,6 +263,153 @@ listener_property_set_bool (GSListener *listener,
         }
 
         return FALSE;
+}
+
+static void
+raise_error (DBusConnection *connection,
+             DBusMessage    *in_reply_to,
+             const char     *error_name,
+             char           *format, ...)
+{
+        char         buf[512];
+        DBusMessage *reply;
+
+        va_list args;
+        va_start (args, format);
+        vsnprintf (buf, sizeof (buf), format, args);
+        va_end (args);
+
+        g_warning (buf);
+        reply = dbus_message_new_error (in_reply_to, error_name, buf);
+        if (reply == NULL)
+                g_error ("No memory");
+        if (! dbus_connection_send (connection, reply, NULL))
+                g_error ("No memory");
+
+        dbus_message_unref (reply);
+}
+
+static void
+raise_syntax (DBusConnection *connection,
+              DBusMessage    *in_reply_to,
+              const char     *method_name)
+{
+        raise_error (connection, in_reply_to,
+                     GS_LISTENER_SERVICE ".SyntaxError",
+                     "There is a syntax error in the invocation of the method %s",
+                     method_name);
+}
+
+static DBusHandlerResult
+listener_add_inhibitor (GSListener     *listener,
+                        DBusConnection *connection,
+                        DBusMessage    *message)
+{
+        const char     *path;
+        const char     *sender;
+        DBusMessage    *reply;
+        DBusError       error;
+        char           *reason;
+
+        path = dbus_message_get_path (message);
+
+        dbus_error_init (&error);
+        if (! dbus_message_get_args (message, &error,
+                                     DBUS_TYPE_STRING, &reason,
+                                     DBUS_TYPE_INVALID)) {
+                raise_syntax (connection, message, "InhibitActivation");
+
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+
+        reply = dbus_message_new_method_return (message);
+        if (reply == NULL)
+                g_error ("No memory");
+
+        sender = dbus_message_get_sender (message);
+
+        if (listener->priv->inhibitors == NULL) {
+                listener->priv->inhibitors =
+                        g_hash_table_new_full (g_str_hash,
+                                               g_str_equal,
+                                               g_free,
+                                               g_free);
+        }
+
+        g_hash_table_insert (listener->priv->inhibitors, g_strdup (sender), g_strdup (reason));
+
+        if (! dbus_connection_send (connection, reply, NULL))
+                g_error ("No memory");
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
+listener_remove_inhibitor (GSListener     *listener,
+                           DBusConnection *connection,
+                           DBusMessage    *message)
+{
+        const char  *path;
+        DBusMessage *reply;
+        DBusError    error;
+        const char  *sender;
+
+        path = dbus_message_get_path (message);
+
+        dbus_error_init (&error);
+        if (! dbus_message_get_args (message, &error,
+                                     DBUS_TYPE_INVALID)) {
+                raise_syntax (connection, message, "AllowActivation");
+
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+
+        reply = dbus_message_new_method_return (message);
+        if (reply == NULL)
+                g_error ("No memory");
+
+        sender = dbus_message_get_sender (message);
+
+        if (g_hash_table_lookup (listener->priv->inhibitors, sender)) {
+                g_hash_table_remove (listener->priv->inhibitors, sender);
+                listener_check_activation (listener);
+        } else {
+                g_warning ("Service '%s' was not in the list of inhibitors!", sender);
+        }
+
+        /* FIXME?  Pointless? */
+        if (! dbus_connection_send (connection, reply, NULL))
+                g_error ("No memory");
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static void
+listener_service_deleted (GSListener  *listener,
+                          DBusMessage *message)
+{
+        char *old_service_name;
+        char *new_service_name;
+        char *reason;
+
+        if (! dbus_message_get_args (message, NULL,
+                                     DBUS_TYPE_STRING, &old_service_name,
+                                     DBUS_TYPE_STRING, &new_service_name,
+                                     DBUS_TYPE_INVALID)) {
+                g_error ("Invalid NameOwnerChanged signal from bus!");
+                return;
+        }
+
+        reason = g_hash_table_lookup (listener->priv->inhibitors, new_service_name);
+
+        if (reason != NULL) {
+                g_hash_table_remove (listener->priv->inhibitors, new_service_name);
+                listener_check_activation (listener);
+        }
 }
 
 static void
@@ -303,20 +499,27 @@ listener_get_property (GSListener     *listener,
 
         reply = dbus_message_new_method_return (message);
 
-	dbus_message_iter_init_append (reply, &iter);
+        dbus_message_iter_init_append (reply, &iter);
 
         if (reply == NULL)
                 g_error ("No memory");
 
-	switch (prop_id) {
-	case PROP_ACTIVE:
+        switch (prop_id) {
+        case PROP_ACTIVE:
                 {
                         dbus_bool_t b;
                         b = listener->priv->active;
                         dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &b);
                 }
                 break;
-	case PROP_THROTTLE_ENABLED:
+        case PROP_IDLE:
+                {
+                        dbus_bool_t b;
+                        b = listener->priv->idle;
+                        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &b);
+                }
+                break;
+        case PROP_THROTTLE_ENABLED:
                 {
                         dbus_bool_t b;
                         b = listener->priv->throttle_enabled;
@@ -337,22 +540,15 @@ listener_get_property (GSListener     *listener,
 }
 
 static DBusHandlerResult
-gs_listener_message_handler (DBusConnection *connection,
-                             DBusMessage    *message,
-                             void           *user_data)
+listener_dbus_filter_handle_methods (DBusConnection *connection,
+                                     DBusMessage    *message, 
+                                     void           *user_data,
+                                     dbus_bool_t     local_interface)
 {
         GSListener *listener = GS_LISTENER (user_data);
 
-	g_return_val_if_fail (connection != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
-	g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
-
-        /*
-        g_message ("obj_path=%s interface=%s method=%s destination=%s", 
-                   dbus_message_get_path (message), 
-                   dbus_message_get_interface (message),
-                   dbus_message_get_member (message),
-                   dbus_message_get_destination (message));
-        */
+        g_return_val_if_fail (connection != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
+        g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
 
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "lock")) {
                 g_signal_emit (listener, signals [LOCK], 0);
@@ -366,11 +562,20 @@ gs_listener_message_handler (DBusConnection *connection,
                 g_signal_emit (listener, signals [CYCLE], 0);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "InhibitActivation")) {
+                return listener_add_inhibitor (listener, connection, message);
+        }
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "AllowActivation")) {
+                return listener_remove_inhibitor (listener, connection, message);
+        }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "setActive")) {
                 return listener_set_property (listener, connection, message, PROP_ACTIVE);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getActive")) {
                 return listener_get_property (listener, connection, message, PROP_ACTIVE);
+        }
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getIdle")) {
+                return listener_get_property (listener, connection, message, PROP_IDLE);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "setThrottleEnabled")) {
                 return listener_set_property (listener, connection, message, PROP_THROTTLE_ENABLED);
@@ -383,6 +588,90 @@ gs_listener_message_handler (DBusConnection *connection,
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
         return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+}
+
+static DBusHandlerResult
+gs_listener_message_handler (DBusConnection *connection,
+                             DBusMessage    *message,
+                             void           *user_data)
+{
+        g_return_val_if_fail (connection != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
+        g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
+
+        /*
+        g_message ("obj_path=%s interface=%s method=%s destination=%s", 
+                   dbus_message_get_path (message), 
+                   dbus_message_get_interface (message),
+                   dbus_message_get_member (message),
+                   dbus_message_get_destination (message));
+        */
+
+        if (dbus_message_is_method_call (message, "org.freedesktop.DBus", "AddMatch")) {
+                DBusMessage *reply;
+
+                /* cheat, and handle AddMatch since libhal will try to invoke this method */
+                reply = dbus_message_new_method_return (message);
+
+                if (reply == NULL)
+                        g_error ("No memory");
+
+                if (!dbus_connection_send (connection, reply, NULL))
+                        g_error ("No memory");
+
+                dbus_message_unref (reply);
+
+                return DBUS_HANDLER_RESULT_HANDLED;
+        } else if (dbus_message_is_signal (message, DBUS_INTERFACE_LOCAL, "Disconnected") &&
+                   strcmp (dbus_message_get_path (message), DBUS_PATH_LOCAL) == 0) {
+                
+                dbus_connection_unref (connection);
+
+                return DBUS_HANDLER_RESULT_HANDLED;
+        } 
+        else return listener_dbus_filter_handle_methods (connection, message, user_data, TRUE);
+}
+
+static DBusHandlerResult
+listener_dbus_filter_function (DBusConnection *connection,
+                               DBusMessage    *message,
+                               void           *user_data)
+{
+        GSListener *listener = GS_LISTENER (user_data);
+        const char *path;
+
+        path = dbus_message_get_path (message);
+
+        /*
+        g_message ("obj_path=%s interface=%s method=%s", 
+                   dbus_message_get_path (message), 
+                   dbus_message_get_interface (message),
+                   dbus_message_get_member (message));
+        */
+
+        if (dbus_message_is_signal (message, DBUS_INTERFACE_LOCAL, "Disconnected") &&
+            strcmp (path, DBUS_PATH_LOCAL) == 0) {
+
+                /* this is a local message; e.g. from libdbus in this process */
+
+                g_message ("Got disconnected from the system message bus; "
+                           "retrying to reconnect every 3000 ms");
+
+#if 0
+                dbus_connection_unref (dbus_connection);
+                dbus_connection = NULL;
+
+                g_timeout_add (3000, reinit_dbus, NULL);
+#endif
+        } else if (dbus_message_is_signal (message,
+                                           DBUS_INTERFACE_DBUS,
+                                           "NameOwnerChanged")) {
+
+                if (listener->priv->inhibitors != NULL)
+                        listener_service_deleted (listener, message);
+        } else 
+                return listener_dbus_filter_handle_methods (connection, message, user_data, FALSE);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
 }
 
 static void
@@ -398,6 +687,9 @@ gs_listener_set_property (GObject            *object,
         switch (prop_id) {
         case PROP_ACTIVE:
                 gs_listener_set_active (self, g_value_get_boolean (value));
+                break;
+        case PROP_IDLE:
+                gs_listener_set_idle (self, g_value_get_boolean (value));
                 break;
         case PROP_THROTTLE_ENABLED:
                 gs_listener_set_throttle_enabled (self, g_value_get_boolean (value));
@@ -421,6 +713,9 @@ gs_listener_get_property (GObject            *object,
         switch (prop_id) {
         case PROP_ACTIVE:
                 g_value_set_boolean (value, self->priv->active);
+                break;
+        case PROP_IDLE:
+                g_value_set_boolean (value, self->priv->idle);
                 break;
         case PROP_THROTTLE_ENABLED:
                 g_value_set_boolean (value, self->priv->throttle_enabled);
@@ -587,6 +882,15 @@ gs_listener_acquire (GSListener *listener,
 
         dbus_error_free (&buserror);
 
+        dbus_connection_add_filter (listener->priv->connection, listener_dbus_filter_function, listener, NULL);
+
+        dbus_bus_add_match (listener->priv->connection,
+                            "type='signal'"
+                            ",interface='"DBUS_INTERFACE_DBUS"'"
+                            ",sender='"DBUS_SERVICE_DBUS"'"
+                            ",member='NameOwnerChanged'",
+                            NULL);
+
         return acquired;
 }
 
@@ -622,6 +926,9 @@ gs_listener_finalize (GObject *object)
         g_return_if_fail (listener->priv != NULL);
 
         /*dbus_connection_unref (listener->priv->connection);*/
+
+        if (listener->priv->inhibitors)
+                g_hash_table_destroy (listener->priv->inhibitors);
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }

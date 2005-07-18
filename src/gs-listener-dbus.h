@@ -71,6 +71,8 @@ gboolean    gs_listener_acquire                 (GSListener *listener,
                                                  GError    **error);
 void        gs_listener_set_active              (GSListener *listener,
                                                  gboolean    active);
+void        gs_listener_set_idle                (GSListener *listener,
+                                                 gboolean    idle);
 void        gs_listener_set_throttle_enabled    (GSListener *listener,
                                                  gboolean    enabled);
 
