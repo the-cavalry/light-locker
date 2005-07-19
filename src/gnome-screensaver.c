@@ -1,8 +1,5 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 8; tab-width: 8 -*-
  *
- * Portions derived from xscreensaver,
- * Copyright (c) 1991-2004 Jamie Zawinski <jwz@jwz.org>
- * 
  * Copyright (C) 2004-2005 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or

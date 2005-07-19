@@ -1,3 +1,13 @@
+2005-07-19  William Jon McCann  <mccann@jhu.edu>
+
+	* README: Remove experimental warning.
+
+	* TODO: Remove user list item.
+
+	* src/gnome-screensaver.c: 
+	* src/gnome-screensaver-dialog.c: 
+	* src/gs-monitor.c: Fix copyright statements.
+
 2005-07-18  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-monitor.c (watcher_idle_cb):  Decouple the

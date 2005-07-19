@@ -1,8 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * Portions derived from xscreensaver,
- * Copyright (c) 1991-2004 Jamie Zawinski <jwz@jwz.org>
- * 
  * Copyright (C) 2004-2005 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or
@@ -143,7 +140,12 @@ popup_dialog_idle (void)
         return FALSE;
 }
 
-/* Initializations that potentially take place as a priveleged user:
+
+/*
+ * Copyright (c) 1991-2004 Jamie Zawinski <jwz@jwz.org>
+ * Copyright (c) 2005 William Jon McCann <mccann@jhu.edu>
+ *
+ * Initializations that potentially take place as a priveleged user:
    If the xscreensaver executable is setuid root, then these initializations
    are run as root, before discarding privileges.
 */
@@ -178,7 +180,11 @@ privileged_initialization (int     *argc,
 }
 
 
-/* Figure out what locking mechanisms are supported.
+/*
+ * Copyright (c) 1991-2004 Jamie Zawinski <jwz@jwz.org>
+ * Copyright (c) 2005 William Jon McCann <mccann@jhu.edu>
+ *
+ * Figure out what locking mechanisms are supported.
  */
 static gboolean
 lock_initialization (int     *argc,
