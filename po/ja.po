@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-04 00:09+0900\n"
-"PO-Revision-Date: 2005-07-03 19:07+0900\n"
+"POT-Creation-Date: 2005-07-19 23:02+0900\n"
+"PO-Revision-Date: 2005-07-19 23:01+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -198,41 +198,41 @@ msgid "Whether or not this display is a windowed (Xnest) display."
 msgstr ""
 "このディスプレイが Xnest 対応のウィンドウ・ディスプレイであるかどうかです。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1263
+#: ../src/cut-n-paste/fusa-manager.c:1264
 msgid "The display manager could not be contacted for unknown reasons."
 msgstr "ディスプレイ・マネージャと接続できませんでした (原因不明)。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1270
+#: ../src/cut-n-paste/fusa-manager.c:1271
 msgid "The display manager is not running or too old."
 msgstr ""
 "ディスプレイ・マネージャが起動されていないか、あるいはバージョンが古すぎま"
 "す。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1273
+#: ../src/cut-n-paste/fusa-manager.c:1274
 msgid "The configured limit of flexible servers has been reached."
 msgstr "設定したサーバ数の上限に到達しました。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1276
+#: ../src/cut-n-paste/fusa-manager.c:1277
 msgid "There was an unknown error starting X."
 msgstr "X を起動する際に不明なエラーが発生しました。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1279
+#: ../src/cut-n-paste/fusa-manager.c:1280
 msgid "The X server failed to finish starting."
 msgstr "X サーバが起動を完了できませんでした。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1282
+#: ../src/cut-n-paste/fusa-manager.c:1283
 msgid "There are too many X sessions running."
 msgstr "実行中の X セッションが多すぎます。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1285
+#: ../src/cut-n-paste/fusa-manager.c:1286
 msgid "The nested X server (Xnest) cannot connect to your current X server."
 msgstr "Xnest 対応のサーバが現在使用中の X サーバへ接続できません。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1288
+#: ../src/cut-n-paste/fusa-manager.c:1289
 msgid "The X server in the GDM configuration could not be found."
 msgstr "GDM から起動した X サーバの設定が見つかりませんでした。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
+#: ../src/cut-n-paste/fusa-manager.c:1292 ../src/cut-n-paste/gdmcomm.c:492
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
@@ -240,29 +240,29 @@ msgstr ""
 "不明なログアウト操作をセットしようとしている、または利用できないログアウト操"
 "作をセットしようとしています。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
+#: ../src/cut-n-paste/fusa-manager.c:1295 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
 msgstr "仮想端末はサポートしていません。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1297
+#: ../src/cut-n-paste/fusa-manager.c:1298
 msgid "Invalid virtual terminal number."
 msgstr "仮想端末の番号が間違っています。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
+#: ../src/cut-n-paste/fusa-manager.c:1301 ../src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
 msgstr "サポートしていない設定キーを更新しようとしています。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1303
+#: ../src/cut-n-paste/fusa-manager.c:1304
 msgid "~/.Xauthority file badly configured or missing."
 msgstr "\"~/.Xauthority\" ファイルの内容が間違っているか、設定が足りません。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1306
+#: ../src/cut-n-paste/fusa-manager.c:1307
 msgid "Too many messages were sent to the display manager, and it hung up."
 msgstr ""
 "ディスプレイ・マネージャにたくさんのメッセージを送信したため、ハングアップし"
 "たようです。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1310
+#: ../src/cut-n-paste/fusa-manager.c:1311
 msgid "The display manager sent an unknown error message."
 msgstr "ディスプレイ・マネージャが不明なエラー・メッセージを送信しました。"
 
@@ -389,43 +389,43 @@ msgstr "'%s' のコピー中"
 
 #: ../src/file-transfer-dialog.c:193
 msgid "From URI"
-msgstr "URI から"
+msgstr "転送元 URI"
 
 #: ../src/file-transfer-dialog.c:194
 msgid "URI currently transferring from"
-msgstr ""
+msgstr "転送元の URI です"
 
 #: ../src/file-transfer-dialog.c:201
 msgid "To URI"
-msgstr ""
+msgstr "転送先 URI"
 
 #: ../src/file-transfer-dialog.c:202
 msgid "URI currently transferring to"
-msgstr ""
+msgstr "転送先の URI です"
 
 #: ../src/file-transfer-dialog.c:209
 msgid "Fraction completed"
-msgstr ""
+msgstr "細分化が完了しました"
 
 #: ../src/file-transfer-dialog.c:210
 msgid "Fraction of transfer currently completed"
-msgstr ""
+msgstr "転送するファイルの細分化が完了しました"
 
 #: ../src/file-transfer-dialog.c:217
 msgid "Current URI index"
-msgstr ""
+msgstr "URI のインデックス"
 
 #: ../src/file-transfer-dialog.c:218
 msgid "Current URI index - starts from 1"
-msgstr ""
+msgstr "URI のインデックスです (番号は 1〜)"
 
 #: ../src/file-transfer-dialog.c:225
 msgid "Total URIs"
-msgstr ""
+msgstr "URI の総数"
 
 #: ../src/file-transfer-dialog.c:226
 msgid "Total number of URIs"
-msgstr "URI の総数"
+msgstr "URI の総数です"
 
 #: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
 msgid "Copying files"
@@ -471,49 +471,50 @@ msgstr ""
 
 #: ../src/gnome-screensaver-command.c:70
 msgid "Disable running graphical themes while blanked"
-msgstr ""
+msgstr "ブランク・スクリーンの間はグラフィカルなテーマを無効にする"
 
 #: ../src/gnome-screensaver-command.c:72
 msgid "Enable running graphical themes while blanked (if applicable)"
 msgstr ""
+"ブランク・スクリーンの間はグラフィカルなテーマを有効にする (可能ならば)"
 
 #: ../src/gnome-screensaver-command.c:74
 msgid "Poke the running screensaver to simulate user activity"
-msgstr ""
+msgstr "Poke the running screensaver to simulate user activity"
 
-#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:56
-#: ../src/gnome-screensaver.c:55
+#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:53
+#: ../src/gnome-screensaver.c:52
 msgid "Version of this application"
-msgstr ""
+msgstr "このアプリケーションのバージョンを表示する"
 
 #: ../src/gnome-screensaver-command.c:201
 #, c-format
 msgid "The screensaver is %s\n"
-msgstr ""
+msgstr "スクリーンセーバーは%s\n"
 
 #: ../src/gnome-screensaver-command.c:201
 msgid "active"
-msgstr ""
+msgstr "起動されています"
 
 #: ../src/gnome-screensaver-command.c:201
 msgid "inactive"
-msgstr ""
+msgstr "起動されていません"
 
-#: ../src/gnome-screensaver-dialog.c:54
+#: ../src/gnome-screensaver-dialog.c:51
 msgid "Show debugging output"
-msgstr ""
+msgstr "デバッグ出力を表示する"
 
-#: ../src/gnome-screensaver-dialog.c:58
+#: ../src/gnome-screensaver-dialog.c:55
 msgid "Show the logout button"
-msgstr ""
+msgstr "ログアウト・ボタンを表示する"
 
 #: ../src/gnome-screensaver-preferences.c:583
 msgid "Invalid screensaver theme"
-msgstr ""
+msgstr "スクリーンセーバーのテーマが間違っています"
 
 #: ../src/gnome-screensaver-preferences.c:586
 msgid "This file does not appear to be a valid screensaver theme."
-msgstr ""
+msgstr "このファイルはスクリーンセーバーのテーマとして正しくないようです。"
 
 #: ../src/gnome-screensaver-preferences.c:703
 #, c-format
@@ -563,85 +564,79 @@ msgstr "%s"
 #. 0 seconds
 #: ../src/gnome-screensaver-preferences.c:736
 msgid "0 seconds"
-msgstr ""
+msgstr "0 秒"
 
 #: ../src/gnome-screensaver-preferences.c:751
 msgid "Never"
-msgstr ""
+msgstr "しない"
 
 #: ../src/gnome-screensaver-preferences.c:779
 msgid "Could not load the main interface"
-msgstr ""
+msgstr "Glade インタフェースを読み込めませんでした"
 
 #: ../src/gnome-screensaver-preferences.c:781
 msgid "Please make sure that the screensaver is properly installed"
-msgstr ""
+msgstr "gnome-screensaver が正しくインストールされているか確認して下さい。"
 
-#: ../src/gs-listener-dbus.c:552
+#: ../src/gs-listener-dbus.c:852
 msgid "failed to register with the message bus"
 msgstr "メッセージ・バスへの登録に失敗しました"
 
-#: ../src/gs-listener-dbus.c:561
+#: ../src/gs-listener-dbus.c:861
 msgid "screensaver already running in this session"
 msgstr "このセッションで既にスクリーンセーバーが実行中です"
 
-#: ../src/gs-lock-plug.c:179
+#: ../src/gs-lock-plug.c:248
 msgid "Checking password..."
 msgstr "パスワードの確認中..."
 
-#: ../src/gs-lock-plug.c:244
+#: ../src/gs-lock-plug.c:297
 #, c-format
 msgid "About %ld second left"
 msgid_plural "About %ld seconds left"
 msgstr[0] "約 %ld 秒経過"
 msgstr[1] "約 %ld 秒経過"
 
-#: ../src/gs-lock-plug.c:252
+#: ../src/gs-lock-plug.c:305
 msgid "Time expired!"
 msgstr "タイムアウトです！"
 
-#: ../src/gs-lock-plug.c:277
+#: ../src/gs-lock-plug.c:330
 msgid "You have the Caps Lock key on."
 msgstr "[Caps Lock] キーが押されています"
 
-#: ../src/gs-lock-plug.c:474
+#: ../src/gs-lock-plug.c:538
 msgid "Password check failed!"
 msgstr "パスワードの確認に失敗しました！"
 
-#: ../src/gs-lock-plug.c:499 ../src/gs-lock-plug.c:539
+#: ../src/gs-lock-plug.c:561 ../src/gs-lock-plug.c:602
 msgid "_Unlock"
 msgstr "ロック解除(_U)"
 
-#: ../src/gs-lock-plug.c:503 ../src/gs-lock-plug.c:535
-msgid "_New Login"
-msgstr "新しいログイン(_N)"
+#: ../src/gs-lock-plug.c:566 ../src/gs-lock-plug.c:597
+msgid "_Switch User"
+msgstr "ユーザの切り替え"
 
-#: ../src/gs-lock-plug.c:892
+#: ../src/gs-lock-plug.c:961
+msgid "Log in as a new user"
+msgstr "別のユーザでログインする"
+
+#: ../src/gs-lock-plug.c:1217
 msgid "Enter a password to unlock the screen"
 msgstr "画面ロックを解除するパスワードを入力して下さい"
 
-#: ../src/gs-lock-plug.c:921
+#: ../src/gs-lock-plug.c:1246
 msgid "Name:"
 msgstr "名前:"
 
-#: ../src/gs-lock-plug.c:925
+#: ../src/gs-lock-plug.c:1250
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#: ../src/gs-lock-plug.c:967
-msgid "Log in as another user?"
-msgstr "別のユーザでログインしますか？"
+#: ../src/gs-lock-plug.c:1292
+msgid "Switch to another user?"
+msgstr "別のユーザに切り替えますか？"
 
-#: ../src/gs-lock-plug.c:985
-msgid ""
-"This option will bring you to the login screen.\n"
-"From the login screen you may log in to this system\n"
-"as another user or select 'Quit' to return to this screen."
-msgstr ""
-"このオプションを指定すると、ログイン画面に移行します。\n"
-"ログイン画面から、別のユーザでこのシステムへログインできます\n"
-"([終了] : この画面に戻る)。"
-
-#: ../src/gs-lock-plug.c:1024
+#: ../src/gs-lock-plug.c:1358
 msgid "Log _Out"
 msgstr "ログアウト(_O)"
