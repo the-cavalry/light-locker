@@ -1,4 +1,23 @@
 =============
+Version 0.0.8
+=============
+
+  gnome-screensaver
+
+        * Add Dbus API for inhibiting the idle activation
+        * Integrate fast-user-switching directly into the unlock dialog.
+        * Restart unlock dialog timer after every keystroke
+        * Fix leaks
+        * Fix xauth problems for some displays
+
+  Translators
+
+        * Adam Weinberger (en_CA)
+        * Takeshi AIHANA (ja)
+        * Tino Meinen (nl)
+        * Abel Cheung (zh_TW)
+
+=============
 Version 0.0.7
 =============
 
