@@ -1,3 +1,7 @@
+2005-07-25  Tommi Vainikainen  <thv@iki.fi>
+
+	* configure.ac (ALL_LINGUAS): Added "fi" (Finnish).
+
 2005-07-25  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.
