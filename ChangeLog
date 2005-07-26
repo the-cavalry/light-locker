@@ -1,3 +1,9 @@
+2005-07-26  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c (get_user_display_name, gs_lock_plug_init):
+	Display user name if real name is unknown.  Based on patch
+	from Rodrigo Moya <rodrigo@novell.com>
+
 2005-07-25  Tommi Vainikainen  <thv@iki.fi>
 
 	* configure.ac (ALL_LINGUAS): Added "fi" (Finnish).

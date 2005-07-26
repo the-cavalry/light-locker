@@ -1161,6 +1161,20 @@ setup_treeview (GSLockPlug *plug)
                                               GTK_SORT_ASCENDING);
 }
 
+static const char *
+get_user_display_name (void)
+{
+        const char *name;
+
+        name = g_get_real_name ();
+
+        if (name == NULL || strcmp (name, "Unknown") == 0) {
+                name = g_get_user_name ();
+        }
+
+        return name;
+}
+
 static void
 gs_lock_plug_init (GSLockPlug *plug)
 {
@@ -1261,7 +1275,7 @@ gs_lock_plug_init (GSLockPlug *plug)
         gtk_misc_set_alignment (GTK_MISC (plug->priv->username_label), 0, 0.5);
         gtk_table_attach (GTK_TABLE (table), plug->priv->username_label, 1, 2, 0, 1,
                           GTK_EXPAND | GTK_FILL, 0, 0, 0);
-        gtk_label_set_text (GTK_LABEL (plug->priv->username_label), g_get_real_name ());
+        gtk_label_set_text (GTK_LABEL (plug->priv->username_label), get_user_display_name ());
 
         plug->priv->password_entry = gtk_entry_new ();
 
