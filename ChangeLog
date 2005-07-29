@@ -1,3 +1,16 @@
+2005-07-29  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-prefs.c (gs_prefs_load_from_gconf):
+	Use more reasonable defaults when schemas aren't loaded.
+
+	* savers/Makefile.am: 
+	* configure.ac:
+	* savers/slideshow.c: 
+	* savers/slideshow.xml: Add a slideshow engine.  This
+	is really very basic at the moment.  At this stage is
+	is mostly an image loading framework.  We should make
+	this work with glitz or something.
+
 2005-07-26  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (get_user_display_name, gs_lock_plug_init):

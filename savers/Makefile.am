@@ -14,16 +14,28 @@ INCLUDES =							\
 	$(NULL)
 
 saverdir = $(libexecdir)/gnome-screensaver
-saver_PROGRAMS = popsquares
+saver_PROGRAMS = 	\
+	popsquares	\
+	slideshow	\
+	$(NULL)
 
 themesdir = $(pkgdatadir)/themes
-themes_DATA = popsquares.xml
+themes_DATA = 		\
+	popsquares.xml	\
+	slideshow.xml	\
+	$(NULL)
 
 popsquares_SOURCES = 	\
 	popsquares.c
 
 popsquares_LDADD =	\
 	$(GNOME_SCREENSAVER_SAVER_LIBS)
+
+slideshow_SOURCES =   \
+        slideshow.c
+
+slideshow_LDADD =     \
+        $(GNOME_SCREENSAVER_SAVER_LIBS)
 
 EXTRA_DIST =		\
 	$(themes_DATA)

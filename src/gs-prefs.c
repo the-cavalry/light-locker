@@ -149,7 +149,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
 
         value = gconf_client_get_int (prefs->priv->gconf_client, KEY_BLANK_DELAY, NULL);
         if (value < 1)
-                value = 1;
+                value = 10;
         prefs->timeout = value * 60000;
 
         value = gconf_client_get_int (prefs->priv->gconf_client, KEY_LOCK_DELAY, NULL);
@@ -159,7 +159,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
 
         value = gconf_client_get_int (prefs->priv->gconf_client, KEY_CYCLE_DELAY, NULL);
         if (value < 1)
-                value = 1;
+                value = 60;
         prefs->cycle = value * 60000;
 
         string = gconf_client_get_string (prefs->priv->gconf_client, KEY_MODE, NULL);
@@ -347,7 +347,7 @@ gs_prefs_init (GSPrefs *prefs)
 
         prefs->timeout                 = 600000;
         prefs->lock_timeout            = 0;
-        prefs->cycle                   = 60000;
+        prefs->cycle                   = 600000;
 
         prefs->dpms_enabled            = TRUE;
         prefs->dpms_standby            = 7200000;
