@@ -1,3 +1,8 @@
+2005-08-01  William Jon McCann  <mccann@jhu.edu>
+
+	* savers/slideshow.c (update_display): Fade out areas
+	not covered by new image.
+
 2005-07-29  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-prefs.c (gs_prefs_load_from_gconf):

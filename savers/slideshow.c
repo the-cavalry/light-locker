@@ -119,6 +119,24 @@ update_display (void)
 
                 alpha2 = (double)fade_ticks / (double)N_FADE_TICKS;
 
+                /* fade out areas not covered by the new image */
+                /* top */
+                cairo_rectangle (cr, 0, 0, window_width, y);
+                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, alpha2);
+                cairo_fill (cr);
+                /* left */
+                cairo_rectangle (cr, 0, 0, x, window_height);
+                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, alpha2);
+                cairo_fill (cr);
+                /* bottom */
+                cairo_rectangle (cr, 0, y + ph, window_width, window_height);
+                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, alpha2);
+                cairo_fill (cr);
+                /* right */
+                cairo_rectangle (cr, x + pw, 0, window_width, window_height);
+                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, alpha2);
+                cairo_fill (cr);
+                
                 gdk_cairo_set_source_pixbuf (cr,
                                              pixbuf2,
                                              x, y);
