@@ -1,5 +1,12 @@
 2005-08-01  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/slideshow.c (start_new_load, start_fade, finish_fade) 
+	(update_display, process_new_pixbuf, screenhack_init):
+	Start loading new image only after fade is complete.
+	Reduce the number of step in the fade.
+
+2005-08-01  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/slideshow.c (update_display): Fade out areas
 	not covered by new image.
 

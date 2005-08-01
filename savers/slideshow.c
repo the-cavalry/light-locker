@@ -31,8 +31,9 @@
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
 
-#define N_FADE_TICKS 200
+#define N_FADE_TICKS 40
 #define DEFAULT_IMAGES_LOCATION "/usr/share/backgrounds/images"
+#define IMAGE_LOAD_TIMEOUT 10000
 
 static GdkWindow   *screenhack_window     = NULL;
 static guint        screenhack_timeout_id = 0;
@@ -100,14 +101,50 @@ push_load_image_func (const char *location)
 }
 
 static void
+start_new_load (guint timeout)
+{
+        char *location = NULL;
+
+        /* queue a new load */
+        location = get_location ();
+        if (update_image_id <= 0) {
+                update_image_id = g_timeout_add_full (G_PRIORITY_LOW, timeout,
+                                                      (GSourceFunc)push_load_image_func,
+                                                      location, g_free);
+        }
+}
+
+static void
+start_fade (GdkPixbuf *pixbuf)
+{
+        if (pixbuf2)
+                g_object_unref (pixbuf2);
+
+        pixbuf2 = g_object_ref (pixbuf);
+
+        fade_ticks = 0;
+}
+
+static void
+finish_fade (void)
+{
+        if (pixbuf1)
+                g_object_unref (pixbuf1);
+        pixbuf1 = pixbuf2;
+        pixbuf2 = NULL;
+
+        start_new_load (IMAGE_LOAD_TIMEOUT);
+}
+
+static void
 update_display (void)
 {
         int pw, ph;
         int x, y;
         gdouble alpha2 = 0.0;
+        gdouble max_alpha = 1.0;
 
         if (pixbuf2) {
-
                 /* we are in a fade */
                 fade_ticks++;
 
@@ -117,7 +154,7 @@ update_display (void)
                 x = (window_width - pw) / 2;
                 y = (window_height - ph) / 2;
 
-                alpha2 = (double)fade_ticks / (double)N_FADE_TICKS;
+                alpha2 = max_alpha * (double)fade_ticks / (double)N_FADE_TICKS;
 
                 /* fade out areas not covered by the new image */
                 /* top */
@@ -141,51 +178,27 @@ update_display (void)
                                              pixbuf2,
                                              x, y);
 
-                if (alpha2 >= 1.0) {
-                        if (pixbuf1)
-                                g_object_unref (pixbuf1);
-                        pixbuf1 = pixbuf2;
-                        pixbuf2 = NULL;
+                if (alpha2 >= max_alpha) {
+                        finish_fade ();
+                        cairo_paint (cr);
+                } else {
+                        cairo_paint_with_alpha (cr, alpha2);
                 }
 
-                cairo_paint_with_alpha (cr, alpha2);
         } else {
                 /*cairo_paint (cr);*/
         }
 }
 
 static void
-start_fade (GdkPixbuf *pixbuf)
-{
-        if (pixbuf2)
-                g_object_unref (pixbuf2);
-
-        pixbuf2 = g_object_ref (pixbuf);
-
-        fade_ticks = 0;
-}
-
-static void
 process_new_pixbuf (GdkPixbuf *pixbuf)
 {
-        char *location = NULL;
-        guint timeout;
 
         if (pixbuf) {
                 start_fade (pixbuf);
-                timeout = 10000;
         } else {
-                timeout = 10;
+                start_new_load (10);
         }
-
-        /* queue a new load */
-        location = get_location ();
-        if (update_image_id <= 0) {
-                update_image_id = g_timeout_add_full (G_PRIORITY_LOW, timeout,
-                                                      (GSourceFunc)push_load_image_func,
-                                                      location, g_free);
-        }
-
 }
 
 static void
@@ -415,7 +428,6 @@ static guint
 screenhack_init (GdkWindow *window)
 {
         GError *err;
-        char   *location;
 
         gdk_drawable_get_size (window, &window_width, &window_height);
 
@@ -435,10 +447,7 @@ screenhack_init (GdkWindow *window)
                 exit (-1);
         }
 
-        location = get_location ();
-        update_image_id = g_timeout_add_full (G_PRIORITY_LOW, 10,
-                                              (GSourceFunc)push_load_image_func,
-                                              location, g_free);
+        start_new_load (10);
 
         return 40;
 }
