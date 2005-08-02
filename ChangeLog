@@ -1,3 +1,8 @@
+2005-08-02  Stanislav Brabec <sbrabec@suse.cz>
+
+	* src/Makefile.am: added saverdir and themesdir variables to be
+	able to specify them as make argument.
+
 2005-08-02  Rodrigo Moya <rodrigo@novell.com>
 
 	* savers/Makefile.am: pass DATADIR in INCLUDES.

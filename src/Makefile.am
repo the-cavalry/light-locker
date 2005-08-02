@@ -6,6 +6,9 @@ SUBDIRS = \
 
 NULL =
 
+saverdir = $(libexecdir)/gnome-screensaver
+themesdir = $(pkgdatadir)/themes
+
 INCLUDES =							\
 	-I.							\
 	-I$(srcdir)						\
@@ -16,8 +19,8 @@ INCLUDES =							\
 	$(DISABLE_DEPRECATED_CFLAGS)				\
 	-DBINDIR=\""$(bindir)"\"				\
 	-DLIBEXECDIR=\""$(libexecdir)"\"			\
-	-DSAVERDIR=\""$(libexecdir)"/gnome-screensaver\"	\
-	-DTHEMESDIR=\""$(pkgdatadir)"/themes\"			\
+	-DSAVERDIR=\""$(saverdir)"\"				\
+	-DTHEMESDIR=\""$(themesdir)"\"				\
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
 	-DGLADEDIR=\"$(pkgdatadir)\"				\
 	-DPAM_SERVICE_NAME=\""gnome-screensaver"\"		\
