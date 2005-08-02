@@ -1,3 +1,10 @@
+2005-08-02  Rodrigo Moya <rodrigo@novell.com>
+
+	* savers/Makefile.am: pass DATADIR in INCLUDES.
+
+	* savers/slideshow.c: use backgrounds directory as default to always
+	get at least a few pictures to use in the slideshow.
+
 2005-08-01  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/slideshow.c (start_new_load, start_fade, finish_fade) 

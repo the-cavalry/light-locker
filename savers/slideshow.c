@@ -32,7 +32,7 @@
 #include <gtk/gtk.h>
 
 #define N_FADE_TICKS 40
-#define DEFAULT_IMAGES_LOCATION "/usr/share/backgrounds/images"
+#define DEFAULT_IMAGES_LOCATION DATADIR "/pixmaps/backgrounds"
 #define IMAGE_LOAD_TIMEOUT 10000
 
 static GdkWindow   *screenhack_window     = NULL;

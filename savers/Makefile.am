@@ -8,9 +8,10 @@ INCLUDES =							\
 	-I$(srcdir)						\
 	$(GNOME_SCREENSAVER_SAVER_CFLAGS)			\
 	$(DISABLE_DEPRECATED_CFLAGS)				\
-        -DLIBEXECDIR=\""$(libexecdir)"\"			\
-        -DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"  \
-        $(WARN_CFLAGS)                                          \
+	-DLIBEXECDIR=\""$(libexecdir)"\"			\
+	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
+	-DDATADIR=\""$(datadir)"\"				\
+	$(WARN_CFLAGS)						\
 	$(NULL)
 
 saverdir = $(libexecdir)/gnome-screensaver
