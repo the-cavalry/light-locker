@@ -1,0 +1,465 @@
+# Ukrainian translation of gnome-screensaver
+# Copyright (C) 2005 Free Software Foundation
+# This file is distributed under the same license as the gnome-screensaver package.
+# Maxim Dziumanenko <mvd@mylinux.ua>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-08-02 23:02+0300\n"
+"PO-Revision-Date: 2005-08-02 23:05+0300\n"
+"Last-Translator: Maxim V. Dziumanenko <mvd@mylinux.com.ua>\n"
+"Language-Team: Ukrainian <uk@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "Збереження екрану"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "Встановити параметри збереженя екрану"
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "    "
+msgstr "    "
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>_Screensaver</b>"
+msgstr "<b>_Зберігання екрану</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Screensaver Preferences"
+msgstr "Параметри зберігання екрану"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "_Activate after:"
+msgstr "_Активувати після:"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "minutes"
+msgstr "хвилин"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "How many minutes until the monitor goes black"
+msgstr "Кількість хвилин до згасання монітора"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "How many minutes until the monitor goes black."
+msgstr "Кількість хвилин до згасання монітора."
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "How many minutes until the monitor power-saves"
+msgstr "Кількість хвилин до вмикання режиму енергозбереження монітора"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "How many minutes until the monitor power-saves."
+msgstr "Кількість хвилин до вмикання режиму енергозбереження монітора."
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "How many minutes until the monitor powers down"
+msgstr "Кількість хвилин до вимикання монітора"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "How many minutes until the monitor powers down."
+msgstr "Кількість хвилин до вимикання монітора."
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "The number of minutes after blanking the screen before a logout option will appear"
+msgstr "Кількість хвилин після згасання екрану перед виходом з сеансу"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "The number of minutes after blanking the screen before a logout option will appear."
+msgstr "Кількість хвилин після згасання екрану перед виходом з сеансу."
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "The number of minutes after blanking the screen before locking"
+msgstr "Кількість хвилин після згасання екрану перед блокуванням"
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "The number of minutes after blanking the screen before locking."
+msgstr "Кількість хвилин після згасання екрану перед блокуванням."
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "The number of minutes of idle time before blanking the screen"
+msgstr "Кількість хвилин простою перед згасанням екрану"
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid "The number of minutes of idle time before blanking the screen."
+msgstr "Кількість хвилин простою перед згасанням екрану."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid "The number of minutes to run before changing the screensaver"
+msgstr "Кількість хвилин роботи перед зміною заставки екрану"
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid "The number of minutes to run before changing the screensaver."
+msgstr "Кількість хвилин роботи перед зміною заставки екрану."
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid "The screensaver selection mode"
+msgstr "Режим вибору заставки екрану"
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid "The selected screensaver themes"
+msgstr "Вибрані теми зберігання екрану"
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid "This key specifies the selected themes to used by the screensaver."
+msgstr "Ключ вказує вибрані теми, що використовуються при зберіганні екрану."
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid "This key specifies the selection mode used by the screensaver. Possible values are \"disabled\", \"blank-only\", \"single\", and \"random\"."
+msgstr ""
+"Ключ вказує режим, що використовуються при зберіганні екрану.Можливі значення: \"disabled\", \"blank-only\", \"single\", та \"random\"."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid "Whether to lock as well as blank"
+msgstr "Чи блокувати екран при його згасанні"
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid "Whether to lock as well as blank."
+msgstr "Чи блокувати екран при його згасанні"
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid "Whether to offer the option of logging out after logout_delay"
+msgstr "Чи пропонувати вихід з сеансу після logout_delay"
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid "Whether to offer the option of logging out after logout_delay."
+msgstr "Чи пропонувати вихід з сеансу після logout_delay."
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "Whether to power down the monitor"
+msgstr "Чи вимикати живлення монітора"
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid "Whether to power down the monitor."
+msgstr "Чи вимикати живлення монітора"
+
+#: ../savers/popsquares.xml.h:1
+msgid "Pop art squares"
+msgstr "Вискакуючі художні квадратики"
+
+#: ../savers/popsquares.xml.h:2
+msgid "This draws a pop-art-ish looking grid of pulsing colors. By Levi Burton."
+msgstr "Малюється вискакуюча сітка з пульсуючих кольорів. Автор: Levi Burton."
+
+#: ../src/cut-n-paste/fusa-display.c:119
+#: ../src/cut-n-paste/fusa-user.c:150
+msgid "Manager"
+msgstr "Менеджер"
+
+#: ../src/cut-n-paste/fusa-display.c:120
+msgid "The manager which owns this object."
+msgstr "Менеджер, що є власником цього об'єкту."
+
+#: ../src/cut-n-paste/fusa-display.c:127
+msgid "Name"
+msgstr "Назва"
+
+#: ../src/cut-n-paste/fusa-display.c:128
+msgid "The name of the X11 display this object refers to."
+msgstr "Назва дисплею X11, на який посилається цей об'єкт."
+
+#: ../src/cut-n-paste/fusa-display.c:134
+#: ../src/cut-n-paste/fusa-user-menu-item.c:152
+msgid "User"
+msgstr "Користувач"
+
+#: ../src/cut-n-paste/fusa-display.c:135
+msgid "The user currently logged in on this virtual terminal."
+msgstr "Користувач, що увійшов на цьому віртуальному терміналі."
+
+#: ../src/cut-n-paste/fusa-display.c:141
+msgid "Console"
+msgstr "Консоль"
+
+#: ../src/cut-n-paste/fusa-display.c:142
+msgid "The number of the virtual console this display can be found on, or %-1."
+msgstr "Кількість віртуальних консолей, на яких можна знайти цей дисплей, чи %-1."
+
+#: ../src/cut-n-paste/fusa-display.c:148
+msgid "Nested"
+msgstr "Вкладений"
+
+#: ../src/cut-n-paste/fusa-display.c:149
+msgid "Whether or not this display is a windowed (Xnest) display."
+msgstr "Чи цей дисплей є вкладеним у вікно (Xnest)."
+
+#: ../src/cut-n-paste/fusa-manager.c:1263
+msgid "The display manager could not be contacted for unknown reasons."
+msgstr "Не вдається зв'язатись з менеджером дисплею з невідомої причини."
+
+#: ../src/cut-n-paste/fusa-manager.c:1270
+msgid "The display manager is not running or too old."
+msgstr "Менеджер дисплею не запущений або надто старий."
+
+#: ../src/cut-n-paste/fusa-manager.c:1273
+msgid "The configured limit of flexible servers has been reached."
+msgstr "Досягнуто межу кількості гнучких серверів."
+
+#: ../src/cut-n-paste/fusa-manager.c:1276
+msgid "There was an unknown error starting X."
+msgstr "Невідома помилка при запуску X."
+
+#: ../src/cut-n-paste/fusa-manager.c:1279
+msgid "The X server failed to finish starting."
+msgstr "Помилка X-сервера на страті."
+
+#: ../src/cut-n-paste/fusa-manager.c:1282
+msgid "There are too many X sessions running."
+msgstr "Запущено надто багато X-серверів."
+
+#: ../src/cut-n-paste/fusa-manager.c:1285
+msgid "The nested X server (Xnest) cannot connect to your current X server."
+msgstr "Вкладений X-сервер (Xnest) не може зв'язатись з поточним X-сервером."
+
+#: ../src/cut-n-paste/fusa-manager.c:1288
+msgid "The X server in the GDM configuration could not be found."
+msgstr "У конфігурації GDM не знайдено X-сервер."
+
+#: ../src/cut-n-paste/fusa-manager.c:1291
+#: ../src/cut-n-paste/gdmcomm.c:492
+msgid "Trying to set an unknown logout action, or trying to set a logout action which is not available."
+msgstr "Намагання встановити невідому дію при виході, або спроба встановити дію при виході, яка відсутня."
+
+#: ../src/cut-n-paste/fusa-manager.c:1294
+#: ../src/cut-n-paste/gdmcomm.c:495
+msgid "Virtual terminals not supported."
+msgstr "Віртуальні термінали не підтримуються."
+
+#: ../src/cut-n-paste/fusa-manager.c:1297
+msgid "Invalid virtual terminal number."
+msgstr "Неправильна кількість віртуальних терміналів."
+
+#: ../src/cut-n-paste/fusa-manager.c:1300
+#: ../src/cut-n-paste/gdmcomm.c:499
+msgid "Trying to update an unsupported configuration key."
+msgstr "Спроба оновити непідтримуваний ключ конфігурації."
+
+#: ../src/cut-n-paste/fusa-manager.c:1303
+msgid "~/.Xauthority file badly configured or missing."
+msgstr "Файл ~/.Xauthority неправильний або відсутній."
+
+#: ../src/cut-n-paste/fusa-manager.c:1306
+msgid "Too many messages were sent to the display manager, and it hung up."
+msgstr "Надто багато повідомлень до менеджера дисплея, тому він завис."
+
+#: ../src/cut-n-paste/fusa-manager.c:1310
+msgid "The display manager sent an unknown error message."
+msgstr "Менеджер дисплею надіслав повідомлення про невідому помилку."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:153
+msgid "The user this menu item represents."
+msgstr "Користувач, якого представляє цей пункт меню."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:160
+msgid "Icon Size"
+msgstr "Розмір значка"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:161
+msgid "The size of the icon to use."
+msgstr "Розмір значка."
+
+#: ../src/cut-n-paste/fusa-user.c:151
+msgid "The user manager object this user is controlled by."
+msgstr "Об'єкт менеджера користувачів, який контролює цього користувача."
+
+#: ../src/cut-n-paste/fusa-utils.c:80
+msgid "Show Details"
+msgstr "Показувати подробиці"
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:413
+msgid "GDM (The GNOME Display Manager) is not running."
+msgstr "GDM (Менеджер дисплеїв середовища Гном) не запущений."
+
+#: ../src/cut-n-paste/gdmcomm.c:416
+msgid "You might in fact be using a different display manager, such as KDM (KDE Display Manager) or xdm."
+msgstr "Можливо використовується інший менеджер, наприклад KDM (KDE Display Manager) або xdm."
+
+#: ../src/cut-n-paste/gdmcomm.c:419
+msgid "If you still wish to use this feature, either start GDM yourself or ask your system administrator to start GDM."
+msgstr "Якщо ви все ще бажаєте використовувати цю функціональність, тоді або запустіть GDM самостійно, або попросіть свого системного адміністратора запустити GDM."
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:441
+msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+msgstr "Не вдається з'єднатись з GDM (Менеджер дисплеїв середовища Гном)"
+
+#: ../src/cut-n-paste/gdmcomm.c:444
+msgid "Perhaps you have an old version of GDM running."
+msgstr "Можливо запущена стара версія GDM."
+
+#: ../src/cut-n-paste/gdmcomm.c:463
+#: ../src/cut-n-paste/gdmcomm.c:466
+msgid "Cannot communicate with gdm, perhaps you have an old version running."
+msgstr "Не вдається з'єднатись з gdm, можливо у вас запущена стара версія."
+
+#: ../src/cut-n-paste/gdmcomm.c:469
+msgid "The allowed limit of flexible X servers reached."
+msgstr "Досягнуто ліміт кількості гнучких X-серверів."
+
+#: ../src/cut-n-paste/gdmcomm.c:471
+msgid "There were errors trying to start the X server."
+msgstr "Помилки під час запуску X-сервера."
+
+#: ../src/cut-n-paste/gdmcomm.c:473
+msgid "The X server failed.  Perhaps it is not configured well."
+msgstr "X-сервер завершено аварійно. Можливо він неправильно налаштований."
+
+#: ../src/cut-n-paste/gdmcomm.c:476
+msgid "Too many X sessions running."
+msgstr "Запущено надто багато сеансів X Window."
+
+#: ../src/cut-n-paste/gdmcomm.c:478
+msgid "The nested X server (Xnest) cannot connect to your current X server.  You may be missing an X authorization file."
+msgstr "Вкладений X-сервер (Xnest) не може з'єднатися з вашим поточним X-сервером. Можливо у вас відсутній файл X-авторизації."
+
+#: ../src/cut-n-paste/gdmcomm.c:483
+msgid ""
+"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
+"Please install the Xnest package in order to use the nested login."
+msgstr ""
+"Вкладений X-сервер (Xnest) відсутній, або gdm неправильно налаштований.\n"
+"Для використання вкладених входжень встановіть пакет Xnest."
+
+#: ../src/cut-n-paste/gdmcomm.c:488
+msgid "The X server is not available, it is likely that gdm is badly configured."
+msgstr "X-сервер недоступний, схоже неправильно налаштовано gdm."
+
+#: ../src/cut-n-paste/gdmcomm.c:497
+msgid "Trying to change to an invalid virtual terminal number."
+msgstr "Намагання перемикнутись на віртуальний термінал з неправильним номером."
+
+#: ../src/cut-n-paste/gdmcomm.c:501
+msgid "You do not seem to have authentication needed be for this operation.  Perhaps your .Xauthority file is not set up correctly."
+msgstr "Здається ви не маєте потрібної автентифікації для цієї операції.  Можливо ваш .Xauthority файл встановлений неправильно."
+
+#: ../src/cut-n-paste/gdmcomm.c:505
+msgid "Too many messages were sent to gdm and it hung upon us."
+msgstr "До gdm надіслано надто багато повідомлень, та він завис."
+
+#: ../src/cut-n-paste/gdmcomm.c:508
+msgid "Unknown error occured."
+msgstr "Виникла невідома помилка."
+
+#: ../src/gnome-screensaver-command.c:54
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Призводить до виходу зберігача екрану"
+
+#: ../src/gnome-screensaver-command.c:56
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "Вказує запущеному процесу зберігання екрану негайно заблокувати екран"
+
+#: ../src/gnome-screensaver-command.c:58
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "Якщо зберігач екрану активний, перейти на іншу заставку екрану"
+
+#: ../src/gnome-screensaver-command.c:60
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "Увімкнути збереження екрану (погасити екран)"
+
+#: ../src/gnome-screensaver-command.c:62
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "Якщо зберігач екрану активний, деактивувати його (відновити екран)"
+
+#: ../src/gnome-screensaver-command.c:64
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "Штовхнути запущений зберігач екрану для імітації активності користувача"
+
+#: ../src/gnome-screensaver-command.c:66
+#: ../src/gnome-screensaver-dialog.c:58
+#: ../src/gnome-screensaver.c:55
+msgid "Version of this application"
+msgstr "Версія програми"
+
+#: ../src/gnome-screensaver-dialog.c:56
+msgid "Show debugging output"
+msgstr "Показувати вивід налагодження"
+
+#: ../src/gnome-screensaver-dialog.c:60
+msgid "Show the logout button"
+msgstr "Показати кнопку виходу"
+
+#: ../src/gnome-screensaver-preferences.c:477
+msgid "Could not load the main interface"
+msgstr "Не вдається завантажити головний інтерфейс"
+
+#: ../src/gnome-screensaver-preferences.c:479
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "Переконайтесь, що програму збереження екрану правильно встановлено"
+
+#: ../src/gs-listener-dbus.c:322
+msgid "failed to register with the message bus"
+msgstr "не вдається зареєструватись через шину повідомлень"
+
+#: ../src/gs-listener-dbus.c:331
+msgid "screensaver already running in this session"
+msgstr "у цьому сеансі вже запущено зберігання екрану"
+
+#: ../src/gs-lock-plug.c:176
+msgid "Verifying password..."
+msgstr "Перевірка паролю..."
+
+#: ../src/gs-lock-plug.c:239
+#, c-format
+msgid "About %ld seconds left"
+msgstr "Залишилось близько %ld секунд"
+
+#: ../src/gs-lock-plug.c:246
+msgid "Time expired!"
+msgstr "Час вийшов!"
+
+#: ../src/gs-lock-plug.c:271
+msgid "You have the Caps Lock key on."
+msgstr "Натиснута клавіша Caps Lock."
+
+#: ../src/gs-lock-plug.c:437
+msgid "Password verification failed!"
+msgstr "Помилка перевірки паролю!"
+
+#: ../src/gs-lock-plug.c:462
+#: ../src/gs-lock-plug.c:502
+msgid "_Unlock"
+msgstr "_Розблокувати"
+
+#: ../src/gs-lock-plug.c:466
+#: ../src/gs-lock-plug.c:498
+msgid "_Login Screen"
+msgstr "_Екран входу в систему"
+
+#: ../src/gs-lock-plug.c:855
+msgid "Enter password to unlock screen"
+msgstr "Введіть пароль для розблокування екрану"
+
+#: ../src/gs-lock-plug.c:884
+msgid "Name:"
+msgstr "Назва:"
+
+#: ../src/gs-lock-plug.c:888
+msgid "_Password:"
+msgstr "_Пароль:"
+
+#: ../src/gs-lock-plug.c:930
+msgid "Log in as another user?"
+msgstr "Увійти як інший користувач?"
+
+#: ../src/gs-lock-plug.c:948
+msgid ""
+"This option will bring you to the Login Screen.\n"
+"From the Login Screen you may log in to this system\n"
+"as another user or select 'Quit' to return to this screen."
+msgstr ""
+"Вибір цього варіанту перенесе вас до екрану входу.\n"
+"З екрану входу ви можете увійти у систему як інший\n"
+"користувач або вибрати 'Вийти' для повертання до цього екрану."
+
+#: ../src/gs-lock-plug.c:987
+msgid "Log _Out"
+msgstr "_Завершити сеанс"
+
