@@ -257,11 +257,8 @@ scale_pixbuf (GdkPixbuf *pixbuf,
         ph = gdk_pixbuf_get_height (pixbuf);
 
 	/* Determine which dimension requires the smallest scale. */
-	if (pw > max_width)
-		scale_factor_x = (float) max_width / (float) pw;
-
-	if (ph > max_height)
-		scale_factor_y = (float) max_height / (float) ph;
+        scale_factor_x = (float) max_width / (float) pw;
+        scale_factor_y = (float) max_height / (float) ph;
 
 	if (scale_factor_x > scale_factor_y)
 		scale_factor = scale_factor_y;
@@ -272,7 +269,6 @@ scale_pixbuf (GdkPixbuf *pixbuf,
 		int scale_x = (int) (pw * scale_factor);
 		int scale_y = (int) (ph * scale_factor);
 
-		/* Scale bigger dimension to max icon height/width */
 		scaled = gdk_pixbuf_scale_simple (pixbuf,
 						  scale_x,
 						  scale_y,
