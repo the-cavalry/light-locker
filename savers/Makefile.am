@@ -21,9 +21,9 @@ saver_PROGRAMS = 	\
 	$(NULL)
 
 themesdir = $(pkgdatadir)/themes
-themes_DATA = 		\
-	popsquares.xml	\
-	slideshow.xml	\
+themes_DATA = 			\
+	popsquares.xml		\
+	personal-slideshow.xml	\
 	$(NULL)
 
 popsquares_SOURCES = 	\

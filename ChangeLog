@@ -1,5 +1,19 @@
 2005-08-03  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/slideshow.xml: Removed.
+
+	* savers/personal-slideshow.xml: New theme file that loads
+	images from ~/Pictures.
+
+	* savers/slideshow.c (add_files_to_list): Add a warning
+	if the directory can't be opened.
+	(get_pixbuf_from_location): Load relative directory
+	paths too and assume they are relative to the home
+	directory.
+	(main): Change directory to the user's home.
+
+2005-08-03  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/slideshow.c (scale_pixbuf): Scale up images to fill the
 	screen.
 

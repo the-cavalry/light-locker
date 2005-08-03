@@ -21,12 +21,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
 #include <math.h>
 #include <sys/time.h>
 
 #include <glib.h>
 #include <glib/gi18n.h>
+#include <glib/gstdio.h>
 #include <glib/gthread.h>
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
@@ -248,59 +250,59 @@ scale_pixbuf (GdkPixbuf *pixbuf,
 {
         int        pw;
         int        ph;
-	float	   scale_factor_x = 1.0;
-	float	   scale_factor_y = 1.0;
-	float	   scale_factor = 1.0;
-	GdkPixbuf *scaled = NULL;
+        float      scale_factor_x = 1.0;
+        float      scale_factor_y = 1.0;
+        float      scale_factor = 1.0;
+        GdkPixbuf *scaled = NULL;
 
         pw = gdk_pixbuf_get_width (pixbuf);
         ph = gdk_pixbuf_get_height (pixbuf);
 
-	/* Determine which dimension requires the smallest scale. */
+        /* Determine which dimension requires the smallest scale. */
         scale_factor_x = (float) max_width / (float) pw;
         scale_factor_y = (float) max_height / (float) ph;
 
-	if (scale_factor_x > scale_factor_y)
-		scale_factor = scale_factor_y;
-	else
-		scale_factor = scale_factor_x;
+        if (scale_factor_x > scale_factor_y)
+                scale_factor = scale_factor_y;
+        else
+                scale_factor = scale_factor_x;
 
-	if (1) {
-		int scale_x = (int) (pw * scale_factor);
-		int scale_y = (int) (ph * scale_factor);
+        if (1) {
+                int scale_x = (int) (pw * scale_factor);
+                int scale_y = (int) (ph * scale_factor);
 
-		scaled = gdk_pixbuf_scale_simple (pixbuf,
-						  scale_x,
-						  scale_y,
-						  GDK_INTERP_BILINEAR);
-	}
+                scaled = gdk_pixbuf_scale_simple (pixbuf,
+                                                  scale_x,
+                                                  scale_y,
+                                                  GDK_INTERP_BILINEAR);
+        }
 
-	return scaled;
+        return scaled;
 }
 
 static void
 add_files_to_list (GSList    **list,
                    const char *base)
 {
-	GDir       *d; 
-	const char *d_name;
+        GDir       *d; 
+        const char *d_name;
 
-	d = g_dir_open (base, 0, NULL);
-	if (! d) {
-		return;
-	}
+        d = g_dir_open (base, 0, NULL);
+        if (! d) {
+                g_warning ("Could not open directory: %s", base);
+                return;
+        }
 
-	while ((d_name = g_dir_read_name (d)) != NULL) {
+        while ((d_name = g_dir_read_name (d)) != NULL) {
                 char *path;
-
-		path = g_build_filename (base, d_name, NULL);
+                path = g_build_filename (base, d_name, NULL);
                 if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
                         add_files_to_list (list, path);
                         g_free (path);
                 } else {
                         *list = g_slist_prepend (*list, path);
                 }
-	}
+        }
 
         g_dir_close (d);
 }
@@ -354,7 +356,7 @@ get_pixbuf_from_location (const char *location)
         is_absolute = g_path_is_absolute (location);
         is_dir = g_file_test (location, G_FILE_TEST_IS_DIR);
 
-        if (is_absolute && is_dir)
+        if (is_dir)
                 pixbuf = get_pixbuf_from_local_dir (location);
 
         return pixbuf;
@@ -621,6 +623,8 @@ main (int argc, char **argv)
                 g_error_free (error);
                 exit (1);
         }
+
+        g_chdir (g_get_home_dir ());
 
         g_set_prgname ("slideshow");
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<screensaver name="personal-slideshow" _label="Pictures folder">
+
+  <command name="slideshow" arg="--location=Pictures"/>
+
+  <_description>
+This displays a slideshow of images from your Pictures directory.
+  </_description>
+</screensaver>
