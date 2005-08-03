@@ -22,6 +22,7 @@ saver_PROGRAMS = 	\
 
 themesdir = $(pkgdatadir)/themes
 themes_DATA = 			\
+	cosmos-slideshow.xml	\
 	popsquares.xml		\
 	personal-slideshow.xml	\
 	$(NULL)

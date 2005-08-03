@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<screensaver name="cosmos-slideshow" _label="Cosmos">
+
+  <command name="slideshow" arg="--location=@SLIDESHOW_COSMOS_DIR@"/>
+
+  <_description>
+This displays a slideshow of images of the cosmos.
+  </_description>
+</screensaver>

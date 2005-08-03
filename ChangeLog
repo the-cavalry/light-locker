@@ -1,5 +1,17 @@
 2005-08-03  William Jon McCann  <mccann@jhu.edu>
 
+	* data/images/cosmos/Makefile.am:
+	* data/images/Makefile.am:
+	* data/Makefile.am (SUBDIRS): Added place to put
+	cosmos images.  Empty for now.
+
+	* savers/cosmos-slideshow.xml.in:
+	* savers/Makefile.am (themes_DATA): 
+	* configure.ac (SLIDESHOW_COSMOS_DIR):
+	Added new cosmos theme.
+
+2005-08-03  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/slideshow.xml: Removed.
 
 	* savers/personal-slideshow.xml: New theme file that loads

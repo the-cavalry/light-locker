@@ -1371,6 +1371,11 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
+# Saver engine stuff
+SLIDESHOW_COSMOS_DIR="${EXPANDED_DATADIR}/pixmaps/backgrounds/cosmos"
+
+AC_SUBST(SLIDESHOW_COSMOS_DIR)
+
 # Files
 
 AC_OUTPUT([
@@ -1379,7 +1384,10 @@ po/Makefile.in
 src/Makefile
 src/cut-n-paste/Makefile
 data/Makefile
+data/images/Makefile
+data/images/cosmos/Makefile
 savers/Makefile
+savers/cosmos-slideshow.xml
 ])
 
 echo "
