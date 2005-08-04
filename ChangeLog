@@ -1,3 +1,14 @@
+2005-08-04  William Jon McCann  <mccann@jhu.edu>
+
+	* data/images/cosmos/cloud.jpg:
+	* data/images/cosmos/comet.jpg:
+	* data/images/cosmos/earth-horizon.jpg:
+	* data/images/cosmos/earthrise.jpg:
+	* data/images/cosmos/galaxy-ngc3370.jpg:
+	* data/images/cosmos/helix-nebula.jpg:
+	* data/images/cosmos/jupiter.jpg:
+	* data/images/cosmos/sombrero.jpg: Added images.
+
 2005-08-04  Rodrigo Moya <rodrigo@novell.com>
 
 	* data/images/cosmos/Makefile.am: s/@SLIDESHOW_COSMOS_DIR@/$(SLIDESHOW_COSMOS_DIR).
