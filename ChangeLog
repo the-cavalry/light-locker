@@ -1,3 +1,7 @@
+2005-08-04  Rodrigo Moya <rodrigo@novell.com>
+
+	* data/images/cosmos/Makefile.am: s/@SLIDESHOW_COSMOS_DIR@/$(SLIDESHOW_COSMOS_DIR).
+
 2005-08-03  William Jon McCann  <mccann@jhu.edu>
 
 	* data/images/cosmos/Makefile.am:
