@@ -1,5 +1,17 @@
 2005-08-04  William Jon McCann  <mccann@jhu.edu>
 
+	* data/images/cosmos/whirlpool.jpg:
+	* data/images/cosmos/cloud.jpg:
+	* data/images/cosmos/comet.jpg:
+	* data/images/cosmos/earth-horizon.jpg:
+	* data/images/cosmos/earthrise.jpg:
+	* data/images/cosmos/galaxy-ngc3370.jpg:
+	* data/images/cosmos/helix-nebula.jpg:
+	* data/images/cosmos/jupiter.jpg:
+	* data/images/cosmos/sombrero.jpg: Make binary.
+
+2005-08-04  William Jon McCann  <mccann@jhu.edu>
+
 	* data/images/cosmos/whirlpool.jpg: Added.
 
 2005-08-04  William Jon McCann  <mccann@jhu.edu>
