@@ -1,0 +1,646 @@
+# Bulgarian translation of gnome-screensaver.
+# Copyright (C) 2005 THE gnome-screensaver'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-screensaver package.
+# Rostislav "zbrox" Raykov <zbrox@i-space.org>, 2005.
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-08-10 21:17+0300\n"
+"PO-Revision-Date: 2005-08-10 21:16+0300\n"
+"Last-Translator: Rostislav \"zbrox\" Raykov <zbrox@i-space.org>\n"
+"Language-Team: Bulgarian <dict@fsa-bg.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "Предпазител на екрана"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "Настройване на предпазителя на екрана"
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "    "
+msgstr "    "
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>_Screensaver</b>"
+msgstr "<b>_Предпазител на екрана</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Screensaver Preferences"
+msgstr "Настройки на екранния предпазител"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "_Activate after:"
+msgstr "_Активиране след:"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "How many minutes until the monitor goes black"
+msgstr "Колко минути преди монитора да покаже черен екран"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "How many minutes until the monitor goes black."
+msgstr "Колко минути преди монитора да покаже черен екран"
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "How many minutes until the monitor power-saves"
+msgstr "Колко минути преди монитора да мине в режим за спестяване на енергия"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "How many minutes until the monitor power-saves."
+msgstr "Колко минути преди монитора да мине в режим за спестяване на енергия"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "How many minutes until the monitor powers down"
+msgstr "Колко минути преди монитора да се изключи"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "How many minutes until the monitor powers down."
+msgstr "Колко минути преди монитора да се изключи"
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear"
+msgstr ""
+"Броят минути след като се изчисти екрана преди да се покаже опцията за изход"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear."
+msgstr ""
+"Броят минути след като се изчисти екрана преди да се покаже опцията за изход"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "The number of minutes after blanking the screen before locking"
+msgstr "Броят минути след като се изчисти екрана преди да се заключи"
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "The number of minutes after blanking the screen before locking."
+msgstr "Броят минути след като се изчисти екрана преди да се заключи"
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "The number of minutes of idle time before blanking the screen"
+msgstr "Броят минути време неактивност преди да се изчисти екрана"
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid "The number of minutes of idle time before blanking the screen."
+msgstr "Броят минути време неактивност преди да се изчисти екрана"
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid "The number of minutes to run before changing the screensaver"
+msgstr "Броят минути изпълнение преди да се смени екранният предпазител"
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid "The number of minutes to run before changing the screensaver."
+msgstr "Броят минути изпълнение преди да се смени екранният предпазител"
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid "The screensaver selection mode"
+msgstr "Режим на избор на екранния предпазител"
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid "The selected screensaver themes"
+msgstr "Избраните теми за екранният предпазител"
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"This key specifies the selection mode used by the screensaver. Possible "
+"values are \"disabled\", \"blank-only\", \"single\", and \"random\"."
+msgstr ""
+"Този ключ указва как се избират визуализации от екранния предпазите. "
+"Възможностите са „disabled“ - предпазителя въобще не се включва, „blank-"
+"only“ - екрана само се изключва, „single“ - единствена визуализация и "
+"„random“ - случайна визуализация."
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid "This key specifies the themes to be used by the screensaver."
+msgstr "Ключът описва темите, които да се използват от екранния предпазител"
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid "Whether to lock as well as blank"
+msgstr "Дали да се заключва освен да се изчиства"
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid "Whether to lock as well as blank."
+msgstr "Дали да се заключва освен да се изчиства"
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid "Whether to offer the option of logging out after logout_delay"
+msgstr "Дали да се предлага възможността за изход след отсрочката за изхода"
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid "Whether to offer the option of logging out after logout_delay."
+msgstr "Дали да се предлага възможността за изход след отсрочката за изхода"
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "Whether to power down the monitor"
+msgstr "Дали да се изключва монитора"
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid "Whether to power down the monitor."
+msgstr "Дали да се изключва монитора"
+
+#: ../savers/popsquares.xml.h:1
+msgid "Pop art squares"
+msgstr "Поп-арт квадрати"
+
+#: ../savers/popsquares.xml.h:2
+msgid ""
+"This draws a pop-art-ish looking grid of pulsing colors. By Levi Burton."
+msgstr ""
+"Това изрисува поп-арт изглеждаща мрежа от пулсиращи цветове. От Леви Бъртън"
+
+#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
+msgid "Manager"
+msgstr "Управление"
+
+#: ../src/cut-n-paste/fusa-display.c:120
+msgid "The manager which owns this object."
+msgstr "Програмата за управление, която притежава този обект."
+
+#: ../src/cut-n-paste/fusa-display.c:127
+msgid "Name"
+msgstr "Име"
+
+#: ../src/cut-n-paste/fusa-display.c:128
+msgid "The name of the X11 display this object refers to."
+msgstr "Името на Х11 дисплея, към който се обръща обекта"
+
+#: ../src/cut-n-paste/fusa-display.c:134
+#: ../src/cut-n-paste/fusa-user-menu-item.c:152
+msgid "User"
+msgstr "Потребител"
+
+#: ../src/cut-n-paste/fusa-display.c:135
+msgid "The user currently logged in on this virtual terminal."
+msgstr "Потребителят, който в момента е влезнал на този виртуален терминал."
+
+#: ../src/cut-n-paste/fusa-display.c:141
+msgid "Console"
+msgstr "Конзола"
+
+#: ../src/cut-n-paste/fusa-display.c:142
+msgid "The number of the virtual console this display can be found on, or %-1."
+msgstr ""
+"Номера на виртуалната конзола, на която може да се намери този дисплей или %-"
+"1."
+
+#: ../src/cut-n-paste/fusa-display.c:148
+msgid "Nested"
+msgstr "Вложен"
+
+#: ../src/cut-n-paste/fusa-display.c:149
+msgid "Whether or not this display is a windowed (Xnest) display."
+msgstr "Дали този дисплей е вложен (Xnest) или не."
+
+#: ../src/cut-n-paste/fusa-manager.c:1264
+msgid "The display manager could not be contacted for unknown reasons."
+msgstr ""
+"Поради неизвестна причина не може да се установи връзка с мениджъра на "
+"дисплеи."
+
+#: ../src/cut-n-paste/fusa-manager.c:1271
+msgid "The display manager is not running or too old."
+msgstr "Мениджърът на дисплеи не работи или е прекалено старт."
+
+#: ../src/cut-n-paste/fusa-manager.c:1274
+msgid "The configured limit of flexible servers has been reached."
+msgstr "Конфигурирания лимит на гъвкави сървъри е достигнат."
+
+#: ../src/cut-n-paste/fusa-manager.c:1277
+msgid "There was an unknown error starting X."
+msgstr "Имаше непозната грешка при стартирането на Х."
+
+#: ../src/cut-n-paste/fusa-manager.c:1280
+msgid "The X server failed to finish starting."
+msgstr "Х сървърът не успя да завърши стартирането си."
+
+#: ../src/cut-n-paste/fusa-manager.c:1283
+msgid "There are too many X sessions running."
+msgstr "Има прекалено много стартирани Х сесии."
+
+#: ../src/cut-n-paste/fusa-manager.c:1286
+msgid "The nested X server (Xnest) cannot connect to your current X server."
+msgstr "Вложеният сървър (Xnest) не може да се свърже с текущия X сървър."
+
+#: ../src/cut-n-paste/fusa-manager.c:1289
+msgid "The X server in the GDM configuration could not be found."
+msgstr "Х сървърът в конфигурацията на GDM не може да бъде открит."
+
+#: ../src/cut-n-paste/fusa-manager.c:1292 ../src/cut-n-paste/gdmcomm.c:492
+msgid ""
+"Trying to set an unknown logout action, or trying to set a logout action "
+"which is not available."
+msgstr ""
+"Опит за задаване на непознато или недостъпно действие за излизане от "
+"системата."
+
+#: ../src/cut-n-paste/fusa-manager.c:1295 ../src/cut-n-paste/gdmcomm.c:495
+msgid "Virtual terminals not supported."
+msgstr "Виртуалните терминали не се поддържат."
+
+#: ../src/cut-n-paste/fusa-manager.c:1298
+msgid "Invalid virtual terminal number."
+msgstr "Невалиден номер на виртуалния терминал."
+
+#: ../src/cut-n-paste/fusa-manager.c:1301 ../src/cut-n-paste/gdmcomm.c:499
+msgid "Trying to update an unsupported configuration key."
+msgstr "Опит за обновяване на неподдържан конфигурационен ключ."
+
+#: ../src/cut-n-paste/fusa-manager.c:1304
+msgid "~/.Xauthority file badly configured or missing."
+msgstr "Файлът ~/.Xauthority е зле конфигуриран или е липсващ."
+
+#: ../src/cut-n-paste/fusa-manager.c:1307
+msgid "Too many messages were sent to the display manager, and it hung up."
+msgstr ""
+"Прекалено много съобщения са подадени към мениджъра на дисплеи, който заби"
+
+#: ../src/cut-n-paste/fusa-manager.c:1311
+msgid "The display manager sent an unknown error message."
+msgstr "Мениджърът на дисплеи прати непознато съобщение за грешка."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:153
+msgid "The user this menu item represents."
+msgstr "Потребителят, който този елемент от менюто представлява"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:160
+msgid "Icon Size"
+msgstr "Размер на иконите"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:161
+msgid "The size of the icon to use."
+msgstr "Размера на иконата, който да се използва"
+
+#: ../src/cut-n-paste/fusa-user.c:151
+msgid "The user manager object this user is controlled by."
+msgstr "Управлението на потребители, от което е контролиран този потребител"
+
+#: ../src/cut-n-paste/fusa-utils.c:80
+msgid "Show Details"
+msgstr "Показване на подробности"
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:413
+msgid "GDM (The GNOME Display Manager) is not running."
+msgstr "GDM (мениджърът на дисплеи на GNOME) не работи."
+
+#: ../src/cut-n-paste/gdmcomm.c:416
+msgid ""
+"You might in fact be using a different display manager, such as KDM (KDE "
+"Display Manager) or xdm."
+msgstr ""
+"Възможно е да ползвате различен мениджър на дисплеи, като KDM (част от KDE) "
+"или xdm."
+
+#: ../src/cut-n-paste/gdmcomm.c:419
+msgid ""
+"If you still wish to use this feature, either start GDM yourself or ask your "
+"system administrator to start GDM."
+msgstr ""
+"Ако искате да използвате тази възможност или стартирайте GDM, или помолете "
+"системния администратор да го стартира."
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:441
+msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+msgstr "Невъзможно е да се комуникира с GDM (мениджърът на дисплеи на GNOME)"
+
+#: ../src/cut-n-paste/gdmcomm.c:444
+msgid "Perhaps you have an old version of GDM running."
+msgstr "Вероятно имате стара версия на GDM."
+
+#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
+msgid "Cannot communicate with gdm, perhaps you have an old version running."
+msgstr "Не може да се комуникира с GDM. Вероятно имате стара версия."
+
+#: ../src/cut-n-paste/gdmcomm.c:469
+msgid "The allowed limit of flexible X servers reached."
+msgstr "Достигнат е позволения лимит от стартирани гъвкави Х сървъри."
+
+#: ../src/cut-n-paste/gdmcomm.c:471
+msgid "There were errors trying to start the X server."
+msgstr "Имаше грешки при опитите за стартиране на Х сървъра."
+
+#: ../src/cut-n-paste/gdmcomm.c:473
+msgid "The X server failed.  Perhaps it is not configured well."
+msgstr "Х сървърът не успя да се стартира.  Вероятно не е конфигуриран добре."
+
+#: ../src/cut-n-paste/gdmcomm.c:476
+msgid "Too many X sessions running."
+msgstr "Стартирани"
+
+#: ../src/cut-n-paste/gdmcomm.c:478
+msgid ""
+"The nested X server (Xnest) cannot connect to your current X server.  You "
+"may be missing an X authorization file."
+msgstr ""
+"Вложеният сървър (Xnest) не може да се свърже с текущият Ви X сървър. "
+"Възможно е Вашия файл за упълномощаване пред X - .Xauthority да липсва."
+
+#: ../src/cut-n-paste/gdmcomm.c:483
+msgid ""
+"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
+"Please install the Xnest package in order to use the nested login."
+msgstr ""
+"Вложеният сървър (Xnest) или не е достъпен, или GDM е лошо настроен.\n"
+"За да ползвате Xnest, трябва да го инсталирате."
+
+#: ../src/cut-n-paste/gdmcomm.c:488
+msgid ""
+"The X server is not available, it is likely that gdm is badly configured."
+msgstr "Няма наличен X сървър. Вероятно GDM е лошо конфигуриран."
+
+#: ../src/cut-n-paste/gdmcomm.c:497
+msgid "Trying to change to an invalid virtual terminal number."
+msgstr "Опит за преминаване към виртуален терминал с невалиден номер."
+
+#: ../src/cut-n-paste/gdmcomm.c:501
+msgid ""
+"You do not seem to have authentication needed be for this operation.  "
+"Perhaps your .Xauthority file is not set up correctly."
+msgstr ""
+"Не сте се идентифицирали правилно за тази операция. Най-вероятно има проблем "
+"с Вашия файл .Xauthority."
+
+#: ../src/cut-n-paste/gdmcomm.c:505
+msgid "Too many messages were sent to gdm and it hung upon us."
+msgstr "Прекалено много съобщения са подадени към GDM, който заби"
+
+#: ../src/cut-n-paste/gdmcomm.c:508
+msgid "Unknown error occured."
+msgstr "Непозната грешка"
+
+#: ../src/file-transfer-dialog.c:94
+#, c-format
+msgid "Copying file: %i of %i"
+msgstr "Копиране на файл: %i от %i"
+
+#: ../src/file-transfer-dialog.c:122
+#, c-format
+msgid "Copying '%s'"
+msgstr "Копиране на „%s“"
+
+#: ../src/file-transfer-dialog.c:193
+msgid "From URI"
+msgstr "От URI"
+
+#: ../src/file-transfer-dialog.c:194
+msgid "URI currently transferring from"
+msgstr "От кое URI се приемат данни"
+
+#: ../src/file-transfer-dialog.c:201
+msgid "To URI"
+msgstr "До URI"
+
+#: ../src/file-transfer-dialog.c:202
+msgid "URI currently transferring to"
+msgstr "Към кое URI се предават данни"
+
+#: ../src/file-transfer-dialog.c:209
+msgid "Fraction completed"
+msgstr "Частта е приключена"
+
+#: ../src/file-transfer-dialog.c:210
+msgid "Fraction of transfer currently completed"
+msgstr "Каква част от трансфера е приключена"
+
+#: ../src/file-transfer-dialog.c:217
+msgid "Current URI index"
+msgstr "Текущ URI индекс"
+
+#: ../src/file-transfer-dialog.c:218
+msgid "Current URI index - starts from 1"
+msgstr "Текущ индекс на URI - броенето започва от 1"
+
+#: ../src/file-transfer-dialog.c:225
+msgid "Total URIs"
+msgstr "Общо URI"
+
+#: ../src/file-transfer-dialog.c:226
+msgid "Total number of URIs"
+msgstr "Общ брой на URI-тата"
+
+#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+msgid "Copying files"
+msgstr "Копиране на файлове"
+
+#: ../src/file-transfer-dialog.c:345
+msgid "From:"
+msgstr "От:"
+
+#: ../src/file-transfer-dialog.c:349
+msgid "To:"
+msgstr "До:"
+
+#: ../src/file-transfer-dialog.c:448
+msgid "Connecting..."
+msgstr "Свързване..."
+
+#: ../src/gnome-screensaver-command.c:58
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Кара екранният предпазител да се затвори грациозно"
+
+#: ../src/gnome-screensaver-command.c:60
+msgid "Query the state of the screensaver"
+msgstr "Запитване за състоянието на екранния предпазител"
+
+#: ../src/gnome-screensaver-command.c:62
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "Казва на вървящия екранен предпазител да заключи екрана веднага"
+
+#: ../src/gnome-screensaver-command.c:64
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr ""
+"Ако екранният предпазител е включен, да се превключи към друга визуализация"
+
+#: ../src/gnome-screensaver-command.c:66
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "Включване на екранния предпазител (изчистване на екрана)"
+
+#: ../src/gnome-screensaver-command.c:68
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr ""
+"Ако екранният предпазител е активен - да се деактивира (включване на екрана)"
+
+#: ../src/gnome-screensaver-command.c:70
+msgid "Disable running graphical themes while blanked"
+msgstr "Изключване на графичните теми при изчистване на екрана"
+
+#: ../src/gnome-screensaver-command.c:72
+msgid "Enable running graphical themes while blanked (if applicable)"
+msgstr "Включване на графичните теми при изчистване на екрана (ако е възможно)"
+
+#: ../src/gnome-screensaver-command.c:74
+msgid "Poke the running screensaver to simulate user activity"
+msgstr ""
+"Взаимодействане с работещия екранен предпазител за симулация на "
+"потребителска дейност"
+
+#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:53
+#: ../src/gnome-screensaver.c:52
+msgid "Version of this application"
+msgstr "Версия на програмата"
+
+#: ../src/gnome-screensaver-command.c:201
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "Екранният предпазител е %s\n"
+
+#: ../src/gnome-screensaver-command.c:201
+msgid "active"
+msgstr "активен"
+
+#: ../src/gnome-screensaver-command.c:201
+msgid "inactive"
+msgstr "неактивен"
+
+#: ../src/gnome-screensaver-dialog.c:51
+msgid "Show debugging output"
+msgstr "Показване на информацията за изчистване на грешки"
+
+#: ../src/gnome-screensaver-dialog.c:55
+msgid "Show the logout button"
+msgstr "Показване на бутона за изход"
+
+#: ../src/gnome-screensaver-preferences.c:583
+msgid "Invalid screensaver theme"
+msgstr "Невалидна тема за екранния предпазител"
+
+#: ../src/gnome-screensaver-preferences.c:586
+msgid "This file does not appear to be a valid screensaver theme."
+msgstr "Този файл не изглежда като да е валидна тема за екранния предпазител."
+
+#: ../src/gnome-screensaver-preferences.c:703
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d час"
+msgstr[1] "%d часа"
+
+#: ../src/gnome-screensaver-preferences.c:706
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d минута"
+msgstr[1] "%d минути"
+
+#: ../src/gnome-screensaver-preferences.c:709
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d секунда"
+msgstr[1] "%d секунди"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:715
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:718
+#: ../src/gnome-screensaver-preferences.c:726
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:721
+#: ../src/gnome-screensaver-preferences.c:729
+#: ../src/gnome-screensaver-preferences.c:733
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#. 0 seconds
+#: ../src/gnome-screensaver-preferences.c:736
+msgid "0 seconds"
+msgstr "0 секунди"
+
+#: ../src/gnome-screensaver-preferences.c:751
+msgid "Never"
+msgstr "Никога"
+
+#: ../src/gnome-screensaver-preferences.c:779
+msgid "Could not load the main interface"
+msgstr "Неуспех при зареждането на главния интерфейс"
+
+#: ../src/gnome-screensaver-preferences.c:781
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "Уверете се, че екранният предпазител е инсталиран правилно."
+
+#: ../src/gs-listener-dbus.c:852
+msgid "failed to register with the message bus"
+msgstr "неуспех при регистрирането към шината за съобщенията"
+
+#: ../src/gs-listener-dbus.c:861
+msgid "screensaver already running in this session"
+msgstr "екранният предпазител вече е пуснат в тази сесия"
+
+#: ../src/gs-lock-plug.c:248
+msgid "Checking password..."
+msgstr "Проверка на паролата..."
+
+#: ../src/gs-lock-plug.c:297
+#, c-format
+msgid "About %ld second left"
+msgid_plural "About %ld seconds left"
+msgstr[0] "Остават около %ld секунда"
+msgstr[1] "Остават около %ld секунди"
+
+#: ../src/gs-lock-plug.c:305
+msgid "Time expired!"
+msgstr "Времето изтече!"
+
+#: ../src/gs-lock-plug.c:330
+msgid "You have the Caps Lock key on."
+msgstr "Настинат е Caps Lock клавиша"
+
+#: ../src/gs-lock-plug.c:538
+msgid "Password check failed!"
+msgstr "Проверката на паролата пропадна!"
+
+#: ../src/gs-lock-plug.c:561 ../src/gs-lock-plug.c:602
+msgid "_Unlock"
+msgstr "_Отключване"
+
+#: ../src/gs-lock-plug.c:566 ../src/gs-lock-plug.c:597
+msgid "_Switch User"
+msgstr "_Сменяне на потребител"
+
+#: ../src/gs-lock-plug.c:961
+msgid "Log in as a new user"
+msgstr "Влизане като друг потребител"
+
+#: ../src/gs-lock-plug.c:1231
+msgid "Enter a password to unlock the screen"
+msgstr "Въведете парола, за да отключите екрана"
+
+#: ../src/gs-lock-plug.c:1260
+msgid "Name:"
+msgstr "Име:"
+
+#: ../src/gs-lock-plug.c:1264
+msgid "_Password:"
+msgstr "Па_рола:"
+
+#: ../src/gs-lock-plug.c:1306
+msgid "Switch to another user?"
+msgstr "Сменяне към друг потребител?"
+
+#: ../src/gs-lock-plug.c:1372
+msgid "Log _Out"
+msgstr "_Изход"
