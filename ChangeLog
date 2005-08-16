@@ -1,3 +1,8 @@
+2005-08-15  Rodrigo Moya <rodrigo@novell.com>
+
+	* data/images/cosmos/Makefile.am: EXTRA_DIST all pictures, so that
+	they are included in the tarball.
+
 2005-08-10  Alexander Shopov  <ash@contact.bg>
 
 	* configure.in: Added "bg" (Bulgarian) to ALL_LINGUAS
