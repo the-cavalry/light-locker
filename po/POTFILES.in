@@ -3,7 +3,10 @@
 data/gnome-screensaver-preferences.desktop.in
 data/gnome-screensaver-preferences.glade
 data/gnome-screensaver.schemas.in
+savers/cosmos-slideshow.xml.in
+savers/personal-slideshow.xml
 savers/popsquares.xml
+savers/slideshow.c
 src/cut-n-paste/fusa-display.c
 src/cut-n-paste/fusa-manager.c
 src/cut-n-paste/fusa-user-menu-item.c
