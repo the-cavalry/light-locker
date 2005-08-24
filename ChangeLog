@@ -1,3 +1,9 @@
+==== 0.0.9 ====
+
+2005-08-24  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 0.0.9 release.
+
 2005-08-15  Rodrigo Moya <rodrigo@novell.com>
 
 	* data/images/cosmos/Makefile.am: EXTRA_DIST all pictures, so that
