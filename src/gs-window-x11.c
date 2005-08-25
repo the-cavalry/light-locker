@@ -848,7 +848,7 @@ gs_window_class_init (GSWindowClass *klass)
                                          g_param_spec_boolean ("lock-enabled",
                                                                NULL,
                                                                NULL,
-                                                               TRUE,
+                                                               FALSE,
                                                                G_PARAM_READWRITE));
         g_object_class_install_property (object_class,
                                          PROP_MONITOR,

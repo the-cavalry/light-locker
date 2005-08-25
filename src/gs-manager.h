@@ -53,14 +53,15 @@ typedef struct
 
 GType       gs_manager_get_type             (void);
 
-GSManager * gs_manager_new                  (gint       lock_delay,
-                                             gint       cycle_delay);
+GSManager * gs_manager_new                  (void);
 
 gboolean    gs_manager_blank                (GSManager  *manager);
 gboolean    gs_manager_unblank              (GSManager  *manager);
 gboolean    gs_manager_cycle                (GSManager  *manager);
 
 gboolean    gs_manager_is_blanked           (GSManager  *manager);
+void        gs_manager_set_lock_active      (GSManager  *manager,
+                                             gboolean    lock_enabled);
 void        gs_manager_set_lock_enabled     (GSManager  *manager,
                                              gboolean    lock_enabled);
 void        gs_manager_set_lock_timeout     (GSManager  *manager,

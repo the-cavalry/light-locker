@@ -1,3 +1,22 @@
+2005-08-25  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-window-x11.c (gs_window_class_init): Set
+	lock-enabled param to FALSE initially.
+
+	* src/gs-prefs.c (key_changed_cb): Allow enabling and disabling
+	the lock policy.
+
+	* src/gs-monitor.c (listener_lock_cb, prefs_changed_cb) 
+	(gs_monitor_init): Allow enabling and disabling the
+	lock policy.
+
+	* src/gs-manager.c (gs_manager_set_lock_active) 
+	(gs_manager_set_lock_enabled, activate_lock_timeout) 
+	(gs_manager_set_lock_timeout, gs_manager_class_init) 
+	(window_show_cb, gs_manager_create_window, gs_manager_new) 
+	(gs_manager_unblank): Make a clear distinction between
+	the policy (lock_enabled) and the state (lock_active).
+
 2005-08-24  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.

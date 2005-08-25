@@ -97,8 +97,8 @@ static void
 listener_lock_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
-        gs_manager_set_lock_enabled (monitor->priv->manager, TRUE);
         gs_listener_set_active (monitor->priv->listener, TRUE);
+        gs_manager_set_lock_active (monitor->priv->manager, TRUE);
 }
 
 static void
@@ -149,10 +149,12 @@ static void
 prefs_changed_cb (GSPrefs   *prefs,
                   GSMonitor *monitor)
 {
-        gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
-        gs_manager_set_themes (monitor->priv->manager, monitor->priv->prefs->themes);
+        gs_manager_set_lock_enabled (monitor->priv->manager, monitor->priv->prefs->lock);
+        gs_manager_set_lock_timeout (monitor->priv->manager, monitor->priv->prefs->lock_timeout);
         gs_manager_set_logout_enabled (monitor->priv->manager, monitor->priv->prefs->logout_enabled);
         gs_manager_set_logout_timeout (monitor->priv->manager, monitor->priv->prefs->logout_timeout);
+        gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
+        gs_manager_set_themes (monitor->priv->manager, monitor->priv->prefs->themes);
 
         gs_watcher_set_active (monitor->priv->watcher,
                                monitor->priv->prefs->mode != GS_MODE_DONT_BLANK);
@@ -198,11 +200,12 @@ gs_monitor_init (GSMonitor *monitor)
         g_signal_connect (monitor->priv->watcher, "idle",
                           G_CALLBACK (watcher_idle_cb), monitor);
 
-        monitor->priv->manager = gs_manager_new (monitor->priv->prefs->lock_timeout,
-                                                 monitor->priv->prefs->cycle);
+        monitor->priv->manager = gs_manager_new ();
+        gs_manager_set_lock_enabled (monitor->priv->manager, monitor->priv->prefs->lock);
+        gs_manager_set_lock_timeout (monitor->priv->manager, monitor->priv->prefs->lock_timeout);
         gs_manager_set_logout_enabled (monitor->priv->manager, monitor->priv->prefs->logout_enabled);
         gs_manager_set_logout_timeout (monitor->priv->manager, monitor->priv->prefs->logout_timeout);
-
+        gs_manager_set_cycle_timeout (monitor->priv->manager, monitor->priv->prefs->cycle);
         gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
         gs_manager_set_themes (monitor->priv->manager, monitor->priv->prefs->themes);
 

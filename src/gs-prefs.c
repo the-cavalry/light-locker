@@ -273,6 +273,18 @@ key_changed_cb (GConfClient *client,
                         delay = 1;
                 prefs->timeout = delay * 60000;
                 changed = TRUE;
+        } else if (strcmp (key, KEY_LOCK_DELAY) == 0) {
+                int delay;
+
+                delay = gconf_value_get_int (value);
+                prefs->lock_timeout = delay * 60000;
+                changed = TRUE;
+        } else if (strcmp (key, KEY_LOCK) == 0) {
+                gboolean enabled;
+
+                enabled = gconf_value_get_bool (value);
+                prefs->lock = enabled;
+                changed = TRUE;
         } else if (strcmp (key, KEY_DPMS_ENABLED) == 0) {
                 gboolean enabled;
 
@@ -318,7 +330,7 @@ key_changed_cb (GConfClient *client,
                 prefs->logout_timeout = delay * 60000;
                 changed = TRUE;
         } else {
-                g_message ("Config key not handled: %s", key);
+                g_warning ("Config key not handled: %s", key);
         }
 
         if (changed && prefs) {
