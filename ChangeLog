@@ -1,3 +1,14 @@
+2005-08-26  Rodrigo Moya <rodrigo@novell.com>
+
+	* data/gnome-screensaver-preferences.glade: fixed alignment of
+	'Activate after' label. Added checkbox to the dialog.
+
+	* src/gnome-screensaver-preferences.c (config_get_lock,
+	config_set_lock): new functions to get/set the lock key.
+	(init_capplet): added a checkbox to allow user to enable/disable
+	locking when running the screensaver.
+	(lock_checkbox_toggled): callback for the checkbox.
+
 2005-08-25  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (gs_window_class_init): Set

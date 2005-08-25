@@ -211,6 +211,39 @@ config_set_theme (const char *name)
         g_object_unref (client);
 }
 
+static gboolean
+config_get_lock (gboolean *is_writable)
+{
+        GConfClient *client;
+        gboolean     lock;
+
+        client = gconf_client_get_default ();
+
+        if (is_writable) {
+                *is_writable = gconf_client_key_is_writable (client,
+                                                             KEY_LOCK,
+                                                             NULL);
+        }
+
+        lock = gconf_client_get_bool (client, KEY_LOCK, NULL);
+
+        g_object_unref (client);
+
+        return lock;
+}
+
+static void
+config_set_lock (gboolean lock)
+{
+        GConfClient *client;
+
+        client = gconf_client_get_default ();
+
+        gconf_client_set_bool (client, KEY_LOCK, lock, NULL);
+
+        g_object_unref (client);
+}
+
 static void
 preview_clear (GtkWidget *widget)
 {
@@ -754,6 +787,12 @@ format_value_callback_time (GtkScale *scale,
 }
 
 static void
+lock_checkbox_toggled (GtkToggleButton *button, gpointer user_data)
+{
+        config_set_lock (gtk_toggle_button_get_active (button));
+}
+
+static void
 init_capplet (void)
 {
         GtkWidget *dialog;
@@ -762,6 +801,7 @@ init_capplet (void)
         GtkWidget *blank_delay_hscale;
         GtkWidget *blank_delay_hbox;
         GtkWidget *label;
+        GtkWidget *lock_checkbox;
         char      *glade_file;
         char      *path;
         gdouble    blank_delay;
@@ -792,6 +832,7 @@ init_capplet (void)
         treeview           = glade_xml_get_widget (xml, "savers_treeview");
         blank_delay_hscale = glade_xml_get_widget (xml, "blank_delay_hscale");
         blank_delay_hbox   = glade_xml_get_widget (xml, "blank_delay_hbox");
+        lock_checkbox      = glade_xml_get_widget (xml, "lock_checkbox");
 
         label              = glade_xml_get_widget (xml, "blank_delay_label");
         gtk_label_set_mnemonic_widget (GTK_LABEL (label), blank_delay_hscale);
@@ -805,6 +846,12 @@ init_capplet (void)
         g_signal_connect (blank_delay_hscale, "format-value",
                           G_CALLBACK (format_value_callback_time), NULL);
 
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (lock_checkbox), config_get_lock (&is_writable));
+        if (! is_writable)
+                gtk_widget_set_sensitive (lock_checkbox, FALSE);
+        g_signal_connect (lock_checkbox, "toggled",
+                          G_CALLBACK (lock_checkbox_toggled), NULL);
+            
         gtk_window_set_icon_name (GTK_WINDOW (dialog), "screensaver");
 
 
