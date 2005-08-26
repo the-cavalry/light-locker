@@ -1,3 +1,12 @@
+2005-08-26  William Jon McCann  <mccann@jhu.edu>
+
+	* data/gnome-screensaver-preferences.glade:
+	Add mnemonic to checkbox label.  Use 6px spacing
+	for vbox.
+
+	Patch from <dennis_cranston@yahoo.com>.
+	Fixes #314518.
+
 2005-08-26  Rodrigo Moya <rodrigo@novell.com>
 
 	* data/gnome-screensaver-preferences.glade: fixed alignment of

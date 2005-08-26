@@ -276,7 +276,7 @@
 			    <widget class="GtkVBox" id="vbox3">
 			      <property name="visible">True</property>
 			      <property name="homogeneous">False</property>
-			      <property name="spacing">0</property>
+			      <property name="spacing">6</property>
 
 			      <child>
 				<widget class="GtkHBox" id="blank_delay_hbox">
@@ -351,7 +351,7 @@
 				<widget class="GtkCheckButton" id="lock_checkbox">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">Lock screen when active</property>
+				  <property name="label" translatable="yes">_Lock screen when active</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>
