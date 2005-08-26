@@ -805,15 +805,12 @@ disable_builtin_screensaver (GSWatcher *watcher,
                 XForceScreenSaver (GDK_DISPLAY (), ScreenSaverReset);
 }
 
-static gboolean
-idle_timer (GSWatcher *watcher)
+static void
+maybe_send_signal (GSWatcher *watcher)
 {
         gboolean polling_for_idleness = TRUE;
         int      idle;
         gboolean do_signal = FALSE;
-
-        /* try one last time */
-        check_pointer_timer (watcher);
 
         idle = 1000 * (time (NULL) - watcher->priv->last_activity_time);
 
@@ -836,10 +833,19 @@ idle_timer (GSWatcher *watcher)
                 do_signal = FALSE;
         }
 
-        watcher->priv->timer_id = 0;        
-
         if (do_signal)
                 g_signal_emit (watcher, signals [IDLE], 0);
+}
+
+static gboolean
+idle_timer (GSWatcher *watcher)
+{
+        /* try one last time */
+        check_pointer_timer (watcher);
+
+        watcher->priv->timer_id = 0;
+
+        maybe_send_signal (watcher);
 
         return FALSE;
 }
@@ -920,7 +926,7 @@ check_for_clock_skew (GSWatcher *watcher)
                                    (shift / (60 * 60)), ((shift / 60) % 60), (shift % 60));
 
                 watcher->priv->emergency_lock = TRUE;
-                idle_timer (watcher);
+                maybe_send_signal (watcher);
         }
 
         watcher->priv->last_wall_clock_time = now;

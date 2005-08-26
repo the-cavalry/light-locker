@@ -1,5 +1,11 @@
 2005-08-26  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c (maybe_send_signal, idle_timer):
+	Don't check the pointer position when doing an
+	emergency locking.  Fixes #314530.
+
+2005-08-26  William Jon McCann  <mccann@jhu.edu>
+
 	* data/gnome-screensaver-preferences.glade:
 	Add mnemonic to checkbox label.  Use 6px spacing
 	for vbox.
