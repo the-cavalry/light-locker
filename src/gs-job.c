@@ -192,6 +192,21 @@ gs_job_get_theme_path (GSJob *job,
 }
 
 void
+gs_job_append_theme_path (GSJob      *job,
+                          const char *path)
+{
+        g_return_if_fail (GS_IS_JOB (job));
+        g_return_if_fail (path != NULL);
+
+        job->priv->search_path_len++;
+        job->priv->search_path = g_renew (char *, job->priv->search_path, job->priv->search_path_len);
+
+        job->priv->search_path [job->priv->search_path_len - 1] = g_strdup (path);
+
+        /*do_theme_change (job);*/
+}
+
+void
 gs_job_prepend_theme_path (GSJob      *job,
                            const char *path)
 {

@@ -75,6 +75,8 @@ void            gs_job_set_theme_path            (GSJob          *job,
 void            gs_job_get_theme_path            (GSJob          *job,
                                                   char          **path[],
                                                   int            *n_elements);
+void            gs_job_append_theme_path         (GSJob          *job,
+                                                  const char     *path);
 void            gs_job_prepend_theme_path        (GSJob          *job,
                                                   const char     *path);
 
