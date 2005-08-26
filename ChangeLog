@@ -1,3 +1,13 @@
+2005-08-26  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac: Add --with-xscreensaverdir argument to specify
+	location of XScreensaver hack configuration files.
+
+	* src/gs-job.c (gs_job_init): If an xscreensaver dir is specified,
+	append the directory to the list of theme paths.
+
+	Patch from Rodrigo Moya <rodrigo@novell.com>
+
 2005-08-26  Christophe Merlet  <redfox@redfoxcenter.org>
 
 	* configure.in: Added "fr" (French) to ALL_LINGUAS

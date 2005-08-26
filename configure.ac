@@ -999,6 +999,29 @@ if test "$ac_macosx" = yes; then
   fi
 fi
 
+# Check whether to use a xscreensaver hacks configuration directory
+AC_MSG_CHECKING([whether to use xscreensaver hacks configuration])
+AC_ARG_WITH(xscreensaverdir, AC_HELP_STRING([--with-xscreensaverdir=dir], [Use xscreensaver hacks found in directory],))
+xscreensaverdir=
+if test "x$with_xscreensaverdir" = "xyes"; then
+  if test -d /usr/share/xscreensaver/config; then
+    xscreensaverdir=/usr/share/xscreensaver/config
+  elif test -d /etc/xscreensaver; then
+    xscreensaverdir=/etc/xscreensaver
+  fi
+elif test "x$with_xscreensaverdir" = "x" -o "x$with_xscreensaverdir" = "xno"; then
+  xscreensaverdir=
+else
+  xscreensaverdir="$with_xscreensaverdir"
+fi
+
+if test -d "$xscreensaverdir"; then
+  AC_DEFINE_UNQUOTED(XSCREENSAVER_CONFIG_DIR, "$xscreensaverdir", [Define to the directory containing XScreensaver configuration files])
+  AC_MSG_RESULT([$xscreensaverdir])
+else
+  AC_MSG_RESULT([no])
+fi
+
 #       Check for PAM.
 
 have_pam=no

@@ -562,6 +562,11 @@ gs_job_init (GSJob *job)
         i = 0;
         job->priv->search_path [i++] = g_strdup (THEMESDIR);
 
+#ifdef XSCREENSAVER_CONFIG_DIR
+        if (g_file_test (XSCREENSAVER_CONFIG_DIR, G_FILE_TEST_IS_DIR))
+                gs_job_append_theme_path (job, XSCREENSAVER_CONFIG_DIR);
+#endif
+
         job->priv->themes_valid = FALSE;
 }
 
