@@ -1,0 +1,670 @@
+# Vietnamese translation for Gnome Screensaver.
+# Copyright © 2005 Gnome i18n Project for Vietnamese.
+# Clytie Siddall <clytie@riverland.net.au>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver Gnome HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-08-26 03:48+0000\n"
+"PO-Revision-Date: 2005-08-27 18:41+0930\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: LocFactoryEditor 1.2.2\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "Bộ bảo vệ màn hình"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "Lập các tùy thích cho trình bảo vệ màn hình."
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "    "
+msgstr "    "
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>_Screensaver</b>"
+msgstr "<b>Bộ _bảo vệ màn hình</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Lock screen when active"
+msgstr "Khoá màn hình khi hoạt động"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "Screensaver Preferences"
+msgstr "Tùy thích Bộ bảo vệ màn hình"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "_Activate after:"
+msgstr "_Hoạt hóa sau :"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "How many minutes until the monitor goes black"
+msgstr "Bao nhiêu phút trước khi màn hình trở thành đen"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "How many minutes until the monitor goes black."
+msgstr "Bao nhiêu phút trước khi màn hình trở thành đen."
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "How many minutes until the monitor power-saves"
+msgstr "Bao nhiêu phút trước khi màn hình tiết kiệm năng lượng"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "How many minutes until the monitor power-saves."
+msgstr "Bao nhiêu phút trước khi màn hình tiết kiệm năng lượng."
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "How many minutes until the monitor powers down"
+msgstr "Bao nhiêu phút trước khi màn hình tắt điện"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "How many minutes until the monitor powers down."
+msgstr "Bao nhiêu phút trước khi màn hình tắt điện."
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear"
+msgstr "Bao nhiêu phút giữa việc làm trắng màn hình và việc hiển thị tùy chọn đăng xuất"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear."
+msgstr "Bao nhiêu phút giữa việc làm trắng màn hình và việc hiển thị tùy chọn đăng xuất."
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "The number of minutes after blanking the screen before locking"
+msgstr "Bao nhiêu phút giữa việc làm trắng màn hình và việc khóa nó"
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "The number of minutes after blanking the screen before locking."
+msgstr "Bao nhiêu phút giữa việc làm trắng màn hình và việc khóa nó."
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "The number of minutes of idle time before blanking the screen"
+msgstr "Bao nhiêu phút không hoạt động, trước khi làm trắng màn hình"
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid "The number of minutes of idle time before blanking the screen."
+msgstr "Bao nhiêu phút không hoạt động, trước khi làm trắng màn hình."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid "The number of minutes to run before changing the screensaver"
+msgstr "Bao nhiêu phút cần chạy trước khi thay đổi ảnh bảo vệ màn hình"
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid "The number of minutes to run before changing the screensaver."
+msgstr "Bao nhiêu phút cần chạy trước khi thay đổi ảnh bảo vệ màn hình."
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid "The screensaver selection mode"
+msgstr "Chế độ lựa chọn ảnh bảo vệ màn hình"
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid "The selected screensaver themes"
+msgstr "Các sắc thái bảo vệ màn hình đã chọn"
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"This key specifies the selection mode used by the screensaver. Possible "
+"values are \"disabled\", \"blank-only\", \"single\", and \"random\"."
+msgstr "Khóa này xác định chế độ lựa chọn mà bộ bảo vệ màn hình có dùng. Giá trị có thể là:\n"
+" • disabled — bị tắt\n"
+" • blank-only — chỉ làm trắng\n"
+" • single — ảnh đơn\n"
+" • random — chọn ảnh một cách ngẫu nhiên"
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid "This key specifies the themes to be used by the screensaver."
+msgstr "Khóa này xác định các sắc thái mà bộ bảo vệ màn hình sẽ dùng."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid "Whether to lock as well as blank"
+msgstr "Có nên khóa cũng như làm trắng hay không"
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid "Whether to lock as well as blank."
+msgstr "Có nên khóa cũng như làm trắng hay không."
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid "Whether to offer the option of logging out after logout_delay"
+msgstr "Có nên hiển thị tùy chọn đăng xuất sau thời gian « logout_delay » hay không"
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid "Whether to offer the option of logging out after logout_delay."
+msgstr "Có nên hiển thị tùy chọn đăng xuất sau thời gian « logout_delay » hay không."
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "Whether to power down the monitor"
+msgstr "Có nên tắt điện của màn hình hay không"
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid "Whether to power down the monitor."
+msgstr "Có nên tắt điện của màn hình hay không."
+
+#: ../savers/cosmos-slideshow.xml.in.h:1
+msgid "Cosmos"
+msgstr "Vũ trụ"
+
+#: ../savers/cosmos-slideshow.xml.in.h:2
+msgid "This displays a slideshow of images of the cosmos."
+msgstr "Hiển thị trình diễn các ảnh của vũ trụ."
+
+# #-#-#-#-#  compendium3.po (alleyoop HEAD)  #-#-#-#-#
+# 48x48/emblems/emblem-pictures.icon.in.h:1
+# 48x48/emblems/emblem-pictures.icon.in.h:1
+#: ../savers/personal-slideshow.xml.h:1
+msgid "Pictures folder"
+msgstr "Danh mục Ảnh"
+
+#: ../savers/personal-slideshow.xml.h:2
+msgid "This displays a slideshow of images from your Pictures directory."
+msgstr "Hiển thị trình diễn các ảnh từ thư mục Ảnh (Pictures) của bạn."
+
+#: ../savers/popsquares.xml.h:1
+msgid "Pop art squares"
+msgstr "Vuông nghệ thuật phổ biến"
+
+#: ../savers/popsquares.xml.h:2
+msgid ""
+"This draws a pop-art-ish looking grid of pulsing colors. By Levi Burton."
+msgstr "Vẽ lưới các màu đập kiểu dáng nghệ thuật phổ biến. Tác giả: Levi Burton."
+
+#: ../savers/slideshow.c:63
+msgid "Location to get images from"
+msgstr "Địa điểm nơi cần lấy ảnh"
+
+#: ../savers/slideshow.c:63
+msgid "PATH"
+msgstr "ĐƯỜNG DẪN"
+
+#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
+msgid "Manager"
+msgstr "Bộ quản lý"
+
+#: ../src/cut-n-paste/fusa-display.c:120
+msgid "The manager which owns this object."
+msgstr "Quản trị sở hữu đối tượng này."
+
+#: ../src/cut-n-paste/fusa-display.c:127
+msgid "Name"
+msgstr "Tên"
+
+#: ../src/cut-n-paste/fusa-display.c:128
+msgid "The name of the X11 display this object refers to."
+msgstr "Tên của bộ trình bày X11 đến đó đối tượng này tham chiếu."
+
+#: ../src/cut-n-paste/fusa-display.c:134
+#: ../src/cut-n-paste/fusa-user-menu-item.c:152
+msgid "User"
+msgstr "Người dùng"
+
+#: ../src/cut-n-paste/fusa-display.c:135
+msgid "The user currently logged in on this virtual terminal."
+msgstr "Người dùng mà hiện thời đã đăng nhập vào thiết bị cuối ảo này."
+
+#: ../src/cut-n-paste/fusa-display.c:141
+msgid "Console"
+msgstr "Bàn giao tiếp"
+
+#: ../src/cut-n-paste/fusa-display.c:142
+msgid "The number of the virtual console this display can be found on, or %-1."
+msgstr ""
+"Số hiệu của bàn giao tiếp ảo trên đó bộ trình bày có thể được tìm, hoặc %-1."
+
+#: ../src/cut-n-paste/fusa-display.c:148
+msgid "Nested"
+msgstr "Lồng nhau"
+
+#: ../src/cut-n-paste/fusa-display.c:149
+msgid "Whether or not this display is a windowed (Xnest) display."
+msgstr "Có nên bộ trình bày bày là bộ trình bày có cửa sổ (Xnest) hay không."
+
+#: ../src/cut-n-paste/fusa-manager.c:1264
+msgid "The display manager could not be contacted for unknown reasons."
+msgstr "Không thể liên lạc với bộ quản lý trình bày, không biết sao."
+
+#: ../src/cut-n-paste/fusa-manager.c:1271
+msgid "The display manager is not running or too old."
+msgstr "Bbộ quản lý trình bày không đang chạy hoặc nó quá cũ."
+
+#: ../src/cut-n-paste/fusa-manager.c:1274
+msgid "The configured limit of flexible servers has been reached."
+msgstr "Mới tới giới hạn đã cấu hình của số trình phục vụ dẻo."
+
+#: ../src/cut-n-paste/fusa-manager.c:1277
+msgid "There was an unknown error starting X."
+msgstr "Gặp lỗi không xác định khi khởi chạy X."
+
+#: ../src/cut-n-paste/fusa-manager.c:1280
+msgid "The X server failed to finish starting."
+msgstr "Trình phục vụ X không khởi chạy hoàn thành."
+
+#: ../src/cut-n-paste/fusa-manager.c:1283
+msgid "There are too many X sessions running."
+msgstr "Có quá nhiều phiên đang chạy X."
+
+#: ../src/cut-n-paste/fusa-manager.c:1286
+msgid "The nested X server (Xnest) cannot connect to your current X server."
+msgstr ""
+"Trình phục vụ X lồng nhau (Xnest) không thể kết nối đến trình phục vụ X hiện "
+"thời của bạn."
+
+#: ../src/cut-n-paste/fusa-manager.c:1289
+msgid "The X server in the GDM configuration could not be found."
+msgstr "Không tìm thấy trình phục vụ X trong cấu hình GDM."
+
+#: ../src/cut-n-paste/fusa-manager.c:1292 ../src/cut-n-paste/gdmcomm.c:492
+msgid ""
+"Trying to set an unknown logout action, or trying to set a logout action "
+"which is not available."
+msgstr ""
+"Đã cố đặt hành động đăng xuất lạ, hoặc một hành động đăng xuất không sẵn "
+"sàng."
+
+#: ../src/cut-n-paste/fusa-manager.c:1295 ../src/cut-n-paste/gdmcomm.c:495
+msgid "Virtual terminals not supported."
+msgstr "Không hỗ trợ thiết bị cuối ảo."
+
+#: ../src/cut-n-paste/fusa-manager.c:1298
+msgid "Invalid virtual terminal number."
+msgstr "Số thiết bị cuối ảo không hợp lệ."
+
+#: ../src/cut-n-paste/fusa-manager.c:1301 ../src/cut-n-paste/gdmcomm.c:499
+msgid "Trying to update an unsupported configuration key."
+msgstr "Đã cố cập nhật một khóa cấu hình không được hỗ trợ."
+
+#: ../src/cut-n-paste/fusa-manager.c:1304
+msgid "~/.Xauthority file badly configured or missing."
+msgstr "Tập tin « ~/.Xauthority » có cấu hình sai, hoặc thiếu nó."
+
+#: ../src/cut-n-paste/fusa-manager.c:1307
+msgid "Too many messages were sent to the display manager, and it hung up."
+msgstr ""
+"Đã gởi quá nhiều thông điệp cho bộ quản lý trình bày nên nó ngắt kết nối."
+
+#: ../src/cut-n-paste/fusa-manager.c:1311
+msgid "The display manager sent an unknown error message."
+msgstr "Bộ quản lý trình bày đã gởi một thông điệp lỗi không xác định."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:153
+msgid "The user this menu item represents."
+msgstr "Người dùng mà mục trình đơn này tiêu biểu."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:160
+msgid "Icon Size"
+msgstr "Cỡ biểu tượng"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:161
+msgid "The size of the icon to use."
+msgstr "Kích thước của biểu tượng cần dùng."
+
+#: ../src/cut-n-paste/fusa-user.c:151
+msgid "The user manager object this user is controlled by."
+msgstr "Đối tượng bộ quản lý người dùng có điều khiển người dùng này."
+
+#: ../src/cut-n-paste/fusa-utils.c:80
+msgid "Show Details"
+msgstr "Hiện chi tiết"
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:413
+msgid "GDM (The GNOME Display Manager) is not running."
+msgstr "GDM (Bộ quản lý trình bày Gnome) không đang chạy."
+
+#: ../src/cut-n-paste/gdmcomm.c:416
+msgid ""
+"You might in fact be using a different display manager, such as KDM (KDE "
+"Display Manager) or xdm."
+msgstr ""
+"Có lẽ bạn thật sự có sử dụng một bộ quản lý trình bày khác, nhơ KDE (Bộ quản "
+"lý trình bày KDE) hoặc xdm."
+
+#: ../src/cut-n-paste/gdmcomm.c:419
+msgid ""
+"If you still wish to use this feature, either start GDM yourself or ask your "
+"system administrator to start GDM."
+msgstr ""
+"Nếu bạn vẫn còn muốn sử dụng tính năng này, hãy hoặc tự khởi chạy GDM, hoặc "
+"xin quản trị hệ thống làm như thế."
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:441
+msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+msgstr "Không thể liên lạc với GDM (Bộ quản lý trình bày Gnome)."
+
+#: ../src/cut-n-paste/gdmcomm.c:444
+msgid "Perhaps you have an old version of GDM running."
+msgstr "Có lẽ bạn đang chạy một phiên bản GDM cũ."
+
+#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
+msgid "Cannot communicate with gdm, perhaps you have an old version running."
+msgstr "Không thể liên lạc với GDM, có lẽ bạn đang chạy một phiên bản GDM cũ."
+
+#: ../src/cut-n-paste/gdmcomm.c:469
+msgid "The allowed limit of flexible X servers reached."
+msgstr "Mới tới giới hạn số trình phục vụ X dẻo được phép."
+
+#: ../src/cut-n-paste/gdmcomm.c:471
+msgid "There were errors trying to start the X server."
+msgstr "Gặp lỗi khi cố khởi chạy trình phục vụ X."
+
+#: ../src/cut-n-paste/gdmcomm.c:473
+msgid "The X server failed.  Perhaps it is not configured well."
+msgstr "Trình phục vụ X thất bại. Có lẽ nó có cấu hình sai."
+
+#: ../src/cut-n-paste/gdmcomm.c:476
+msgid "Too many X sessions running."
+msgstr "Quá nhiều phiên X đang chạy."
+
+#: ../src/cut-n-paste/gdmcomm.c:478
+msgid ""
+"The nested X server (Xnest) cannot connect to your current X server.  You "
+"may be missing an X authorization file."
+msgstr ""
+"Trình phục vụ X lồng nhau (Xnest) không thể kết nối đến trình phục vụ X hiện "
+"thời của bạn. Có lẽ bạn thiếu một tập tin cấp quyền X."
+
+#: ../src/cut-n-paste/gdmcomm.c:483
+msgid ""
+"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
+"Please install the Xnest package in order to use the nested login."
+msgstr ""
+"Trình phục vụ X lồng nhau (Xnest) không sẵn sàng, hoặc GDM có cấu hình sai.\n"
+"Bạn hãy cài đặt gói Xnest, để sử dụng khả năng đăng nhập lồng nhau."
+
+#: ../src/cut-n-paste/gdmcomm.c:488
+msgid ""
+"The X server is not available, it is likely that gdm is badly configured."
+msgstr ""
+"Trình phục vụ X lồng nhau (Xnest) không sẵn sàng, hoặc rất có thể là GDM có "
+"cấu hình sai."
+
+#: ../src/cut-n-paste/gdmcomm.c:497
+msgid "Trying to change to an invalid virtual terminal number."
+msgstr "Đang cố chuyển đổi sang một số thiết bị cuối ảo không hợp lệ."
+
+#: ../src/cut-n-paste/gdmcomm.c:501
+msgid ""
+"You do not seem to have authentication needed be for this operation.  "
+"Perhaps your .Xauthority file is not set up correctly."
+msgstr ""
+"Hình như bạn không có cách xác thực cần thiết cho thao tác này. Có lẽ tập "
+"tin « .Xauthority  » chưa được thiết lập cho đúng. "
+
+#: ../src/cut-n-paste/gdmcomm.c:505
+msgid "Too many messages were sent to gdm and it hung upon us."
+msgstr "Đã gởi quá nhiều thông điệp cho GDM nên nó ngắt kết nối đến chúng ta."
+
+#: ../src/cut-n-paste/gdmcomm.c:508
+msgid "Unknown error occured."
+msgstr "Gặp lỗi không xác định."
+
+#: ../src/file-transfer-dialog.c:94
+#, c-format
+msgid "Copying file: %i of %i"
+msgstr "Đang sao chép tập tin: %i trên %i"
+
+#: ../src/file-transfer-dialog.c:122
+#, c-format
+msgid "Copying '%s'"
+msgstr "Đang sao chép « %s»"
+
+#: ../src/file-transfer-dialog.c:193
+msgid "From URI"
+msgstr "Từ địa điểm định vị"
+
+#: ../src/file-transfer-dialog.c:194
+msgid "URI currently transferring from"
+msgstr "Hiện thời truyền từ địa điểm định vị này."
+
+#: ../src/file-transfer-dialog.c:201
+msgid "To URI"
+msgstr "Tới địa điểm định vị"
+
+#: ../src/file-transfer-dialog.c:202
+msgid "URI currently transferring to"
+msgstr "Hiện thời truyền đến địa điểm định vị này."
+
+#: ../src/file-transfer-dialog.c:209
+msgid "Fraction completed"
+msgstr "Phần hoàn tất"
+
+#: ../src/file-transfer-dialog.c:210
+msgid "Fraction of transfer currently completed"
+msgstr "Phần truyền hiện thời đã hoàn tất"
+
+#: ../src/file-transfer-dialog.c:217
+msgid "Current URI index"
+msgstr "Chỉ mục địa điểm định vị hiện thời"
+
+#: ../src/file-transfer-dialog.c:218
+msgid "Current URI index - starts from 1"
+msgstr "Chỉ mục địa điểm định vị hiện thời — bắt đầu từ 1"
+
+#: ../src/file-transfer-dialog.c:225
+msgid "Total URIs"
+msgstr "Địa điểm định vị tổng cộng"
+
+#: ../src/file-transfer-dialog.c:226
+msgid "Total number of URIs"
+msgstr "Tổng số địa điểm định vị"
+
+#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+msgid "Copying files"
+msgstr "Đang sao chép tập tin"
+
+#: ../src/file-transfer-dialog.c:345
+msgid "From:"
+msgstr "Từ:"
+
+#: ../src/file-transfer-dialog.c:349
+msgid "To:"
+msgstr "Đến:"
+
+#: ../src/file-transfer-dialog.c:448
+msgid "Connecting..."
+msgstr "Đang kết nối..."
+
+#: ../src/gnome-screensaver-command.c:58
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Làm cho bộ bảo vệ màn hình thoát cho đúng."
+
+#: ../src/gnome-screensaver-command.c:60
+msgid "Query the state of the screensaver"
+msgstr "Truy vấn tính trạng của bộ bảo vệ màn hình."
+
+#: ../src/gnome-screensaver-command.c:62
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "Báo tiến trình bảo vệ màn hình đang chạy phải khóa màn hình ngay."
+
+#: ../src/gnome-screensaver-command.c:64
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "Nếu bộ bảo vệ màn hình có hoạt động thì chuyển đổi sang một chứng minh đồ họa khác."
+
+#: ../src/gnome-screensaver-command.c:66
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "Khởi chạy bộ bảo vệ màn hình (làm trắng màn hình)"
+
+#: ../src/gnome-screensaver-command.c:68
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "Nếu bộ bảo vệ màn hình có hoạt động thì tắt nó (bỏ trắng màn hình)"
+
+#: ../src/gnome-screensaver-command.c:70
+msgid "Disable running graphical themes while blanked"
+msgstr "Vô hiệu hóa các sắc thái đồ họa đang chạy trong khi bị trắng."
+
+#: ../src/gnome-screensaver-command.c:72
+msgid "Enable running graphical themes while blanked (if applicable)"
+msgstr "Hiệu lực các sắc thái đồ họa đang chạy trong khi bị trắng (nếu thích hợp)"
+
+#: ../src/gnome-screensaver-command.c:74
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "Thức bộ bảo vệ màn hình đang chạy, để mô phỏng hoạt động của người dùng."
+
+#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:53
+#: ../src/gnome-screensaver.c:52
+msgid "Version of this application"
+msgstr "Phiên bản ứng dụng này"
+
+#: ../src/gnome-screensaver-command.c:201
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "Bộ bảo vệ màn hình %s\n"
+
+#: ../src/gnome-screensaver-command.c:201
+msgid "active"
+msgstr "hoạt động"
+
+#: ../src/gnome-screensaver-command.c:201
+msgid "inactive"
+msgstr "không hoạt động"
+
+#: ../src/gnome-screensaver-dialog.c:51
+msgid "Show debugging output"
+msgstr "Hiện dữ liệu xuất gỡ lỗi"
+
+#: ../src/gnome-screensaver-dialog.c:55
+msgid "Show the logout button"
+msgstr "Hiện cái nút đăng xuất"
+
+#: ../src/gnome-screensaver-preferences.c:616
+msgid "Invalid screensaver theme"
+msgstr "Sắc thái bảo vệ màn hình không hợp lệ"
+
+#: ../src/gnome-screensaver-preferences.c:619
+msgid "This file does not appear to be a valid screensaver theme."
+msgstr "Hình như tập tin này không phải là sắc thái bảo vệ màn hình hợp lệ."
+
+#: ../src/gnome-screensaver-preferences.c:736
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d giờ"
+
+#: ../src/gnome-screensaver-preferences.c:739
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d phút"
+
+#: ../src/gnome-screensaver-preferences.c:742
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d giây"
+
+# #-#-#-#-#  vi.po (Totem for Gnome v.2.2)  #-#-#-#-#
+# Variable: don't translate / Biến: đừng dịch
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:748
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:751
+#: ../src/gnome-screensaver-preferences.c:759
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:754
+#: ../src/gnome-screensaver-preferences.c:762
+#: ../src/gnome-screensaver-preferences.c:766
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#. 0 seconds
+#: ../src/gnome-screensaver-preferences.c:769
+msgid "0 seconds"
+msgstr "0 giây"
+
+#: ../src/gnome-screensaver-preferences.c:784
+msgid "Never"
+msgstr "Không bao giờ"
+
+#: ../src/gnome-screensaver-preferences.c:819
+msgid "Could not load the main interface"
+msgstr "Không tải được giao diện chính."
+
+#: ../src/gnome-screensaver-preferences.c:821
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "Hãy kiểm tra và bảo đảm rằng bộ bảo vệ màn hình được cài đặt đúng."
+
+#: ../src/gs-listener-dbus.c:852
+msgid "failed to register with the message bus"
+msgstr "không đăng ký với mạch nối thông điệp được"
+
+#: ../src/gs-listener-dbus.c:861
+msgid "screensaver already running in this session"
+msgstr "đã có bộ bảo vệ màn hình đang chạy trong phiên làm việc này"
+
+#: ../src/gs-lock-plug.c:248
+msgid "Checking password..."
+msgstr "Đang kiểm tra mật khẩu..."
+
+#: ../src/gs-lock-plug.c:297
+#, c-format
+msgid "About %ld second left"
+msgid_plural "About %ld seconds left"
+msgstr[0] "Khoảng %ld giây còn lại"
+
+#: ../src/gs-lock-plug.c:305
+msgid "Time expired!"
+msgstr "Quá thời !"
+
+#: ../src/gs-lock-plug.c:330
+msgid "You have the Caps Lock key on."
+msgstr "Bạn đã bấm phím Khóa Chữ Hoa (CapsLock)"
+
+#: ../src/gs-lock-plug.c:538
+msgid "Password check failed!"
+msgstr "Việc kiểm tra mật khẩu không thành công."
+
+#: ../src/gs-lock-plug.c:561 ../src/gs-lock-plug.c:602
+msgid "_Unlock"
+msgstr "_Bỏ khóa"
+
+#: ../src/gs-lock-plug.c:566 ../src/gs-lock-plug.c:597
+msgid "_Switch User"
+msgstr "_Chuyển đổi người dùng"
+
+#: ../src/gs-lock-plug.c:961
+msgid "Log in as a new user"
+msgstr "Đăng nhập với tư cách người dùng mới"
+
+#: ../src/gs-lock-plug.c:1231
+msgid "Enter a password to unlock the screen"
+msgstr "Nhập vào mật khẩu để bỏ khóa màn hình"
+
+# Type: text
+# Description
+#: ../src/gs-lock-plug.c:1260
+msgid "Name:"
+msgstr "Tên:"
+
+#: ../src/gs-lock-plug.c:1264
+msgid "_Password:"
+msgstr "_Mật khẩu :"
+
+#: ../src/gs-lock-plug.c:1306
+msgid "Switch to another user?"
+msgstr "Chuyển đổi sang người dùng khác không?"
+
+#: ../src/gs-lock-plug.c:1372
+msgid "Log _Out"
+msgstr "Đăng _xuất"
