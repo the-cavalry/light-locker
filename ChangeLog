@@ -1,5 +1,10 @@
 2005-08-29  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-preferences.c: Put label
+	column first so that typeahead find works by default.
+
+2005-08-29  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-preferences.c (preview_set_theme):
 	Don't set sensitivity for keys that aren't writable.  Make
 	locking checkbox insensitive when screensaver is disabled.

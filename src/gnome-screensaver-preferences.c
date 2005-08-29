@@ -58,8 +58,8 @@
 #define KEY_THEMES       KEY_DIR "/themes"
 
 enum {
-        NAME_COLUMN,
         LABEL_COLUMN,
+        NAME_COLUMN,
         N_COLUMNS
 };
 
