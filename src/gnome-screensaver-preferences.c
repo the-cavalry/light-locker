@@ -257,8 +257,18 @@ static void
 preview_set_theme (GtkWidget  *widget,
                    const char *theme)
 {
-        GtkWidget *box   = glade_xml_get_widget (xml, "blank_delay_hbox");
+        GtkWidget *delay_box;
+        GtkWidget *lock_box;
+        gboolean   delay_writable;
+        gboolean   lock_writable;
         GError    *error = NULL;
+
+        delay_box = glade_xml_get_widget (xml, "blank_delay_hbox");
+        lock_box = glade_xml_get_widget (xml, "lock_checkbox");
+
+        /* see if the keys are writable */
+        config_get_blank_delay (&delay_writable);
+        config_get_lock (&lock_writable);
 
         if (job) {
                 gs_job_stop (job);
@@ -267,11 +277,22 @@ preview_set_theme (GtkWidget  *widget,
         preview_clear (widget);
 
         if (theme && strcmp (theme, "__disabled") == 0) {
-                gtk_widget_set_sensitive (box, FALSE);
+                if (delay_writable)
+                        gtk_widget_set_sensitive (delay_box, FALSE);
+                if (lock_writable)
+                        gtk_widget_set_sensitive (lock_box, FALSE);
+                
         } else if (theme && strcmp (theme, "__blank-only") == 0) {
-                gtk_widget_set_sensitive (box, TRUE);
+                if (delay_writable)
+                        gtk_widget_set_sensitive (delay_box, TRUE);
+                if (lock_writable)
+                        gtk_widget_set_sensitive (lock_box, TRUE);
         } else {
-                gtk_widget_set_sensitive (box, TRUE);
+                if (delay_writable)
+                        gtk_widget_set_sensitive (delay_box, TRUE);
+                if (lock_writable)
+                        gtk_widget_set_sensitive (lock_box, TRUE);
+
                 if (! gs_job_set_theme (job, theme, &error)) {
                         if (error) {
                                 g_warning ("Could not set theme: %s", error->message);
