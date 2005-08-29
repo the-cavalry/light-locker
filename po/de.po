@@ -204,7 +204,7 @@ msgstr "Benutzer"
 #: ../src/cut-n-paste/fusa-display.c:135
 msgid "The user currently logged in on this virtual terminal."
 msgstr ""
-"Der zur Zeit auf diesem diesem virtuellen Terminal angemeldete Benutzer."
+"Der zurzeit auf diesem virtuellen Terminal angemeldete Benutzer."
 
 #: ../src/cut-n-paste/fusa-display.c:141
 msgid "Console"
