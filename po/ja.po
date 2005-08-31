@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-19 23:02+0900\n"
-"PO-Revision-Date: 2005-07-19 23:01+0900\n"
+"POT-Creation-Date: 2005-08-31 11:20+0900\n"
+"PO-Revision-Date: 2005-08-31 11:19+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -39,6 +39,10 @@ msgstr "スクリーンセーバーの設定"
 #: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "_Activate after:"
 msgstr "次の時間が経過したらスクリーンセーバーを起動する(_A):"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "_Lock screen when active"
+msgstr "可能ならば画面をロックする(_L)"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
 msgid "How many minutes until the monitor goes black"
@@ -146,6 +150,22 @@ msgstr "モニタをパワー・ダウンする"
 msgid "Whether to power down the monitor."
 msgstr "モニタをパワー・ダウンするかどうかです。"
 
+#: ../savers/cosmos-slideshow.xml.in.h:1
+msgid "Cosmos"
+msgstr "コスモス"
+
+#: ../savers/cosmos-slideshow.xml.in.h:2
+msgid "This displays a slideshow of images of the cosmos."
+msgstr "これはコスモスの画像をスライドショー形式で表示します。"
+
+#: ../savers/personal-slideshow.xml.h:1
+msgid "Pictures folder"
+msgstr "画像フォルダ"
+
+#: ../savers/personal-slideshow.xml.h:2
+msgid "This displays a slideshow of images from your Pictures directory."
+msgstr "これはお気に入りのフォルダにある画像をスライドショー形式で表示します。"
+
 #: ../savers/popsquares.xml.h:1
 msgid "Pop art squares"
 msgstr "ポップな矩形のアート"
@@ -155,6 +175,14 @@ msgid ""
 "This draws a pop-art-ish looking grid of pulsing colors. By Levi Burton."
 msgstr ""
 "四角形が脈打つように見えるポップ・アートを描画します (Levi Burton 氏作)。"
+
+#: ../savers/slideshow.c:63
+msgid "Location to get images from"
+msgstr "画像を格納している場所"
+
+#: ../savers/slideshow.c:63
+msgid "PATH"
+msgstr "PATH"
 
 #: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
 msgid "Manager"
@@ -508,29 +536,29 @@ msgstr "デバッグ出力を表示する"
 msgid "Show the logout button"
 msgstr "ログアウト・ボタンを表示する"
 
-#: ../src/gnome-screensaver-preferences.c:583
+#: ../src/gnome-screensaver-preferences.c:637
 msgid "Invalid screensaver theme"
 msgstr "スクリーンセーバーのテーマが間違っています"
 
-#: ../src/gnome-screensaver-preferences.c:586
+#: ../src/gnome-screensaver-preferences.c:640
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "このファイルはスクリーンセーバーのテーマとして正しくないようです。"
 
-#: ../src/gnome-screensaver-preferences.c:703
+#: ../src/gnome-screensaver-preferences.c:757
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d 時間"
 msgstr[1] "%d 時間"
 
-#: ../src/gnome-screensaver-preferences.c:706
+#: ../src/gnome-screensaver-preferences.c:760
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d 分"
 msgstr[1] "%d 分"
 
-#: ../src/gnome-screensaver-preferences.c:709
+#: ../src/gnome-screensaver-preferences.c:763
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -538,15 +566,15 @@ msgstr[0] "%d 秒"
 msgstr[1] "%d 秒"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:715
+#: ../src/gnome-screensaver-preferences.c:769
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:718
-#: ../src/gnome-screensaver-preferences.c:726
+#: ../src/gnome-screensaver-preferences.c:772
+#: ../src/gnome-screensaver-preferences.c:780
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -554,27 +582,27 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:721
-#: ../src/gnome-screensaver-preferences.c:729
-#: ../src/gnome-screensaver-preferences.c:733
+#: ../src/gnome-screensaver-preferences.c:775
+#: ../src/gnome-screensaver-preferences.c:783
+#: ../src/gnome-screensaver-preferences.c:787
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:736
+#: ../src/gnome-screensaver-preferences.c:790
 msgid "0 seconds"
 msgstr "0 秒"
 
-#: ../src/gnome-screensaver-preferences.c:751
+#: ../src/gnome-screensaver-preferences.c:805
 msgid "Never"
 msgstr "しない"
 
-#: ../src/gnome-screensaver-preferences.c:779
+#: ../src/gnome-screensaver-preferences.c:840
 msgid "Could not load the main interface"
 msgstr "Glade インタフェースを読み込めませんでした"
 
-#: ../src/gnome-screensaver-preferences.c:781
+#: ../src/gnome-screensaver-preferences.c:842
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "gnome-screensaver が正しくインストールされているか確認して下さい。"
 
@@ -621,22 +649,22 @@ msgstr "ユーザの切り替え"
 msgid "Log in as a new user"
 msgstr "別のユーザでログインする"
 
-#: ../src/gs-lock-plug.c:1217
+#: ../src/gs-lock-plug.c:1231
 msgid "Enter a password to unlock the screen"
 msgstr "画面ロックを解除するパスワードを入力して下さい"
 
-#: ../src/gs-lock-plug.c:1246
+#: ../src/gs-lock-plug.c:1260
 msgid "Name:"
 msgstr "名前:"
 
-#: ../src/gs-lock-plug.c:1250
+#: ../src/gs-lock-plug.c:1264
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#: ../src/gs-lock-plug.c:1292
+#: ../src/gs-lock-plug.c:1306
 msgid "Switch to another user?"
 msgstr "別のユーザに切り替えますか？"
 
-#: ../src/gs-lock-plug.c:1358
+#: ../src/gs-lock-plug.c:1372
 msgid "Log _Out"
 msgstr "ログアウト(_O)"
