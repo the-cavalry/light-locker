@@ -1,5 +1,10 @@
 2005-08-31  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (gs_lock_plug_init):
+	Add a bit more padding between labels.
+
+2005-08-31  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (user_displays_changed_cb):
 	Remove spurious g_message.
 

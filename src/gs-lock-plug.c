@@ -1281,7 +1281,7 @@ gs_lock_plug_init (GSLockPlug *plug)
                 label_set_big (GTK_LABEL (widget));
 
                 vbox2 = gtk_vbox_new (FALSE, 0);
-                gtk_box_pack_start (GTK_BOX (vbox), vbox2, TRUE, TRUE, 0);
+                gtk_box_pack_start (GTK_BOX (vbox), vbox2, TRUE, TRUE, 5);
         }
 
         widget = gtk_label_new (_("Enter a password to unlock the screen"));
