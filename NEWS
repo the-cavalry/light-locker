@@ -1,3 +1,26 @@
+==============
+Version 0.0.10
+==============
+
+  gnome-screensaver
+
+        * Fix hang on system resume
+        * Actually use the gconf lock key
+        * Add configure option to look for xscreensaver hacks (Rodrigo)
+
+  gnome-screensaver-preferences
+
+        * Add checkbox to enable/disable locking (Rodrigo)
+        * Make type ahead find work correctly
+        * HIG fixes (Dennis Cranston)
+
+  Translators
+
+        * Adam Weinberger (en_CA)
+        * Eric Maeker (fr)
+        * Takeshi AIHANA (ja)
+        * Clytie Siddall (vi)
+
 =============
 Version 0.0.9
 =============

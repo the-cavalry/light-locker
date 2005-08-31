@@ -1,3 +1,9 @@
+==== 0.0.10 ====
+
+2005-08-31  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 0.0.10 release.
+
 2005-08-29  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-preferences.c: Put label
