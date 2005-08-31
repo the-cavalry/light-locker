@@ -1176,6 +1176,46 @@ get_user_display_name (void)
 }
 
 static void
+label_set_bold (GtkLabel *label)
+{
+        PangoAttrList        *pattrlist;
+        PangoAttribute       *attr;
+
+        pattrlist = pango_attr_list_new ();
+        attr = pango_attr_weight_new (PANGO_WEIGHT_BOLD);
+        attr->start_index = 0;
+        attr->end_index = G_MAXINT;
+        pango_attr_list_insert (pattrlist, attr);
+
+        gtk_label_set_attributes (label, pattrlist);
+
+        pango_attr_list_unref (pattrlist);
+}
+
+static void
+label_set_big (GtkLabel *label)
+{
+        PangoAttrList        *pattrlist;
+        PangoAttribute       *attr;
+
+        pattrlist = pango_attr_list_new ();
+
+        attr = pango_attr_weight_new (PANGO_WEIGHT_BOLD);
+        attr->start_index = 0;
+        attr->end_index = G_MAXINT;
+        pango_attr_list_insert (pattrlist, attr);
+
+        attr = pango_attr_scale_new (1.2);
+        attr->start_index = 0;
+        attr->end_index = G_MAXINT;
+        pango_attr_list_insert (pattrlist, attr);
+
+        gtk_label_set_attributes (label, pattrlist);
+
+        pango_attr_list_unref (pattrlist);
+}
+
+static void
 gs_lock_plug_init (GSLockPlug *plug)
 {
         GtkWidget            *widget;
@@ -1185,8 +1225,6 @@ gs_lock_plug_init (GSLockPlug *plug)
         GtkWidget            *table;
         GtkWidget            *label;
         int                   font_size;
-        PangoAttrList        *pattrlist;
-        PangoAttribute       *attr;
         PangoFontDescription *fontdesc;
 
         plug->priv = GS_LOCK_PLUG_GET_PRIVATE (plug);
@@ -1225,26 +1263,32 @@ gs_lock_plug_init (GSLockPlug *plug)
         gtk_misc_set_alignment (GTK_MISC (widget), 0.5, 0);
         gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
 
-        vbox = gtk_vbox_new (FALSE, 12);
+        vbox = gtk_vbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (hbox), vbox, TRUE, TRUE, 0);
+
+        /* should we make this a gconf preference? */
+        if (1) {
+                char      *str;
+                GtkWidget *vbox2;
+
+                /* translators: %s is a computer hostname */
+                str = g_strdup_printf (_("Welcome to %s"), g_get_host_name ());
+                widget = gtk_label_new (str);
+                gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
+                gtk_misc_set_alignment (GTK_MISC (widget), 0, 0.5);
+                g_free (str);
+
+                label_set_big (GTK_LABEL (widget));
+
+                vbox2 = gtk_vbox_new (FALSE, 0);
+                gtk_box_pack_start (GTK_BOX (vbox), vbox2, TRUE, TRUE, 0);
+        }
 
         widget = gtk_label_new (_("Enter a password to unlock the screen"));
         gtk_misc_set_alignment (GTK_MISC (widget), 0, 0.5);
         gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
 
-        pattrlist = pango_attr_list_new ();
-        attr = pango_attr_weight_new (PANGO_WEIGHT_BOLD);
-        attr->start_index = 0;
-        attr->end_index = G_MAXINT;
-        pango_attr_list_insert (pattrlist, attr);
-
-        font_size = pango_font_description_get_size (widget->style->font_desc);
-        attr = pango_attr_size_new (font_size * 1.2);
-        attr->start_index = 0;
-        attr->end_index = G_MAXINT;
-        pango_attr_list_insert (pattrlist, attr);
-
-        gtk_label_set_attributes (GTK_LABEL (widget), pattrlist);
+        label_set_bold (GTK_LABEL (widget));
 
         hbox = gtk_hbox_new (FALSE, 0);
         gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
@@ -1252,7 +1296,7 @@ gs_lock_plug_init (GSLockPlug *plug)
         widget = gtk_label_new ("");
         gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
 
-        table = gtk_table_new (3, 2, FALSE);
+        table = gtk_table_new (4, 2, FALSE);
         gtk_table_set_row_spacings (GTK_TABLE (table), 6);
         gtk_table_set_col_spacings (GTK_TABLE (table), 6);
         gtk_box_pack_start (GTK_BOX (hbox), table, TRUE, TRUE, 0);
@@ -1307,19 +1351,7 @@ gs_lock_plug_init (GSLockPlug *plug)
         gtk_misc_set_alignment (GTK_MISC (widget), 0, 0.5);
         gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
 
-        pattrlist = pango_attr_list_new ();
-        attr = pango_attr_weight_new (PANGO_WEIGHT_BOLD);
-        attr->start_index = 0;
-        attr->end_index = G_MAXINT;
-        pango_attr_list_insert (pattrlist, attr);
-
-        font_size = pango_font_description_get_size (widget->style->font_desc);
-        attr = pango_attr_size_new (font_size * 1.2);
-        attr->start_index = 0;
-        attr->end_index = G_MAXINT;
-        pango_attr_list_insert (pattrlist, attr);
-
-        gtk_label_set_attributes (GTK_LABEL (widget), pattrlist);
+        label_set_bold (GTK_LABEL (widget));
 
         widget = gtk_scrolled_window_new (NULL, NULL);
         gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (widget),
