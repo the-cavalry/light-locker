@@ -1,5 +1,10 @@
 2005-08-31  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac (GTK_REQUIRED_VERSION): Bump
+	gtk requirement to 2.7.0.
+
+2005-08-31  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (gs_lock_plug_init, label_set_bold) 
 	(label_set_big): Add system name to lock dialog.  Fixes #309140.
 	Also pull out label formatting into separate functions.
