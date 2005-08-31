@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-26 03:48+0000\n"
-"PO-Revision-Date: 2005-08-27 18:41+0930\n"
+"POT-Creation-Date: 2005-08-30 03:42+0000\n"
+"PO-Revision-Date: 2005-08-31 22:20+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -33,16 +33,16 @@ msgid "<b>_Screensaver</b>"
 msgstr "<b>Bộ _bảo vệ màn hình</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
-msgid "Lock screen when active"
-msgstr "Khoá màn hình khi hoạt động"
-
-#: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "Screensaver Preferences"
 msgstr "Tùy thích Bộ bảo vệ màn hình"
 
-#: ../data/gnome-screensaver-preferences.glade.h:5
+#: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "_Activate after:"
 msgstr "_Hoạt hóa sau :"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "_Lock screen when active"
+msgstr "_Khoá màn hình khi hoạt động"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
 msgid "How many minutes until the monitor goes black"
@@ -72,13 +72,17 @@ msgstr "Bao nhiêu phút trước khi màn hình tắt điện."
 msgid ""
 "The number of minutes after blanking the screen before a logout option will "
 "appear"
-msgstr "Bao nhiêu phút giữa việc làm trắng màn hình và việc hiển thị tùy chọn đăng xuất"
+msgstr ""
+"Bao nhiêu phút giữa việc làm trắng màn hình và việc hiển thị tùy chọn đăng "
+"xuất"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
 msgid ""
 "The number of minutes after blanking the screen before a logout option will "
 "appear."
-msgstr "Bao nhiêu phút giữa việc làm trắng màn hình và việc hiển thị tùy chọn đăng xuất."
+msgstr ""
+"Bao nhiêu phút giữa việc làm trắng màn hình và việc hiển thị tùy chọn đăng "
+"xuất."
 
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "The number of minutes after blanking the screen before locking"
@@ -116,7 +120,9 @@ msgstr "Các sắc thái bảo vệ màn hình đã chọn"
 msgid ""
 "This key specifies the selection mode used by the screensaver. Possible "
 "values are \"disabled\", \"blank-only\", \"single\", and \"random\"."
-msgstr "Khóa này xác định chế độ lựa chọn mà bộ bảo vệ màn hình có dùng. Giá trị có thể là:\n"
+msgstr ""
+"Khóa này xác định chế độ lựa chọn mà bộ bảo vệ màn hình có dùng. Giá trị có "
+"thể là:\n"
 " • disabled — bị tắt\n"
 " • blank-only — chỉ làm trắng\n"
 " • single — ảnh đơn\n"
@@ -136,11 +142,13 @@ msgstr "Có nên khóa cũng như làm trắng hay không."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid "Whether to offer the option of logging out after logout_delay"
-msgstr "Có nên hiển thị tùy chọn đăng xuất sau thời gian « logout_delay » hay không"
+msgstr ""
+"Có nên hiển thị tùy chọn đăng xuất sau thời gian « logout_delay » hay không"
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid "Whether to offer the option of logging out after logout_delay."
-msgstr "Có nên hiển thị tùy chọn đăng xuất sau thời gian « logout_delay » hay không."
+msgstr ""
+"Có nên hiển thị tùy chọn đăng xuất sau thời gian « logout_delay » hay không."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid "Whether to power down the monitor"
@@ -176,7 +184,8 @@ msgstr "Vuông nghệ thuật phổ biến"
 #: ../savers/popsquares.xml.h:2
 msgid ""
 "This draws a pop-art-ish looking grid of pulsing colors. By Levi Burton."
-msgstr "Vẽ lưới các màu đập kiểu dáng nghệ thuật phổ biến. Tác giả: Levi Burton."
+msgstr ""
+"Vẽ lưới các màu đập kiểu dáng nghệ thuật phổ biến. Tác giả: Levi Burton."
 
 #: ../savers/slideshow.c:63
 msgid "Location to get images from"
@@ -488,7 +497,9 @@ msgstr "Báo tiến trình bảo vệ màn hình đang chạy phải khóa màn 
 
 #: ../src/gnome-screensaver-command.c:64
 msgid "If the screensaver is active then switch to another graphics demo"
-msgstr "Nếu bộ bảo vệ màn hình có hoạt động thì chuyển đổi sang một chứng minh đồ họa khác."
+msgstr ""
+"Nếu bộ bảo vệ màn hình có hoạt động thì chuyển đổi sang một chứng minh đồ "
+"họa khác."
 
 #: ../src/gnome-screensaver-command.c:66
 msgid "Turn the screensaver on (blank the screen)"
@@ -504,11 +515,13 @@ msgstr "Vô hiệu hóa các sắc thái đồ họa đang chạy trong khi bị
 
 #: ../src/gnome-screensaver-command.c:72
 msgid "Enable running graphical themes while blanked (if applicable)"
-msgstr "Hiệu lực các sắc thái đồ họa đang chạy trong khi bị trắng (nếu thích hợp)"
+msgstr ""
+"Hiệu lực các sắc thái đồ họa đang chạy trong khi bị trắng (nếu thích hợp)"
 
 #: ../src/gnome-screensaver-command.c:74
 msgid "Poke the running screensaver to simulate user activity"
-msgstr "Thức bộ bảo vệ màn hình đang chạy, để mô phỏng hoạt động của người dùng."
+msgstr ""
+"Thức bộ bảo vệ màn hình đang chạy, để mô phỏng hoạt động của người dùng."
 
 #: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:53
 #: ../src/gnome-screensaver.c:52
@@ -536,27 +549,27 @@ msgstr "Hiện dữ liệu xuất gỡ lỗi"
 msgid "Show the logout button"
 msgstr "Hiện cái nút đăng xuất"
 
-#: ../src/gnome-screensaver-preferences.c:616
+#: ../src/gnome-screensaver-preferences.c:637
 msgid "Invalid screensaver theme"
 msgstr "Sắc thái bảo vệ màn hình không hợp lệ"
 
-#: ../src/gnome-screensaver-preferences.c:619
+#: ../src/gnome-screensaver-preferences.c:640
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Hình như tập tin này không phải là sắc thái bảo vệ màn hình hợp lệ."
 
-#: ../src/gnome-screensaver-preferences.c:736
+#: ../src/gnome-screensaver-preferences.c:757
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d giờ"
 
-#: ../src/gnome-screensaver-preferences.c:739
+#: ../src/gnome-screensaver-preferences.c:760
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d phút"
 
-#: ../src/gnome-screensaver-preferences.c:742
+#: ../src/gnome-screensaver-preferences.c:763
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -565,15 +578,15 @@ msgstr[0] "%d giây"
 # #-#-#-#-#  vi.po (Totem for Gnome v.2.2)  #-#-#-#-#
 # Variable: don't translate / Biến: đừng dịch
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:748
+#: ../src/gnome-screensaver-preferences.c:769
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:751
-#: ../src/gnome-screensaver-preferences.c:759
+#: ../src/gnome-screensaver-preferences.c:772
+#: ../src/gnome-screensaver-preferences.c:780
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -581,27 +594,27 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:754
-#: ../src/gnome-screensaver-preferences.c:762
-#: ../src/gnome-screensaver-preferences.c:766
+#: ../src/gnome-screensaver-preferences.c:775
+#: ../src/gnome-screensaver-preferences.c:783
+#: ../src/gnome-screensaver-preferences.c:787
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:769
+#: ../src/gnome-screensaver-preferences.c:790
 msgid "0 seconds"
 msgstr "0 giây"
 
-#: ../src/gnome-screensaver-preferences.c:784
+#: ../src/gnome-screensaver-preferences.c:805
 msgid "Never"
 msgstr "Không bao giờ"
 
-#: ../src/gnome-screensaver-preferences.c:819
+#: ../src/gnome-screensaver-preferences.c:840
 msgid "Could not load the main interface"
 msgstr "Không tải được giao diện chính."
 
-#: ../src/gnome-screensaver-preferences.c:821
+#: ../src/gnome-screensaver-preferences.c:842
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Hãy kiểm tra và bảo đảm rằng bộ bảo vệ màn hình được cài đặt đúng."
 
