@@ -929,7 +929,7 @@ user_displays_changed_cb (FusaUser           *user,
 
         filter_model = gtk_tree_view_get_model (GTK_TREE_VIEW (data->tree));
         model = gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (filter_model));
-        g_message ("Disp changed");
+
         gtk_list_store_set (GTK_LIST_STORE (model), &data->iter,
                             NAME_COLUMN, name,
                             DISPLAY_NAME_COLUMN, fusa_user_get_display_name (user),
