@@ -429,13 +429,18 @@ restart_monitor_progress (GSLockPlug *plug)
 static void
 gs_lock_plug_show (GtkWidget *widget)
 {
+        profile_start ("start", NULL);
 
+        profile_start ("start", "parent");
         if (GTK_WIDGET_CLASS (parent_class)->show)
                 GTK_WIDGET_CLASS (parent_class)->show (widget);
+        profile_end ("end", "parent");
 
         capslock_update (GS_LOCK_PLUG (widget), is_capslock_on ());
 
         restart_monitor_progress (GS_LOCK_PLUG (widget));
+
+        profile_end ("end", NULL);
 }
 
 static void
@@ -1012,6 +1017,8 @@ populate_model (GSLockPlug   *plug,
         int           icon_size = FACE_ICON_SIZE;
         GtkIconTheme *theme;
 
+        profile_start ("start", NULL);
+
         if (gtk_widget_has_screen (plug->priv->user_treeview))
                 theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (plug->priv->user_treeview));
         else
@@ -1033,7 +1040,9 @@ populate_model (GSLockPlug   *plug,
                             -1);
 #endif
 
+        profile_start ("start", "FUSA list users");
         users = fusa_manager_list_users (plug->priv->fusa_manager);
+        profile_end ("end", "FUSA list users");
 
         while (users) {
                 FusaUser           *user;
@@ -1074,6 +1083,8 @@ populate_model (GSLockPlug   *plug,
 
                 users = g_slist_delete_link (users, users);
         }
+
+        profile_end ("end", NULL);
 }
 
 static int
@@ -1327,6 +1338,8 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         /* Page 1 */
 
+        profile_start ("start", "page one");
+
         hbox = gtk_hbox_new (FALSE, 12);
         gtk_notebook_append_page (GTK_NOTEBOOK (plug->priv->notebook), hbox, NULL);
 
@@ -1406,7 +1419,11 @@ gs_lock_plug_init (GSLockPlug *plug)
         gtk_label_set_mnemonic_widget (GTK_LABEL (password_label),
                                        plug->priv->password_entry);
 
+        profile_end ("end", "page one");
+
         /* Page 2 */
+
+        profile_start ("start", "page two");
 
         hbox = gtk_hbox_new (FALSE, 12);
         gtk_notebook_append_page (GTK_NOTEBOOK (plug->priv->notebook), hbox, NULL);
@@ -1438,6 +1455,8 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         setup_treeview (plug);
 
+        profile_end ("end", "page two");
+
         /* Progress bar */
 
         plug->priv->progress_bar = gtk_progress_bar_new ();
@@ -1455,6 +1474,8 @@ gs_lock_plug_init (GSLockPlug *plug)
         pango_font_description_free (fontdesc);
 
         /* Buttons */
+
+        profile_start ("start", "buttons");
 
         plug->priv->switch_button = gtk_button_new ();
         gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->switch_button), FALSE);
@@ -1494,6 +1515,8 @@ gs_lock_plug_init (GSLockPlug *plug)
                                         GS_LOCK_PLUG_RESPONSE_OK);
 
         gs_lock_plug_set_default_response (plug, GS_LOCK_PLUG_RESPONSE_OK);
+
+        profile_end ("end", "buttons");
 
         gtk_widget_show_all (plug->vbox);
 
