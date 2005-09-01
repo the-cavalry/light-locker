@@ -1,5 +1,13 @@
 2005-09-01  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (populate_model): Create
+	fusa-manager only right before it is required.
+	(setup_treeview_idle, gs_lock_plug_init):
+	Create and populate user list in an idle so
+	that it doesn't delay startup.
+
+2005-09-01  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (gs_lock_plug_show, populate_model) 
 	(gs_lock_plug_init): Added more timing points.
 

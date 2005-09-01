@@ -1041,6 +1041,9 @@ populate_model (GSLockPlug   *plug,
 #endif
 
         profile_start ("start", "FUSA list users");
+        if (! plug->priv->fusa_manager)
+                plug->priv->fusa_manager = fusa_manager_ref_default ();
+
         users = fusa_manager_list_users (plug->priv->fusa_manager);
         profile_end ("end", "FUSA list users");
 
@@ -1239,6 +1242,14 @@ setup_treeview (GSLockPlug *plug)
         profile_end ("end", NULL);
 }
 
+static gboolean
+setup_treeview_idle (GSLockPlug *plug)
+{
+        setup_treeview (plug);
+
+        return FALSE;
+}
+
 static const char *
 get_user_display_name (void)
 {
@@ -1309,9 +1320,7 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         plug->priv = GS_LOCK_PLUG_GET_PRIVATE (plug);
 
-        profile_start ("start", "FUSA new");
-        plug->priv->fusa_manager = fusa_manager_ref_default ();
-        profile_end ("end", "FUSA new end");
+        plug->priv->fusa_manager = NULL;
 
         /* Dialog emulation */
 
@@ -1453,7 +1462,7 @@ gs_lock_plug_init (GSLockPlug *plug)
         gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (plug->priv->user_treeview), FALSE);
         gtk_container_add (GTK_CONTAINER (widget), plug->priv->user_treeview);
 
-        setup_treeview (plug);
+        g_idle_add ((GSourceFunc)setup_treeview_idle, plug);
 
         profile_end ("end", "page two");
 
@@ -1578,7 +1587,8 @@ gs_lock_plug_finalize (GObject *object)
 
         g_return_if_fail (plug->priv != NULL);
 
-        g_object_unref (plug->priv->fusa_manager);
+        if (plug->priv->fusa_manager)
+                g_object_unref (plug->priv->fusa_manager);
 
         if (plug->priv->password_check_idle_id > 0) {
                 g_source_remove (plug->priv->password_check_idle_id);
