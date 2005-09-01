@@ -1,3 +1,9 @@
+2005-09-01  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c: 
+	* src/gnome-screensaver-dialog.c:
+	Added a very basic timing/profiling framework.
+
 2005-08-31  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (set_status_text, gs_lock_plug_response) 

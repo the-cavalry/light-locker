@@ -40,6 +40,58 @@
 
 #include "fusa-manager.h"
 
+/* Profiling stuff adapted from gtkfilechooserdefault */
+
+#undef PROFILE_LOCK_DIALOG
+#ifdef PROFILE_LOCK_DIALOG
+
+#define PROFILE_INDENT 4
+static int profile_indent;
+
+static void
+profile_add_indent (int indent)
+{
+        profile_indent += indent;
+        if (profile_indent < 0)
+                g_error ("You screwed up your indentation");
+}
+
+static void
+_gs_lock_plug_profile_log (const char *func,
+                           int         indent,
+                           const char *msg1,
+                           const char *msg2)
+{
+        char    *str;
+        GTimeVal now;
+
+        if (indent < 0)
+                profile_add_indent (indent);
+
+        g_get_current_time (&now);
+
+        if (profile_indent == 0)
+                str = g_strdup_printf ("MARK %ld.%6.6ld: %s: %s %s %s", now.tv_sec, now.tv_usec, G_STRLOC, func, msg1 ? msg1 : "", msg2 ? msg2 : "");
+        else
+                str = g_strdup_printf ("MARK %ld.%6.6ld: %s: %*c %s %s %s", now.tv_sec, now.tv_usec, G_STRLOC, profile_indent - 1, ' ', func, msg1 ? msg1 : "", msg2 ? msg2 : "");
+
+        fprintf (stderr, "%s\n", str);
+        g_free (str);
+
+        if (indent > 0)
+                profile_add_indent (indent);
+}
+
+#define profile_start(x, y) _gs_lock_plug_profile_log (G_STRFUNC, PROFILE_INDENT, x, y)
+#define profile_end(x, y)   _gs_lock_plug_profile_log (G_STRFUNC, -PROFILE_INDENT, x, y)
+#define profile_msg(x, y)   _gs_lock_plug_profile_log (NULL, 0, x, y)
+#else
+#define profile_start(x, y)
+#define profile_end(x, y)
+#define profile_msg(x, y)
+#endif
+
+
 enum { 
         AUTH_PAGE = 0,
         SWITCH_PAGE
@@ -1126,6 +1178,8 @@ setup_treeview (GSLockPlug *plug)
         GtkCellRenderer   *renderer;
         GtkTreeModel      *filter;
 
+        profile_start ("start", NULL);
+
         store = gtk_list_store_new (N_COLUMNS,
                                     G_TYPE_STRING,
                                     G_TYPE_STRING,
@@ -1171,6 +1225,7 @@ setup_treeview (GSLockPlug *plug)
         gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store),
                                               0,
                                               GTK_SORT_ASCENDING);
+        profile_end ("end", NULL);
 }
 
 static const char *
@@ -1239,9 +1294,13 @@ gs_lock_plug_init (GSLockPlug *plug)
         int                   font_size;
         PangoFontDescription *fontdesc;
 
+        profile_start ("start", NULL);
+
         plug->priv = GS_LOCK_PLUG_GET_PRIVATE (plug);
 
+        profile_start ("start", "FUSA new");
         plug->priv->fusa_manager = fusa_manager_ref_default ();
+        profile_end ("end", "FUSA new end");
 
         /* Dialog emulation */
 
@@ -1480,6 +1539,8 @@ gs_lock_plug_init (GSLockPlug *plug)
                                   G_CALLBACK (button_mnemonic_activate_click),
                                   plug->priv->ok_button);
         }
+
+        profile_end ("end", NULL);
 }
 
 static void

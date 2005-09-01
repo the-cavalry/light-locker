@@ -41,6 +41,59 @@
 #include "passwd.h"
 #include "setuid.h"
 
+
+/* Profiling stuff adapted from gtkfilechooserdefault */
+
+#undef PROFILE_LOCK_DIALOG
+#ifdef PROFILE_LOCK_DIALOG
+
+#define PROFILE_INDENT 4
+static int profile_indent;
+
+static void
+profile_add_indent (int indent)
+{
+        profile_indent += indent;
+        if (profile_indent < 0)
+                g_error ("You screwed up your indentation");
+}
+
+static void
+_gs_lock_plug_profile_log (const char *func,
+                           int         indent,
+                           const char *msg1,
+                           const char *msg2)
+{
+        char    *str;
+        GTimeVal now;
+
+        if (indent < 0)
+                profile_add_indent (indent);
+
+        g_get_current_time (&now);
+
+        if (profile_indent == 0)
+                str = g_strdup_printf ("MARK %ld.%6.6ld: %s: %s %s %s", now.tv_sec, now.tv_usec, G_STRLOC, func, msg1 ? msg1 : "", msg2 ? msg2 : "");
+        else
+                str = g_strdup_printf ("MARK %ld.%6.6ld: %s: %*c %s %s %s", now.tv_sec, now.tv_usec, G_STRLOC, profile_indent - 1, ' ', func, msg1 ? msg1 : "", msg2 ? msg2 : "");
+
+        fprintf (stderr, "%s\n", str);
+        g_free (str);
+
+        if (indent > 0)
+                profile_add_indent (indent);
+}
+
+#define profile_start(x, y) _gs_lock_plug_profile_log (G_STRFUNC, PROFILE_INDENT, x, y)
+#define profile_end(x, y)   _gs_lock_plug_profile_log (G_STRFUNC, -PROFILE_INDENT, x, y)
+#define profile_msg(x, y)   _gs_lock_plug_profile_log (NULL, 0, x, y)
+#else
+#define profile_start(x, y)
+#define profile_end(x, y)
+#define profile_msg(x, y)
+#endif
+
+
 static gboolean verbose       = FALSE;
 static gboolean show_version  = FALSE;
 static gboolean enable_logout = FALSE;
@@ -72,8 +125,12 @@ get_id_string (GtkWidget *widget)
 static gboolean
 print_id (GtkWidget *widget)
 {
+        profile_start ("start", NULL);
+
         printf ("WINDOW ID=%s\n", get_id_string (widget));
         fflush (stdout);
+
+        profile_end ("end", NULL);
 
         return FALSE;
 }
@@ -121,6 +178,8 @@ popup_dialog_idle (void)
 {
         GtkWidget *widget;
 
+        profile_start ("start", NULL);
+
         widget = gs_lock_plug_new ();
 
         if (enable_logout) {
@@ -136,6 +195,8 @@ popup_dialog_idle (void)
         gtk_widget_show (widget);
 
         print_id (widget);
+
+        profile_end ("end", NULL);
 
         return FALSE;
 }
@@ -159,6 +220,8 @@ privileged_initialization (int     *argc,
         char    *orig_uid;
         char    *uid_message;
 
+        profile_start ("start", NULL);
+
 #ifndef NO_LOCKING
         /* before hack_uid () for proper permissions */
         lock_priv_init (*argc, argv, verbose);
@@ -176,6 +239,8 @@ privileged_initialization (int     *argc,
         g_free (orig_uid);
         g_free (uid_message);
 
+        profile_end ("end", NULL);
+
         return ret;
 }
 
@@ -192,6 +257,8 @@ lock_initialization (int     *argc,
                      char   **nolock_reason,
                      gboolean verbose)
 {
+        profile_start ("start", NULL);
+
         if (nolock_reason)
                 *nolock_reason = NULL;
 
@@ -243,6 +310,8 @@ lock_initialization (int     *argc,
 
 #endif /* NO_LOCKING */
 
+        profile_end ("end", NULL);
+
         return TRUE;
 }
 
@@ -268,6 +337,8 @@ main (int    argc,
                 response_lock_init_failed ();
                 exit (1);
         }
+
+        profile_start ("start", NULL);
 
         if (! privileged_initialization (&argc, argv, verbose)) {
                 response_lock_init_failed ();
@@ -305,6 +376,8 @@ main (int    argc,
         g_idle_add ((GSourceFunc)popup_dialog_idle, NULL);
 
         gtk_main ();
+
+        profile_end ("end", NULL);
 
 	return 0;
 }
