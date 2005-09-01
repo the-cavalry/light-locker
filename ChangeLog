@@ -1,5 +1,12 @@
 2005-08-31  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (set_status_text, gs_lock_plug_response) 
+	(monitor_progress, password_check_idle_cb, set_progress_position):
+	Abstract the usage of the progress bar in case we
+	want to replace it or remove it.
+
+2005-08-31  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (gs_lock_plug_init):
 	Add a bit more padding between labels.
 

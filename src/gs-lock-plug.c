@@ -203,6 +203,23 @@ switch_user_response (GSLockPlug *plug)
 }
 
 static void
+set_status_text (GSLockPlug *plug,
+                 const char *text)
+{
+        gtk_progress_bar_set_text (GTK_PROGRESS_BAR (plug->priv->progress_bar), text);
+}
+
+static void
+set_progress_position (GSLockPlug *plug,
+                       gdouble     fraction,
+                       const char *text)
+{
+        gtk_progress_bar_set_fraction  (GTK_PROGRESS_BAR (plug->priv->progress_bar), fraction);
+        gtk_progress_bar_set_text (GTK_PROGRESS_BAR (plug->priv->progress_bar), text);
+
+}
+
+static void
 gs_lock_plug_response (GSLockPlug *plug,
                        gint        response_id)
 {
@@ -240,12 +257,11 @@ gs_lock_plug_response (GSLockPlug *plug,
         if (response_id == GS_LOCK_PLUG_RESPONSE_OK) {
                 gint current_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (plug->priv->notebook));
 
-                gtk_progress_bar_set_fraction  (GTK_PROGRESS_BAR (plug->priv->progress_bar), 0);
-                gtk_progress_bar_set_text (GTK_PROGRESS_BAR (plug->priv->progress_bar), " ");
+                set_progress_position (plug, 0, " ");
 
                 if (current_page == 0) {
                         gtk_widget_set_sensitive (plug->priv->password_entry, FALSE);
-                        gtk_progress_bar_set_text (GTK_PROGRESS_BAR (plug->priv->progress_bar), _("Checking password..."));
+                        set_status_text (plug, _("Checking password..."));
 
                         plug->priv->password_check_idle_id = g_idle_add ((GSourceFunc)password_check_idle_cb,
                                                                          plug);
@@ -290,22 +306,18 @@ monitor_progress (GSLockPlug *plug)
         remaining = plug->priv->timeout - elapsed;
 
         fraction = CLAMP ((gdouble)remaining / plug->priv->timeout, 0, 1);
-
-        gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (plug->priv->progress_bar), fraction);
-
         secs = remaining / 1000 + 1;
         message = g_strdup_printf (ngettext ("About %ld second left",
                                              "About %ld seconds left", secs),
                                    secs);
-        gtk_progress_bar_set_text (GTK_PROGRESS_BAR (plug->priv->progress_bar),
-                                   message);
+
+        set_progress_position (plug, fraction, message);
         g_free (message);
 
         if ((remaining <= 0) || (remaining > plug->priv->timeout)) {
                 message = g_strdup (_("Time expired!"));
                 gtk_widget_set_sensitive (plug->priv->password_entry, FALSE);
-                gtk_progress_bar_set_text (GTK_PROGRESS_BAR (plug->priv->progress_bar),
-                                           message);
+                set_status_text (plug, message);
                 g_free (message);
 
                 if (plug->priv->response_idle_id == 0)
@@ -535,7 +547,7 @@ password_check_idle_cb (GSLockPlug *plug)
                                                                       (GSourceFunc)response_idle_cb,
                                                                       plug);
 
-                gtk_progress_bar_set_text (GTK_PROGRESS_BAR (plug->priv->progress_bar), _("Password check failed!"));
+                set_status_text (plug, _("Password check failed!"));
         }
 
         memset (local_password, '\b', strlen (local_password));
@@ -1370,10 +1382,9 @@ gs_lock_plug_init (GSLockPlug *plug)
         /* Progress bar */
 
         plug->priv->progress_bar = gtk_progress_bar_new ();
-        gtk_progress_bar_set_fraction  (GTK_PROGRESS_BAR (plug->priv->progress_bar), 1.0);
         gtk_progress_bar_set_orientation (GTK_PROGRESS_BAR (plug->priv->progress_bar),
                                           GTK_PROGRESS_RIGHT_TO_LEFT);
-        gtk_progress_bar_set_text (GTK_PROGRESS_BAR (plug->priv->progress_bar), " ");
+        set_progress_position (plug, 1.0, " ");
 
         gtk_box_pack_start (GTK_BOX (plug->vbox), plug->priv->progress_bar,
                             FALSE, FALSE, 0);
