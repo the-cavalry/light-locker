@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-30 03:42+0000\n"
-"PO-Revision-Date: 2005-08-31 22:20+0930\n"
+"POT-Creation-Date: 2005-09-02 03:42+0000\n"
+"PO-Revision-Date: 2005-09-02 19:52+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -523,7 +523,7 @@ msgid "Poke the running screensaver to simulate user activity"
 msgstr ""
 "Thức bộ bảo vệ màn hình đang chạy, để mô phỏng hoạt động của người dùng."
 
-#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:53
+#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:106
 #: ../src/gnome-screensaver.c:52
 msgid "Version of this application"
 msgstr "Phiên bản ứng dụng này"
@@ -541,11 +541,11 @@ msgstr "hoạt động"
 msgid "inactive"
 msgstr "không hoạt động"
 
-#: ../src/gnome-screensaver-dialog.c:51
+#: ../src/gnome-screensaver-dialog.c:104
 msgid "Show debugging output"
 msgstr "Hiện dữ liệu xuất gỡ lỗi"
 
-#: ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver-dialog.c:108
 msgid "Show the logout button"
 msgstr "Hiện cái nút đăng xuất"
 
@@ -626,58 +626,64 @@ msgstr "không đăng ký với mạch nối thông điệp được"
 msgid "screensaver already running in this session"
 msgstr "đã có bộ bảo vệ màn hình đang chạy trong phiên làm việc này"
 
-#: ../src/gs-lock-plug.c:248
+#: ../src/gs-lock-plug.c:316
 msgid "Checking password..."
 msgstr "Đang kiểm tra mật khẩu..."
 
-#: ../src/gs-lock-plug.c:297
+#: ../src/gs-lock-plug.c:362
 #, c-format
 msgid "About %ld second left"
 msgid_plural "About %ld seconds left"
 msgstr[0] "Khoảng %ld giây còn lại"
 
-#: ../src/gs-lock-plug.c:305
+#: ../src/gs-lock-plug.c:370
 msgid "Time expired!"
 msgstr "Quá thời !"
 
-#: ../src/gs-lock-plug.c:330
+#: ../src/gs-lock-plug.c:394
 msgid "You have the Caps Lock key on."
 msgstr "Bạn đã bấm phím Khóa Chữ Hoa (CapsLock)"
 
-#: ../src/gs-lock-plug.c:538
+#: ../src/gs-lock-plug.c:607
 msgid "Password check failed!"
 msgstr "Việc kiểm tra mật khẩu không thành công."
 
-#: ../src/gs-lock-plug.c:561 ../src/gs-lock-plug.c:602
+#: ../src/gs-lock-plug.c:630 ../src/gs-lock-plug.c:671
 msgid "_Unlock"
 msgstr "_Bỏ khóa"
 
-#: ../src/gs-lock-plug.c:566 ../src/gs-lock-plug.c:597
+#: ../src/gs-lock-plug.c:635 ../src/gs-lock-plug.c:666
 msgid "_Switch User"
 msgstr "_Chuyển đổi người dùng"
 
-#: ../src/gs-lock-plug.c:961
+#: ../src/gs-lock-plug.c:1032
 msgid "Log in as a new user"
 msgstr "Đăng nhập với tư cách người dùng mới"
 
-#: ../src/gs-lock-plug.c:1231
+#. translators: %s is a computer hostname
+#: ../src/gs-lock-plug.c:1368
+#, c-format
+msgid "Welcome to %s"
+msgstr "Chúc mừng bạn dùng %s"
+
+#: ../src/gs-lock-plug.c:1380
 msgid "Enter a password to unlock the screen"
 msgstr "Nhập vào mật khẩu để bỏ khóa màn hình"
 
 # Type: text
 # Description
-#: ../src/gs-lock-plug.c:1260
+#: ../src/gs-lock-plug.c:1397
 msgid "Name:"
 msgstr "Tên:"
 
-#: ../src/gs-lock-plug.c:1264
+#: ../src/gs-lock-plug.c:1401
 msgid "_Password:"
 msgstr "_Mật khẩu :"
 
-#: ../src/gs-lock-plug.c:1306
+#: ../src/gs-lock-plug.c:1447
 msgid "Switch to another user?"
 msgstr "Chuyển đổi sang người dùng khác không?"
 
-#: ../src/gs-lock-plug.c:1372
+#: ../src/gs-lock-plug.c:1504
 msgid "Log _Out"
 msgstr "Đăng _xuất"
