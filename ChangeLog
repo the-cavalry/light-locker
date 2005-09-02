@@ -1,5 +1,10 @@
 2005-09-02  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/popsquares.c (get_window):
+	Clear screen at the start.
+
+2005-09-02  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-monitor.c (prefs_changed_cb): 
 	* src/gs-prefs.c (key_changed_cb):
 	Support changing the cycle timeout value.

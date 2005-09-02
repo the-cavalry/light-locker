@@ -381,6 +381,8 @@ get_window (void)
                 window = new_window ();
         }
 
+        gdk_window_clear (window);
+
         gdk_window_show (window);
 
         return window;
