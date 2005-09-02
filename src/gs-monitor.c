@@ -153,6 +153,7 @@ prefs_changed_cb (GSPrefs   *prefs,
         gs_manager_set_lock_timeout (monitor->priv->manager, monitor->priv->prefs->lock_timeout);
         gs_manager_set_logout_enabled (monitor->priv->manager, monitor->priv->prefs->logout_enabled);
         gs_manager_set_logout_timeout (monitor->priv->manager, monitor->priv->prefs->logout_timeout);
+        gs_manager_set_cycle_timeout (monitor->priv->manager, monitor->priv->prefs->cycle);
         gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
         gs_manager_set_themes (monitor->priv->manager, monitor->priv->prefs->themes);
 

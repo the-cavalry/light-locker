@@ -285,6 +285,12 @@ key_changed_cb (GConfClient *client,
                 enabled = gconf_value_get_bool (value);
                 prefs->lock = enabled;
                 changed = TRUE;
+        } else if (strcmp (key, KEY_CYCLE_DELAY) == 0) {
+                int delay;
+
+                delay = gconf_value_get_int (value);
+                prefs->cycle = delay * 60000;
+                changed = TRUE;
         } else if (strcmp (key, KEY_DPMS_ENABLED) == 0) {
                 gboolean enabled;
 
