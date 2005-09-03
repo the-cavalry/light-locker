@@ -1,3 +1,10 @@
+2005-09-03  Rodrigo Moya <rodrigo@novell.com>
+
+	* src/gnome-screensaver-preferences.c (config_get_theme,
+	config_set_theme, preview_set_theme, compare_theme): support 'random'
+	screensaver.
+	(populate_model): add random screensaver to the list.
+
 2005-09-02  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/popsquares.c (get_window):

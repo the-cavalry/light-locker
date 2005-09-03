@@ -18,6 +18,7 @@
  * 02111-1307, USA.
  *
  * Authors: William Jon McCann <mccann@jhu.edu>
+ *          Rodrigo Moya <rodrigo@novell.com>
  *
  */
 
@@ -156,6 +157,8 @@ config_get_theme (gboolean *is_writable)
                 name = g_strdup ("__blank-only");
         } else if (mode == GS_MODE_DONT_BLANK) {
                 name = g_strdup ("__disabled");
+        } else if (mode == GS_MODE_RANDOM) {
+                name = g_strdup ("__random");
         } else {
                 GSList *list;
                 list = gconf_client_get_list (client,
@@ -191,6 +194,11 @@ config_set_theme (const char *name)
                 mode = GS_MODE_DONT_BLANK;
         } else if (name && strcmp (name, "__blank-only") == 0) {
                 mode = GS_MODE_BLANK_ONLY;
+        } else if (name && strcmp (name, "__random") == 0) {
+                mode = GS_MODE_RANDOM;
+
+                /* set the themes key to contain all available screensavers */
+                list = gs_job_get_theme_list (job);
         } else {
                 mode = GS_MODE_SINGLE;
                 list = g_slist_append (list, g_strdup (name));
@@ -205,7 +213,7 @@ config_set_theme (const char *name)
                                list,
                                NULL);
 
-        g_slist_foreach (list, (GFunc)g_free, NULL);
+        g_slist_foreach (list, (GFunc) g_free, NULL);
         g_slist_free (list);
 
         g_object_unref (client);
@@ -282,11 +290,34 @@ preview_set_theme (GtkWidget  *widget,
                 if (lock_writable)
                         gtk_widget_set_sensitive (lock_box, FALSE);
                 
-        } else if (theme && strcmp (theme, "__blank-only") == 0) {
+        } else if ((theme && strcmp (theme, "__blank-only") == 0)) {
                 if (delay_writable)
                         gtk_widget_set_sensitive (delay_box, TRUE);
                 if (lock_writable)
                         gtk_widget_set_sensitive (lock_box, TRUE);
+        } else if (theme && strcmp (theme, "__random") == 0) {
+                GSList *themes;
+
+                if (delay_writable)
+                        gtk_widget_set_sensitive (delay_box, TRUE);
+                if (lock_writable)
+                        gtk_widget_set_sensitive (lock_box, TRUE);
+
+                themes = gs_job_get_theme_list (job);
+                if (themes) {
+                        if (!gs_job_set_theme (job, (const char *) themes->data, &error)) {
+                                if (error) {
+                                        g_warning ("Could not set theme: %s", error->message);
+                                        g_error_free (error);
+                                }
+                                return;
+                        }
+                        g_slist_foreach (themes, (GFunc) g_free, NULL);
+                        g_slist_free (themes);
+
+                        gs_job_start (job);
+                }
+                
         } else {
                 if (delay_writable)
                         gtk_widget_set_sensitive (delay_box, TRUE);
@@ -342,6 +373,12 @@ populate_model (GtkTreeStore *store)
         gtk_tree_store_set (store, &iter,
                             LABEL_COLUMN, "Blank screen",
                             NAME_COLUMN, "__blank-only",
+                            -1);
+
+        gtk_tree_store_append (store, &iter, NULL);
+        gtk_tree_store_set (store, &iter,
+                            LABEL_COLUMN, "Random",
+                            NAME_COLUMN, "__random",
                             -1);
 
         gtk_tree_store_append (store, &iter, NULL);
@@ -438,6 +475,10 @@ compare_theme  (GtkTreeModel *model,
         else if (strcmp (name_a, "__blank-only") == 0)
                 return -1;
         else if (strcmp (name_b, "__blank-only") == 0)
+                return 1;
+        else if (strcmp (name_a, "__random") == 0)
+                return -1;
+        else if (strcmp (name_b, "__random") == 0)
                 return 1;
         else if (strcmp (name_a, "__separator") == 0)
                 return -1;
@@ -825,8 +866,10 @@ init_capplet (void)
         GtkWidget *lock_checkbox;
         char      *glade_file;
         char      *path;
+        char      *string;
         gdouble    blank_delay;
         gboolean   is_writable;
+        GConfClient *client;
 
         glade_file = g_build_filename (GLADEDIR, GLADE_XML_FILE, NULL);
         xml = glade_xml_new (glade_file, NULL, PACKAGE);
@@ -888,6 +931,27 @@ init_capplet (void)
                           G_CALLBACK (drag_data_received_cb), NULL);
 
         gtk_widget_show_all (dialog);
+
+        /* Update list of themes if using random screensaver */
+        client = gconf_client_get_default ();
+        string = gconf_client_get_string (client, KEY_MODE, NULL);
+        if (string) {
+                int mode;
+                GSList *list;
+
+                gconf_string_to_enum (mode_enum_map, string, &mode);
+                g_free (string);
+
+                if (mode == GS_MODE_RANDOM) {
+                        list = gs_job_get_theme_list (job);
+                        gconf_client_set_list (client, KEY_THEMES, GCONF_VALUE_STRING, list, NULL);
+
+                        g_slist_foreach (list, (GFunc) g_free, NULL);
+                        g_slist_free (list);
+                }
+        }
+
+        g_object_unref (client);
 
         preview_clear (preview);
         gs_job_set_widget (job, preview);
