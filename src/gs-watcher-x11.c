@@ -235,9 +235,9 @@ gs_watcher_class_init (GSWatcherClass *klass)
                               G_STRUCT_OFFSET (GSWatcherClass, idle),
                               NULL,
                               NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
+                              g_cclosure_marshal_BOOLEAN__FLAGS,
+                              G_TYPE_BOOLEAN,
+                              1, G_TYPE_INT);
 
         g_object_class_install_property (object_class,
                                          PROP_TIMEOUT,
@@ -833,8 +833,17 @@ maybe_send_signal (GSWatcher *watcher)
                 do_signal = FALSE;
         }
 
-        if (do_signal)
-                g_signal_emit (watcher, signals [IDLE], 0);
+        if (do_signal) {
+		gboolean res = FALSE;
+
+                g_signal_emit (watcher, signals [IDLE], 0, 0, &res);
+
+                /* if the event wasn't handled then schedule another timer */
+                if (! res) {
+                        if (polling_for_idleness)
+                                schedule_wakeup_event (watcher, watcher->priv->timeout, watcher->priv->debug);
+                }
+        }
 }
 
 static gboolean

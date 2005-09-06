@@ -163,7 +163,7 @@ gs_listener_send_signal_throttle_enabled_changed (GSListener *listener)
         dbus_message_unref (message);
 }
 
-#if 0
+#ifdef DEBUG_INHIBITORS
 static void
 list_inhibitors (gpointer key,
                  gpointer value,
@@ -182,7 +182,9 @@ listener_check_activation (GSListener *listener)
         if (listener->priv->inhibitors)
                 n_inhibitors = g_hash_table_size (listener->priv->inhibitors);
 
-        /*g_hash_table_foreach (listener->priv->inhibitors, list_inhibitors, NULL);*/
+#ifdef DEBUG_INHIBITORS
+        g_hash_table_foreach (listener->priv->inhibitors, list_inhibitors, NULL);
+#endif
 
         if (listener->priv->idle
             && n_inhibitors == 0) {
@@ -212,17 +214,32 @@ gs_listener_set_active (GSListener *listener,
         }
 }
 
-void
+gboolean
 gs_listener_set_idle (GSListener *listener,
                       gboolean    idle)
 {
-        g_return_if_fail (GS_IS_LISTENER (listener));
+        g_return_val_if_fail (GS_IS_LISTENER (listener), FALSE);
 
-        if (listener->priv->idle != idle) {
-                listener->priv->idle = idle;
+        if (listener->priv->idle == idle)
+                return FALSE;
 
-                listener_check_activation (listener);
+        if (idle) {
+                guint n_inhibitors = 0;
+
+                /* if we aren't inhibited then set idle */
+                if (listener->priv->inhibitors)
+                        n_inhibitors = g_hash_table_size (listener->priv->inhibitors);
+
+                if (n_inhibitors != 0) {
+                        return FALSE;
+                }
         }
+
+        listener->priv->idle = idle;
+
+        listener_check_activation (listener);
+
+        return TRUE;
 }
 
 void

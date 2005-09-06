@@ -86,11 +86,16 @@ manager_unblanked_cb (GSManager *manager,
         gs_listener_set_active (monitor->priv->listener, FALSE);
 }
 
-static void
+static gboolean
 watcher_idle_cb (GSWatcher *watcher,
+                 gint       flags,
                  GSMonitor *monitor)
 {
-        gs_listener_set_idle (monitor->priv->listener, TRUE);
+        gboolean res;
+
+        res = gs_listener_set_idle (monitor->priv->listener, TRUE);
+
+        return res;
 }
 
 static void

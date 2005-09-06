@@ -1,3 +1,16 @@
+2005-09-06  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-watcher-x11.[ch] (gs_watcher_class_init, maybe_send_signal): 
+	Use a boolean return value for idle signal to check
+	if the signal was handled.
+	
+	* src/gs-monitor.c (watcher_idle_cb): Use new boolean
+	watcher idle signal.
+
+	* src/gs-listener-dbus.[ch] (gs_listener_set_idle):
+	Make function return false if idle can't be set
+	because it is inhibited.
+
 2005-09-05  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.
