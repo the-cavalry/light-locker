@@ -1,3 +1,9 @@
+==== 0.0.12 ====
+
+2005-09-07  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 0.0.12 release.
+
 2005-09-07  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-job.c (gs_job_finalize): Only destroy hash

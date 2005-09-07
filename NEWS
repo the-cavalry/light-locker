@@ -1,4 +1,17 @@
 ==============
+Version 0.0.12
+==============
+
+  gnome-screensaver
+
+        * Fix crasher caused by destroying NULL hash table
+        * Don't activate after last inhibitor is removed
+
+  Translators
+
+        * Adam Weinberger (en_CA)
+
+==============
 Version 0.0.11
 ==============
 
