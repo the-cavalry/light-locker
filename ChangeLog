@@ -1,3 +1,10 @@
+2005-09-07  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-job.c (gs_job_finalize): Only destroy hash
+	if not NULL.  Fixes #315422.
+	(gs_job_set_theme, gs_job_start): Don't warn on NULL themes
+	since they are interpreted as no-op jobs.
+
 2005-09-06  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-watcher-x11.[ch] (gs_watcher_class_init, maybe_send_signal): 

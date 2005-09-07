@@ -636,7 +636,8 @@ gs_job_finalize (GObject *object)
         g_free (job->priv->search_path);
         job->priv->search_path = NULL;
 
-        g_hash_table_destroy (job->priv->all_themes);
+        if (job->priv->all_themes)
+                g_hash_table_destroy (job->priv->all_themes);
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -707,26 +708,31 @@ gs_job_set_theme  (GSJob      *job,
         GSJobThemeInfo *info;
 
         g_return_val_if_fail (GS_IS_JOB (job), FALSE);
-        g_return_val_if_fail (theme != NULL, FALSE);
 
-        info = gs_job_lookup_theme_info (job, theme);
+        /* NULL theme is interpreted as a no-op job */
 
-        if (! info) {
-                /* FIXME: set error */
-                g_warning ("Could not lookup info for theme: %s", theme);
-                return FALSE;
+        if (theme) {
+                info = gs_job_lookup_theme_info (job, theme);
+
+                if (! info) {
+                        /* FIXME: set error */
+                        g_warning ("Could not lookup info for theme: %s", theme);
+                        return FALSE;
+                }
+
+                if (! check_command (info->argv)) {
+                        /* FIXME: set error */
+                        g_warning ("Could not verify safety of command for theme: %s", theme);
+                        return FALSE;
+                }
+
+                gs_job_theme_info_free (info);
         }
-
-        if (! check_command (info->argv)) {
-                /* FIXME: set error */
-                g_warning ("Could not verify safety of command for theme: %s", theme);
-                return FALSE;
-        }
-
-        gs_job_theme_info_free (info);
 
         g_free (job->priv->current_theme);
-        job->priv->current_theme = g_strdup (theme);
+
+        if (theme)
+                job->priv->current_theme = g_strdup (theme);
 
         return TRUE;
 }
@@ -917,13 +923,14 @@ gs_job_start (GSJob *job)
                 return FALSE;
         }
 
-        if (! job->priv->current_theme) {
-                g_warning ("Could not start job: screensaver theme is not set.");
+        if (! job->priv->widget) {
+                g_warning ("Could not start job: screensaver window is not set.");
                 return FALSE;
         }
 
-        if (! job->priv->widget) {
-                g_warning ("Could not start job: screensaver window is not set.");
+        if (! job->priv->current_theme) {
+                /* no warning here because a NULL theme is interpreted
+                   as a no-op job */
                 return FALSE;
         }
 
