@@ -1,5 +1,15 @@
 2005-09-09  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-job.c: 
+	* configure.ac: If configured to look for
+	xscreensaver config files then also look for
+	xscreensaver hacks too.
+
+	Patch from Catmur <ed@catmur.co.uk>
+	Fixes #315584
+
+2005-09-09  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-job.c (load_themes): Skip files in theme config
 	dirs that don't end with .xml.
 

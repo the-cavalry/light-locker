@@ -657,6 +657,9 @@ gs_job_set_widget  (GSJob     *job,
 
 static const char *known_locations [] = {
         SAVERDIR,
+#ifdef XSCREENSAVER_HACK_DIR
+        XSCREENSAVER_HACK_DIR,
+#endif
         LIBEXECDIR "/xscreensaver",
         "/usr/X11R6/lib/xscreensaver",
         "/usr/libexec/xscreensaver",

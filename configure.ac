@@ -1001,7 +1001,7 @@ fi
 
 # Check whether to use a xscreensaver hacks configuration directory
 AC_MSG_CHECKING([whether to use xscreensaver hacks configuration])
-AC_ARG_WITH(xscreensaverdir, AC_HELP_STRING([--with-xscreensaverdir=dir], [Use xscreensaver hacks found in directory],))
+AC_ARG_WITH(xscreensaverdir, AC_HELP_STRING([--with-xscreensaverdir=dir], [Use xscreensaver hack configs found in directory],))
 xscreensaverdir=
 if test "x$with_xscreensaverdir" = "xyes"; then
   if test -d /usr/share/xscreensaver/config; then
@@ -1020,6 +1020,35 @@ if test -d "$xscreensaverdir"; then
   AC_MSG_RESULT([$xscreensaverdir])
 else
   AC_MSG_RESULT([no])
+fi
+
+# Path to xscreensaver hack executables
+AC_ARG_WITH(xscreensaverhackdir, AC_HELP_STRING([--with-xscreensaverhackdir=dir], [Look for xscreensaver hack executables in directory],))
+if test -d "$xscreensaverdir"; then
+  AC_MSG_CHECKING([for location of xscreensaver hack executables])
+  xscreensaverhackdir=
+  if test "x$with_xscreensaverhackdir" = "xyes" -o "x$with_xscreensaverhackdir" = "x"; then
+    if test -d /usr/X11R6/lib/xscreensaver; then
+      xscreensaverhackdir=/usr/X11R6/lib/xscreensaver
+    elif test -d $prefix/libexec/xscreensaver; then
+      xscreensaverhackdir=$prefix/libexec/xscreensaver
+    elif test -d /usr/libexec/xscreensaver; then
+      xscreensaverhackdir=/usr/libexec/xscreensaver
+    elif test -d /usr/lib/xscreensaver; then
+      xscreensaverhackdir=/usr/lib/xscreensaver
+    fi
+  elif test "x$with_xscreensaverhackdir" != "xno"; then
+    xscreensaverhackdir="$with_xscreensaverhackdir"
+  fi
+  if test -d "$xscreensaverhackdir"; then
+    AC_DEFINE_UNQUOTED(XSCREENSAVER_HACK_DIR, "$xscreensaverhackdir", [Define to the directory containing XScreensaver hack executables])
+    AC_MSG_RESULT([$xscreensaverhackdir])
+  else
+    AC_MSG_RESULT([no])
+    AC_MSG_WARN([using XScreensaver config files, but could not find directory containing hacks])
+  fi
+else
+  AC_MSG_WARN([ignoring --with-xscreensaverhackdir because directory for XScreensaver configuration files was not found])
 fi
 
 #       Check for PAM.
