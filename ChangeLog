@@ -1,3 +1,11 @@
+2005-09-09  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-job.c (load_themes): Skip files in theme config
+	dirs that don't end with .xml.
+
+	Patch from Ed Catmur <ed@catmur.co.uk>
+	Fixes #315592
+
 2005-09-07  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.

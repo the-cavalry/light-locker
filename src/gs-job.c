@@ -375,6 +375,9 @@ load_themes (GSJob *job)
                         char           *title;
                         char          **argv;
 
+                        if (! g_str_has_suffix (file, ".xml"))
+                                continue;
+
                         path = g_build_filename (dir, file, NULL);
 
                         if (! parse_theme (path,
