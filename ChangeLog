@@ -1,3 +1,10 @@
+2005-09-12  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-window-x11.c (spawn_on_window): 
+	Set XAUTHLOCALHOSTNAME for dialog plug process.
+	Don't try to set environment variables in child
+	that aren't set in the parent.  Fixes #315861.
+
 2005-09-12  Rodrigo Moya <rodrigo@novell.com>
 
 	* configure.ac: check for 64bit library location.

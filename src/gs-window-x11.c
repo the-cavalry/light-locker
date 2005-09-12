@@ -304,9 +304,18 @@ spawn_on_window (GSWindow *window,
 
         g_ptr_array_add (env, g_strdup_printf ("HOME=%s",
                                                g_get_home_dir ()));
-        g_ptr_array_add (env, g_strdup_printf ("PATH=%s", g_getenv ("PATH")));
-        g_ptr_array_add (env, g_strdup_printf ("SESSION_MANAGER=%s", g_getenv ("SESSION_MANAGER")));
-        g_ptr_array_add (env, g_strdup_printf ("XAUTHORITY=%s", g_getenv ("XAUTHORITY")));
+        if (g_getenv ("PATH"))
+                g_ptr_array_add (env, g_strdup_printf ("PATH=%s",
+                                                       g_getenv ("PATH")));
+        if (g_getenv ("SESSION_MANAGER"))
+                g_ptr_array_add (env, g_strdup_printf ("SESSION_MANAGER=%s",
+                                                       g_getenv ("SESSION_MANAGER")));
+        if (g_getenv ("XAUTHORITY"))
+                g_ptr_array_add (env, g_strdup_printf ("XAUTHORITY=%s",
+                                                       g_getenv ("XAUTHORITY")));
+        if (g_getenv ("XAUTHLOCALHOSTNAME"))
+                g_ptr_array_add (env, g_strdup_printf ("XAUTHLOCALHOSTNAME=%s",
+                                                       g_getenv ("XAUTHLOCALHOSTNAME")));
         g_ptr_array_add (env, NULL);
 
         result = gdk_spawn_on_screen_with_pipes (GTK_WINDOW (window)->screen,
