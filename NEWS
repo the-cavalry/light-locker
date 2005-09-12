@@ -1,4 +1,14 @@
 ==============
+Version 0.0.13
+==============
+
+  gnome-screensaver
+
+        * Fix problem when starting GNOME from KDM
+        * Only look for theme files that end in .xml
+        * Look for xscreensaver themes in a few more places
+
+==============
 Version 0.0.12
 ==============
 
