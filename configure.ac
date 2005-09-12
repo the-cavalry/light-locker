@@ -1036,6 +1036,8 @@ if test -d "$xscreensaverdir"; then
       xscreensaverhackdir=/usr/libexec/xscreensaver
     elif test -d /usr/lib/xscreensaver; then
       xscreensaverhackdir=/usr/lib/xscreensaver
+    elif test -d /usr/lib64/xscreensaver; then
+      xscreensaverhackdir=/usr/lib64/xscreensaver
     fi
   elif test "x$with_xscreensaverhackdir" != "xno"; then
     xscreensaverhackdir="$with_xscreensaverhackdir"
