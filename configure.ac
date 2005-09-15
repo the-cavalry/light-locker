@@ -31,20 +31,6 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Name of default gettext
 ALL_LINGUAS="bg de en_CA en_GB es fi fr ja pt_BR sv uk zh_CN zh_TW"
 AM_GLIB_GNU_GETTEXT
 
-# Custom Junk
-
-AC_DEFUN([AC_DEFINE_PATH], [
-  test "x$prefix" = xNONE && prefix="$ac_default_prefix"
-  test "x$exec_prefix" = xNONE && exec_prefix='${prefix}'
-  ac_define_path=`eval echo [$]$2`
-  ac_define_path=`eval echo [$]ac_define_path`
-  $1="$ac_define_path"
-  AC_SUBST($1)
-  ifelse($3, ,
-    AC_DEFINE_UNQUOTED($1, "$ac_define_path"),
-    AC_DEFINE_UNQUOTED($1, "$ac_define_path", $3))
-])
-
 # Dependencies
 
 DBUS_REQUIRED_VERSION=0.30
@@ -187,7 +173,7 @@ else
 	AC_MSG_RESULT([using "$gdmconfigfile" as the gdm.conf location])
 fi
 
-AC_DEFINE_PATH(GDMCONFIGFILE, "$gdmconfigfile", [The location of the GDM configuration file])
+AC_DEFINE_UNQUOTED(GDMCONFIGFILE, "$gdmconfigfile", [The location of the GDM configuration file])
 
 enable_user_switching=no
 if test "x$gdmconfigfile" != "x" -a "x$gdmconfigfile" != "xno"; then

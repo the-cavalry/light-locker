@@ -1,3 +1,10 @@
+2005-09-15  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac: Use AC_DEFINE_UNQUOTED instead of
+	custom AC_DEFINE_PATH to define gdm config file
+	location.  This should fix problems where some
+	people are seeing $ prefixed to the path.
+
 2005-09-14  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Don't require xscreensaver directories specified
