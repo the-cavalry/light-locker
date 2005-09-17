@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-31 11:20+0900\n"
-"PO-Revision-Date: 2005-08-31 11:19+0900\n"
+"POT-Creation-Date: 2005-09-17 18:00+0900\n"
+"PO-Revision-Date: 2005-09-17 17:59+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -510,7 +510,7 @@ msgstr ""
 msgid "Poke the running screensaver to simulate user activity"
 msgstr "Poke the running screensaver to simulate user activity"
 
-#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:53
+#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:106
 #: ../src/gnome-screensaver.c:52
 msgid "Version of this application"
 msgstr "このアプリケーションのバージョンを表示する"
@@ -528,37 +528,37 @@ msgstr "起動されています"
 msgid "inactive"
 msgstr "起動されていません"
 
-#: ../src/gnome-screensaver-dialog.c:51
+#: ../src/gnome-screensaver-dialog.c:104
 msgid "Show debugging output"
 msgstr "デバッグ出力を表示する"
 
-#: ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver-dialog.c:108
 msgid "Show the logout button"
 msgstr "ログアウト・ボタンを表示する"
 
-#: ../src/gnome-screensaver-preferences.c:637
+#: ../src/gnome-screensaver-preferences.c:678
 msgid "Invalid screensaver theme"
 msgstr "スクリーンセーバーのテーマが間違っています"
 
-#: ../src/gnome-screensaver-preferences.c:640
+#: ../src/gnome-screensaver-preferences.c:681
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "このファイルはスクリーンセーバーのテーマとして正しくないようです。"
 
-#: ../src/gnome-screensaver-preferences.c:757
+#: ../src/gnome-screensaver-preferences.c:798
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d 時間"
 msgstr[1] "%d 時間"
 
-#: ../src/gnome-screensaver-preferences.c:760
+#: ../src/gnome-screensaver-preferences.c:801
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d 分"
 msgstr[1] "%d 分"
 
-#: ../src/gnome-screensaver-preferences.c:763
+#: ../src/gnome-screensaver-preferences.c:804
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -566,15 +566,15 @@ msgstr[0] "%d 秒"
 msgstr[1] "%d 秒"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:769
+#: ../src/gnome-screensaver-preferences.c:810
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:772
-#: ../src/gnome-screensaver-preferences.c:780
+#: ../src/gnome-screensaver-preferences.c:813
+#: ../src/gnome-screensaver-preferences.c:821
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -582,89 +582,95 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:775
-#: ../src/gnome-screensaver-preferences.c:783
-#: ../src/gnome-screensaver-preferences.c:787
+#: ../src/gnome-screensaver-preferences.c:816
+#: ../src/gnome-screensaver-preferences.c:824
+#: ../src/gnome-screensaver-preferences.c:828
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:790
+#: ../src/gnome-screensaver-preferences.c:831
 msgid "0 seconds"
 msgstr "0 秒"
 
-#: ../src/gnome-screensaver-preferences.c:805
+#: ../src/gnome-screensaver-preferences.c:846
 msgid "Never"
 msgstr "しない"
 
-#: ../src/gnome-screensaver-preferences.c:840
+#: ../src/gnome-screensaver-preferences.c:883
 msgid "Could not load the main interface"
 msgstr "Glade インタフェースを読み込めませんでした"
 
-#: ../src/gnome-screensaver-preferences.c:842
+#: ../src/gnome-screensaver-preferences.c:885
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "gnome-screensaver が正しくインストールされているか確認して下さい。"
 
-#: ../src/gs-listener-dbus.c:852
+#: ../src/gs-listener-dbus.c:869
 msgid "failed to register with the message bus"
 msgstr "メッセージ・バスへの登録に失敗しました"
 
-#: ../src/gs-listener-dbus.c:861
+#: ../src/gs-listener-dbus.c:878
 msgid "screensaver already running in this session"
 msgstr "このセッションで既にスクリーンセーバーが実行中です"
 
-#: ../src/gs-lock-plug.c:248
+#: ../src/gs-lock-plug.c:316
 msgid "Checking password..."
 msgstr "パスワードの確認中..."
 
-#: ../src/gs-lock-plug.c:297
+#: ../src/gs-lock-plug.c:362
 #, c-format
 msgid "About %ld second left"
 msgid_plural "About %ld seconds left"
 msgstr[0] "約 %ld 秒経過"
 msgstr[1] "約 %ld 秒経過"
 
-#: ../src/gs-lock-plug.c:305
+#: ../src/gs-lock-plug.c:370
 msgid "Time expired!"
 msgstr "タイムアウトです！"
 
-#: ../src/gs-lock-plug.c:330
+#: ../src/gs-lock-plug.c:394
 msgid "You have the Caps Lock key on."
 msgstr "[Caps Lock] キーが押されています"
 
-#: ../src/gs-lock-plug.c:538
+#: ../src/gs-lock-plug.c:607
 msgid "Password check failed!"
 msgstr "パスワードの確認に失敗しました！"
 
-#: ../src/gs-lock-plug.c:561 ../src/gs-lock-plug.c:602
+#: ../src/gs-lock-plug.c:630 ../src/gs-lock-plug.c:671
 msgid "_Unlock"
 msgstr "ロック解除(_U)"
 
-#: ../src/gs-lock-plug.c:566 ../src/gs-lock-plug.c:597
+#: ../src/gs-lock-plug.c:635 ../src/gs-lock-plug.c:666
 msgid "_Switch User"
 msgstr "ユーザの切り替え"
 
-#: ../src/gs-lock-plug.c:961
+#: ../src/gs-lock-plug.c:1032
 msgid "Log in as a new user"
 msgstr "別のユーザでログインする"
 
-#: ../src/gs-lock-plug.c:1231
+#. translators: %s is a computer hostname
+#: ../src/gs-lock-plug.c:1368
+#, c-format
+msgid "Welcome to %s"
+msgstr "%s へようこそ"
+
+#: ../src/gs-lock-plug.c:1380
 msgid "Enter a password to unlock the screen"
 msgstr "画面ロックを解除するパスワードを入力して下さい"
 
-#: ../src/gs-lock-plug.c:1260
+#: ../src/gs-lock-plug.c:1397
 msgid "Name:"
 msgstr "名前:"
 
-#: ../src/gs-lock-plug.c:1264
+#: ../src/gs-lock-plug.c:1401
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#: ../src/gs-lock-plug.c:1306
+#: ../src/gs-lock-plug.c:1447
 msgid "Switch to another user?"
 msgstr "別のユーザに切り替えますか？"
 
-#: ../src/gs-lock-plug.c:1372
+#: ../src/gs-lock-plug.c:1504
 msgid "Log _Out"
 msgstr "ログアウト(_O)"
