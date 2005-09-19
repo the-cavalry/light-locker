@@ -34,6 +34,9 @@
 #include <X11/XKBlib.h>
 #include <gtk/gtk.h>
 
+/* for fast user switching */
+#include <libgnomevfs/gnome-vfs-init.h>
+
 #include "gs-lock-plug.h"
 
 #include "passwd.h"
@@ -685,60 +688,12 @@ get_switch_button_for_page (gint page)
         return align;
 }
 
-static GtkWidget *
-button_get_label_widget (GtkButton *button)
-{
-        GtkWidget    *label = NULL;
-        GtkWidget    *box;
-        GtkWidget    *align;
-        GList        *list;
-        GList        *l;
-
-        g_return_val_if_fail (GTK_IS_BUTTON (button), NULL);
-
-        if (! GTK_BIN (button)->child)
-                return NULL;
-
-        align = GTK_BIN (button)->child;
-        box = GTK_BIN (align)->child;
-
-        list = gtk_container_get_children (GTK_CONTAINER (box));
-
-        for (l = list; l; l = l->next) {
-                GtkWidget *child;
-
-                child = l->data;
-                if (g_type_is_a (GTK_WIDGET_TYPE (child), GTK_TYPE_LABEL)) {
-                        label = child;
-                        break;
-                }
-        }
-
-        g_list_free (list);
-
-        return label;
-}
-
-/* work around http://bugzilla.gnome.org/show_bug.cgi?id=172998 */
-static gboolean
-button_mnemonic_activate_click (GtkWidget *child,
-                                gboolean   overload,
-                                GtkButton *button)
-{
-        if (GTK_WIDGET_REALIZED (button) && !button->activate_timeout) {
-                gtk_button_clicked (button);
-        }
-
-        return TRUE;
-}
-
 static void
 switch_page (GtkButton  *button,
              GSLockPlug *plug)
 {
         GtkWidget *ok_widget;
         GtkWidget *other_widget;
-        GtkWidget *label;
         gint       current_page;
         gint       next_page;
 
@@ -758,22 +713,6 @@ switch_page (GtkButton  *button,
         gtk_widget_destroy (GTK_BIN (plug->priv->ok_button)->child);
         gtk_widget_show_all (ok_widget);
         gtk_container_add (GTK_CONTAINER (plug->priv->ok_button), ok_widget);
-
-        /* work around http://bugzilla.gnome.org/show_bug.cgi?id=172998 */
-        label = button_get_label_widget (GTK_BUTTON (plug->priv->switch_button));
-        if (label) {
-                g_signal_connect (label,
-                                  "mnemonic_activate",
-                                  G_CALLBACK (button_mnemonic_activate_click),
-                                  plug->priv->switch_button);
-        }
-        label = button_get_label_widget (GTK_BUTTON (plug->priv->ok_button));
-        if (label) {
-                g_signal_connect (label,
-                                  "mnemonic_activate",
-                                  G_CALLBACK (button_mnemonic_activate_click),
-                                  plug->priv->ok_button);
-        }
 
         gtk_notebook_set_current_page (GTK_NOTEBOOK (plug->priv->notebook), next_page);
 }
@@ -1041,8 +980,19 @@ populate_model (GSLockPlug   *plug,
 #endif
 
         profile_start ("start", "FUSA list users");
-        if (! plug->priv->fusa_manager)
+        if (! plug->priv->fusa_manager) {
+        /* for fast user switching */
+                profile_start ("start", "g_thread_init");
+                g_thread_init (NULL);
+                profile_end ("end", "g_thread_init");
+                profile_start ("start", "gnome_vfs_init");
+                gnome_vfs_init ();
+                profile_end ("end", "gnome_vfs_init");
+
+                profile_start ("start", "fusa_manager_ref_default");
                 plug->priv->fusa_manager = fusa_manager_ref_default ();
+                profile_end ("end", "fusa_manager_ref_default");
+        }
 
         users = fusa_manager_list_users (plug->priv->fusa_manager);
         profile_end ("end", "FUSA list users");
@@ -1305,47 +1255,13 @@ label_set_big (GtkLabel *label)
 }
 
 static void
-gs_lock_plug_init (GSLockPlug *plug)
+create_page_one (GSLockPlug *plug)
 {
         GtkWidget            *widget;
         GtkWidget            *password_label;
         GtkWidget            *hbox;
         GtkWidget            *vbox;
         GtkWidget            *table;
-        GtkWidget            *label;
-        int                   font_size;
-        PangoFontDescription *fontdesc;
-
-        profile_start ("start", NULL);
-
-        plug->priv = GS_LOCK_PLUG_GET_PRIVATE (plug);
-
-        plug->priv->fusa_manager = NULL;
-
-        /* Dialog emulation */
-
-        plug->vbox = gtk_vbox_new (FALSE, 0);
-
-        gtk_container_add (GTK_CONTAINER (plug), plug->vbox);
-        gtk_widget_show (plug->vbox);
-
-        plug->action_area = gtk_hbutton_box_new ();
-
-        gtk_button_box_set_layout (GTK_BUTTON_BOX (plug->action_area),
-                                   GTK_BUTTONBOX_END);
-
-        gtk_box_pack_end (GTK_BOX (plug->vbox), plug->action_area,
-                          FALSE, TRUE, 0);
-        gtk_widget_show (plug->action_area);
-
-        /* Notebook */
-
-        plug->priv->notebook = gtk_notebook_new ();
-        gtk_notebook_set_show_tabs (GTK_NOTEBOOK (plug->priv->notebook), FALSE);
-        gtk_notebook_set_show_border (GTK_NOTEBOOK (plug->priv->notebook), FALSE);
-        gtk_box_pack_start (GTK_BOX (plug->vbox), plug->priv->notebook, FALSE, FALSE, 0);
-
-        /* Page 1 */
 
         profile_start ("start", "page one");
 
@@ -1429,8 +1345,14 @@ gs_lock_plug_init (GSLockPlug *plug)
                                        plug->priv->password_entry);
 
         profile_end ("end", "page one");
+}
 
-        /* Page 2 */
+static void
+create_page_two (GSLockPlug *plug)
+{
+        GtkWidget            *widget;
+        GtkWidget            *hbox;
+        GtkWidget            *vbox;
 
         profile_start ("start", "page two");
 
@@ -1465,24 +1387,12 @@ gs_lock_plug_init (GSLockPlug *plug)
         g_idle_add ((GSourceFunc)setup_treeview_idle, plug);
 
         profile_end ("end", "page two");
+}
 
-        /* Progress bar */
-
-        plug->priv->progress_bar = gtk_progress_bar_new ();
-        gtk_progress_bar_set_orientation (GTK_PROGRESS_BAR (plug->priv->progress_bar),
-                                          GTK_PROGRESS_RIGHT_TO_LEFT);
-        set_progress_position (plug, 1.0, " ");
-
-        gtk_box_pack_start (GTK_BOX (plug->vbox), plug->priv->progress_bar,
-                            FALSE, FALSE, 0);
-
-        fontdesc = pango_font_description_copy (GTK_WIDGET (plug->priv->progress_bar)->style->font_desc);
-        font_size = pango_font_description_get_size (fontdesc) * 0.75;
-        pango_font_description_set_size (fontdesc, font_size);
-        gtk_widget_modify_font (plug->priv->progress_bar, fontdesc);
-        pango_font_description_free (fontdesc);
-
-        /* Buttons */
+static void
+create_buttons (GSLockPlug *plug)
+{
+        GtkWidget            *widget;
 
         profile_start ("start", "buttons");
 
@@ -1526,6 +1436,69 @@ gs_lock_plug_init (GSLockPlug *plug)
         gs_lock_plug_set_default_response (plug, GS_LOCK_PLUG_RESPONSE_OK);
 
         profile_end ("end", "buttons");
+}
+
+static void
+gs_lock_plug_init (GSLockPlug *plug)
+{
+        int                   font_size;
+        PangoFontDescription *fontdesc;
+
+        profile_start ("start", NULL);
+
+        plug->priv = GS_LOCK_PLUG_GET_PRIVATE (plug);
+
+        plug->priv->fusa_manager = NULL;
+
+        /* Dialog emulation */
+
+        plug->vbox = gtk_vbox_new (FALSE, 0);
+
+        gtk_container_add (GTK_CONTAINER (plug), plug->vbox);
+
+        plug->action_area = gtk_hbutton_box_new ();
+
+        gtk_button_box_set_layout (GTK_BUTTON_BOX (plug->action_area),
+                                   GTK_BUTTONBOX_END);
+
+        gtk_box_pack_end (GTK_BOX (plug->vbox), plug->action_area,
+                          FALSE, TRUE, 0);
+        gtk_widget_show (plug->action_area);
+
+        /* Notebook */
+
+        plug->priv->notebook = gtk_notebook_new ();
+        gtk_notebook_set_show_tabs (GTK_NOTEBOOK (plug->priv->notebook), FALSE);
+        gtk_notebook_set_show_border (GTK_NOTEBOOK (plug->priv->notebook), FALSE);
+        gtk_box_pack_start (GTK_BOX (plug->vbox), plug->priv->notebook, FALSE, FALSE, 0);
+
+        /* Page 1 */
+
+        create_page_one (plug);
+
+        /* Page 2 */
+
+        create_page_two (plug);
+
+        /* Progress bar */
+
+        plug->priv->progress_bar = gtk_progress_bar_new ();
+        gtk_progress_bar_set_orientation (GTK_PROGRESS_BAR (plug->priv->progress_bar),
+                                          GTK_PROGRESS_RIGHT_TO_LEFT);
+        set_progress_position (plug, 1.0, " ");
+
+        gtk_box_pack_start (GTK_BOX (plug->vbox), plug->priv->progress_bar,
+                            FALSE, FALSE, 0);
+
+        fontdesc = pango_font_description_copy (GTK_WIDGET (plug->priv->progress_bar)->style->font_desc);
+        font_size = pango_font_description_get_size (fontdesc) * 0.75;
+        pango_font_description_set_size (fontdesc, font_size);
+        gtk_widget_modify_font (plug->priv->progress_bar, fontdesc);
+        pango_font_description_free (fontdesc);
+
+        /* Buttons */
+
+        create_buttons (plug);
 
         gtk_widget_show_all (plug->vbox);
 
@@ -1541,36 +1514,6 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         g_signal_connect (plug->priv->logout_button, "clicked",
                           G_CALLBACK (logout_button_clicked), plug);
-
-        /* work around http://bugzilla.gnome.org/show_bug.cgi?id=172998 */
-        label = button_get_label_widget (GTK_BUTTON (plug->priv->switch_button));
-        if (label) {
-                g_signal_connect (label,
-                                  "mnemonic_activate",
-                                  G_CALLBACK (button_mnemonic_activate_click),
-                                  plug->priv->switch_button);
-        }
-        label = button_get_label_widget (GTK_BUTTON (plug->priv->logout_button));
-        if (label) {
-                g_signal_connect (label,
-                                  "mnemonic_activate",
-                                  G_CALLBACK (button_mnemonic_activate_click),
-                                  plug->priv->logout_button);
-        }
-        label = button_get_label_widget (GTK_BUTTON (plug->priv->cancel_button));
-        if (label) {
-                g_signal_connect (label,
-                                  "mnemonic_activate",
-                                  G_CALLBACK (button_mnemonic_activate_click),
-                                  plug->priv->cancel_button);
-        }
-        label = button_get_label_widget (GTK_BUTTON (plug->priv->ok_button));
-        if (label) {
-                g_signal_connect (label,
-                                  "mnemonic_activate",
-                                  G_CALLBACK (button_mnemonic_activate_click),
-                                  plug->priv->ok_button);
-        }
 
         profile_end ("end", NULL);
 }

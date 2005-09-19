@@ -33,9 +33,6 @@
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
 
-/* for fast user switching */
-#include <libgnomevfs/gnome-vfs-init.h>
-
 #include "gs-lock-plug.h"
 
 #include "passwd.h"
@@ -368,10 +365,6 @@ main (int    argc,
                 response_lock_init_failed ();
                 exit (1);
         }
-
-        /* for fast user switching */
-        g_thread_init (NULL);
-        gnome_vfs_init ();
 
         g_idle_add ((GSourceFunc)popup_dialog_idle, NULL);
 

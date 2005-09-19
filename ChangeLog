@@ -1,3 +1,15 @@
+2005-09-19  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c (switch_page): Remove workaround
+	for bug #172998.
+	(populate_model): Do gnome-vfs init if necessary.
+	(create_page_one, create_page_two, create_buttons) 
+	(gs_lock_plug_init): Split out functions to
+	make it easier to profile.
+
+	* src/gnome-screensaver-dialog.c (main): Move
+	gnome-vfs init (for FUSA) to plug.
+
 2005-09-18  Alessio Frusciante  <algol@firenze.linux.it>
 
 	* configure.ac: Added "it" (Italian) to ALL_LINGUAS.
