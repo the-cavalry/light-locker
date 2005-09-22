@@ -28,6 +28,7 @@
 #include <errno.h>
 #include <time.h>
 #include <glib/gprintf.h>
+#include <glib/gstdio.h>
 #include <glib/gi18n.h>
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdkx.h>
@@ -100,7 +101,7 @@ enum {
         SWITCH_PAGE
 };
 
-#define FACE_ICON_SIZE 24
+#define FACE_ICON_SIZE 48
 #define DIALOG_TIMEOUT_MSEC 60000
 
 static void gs_lock_plug_class_init (GSLockPlugClass *klass);
@@ -117,7 +118,7 @@ struct GSLockPlugPrivate
         GtkWidget   *username_label;
         GtkWidget   *password_entry;
         GtkWidget   *capslock_label;
-        GtkWidget   *progress_bar;
+        GtkWidget   *status_label;
         GtkWidget   *user_treeview;
 
         GtkWidget   *ok_button;
@@ -261,17 +262,7 @@ static void
 set_status_text (GSLockPlug *plug,
                  const char *text)
 {
-        gtk_progress_bar_set_text (GTK_PROGRESS_BAR (plug->priv->progress_bar), text);
-}
-
-static void
-set_progress_position (GSLockPlug *plug,
-                       gdouble     fraction,
-                       const char *text)
-{
-        gtk_progress_bar_set_fraction  (GTK_PROGRESS_BAR (plug->priv->progress_bar), fraction);
-        gtk_progress_bar_set_text (GTK_PROGRESS_BAR (plug->priv->progress_bar), text);
-
+        gtk_label_set_text (GTK_LABEL (plug->priv->status_label), text);
 }
 
 static void
@@ -312,8 +303,6 @@ gs_lock_plug_response (GSLockPlug *plug,
         if (response_id == GS_LOCK_PLUG_RESPONSE_OK) {
                 gint current_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (plug->priv->notebook));
 
-                set_progress_position (plug, 0, " ");
-
                 if (current_page == 0) {
                         gtk_widget_set_sensitive (plug->priv->password_entry, FALSE);
                         set_status_text (plug, _("Checking password..."));
@@ -350,8 +339,6 @@ monitor_progress (GSLockPlug *plug)
         GTimeVal now;
         glong    elapsed;
         glong    remaining;
-        glong    secs;
-        gdouble  fraction;
         char    *message;
 
         g_get_current_time (&now);
@@ -359,15 +346,6 @@ monitor_progress (GSLockPlug *plug)
         elapsed = (now.tv_sec - plug->priv->start_time.tv_sec) * 1000
                 + (now.tv_usec - plug->priv->start_time.tv_usec) / 1000;
         remaining = plug->priv->timeout - elapsed;
-
-        fraction = CLAMP ((gdouble)remaining / plug->priv->timeout, 0, 1);
-        secs = remaining / 1000 + 1;
-        message = g_strdup_printf (ngettext ("About %ld second left",
-                                             "About %ld seconds left", secs),
-                                   secs);
-
-        set_progress_position (plug, fraction, message);
-        g_free (message);
 
         if ((remaining <= 0) || (remaining > plug->priv->timeout)) {
                 message = g_strdup (_("Time expired!"));
@@ -620,8 +598,8 @@ static GtkWidget *
 get_ok_button_for_page (gint page)
 {
         GtkWidget *align;
-        GtkWidget *widget = NULL;
         GtkWidget *hbox;
+        GtkWidget *widget;
         const char *label = NULL;
 
         align = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -631,20 +609,14 @@ get_ok_button_for_page (gint page)
         switch (page) {
         case (AUTH_PAGE):
                 label = N_("_Unlock");
-                widget = gtk_image_new_from_stock (GTK_STOCK_DIALOG_AUTHENTICATION,
-                                                   GTK_ICON_SIZE_BUTTON);
                 break;
         case (SWITCH_PAGE):
-                label = N_("_Switch User");
-                widget = gtk_image_new_from_icon_name ("stock_people",
-                                                       GTK_ICON_SIZE_BUTTON);
+                label = N_("_Switch User...");
                 break;
         default:
                 g_assert ("Invalid notebook page");
                 break;
         }
-
-        gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
 
         widget = gtk_label_new_with_mnemonic (label);
         gtk_box_pack_end (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
@@ -656,8 +628,8 @@ static GtkWidget *
 get_switch_button_for_page (gint page)
 {
         GtkWidget *align;
-        GtkWidget *widget = NULL;
         GtkWidget *hbox;
+        GtkWidget *widget;
         const char *label = NULL;
 
         align = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -666,21 +638,15 @@ get_switch_button_for_page (gint page)
 
         switch (page) {
         case (AUTH_PAGE):
-                label = N_("_Switch User");
-                widget = gtk_image_new_from_icon_name ("stock_people",
-                                                       GTK_ICON_SIZE_BUTTON);
+                label = N_("_Switch User...");
                 break;
         case (SWITCH_PAGE):
                 label = N_("_Unlock");
-                widget = gtk_image_new_from_stock (GTK_STOCK_DIALOG_AUTHENTICATION,
-                                                   GTK_ICON_SIZE_BUTTON);
                 break;
         default:
                 g_assert ("Invalid notebook page");
                 break;
         }
-
-        gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
 
         widget = gtk_label_new_with_mnemonic (label);
         gtk_box_pack_end (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
@@ -689,8 +655,8 @@ get_switch_button_for_page (gint page)
 }
 
 static void
-switch_page (GtkButton  *button,
-             GSLockPlug *plug)
+switch_page (GSLockPlug *plug,
+             GtkButton  *button)
 {
         GtkWidget *ok_widget;
         GtkWidget *other_widget;
@@ -698,7 +664,6 @@ switch_page (GtkButton  *button,
         gint       next_page;
 
         g_return_if_fail (plug != NULL);
-        g_return_if_fail (GTK_IS_WIDGET (button));
 
         current_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (plug->priv->notebook));
         next_page = (current_page == AUTH_PAGE) ? SWITCH_PAGE : AUTH_PAGE;
@@ -714,7 +679,15 @@ switch_page (GtkButton  *button,
         gtk_widget_show_all (ok_widget);
         gtk_container_add (GTK_CONTAINER (plug->priv->ok_button), ok_widget);
 
+        /* don't show the switch button on the switch page */
+        if (next_page == SWITCH_PAGE) {
+                gtk_widget_hide (plug->priv->switch_button);
+        }
+
         gtk_notebook_set_current_page (GTK_NOTEBOOK (plug->priv->notebook), next_page);
+
+        /* this counts as activity so restart the timer */
+        restart_monitor_progress (plug);
 }
 
 static void
@@ -1215,24 +1188,7 @@ get_user_display_name (void)
 }
 
 static void
-label_set_bold (GtkLabel *label)
-{
-        PangoAttrList        *pattrlist;
-        PangoAttribute       *attr;
-
-        pattrlist = pango_attr_list_new ();
-        attr = pango_attr_weight_new (PANGO_WEIGHT_BOLD);
-        attr->start_index = 0;
-        attr->end_index = G_MAXINT;
-        pango_attr_list_insert (pattrlist, attr);
-
-        gtk_label_set_attributes (label, pattrlist);
-
-        pango_attr_list_unref (pattrlist);
-}
-
-static void
-label_set_big (GtkLabel *label)
+label_set_big_bold (GtkLabel *label)
 {
         PangoAttrList        *pattrlist;
         PangoAttribute       *attr;
@@ -1255,82 +1211,193 @@ label_set_big (GtkLabel *label)
 }
 
 static void
+label_set_bigger (GtkLabel *label)
+{
+        PangoAttrList        *pattrlist;
+        PangoAttribute       *attr;
+
+        pattrlist = pango_attr_list_new ();
+
+        attr = pango_attr_scale_new (1.4);
+        attr->start_index = 0;
+        attr->end_index = G_MAXINT;
+        pango_attr_list_insert (pattrlist, attr);
+
+        gtk_label_set_attributes (label, pattrlist);
+
+        pango_attr_list_unref (pattrlist);
+}
+
+static void
+label_set_big (GtkLabel *label)
+{
+        PangoAttrList        *pattrlist;
+        PangoAttribute       *attr;
+
+        pattrlist = pango_attr_list_new ();
+
+        attr = pango_attr_scale_new (1.2);
+        attr->start_index = 0;
+        attr->end_index = G_MAXINT;
+        pango_attr_list_insert (pattrlist, attr);
+
+        gtk_label_set_attributes (label, pattrlist);
+
+        pango_attr_list_unref (pattrlist);
+}
+
+static gboolean
+check_user_file (const gchar *filename,
+		 uid_t        user,
+		 gssize       max_file_size,
+		 gboolean     relax_group,
+		 gboolean     relax_other)
+{
+        struct stat fileinfo;
+
+        if (max_file_size < 0)
+                max_file_size = G_MAXSIZE;
+
+        /* Exists/Readable? */
+        if (g_stat (filename, &fileinfo) < 0)
+                return FALSE;
+
+        /* Is a regular file */
+        if (G_UNLIKELY (!S_ISREG (fileinfo.st_mode)))
+                return FALSE;
+
+        /* Owned by user? */
+        if (G_UNLIKELY (fileinfo.st_uid != user))
+                return FALSE;
+
+        /* Group not writable or relax_group? */
+        if (G_UNLIKELY ((fileinfo.st_mode & S_IWGRP) == S_IWGRP && !relax_group))
+                return FALSE;
+
+        /* Other not writable or relax_other? */
+        if (G_UNLIKELY ((fileinfo.st_mode & S_IWOTH) == S_IWOTH && !relax_other))
+                return FALSE;
+
+        /* Size is kosher? */
+        if (G_UNLIKELY (fileinfo.st_size > max_file_size))
+                return FALSE;
+
+        return TRUE;
+}
+
+static GtkWidget *
+get_face_image ()
+{
+        GtkWidget    *image;
+        GdkPixbuf    *pixbuf;
+        GtkIconTheme *theme;
+        const char   *homedir;
+        char         *path;
+        int           icon_size = 96;
+        gsize         user_max_file = 65536;
+        uid_t         uid;
+
+        homedir = g_get_home_dir ();
+        uid = getuid ();
+
+        path = g_build_filename (homedir, ".face", NULL);
+
+        pixbuf = NULL;
+        if (check_user_file (path, uid, user_max_file, 0, 0)) {
+                pixbuf = gdk_pixbuf_new_from_file_at_size (path,
+                                                           icon_size,
+                                                           icon_size,
+                                                           NULL);
+        }
+
+	theme = gtk_icon_theme_get_default ();
+
+        if (! pixbuf) {
+                pixbuf = gtk_icon_theme_load_icon (theme,
+                                                   "stock_person",
+                                                   icon_size,
+                                                   0,
+                                                   NULL);
+        }
+
+        if (! pixbuf) {
+                pixbuf = gtk_icon_theme_load_icon (theme,
+                                                   GTK_STOCK_MISSING_IMAGE,
+                                                   icon_size,
+                                                   0,
+                                                   NULL);
+        }
+
+        image = gtk_image_new_from_pixbuf (pixbuf);
+
+        g_object_unref (pixbuf);
+
+        return image;
+}
+
+static void
 create_page_one (GSLockPlug *plug)
 {
         GtkWidget            *widget;
         GtkWidget            *password_label;
-        GtkWidget            *hbox;
+        GtkWidget            *align;
         GtkWidget            *vbox;
-        GtkWidget            *table;
+        GtkWidget            *vbox2;
+        GtkWidget            *hbox;
+        char                 *str;
 
         profile_start ("start", "page one");
 
-        hbox = gtk_hbox_new (FALSE, 12);
-        gtk_notebook_append_page (GTK_NOTEBOOK (plug->priv->notebook), hbox, NULL);
+        align = gtk_alignment_new (0.5, 0.5, 1, 1);
+        gtk_notebook_append_page (GTK_NOTEBOOK (plug->priv->notebook), align, NULL);
 
-        widget = gtk_image_new_from_stock (GTK_STOCK_DIALOG_AUTHENTICATION, GTK_ICON_SIZE_DIALOG);
-        gtk_misc_set_alignment (GTK_MISC (widget), 0.5, 0);
-        gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
-
-        vbox = gtk_vbox_new (FALSE, 6);
-        gtk_box_pack_start (GTK_BOX (hbox), vbox, TRUE, TRUE, 0);
+        vbox = gtk_vbox_new (FALSE, 12);
+        gtk_container_add (GTK_CONTAINER (align), vbox);
 
         /* should we make this a gconf preference? */
-        if (1) {
-                char      *str;
-                GtkWidget *vbox2;
+        if (0) {
+                char *str;
 
                 /* translators: %s is a computer hostname */
                 str = g_strdup_printf (_("Welcome to %s"), g_get_host_name ());
                 widget = gtk_label_new (str);
                 gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
-                gtk_misc_set_alignment (GTK_MISC (widget), 0, 0.5);
+                gtk_misc_set_alignment (GTK_MISC (widget), 0.5, 0.5);
                 g_free (str);
 
-                label_set_big (GTK_LABEL (widget));
-
-                vbox2 = gtk_vbox_new (FALSE, 0);
-                gtk_box_pack_start (GTK_BOX (vbox), vbox2, TRUE, TRUE, 5);
+                label_set_big_bold (GTK_LABEL (widget));
         }
 
-        widget = gtk_label_new (_("Enter a password to unlock the screen"));
-        gtk_misc_set_alignment (GTK_MISC (widget), 0, 0.5);
+        widget = get_face_image ();
         gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
 
-        label_set_bold (GTK_LABEL (widget));
+        vbox2 = gtk_vbox_new (FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (vbox), vbox2, FALSE, FALSE, 0);
 
-        hbox = gtk_hbox_new (FALSE, 0);
-        gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
+        plug->priv->username_label = gtk_label_new (get_user_display_name ());
+        gtk_misc_set_alignment (GTK_MISC (plug->priv->username_label), 0.5, 0.5);
+        gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->username_label, FALSE, FALSE, 0);
 
-        widget = gtk_label_new ("");
-        gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
+        label_set_bigger (GTK_LABEL (plug->priv->username_label));
 
-        table = gtk_table_new (4, 2, FALSE);
-        gtk_table_set_row_spacings (GTK_TABLE (table), 6);
-        gtk_table_set_col_spacings (GTK_TABLE (table), 6);
-        gtk_box_pack_start (GTK_BOX (hbox), table, TRUE, TRUE, 0);
+        str = g_strdup_printf ("(%s)", g_get_user_name ());
+        widget = gtk_label_new (str);
+        g_free (str);
+        gtk_misc_set_alignment (GTK_MISC (widget), 0.5, 0.5);
+        gtk_box_pack_start (GTK_BOX (vbox2), widget, FALSE, FALSE, 0);
 
-        widget = gtk_label_new (_("Name:"));
-        gtk_misc_set_alignment (GTK_MISC (widget), 0, 0.5);
-        gtk_table_attach (GTK_TABLE (table), widget, 0, 1, 0, 1,
-                          GTK_FILL, 0, 0, 0);
+        vbox2 = gtk_vbox_new (FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (vbox), vbox2, FALSE, FALSE, 0);
+
+        hbox = gtk_hbox_new (FALSE, 6);
+        gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 0);
+
         password_label = gtk_label_new_with_mnemonic (_("_Password:"));
         gtk_misc_set_alignment (GTK_MISC (password_label), 0, 0.5);
-        gtk_table_attach (GTK_TABLE (table), password_label, 0, 1, 1, 2,
-                          GTK_FILL, 0, 0, 0);
-
-        plug->priv->capslock_label = gtk_label_new ("");
-        gtk_misc_set_alignment (GTK_MISC (plug->priv->capslock_label), 0, 0.5);
-        gtk_table_attach (GTK_TABLE (table), plug->priv->capslock_label, 1, 2, 2, 3,
-                          GTK_FILL, 0, 0, 0);
-
-        plug->priv->username_label = gtk_label_new ("");
-        gtk_misc_set_alignment (GTK_MISC (plug->priv->username_label), 0, 0.5);
-        gtk_table_attach (GTK_TABLE (table), plug->priv->username_label, 1, 2, 0, 1,
-                          GTK_EXPAND | GTK_FILL, 0, 0, 0);
-        gtk_label_set_text (GTK_LABEL (plug->priv->username_label), get_user_display_name ());
+        gtk_box_pack_start (GTK_BOX (hbox), password_label, FALSE, FALSE, 0);
 
         plug->priv->password_entry = gtk_entry_new ();
+        gtk_box_pack_start (GTK_BOX (hbox), plug->priv->password_entry, TRUE, TRUE, 0);
 
         /* button press handler used to inhibit popup menu */
         g_signal_connect (plug->priv->password_entry, "button_press_event",
@@ -1339,10 +1406,13 @@ create_page_one (GSLockPlug *plug)
                           G_CALLBACK (entry_key_press), plug);
         gtk_entry_set_activates_default (GTK_ENTRY (plug->priv->password_entry), TRUE);
         gtk_entry_set_visibility (GTK_ENTRY (plug->priv->password_entry), FALSE);
-        gtk_table_attach (GTK_TABLE (table), plug->priv->password_entry, 1, 2, 1, 2,
-                          GTK_EXPAND | GTK_FILL, 0, 0, 0);
+
         gtk_label_set_mnemonic_widget (GTK_LABEL (password_label),
                                        plug->priv->password_entry);
+
+        plug->priv->capslock_label = gtk_label_new ("");
+        gtk_misc_set_alignment (GTK_MISC (plug->priv->capslock_label), 0.5, 0.5);
+        gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->capslock_label, FALSE, FALSE, 0);
 
         profile_end ("end", "page one");
 }
@@ -1351,26 +1421,18 @@ static void
 create_page_two (GSLockPlug *plug)
 {
         GtkWidget            *widget;
-        GtkWidget            *hbox;
         GtkWidget            *vbox;
 
         profile_start ("start", "page two");
 
-        hbox = gtk_hbox_new (FALSE, 12);
-        gtk_notebook_append_page (GTK_NOTEBOOK (plug->priv->notebook), hbox, NULL);
+        vbox = gtk_vbox_new (FALSE, 6);
+        gtk_notebook_append_page (GTK_NOTEBOOK (plug->priv->notebook), vbox, NULL);
 
-        widget = gtk_image_new_from_icon_name ("stock_people", GTK_ICON_SIZE_DIALOG);
-        gtk_misc_set_alignment (GTK_MISC (widget), 0.5, 0);
-        gtk_box_pack_start (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
-
-        vbox = gtk_vbox_new (FALSE, 12);
-        gtk_box_pack_start (GTK_BOX (hbox), vbox, TRUE, TRUE, 0);
-
-        widget = gtk_label_new (_("Switch to another user?"));
+        widget = gtk_label_new (_("Switch to user:"));
         gtk_misc_set_alignment (GTK_MISC (widget), 0, 0.5);
         gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
 
-        label_set_bold (GTK_LABEL (widget));
+        label_set_big (GTK_LABEL (widget));
 
         widget = gtk_scrolled_window_new (NULL, NULL);
         gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (widget),
@@ -1413,8 +1475,6 @@ create_buttons (GSLockPlug *plug)
         plug->priv->logout_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
                                                               _("Log _Out"),
                                                               GS_LOCK_PLUG_RESPONSE_CANCEL);
-        widget = gtk_image_new_from_stock (GTK_STOCK_QUIT, GTK_ICON_SIZE_BUTTON);
-        gtk_button_set_image (GTK_BUTTON (plug->priv->logout_button), widget);
         gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->logout_button), FALSE);
 
         plug->priv->cancel_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
@@ -1441,9 +1501,6 @@ create_buttons (GSLockPlug *plug)
 static void
 gs_lock_plug_init (GSLockPlug *plug)
 {
-        int                   font_size;
-        PangoFontDescription *fontdesc;
-
         profile_start ("start", NULL);
 
         plug->priv = GS_LOCK_PLUG_GET_PRIVATE (plug);
@@ -1480,21 +1537,11 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         create_page_two (plug);
 
-        /* Progress bar */
+        /* Status text */
 
-        plug->priv->progress_bar = gtk_progress_bar_new ();
-        gtk_progress_bar_set_orientation (GTK_PROGRESS_BAR (plug->priv->progress_bar),
-                                          GTK_PROGRESS_RIGHT_TO_LEFT);
-        set_progress_position (plug, 1.0, " ");
-
-        gtk_box_pack_start (GTK_BOX (plug->vbox), plug->priv->progress_bar,
+        plug->priv->status_label = gtk_label_new (NULL);
+        gtk_box_pack_start (GTK_BOX (plug->vbox), plug->priv->status_label,
                             FALSE, FALSE, 0);
-
-        fontdesc = pango_font_description_copy (GTK_WIDGET (plug->priv->progress_bar)->style->font_desc);
-        font_size = pango_font_description_get_size (fontdesc) * 0.75;
-        pango_font_description_set_size (fontdesc, font_size);
-        gtk_widget_modify_font (plug->priv->progress_bar, fontdesc);
-        pango_font_description_free (fontdesc);
 
         /* Buttons */
 
@@ -1509,8 +1556,8 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         plug->priv->timeout = DIALOG_TIMEOUT_MSEC;
 
-        g_signal_connect (plug->priv->switch_button, "clicked",
-                          G_CALLBACK (switch_page), plug);
+        g_signal_connect_swapped (plug->priv->switch_button, "clicked",
+                                  G_CALLBACK (switch_page), plug);
 
         g_signal_connect (plug->priv->logout_button, "clicked",
                           G_CALLBACK (logout_button_clicked), plug);

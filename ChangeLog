@@ -1,5 +1,20 @@
 2005-09-22  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (set_status_text, gs_lock_plug_response) 
+	(monitor_progress, gs_lock_plug_init): Remove progress bar.
+	(get_ok_button_for_page, get_switch_button_for_page): Remove
+	icons from buttons.
+	(switch_page): Restart timer when switching page.  Don't
+	show Unlock button on user switch page.
+	(check_user_file, get_face_image, create_page_one): Put
+	user face image on dialog, make centered, etc.
+	(create_page_two): Remove stock_people icon.  Increase
+	the size of the user icons in list.
+
+	Some usability changes suggested by mpt.
+
+2005-09-22  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c (window_show_cb): Don't set theme search
 	path.
 
