@@ -68,6 +68,8 @@ struct GSWindowPrivate
         gint       watch_id;
         gint       dialog_response;
 
+        GList     *key_events;
+
         GTimer    *timer;
 };
 
@@ -380,10 +382,43 @@ plug_removed (GtkWidget *widget,
 }
 
 static void
+forward_key_events (GSWindow *window)
+{
+        window->priv->key_events = g_list_reverse (window->priv->key_events);
+
+        while (window->priv->key_events) {
+                GdkEventKey *event = window->priv->key_events->data;
+
+                gtk_window_propagate_key_event (GTK_WINDOW (window), event);
+
+                gdk_event_free ((GdkEvent *)event);
+                window->priv->key_events = g_list_delete_link (window->priv->key_events,
+                                                               window->priv->key_events);
+        }
+}
+
+static void
+remove_key_events (GSWindow *window)
+{
+        window->priv->key_events = g_list_reverse (window->priv->key_events);
+
+        while (window->priv->key_events) {
+                GdkEventKey *event = window->priv->key_events->data;
+
+                gdk_event_free ((GdkEvent *)event);
+                window->priv->key_events = g_list_delete_link (window->priv->key_events,
+                                                               window->priv->key_events);
+        }
+}
+
+static void
 socket_show (GtkWidget *widget,
              GSWindow  *window)
 {
         gtk_widget_child_focus (window->priv->socket, GTK_DIR_TAB_FORWARD);
+
+        /* send queued events to the dialog */
+        forward_key_events (window);
 }
 
 static void
@@ -449,6 +484,9 @@ gs_window_dialog_finish (GSWindow *window)
 
         g_spawn_close_pid (window->priv->pid);
         window->priv->pid = 0;
+
+        /* remove events for the case were we failed to show socket */
+        remove_key_events (window);
 }
 
 static gboolean
@@ -737,14 +775,38 @@ gs_window_request_unlock_idle (GSWindow *window)
         return FALSE;
 }
 
+static void
+queue_key_event (GSWindow    *window,
+                 GdkEventKey *event)
+{
+        window->priv->key_events = g_list_prepend (window->priv->key_events,
+                                                   gdk_event_copy ((GdkEvent *)event));
+}
+
 static gboolean
 gs_window_real_key_press_event (GtkWidget   *widget,
                                 GdkEventKey *event)
 {
+        gboolean catch_events = FALSE;
+
         /*g_message ("KEY PRESS state: %u keyval %u", event->state, event->keyval);*/
 
-        if (GS_WINDOW (widget)->priv->request_unlock_idle_id == 0) {
-                GS_WINDOW (widget)->priv->request_unlock_idle_id = g_idle_add ((GSourceFunc)gs_window_request_unlock_idle, widget);
+        /* if we don't already have a socket then request an unlock */
+        if (! GS_WINDOW (widget)->priv->socket) {
+                if (GS_WINDOW (widget)->priv->request_unlock_idle_id == 0) {
+                        GS_WINDOW (widget)->priv->request_unlock_idle_id = g_idle_add ((GSourceFunc)gs_window_request_unlock_idle, widget);
+                }
+
+                catch_events = TRUE;
+        } else {
+                if (! GTK_WIDGET_VISIBLE (GS_WINDOW (widget)->priv->socket)) {
+                        catch_events = TRUE;
+                }
+        }
+
+        /* Catch all keypresses up until the lock dialog is shown */
+        if (catch_events) {
+                queue_key_event (GS_WINDOW (widget), event);
         }
 
         if (GTK_WIDGET_CLASS (parent_class)->key_press_event)
@@ -757,7 +819,10 @@ static gboolean
 gs_window_real_motion_notify_event (GtkWidget      *widget,
                                     GdkEventMotion *event)
 {
-        if (GS_WINDOW (widget)->priv->request_unlock_idle_id == 0) {
+
+        /* if we don't already have a socket then request an unlock */
+        if (! GS_WINDOW (widget)->priv->socket
+            && (GS_WINDOW (widget)->priv->request_unlock_idle_id == 0)) {
                 GS_WINDOW (widget)->priv->request_unlock_idle_id = g_idle_add ((GSourceFunc)gs_window_request_unlock_idle, widget);
         }
 
@@ -921,6 +986,9 @@ gs_window_finalize (GObject *object)
 
         if (window->priv->timer)
                 g_timer_destroy (window->priv->timer);
+
+        /* just in case they weren't removed */
+        remove_key_events (window);
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }

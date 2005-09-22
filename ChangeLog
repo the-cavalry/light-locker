@@ -1,3 +1,16 @@
+2005-09-22  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-window-x11.c (forward_key_events, remove_key_events) 
+	(socket_show, gs_window_dialog_finish, queue_key_event) 
+	(gs_window_real_key_press_event, gs_window_finalize):
+	Queue up key press events before the unlock dialog
+	is shown and replay them as soon as it is visible.
+	Fixes #316558.
+	(gs_window_real_key_press_event) 
+	(gs_window_real_motion_notify_event): Don't try to
+	request an unlock if there is already a socket since
+	this means that a dialog has already been requested.
+
 2005-09-19  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (switch_page): Remove workaround
