@@ -59,8 +59,8 @@
 #define KEY_THEMES       KEY_DIR "/themes"
 
 enum {
-        LABEL_COLUMN,
         NAME_COLUMN,
+        ID_COLUMN,
         N_COLUMNS
 };
 
@@ -180,8 +180,27 @@ config_get_theme (gboolean *is_writable)
         return name;
 }
 
+static GSList *
+get_all_theme_ids (GSJob *job)
+{
+        GSList *ids = NULL;
+        GSList *entries;
+        GSList *l;
+
+        entries = gs_job_get_theme_info_list (job);
+        for (l = entries; l; l = l->next) {
+                GSJobThemeInfo *info = l->data;
+
+                ids = g_slist_prepend (ids, g_strdup (gs_job_theme_info_get_id (info)));
+                gs_job_theme_info_unref (info);
+        }
+        g_slist_free (entries);
+
+        return ids;
+}
+
 static void
-config_set_theme (const char *name)
+config_set_theme (const char *theme_id)
 {
         GConfClient *client;
         GSList      *list = NULL;
@@ -190,18 +209,18 @@ config_set_theme (const char *name)
 
         client = gconf_client_get_default ();
 
-        if (name && strcmp (name, "__disabled") == 0) {
+        if (theme_id && strcmp (theme_id, "__disabled") == 0) {
                 mode = GS_MODE_DONT_BLANK;
-        } else if (name && strcmp (name, "__blank-only") == 0) {
+        } else if (theme_id && strcmp (theme_id, "__blank-only") == 0) {
                 mode = GS_MODE_BLANK_ONLY;
-        } else if (name && strcmp (name, "__random") == 0) {
+        } else if (theme_id && strcmp (theme_id, "__random") == 0) {
                 mode = GS_MODE_RANDOM;
 
                 /* set the themes key to contain all available screensavers */
-                list = gs_job_get_theme_list (job);
+                list = get_all_theme_ids (job);
         } else {
                 mode = GS_MODE_SINGLE;
-                list = g_slist_append (list, g_strdup (name));
+                list = g_slist_append (list, g_strdup (theme_id));
         }
 
         mode_string = gconf_enum_to_string (mode_enum_map, mode);
@@ -303,9 +322,9 @@ preview_set_theme (GtkWidget  *widget,
                 if (lock_writable)
                         gtk_widget_set_sensitive (lock_box, TRUE);
 
-                themes = gs_job_get_theme_list (job);
+                themes = get_all_theme_ids (job);
                 if (themes) {
-                        if (!gs_job_set_theme (job, (const char *) themes->data, &error)) {
+                        if (! gs_job_set_theme (job, (const char *) themes->data, &error)) {
                                 if (error) {
                                         g_warning ("Could not set theme: %s", error->message);
                                         g_error_free (error);
@@ -348,9 +367,9 @@ response_cb (GtkWidget *widget,
 }
 
 static GSList *
-get_theme_list (void)
+get_theme_info_list (void)
 {
-        return gs_job_get_theme_list (job);
+        return gs_job_get_theme_info_list (job);
 }
 
 static void
@@ -364,53 +383,49 @@ populate_model (GtkTreeStore *store)
         if (show_disabled) {
                 gtk_tree_store_append (store, &iter, NULL);
                 gtk_tree_store_set (store, &iter,
-                                    LABEL_COLUMN, "Disabled",
-                                    NAME_COLUMN, "__disabled",
+                                    NAME_COLUMN, "Disabled",
+                                    ID_COLUMN, "__disabled",
                                     -1);
         }
 
         gtk_tree_store_append (store, &iter, NULL);
         gtk_tree_store_set (store, &iter,
-                            LABEL_COLUMN, "Blank screen",
-                            NAME_COLUMN, "__blank-only",
+                            NAME_COLUMN, "Blank screen",
+                            ID_COLUMN, "__blank-only",
                             -1);
 
         gtk_tree_store_append (store, &iter, NULL);
         gtk_tree_store_set (store, &iter,
-                            LABEL_COLUMN, "Random",
-                            NAME_COLUMN, "__random",
+                            NAME_COLUMN, "Random",
+                            ID_COLUMN, "__random",
                             -1);
 
         gtk_tree_store_append (store, &iter, NULL);
         gtk_tree_store_set (store, &iter,
-                            LABEL_COLUMN, NULL,
-                            NAME_COLUMN, "__separator",
+                            NAME_COLUMN, NULL,
+                            ID_COLUMN, "__separator",
                             -1);
 
-        themes = get_theme_list ();
+        themes = get_theme_info_list ();
 
         if (! themes)
                 return;
         
         for (l = themes; l; l = l->next) {
-                GSJobThemeInfo *info;
-
-                info = gs_job_lookup_theme_info (job,
-                                                 (const char *) l->data);
+                GSJobThemeInfo *info = l->data;
 
                 if (! info)
                         continue;
 
                 gtk_tree_store_append (store, &iter, NULL);
                 gtk_tree_store_set (store, &iter,
-                                    NAME_COLUMN, info->name,
-                                    LABEL_COLUMN, info->title,
+                                    NAME_COLUMN, gs_job_theme_info_get_name (info),
+                                    ID_COLUMN, gs_job_theme_info_get_id (info),
                                     -1);
 
-                gs_job_theme_info_free (info);
+                gs_job_theme_info_unref (info);
         }
 
-        g_slist_foreach (themes, (GFunc)g_free, NULL);
         g_slist_free (themes);
 }
 
@@ -425,7 +440,7 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
         if (! gtk_tree_selection_get_selected (selection, &model, &iter))
                 return;
 
-        gtk_tree_model_get (model, &iter, NAME_COLUMN, &theme, -1);
+        gtk_tree_model_get (model, &iter, ID_COLUMN, &theme, -1);
 
         if (! theme)
                 return;
@@ -454,48 +469,48 @@ compare_theme  (GtkTreeModel *model,
 {
         char *name_a;
         char *name_b;
-        char *label_a;
-        char *label_b;
+        char *id_a;
+        char *id_b;
         int   result;
 
         gtk_tree_model_get (model, a, NAME_COLUMN, &name_a, -1);
         gtk_tree_model_get (model, b, NAME_COLUMN, &name_b, -1);
-        gtk_tree_model_get (model, a, LABEL_COLUMN, &label_a, -1);
-        gtk_tree_model_get (model, b, LABEL_COLUMN, &label_b, -1);
+        gtk_tree_model_get (model, a, ID_COLUMN, &id_a, -1);
+        gtk_tree_model_get (model, b, ID_COLUMN, &id_b, -1);
+
+        if (! id_a)
+                return 1;
+        else if (! id_b)
+                return -1;
+
+        if (strcmp (id_a, "__disabled") == 0)
+                return -1;
+        else if (strcmp (id_b, "__disabled") == 0)
+                return 1;
+        else if (strcmp (id_a, "__blank-only") == 0)
+                return -1;
+        else if (strcmp (id_b, "__blank-only") == 0)
+                return 1;
+        else if (strcmp (id_a, "__random") == 0)
+                return -1;
+        else if (strcmp (id_b, "__random") == 0)
+                return 1;
+        else if (strcmp (id_a, "__separator") == 0)
+                return -1;
+        else if (strcmp (id_b, "__separator") == 0)
+                return 1;
 
         if (! name_a)
                 return 1;
         else if (! name_b)
                 return -1;
 
-        if (strcmp (name_a, "__disabled") == 0)
-                return -1;
-        else if (strcmp (name_b, "__disabled") == 0)
-                return 1;
-        else if (strcmp (name_a, "__blank-only") == 0)
-                return -1;
-        else if (strcmp (name_b, "__blank-only") == 0)
-                return 1;
-        else if (strcmp (name_a, "__random") == 0)
-                return -1;
-        else if (strcmp (name_b, "__random") == 0)
-                return 1;
-        else if (strcmp (name_a, "__separator") == 0)
-                return -1;
-        else if (strcmp (name_b, "__separator") == 0)
-                return 1;
+        result = strcmp (name_a, name_b);
 
-        if (! label_a)
-                return 1;
-        else if (! label_b)
-                return -1;
-
-        result = strcmp (label_a, label_b);
-
-        g_free (label_a);
-        g_free (label_b);
         g_free (name_a);
         g_free (name_b);
+        g_free (id_a);
+        g_free (id_b);
 
         return result;
 }
@@ -539,7 +554,7 @@ setup_treeview (GtkWidget *tree,
 
         renderer = gtk_cell_renderer_text_new ();
         column = gtk_tree_view_column_new_with_attributes ("Name", renderer,
-                                                           "text", LABEL_COLUMN,
+                                                           "text", NAME_COLUMN,
                                                            NULL);
         gtk_tree_view_append_column (GTK_TREE_VIEW (tree), column);
 
@@ -554,7 +569,7 @@ setup_treeview (GtkWidget *tree,
 
         gtk_tree_view_set_row_separator_func (GTK_TREE_VIEW (tree),
                                               separator_func,
-                                              GINT_TO_POINTER (NAME_COLUMN),
+                                              GINT_TO_POINTER (ID_COLUMN),
                                               NULL);
 
         select = gtk_tree_view_get_selection (GTK_TREE_VIEW (tree));
@@ -582,12 +597,12 @@ setup_treeview_selection (GtkWidget *tree)
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (tree));
 
         if (theme && gtk_tree_model_get_iter_first (model, &iter)) {
-                char *name;
+                char *id;
 
                 do {
                         gtk_tree_model_get (model, &iter,
-                                            NAME_COLUMN, &name, -1);
-                        if (name && strcmp (name, theme) == 0) {
+                                            ID_COLUMN, &id, -1);
+                        if (id && strcmp (id, theme) == 0) {
                                 path = gtk_tree_model_get_path (model, &iter);
                                 break;
                         }
@@ -865,7 +880,6 @@ init_capplet (void)
         GtkWidget *label;
         GtkWidget *lock_checkbox;
         char      *glade_file;
-        char      *path;
         char      *string;
         gdouble    blank_delay;
         gboolean   is_writable;
@@ -943,7 +957,7 @@ init_capplet (void)
                 g_free (string);
 
                 if (mode == GS_MODE_RANDOM) {
-                        list = gs_job_get_theme_list (job);
+                        list = get_all_theme_ids (job);
                         gconf_client_set_list (client, KEY_THEMES, GCONF_VALUE_STRING, list, NULL);
 
                         g_slist_foreach (list, (GFunc) g_free, NULL);
@@ -955,13 +969,6 @@ init_capplet (void)
 
         preview_clear (preview);
         gs_job_set_widget (job, preview);
-
-        /* Add user configuration path */
-        /* FIXME: disable this if locked down */
-        path = g_build_filename (g_get_user_data_dir (), "gnome-screensaver", "themes", NULL);
-
-        gs_job_prepend_theme_path (job, path);
-        g_free (path);
 
         setup_treeview (treeview, preview);
         setup_treeview_selection (treeview);

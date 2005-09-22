@@ -13,6 +13,7 @@ INCLUDES =							\
 	-I.							\
 	-I$(srcdir)						\
 	-I$(top_srcdir)/src/cut-n-paste				\
+	-DGMENU_I_KNOW_THIS_IS_UNSTABLE				\
 	$(GNOME_SCREENSAVER_CFLAGS)				\
 	$(GNOME_SCREENSAVER_DIALOG_CFLAGS)			\
 	$(GNOME_SCREENSAVER_CAPPLET_CFLAGS)			\
@@ -26,6 +27,7 @@ INCLUDES =							\
 	-DPAM_SERVICE_NAME=\""gnome-screensaver"\"		\
 	$(WARN_CFLAGS)						\
 	$(AUTH_CFLAGS)						\
+	$(DEBUG_CFLAGS)						\
 	$(DBUS_CFLAGS)						\
 	$(FAST_USER_SWITCH_CFLAGS)				\
 	$(NULL)
@@ -127,7 +129,8 @@ gnome_screensaver_SOURCES =	\
 gnome_screensaver_LDADD =		\
 	$(GNOME_SCREENSAVER_LIBS)	\
 	$(SAVER_LIBS)			\
-	$(X_LIBS)
+	$(X_LIBS)			\
+	$(NULL)
 
 gnome_screensaver_LDFLAGS = -export-dynamic
 
@@ -142,7 +145,8 @@ gnome_screensaver_preferences_SOURCES =	\
 	$(NULL)
 
 gnome_screensaver_preferences_LDADD =	\
-	$(GNOME_SCREENSAVER_CAPPLET_LIBS)
+	$(GNOME_SCREENSAVER_CAPPLET_LIBS)	\
+	$(NULL)
 
 EXTRA_DIST =
 

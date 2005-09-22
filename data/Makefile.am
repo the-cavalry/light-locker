@@ -1,6 +1,8 @@
 SUBDIRS =			\
 	images
 
+NULL =
+
 @INTLTOOL_SCHEMAS_RULE@
 
 schemasdir   = @GCONF_SCHEMA_FILE_DIR@
@@ -13,18 +15,36 @@ desktopdir = $(datadir)/applications
 desktop_in_files = gnome-screensaver-preferences.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
+@INTLTOOL_DIRECTORY_RULE@
+directorydir = $(datadir)/desktop-directories
+directory_in_files =                            \
+	gnome-screensaver.directory.in		\
+	$(NULL)
+directory_DATA = $(directory_in_files:.directory.in=.directory)
+
+themesdir = $(pkgdatadir)/themes
+
+menudir = $(sysconfdir)/xdg/menus
+menu_DATA =					\
+	gnome-screensavers.menu			\
+	$(NULL)
+
 gladedir = $(pkgdatadir)
 glade_DATA = gnome-screensaver-preferences.glade
 
 EXTRA_DIST = 				\
 	$(schemas_in_files)		\
 	$(desktop_in_files)		\
+	$(directory_in_files)		\
 	$(glade_DATA)			\
-	gnome-screensaver
+	gnome-screensaver		\
+	$(NULL)
 
 DISTCLEANFILES = 			\
 	$(schemas_DATA)			\
-	$(desktop_DATA)
+	$(desktop_DATA)			\
+	$(directory_DATA)		\
+	$(NULL)
 
 MAINTAINERCLEANFILES =			\
 	*~				\

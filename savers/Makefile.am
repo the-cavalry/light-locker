@@ -14,17 +14,20 @@ INCLUDES =							\
 	$(WARN_CFLAGS)						\
 	$(NULL)
 
+@INTLTOOL_DESKTOP_RULE@
+
+themesdir = $(pkgdatadir)/themes
+themes_in_files = 			\
+	cosmos-slideshow.desktop.in	\
+	personal-slideshow.desktop.in	\
+	popsquares.desktop.in		\
+	$(NULL)
+themes_DATA = $(themes_in_files:.desktop.in=.desktop)
+
 saverdir = $(libexecdir)/gnome-screensaver
 saver_PROGRAMS = 	\
 	popsquares	\
 	slideshow	\
-	$(NULL)
-
-themesdir = $(pkgdatadir)/themes
-themes_DATA = 			\
-	cosmos-slideshow.xml	\
-	popsquares.xml		\
-	personal-slideshow.xml	\
 	$(NULL)
 
 popsquares_SOURCES = 	\
@@ -44,4 +47,8 @@ EXTRA_DIST =		\
 
 MAINTAINERCLEANFILES =			\
 	*~				\
-	Makefile.in
+	Makefile.in			\
+	cosmos-slideshow.desktop	\
+	personal-slideshow.desktop	\
+	popsquares.desktop		\
+	$(NULL)

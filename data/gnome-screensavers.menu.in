@@ -1,0 +1,13 @@
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+ "http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">
+
+<Menu>
+
+  <Name>Screensavers</Name>
+  <AppDir>@GNOME_SCREENSAVER_THEMES_DIR@</AppDir>
+  <Directory>gnome-screensaver.directory</Directory>
+  <Include>
+    <Category>Screensaver</Category>
+  </Include>
+
+</Menu>

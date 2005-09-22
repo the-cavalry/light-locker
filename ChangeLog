@@ -1,5 +1,49 @@
 2005-09-22  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-manager.c (window_show_cb): Don't set theme search
+	path.
+
+	* src/gs-job.[ch] (gs_job_theme_info_ref, gs_job_theme_info_unref) 
+	(gs_job_theme_info_get_id, gs_job_theme_info_get_name) 
+	(gs_job_theme_info_new_from_gmenu_tree_entry, find_info_for_id) 
+	(gs_job_lookup_theme_info, theme_prepend_entry, make_theme_list) 
+	(gs_job_get_theme_info_list, gs_job_init, gs_job_finalize) 
+	(gs_job_set_theme, spawn_on_widget, gs_job_start): Use
+	gnome-menu to construct a theme list.  Remove all traces of
+	theme search path.  Remove XML configuration parsing.
+
+	* src/gnome-screensaver-preferences.c (get_all_theme_ids) 
+	(config_set_theme, preview_set_theme, get_theme_info_list) 
+	(populate_model, tree_selection_changed_cb, compare_theme) 
+	(setup_treeview, setup_treeview_selection, init_capplet):
+	Use new themes info API.
+
+	* src/Makefile.am: Use libgnome-menu.
+	
+	* savers/popsquares.desktop.in: 
+	* savers/personal-slideshow.desktop.in: 
+	* savers/cosmos-slideshow.desktop.in.in: 
+	* savers/Makefile.am: 
+	* savers/.cvsignore: Use desktop files to define
+	screensaver themes
+
+	* data/migrate-xscreensaver-config.sh:
+	* data/xscreensaver-config.xsl: Script that can be
+	used to convert xscreensaver .xml configuration files
+	to .desktop files.
+
+	* data/gnome-screensavers.menu.in: 
+	* data/gnome-screensaver.directory.in: 
+	* data/Makefile.am:
+	* data/.cvsignore: New files to define menu entries
+
+	* configure.ac: Require libgnome-menu
+
+	Use the cross desktop menu spec for finding themes.
+	Fixes #316472.
+
+2005-09-22  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (forward_key_events, remove_key_events) 
 	(socket_show, gs_window_dialog_finish, queue_key_event) 
 	(gs_window_real_key_press_event, gs_window_finalize):

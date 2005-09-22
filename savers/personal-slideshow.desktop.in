@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+_Name=Pictures folder
+_Comment=Display a slideshow from your Pictures folder
+Exec=slideshow --location=Pictures
+TryExec=slideshow
+StartupNotify=false
+Terminal=false
+Type=Application
+Categories=GNOME;Screensaver

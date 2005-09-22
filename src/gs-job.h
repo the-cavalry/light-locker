@@ -49,8 +49,12 @@ typedef struct
 
 typedef struct {
         char  *name;
-        char  *title;
-        char **argv;
+        char  *comment;
+        char  *exec;
+        char  *icon;
+        char  *path;
+        char  *file_id;
+        guint  refcount;
 } GSJobThemeInfo;
 
 GType           gs_job_get_type                  (void);
@@ -80,10 +84,13 @@ void            gs_job_append_theme_path         (GSJob          *job,
 void            gs_job_prepend_theme_path        (GSJob          *job,
                                                   const char     *path);
 
-GSList         *gs_job_get_theme_list            (GSJob          *job);
+GSList         *gs_job_get_theme_info_list       (GSJob          *job);
 GSJobThemeInfo *gs_job_lookup_theme_info         (GSJob          *job,
                                                   const char     *theme);
-void            gs_job_theme_info_free           (GSJobThemeInfo *info);
+GSJobThemeInfo *gs_job_theme_info_ref            (GSJobThemeInfo *info);
+void            gs_job_theme_info_unref          (GSJobThemeInfo *info);
+const char     *gs_job_theme_info_get_id         (GSJobThemeInfo *info);
+const char     *gs_job_theme_info_get_name       (GSJobThemeInfo *info);
 
 G_END_DECLS
 

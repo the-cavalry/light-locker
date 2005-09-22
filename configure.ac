@@ -41,6 +41,7 @@ GTK_REQUIRED_VERSION=2.7.0
 GNOME_VFS_REQUIRED_VERSION=2.6.0
 LIBGNOMEUI_REQUIRED_VERSION=2.6.0
 GLADE_REQUIRED_VERSION=2.5.0
+LIBGNOME_MENU_REQUIRED_VERSION=2.11.1
 
 AC_CHECK_HEADERS(unistd.h)
 AC_CHECK_HEADERS(crypt.h sys/select.h)
@@ -52,7 +53,8 @@ PKG_CHECK_MODULES(GNOME_SCREENSAVER,
         gtk+-2.0 >= $GTK_REQUIRED_VERSION
         libxml-2.0 >= $LIBXML_REQUIRED_VERSION
         dbus-glib-1 >= $DBUS_REQUIRED_VERSION
-        gconf-2.0 >= $GCONF_REQUIRED_VERSION)
+        gconf-2.0 >= $GCONF_REQUIRED_VERSION
+        libgnome-menu >= $LIBGNOME_MENU_REQUIRED_VERSION)
 AC_SUBST(GNOME_SCREENSAVER_CFLAGS)
 AC_SUBST(GNOME_SCREENSAVER_LIBS)
 
@@ -64,7 +66,8 @@ AC_SUBST(GNOME_SCREENSAVER_DIALOG_LIBS)
 PKG_CHECK_MODULES(GNOME_SCREENSAVER_CAPPLET,
 	libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED_VERSION
         libglade-2.0 >= $GLADE_REQUIRED_VERSION
-        gtk+-2.0 >= $GTK_REQUIRED_VERSION)
+        gtk+-2.0 >= $GTK_REQUIRED_VERSION
+        libgnome-menu >= $LIBGNOME_MENU_REQUIRED_VERSION)
 AC_SUBST(GNOME_SCREENSAVER_CAPPLET_CFLAGS)
 AC_SUBST(GNOME_SCREENSAVER_CAPPLET_LIBS)
 
@@ -145,6 +148,14 @@ PKG_CHECK_MODULES(FAST_USER_SWITCH,
 
 AC_SUBST(FAST_USER_SWITCH_CFLAGS)
 AC_SUBST(FAST_USER_SWITCH_LIBS)
+
+# Desktop entry handling
+
+PKG_CHECK_MODULES(LIB_GNOME_MENU,
+        gtk+-2.0 >= $GTK_REQUIRED_VERSION)
+
+AC_SUBST(LIB_GNOME_MENU_CFLAGS)
+AC_SUBST(LIB_GNOME_MENU_LIBS)
 
 # GDM Config File
 
@@ -1402,6 +1413,19 @@ else
         AC_MSG_RESULT(no)
 fi
 
+dnl --enable-debug=(yes|minimum|no)
+AC_ARG_ENABLE(debug, [  --enable-debug=[no/yes] turn on debugging [default=no]],,enable_debug=yes)
+if test "$enable_debug" = "yes"; then
+  DEBUG_CFLAGS="-DG_ENABLE_DEBUG"
+else
+  if test "x$enable_debug" = "xno"; then
+    DEBUG_CFLAGS="-DG_DISABLE_ASSERT -DG_DISABLE_CHECKS"
+  else
+    DEBUG_CFLAGS=""
+  fi
+fi
+AC_SUBST(DEBUG_CFLAGS)
+
 # Flags
 
 AC_SUBST(CFLAGS)
@@ -1413,6 +1437,11 @@ SLIDESHOW_COSMOS_DIR="${EXPANDED_DATADIR}/pixmaps/backgrounds/cosmos"
 
 AC_SUBST(SLIDESHOW_COSMOS_DIR)
 
+# Menu stuff
+
+GNOME_SCREENSAVER_THEMES_DIR="${EXPANDED_DATADIR}/gnome-screensaver/themes"
+AC_SUBST(GNOME_SCREENSAVER_THEMES_DIR)
+
 # Files
 
 AC_OUTPUT([
@@ -1421,10 +1450,11 @@ po/Makefile.in
 src/Makefile
 src/cut-n-paste/Makefile
 data/Makefile
+data/gnome-screensavers.menu
 data/images/Makefile
 data/images/cosmos/Makefile
 savers/Makefile
-savers/cosmos-slideshow.xml
+savers/cosmos-slideshow.desktop.in
 ])
 
 echo "

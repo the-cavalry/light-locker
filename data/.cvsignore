@@ -3,3 +3,5 @@ Makefile.in
 *.desktop
 *.schemas
 *.gladep
+*.menu
+*.directory
