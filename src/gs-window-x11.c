@@ -610,7 +610,7 @@ popup_dialog_idle (GSWindow *window)
                                   window,
                                   &window->priv->watch_id);
         if (!result)
-                g_warning ("Could not start command: %s", command);
+                g_warning ("Could not start command: %s", command->str);
 
         g_string_free (command, TRUE);
 

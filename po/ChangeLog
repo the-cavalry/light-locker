@@ -1,3 +1,7 @@
+2005-09-23  William Jon McCann  <mccann@jhu.edu>
+
+	* POTFILES.in: Remove obsolete and add new files.
+
 2005-09-22  Vincent van Adrighem  <adrighem@gnome.org>
 
 	* nl.po: Translation updated by Tino Meinen.

@@ -42,8 +42,13 @@ slideshow_SOURCES =   \
 slideshow_LDADD =     \
         $(GNOME_SCREENSAVER_SAVER_LIBS)
 
-EXTRA_DIST =		\
-	$(themes_DATA)
+EXTRA_DIST =				\
+	$(themes_in_files)		\
+	$(NULL)
+
+DISTCLEANFILES = 			\
+	$(themes_DATA)			\
+	$(NULL)
 
 MAINTAINERCLEANFILES =			\
 	*~				\

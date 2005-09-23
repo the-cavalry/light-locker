@@ -1,4 +1,18 @@
 ==============
+Version 0.0.14
+==============
+
+  gnome-screensaver
+
+        * Don't drop keypresses before unlock dialog appears
+        * Use .desktop files and menu spec to find themes
+        * Simplify unlock dialog
+        * Make user switching a gconf option (Matthias Clasen)
+        * Make user switching disabled by default
+        * Fix a crash due to a missing error handler
+
+
+==============
 Version 0.0.13
 ==============
 
@@ -7,6 +21,19 @@ Version 0.0.13
         * Fix problem when starting GNOME from KDM
         * Only look for theme files that end in .xml
         * Look for xscreensaver themes in a few more places
+
+  gnome-screensaver-preferences
+
+        * Use new themes API that will theme list to be
+          modified by distro/sysadmin/user.
+
+  Translators
+
+        * Ilkka Tuohela (fi)
+        * Luca Ferretti (it)
+        * Takeshi AIHANA (ja)
+        * Tino Meinen (nl)
+        * Clytie Siddall (vi)
 
 ==============
 Version 0.0.12

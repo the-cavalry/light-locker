@@ -2,10 +2,11 @@
 # Please keep this file sorted alphabetically.
 data/gnome-screensaver-preferences.desktop.in
 data/gnome-screensaver-preferences.glade
+data/gnome-screensaver.directory.in
 data/gnome-screensaver.schemas.in
-savers/cosmos-slideshow.xml.in
-savers/personal-slideshow.xml
-savers/popsquares.xml
+savers/cosmos-slideshow.desktop.in.in
+savers/personal-slideshow.desktop.in
+savers/popsquares.desktop.in
 savers/slideshow.c
 src/cut-n-paste/fusa-display.c
 src/cut-n-paste/fusa-manager.c
