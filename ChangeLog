@@ -1,5 +1,10 @@
 2005-09-23  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-job.c (spawn_on_widget): Only set XAUTHORITY in
+	child it is set in parent.
+
+2005-09-23  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (setup_treeview): Only setup
 	the user list if switching is enabled.
 

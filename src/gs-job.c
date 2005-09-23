@@ -645,7 +645,9 @@ spawn_on_widget (GtkWidget  *widget,
         g_ptr_array_add (env, g_strdup_printf ("HOME=%s",
                                                g_get_home_dir ()));
         g_ptr_array_add (env, g_strdup_printf ("PATH=%s", g_getenv ("PATH")));
-        g_ptr_array_add (env, g_strdup_printf ("XAUTHORITY=%s", g_getenv ("XAUTHORITY")));
+
+        if (g_getenv ("XAUTHORITY"))
+                g_ptr_array_add (env, g_strdup_printf ("XAUTHORITY=%s", g_getenv ("XAUTHORITY")));
         g_ptr_array_add (env, NULL);
 
         result = gdk_spawn_on_screen_with_pipes (gtk_widget_get_screen (widget),
