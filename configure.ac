@@ -166,7 +166,7 @@ AC_ARG_WITH([gdm_config],
 			   [The location of the GDM configuration file]),
 	    [gdmconfigfile="$withval"])
 
-if test "x$gdmconfigfile" == "x" -o "x$gdmconfigfile" == "xno"; then
+if test "x$gdmconfigfile" = "x" -o "x$gdmconfigfile" = "xyes"; then
 	AC_MSG_CHECKING([for gdm.conf])
 
 	if test -f "/etc/gdm/gdm.conf"; then
@@ -180,6 +180,8 @@ if test "x$gdmconfigfile" == "x" -o "x$gdmconfigfile" == "xno"; then
 	fi
 
 	AC_MSG_RESULT([$gdmconfigfile])
+elif test "x$gdmconfigfile" = "xno"; then
+        gdmconfigfile=""
 else
 	AC_MSG_RESULT([using "$gdmconfigfile" as the gdm.conf location])
 fi

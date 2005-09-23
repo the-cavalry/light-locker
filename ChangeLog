@@ -1,3 +1,7 @@
+2005-09-23  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac: Fix the logic so that --with-gdm-config=no works.
+
 2005-09-22  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (set_status_text, gs_lock_plug_response) 
