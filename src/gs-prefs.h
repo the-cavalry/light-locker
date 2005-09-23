@@ -74,6 +74,7 @@ typedef struct
         guint            dpms_off;		/* how long until monitor powers down */
 
         gboolean         logout_enabled;	/* Whether to offer the logout option */
+        gboolean         user_switch_enabled;	/* Whether to offer the user switch option */
         guint            logout_timeout;	/* how long until the logout option appears */
 
         gboolean         use_xidle_extension;	/* which extension to use, if possible */

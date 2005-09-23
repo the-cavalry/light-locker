@@ -1,5 +1,26 @@
 2005-09-23  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (is_user_switch_enabled, popup_dialog_idle) 
+	(gs_window_set_user_switch_enabled): 
+	* src/gs-prefs.c (gs_prefs_load_from_gconf, key_changed_cb) 
+	(gs_prefs_init): 
+	* src/gs-monitor.c (prefs_changed_cb, gs_monitor_init): 
+	* src/gs-manager.[ch] (gs_manager_set_user_switch_enabled) 
+	(gs_manager_set_property, gs_manager_get_property) 
+	(gs_manager_class_init, gs_manager_create_window):
+	Add and use a gconf setting to enable the user-switching
+	feature.  Note that now user-switching is off by default.
+	To enable it set /apps/gnome-screensaver/user_switch_enabled
+	to TRUE.
+
+	* src/gnome-screensaver-dialog.c: Add command line option
+	enable-switch
+
+	Patches from Matthias Clasen <mclasen@redhat.com>
+	Fixes #316906
+	
+2005-09-23  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Fix the logic so that --with-gdm-config=no works.
 
 2005-09-22  William Jon McCann  <mccann@jhu.edu>

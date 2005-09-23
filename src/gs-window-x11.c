@@ -52,6 +52,7 @@ struct GSWindowPrivate
 
         guint      lock_enabled : 1;
         guint      logout_enabled : 1;
+        guint      user_switch_enabled : 1;
         guint64    logout_timeout;
 
         GtkWidget *box;
@@ -576,26 +577,34 @@ is_logout_enabled (GSWindow *window)
 }
 
 static gboolean
+is_user_switch_enabled (GSWindow *window)
+{
+  	return window->priv->user_switch_enabled;
+}
+
+static gboolean
 popup_dialog_idle (GSWindow *window)
 {
         gboolean  result;
-        char     *command;
+        char     *tmp;
+        GString  *command;
 
-        command = g_build_filename (LIBEXECDIR, "gnome-screensaver-dialog", NULL);
+        tmp = g_build_filename (LIBEXECDIR, "gnome-screensaver-dialog", NULL);
+        command = g_string_new (tmp);
+        g_free (tmp);
 
         if (is_logout_enabled (window)) {
-                char *cmd;
-
-                cmd = g_strdup_printf ("%s --enable-logout", command);
-                g_free (command);
-                command = cmd;
+                command = g_string_append (command, " --enable-logout");
+        }
+        if (is_user_switch_enabled (window)) {
+                command = g_string_append (command, " --enable-switch");
         }
 
         gs_window_clear (window);
         set_invisible_cursor (GTK_WIDGET (window)->window, FALSE);
 
         result = spawn_on_window (window,
-                                  command,
+                                  command->str,
                                   &window->priv->pid,
                                   (GIOFunc)command_watch,
                                   window,
@@ -603,7 +612,7 @@ popup_dialog_idle (GSWindow *window)
         if (!result)
                 g_warning ("Could not start command: %s", command);
 
-        g_free (command);
+        g_string_free (command, TRUE);
 
         window->priv->popup_dialog_idle_id = 0;
 
@@ -669,6 +678,15 @@ gs_window_set_logout_enabled (GSWindow *window,
         g_return_if_fail (GS_IS_WINDOW (window));
 
         window->priv->logout_enabled = logout_enabled;
+}
+
+void
+gs_window_set_user_switch_enabled (GSWindow *window,
+                                   gboolean  user_switch_enabled)
+{
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        window->priv->user_switch_enabled = user_switch_enabled;
 }
 
 void

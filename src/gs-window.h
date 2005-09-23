@@ -66,6 +66,8 @@ void        gs_window_set_lock_enabled   (GSWindow  *window,
                                           gboolean   lock_enabled);
 void        gs_window_set_logout_enabled (GSWindow  *window,
                                           gboolean   logout_enabled);
+void        gs_window_set_user_switch_enabled (GSWindow  *window,
+                                               gboolean   user_switch_enabled);
 void        gs_window_set_logout_timeout (GSWindow  *window,
                                           glong      timeout);
 

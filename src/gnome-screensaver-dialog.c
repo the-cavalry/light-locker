@@ -103,6 +103,8 @@ static GOptionEntry entries [] = {
           N_("Version of this application"), NULL },
         { "enable-logout", 0, 0, G_OPTION_ARG_NONE, &enable_logout,
           N_("Show the logout button"), NULL },
+        { "enable-switch", 0, 0, G_OPTION_ARG_NONE, &enable_switch,
+          N_("Show the switch user button"), NULL },
         { NULL }
 };
 
@@ -347,10 +349,6 @@ main (int    argc,
                 g_error_free (error);
                 exit (1);
         }
-
-#ifdef HAVE_USER_SWITCHING
-        enable_switch = TRUE;
-#endif
 
         if (show_version) {
                 g_print ("%s %s\n", argv [0], VERSION);

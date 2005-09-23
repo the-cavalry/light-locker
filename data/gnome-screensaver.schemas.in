@@ -151,5 +151,16 @@
       </locale>
     </schema>
 
+    <schema>
+      <key>/schemas/apps/gnome-screensaver/user_switch_enabled</key>
+      <applyto>/apps/gnome-screensaver/user_switch_enabled</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>bool</type>
+      <default>FALSE</default>
+      <locale name="C">
+        <short>Whether to allow user switching</short>
+        <long>Whether to offer the option of switching to a different user</long>
+      </locale>
+    </schema>
   </schemalist>
 </gconfschemafile>

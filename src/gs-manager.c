@@ -49,6 +49,7 @@ struct GSManagerPrivate
 
         guint        lock_enabled : 1;
         guint        logout_enabled : 1;
+        guint        user_switch_enabled : 1;
         guint        throttle_enabled : 1;
 
         /* State */
@@ -76,6 +77,7 @@ enum {
         PROP_0,
         PROP_LOCK_ENABLED,
         PROP_LOGOUT_ENABLED,
+        PROP_USER_SWITCH_ENABLED,
         PROP_LOCK_TIMEOUT,
         PROP_CYCLE_TIMEOUT,
         PROP_LOGOUT_TIMEOUT,
@@ -179,6 +181,21 @@ gs_manager_set_logout_enabled (GSManager *manager,
                 manager->priv->logout_enabled = logout_enabled;
                 for (l = manager->priv->windows; l; l = l->next)
                         gs_window_set_logout_enabled (l->data, logout_enabled);
+        }
+}
+
+void
+gs_manager_set_user_switch_enabled (GSManager *manager,
+                                    gboolean   user_switch_enabled)
+{
+        g_return_if_fail (GS_IS_MANAGER (manager));
+
+        if (manager->priv->user_switch_enabled != user_switch_enabled) {
+                GSList *l;
+
+                manager->priv->user_switch_enabled = user_switch_enabled;
+                for (l = manager->priv->windows; l; l = l->next)
+                        gs_window_set_user_switch_enabled (l->data, user_switch_enabled);
         }
 }
 
@@ -368,6 +385,9 @@ gs_manager_set_property (GObject            *object,
         case PROP_LOGOUT_ENABLED:
                 gs_manager_set_logout_enabled (self, g_value_get_boolean (value));
                 break;
+        case PROP_USER_SWITCH_ENABLED:
+                gs_manager_set_user_switch_enabled (self, g_value_get_boolean (value));
+                break;
         case PROP_LOGOUT_TIMEOUT:
                 gs_manager_set_logout_timeout (self, g_value_get_long (value));
                 break;
@@ -402,6 +422,9 @@ gs_manager_get_property (GObject            *object,
                 break;
         case PROP_LOGOUT_ENABLED:
                 g_value_set_boolean (value, self->priv->logout_enabled);
+                break;
+        case PROP_USER_SWITCH_ENABLED:
+                g_value_set_boolean (value, self->priv->user_switch_enabled);
                 break;
         case PROP_LOGOUT_TIMEOUT:
                 g_value_set_long (value, self->priv->logout_timeout);
@@ -479,6 +502,14 @@ gs_manager_class_init (GSManagerClass *klass)
                                                                NULL,
                                                                FALSE,
                                                                G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_USER_SWITCH_ENABLED,
+                                         g_param_spec_boolean ("user-switch-enabled",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE));
+
         g_object_class_install_property (object_class,
                                          PROP_LOGOUT_TIMEOUT,
                                          g_param_spec_long ("logout-timeout",
@@ -739,6 +770,7 @@ gs_manager_create_window (GSManager *manager,
                 window = gs_window_new (screen, i, manager->priv->lock_active);
 
                 gs_window_set_logout_enabled (window, manager->priv->logout_enabled);
+                gs_window_set_user_switch_enabled (window, manager->priv->user_switch_enabled);
                 gs_window_set_logout_timeout (window, manager->priv->logout_timeout);
 
                 g_signal_connect_object (window, "unblanked",

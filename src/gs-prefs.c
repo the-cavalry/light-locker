@@ -46,6 +46,7 @@ static void gs_prefs_finalize   (GObject      *object);
 #define KEY_DPMS_OFF       KEY_DIR "/dpms_off"
 #define KEY_THEMES         KEY_DIR "/themes"
 #define KEY_LOGOUT_ENABLED KEY_DIR "/logout_enabled"
+#define KEY_USER_SWITCH_ENABLED KEY_DIR "/user_switch_enabled"
 #define KEY_LOGOUT_DELAY   KEY_DIR "/logout_delay"
 
 #define GS_PREFS_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_PREFS, GSPrefsPrivate))
@@ -201,6 +202,8 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
         if (value < 0)
                 value = 0;
         prefs->logout_timeout = value * 60000;
+
+        prefs->user_switch_enabled = gconf_client_get_bool (prefs->priv->gconf_client, KEY_USER_SWITCH_ENABLED, NULL);
 }
 
 static void
@@ -335,6 +338,12 @@ key_changed_cb (GConfClient *client,
                         delay = 1;
                 prefs->logout_timeout = delay * 60000;
                 changed = TRUE;
+        } else if (strcmp (key, KEY_USER_SWITCH_ENABLED) == 0) {
+                gboolean enabled;
+
+                enabled = gconf_value_get_bool (value);
+                prefs->user_switch_enabled = enabled;
+                changed = TRUE;
         } else {
                 g_warning ("Config key not handled: %s", key);
         }
@@ -373,6 +382,8 @@ gs_prefs_init (GSPrefs *prefs)
         prefs->dpms_off                = 14400000;
 
         prefs->mode                    = GS_MODE_SINGLE;
+
+        prefs->user_switch_enabled     = FALSE;
 
         /* FIXME: for testing only */
         prefs->themes = g_slist_append (prefs->themes, g_strdup ("popsquares"));
