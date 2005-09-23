@@ -11,17 +11,6 @@ Version 0.0.14
         * Make user switching disabled by default
         * Fix a crash due to a missing error handler
 
-
-==============
-Version 0.0.13
-==============
-
-  gnome-screensaver
-
-        * Fix problem when starting GNOME from KDM
-        * Only look for theme files that end in .xml
-        * Look for xscreensaver themes in a few more places
-
   gnome-screensaver-preferences
 
         * Use new themes API that will theme list to be
@@ -34,6 +23,16 @@ Version 0.0.13
         * Takeshi AIHANA (ja)
         * Tino Meinen (nl)
         * Clytie Siddall (vi)
+
+==============
+Version 0.0.13
+==============
+
+  gnome-screensaver
+
+        * Fix problem when starting GNOME from KDM
+        * Only look for theme files that end in .xml
+        * Look for xscreensaver themes in a few more places
 
 ==============
 Version 0.0.12
