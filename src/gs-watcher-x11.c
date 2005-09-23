@@ -999,9 +999,9 @@ check_pointer_timer (GSWatcher *watcher)
 }
 
 static void
-notice_events (Window   window,
-               gboolean top,
-               gboolean debug)
+notice_events_inner (Window   window,
+                     gboolean top,
+                     gboolean debug)
 {
         XWindowAttributes attrs;
         unsigned long     events;
@@ -1052,7 +1052,7 @@ notice_events (Window   window,
 
         if (kids) {
                 while (nkids)
-                        notice_events (kids [--nkids], top, debug);
+                        notice_events_inner (kids [--nkids], top, debug);
                 XFree ((char *) kids);
         }
 }
@@ -1082,16 +1082,24 @@ BadWindow_ehandler (Display     *dpy,
         return saver_ehandler (dpy, error);
 }
 
-static gboolean
-notice_events_timer (Window w)
+static void
+notice_events (Window   window,
+               gboolean top,
+               gboolean debug)
 {
         XErrorHandler old_handler;
 
         old_handler = XSetErrorHandler (BadWindow_ehandler);
 
-        notice_events (w, TRUE, TRUE);
+        notice_events_inner (window, top, debug);
         XSync (GDK_DISPLAY (), FALSE);
         XSetErrorHandler (old_handler);
+}
+
+static gboolean
+notice_events_timer (Window w)
+{
+        notice_events (w, TRUE, TRUE);
 
         return FALSE;
 }

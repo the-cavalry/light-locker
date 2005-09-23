@@ -1,5 +1,11 @@
 2005-09-23  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c (notice_events_inner, notice_events) 
+	(notice_events_timer): Never bypass the BadWindow error
+	handler when noticing new windows.
+
+2005-09-23  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (is_user_switch_enabled, popup_dialog_idle) 
 	(gs_window_set_user_switch_enabled): 
 	* src/gs-prefs.c (gs_prefs_load_from_gconf, key_changed_cb) 
