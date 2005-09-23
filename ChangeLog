@@ -1,5 +1,10 @@
 2005-09-23  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (setup_treeview): Only setup
+	the user list if switching is enabled.
+
+2005-09-23  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c (notice_events_inner, notice_events) 
 	(notice_events_timer): Never bypass the BadWindow error
 	handler when noticing new windows.

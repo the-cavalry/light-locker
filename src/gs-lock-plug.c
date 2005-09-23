@@ -1115,6 +1115,10 @@ setup_treeview (GSLockPlug *plug)
         GtkCellRenderer   *renderer;
         GtkTreeModel      *filter;
 
+        /* if user switching is not enabled then do nothing */
+        if (! plug->priv->switch_enabled)
+                return;
+
         profile_start ("start", NULL);
 
         store = gtk_list_store_new (N_COLUMNS,
