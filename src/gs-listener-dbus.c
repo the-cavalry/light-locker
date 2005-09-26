@@ -66,6 +66,8 @@ struct GSListenerPrivate
         guint           active : 1;
         guint           throttle_enabled : 1;
         GHashTable     *inhibitors;
+
+        time_t          idle_start;
 };
 
 enum {
@@ -210,6 +212,7 @@ gs_listener_set_active (GSListener *listener,
                         gs_listener_set_throttle_enabled (listener, FALSE);
                         /* if we are deactivating then reset the idle */
                         listener->priv->idle = active;
+                        listener->priv->idle_start = 0;
                 }
         }
 }
@@ -233,6 +236,10 @@ gs_listener_set_idle (GSListener *listener,
                 if (n_inhibitors != 0) {
                         return FALSE;
                 }
+
+                listener->priv->idle_start = time (NULL);
+        } else {
+                listener->priv->idle_start = 0;
         }
 
         listener->priv->idle = idle;
@@ -557,6 +564,48 @@ listener_get_property (GSListener     *listener,
 }
 
 static DBusHandlerResult
+listener_get_idle_time (GSListener     *listener,
+                        DBusConnection *connection,
+                        DBusMessage    *message)
+{
+        const char     *path;
+        DBusMessageIter iter;
+        DBusMessage    *reply;
+        dbus_uint32_t    secs;
+
+        path = dbus_message_get_path (message);
+
+        reply = dbus_message_new_method_return (message);
+
+        dbus_message_iter_init_append (reply, &iter);
+
+        if (reply == NULL)
+                g_error ("No memory");
+
+        if (listener->priv->idle) {
+                time_t now = time (NULL);
+
+                if (now < listener->priv->idle_start) {
+                        /* should't happen */
+                        g_warning ("Idle start time is in the future");
+                        secs = 0;
+                } else {
+                        secs = listener->priv->idle_start - now;
+                }
+        } else {
+                secs = 0;
+        }
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &secs);
+
+        if (! dbus_connection_send (connection, reply, NULL))
+                g_error ("No memory");
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
 listener_dbus_filter_handle_methods (DBusConnection *connection,
                                      DBusMessage    *message, 
                                      void           *user_data,
@@ -593,6 +642,9 @@ listener_dbus_filter_handle_methods (DBusConnection *connection,
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getIdle")) {
                 return listener_get_property (listener, connection, message, PROP_IDLE);
+        }
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getIdleTime")) {
+                return listener_get_idle_time (listener, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "setThrottleEnabled")) {
                 return listener_set_property (listener, connection, message, PROP_THROTTLE_ENABLED);

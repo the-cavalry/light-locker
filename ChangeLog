@@ -1,5 +1,14 @@
 2005-09-26  William Jon McCann  <mccann@jhu.edu>
 
+	* doc/DBUS-API.txt: Added getIdle and getIdleTime.
+
+	* src/gs-listener-dbus.c (listener_get_idle_time) 
+	(gs_listener_set_active, gs_listener_set_idle) 
+	(listener_dbus_filter_handle_methods):
+	Add getIdleTime dbus method.
+
+2005-09-26  William Jon McCann  <mccann@jhu.edu>
+
 	* doc/DBUS-API.txt: 
 	* doc/Makefile.am: 
 	* Makefile.am (SUBDIRS): Add some docs.
