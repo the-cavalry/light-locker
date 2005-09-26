@@ -1,3 +1,15 @@
+2005-09-26  William Jon McCann  <mccann@jhu.edu>
+
+	* savers/slideshow.c (get_exif_orientation) 
+	(pixbuf_copy_rotate_90, pixbuf_copy_mirror) 
+	(update_from_exif_data, get_pixbuf_from_local_dir): 
+
+	* configure.ac: Add optional libexif dep for
+	theme engines.
+
+	Based on patch from <torkel@acc.umu.se>.
+	Fixes #316463.
+
 2005-09-23  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.

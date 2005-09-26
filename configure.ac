@@ -42,6 +42,7 @@ GNOME_VFS_REQUIRED_VERSION=2.6.0
 LIBGNOMEUI_REQUIRED_VERSION=2.6.0
 GLADE_REQUIRED_VERSION=2.5.0
 LIBGNOME_MENU_REQUIRED_VERSION=2.11.1
+LIBEXIF_REQUIRED_VERSION=0.6.12
 
 AC_CHECK_HEADERS(unistd.h)
 AC_CHECK_HEADERS(crypt.h sys/select.h)
@@ -76,12 +77,6 @@ PKG_CHECK_MODULES(GNOME_SCREENSAVER_COMMAND,
 AC_SUBST(GNOME_SCREENSAVER_COMMAND_CFLAGS)
 AC_SUBST(GNOME_SCREENSAVER_COMMAND_LIBS)
 
-PKG_CHECK_MODULES(GNOME_SCREENSAVER_SAVER,
-        gthread-2.0
-        gtk+-2.0 >= $GTK_REQUIRED_VERSION)
-AC_SUBST(GNOME_SCREENSAVER_SAVER_CFLAGS)
-AC_SUBST(GNOME_SCREENSAVER_SAVER_LIBS)
-
 AC_PATH_XTRA
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
@@ -89,6 +84,26 @@ AC_PATH_PROG(GCONFTOOL, gconftool-2)
 AM_GCONF_SOURCE_2
 
 GNOME_COMPILE_WARNINGS(yes)
+
+# Optional dependencies for the theme engines
+
+SAVER_MODULES="gthread-2.0 gtk+-2.0 >= $GTK_REQUIRED_VERSION"
+
+# libexif for slideshow
+
+AC_ARG_WITH(libexif, [  --without-libexif	  disable special EXIF support])
+have_exif=no
+if test x$with_libexif != xno; then
+    PKG_CHECK_MODULES(EXIF, libexif >= $LIBEXIF_REQUIRED_VERSION, have_exif=yes, have_exif=no)
+fi 
+if test "x$have_exif" = "xyes"; then
+  AC_DEFINE(HAVE_EXIF, 1, [Define if libexif is available])
+  SAVER_MODULES="$SAVER_MODULES libexif >= $LIBEXIF_REQUIRED_VERSION"
+fi
+
+PKG_CHECK_MODULES(GNOME_SCREENSAVER_SAVER, $SAVER_MODULES)
+AC_SUBST(GNOME_SCREENSAVER_SAVER_CFLAGS)
+AC_SUBST(GNOME_SCREENSAVER_SAVER_LIBS)
 
 # Find out the version of DBUS we're using
 
@@ -196,6 +211,7 @@ fi
 
 AM_CONDITIONAL(HAVE_USER_SWITCHING, test x$enable_user_switching = xyes)
 AC_SUBST(HAVE_USER_SWITCHING)
+
 
 ###############################################################################
 #
