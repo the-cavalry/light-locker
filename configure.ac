@@ -1473,6 +1473,7 @@ data/images/Makefile
 data/images/cosmos/Makefile
 savers/Makefile
 savers/cosmos-slideshow.desktop.in
+doc/Makefile
 ])
 
 echo "

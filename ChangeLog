@@ -1,5 +1,11 @@
 2005-09-26  William Jon McCann  <mccann@jhu.edu>
 
+	* doc/Makefile.am: Add docs to EXTRA_DIST
+
+	* configure.ac: Add docs/Makefile
+
+2005-09-26  William Jon McCann  <mccann@jhu.edu>
+
 	* doc/DBUS-API.txt: Added getIdle and getIdleTime.
 
 	* src/gs-listener-dbus.c (listener_get_idle_time) 
