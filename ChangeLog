@@ -1,5 +1,11 @@
 2005-09-26  William Jon McCann  <mccann@jhu.edu>
 
+	* doc/DBUS-API.txt: 
+	* doc/Makefile.am: 
+	* Makefile.am (SUBDIRS): Add some docs.
+
+2005-09-26  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/slideshow.c (get_exif_orientation) 
 	(pixbuf_copy_rotate_90, pixbuf_copy_mirror) 
 	(update_from_exif_data, get_pixbuf_from_local_dir): 
