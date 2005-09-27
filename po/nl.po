@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME 2.12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-22 11:05+0200\n"
-"PO-Revision-Date: 2005-09-22 17:47+0200\n"
+"POT-Creation-Date: 2005-09-27 11:10+0200\n"
+"PO-Revision-Date: 2005-09-27 18:07+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -44,6 +44,16 @@ msgstr "_Activeren na:"
 #: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "_Lock screen when active"
 msgstr "_Scherm vergrendelen indien actief"
+
+#: ../data/gnome-screensaver.directory.in.h:1
+msgid "Screensaver themes"
+msgstr "Screensaver thema's"
+
+# dit is niet de schermbeveiliging maar de screensavers zelf
+# dus niet vertalen
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "Screensavers"
 
 # het beeld/scherm zwart wordt/de monitor op zwart gaat<
 #
@@ -139,61 +149,67 @@ msgid "This key specifies the themes to be used by the screensaver."
 msgstr "Deze sleutel geeft de screensavers die de schermbeveiliging gebruikt."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
+msgid "Whether to allow user switching"
+msgstr "Of gewisseld kan worden van gebruiker"
+
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid "Whether to lock as well as blank"
 msgstr "Of zowel geblokkeerd als zwartgemaakt wordt"
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid "Whether to lock as well as blank."
 msgstr "Of zowel geblokkeerd als zwartgemaakt wordt."
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid "Whether to offer the option of logging out after logout_delay"
 msgstr "Of een afmeldoptie geboden wordt na logout_delay"
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid "Whether to offer the option of logging out after logout_delay."
 msgstr "Of een afmeldoptie geboden wordt na logout_delay."
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid "Whether to offer the option of switching to a different user"
+msgstr "Of het aangeboden wordt om van gebruiker te wisselem"
+
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Whether to power down the monitor"
 msgstr "Of het beeldscherm wordt uitgezet"
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Whether to power down the monitor."
 msgstr "Of het beeldscherm wordt uitgezet."
 
-#: ../savers/cosmos-slideshow.xml.in.h:1
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
 msgstr "Cosmos"
 
-#: ../savers/cosmos-slideshow.xml.in.h:2
-msgid "This displays a slideshow of images of the cosmos."
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
 msgstr "Dit toont een diashow met foto's van de ruimte."
 
-#: ../savers/personal-slideshow.xml.h:1
+#: ../savers/personal-slideshow.desktop.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr "Dit toont een diashow met afbeeldingen uit uw afbeeldingenmap."
+
+#: ../savers/personal-slideshow.desktop.in.h:2
 msgid "Pictures folder"
 msgstr "Afbeeldingenmap"
 
-#: ../savers/personal-slideshow.xml.h:2
-msgid "This displays a slideshow of images from your Pictures directory."
-msgstr "Dit toont een diashow met afbeeldingen uit uw afbeeldingenmap."
+#: ../savers/popsquares.desktop.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr "Dit toont pop-art-achtige blokken in pulserende kleuren."
 
-#: ../savers/popsquares.xml.h:1
+#: ../savers/popsquares.desktop.in.h:2
 msgid "Pop art squares"
 msgstr "Pop-art blokken"
 
-#: ../savers/popsquares.xml.h:2
-msgid ""
-"This draws a pop-art-ish looking grid of pulsing colors. By Levi Burton."
-msgstr ""
-"Dit toont pop-art-achtige blokken in pulserende kleuren. Door Levi Burton."
-
-#: ../savers/slideshow.c:63
+#: ../savers/slideshow.c:75
 msgid "Location to get images from"
 msgstr "Locatie waar de afbeeldingen vandaan worden gehaald"
 
 # LOCATIE
-#: ../savers/slideshow.c:63
+#: ../savers/slideshow.c:75
 msgid "PATH"
 msgstr "PAD"
 
@@ -568,31 +584,35 @@ msgstr "Debug uitvoer tonen"
 msgid "Show the logout button"
 msgstr "Een afmeldknop tonen"
 
-#: ../src/gnome-screensaver-preferences.c:678
+#: ../src/gnome-screensaver-dialog.c:107
+msgid "Show the switch user button"
+msgstr "Een knop tonen met 'wissel gebruiker'"
+
+#: ../src/gnome-screensaver-preferences.c:693
 msgid "Invalid screensaver theme"
 msgstr "Ongeldig schermbeveiligingsthema"
 
 # geen geldige schermbeveiliging/screensaver
-#: ../src/gnome-screensaver-preferences.c:681
+#: ../src/gnome-screensaver-preferences.c:696
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Dit bestand is waarschijnlijk geen geldig schermbeveiligingsthema."
 
 #  1 uur, 2 uur
-#: ../src/gnome-screensaver-preferences.c:798
+#: ../src/gnome-screensaver-preferences.c:813
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d uur"
 msgstr[1] "%d uur"
 
-#: ../src/gnome-screensaver-preferences.c:801
+#: ../src/gnome-screensaver-preferences.c:816
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minuut"
 msgstr[1] "%d minuten"
 
-#: ../src/gnome-screensaver-preferences.c:804
+#: ../src/gnome-screensaver-preferences.c:819
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -600,15 +620,15 @@ msgstr[0] "%d seconde"
 msgstr[1] "%d seconden"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:810
+#: ../src/gnome-screensaver-preferences.c:825
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:813
-#: ../src/gnome-screensaver-preferences.c:821
+#: ../src/gnome-screensaver-preferences.c:828
+#: ../src/gnome-screensaver-preferences.c:836
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -616,100 +636,100 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:816
-#: ../src/gnome-screensaver-preferences.c:824
-#: ../src/gnome-screensaver-preferences.c:828
+#: ../src/gnome-screensaver-preferences.c:831
+#: ../src/gnome-screensaver-preferences.c:839
+#: ../src/gnome-screensaver-preferences.c:843
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:831
+#: ../src/gnome-screensaver-preferences.c:846
 msgid "0 seconds"
 msgstr "0 seconden"
 
-#: ../src/gnome-screensaver-preferences.c:846
+#: ../src/gnome-screensaver-preferences.c:861
 msgid "Never"
 msgstr "Nooit"
 
-#: ../src/gnome-screensaver-preferences.c:883
+#: ../src/gnome-screensaver-preferences.c:897
 msgid "Could not load the main interface"
 msgstr "Kon de hoofd-interface niet laden"
 
-#: ../src/gnome-screensaver-preferences.c:885
+#: ../src/gnome-screensaver-preferences.c:899
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Controleer of de schermbeveiliging correct is geïnstalleerd"
 
-#: ../src/gs-listener-dbus.c:869
+#: ../src/gs-listener-dbus.c:921
 msgid "failed to register with the message bus"
 msgstr "kon niet aanmelden bij de berichtenbus"
 
-#: ../src/gs-listener-dbus.c:878
+#: ../src/gs-listener-dbus.c:930
 msgid "screensaver already running in this session"
 msgstr "schermbeveiliging al actief in deze sessie"
 
-#: ../src/gs-lock-plug.c:319
+#: ../src/gs-lock-plug.c:308
 msgid "Checking password..."
 msgstr "Wachtwoordcontrole..."
 
-#: ../src/gs-lock-plug.c:365
-#, c-format
-msgid "About %ld second left"
-msgid_plural "About %ld seconds left"
-msgstr[0] "Ongeveer %ld seconde over"
-msgstr[1] "Ongeveer %ld seconden over<"
-
-#: ../src/gs-lock-plug.c:373
+#: ../src/gs-lock-plug.c:351
 msgid "Time expired!"
 msgstr "Tijd is verlopten!"
 
-#: ../src/gs-lock-plug.c:397
+#: ../src/gs-lock-plug.c:375
 msgid "You have the Caps Lock key on."
 msgstr "De Caps Lock staat aan."
 
 # bedoelen ze hier dat het wachtwoord onjuist is? of
 # Wachtwoord controle mislukt!
-#: ../src/gs-lock-plug.c:610
+#: ../src/gs-lock-plug.c:588
 msgid "Password check failed!"
 msgstr "Wachtwoord of gebruikersnaam onjuist!"
 
-#: ../src/gs-lock-plug.c:633 ../src/gs-lock-plug.c:674
+#: ../src/gs-lock-plug.c:611 ../src/gs-lock-plug.c:644
 msgid "_Unlock"
 msgstr "_Deblokkeren"
 
-#: ../src/gs-lock-plug.c:638 ../src/gs-lock-plug.c:669
-msgid "_Switch User"
-msgstr "_Gebruikers wisselen"
+# infinitief hier mooier
+#: ../src/gs-lock-plug.c:614 ../src/gs-lock-plug.c:641
+msgid "_Switch User..."
+msgstr "_Wissel gebruiker..."
 
-#: ../src/gs-lock-plug.c:971
+#: ../src/gs-lock-plug.c:944
 msgid "Log in as a new user"
 msgstr "Aanmelden als nieuwe gebruiker"
 
 #. translators: %s is a computer hostname
-#: ../src/gs-lock-plug.c:1284
+#: ../src/gs-lock-plug.c:1366
 #, c-format
 msgid "Welcome to %s"
 msgstr "Welkom op %s"
 
-#: ../src/gs-lock-plug.c:1296
-msgid "Enter a password to unlock the screen"
-msgstr "Geef het wachtwoord om het scherm te deblokkeren"
-
-#: ../src/gs-lock-plug.c:1313
-msgid "Name:"
-msgstr "Naam:"
-
-#: ../src/gs-lock-plug.c:1317
+#: ../src/gs-lock-plug.c:1399
 msgid "_Password:"
 msgstr "_Wachtwoord:"
 
-#: ../src/gs-lock-plug.c:1369
-msgid "Switch to another user?"
-msgstr "Wisselen naar andere gebruiker?"
+#: ../src/gs-lock-plug.c:1435
+msgid "Switch to user:"
+msgstr "Wisselen naar gebruiker:"
 
-#: ../src/gs-lock-plug.c:1414
+#: ../src/gs-lock-plug.c:1480
 msgid "Log _Out"
 msgstr "_Afmelden"
+
+#~ msgid "About %ld second left"
+#~ msgid_plural "About %ld seconds left"
+#~ msgstr[0] "Ongeveer %ld seconde over"
+#~ msgstr[1] "Ongeveer %ld seconden over<"
+
+#~ msgid "Enter a password to unlock the screen"
+#~ msgstr "Geef het wachtwoord om het scherm te deblokkeren"
+
+#~ msgid "Name:"
+#~ msgstr "Naam:"
+
+#~ msgid "Switch to another user?"
+#~ msgstr "Wisselen naar andere gebruiker?"
 
 #~ msgid "A menu to quickly switch between users"
 #~ msgstr "Een menu om snel te wisselen tussen gebruikers"
