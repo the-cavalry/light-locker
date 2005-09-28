@@ -21,6 +21,7 @@
  */
 
 #include "config.h"
+
 #include <time.h>
 #include <gdk/gdk.h>
 
@@ -30,6 +31,8 @@
 #include "gs-window.h"
 #include "gs-job.h"
 #include "gs-grab.h"
+
+#include "fade.h"
 
 static void gs_manager_class_init (GSManagerClass *klass);
 static void gs_manager_init       (GSManager      *manager);
@@ -829,7 +832,6 @@ gs_manager_blank (GSManager *manager)
 {
         GdkDisplay *display;
         GdkScreen  *screen;
-        GSList     *l;
         GdkWindow  *root;
 
         g_return_val_if_fail (manager != NULL, FALSE);
@@ -850,9 +852,8 @@ gs_manager_blank (GSManager *manager)
         if (! manager->priv->windows)
                 gs_manager_create (GS_MANAGER (manager));
 
-        for (l = manager->priv->windows; l; l = l->next) {
-                gs_window_show (GS_WINDOW (l->data));
-        }
+        /* fade to black and show windows */
+        fade_screens_and_show (3, 20, TRUE, manager->priv->windows);
 
         return TRUE;
 }

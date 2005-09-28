@@ -1,3 +1,16 @@
+2005-09-28  William Jon McCann  <mccann@jhu.edu>
+
+	* src/.cvsignore: 
+	* src/fade.[ch]:
+	* src/test-fade.c: Add support for fading
+	to and from black.  Only gamma fading is
+	implemented at the moment.  Fixes #316656.
+	
+	* src/gs-manager.c (gs_manager_blank): Fade
+	out before showing windows.
+
+	* src/Makefile.am: Add new files.
+
 2005-09-26  William Jon McCann  <mccann@jhu.edu>
 
 	* doc/Makefile.am: Add docs to EXTRA_DIST
