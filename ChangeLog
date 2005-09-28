@@ -1,5 +1,12 @@
 2005-09-28  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (password_check_idle_cb, monitor_progress):
+	Rework status messages.
+
+	* doc/.cvsignore: Add files.
+
+2005-09-28  William Jon McCann  <mccann@jhu.edu>
+
 	* src/.cvsignore: 
 	* src/fade.[ch]:
 	* src/test-fade.c: Add support for fading

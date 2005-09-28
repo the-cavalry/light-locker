@@ -348,7 +348,7 @@ monitor_progress (GSLockPlug *plug)
         remaining = plug->priv->timeout - elapsed;
 
         if ((remaining <= 0) || (remaining > plug->priv->timeout)) {
-                message = g_strdup (_("Time expired!"));
+                message = g_strdup (_("Time has expired."));
                 gtk_widget_set_sensitive (plug->priv->password_entry, FALSE);
                 set_status_text (plug, message);
                 g_free (message);
@@ -585,7 +585,7 @@ password_check_idle_cb (GSLockPlug *plug)
                                                                       (GSourceFunc)response_idle_cb,
                                                                       plug);
 
-                set_status_text (plug, _("Password check failed!"));
+                set_status_text (plug, _("That password was incorrect."));
         }
 
         memset (local_password, '\b', strlen (local_password));
