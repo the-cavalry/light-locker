@@ -1,3 +1,10 @@
+2005-09-30  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-watcher-x11.c (initialize_server_extensions):
+	Less editorial.
+	(watchdog_timer, gs_watcher_set_dpms): Don't
+	unconditionally set DPMS verbose.
+
 2005-09-30  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* configure.ac: Add Norwegian bokmål to ALL_LINGUAS.

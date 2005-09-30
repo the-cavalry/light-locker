@@ -174,7 +174,7 @@ gs_watcher_set_dpms (GSWatcher *watcher,
                                    watcher->priv->dpms_standby / 1000,
                                    watcher->priv->dpms_suspend / 1000,
                                    watcher->priv->dpms_off / 1000,
-                                   TRUE);
+                                   watcher->priv->verbose);
 }
 
 static void
@@ -669,9 +669,9 @@ initialize_server_extensions (GSWatcher *watcher)
                 watcher->priv->using_mit_saver_extension = FALSE;
         else if (watcher->priv->verbose) {
                 if (watcher->priv->using_mit_saver_extension)
-                        g_message ("Using lame MIT-SCREEN-SAVER extension.");
+                        g_message ("Using MIT-SCREEN-SAVER extension.");
                 else
-                        g_message ("Not using server's lame MIT-SCREEN-SAVER extension.");
+                        g_message ("Not using server's MIT-SCREEN-SAVER extension.");
         }
 
         /* These are incompatible (or at least, our support for them is...) */
@@ -1196,7 +1196,7 @@ watchdog_timer (GSWatcher *watcher)
                                    watcher->priv->dpms_standby / 1000,
                                    watcher->priv->dpms_suspend / 1000,
                                    watcher->priv->dpms_off / 1000,
-                                   TRUE);
+                                   watcher->priv->verbose);
 
         return TRUE;
 }
