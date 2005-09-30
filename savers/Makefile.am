@@ -37,10 +37,10 @@ popsquares_LDADD =	\
 	$(GNOME_SCREENSAVER_SAVER_LIBS)
 
 slideshow_SOURCES =   \
-        slideshow.c
+	slideshow.c
 
 slideshow_LDADD =     \
-        $(GNOME_SCREENSAVER_SAVER_LIBS)
+	$(GNOME_SCREENSAVER_SAVER_LIBS)
 
 EXTRA_DIST =				\
 	$(themes_in_files)		\

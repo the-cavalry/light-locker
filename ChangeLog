@@ -1,3 +1,22 @@
+2005-09-30  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-job.c (spawn_on_widget): 
+	* src/gs-window-x11.c (spawn_on_window): Pass LANG and
+	LANGUAGE environment variables to the child process.
+
+	* savers/Makefile.am: 
+	* src/Makefile.am:
+	* data/Makefile.am (install-data-local): Use tabs.
+
+	* src/gnome-screensaver-command.c (main): Initialize
+	gettext stuff.
+
+	* src/gnome-screensaver-preferences.c (populate_model):
+	Mark screensaver modes for translation.
+
+	* data/gnome-screensaver-preferences.desktop.in:
+	Add StartupNotify.
+
 2005-09-28  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (password_check_idle_cb, monitor_progress):

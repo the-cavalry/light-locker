@@ -383,20 +383,20 @@ populate_model (GtkTreeStore *store)
         if (show_disabled) {
                 gtk_tree_store_append (store, &iter, NULL);
                 gtk_tree_store_set (store, &iter,
-                                    NAME_COLUMN, "Disabled",
+                                    NAME_COLUMN, _("Disabled"),
                                     ID_COLUMN, "__disabled",
                                     -1);
         }
 
         gtk_tree_store_append (store, &iter, NULL);
         gtk_tree_store_set (store, &iter,
-                            NAME_COLUMN, "Blank screen",
+                            NAME_COLUMN, _("Blank screen"),
                             ID_COLUMN, "__blank-only",
                             -1);
 
         gtk_tree_store_append (store, &iter, NULL);
         gtk_tree_store_set (store, &iter,
-                            NAME_COLUMN, "Random",
+                            NAME_COLUMN, _("Random"),
                             ID_COLUMN, "__random",
                             -1);
 

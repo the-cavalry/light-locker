@@ -647,7 +647,14 @@ spawn_on_widget (GtkWidget  *widget,
         g_ptr_array_add (env, g_strdup_printf ("PATH=%s", g_getenv ("PATH")));
 
         if (g_getenv ("XAUTHORITY"))
-                g_ptr_array_add (env, g_strdup_printf ("XAUTHORITY=%s", g_getenv ("XAUTHORITY")));
+                g_ptr_array_add (env, g_strdup_printf ("XAUTHORITY=%s",
+                                                       g_getenv ("XAUTHORITY")));
+        if (g_getenv ("LANG"))
+                g_ptr_array_add (env, g_strdup_printf ("LANG=%s",
+                                                       g_getenv ("LANG")));
+        if (g_getenv ("LANGUAGE"))
+                g_ptr_array_add (env, g_strdup_printf ("LANGUAGE=%s",
+                                                       g_getenv ("LANGUAGE")));
         g_ptr_array_add (env, NULL);
 
         result = gdk_spawn_on_screen_with_pipes (gtk_widget_get_screen (widget),

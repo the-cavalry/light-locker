@@ -319,6 +319,12 @@ spawn_on_window (GSWindow *window,
         if (g_getenv ("XAUTHLOCALHOSTNAME"))
                 g_ptr_array_add (env, g_strdup_printf ("XAUTHLOCALHOSTNAME=%s",
                                                        g_getenv ("XAUTHLOCALHOSTNAME")));
+        if (g_getenv ("LANG"))
+                g_ptr_array_add (env, g_strdup_printf ("LANG=%s",
+                                                       g_getenv ("LANG")));
+        if (g_getenv ("LANGUAGE"))
+                g_ptr_array_add (env, g_strdup_printf ("LANGUAGE=%s",
+                                                       g_getenv ("LANGUAGE")));
         g_ptr_array_add (env, NULL);
 
         result = gdk_spawn_on_screen_with_pipes (GTK_WINDOW (window)->screen,

@@ -267,6 +267,14 @@ main (int    argc,
         gboolean        retval;
         GError         *error = NULL;
 
+#ifdef ENABLE_NLS
+        bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+# ifdef HAVE_BIND_TEXTDOMAIN_CODESET
+        bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+# endif 
+        textdomain (GETTEXT_PACKAGE);
+#endif 
+
         g_type_init ();
 
         context = g_option_context_new (NULL);
