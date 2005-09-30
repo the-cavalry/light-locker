@@ -1,3 +1,7 @@
+2005-09-30  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* configure.ac: Add Norwegian bokmål to ALL_LINGUAS.
+
 2005-09-30  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-job.c (spawn_on_widget): 
