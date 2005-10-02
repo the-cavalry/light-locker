@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-29 10:29-0400\n"
+"POT-Creation-Date: 2005-10-02 10:38-0400\n"
 "PO-Revision-Date: 2005-09-06 11:55-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
@@ -549,6 +549,18 @@ msgstr "Show the \"logout\" button"
 #: src/gnome-screensaver-dialog.c:107
 msgid "Show the switch user button"
 msgstr "Show the \"switch user\" button"
+
+#: src/gnome-screensaver-preferences.c:386
+msgid "Disabled"
+msgstr "Disabled"
+
+#: src/gnome-screensaver-preferences.c:393
+msgid "Blank screen"
+msgstr "Blank screen"
+
+#: src/gnome-screensaver-preferences.c:399
+msgid "Random"
+msgstr "Random"
 
 #: src/gnome-screensaver-preferences.c:693
 msgid "Invalid screensaver theme"
