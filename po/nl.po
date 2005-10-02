@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME 2.12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-27 11:10+0200\n"
-"PO-Revision-Date: 2005-09-27 18:07+0200\n"
+"POT-Creation-Date: 2005-10-01 03:01+0200\n"
+"PO-Revision-Date: 2005-10-01 03:49+0200\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -588,6 +588,19 @@ msgstr "Een afmeldknop tonen"
 msgid "Show the switch user button"
 msgstr "Een knop tonen met 'wissel gebruiker'"
 
+# geen schermbeveiliging/uitgezet
+#: ../src/gnome-screensaver-preferences.c:386
+msgid "Disabled"
+msgstr "Uitgezet"
+
+#: ../src/gnome-screensaver-preferences.c:393
+msgid "Blank screen"
+msgstr "Zwart scherm"
+
+#: ../src/gnome-screensaver-preferences.c:399
+msgid "Random"
+msgstr "Willekeurig"
+
 #: ../src/gnome-screensaver-preferences.c:693
 msgid "Invalid screensaver theme"
 msgstr "Ongeldig schermbeveiligingsthema"
@@ -673,18 +686,16 @@ msgid "Checking password..."
 msgstr "Wachtwoordcontrole..."
 
 #: ../src/gs-lock-plug.c:351
-msgid "Time expired!"
-msgstr "Tijd is verlopten!"
+msgid "Time has expired."
+msgstr "Tijd is verlopten."
 
 #: ../src/gs-lock-plug.c:375
 msgid "You have the Caps Lock key on."
 msgstr "De Caps Lock staat aan."
 
-# bedoelen ze hier dat het wachtwoord onjuist is? of
-# Wachtwoord controle mislukt!
 #: ../src/gs-lock-plug.c:588
-msgid "Password check failed!"
-msgstr "Wachtwoord of gebruikersnaam onjuist!"
+msgid "That password was incorrect."
+msgstr "Dat wachtwoord was onjuist."
 
 #: ../src/gs-lock-plug.c:611 ../src/gs-lock-plug.c:644
 msgid "_Unlock"
@@ -716,6 +727,11 @@ msgstr "Wisselen naar gebruiker:"
 #: ../src/gs-lock-plug.c:1480
 msgid "Log _Out"
 msgstr "_Afmelden"
+
+# bedoelen ze hier dat het wachtwoord onjuist is? of
+# Wachtwoord controle mislukt!
+#~ msgid "Password check failed!"
+#~ msgstr "Wachtwoord of gebruikersnaam onjuist!"
 
 #~ msgid "About %ld second left"
 #~ msgid_plural "About %ld seconds left"
@@ -969,7 +985,3 @@ msgstr "_Afmelden"
 #~ "Het interface-bestand %s voor de gebruikers-kiezer, kon niet worden "
 #~ "geopend. Waarschijnlijk is deze toepassing niet correct geïnstalleerd of "
 #~ "geconfigureerd."
-
-# is s hier de naam van het scherm, of de foutmelding die verschijnt?
-#~ msgid "Can't lock screen: %s"
-#~ msgstr "Kan scherm niet beveiligen: %s"
