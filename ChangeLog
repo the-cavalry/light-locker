@@ -1,3 +1,7 @@
+2005-10-03  William Jon McCann  <mccann@jhu.edu>
+
+	* doc/.cvsignore: Actually add the file.
+
 2005-09-30  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-watcher-x11.c (initialize_server_extensions):
