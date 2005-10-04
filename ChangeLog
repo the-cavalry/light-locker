@@ -1,5 +1,11 @@
 2005-10-04  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (queue_key_event):
+	Don't forward space or enter to dialog if they
+	are the first chars pressed.  Fixes #317890.
+
+2005-10-04  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-power.h:
 	* src/gs-power-x11.h: New files to handle power
 	management.

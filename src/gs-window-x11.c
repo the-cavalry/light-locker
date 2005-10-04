@@ -28,6 +28,7 @@
 #include <string.h>
 
 #include <gdk/gdkx.h>
+#include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
 #include "gs-window.h"
@@ -803,6 +804,13 @@ static void
 queue_key_event (GSWindow    *window,
                  GdkEventKey *event)
 {
+        /* Eat the first return or space */
+        if (window->priv->key_events == NULL
+            && (event->keyval == GDK_Return
+                || event->keyval == GDK_space)) {
+                return;
+        }
+
         window->priv->key_events = g_list_prepend (window->priv->key_events,
                                                    gdk_event_copy ((GdkEvent *)event));
 }
