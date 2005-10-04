@@ -1,0 +1,687 @@
+# Lithuanian translation for gnome-screensaver.
+# Copyright (C) 2005 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-screensaver package.
+# Žygimantas Beručka <zygis@gnome.org>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-10-04 22:52+0300\n"
+"PO-Revision-Date: 2005-10-04 22:52+0300\n"
+"Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
+"Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "Ekrano užsklanda"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "Nurodykite ekrano užsklandos nustatymus"
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "    "
+msgstr "    "
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>_Screensaver</b>"
+msgstr "<b>_Ekrano užsklanda</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Screensaver Preferences"
+msgstr "Ekrano užsklandos nustatymai"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "_Activate after:"
+msgstr "_Aktyvuoti po:"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "_Lock screen when active"
+msgstr "_Kai aktyvi, užrakinti ekraną"
+
+#: ../data/gnome-screensaver.directory.in.h:1
+msgid "Screensaver themes"
+msgstr "Ekrano užsklandos temos"
+
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "Ekrano užsklandos"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+#, fuzzy
+msgid ""
+"How many minutes after the screensaver activates until the monitor goes "
+"black."
+msgstr "Kiek minučių liko iki monitoriaus užtemimo."
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "How many minutes until the monitor goes black"
+msgstr "Kiek minučių liko iki monitoriaus užtemimo"
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "The number of minutes after blanking the screen before locking"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "The number of minutes after blanking the screen before locking."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+#, fuzzy
+msgid ""
+"The number of minutes after the screensaver activates until the monitor "
+"power-saves."
+msgstr "Kiek minučių liko iki monitoriaus energijos taupymo."
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+#, fuzzy
+msgid ""
+"The number of minutes after the screensaver activates until the monitor "
+"powers down."
+msgstr "Kiek minučių liko iki monitoriaus išjungimo."
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "The number of minutes of idle time before blanking the screen"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "The number of minutes of idle time before blanking the screen."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "The number of minutes to run before changing the screensaver"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid "The number of minutes to run before changing the screensaver."
+msgstr "Laiko tarpas minutėmis iki ekrano užsklandos pakeitimo."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+#, fuzzy
+msgid "The number of minutes until the monitor power-saves"
+msgstr "Kiek minučių liko iki monitoriaus energijos taupymo"
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+#, fuzzy
+msgid "The number of minutes until the monitor powers down"
+msgstr "Kiek minučių liko iki monitoriaus išjungimo"
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid "The screensaver selection mode"
+msgstr "Ekrano užsklandos pasirinkimo režimas"
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid "The selected screensaver themes"
+msgstr "Pasirinktos ekrano užsklandų temos"
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"This key specifies the selection mode used by the screensaver. Possible "
+"values are \"disabled\", \"blank-only\", \"single\", and \"random\"."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid "This key specifies the themes to be used by the screensaver."
+msgstr "Šiame rakte nurodomos temos naudojamos ekrano užsklandoje."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid "Whether to allow user switching"
+msgstr "Ar įgalinti naudotojo perjungimą"
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid "Whether to lock as well as blank"
+msgstr "Ar ir užrakinti, kai užtemdoma"
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid "Whether to lock as well as blank."
+msgstr "Ar ir užrakinti, kai užtemdoma."
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid "Whether to offer the option of logging out after logout_delay"
+msgstr "Ar pasiūlyti atsijungimo galimybę po logout_delay"
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "Whether to offer the option of logging out after logout_delay."
+msgstr "Ar pasiūlyti atsijungimo galimybę po logout_delay."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid "Whether to offer the option of switching to a different user"
+msgstr "Ar pasiūlyti galimybę persijungti į kitą naudotoją"
+
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Whether to power down the monitor"
+msgstr "Ar išjungti monitorių"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Whether to power down the monitor."
+msgstr "Ar išjungti monitorių."
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr "Kosmosas"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "Rodyti kosmoso paveikslėlių skaidrių šou"
+
+#: ../savers/personal-slideshow.desktop.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr "Rodyti skaidrių šou iš Jūsų paveikslėlių aplanko"
+
+#: ../savers/personal-slideshow.desktop.in.h:2
+msgid "Pictures folder"
+msgstr "Paveikslėlių aplankas"
+
+#: ../savers/popsquares.desktop.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr ""
+
+#: ../savers/popsquares.desktop.in.h:2
+msgid "Pop art squares"
+msgstr ""
+
+#: ../savers/slideshow.c:75
+msgid "Location to get images from"
+msgstr "Vieta iš kur gaunami paveikslėliai"
+
+#: ../savers/slideshow.c:75
+msgid "PATH"
+msgstr "KELIAS"
+
+#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
+msgid "Manager"
+msgstr "Tvarkyklė"
+
+#: ../src/cut-n-paste/fusa-display.c:120
+msgid "The manager which owns this object."
+msgstr "Tvarkyklė, kuriai priklauso šis objektas."
+
+#: ../src/cut-n-paste/fusa-display.c:127
+msgid "Name"
+msgstr "Pavadinimas"
+
+#: ../src/cut-n-paste/fusa-display.c:128
+msgid "The name of the X11 display this object refers to."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-display.c:134
+#: ../src/cut-n-paste/fusa-user-menu-item.c:152
+msgid "User"
+msgstr "Naudotojas"
+
+#: ../src/cut-n-paste/fusa-display.c:135
+msgid "The user currently logged in on this virtual terminal."
+msgstr "Naudotojas šiuo metu prisijungęs šiame virtualiame terminale."
+
+#: ../src/cut-n-paste/fusa-display.c:141
+msgid "Console"
+msgstr "Konsolė"
+
+#: ../src/cut-n-paste/fusa-display.c:142
+msgid "The number of the virtual console this display can be found on, or %-1."
+msgstr "Virtualios konsolės, kurioje yra šis ekranas, numeris, arba %-1."
+
+#: ../src/cut-n-paste/fusa-display.c:148
+msgid "Nested"
+msgstr "Įterptas"
+
+#: ../src/cut-n-paste/fusa-display.c:149
+msgid "Whether or not this display is a windowed (Xnest) display."
+msgstr "Ar šis ekranas yra lange įterptas (Xnest) ekranas."
+
+#: ../src/cut-n-paste/fusa-manager.c:1264
+msgid "The display manager could not be contacted for unknown reasons."
+msgstr "Dėl nežinomų priežasčių nepavyko susijungti su ekrano tvarkykle."
+
+#: ../src/cut-n-paste/fusa-manager.c:1271
+msgid "The display manager is not running or too old."
+msgstr "Nepaleista ekrano tvarkyklė arba ji yra per sena."
+
+#: ../src/cut-n-paste/fusa-manager.c:1274
+msgid "The configured limit of flexible servers has been reached."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1277
+msgid "There was an unknown error starting X."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1280
+msgid "The X server failed to finish starting."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1283
+msgid "There are too many X sessions running."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1286
+msgid "The nested X server (Xnest) cannot connect to your current X server."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1289
+msgid "The X server in the GDM configuration could not be found."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1292 ../src/cut-n-paste/gdmcomm.c:492
+msgid ""
+"Trying to set an unknown logout action, or trying to set a logout action "
+"which is not available."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-manager.c:1295 ../src/cut-n-paste/gdmcomm.c:495
+msgid "Virtual terminals not supported."
+msgstr "Virtualūs terminalai nepalaikomi."
+
+#: ../src/cut-n-paste/fusa-manager.c:1298
+msgid "Invalid virtual terminal number."
+msgstr "Netinkamas virtualaus terminalo numeris."
+
+#: ../src/cut-n-paste/fusa-manager.c:1301 ../src/cut-n-paste/gdmcomm.c:499
+msgid "Trying to update an unsupported configuration key."
+msgstr "Bandoma atnaujinti nepalaikomą konfigūracijos raktą."
+
+#: ../src/cut-n-paste/fusa-manager.c:1304
+msgid "~/.Xauthority file badly configured or missing."
+msgstr "~/.Xauthority byla yra logai sukonfigūruota arba trūkstama"
+
+#: ../src/cut-n-paste/fusa-manager.c:1307
+msgid "Too many messages were sent to the display manager, and it hung up."
+msgstr "Ekrano tvarkyklei buvo perduota per daug pranešimų ir ji pakibo."
+
+#: ../src/cut-n-paste/fusa-manager.c:1311
+msgid "The display manager sent an unknown error message."
+msgstr "Ekrano tvarkyklė perdavė nežinomą klaidos pranešimą."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:153
+msgid "The user this menu item represents."
+msgstr "Naudotojas, kurį atitinka šis meniu elementas."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:160
+msgid "Icon Size"
+msgstr "Ikonos dydis"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:161
+msgid "The size of the icon to use."
+msgstr "Naudojamas ikonų dydis."
+
+#: ../src/cut-n-paste/fusa-user.c:151
+msgid "The user manager object this user is controlled by."
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-utils.c:80
+msgid "Show Details"
+msgstr "Rodyti detales"
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:413
+msgid "GDM (The GNOME Display Manager) is not running."
+msgstr "Nepaleistas GDM (GNOME ekrano tvarkyklė)."
+
+#: ../src/cut-n-paste/gdmcomm.c:416
+msgid ""
+"You might in fact be using a different display manager, such as KDM (KDE "
+"Display Manager) or xdm."
+msgstr ""
+"Gali būti, kad Jūs naudojate kitą ekrano tvarkyklę, tokią kaip KDM (KDE "
+"ekrano tvarkyklė) arba xdm."
+
+#: ../src/cut-n-paste/gdmcomm.c:419
+msgid ""
+"If you still wish to use this feature, either start GDM yourself or ask your "
+"system administrator to start GDM."
+msgstr ""
+"Jei vis dar norite naudoti šią funkciją, paleiskite GDM patys arba to "
+"padaryti paprašykite Jūsų sistemos administratoriaus."
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:441
+msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+msgstr "Nepavyko susijungti su GDM (GNOME ekrano tvarkykle)"
+
+#: ../src/cut-n-paste/gdmcomm.c:444
+msgid "Perhaps you have an old version of GDM running."
+msgstr "Galbūt pas Jus jau paleista sena GDM versija."
+
+#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
+msgid "Cannot communicate with gdm, perhaps you have an old version running."
+msgstr ""
+"Nepavyko susijungti su gdm, galbūt pas Jus jau paleista sena jos versija."
+
+#: ../src/cut-n-paste/gdmcomm.c:469
+msgid "The allowed limit of flexible X servers reached."
+msgstr "Pasiektas leistinas lanksčių X serverių limitas."
+
+#: ../src/cut-n-paste/gdmcomm.c:471
+msgid "There were errors trying to start the X server."
+msgstr "Bandant paleisti X serverį iškilo klaidų."
+
+#: ../src/cut-n-paste/gdmcomm.c:473
+msgid "The X server failed.  Perhaps it is not configured well."
+msgstr "X serverio klaida. Galbūt jis blogai sukonfigūruotas."
+
+#: ../src/cut-n-paste/gdmcomm.c:476
+msgid "Too many X sessions running."
+msgstr "Veikia per daug X sesijų."
+
+#: ../src/cut-n-paste/gdmcomm.c:478
+msgid ""
+"The nested X server (Xnest) cannot connect to your current X server.  You "
+"may be missing an X authorization file."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:483
+msgid ""
+"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
+"Please install the Xnest package in order to use the nested login."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:488
+msgid ""
+"The X server is not available, it is likely that gdm is badly configured."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:497
+msgid "Trying to change to an invalid virtual terminal number."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:501
+msgid ""
+"You do not seem to have authentication needed be for this operation.  "
+"Perhaps your .Xauthority file is not set up correctly."
+msgstr ""
+
+#: ../src/cut-n-paste/gdmcomm.c:505
+msgid "Too many messages were sent to gdm and it hung upon us."
+msgstr "GDM buvo pasiųsta per daug pranešimų ir jis pakibo."
+
+#: ../src/cut-n-paste/gdmcomm.c:508
+msgid "Unknown error occured."
+msgstr "Iškilo nežinoma klaida."
+
+#: ../src/file-transfer-dialog.c:94
+#, c-format
+msgid "Copying file: %i of %i"
+msgstr "Kopijuojama byla: %i iš %i"
+
+#: ../src/file-transfer-dialog.c:122
+#, c-format
+msgid "Copying '%s'"
+msgstr "Kopijuojama „%s“"
+
+#: ../src/file-transfer-dialog.c:193
+msgid "From URI"
+msgstr "Iš URI"
+
+#: ../src/file-transfer-dialog.c:194
+msgid "URI currently transferring from"
+msgstr "URI iš kurio šiuo metu perkeliama"
+
+#: ../src/file-transfer-dialog.c:201
+msgid "To URI"
+msgstr "Į URI"
+
+#: ../src/file-transfer-dialog.c:202
+msgid "URI currently transferring to"
+msgstr "URI į kurį dabar perkeliama"
+
+#: ../src/file-transfer-dialog.c:209
+msgid "Fraction completed"
+msgstr "Atlikta dalis"
+
+#: ../src/file-transfer-dialog.c:210
+msgid "Fraction of transfer currently completed"
+msgstr ""
+
+#: ../src/file-transfer-dialog.c:217
+msgid "Current URI index"
+msgstr "Esama URI rodyklė"
+
+#: ../src/file-transfer-dialog.c:218
+msgid "Current URI index - starts from 1"
+msgstr "Esama URI rodyklė - prasideda nuo 1"
+
+#: ../src/file-transfer-dialog.c:225
+msgid "Total URIs"
+msgstr "Viso URI"
+
+#: ../src/file-transfer-dialog.c:226
+msgid "Total number of URIs"
+msgstr "Bendras URI skaičius"
+
+#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+msgid "Copying files"
+msgstr "Kopijuojamos bylos"
+
+#: ../src/file-transfer-dialog.c:345
+msgid "From:"
+msgstr "Iš:"
+
+#: ../src/file-transfer-dialog.c:349
+msgid "To:"
+msgstr "Į:"
+
+#: ../src/file-transfer-dialog.c:448
+msgid "Connecting..."
+msgstr "Jungiamasi..."
+
+#: ../src/gnome-screensaver-command.c:58
+msgid "Causes the screensaver to exit gracefully"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:60
+msgid "Query the state of the screensaver"
+msgstr "Užklausti ekrano užsklandos būklės"
+
+#: ../src/gnome-screensaver-command.c:62
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:64
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "Jei ekrano užsklanda aktyvi, perjungti į kitą grafinę demonstraciją"
+
+#: ../src/gnome-screensaver-command.c:66
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "Įjungti ekrano užsklandą (užtemdyti ekraną)"
+
+#: ../src/gnome-screensaver-command.c:68
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr ""
+"Jei ekrano užsklanda aktyvi, ją deaktyvuoti (išjungti ekrano užtemdymą)"
+
+#: ../src/gnome-screensaver-command.c:70
+msgid "Disable running graphical themes while blanked"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:72
+msgid "Enable running graphical themes while blanked (if applicable)"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:74
+msgid "Poke the running screensaver to simulate user activity"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:103
+#: ../src/gnome-screensaver.c:52
+msgid "Version of this application"
+msgstr "Šios programos versija"
+
+#: ../src/gnome-screensaver-command.c:201
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "Ekrano užsklanda yra %s\n"
+
+#: ../src/gnome-screensaver-command.c:201
+msgid "active"
+msgstr "aktyvi"
+
+#: ../src/gnome-screensaver-command.c:201
+msgid "inactive"
+msgstr "neaktyvi"
+
+#: ../src/gnome-screensaver-dialog.c:101
+msgid "Show debugging output"
+msgstr "Rodyti derinimo išvestį"
+
+#: ../src/gnome-screensaver-dialog.c:105
+msgid "Show the logout button"
+msgstr "Rodyti atsijungimo mygtuką"
+
+#: ../src/gnome-screensaver-dialog.c:107
+msgid "Show the switch user button"
+msgstr "Rodyti naudotojo perjungimo mygtuką"
+
+#: ../src/gnome-screensaver-preferences.c:386
+msgid "Disabled"
+msgstr "Išjungta"
+
+#: ../src/gnome-screensaver-preferences.c:393
+msgid "Blank screen"
+msgstr "Tuščias ekranas"
+
+#: ../src/gnome-screensaver-preferences.c:399
+msgid "Random"
+msgstr "Atsitiktinė"
+
+#: ../src/gnome-screensaver-preferences.c:693
+msgid "Invalid screensaver theme"
+msgstr "Netinkama ekrano užsklandos tema"
+
+#: ../src/gnome-screensaver-preferences.c:696
+msgid "This file does not appear to be a valid screensaver theme."
+msgstr "Panašu, kad ši byla nėra tinkama ekrano užsklandos tema."
+
+#: ../src/gnome-screensaver-preferences.c:813
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d valanda"
+msgstr[1] "%d valandos"
+msgstr[2] "%d valandų"
+
+#: ../src/gnome-screensaver-preferences.c:816
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minutė"
+msgstr[1] "%d minutės"
+msgstr[2] "%d minučių"
+
+#: ../src/gnome-screensaver-preferences.c:819
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekundė"
+msgstr[1] "%d sekundės"
+msgstr[2] "%d sekundžių"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:825
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:828
+#: ../src/gnome-screensaver-preferences.c:836
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:831
+#: ../src/gnome-screensaver-preferences.c:839
+#: ../src/gnome-screensaver-preferences.c:843
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#. 0 seconds
+#: ../src/gnome-screensaver-preferences.c:846
+msgid "0 seconds"
+msgstr "0 sekundžių"
+
+#: ../src/gnome-screensaver-preferences.c:861
+msgid "Never"
+msgstr "Niekada"
+
+#: ../src/gnome-screensaver-preferences.c:897
+msgid "Could not load the main interface"
+msgstr "Nepavyko įkelti pagrindinės sąsajos"
+
+#: ../src/gnome-screensaver-preferences.c:899
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "Įsitikinkite, kad ekrano užsklanda yra tinkamai įdiegta"
+
+#: ../src/gs-listener-dbus.c:921
+msgid "failed to register with the message bus"
+msgstr "nepavyko prisiregistruoti prie pranešimų prievado"
+
+#: ../src/gs-listener-dbus.c:930
+msgid "screensaver already running in this session"
+msgstr "šioje sesijoje jau paleista ekrano užsklanda"
+
+#: ../src/gs-lock-plug.c:308
+msgid "Checking password..."
+msgstr "Tikrinamas slaptažodis..."
+
+#: ../src/gs-lock-plug.c:351
+msgid "Time has expired."
+msgstr "Baigėsi laikas."
+
+#: ../src/gs-lock-plug.c:375
+msgid "You have the Caps Lock key on."
+msgstr "Įjungtas Jūsų Caps Lock klavišas."
+
+#: ../src/gs-lock-plug.c:588
+msgid "That password was incorrect."
+msgstr "Slaptažodis neteisingas."
+
+#: ../src/gs-lock-plug.c:611 ../src/gs-lock-plug.c:644
+msgid "_Unlock"
+msgstr "_Atrakinti"
+
+#: ../src/gs-lock-plug.c:614 ../src/gs-lock-plug.c:641
+msgid "_Switch User..."
+msgstr "_Pakeisti naudotoją..."
+
+#: ../src/gs-lock-plug.c:944
+msgid "Log in as a new user"
+msgstr "Prisijungti nauju naudotoju"
+
+#. translators: %s is a computer hostname
+#: ../src/gs-lock-plug.c:1366
+#, c-format
+msgid "Welcome to %s"
+msgstr "Sveiki atvykę į %s"
+
+#: ../src/gs-lock-plug.c:1399
+msgid "_Password:"
+msgstr "_Slaptažodis:"
+
+#: ../src/gs-lock-plug.c:1435
+msgid "Switch to user:"
+msgstr "Pakeisti naudotoją į:"
+
+#: ../src/gs-lock-plug.c:1480
+msgid "Log _Out"
+msgstr "At_sijungti"

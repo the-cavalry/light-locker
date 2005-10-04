@@ -1,3 +1,7 @@
+2005-10-04  Žygimantas Beručka  <zygis@gnome.org>
+
+	* configure.ac: Added 'lt' to ALL_LINGUAS.
+
 2005-10-04  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (queue_key_event):
