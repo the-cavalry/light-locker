@@ -14,7 +14,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  *
  * Authors: William Jon McCann <mccann@jhu.edu>
  *
@@ -33,11 +33,10 @@
 
 #include "gs-manager.h"
 #include "gs-watcher-x11.h"
+#include "gs-power.h"
 #include "gs-listener-dbus.h"
 #include "gs-monitor.h"
 #include "gs-prefs.h"
-
-#include "dpms.h"
 
 static void     gs_monitor_class_init (GSMonitorClass *klass);
 static void     gs_monitor_init       (GSMonitor      *monitor);
@@ -50,6 +49,7 @@ struct GSMonitorPrivate
         GSWatcher      *watcher;
         GSListener     *listener;
         GSManager      *manager;
+        GSPower        *power;
         GSPrefs        *prefs;
 };
 
@@ -127,11 +127,23 @@ listener_active_changed_cb (GSListener *listener,
                             GSMonitor  *monitor)
 {
         if (active) {
+                /* turn off the idleness watcher */
                 gs_watcher_set_active (monitor->priv->watcher, FALSE);
+
+                /* blank the screen */
                 gs_manager_blank (monitor->priv->manager);
+
+                /* enable power management */
+                gs_power_set_active (monitor->priv->power, TRUE);
         } else {
+                /* unblank the screen */
                 gs_manager_unblank (monitor->priv->manager);
+
+                /* turn on the idleness watcher */
                 gs_watcher_set_active (monitor->priv->watcher, TRUE);
+
+                /* disable power management */
+                gs_power_set_active (monitor->priv->power, FALSE);
         }
 }
 
@@ -151,8 +163,27 @@ listener_poke_cb (GSListener *listener,
 }
 
 static void
-prefs_changed_cb (GSPrefs   *prefs,
-                  GSMonitor *monitor)
+power_changed_cb (GSPower    *power,
+                  GSPowerMode mode,
+                  GSMonitor  *monitor)
+{
+        gboolean is_on;
+
+        if (mode == GS_POWER_MODE_ON) {
+                is_on = TRUE;
+        } else {
+                is_on = FALSE;
+        }
+
+        /* Don't run themes if the monitor power is off */
+        if (! is_on) {
+                gs_manager_set_throttle_enabled (monitor->priv->manager, TRUE);
+        }
+}
+
+static void
+_gs_monitor_update_from_prefs (GSMonitor *monitor,
+                               GSPrefs   *prefs)
 {
         gs_manager_set_lock_enabled (monitor->priv->manager, monitor->priv->prefs->lock);
         gs_manager_set_lock_timeout (monitor->priv->manager, monitor->priv->prefs->lock_timeout);
@@ -167,11 +198,13 @@ prefs_changed_cb (GSPrefs   *prefs,
                                monitor->priv->prefs->mode != GS_MODE_DONT_BLANK);
 
         gs_watcher_set_timeout (monitor->priv->watcher, monitor->priv->prefs->timeout);
-        gs_watcher_set_dpms (monitor->priv->watcher,
-                             monitor->priv->prefs->dpms_enabled,
-                             monitor->priv->prefs->dpms_standby,
-                             monitor->priv->prefs->dpms_suspend,
-                             monitor->priv->prefs->dpms_off);
+
+        gs_power_set_timeouts (monitor->priv->power,
+                               monitor->priv->prefs->dpms_standby,
+                               monitor->priv->prefs->dpms_suspend,
+                               monitor->priv->prefs->dpms_off);
+        gs_power_set_enabled (monitor->priv->power,
+                              monitor->priv->prefs->dpms_enabled);
 }
 
 static void
@@ -181,8 +214,8 @@ gs_monitor_init (GSMonitor *monitor)
         monitor->priv = GS_MONITOR_GET_PRIVATE (monitor);
 
         monitor->priv->prefs = gs_prefs_new ();
-        g_signal_connect (monitor->priv->prefs, "changed",
-                          G_CALLBACK (prefs_changed_cb), monitor);
+        g_signal_connect_swapped (monitor->priv->prefs, "changed",
+                                  G_CALLBACK (_gs_monitor_update_from_prefs), monitor);
 
         monitor->priv->listener = gs_listener_new ();
         g_signal_connect (monitor->priv->listener, "lock",
@@ -199,28 +232,21 @@ gs_monitor_init (GSMonitor *monitor)
                           G_CALLBACK (listener_poke_cb), monitor);
 
         monitor->priv->watcher = gs_watcher_new (monitor->priv->prefs->timeout);
-        gs_watcher_set_dpms (monitor->priv->watcher,
-                             monitor->priv->prefs->dpms_enabled,
-                             monitor->priv->prefs->dpms_standby,
-                             monitor->priv->prefs->dpms_suspend,
-                             monitor->priv->prefs->dpms_off);
         g_signal_connect (monitor->priv->watcher, "idle",
                           G_CALLBACK (watcher_idle_cb), monitor);
 
         monitor->priv->manager = gs_manager_new ();
-        gs_manager_set_lock_enabled (monitor->priv->manager, monitor->priv->prefs->lock);
-        gs_manager_set_lock_timeout (monitor->priv->manager, monitor->priv->prefs->lock_timeout);
-        gs_manager_set_logout_enabled (monitor->priv->manager, monitor->priv->prefs->logout_enabled);
-        gs_manager_set_user_switch_enabled (monitor->priv->manager, monitor->priv->prefs->user_switch_enabled);
-        gs_manager_set_logout_timeout (monitor->priv->manager, monitor->priv->prefs->logout_timeout);
-        gs_manager_set_cycle_timeout (monitor->priv->manager, monitor->priv->prefs->cycle);
-        gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
-        gs_manager_set_themes (monitor->priv->manager, monitor->priv->prefs->themes);
-
         g_signal_connect (monitor->priv->manager, "blanked",
                           G_CALLBACK (manager_blanked_cb), monitor);
         g_signal_connect (monitor->priv->manager, "unblanked",
                           G_CALLBACK (manager_unblanked_cb), monitor);
+
+        monitor->priv->power = gs_power_new ();
+        g_signal_connect (monitor->priv->power, "changed",
+                          G_CALLBACK (power_changed_cb), monitor);
+
+        _gs_monitor_update_from_prefs (monitor, monitor->priv->prefs);
+
 }
 
 static void

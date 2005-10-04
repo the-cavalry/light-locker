@@ -96,10 +96,10 @@
       <applyto>/apps/gnome-screensaver/dpms_standby</applyto>
       <owner>gnome-screensaver</owner>
       <type>int</type>
-      <default>120</default>
+      <default>60</default>
       <locale name="C">
         <short>How many minutes until the monitor goes black</short>
-        <long>How many minutes until the monitor goes black.</long>
+        <long>How many minutes after the screensaver activates until the monitor goes black.</long>
       </locale>
     </schema>
 
@@ -108,10 +108,10 @@
       <applyto>/apps/gnome-screensaver/dpms_suspend</applyto>
       <owner>gnome-screensaver</owner>
       <type>int</type>
-      <default>120</default>
+      <default>60</default>
       <locale name="C">
-        <short>How many minutes until the monitor power-saves</short>
-        <long>How many minutes until the monitor power-saves.</long>
+        <short>The number of minutes until the monitor power-saves</short>
+        <long>The number of minutes after the screensaver activates until the monitor power-saves.</long>
       </locale>
     </schema>
 
@@ -120,10 +120,10 @@
       <applyto>/apps/gnome-screensaver/dpms_off</applyto>
       <owner>gnome-screensaver</owner>
       <type>int</type>
-      <default>240</default>
+      <default>120</default>
       <locale name="C">
-        <short>How many minutes until the monitor powers down</short>
-        <long>How many minutes until the monitor powers down.</long>
+        <short>The number of minutes until the monitor powers down</short>
+        <long>The number of minutes after the screensaver activates until the monitor powers down.</long>
       </locale>
     </schema>
 

@@ -45,8 +45,6 @@
 #include "gnome-screensaver.h"
 #include "gs-watcher-x11.h"
 
-#include "dpms.h"
-
 static void     gs_watcher_class_init (GSWatcherClass *klass);
 static void     gs_watcher_init       (GSWatcher      *watcher);
 static void     gs_watcher_finalize   (GObject        *object);
@@ -64,8 +62,6 @@ static void     schedule_wakeup_event        (GSWatcher      *watcher,
 static void     notice_events                (Window          window,
                                               gboolean        top,
                                               gboolean        debug);
-static gboolean monitor_powered_on           (void);
-static void     monitor_power_on             (void);
 
 #define GS_WATCHER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_WATCHER, GSWatcherPrivate))
 
@@ -111,10 +107,6 @@ struct GSWatcherPrivate
         int            sgi_saver_ext_error_number;
 # endif
 
-        gboolean       dpms_enabled;
-        guint          dpms_standby;
-        guint          dpms_suspend;
-        guint          dpms_off;
 };
 
 enum {
@@ -153,28 +145,6 @@ gs_watcher_set_timeout (GSWatcher  *watcher,
         watcher->priv->timeout = timeout;
 
         gs_watcher_reset (watcher);
-}
-
-void
-gs_watcher_set_dpms (GSWatcher *watcher,
-                     gboolean   enabled,
-                     guint      standby,
-                     guint      suspend,
-                     guint      off)
-{
-        g_return_if_fail (GS_IS_WATCHER (watcher));
-
-        watcher->priv->dpms_enabled = enabled;
-        watcher->priv->dpms_standby = standby;
-        watcher->priv->dpms_suspend = suspend;
-        watcher->priv->dpms_off     = off;
-
-        sync_server_dpms_settings (GDK_DISPLAY (),
-                                   watcher->priv->dpms_enabled,
-                                   watcher->priv->dpms_standby / 1000,
-                                   watcher->priv->dpms_suspend / 1000,
-                                   watcher->priv->dpms_off / 1000,
-                                   watcher->priv->verbose);
 }
 
 static void
@@ -316,12 +286,11 @@ void
 gs_watcher_set_active (GSWatcher *watcher,
                        gboolean   active)
 {
-        if (!active) {
+        if (! active) {
                 stop_idle_watcher (watcher);
                 if (watcher->priv->debug)
                         g_message ("Stopping idle watcher");
         } else {
-                monitor_power_on ();
                 start_idle_watcher (watcher);
                 if (watcher->priv->debug)
                         g_message ("Starting idle watcher");
@@ -495,125 +464,6 @@ query_xidle_extension (void)
 
 #endif /* HAVE_XIDLE_EXTENSION */
 
-
-/* Display Power Management System (DPMS.)
-
-On XFree86 systems, "man xset" reports:
-
--dpms    The -dpms option disables DPMS (Energy Star) features.
-+dpms    The +dpms option enables DPMS (Energy Star) features.
-
-dpms flags...
-The dpms option allows the DPMS (Energy Star)
-parameters to be set.  The option can take up to three
-numerical values, or the `force' flag followed by a
-DPMS state.  The `force' flags forces the server to
-immediately switch to the DPMS state specified.  The
-DPMS state can be one of `standby', `suspend', or
-`off'.  When numerical values are given, they set the
-inactivity period before the three modes are activated.
-The first value given is for the `standby' mode, the
-second is for the `suspend' mode, and the third is for
-the `off' mode.  Setting these values implicitly
-enables the DPMS features.  A value of zero disables a
-particular mode.
-
-However, note that the implementation is more than a little bogus,
-in that there is code in /usr/X11R6/lib/libXdpms.a to implement all
-the usual server-extension-querying utilities -- but there are no
-prototypes in any header file!  Thus, the prototypes here.  (The
-stuff in X11/extensions/dpms.h and X11/extensions/dpmsstr.h define
-the raw X protcol, they don't define the API to libXdpms.a.)
-
-Some documentation:
-Library:  ftp://ftp.x.org/pub/R6.4/xc/doc/specs/Xext/DPMSLib.ms
-Protocol: ftp://ftp.x.org/pub/R6.4/xc/doc/specs/Xext/DPMS.ms
-*/
-
-#ifdef HAVE_DPMS_EXTENSION
-
-#include <X11/Xproto.h>			/* for CARD16 */
-#include <X11/extensions/dpms.h>
-#include <X11/extensions/dpmsstr.h>
-
-extern gboolean DPMSQueryExtension (Display *dpy, int *event_ret, int *error_ret);
-extern gboolean DPMSCapable        (Display *dpy);
-extern Status   DPMSForceLevel     (Display *dpy, CARD16 level);
-extern Status   DPMSInfo           (Display *dpy, CARD16 *power_level, BOOL *state);
-
-#if 0 /* others we don't use */
-extern Status   DPMSGetVersion     (Display *dpy, int *major_ret, int *minor_ret);
-extern Status   DPMSSetTimeouts    (Display *dpy,
-                                    CARD16 standby, CARD16 suspend, CARD16 off);
-extern gboolean DPMSGetTimeouts    (Display *dpy,
-                                    CARD16 *standby, CARD16 *suspend, CARD16 *off);
-extern Status   DPMSEnable         (Display *dpy);
-extern Status   DPMSDisable        (Display *dpy);
-#endif /* 0 */
-
-
-static gboolean
-monitor_powered_on (void)
-{
-        gboolean result;
-        int      event_number, error_number;
-        BOOL     onoff = FALSE;
-        CARD16   state;
-
-        if (!DPMSQueryExtension (GDK_DISPLAY (), &event_number, &error_number))
-                /* Server doesn't know -- assume the watcher is on. */
-                result = TRUE;
-
-        else if (!DPMSCapable (GDK_DISPLAY ()))
-                /* Server says the watcher doesn't do power management -- so it's on. */
-                result = TRUE;
-
-        else {
-                DPMSInfo (GDK_DISPLAY (), &state, &onoff);
-                if (!onoff)
-                        /* Server says DPMS is disabled -- so the watcher is on. */
-                        result = TRUE;
-                else
-                        switch (state) {
-                        case DPMSModeOn:      result = TRUE;  break;  /* really on */
-                        case DPMSModeStandby: result = FALSE; break;  /* kinda off */
-                        case DPMSModeSuspend: result = FALSE; break;  /* pretty off */
-                        case DPMSModeOff:     result = FALSE; break;  /* really off */
-                        default:	      result = TRUE;  break;  /* protocol error? */
-                        }
-        }
-
-        return result;
-}
-
-static void
-monitor_power_on (void)
-{
-        if (! monitor_powered_on ()) {
-                DPMSForceLevel (GDK_DISPLAY (), DPMSModeOn);
-                XSync (GDK_DISPLAY (), FALSE);
-                if (! monitor_powered_on ())
-                        g_message ("DPMSForceLevel (dpy, DPMSModeOn) did not power the monitor on?");
-        }
-}
-
-#else  /* HAVE_DPMS_EXTENSION */
-
-static gboolean
-monitor_powered_on (void) 
-{
-        return TRUE; 
-}
-
-static void
-monitor_power_on (void)
-{
-        return; 
-}
-
-#endif /* !HAVE_DPMS_EXTENSION */
-
-
 /* If any server extensions have been requested, try and initialize them.
    Issue warnings if requests can't be honored.
 */
@@ -718,20 +568,20 @@ disable_builtin_screensaver (GSWatcher *watcher,
         desired_allow_exp       = current_allow_exp;
 
         /* On SGIs, if interval is non-zero, it is the number of seconds after
-           screen saving starts at which the watcher should be powered down.
+           screen saving starts at which the monitor should be powered down.
            Obviously I don't want that, so set it to 0 (meaning "never".)
 
            Power saving is disabled if DontPreferBlanking, but in that case,
            we don't get extension events either.  So we can't turn it off that way.
 
-           Note: if you're running Irix 6.3 (O2), you may find that your watcher is
+           Note: if you're running Irix 6.3 (O2), you may find that your monitor is
            powering down anyway, regardless of the xset settings.  This is fixed by
            installing SGI patches 2447 and 2537.
         */
         desired_server_interval = 0;
 
         /* I suspect (but am not sure) that DontAllowExposures might have
-           something to do with powering off the watcher as well, at least
+           something to do with powering off the monitor as well, at least
            on some systems that don't support XDPMS?  Who know... */
         desired_allow_exp = AllowExposures;
 
@@ -1175,12 +1025,6 @@ xevent_idle (GSWatcher *watcher)
    event, and could cause watcher power-saving to occur, and all manner of
    heinousness.)
 
-   If the screen is currently blanked, it raises the window, in case some
-   other window has been mapped on top of it.
-
-   If the screen is currently blanked, and there is no hack running, it
-   clears the window, in case there is an error message printed on it (we
-   don't want the error message to burn in.)
  */
 
 static gboolean
@@ -1188,15 +1032,6 @@ watchdog_timer (GSWatcher *watcher)
 {
 
         disable_builtin_screensaver (watcher, FALSE);
-
-        /* If the DPMS settings on the server have changed, change them back to
-           configuration says they should be. */
-        sync_server_dpms_settings (GDK_DISPLAY (),
-                                   watcher->priv->dpms_enabled,
-                                   watcher->priv->dpms_standby / 1000,
-                                   watcher->priv->dpms_suspend / 1000,
-                                   watcher->priv->dpms_off / 1000,
-                                   watcher->priv->verbose);
 
         return TRUE;
 }

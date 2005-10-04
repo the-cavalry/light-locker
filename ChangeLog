@@ -1,3 +1,25 @@
+2005-10-04  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-power.h:
+	* src/gs-power-x11.h: New files to handle power
+	management.
+	
+	* src/gs-watcher-x11.[ch]: Rip out all the DPMS stuff.
+
+	* src/gs-monitor.c (listener_active_changed_cb):
+	Activate power management when screen blanks.
+	(power_changed_cb): When monitor power turns off
+	throttle the themes.
+	(_gs_monitor_update_from_prefs): Consolidate
+	updating from preferences into a single function.
+	(gs_monitor_init): Add power management.
+
+	* src/dpms.[ch]: Removed.
+	* src/Makefile.am: Add new files.
+
+	* data/gnome-screensaver.schemas.in: Shorten DPMS
+	timeout values.
+
 2005-10-03  William Jon McCann  <mccann@jhu.edu>
 
 	* doc/.cvsignore: Actually add the file.
