@@ -904,3 +904,32 @@ gs_manager_is_blanked (GSManager *manager)
 
         return manager->priv->blank_active;
 }
+
+void
+gs_manager_request_unlock (GSManager *manager)
+{
+        GSList     *l;
+        GdkDisplay *display;
+        GdkScreen  *screen;
+        int         screen_num;
+
+        g_return_if_fail (manager != NULL);
+        g_return_if_fail (GS_IS_MANAGER (manager));
+
+        if (! manager->priv->blank_active)
+                return;
+
+        /* Find the screen that contains the pointer */
+        display = gdk_display_get_default ();
+        gdk_display_get_pointer (display, &screen, NULL, NULL, NULL);
+        screen_num = gdk_screen_get_number (screen);
+
+        /* Find the gs-window that is on that screen */
+        for (l = manager->priv->windows; l; l = l->next) {
+                int num = gdk_screen_get_number (GTK_WINDOW (l->data)->screen);
+                if (num == screen_num) {
+                        gs_window_request_unlock (GS_WINDOW (l->data));
+                        break;
+                }
+        }
+}

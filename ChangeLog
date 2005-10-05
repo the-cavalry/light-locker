@@ -1,5 +1,13 @@
 2005-10-05  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-monitor.c (listener_poke_cb): 
+	* src/gs-manager.[ch] (gs_manager_request_unlock):
+	Make poking the screensaver from DBus work
+	even when the screen is blanked.  So, in all
+	cases poking should simulate user activity.
+
+2005-10-05  William Jon McCann  <mccann@jhu.edu>
+
 	* src/Makefile.am: 
 	* src/gs-watcher-x11.c (gs_watcher_class_init): 
 	* src/gs-watcher-marshal.list:

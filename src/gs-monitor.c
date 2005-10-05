@@ -159,7 +159,17 @@ static void
 listener_poke_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
+        /* in case the screen isn't blanked reset the
+           idle watcher */
         gs_watcher_reset (monitor->priv->watcher);
+
+        /* turn on the monitor power */
+        gs_power_set_mode (monitor->priv->power,
+                           GS_POWER_MODE_ON);
+
+        /* request that the manager unlock -
+           will pop up a dialog if necessary */
+        gs_manager_request_unlock (monitor->priv->manager);
 }
 
 static void
