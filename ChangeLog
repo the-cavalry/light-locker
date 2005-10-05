@@ -4,7 +4,7 @@
 	* src/gs-watcher-x11.c (gs_watcher_class_init): 
 	* src/gs-watcher-marshal.list:
 	* src/gs-monitor.c (watcher_idle_cb): 
-	* src/.cvsignore: 
+	* src/.cvsignore: Use a custom marshaller.
 
 2005-10-04  Žygimantas Beručka  <zygis@gnome.org>
 
