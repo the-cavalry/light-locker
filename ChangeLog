@@ -1,3 +1,11 @@
+2005-10-05  William Jon McCann  <mccann@jhu.edu>
+
+	* src/Makefile.am: 
+	* src/gs-watcher-x11.c (gs_watcher_class_init): 
+	* src/gs-watcher-marshal.list:
+	* src/gs-monitor.c (watcher_idle_cb): 
+	* src/.cvsignore: 
+
 2005-10-04  Žygimantas Beručka  <zygis@gnome.org>
 
 	* configure.ac: Added 'lt' to ALL_LINGUAS.

@@ -45,7 +45,7 @@ typedef struct
         GObjectClass      parent_class;
 
         gboolean          (* idle)        (GSWatcher *watcher,
-                                           gint       flags);
+                                           int        reserved);
 } GSWatcherClass;
 
 GType       gs_watcher_get_type (void);

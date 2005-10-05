@@ -88,7 +88,7 @@ manager_unblanked_cb (GSManager *manager,
 
 static gboolean
 watcher_idle_cb (GSWatcher *watcher,
-                 gint       flags,
+                 int        reserved,
                  GSMonitor *monitor)
 {
         gboolean res;

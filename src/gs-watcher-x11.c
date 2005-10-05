@@ -44,6 +44,7 @@
 
 #include "gnome-screensaver.h"
 #include "gs-watcher-x11.h"
+#include "gs-watcher-marshal.h"
 
 static void     gs_watcher_class_init (GSWatcherClass *klass);
 static void     gs_watcher_init       (GSWatcher      *watcher);
@@ -205,7 +206,7 @@ gs_watcher_class_init (GSWatcherClass *klass)
                               G_STRUCT_OFFSET (GSWatcherClass, idle),
                               NULL,
                               NULL,
-                              g_cclosure_marshal_BOOLEAN__FLAGS,
+                              gs_watcher_marshal_BOOLEAN__INT,
                               G_TYPE_BOOLEAN,
                               1, G_TYPE_INT);
 
