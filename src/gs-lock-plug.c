@@ -608,10 +608,10 @@ get_ok_button_for_page (gint page)
 
         switch (page) {
         case (AUTH_PAGE):
-                label = N_("_Unlock");
+                label = _("_Unlock");
                 break;
         case (SWITCH_PAGE):
-                label = N_("_Switch User...");
+                label = _("_Switch User...");
                 break;
         default:
                 g_assert ("Invalid notebook page");
@@ -638,10 +638,10 @@ get_switch_button_for_page (gint page)
 
         switch (page) {
         case (AUTH_PAGE):
-                label = N_("_Switch User...");
+                label = _("_Switch User...");
                 break;
         case (SWITCH_PAGE):
-                label = N_("_Unlock");
+                label = _("_Unlock");
                 break;
         default:
                 g_assert ("Invalid notebook page");

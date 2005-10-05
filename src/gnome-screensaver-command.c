@@ -277,6 +277,11 @@ main (int    argc,
 
         g_type_init ();
 
+        g_set_prgname (argv[0]);
+
+        if (setlocale (LC_ALL, "") == NULL)
+                g_warning ("Locale not understood by C library, internationalization will not work\n");
+
         context = g_option_context_new (NULL);
         g_option_context_set_ignore_unknown_options (context, TRUE);
         g_option_context_add_main_entries (context, entries, NULL);

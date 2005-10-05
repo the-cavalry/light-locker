@@ -1,5 +1,13 @@
 2005-10-05  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (get_ok_button_for_page) 
+	(get_switch_button_for_page): Don't use N_().
+
+	* src/gnome-screensaver-command.c (main):
+	Use setlocale so that messages are translated.
+
+2005-10-05  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-monitor.c (listener_poke_cb): 
 	* src/gs-manager.[ch] (gs_manager_request_unlock):
 	Make poking the screensaver from DBus work
