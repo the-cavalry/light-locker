@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-02 10:38-0400\n"
+"POT-Creation-Date: 2005-10-05 08:14-0400\n"
 "PO-Revision-Date: 2005-09-06 11:55-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
@@ -54,68 +54,80 @@ msgid "Screensavers"
 msgstr "Screensavers"
 
 #: data/gnome-screensaver.schemas.in.h:1
+msgid ""
+"How many minutes after the screensaver activates until the monitor goes "
+"black."
+msgstr ""
+"How many minutes after the screensaver activates until the monitor goes "
+"black."
+
+#: data/gnome-screensaver.schemas.in.h:2
 msgid "How many minutes until the monitor goes black"
 msgstr "How many minutes until the monitor goes blank"
 
-#: data/gnome-screensaver.schemas.in.h:2
-msgid "How many minutes until the monitor goes black."
-msgstr "How many minutes until the monitor goes blank."
-
 #: data/gnome-screensaver.schemas.in.h:3
-msgid "How many minutes until the monitor power-saves"
-msgstr "How many minutes until the monitor power-saves"
+msgid ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear"
+msgstr ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear"
 
 #: data/gnome-screensaver.schemas.in.h:4
-msgid "How many minutes until the monitor power-saves."
-msgstr "How many minutes until the monitor power-saves."
+msgid ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear."
+msgstr ""
+"The number of minutes after blanking the screen before a logout option will "
+"appear."
 
 #: data/gnome-screensaver.schemas.in.h:5
-msgid "How many minutes until the monitor powers down"
-msgstr "How many minutes until the monitor powers down"
-
-#: data/gnome-screensaver.schemas.in.h:6
-msgid "How many minutes until the monitor powers down."
-msgstr "How many minutes until the monitor powers down."
-
-#: data/gnome-screensaver.schemas.in.h:7
-msgid ""
-"The number of minutes after blanking the screen before a logout option will "
-"appear"
-msgstr ""
-"The number of minutes after blanking the screen before a logout option will "
-"appear"
-
-#: data/gnome-screensaver.schemas.in.h:8
-msgid ""
-"The number of minutes after blanking the screen before a logout option will "
-"appear."
-msgstr ""
-"The number of minutes after blanking the screen before a logout option will "
-"appear."
-
-#: data/gnome-screensaver.schemas.in.h:9
 msgid "The number of minutes after blanking the screen before locking"
 msgstr "The number of minutes after blanking the screen before locking"
 
-#: data/gnome-screensaver.schemas.in.h:10
+#: data/gnome-screensaver.schemas.in.h:6
 msgid "The number of minutes after blanking the screen before locking."
 msgstr "The number of minutes after blanking the screen before locking."
 
-#: data/gnome-screensaver.schemas.in.h:11
+#: data/gnome-screensaver.schemas.in.h:7
+msgid ""
+"The number of minutes after the screensaver activates until the monitor "
+"power-saves."
+msgstr ""
+"The number of minutes after the screensaver activates until the monitor "
+"power-saves."
+
+#: data/gnome-screensaver.schemas.in.h:8
+msgid ""
+"The number of minutes after the screensaver activates until the monitor "
+"powers down."
+msgstr ""
+"The number of minutes after the screensaver activates until the monitor "
+"powers down."
+
+#: data/gnome-screensaver.schemas.in.h:9
 msgid "The number of minutes of idle time before blanking the screen"
 msgstr "The number of minutes of idle time before blanking the screen"
 
-#: data/gnome-screensaver.schemas.in.h:12
+#: data/gnome-screensaver.schemas.in.h:10
 msgid "The number of minutes of idle time before blanking the screen."
 msgstr "The number of minutes of idle time before blanking the screen."
 
-#: data/gnome-screensaver.schemas.in.h:13
+#: data/gnome-screensaver.schemas.in.h:11
 msgid "The number of minutes to run before changing the screensaver"
 msgstr "The number of minutes to run before changing the screensaver"
 
-#: data/gnome-screensaver.schemas.in.h:14
+#: data/gnome-screensaver.schemas.in.h:12
 msgid "The number of minutes to run before changing the screensaver."
 msgstr "The number of minutes to run before changing the screensaver."
+
+#: data/gnome-screensaver.schemas.in.h:13
+msgid "The number of minutes until the monitor power-saves"
+msgstr "The number of minutes until the monitor power-saves"
+
+#: data/gnome-screensaver.schemas.in.h:14
+msgid "The number of minutes until the monitor powers down"
+msgstr "The number of minutes until the monitor powers down"
 
 #: data/gnome-screensaver.schemas.in.h:15
 msgid "The screensaver selection mode"
