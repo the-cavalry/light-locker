@@ -1,3 +1,11 @@
+==== 0.0.15 ====
+
+2005-10-05  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 0.0.15 release.
+	* src/Makefile.am (gnome_screensaver_SOURCES):
+	Fix name of header file.
+
 2005-10-05  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (get_ok_button_for_page) 

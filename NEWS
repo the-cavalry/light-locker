@@ -1,4 +1,32 @@
 ==============
+Version 0.0.15
+==============
+
+  gnome-screensaver
+
+        * First version with working power management
+        * Add Gamma fade out
+        * Don't forward first enter or space to unlock dialog
+        * Make poke command work when screen is blanked
+        * Add getIdleTime dbus method
+        * Translation fixes
+
+  themes
+
+        * (slideshow) Optionally use EXIF info to rotate images
+                (torkel@acc.umu.se)
+
+  Translators
+
+        * Rostislav \"zbrox\" Raykov (bg)
+        * Miloslav Trmac (cs)
+        * Adam Weinberger (en_CA)
+        * Å½ygimantas BeruÄka (lt)
+        * Kjartan Maraas (nb)
+        * Tino Meinen (nl)
+        * Kjartan Maraas (no)
+
+==============
 Version 0.0.14
 ==============
 
