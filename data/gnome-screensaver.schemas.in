@@ -8,8 +8,11 @@
       <type>bool</type>
       <default>TRUE</default>
       <locale name="C">
-        <short>Whether to lock as well as blank</short>
-        <long>Whether to lock as well as blank.</long>
+        <short>Lock on activation</short>
+        <long>
+          Set this to TRUE to lock the screen when the screensaver
+          goes active.
+        </long>
       </locale>
     </schema>
 
@@ -20,10 +23,14 @@
       <type>string</type>
       <default>blank-only</default>
       <locale name="C">
-        <short>The screensaver selection mode</short>
+        <short>Screensaver selection mode</short>
         <long>
-            This key specifies the selection mode used by the screensaver.
-            Possible values are "disabled", "blank-only", "single", and "random".
+	  The selection mode used by screensaver.  May be "disabled" to
+          disable screensaver activation, "blank-only" to enable the
+          screensaver without using any theme on activation, "single" to
+          enable screensaver using only one theme on activation
+          (specified in "themes" key), and "random" to enable the
+          screensaver using a random theme on activation.
         </long>
       </locale>
     </schema>
@@ -36,9 +43,13 @@
       <list_type>string</list_type>
       <default>[]</default>
       <locale name="C">
-        <short>The selected screensaver themes</short>
+        <short>Screensaver themes</short>
         <long>
-            This key specifies the themes to be used by the screensaver.
+	  This key specifies the list of themes to be used by the
+          screensaver. It's ignored when "mode" key is "disabled" or
+          "blank-only", should provide the theme name when "mode" is
+          "single", and should provide a list of themes when "mode" is
+          "random".
         </long>
       </locale>
     </schema>
@@ -50,8 +61,11 @@
       <type>int</type>
       <default>10</default>
       <locale name="C">
-        <short>The number of minutes of idle time before blanking the screen</short>
-        <long>The number of minutes of idle time before blanking the screen.</long>
+        <short>Time before activation</short>
+        <long>
+          The number of minutes of idle time before activating the
+          screensaver.
+        </long>
       </locale>
      </schema>
 
@@ -62,8 +76,11 @@
       <type>int</type>
       <default>10</default>
       <locale name="C">
-        <short>The number of minutes to run before changing the screensaver</short>
-        <long>The number of minutes to run before changing the screensaver.</long>
+        <short>Time before theme change</short>
+        <long>
+          The number of minutes to run before changing the
+          screensaver theme.
+        </long>
       </locale>
     </schema>
 
@@ -74,8 +91,11 @@
       <type>int</type>
       <default>0</default>
       <locale name="C">
-        <short>The number of minutes after blanking the screen before locking</short>
-        <long>The number of minutes after blanking the screen before locking.</long>
+        <short>Time before locking</short>
+        <long>
+          The number of minutes after screensaver activation
+          before locking the screen.
+        </long>
       </locale>
     </schema>
 
@@ -86,8 +106,11 @@
       <type>bool</type>
       <default>FALSE</default>
       <locale name="C">
-        <short>Whether to power down the monitor</short>
-        <long>Whether to power down the monitor.</long>
+        <short>Allow monitor power management</short>
+        <long>
+          Set this to TRUE to allow the screensaver to
+          power down the monitor.
+        </long>
       </locale>
     </schema>
 
@@ -98,8 +121,11 @@
       <type>int</type>
       <default>60</default>
       <locale name="C">
-        <short>How many minutes until the monitor goes black</short>
-        <long>How many minutes after the screensaver activates until the monitor goes black.</long>
+        <short>Time before standby</short>
+        <long>
+          The number of minutes after the screensaver activation
+          until the monitor goes into standby power mode.
+        </long>
       </locale>
     </schema>
 
@@ -110,8 +136,11 @@
       <type>int</type>
       <default>60</default>
       <locale name="C">
-        <short>The number of minutes until the monitor power-saves</short>
-        <long>The number of minutes after the screensaver activates until the monitor power-saves.</long>
+        <short>Time before suspend</short>
+        <long>
+          The number of minutes after the screensaver activation
+          until the monitor goes into suspend power mode.
+        </long>
       </locale>
     </schema>
 
@@ -122,8 +151,11 @@
       <type>int</type>
       <default>120</default>
       <locale name="C">
-        <short>The number of minutes until the monitor powers down</short>
-        <long>The number of minutes after the screensaver activates until the monitor powers down.</long>
+        <short>Time before power off</short>
+        <long>
+          The number of minutes after the screensaver activation
+          until the monitor powers off.
+        </long>
       </locale>
     </schema>
 
@@ -134,8 +166,12 @@
       <type>bool</type>
       <default>FALSE</default>
       <locale name="C">
-        <short>Whether to offer the option of logging out after logout_delay</short>
-        <long>Whether to offer the option of logging out after logout_delay.</long>
+        <short>Allow logout</short>
+        <long>
+          Set this to TRUE to offer an option in unlock dialog to
+          logging out after a delay.  The Delay is specified in the
+          "logout_delay" key.
+        </long>
       </locale>
     </schema>
 
@@ -146,8 +182,12 @@
       <type>int</type>
       <default>120</default>
       <locale name="C">
-        <short>The number of minutes after blanking the screen before a logout option will appear</short>
-        <long>The number of minutes after blanking the screen before a logout option will appear.</long>
+        <short>Time before logout option</short>
+        <long>
+          The number of minutes after the screensaver activation
+          before a logout option will appear in unlock dialog. This
+          key has effect only if the "logout_enable" key is set to TRUE.
+        </long>
       </locale>
     </schema>
 
@@ -158,8 +198,11 @@
       <type>bool</type>
       <default>FALSE</default>
       <locale name="C">
-        <short>Whether to allow user switching</short>
-        <long>Whether to offer the option of switching to a different user</long>
+        <short>Allow user switching</short>
+        <long>
+          Set this to TRUE to offer an option in the unlock dialog to
+          switch to a different user account.
+        </long>
       </locale>
     </schema>
   </schemalist>

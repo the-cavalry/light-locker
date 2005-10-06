@@ -1,5 +1,13 @@
 2005-10-06  William Jon McCann  <mccann@jhu.edu>
 
+	* data/gnome-screensaver.schemas.in:
+	Rework the gconf key descriptions.
+
+	Patch from Luca Ferretti <elle.uca@libero.it>
+	Fixes #318100
+
+2005-10-06  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c (initialize_server_extensions) 
 	(check_pointer_timer): 
 	* configure.ac:
