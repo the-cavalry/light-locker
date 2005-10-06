@@ -39,6 +39,8 @@ EXTRA_DIST = 				\
 	$(directory_in_files)		\
 	$(glade_DATA)			\
 	gnome-screensaver		\
+	xscreensaver-config.xsl		\
+	migrate-xscreensaver-config.sh	\
 	$(NULL)
 
 DISTCLEANFILES = 			\
