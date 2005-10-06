@@ -1,5 +1,13 @@
 2005-10-06  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c (initialize_server_extensions) 
+	(check_pointer_timer): 
+	* configure.ac:
+	Remove all /proc/interrupts stuff.  It wasn't
+	working anyway.  Fixes #318071
+
+2005-10-06  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Less commentary and
 	remove motif stuff.
 

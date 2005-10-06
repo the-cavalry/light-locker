@@ -908,41 +908,6 @@ AC_EGREP_X_HEADER(XHPDisableReset, X11/XHPlib.h,
 
 ###############################################################################
 #
-#       Check for /proc/interrupts.
-#
-###############################################################################
-
-have_proc_interrupts=no
-with_proc_interrupts_req=unspecified
-AC_ARG_WITH(proc-interrupts,
-[  --with-proc-interrupts  Include support for consulting the /proc/interrupts
-                          file to notice keyboard activity.],
-  [with_proc_interrupts="$withval"; with_proc_interrupts_req="$withval"],
-  [with_proc_interrupts=yes])
-
-if test "$with_proc_interrupts" = yes; then
-
-   AC_CACHE_CHECK([whether /proc/interrupts contains keyboard data],
-    ac_cv_have_proc_interrupts,
-    [ac_cv_have_proc_interrupts=no
-     if grep keyboard /proc/interrupts >/dev/null 2>&1 ; then
-       ac_cv_have_proc_interrupts=yes
-     fi
-    ])
-   have_proc_interrupts=$ac_cv_have_proc_interrupts
-
-  if test "$have_proc_interrupts" = yes; then
-    AC_DEFINE(HAVE_PROC_INTERRUPTS, 1, [Define if /proc/interrupts are available])
-  fi
-
-elif test "$with_proc_interrupts" != no; then
-  echo "error: must be yes or no: --with-proc-interrupts=$with_proc_interrupts"
-  exit 1
-fi
-
-
-###############################################################################
-#
 #       The --enable-locking option
 #
 ###############################################################################

@@ -76,7 +76,6 @@ struct GSWatcherPrivate
         guint           use_xidle_extension : 1;
         guint           use_sgi_saver_extension : 1;
         guint           use_mit_saver_extension : 1;
-        guint           use_proc_interrupts : 1;
 
         /* state */
         int             poll_mouse_last_root_x;
@@ -97,7 +96,6 @@ struct GSWatcherPrivate
         guint           using_xidle_extension : 1;
         guint           using_sgi_saver_extension : 1;
         guint           using_mit_saver_extension : 1;
-        guint           using_proc_interrupts : 1;
 
 # ifdef HAVE_MIT_SAVER_EXTENSION
         int             mit_saver_ext_event_number;
@@ -474,14 +472,12 @@ initialize_server_extensions (GSWatcher *watcher)
         gboolean server_has_xidle_extension     = FALSE;
         gboolean server_has_sgi_saver_extension = FALSE;
         gboolean server_has_mit_saver_extension = FALSE;
-        gboolean system_has_proc_interrupts     = FALSE;
 
         const char *piwhy = 0;
 
         watcher->priv->using_xidle_extension     = watcher->priv->use_xidle_extension;
         watcher->priv->using_sgi_saver_extension = watcher->priv->use_sgi_saver_extension;
         watcher->priv->using_mit_saver_extension = watcher->priv->use_mit_saver_extension;
-        watcher->priv->using_proc_interrupts     = watcher->priv->use_proc_interrupts;
 
 #ifdef HAVE_XIDLE_EXTENSION
         server_has_xidle_extension     = query_xidle_extension ();
@@ -493,9 +489,6 @@ initialize_server_extensions (GSWatcher *watcher)
 #ifdef HAVE_MIT_SAVER_EXTENSION
         server_has_mit_saver_extension = query_mit_saver_extension (&watcher->priv->mit_saver_ext_event_number,
                                                                     &watcher->priv->mit_saver_ext_error_number);
-#endif
-#ifdef HAVE_PROC_INTERRUPTS
-        system_has_proc_interrupts     = query_proc_interrupts_available (&piwhy);
 #endif
 
         if (! server_has_xidle_extension)
@@ -530,20 +523,6 @@ initialize_server_extensions (GSWatcher *watcher)
                 watcher->priv->using_mit_saver_extension = FALSE;
                 if (watcher->priv->verbose)
                         g_message ("Xinerama in use: disabling MIT-SCREEN-SAVER.");
-        }
-
-        if (! system_has_proc_interrupts) {
-
-                watcher->priv->using_proc_interrupts = FALSE;
-                if (watcher->priv->verbose && piwhy)
-                        g_message ("Not using /proc/interrupts: %s.", piwhy);
-
-        } else if (watcher->priv->verbose) {
-
-                if (watcher->priv->using_proc_interrupts)
-                        g_message ("Consulting /proc/interrupts for keyboard activity.");
-                else
-                        g_message ("Not consulting /proc/interrupts for keyboard activity.");
         }
 }
 
@@ -805,10 +784,9 @@ check_pointer_timer (GSWatcher *watcher)
         int             n_screens, root_x, root_y;
         GdkModifierType mask;
 
-        if (! watcher->priv->using_proc_interrupts
-            && (watcher->priv->using_xidle_extension
-                || watcher->priv->using_mit_saver_extension
-                || watcher->priv->using_sgi_saver_extension))
+        if (watcher->priv->using_xidle_extension
+            || watcher->priv->using_mit_saver_extension
+            || watcher->priv->using_sgi_saver_extension)
                 /* If an extension is in use, we should not be polling the mouse.
                    Unless we're also checking /proc/interrupts, in which case, we should.
                 */
