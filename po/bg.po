@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-29 13:06+0300\n"
-"PO-Revision-Date: 2005-09-29 13:07+0300\n"
+"POT-Creation-Date: 2005-10-06 14:05+0300\n"
+"PO-Revision-Date: 2005-10-06 12:06+0300\n"
 "Last-Translator: Rostislav \"zbrox\" Raykov <zbrox@i-space.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -54,66 +54,78 @@ msgid "Screensavers"
 msgstr "Предпазители на екрана"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
+msgid ""
+"How many minutes after the screensaver activates until the monitor goes "
+"black."
+msgstr ""
+"Колко минути след активирането на предпазителя на екрана, преди монитора да "
+"покаже черен екран"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
 msgid "How many minutes until the monitor goes black"
 msgstr "Колко минути преди монитора да покаже черен екран"
 
-#: ../data/gnome-screensaver.schemas.in.h:2
-msgid "How many minutes until the monitor goes black."
-msgstr "Колко минути преди монитора да покаже черен екран"
-
 #: ../data/gnome-screensaver.schemas.in.h:3
-msgid "How many minutes until the monitor power-saves"
-msgstr "Колко минути преди монитора да мине в режим за спестяване на енергия"
-
-#: ../data/gnome-screensaver.schemas.in.h:4
-msgid "How many minutes until the monitor power-saves."
-msgstr "Колко минути преди монитора да мине в режим за спестяване на енергия"
-
-#: ../data/gnome-screensaver.schemas.in.h:5
-msgid "How many minutes until the monitor powers down"
-msgstr "Колко минути преди монитора да се изключи"
-
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "How many minutes until the monitor powers down."
-msgstr "Колко минути преди монитора да се изключи"
-
-#: ../data/gnome-screensaver.schemas.in.h:7
 msgid ""
 "The number of minutes after blanking the screen before a logout option will "
 "appear"
 msgstr ""
 "Броят минути след като се изчисти екрана преди да се покаже опцията за изход"
 
-#: ../data/gnome-screensaver.schemas.in.h:8
+#: ../data/gnome-screensaver.schemas.in.h:4
 msgid ""
 "The number of minutes after blanking the screen before a logout option will "
 "appear."
 msgstr ""
 "Броят минути след като се изчисти екрана преди да се покаже опцията за изход"
 
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:5
 msgid "The number of minutes after blanking the screen before locking"
 msgstr "Броят минути след като се изчисти екрана преди да се заключи"
 
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "The number of minutes after blanking the screen before locking."
 msgstr "Броят минути след като се изчисти екрана преди да се заключи"
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid ""
+"The number of minutes after the screensaver activates until the monitor "
+"power-saves."
+msgstr ""
+"Колко минути след активирането на предпазителя на екрана, преди да се "
+"активира енергоспестителната функция на монитора."
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid ""
+"The number of minutes after the screensaver activates until the monitor "
+"powers down."
+msgstr ""
+"Броят минути след активирането на предпазителя на екрана, преди мониторът да "
+"се изключи."
+
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "The number of minutes of idle time before blanking the screen"
 msgstr "Броят минути време неактивност преди да се изчисти екрана"
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "The number of minutes of idle time before blanking the screen."
 msgstr "Броят минути време неактивност преди да се изчисти екрана"
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "The number of minutes to run before changing the screensaver"
 msgstr "Броят минути изпълнение преди да се смени екранният предпазител"
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid "The number of minutes to run before changing the screensaver."
 msgstr "Броят минути изпълнение преди да се смени екранният предпазител"
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid "The number of minutes until the monitor power-saves"
+msgstr "Броят минути преди монитора да мине в режим за спестяване на енергия"
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid "The number of minutes until the monitor powers down"
+msgstr "Броят минути преди монитора да се изключи"
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid "The screensaver selection mode"
@@ -558,6 +570,18 @@ msgstr "Показване на бутона за изход"
 msgid "Show the switch user button"
 msgstr "Показване на бутона за смяна на потребителя"
 
+#: ../src/gnome-screensaver-preferences.c:386
+msgid "Disabled"
+msgstr "Изключен"
+
+#: ../src/gnome-screensaver-preferences.c:393
+msgid "Blank screen"
+msgstr "Черен екран"
+
+#: ../src/gnome-screensaver-preferences.c:399
+msgid "Random"
+msgstr "Произволен"
+
 #: ../src/gnome-screensaver-preferences.c:693
 msgid "Invalid screensaver theme"
 msgstr "Невалидна тема за екранния предпазител"
@@ -681,6 +705,13 @@ msgstr "Смяна на потребител:"
 #: ../src/gs-lock-plug.c:1480
 msgid "Log _Out"
 msgstr "_Изход"
+
+#~ msgid "How many minutes until the monitor power-saves."
+#~ msgstr ""
+#~ "Колко минути преди монитора да мине в режим за спестяване на енергия"
+
+#~ msgid "How many minutes until the monitor powers down."
+#~ msgstr "Колко минути преди монитора да се изключи"
 
 #~ msgid "About %ld second left"
 #~ msgid_plural "About %ld seconds left"
