@@ -431,6 +431,22 @@ gs_lock_plug_hide (GtkWidget *widget)
                 GTK_WIDGET_CLASS (parent_class)->hide (widget);
 }
 
+
+static void
+gs_lock_plug_size_request (GtkWidget      *widget,
+                           GtkRequisition *requisition)
+{
+        if (GTK_WIDGET_CLASS (parent_class)->size_request)
+                GTK_WIDGET_CLASS (parent_class)->size_request (widget, requisition);
+
+        /* Force width to be at least 1.2 times the height.
+         * This ensures enough space for the text entry and
+         * makes for a more pleasing aspect ratio */
+        if (requisition->width < requisition->height) {
+                requisition->width = requisition->height * 1.2;
+        }
+}
+
 static void
 gs_lock_plug_set_logout_enabled (GSLockPlug *plug,
                                  gboolean    logout_enabled)
@@ -525,9 +541,10 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
         object_class->get_property = gs_lock_plug_get_property;
         object_class->set_property = gs_lock_plug_set_property;
 
-        widget_class->style_set  = gs_lock_plug_style_set;
-        widget_class->show       = gs_lock_plug_show;
-        widget_class->hide       = gs_lock_plug_hide;
+        widget_class->style_set    = gs_lock_plug_style_set;
+        widget_class->show         = gs_lock_plug_show;
+        widget_class->hide         = gs_lock_plug_hide;
+        widget_class->size_request = gs_lock_plug_size_request;
 
         g_type_class_add_private (klass, sizeof (GSLockPlugPrivate));
 

@@ -1,5 +1,13 @@
 2005-10-06  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (gs_lock_plug_size_request) 
+	(gs_lock_plug_class_init): Force the unlock
+	dialog to always be wider than it is tall.  This
+	should ensure there is enough space for the
+	text entry and makes for a more pleasing aspect ratio.
+
+2005-10-06  William Jon McCann  <mccann@jhu.edu>
+
 	* data/gnome-screensaver.schemas.in:
 	Rework the gconf key descriptions.
 
