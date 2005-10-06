@@ -294,20 +294,6 @@ AC_DEFUN(AC_X_RANDOM_PATHS,
         fi
       done
 
-      # Now find Motif.  Thanks for not making xmkmf find this by
-      # default, you losers.
-      #
-      if test -d /usr/include/Motif2.1 ; then
-        X_CFLAGS="$X_CFLAGS -I/usr/include/Motif2.1"
-        X_LIBS="$X_LIBS -L/usr/lib/Motif2.1"
-      elif test -d /usr/include/Motif1.2 ; then
-        X_CFLAGS="$X_CFLAGS -I/usr/include/Motif1.2"
-        X_LIBS="$X_LIBS -L/usr/lib/Motif1.2"
-      elif test -d /usr/include/Motif1.1 ; then
-        X_CFLAGS="$X_CFLAGS -I/usr/include/Motif1.1"
-        X_LIBS="$X_LIBS -L/usr/lib/Motif1.1"
-      fi
-
       # Now let's check for the pseudo-standard locations for OpenGL and XPM.
       #
       if test -d /opt/graphics/OpenGL/include ; then
@@ -325,32 +311,8 @@ AC_DEFUN(AC_X_RANDOM_PATHS,
         X_LIBS="-L/opt/xpm/lib/X11 $X_LIBS"
       fi
 
-      # On HPUX, default to installing in /opt/xscreensaver/ instead of
-      # in /usr/local/, unless there is already an xscreensaver in
-      # /usr/local/bin/.  This can be overridden with the --prefix arg
-      # to configure.  I'm not sure this is the right thing to do, but
-      # Richard Lloyd says so...
-      #
-      if test \! -x /usr/local/bin/xscreensaver ; then
-        ac_default_prefix=/opt/xscreensaver
-      fi
-
     ;;
     *-solaris*)
-
-      # Thanks for not making xmkmf find this by default, pinheads.
-      # And thanks for moving things around again, too.  Is this
-      # really the standard location now?  What happened to the
-      # joke that this kind of thing went in /opt?
-      # cthomp says "answer: CDE (Common Disorganized Environment)"
-      #
-      if test -f /usr/dt/include/Xm/Xm.h ; then
-        X_CFLAGS="$X_CFLAGS -I/usr/dt/include"
-        MOTIF_LIBS="$MOTIF_LIBS -L/usr/dt/lib -R/usr/dt/lib"
-
-        # Some versions of Slowlaris Motif require -lgen.  But not all.  Why?
-        AC_CHECK_LIB(gen, regcmp, [MOTIF_LIBS="$MOTIF_LIBS -lgen"])
-      fi
 
     ;;
     *-darwin*)
@@ -510,9 +472,7 @@ have_sgi=no
 with_sgi_req=unspecified
 AC_ARG_WITH(sgi-ext,
 [Except where noted, all of the --with options below can also take a
-directory argument: for example, `--with-motif=/opt/Motif'.  That would
-cause /opt/Motif/include/ to be added to the -I list, and /opt/Motif/lib/
-to be added to the -L list, assuming those directories exist.  
+directory argument.
 
 By default, support for each of these options will be built in, if the
 relevant library routines exist.  At run time, they will then be used
@@ -558,24 +518,22 @@ if test "$with_mit" = yes; then
                     [#include <X11/Xlib.h>])
 
   # Now check to see if it's really in the library; XF86Free-3.3 ships
-  # scrnsaver.h, but doesn't include the code in libXext.a, the idiots!
-  #
+  # scrnsaver.h, but doesn't include the code in libXext.a
   if test "$have_mit" = yes; then
     AC_CHECK_X_LIB(Xext, XScreenSaverRegister, [true], [have_mit=no], -lm)
 
     if test "$have_mit" = no; then
       # Fuck!  Looks like XF86Free-3.3 actually puts it in XExExt instead
-      # of in Xext.  Thank you master, may I have another.
+      # of in Xext.
       AC_CHECK_X_LIB(XExExt, XScreenSaverRegister,
                      [have_mit=yes; SAVER_LIBS="$SAVER_LIBS -lXExExt"],
                      [true], -lX11 -lXext -lm)
     fi
 
     if test "$have_mit" = no; then
-      # Double fuck!  Looks like some versions of XFree86 (whichever version
+      # Looks like some versions of XFree86 (whichever version
       # it is that comes with RedHat Linux 2.0 -- I can't find a version 
-      # number) put this garbage in Xss instead of Xext.  Thank you master,
-      #  may I have another.
+      # number) put this in Xss instead of Xext.
       AC_CHECK_X_LIB(Xss, XScreenSaverRegister,
                      [have_mit=yes; SAVER_LIBS="$SAVER_LIBS -lXss"],
                      [true], -lX11 -lXext -lm)
@@ -1004,7 +962,7 @@ else
   exit 1
 fi
 
-# We can't lock on MacOS X, so don't even bother compiling in support for it.
+# We can't lock on MacOS X, so don't compile in support for it.
 #
 if test "$ac_macosx" = yes; then
   if test "$enable_locking" = yes; then
