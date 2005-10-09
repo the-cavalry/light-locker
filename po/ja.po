@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-09 21:36+0900\n"
-"PO-Revision-Date: 2005-10-09 21:35+0900\n"
+"POT-Creation-Date: 2005-10-09 21:52+0900\n"
+"PO-Revision-Date: 2005-10-09 21:50+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -593,15 +593,15 @@ msgstr "ログアウト・ボタンを表示する"
 
 #: ../src/gnome-screensaver-preferences.c:386
 msgid "Disabled"
-msgstr "無効です"
+msgstr "無効にする"
 
 #: ../src/gnome-screensaver-preferences.c:393
 msgid "Blank screen"
-msgstr "ブランク・スクリーンです"
+msgstr "ブランク・スクリーン"
 
 #: ../src/gnome-screensaver-preferences.c:399
 msgid "Random"
-msgstr "ランダムです"
+msgstr "ランダム"
 
 #: ../src/gnome-screensaver-preferences.c:693
 msgid "Invalid screensaver theme"
