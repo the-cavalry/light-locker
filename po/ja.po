@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-17 18:00+0900\n"
-"PO-Revision-Date: 2005-09-17 17:59+0900\n"
+"POT-Creation-Date: 2005-10-09 21:36+0900\n"
+"PO-Revision-Date: 2005-10-09 21:35+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -44,143 +44,193 @@ msgstr "次の時間が経過したらスクリーンセーバーを起動する
 msgid "_Lock screen when active"
 msgstr "可能ならば画面をロックする(_L)"
 
+#: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "Screensaver themes"
+msgstr "スクリーンセーバーのテーマ"
+
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "いろいろなスクリーンセーバーを格納するフォルダ"
+
 #: ../data/gnome-screensaver.schemas.in.h:1
-msgid "How many minutes until the monitor goes black"
-msgstr "モニタが黒くなるまでの時間"
+msgid "Allow logout"
+msgstr "ログアウトを許可する"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
-msgid "How many minutes until the monitor goes black."
-msgstr "モニタを黒くするまでの経過時間 (分) です。"
+msgid "Allow monitor power management"
+msgstr "モニタの電源管理を強化する"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
-msgid "How many minutes until the monitor power-saves"
-msgstr "モニタのパワー・セーブ機能を有効にするまでの時間"
+msgid "Allow user switching"
+msgstr "ユーザ間の切り替えを許可する"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
-msgid "How many minutes until the monitor power-saves."
-msgstr "モニタのパワー・セーブ機能を有効にするまでの経過時間 (分) です。"
+msgid "Lock on activation"
+msgstr "画面のロック"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
-msgid "How many minutes until the monitor powers down"
-msgstr "モニタのパワー・ダウン機能を有効にするまでの時間"
-
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "How many minutes until the monitor powers down."
-msgstr "モニタのパワー・ダウン機能を有効にするまでの経過時間 (分) です。"
-
-#: ../data/gnome-screensaver.schemas.in.h:7
-msgid ""
-"The number of minutes after blanking the screen before a logout option will "
-"appear"
-msgstr "ブランク・スクリーンにする時間"
-
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid ""
-"The number of minutes after blanking the screen before a logout option will "
-"appear."
-msgstr ""
-"ログアウト・ダイアログを表示する前にブランク・スクリーンにする時間 (分) で"
-"す。"
-
-#: ../data/gnome-screensaver.schemas.in.h:9
-msgid "The number of minutes after blanking the screen before locking"
-msgstr "画面をロックするする前にブランク・スクリーンにする時間"
-
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "The number of minutes after blanking the screen before locking."
-msgstr "画面をロックするする前にブランク・スクリーンにする時間 (分) です。"
-
-#: ../data/gnome-screensaver.schemas.in.h:11
-msgid "The number of minutes of idle time before blanking the screen"
-msgstr "ブランク・スクリーンにする前のアイドル時間"
-
-#: ../data/gnome-screensaver.schemas.in.h:12
-msgid "The number of minutes of idle time before blanking the screen."
-msgstr "ブランク・スクリーンにする前のアイドル時間 (分) です。"
-
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid "The number of minutes to run before changing the screensaver"
-msgstr "スクリーンセーバーを変更するまでの時間"
-
-#: ../data/gnome-screensaver.schemas.in.h:14
-msgid "The number of minutes to run before changing the screensaver."
-msgstr "スクリーンセーバーを変更するまでの時間 (分) です。"
-
-#: ../data/gnome-screensaver.schemas.in.h:15
-msgid "The screensaver selection mode"
+msgid "Screensaver selection mode"
 msgstr "スクリーンセーバーの選択モード"
 
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Set this to TRUE to allow the screensaver to power down the monitor."
+msgstr ""
+"TRUE にすると、スクリーンセーバーでモニタの電源を OFF できるようになります。"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr "TRUE にすると、スクリーンセーバーが有効になったら画面をロックします。"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr ""
+"TRUE にすると、他のユーザ・アカウントへ切り替えるためのオプションをロックを解"
+"除するダイアログに表示します。"
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr ""
+"TRUE にすると、遅延ログアウトするためのオプションをロックを解除するダイアログ"
+"に表示します。"
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
+msgstr ""
+"スクリーンセーバーを起動して画面をロックするまでのアイドル時間 (分) です。"
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr ""
+"スクリーンセーバーを起動してロックを解除するダイアログにログアウトのオプショ"
+"ンが表示されるまでのアイドル時間 (分) です。このキーは、\"logout_enable\" "
+"キーが TRUE の場合にのみ効果があります。"
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"goes into standby power mode."
+msgstr ""
+"スクリーンセーバーを起動して画面がスタンバイ・モードになるまでのアイドル時間 "
+"(分) です。"
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"goes into suspend power mode."
+msgstr ""
+"スクリーンセーバーを起動して画面がサスペンド・モードになるまでのアイドル時間 "
+"(分) です。"
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"powers off."
+msgstr ""
+"スクリーンセーバーを起動して画面の電源が OFF になるまでのアイドル時間 (分) で"
+"す。"
+
 #: ../data/gnome-screensaver.schemas.in.h:16
-msgid "The selected screensaver themes"
-msgstr "選択したスクリーンセーバーのテーマ"
+msgid "The number of minutes of idle time before activating the screensaver."
+msgstr "スクリーンセーバーを起動するまでのアイドル時間 (分) です。"
 
 #: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"This key specifies the selection mode used by the screensaver. Possible "
-"values are \"disabled\", \"blank-only\", \"single\", and \"random\"."
+msgid "The number of minutes to run before changing the screensaver theme."
 msgstr ""
-"スクリーンセーバーが使用する選択モードを指定します。指定可能な値: \"disable"
-"\"、\"blank-only\"、\"single\"、\"random\""
+"スクリーンセーバーのテーマを変更して実際に表示するまでのアイドル時間 (分) で"
+"す。"
 
 #: ../data/gnome-screensaver.schemas.in.h:18
-msgid "This key specifies the themes to be used by the screensaver."
-msgstr "スクリーンセーバーが使用するテーマを指定します。"
+msgid ""
+"The selection mode used by screensaver. May be \"disabled\" to disable "
+"screensaver activation, \"blank-only\" to enable the screensaver without "
+"using any theme on activation, \"single\" to enable screensaver using only "
+"one theme on activation (specified in \"themes\" key), and \"random\" to "
+"enable the screensaver using a random theme on activation."
+msgstr ""
+"スクリーンセーバーが使用する選択モードを指定します。指定可能な値: \"disabled"
+"\" (スクリーンセーバーの起動を無効にする)、\"blank-only\" (テーマを使用せずに"
+"スクリーンセーバーの起動を有効にする)、\"single\" (\"themes\" キーで指定した"
+"一つだけのテーマを使用してスクリーンセーバーの起動を有効にする)、\"random"
+"\" (テーマをランダムに使用してスクリーンセーバーの起動を有効にする)"
 
 #: ../data/gnome-screensaver.schemas.in.h:19
-msgid "Whether to lock as well as blank"
-msgstr "ブランク・スクリーンでロックする"
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"disabled\" or \"blank-only\", should provide "
+"the theme name when \"mode\" is \"single\", and should provide a list of "
+"themes when \"mode\" is \"random\"."
+msgstr ""
+"スクリーンセーバーで使用するテーマを並べて指定します。これは \"mode\" キーが "
+"\"disabled\" または \"blank-only\" の場合は無視され、\"mode\" キーが \"single"
+"\" の場合はテーマの名前を指定し、\"mode\" キーが \"random\" の場合はテーマの"
+"名前を複数個並べて指定して下さい。"
 
 #: ../data/gnome-screensaver.schemas.in.h:20
-msgid "Whether to lock as well as blank."
-msgstr "ブランク・スクリーンでロックするかどうかです。"
+msgid "Time before activation"
+msgstr "スクリーンセーバーを起動するまでの時間"
 
 #: ../data/gnome-screensaver.schemas.in.h:21
-msgid "Whether to offer the option of logging out after logout_delay"
-msgstr "logout_delay 経過したらログアウトのオプションを表示する"
+msgid "Time before locking"
+msgstr "画面をロックするまでの時間"
 
 #: ../data/gnome-screensaver.schemas.in.h:22
-msgid "Whether to offer the option of logging out after logout_delay."
-msgstr "logout_delay 経過したらログアウトのオプションを表示するかどうかです。"
+msgid "Time before logout option"
+msgstr "ログアウトのオプションを表示するまでの時間"
 
 #: ../data/gnome-screensaver.schemas.in.h:23
-msgid "Whether to power down the monitor"
-msgstr "モニタをパワー・ダウンする"
+msgid "Time before power off"
+msgstr "画面の電源を OFF するまでの時間"
 
 #: ../data/gnome-screensaver.schemas.in.h:24
-msgid "Whether to power down the monitor."
-msgstr "モニタをパワー・ダウンするかどうかです。"
+msgid "Time before standby"
+msgstr "スタンバイ・モードに入るまでの時間"
 
-#: ../savers/cosmos-slideshow.xml.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Time before suspend"
+msgstr "サスペンド・モードに入るまでの時間"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Time before theme change"
+msgstr "テーマを変更する際の遅延時間"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
 msgstr "コスモス"
 
-#: ../savers/cosmos-slideshow.xml.in.h:2
-msgid "This displays a slideshow of images of the cosmos."
-msgstr "これはコスモスの画像をスライドショー形式で表示します。"
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "\"宇宙の画像\" をスライドショー形式で表示します"
 
-#: ../savers/personal-slideshow.xml.h:1
+#: ../savers/personal-slideshow.desktop.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr "これはお気に入りのフォルダにある画像をスライドショー形式で表示します"
+
+#: ../savers/personal-slideshow.desktop.in.h:2
 msgid "Pictures folder"
 msgstr "画像フォルダ"
 
-#: ../savers/personal-slideshow.xml.h:2
-msgid "This displays a slideshow of images from your Pictures directory."
-msgstr "これはお気に入りのフォルダにある画像をスライドショー形式で表示します。"
+#: ../savers/popsquares.desktop.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr "四角形が脈打つように見えるポップ・アートを表示します"
 
-#: ../savers/popsquares.xml.h:1
+#: ../savers/popsquares.desktop.in.h:2
 msgid "Pop art squares"
 msgstr "ポップな矩形のアート"
 
-#: ../savers/popsquares.xml.h:2
-msgid ""
-"This draws a pop-art-ish looking grid of pulsing colors. By Levi Burton."
-msgstr ""
-"四角形が脈打つように見えるポップ・アートを描画します (Levi Burton 氏作)。"
-
-#: ../savers/slideshow.c:63
+#: ../savers/slideshow.c:75
 msgid "Location to get images from"
 msgstr "画像を格納している場所"
 
-#: ../savers/slideshow.c:63
+#: ../savers/slideshow.c:75
 msgid "PATH"
 msgstr "PATH"
 
@@ -477,7 +527,7 @@ msgstr "スクリーンセーバーを強制終了する"
 
 #: ../src/gnome-screensaver-command.c:60
 msgid "Query the state of the screensaver"
-msgstr "スクリーンセーバーの状態の問い合わせ"
+msgstr "スクリーンセーバーの状態を問い合わせる"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Tells the running screensaver process to lock the screen immediately"
@@ -508,9 +558,10 @@ msgstr ""
 
 #: ../src/gnome-screensaver-command.c:74
 msgid "Poke the running screensaver to simulate user activity"
-msgstr "Poke the running screensaver to simulate user activity"
+msgstr ""
+"ユーザが設定できる機能を模擬するためにスクリーンセーバーをランダムに実行する"
 
-#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:106
+#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:103
 #: ../src/gnome-screensaver.c:52
 msgid "Version of this application"
 msgstr "このアプリケーションのバージョンを表示する"
@@ -528,37 +579,53 @@ msgstr "起動されています"
 msgid "inactive"
 msgstr "起動されていません"
 
-#: ../src/gnome-screensaver-dialog.c:104
+#: ../src/gnome-screensaver-dialog.c:101
 msgid "Show debugging output"
 msgstr "デバッグ出力を表示する"
 
-#: ../src/gnome-screensaver-dialog.c:108
+#: ../src/gnome-screensaver-dialog.c:105
 msgid "Show the logout button"
 msgstr "ログアウト・ボタンを表示する"
 
-#: ../src/gnome-screensaver-preferences.c:678
+#: ../src/gnome-screensaver-dialog.c:107
+msgid "Show the switch user button"
+msgstr "ログアウト・ボタンを表示する"
+
+#: ../src/gnome-screensaver-preferences.c:386
+msgid "Disabled"
+msgstr "無効です"
+
+#: ../src/gnome-screensaver-preferences.c:393
+msgid "Blank screen"
+msgstr "ブランク・スクリーンです"
+
+#: ../src/gnome-screensaver-preferences.c:399
+msgid "Random"
+msgstr "ランダムです"
+
+#: ../src/gnome-screensaver-preferences.c:693
 msgid "Invalid screensaver theme"
 msgstr "スクリーンセーバーのテーマが間違っています"
 
-#: ../src/gnome-screensaver-preferences.c:681
+#: ../src/gnome-screensaver-preferences.c:696
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "このファイルはスクリーンセーバーのテーマとして正しくないようです。"
 
-#: ../src/gnome-screensaver-preferences.c:798
+#: ../src/gnome-screensaver-preferences.c:813
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d 時間"
 msgstr[1] "%d 時間"
 
-#: ../src/gnome-screensaver-preferences.c:801
+#: ../src/gnome-screensaver-preferences.c:816
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d 分"
 msgstr[1] "%d 分"
 
-#: ../src/gnome-screensaver-preferences.c:804
+#: ../src/gnome-screensaver-preferences.c:819
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -566,15 +633,15 @@ msgstr[0] "%d 秒"
 msgstr[1] "%d 秒"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:810
+#: ../src/gnome-screensaver-preferences.c:825
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:813
-#: ../src/gnome-screensaver-preferences.c:821
+#: ../src/gnome-screensaver-preferences.c:828
+#: ../src/gnome-screensaver-preferences.c:836
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -582,95 +649,80 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:816
-#: ../src/gnome-screensaver-preferences.c:824
-#: ../src/gnome-screensaver-preferences.c:828
+#: ../src/gnome-screensaver-preferences.c:831
+#: ../src/gnome-screensaver-preferences.c:839
+#: ../src/gnome-screensaver-preferences.c:843
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:831
+#: ../src/gnome-screensaver-preferences.c:846
 msgid "0 seconds"
 msgstr "0 秒"
 
-#: ../src/gnome-screensaver-preferences.c:846
+#: ../src/gnome-screensaver-preferences.c:861
 msgid "Never"
 msgstr "しない"
 
-#: ../src/gnome-screensaver-preferences.c:883
+#: ../src/gnome-screensaver-preferences.c:897
 msgid "Could not load the main interface"
 msgstr "Glade インタフェースを読み込めませんでした"
 
-#: ../src/gnome-screensaver-preferences.c:885
+#: ../src/gnome-screensaver-preferences.c:899
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "gnome-screensaver が正しくインストールされているか確認して下さい。"
 
-#: ../src/gs-listener-dbus.c:869
+#: ../src/gs-listener-dbus.c:921
 msgid "failed to register with the message bus"
 msgstr "メッセージ・バスへの登録に失敗しました"
 
-#: ../src/gs-listener-dbus.c:878
+#: ../src/gs-listener-dbus.c:930
 msgid "screensaver already running in this session"
 msgstr "このセッションで既にスクリーンセーバーが実行中です"
 
-#: ../src/gs-lock-plug.c:316
+#: ../src/gs-lock-plug.c:308
 msgid "Checking password..."
 msgstr "パスワードの確認中..."
 
-#: ../src/gs-lock-plug.c:362
-#, c-format
-msgid "About %ld second left"
-msgid_plural "About %ld seconds left"
-msgstr[0] "約 %ld 秒経過"
-msgstr[1] "約 %ld 秒経過"
+#: ../src/gs-lock-plug.c:351
+msgid "Time has expired."
+msgstr "タイムアウトしました"
 
-#: ../src/gs-lock-plug.c:370
-msgid "Time expired!"
-msgstr "タイムアウトです！"
-
-#: ../src/gs-lock-plug.c:394
+#: ../src/gs-lock-plug.c:375
 msgid "You have the Caps Lock key on."
 msgstr "[Caps Lock] キーが押されています"
 
-#: ../src/gs-lock-plug.c:607
-msgid "Password check failed!"
-msgstr "パスワードの確認に失敗しました！"
+#: ../src/gs-lock-plug.c:605
+msgid "That password was incorrect."
+msgstr "パスワードが間違っています"
 
-#: ../src/gs-lock-plug.c:630 ../src/gs-lock-plug.c:671
+#: ../src/gs-lock-plug.c:628 ../src/gs-lock-plug.c:661
 msgid "_Unlock"
 msgstr "ロック解除(_U)"
 
-#: ../src/gs-lock-plug.c:635 ../src/gs-lock-plug.c:666
-msgid "_Switch User"
-msgstr "ユーザの切り替え"
+#: ../src/gs-lock-plug.c:631 ../src/gs-lock-plug.c:658
+msgid "_Switch User..."
+msgstr "ユーザの切り替え(_S)..."
 
-#: ../src/gs-lock-plug.c:1032
+#: ../src/gs-lock-plug.c:961
 msgid "Log in as a new user"
 msgstr "別のユーザでログインする"
 
 #. translators: %s is a computer hostname
-#: ../src/gs-lock-plug.c:1368
+#: ../src/gs-lock-plug.c:1383
 #, c-format
 msgid "Welcome to %s"
 msgstr "%s へようこそ"
 
-#: ../src/gs-lock-plug.c:1380
-msgid "Enter a password to unlock the screen"
-msgstr "画面ロックを解除するパスワードを入力して下さい"
-
-#: ../src/gs-lock-plug.c:1397
-msgid "Name:"
-msgstr "名前:"
-
-#: ../src/gs-lock-plug.c:1401
+#: ../src/gs-lock-plug.c:1416
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#: ../src/gs-lock-plug.c:1447
-msgid "Switch to another user?"
-msgstr "別のユーザに切り替えますか？"
+#: ../src/gs-lock-plug.c:1452
+msgid "Switch to user:"
+msgstr "切り替えるユーザの一覧:"
 
-#: ../src/gs-lock-plug.c:1504
+#: ../src/gs-lock-plug.c:1497
 msgid "Log _Out"
 msgstr "ログアウト(_O)"
