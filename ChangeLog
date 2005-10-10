@@ -1,5 +1,11 @@
 2005-10-10  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/slideshow.c (do_event): 
+	* savers/popsquares.c (do_event): Quit on
+	delete event.
+
+2005-10-10  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c (initialize_server_extensions): Remove
 	unused variable.
 

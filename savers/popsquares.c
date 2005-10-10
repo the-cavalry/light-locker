@@ -32,6 +32,8 @@ typedef struct _square {
         int color;
 } square;
 
+static GMainLoop *main_loop = NULL;
+
 GdkWindow *screenhack_window     = NULL;
 guint      screenhack_timeout_id = 0;
 
@@ -431,6 +433,7 @@ do_event (GdkEvent *event)
         case GDK_NOTHING:
                 break;
         case GDK_DELETE:
+                g_main_loop_quit (main_loop);
                 break;
         case GDK_DESTROY:
                 break;
@@ -447,7 +450,6 @@ do_event (GdkEvent *event)
 int
 main (int argc, char **argv)
 {
-        GMainLoop *main_loop = NULL;
 
         gtk_init (&argc, &argv);
         

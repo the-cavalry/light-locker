@@ -49,6 +49,8 @@
 #define DEFAULT_IMAGES_LOCATION DATADIR "/pixmaps/backgrounds"
 #define IMAGE_LOAD_TIMEOUT 10000
 
+static GMainLoop   *main_loop = NULL;
+
 static GdkWindow   *screenhack_window     = NULL;
 static guint        screenhack_timeout_id = 0;
 static int          window_width          = 400;
@@ -781,7 +783,6 @@ screenhack_destroy (void)
         }
         g_async_queue_unref (results_q);
 
-
 }
 
 static gboolean
@@ -836,6 +837,7 @@ do_event (GdkEvent *event)
         case GDK_NOTHING:
                 break;
         case GDK_DELETE:
+                g_main_loop_quit (main_loop);
                 break;
         case GDK_DESTROY:
                 break;
@@ -853,7 +855,6 @@ do_event (GdkEvent *event)
 int
 main (int argc, char **argv)
 {
-        GMainLoop *main_loop = NULL;
         GError    *error;
         gboolean   ret;
 
