@@ -1,3 +1,11 @@
+2005-10-10  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-window-x11.c (spawn_on_window): 
+	* src/gs-job.c (check_command): Free string array.
+
+	* savers/slideshow.c (scale_pixbuf): Skip images smaller than 256
+	px since they are probably thumbnails.
+
 2005-10-06  William Jon McCann  <mccann@jhu.edu>
 
 	* data/Makefile.am: Dist the xscreensaver config

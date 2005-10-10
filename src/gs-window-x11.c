@@ -345,8 +345,10 @@ spawn_on_window (GSWindow *window,
                 g_free (g_ptr_array_index (env, i));
         g_ptr_array_free (env, TRUE);
 
-        if (!result)
+        if (! result) {
+                g_strfreev (argv);
                 return FALSE;
+        }
 
         if (pid)
                 *pid = child_pid;

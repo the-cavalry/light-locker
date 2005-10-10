@@ -129,6 +129,8 @@ check_command (char *command)
 
         g_shell_parse_argv (command, NULL, &argv, NULL);
         path = find_command (argv [0]);
+        g_strfreev (argv);
+
         if (path) {
                 g_free (path);
                 return TRUE;
@@ -631,7 +633,7 @@ spawn_on_widget (GtkWidget  *widget,
                 g_free (argv [0]);
                 argv [0] = path;
         }
-
+        
         env = g_ptr_array_new ();
 
         str = widget_get_id_string (widget);

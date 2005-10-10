@@ -484,6 +484,12 @@ scale_pixbuf (GdkPixbuf *pixbuf,
         pw = gdk_pixbuf_get_width (pixbuf);
         ph = gdk_pixbuf_get_height (pixbuf);
 
+        /* If the image is less than 256 wide or high then it
+           is probably a thumbnail and we should ignore it */
+        if (pw < 256 || ph < 256) {
+                return NULL;
+        }
+
         /* Determine which dimension requires the smallest scale. */
         scale_factor_x = (float) max_width / (float) pw;
         scale_factor_y = (float) max_height / (float) ph;
@@ -603,8 +609,8 @@ get_pixbuf_from_location (const char *location)
 
 static GdkPixbuf *
 get_pixbuf (const char *location,
-            int   width,
-            int   height)
+            int         width,
+            int         height)
 {
         GdkPixbuf *pixbuf;
         GdkPixbuf *scaled = NULL;
