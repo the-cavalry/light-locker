@@ -473,8 +473,6 @@ initialize_server_extensions (GSWatcher *watcher)
         gboolean server_has_sgi_saver_extension = FALSE;
         gboolean server_has_mit_saver_extension = FALSE;
 
-        const char *piwhy = 0;
-
         watcher->priv->using_xidle_extension     = watcher->priv->use_xidle_extension;
         watcher->priv->using_sgi_saver_extension = watcher->priv->use_sgi_saver_extension;
         watcher->priv->using_mit_saver_extension = watcher->priv->use_mit_saver_extension;
@@ -1001,7 +999,7 @@ xevent_idle (GSWatcher *watcher)
    or some other program (like xlock) has messed with the XSetScreenSaver()
    settings, they will be set back to sensible values (if a server extension
    is in use, messing with xlock can cause xscreensaver to never get a wakeup
-   event, and could cause watcher power-saving to occur, and all manner of
+   event, and could cause monitor power-saving to occur, and all manner of
    heinousness.)
 
  */

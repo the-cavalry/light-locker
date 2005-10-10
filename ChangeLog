@@ -1,5 +1,15 @@
 2005-10-10  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c (initialize_server_extensions): Remove
+	unused variable.
+
+	* src/gs-window-x11.c (watchdog_timer, gs_window_real_show) 
+	(gs_window_real_hide, gs_window_class_init, gs_window_finalize):
+	Add a watchdog timer to raise the window in case some other
+	window gets mapped on top of it.
+
+2005-10-10  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (spawn_on_window): 
 	* src/gs-job.c (check_command): Free string array.
 

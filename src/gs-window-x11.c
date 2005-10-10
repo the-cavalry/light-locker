@@ -66,6 +66,8 @@ struct GSWindowPrivate
         guint      dialog_unmap_signal_id;
         guint      dialog_response_signal_id;
 
+        guint      watchdog_timer_id;
+
         gint       pid;
         gint       watch_id;
         gint       dialog_response;
@@ -230,6 +232,16 @@ gs_window_real_realize (GtkWidget *widget)
                           widget);
 }
 
+/* every so often we should raise the window in case
+   another window has somehow gotten on top */
+static gboolean
+watchdog_timer (GSWindow *window)
+{
+        gtk_window_present (GTK_WINDOW (window));
+
+        return TRUE;
+}
+
 static void
 gs_window_real_show (GtkWidget *widget)
 {
@@ -244,6 +256,12 @@ gs_window_real_show (GtkWidget *widget)
         if (window->priv->timer)
                 g_timer_destroy (window->priv->timer);
         window->priv->timer = g_timer_new ();
+
+        if (window->priv->watchdog_timer_id != 0)
+                g_source_remove (window->priv->watchdog_timer_id);
+        window->priv->watchdog_timer_id = g_timeout_add (30000,
+                                                         (GSourceFunc)watchdog_timer,
+                                                         window);
 }
 
 void
@@ -252,6 +270,20 @@ gs_window_show (GSWindow *window)
         g_return_if_fail (GS_IS_WINDOW (window));
 
         gtk_widget_show (GTK_WIDGET (window));
+}
+
+static void
+gs_window_real_hide (GtkWidget *widget)
+{
+        GSWindow *window;
+
+        window = GS_WINDOW (widget);
+
+        if (window->priv->watchdog_timer_id != 0)
+                g_source_remove (window->priv->watchdog_timer_id);
+
+        if (GTK_WIDGET_CLASS (parent_class)->hide)
+                GTK_WIDGET_CLASS (parent_class)->hide (widget);
 }
 
 void
@@ -913,6 +945,7 @@ gs_window_class_init (GSWindowClass *klass)
         object_class->set_property = gs_window_set_property;
 
         widget_class->show                = gs_window_real_show;
+        widget_class->hide                = gs_window_real_hide;
         widget_class->realize             = gs_window_real_realize;
         widget_class->key_press_event     = gs_window_real_key_press_event;
         widget_class->motion_notify_event = gs_window_real_motion_notify_event;
@@ -1013,10 +1046,20 @@ gs_window_finalize (GObject *object)
 
         g_return_if_fail (window->priv != NULL);
 
-        if (window->priv->request_unlock_idle_id)
+        if (window->priv->watchdog_timer_id != 0) {
+                g_source_remove (window->priv->watchdog_timer_id);
+                window->priv->watchdog_timer_id = 0;
+        }
+
+        if (window->priv->request_unlock_idle_id != 0) {
                 g_source_remove (window->priv->request_unlock_idle_id);
-        if (window->priv->popup_dialog_idle_id)
+                window->priv->request_unlock_idle_id = 0;
+        }
+
+        if (window->priv->popup_dialog_idle_id != 0) {
                 g_source_remove (window->priv->popup_dialog_idle_id);
+                window->priv->popup_dialog_idle_id = 0;
+        }
 
         if (window->priv->timer)
                 g_timer_destroy (window->priv->timer);
