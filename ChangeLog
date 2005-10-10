@@ -1,5 +1,12 @@
 2005-10-10  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-dialog.c (_gs_lock_plug_profile_log): 
+	* src/gs-lock-plug.c (_gs_lock_plug_profile_log):
+	Switch back to relying on strace for profiling instead of
+	using printf.
+
+2005-10-10  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/slideshow.c (do_event): 
 	* savers/popsquares.c (do_event): Quit on
 	delete event.

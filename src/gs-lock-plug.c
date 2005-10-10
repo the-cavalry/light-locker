@@ -27,6 +27,8 @@
 #include <string.h>
 #include <errno.h>
 #include <time.h>
+#include <unistd.h>
+
 #include <glib/gprintf.h>
 #include <glib/gstdio.h>
 #include <glib/gi18n.h>
@@ -66,20 +68,18 @@ _gs_lock_plug_profile_log (const char *func,
                            const char *msg1,
                            const char *msg2)
 {
-        char    *str;
-        GTimeVal now;
+        char *str;
 
         if (indent < 0)
                 profile_add_indent (indent);
 
-        g_get_current_time (&now);
-
         if (profile_indent == 0)
-                str = g_strdup_printf ("MARK %ld.%6.6ld: %s: %s %s %s", now.tv_sec, now.tv_usec, G_STRLOC, func, msg1 ? msg1 : "", msg2 ? msg2 : "");
+                str = g_strdup_printf ("MARK: %s: %s %s %s", G_STRLOC, func, msg1 ? msg1 : "", msg2 ? msg2 : "");
         else
-                str = g_strdup_printf ("MARK %ld.%6.6ld: %s: %*c %s %s %s", now.tv_sec, now.tv_usec, G_STRLOC, profile_indent - 1, ' ', func, msg1 ? msg1 : "", msg2 ? msg2 : "");
+                str = g_strdup_printf ("MARK: %s: %*c %s %s %s", G_STRLOC, profile_indent - 1, ' ', func, msg1 ? msg1 : "", msg2 ? msg2 : "");
 
-        fprintf (stderr, "%s\n", str);
+        access (str, F_OK);
+
         g_free (str);
 
         if (indent > 0)
