@@ -51,36 +51,21 @@ typedef struct
         gboolean         verbose;		/* whether to print out lots of status info */
 
         gboolean         lock_enabled;		/* whether to lock when active */
+        gboolean         logout_enabled;	/* Whether to offer the logout option */
+        gboolean         user_switch_enabled;	/* Whether to offer the user switch option */
 
-        gboolean         fade;			/* whether to fade to black, if possible */
-        gboolean         unfade;		/* whether to fade from black, if possible */
-
-        GSList          *themes;       		/* the screensaver themes to run */
-
-        GSSaverMode      mode;			/* hack-selection mode */
-
-        guint            timeout;	       	/* how much idle time before activation */
-        guint            lock_timeout;		/* how long after activation locking starts */
-        guint            cycle;			/* how long each hack should run */
-
-        guint            passwd_timeout;	/* how much time before pw dialog goes down */
-        guint            pointer_timeout;	/* how often to check mouse position */
-        guint            notice_events_timeout;	/* how long after window creation to select */
-        guint            watchdog_timeout;     	/* how often to re-raise and re-blank screen */
-
-        gboolean         dpms_enabled;		/* Whether to power down the monitor */
+        gboolean         dpms_enabled;		/* Whether power management is enabled */
         guint            dpms_standby;		/* how long until monitor goes black */
         guint            dpms_suspend;		/* how long until monitor power-saves */
         guint            dpms_off;		/* how long until monitor powers down */
 
-        gboolean         logout_enabled;	/* Whether to offer the logout option */
-        gboolean         user_switch_enabled;	/* Whether to offer the user switch option */
+        guint            timeout;	       	/* how much idle time before activation */
+        guint            lock_timeout;		/* how long after activation locking starts */
         guint            logout_timeout;	/* how long until the logout option appears */
+        guint            cycle;			/* how long each theme should run */
 
-        gboolean         use_xidle_extension;	/* which extension to use, if possible */
-        gboolean         use_mit_saver_extension;
-        gboolean         use_sgi_saver_extension;
-        gboolean         use_proc_interrupts;
+        GSList          *themes;       		/* the screensaver themes to run */
+        GSSaverMode      mode;			/* theme selection mode */
 } GSPrefs;
 
 typedef struct

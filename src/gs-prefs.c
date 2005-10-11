@@ -360,33 +360,24 @@ gs_prefs_init (GSPrefs *prefs)
 
         prefs->priv->gconf_client      = gconf_client_get_default ();
 
-        prefs->use_sgi_saver_extension = FALSE;
-        prefs->use_mit_saver_extension = FALSE;
-        prefs->use_xidle_extension     = FALSE;
-        prefs->use_proc_interrupts     = FALSE;
-
-        prefs->pointer_timeout         = 5000;
-
-        prefs->lock_enabled            = TRUE;
-
         prefs->verbose                 = FALSE;
         prefs->debug                   = FALSE;
 
-        prefs->timeout                 = 600000;
-        prefs->lock_timeout            = 0;
-        prefs->cycle                   = 600000;
-
+        prefs->lock_enabled            = TRUE;
+        prefs->logout_enabled          = FALSE;
+        prefs->user_switch_enabled     = FALSE;
         prefs->dpms_enabled            = TRUE;
         prefs->dpms_standby            = 7200000;
         prefs->dpms_suspend            = 7200000;
         prefs->dpms_off                = 14400000;
 
+        prefs->timeout                 = 600000;
+        prefs->lock_timeout            = 0;
+        prefs->logout_timeout          = 14400000;
+        prefs->cycle                   = 600000;
+
+
         prefs->mode                    = GS_MODE_SINGLE;
-
-        prefs->user_switch_enabled     = FALSE;
-
-        /* FIXME: for testing only */
-        prefs->themes = g_slist_append (prefs->themes, g_strdup ("popsquares"));
 
         /* GConf setup */
         gconf_client_add_dir (prefs->priv->gconf_client,
