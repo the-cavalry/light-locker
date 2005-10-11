@@ -598,11 +598,14 @@ password_check_idle_cb (GSLockPlug *plug)
                                GS_LOCK_PLUG_RESPONSE_OK);
         } else {
                 if (plug->priv->response_idle_id == 0)
-                        plug->priv->response_idle_id = g_timeout_add (1000,
+                        plug->priv->response_idle_id = g_timeout_add (2000,
                                                                       (GSourceFunc)response_idle_cb,
                                                                       plug);
 
                 set_status_text (plug, _("That password was incorrect."));
+
+                printf ("NOTICE=AUTH FAILED\n");
+                fflush (stdout);
         }
 
         memset (local_password, '\b', strlen (local_password));

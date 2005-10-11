@@ -531,6 +531,32 @@ gs_window_dialog_finish (GSWindow *window)
         remove_key_events (window);
 }
 
+/* very rudimentary animation for indicating an auth failure */
+static void
+shake_dialog (GSWindow *window)
+{
+        int   i;
+        guint left;
+        guint right;
+
+        for (i = 0; i < 10; i++) {
+                if (i % 2 == 0) {
+                        left = 20;
+                        right = 0;
+                } else {
+                        left = 0;
+                        right = 20;
+                }
+                gtk_alignment_set_padding (GTK_ALIGNMENT (window->priv->box),
+                                           0, 0,
+                                           left,
+                                           right);
+
+                while (gtk_events_pending ())
+                        gtk_main_iteration ();
+        }
+}
+
 static gboolean
 command_watch (GIOChannel   *source,
                GIOCondition  condition,
@@ -556,6 +582,10 @@ command_watch (GIOChannel   *source,
                                 char    c;
                                 if (1 == sscanf (line, " WINDOW ID= 0x%x %c", &id, &c)) {
                                         create_socket (window, id);
+                                }
+                        } else if (strstr (line, "NOTICE=")) {
+                                if (strstr (line, "NOTICE=AUTH FAILED")) {
+                                        shake_dialog (window);
                                 }
                         } else if (strstr (line, "RESPONSE=")) {
                                 if (strstr (line, "RESPONSE=OK")) {

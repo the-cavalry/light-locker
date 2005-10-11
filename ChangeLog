@@ -1,5 +1,12 @@
 2005-10-11  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (shake_dialog, command_watch): 
+	* src/gs-lock-plug.c (password_check_idle_cb):
+	Implement a very rudimentary dialog shake animation when
+	an authentication attempt fails.  Fixes #318128.
+
+2005-10-11  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (entry_key_press): Don't handle keypresses
 	manually since it now results in duplicate responses.
 
