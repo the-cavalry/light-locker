@@ -35,9 +35,9 @@ static void gs_prefs_init       (GSPrefs      *prefs);
 static void gs_prefs_finalize   (GObject      *object);
 
 #define KEY_DIR            "/apps/gnome-screensaver"
-#define KEY_LOCK           KEY_DIR "/lock"
+#define KEY_LOCK_ENABLED   KEY_DIR "/lock_enabled"
 #define KEY_MODE           KEY_DIR "/mode"
-#define KEY_BLANK_DELAY    KEY_DIR "/blank_delay"
+#define KEY_ACTIVATE_DELAY KEY_DIR "/activate_delay"
 #define KEY_LOCK_DELAY     KEY_DIR "/lock_delay"
 #define KEY_CYCLE_DELAY    KEY_DIR "/cycle_delay"
 #define KEY_DPMS_ENABLED   KEY_DIR "/dpms_enabled"
@@ -146,9 +146,9 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
         char *string;
         int   mode;
 
-        prefs->lock = gconf_client_get_bool (prefs->priv->gconf_client, KEY_LOCK, NULL);
+        prefs->lock_enabled = gconf_client_get_bool (prefs->priv->gconf_client, KEY_LOCK_ENABLED, NULL);
 
-        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_BLANK_DELAY, NULL);
+        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_ACTIVATE_DELAY, NULL);
         if (value < 1)
                 value = 10;
         prefs->timeout = value * 60000;
@@ -268,7 +268,7 @@ key_changed_cb (GConfClient *client,
                                 g_free (s);
                         }
                 }
-        } else if (strcmp (key, KEY_BLANK_DELAY) == 0) {
+        } else if (strcmp (key, KEY_ACTIVATE_DELAY) == 0) {
                 int delay;
 
                 delay = gconf_value_get_int (value);
@@ -282,11 +282,11 @@ key_changed_cb (GConfClient *client,
                 delay = gconf_value_get_int (value);
                 prefs->lock_timeout = delay * 60000;
                 changed = TRUE;
-        } else if (strcmp (key, KEY_LOCK) == 0) {
+        } else if (strcmp (key, KEY_LOCK_ENABLED) == 0) {
                 gboolean enabled;
 
                 enabled = gconf_value_get_bool (value);
-                prefs->lock = enabled;
+                prefs->lock_enabled = enabled;
                 changed = TRUE;
         } else if (strcmp (key, KEY_CYCLE_DELAY) == 0) {
                 int delay;
@@ -367,7 +367,7 @@ gs_prefs_init (GSPrefs *prefs)
 
         prefs->pointer_timeout         = 5000;
 
-        prefs->lock                    = TRUE;
+        prefs->lock_enabled            = TRUE;
 
         prefs->verbose                 = FALSE;
         prefs->debug                   = FALSE;

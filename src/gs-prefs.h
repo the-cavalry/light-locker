@@ -50,7 +50,7 @@ typedef struct
         gboolean         debug;
         gboolean         verbose;		/* whether to print out lots of status info */
 
-        gboolean         lock;			/* whether to lock as well as save */
+        gboolean         lock_enabled;		/* whether to lock when active */
 
         gboolean         fade;			/* whether to fade to black, if possible */
         gboolean         unfade;		/* whether to fade from black, if possible */

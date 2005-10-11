@@ -195,7 +195,7 @@ static void
 _gs_monitor_update_from_prefs (GSMonitor *monitor,
                                GSPrefs   *prefs)
 {
-        gs_manager_set_lock_enabled (monitor->priv->manager, monitor->priv->prefs->lock);
+        gs_manager_set_lock_enabled (monitor->priv->manager, monitor->priv->prefs->lock_enabled);
         gs_manager_set_lock_timeout (monitor->priv->manager, monitor->priv->prefs->lock_timeout);
         gs_manager_set_logout_enabled (monitor->priv->manager, monitor->priv->prefs->logout_enabled);
         gs_manager_set_user_switch_enabled (monitor->priv->manager, monitor->priv->prefs->user_switch_enabled);

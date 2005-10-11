@@ -1,3 +1,11 @@
+2005-10-11  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-prefs.[ch] (gs_prefs_load_from_gconf, key_changed_cb): 
+	* src/gs-monitor.c (_gs_monitor_update_from_prefs): 
+	* data/gnome-screensaver.schemas.in: Rename gconf lock key to
+	lock_enabled and blank_delay to activate_delay so that we
+	use consistent terminology.
+
 2005-10-10  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-dialog.c (_gs_lock_plug_profile_log): 

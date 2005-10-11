@@ -2,8 +2,8 @@
   <schemalist>
 
     <schema>
-      <key>/schemas/apps/gnome-screensaver/lock</key>
-      <applyto>/apps/gnome-screensaver/lock</applyto>
+      <key>/schemas/apps/gnome-screensaver/lock_enabled</key>
+      <applyto>/apps/gnome-screensaver/lock_enabled</applyto>
       <owner>gnome-screensaver</owner>
       <type>bool</type>
       <default>TRUE</default>
@@ -55,8 +55,8 @@
     </schema>
 
     <schema>
-      <key>/schemas/apps/gnome-screensaver/blank_delay</key>
-      <applyto>/apps/gnome-screensaver/blank_delay</applyto>
+      <key>/schemas/apps/gnome-screensaver/activate_delay</key>
+      <applyto>/apps/gnome-screensaver/activate_delay</applyto>
       <owner>gnome-screensaver</owner>
       <type>int</type>
       <default>10</default>
