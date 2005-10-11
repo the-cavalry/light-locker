@@ -758,15 +758,6 @@ entry_key_press (GtkWidget   *widget,
         if (capslock_on != plug->priv->caps_lock_on)
                 capslock_update (plug, capslock_on);
 
-        switch (event->keyval) {
-        case GDK_Return:
-        case GDK_KP_Enter:
-                gs_lock_plug_response (plug, GS_LOCK_PLUG_RESPONSE_OK);
-                break;
-        default:
-                break;
-        }
-        
         return FALSE;
 }
 

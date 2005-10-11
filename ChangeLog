@@ -1,5 +1,10 @@
 2005-10-11  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (entry_key_press): Don't handle keypresses
+	manually since it now results in duplicate responses.
+
+2005-10-11  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-prefs.[ch] (gs_prefs_init): Clean out unused stuff.
 
 2005-10-11  William Jon McCann  <mccann@jhu.edu>
