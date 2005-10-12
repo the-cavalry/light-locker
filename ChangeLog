@@ -1,3 +1,22 @@
+2005-10-12  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-window-x11.c (shake_dialog): Put in a usleep
+	so that it looks like a shake and not a rattle on fast systems.
+	Increase the amplitude of the shake a little bit.
+
+	* src/gs-lock-plug.c (password_check_idle_cb, monitor_progress):
+	Some user testing shows that we need a little bit more time to read
+	the error messages.
+
+	* src/gs-window-x11.c (plug_removed, shake_dialog):
+	Invalidate alignment widget when it is removed and
+	don't use it if it is invalid.
+
+	* src/gs-lock-plug.c (set_dialog_sensitive) 
+	(gs_lock_plug_response, monitor_progress):
+	Make action area insensitive when no more input
+	is allowed.
+
 2005-10-11  William Jon McCann  <mccann@jhu.edu>
 
 	* data/images/cosmos/CREDITS: 

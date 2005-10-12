@@ -266,6 +266,14 @@ set_status_text (GSLockPlug *plug,
 }
 
 static void
+set_dialog_sensitive (GSLockPlug *plug,
+                      gboolean    sensitive)
+{
+        gtk_widget_set_sensitive (plug->priv->password_entry, sensitive);
+        gtk_widget_set_sensitive (plug->action_area, sensitive);
+}
+
+static void
 gs_lock_plug_response (GSLockPlug *plug,
                        gint        response_id)
 {
@@ -304,7 +312,7 @@ gs_lock_plug_response (GSLockPlug *plug,
                 gint current_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (plug->priv->notebook));
 
                 if (current_page == 0) {
-                        gtk_widget_set_sensitive (plug->priv->password_entry, FALSE);
+                        set_dialog_sensitive (plug, FALSE);
                         set_status_text (plug, _("Checking password..."));
 
                         plug->priv->password_check_idle_id = g_idle_add ((GSourceFunc)password_check_idle_cb,
@@ -349,12 +357,12 @@ monitor_progress (GSLockPlug *plug)
 
         if ((remaining <= 0) || (remaining > plug->priv->timeout)) {
                 message = g_strdup (_("Time has expired."));
-                gtk_widget_set_sensitive (plug->priv->password_entry, FALSE);
+                set_dialog_sensitive (plug, FALSE);
                 set_status_text (plug, message);
                 g_free (message);
 
                 if (plug->priv->response_idle_id == 0)
-                        plug->priv->response_idle_id = g_timeout_add (1000,
+                        plug->priv->response_idle_id = g_timeout_add (2000,
                                                                       (GSourceFunc)response_idle_cb,
                                                                       plug);
                 return FALSE;
@@ -598,7 +606,7 @@ password_check_idle_cb (GSLockPlug *plug)
                                GS_LOCK_PLUG_RESPONSE_OK);
         } else {
                 if (plug->priv->response_idle_id == 0)
-                        plug->priv->response_idle_id = g_timeout_add (2000,
+                        plug->priv->response_idle_id = g_timeout_add (4000,
                                                                       (GSourceFunc)response_idle_cb,
                                                                       plug);
 

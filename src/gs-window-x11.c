@@ -419,6 +419,7 @@ plug_removed (GtkWidget *widget,
 {
         gtk_widget_hide (window->priv->socket);
         gtk_container_remove (GTK_CONTAINER (window), GTK_WIDGET (window->priv->box));
+        window->priv->box = NULL;
 
         return TRUE;
 }
@@ -539,14 +540,18 @@ shake_dialog (GSWindow *window)
         guint left;
         guint right;
 
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i < 9; i++) {
                 if (i % 2 == 0) {
-                        left = 20;
+                        left = 30;
                         right = 0;
                 } else {
                         left = 0;
-                        right = 20;
+                        right = 30;
                 }
+
+                if (! window->priv->box)
+                        break;
+
                 gtk_alignment_set_padding (GTK_ALIGNMENT (window->priv->box),
                                            0, 0,
                                            left,
@@ -554,6 +559,8 @@ shake_dialog (GSWindow *window)
 
                 while (gtk_events_pending ())
                         gtk_main_iteration ();
+
+                g_usleep (10000);
         }
 }
 
