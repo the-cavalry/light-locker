@@ -55,6 +55,8 @@ struct GSManagerPrivate
         guint        user_switch_enabled : 1;
         guint        throttle_enabled : 1;
 
+        char        *logout_command;
+
         /* State */
         guint        blank_active : 1;
         guint        lock_active : 1;
@@ -84,6 +86,7 @@ enum {
         PROP_LOCK_TIMEOUT,
         PROP_CYCLE_TIMEOUT,
         PROP_LOGOUT_TIMEOUT,
+        PROP_LOGOUT_COMMAND,
         PROP_BLANK_ACTIVE,
         PROP_THROTTLE_ENABLED,
 };
@@ -260,6 +263,21 @@ gs_manager_set_logout_timeout (GSManager *manager,
         }
 }
 
+void
+gs_manager_set_logout_command (GSManager  *manager,
+                               const char *command)
+{
+        g_return_if_fail (GS_IS_MANAGER (manager));
+
+        g_free (manager->priv->logout_command);
+
+        if (command) {
+                manager->priv->logout_command = g_strdup (command);
+        } else {
+                manager->priv->logout_command = NULL;
+        }
+}
+
 static const char *
 select_theme (GSManager *manager)
 {
@@ -394,6 +412,9 @@ gs_manager_set_property (GObject            *object,
         case PROP_LOGOUT_TIMEOUT:
                 gs_manager_set_logout_timeout (self, g_value_get_long (value));
                 break;
+        case PROP_LOGOUT_COMMAND:
+                gs_manager_set_logout_command (self, g_value_get_string (value));
+                break;
         case PROP_CYCLE_TIMEOUT:
                 gs_manager_set_cycle_timeout (self, g_value_get_long (value));
                 break;
@@ -431,6 +452,9 @@ gs_manager_get_property (GObject            *object,
                 break;
         case PROP_LOGOUT_TIMEOUT:
                 g_value_set_long (value, self->priv->logout_timeout);
+                break;
+        case PROP_LOGOUT_COMMAND:
+                g_value_set_string (value, self->priv->logout_command);
                 break;
         case PROP_CYCLE_TIMEOUT:
                 g_value_set_long (value, self->priv->cycle_timeout);
@@ -523,6 +547,13 @@ gs_manager_class_init (GSManagerClass *klass)
                                                             0,
                                                             G_PARAM_READWRITE));
         g_object_class_install_property (object_class,
+                                         PROP_LOGOUT_TIMEOUT,
+                                         g_param_spec_string ("logout-command",
+                                                              NULL,
+                                                              NULL,
+                                                              NULL,
+                                                              G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
                                          PROP_CYCLE_TIMEOUT,
                                          g_param_spec_long ("cycle-timeout",
                                                             NULL,
@@ -575,6 +606,8 @@ gs_manager_finalize (GObject *object)
         manager = GS_MANAGER (object);
 
         g_return_if_fail (manager->priv != NULL);
+
+        g_free (manager->priv->logout_command);
 
         remove_blank_timers (manager);
 
@@ -772,9 +805,10 @@ gs_manager_create_window (GSManager *manager,
         for (i = 0; i < n_monitors; i++) {
                 window = gs_window_new (screen, i, manager->priv->lock_active);
 
-                gs_window_set_logout_enabled (window, manager->priv->logout_enabled);
                 gs_window_set_user_switch_enabled (window, manager->priv->user_switch_enabled);
+                gs_window_set_logout_enabled (window, manager->priv->logout_enabled);
                 gs_window_set_logout_timeout (window, manager->priv->logout_timeout);
+                gs_window_set_logout_command (window, manager->priv->logout_command);
 
                 g_signal_connect_object (window, "unblanked",
                                          G_CALLBACK (window_unblanked_cb), manager, 0);

@@ -192,6 +192,22 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gnome-screensaver/logout_command</key>
+      <applyto>/apps/gnome-screensaver/logout_command</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Logout command</short>
+        <long>
+          The command to invoke when the logout button is clicked.  This
+          command should simply log the user out without any interaction.
+          This key has effect only if the "logout_enable" key is set to TRUE.
+        </long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gnome-screensaver/user_switch_enabled</key>
       <applyto>/apps/gnome-screensaver/user_switch_enabled</applyto>
       <owner>gnome-screensaver</owner>

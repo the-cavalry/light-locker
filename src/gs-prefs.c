@@ -45,9 +45,10 @@ static void gs_prefs_finalize   (GObject      *object);
 #define KEY_DPMS_SUSPEND   KEY_DIR "/dpms_suspend"
 #define KEY_DPMS_OFF       KEY_DIR "/dpms_off"
 #define KEY_THEMES         KEY_DIR "/themes"
-#define KEY_LOGOUT_ENABLED KEY_DIR "/logout_enabled"
 #define KEY_USER_SWITCH_ENABLED KEY_DIR "/user_switch_enabled"
+#define KEY_LOGOUT_ENABLED KEY_DIR "/logout_enabled"
 #define KEY_LOGOUT_DELAY   KEY_DIR "/logout_delay"
+#define KEY_LOGOUT_COMMAND KEY_DIR "/logout_command"
 
 #define GS_PREFS_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_PREFS, GSPrefsPrivate))
 
@@ -198,10 +199,22 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
         /* Logout options */
 
         prefs->logout_enabled = gconf_client_get_bool (prefs->priv->gconf_client, KEY_LOGOUT_ENABLED, NULL);
+
+        string = gconf_client_get_string (prefs->priv->gconf_client, KEY_LOGOUT_COMMAND, NULL);
+        g_free (prefs->logout_command);
+        if (string) {
+                prefs->logout_command = g_strdup (string);
+        } else {
+                prefs->logout_command = NULL;
+        }
+        g_free (string);
+
         value = gconf_client_get_int (prefs->priv->gconf_client, KEY_LOGOUT_DELAY, NULL);
         if (value < 0)
                 value = 0;
         prefs->logout_timeout = value * 60000;
+
+        /* User switching options */
 
         prefs->user_switch_enabled = gconf_client_get_bool (prefs->priv->gconf_client, KEY_USER_SWITCH_ENABLED, NULL);
 }
@@ -334,9 +347,23 @@ key_changed_cb (GConfClient *client,
                 int delay;
 
                 delay = gconf_value_get_int (value);
-                if (delay < 1)
-                        delay = 1;
+                if (delay < 0)
+                        delay = 0;
                 prefs->logout_timeout = delay * 60000;
+                changed = TRUE;
+        } else if (strcmp (key, KEY_LOGOUT_COMMAND) == 0) {
+                const char *command;
+
+                command = gconf_value_get_string (value);
+
+                g_free (prefs->logout_command);
+
+                if (command) {
+                        prefs->logout_command = g_strdup (command);
+                } else {
+                        prefs->logout_command = NULL;
+                }
+
                 changed = TRUE;
         } else if (strcmp (key, KEY_USER_SWITCH_ENABLED) == 0) {
                 gboolean enabled;
@@ -414,6 +441,8 @@ gs_prefs_finalize (GObject *object)
                 g_slist_foreach (prefs->themes, (GFunc)g_free, NULL);
                 g_slist_free (prefs->themes);
         }
+
+        g_free (prefs->logout_command);
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }

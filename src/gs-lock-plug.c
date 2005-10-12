@@ -131,6 +131,7 @@ struct GSLockPlugPrivate
         gboolean     caps_lock_on;
         gboolean     switch_enabled;
         gboolean     logout_enabled;
+        char        *logout_command;
 
         guint        timeout;
 
@@ -157,6 +158,7 @@ enum {
 enum {
         PROP_0,
         PROP_LOGOUT_ENABLED,
+        PROP_LOGOUT_COMMAND,
         PROP_SWITCH_ENABLED
 };
 
@@ -474,6 +476,21 @@ gs_lock_plug_set_logout_enabled (GSLockPlug *plug,
 }
 
 static void
+gs_lock_plug_set_logout_command (GSLockPlug *plug,
+                                 const char *command)
+{
+        g_return_if_fail (GS_LOCK_PLUG (plug));
+
+        g_free (plug->priv->logout_command);
+
+        if (command) {
+                plug->priv->logout_command = g_strdup (command);
+        } else {
+                plug->priv->logout_command = NULL;
+        }
+}
+
+static void
 gs_lock_plug_set_switch_enabled (GSLockPlug *plug,
                                  gboolean    switch_enabled)
 {
@@ -505,6 +522,9 @@ gs_lock_plug_set_property (GObject            *object,
         case PROP_LOGOUT_ENABLED:
                 gs_lock_plug_set_logout_enabled (self, g_value_get_boolean (value));
                 break;
+        case PROP_LOGOUT_COMMAND:
+                gs_lock_plug_set_logout_command (self, g_value_get_string (value));
+                break;
         case PROP_SWITCH_ENABLED:
                 gs_lock_plug_set_switch_enabled (self, g_value_get_boolean (value));
                 break;
@@ -527,6 +547,9 @@ gs_lock_plug_get_property (GObject    *object,
         switch (prop_id) {
         case PROP_LOGOUT_ENABLED:
                 g_value_set_boolean (value, self->priv->logout_enabled);
+                break;
+        case PROP_LOGOUT_COMMAND:
+                g_value_set_string (value, self->priv->logout_command);
                 break;
         case PROP_SWITCH_ENABLED:
                 g_value_set_boolean (value, self->priv->switch_enabled);
@@ -572,6 +595,13 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
                                                                NULL,
                                                                NULL,
                                                                FALSE,
+                                                               G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_LOGOUT_COMMAND,
+                                         g_param_spec_string ("logout-command",
+                                                               NULL,
+                                                               NULL,
+                                                               NULL,
                                                                G_PARAM_READWRITE));
         g_object_class_install_property (object_class,
                                          PROP_SWITCH_ENABLED,
@@ -722,22 +752,32 @@ static void
 logout_button_clicked (GtkButton  *button,
                        GSLockPlug *plug)
 {
-        char   *argv [4];
-        GError *error = NULL;
+        char   **argv  = NULL;
+        GError  *error = NULL;
+        gboolean res;
 
-        argv [0] = BINDIR "/gnome-session-save";
-        argv [1] = "--kill";
-        argv [2] = "--silent";
-        argv [3] = NULL;
+        if (! plug->priv->logout_command)
+                return;
+
+        res = g_shell_parse_argv (plug->priv->logout_command, NULL, &argv, &error);
+
+        if (! res) {
+                g_warning ("Could not parse logout command: %s", error->message);
+                g_error_free (error);
+                return;
+        }
 
         g_spawn_async (g_get_home_dir (),
                        argv,
                        NULL,
-                       0,
+                       G_SPAWN_SEARCH_PATH,
                        NULL,
                        NULL,
                        NULL,
                        &error);
+
+        g_strfreev (argv);
+
         if (error) {
                 g_warning ("Could not run logout command: %s", error->message);
                 g_error_free (error);
@@ -1572,8 +1612,10 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         gtk_widget_show_all (plug->vbox);
 
-        if (! plug->priv->logout_enabled)
+        if (! plug->priv->logout_enabled
+            || ! plug->priv->logout_command)
                 gtk_widget_hide (plug->priv->logout_button);
+
         if (! plug->priv->switch_enabled)
                 gtk_widget_hide (plug->priv->switch_button);
 
@@ -1599,6 +1641,8 @@ gs_lock_plug_finalize (GObject *object)
         plug = GS_LOCK_PLUG (object);
 
         g_return_if_fail (plug->priv != NULL);
+
+        g_free (plug->priv->logout_command);
 
         if (plug->priv->fusa_manager)
                 g_object_unref (plug->priv->fusa_manager);

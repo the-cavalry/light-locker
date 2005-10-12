@@ -1,5 +1,26 @@
 2005-10-12  William Jon McCann  <mccann@jhu.edu>
 
+	* data/gnome-screensaver.schemas.in: 
+	* src/gs-window-x11.c (is_logout_enabled, popup_dialog_idle) 
+	(gs_window_set_logout_command, gs_window_set_property) 
+	(gs_window_get_property, gs_window_finalize) 
+	(gs_window_class_init): 
+	* src/gs-prefs.c (gs_prefs_load_from_gconf, key_changed_cb) 
+	(gs_prefs_finalize): 
+	* src/gs-monitor.c (_gs_monitor_update_from_prefs): 
+	* src/gs-manager.c (gs_manager_set_logout_command) 
+	(gs_manager_set_property, gs_manager_get_property) 
+	(gs_manager_class_init, gs_manager_finalize) 
+	(gs_manager_create_window): 
+	* src/gs-lock-plug.c (gs_lock_plug_set_logout_command) 
+	(gs_lock_plug_set_property, gs_lock_plug_get_property) 
+	(gs_lock_plug_class_init, logout_button_clicked) 
+	(gs_lock_plug_init, gs_lock_plug_finalize): 
+	* src/gnome-screensaver-dialog.c (popup_dialog_idle):
+	Make the logout command a gconf setting.
+
+2005-10-12  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (shake_dialog): Put in a usleep
 	so that it looks like a shake and not a rattle on fast systems.
 	Increase the amplitude of the shake a little bit.

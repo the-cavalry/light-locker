@@ -72,6 +72,8 @@ void        gs_manager_set_user_switch_enabled (GSManager  *manager,
                                                 gboolean    user_switch_enabled);
 void        gs_manager_set_logout_timeout   (GSManager  *manager,
                                              glong       logout_timeout);
+void        gs_manager_set_logout_command   (GSManager  *manager,
+                                             const char *command);
 void        gs_manager_set_throttle_enabled (GSManager  *manager,
                                              gboolean    lock_enabled);
 void        gs_manager_set_cycle_timeout    (GSManager  *manager,

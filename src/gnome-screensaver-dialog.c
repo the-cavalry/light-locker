@@ -93,10 +93,11 @@ _gs_lock_plug_profile_log (const char *func,
 #endif
 
 
-static gboolean verbose       = FALSE;
-static gboolean show_version  = FALSE;
-static gboolean enable_logout = FALSE;
-static gboolean enable_switch = FALSE;
+static gboolean verbose        = FALSE;
+static gboolean show_version   = FALSE;
+static gboolean enable_logout  = FALSE;
+static gboolean enable_switch  = FALSE;
+static char    *logout_command = NULL;
 
 static GOptionEntry entries [] = {
         { "verbose", 0, 0, G_OPTION_ARG_NONE, &verbose,
@@ -105,6 +106,8 @@ static GOptionEntry entries [] = {
           N_("Version of this application"), NULL },
         { "enable-logout", 0, 0, G_OPTION_ARG_NONE, &enable_logout,
           N_("Show the logout button"), NULL },
+        { "logout-command", 0, 0, G_OPTION_ARG_STRING, &logout_command,
+          N_("Command to invoke from the logout button"), NULL },
         { "enable-switch", 0, 0, G_OPTION_ARG_NONE, &enable_switch,
           N_("Show the switch user button"), NULL },
         { NULL }
@@ -185,6 +188,10 @@ popup_dialog_idle (void)
 
         if (enable_logout) {
                 g_object_set (widget, "logout-enabled", TRUE, NULL);
+        }
+
+        if (logout_command) {
+                g_object_set (widget, "logout-command", logout_command, NULL);
         }
 
         if (enable_switch) {

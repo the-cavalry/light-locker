@@ -64,6 +64,8 @@ typedef struct
         guint            logout_timeout;	/* how long until the logout option appears */
         guint            cycle;			/* how long each theme should run */
 
+        char            *logout_command;        /* command to use to logout */
+
         GSList          *themes;       		/* the screensaver themes to run */
         GSSaverMode      mode;			/* theme selection mode */
 } GSPrefs;

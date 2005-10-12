@@ -52,9 +52,10 @@ struct GSWindowPrivate
         GdkRectangle geometry;
 
         guint      lock_enabled : 1;
-        guint      logout_enabled : 1;
         guint      user_switch_enabled : 1;
+        guint      logout_enabled : 1;
         guint64    logout_timeout;
+        char      *logout_command;
 
         GtkWidget *box;
         GtkWidget *socket;
@@ -88,6 +89,7 @@ enum {
         PROP_0,
         PROP_LOCK_ENABLED,
         PROP_LOGOUT_ENABLED,
+        PROP_LOGOUT_COMMAND,
         PROP_LOGOUT_TIMEOUT,
         PROP_MONITOR
 };
@@ -646,6 +648,9 @@ is_logout_enabled (GSWindow *window)
         if (! window->priv->logout_enabled)
                 return FALSE;
 
+        if (! window->priv->logout_command)
+                return FALSE;
+
         elapsed = g_timer_elapsed (window->priv->timer, NULL);
 
         if (window->priv->logout_timeout < (elapsed * 1000))
@@ -673,6 +678,7 @@ popup_dialog_idle (GSWindow *window)
 
         if (is_logout_enabled (window)) {
                 command = g_string_append (command, " --enable-logout");
+                g_string_append_printf (command, " --logout-command='%s'", window->priv->logout_command);
         }
         if (is_user_switch_enabled (window)) {
                 command = g_string_append (command, " --enable-switch");
@@ -780,6 +786,21 @@ gs_window_set_logout_timeout (GSWindow *window,
 }
 
 void
+gs_window_set_logout_command (GSWindow   *window,
+                              const char *command)
+{
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        g_free (window->priv->logout_command);
+
+        if (command) {
+                window->priv->logout_command = g_strdup (command);
+        } else {
+                window->priv->logout_command = NULL;
+        }
+}
+
+void
 gs_window_set_monitor (GSWindow *window,
                        int       monitor)
 {
@@ -820,6 +841,9 @@ gs_window_set_property (GObject            *object,
         case PROP_LOGOUT_ENABLED:
                 gs_window_set_logout_enabled (self, g_value_get_boolean (value));
                 break;
+        case PROP_LOGOUT_COMMAND:
+                gs_window_set_logout_command (self, g_value_get_string (value));
+                break;
         case PROP_LOGOUT_TIMEOUT:
                 gs_window_set_logout_timeout (self, g_value_get_long (value));
                 break;
@@ -848,6 +872,9 @@ gs_window_get_property (GObject    *object,
                 break;
         case PROP_LOGOUT_ENABLED:
                 g_value_set_boolean (value, self->priv->logout_enabled);
+                break;
+        case PROP_LOGOUT_COMMAND:
+                g_value_set_string (value, self->priv->logout_command);
                 break;
         case PROP_LOGOUT_TIMEOUT:
                 g_value_set_long (value, self->priv->logout_timeout);
@@ -1029,6 +1056,30 @@ gs_window_class_init (GSWindowClass *klass)
                                                                FALSE,
                                                                G_PARAM_READWRITE));
         g_object_class_install_property (object_class,
+                                         PROP_LOGOUT_ENABLED,
+                                         g_param_spec_boolean ("logout-enabled",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_LOGOUT_TIMEOUT,
+                                         g_param_spec_long ("logout-timeout",
+                                                            NULL,
+                                                            NULL,
+                                                            -1,
+                                                            G_MAXLONG,
+                                                            0,
+                                                            G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_LOGOUT_TIMEOUT,
+                                         g_param_spec_string ("logout-command",
+                                                              NULL,
+                                                              NULL,
+                                                              NULL,
+                                                              G_PARAM_READWRITE));
+
+        g_object_class_install_property (object_class,
                                          PROP_MONITOR,
                                          g_param_spec_int ("monitor",
                                                            "Xinerama monitor",
@@ -1082,6 +1133,8 @@ gs_window_finalize (GObject *object)
         window = GS_WINDOW (object);
 
         g_return_if_fail (window->priv != NULL);
+
+        g_free (window->priv->logout_command);
 
         if (window->priv->watchdog_timer_id != 0) {
                 g_source_remove (window->priv->watchdog_timer_id);
