@@ -1,3 +1,9 @@
+==== 0.0.16 ====
+
+2005-10-12  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 0.0.16 release.
+
 2005-10-12  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (command_watch) 

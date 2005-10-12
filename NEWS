@@ -1,4 +1,31 @@
 ==============
+Version 0.0.16
+==============
+
+  gnome-screensaver
+
+        * Shake the dialog when authentication fails
+        * Maintain nicer aspect ratio on unlock dialog
+        * Only notice motion of 10 pixels or more
+        * Periodically raise windows
+        * Don't emit duplicate response signals from dialog
+        * Make dialog buttons insensitive when input isn't allowed
+        * Add a gconf setting for the logout command
+
+  themes
+
+        * (slideshow) Skip thumbnail images
+
+  Translators
+
+        * Rostislav \"zbrox\" Raykov (bg)
+        * Adam Weinberger (en_CA)
+        * Francisco Javier F. Serrador (es)
+        * Takeshi AIHANA (ja)
+        * Tino Meinen (nl)
+        * Funda Wang (zh_CN)
+
+==============
 Version 0.0.15
 ==============
 
