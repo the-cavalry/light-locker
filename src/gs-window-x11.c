@@ -75,6 +75,9 @@ struct GSWindowPrivate
 
         GList     *key_events;
 
+        gdouble    last_x;
+        gdouble    last_y;
+
         GTimer    *timer;
 };
 
@@ -633,6 +636,10 @@ command_watch (GIOChannel   *source,
                 set_invisible_cursor (GTK_WIDGET (window)->window, TRUE);
                 g_signal_emit (window, signals [DIALOG_DOWN], 0);
 
+                /* reset the pointer positions */
+                window->priv->last_x = -1;
+                window->priv->last_y = -1;
+
                 window->priv->watch_id = 0;
                 return FALSE;
         }
@@ -949,11 +956,32 @@ static gboolean
 gs_window_real_motion_notify_event (GtkWidget      *widget,
                                     GdkEventMotion *event)
 {
+        GSWindow *window;
+        gdouble   distance;
+        gdouble   min_distance = 10;
 
-        /* if we don't already have a socket then request an unlock */
-        if (! GS_WINDOW (widget)->priv->socket
-            && (GS_WINDOW (widget)->priv->request_unlock_idle_id == 0)) {
-                GS_WINDOW (widget)->priv->request_unlock_idle_id = g_idle_add ((GSourceFunc)gs_window_request_unlock_idle, widget);
+        window = GS_WINDOW (widget);
+
+        /* if the last position was not set then don't detect motion */
+        if (window->priv->last_x < 0 || window->priv->last_y < 0) {
+                window->priv->last_x = event->x;
+                window->priv->last_y = event->y;
+
+                return FALSE;
+        }
+
+        /* just an approximate distance */
+        distance = MAX (ABS (window->priv->last_x - event->x),
+                        ABS (window->priv->last_y - event->y));
+
+        if (distance > min_distance) {
+                /* if we don't already have a socket then request an unlock */
+                if (! window->priv->socket
+                    && (window->priv->request_unlock_idle_id == 0)) {
+                        window->priv->request_unlock_idle_id = g_idle_add ((GSourceFunc)gs_window_request_unlock_idle, widget);
+                }
+                window->priv->last_x = -1;
+                window->priv->last_y = -1;
         }
 
         return FALSE;
@@ -1100,6 +1128,9 @@ gs_window_init (GSWindow *window)
         window->priv->geometry.y      = -1;
         window->priv->geometry.width  = -1;
         window->priv->geometry.height = -1;
+
+        window->priv->last_x = -1;
+        window->priv->last_y = -1;
 
         gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
 

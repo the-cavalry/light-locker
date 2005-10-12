@@ -1,5 +1,11 @@
 2005-10-12  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (command_watch) 
+	(gs_window_real_motion_notify_event, gs_window_class_init):
+	Only notice motion of 10 pixels or more.  Fixes #318693.
+
+2005-10-12  William Jon McCann  <mccann@jhu.edu>
+
 	* data/gnome-screensaver.schemas.in: 
 	* src/gs-window-x11.c (is_logout_enabled, popup_dialog_idle) 
 	(gs_window_set_logout_command, gs_window_set_property) 
