@@ -1,3 +1,7 @@
+2005-10-13  William Jon McCann  <mccann@jhu.edu>
+
+	* data/gnome-screensaver: Remove deprecated pam_stack.
+
 2005-10-12  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.

@@ -1,13 +1,10 @@
 #%PAM-1.0
 
-# Fedora Core 4
-auth       required     pam_env.so
-auth       required     pam_stack.so service=system-auth
-auth       required     pam_nologin.so
-account    required     pam_stack.so service=system-auth
-password   required     pam_stack.so service=system-auth
-session    required     pam_stack.so service=system-auth
-session    optional     pam_console.so
+# Fedora Core
+auth       include	system-auth
+account    include	system-auth
+password   include	system-auth
+session    include	system-auth
 
 # SuSE/Novell
 #auth       include      common-auth
