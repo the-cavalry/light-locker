@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-07 14:00-0400\n"
+"POT-Creation-Date: 2005-10-14 12:35-0400\n"
 "PO-Revision-Date: 2005-09-06 11:55-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
@@ -46,7 +46,7 @@ msgid "_Lock screen when active"
 msgstr "_Lock screen when active"
 
 #: data/gnome-screensaver.directory.in.h:1
-#: data/gnome-screensaver.schemas.in.h:6
+#: data/gnome-screensaver.schemas.in.h:7
 msgid "Screensaver themes"
 msgstr "Screensaver themes"
 
@@ -71,18 +71,22 @@ msgid "Lock on activation"
 msgstr "Lock on activation"
 
 #: data/gnome-screensaver.schemas.in.h:5
+msgid "Logout command"
+msgstr "Logout command"
+
+#: data/gnome-screensaver.schemas.in.h:6
 msgid "Screensaver selection mode"
 msgstr "Screensaver selection mode"
 
-#: data/gnome-screensaver.schemas.in.h:7
+#: data/gnome-screensaver.schemas.in.h:8
 msgid "Set this to TRUE to allow the screensaver to power down the monitor."
 msgstr "Set this to TRUE to allow the screensaver to power down the monitor."
 
-#: data/gnome-screensaver.schemas.in.h:8
+#: data/gnome-screensaver.schemas.in.h:9
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr "Set this to TRUE to lock the screen when the screensaver activates."
 
-#: data/gnome-screensaver.schemas.in.h:9
+#: data/gnome-screensaver.schemas.in.h:10
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -90,31 +94,41 @@ msgstr ""
 "Set this to TRUE to offer an option in the unlock dialogue to switch to a "
 "different user account."
 
-#: data/gnome-screensaver.schemas.in.h:10
+#: data/gnome-screensaver.schemas.in.h:11
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
 msgstr ""
-"Set this to TRUE to offer an option in the unlock dialogue to log out after a "
-"delay. The delay is specified in the \"logout_delay\" key."
+"Set this to TRUE to offer an option in the unlock dialogue to log out after "
+"a delay. The delay is specified in the \"logout_delay\" key."
 
-#: data/gnome-screensaver.schemas.in.h:11
+#: data/gnome-screensaver.schemas.in.h:12
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+
+#: data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr ""
 "The number of minutes after screensaver activation before locking the screen."
 
-#: data/gnome-screensaver.schemas.in.h:12
+#: data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
-"The number of minutes after screensaver activation before a logout "
-"option will appear in the unlock dialogue. This key has effect only if the "
+"The number of minutes after screensaver activation before a logout option "
+"will appear in the unlock dialogue. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 
-#: data/gnome-screensaver.schemas.in.h:13
+#: data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into standby power mode."
@@ -122,7 +136,7 @@ msgstr ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into standby power mode."
 
-#: data/gnome-screensaver.schemas.in.h:14
+#: data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into suspend power mode."
@@ -130,7 +144,7 @@ msgstr ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into power suspend mode."
 
-#: data/gnome-screensaver.schemas.in.h:15
+#: data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "powers off."
@@ -138,15 +152,15 @@ msgstr ""
 "The number of minutes after the screensaver activation until the monitor "
 "powers off."
 
-#: data/gnome-screensaver.schemas.in.h:16
+#: data/gnome-screensaver.schemas.in.h:18
 msgid "The number of minutes of idle time before activating the screensaver."
 msgstr "The number of minutes of idle time before activating the screensaver."
 
-#: data/gnome-screensaver.schemas.in.h:17
+#: data/gnome-screensaver.schemas.in.h:19
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "The number of minutes to run before changing the screensaver theme."
 
-#: data/gnome-screensaver.schemas.in.h:18
+#: data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The selection mode used by screensaver. May be \"disabled\" to disable "
 "screensaver activation, \"blank-only\" to enable the screensaver without "
@@ -160,7 +174,7 @@ msgstr ""
 "one theme on activation (specified in \"themes\" key), and \"random\" to "
 "enable the screensaver using a random theme on activation."
 
-#: data/gnome-screensaver.schemas.in.h:19
+#: data/gnome-screensaver.schemas.in.h:21
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"disabled\" or \"blank-only\", should provide "
@@ -172,31 +186,31 @@ msgstr ""
 "the theme name when \"mode\" is \"single\", and should provide a list of "
 "themes when \"mode\" is \"random\"."
 
-#: data/gnome-screensaver.schemas.in.h:20
+#: data/gnome-screensaver.schemas.in.h:22
 msgid "Time before activation"
 msgstr "Time before activation"
 
-#: data/gnome-screensaver.schemas.in.h:21
+#: data/gnome-screensaver.schemas.in.h:23
 msgid "Time before locking"
 msgstr "Time before locking"
 
-#: data/gnome-screensaver.schemas.in.h:22
+#: data/gnome-screensaver.schemas.in.h:24
 msgid "Time before logout option"
 msgstr "Time before logout option"
 
-#: data/gnome-screensaver.schemas.in.h:23
+#: data/gnome-screensaver.schemas.in.h:25
 msgid "Time before power off"
 msgstr "Time before power off"
 
-#: data/gnome-screensaver.schemas.in.h:24
+#: data/gnome-screensaver.schemas.in.h:26
 msgid "Time before standby"
 msgstr "Time before standby"
 
-#: data/gnome-screensaver.schemas.in.h:25
+#: data/gnome-screensaver.schemas.in.h:27
 msgid "Time before suspend"
 msgstr "Time before suspend"
 
-#: data/gnome-screensaver.schemas.in.h:26
+#: data/gnome-screensaver.schemas.in.h:28
 msgid "Time before theme change"
 msgstr "Time before theme change"
 
@@ -224,11 +238,11 @@ msgstr "A pop-art-ish grid of pulsing colours."
 msgid "Pop art squares"
 msgstr "Pop art squares"
 
-#: savers/slideshow.c:75
+#: savers/slideshow.c:77
 msgid "Location to get images from"
 msgstr "Location to get images from"
 
-#: savers/slideshow.c:75
+#: savers/slideshow.c:77
 msgid "PATH"
 msgstr "PATH"
 
@@ -551,7 +565,7 @@ msgstr "Enable running graphical themes while blanked (if applicable)"
 msgid "Poke the running screensaver to simulate user activity"
 msgstr "Poke the running screensaver to simulate user activity"
 
-#: src/gnome-screensaver-command.c:76 src/gnome-screensaver-dialog.c:103
+#: src/gnome-screensaver-command.c:76 src/gnome-screensaver-dialog.c:106
 #: src/gnome-screensaver.c:52
 msgid "Version of this application"
 msgstr "Version of this application"
@@ -569,15 +583,19 @@ msgstr "active"
 msgid "inactive"
 msgstr "inactive"
 
-#: src/gnome-screensaver-dialog.c:101
+#: src/gnome-screensaver-dialog.c:104
 msgid "Show debugging output"
 msgstr "Show debugging output"
 
-#: src/gnome-screensaver-dialog.c:105
+#: src/gnome-screensaver-dialog.c:108
 msgid "Show the logout button"
 msgstr "Show the \"logout\" button"
 
-#: src/gnome-screensaver-dialog.c:107
+#: src/gnome-screensaver-dialog.c:110
+msgid "Command to invoke from the logout button"
+msgstr "Command to invoke from the logout button"
+
+#: src/gnome-screensaver-dialog.c:112
 msgid "Show the switch user button"
 msgstr "Show the \"switch user\" button"
 
@@ -671,48 +689,48 @@ msgstr "Failed to register with the message bus"
 msgid "screensaver already running in this session"
 msgstr "Screensaver already running in this session"
 
-#: src/gs-lock-plug.c:308
+#: src/gs-lock-plug.c:318
 msgid "Checking password..."
 msgstr "Checking password..."
 
-#: src/gs-lock-plug.c:351
+#: src/gs-lock-plug.c:361
 msgid "Time has expired."
 msgstr "Time has expired."
 
-#: src/gs-lock-plug.c:375
+#: src/gs-lock-plug.c:385
 msgid "You have the Caps Lock key on."
 msgstr "You have the Caps Lock key on."
 
-#: src/gs-lock-plug.c:605
+#: src/gs-lock-plug.c:643
 msgid "That password was incorrect."
 msgstr "That password was incorrect."
 
-#: src/gs-lock-plug.c:628 src/gs-lock-plug.c:661
+#: src/gs-lock-plug.c:669 src/gs-lock-plug.c:702
 msgid "_Unlock"
 msgstr "_Unlock"
 
-#: src/gs-lock-plug.c:631 src/gs-lock-plug.c:658
+#: src/gs-lock-plug.c:672 src/gs-lock-plug.c:699
 msgid "_Switch User..."
 msgstr "_Switch User..."
 
-#: src/gs-lock-plug.c:961
+#: src/gs-lock-plug.c:1003
 msgid "Log in as a new user"
 msgstr "Log in as a new user"
 
 #. translators: %s is a computer hostname
-#: src/gs-lock-plug.c:1383
+#: src/gs-lock-plug.c:1425
 #, c-format
 msgid "Welcome to %s"
 msgstr "Welcome to %s"
 
-#: src/gs-lock-plug.c:1416
+#: src/gs-lock-plug.c:1458
 msgid "_Password:"
 msgstr "_Password:"
 
-#: src/gs-lock-plug.c:1452
+#: src/gs-lock-plug.c:1494
 msgid "Switch to user:"
 msgstr "Switch to user:"
 
-#: src/gs-lock-plug.c:1497
+#: src/gs-lock-plug.c:1539
 msgid "Log _Out"
 msgstr "Log _Out"
