@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver 0.1\n"
+"Project-Id-Version: gnome-screensaver 0.15\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-30 17:42+0200\n"
-"PO-Revision-Date: 2005-09-30 17:49+0200\n"
+"POT-Creation-Date: 2005-10-16 22:47+0200\n"
+"PO-Revision-Date: 2005-10-16 22:50+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -45,6 +45,7 @@ msgid "_Lock screen when active"
 msgstr "_Lås skjermen når aktiv"
 
 #: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Screensaver themes"
 msgstr "Tema for skjermsparer"
 
@@ -53,113 +54,137 @@ msgid "Screensavers"
 msgstr "Skjermsparere"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
-msgid "How many minutes until the monitor goes black"
+msgid "Allow logout"
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:2
-msgid "How many minutes until the monitor goes black."
+msgid "Allow monitor power management"
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:3
-msgid "How many minutes until the monitor power-saves"
-msgstr ""
+msgid "Allow user switching"
+msgstr "Tillat bytte av bruker"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
-msgid "How many minutes until the monitor power-saves."
-msgstr ""
+msgid "Lock on activation"
+msgstr "Lås ved aktivering"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
-msgid "How many minutes until the monitor powers down"
-msgstr ""
+msgid "Logout command"
+msgstr "Kommando for å logge ut"
 
 #: ../data/gnome-screensaver.schemas.in.h:6
-msgid "How many minutes until the monitor powers down."
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:7
-msgid ""
-"The number of minutes after blanking the screen before a logout option will "
-"appear"
-msgstr ""
+msgid "Screensaver selection mode"
+msgstr "Modus for valg av skjermsparer"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
-msgid ""
-"The number of minutes after blanking the screen before a logout option will "
-"appear."
+msgid "Set this to TRUE to allow the screensaver to power down the monitor."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:9
-msgid "The number of minutes after blanking the screen before locking"
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:10
-msgid "The number of minutes after blanking the screen before locking."
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:11
-msgid "The number of minutes of idle time before blanking the screen"
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:12
-msgid "The number of minutes of idle time before blanking the screen."
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:13
-msgid "The number of minutes to run before changing the screensaver"
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:14
-msgid "The number of minutes to run before changing the screensaver."
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:15
-msgid "The screensaver selection mode"
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"goes into standby power mode."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:16
-msgid "The selected screensaver themes"
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"goes into suspend power mode."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
-"This key specifies the selection mode used by the screensaver. Possible "
-"values are \"disabled\", \"blank-only\", \"single\", and \"random\"."
+"The number of minutes after the screensaver activation until the monitor "
+"powers off."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:18
-msgid "This key specifies the themes to be used by the screensaver."
+msgid "The number of minutes of idle time before activating the screensaver."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:19
-msgid "Whether to allow user switching"
+msgid "The number of minutes to run before changing the screensaver theme."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:20
-msgid "Whether to lock as well as blank"
+msgid ""
+"The selection mode used by screensaver. May be \"disabled\" to disable "
+"screensaver activation, \"blank-only\" to enable the screensaver without "
+"using any theme on activation, \"single\" to enable screensaver using only "
+"one theme on activation (specified in \"themes\" key), and \"random\" to "
+"enable the screensaver using a random theme on activation."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:21
-msgid "Whether to lock as well as blank."
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"disabled\" or \"blank-only\", should provide "
+"the theme name when \"mode\" is \"single\", and should provide a list of "
+"themes when \"mode\" is \"random\"."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:22
-msgid "Whether to offer the option of logging out after logout_delay"
+msgid "Time before activation"
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:23
-msgid "Whether to offer the option of logging out after logout_delay."
+msgid "Time before locking"
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:24
-msgid "Whether to offer the option of switching to a different user"
+msgid "Time before logout option"
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:25
-msgid "Whether to power down the monitor"
+msgid "Time before power off"
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Whether to power down the monitor."
+msgid "Time before standby"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:27
+msgid "Time before suspend"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before theme change"
 msgstr ""
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
@@ -180,27 +205,27 @@ msgstr "Bildemappe"
 
 #: ../savers/popsquares.desktop.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
-msgstr ""
+msgstr "Popkunst-aktig rutenett med pulserende farger."
 
 #: ../savers/popsquares.desktop.in.h:2
 msgid "Pop art squares"
-msgstr ""
+msgstr "Popkunstfirkanter"
 
-#: ../savers/slideshow.c:75
+#: ../savers/slideshow.c:77
 msgid "Location to get images from"
-msgstr ""
+msgstr "Lokasjon bilder skal hentes fra"
 
-#: ../savers/slideshow.c:75
+#: ../savers/slideshow.c:77
 msgid "PATH"
 msgstr "STI"
 
 #: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
 msgid "Manager"
-msgstr ""
+msgstr "Håndterer"
 
 #: ../src/cut-n-paste/fusa-display.c:120
 msgid "The manager which owns this object."
-msgstr ""
+msgstr "Håndterer som eier dette objektet."
 
 #: ../src/cut-n-paste/fusa-display.c:127
 msgid "Name"
@@ -217,7 +242,7 @@ msgstr "Bruker"
 
 #: ../src/cut-n-paste/fusa-display.c:135
 msgid "The user currently logged in on this virtual terminal."
-msgstr ""
+msgstr "Bruker som er logget inn på denne virtuelle terminalen."
 
 #: ../src/cut-n-paste/fusa-display.c:141
 msgid "Console"
@@ -426,7 +451,7 @@ msgstr ""
 
 #: ../src/file-transfer-dialog.c:209
 msgid "Fraction completed"
-msgstr ""
+msgstr "Del ferdigstilt"
 
 #: ../src/file-transfer-dialog.c:210
 msgid "Fraction of transfer currently completed"
@@ -442,7 +467,7 @@ msgstr ""
 
 #: ../src/file-transfer-dialog.c:225
 msgid "Total URIs"
-msgstr ""
+msgstr "Totalt antall URI'er"
 
 #: ../src/file-transfer-dialog.c:226
 msgid "Total number of URIs"
@@ -450,7 +475,7 @@ msgstr ""
 
 #: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
 msgid "Copying files"
-msgstr ""
+msgstr "Kopierer filer"
 
 #: ../src/file-transfer-dialog.c:345
 msgid "From:"
@@ -500,7 +525,7 @@ msgstr ""
 msgid "Poke the running screensaver to simulate user activity"
 msgstr ""
 
-#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:103
+#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:106
 #: ../src/gnome-screensaver.c:52
 msgid "Version of this application"
 msgstr ""
@@ -508,7 +533,7 @@ msgstr ""
 #: ../src/gnome-screensaver-command.c:201
 #, c-format
 msgid "The screensaver is %s\n"
-msgstr ""
+msgstr "Skjermsparer er %s\n"
 
 #: ../src/gnome-screensaver-command.c:201
 msgid "active"
@@ -518,15 +543,19 @@ msgstr "aktiv"
 msgid "inactive"
 msgstr "inaktiv"
 
-#: ../src/gnome-screensaver-dialog.c:101
+#: ../src/gnome-screensaver-dialog.c:104
 msgid "Show debugging output"
 msgstr ""
 
-#: ../src/gnome-screensaver-dialog.c:105
+#: ../src/gnome-screensaver-dialog.c:108
 msgid "Show the logout button"
 msgstr ""
 
-#: ../src/gnome-screensaver-dialog.c:107
+#: ../src/gnome-screensaver-dialog.c:110
+msgid "Command to invoke from the logout button"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:112
 msgid "Show the switch user button"
 msgstr ""
 
@@ -554,22 +583,22 @@ msgstr ""
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d time"
+msgstr[1] "%d timer"
 
 #: ../src/gnome-screensaver-preferences.c:816
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d minutt"
+msgstr[1] "%d minutter"
 
 #: ../src/gnome-screensaver-preferences.c:819
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d sekund"
+msgstr[1] "%d sekunder"
 
 #. hour:minutes:seconds
 #: ../src/gnome-screensaver-preferences.c:825
@@ -620,48 +649,48 @@ msgstr ""
 msgid "screensaver already running in this session"
 msgstr ""
 
-#: ../src/gs-lock-plug.c:308
+#: ../src/gs-lock-plug.c:318
 msgid "Checking password..."
 msgstr "Sjekker passord..."
 
-#: ../src/gs-lock-plug.c:351
+#: ../src/gs-lock-plug.c:361
 msgid "Time has expired."
 msgstr "Tiden har løpt ut."
 
-#: ../src/gs-lock-plug.c:375
+#: ../src/gs-lock-plug.c:385
 msgid "You have the Caps Lock key on."
 msgstr ""
 
-#: ../src/gs-lock-plug.c:588
+#: ../src/gs-lock-plug.c:643
 msgid "That password was incorrect."
 msgstr "Passordet var ikke riktig."
 
-#: ../src/gs-lock-plug.c:611 ../src/gs-lock-plug.c:644
+#: ../src/gs-lock-plug.c:669 ../src/gs-lock-plug.c:702
 msgid "_Unlock"
 msgstr "Lå_s opp"
 
-#: ../src/gs-lock-plug.c:614 ../src/gs-lock-plug.c:641
+#: ../src/gs-lock-plug.c:672 ../src/gs-lock-plug.c:699
 msgid "_Switch User..."
 msgstr "_Bytt bruker..."
 
-#: ../src/gs-lock-plug.c:944
+#: ../src/gs-lock-plug.c:1003
 msgid "Log in as a new user"
 msgstr "Logg inn som ny bruker"
 
 #. translators: %s is a computer hostname
-#: ../src/gs-lock-plug.c:1366
+#: ../src/gs-lock-plug.c:1425
 #, c-format
 msgid "Welcome to %s"
 msgstr "Velkommen til %s"
 
-#: ../src/gs-lock-plug.c:1399
+#: ../src/gs-lock-plug.c:1458
 msgid "_Password:"
 msgstr "_Passord:"
 
-#: ../src/gs-lock-plug.c:1435
+#: ../src/gs-lock-plug.c:1494
 msgid "Switch to user:"
 msgstr "Bytt til bruker:"
 
-#: ../src/gs-lock-plug.c:1480
+#: ../src/gs-lock-plug.c:1539
 msgid "Log _Out"
 msgstr "Logg _ut"
