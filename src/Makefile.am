@@ -18,6 +18,7 @@ INCLUDES =							\
 	$(GNOME_SCREENSAVER_DIALOG_CFLAGS)			\
 	$(GNOME_SCREENSAVER_CAPPLET_CFLAGS)			\
 	$(DISABLE_DEPRECATED_CFLAGS)				\
+	-DG_LOG_DOMAIN=\"gnome-screensaver\"			\
 	-DBINDIR=\""$(bindir)"\"				\
 	-DLIBEXECDIR=\""$(libexecdir)"\"			\
 	-DSAVERDIR=\""$(saverdir)"\"				\

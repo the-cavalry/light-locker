@@ -1,5 +1,13 @@
 2005-10-17  William Jon McCann  <mccann@jhu.edu>
 
+	* src/Makefile.am (INCLUDES): Added
+	-DG_LOG_DOMAIN.
+
+	* src/gnome-screensaver.c (main): Daemonize
+	by default and add an option not to.
+
+2005-10-17  William Jon McCann  <mccann@jhu.edu>
+
 	* src/Makefile.am: 
 	* configure.ac: Add all X extension libraries
 	to SAVER_LIBS.  Remove unused code.

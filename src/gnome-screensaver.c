@@ -24,6 +24,8 @@
 #include "config.h"
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+#include <errno.h>
 #include <sys/time.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -47,9 +49,12 @@ main (int    argc,
         GSMonitor          *monitor;
         GError             *error = NULL;
         static gboolean     show_version = FALSE;
+        static gboolean     no_daemon    = FALSE;
         static GOptionEntry entries []   = {
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version,
                   N_("Version of this application"), NULL },
+                { "no-daemon", 0, 0, G_OPTION_ARG_NONE, &no_daemon,
+                  N_("Don't become a daemon"), NULL },
                 { NULL }
         };
 
@@ -91,6 +96,10 @@ main (int    argc,
                 }
                 exit (1);
         }
+
+        /* Don't close stdout and stderr for now */
+        if (! no_daemon && daemon (0, 1))
+                g_error ("Could not daemonize: %s", g_strerror (errno));
 
         gtk_main ();
 
