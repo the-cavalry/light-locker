@@ -78,6 +78,10 @@ AC_SUBST(GNOME_SCREENSAVER_COMMAND_CFLAGS)
 AC_SUBST(GNOME_SCREENSAVER_COMMAND_LIBS)
 
 AC_PATH_XTRA
+
+ALL_X_LIBS="$X_LIBS $X_PRE_LIBS -lX11 $X_EXTRA_LIBS"
+SAVER_LIBS="$ALL_X_LIBS"
+
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
 
@@ -215,120 +219,6 @@ AC_SUBST(HAVE_USER_SWITCHING)
 
 ###############################################################################
 #
-#       Functions to check for various X11 things
-#
-###############################################################################
-
-AC_DEFUN(AC_XPOINTER,
- [AC_CACHE_CHECK([for XPointer], ac_cv_xpointer,
-                 [AC_TRY_X_COMPILE([#include <X11/Xlib.h>],
-                                   [XPointer foo = (XPointer) 0;],
-                                   [ac_cv_xpointer=yes],
-                                   [ac_cv_xpointer=no])])
-  if test "$ac_cv_xpointer" != yes; then
-   AC_DEFINE(XPointer,[char*])
-  fi])
-
-
-# Random special-cases for X on certain pathological OSes.
-
-AC_DEFUN(AC_X_RANDOM_PATHS,
- [case "$host" in
-    *-hpux*)
-
-      # The following arcana was gleaned from conversations with
-      # Eric Schwartz <erics@col.hp.com>:
-      #
-      # On HPUX 10.x, the parts of X that HP considers "standard" live in
-      # /usr/{include,lib}/X11R6/.  The parts that HP doesn't consider
-      # "standard", notably, Xaw and Xmu, live in /usr/contrib/X11R6/.
-      # Yet /usr/contrib/X11R6/ comes preinstalled on all HPUX systems.
-      # Also, there are symlinks from /usr/include/ and /usr/lib/ into
-      # /usr/{include,lib}/X11R6/, so that (if you don't use Xmu at all)
-      # you don't need any -I or -L arguments.
-      #
-      # On HPUX 9.x, /usr/{include,lib}/X11R5/ and /usr/contrib/X11R5/
-      # are the same division as 10.x.  However, there are no symlinks to
-      # the X stuff from /usr/include/ and /usr/lib/, so -I and -L
-      # arguments are always necessary.
-      #
-      # However, X11R6 was available on HPUX 9.x as a patch: if that
-      # patch was installed, then all of X11R6 went in to
-      # /usr/contrib/X11R6/ (there was no /usr/{include,lib}/X11R6/.)
-      #
-      # HPUX 8.x was the same as 9.x, but was X11R4 instead (I don't know
-      # whether R5 was available as a patch; R6 undoubtedly was not.)
-      #
-      # So.  We try and use the highest numbered pair of
-      # /usr/{include,lib}/X11R?/ and /usr/contrib/X11R?/{include,lib}/
-      # that are available.  We do not mix and match different versions
-      # of X.
-      #
-      # Question I still don't know the answer to: (do you?)
-      #
-      #   * On HPUX 9.x, where /usr/include/X11R5/ was standard, and
-      #     /usr/contrib/X11R6/ could be installed as a patch, what was in
-      #     that contrib directory?  Did it contain so-called "standard"
-      #     X11R6, or did it include Xaw and Xmu as well?  If the former,
-      #     where did one find Xaw and Xmu on 9.x R6 systems?  Would this
-      #     be a situation where one had to reach into the R5 headers and
-      #     libs to find Xmu?  That is, must both R6 and R5 directories
-      #     be on the -I and -L lists in that case?
-      #
-      for version in X11R6 X11R5 X11R4 ; do
-        # if either pair of directories exists...
-        if test -d /usr/include/$version || test -d /usr/contrib/$version/include
-        then
-           # if contrib exists, use it...
-           if test -d /usr/contrib/$version/include ; then
-             X_CFLAGS="$X_CFLAGS -I/usr/contrib/$version/include"
-             X_LIBS="$X_LIBS -L/usr/contrib/$version/lib"
-           fi
-           # if the "standard" one exists, use it.
-           if test -d /usr/include/$version ; then
-             X_CFLAGS="$X_CFLAGS -I/usr/include/$version"
-             X_LIBS="$X_LIBS -L/usr/lib/$version"
-           fi
-           # since at least one of the pair exists, go no farther.
-           break
-        fi
-      done
-
-      # Now let's check for the pseudo-standard locations for OpenGL and XPM.
-      #
-      if test -d /opt/graphics/OpenGL/include ; then
-        # HP-UX 10.20 puts it here
-        X_CFLAGS="-I/opt/graphics/OpenGL/include $X_CFLAGS"
-        X_LIBS="-L/opt/graphics/OpenGL/lib $X_LIBS"
-      elif test -d /opt/Mesa/lib ; then
-        X_CFLAGS="-I/opt/Mesa/include $X_CFLAGS"
-        X_LIBS="-L/opt/Mesa/lib $X_LIBS"
-      fi
-
-
-      if test -d /opt/xpm/lib/X11 ; then
-        X_CFLAGS="-I/opt/xpm/include $X_CFLAGS"
-        X_LIBS="-L/opt/xpm/lib/X11 $X_LIBS"
-      fi
-
-    ;;
-    *-solaris*)
-
-    ;;
-    *-darwin*)
-
-      # On MacOS X (10.x with "fink"), many things are under /sw/.
-      #
-      if test -d /sw/include ; then
-        X_CFLAGS="-I/sw/include $X_CFLAGS"
-        X_LIBS="-L/sw/lib $X_LIBS"
-      fi
-    ;;
-  esac])
-
-
-###############################################################################
-#
 #       Some utility functions to make checking for X things easier.
 #
 ###############################################################################
@@ -342,17 +232,6 @@ AC_DEFUN(AC_CHECK_X_HEADER, [
   fi
   CPPFLAGS="$CPPFLAGS $X_CFLAGS"
   AC_CHECK_HEADER([$1],[$2],[$3],[$4])
-  CPPFLAGS="$ac_save_CPPFLAGS"])
-
-# Like AC_EGREP_HEADER, but it uses the already-computed -I directories.
-#
-AC_DEFUN(AC_EGREP_X_HEADER, [
-  ac_save_CPPFLAGS="$CPPFLAGS"
-  if test \! -z "$includedir" ; then 
-    CPPFLAGS="$CPPFLAGS -I$includedir"
-  fi
-  CPPFLAGS="$CPPFLAGS $X_CFLAGS"
-  AC_EGREP_HEADER([$1], [$2], [$3], [$4])
   CPPFLAGS="$ac_save_CPPFLAGS"])
 
 # Like AC_TRY_COMPILE, but it uses the already-computed -I directories.
@@ -385,26 +264,13 @@ AC_DEFUN(AC_CHECK_X_LIB, [
     LDFLAGS="$LDFLAGS -L$libdir"
   fi
   # note: $X_LIBS includes $x_libraries
-  LDFLAGS="$LDFLAGS $X_LIBS $X_EXTRA_LIBS"
+  LDFLAGS="$LDFLAGS $ALL_X_LIBS"
 
   AC_CHECK_LIB([$1], [$2], [$3], [$4], [$5])
   CPPFLAGS="$ac_save_CPPFLAGS"
   LDFLAGS="$ac_save_LDFLAGS"
 #  LIBS="$ac_save_LIBS"
   ])
-
-# Like AC_TRY_RUN, but it uses the already-computed -I directories.
-# (But not the -L directories!)
-#
-AC_DEFUN(AC_TRY_X_RUN, [
-  ac_save_CPPFLAGS="$CPPFLAGS"
-  if test \! -z "$includedir" ; then 
-    CPPFLAGS="$CPPFLAGS -I$includedir"
-  fi
-  CPPFLAGS="$CPPFLAGS $X_CFLAGS"
-  AC_TRY_RUN([$1], [$2], [$3], [$4])
-  CPPFLAGS="$ac_save_CPPFLAGS"])
-
 
 
 # Usage: HANDLE_X_PATH_ARG([variable_name],
@@ -488,10 +354,10 @@ Screen blanking and idle-detection options:
 HANDLE_X_PATH_ARG(with_sgi, --with-sgi-ext, SGI SCREEN_SAVER)
 
 if test "$with_sgi" = yes; then
-  AC_CHECK_X_HEADER(X11/extensions/XScreenSaver.h,
-                    [have_sgi=yes
-                     AC_DEFINE(HAVE_SGI_SAVER_EXTENSION, 1, [Define if the SGI screensaver extension is available])],,
-                    [#include <X11/Xlib.h>])
+        AC_CHECK_HEADER(X11/extensions/XScreenSaver.h,
+                        [have_sgi=yes
+                         AC_DEFINE(HAVE_SGI_SAVER_EXTENSION, 1, [Define if the SGI screensaver extension is available])],,
+                        [#include <X11/Xlib.h>])
 
 elif test "$with_sgi" != no; then
   echo "error: must be yes or no: --with-sgi-ext=$with_sgi"
@@ -523,7 +389,7 @@ if test "$with_mit" = yes; then
     AC_CHECK_X_LIB(Xext, XScreenSaverRegister, [true], [have_mit=no], -lm)
 
     if test "$have_mit" = no; then
-      # Fuck!  Looks like XF86Free-3.3 actually puts it in XExExt instead
+      # Looks like XF86Free-3.3 actually puts it in XExExt instead
       # of in Xext.
       AC_CHECK_X_LIB(XExExt, XScreenSaverRegister,
                      [have_mit=yes; SAVER_LIBS="$SAVER_LIBS -lXExExt"],
@@ -669,46 +535,55 @@ fi
 #
 ###############################################################################
 
-have_xinerama=no
-with_xinerama_req=unspecified
-AC_ARG_WITH(xinerama-ext,
-[  --with-xinerama-ext     Include support for the XINERAMA extension.],
-  [with_xinerama="$withval"; with_xinerama_req="$withval"],[with_xinerama=yes])
+# Check for Xinerama extension (Solaris impl or Xfree impl)
 
-HANDLE_X_PATH_ARG(with_xinerama, --with-xinerama-ext, XINERAMA)
+AC_ARG_ENABLE(xinerama,
+  AC_HELP_STRING([--disable-xinerama],
+                 [disable use of the Xinerama extension]),
+  try_xinerama=$enable_xinerama,try_xinerama=yes)
 
-if test "$with_xinerama" = yes; then
-
-  # first check for Xinerama.h
-  AC_CHECK_X_HEADER(X11/extensions/Xinerama.h, [have_xinerama=yes],,
-                    [#include <X11/Xlib.h>])
-
-  # if that succeeded, then check for the XINERAMA code in the libraries
-  if test "$have_xinerama" = yes; then
-
-    # first look in -lXext
-    have_xinerama=no
-    AC_CHECK_X_LIB(Xext, XineramaQueryScreens, [have_xinerama=yes], [true],
-                  -lXext -lX11)
-
-    # if that failed, look in -lXinerama (this is where it is in XFree86 4.1.)
-    if test "$have_xinerama" = no; then
-      AC_CHECK_X_LIB(Xinerama, XineramaQueryScreens,
-                     [have_xinerama=yes; SAVER_LIBS="$SAVER_LIBS -lXinerama"],
-                     [true], -lXext -lX11)
-    fi
-  fi
-
-  # if that succeeded, then we've really got it.
-  if test "$have_xinerama" = yes; then
-    AC_DEFINE(HAVE_XINERAMA, 1, [Define if XINERAMA is available])
-  fi
-
-elif test "$with_xinerama" != no; then
-  echo "error: must be yes or no: --with-xinerama-ext=$with_xinerama"
-  exit 1
+use_solaris_xinerama=no
+use_xfree_xinerama=no
+if test "${try_xinerama}" != no; then
+    case "$host" in
+        *-*-solaris*)
+            # Check for solaris
+            use_solaris_xinerama=yes
+            AC_CHECK_X_LIB(Xext, XineramaGetInfo,
+                           use_solaris_xinerama=yes, use_solaris_xinerama=no,
+                           $ALL_X_LIBS)
+            if test "x$use_solaris_xinerama" = "xyes"; then
+                AC_CHECK_X_HEADER(X11/extensions/xinerama.h,
+                                  if test -z "`echo $ALL_X_LIBS | grep "\-lXext" 2> /dev/null`"; then
+                                      X_EXTRA_LIBS="-lXext $X_EXTRA_LIBS"
+                                  fi
+                                  AC_DEFINE(HAVE_SOLARIS_XINERAMA, , [Have Solaris-style Xinerama])
+                                  AC_DEFINE(HAVE_XINERAMA, , [Have some version of Xinerama]),
+                                  use_solaris_xinerama=no,
+                                  [#include <X11/Xlib.h>])
+            fi	
+            AC_MSG_CHECKING(for Xinerama support on Solaris)
+            AC_MSG_RESULT($use_solaris_xinerama);
+            ;;
+        *)
+            # Check for XFree
+            use_xfree_xinerama=yes
+            AC_CHECK_X_LIB(Xinerama, XineramaQueryExtension,
+                [AC_CHECK_X_HEADER(X11/extensions/Xinerama.h,
+                                   X_EXTRA_LIBS="-lXinerama $X_EXTRA_LIBS"   
+                                   if test -z "`echo $ALL_X_LIBS | grep "\-lXext" 2> /dev/null`"; then
+                                       X_EXTRA_LIBS="-lXext $X_EXTRA_LIBS"
+                                   fi
+                                   AC_DEFINE(HAVE_XFREE_XINERAMA, , [Have XFree86-style Xinerama])
+                                   AC_DEFINE(HAVE_XINERAMA,, [Have some version of Xinerama]), 
+                                   use_xfree_xinerama=no,
+                                   [#include <X11/Xlib.h>])],
+                use_xfree_xinerama=no, -lXext $ALL_X_LIBS)
+            AC_MSG_CHECKING(for Xinerama support on XFree86)
+            AC_MSG_RESULT($use_xfree_xinerama);
+            ;;
+    esac
 fi
-
 
 ###############################################################################
 #
@@ -815,96 +690,23 @@ elif test "$with_xf86gamma" != no; then
   exit 1
 fi
 
-
 ###############################################################################
 #
-#       Check for the RANDR (Resize and Rotate) server extension.
-#
-#       We need this to detect when the resolution of the desktop
-#       has changed out from under us (this is a newer, different
-#       mechanism than the XF86VMODE virtual viewports.)
+#       RANDR Extension
 #
 ###############################################################################
 
-have_randr=no
-with_randr_req=unspecified
-AC_ARG_WITH(randr-ext,
-[  --with-randr-ext        Include support for the X Resize+Rotate extension.],
-  [with_randr="$withval"; with_randr_req="$withval"],[with_randr=yes])
+RANDR_LIBS=
+found_randr=no
+AC_CHECK_LIB(Xrandr, XRRUpdateConfiguration,
+               [AC_CHECK_HEADER(X11/extensions/Xrandr.h,
+                                RANDR_LIBS=-lXrandr found_randr=yes,,
+				[#include <X11/Xlib.h>])],
+               , -lXrender -lXext $ALL_X_LIBS)
 
-HANDLE_X_PATH_ARG(with_randr, --with-randr-ext, RANDR)
-
-if test "$with_randr" = yes; then
-
-  # first check for Randr.h
-  AC_CHECK_X_HEADER(X11/extensions/Xrandr.h, [have_randr=yes],,
-                    [#include <X11/Xlib.h>])
-
-  # if that succeeded, then check for the XRR code in the libraries
-  if test "$have_randr" = yes; then
-
-    # RANDR probably needs -lXrender
-    xrender_libs=
-    AC_CHECK_X_LIB(Xrender, XRenderSetSubpixelOrder,
-                   [xrender_libs="-lXrender"], [true], -lXext -lX11)
-
-    # first look for RANDR in -lXext
-    have_randr=no
-    AC_CHECK_X_LIB(Xext, XRRGetScreenInfo,
-                   [have_randr=yes; SAVER_LIBS="$SAVER_LIBS $xrender_libs"],
-                   [true], $xrender_libs -lXext -lX11)
-
-    # if that failed, look in -lXrandr
-    if test "$have_randr" = no; then
-      AC_CHECK_X_LIB(Xrandr, XRRGetScreenInfo,
-             [have_randr=yes; SAVER_LIBS="$SAVER_LIBS -lXrandr $xrender_libs"],
-                     [true], $xrender_libs -lXext -lX11)
-    fi
-  fi
-
-  # if that succeeded, then we've really got it.
-  if test "$have_randr" = yes; then
-    AC_DEFINE(HAVE_RANDR, 1, [Define if the RANDR extension is available])
-  fi
-
-elif test "$with_randr" != no; then
-  echo "error: must be yes or no: --with-randr-ext=$with_randr"
-  exit 1
+if test "x$found_randr" = "xyes"; then
+   AC_DEFINE(HAVE_RANDR, , [Have the Xrandr extension library])
 fi
-
-
-###############################################################################
-#
-#       Check for XF86MiscSetGrabKeysState (but only bother if we are already
-#	using other XF86 stuff.)
-#
-###############################################################################
-
-have_xf86miscsetgrabkeysstate=no
-if test "$have_xf86gamma" = yes -o "$have_xf86vmode" = yes; then
-  AC_CHECK_X_LIB(Xxf86misc, XF86MiscSetGrabKeysState,
-                [have_xf86miscsetgrabkeysstate=yes],
-                [true], -lXext -lX11)
-  if test "$have_xf86miscsetgrabkeysstate" = yes ; then
-    SAVER_LIBS="$SAVER_LIBS -lXxf86misc"
-    AC_DEFINE(HAVE_XF86MISCSETGRABKEYSSTATE, 1, [Define if XF86MiscSetGrabKeyState is available])
-  fi
-fi
-
-
-###############################################################################
-#
-#       Check for HP XHPDisableReset and XHPEnableReset.
-#
-###############################################################################
-
-AC_MSG_CHECKING([for XHPDisableReset in X11/XHPlib.h])
-AC_EGREP_X_HEADER(XHPDisableReset, X11/XHPlib.h,
-                  [AC_DEFINE(HAVE_XHPDISABLERESET, 1, [Define if XHPDisableReset is available])
-                   SAVER_LIBS="-lXhp11 $SAVER_LIBS"
-                   AC_MSG_RESULT(yes)],
-                  [AC_MSG_RESULT(no)])
-
 
 ###############################################################################
 #
@@ -988,8 +790,9 @@ else
   AC_MSG_WARN([could not find directory containing xscreensaver hacks])
 fi
 
-#       Check for PAM.
-
+#
+# Check for PAM
+#
 have_pam=no
 AC_ARG_ENABLE(pam, AC_HELP_STRING([--enable-pam],
                    [Enable PAM support @<:@default=auto@:>@],
@@ -1160,7 +963,7 @@ if test "$with_shadow" = yes ; then
 fi
 
 
-#       Check for traditional (ha!) shadow passwords.
+#       Check for "traditional" shadow passwords.
 
 if test "$with_shadow" = yes ; then
   AC_CACHE_CHECK([for generic shadow passwords], ac_cv_shadow,
@@ -1354,8 +1157,10 @@ else
         AC_MSG_RESULT(no)
 fi
 
-dnl --enable-debug=(yes|minimum|no)
-AC_ARG_ENABLE(debug, [  --enable-debug=[no/yes] turn on debugging [default=no]],,enable_debug=yes)
+#
+# Enable Debug 
+#
+AC_ARG_ENABLE(debug, [AC_HELP_STRING([--enable-debug=[no/yes]], [turn on debugging])],, enable_debug=yes)
 if test "$enable_debug" = "yes"; then
   DEBUG_CFLAGS="-DG_ENABLE_DEBUG"
 else
@@ -1414,7 +1219,12 @@ echo "
 	source code location:	  ${srcdir}
 	compiler:		  ${CC}
 	cflags:		          ${CFLAGS}
+        Extension libs:           ${SAVER_LIBS}
         Maintainer mode:          ${USE_MAINTAINER_MODE}
+
+	XFree86 Xinerama:         ${use_xfree_xinerama}
+	Solaris Xinerama:         ${use_solaris_xinerama}
+	Resize-and-rotate:        ${found_randr}
 
         Screen locking enabled:   ${enable_locking}
         Power management enabled: ${have_dpms}

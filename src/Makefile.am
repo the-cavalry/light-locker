@@ -157,7 +157,6 @@ gnome_screensaver_SOURCES =	\
 gnome_screensaver_LDADD =		\
 	$(GNOME_SCREENSAVER_LIBS)	\
 	$(SAVER_LIBS)			\
-	$(X_LIBS)			\
 	$(NULL)
 
 gnome_screensaver_LDFLAGS = -export-dynamic
