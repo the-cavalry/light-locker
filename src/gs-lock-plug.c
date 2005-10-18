@@ -1375,6 +1375,7 @@ get_face_image ()
 
 	theme = gtk_icon_theme_get_default ();
 
+#if 0
         if (! pixbuf) {
                 pixbuf = gtk_icon_theme_load_icon (theme,
                                                    "stock_person",
@@ -1382,14 +1383,10 @@ get_face_image ()
                                                    0,
                                                    NULL);
         }
+#endif
 
-        if (! pixbuf) {
-                pixbuf = gtk_icon_theme_load_icon (theme,
-                                                   GTK_STOCK_MISSING_IMAGE,
-                                                   icon_size,
-                                                   0,
-                                                   NULL);
-        }
+        if (! pixbuf)
+                return NULL;
 
         image = gtk_image_new_from_pixbuf (pixbuf);
 
@@ -1432,7 +1429,8 @@ create_page_one (GSLockPlug *plug)
         }
 
         widget = get_face_image ();
-        gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
+        if (widget)
+                gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
 
         vbox2 = gtk_vbox_new (FALSE, 0);
         gtk_box_pack_start (GTK_BOX (vbox), vbox2, FALSE, FALSE, 0);

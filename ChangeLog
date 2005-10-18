@@ -1,3 +1,9 @@
+2005-10-18  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c (get_face_image, create_page_one):
+	Don't use stock_person since doesn't represent
+	anyone and it is fuzzy.  Fixes #317886.
+
 2005-10-17  William Jon McCann  <mccann@jhu.edu>
 
 	* src/Makefile.am (INCLUDES): Added
