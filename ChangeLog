@@ -1,5 +1,48 @@
 2005-10-22  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (emit_disactivated_idle, command_watch) 
+	(gs_window_request_unlock, gs_window_class_init):
+	Change blank -> activate to be consistent.
+
+	* src/gs-watcher-x11.c (gs_watcher_set_active): 
+	* src/gs-power-x11.c (gs_power_set_active): Return a boolean
+	to indicate if the command was successful.
+
+	* src/gs-monitor.c (listener_lock_cb): Check return value of
+	gs_listener_set_active.
+	(listener_active_changed_cb): Check return values to make
+	sure we can activate the windows.  If the windows can't
+	be activated then return FALSE to indicate that the
+	the activation state change was not successful.  The
+	window activation can fail if the keyboard cannot be
+	grabbed.  In this case we don't change activation state
+	and we will try again after another idle cycle.
+	(gs_monitor_init): 
+
+	* src/gs-manager.[ch] (gs_manager_set_lock_timeout) 
+	(gs_manager_cycle, gs_manager_set_cycle_timeout) 
+	(gs_manager_get_property, gs_manager_class_init, remove_timers) 
+	(gs_manager_finalize, window_disactivated_idle) 
+	(window_disactivated_cb, window_show_cb) 
+	(gs_manager_create_window, gs_manager_activate) 
+	(gs_manager_disactivate, gs_manager_set_active) 
+	(gs_manager_is_active, gs_manager_request_unlock):
+	Change blank -> activate to be consistent.
+
+	* src/gs-listener-dbus.c (gs_listener_set_active):
+	Change to return a boolean to indicate if the command
+	was successful.
+	(gs_listener_set_idle): Print a warning if failing
+	because idle is already set.
+	(gs_listener_class_init): Change active changed signal
+	to take a return value in order to detect if signal
+	was handled completely.
+
+	* src/.cvsignore: 
+	* src/Makefile.am: Rename marshal list.
+
+2005-10-22  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-preferences.c (config_get_activate_delay) 
 	(config_set_activate_delay, config_set_theme) 
 	(activate_delay_value_changed_cb, init_capplet): 

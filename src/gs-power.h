@@ -60,7 +60,7 @@ GType       gs_power_get_type (void);
 GSPower   * gs_power_new              (void);
 
 gboolean    gs_power_get_active       (GSPower    *power);
-void        gs_power_set_active       (GSPower    *power,
+gboolean    gs_power_set_active       (GSPower    *power,
                                        gboolean    active);
 gboolean    gs_power_get_enabled      (GSPower    *power);
 void        gs_power_set_enabled      (GSPower    *power,

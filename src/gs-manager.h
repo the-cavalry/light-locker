@@ -46,8 +46,8 @@ typedef struct
 {
         GObjectClass     parent_class;
 
-        void            (* blanked)          (GSManager *manager);
-        void            (* unblanked)        (GSManager *manager);
+        void            (* activated)       (GSManager *manager);
+        void            (* disactivated)    (GSManager *manager);
 
 } GSManagerClass;
 
@@ -55,11 +55,11 @@ GType       gs_manager_get_type             (void);
 
 GSManager * gs_manager_new                  (void);
 
-gboolean    gs_manager_blank                (GSManager  *manager);
-gboolean    gs_manager_unblank              (GSManager  *manager);
+gboolean    gs_manager_set_active           (GSManager  *manager,
+                                             gboolean    active);
 gboolean    gs_manager_cycle                (GSManager  *manager);
 
-gboolean    gs_manager_is_blanked           (GSManager  *manager);
+gboolean    gs_manager_is_active            (GSManager  *manager);
 void        gs_manager_set_lock_active      (GSManager  *manager,
                                              gboolean    lock_enabled);
 void        gs_manager_set_lock_enabled     (GSManager  *manager,

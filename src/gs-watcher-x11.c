@@ -44,7 +44,7 @@
 
 #include "gnome-screensaver.h"
 #include "gs-watcher-x11.h"
-#include "gs-watcher-marshal.h"
+#include "gs-marshal.h"
 
 static void     gs_watcher_class_init (GSWatcherClass *klass);
 static void     gs_watcher_init       (GSWatcher      *watcher);
@@ -204,7 +204,7 @@ gs_watcher_class_init (GSWatcherClass *klass)
                               G_STRUCT_OFFSET (GSWatcherClass, idle),
                               NULL,
                               NULL,
-                              gs_watcher_marshal_BOOLEAN__INT,
+                              gs_marshal_BOOLEAN__INT,
                               G_TYPE_BOOLEAN,
                               1, G_TYPE_INT);
 
@@ -281,10 +281,12 @@ stop_idle_watcher (GSWatcher *watcher)
         return FALSE;
 }
 
-void
+gboolean
 gs_watcher_set_active (GSWatcher *watcher,
                        gboolean   active)
 {
+        g_return_val_if_fail (GS_IS_WATCHER (watcher), FALSE);
+
         if (! active) {
                 stop_idle_watcher (watcher);
                 if (watcher->priv->debug)
@@ -294,6 +296,8 @@ gs_watcher_set_active (GSWatcher *watcher,
                 if (watcher->priv->debug)
                         g_message ("Starting idle watcher");
         }
+
+        return TRUE;
 }
 
 static void
@@ -668,6 +672,8 @@ maybe_send_signal (GSWatcher *watcher)
 
                 /* if the event wasn't handled then schedule another timer */
                 if (! res) {
+                        g_warning ("Idle signal was not handled, restarting watcher");
+
                         if (polling_for_idleness)
                                 schedule_wakeup_event (watcher, watcher->priv->timeout, watcher->priv->debug);
                 }

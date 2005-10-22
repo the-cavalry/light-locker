@@ -34,6 +34,7 @@
 #include <dbus/dbus-glib-lowlevel.h>
 
 #include "gs-listener-dbus.h"
+#include "gs-marshal.h"
 
 /* this is for dbus < 0.3 */
 #if ((DBUS_VERSION_MAJOR == 0) && (DBUS_VERSION_MINOR < 30))
@@ -194,17 +195,30 @@ listener_check_activation (GSListener *listener)
         }
 }
 
-void
+gboolean
 gs_listener_set_active (GSListener *listener,
                         gboolean    active)
 {
-        g_return_if_fail (GS_IS_LISTENER (listener));
+        gboolean res;
+
+        g_return_val_if_fail (GS_IS_LISTENER (listener), FALSE);
 
         if (listener->priv->active != active) {
 
-                listener->priv->active = active;
+                res = FALSE;
+                g_signal_emit (listener, signals [ACTIVE_CHANGED], 0, active, &res);
+                if (! res) {
+                        /* if the signal is not handled then we haven't changed state */
 
-                g_signal_emit (listener, signals [ACTIVE_CHANGED], 0, active);
+                        /* clear the idle state */
+                        if (active) {
+                                gs_listener_set_idle (listener, FALSE);
+                        }
+
+                        return FALSE;
+                }
+
+                listener->priv->active = active;
                 gs_listener_send_signal_active_changed (listener);
 
                 if (! active) {
@@ -215,6 +229,8 @@ gs_listener_set_active (GSListener *listener,
                         listener->priv->idle_start = 0;
                 }
         }
+
+        return TRUE;
 }
 
 gboolean
@@ -223,8 +239,10 @@ gs_listener_set_idle (GSListener *listener,
 {
         g_return_val_if_fail (GS_IS_LISTENER (listener), FALSE);
 
-        if (listener->priv->idle == idle)
+        if (listener->priv->idle == idle) {
+                g_warning ("Trying to set idle when already idle");
                 return FALSE;
+        }
 
         if (idle) {
                 guint n_inhibitors = 0;
@@ -853,8 +871,8 @@ gs_listener_class_init (GSListenerClass *klass)
                               G_STRUCT_OFFSET (GSListenerClass, active_changed),
                               NULL,
                               NULL,
-                              g_cclosure_marshal_VOID__BOOLEAN,
-                              G_TYPE_NONE,
+                              gs_marshal_BOOLEAN__BOOLEAN,
+                              G_TYPE_BOOLEAN,
                               1,
                               G_TYPE_BOOLEAN);
         signals [THROTTLE_ENABLED_CHANGED] =

@@ -58,7 +58,7 @@ struct GSManagerPrivate
         char        *logout_command;
 
         /* State */
-        guint        blank_active : 1;
+        guint        active : 1;
         guint        lock_active : 1;
 
         guint        dialog_up : 1;
@@ -66,15 +66,15 @@ struct GSManagerPrivate
         guint        lock_timeout_id;
         guint        cycle_timeout_id;
 
-        time_t       blank_time;
+        time_t       activate_time;
 
         GSList      *themes;
         GSSaverMode  saver_mode;
 };
 
 enum {
-        BLANKED,
-        UNBLANKED,
+        ACTIVATED,
+        DISACTIVATED,
         LAST_SIGNAL
 };
 
@@ -87,7 +87,7 @@ enum {
         PROP_CYCLE_TIMEOUT,
         PROP_LOGOUT_TIMEOUT,
         PROP_LOGOUT_COMMAND,
-        PROP_BLANK_ACTIVE,
+        PROP_ACTIVE,
         PROP_THROTTLE_ENABLED,
 };
 
@@ -226,11 +226,11 @@ gs_manager_set_lock_timeout (GSManager *manager,
 
                 manager->priv->lock_timeout = lock_timeout;
 
-                if (manager->priv->blank_active
+                if (manager->priv->active
                     && !manager->priv->lock_active
                     && (lock_timeout >= 0)) {
 
-                        glong elapsed = (time (NULL) - manager->priv->blank_time) * 1000;
+                        glong elapsed = (time (NULL) - manager->priv->activate_time) * 1000;
 
                         if (manager->priv->lock_timeout_id) {
                                 g_source_remove (manager->priv->lock_timeout_id);
@@ -317,7 +317,7 @@ gs_manager_cycle (GSManager *manager)
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
-        if (! manager->priv->blank_active)
+        if (! manager->priv->active)
                 return FALSE;
 
         if (manager->priv->dialog_up)
@@ -362,9 +362,9 @@ gs_manager_set_cycle_timeout (GSManager *manager,
 
                 manager->priv->cycle_timeout = cycle_timeout;
 
-                if (manager->priv->blank_active && (cycle_timeout >= 0)) {
+                if (manager->priv->active && (cycle_timeout >= 0)) {
                         glong timeout;
-                        glong elapsed = (time (NULL) - manager->priv->blank_time) * 1000;
+                        glong elapsed = (time (NULL) - manager->priv->activate_time) * 1000;
 
                         if (manager->priv->cycle_timeout_id) {
                                 g_source_remove (manager->priv->cycle_timeout_id);
@@ -459,8 +459,8 @@ gs_manager_get_property (GObject            *object,
         case PROP_CYCLE_TIMEOUT:
                 g_value_set_long (value, self->priv->cycle_timeout);
                 break;
-        case PROP_BLANK_ACTIVE:
-                g_value_set_boolean (value, self->priv->blank_active);
+        case PROP_ACTIVE:
+                g_value_set_boolean (value, self->priv->active);
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -478,21 +478,21 @@ gs_manager_class_init (GSManagerClass *klass)
         object_class->get_property = gs_manager_get_property;
         object_class->set_property = gs_manager_set_property;
 
-        signals [BLANKED] =
-                g_signal_new ("blanked",
+        signals [ACTIVATED] =
+                g_signal_new ("activated",
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSManagerClass, blanked),
+                              G_STRUCT_OFFSET (GSManagerClass, activated),
                               NULL,
                               NULL,
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
-        signals [UNBLANKED] =
-                g_signal_new ("unblanked",
+        signals [DISACTIVATED] =
+                g_signal_new ("disactivated",
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSManagerClass, unblanked),
+                              G_STRUCT_OFFSET (GSManagerClass, disactivated),
                               NULL,
                               NULL,
                               g_cclosure_marshal_VOID__VOID,
@@ -500,8 +500,8 @@ gs_manager_class_init (GSManagerClass *klass)
                               0);
 
         g_object_class_install_property (object_class,
-                                         PROP_BLANK_ACTIVE,
-                                         g_param_spec_boolean ("blank-active",
+                                         PROP_ACTIVE,
+                                         g_param_spec_boolean ("active",
                                                                NULL,
                                                                NULL,
                                                                FALSE,
@@ -580,7 +580,7 @@ gs_manager_init (GSManager *manager)
 }
 
 static void
-remove_blank_timers (GSManager *manager)
+remove_timers (GSManager *manager)
 {
 
         if (manager->priv->lock_timeout_id) {
@@ -609,7 +609,7 @@ gs_manager_finalize (GObject *object)
 
         g_free (manager->priv->logout_command);
 
-        remove_blank_timers (manager);
+        remove_timers (manager);
 
         gs_grab_release_keyboard_and_mouse ();
 
@@ -626,32 +626,34 @@ gs_manager_finalize (GObject *object)
         g_slist_free (manager->priv->windows);
         manager->priv->windows = NULL;
 
-        manager->priv->blank_active = FALSE;
-        manager->priv->blank_time = 0;
+        manager->priv->active = FALSE;
+        manager->priv->activate_time = 0;
         manager->priv->lock_enabled = FALSE;
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }
 
 static gboolean
-window_unblank_idle (GSManager *manager)
+window_disactivated_idle (GSManager *manager)
 {
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
-        
-        gs_manager_unblank (manager);
+
+        /* don't disactivate directly but only emit a signal
+           so that we let the parent disactivate */
+        g_signal_emit (manager, signals [DISACTIVATED], 0);
 
         return FALSE;
 }
 
 static void
-window_unblanked_cb (GSWindow  *window,
-                     GSManager *manager)
+window_disactivated_cb (GSWindow  *window,
+                       GSManager *manager)
 {
         g_return_if_fail (manager != NULL);
         g_return_if_fail (GS_IS_MANAGER (manager));
         
-        g_idle_add ((GSourceFunc)window_unblank_idle, manager);
+        g_idle_add ((GSourceFunc)window_disactivated_idle, manager);
 }
 
 static void
@@ -758,7 +760,7 @@ window_show_cb (GSWindow  *window,
 
         manager->priv->jobs = g_slist_append (manager->priv->jobs, job);
 
-        manager->priv->blank_time = time (NULL);
+        manager->priv->activate_time = time (NULL);
 
         /* Set lock state to off initially.  It may be enabled by activate_lock_timout() */
         gs_manager_set_lock_active (manager, FALSE);
@@ -782,7 +784,7 @@ window_show_cb (GSWindow  *window,
         }
 
         /* FIXME: only emit signal once */
-        g_signal_emit (manager, signals [BLANKED], 0);
+        g_signal_emit (manager, signals [ACTIVATED], 0);
 }
 
 static void
@@ -810,8 +812,8 @@ gs_manager_create_window (GSManager *manager,
                 gs_window_set_logout_timeout (window, manager->priv->logout_timeout);
                 gs_window_set_logout_command (window, manager->priv->logout_command);
 
-                g_signal_connect_object (window, "unblanked",
-                                         G_CALLBACK (window_unblanked_cb), manager, 0);
+                g_signal_connect_object (window, "disactivated",
+                                         G_CALLBACK (window_disactivated_cb), manager, 0);
                 g_signal_connect_object (window, "dialog-up",
                                          G_CALLBACK (window_dialog_up_cb), manager, 0);
                 g_signal_connect_object (window, "dialog-down",
@@ -861,8 +863,8 @@ gs_manager_new (void)
         return GS_MANAGER (manager);
 }
 
-gboolean
-gs_manager_blank (GSManager *manager)
+static gboolean
+gs_manager_activate (GSManager *manager)
 {
         GdkDisplay *display;
         GdkScreen  *screen;
@@ -871,17 +873,18 @@ gs_manager_blank (GSManager *manager)
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
-        if (manager->priv->blank_active)
+        if (manager->priv->active) {
+                g_warning ("Trying to activate manager when already active");
                 return FALSE;
-
-        manager->priv->blank_active = TRUE;
+        }
 
         display = gdk_display_get_default ();
         gdk_display_get_pointer (display, &screen, NULL, NULL, NULL);
         root = gdk_screen_get_root_window (screen);
 
-        if (! gs_grab_get_keyboard_and_mouse (root, screen))
+        if (! gs_grab_get_keyboard_and_mouse (root, screen)) {
                 return FALSE;
+        }
 
         if (! manager->priv->windows)
                 gs_manager_create (GS_MANAGER (manager));
@@ -889,21 +892,25 @@ gs_manager_blank (GSManager *manager)
         /* fade to black and show windows */
         fade_screens_and_show (3, 20, TRUE, manager->priv->windows);
 
+        manager->priv->active = TRUE;
+
         return TRUE;
 }
 
-gboolean
-gs_manager_unblank (GSManager *manager)
+static gboolean
+gs_manager_disactivate (GSManager *manager)
 {
         GSList *l;
 
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
-        if (! manager->priv->blank_active)
+        if (! manager->priv->active) {
+                g_warning ("Trying to disactivate a screensaver that is not active");
                 return FALSE;
+        }
 
-        remove_blank_timers (manager);
+        remove_timers (manager);
 
         gs_grab_release_keyboard_and_mouse ();
 
@@ -920,23 +927,35 @@ gs_manager_unblank (GSManager *manager)
         g_slist_free (manager->priv->windows);
         manager->priv->windows = NULL;
 
-        manager->priv->blank_active = FALSE;
-        manager->priv->blank_time = 0;
+        manager->priv->active = FALSE;
+        manager->priv->activate_time = 0;
         manager->priv->lock_active = FALSE;
         manager->priv->throttle_enabled = FALSE;
-
-        g_signal_emit (manager, signals [UNBLANKED], 0);
 
         return TRUE;
 }
 
 gboolean
-gs_manager_is_blanked (GSManager *manager)
+gs_manager_set_active (GSManager *manager,
+                       gboolean   active)
+{
+        gboolean res;
+
+        if (active)
+                res = gs_manager_activate (manager);
+        else
+                res = gs_manager_disactivate (manager);
+
+        return res;
+}
+
+gboolean
+gs_manager_is_active (GSManager *manager)
 {
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
-        return manager->priv->blank_active;
+        return manager->priv->active;
 }
 
 void
@@ -950,7 +969,7 @@ gs_manager_request_unlock (GSManager *manager)
         g_return_if_fail (manager != NULL);
         g_return_if_fail (GS_IS_MANAGER (manager));
 
-        if (! manager->priv->blank_active)
+        if (! manager->priv->active)
                 return;
 
         /* Find the screen that contains the pointer */

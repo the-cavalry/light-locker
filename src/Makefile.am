@@ -115,17 +115,17 @@ gnome_screensaver_dialog_LDADD =	\
 	$(top_builddir)/src/cut-n-paste/libfast-user-switch.a \
 	$(NULL)
 
-BUILT_SOURCES = 			\
-	gs-watcher-marshal.c 		\
-	gs-watcher-marshal.h		\
+BUILT_SOURCES = 		\
+	gs-marshal.c 		\
+	gs-marshal.h		\
 	$(NULL)
 
-gs-watcher-marshal.c: gs-watcher-marshal.list
-	echo "#include \"gs-watcher-marshal.h\"" > $@ && \
-	@GLIB_GENMARSHAL@ $< --prefix=gs_watcher_marshal --body >> $@
+gs-marshal.c: gs-marshal.list
+	echo "#include \"gs-marshal.h\"" > $@ && \
+	@GLIB_GENMARSHAL@ $< --prefix=gs_marshal --body >> $@
 
-gs-watcher-marshal.h: gs-watcher-marshal.list
-	@GLIB_GENMARSHAL@ $< --prefix=gs_watcher_marshal --header > $@
+gs-marshal.h: gs-marshal.list
+	@GLIB_GENMARSHAL@ $< --prefix=gs_marshal --header > $@
 
 gnome_screensaver_SOURCES =	\
 	gnome-screensaver.c	\
@@ -177,7 +177,7 @@ gnome_screensaver_preferences_LDADD =	\
 	$(NULL)
 
 EXTRA_DIST =				\
-	gs-watcher-marshal.list		\
+	gs-marshal.list			\
 	$(NULL)
 
 CLEANFILES = $(BUILT_SOURCES)

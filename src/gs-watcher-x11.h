@@ -52,7 +52,7 @@ GType       gs_watcher_get_type (void);
 
 GSWatcher * gs_watcher_new              (guint      timeout);
 void        gs_watcher_reset            (GSWatcher *watcher);
-void        gs_watcher_set_active       (GSWatcher *watcher,
+gboolean    gs_watcher_set_active       (GSWatcher *watcher,
                                          gboolean   active);
 void        gs_watcher_set_timeout      (GSWatcher *watcher,
                                          guint      timeout);

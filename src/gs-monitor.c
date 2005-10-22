@@ -74,14 +74,14 @@ gs_monitor_class_init (GSMonitorClass *klass)
 }
 
 static void
-manager_blanked_cb (GSManager *manager,
-                    GSMonitor *monitor)
+manager_activated_cb (GSManager *manager,
+                      GSMonitor *monitor)
 {
 }
 
 static void
-manager_unblanked_cb (GSManager *manager,
-                      GSMonitor *monitor)
+manager_disactivated_cb (GSManager *manager,
+                         GSMonitor *monitor)
 {
         gs_listener_set_active (monitor->priv->listener, FALSE);
 }
@@ -102,8 +102,14 @@ static void
 listener_lock_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
-        gs_listener_set_active (monitor->priv->listener, TRUE);
-        gs_manager_set_lock_active (monitor->priv->manager, TRUE);
+        gboolean res;
+
+        res = gs_listener_set_active (monitor->priv->listener, TRUE);
+        if (res) {
+                gs_manager_set_lock_active (monitor->priv->manager, TRUE);
+        } else {
+                g_warning ("Unable to lock the screen");
+        }
 }
 
 static void
@@ -121,30 +127,64 @@ listener_cycle_cb (GSListener *listener,
         gs_manager_cycle (monitor->priv->manager);
 }
 
-static void
+static gboolean
 listener_active_changed_cb (GSListener *listener,
                             gboolean    active,
                             GSMonitor  *monitor)
 {
+        gboolean res;
+
         if (active) {
                 /* turn off the idleness watcher */
-                gs_watcher_set_active (monitor->priv->watcher, FALSE);
+                res = gs_watcher_set_active (monitor->priv->watcher, FALSE);
+                if (! res) {
+                        g_warning ("Unable to disactivate the idle watcher");
+                        return FALSE;
+                }
 
                 /* blank the screen */
-                gs_manager_blank (monitor->priv->manager);
+                res = gs_manager_set_active (monitor->priv->manager, TRUE);
+                if (! res) {
+                        g_warning ("Unable to blank the screen");
+
+                        /* since we can't activate then reactivate the watcher
+                           and give up */
+                        res = gs_watcher_set_active (monitor->priv->watcher, TRUE);
+
+                        return FALSE;
+                }
 
                 /* enable power management */
-                gs_power_set_active (monitor->priv->power, TRUE);
+                res = gs_power_set_active (monitor->priv->power, TRUE);
+                if (! res) {
+                        g_warning ("Unable to activate power management");
+
+                        /* if we can't activate power management it isn't the
+                           end of the world */
+                }
         } else {
                 /* unblank the screen */
-                gs_manager_unblank (monitor->priv->manager);
+                res = gs_manager_set_active (monitor->priv->manager, FALSE);
+                if (! res) {
+                        g_warning ("Unable to unblank the screen");
+                        return FALSE;
+                }
 
                 /* turn on the idleness watcher */
-                gs_watcher_set_active (monitor->priv->watcher, TRUE);
+                res = gs_watcher_set_active (monitor->priv->watcher, TRUE);
+                if (! res) {
+                        g_warning ("Unable to activate the idle watcher");
+                        return FALSE;
+                }
 
                 /* disable power management */
-                gs_power_set_active (monitor->priv->power, FALSE);
+                res = gs_power_set_active (monitor->priv->power, FALSE);
+                if (! res) {
+                        g_warning ("Unable to disactivate power management");
+                }
         }
+
+        return TRUE;
 }
 
 static void
@@ -247,10 +287,10 @@ gs_monitor_init (GSMonitor *monitor)
                           G_CALLBACK (watcher_idle_cb), monitor);
 
         monitor->priv->manager = gs_manager_new ();
-        g_signal_connect (monitor->priv->manager, "blanked",
-                          G_CALLBACK (manager_blanked_cb), monitor);
-        g_signal_connect (monitor->priv->manager, "unblanked",
-                          G_CALLBACK (manager_unblanked_cb), monitor);
+        g_signal_connect (monitor->priv->manager, "activated",
+                          G_CALLBACK (manager_activated_cb), monitor);
+        g_signal_connect (monitor->priv->manager, "disactivated",
+                          G_CALLBACK (manager_disactivated_cb), monitor);
 
         monitor->priv->power = gs_power_new ();
         g_signal_connect (monitor->priv->power, "changed",

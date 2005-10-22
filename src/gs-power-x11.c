@@ -322,17 +322,19 @@ gs_power_get_active (GSPower *power)
         return power->priv->active;
 }
 
-void
+gboolean
 gs_power_set_active (GSPower *power,
                      gboolean active)
 {
-        g_return_if_fail (GS_IS_POWER (power));
+        g_return_val_if_fail (GS_IS_POWER (power), FALSE);
 
         if (power->priv->active != active) {
                 power->priv->active = active;
 
                 sync_settings (power);
         }
+
+        return TRUE;
 }
 
 void
