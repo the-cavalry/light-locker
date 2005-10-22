@@ -279,13 +279,13 @@
 			      <property name="spacing">6</property>
 
 			      <child>
-				<widget class="GtkHBox" id="blank_delay_hbox">
+				<widget class="GtkHBox" id="activate_delay_hbox">
 				  <property name="visible">True</property>
 				  <property name="homogeneous">False</property>
 				  <property name="spacing">12</property>
 
 				  <child>
-				    <widget class="GtkLabel" id="blank_delay_label">
+				    <widget class="GtkLabel" id="activate_delay_label">
 				      <property name="visible">True</property>
 				      <property name="label" translatable="yes">_Activate after:</property>
 				      <property name="use_underline">True</property>
@@ -316,7 +316,7 @@
 				      <property name="spacing">6</property>
 
 				      <child>
-					<widget class="GtkHScale" id="blank_delay_hscale">
+					<widget class="GtkHScale" id="activate_delay_hscale">
 					  <property name="visible">True</property>
 					  <property name="can_focus">True</property>
 					  <property name="draw_value">True</property>

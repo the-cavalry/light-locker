@@ -1,3 +1,11 @@
+2005-10-22  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gnome-screensaver-preferences.c (config_get_activate_delay) 
+	(config_set_activate_delay, config_set_theme) 
+	(activate_delay_value_changed_cb, init_capplet): 
+	* data/gnome-screensaver-preferences.glade:
+	Update for blank -> activate schema change a while back.
+
 2005-10-18  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (get_face_image, create_page_one):

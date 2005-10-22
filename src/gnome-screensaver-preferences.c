@@ -46,17 +46,17 @@
 
 #define GLADE_XML_FILE "gnome-screensaver-preferences.glade"
 
-#define KEY_DIR          "/apps/gnome-screensaver"
-#define KEY_LOCK         KEY_DIR "/lock"
-#define KEY_MODE         KEY_DIR "/mode"
-#define KEY_BLANK_DELAY  KEY_DIR "/blank_delay"
-#define KEY_LOCK_DELAY   KEY_DIR "/lock_delay"
-#define KEY_CYCLE_DELAY  KEY_DIR "/cycle_delay"
-#define KEY_DPMS_ENABLED KEY_DIR "/dpms_enabled"
-#define KEY_DPMS_STANDBY KEY_DIR "/dpms_standby"
-#define KEY_DPMS_SUSPEND KEY_DIR "/dpms_suspend"
-#define KEY_DPMS_OFF     KEY_DIR "/dpms_off"
-#define KEY_THEMES       KEY_DIR "/themes"
+#define KEY_DIR             "/apps/gnome-screensaver"
+#define KEY_LOCK            KEY_DIR "/lock"
+#define KEY_MODE            KEY_DIR "/mode"
+#define KEY_ACTIVATE_DELAY  KEY_DIR "/activate_delay"
+#define KEY_LOCK_DELAY      KEY_DIR "/lock_delay"
+#define KEY_CYCLE_DELAY     KEY_DIR "/cycle_delay"
+#define KEY_DPMS_ENABLED    KEY_DIR "/dpms_enabled"
+#define KEY_DPMS_STANDBY    KEY_DIR "/dpms_standby"
+#define KEY_DPMS_SUSPEND    KEY_DIR "/dpms_suspend"
+#define KEY_DPMS_OFF        KEY_DIR "/dpms_off"
+#define KEY_THEMES          KEY_DIR "/themes"
 
 enum {
         NAME_COLUMN,
@@ -88,7 +88,7 @@ static GladeXML *xml = NULL;
 static GSJob    *job = NULL;
 
 static gint32
-config_get_blank_delay (gboolean *is_writable)
+config_get_activate_delay (gboolean *is_writable)
 {
         GConfClient *client;
         gint32       delay;
@@ -97,11 +97,11 @@ config_get_blank_delay (gboolean *is_writable)
 
         if (is_writable) {
                 *is_writable = gconf_client_key_is_writable (client,
-                                                             KEY_BLANK_DELAY,
+                                                             KEY_ACTIVATE_DELAY,
                                                              NULL);
         }
 
-        delay = gconf_client_get_int (client, KEY_BLANK_DELAY, NULL);
+        delay = gconf_client_get_int (client, KEY_ACTIVATE_DELAY, NULL);
 
         if (delay < 1)
                 delay = 1;
@@ -112,13 +112,13 @@ config_get_blank_delay (gboolean *is_writable)
 }
 
 static void
-config_set_blank_delay (gint32 timeout)
+config_set_activate_delay (gint32 timeout)
 {
         GConfClient *client;
 
         client = gconf_client_get_default ();
 
-        gconf_client_set_int (client, KEY_BLANK_DELAY, timeout, NULL);
+        gconf_client_set_int (client, KEY_ACTIVATE_DELAY, timeout, NULL);
 
         g_object_unref (client);
 }
@@ -290,11 +290,11 @@ preview_set_theme (GtkWidget  *widget,
         gboolean   lock_writable;
         GError    *error = NULL;
 
-        delay_box = glade_xml_get_widget (xml, "blank_delay_hbox");
+        delay_box = glade_xml_get_widget (xml, "activate_delay_hbox");
         lock_box = glade_xml_get_widget (xml, "lock_checkbox");
 
         /* see if the keys are writable */
-        config_get_blank_delay (&delay_writable);
+        config_get_activate_delay (&delay_writable);
         config_get_lock (&lock_writable);
 
         if (job) {
@@ -452,13 +452,13 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
 }
 
 static void
-blank_delay_value_changed_cb (GtkRange *range,
-                              gpointer  user_data)
+activate_delay_value_changed_cb (GtkRange *range,
+                                 gpointer  user_data)
 {
         gdouble value;
 
         value = gtk_range_get_value (range);
-        config_set_blank_delay ((gint32)value);
+        config_set_activate_delay ((gint32)value);
 }
 
 static int
@@ -875,13 +875,13 @@ init_capplet (void)
         GtkWidget *dialog;
         GtkWidget *preview;
         GtkWidget *treeview;
-        GtkWidget *blank_delay_hscale;
-        GtkWidget *blank_delay_hbox;
+        GtkWidget *activate_delay_hscale;
+        GtkWidget *activate_delay_hbox;
         GtkWidget *label;
         GtkWidget *lock_checkbox;
         char      *glade_file;
         char      *string;
-        gdouble    blank_delay;
+        gdouble    activate_delay;
         gboolean   is_writable;
         GConfClient *client;
 
@@ -908,20 +908,20 @@ init_capplet (void)
         preview            = glade_xml_get_widget (xml, "preview_area");
         dialog             = glade_xml_get_widget (xml, "prefs_dialog");
         treeview           = glade_xml_get_widget (xml, "savers_treeview");
-        blank_delay_hscale = glade_xml_get_widget (xml, "blank_delay_hscale");
-        blank_delay_hbox   = glade_xml_get_widget (xml, "blank_delay_hbox");
+        activate_delay_hscale = glade_xml_get_widget (xml, "activate_delay_hscale");
+        activate_delay_hbox   = glade_xml_get_widget (xml, "activate_delay_hbox");
         lock_checkbox      = glade_xml_get_widget (xml, "lock_checkbox");
 
-        label              = glade_xml_get_widget (xml, "blank_delay_label");
-        gtk_label_set_mnemonic_widget (GTK_LABEL (label), blank_delay_hscale);
+        label              = glade_xml_get_widget (xml, "activate_delay_label");
+        gtk_label_set_mnemonic_widget (GTK_LABEL (label), activate_delay_hscale);
         label              = glade_xml_get_widget (xml, "savers_label");
         gtk_label_set_mnemonic_widget (GTK_LABEL (label), treeview);
 
-        blank_delay = config_get_blank_delay (&is_writable);
-        gtk_range_set_value (GTK_RANGE (blank_delay_hscale), blank_delay);
+        activate_delay = config_get_activate_delay (&is_writable);
+        gtk_range_set_value (GTK_RANGE (activate_delay_hscale), activate_delay);
         if (! is_writable)
-                gtk_widget_set_sensitive (blank_delay_hbox, FALSE);
-        g_signal_connect (blank_delay_hscale, "format-value",
+                gtk_widget_set_sensitive (activate_delay_hbox, FALSE);
+        g_signal_connect (activate_delay_hscale, "format-value",
                           G_CALLBACK (format_value_callback_time), NULL);
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (lock_checkbox), config_get_lock (&is_writable));
@@ -973,8 +973,8 @@ init_capplet (void)
         setup_treeview (treeview, preview);
         setup_treeview_selection (treeview);
 
-        g_signal_connect (blank_delay_hscale, "value-changed",
-                          G_CALLBACK (blank_delay_value_changed_cb), NULL);
+        g_signal_connect (activate_delay_hscale, "value-changed",
+                          G_CALLBACK (activate_delay_value_changed_cb), NULL);
 
         g_signal_connect (dialog, "response",
                           G_CALLBACK (response_cb), NULL);
