@@ -1,3 +1,9 @@
+==== 0.0.17 ====
+
+2005-10-24  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 0.0.17 release
+
 2005-10-22  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (emit_disactivated_idle, command_watch) 

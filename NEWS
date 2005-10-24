@@ -1,4 +1,22 @@
 ==============
+Version 0.0.17
+==============
+
+  gnome-screensaver
+
+        * Restart idle watch if can't grab keyboard
+        * Make timeout in preferences work again
+        * Daemonize process by default
+        * Add option --no-daemon
+        * Don't use any icon if face image is not found
+
+  Translators
+
+        * Adam Weinberger (en_CA)
+        * Kjartan Maraas (nb)
+        * Kjartan Maraas (no)
+
+==============
 Version 0.0.16
 ==============
 
