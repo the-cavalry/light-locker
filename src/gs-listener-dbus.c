@@ -100,7 +100,7 @@ gs_listener_vtable = { &gs_listener_unregister_handler,
 static GObjectClass *parent_class = NULL;
 static guint         signals [LAST_SIGNAL] = { 0, };
 
-G_DEFINE_TYPE (GSListener, gs_listener, G_TYPE_OBJECT);
+G_DEFINE_TYPE (GSListener, gs_listener, G_TYPE_OBJECT)
 
 GQuark
 gs_listener_error_quark (void)

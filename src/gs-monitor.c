@@ -59,7 +59,7 @@ enum {
 
 static GObjectClass *parent_class = NULL;
 
-G_DEFINE_TYPE (GSMonitor, gs_monitor, G_TYPE_OBJECT);
+G_DEFINE_TYPE (GSMonitor, gs_monitor, G_TYPE_OBJECT)
 
 static void
 gs_monitor_class_init (GSMonitorClass *klass)

@@ -165,7 +165,7 @@ enum {
 static GObjectClass *parent_class = NULL;
 static guint         lock_plug_signals [LAST_SIGNAL];
 
-G_DEFINE_TYPE (GSLockPlug, gs_lock_plug, GTK_TYPE_PLUG);
+G_DEFINE_TYPE (GSLockPlug, gs_lock_plug, GTK_TYPE_PLUG)
 
 static void
 gs_lock_plug_style_set (GtkWidget *widget,

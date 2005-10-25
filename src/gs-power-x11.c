@@ -79,7 +79,7 @@ enum {
 static GObjectClass *parent_class = NULL;
 static guint         signals [LAST_SIGNAL] = { 0, };
 
-G_DEFINE_TYPE (GSPower, gs_power, G_TYPE_OBJECT);
+G_DEFINE_TYPE (GSPower, gs_power, G_TYPE_OBJECT)
 
 /* the following function is derived from
    xscreensaver Copyright (C) Jamie Zawinski

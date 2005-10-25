@@ -1,5 +1,14 @@
 2005-10-25  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-listener-dbus.c:
+	* src/gs-lock-plug.c:
+	* src/gs-monitor.c:
+	* src/gs-power-x11.c:
+	Fix more potential warnings.  The Intel compiler doesn't like to
+	see a semi-colon after G_DEFINE_TYPE.
+	
+2005-10-25  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c (check_pointer_timer, reset_timers): 
 	* src/gs-window-x11.c: 
 	* src/gs-prefs.c (gs_prefs_set_property, gs_prefs_get_property): 
