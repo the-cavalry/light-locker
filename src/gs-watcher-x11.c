@@ -121,7 +121,7 @@ enum {
 static GObjectClass *parent_class = NULL;
 static guint         signals [LAST_SIGNAL] = { 0, };
 
-G_DEFINE_TYPE (GSWatcher, gs_watcher, G_TYPE_OBJECT);
+G_DEFINE_TYPE (GSWatcher, gs_watcher, G_TYPE_OBJECT)
 
 void
 gs_watcher_reset (GSWatcher *watcher)
@@ -723,7 +723,7 @@ reset_timers (GSWatcher *watcher)
 
         if (watcher->priv->timer_id) {
                 if (watcher->priv->debug)
-                        g_message ("killing idle_timer  (%d, %d)", watcher->priv->timeout, watcher->priv->timer_id);
+                        g_message ("killing idle_timer  (%u, %u)", watcher->priv->timeout, watcher->priv->timer_id);
                 g_source_remove (watcher->priv->timer_id);
                 watcher->priv->timer_id = 0;
         }
@@ -785,7 +785,7 @@ check_pointer_timer (GSWatcher *watcher)
         gboolean        active = FALSE;
         GdkDisplay     *display;
         GdkScreen      *screen;
-        int             n_screens, root_x, root_y;
+        int             root_x, root_y;
         GdkModifierType mask;
 
         if (watcher->priv->using_xidle_extension
@@ -797,7 +797,6 @@ check_pointer_timer (GSWatcher *watcher)
                 abort ();
 
         display = gdk_display_get_default ();
-        n_screens = gdk_display_get_n_screens (display);
 
         gdk_display_get_pointer (display,
                                  &screen,

@@ -91,7 +91,7 @@ file_transfer_dialog_finalize (GObject *obj)
 static void
 file_transfer_dialog_update_num_files (FileTransferDialog *dlg)
 {
-	gchar *str = g_strdup_printf (_("Copying file: %i of %i"),
+	gchar *str = g_strdup_printf (_("Copying file: %u of %u"),
 				      dlg->priv->nth, dlg->priv->total);
 	gtk_progress_bar_set_text (GTK_PROGRESS_BAR (dlg->priv->progress), str);
 	g_free (str);

@@ -77,7 +77,7 @@ static GConfEnumStringPair mode_enum_map [] = {
 static GObjectClass *parent_class = NULL;
 static guint         signals [LAST_SIGNAL] = { 0, };
 
-G_DEFINE_TYPE (GSPrefs, gs_prefs, G_TYPE_OBJECT);
+G_DEFINE_TYPE (GSPrefs, gs_prefs, G_TYPE_OBJECT)
 
 static void
 gs_prefs_set_property (GObject            *object,
@@ -85,10 +85,6 @@ gs_prefs_set_property (GObject            *object,
                        const GValue       *value,
                        GParamSpec         *pspec)
 {
-        GSPrefs *self;
-
-        self = GS_PREFS (object);
-
         switch (prop_id) {
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -102,10 +98,6 @@ gs_prefs_get_property (GObject            *object,
                        GValue             *value,
                        GParamSpec         *pspec)
 {
-        GSPrefs *self;
-
-        self = GS_PREFS (object);
-
         switch (prop_id) {
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);

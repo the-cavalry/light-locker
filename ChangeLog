@@ -1,3 +1,23 @@
+2005-10-25  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-watcher-x11.c (check_pointer_timer, reset_timers): 
+	* src/gs-window-x11.c: 
+	* src/gs-prefs.c (gs_prefs_set_property, gs_prefs_get_property): 
+	* src/gs-power-x11.c (gs_power_set_property) 
+	(gs_power_get_property): 
+	* src/gs-manager.c: 
+	* src/gs-lock-plug.c (get_face_image, create_page_one): 
+	* src/gs-listener-dbus.c (listener_property_set_bool) 
+	(listener_add_inhibitor, listener_remove_inhibitor) 
+	(listener_get_property, listener_get_idle_time): 
+	* src/gs-job.c: 
+	* src/gnome-screensaver-preferences.c (theme_installer_run): 
+	* src/gnome-screensaver-command.c: 
+	* src/file-transfer-dialog.c (file_transfer_dialog_update_num_files): 
+	* savers/slideshow.c (get_pixbuf_from_location):
+	Fix Intel compiler warnings.  Seems it doesn't like
+	unused code.  Patch from Kjartan Maraas <kmaraas@broadpark.no>
+
 2005-10-24  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.

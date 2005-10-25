@@ -100,7 +100,7 @@ enum {
 static GObjectClass   *parent_class = NULL;
 static guint           signals [LAST_SIGNAL] = { 0, };
 
-G_DEFINE_TYPE (GSWindow, gs_window, GTK_TYPE_WINDOW);
+G_DEFINE_TYPE (GSWindow, gs_window, GTK_TYPE_WINDOW)
 
 static void
 set_invisible_cursor (GdkWindow *window,

@@ -377,10 +377,6 @@ gs_power_set_property (GObject            *object,
                        const GValue       *value,
                        GParamSpec         *pspec)
 {
-        GSPower *self;
-
-        self = GS_POWER (object);
-
         switch (prop_id) {
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -394,10 +390,6 @@ gs_power_get_property (GObject            *object,
                        GValue             *value,
                        GParamSpec         *pspec)
 {
-        GSPower *self;
-
-        self = GS_POWER (object);
-
         switch (prop_id) {
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);

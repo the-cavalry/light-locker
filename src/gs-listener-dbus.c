@@ -287,24 +287,28 @@ listener_property_set_bool (GSListener *listener,
                             guint       prop_id,
                             dbus_bool_t value)
 {
+        dbus_bool_t ret;
+
+        ret = FALSE;
+
         switch (prop_id) {
         case PROP_ACTIVE:
                 gs_listener_set_active (listener, value);
-                return TRUE;
+                ret = TRUE;
                 break;
         case PROP_IDLE:
                 gs_listener_set_idle (listener, value);
-                return TRUE;
+                ret = TRUE;
                 break;
         case PROP_THROTTLE_ENABLED:
                 gs_listener_set_throttle_enabled (listener, value);
-                return TRUE;
+                ret = TRUE;
                 break;
         default:
                 break;
         }
 
-        return FALSE;
+        return ret;
 }
 
 static void
@@ -347,13 +351,10 @@ listener_add_inhibitor (GSListener     *listener,
                         DBusConnection *connection,
                         DBusMessage    *message)
 {
-        const char     *path;
         const char     *sender;
         DBusMessage    *reply;
         DBusError       error;
         char           *reason;
-
-        path = dbus_message_get_path (message);
 
         dbus_error_init (&error);
         if (! dbus_message_get_args (message, &error,
@@ -393,12 +394,9 @@ listener_remove_inhibitor (GSListener     *listener,
                            DBusConnection *connection,
                            DBusMessage    *message)
 {
-        const char  *path;
         DBusMessage *reply;
         DBusError    error;
         const char  *sender;
-
-        path = dbus_message_get_path (message);
 
         dbus_error_init (&error);
         if (! dbus_message_get_args (message, &error,
@@ -533,11 +531,8 @@ listener_get_property (GSListener     *listener,
                        DBusMessage    *message,
                        guint           prop_id)
 {
-        const char     *path;
         DBusMessageIter iter;
         DBusMessage    *reply;
-
-        path = dbus_message_get_path (message);
 
         reply = dbus_message_new_method_return (message);
 
@@ -569,7 +564,7 @@ listener_get_property (GSListener     *listener,
                 }
                 break;
         default:
-                g_warning ("Unsupported property id %d", prop_id);
+                g_warning ("Unsupported property id %u", prop_id);
                 break;
         }
 
@@ -586,12 +581,9 @@ listener_get_idle_time (GSListener     *listener,
                         DBusConnection *connection,
                         DBusMessage    *message)
 {
-        const char     *path;
         DBusMessageIter iter;
         DBusMessage    *reply;
         dbus_uint32_t    secs;
-
-        path = dbus_message_get_path (message);
 
         reply = dbus_message_new_method_return (message);
 

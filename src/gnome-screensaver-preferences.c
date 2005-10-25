@@ -680,7 +680,6 @@ theme_installer_run (GtkWidget *parent,
 
         while (TRUE) {
                 char      *file_tmp;
-                GtkWidget *dialog;
                 int        len = strlen (base);
 
                 if (base && len > 4 && (!strcmp (base + len - 4, ".xml"))) {

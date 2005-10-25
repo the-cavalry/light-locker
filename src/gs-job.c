@@ -84,7 +84,7 @@ typedef struct
 
 static GObjectClass *parent_class = NULL;
 
-G_DEFINE_TYPE (GSJob, gs_job, G_TYPE_OBJECT);
+G_DEFINE_TYPE (GSJob, gs_job, G_TYPE_OBJECT)
 
 static const char *known_engine_locations [] = {
         SAVERDIR,

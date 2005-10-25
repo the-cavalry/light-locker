@@ -594,13 +594,11 @@ static GdkPixbuf *
 get_pixbuf_from_location (const char *location)
 {
         GdkPixbuf *pixbuf = NULL;
-        gboolean   is_absolute;
         gboolean   is_dir;
 
         if (! location)
                 return NULL;
 
-        is_absolute = g_path_is_absolute (location);
         is_dir = g_file_test (location, G_FILE_TEST_IS_DIR);
 
         if (is_dir)

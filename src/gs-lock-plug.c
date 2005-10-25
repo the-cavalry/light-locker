@@ -1353,7 +1353,6 @@ get_face_image ()
 {
         GtkWidget    *image;
         GdkPixbuf    *pixbuf;
-        GtkIconTheme *theme;
         const char   *homedir;
         char         *path;
         int           icon_size = 96;
@@ -1372,18 +1371,6 @@ get_face_image ()
                                                            icon_size,
                                                            NULL);
         }
-
-	theme = gtk_icon_theme_get_default ();
-
-#if 0
-        if (! pixbuf) {
-                pixbuf = gtk_icon_theme_load_icon (theme,
-                                                   "stock_person",
-                                                   icon_size,
-                                                   0,
-                                                   NULL);
-        }
-#endif
 
         if (! pixbuf)
                 return NULL;
@@ -1416,8 +1403,6 @@ create_page_one (GSLockPlug *plug)
 
         /* should we make this a gconf preference? */
         if (0) {
-                char *str;
-
                 /* translators: %s is a computer hostname */
                 str = g_strdup_printf (_("Welcome to %s"), g_get_host_name ());
                 widget = gtk_label_new (str);

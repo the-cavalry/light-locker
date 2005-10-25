@@ -94,7 +94,7 @@ enum {
 static GObjectClass *parent_class = NULL;
 static guint         signals [LAST_SIGNAL] = { 0, };
 
-G_DEFINE_TYPE (GSManager, gs_manager, G_TYPE_OBJECT);
+G_DEFINE_TYPE (GSManager, gs_manager, G_TYPE_OBJECT)
 
 void
 gs_manager_set_mode (GSManager  *manager,
