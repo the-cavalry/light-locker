@@ -317,8 +317,6 @@ gs_grab_get_keyboard_and_mouse (GdkWindow *window,
 
            - If we don't have a keyboard grab, then we won't be able to
            read a password to unlock, so the kbd grab is manditory.
-           (We can't conditionalize this on locked_p, because someone
-           might run "xscreensaver-command -lock" at any time.)
 
            - If we don't have a mouse grab, then we might not see mouse
            clicks as a signal to unblank -- but we will still see kbd

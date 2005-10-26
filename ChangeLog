@@ -1,5 +1,13 @@
 2005-10-26  William Jon McCann  <mccann@jhu.edu>
 
+	* src/test-passwd.c (privileged_initialization): 
+	* src/gs-watcher-x11.c: 
+	* src/gs-grab-x11.c (gs_grab_get_keyboard_and_mouse): 
+	* src/gnome-screensaver-dialog.c:
+	Don't refer to xscreensaver in comments.
+
+2005-10-26  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.[ch] (emit_deactivated_idle, command_watch) 
 	(gs_window_request_unlock, gs_window_class_init): 
 	* src/gs-monitor.c (manager_deactivated_cb) 

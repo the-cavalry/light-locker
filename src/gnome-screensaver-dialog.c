@@ -215,7 +215,7 @@ popup_dialog_idle (void)
  * Copyright (c) 2005 William Jon McCann <mccann@jhu.edu>
  *
  * Initializations that potentially take place as a priveleged user:
-   If the xscreensaver executable is setuid root, then these initializations
+   If the executable is setuid root, then these initializations
    are run as root, before discarding privileges.
 */
 static gboolean

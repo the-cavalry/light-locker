@@ -737,7 +737,7 @@ reset_timers (GSWatcher *watcher)
 /* An unfortunate situation is this: the saver is not active, because the
    user has been typing.  The machine is a laptop.  The user closes the lid
    and suspends it.  The CPU halts.  Some hours later, the user opens the
-   lid.  At this point, Xt's timers will fire, and xscreensaver will blank
+   lid.  At this point, Xt's timers will fire, and the screensaver will blank
    the screen.
 
    So far so good -- well, not really, but it's the best that we can do,
@@ -1003,7 +1003,7 @@ xevent_idle (GSWatcher *watcher)
    It calls disable_builtin_screensaver() so that if xset has been used,
    or some other program (like xlock) has messed with the XSetScreenSaver()
    settings, they will be set back to sensible values (if a server extension
-   is in use, messing with xlock can cause xscreensaver to never get a wakeup
+   is in use, messing with xlock can cause the screensaver to never get a wakeup
    event, and could cause monitor power-saving to occur, and all manner of
    heinousness.)
 
