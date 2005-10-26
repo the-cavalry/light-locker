@@ -47,7 +47,7 @@ typedef struct
         GObjectClass     parent_class;
 
         void            (* activated)       (GSManager *manager);
-        void            (* disactivated)    (GSManager *manager);
+        void            (* deactivated)     (GSManager *manager);
 
 } GSManagerClass;
 

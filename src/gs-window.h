@@ -48,7 +48,7 @@ typedef struct
 {
         GtkWindowClass   parent_class;
 
-        void            (* disactivated)        (GSWindow *window);
+        void            (* deactivated)         (GSWindow *window);
         void            (* dialog_up)           (GSWindow *window);
         void            (* dialog_down)         (GSWindow *window);
 } GSWindowClass;

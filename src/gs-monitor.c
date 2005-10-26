@@ -80,7 +80,7 @@ manager_activated_cb (GSManager *manager,
 }
 
 static void
-manager_disactivated_cb (GSManager *manager,
+manager_deactivated_cb (GSManager *manager,
                          GSMonitor *monitor)
 {
         gs_listener_set_active (monitor->priv->listener, FALSE);
@@ -138,7 +138,7 @@ listener_active_changed_cb (GSListener *listener,
                 /* turn off the idleness watcher */
                 res = gs_watcher_set_active (monitor->priv->watcher, FALSE);
                 if (! res) {
-                        g_warning ("Unable to disactivate the idle watcher");
+                        g_warning ("Unable to deactivate the idle watcher");
                         return FALSE;
                 }
 
@@ -180,7 +180,7 @@ listener_active_changed_cb (GSListener *listener,
                 /* disable power management */
                 res = gs_power_set_active (monitor->priv->power, FALSE);
                 if (! res) {
-                        g_warning ("Unable to disactivate power management");
+                        g_warning ("Unable to deactivate power management");
                 }
         }
 
@@ -289,8 +289,8 @@ gs_monitor_init (GSMonitor *monitor)
         monitor->priv->manager = gs_manager_new ();
         g_signal_connect (monitor->priv->manager, "activated",
                           G_CALLBACK (manager_activated_cb), monitor);
-        g_signal_connect (monitor->priv->manager, "disactivated",
-                          G_CALLBACK (manager_disactivated_cb), monitor);
+        g_signal_connect (monitor->priv->manager, "deactivated",
+                          G_CALLBACK (manager_deactivated_cb), monitor);
 
         monitor->priv->power = gs_power_new ();
         g_signal_connect (monitor->priv->power, "changed",

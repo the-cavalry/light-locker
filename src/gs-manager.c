@@ -74,7 +74,7 @@ struct GSManagerPrivate
 
 enum {
         ACTIVATED,
-        DISACTIVATED,
+        DEACTIVATED,
         LAST_SIGNAL
 };
 
@@ -488,11 +488,11 @@ gs_manager_class_init (GSManagerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
-        signals [DISACTIVATED] =
-                g_signal_new ("disactivated",
+        signals [DEACTIVATED] =
+                g_signal_new ("deactivated",
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSManagerClass, disactivated),
+                              G_STRUCT_OFFSET (GSManagerClass, deactivated),
                               NULL,
                               NULL,
                               g_cclosure_marshal_VOID__VOID,
@@ -634,26 +634,26 @@ gs_manager_finalize (GObject *object)
 }
 
 static gboolean
-window_disactivated_idle (GSManager *manager)
+window_deactivated_idle (GSManager *manager)
 {
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
-        /* don't disactivate directly but only emit a signal
-           so that we let the parent disactivate */
-        g_signal_emit (manager, signals [DISACTIVATED], 0);
+        /* don't deactivate directly but only emit a signal
+           so that we let the parent deactivate */
+        g_signal_emit (manager, signals [DEACTIVATED], 0);
 
         return FALSE;
 }
 
 static void
-window_disactivated_cb (GSWindow  *window,
+window_deactivated_cb (GSWindow  *window,
                        GSManager *manager)
 {
         g_return_if_fail (manager != NULL);
         g_return_if_fail (GS_IS_MANAGER (manager));
         
-        g_idle_add ((GSourceFunc)window_disactivated_idle, manager);
+        g_idle_add ((GSourceFunc)window_deactivated_idle, manager);
 }
 
 static void
@@ -812,8 +812,8 @@ gs_manager_create_window (GSManager *manager,
                 gs_window_set_logout_timeout (window, manager->priv->logout_timeout);
                 gs_window_set_logout_command (window, manager->priv->logout_command);
 
-                g_signal_connect_object (window, "disactivated",
-                                         G_CALLBACK (window_disactivated_cb), manager, 0);
+                g_signal_connect_object (window, "deactivated",
+                                         G_CALLBACK (window_deactivated_cb), manager, 0);
                 g_signal_connect_object (window, "dialog-up",
                                          G_CALLBACK (window_dialog_up_cb), manager, 0);
                 g_signal_connect_object (window, "dialog-down",
@@ -898,7 +898,7 @@ gs_manager_activate (GSManager *manager)
 }
 
 static gboolean
-gs_manager_disactivate (GSManager *manager)
+gs_manager_deactivate (GSManager *manager)
 {
         GSList *l;
 
@@ -906,7 +906,7 @@ gs_manager_disactivate (GSManager *manager)
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
         if (! manager->priv->active) {
-                g_warning ("Trying to disactivate a screensaver that is not active");
+                g_warning ("Trying to deactivate a screensaver that is not active");
                 return FALSE;
         }
 
@@ -944,7 +944,7 @@ gs_manager_set_active (GSManager *manager,
         if (active)
                 res = gs_manager_activate (manager);
         else
-                res = gs_manager_disactivate (manager);
+                res = gs_manager_deactivate (manager);
 
         return res;
 }

@@ -82,7 +82,7 @@ struct GSWindowPrivate
 };
 
 enum {
-        DISACTIVATED,
+        DEACTIVATED,
         DIALOG_UP,
         DIALOG_DOWN,
         LAST_SIGNAL
@@ -308,9 +308,9 @@ gs_window_get_gdk_window (GSWindow *window)
 }
 
 static gboolean
-emit_disactivated_idle (GSWindow *window)
+emit_deactivated_idle (GSWindow *window)
 {
-        g_signal_emit (window, signals [DISACTIVATED], 0);
+        g_signal_emit (window, signals [DEACTIVATED], 0);
 
         return FALSE;
 }
@@ -629,7 +629,7 @@ command_watch (GIOChannel   *source,
                 gs_window_dialog_finish (window);
 
                 if (window->priv->dialog_response == DIALOG_RESPONSE_OK) {
-                        g_idle_add ((GSourceFunc)emit_disactivated_idle, window);
+                        g_idle_add ((GSourceFunc)emit_deactivated_idle, window);
                 }
 
                 gs_window_clear (window);
@@ -719,7 +719,7 @@ gs_window_request_unlock (GSWindow *window)
                 return;
 
         if (! window->priv->lock_enabled) {
-                g_idle_add ((GSourceFunc)emit_disactivated_idle, window);
+                g_idle_add ((GSourceFunc)emit_deactivated_idle, window);
                 return;
         }
 
@@ -1045,11 +1045,11 @@ gs_window_class_init (GSWindowClass *klass)
 
         g_type_class_add_private (klass, sizeof (GSWindowPrivate));
 
-        signals [DISACTIVATED] =
-                g_signal_new ("disactivated",
+        signals [DEACTIVATED] =
+                g_signal_new ("deactivated",
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSWindowClass, disactivated),
+                              G_STRUCT_OFFSET (GSWindowClass, deactivated),
                               NULL,
                               NULL,
                               g_cclosure_marshal_VOID__VOID,

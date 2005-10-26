@@ -1,3 +1,16 @@
+2005-10-26  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-window-x11.[ch] (emit_deactivated_idle, command_watch) 
+	(gs_window_request_unlock, gs_window_class_init): 
+	* src/gs-monitor.c (manager_deactivated_cb) 
+	(listener_active_changed_cb, gs_monitor_init): 
+	* src/gs-manager.[ch] (gs_manager_class_init) 
+	(window_deactivated_idle, window_deactivated_cb) 
+	(gs_manager_create_window, gs_manager_deactivate) 
+	(gs_manager_set_active):
+	Let's stick with English words.  How embarassing.  Thank goodness
+	no one noticed.
+
 2005-10-25  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-listener-dbus.c:
