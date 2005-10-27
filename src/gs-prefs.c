@@ -133,82 +133,241 @@ gs_prefs_class_init (GSPrefsClass *klass)
 }
 
 static void
-gs_prefs_load_from_gconf (GSPrefs *prefs)
+_gs_prefs_set_timeout (GSPrefs *prefs,
+                       int      value)
 {
-        glong value;
-        char *string;
-        int   mode;
-
-        prefs->lock_enabled = gconf_client_get_bool (prefs->priv->gconf_client, KEY_LOCK_ENABLED, NULL);
-
-        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_ACTIVATE_DELAY, NULL);
         if (value < 1)
                 value = 10;
-        prefs->timeout = value * 60000;
 
-        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_LOCK_DELAY, NULL);
+        /* pick a reasonable large number for the
+           upper bound */
+        if (value > 480)
+                value = 480;
+
+        prefs->timeout = value * 60000;
+}
+
+static void
+_gs_prefs_set_lock_timeout (GSPrefs *prefs,
+                            int      value)
+{
         if (value < 0)
                 value = 0;
+
+        /* pick a reasonable large number for the
+           upper bound */
+        if (value > 480)
+                value = 480;
+
         prefs->lock_timeout = value * 60000;
+}
 
-        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_CYCLE_DELAY, NULL);
+static void
+_gs_prefs_set_cycle_timeout (GSPrefs *prefs,
+                             int      value)
+{
         if (value < 1)
-                value = 60;
-        prefs->cycle = value * 60000;
+                value = 1;
 
-        string = gconf_client_get_string (prefs->priv->gconf_client, KEY_MODE, NULL);
-	if (string && gconf_string_to_enum (mode_enum_map, string, &mode))
+        /* pick a reasonable large number for the
+           upper bound */
+        if (value > 480)
+                value = 480;
+
+        prefs->cycle = value * 60000;
+}
+
+static void
+_gs_prefs_set_mode (GSPrefs    *prefs,
+                    const char *value)
+{
+        int mode;
+
+	if (value && gconf_string_to_enum (mode_enum_map, value, &mode))
                 prefs->mode = mode;
         else
                 prefs->mode = GS_MODE_BLANK_ONLY;
-        g_free (string);
+}
 
+static void
+_gs_prefs_set_themes (GSPrefs *prefs,
+                      GSList  *list)
+{
         if (prefs->themes) {
                 g_slist_foreach (prefs->themes, (GFunc)g_free, NULL);
                 g_slist_free (prefs->themes);
         }
 
-        prefs->themes = gconf_client_get_list (prefs->priv->gconf_client,
-                                               KEY_THEMES, GCONF_VALUE_STRING, NULL);
+        /* take ownership of the list */
+        prefs->themes = list;
+}
+
+static void
+_gs_prefs_set_lock_enabled (GSPrefs *prefs,
+                            gboolean value)
+{
+        prefs->lock_enabled = value;
+}
+
+static void
+_gs_prefs_set_dpms_enabled (GSPrefs *prefs,
+                            gboolean value)
+{
+        prefs->dpms_enabled = value;
+}
+
+static void
+_gs_prefs_set_dpms_standby_timeout (GSPrefs *prefs,
+                                    int      value)
+{
+        if (value < 0)
+                value = 0;
+
+        /* pick a reasonable large number for the
+           upper bound */
+        if (value > 480)
+                value = 480;
+
+        /* FIXME: should make sure standby < suspend < off */
+
+        prefs->dpms_standby = value * 60000;
+}
+
+static void
+_gs_prefs_set_dpms_suspend_timeout (GSPrefs *prefs,
+                                    int      value)
+{
+        if (value < 0)
+                value = 0;
+
+        /* pick a reasonable large number for the
+           upper bound */
+        if (value > 480)
+                value = 480;
+
+        /* FIXME: should make sure standby < suspend < off */
+
+        prefs->dpms_suspend = value * 60000;
+}
+
+static void
+_gs_prefs_set_dpms_off_timeout (GSPrefs *prefs,
+                                int      value)
+{
+        if (value < 0)
+                value = 0;
+
+        /* pick a reasonable large number for the
+           upper bound */
+        if (value > 480)
+                value = 480;
+
+        /* FIXME: should make sure standby < suspend < off */
+
+        prefs->dpms_off = value * 60000;
+}
+
+static void
+_gs_prefs_set_logout_enabled (GSPrefs *prefs,
+                              gboolean value)
+{
+        prefs->logout_enabled = value;
+}
+
+static void
+_gs_prefs_set_logout_command (GSPrefs    *prefs,
+                              const char *value)
+{
+        g_free (prefs->logout_command);
+        prefs->logout_command = NULL;
+
+       if (value) {
+               /* FIXME: check command */
+
+               prefs->logout_command = g_strdup (value);
+        }
+}
+
+static void
+_gs_prefs_set_logout_timeout (GSPrefs *prefs,
+                              int      value)
+{
+        if (value < 0)
+                value = 0;
+
+        /* pick a reasonable large number for the
+           upper bound */
+        if (value > 480)
+                value = 480;
+
+        prefs->logout_timeout = value * 60000;
+}
+
+static void
+_gs_prefs_set_user_switch_enabled (GSPrefs *prefs,
+                                   gboolean value)
+{
+        prefs->user_switch_enabled = value;
+}
+
+static void
+gs_prefs_load_from_gconf (GSPrefs *prefs)
+{
+        glong    value;
+        gboolean bvalue;
+        char    *string;
+        GSList  *list;
+
+        bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_LOCK_ENABLED, NULL);
+        _gs_prefs_set_lock_enabled (prefs, bvalue);
+
+        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_ACTIVATE_DELAY, NULL);
+        _gs_prefs_set_timeout (prefs, value);
+
+        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_LOCK_DELAY, NULL);
+        _gs_prefs_set_lock_timeout (prefs, value);
+
+        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_CYCLE_DELAY, NULL);
+        _gs_prefs_set_cycle_timeout (prefs, value);
+
+        string = gconf_client_get_string (prefs->priv->gconf_client, KEY_MODE, NULL);
+        _gs_prefs_set_mode (prefs, string);
+        g_free (string);
+
+        list = gconf_client_get_list (prefs->priv->gconf_client,
+                                      KEY_THEMES, GCONF_VALUE_STRING, NULL);
+        _gs_prefs_set_themes (prefs, list);
 
         /* DPMS options */
 
-        prefs->dpms_enabled = gconf_client_get_bool (prefs->priv->gconf_client, KEY_DPMS_ENABLED, NULL);
-        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_DPMS_STANDBY, NULL);
-        if (value < 0)
-                value = 0;
-        prefs->dpms_standby = value * 60000;
-        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_DPMS_SUSPEND, NULL);
-        if (value < 0)
-                value = 0;
-        prefs->dpms_suspend = value * 60000;
-        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_DPMS_OFF, NULL);
-        if (value < 0)
-                value = 0;
-        prefs->dpms_off = value * 60000;
+        bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_DPMS_ENABLED, NULL);
+        _gs_prefs_set_dpms_enabled (prefs, bvalue);
 
+        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_DPMS_STANDBY, NULL);
+        _gs_prefs_set_dpms_standby_timeout (prefs, value);
+
+        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_DPMS_SUSPEND, NULL);
+        _gs_prefs_set_dpms_suspend_timeout (prefs, value);
+
+        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_DPMS_OFF, NULL);
+        _gs_prefs_set_dpms_off_timeout (prefs, value);
 
         /* Logout options */
 
-        prefs->logout_enabled = gconf_client_get_bool (prefs->priv->gconf_client, KEY_LOGOUT_ENABLED, NULL);
+        bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_LOGOUT_ENABLED, NULL);
+        _gs_prefs_set_logout_enabled (prefs, bvalue);
 
         string = gconf_client_get_string (prefs->priv->gconf_client, KEY_LOGOUT_COMMAND, NULL);
-        g_free (prefs->logout_command);
-        if (string) {
-                prefs->logout_command = g_strdup (string);
-        } else {
-                prefs->logout_command = NULL;
-        }
+        _gs_prefs_set_logout_command (prefs, string);
         g_free (string);
 
         value = gconf_client_get_int (prefs->priv->gconf_client, KEY_LOGOUT_DELAY, NULL);
-        if (value < 0)
-                value = 0;
-        prefs->logout_timeout = value * 60000;
+        _gs_prefs_set_logout_timeout (prefs, value);
 
         /* User switching options */
 
-        prefs->user_switch_enabled = gconf_client_get_bool (prefs->priv->gconf_client, KEY_USER_SWITCH_ENABLED, NULL);
+        bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_USER_SWITCH_ENABLED, NULL);
+        _gs_prefs_set_user_switch_enabled (prefs, bvalue);
 }
 
 static void
@@ -230,14 +389,9 @@ key_changed_cb (GConfClient *client,
 
         if (strcmp (key, KEY_MODE) == 0) {
                 const char *str;
-                int         mode;
 
                 str = gconf_value_get_string (value);
-
-                if (str && gconf_string_to_enum (mode_enum_map, str, &mode))
-                        prefs->mode = mode;
-                else
-                        prefs->mode = GS_MODE_BLANK_ONLY;
+                _gs_prefs_set_mode (prefs, str);
 
                 changed = TRUE;
 
@@ -254,114 +408,109 @@ key_changed_cb (GConfClient *client,
                 if (list
                     && gconf_value_get_list_type (value) == GCONF_VALUE_STRING) {
                         GSList *l;
+                        GSList *new_list;
 
                         changed = TRUE;
 
-                        if (prefs->themes) {
-                                g_slist_foreach (prefs->themes, (GFunc)g_free, NULL);
-                                g_slist_free (prefs->themes);
-                                prefs->themes = NULL;
-                        }
-
+                        new_list = NULL;
                         for (l = list; l; l = l->next) {
                                 char *s;
 
                                 s = gconf_value_to_string (l->data);
 
-                                prefs->themes = g_slist_append (prefs->themes, g_strdup (s));
+                                new_list = g_slist_prepend (new_list, g_strdup (s));
 
                                 g_free (s);
                         }
+
+                        new_list = g_slist_reverse (new_list);
+
+                        _gs_prefs_set_themes (prefs, new_list);
+
                 }
         } else if (strcmp (key, KEY_ACTIVATE_DELAY) == 0) {
                 int delay;
 
                 delay = gconf_value_get_int (value);
-                if (delay < 1)
-                        delay = 1;
-                prefs->timeout = delay * 60000;
+                _gs_prefs_set_timeout (prefs, delay);
+
                 changed = TRUE;
         } else if (strcmp (key, KEY_LOCK_DELAY) == 0) {
                 int delay;
 
                 delay = gconf_value_get_int (value);
-                prefs->lock_timeout = delay * 60000;
+                _gs_prefs_set_lock_timeout (prefs, delay);
+
                 changed = TRUE;
         } else if (strcmp (key, KEY_LOCK_ENABLED) == 0) {
                 gboolean enabled;
 
                 enabled = gconf_value_get_bool (value);
-                prefs->lock_enabled = enabled;
+                _gs_prefs_set_lock_enabled (prefs, enabled);
+
                 changed = TRUE;
         } else if (strcmp (key, KEY_CYCLE_DELAY) == 0) {
                 int delay;
 
                 delay = gconf_value_get_int (value);
-                prefs->cycle = delay * 60000;
+                _gs_prefs_set_cycle_timeout (prefs, delay);
+
                 changed = TRUE;
         } else if (strcmp (key, KEY_DPMS_ENABLED) == 0) {
                 gboolean enabled;
 
                 enabled = gconf_value_get_bool (value);
-                prefs->dpms_enabled = enabled;
+                _gs_prefs_set_dpms_enabled (prefs, enabled);
+
                 changed = TRUE;
         } else if (strcmp (key, KEY_DPMS_STANDBY) == 0) {
                 int timeout;
 
                 timeout = gconf_value_get_int (value);
-                if (timeout < 1)
-                        timeout = 1;
-                prefs->dpms_standby = timeout * 60000;
+                _gs_prefs_set_dpms_standby_timeout (prefs, timeout);
+
                 changed = TRUE;
         } else if (strcmp (key, KEY_DPMS_SUSPEND) == 0) {
                 int timeout;
 
                 timeout = gconf_value_get_int (value);
-                if (timeout < 1)
-                        timeout = 1;
-                prefs->dpms_suspend = timeout * 60000;
+                _gs_prefs_set_dpms_suspend_timeout (prefs, timeout);
+
                 changed = TRUE;
         } else if (strcmp (key, KEY_DPMS_OFF) == 0) {
                 int timeout;
 
                 timeout = gconf_value_get_int (value);
-                if (timeout < 1)
-                        timeout = 1;
-                prefs->dpms_off = timeout * 60000;
+                _gs_prefs_set_dpms_off_timeout (prefs, timeout);
+
                 changed = TRUE;
         } else if (strcmp (key, KEY_LOGOUT_ENABLED) == 0) {
                 gboolean enabled;
 
                 enabled = gconf_value_get_bool (value);
-                prefs->logout_enabled = enabled;
+                _gs_prefs_set_logout_enabled (prefs, enabled);
+
                 changed = TRUE;
         } else if (strcmp (key, KEY_LOGOUT_DELAY) == 0) {
                 int delay;
 
                 delay = gconf_value_get_int (value);
-                if (delay < 0)
-                        delay = 0;
-                prefs->logout_timeout = delay * 60000;
+                _gs_prefs_set_logout_timeout (prefs, delay);
+
                 changed = TRUE;
         } else if (strcmp (key, KEY_LOGOUT_COMMAND) == 0) {
                 const char *command;
 
                 command = gconf_value_get_string (value);
-
-                g_free (prefs->logout_command);
-
-                if (command) {
-                        prefs->logout_command = g_strdup (command);
-                } else {
-                        prefs->logout_command = NULL;
-                }
+                _gs_prefs_set_logout_command (prefs, command);
 
                 changed = TRUE;
         } else if (strcmp (key, KEY_USER_SWITCH_ENABLED) == 0) {
                 gboolean enabled;
 
                 enabled = gconf_value_get_bool (value);
-                prefs->user_switch_enabled = enabled;
+                _gs_prefs_set_user_switch_enabled (prefs, enabled);
+
                 changed = TRUE;
         } else {
                 g_warning ("Config key not handled: %s", key);

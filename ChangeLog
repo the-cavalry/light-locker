@@ -1,5 +1,22 @@
 2005-10-27  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-preferences.c (KEY_LOCK): Fix
+	the name of the lock_enabled key.
+
+	* src/gs-prefs.c (_gs_prefs_set_timeout) 
+	(_gs_prefs_set_lock_timeout, _gs_prefs_set_cycle_timeout) 
+	(_gs_prefs_set_mode, _gs_prefs_set_themes) 
+	(_gs_prefs_set_lock_enabled, _gs_prefs_set_dpms_enabled) 
+	(_gs_prefs_set_dpms_standby_timeout) 
+	(_gs_prefs_set_dpms_suspend_timeout) 
+	(_gs_prefs_set_dpms_off_timeout, _gs_prefs_set_logout_enabled) 
+	(_gs_prefs_set_logout_command, _gs_prefs_set_logout_timeout) 
+	(_gs_prefs_set_user_switch_enabled, gs_prefs_load_from_gconf) 
+	(key_changed_cb): Decouple changing settings.  Fix up
+	some of the bounds checking and add reasonable upper bounds.
+
+2005-10-27  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-listener-dbus.c (send_dbus_message) 
 	(gs_listener_send_signal_active_changed) 
 	(gs_listener_send_signal_throttle_enabled_changed) 

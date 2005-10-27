@@ -47,7 +47,7 @@
 #define GLADE_XML_FILE "gnome-screensaver-preferences.glade"
 
 #define KEY_DIR             "/apps/gnome-screensaver"
-#define KEY_LOCK            KEY_DIR "/lock"
+#define KEY_LOCK            KEY_DIR "/lock_enabled"
 #define KEY_MODE            KEY_DIR "/mode"
 #define KEY_ACTIVATE_DELAY  KEY_DIR "/activate_delay"
 #define KEY_LOCK_DELAY      KEY_DIR "/lock_delay"
