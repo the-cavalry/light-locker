@@ -118,6 +118,31 @@ gs_listener_unregister_handler (DBusConnection *connection,
 {
 }
 
+static gboolean
+send_dbus_message (DBusConnection *connection,
+                   DBusMessage    *message)
+{
+        gboolean is_connected;
+        gboolean sent;
+
+        g_return_val_if_fail (message != NULL, FALSE);
+
+        if (! connection) {
+                g_warning ("There is no valid connection to the message bus");
+                return FALSE;
+        }
+
+        is_connected = dbus_connection_get_is_connected (connection);
+        if (! is_connected) {
+                g_warning ("Not connected to the message bus");
+                return FALSE;
+        }
+
+        sent = dbus_connection_send (connection, message, NULL);
+
+        return sent;
+}
+
 static void
 gs_listener_send_signal_active_changed (GSListener *listener)
 {
@@ -135,7 +160,7 @@ gs_listener_send_signal_active_changed (GSListener *listener)
         dbus_message_iter_init_append (message, &iter);
         dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &active);
 
-        if (! dbus_connection_send (listener->priv->connection, message, NULL)) {
+        if (! send_dbus_message (listener->priv->connection, message)) {
                 g_warning ("Could not send ActiveChanged signal");
         }
 
@@ -159,7 +184,7 @@ gs_listener_send_signal_throttle_enabled_changed (GSListener *listener)
         dbus_message_iter_init_append (message, &iter);
         dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &enabled);
 
-        if (! dbus_connection_send (listener->priv->connection, message, NULL)) {
+        if (! send_dbus_message (listener->priv->connection, message)) {
                 g_warning ("Could not send ThrottleEnabledChanged signal");
         }
 
@@ -470,7 +495,7 @@ raise_property_type_error (DBusConnection *connection,
                                         buf);
         if (reply == NULL)
                 g_error ("No memory");
-        if (!dbus_connection_send (connection, reply, NULL))
+        if (! dbus_connection_send (connection, reply, NULL))
                 g_error ("No memory");
 
         dbus_message_unref (reply);
@@ -517,7 +542,7 @@ listener_set_property (GSListener     *listener,
         if (reply == NULL)
                 g_error ("No memory");
 
-        if (!dbus_connection_send (connection, reply, NULL))
+        if (! dbus_connection_send (connection, reply, NULL))
                 g_error ("No memory");
 
         dbus_message_unref (reply);
@@ -568,7 +593,7 @@ listener_get_property (GSListener     *listener,
                 break;
         }
 
-        if (!dbus_connection_send (connection, reply, NULL))
+        if (! dbus_connection_send (connection, reply, NULL))
                 g_error ("No memory");
 
         dbus_message_unref (reply);
@@ -694,7 +719,7 @@ gs_listener_message_handler (DBusConnection *connection,
                 if (reply == NULL)
                         g_error ("No memory");
 
-                if (!dbus_connection_send (connection, reply, NULL))
+                if (! dbus_connection_send (connection, reply, NULL))
                         g_error ("No memory");
 
                 dbus_message_unref (reply);
@@ -708,6 +733,46 @@ gs_listener_message_handler (DBusConnection *connection,
                 return DBUS_HANDLER_RESULT_HANDLED;
         } 
         else return listener_dbus_filter_handle_methods (connection, message, user_data, TRUE);
+}
+
+static gboolean
+gs_listener_dbus_init (GSListener *listener)
+{
+        DBusError error;
+
+        dbus_error_init (&error);
+        listener->priv->connection = dbus_bus_get (DBUS_BUS_SESSION, &error);
+        if (listener->priv->connection == NULL) {
+                if (dbus_error_is_set (&error)) {
+                        g_warning ("couldn't connect to session bus: %s",
+                                   error.message);
+                        dbus_error_free (&error);
+                }
+                return FALSE;
+        }
+
+        dbus_connection_setup_with_g_main (listener->priv->connection, NULL);
+	dbus_connection_set_exit_on_disconnect (listener->priv->connection, FALSE);
+
+        return TRUE;
+}
+
+static gboolean
+reinit_dbus (GSListener *listener)
+{
+        gboolean initialized;
+        gboolean try_again;
+
+        initialized = gs_listener_dbus_init (listener);
+
+        /* if we didn't initialize then try again */
+        /* FIXME: Should we keep trying forever?  If we fail more than
+           once or twice then the session bus may have died.  The
+           problem is that if it is restarted it will likely have a
+           different bus address and we won't be able to find it */
+        try_again = !initialized;
+
+        return try_again;
 }
 
 static DBusHandlerResult
@@ -730,17 +795,13 @@ listener_dbus_filter_function (DBusConnection *connection,
         if (dbus_message_is_signal (message, DBUS_INTERFACE_LOCAL, "Disconnected") &&
             strcmp (path, DBUS_PATH_LOCAL) == 0) {
 
-                /* this is a local message; e.g. from libdbus in this process */
-
                 g_message ("Got disconnected from the system message bus; "
-                           "retrying to reconnect every 3000 ms");
+                           "retrying to reconnect every 10 seconds");
 
-#if 0
-                dbus_connection_unref (dbus_connection);
-                dbus_connection = NULL;
+                dbus_connection_unref (connection);
+                connection = NULL;
 
-                g_timeout_add (3000, reinit_dbus, NULL);
-#endif
+                g_timeout_add (10000, (GSourceFunc)reinit_dbus, listener);
         } else if (dbus_message_is_signal (message,
                                            DBUS_INTERFACE_DBUS,
                                            "NameOwnerChanged")) {
@@ -901,9 +962,9 @@ gs_listener_class_init (GSListenerClass *klass)
 static gboolean
 screensaver_is_running (DBusConnection *connection)
 {
-        DBusError               error;
-        gboolean                exists;
-
+        DBusError error;
+        gboolean  exists;
+              
         g_return_val_if_fail (connection != NULL, FALSE);
 
         dbus_error_init (&error);
@@ -918,17 +979,28 @@ gboolean
 gs_listener_acquire (GSListener *listener,
                      GError    **error)
 {
-        gboolean acquired;
+        gboolean  acquired;
         DBusError buserror;
+        gboolean  is_connected;
 
         g_return_val_if_fail (listener != NULL, FALSE);
 
-        if (!listener->priv->connection) {
+        if (! listener->priv->connection) {
                 g_set_error (error,
                              GS_LISTENER_ERROR,
                              GS_LISTENER_ERROR_ACQUISITION_FAILURE,
                              "%s",
                              _("failed to register with the message bus"));
+                return FALSE;
+        }
+
+        is_connected = dbus_connection_get_is_connected (listener->priv->connection);
+        if (! is_connected) {
+                g_set_error (error,
+                             GS_LISTENER_ERROR,
+                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
+                             "%s",
+                             _("not connected to the message bus"));
                 return FALSE;
         }
 
@@ -946,8 +1018,10 @@ gs_listener_acquire (GSListener *listener,
         if (dbus_connection_register_object_path (listener->priv->connection,
                                                   GS_LISTENER_PATH,
                                                   &gs_listener_vtable,
-                                                  listener) == FALSE)
+                                                  listener) == FALSE) {
                 g_critical ("out of memory registering object path");
+                return FALSE;
+        }
 
         acquired = dbus_bus_request_name (listener->priv->connection,
                                           GS_LISTENER_SERVICE,
@@ -976,20 +1050,9 @@ gs_listener_acquire (GSListener *listener,
 static void
 gs_listener_init (GSListener *listener)
 {
-        DBusError error;
-
         listener->priv = GS_LISTENER_GET_PRIVATE (listener);
 
-        dbus_error_init (&error);
-        listener->priv->connection = dbus_bus_get (DBUS_BUS_SESSION, &error);
-        if (listener->priv->connection == NULL) {
-                g_critical ("couldn't connect to session bus: %s",
-                            error.message);
-        } else {
-                dbus_connection_setup_with_g_main (listener->priv->connection, NULL);
-        }
-
-        dbus_error_free (&error);
+        gs_listener_dbus_init (listener);
 }
 
 static void
@@ -1004,7 +1067,8 @@ gs_listener_finalize (GObject *object)
 
         g_return_if_fail (listener->priv != NULL);
 
-        /*dbus_connection_unref (listener->priv->connection);*/
+        if (listener->priv->connection)
+                dbus_connection_unref (listener->priv->connection);
 
         if (listener->priv->inhibitors)
                 g_hash_table_destroy (listener->priv->inhibitors);

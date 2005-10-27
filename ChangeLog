@@ -1,3 +1,17 @@
+2005-10-27  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-listener-dbus.c (send_dbus_message) 
+	(gs_listener_send_signal_active_changed) 
+	(gs_listener_send_signal_throttle_enabled_changed) 
+	(gs_listener_dbus_init, reinit_dbus) 
+	(listener_dbus_filter_function, gs_listener_acquire) 
+	(gs_listener_init, gs_listener_finalize):
+	Invalidate the bus connection if it breaks.  Make a
+	futile attempt to reconnect or at least make a
+	lot of noise.  Make sure connection is available
+	before trying to send signals over it.  Unref
+	the connection in finalize.
+
 2005-10-26  William Jon McCann  <mccann@jhu.edu>
 
 	* src/test-passwd.c (privileged_initialization): 
