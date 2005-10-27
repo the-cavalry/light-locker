@@ -1,5 +1,11 @@
 2005-10-27  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-prefs.c (key_error_and_free, gs_prefs_load_from_gconf) 
+	(invalid_type_warning, key_changed_cb): Do error checking
+	on key types just to be safe.
+
+2005-10-27  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-preferences.c (KEY_LOCK): Fix
 	the name of the lock_enabled key.
 
