@@ -1,5 +1,49 @@
 2005-10-28  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-monitor.c (_gs_monitor_update_from_prefs): Switch
+	order of watcher operations.
+
+	* src/gs-manager.c (show_windows, gs_manager_activate):
+	Add back a stub for not doing the fade to black.
+
+	* src/gs-watcher-x11.c (notice_events_inner): Make sure kids is
+	initialized to NULL.  Print debug message.
+	(notice_events_timer, start_notice_events_timer): Use a
+	structure to pass information to the timeout callback
+	so that we can pass the debug flag into the notice_events
+	functions.  Write the skeleton code for when we actually
+	convert this to be an actual timeout callback.
+	(_gs_watcher_notice_activity, _gs_watcher_notice_window_created):
+	Abstract the handling of activity.
+	(gs_watcher_xevent): New function to handle xevents.
+	(xevent_filter): Use an event filter instead of snooping
+	on the X11 socket.
+	(gs_watcher_reset): Add an internal active state.
+	(notice_events_inner, notice_events, notice_events_timer) 
+	(stop_notice_events, start_notice_events_timer) 
+	(stop_idle_watcher): Add a method to stop noticing events
+	on all windows.
+	(gs_watcher_get_active): Add public API to get active state.
+	(start_pointer_poll, _gs_watcher_pointer_position_free) 
+	(_gs_watcher_set_pointer_position, stop_pointer_poll) 
+	(start_idle_watcher): Rework how pointer polling is done.
+	(gs_watcher_set_active): Warn if trying to set active
+	when already active (or inactive)
+	(gs_watcher_init): Initialize active state.  Move some
+	stuff here from _new().
+	(gs_watcher_finalize): Invalidate active state.  Free
+	pointer poll data.
+	(_gs_watcher_pointer_position_read) 
+	(_gs_watcher_pointer_position_compare) 
+	(_gs_watcher_check_pointer_position, check_pointer_timer):
+	New mouse polling method.
+	(gs_watcher_new): Removed stuff.  Don't activate the
+	idle watcher at creation.
+
+	All this rework should fix problems with leaking X resources.
+
+2005-10-28  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-job.c (find_info_for_id, gs_job_get_theme_info_list):
 	Unref the root directory.
 	(add_known_engine_locations_to_path): Only add the the

@@ -741,7 +741,9 @@ gs_listener_dbus_init (GSListener *listener)
         DBusError error;
 
         dbus_error_init (&error);
+
         listener->priv->connection = dbus_bus_get (DBUS_BUS_SESSION, &error);
+
         if (listener->priv->connection == NULL) {
                 if (dbus_error_is_set (&error)) {
                         g_warning ("couldn't connect to session bus: %s",

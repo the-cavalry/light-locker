@@ -245,10 +245,9 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
         gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
         gs_manager_set_themes (monitor->priv->manager, monitor->priv->prefs->themes);
 
+        gs_watcher_set_timeout (monitor->priv->watcher, monitor->priv->prefs->timeout);
         gs_watcher_set_active (monitor->priv->watcher,
                                monitor->priv->prefs->mode != GS_MODE_DONT_BLANK);
-
-        gs_watcher_set_timeout (monitor->priv->watcher, monitor->priv->prefs->timeout);
 
         gs_power_set_timeouts (monitor->priv->power,
                                monitor->priv->prefs->dpms_standby,

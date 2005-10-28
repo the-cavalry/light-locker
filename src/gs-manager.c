@@ -863,12 +863,23 @@ gs_manager_new (void)
         return GS_MANAGER (manager);
 }
 
+static void
+show_windows (GSList *windows)
+{
+        GSList *l;
+
+        for (l = windows; l; l = l->next) {
+                gtk_widget_show (GTK_WIDGET (l->data));
+        }
+}
+
 static gboolean
 gs_manager_activate (GSManager *manager)
 {
         GdkDisplay *display;
         GdkScreen  *screen;
         GdkWindow  *root;
+        gboolean    do_fade;
 
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
@@ -890,7 +901,12 @@ gs_manager_activate (GSManager *manager)
                 gs_manager_create (GS_MANAGER (manager));
 
         /* fade to black and show windows */
-        fade_screens_and_show (3, 20, TRUE, manager->priv->windows);
+        do_fade = TRUE;
+        if (do_fade) {
+                fade_screens_and_show (3, 20, TRUE, manager->priv->windows);
+        } else {
+                show_windows (manager->priv->windows);
+        }
 
         manager->priv->active = TRUE;
 
