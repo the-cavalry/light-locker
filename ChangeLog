@@ -1,5 +1,21 @@
 2005-10-28  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-job.c (find_info_for_id, gs_job_get_theme_info_list):
+	Unref the root directory.
+	(add_known_engine_locations_to_path): Only add the the
+	known locations to the path once or else we leak like hell.
+	(get_themes_tree): Make the gmenu-tree a static global so
+	that we don't have to recreate it with every job.  This is
+	more efficient and safer in case the tree leaks say, FAM
+	fds.  Also strip out all the logic for rescanning dirs.
+	(gs_job_lookup_theme_info, gs_job_get_theme_info_list):
+	Use get_themes_tree.
+	(gs_job_init): Don't add the known locations to the path
+	here.  Add them the one type we instantiate a gmenu-tree.
+	(gs_job_finalize): Removed unreffing of gmenu-tree.
+
+2005-10-28  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (spawn_on_window): 
 	* src/gs-job.c (spawn_on_widget): Check for
 	command parsing errors.

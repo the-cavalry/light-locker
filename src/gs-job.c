@@ -68,12 +68,6 @@ struct GSJobPrivate
         guint           watch_id;
 
         char           *current_theme;
-
-        gboolean        themes_valid;
-        GMenuTree      *themes_tree;
-
-        long            last_stat_time;
-        GList          *dir_mtimes;
 };
 
 typedef struct 
@@ -140,72 +134,46 @@ check_command (char *command)
 }
 
 static void
-load_themes (GSJob *job)
+add_known_engine_locations_to_path (void)
 {
-        GTimeVal tv;
+        static gboolean already_added;
+        int      i;
+        GString *str;
 
-        if (job->priv->themes_tree) {
-                gmenu_tree_unref (job->priv->themes_tree);
+        /* We only want to add the items to the path once */
+        if (already_added)
+                return;
+
+        already_added = TRUE;
+
+        /* TODO: set a default PATH ? */
+
+        str = g_string_new (g_getenv ("PATH"));
+        for (i = 0; known_engine_locations [i]; i++) {
+                /* TODO: check that permissions are safe */
+                if (g_file_test (known_engine_locations [i], G_FILE_TEST_IS_DIR))
+                        g_string_append_printf (str, ":%s", known_engine_locations [i]);
         }
 
-	job->priv->themes_tree = gmenu_tree_lookup ("gnome-screensavers.menu", GMENU_TREE_FLAGS_NONE);
-
-        job->priv->themes_valid = TRUE;
-  
-        g_get_current_time (&tv);
-        job->priv->last_stat_time = tv.tv_sec;
+        g_setenv ("PATH", str->str, TRUE);
+        g_string_free (str, TRUE);
 }
 
-static gboolean
-gs_job_theme_rescan_if_needed (GSJob *job)
+static GMenuTree *
+get_themes_tree (void)
 {
-        ThemeDirMtime *dir_mtime;
-        GList         *d;
-        int            stat_res;
-        struct stat    stat_buf;
-        GTimeVal       tv;
+        static GMenuTree *themes_tree;
 
-        g_return_val_if_fail (GS_IS_JOB (job), FALSE);
+        if (themes_tree)
+                return themes_tree;
 
-        for (d = job->priv->dir_mtimes; d != NULL; d = d->next) {
-                dir_mtime = d->data;
+        /* we only need to add the locations to the path once
+           and since this is only run once we'll do it here */
+        add_known_engine_locations_to_path ();
 
-                stat_res = g_lstat (dir_mtime->dir, &stat_buf);
+	themes_tree = gmenu_tree_lookup ("gnome-screensavers.menu", GMENU_TREE_FLAGS_NONE);
 
-                /* dir mtime didn't change */
-                if (stat_res == 0 && 
-                    S_ISDIR (stat_buf.st_mode) &&
-                    dir_mtime->mtime == stat_buf.st_mtime)
-                        continue;
-                /* didn't exist before, and still doesn't */
-                if (dir_mtime->mtime == 0 &&
-                    (stat_res != 0 || !S_ISDIR (stat_buf.st_mode)))
-                        continue;
-	  
-                /*do_theme_change (job);*/
-                return TRUE;
-        }
-  
-        g_get_current_time (&tv);
-        job->priv->last_stat_time = tv.tv_sec;
-
-        return FALSE;
-}
-
-static void
-ensure_valid_themes (GSJob *job)
-{
-        GTimeVal tv;
-  
-        if (job->priv->themes_valid) {
-                g_get_current_time (&tv);
-
-                if (ABS (tv.tv_sec - job->priv->last_stat_time) > 5)
-                        gs_job_theme_rescan_if_needed (job);
-        }
-  
-        if (! job->priv->themes_valid)
-                load_themes (job);
+        return themes_tree;
 }
 
 GSJobThemeInfo *
@@ -314,6 +282,7 @@ find_info_for_id (GMenuTree  *tree,
         }
 
         g_slist_free (items);
+        gmenu_tree_item_unref (root);
 
         return info;
 }
@@ -324,14 +293,15 @@ gs_job_lookup_theme_info (GSJob      *job,
 {
         GSJobThemeInfo *info;
         char           *id;
+        GMenuTree      *tree;
 
         g_return_val_if_fail (GS_IS_JOB (job), NULL);
         g_return_val_if_fail (name != NULL, NULL);
 
-        ensure_valid_themes (job);
+        tree = get_themes_tree ();
 
         id = g_strdup_printf ("%s.desktop", name);
-        info = find_info_for_id (job->priv->themes_tree, id);
+        info = find_info_for_id (tree, id);
         g_free (id);
 
         return info;
@@ -384,14 +354,17 @@ GSList *
 gs_job_get_theme_info_list (GSJob *job)
 {
         GSList             *l = NULL;
-	GMenuTreeDirectory *root;
+        GMenuTreeDirectory *root;
+        GMenuTree          *tree;
 
         g_return_val_if_fail (GS_IS_JOB (job), NULL);
 
-        ensure_valid_themes (job);
+        tree = get_themes_tree ();
+        root = gmenu_tree_get_root_directory (tree);
 
-	if ((root = gmenu_tree_get_root_directory (job->priv->themes_tree))) {
-		make_theme_list (&l, root, "gnome-screensavers.menu");
+        if (root) {
+                make_theme_list (&l, root, "gnome-screensavers.menu");
+                gmenu_tree_item_unref (root);
         }
 
         return l;
@@ -422,32 +395,9 @@ gs_job_class_init (GSJobClass *klass)
 }
 
 static void
-add_known_engine_locations_to_path (void)
-{
-        int      i;
-        GString *str;
-
-        /* TODO: set a default PATH ? */
-
-        str = g_string_new (g_getenv ("PATH"));
-        for (i = 0; known_engine_locations [i]; i++) {
-                /* TODO: check that permissions are safe */
-                if (g_file_test (known_engine_locations [i], G_FILE_TEST_IS_DIR))
-                        g_string_append_printf (str, ":%s", known_engine_locations [i]);
-        }
-
-        g_setenv ("PATH", str->str, TRUE);
-        g_string_free (str, TRUE);
-}
-
-static void
 gs_job_init (GSJob *job)
 {
         job->priv = GS_JOB_GET_PRIVATE (job);
-
-        add_known_engine_locations_to_path ();
-
-        job->priv->themes_valid = FALSE;
 }
 
 /* adapted from gspawn.c */
@@ -508,9 +458,6 @@ gs_job_finalize (GObject *object)
 
         g_free (job->priv->current_theme);
         job->priv->current_theme = NULL;
-
-        if (job->priv->themes_tree)
-                gmenu_tree_unref (job->priv->themes_tree);
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }
