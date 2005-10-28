@@ -327,6 +327,7 @@ spawn_on_window (GSWindow *window,
         char      **argv;
         char       *str;
         GPtrArray  *env;
+        GError     *error;
         gboolean    result;
         GIOChannel *channel;
         int         standard_output;
@@ -334,8 +335,12 @@ spawn_on_window (GSWindow *window,
         int         id;
         int         i;
 
-        if (!g_shell_parse_argv (command, &argc, &argv, NULL))
+        error = NULL;
+        if (! g_shell_parse_argv (command, &argc, &argv, &error)) {
+                g_warning ("Could not parse command: %s", error->message);
+                g_error_free (error);
                 return FALSE;
+        }
 
         env = g_ptr_array_new ();
 
@@ -365,6 +370,7 @@ spawn_on_window (GSWindow *window,
                                                        g_getenv ("LANGUAGE")));
         g_ptr_array_add (env, NULL);
 
+        error = NULL;
         result = gdk_spawn_on_screen_with_pipes (GTK_WINDOW (window)->screen,
                                                  g_get_home_dir (),
                                                  argv,
@@ -376,13 +382,15 @@ spawn_on_window (GSWindow *window,
                                                  NULL,
                                                  &standard_output,
                                                  NULL,
-                                                 NULL);
+                                                 &error);
 
         for (i = 0; i < env->len; i++)
                 g_free (g_ptr_array_index (env, i));
         g_ptr_array_free (env, TRUE);
 
         if (! result) {
+                g_warning ("Could not start command '%s': %s", command, error->message);
+                g_error_free (error);
                 g_strfreev (argv);
                 return FALSE;
         }

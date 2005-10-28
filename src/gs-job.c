@@ -626,7 +626,11 @@ spawn_on_widget (GtkWidget  *widget,
         if (! command)
                 return FALSE;
 
-        g_shell_parse_argv (command, NULL, &argv, NULL);
+        if (! g_shell_parse_argv (command, NULL, &argv, &error)) {
+                g_warning ("Could not parse command: %s", error->message);
+                g_error_free (error);
+                return FALSE;
+        }
 
         path = find_command (argv [0]);
         if (path) {
@@ -659,6 +663,7 @@ spawn_on_widget (GtkWidget  *widget,
                                                        g_getenv ("LANGUAGE")));
         g_ptr_array_add (env, NULL);
 
+        error = NULL;
         result = gdk_spawn_on_screen_with_pipes (gtk_widget_get_screen (widget),
                                                  g_get_home_dir (),
                                                  argv,
@@ -676,7 +681,7 @@ spawn_on_widget (GtkWidget  *widget,
         g_ptr_array_free (env, TRUE);
 
         if (! result) {
-                g_warning ("Could not start command '%s': %s", argv [0], error->message);
+                g_warning ("Could not start command '%s': %s", command, error->message);
                 g_error_free (error);
                 g_strfreev (argv);
                 return FALSE;
