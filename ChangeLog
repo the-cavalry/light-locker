@@ -1,5 +1,10 @@
 2005-10-28  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c (gs_watcher_init):
+	Turn debugging off.
+
+2005-10-28  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-monitor.c (_gs_monitor_update_from_prefs): Switch
 	order of watcher operations.
 

@@ -636,7 +636,7 @@ gs_watcher_init (GSWatcher *watcher)
         watcher->priv->pointer_timeout = 5000;
 
         watcher->priv->verbose = FALSE;
-        watcher->priv->debug = TRUE;
+        watcher->priv->debug = FALSE;
 
         initialize_server_extensions (watcher);
 
