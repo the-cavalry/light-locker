@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-19 14:49-0400\n"
+"POT-Creation-Date: 2005-10-31 14:25-0500\n"
 "PO-Revision-Date: 2005-09-06 11:55-0400\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
@@ -465,8 +465,8 @@ msgstr "Unknown error occurred."
 
 #: src/file-transfer-dialog.c:94
 #, c-format
-msgid "Copying file: %i of %i"
-msgstr "Copying file: %i of %i"
+msgid "Copying file: %u of %u"
+msgstr "Copying file: %u of %u"
 
 #: src/file-transfer-dialog.c:122
 #, c-format
@@ -529,57 +529,57 @@ msgstr "To:"
 msgid "Connecting..."
 msgstr "Connecting..."
 
-#: src/gnome-screensaver-command.c:58
+#: src/gnome-screensaver-command.c:59
 msgid "Causes the screensaver to exit gracefully"
 msgstr "Causes the screensaver to exit gracefully"
 
-#: src/gnome-screensaver-command.c:60
+#: src/gnome-screensaver-command.c:61
 msgid "Query the state of the screensaver"
 msgstr "Query the state of the screensaver"
 
-#: src/gnome-screensaver-command.c:62
+#: src/gnome-screensaver-command.c:63
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "Tells the running screensaver process to lock the screen immediately"
 
-#: src/gnome-screensaver-command.c:64
+#: src/gnome-screensaver-command.c:65
 msgid "If the screensaver is active then switch to another graphics demo"
 msgstr "If the screensaver is active then switch to another graphics demo"
 
-#: src/gnome-screensaver-command.c:66
+#: src/gnome-screensaver-command.c:67
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "Turn the screensaver on (blank the screen)"
 
-#: src/gnome-screensaver-command.c:68
+#: src/gnome-screensaver-command.c:69
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr "If the screensaver is active then deactivate it (un-blank the screen)"
 
-#: src/gnome-screensaver-command.c:70
+#: src/gnome-screensaver-command.c:71
 msgid "Disable running graphical themes while blanked"
 msgstr "Disable running graphical themes while blanked"
 
-#: src/gnome-screensaver-command.c:72
+#: src/gnome-screensaver-command.c:73
 msgid "Enable running graphical themes while blanked (if applicable)"
 msgstr "Enable running graphical themes while blanked (if applicable)"
 
-#: src/gnome-screensaver-command.c:74
+#: src/gnome-screensaver-command.c:75
 msgid "Poke the running screensaver to simulate user activity"
 msgstr "Poke the running screensaver to simulate user activity"
 
-#: src/gnome-screensaver-command.c:76 src/gnome-screensaver-dialog.c:106
+#: src/gnome-screensaver-command.c:77 src/gnome-screensaver-dialog.c:106
 #: src/gnome-screensaver.c:55
 msgid "Version of this application"
 msgstr "Version of this application"
 
-#: src/gnome-screensaver-command.c:201
+#: src/gnome-screensaver-command.c:202
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "The screensaver is %s\n"
 
-#: src/gnome-screensaver-command.c:201
+#: src/gnome-screensaver-command.c:202
 msgid "active"
 msgstr "active"
 
-#: src/gnome-screensaver-command.c:201
+#: src/gnome-screensaver-command.c:202
 msgid "inactive"
 msgstr "inactive"
 
@@ -611,29 +611,29 @@ msgstr "Blank screen"
 msgid "Random"
 msgstr "Random"
 
-#: src/gnome-screensaver-preferences.c:693
+#: src/gnome-screensaver-preferences.c:692
 msgid "Invalid screensaver theme"
 msgstr "Invalid screensaver theme"
 
-#: src/gnome-screensaver-preferences.c:696
+#: src/gnome-screensaver-preferences.c:695
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "This file does not appear to be a valid screensaver theme."
 
-#: src/gnome-screensaver-preferences.c:813
+#: src/gnome-screensaver-preferences.c:812
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d hour"
 msgstr[1] "%d hours"
 
-#: src/gnome-screensaver-preferences.c:816
+#: src/gnome-screensaver-preferences.c:815
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minute"
 msgstr[1] "%d minutes"
 
-#: src/gnome-screensaver-preferences.c:819
+#: src/gnome-screensaver-preferences.c:818
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -641,15 +641,15 @@ msgstr[0] "%d second"
 msgstr[1] "%d seconds"
 
 #. hour:minutes:seconds
-#: src/gnome-screensaver-preferences.c:825
+#: src/gnome-screensaver-preferences.c:824
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: src/gnome-screensaver-preferences.c:828
-#: src/gnome-screensaver-preferences.c:836
+#: src/gnome-screensaver-preferences.c:827
+#: src/gnome-screensaver-preferences.c:835
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -657,27 +657,27 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: src/gnome-screensaver-preferences.c:831
-#: src/gnome-screensaver-preferences.c:839
-#: src/gnome-screensaver-preferences.c:843
+#: src/gnome-screensaver-preferences.c:830
+#: src/gnome-screensaver-preferences.c:838
+#: src/gnome-screensaver-preferences.c:842
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: src/gnome-screensaver-preferences.c:846
+#: src/gnome-screensaver-preferences.c:845
 msgid "0 seconds"
 msgstr "0 seconds"
 
-#: src/gnome-screensaver-preferences.c:861
+#: src/gnome-screensaver-preferences.c:860
 msgid "Never"
 msgstr "Never"
 
-#: src/gnome-screensaver-preferences.c:897
+#: src/gnome-screensaver-preferences.c:896
 msgid "Could not load the main interface"
 msgstr "Could not load the main interface"
 
-#: src/gnome-screensaver-preferences.c:899
+#: src/gnome-screensaver-preferences.c:898
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Please make sure that the screensaver is properly installed"
 
@@ -685,11 +685,15 @@ msgstr "Please make sure that the screensaver is properly installed"
 msgid "Don't become a daemon"
 msgstr "Do not become a daemon"
 
-#: src/gs-listener-dbus.c:921
+#: src/gs-listener-dbus.c:995
 msgid "failed to register with the message bus"
 msgstr "Failed to register with the message bus"
 
-#: src/gs-listener-dbus.c:930
+#: src/gs-listener-dbus.c:1005
+msgid "not connected to the message bus"
+msgstr "not connected to the message bus"
+
+#: src/gs-listener-dbus.c:1014
 msgid "screensaver already running in this session"
 msgstr "Screensaver already running in this session"
 
@@ -722,19 +726,19 @@ msgid "Log in as a new user"
 msgstr "Log in as a new user"
 
 #. translators: %s is a computer hostname
-#: src/gs-lock-plug.c:1422
+#: src/gs-lock-plug.c:1407
 #, c-format
 msgid "Welcome to %s"
 msgstr "Welcome to %s"
 
-#: src/gs-lock-plug.c:1456
+#: src/gs-lock-plug.c:1441
 msgid "_Password:"
 msgstr "_Password:"
 
-#: src/gs-lock-plug.c:1492
+#: src/gs-lock-plug.c:1477
 msgid "Switch to user:"
 msgstr "Switch to user:"
 
-#: src/gs-lock-plug.c:1537
+#: src/gs-lock-plug.c:1522
 msgid "Log _Out"
 msgstr "Log _Out"
