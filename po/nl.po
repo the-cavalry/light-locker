@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME 2.12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-11 03:00+0200\n"
-"PO-Revision-Date: 2005-10-11 11:36+0200\n"
+"POT-Creation-Date: 2005-10-31 19:18+0100\n"
+"PO-Revision-Date: 2005-11-01 03:16+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgid "_Lock screen when active"
 msgstr "_Scherm vergrendelen indien actief"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:6
+#: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Screensaver themes"
 msgstr "Screensaver thema's"
 
@@ -77,111 +77,152 @@ msgid "Lock on activation"
 msgstr "Vergrendelen bij activering"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Logout command"
+msgstr "Afmeldopdracht"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Screensaver selection mode"
 msgstr "Screensaver selectiemodus"
 
-#: ../data/gnome-screensaver.schemas.in.h:7
-msgid "Set this to TRUE to allow the screensaver to power down the monitor."
-msgstr "Zet dit op TRUE (waar) om de schermbeveiliging het beeldscherm te kunnen laten uitzetten."
-
 #: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr "Zet dit op TRUE (waar) om het scherm te vergrendelen wanneer de schermbeveiliging wordt geactiveerd."
+msgid "Set this to TRUE to allow the screensaver to power down the monitor."
+msgstr ""
+"Zet dit op TRUE (waar) om de schermbeveiliging het beeldscherm te kunnen "
+"laten uitzetten."
 
 #: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr ""
+"Zet dit op TRUE (waar) om het scherm te vergrendelen wanneer de "
+"schermbeveiliging wordt geactiveerd."
+
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
-msgstr "Zet dit op TRUE (waar) om in het ontgrendelings-dialoogvenster een optie te tonen om van gebruiker te wisselen."
+msgstr ""
+"Zet dit op TRUE (waar) om in het ontgrendelings-dialoogvenster een optie te "
+"tonen om van gebruiker te wisselen."
 
 # na een bepaalde tijd zou dubbelzinnig zijn
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
-msgstr "Zet dit op TRUE (waar) om een optie te tonen in het ontgrendelings-dialoogvenster om na een bepaalde periode af te melden. De lengte van de periode kan worden ingesteld via de sleutel: \"logout_delay\"."
-
-#: ../data/gnome-screensaver.schemas.in.h:11
-msgid ""
-"The number of minutes after screensaver activation before locking the screen."
-msgstr "Het aantal minuten tussen activeren van de schermbeveiliging en het vergrendelen van het beeldscherm."
+msgstr ""
+"Zet dit op TRUE (waar) om een optie te tonen in het ontgrendelings-"
+"dialoogvenster om na een bepaalde periode af te melden. De lengte van de "
+"periode kan worden ingesteld via de sleutel: \"logout_delay\"."
 
 #: ../data/gnome-screensaver.schemas.in.h:12
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr "De opdracht die uitgevoerd wordt wanneer de afmeldknop wordt aangeklikt. Deze opdracht moet de gebruiker kunnen afmelden zonder verdere interactie. Deze sleutel heeft alleen effect wanneer de sleutel \"logout_enable\" ingesteld is op TRUE (waar)."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
+msgstr ""
+"Het aantal minuten tussen activeren van de schermbeveiliging en het "
+"vergrendelen van het beeldscherm."
+
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
-msgstr "Het aantal minuten tussen activeren van de schermbeveiliging en het tonen van een afmeldoptie in het ontgrendelings-dialoogvenster. Deze sleutel heeft slechts effect wanneer de sleutel \"logout_enable\" op TRUE (waar) staat."
-
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"goes into standby power mode."
-msgstr "Het aantal minuten tussen activeren van de schermbeveiliging en het op standby zetten van het beeldscherm."
-
-#: ../data/gnome-screensaver.schemas.in.h:14
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"goes into suspend power mode."
-msgstr "Het aantal minuten tussen activeren van de schermbeveiliging en het in de slaapstand zetten van het beeldscherm."
+msgstr "Het aantal minuten tussen activeren van de schermbeveiliging en het tonen van een afmeldoptie in het ontgrendelings-dialoogvenster. Deze sleutel heeft alleen effect wanneer de sleutel \"logout_enable\" ingesteld is op TRUE (waar)."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
-"powers off."
-msgstr "Het aantal minuten tussen activeren van de schermbeveiliging en het uitzetten van het beeldscherm."
+"goes into standby power mode."
+msgstr ""
+"Het aantal minuten tussen activeren van de schermbeveiliging en het op "
+"standby zetten van het beeldscherm."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"goes into suspend power mode."
+msgstr ""
+"Het aantal minuten tussen activeren van de schermbeveiliging en het in de "
+"slaapstand zetten van het beeldscherm."
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"powers off."
+msgstr ""
+"Het aantal minuten tussen activeren van de schermbeveiliging en het "
+"uitzetten van het beeldscherm."
+
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid "The number of minutes of idle time before activating the screensaver."
-msgstr "Het aantal minuten inactiviteit voordat van de schermbeveiliging wordt ingeschakeld."
+msgstr ""
+"Het aantal minuten inactiviteit voordat van de schermbeveiliging wordt "
+"ingeschakeld."
 
 # tussen wisselen van screensaver/voordat gewisseld wordt/nadat gewisseld wordt
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "Het aantal minuten voordat gewisseld wordt van screensaver."
 
-#: ../data/gnome-screensaver.schemas.in.h:18
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The selection mode used by screensaver. May be \"disabled\" to disable "
 "screensaver activation, \"blank-only\" to enable the screensaver without "
 "using any theme on activation, \"single\" to enable screensaver using only "
 "one theme on activation (specified in \"themes\" key), and \"random\" to "
 "enable the screensaver using a random theme on activation."
-msgstr "De werking van de screensaver. Om de screensaver niet te laten inschakelen moet dit op \"disabled\" worden gezet. Bij \"blank-only\" toont het beelscherm alleen een zwart scherm als schermbeveiliging. Bij \"single\" wordt slechts één screensaver gebruikt (welke wordt gegeven via de sleutel \"themes\"). Bij \"random\" wordt een willekeurige screensaver uit een lijst gebruikt."
+msgstr ""
+"De werking van de screensaver. Om de screensaver niet te laten inschakelen "
+"moet dit op \"disabled\" worden gezet. Bij \"blank-only\" toont het "
+"beelscherm alleen een zwart scherm als schermbeveiliging. Bij \"single\" "
+"wordt slechts één screensaver gebruikt (welke wordt gegeven via de sleutel "
+"\"themes\"). Bij \"random\" wordt een willekeurige screensaver uit een lijst "
+"gebruikt."
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"disabled\" or \"blank-only\", should provide "
 "the theme name when \"mode\" is \"single\", and should provide a list of "
 "themes when \"mode\" is \"random\"."
-msgstr "Deze sleutel geeft de lijst met thema's die door de schermbeveiliging kunnen worden gebruikt. Het wordt genegeerd wanneer de sleutel: \"mode\" op \"disabled\" of op \"blank-only\" staat. Het moet de naam van de screensaver geven wanneer \"mode\" \"single\" is, en moet een lijst met screensaver-namen geven wanneer \"mode\" \"random\" is. "
+msgstr ""
+"Deze sleutel geeft de lijst met thema's die door de schermbeveiliging kunnen "
+"worden gebruikt. Het wordt genegeerd wanneer de sleutel: \"mode\" op "
+"\"disabled\" of op \"blank-only\" staat. Het moet de naam van de screensaver "
+"geven wanneer \"mode\" \"single\" is, en moet een lijst met screensaver-"
+"namen geven wanneer \"mode\" \"random\" is. "
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid "Time before activation"
 msgstr "Tijd voor activering"
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid "Time before locking"
 msgstr "Tijd voor vergrendeling"
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid "Time before logout option"
 msgstr "Tijd voor afmeldoptie"
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Time before power off"
 msgstr "Tijd voor uitzetten"
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before standby"
 msgstr "Tijd voor standby"
 
-#: ../data/gnome-screensaver.schemas.in.h:25
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before suspend"
 msgstr "Tijd voor slaapstand"
 
-#: ../data/gnome-screensaver.schemas.in.h:26
+#: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before theme change"
 msgstr "Tijd voor themawijziging"
 
@@ -453,8 +494,8 @@ msgstr "Er was een onbekende fout."
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
-msgid "Copying file: %i of %i"
-msgstr "Bestand kopiëren: %i van %i"
+msgid "Copying file: %u of %u"
+msgstr "Bestand kopiëren: %u van %u"
 
 #: ../src/file-transfer-dialog.c:122
 #, c-format
@@ -519,77 +560,81 @@ msgstr "Naar:"
 msgid "Connecting..."
 msgstr "Verbinden..."
 
-#: ../src/gnome-screensaver-command.c:58
+#: ../src/gnome-screensaver-command.c:59
 msgid "Causes the screensaver to exit gracefully"
 msgstr "Zorgt dat de schermbeveiliging netjes afsluit"
 
-#: ../src/gnome-screensaver-command.c:60
+#: ../src/gnome-screensaver-command.c:61
 msgid "Query the state of the screensaver"
 msgstr "De toestand van de schermbeveiliging opvragen"
 
-#: ../src/gnome-screensaver-command.c:62
+#: ../src/gnome-screensaver-command.c:63
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr ""
 "Geeft de actieve schermbeveiliging opdracht om het scherm onmiddellijk te "
 "blokkeren"
 
-#: ../src/gnome-screensaver-command.c:64
+#: ../src/gnome-screensaver-command.c:65
 msgid "If the screensaver is active then switch to another graphics demo"
 msgstr ""
 "Indien de schermbeveiliging actief is, wisselen naar een andere grafische "
 "demo"
 
-#: ../src/gnome-screensaver-command.c:66
+#: ../src/gnome-screensaver-command.c:67
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "De schermbeveiliging activeren (het scherm zwart maken)"
 
-#: ../src/gnome-screensaver-command.c:68
+#: ../src/gnome-screensaver-command.c:69
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr ""
 "Indien de schermbeveiliging actief is, deze deactiveren (het scherm "
 "zichtbaar maken)"
 
-#: ../src/gnome-screensaver-command.c:70
+#: ../src/gnome-screensaver-command.c:71
 msgid "Disable running graphical themes while blanked"
 msgstr "Actieve grafische thema's uitzetten wanneer het scherm zwart is"
 
-#: ../src/gnome-screensaver-command.c:72
+#: ../src/gnome-screensaver-command.c:73
 msgid "Enable running graphical themes while blanked (if applicable)"
 msgstr ""
 "Actieve grafische thema's aanzetten wanneer het scherm zwart is (indien "
 "toepasbaar)"
 
-#: ../src/gnome-screensaver-command.c:74
+#: ../src/gnome-screensaver-command.c:75
 msgid "Poke the running screensaver to simulate user activity"
 msgstr "De actieve schermbeveiling laten denken dat er gebruikersactiviteit is"
 
-#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:105
-#: ../src/gnome-screensaver.c:52
+#: ../src/gnome-screensaver-command.c:77 ../src/gnome-screensaver-dialog.c:106
+#: ../src/gnome-screensaver.c:55
 msgid "Version of this application"
 msgstr "Versie van deze toepassing"
 
-#: ../src/gnome-screensaver-command.c:201
+#: ../src/gnome-screensaver-command.c:202
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "De schermbeveiliging is %s\n"
 
-#: ../src/gnome-screensaver-command.c:201
+#: ../src/gnome-screensaver-command.c:202
 msgid "active"
 msgstr "actief"
 
-#: ../src/gnome-screensaver-command.c:201
+#: ../src/gnome-screensaver-command.c:202
 msgid "inactive"
 msgstr "inactief"
 
-#: ../src/gnome-screensaver-dialog.c:103
+#: ../src/gnome-screensaver-dialog.c:104
 msgid "Show debugging output"
 msgstr "Debug uitvoer tonen"
 
-#: ../src/gnome-screensaver-dialog.c:107
+#: ../src/gnome-screensaver-dialog.c:108
 msgid "Show the logout button"
 msgstr "Een afmeldknop tonen"
 
-#: ../src/gnome-screensaver-dialog.c:109
+#: ../src/gnome-screensaver-dialog.c:110
+msgid "Command to invoke from the logout button"
+msgstr "Opdracht die wordt uitgevoerd met de afmeldknop"
+
+#: ../src/gnome-screensaver-dialog.c:112
 msgid "Show the switch user button"
 msgstr "Een knop tonen met 'wissel gebruiker'"
 
@@ -606,31 +651,31 @@ msgstr "Zwart scherm"
 msgid "Random"
 msgstr "Willekeurig"
 
-#: ../src/gnome-screensaver-preferences.c:693
+#: ../src/gnome-screensaver-preferences.c:692
 msgid "Invalid screensaver theme"
 msgstr "Ongeldig schermbeveiligingsthema"
 
 # geen geldige schermbeveiliging/screensaver
-#: ../src/gnome-screensaver-preferences.c:696
+#: ../src/gnome-screensaver-preferences.c:695
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Dit bestand is waarschijnlijk geen geldig schermbeveiligingsthema."
 
 #  1 uur, 2 uur
-#: ../src/gnome-screensaver-preferences.c:813
+#: ../src/gnome-screensaver-preferences.c:812
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d uur"
 msgstr[1] "%d uur"
 
-#: ../src/gnome-screensaver-preferences.c:816
+#: ../src/gnome-screensaver-preferences.c:815
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minuut"
 msgstr[1] "%d minuten"
 
-#: ../src/gnome-screensaver-preferences.c:819
+#: ../src/gnome-screensaver-preferences.c:818
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -638,15 +683,15 @@ msgstr[0] "%d seconde"
 msgstr[1] "%d seconden"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:825
+#: ../src/gnome-screensaver-preferences.c:824
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:828
-#: ../src/gnome-screensaver-preferences.c:836
+#: ../src/gnome-screensaver-preferences.c:827
+#: ../src/gnome-screensaver-preferences.c:835
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -654,82 +699,91 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:831
-#: ../src/gnome-screensaver-preferences.c:839
-#: ../src/gnome-screensaver-preferences.c:843
+#: ../src/gnome-screensaver-preferences.c:830
+#: ../src/gnome-screensaver-preferences.c:838
+#: ../src/gnome-screensaver-preferences.c:842
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:846
+#: ../src/gnome-screensaver-preferences.c:845
 msgid "0 seconds"
 msgstr "0 seconden"
 
-#: ../src/gnome-screensaver-preferences.c:861
+#: ../src/gnome-screensaver-preferences.c:860
 msgid "Never"
 msgstr "Nooit"
 
-#: ../src/gnome-screensaver-preferences.c:897
+#: ../src/gnome-screensaver-preferences.c:896
 msgid "Could not load the main interface"
 msgstr "Kon de hoofd-interface niet laden"
 
-#: ../src/gnome-screensaver-preferences.c:899
+#: ../src/gnome-screensaver-preferences.c:898
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Controleer of de schermbeveiliging correct is geïnstalleerd"
 
-#: ../src/gs-listener-dbus.c:921
+# vrij vertaald
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "Niet als daemon uitvoeren"
+
+#: ../src/gs-listener-dbus.c:995
 msgid "failed to register with the message bus"
 msgstr "kon niet aanmelden bij de berichtenbus"
 
-#: ../src/gs-listener-dbus.c:930
+#: ../src/gs-listener-dbus.c:1005
+msgid "not connected to the message bus"
+msgstr "kon verbonden met de berichtenbus"
+
+#: ../src/gs-listener-dbus.c:1014
 msgid "screensaver already running in this session"
 msgstr "schermbeveiliging al actief in deze sessie"
 
-#: ../src/gs-lock-plug.c:308
+#: ../src/gs-lock-plug.c:318
 msgid "Checking password..."
 msgstr "Wachtwoordcontrole..."
 
-#: ../src/gs-lock-plug.c:351
+#: ../src/gs-lock-plug.c:361
 msgid "Time has expired."
 msgstr "Tijd is verlopten."
 
-#: ../src/gs-lock-plug.c:375
+#: ../src/gs-lock-plug.c:385
 msgid "You have the Caps Lock key on."
 msgstr "De Caps Lock staat aan."
 
-#: ../src/gs-lock-plug.c:605
+#: ../src/gs-lock-plug.c:643
 msgid "That password was incorrect."
 msgstr "Dat wachtwoord was onjuist."
 
-#: ../src/gs-lock-plug.c:628 ../src/gs-lock-plug.c:661
+#: ../src/gs-lock-plug.c:669 ../src/gs-lock-plug.c:702
 msgid "_Unlock"
 msgstr "_Deblokkeren"
 
 # infinitief hier mooier
-#: ../src/gs-lock-plug.c:631 ../src/gs-lock-plug.c:658
+#: ../src/gs-lock-plug.c:672 ../src/gs-lock-plug.c:699
 msgid "_Switch User..."
 msgstr "_Wissel gebruiker..."
 
-#: ../src/gs-lock-plug.c:961
+#: ../src/gs-lock-plug.c:1003
 msgid "Log in as a new user"
 msgstr "Aanmelden als nieuwe gebruiker"
 
 #. translators: %s is a computer hostname
-#: ../src/gs-lock-plug.c:1383
+#: ../src/gs-lock-plug.c:1407
 #, c-format
 msgid "Welcome to %s"
 msgstr "Welkom op %s"
 
-#: ../src/gs-lock-plug.c:1416
+#: ../src/gs-lock-plug.c:1441
 msgid "_Password:"
 msgstr "_Wachtwoord:"
 
-#: ../src/gs-lock-plug.c:1452
+#: ../src/gs-lock-plug.c:1477
 msgid "Switch to user:"
 msgstr "Wisselen naar gebruiker:"
 
-#: ../src/gs-lock-plug.c:1497
+#: ../src/gs-lock-plug.c:1522
 msgid "Log _Out"
 msgstr "_Afmelden"
 
