@@ -1,3 +1,12 @@
+2005-11-02  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac: Require gobject for gnome-screensaver-command.
+	Add librt for sigtimedwait to AUTH_LIBS if necessary.
+	* src/Makefile.am: Add SAVER_LIBS to dialog.
+
+	Based on patch from Damien Carbery <damien.carbery@sun.com>
+	Fixes part of #320501.
+
 2005-10-28  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-watcher-x11.c (gs_watcher_init):

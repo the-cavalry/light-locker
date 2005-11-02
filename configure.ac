@@ -43,6 +43,7 @@ LIBGNOMEUI_REQUIRED_VERSION=2.6.0
 GLADE_REQUIRED_VERSION=2.5.0
 LIBGNOME_MENU_REQUIRED_VERSION=2.11.1
 LIBEXIF_REQUIRED_VERSION=0.6.12
+GLIB_REQUIRED_VERSION=2.7.0
 
 AC_CHECK_HEADERS(unistd.h)
 AC_CHECK_HEADERS(crypt.h sys/select.h)
@@ -73,6 +74,7 @@ AC_SUBST(GNOME_SCREENSAVER_CAPPLET_CFLAGS)
 AC_SUBST(GNOME_SCREENSAVER_CAPPLET_LIBS)
 
 PKG_CHECK_MODULES(GNOME_SCREENSAVER_COMMAND,
+        gobject-2.0 >= $GLIB_REQUIRED_VERSION
         dbus-glib-1 >= $DBUS_REQUIRED_VERSION)
 AC_SUBST(GNOME_SCREENSAVER_COMMAND_CFLAGS)
 AC_SUBST(GNOME_SCREENSAVER_COMMAND_LIBS)
@@ -802,8 +804,16 @@ if test "x$enable_locking" = "xyes" -a  "x$enable_pam" != "xno"; then
 AC_CHECK_LIB(pam, pam_start, have_pam=yes)
 fi
 if test "x$have_pam" = "xyes"; then
+
     AUTH_LIBS="${AUTH_LIBS} -lpam"
     AC_DEFINE(HAVE_PAM, 1, [Define if PAM support is included])
+
+    # On Linux, sigtimedwait() is in libc; on Solaris, it's in librt.
+    have_timedwait=no
+    AC_CHECK_LIB(c, sigtimedwait, [have_timedwait=yes])
+    if test "$have_timedwait" = no ; then
+      AC_CHECK_LIB(rt, sigtimedwait, [AUTH_LIBS="${AUTH_LIBS} -lrt"])
+    fi
 
     AC_MSG_CHECKING(how to call pam_strerror)
     AC_CACHE_VAL(ac_cv_pam_strerror_args,
@@ -910,9 +920,9 @@ if test "$with_shadow" = yes ; then
     # But on DEC, it's in -lsecurity.
     #
     AC_CHECK_LIB(prot, getprpwnam, 
-                 [PASSWD_LIBS="$PASSWD_LIBS -lprot -lcurses -lx"],
+                 [AUTH_LIBS="$AUTH_LIBS -lprot -lcurses -lx"],
                  [AC_CHECK_LIB(security, getprpwnam, 
-                               [PASSWD_LIBS="$PASSWD_LIBS -lsecurity"])],
+                               [AUTH_LIBS="$AUTH_LIBS -lsecurity"])],
                  [-lx])
   fi
 fi
@@ -937,7 +947,7 @@ if test "$with_shadow" = yes ; then
     need_setuid=yes
 
     # on HPUX, bigcrypt is in -lsec
-    AC_CHECK_LIB(sec, bigcrypt, [PASSWD_LIBS="$PASSWD_LIBS -lsec"])
+    AC_CHECK_LIB(sec, bigcrypt, [AUTH_LIBS="$AUTH_LIBS -lsec"])
   fi
 fi
 
@@ -985,7 +995,7 @@ if test "$with_shadow" = yes ; then
     AC_CHECK_LIB(c, getspnam, [have_getspnam=yes])
     if test "$have_getspnam" = no ; then
       AC_CHECK_LIB(gen, getspnam,
-                   [have_getspnam=yes; PASSWD_LIBS="$PASSWD_LIBS -lgen"])
+                   [have_getspnam=yes; AUTH_LIBS="$AUTH_LIBS -lgen"])
     fi
   fi
 fi

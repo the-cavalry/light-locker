@@ -110,6 +110,7 @@ gnome_screensaver_dialog_SOURCES = 	\
 
 gnome_screensaver_dialog_LDADD =	\
 	$(GNOME_SCREENSAVER_DIALOG_LIBS)\
+	$(SAVER_LIBS)			\
 	$(FAST_USER_SWITCH_LIBS)	\
 	$(AUTH_LIBS)			\
 	$(top_builddir)/src/cut-n-paste/libfast-user-switch.a \
@@ -156,8 +157,8 @@ gnome_screensaver_SOURCES =	\
 	$(NULL)
 
 gnome_screensaver_LDADD =		\
-	$(GNOME_SCREENSAVER_LIBS)	\
 	$(SAVER_LIBS)			\
+	$(GNOME_SCREENSAVER_LIBS)	\
 	$(NULL)
 
 gnome_screensaver_LDFLAGS = -export-dynamic
