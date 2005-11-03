@@ -133,13 +133,18 @@ listener_active_changed_cb (GSListener *listener,
                             GSMonitor  *monitor)
 {
         gboolean res;
+        gboolean idle_watch_enabled;
+
+        idle_watch_enabled = gs_watcher_get_enabled (monitor->priv->watcher);
 
         if (active) {
-                /* turn off the idleness watcher */
-                res = gs_watcher_set_active (monitor->priv->watcher, FALSE);
-                if (! res) {
-                        g_warning ("Unable to deactivate the idle watcher");
-                        return FALSE;
+                if (idle_watch_enabled) {
+                        /* turn off the idleness watcher */
+                        res = gs_watcher_set_active (monitor->priv->watcher, FALSE);
+                        if (! res) {
+                                g_warning ("Unable to deactivate the idle watcher");
+                                return FALSE;
+                        }
                 }
 
                 /* blank the screen */
@@ -170,11 +175,13 @@ listener_active_changed_cb (GSListener *listener,
                         return FALSE;
                 }
 
-                /* turn on the idleness watcher */
-                res = gs_watcher_set_active (monitor->priv->watcher, TRUE);
-                if (! res) {
-                        g_warning ("Unable to activate the idle watcher");
-                        return FALSE;
+                if (idle_watch_enabled) {
+                        /* turn on the idleness watcher */
+                        res = gs_watcher_set_active (monitor->priv->watcher, TRUE);
+                        if (! res) {
+                                g_warning ("Unable to activate the idle watcher");
+                                return FALSE;
+                        }
                 }
 
                 /* disable power management */
@@ -235,6 +242,9 @@ static void
 _gs_monitor_update_from_prefs (GSMonitor *monitor,
                                GSPrefs   *prefs)
 {
+        gboolean idle_detection_enabled;
+        gboolean idle_detection_active;
+
         gs_manager_set_lock_enabled (monitor->priv->manager, monitor->priv->prefs->lock_enabled);
         gs_manager_set_lock_timeout (monitor->priv->manager, monitor->priv->prefs->lock_timeout);
         gs_manager_set_logout_enabled (monitor->priv->manager, monitor->priv->prefs->logout_enabled);
@@ -245,9 +255,18 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
         gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
         gs_manager_set_themes (monitor->priv->manager, monitor->priv->prefs->themes);
 
+        idle_detection_enabled = (monitor->priv->prefs->mode != GS_MODE_DONT_BLANK);
         gs_watcher_set_timeout (monitor->priv->watcher, monitor->priv->prefs->timeout);
-        gs_watcher_set_active (monitor->priv->watcher,
-                               monitor->priv->prefs->mode != GS_MODE_DONT_BLANK);
+        gs_watcher_set_enabled (monitor->priv->watcher, idle_detection_enabled);
+
+        /* in the case where idle detection is reenabled we may need to
+           activate the watcher too */
+        idle_detection_active = gs_watcher_get_active (monitor->priv->watcher);
+        if (! gs_manager_is_active (monitor->priv->manager)
+            && ! idle_detection_active
+            && idle_detection_enabled) {
+                gs_watcher_set_active (monitor->priv->watcher, TRUE);
+        }
 
         gs_power_set_timeouts (monitor->priv->power,
                                monitor->priv->prefs->dpms_standby,

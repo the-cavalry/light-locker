@@ -648,6 +648,14 @@ listener_dbus_filter_handle_methods (DBusConnection *connection,
 {
         GSListener *listener = GS_LISTENER (user_data);
 
+#if 0
+        g_message ("obj_path=%s interface=%s method=%s destination=%s", 
+                   dbus_message_get_path (message), 
+                   dbus_message_get_interface (message),
+                   dbus_message_get_member (message),
+                   dbus_message_get_destination (message));
+#endif
+
         g_return_val_if_fail (connection != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
         g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
 
@@ -702,13 +710,13 @@ gs_listener_message_handler (DBusConnection *connection,
         g_return_val_if_fail (connection != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
         g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
 
-        /*
+#if 0
         g_message ("obj_path=%s interface=%s method=%s destination=%s", 
                    dbus_message_get_path (message), 
                    dbus_message_get_interface (message),
                    dbus_message_get_member (message),
                    dbus_message_get_destination (message));
-        */
+#endif
 
         if (dbus_message_is_method_call (message, "org.freedesktop.DBus", "AddMatch")) {
                 DBusMessage *reply;
@@ -1069,8 +1077,10 @@ gs_listener_finalize (GObject *object)
 
         g_return_if_fail (listener->priv != NULL);
 
+#if 0
         if (listener->priv->connection)
                 dbus_connection_unref (listener->priv->connection);
+#endif
 
         if (listener->priv->inhibitors)
                 g_hash_table_destroy (listener->priv->inhibitors);

@@ -51,6 +51,9 @@ typedef struct
 GType       gs_watcher_get_type (void);
 
 GSWatcher * gs_watcher_new              (guint      timeout);
+gboolean    gs_watcher_set_enabled      (GSWatcher *watcher,
+                                         gboolean   enabled);
+gboolean    gs_watcher_get_enabled      (GSWatcher *watcher);
 void        gs_watcher_reset            (GSWatcher *watcher);
 gboolean    gs_watcher_set_active       (GSWatcher *watcher,
                                          gboolean   active);

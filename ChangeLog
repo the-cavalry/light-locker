@@ -1,5 +1,23 @@
 2005-11-03  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-listener-dbus.c (gs_listener_finalize):
+	Don't unref dbus connection since it doesn't seem
+	to work.
+
+	* src/gs-monitor.c (listener_active_changed_cb):
+	Only change watcher state if watching is enabled.
+	(_gs_monitor_update_from_prefs): Change watcher enabled
+	policy from GConf.  Special case for making watcher active.
+
+	* src/gs-watcher-x11.c (gs_watcher_set_timeout):
+	Only reset timers if the timeout value has changed.
+	(gs_watcher_reset): Only restart if enabled.
+	(gs_watcher_set_active): Display warning if not enabled.
+	(gs_watcher_set_enabled, gs_watcher_get_enabled, gs_watcher_init):
+	Add enabled policy to be used for disabling idle watching.
+
+2005-11-03  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (gs_window_real_unrealize) 
 	(socket_destroyed, gs_window_class_init):
 	Disconnect signal handlers.

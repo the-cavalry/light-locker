@@ -74,6 +74,7 @@ struct GSWatcherPrivate
         /* settings */
         guint           verbose : 1;
         guint           debug : 1;
+        guint           enabled : 1;
         guint           timeout;
         guint           pointer_timeout;
 
@@ -130,6 +131,10 @@ gs_watcher_reset (GSWatcher *watcher)
 {
         g_return_if_fail (GS_IS_WATCHER (watcher));
 
+        /* just return quietly if not enabled */
+        if (! watcher->priv->enabled)
+                return;
+
         /* restart if necessary */
         if (watcher->priv->active) {
                 gs_watcher_set_active (watcher, FALSE);
@@ -143,9 +148,12 @@ gs_watcher_set_timeout (GSWatcher  *watcher,
 {
         g_return_if_fail (GS_IS_WATCHER (watcher));
 
-        watcher->priv->timeout = timeout;
+        if (watcher->priv->timeout != timeout) {
+                watcher->priv->timeout = timeout;
 
-        gs_watcher_reset (watcher);
+                /* restart the timers if necessary */
+                gs_watcher_reset (watcher);
+        }
 }
 
 static void
@@ -606,8 +614,13 @@ gs_watcher_set_active (GSWatcher *watcher,
         g_return_val_if_fail (GS_IS_WATCHER (watcher), FALSE);
 
         if (watcher->priv->active == active) {
-                g_warning ("Watcher is already %s",
+                g_warning ("Idle detection is already %s",
                            active ? "active" : "inactive");
+                return FALSE;
+        }
+
+        if (! watcher->priv->enabled) {
+                g_warning ("Idle detection is disabled, cannot activate");
                 return FALSE;
         }
 
@@ -626,11 +639,45 @@ gs_watcher_set_active (GSWatcher *watcher,
         return TRUE;
 }
 
+gboolean
+gs_watcher_set_enabled (GSWatcher *watcher,
+                        gboolean   enabled)
+{
+        g_return_val_if_fail (GS_IS_WATCHER (watcher), FALSE);
+
+        if (watcher->priv->enabled != enabled) {
+                gboolean is_active = gs_watcher_get_active (watcher);
+
+                watcher->priv->enabled = enabled;
+                g_message ("Enabling watcher");
+                /* if we are disabling the watcher and we are
+                   active shut it down */
+                if (! enabled && is_active) {
+                        gs_watcher_set_active (watcher, FALSE);
+                }
+        }
+
+        return TRUE;
+}
+
+gboolean
+gs_watcher_get_enabled (GSWatcher *watcher)
+{
+        gboolean enabled;
+
+        g_return_val_if_fail (GS_IS_WATCHER (watcher), FALSE);
+
+        enabled = watcher->priv->enabled;
+
+        return enabled;
+}
+
 static void
 gs_watcher_init (GSWatcher *watcher)
 {
         watcher->priv = GS_WATCHER_GET_PRIVATE (watcher);
 
+        watcher->priv->enabled = TRUE;
         watcher->priv->active = FALSE;
         watcher->priv->timeout = 600000;
         watcher->priv->pointer_timeout = 5000;
