@@ -1,5 +1,22 @@
 2005-11-03  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-manager.c (gs_manager_activate): Fade in
+	two seconds instead of three.
+
+	* src/gs-lock-plug.c (switch_user_response) 
+	(get_user_display_label, user_displays_changed_cb) 
+	(populate_model, compare_users, filter_out_users, setup_treeview) 
+	(create_page_one, create_page_two):
+	Add a field to the user list model to be used as the
+	user visible markup for the list.  Rename the other
+	columns to distinguish them.  Don't make the
+	user list heading text big.  Also display the username
+	in the user list.
+
+	Based on patch from Luca Ferretti.
+
+2005-11-03  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Solaris requires libresolv for daemon().
 
 2005-11-02  William Jon McCann  <mccann@jhu.edu>

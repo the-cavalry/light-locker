@@ -34,6 +34,8 @@
 
 #include "fade.h"
 
+#define  FADE_SECONDS 2
+
 static void gs_manager_class_init (GSManagerClass *klass);
 static void gs_manager_init       (GSManager      *manager);
 static void gs_manager_finalize   (GObject        *object);
@@ -903,7 +905,7 @@ gs_manager_activate (GSManager *manager)
         /* fade to black and show windows */
         do_fade = TRUE;
         if (do_fade) {
-                fade_screens_and_show (3, 20, TRUE, manager->priv->windows);
+                fade_screens_and_show (FADE_SECONDS, 20, TRUE, manager->priv->windows);
         } else {
                 show_windows (manager->priv->windows);
         }

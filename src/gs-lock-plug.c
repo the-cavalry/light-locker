@@ -221,8 +221,9 @@ do_user_switch (GSLockPlug  *plug,
 }
 
 enum {
-        DISPLAY_NAME_COLUMN,
-        NAME_COLUMN,
+        REAL_NAME_COLUMN,
+        USER_NAME_COLUMN,
+        DISPLAY_LABEL_COLUMN,
         ACTIVE_COLUMN,
         PIXBUF_COLUMN,
         N_COLUMNS
@@ -243,7 +244,7 @@ switch_user_response (GSLockPlug *plug)
         gtk_tree_selection_get_selected (selection,
                                          &model,
                                          &iter);
-        gtk_tree_model_get (model, &iter, NAME_COLUMN, &name, -1);
+        gtk_tree_model_get (model, &iter, USER_NAME_COLUMN, &name, -1);
         if (name
             && strcmp (name, "__new_user") != 0
             && strcmp (name, "__separator") != 0) {
@@ -950,6 +951,18 @@ typedef struct
         GtkWidget  *tree;
 } DisplayChangedData;
 
+static char *
+get_user_display_label (FusaUser *user)
+{
+        char *label;
+
+        label = g_strdup_printf ("<big>%s</big>\n<small>%s</small>", 
+                                 fusa_user_get_display_name (user),
+                                 fusa_user_get_user_name (user));
+
+        return label;
+}
+
 static void
 user_displays_changed_cb (FusaUser           *user,
                           DisplayChangedData *data)
@@ -961,21 +974,25 @@ user_displays_changed_cb (FusaUser           *user,
         int           icon_size = FACE_ICON_SIZE;
         GtkTreeModel *filter_model;
         GtkTreeModel *model;
+        char         *label;
 
         name = fusa_user_get_user_name (user);
         n_displays = fusa_user_get_n_displays (user);
         is_active = n_displays > 0;
         pixbuf = fusa_user_render_icon (user, data->tree, icon_size, is_active);
+        label = get_user_display_label (user);
 
         filter_model = gtk_tree_view_get_model (GTK_TREE_VIEW (data->tree));
         model = gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (filter_model));
 
         gtk_list_store_set (GTK_LIST_STORE (model), &data->iter,
-                            NAME_COLUMN, name,
-                            DISPLAY_NAME_COLUMN, fusa_user_get_display_name (user),
+                            USER_NAME_COLUMN, name,
+                            REAL_NAME_COLUMN, fusa_user_get_display_name (user),
+                            DISPLAY_LABEL_COLUMN, label,
                             ACTIVE_COLUMN, is_active,
                             PIXBUF_COLUMN, pixbuf,
                             -1);
+        g_free (label);
 }
 
 static void
@@ -997,23 +1014,8 @@ populate_model (GSLockPlug   *plug,
         
         pixbuf = gtk_icon_theme_load_icon (theme, "gdm", icon_size, 0, NULL);
 
-#if 0
-        gtk_list_store_append (store, &iter);
-        gtk_list_store_set (store, &iter,
-                            DISPLAY_NAME_COLUMN, _("Log in as a new user"),
-                            NAME_COLUMN, "__new_user",
-                            PIXBUF_COLUMN, pixbuf,
-                            -1);
-        gtk_list_store_append (store, &iter);
-        gtk_list_store_set (store, &iter,
-                            DISPLAY_NAME_COLUMN, NULL,
-                            NAME_COLUMN, "__separator",
-                            -1);
-#endif
-
         profile_start ("start", "FUSA list users");
         if (! plug->priv->fusa_manager) {
-        /* for fast user switching */
                 profile_start ("start", "g_thread_init");
                 g_thread_init (NULL);
                 profile_end ("end", "g_thread_init");
@@ -1034,6 +1036,7 @@ populate_model (GSLockPlug   *plug,
                 gboolean            is_active;
                 guint               n_displays;
                 DisplayChangedData *ddata;
+                char               *label;
 
                 user = users->data;
 
@@ -1046,17 +1049,20 @@ populate_model (GSLockPlug   *plug,
                 n_displays = fusa_user_get_n_displays (user);
                 is_active = n_displays > 0;
 
-                /* this requires the following to scale well:
-                   http://bugzilla.gnome.org/show_bug.cgi?id=310418 */
                 pixbuf = fusa_user_render_icon (user, plug->priv->user_treeview, icon_size, is_active);
+
+                label = get_user_display_label (user);
 
                 gtk_list_store_append (store, &iter);
                 gtk_list_store_set (store, &iter,
-                                    NAME_COLUMN, fusa_user_get_user_name (user),
-                                    DISPLAY_NAME_COLUMN, fusa_user_get_display_name (user),
+                                    USER_NAME_COLUMN, fusa_user_get_user_name (user),
+                                    REAL_NAME_COLUMN, fusa_user_get_display_name (user),
+                                    DISPLAY_LABEL_COLUMN, label,
                                     ACTIVE_COLUMN, is_active,
                                     PIXBUF_COLUMN, pixbuf,
                                     -1);
+
+                g_free (label);
 
                 ddata = g_new0 (DisplayChangedData, 1);
                 ddata->iter = iter;
@@ -1084,10 +1090,10 @@ compare_users (GtkTreeModel *model,
         char *label_b;
         int   result;
 
-        gtk_tree_model_get (model, a, NAME_COLUMN, &name_a, -1);
-        gtk_tree_model_get (model, b, NAME_COLUMN, &name_b, -1);
-        gtk_tree_model_get (model, a, DISPLAY_NAME_COLUMN, &label_a, -1);
-        gtk_tree_model_get (model, b, DISPLAY_NAME_COLUMN, &label_b, -1);
+        gtk_tree_model_get (model, a, USER_NAME_COLUMN, &name_a, -1);
+        gtk_tree_model_get (model, b, USER_NAME_COLUMN, &name_b, -1);
+        gtk_tree_model_get (model, a, REAL_NAME_COLUMN, &label_a, -1);
+        gtk_tree_model_get (model, b, REAL_NAME_COLUMN, &label_b, -1);
 
         if (! name_a)
                 return 1;
@@ -1146,7 +1152,7 @@ filter_out_users (GtkTreeModel *model,
         char    *name;
 
         gtk_tree_model_get (model, iter,
-                            NAME_COLUMN, &name,
+                            USER_NAME_COLUMN, &name,
                             ACTIVE_COLUMN, &is_active,
                             -1);
         if (! name)
@@ -1183,6 +1189,7 @@ setup_treeview (GSLockPlug *plug)
         store = gtk_list_store_new (N_COLUMNS,
                                     G_TYPE_STRING,
                                     G_TYPE_STRING,
+                                    G_TYPE_STRING,
                                     G_TYPE_BOOLEAN,
                                     GDK_TYPE_PIXBUF);
         populate_model (plug, store);
@@ -1208,13 +1215,13 @@ setup_treeview (GSLockPlug *plug)
 
         renderer = gtk_cell_renderer_text_new ();
         column = gtk_tree_view_column_new_with_attributes ("Name", renderer,
-                                                           "text", DISPLAY_NAME_COLUMN,
+                                                           "markup", DISPLAY_LABEL_COLUMN,
                                                            NULL);
         gtk_tree_view_append_column (GTK_TREE_VIEW (plug->priv->user_treeview), column);
 
         gtk_tree_view_set_row_separator_func (GTK_TREE_VIEW (plug->priv->user_treeview),
                                               separator_func,
-                                              GINT_TO_POINTER (NAME_COLUMN),
+                                              GINT_TO_POINTER (USER_NAME_COLUMN),
                                               NULL);
 
         gtk_tree_view_column_set_sort_column_id (column, 0);
@@ -1262,42 +1269,6 @@ label_set_big_bold (GtkLabel *label)
         attr->start_index = 0;
         attr->end_index = G_MAXINT;
         pango_attr_list_insert (pattrlist, attr);
-
-        attr = pango_attr_scale_new (1.2);
-        attr->start_index = 0;
-        attr->end_index = G_MAXINT;
-        pango_attr_list_insert (pattrlist, attr);
-
-        gtk_label_set_attributes (label, pattrlist);
-
-        pango_attr_list_unref (pattrlist);
-}
-
-static void
-label_set_bigger (GtkLabel *label)
-{
-        PangoAttrList        *pattrlist;
-        PangoAttribute       *attr;
-
-        pattrlist = pango_attr_list_new ();
-
-        attr = pango_attr_scale_new (1.4);
-        attr->start_index = 0;
-        attr->end_index = G_MAXINT;
-        pango_attr_list_insert (pattrlist, attr);
-
-        gtk_label_set_attributes (label, pattrlist);
-
-        pango_attr_list_unref (pattrlist);
-}
-
-static void
-label_set_big (GtkLabel *label)
-{
-        PangoAttrList        *pattrlist;
-        PangoAttribute       *attr;
-
-        pattrlist = pango_attr_list_new ();
 
         attr = pango_attr_scale_new (1.2);
         attr->start_index = 0;
@@ -1420,17 +1391,19 @@ create_page_one (GSLockPlug *plug)
         vbox2 = gtk_vbox_new (FALSE, 0);
         gtk_box_pack_start (GTK_BOX (vbox), vbox2, FALSE, FALSE, 0);
 
-        plug->priv->username_label = gtk_label_new (get_user_display_name ());
-        gtk_misc_set_alignment (GTK_MISC (plug->priv->username_label), 0.5, 0.5);
-        gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->username_label, FALSE, FALSE, 0);
-
-        label_set_bigger (GTK_LABEL (plug->priv->username_label));
-
-        str = g_strdup_printf ("(%s)", g_get_user_name ());
+        str = g_strdup_printf ("<span size=\"x-large\">%s</span>", get_user_display_name ());
         widget = gtk_label_new (str);
         g_free (str);
         gtk_misc_set_alignment (GTK_MISC (widget), 0.5, 0.5);
+        gtk_label_set_use_markup (GTK_LABEL (widget), TRUE);
         gtk_box_pack_start (GTK_BOX (vbox2), widget, FALSE, FALSE, 0);
+
+        str = g_strdup_printf ("<span size=\"small\">%s</span>", g_get_user_name ());
+        plug->priv->username_label = gtk_label_new (str);
+        g_free (str);
+        gtk_misc_set_alignment (GTK_MISC (plug->priv->username_label), 0.5, 0.5);
+        gtk_label_set_use_markup (GTK_LABEL (plug->priv->username_label), TRUE);
+        gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->username_label, FALSE, FALSE, 0);
 
         vbox2 = gtk_vbox_new (FALSE, 0);
         gtk_box_pack_start (GTK_BOX (vbox), vbox2, FALSE, FALSE, 0);
@@ -1466,7 +1439,8 @@ create_page_one (GSLockPlug *plug)
 static void
 create_page_two (GSLockPlug *plug)
 {
-        GtkWidget            *widget;
+        GtkWidget            *header_label;
+        GtkWidget            *userlist_scroller;
         GtkWidget            *vbox;
 
         profile_start ("start", "page two");
@@ -1474,23 +1448,23 @@ create_page_two (GSLockPlug *plug)
         vbox = gtk_vbox_new (FALSE, 6);
         gtk_notebook_append_page (GTK_NOTEBOOK (plug->priv->notebook), vbox, NULL);
 
-        widget = gtk_label_new (_("Switch to user:"));
-        gtk_misc_set_alignment (GTK_MISC (widget), 0, 0.5);
-        gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
+        header_label = gtk_label_new_with_mnemonic (_("S_witch to user:"));
+        gtk_misc_set_alignment (GTK_MISC (header_label), 0, 0.5);
+        gtk_box_pack_start (GTK_BOX (vbox), header_label, FALSE, FALSE, 0);
 
-        label_set_big (GTK_LABEL (widget));
-
-        widget = gtk_scrolled_window_new (NULL, NULL);
-        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (widget),
+        userlist_scroller = gtk_scrolled_window_new (NULL, NULL);
+        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (userlist_scroller),
                                              GTK_SHADOW_IN);
-        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (widget),
+        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (userlist_scroller),
                                         GTK_POLICY_NEVER,
                                         GTK_POLICY_AUTOMATIC);
-        gtk_box_pack_start (GTK_BOX (vbox), widget, TRUE, TRUE, 0);
+        gtk_box_pack_start (GTK_BOX (vbox), userlist_scroller, TRUE, TRUE, 0);
 
         plug->priv->user_treeview = gtk_tree_view_new ();
         gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (plug->priv->user_treeview), FALSE);
-        gtk_container_add (GTK_CONTAINER (widget), plug->priv->user_treeview);
+        gtk_container_add (GTK_CONTAINER (userlist_scroller), plug->priv->user_treeview);
+
+        gtk_label_set_mnemonic_widget (GTK_LABEL (header_label), plug->priv->user_treeview);
 
         g_idle_add ((GSourceFunc)setup_treeview_idle, plug);
 
