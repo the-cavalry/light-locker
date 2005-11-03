@@ -560,7 +560,7 @@ if test "${try_xinerama}" != no; then
             if test "x$use_solaris_xinerama" = "xyes"; then
                 AC_CHECK_X_HEADER(X11/extensions/xinerama.h,
                                   if test -z "`echo $ALL_X_LIBS | grep "\-lXext" 2> /dev/null`"; then
-                                      X_EXTRA_LIBS="-lXext $X_EXTRA_LIBS"
+                                      SAVER_LIBS="$SAVER_LIBS -lXext"
                                   fi
                                   AC_DEFINE(HAVE_SOLARIS_XINERAMA, , [Have Solaris-style Xinerama])
                                   AC_DEFINE(HAVE_XINERAMA, , [Have some version of Xinerama]),
@@ -575,9 +575,9 @@ if test "${try_xinerama}" != no; then
             use_xfree_xinerama=yes
             AC_CHECK_X_LIB(Xinerama, XineramaQueryExtension,
                 [AC_CHECK_X_HEADER(X11/extensions/Xinerama.h,
-                                   X_EXTRA_LIBS="-lXinerama $X_EXTRA_LIBS"   
+                                   SAVER_LIBS="$SAVER_LIBS -lXinerama"   
                                    if test -z "`echo $ALL_X_LIBS | grep "\-lXext" 2> /dev/null`"; then
-                                       X_EXTRA_LIBS="-lXext $X_EXTRA_LIBS"
+                                       SAVER_LIBS="$SAVER_LIBS -lXext"
                                    fi
                                    AC_DEFINE(HAVE_XFREE_XINERAMA, , [Have XFree86-style Xinerama])
                                    AC_DEFINE(HAVE_XINERAMA,, [Have some version of Xinerama]), 

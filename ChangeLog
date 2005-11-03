@@ -1,5 +1,11 @@
 2005-11-03  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac: Add xinerama and xext into
+	SAVER_LIBS instead of X_EXTRA_LIBS.  Should
+	fix part of #320501.
+
+2005-11-03  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c (gs_manager_activate): Fade in
 	two seconds instead of three.
 
