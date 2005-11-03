@@ -1,5 +1,10 @@
 2005-11-03  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac: Don't explicitly require
+	libxml since it is no longer used directly.
+
+2005-11-03  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Post release version bump.
 
 ==== 0.0.18 ====
