@@ -91,6 +91,9 @@ AM_GCONF_SOURCE_2
 
 GNOME_COMPILE_WARNINGS(yes)
 
+# Solaris requires libresolv for daemon()
+AC_CHECK_LIB(resolv, daemon, [GNOME_SCREENSAVER_LIBS="$GNOME_SCREENSAVER_LIBS -lresolv"])
+ 
 # Optional dependencies for the theme engines
 
 SAVER_MODULES="gthread-2.0 gtk+-2.0 >= $GTK_REQUIRED_VERSION"
