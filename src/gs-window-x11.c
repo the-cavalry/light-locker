@@ -221,6 +221,17 @@ gs_window_move_resize_window (GSWindow *window,
 }
 
 static void
+gs_window_real_unrealize (GtkWidget *widget)
+{
+        g_signal_handlers_disconnect_by_func (gtk_window_get_screen (GTK_WINDOW (widget)),
+                                              screen_size_changed,
+                                              widget);
+
+        if (GTK_WIDGET_CLASS (parent_class)->unrealize)
+                GTK_WIDGET_CLASS (parent_class)->unrealize (widget);
+}
+
+static void
 gs_window_real_realize (GtkWidget *widget)
 {
         if (GTK_WIDGET_CLASS (parent_class)->realize)
@@ -481,6 +492,11 @@ static void
 socket_destroyed (GtkWidget *widget,
                   GSWindow  *window)
 {
+        g_signal_handlers_disconnect_by_func (window->priv->socket, socket_show, window);
+        g_signal_handlers_disconnect_by_func (window->priv->socket, socket_destroyed, window);
+        g_signal_handlers_disconnect_by_func (window->priv->socket, plug_added, window);
+        g_signal_handlers_disconnect_by_func (window->priv->socket, plug_removed, window);
+
         window->priv->socket = NULL;
 }
 
@@ -1047,6 +1063,7 @@ gs_window_class_init (GSWindowClass *klass)
         widget_class->show                = gs_window_real_show;
         widget_class->hide                = gs_window_real_hide;
         widget_class->realize             = gs_window_real_realize;
+        widget_class->unrealize           = gs_window_real_unrealize;
         widget_class->key_press_event     = gs_window_real_key_press_event;
         widget_class->motion_notify_event = gs_window_real_motion_notify_event;
         widget_class->size_request        = gs_window_real_size_request;

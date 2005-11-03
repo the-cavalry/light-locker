@@ -790,6 +790,42 @@ window_show_cb (GSWindow  *window,
 }
 
 static void
+disconnect_window_signals (GSManager *manager,
+                           GSWindow  *window)
+{
+        g_signal_handlers_disconnect_by_func (window, window_deactivated_cb, manager);
+        g_signal_handlers_disconnect_by_func (window, window_dialog_up_cb, manager);
+        g_signal_handlers_disconnect_by_func (window, window_dialog_down_cb, manager);
+        g_signal_handlers_disconnect_by_func (window, window_show_cb, manager);
+        g_signal_handlers_disconnect_by_func (window, window_map_event_cb, manager);
+}
+
+static void
+window_destroyed_cb (GtkWindow *window,
+                     GSManager *manager)
+{
+        disconnect_window_signals (manager, GS_WINDOW (window));
+}
+
+static void
+connect_window_signals (GSManager *manager,
+                        GSWindow  *window)
+{
+        g_signal_connect_object (window, "destroy",
+                                 G_CALLBACK (window_destroyed_cb), manager, 0);
+        g_signal_connect_object (window, "deactivated",
+                                 G_CALLBACK (window_deactivated_cb), manager, 0);
+        g_signal_connect_object (window, "dialog-up",
+                                 G_CALLBACK (window_dialog_up_cb), manager, 0);
+        g_signal_connect_object (window, "dialog-down",
+                                 G_CALLBACK (window_dialog_down_cb), manager, 0);
+        g_signal_connect_object (window, "show",
+                                 G_CALLBACK (window_show_cb), manager, 0);
+        g_signal_connect_object (window, "map_event",
+                                 G_CALLBACK (window_map_event_cb), manager, 0);
+}
+
+static void
 gs_manager_create_window (GSManager *manager,
                           GdkScreen *screen)
 {
@@ -814,16 +850,7 @@ gs_manager_create_window (GSManager *manager,
                 gs_window_set_logout_timeout (window, manager->priv->logout_timeout);
                 gs_window_set_logout_command (window, manager->priv->logout_command);
 
-                g_signal_connect_object (window, "deactivated",
-                                         G_CALLBACK (window_deactivated_cb), manager, 0);
-                g_signal_connect_object (window, "dialog-up",
-                                         G_CALLBACK (window_dialog_up_cb), manager, 0);
-                g_signal_connect_object (window, "dialog-down",
-                                         G_CALLBACK (window_dialog_down_cb), manager, 0);
-                g_signal_connect_object (window, "show",
-                                         G_CALLBACK (window_show_cb), manager, 0);
-                g_signal_connect_object (window, "map_event",
-                                         G_CALLBACK (window_map_event_cb), manager, 0);
+                connect_window_signals (manager, window);
 
                 manager->priv->windows = g_slist_append (manager->priv->windows, window);
         }

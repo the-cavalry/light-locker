@@ -1,5 +1,25 @@
 2005-11-03  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (gs_window_real_unrealize) 
+	(socket_destroyed, gs_window_class_init):
+	Disconnect signal handlers.
+
+	* src/gs-monitor.c (disconnect_listener_signals) 
+	(connect_listener_signals, disconnect_watcher_signals) 
+	(connect_watcher_signals, disconnect_manager_signals) 
+	(connect_manager_signals, disconnect_power_signals) 
+	(connect_power_signals, disconnect_prefs_signals) 
+	(connect_prefs_signals, gs_monitor_init, gs_monitor_finalize):
+	Create symmetric functions for connecting and disconnecting
+	signal handlers.  Also unref power object.
+
+	* src/gs-manager.c (disconnect_window_signals) 
+	(window_destroyed_cb, connect_window_signals) 
+	(gs_manager_create_window): Disconnect window
+	signal handlers when window is destroyed.
+
+2005-11-03  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Don't explicitly require
 	libxml since it is no longer used directly.
 

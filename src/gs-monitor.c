@@ -258,16 +258,19 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
 }
 
 static void
-gs_monitor_init (GSMonitor *monitor)
+disconnect_listener_signals (GSMonitor *monitor)
 {
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_lock_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_quit_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_cycle_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_active_changed_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_throttled_changed_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_poke_cb, monitor);
+}
 
-        monitor->priv = GS_MONITOR_GET_PRIVATE (monitor);
-
-        monitor->priv->prefs = gs_prefs_new ();
-        g_signal_connect_swapped (monitor->priv->prefs, "changed",
-                                  G_CALLBACK (_gs_monitor_update_from_prefs), monitor);
-
-        monitor->priv->listener = gs_listener_new ();
+static void
+connect_listener_signals (GSMonitor *monitor)
+{
         g_signal_connect (monitor->priv->listener, "lock",
                           G_CALLBACK (listener_lock_cb), monitor);
         g_signal_connect (monitor->priv->listener, "quit",
@@ -280,23 +283,85 @@ gs_monitor_init (GSMonitor *monitor)
                           G_CALLBACK (listener_throttled_changed_cb), monitor);
         g_signal_connect (monitor->priv->listener, "poke",
                           G_CALLBACK (listener_poke_cb), monitor);
+}
 
-        monitor->priv->watcher = gs_watcher_new (monitor->priv->prefs->timeout);
+static void
+disconnect_watcher_signals (GSMonitor *monitor)
+{
+        g_signal_handlers_disconnect_by_func (monitor->priv->watcher, watcher_idle_cb, monitor);
+}
+
+static void
+connect_watcher_signals (GSMonitor *monitor)
+{
         g_signal_connect (monitor->priv->watcher, "idle",
                           G_CALLBACK (watcher_idle_cb), monitor);
+}
 
-        monitor->priv->manager = gs_manager_new ();
+static void
+disconnect_manager_signals (GSMonitor *monitor)
+{
+        g_signal_handlers_disconnect_by_func (monitor->priv->manager, manager_activated_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->manager, manager_deactivated_cb, monitor);
+}
+
+static void
+connect_manager_signals (GSMonitor *monitor)
+{
         g_signal_connect (monitor->priv->manager, "activated",
                           G_CALLBACK (manager_activated_cb), monitor);
         g_signal_connect (monitor->priv->manager, "deactivated",
                           G_CALLBACK (manager_deactivated_cb), monitor);
+}
 
-        monitor->priv->power = gs_power_new ();
+static void
+disconnect_power_signals (GSMonitor *monitor)
+{
+        g_signal_handlers_disconnect_by_func (monitor->priv->power, power_changed_cb, monitor);
+}
+
+static void
+connect_power_signals (GSMonitor *monitor)
+{
         g_signal_connect (monitor->priv->power, "changed",
                           G_CALLBACK (power_changed_cb), monitor);
+}
+
+static void
+disconnect_prefs_signals (GSMonitor *monitor)
+{
+        g_signal_handlers_disconnect_by_func (monitor->priv->prefs, _gs_monitor_update_from_prefs, monitor);
+}
+
+static void
+connect_prefs_signals (GSMonitor *monitor)
+{
+        g_signal_connect_swapped (monitor->priv->prefs, "changed",
+                                  G_CALLBACK (_gs_monitor_update_from_prefs), monitor);
+}
+
+static void
+gs_monitor_init (GSMonitor *monitor)
+{
+
+        monitor->priv = GS_MONITOR_GET_PRIVATE (monitor);
+
+        monitor->priv->prefs = gs_prefs_new ();
+        connect_prefs_signals (monitor);
+
+        monitor->priv->listener = gs_listener_new ();
+        connect_listener_signals (monitor);
+
+        monitor->priv->watcher = gs_watcher_new (monitor->priv->prefs->timeout);
+        connect_watcher_signals (monitor);
+
+        monitor->priv->manager = gs_manager_new ();
+        connect_manager_signals (monitor);
+
+        monitor->priv->power = gs_power_new ();
+        connect_power_signals (monitor);
 
         _gs_monitor_update_from_prefs (monitor, monitor->priv->prefs);
-
 }
 
 static void
@@ -311,9 +376,16 @@ gs_monitor_finalize (GObject *object)
 
         g_return_if_fail (monitor->priv != NULL);
 
+        disconnect_watcher_signals (monitor);
+        disconnect_listener_signals (monitor);
+        disconnect_manager_signals (monitor);
+        disconnect_power_signals (monitor);
+        disconnect_prefs_signals (monitor);
+
         g_object_unref (monitor->priv->watcher);
         g_object_unref (monitor->priv->listener);
         g_object_unref (monitor->priv->manager);
+        g_object_unref (monitor->priv->power);
         g_object_unref (monitor->priv->prefs);
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
