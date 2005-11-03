@@ -1,3 +1,9 @@
+==== 0.0.18 ====
+
+2005-11-03  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 0.0.18 release
+
 2005-11-03  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Add xinerama and xext into

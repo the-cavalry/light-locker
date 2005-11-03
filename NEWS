@@ -1,4 +1,32 @@
 ==============
+Version 0.0.18
+==============
+
+  gnome-screensaver
+
+        * UI tweaks for unlock dialog
+        * Fix Intel compiler warnings (Kjartan Maraas)
+        * Do more error checking of GConf input
+        * Check for command parsing errors
+        * Fix leaks
+        * Redesign the idle watcher and fix leaks
+        * Solaris build fixes (Damien Carbery)
+
+  gnome-screensaver-preferences
+
+        * Make lock toggle work again
+
+  Translators
+
+        * Miloslav Trmac (cs)
+        * Adam Weinberger (en_CA)
+        * Francisco Javier F. Serrador (es)
+        * Davy Defaud (fr)
+        * Gabor Kelemen (hu)
+        * Takeshi AIHANA (ja)
+        * Tino Meinen (nl)
+
+==============
 Version 0.0.17
 ==============
 
