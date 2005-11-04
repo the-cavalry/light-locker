@@ -1,3 +1,14 @@
+2005-11-04  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c (remove_monitor_idle) 
+	(remove_password_check_idle, remove_password_reset_idle) 
+	(remove_response_idle, gs_lock_plug_response, monitor_progress) 
+	(restart_monitor_progress, password_reset_idle_cb) 
+	(password_check_idle_cb, gs_lock_plug_finalize):
+	Create routines for removing timeout callbacks.  Reset
+	the dialog instead of cancelling it when an invalid
+	password is entered.  Fixes #320440.
+
 2005-11-03  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-listener-dbus.c (gs_listener_finalize):

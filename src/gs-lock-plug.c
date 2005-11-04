@@ -137,6 +137,7 @@ struct GSLockPlugPrivate
 
         guint        idle_id;
         guint        password_check_idle_id;
+        guint        password_reset_idle_id;
         guint        response_idle_id;
 
         GTimeVal     start_time;
@@ -277,6 +278,42 @@ set_dialog_sensitive (GSLockPlug *plug,
 }
 
 static void
+remove_monitor_idle (GSLockPlug *plug)
+{
+        if (plug->priv->idle_id > 0) {
+                g_source_remove (plug->priv->idle_id);
+                plug->priv->idle_id = 0;
+        }
+}
+
+static void
+remove_password_check_idle (GSLockPlug *plug)
+{
+        if (plug->priv->password_check_idle_id > 0) {
+                g_source_remove (plug->priv->password_check_idle_id);
+                plug->priv->password_check_idle_id = 0;
+        }
+}
+
+static void
+remove_password_reset_idle (GSLockPlug *plug)
+{
+        if (plug->priv->password_reset_idle_id > 0) {
+                g_source_remove (plug->priv->password_reset_idle_id);
+                plug->priv->password_reset_idle_id = 0;
+        }
+}
+
+static void
+remove_response_idle (GSLockPlug *plug)
+{
+        if (plug->priv->response_idle_id > 0) {
+                g_source_remove (plug->priv->response_idle_id);
+                plug->priv->response_idle_id = 0;
+        }
+}
+
+static void
 gs_lock_plug_response (GSLockPlug *plug,
                        gint        response_id)
 {
@@ -292,20 +329,10 @@ gs_lock_plug_response (GSLockPlug *plug,
                 return;
         }
 
-        if (plug->priv->idle_id > 0) {
-                g_source_remove (plug->priv->idle_id);
-                plug->priv->idle_id = 0;
-        }
-
-        if (plug->priv->password_check_idle_id > 0) {
-                g_source_remove (plug->priv->password_check_idle_id);
-                plug->priv->password_check_idle_id = 0;
-        }
-
-        if (plug->priv->response_idle_id > 0) {
-                g_source_remove (plug->priv->response_idle_id);
-                plug->priv->response_idle_id = 0;
-        }
+        remove_monitor_idle (plug);
+        remove_password_check_idle (plug);
+        remove_password_reset_idle (plug);
+        remove_response_idle (plug);
 
         if (response_id == GS_LOCK_PLUG_RESPONSE_CANCEL) {
                 gtk_entry_set_text (GTK_ENTRY (plug->priv->password_entry), "");
@@ -350,7 +377,6 @@ monitor_progress (GSLockPlug *plug)
         GTimeVal now;
         glong    elapsed;
         glong    remaining;
-        char    *message;
 
         g_get_current_time (&now);
 
@@ -359,15 +385,17 @@ monitor_progress (GSLockPlug *plug)
         remaining = plug->priv->timeout - elapsed;
 
         if ((remaining <= 0) || (remaining > plug->priv->timeout)) {
-                message = g_strdup (_("Time has expired."));
                 set_dialog_sensitive (plug, FALSE);
-                set_status_text (plug, message);
-                g_free (message);
+                set_status_text (plug, _("Time has expired."));
 
-                if (plug->priv->response_idle_id == 0)
-                        plug->priv->response_idle_id = g_timeout_add (2000,
-                                                                      (GSourceFunc)response_idle_cb,
-                                                                      plug);
+                if (plug->priv->response_idle_id != 0)
+                        g_warning ("Response idle ID already set but shouldn't be");
+
+                remove_response_idle (plug);
+
+                plug->priv->response_idle_id = g_timeout_add (2000,
+                                                              (GSourceFunc)response_idle_cb,
+                                                              plug);
                 return FALSE;
         }
         return TRUE;
@@ -407,10 +435,7 @@ is_capslock_on (void)
 static void
 restart_monitor_progress (GSLockPlug *plug)
 {
-        if (plug->priv->idle_id > 0) {
-                g_source_remove (plug->priv->idle_id);
-                plug->priv->idle_id = 0;
-        }
+        remove_monitor_idle (plug);
 
         g_get_current_time (&plug->priv->start_time);
         plug->priv->idle_id = g_timeout_add (50,
@@ -614,6 +639,20 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
 }
 
 static gboolean
+password_reset_idle_cb (GSLockPlug *plug)
+{
+        gtk_entry_set_text (GTK_ENTRY (plug->priv->password_entry), "");
+        set_status_text (plug, "");
+        set_dialog_sensitive (plug, TRUE);
+
+        restart_monitor_progress (plug);
+
+        gtk_widget_grab_focus (plug->priv->password_entry);
+
+        return FALSE;
+}
+
+static gboolean
 password_check_idle_cb (GSLockPlug *plug)
 {
         const char *typed_password;
@@ -636,10 +675,11 @@ password_check_idle_cb (GSLockPlug *plug)
                                0,
                                GS_LOCK_PLUG_RESPONSE_OK);
         } else {
-                if (plug->priv->response_idle_id == 0)
-                        plug->priv->response_idle_id = g_timeout_add (4000,
-                                                                      (GSourceFunc)response_idle_cb,
-                                                                      plug);
+                remove_password_reset_idle (plug);
+
+                plug->priv->password_reset_idle_id = g_timeout_add (3000,
+                                                                    (GSourceFunc)password_reset_idle_cb,
+                                                                    plug);
 
                 set_status_text (plug, _("That password was incorrect."));
 
@@ -1604,20 +1644,10 @@ gs_lock_plug_finalize (GObject *object)
         if (plug->priv->fusa_manager)
                 g_object_unref (plug->priv->fusa_manager);
 
-        if (plug->priv->password_check_idle_id > 0) {
-                g_source_remove (plug->priv->password_check_idle_id);
-                plug->priv->password_check_idle_id = 0;
-        }
-
-        if (plug->priv->response_idle_id > 0) {
-                g_source_remove (plug->priv->response_idle_id);
-                plug->priv->response_idle_id = 0;
-        }
-
-        if (plug->priv->idle_id > 0) {
-                g_source_remove (plug->priv->idle_id);
-                plug->priv->idle_id = 0;
-        }
+        remove_password_check_idle (plug);
+        remove_password_reset_idle (plug);
+        remove_response_idle (plug);
+        remove_monitor_idle (plug);
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }
