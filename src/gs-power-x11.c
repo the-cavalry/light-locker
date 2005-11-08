@@ -446,6 +446,23 @@ poll_power_mode (GSPower *power)
         return TRUE;
 }
 
+
+static void
+remove_poll_timer (GSPower *power)
+{
+        if (power->priv->timer_id != 0) {
+                g_source_remove (power->priv->timer_id);
+                power->priv->timer_id = 0;
+        }
+}
+
+static void
+add_poll_timer (GSPower *power,
+                glong    timeout)
+{
+        power->priv->timer_id = g_timeout_add (timeout, (GSourceFunc)poll_power_mode, power);
+}
+
 static void
 gs_power_init (GSPower *power)
 {
@@ -454,7 +471,7 @@ gs_power_init (GSPower *power)
         /* FIXME: for testing */
         power->priv->verbose = TRUE;
 
-        power->priv->timer_id = g_timeout_add (500, (GSourceFunc)poll_power_mode, power);
+        add_poll_timer (power, 500);
 }
 
 static void
@@ -469,10 +486,7 @@ gs_power_finalize (GObject *object)
 
         g_return_if_fail (power->priv != NULL);
 
-        if (power->priv->timer_id != 0) {
-                g_source_remove (power->priv->timer_id);
-                power->priv->timer_id = 0;
-        }
+        remove_poll_timer (power);
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }

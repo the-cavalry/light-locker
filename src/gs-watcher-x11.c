@@ -57,6 +57,7 @@ static void     schedule_wakeup_event        (GSWatcher      *watcher,
                                               int             when,
                                               gboolean        verbose);
 static gboolean watchdog_timer               (GSWatcher      *watcher);
+static gboolean idle_timer                   (GSWatcher      *watcher);
 
 #define GS_WATCHER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_WATCHER, GSWatcherPrivate))
 
@@ -425,6 +426,50 @@ start_notice_events_timer (GSWatcher *watcher,
 
 }
 
+static void
+remove_idle_timer (GSWatcher *watcher)
+{
+        if (watcher->priv->timer_id != 0) {
+                if (watcher->priv->debug) {
+                        g_message ("killing idle_timer  (%u, %u)",
+                                   watcher->priv->timeout,
+                                   watcher->priv->timer_id);
+                }
+
+                g_source_remove (watcher->priv->timer_id);
+                watcher->priv->timer_id = 0;
+        }
+}
+
+static void
+add_idle_timer (GSWatcher *watcher,
+                glong      timeout)
+{
+        watcher->priv->timer_id = g_timeout_add (timeout, (GSourceFunc)idle_timer, watcher);
+
+        if (watcher->priv->debug) {
+                g_message ("starting idle_timer (%ld, %u)", timeout, watcher->priv->timer_id);
+        }
+}
+
+static void
+remove_watchdog_timer (GSWatcher *watcher)
+{
+        if (watcher->priv->watchdog_timer_id != 0) {
+                g_source_remove (watcher->priv->watchdog_timer_id);
+                watcher->priv->watchdog_timer_id = 0;
+        }
+}
+
+static void
+add_watchdog_timer (GSWatcher *watcher,
+                    glong      timeout)
+{
+        watcher->priv->watchdog_timer_id = g_timeout_add (timeout,
+                                                          (GSourceFunc)watchdog_timer,
+                                                          watcher);
+}
+
 /* Call this when user activity (or "simulated" activity) has been noticed.
  */
 static void
@@ -434,12 +479,7 @@ reset_timers (GSWatcher *watcher)
         if (watcher->priv->using_mit_saver_extension || watcher->priv->using_sgi_saver_extension)
                 return;
 
-        if (watcher->priv->timer_id) {
-                if (watcher->priv->debug)
-                        g_message ("killing idle_timer  (%u, %u)", watcher->priv->timeout, watcher->priv->timer_id);
-                g_source_remove (watcher->priv->timer_id);
-                watcher->priv->timer_id = 0;
-        }
+        remove_idle_timer (watcher);
 
         schedule_wakeup_event (watcher, watcher->priv->timeout, watcher->priv->debug);
 
@@ -510,17 +550,32 @@ xevent_filter (GdkXEvent *xevent,
 }
 
 static void
+remove_check_pointer_timer (GSWatcher *watcher)
+{
+        if (watcher->priv->check_pointer_timer_id != 0) {
+                g_source_remove (watcher->priv->check_pointer_timer_id);
+                watcher->priv->check_pointer_timer_id = 0;
+        }
+}
+
+static void
+add_check_pointer_timer (GSWatcher *watcher,
+                         glong      timeout)
+{
+        watcher->priv->check_pointer_timer_id = g_timeout_add (timeout,
+                                                               (GSourceFunc)check_pointer_timer, watcher);
+
+}
+
+static void
 start_pointer_poll (GSWatcher *watcher)
 {
         /* run once to set baseline */
         check_pointer_timer (watcher);
 
-        if (watcher->priv->check_pointer_timer_id) {
-                g_source_remove (watcher->priv->check_pointer_timer_id);
-                watcher->priv->check_pointer_timer_id = 0;
-        }
-        watcher->priv->check_pointer_timer_id = g_timeout_add (watcher->priv->pointer_timeout,
-                                                               (GSourceFunc)check_pointer_timer, watcher);
+        remove_check_pointer_timer (watcher);
+
+        add_check_pointer_timer (watcher, watcher->priv->pointer_timeout);
 }
 
 static void
@@ -546,10 +601,7 @@ _gs_watcher_set_pointer_position (GSWatcher       *watcher,
 static void
 stop_pointer_poll (GSWatcher *watcher)
 {
-        if (watcher->priv->check_pointer_timer_id != 0) {
-                g_source_remove (watcher->priv->check_pointer_timer_id);
-                watcher->priv->check_pointer_timer_id = 0;
-        }
+        remove_check_pointer_timer (watcher);
 
         _gs_watcher_set_pointer_position (watcher, NULL);
 }
@@ -582,10 +634,7 @@ stop_idle_watcher (GSWatcher *watcher)
         watcher->priv->last_wall_clock_time = 0;
         watcher->priv->last_activity_time = time (NULL);
 
-        if (watcher->priv->timer_id != 0) {
-                g_source_remove (watcher->priv->timer_id);
-                watcher->priv->timer_id = 0;
-        }
+        remove_idle_timer (watcher);
 
         stop_pointer_poll (watcher);
 
@@ -687,7 +736,7 @@ gs_watcher_init (GSWatcher *watcher)
 
         initialize_server_extensions (watcher);
 
-        watcher->priv->watchdog_timer_id = g_timeout_add (600000, (GSourceFunc)watchdog_timer, watcher);
+        add_watchdog_timer (watcher, 600000);
 }
 
 static void
@@ -702,10 +751,7 @@ gs_watcher_finalize (GObject *object)
 
         g_return_if_fail (watcher->priv != NULL);
 
-        if (watcher->priv->watchdog_timer_id != 0) {
-                g_source_remove (watcher->priv->watchdog_timer_id);
-                watcher->priv->watchdog_timer_id = 0;
-        }
+        remove_watchdog_timer (watcher);
 
         watcher->priv->active = FALSE;
         stop_idle_watcher (watcher);
@@ -1085,11 +1131,7 @@ schedule_wakeup_event (GSWatcher *watcher,
         }
 
         /* Wake up periodically to ask the server if we are idle. */
-        watcher->priv->timer_id = g_timeout_add (when, (GSourceFunc)idle_timer, watcher);
-
-
-        if (verbose)
-                g_message ("starting idle_timer (%d, %d)", when, watcher->priv->timer_id);
+        add_idle_timer (watcher, when);
 }
 
 /* An unfortunate situation is this: the saver is not active, because the

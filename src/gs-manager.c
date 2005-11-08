@@ -218,6 +218,24 @@ activate_lock_timeout (GSManager *manager)
         return FALSE;
 }
 
+static void
+remove_lock_timer (GSManager *manager)
+{
+        if (manager->priv->lock_timeout_id != 0) {
+                g_source_remove (manager->priv->lock_timeout_id);
+                manager->priv->lock_timeout_id = 0;
+        }
+}
+
+static void
+add_lock_timer (GSManager *manager,
+                glong      timeout)
+{
+        manager->priv->lock_timeout_id = g_timeout_add (timeout,
+                                                        (GSourceFunc)activate_lock_timeout,
+                                                        manager);
+}
+
 void
 gs_manager_set_lock_timeout (GSManager *manager,
                              glong      lock_timeout)
@@ -229,22 +247,17 @@ gs_manager_set_lock_timeout (GSManager *manager,
                 manager->priv->lock_timeout = lock_timeout;
 
                 if (manager->priv->active
-                    && !manager->priv->lock_active
+                    && ! manager->priv->lock_active
                     && (lock_timeout >= 0)) {
 
                         glong elapsed = (time (NULL) - manager->priv->activate_time) * 1000;
 
-                        if (manager->priv->lock_timeout_id) {
-                                g_source_remove (manager->priv->lock_timeout_id);
-                                manager->priv->lock_timeout_id = 0;
-                        }
+                        remove_lock_timer (manager);
 
                         if (elapsed >= lock_timeout) {
                                 activate_lock_timeout (manager);
                         } else {
-                                manager->priv->lock_timeout_id = g_timeout_add (lock_timeout - elapsed,
-                                                                                (GSourceFunc)activate_lock_timeout,
-                                                                                manager);
+                                add_lock_timer (manager, lock_timeout - elapsed);
                         }
                 }
         }
@@ -354,6 +367,24 @@ cycle_timeout (GSManager *manager)
         return TRUE;
 }
 
+static void
+remove_cycle_timer (GSManager *manager)
+{
+        if (manager->priv->cycle_timeout_id != 0) {
+                g_source_remove (manager->priv->cycle_timeout_id);
+                manager->priv->cycle_timeout_id = 0;
+        }
+}
+
+static void
+add_cycle_timer (GSManager *manager,
+                 glong      timeout)
+{
+        manager->priv->cycle_timeout_id = g_timeout_add (timeout,
+                                                         (GSourceFunc)cycle_timeout,
+                                                         manager);
+}
+
 void
 gs_manager_set_cycle_timeout (GSManager *manager,
                               glong      cycle_timeout)
@@ -368,19 +399,16 @@ gs_manager_set_cycle_timeout (GSManager *manager,
                         glong timeout;
                         glong elapsed = (time (NULL) - manager->priv->activate_time) * 1000;
 
-                        if (manager->priv->cycle_timeout_id) {
-                                g_source_remove (manager->priv->cycle_timeout_id);
-                                manager->priv->cycle_timeout_id = 0;
-                        }
+                        remove_cycle_timer (manager);
 
                         if (elapsed >= cycle_timeout) {
                                 timeout = 0;
                         } else {
                                 timeout = cycle_timeout - elapsed;
                         }
-                        manager->priv->cycle_timeout_id = g_timeout_add (timeout,
-                                                                         (GSourceFunc)cycle_timeout,
-                                                                         manager);
+
+                        add_cycle_timer (manager, timeout);
+
                 }
         }
 }
@@ -584,16 +612,8 @@ gs_manager_init (GSManager *manager)
 static void
 remove_timers (GSManager *manager)
 {
-
-        if (manager->priv->lock_timeout_id) {
-                g_source_remove (manager->priv->lock_timeout_id);
-                manager->priv->lock_timeout_id = 0;
-        }
-
-        if (manager->priv->cycle_timeout_id) {
-                g_source_remove (manager->priv->cycle_timeout_id);
-                manager->priv->cycle_timeout_id = 0;
-        }
+        remove_lock_timer (manager);
+        remove_cycle_timer (manager);
 }
 
 static void
@@ -768,21 +788,13 @@ window_show_cb (GSWindow  *window,
         gs_manager_set_lock_active (manager, FALSE);
 
         if (manager->priv->lock_timeout >= 0) {
-                if (manager->priv->lock_timeout_id)
-                        g_source_remove (manager->priv->lock_timeout_id);
-
-                manager->priv->lock_timeout_id = g_timeout_add (manager->priv->lock_timeout,
-                                                                (GSourceFunc)activate_lock_timeout,
-                                                                manager);
+                remove_lock_timer (manager);
+                add_lock_timer (manager, manager->priv->lock_timeout);
         }
 
         if (manager->priv->cycle_timeout >= 10000) {
-                if (manager->priv->cycle_timeout_id)
-                        g_source_remove (manager->priv->cycle_timeout_id);
-
-                manager->priv->cycle_timeout_id = g_timeout_add (manager->priv->cycle_timeout,
-                                                                 (GSourceFunc)cycle_timeout,
-                                                                 manager);
+                remove_cycle_timer (manager);
+                add_cycle_timer (manager, manager->priv->cycle_timeout);
         }
 
         /* FIXME: only emit signal once */

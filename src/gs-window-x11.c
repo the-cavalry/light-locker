@@ -38,6 +38,9 @@ static void gs_window_class_init (GSWindowClass *klass);
 static void gs_window_init       (GSWindow      *window);
 static void gs_window_finalize   (GObject       *object);
 
+static gboolean popup_dialog_idle (GSWindow *window);
+static gboolean gs_window_request_unlock_idle (GSWindow *window);
+
 enum {
         DIALOG_RESPONSE_CANCEL,
         DIALOG_RESPONSE_OK
@@ -259,6 +262,68 @@ watchdog_timer (GSWindow *window)
 }
 
 static void
+remove_watchdog_timer (GSWindow *window)
+{
+        if (window->priv->watchdog_timer_id != 0) {
+                g_source_remove (window->priv->watchdog_timer_id);
+                window->priv->watchdog_timer_id = 0;
+        }
+}
+
+static void
+add_watchdog_timer (GSWindow *window,
+                    glong     timeout)
+{
+        window->priv->watchdog_timer_id = g_timeout_add (timeout,
+                                                         (GSourceFunc)watchdog_timer,
+                                                         window);
+}
+
+static void
+remove_popup_dialog_idle (GSWindow *window)
+{
+        if (window->priv->popup_dialog_idle_id != 0) {
+                g_source_remove (window->priv->popup_dialog_idle_id);
+                window->priv->popup_dialog_idle_id = 0;
+        }
+}
+
+static void
+add_popup_dialog_idle (GSWindow *window)
+{
+        window->priv->popup_dialog_idle_id = g_idle_add ((GSourceFunc)popup_dialog_idle, window);
+}
+
+static void
+remove_request_unlock_idle (GSWindow *window)
+{
+        if (window->priv->request_unlock_idle_id != 0) {
+                g_source_remove (window->priv->request_unlock_idle_id);
+                window->priv->request_unlock_idle_id = 0;
+        }
+}
+
+static void
+add_request_unlock_idle (GSWindow *window)
+{
+        window->priv->request_unlock_idle_id = g_idle_add ((GSourceFunc)gs_window_request_unlock_idle, window);
+}
+
+static gboolean
+emit_deactivated_idle (GSWindow *window)
+{
+        g_signal_emit (window, signals [DEACTIVATED], 0);
+
+        return FALSE;
+}
+
+static void
+add_emit_deactivated_idle (GSWindow *window)
+{
+        g_idle_add ((GSourceFunc)emit_deactivated_idle, window);
+}
+
+static void
 gs_window_real_show (GtkWidget *widget)
 {
         GSWindow *window;
@@ -273,11 +338,8 @@ gs_window_real_show (GtkWidget *widget)
                 g_timer_destroy (window->priv->timer);
         window->priv->timer = g_timer_new ();
 
-        if (window->priv->watchdog_timer_id != 0)
-                g_source_remove (window->priv->watchdog_timer_id);
-        window->priv->watchdog_timer_id = g_timeout_add (30000,
-                                                         (GSourceFunc)watchdog_timer,
-                                                         window);
+        remove_watchdog_timer (window);
+        add_watchdog_timer (window, 30000);
 }
 
 void
@@ -295,8 +357,7 @@ gs_window_real_hide (GtkWidget *widget)
 
         window = GS_WINDOW (widget);
 
-        if (window->priv->watchdog_timer_id != 0)
-                g_source_remove (window->priv->watchdog_timer_id);
+        remove_watchdog_timer (window);
 
         if (GTK_WIDGET_CLASS (parent_class)->hide)
                 GTK_WIDGET_CLASS (parent_class)->hide (widget);
@@ -316,14 +377,6 @@ gs_window_get_gdk_window (GSWindow *window)
         g_return_val_if_fail (GS_IS_WINDOW (window), NULL);
 
         return GTK_WIDGET (window)->window;
-}
-
-static gboolean
-emit_deactivated_idle (GSWindow *window)
-{
-        g_signal_emit (window, signals [DEACTIVATED], 0);
-
-        return FALSE;
 }
 
 static gboolean
@@ -653,7 +706,7 @@ command_watch (GIOChannel   *source,
                 gs_window_dialog_finish (window);
 
                 if (window->priv->dialog_response == DIALOG_RESPONSE_OK) {
-                        g_idle_add ((GSourceFunc)emit_deactivated_idle, window);
+                        add_emit_deactivated_idle (window);
                 }
 
                 gs_window_clear (window);
@@ -743,12 +796,13 @@ gs_window_request_unlock (GSWindow *window)
                 return;
 
         if (! window->priv->lock_enabled) {
-                g_idle_add ((GSourceFunc)emit_deactivated_idle, window);
+                add_emit_deactivated_idle (window);
+
                 return;
         }
 
         if (window->priv->popup_dialog_idle_id == 0) {
-                window->priv->popup_dialog_idle_id = g_idle_add ((GSourceFunc)popup_dialog_idle, window);
+                add_popup_dialog_idle (window);
         }
 
         g_signal_emit (window, signals [DIALOG_UP], 0);
@@ -955,7 +1009,7 @@ gs_window_real_key_press_event (GtkWidget   *widget,
         /* if we don't already have a socket then request an unlock */
         if (! GS_WINDOW (widget)->priv->socket) {
                 if (GS_WINDOW (widget)->priv->request_unlock_idle_id == 0) {
-                        GS_WINDOW (widget)->priv->request_unlock_idle_id = g_idle_add ((GSourceFunc)gs_window_request_unlock_idle, widget);
+                        add_request_unlock_idle (GS_WINDOW (widget));
                 }
 
                 catch_events = TRUE;
@@ -1002,7 +1056,7 @@ gs_window_real_motion_notify_event (GtkWidget      *widget,
                 /* if we don't already have a socket then request an unlock */
                 if (! window->priv->socket
                     && (window->priv->request_unlock_idle_id == 0)) {
-                        window->priv->request_unlock_idle_id = g_idle_add ((GSourceFunc)gs_window_request_unlock_idle, widget);
+                        add_request_unlock_idle (window);
                 }
                 window->priv->last_x = -1;
                 window->priv->last_y = -1;
@@ -1192,20 +1246,9 @@ gs_window_finalize (GObject *object)
 
         g_free (window->priv->logout_command);
 
-        if (window->priv->watchdog_timer_id != 0) {
-                g_source_remove (window->priv->watchdog_timer_id);
-                window->priv->watchdog_timer_id = 0;
-        }
-
-        if (window->priv->request_unlock_idle_id != 0) {
-                g_source_remove (window->priv->request_unlock_idle_id);
-                window->priv->request_unlock_idle_id = 0;
-        }
-
-        if (window->priv->popup_dialog_idle_id != 0) {
-                g_source_remove (window->priv->popup_dialog_idle_id);
-                window->priv->popup_dialog_idle_id = 0;
-        }
+        remove_watchdog_timer (window);
+        remove_request_unlock_idle (window);
+        remove_popup_dialog_idle (window);
 
         if (window->priv->timer)
                 g_timer_destroy (window->priv->timer);

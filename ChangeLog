@@ -1,3 +1,31 @@
+2005-11-08  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-window-x11.c (remove_watchdog_timer, add_watchdog_timer) 
+	(remove_popup_dialog_idle, add_popup_dialog_idle) 
+	(remove_request_unlock_idle, add_request_unlock_idle) 
+	(emit_deactivated_idle, add_emit_deactivated_idle) 
+	(gs_window_real_show, gs_window_real_hide, command_watch) 
+	(gs_window_request_unlock, gs_window_real_key_press_event) 
+	(gs_window_real_motion_notify_event, gs_window_finalize): 
+
+	* src/gs-watcher-x11.c (remove_idle_timer, add_idle_timer) 
+	(remove_watchdog_timer, add_watchdog_timer, reset_timers) 
+	(remove_check_pointer_timer, add_check_pointer_timer) 
+	(start_pointer_poll, stop_pointer_poll, start_idle_watcher) 
+	(stop_idle_watcher, gs_watcher_init, gs_watcher_finalize) 
+	(schedule_wakeup_event): 
+
+	* src/gs-power-x11.c (remove_poll_timer, add_poll_timer) 
+	(gs_power_init, gs_power_finalize): 
+
+	* src/gs-manager.c (remove_lock_timer, add_lock_timer) 
+	(gs_manager_set_lock_timeout, remove_cycle_timer) 
+	(add_cycle_timer, gs_manager_set_cycle_timeout, remove_timers) 
+	(window_show_cb): 
+
+	Use routines to contain all GSource access so they are easier
+	to track and manage.
+	
 2005-11-04  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (remove_monitor_idle) 
