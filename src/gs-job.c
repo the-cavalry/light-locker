@@ -742,6 +742,15 @@ gs_job_start (GSJob *job)
         return result;
 }
 
+static void
+remove_command_watch (GSJob *job)
+{
+        if (job->priv->watch_id != 0) {
+                g_source_remove (job->priv->watch_id);
+                job->priv->watch_id = 0;
+        }
+}
+
 gboolean
 gs_job_stop (GSJob *job)
 {
@@ -754,8 +763,7 @@ gs_job_stop (GSJob *job)
         if (job->priv->status == GS_JOB_STOPPED)
                 gs_job_suspend (job, FALSE);
 
-        g_source_remove (job->priv->watch_id);
-        job->priv->watch_id = 0;
+        remove_command_watch (job);
 
         signal_pid (job->priv->pid, SIGTERM);
 

@@ -605,10 +605,10 @@ gs_window_dialog_finish (GSWindow *window)
                 int exit_status;
                         
                 exit_status = wait_on_child (window->priv->pid);
-        }
 
-        g_spawn_close_pid (window->priv->pid);
-        window->priv->pid = 0;
+                g_spawn_close_pid (window->priv->pid);
+                window->priv->pid = 0;
+        }
 
         /* remove events for the case were we failed to show socket */
         remove_key_events (window);
@@ -718,6 +718,7 @@ command_watch (GIOChannel   *source,
                 window->priv->last_y = -1;
 
                 window->priv->watch_id = 0;
+
                 return FALSE;
         }
 
@@ -764,6 +765,7 @@ popup_dialog_idle (GSWindow *window)
                 command = g_string_append (command, " --enable-logout");
                 g_string_append_printf (command, " --logout-command='%s'", window->priv->logout_command);
         }
+
         if (is_user_switch_enabled (window)) {
                 command = g_string_append (command, " --enable-switch");
         }
@@ -777,7 +779,7 @@ popup_dialog_idle (GSWindow *window)
                                   (GIOFunc)command_watch,
                                   window,
                                   &window->priv->watch_id);
-        if (!result)
+        if (! result)
                 g_warning ("Could not start command: %s", command->str);
 
         g_string_free (command, TRUE);
@@ -1233,6 +1235,15 @@ gs_window_init (GSWindow *window)
 }
 
 static void
+remove_command_watch (GSWindow *window)
+{
+        if (window->priv->watch_id != 0) {
+                g_source_remove (window->priv->watch_id);
+                window->priv->watch_id = 0;
+        }
+}
+
+static void
 gs_window_finalize (GObject *object)
 {
         GSWindow *window;
@@ -1253,8 +1264,16 @@ gs_window_finalize (GObject *object)
         if (window->priv->timer)
                 g_timer_destroy (window->priv->timer);
 
-        /* just in case they weren't removed */
         remove_key_events (window);
+
+        remove_command_watch (window);
+
+        /* If a dialog is up we need to signal it
+           and wait on it */
+        if (window->priv->pid > 0) {
+                signal_pid (window->priv->pid, SIGTERM);
+        }
+        gs_window_dialog_finish (window);
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }
