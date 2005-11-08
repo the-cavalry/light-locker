@@ -9,7 +9,8 @@ gnome-screensaver
 gnome-screensaver-command
 gnome-screensaver-dialog
 gnome-screensaver-preferences
-test-passwd
 test-fade
+test-passwd
+test-window
 gs-marshal.c
 gs-marshal.h

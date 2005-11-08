@@ -1,5 +1,12 @@
 2005-11-08  William Jon McCann  <mccann@jhu.edu>
 
+	* src/.cvsignore: 
+	* src/test-window.c: 
+	* src/Makefile.am: Add unit test for window.  Tests
+	window and dialog functionality.
+
+2005-11-08  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (gs_window_dialog_finish) 
 	(remove_command_watch, gs_window_finalize):
 	Signal and wait on child in finalize.

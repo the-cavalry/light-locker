@@ -42,8 +42,9 @@ libexec_PROGRAMS = \
 	gnome-screensaver-dialog
 
 noinst_PROGRAMS = 	\
-	test-passwd	\
 	test-fade	\
+	test-passwd	\
+	test-window	\
 	$(NULL)
 
 gnome_screensaver_command_SOURCES = 	\
@@ -70,6 +71,17 @@ AUTH_SOURCES += 		\
 	passwd-helper.h
 endif
 
+test_fade_SOURCES = 			\
+	test-fade.c 			\
+	fade.c	 			\
+	fade.h	 			\
+	$(NULL)
+
+test_fade_LDADD =			\
+	$(GNOME_SCREENSAVER_LIBS)	\
+	$(SAVER_LIBS)			\
+	$(NULL)
+
 test_passwd_SOURCES = 			\
 	test-passwd.c 			\
 	$(AUTH_SOURCES)			\
@@ -84,15 +96,16 @@ test_passwd_LDADD =			\
 	$(AUTH_LIBS)			\
 	$(NULL)
 
-test_fade_SOURCES = 			\
-	test-fade.c 			\
-	fade.c	 			\
-	fade.h	 			\
+test_window_SOURCES =			\
+	test-window.c			\
+	gs-window.h			\
+	gs-window-x11.c			\
+	subprocs.c			\
+	subprocs.h			\
 	$(NULL)
 
-test_fade_LDADD =			\
+test_window_LDADD =			\
 	$(GNOME_SCREENSAVER_LIBS)	\
-	$(SAVER_LIBS)			\
 	$(NULL)
 
 gnome_screensaver_dialog_SOURCES = 	\
