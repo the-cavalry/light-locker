@@ -1,3 +1,11 @@
+2005-11-11  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-window-x11.c (gs_window_new):
+	Make window OverrideRedirect.
+
+	Patch from Ray Strode <rstrode@redhat.com>
+	Fixes #321194.
+
 2005-11-08  William Jon McCann  <mccann@jhu.edu>
 
 	* src/.cvsignore: 
