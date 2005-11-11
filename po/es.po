@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-29 15:57+0200\n"
-"PO-Revision-Date: 2005-10-29 16:01+0200\n"
+"POT-Creation-Date: 2005-11-11 20:48+0100\n"
+"PO-Revision-Date: 2005-11-11 20:48+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -110,7 +110,11 @@ msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
-msgstr "El comando que invocar cuando se pulsa el botón de salida de sesión. Este comando debería simplemente cerrar la sesión del usuario sin ninguna interacción. Esta clave tiene efecto sólo si la clave \"logout_enable\" está establecida a TRUE."
+msgstr ""
+"El comando que invocar cuando se pulsa el botón de salida de sesión. Este "
+"comando debería simplemente cerrar la sesión del usuario sin ninguna "
+"interacción. Esta clave tiene efecto sólo si la clave \"logout_enable\" está "
+"establecida a TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
@@ -701,60 +705,59 @@ msgstr "Asegúrese de que el salvapantallas está instalado apropiadamente"
 msgid "Don't become a daemon"
 msgstr "No convertirse en un demonio"
 
-#: ../src/gs-listener-dbus.c:995
+#: ../src/gs-listener-dbus.c:1003
 msgid "failed to register with the message bus"
 msgstr "falló al registrarse con el bus del mensaje"
 
-#: ../src/gs-listener-dbus.c:1005
+#: ../src/gs-listener-dbus.c:1013
 msgid "not connected to the message bus"
 msgstr "no conectado al bus de mensajes"
 
-#: ../src/gs-listener-dbus.c:1014
+#: ../src/gs-listener-dbus.c:1022
 msgid "screensaver already running in this session"
 msgstr "ya se está ejecutando el salvapantallas en esta sesión"
 
-#: ../src/gs-lock-plug.c:318
+#: ../src/gs-lock-plug.c:346
 msgid "Checking password..."
 msgstr "Comprobando contraseña..."
 
-#: ../src/gs-lock-plug.c:361
+#: ../src/gs-lock-plug.c:389
 msgid "Time has expired."
 msgstr "Tiempo agotado."
 
-#: ../src/gs-lock-plug.c:385
+#: ../src/gs-lock-plug.c:414
 msgid "You have the Caps Lock key on."
 msgstr "Tiene la tecla «Bloq. Mayúsculas» pulsada."
 
-#: ../src/gs-lock-plug.c:643
+#: ../src/gs-lock-plug.c:684
 msgid "That password was incorrect."
 msgstr "Esa contraseña fue incorrecta."
 
-#: ../src/gs-lock-plug.c:669 ../src/gs-lock-plug.c:702
+#: ../src/gs-lock-plug.c:710 ../src/gs-lock-plug.c:743
 msgid "_Unlock"
 msgstr "_Desbloquear"
 
-#: ../src/gs-lock-plug.c:672 ../src/gs-lock-plug.c:699
+#: ../src/gs-lock-plug.c:713 ../src/gs-lock-plug.c:740
 msgid "_Switch User..."
 msgstr "_Cambiar usuario..."
 
-#: ../src/gs-lock-plug.c:1003
-msgid "Log in as a new user"
-msgstr "Entrar como un usuario nuevo"
-
 #. translators: %s is a computer hostname
-#: ../src/gs-lock-plug.c:1407
+#: ../src/gs-lock-plug.c:1418
 #, c-format
 msgid "Welcome to %s"
 msgstr "Bienvenido a %s"
 
-#: ../src/gs-lock-plug.c:1441
+#: ../src/gs-lock-plug.c:1454
 msgid "_Password:"
 msgstr "_Contraseña:"
 
-#: ../src/gs-lock-plug.c:1477
-msgid "Switch to user:"
-msgstr "Cambiar al usuario:"
+#: ../src/gs-lock-plug.c:1491
+msgid "S_witch to user:"
+msgstr "_Cambiar al usuario:"
 
-#: ../src/gs-lock-plug.c:1522
+#: ../src/gs-lock-plug.c:1536
 msgid "Log _Out"
 msgstr "Cerrar _sesión"
+
+#~ msgid "Log in as a new user"
+#~ msgstr "Entrar como un usuario nuevo"
