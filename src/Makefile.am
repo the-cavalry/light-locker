@@ -100,6 +100,8 @@ test_window_SOURCES =			\
 	test-window.c			\
 	gs-window.h			\
 	gs-window-x11.c			\
+	gs-grab-x11.c			\
+	gs-grab.h			\
 	subprocs.c			\
 	subprocs.h			\
 	$(NULL)

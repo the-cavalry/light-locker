@@ -29,6 +29,7 @@
 #include <gtk/gtk.h>
 
 #include "gs-window.h"
+#include "gs-grab.h"
 
 static void
 window_deactivated_cb (GSWindow  *window,
@@ -53,6 +54,10 @@ static void
 window_show_cb (GSWindow  *window,
                 gpointer   data)
 {
+        /* Grab keyboard so dialog can be used */
+        gs_grab_window (gs_window_get_gdk_window (window),
+                        gs_window_get_screen (window),
+                        FALSE);
 
 }
 
@@ -73,6 +78,7 @@ window_destroyed_cb (GtkWindow *window,
                      gpointer   data)
 {
         disconnect_window_signals (GS_WINDOW (window));
+        gs_grab_release_keyboard_and_mouse ();
         gtk_main_quit ();
 }
 

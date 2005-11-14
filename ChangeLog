@@ -1,5 +1,11 @@
 2005-11-14  William Jon McCann  <mccann@jhu.edu>
 
+	* src/test-window.c (window_show_cb, window_destroyed_cb): 
+	* src/Makefile.am:
+	Grab keyboard so test window can get user input.
+
+2005-11-14  William Jon McCann  <mccann@jhu.edu>
+
 	* src/cut-n-paste/fusa-user-menu-item.[ch]: 
 	* src/cut-n-paste/fusa-user.[ch]:
 	* src/cut-n-paste/fusa-manager.[ch]:
