@@ -472,15 +472,22 @@ static void
 gs_lock_plug_size_request (GtkWidget      *widget,
                            GtkRequisition *requisition)
 {
+        int mod_width;
+        int mod_height;
+
         if (GTK_WIDGET_CLASS (parent_class)->size_request)
                 GTK_WIDGET_CLASS (parent_class)->size_request (widget, requisition);
 
-        /* Force width to be at least 1.2 times the height.
-         * This ensures enough space for the text entry and
-         * makes for a more pleasing aspect ratio */
-        if (requisition->width < requisition->height) {
-                requisition->width = requisition->height * 1.2;
+        mod_width = requisition->height * 1.3;
+        mod_height = requisition->width / 1.6;
+        if (requisition->width < mod_width) {
+                /* if the dialog is tall fill out the width */
+                requisition->width = mod_width;
+        } else if (requisition->height < mod_height) {
+                /* if the dialog is wide fill out the height */
+                requisition->height = mod_height;
         }
+
 }
 
 static void
@@ -1297,29 +1304,6 @@ get_user_display_name (void)
         return name;
 }
 
-static void
-label_set_big_bold (GtkLabel *label)
-{
-        PangoAttrList        *pattrlist;
-        PangoAttribute       *attr;
-
-        pattrlist = pango_attr_list_new ();
-
-        attr = pango_attr_weight_new (PANGO_WEIGHT_BOLD);
-        attr->start_index = 0;
-        attr->end_index = G_MAXINT;
-        pango_attr_list_insert (pattrlist, attr);
-
-        attr = pango_attr_scale_new (1.2);
-        attr->start_index = 0;
-        attr->end_index = G_MAXINT;
-        pango_attr_list_insert (pattrlist, attr);
-
-        gtk_label_set_attributes (label, pattrlist);
-
-        pango_attr_list_unref (pattrlist);
-}
-
 static gboolean
 check_user_file (const gchar *filename,
 		 uid_t        user,
@@ -1412,21 +1396,13 @@ create_page_one (GSLockPlug *plug)
         vbox = gtk_vbox_new (FALSE, 12);
         gtk_container_add (GTK_CONTAINER (align), vbox);
 
-        /* should we make this a gconf preference? */
-        if (0) {
-                /* translators: %s is a computer hostname */
-                str = g_strdup_printf (_("Welcome to %s"), g_get_host_name ());
-                widget = gtk_label_new (str);
-                gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
-                gtk_misc_set_alignment (GTK_MISC (widget), 0.5, 0.5);
-                g_free (str);
-
-                label_set_big_bold (GTK_LABEL (widget));
-        }
-
         widget = get_face_image ();
-        if (widget)
-                gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
+        if (! widget) {
+                /* placeholder */
+                widget = gtk_label_new (NULL);
+        }
+        gtk_box_pack_start (GTK_BOX (vbox), widget, TRUE, TRUE, 0);
+        gtk_misc_set_alignment (GTK_MISC (widget), 0.5, 1.0);
 
         vbox2 = gtk_vbox_new (FALSE, 0);
         gtk_box_pack_start (GTK_BOX (vbox), vbox2, FALSE, FALSE, 0);
@@ -1446,7 +1422,7 @@ create_page_one (GSLockPlug *plug)
         gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->username_label, FALSE, FALSE, 0);
 
         vbox2 = gtk_vbox_new (FALSE, 0);
-        gtk_box_pack_start (GTK_BOX (vbox), vbox2, FALSE, FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (vbox), vbox2, TRUE, TRUE, 0);
 
         hbox = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 0);
@@ -1587,7 +1563,7 @@ gs_lock_plug_init (GSLockPlug *plug)
         plug->priv->notebook = gtk_notebook_new ();
         gtk_notebook_set_show_tabs (GTK_NOTEBOOK (plug->priv->notebook), FALSE);
         gtk_notebook_set_show_border (GTK_NOTEBOOK (plug->priv->notebook), FALSE);
-        gtk_box_pack_start (GTK_BOX (plug->vbox), plug->priv->notebook, FALSE, FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (plug->vbox), plug->priv->notebook, TRUE, TRUE, 0);
 
         /* Page 1 */
 
