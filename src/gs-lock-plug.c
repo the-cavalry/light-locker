@@ -1453,6 +1453,29 @@ create_page_one (GSLockPlug *plug)
 }
 
 static void
+constrain_list_size (GtkWidget      *widget,
+                     GtkRequisition *requisition,
+                     GSLockPlug     *plug)
+{
+        GtkRequisition req;
+        int            max_height;
+
+        /* constrain height to be the tree height up to a max */
+        max_height = (gdk_screen_get_height (gtk_widget_get_screen (widget))) / 2;
+        gtk_widget_size_request (plug->priv->user_treeview, &req);
+
+        requisition->height = MIN (req.height, max_height);
+}
+
+static void
+setup_list_size_constraint (GtkWidget  *widget,
+                            GSLockPlug *plug)
+{
+        g_signal_connect (widget, "size-request",
+                          G_CALLBACK (constrain_list_size), plug);
+}
+
+static void
 create_page_two (GSLockPlug *plug)
 {
         GtkWidget            *header_label;
@@ -1475,6 +1498,8 @@ create_page_two (GSLockPlug *plug)
                                         GTK_POLICY_NEVER,
                                         GTK_POLICY_AUTOMATIC);
         gtk_box_pack_start (GTK_BOX (vbox), userlist_scroller, TRUE, TRUE, 0);
+
+        setup_list_size_constraint (userlist_scroller, plug);
 
         plug->priv->user_treeview = gtk_tree_view_new ();
         gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (plug->priv->user_treeview), FALSE);

@@ -1,5 +1,12 @@
 2005-11-14  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (constrain_list_size) 
+	(setup_list_size_constraint, create_page_two):
+	First cut at makeing more space for user list.
+	Bug #319888.
+
+2005-11-14  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (gs_lock_plug_size_request):
 	Allow for a wider dialog.  Also check for too wide
 	dialog.
