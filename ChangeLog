@@ -1,5 +1,12 @@
 2005-11-14  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (gs_lock_plug_response):
+	Use enum for page number.
+	(constrain_list_size): Skip if showing auth page.
+	Fixes #319888.
+
+2005-11-14  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (constrain_list_size):
 	Use at most 1/4 of screen.
 

@@ -341,7 +341,7 @@ gs_lock_plug_response (GSLockPlug *plug,
         if (response_id == GS_LOCK_PLUG_RESPONSE_OK) {
                 gint current_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (plug->priv->notebook));
 
-                if (current_page == 0) {
+                if (current_page == AUTH_PAGE) {
                         set_dialog_sensitive (plug, FALSE);
                         set_status_text (plug, _("Checking password..."));
 
@@ -1459,6 +1459,12 @@ constrain_list_size (GtkWidget      *widget,
 {
         GtkRequisition req;
         int            max_height;
+        int            page;
+
+        /* don't do anything if we are on the auth page */
+        page = gtk_notebook_get_current_page (GTK_NOTEBOOK (plug->priv->notebook));
+        if (page == AUTH_PAGE)
+                return;
 
         /* constrain height to be the tree height up to a max */
         max_height = (gdk_screen_get_height (gtk_widget_get_screen (widget))) / 4;
