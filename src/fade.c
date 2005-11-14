@@ -263,24 +263,21 @@ xf86_gamma_fade (int      seconds,
 
  DONE:
 
-        /* According to JWZ: without this delay we get a flicker.
-           I suppose there's some lossage with stale bits being in the
-           hardware frame buffer or something, and this delay gives it
-           time to flush out.
-        */
-#if 0
-        g_usleep (100000);  /* 1/10th second */
-#endif
-
         /* Show windows */
         show_windows (windows);
 
-#if 1
-        for (screen = 0; screen < nscreens; screen++)
-                xf86_whack_gamma (screen, &info [screen], 1.0);
+        /* Without this delay we get a flicker.  According to JWZ: I
+           suppose there's some lossage with stale bits being in the
+           hardware frame buffer or something, and this delay gives it
+           time to flush out.
+        */
+        g_usleep (100000);  /* 1/10th second */
 
-        XSync (GDK_DISPLAY (), False);
-#endif
+        for (screen = 0; screen < nscreens; screen++) {
+                xf86_whack_gamma (screen, &info [screen], 1.0);
+        }
+
+        gdk_flush ();
 
         status = 0;
 
@@ -308,13 +305,14 @@ xf86_gamma_fade (int      seconds,
    XF86VidModeQueryVersion dies with an X error.
 */
 
-static Bool error_handler_hit_p = False;
+static Bool error_handler_hit = False;
 
 static int
 ignore_all_errors_ehandler (Display     *dpy,
                             XErrorEvent *error)
 {
-        error_handler_hit_p = True;
+        error_handler_hit = True;
+
         return 0;
 }
 
@@ -327,7 +325,7 @@ safe_XF86VidModeQueryVersion (Display *dpy,
         XErrorHandler old_handler;
 
         XSync (dpy, False);
-        error_handler_hit_p = False;
+        error_handler_hit = False;
         old_handler = XSetErrorHandler (ignore_all_errors_ehandler);
 
         result = XF86VidModeQueryVersion (dpy, majP, minP);
@@ -336,7 +334,7 @@ safe_XF86VidModeQueryVersion (Display *dpy,
         XSetErrorHandler (old_handler);
         XSync (dpy, False);
 
-        return (error_handler_hit_p
+        return (error_handler_hit
                 ? False
                 : result);
 }
@@ -395,7 +393,8 @@ xf86_whack_gamma (int              screen,
         if (ratio > 1)
                 ratio = 1;
 
-        if (info->size == 0) {    /* we only have a gamma number, not a ramp. */
+        if (info->size == 0) {
+                /* we only have a gamma number, not a ramp. */
 
                 XF86VidModeGamma g2;
 
@@ -440,7 +439,7 @@ xf86_whack_gamma (int              screen,
 # endif /* !HAVE_XF86VMODE_GAMMA_RAMP */
         }
 
-        XSync (GDK_DISPLAY (), False);
+        gdk_flush ();
 
         return status;
 }

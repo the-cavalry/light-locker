@@ -1,3 +1,12 @@
+2005-11-14  William Jon McCann  <mccann@jhu.edu>
+
+	* src/fade.c (xf86_gamma_fade): Add small delay
+	after mapping window and before resetting gamma
+	to avoid flicker.
+	(ignore_all_errors_ehandler, safe_XF86VidModeQueryVersion) 
+	(xf86_whack_gamma): Rename variable and use
+	gdk_flush().
+
 2005-11-11  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (gs_window_new):
