@@ -1,4 +1,27 @@
 ==============
+Version 0.0.19
+==============
+
+  gnome-screensaver
+
+        * Allow trying password after auth failure
+        * Allow more space for user list
+        * Make unlock dialog centered vertically
+        * Use OverrideRedirect windows
+        * Sync with latest FUSA version
+        * Add test for window/dialog subsystem
+        * Fix leaking of signal handlers
+        * Misc correctness fixes
+
+  Translators
+
+        * Adam Weinberger (en_CA)
+        * Francisco Javier F. Serrador (es)
+        * Davy Defaud (fr)
+        * Takeshi AIHANA (ja)
+        * Åygimantas Beruka (lt)
+
+==============
 Version 0.0.18
 ==============
 
