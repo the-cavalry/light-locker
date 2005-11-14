@@ -1461,7 +1461,7 @@ constrain_list_size (GtkWidget      *widget,
         int            max_height;
 
         /* constrain height to be the tree height up to a max */
-        max_height = (gdk_screen_get_height (gtk_widget_get_screen (widget))) / 2;
+        max_height = (gdk_screen_get_height (gtk_widget_get_screen (widget))) / 4;
         gtk_widget_size_request (plug->priv->user_treeview, &req);
 
         requisition->height = MIN (req.height, max_height);
