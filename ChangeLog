@@ -1,5 +1,15 @@
 2005-11-14  William Jon McCann  <mccann@jhu.edu>
 
+	* src/cut-n-paste/fusa-user-menu-item.[ch]: 
+	* src/cut-n-paste/fusa-user.[ch]:
+	* src/cut-n-paste/fusa-manager.[ch]:
+	Sync with FUSA HEAD.
+
+	* src/gs-lock-plug.c (user_displays_changed_cb, populate_model):
+	FUSA API changes.
+
+2005-11-14  William Jon McCann  <mccann@jhu.edu>
+
 	* src/fade.c (xf86_gamma_fade): Add small delay
 	after mapping window and before resetting gamma
 	to avoid flicker.

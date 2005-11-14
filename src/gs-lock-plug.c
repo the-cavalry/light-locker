@@ -1019,7 +1019,7 @@ user_displays_changed_cb (FusaUser           *user,
         name = fusa_user_get_user_name (user);
         n_displays = fusa_user_get_n_displays (user);
         is_active = n_displays > 0;
-        pixbuf = fusa_user_render_icon (user, data->tree, icon_size, is_active);
+        pixbuf = fusa_user_render_icon (user, data->tree, icon_size);
         label = get_user_display_label (user);
 
         filter_model = gtk_tree_view_get_model (GTK_TREE_VIEW (data->tree));
@@ -1089,7 +1089,7 @@ populate_model (GSLockPlug   *plug,
                 n_displays = fusa_user_get_n_displays (user);
                 is_active = n_displays > 0;
 
-                pixbuf = fusa_user_render_icon (user, plug->priv->user_treeview, icon_size, is_active);
+                pixbuf = fusa_user_render_icon (user, plug->priv->user_treeview, icon_size);
 
                 label = get_user_display_label (user);
 

@@ -53,8 +53,7 @@ guint                 fusa_user_get_n_displays     (FusaUser   *user);
 
 GdkPixbuf            *fusa_user_render_icon        (FusaUser   *user,
 						    GtkWidget  *widget,
-						    gint        icon_size,
-						    gboolean    desktop_overlay);
+						    gint        icon_size);
 
 gint                  fusa_user_collate            (FusaUser   *user1,
 						    FusaUser   *user2);

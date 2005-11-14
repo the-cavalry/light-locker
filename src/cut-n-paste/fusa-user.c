@@ -675,61 +675,13 @@ fusa_user_get_n_displays (FusaUser *user)
 GdkPixbuf *
 fusa_user_render_icon (FusaUser  *user,
 		       GtkWidget *widget,
-		       gint       icon_size,
-		       gboolean   desktop_overlay)
+		       gint       icon_size)
 {
-  GdkPixbuf *pixbuf;
-
   g_return_val_if_fail (FUSA_IS_USER (user), NULL);
   g_return_val_if_fail (widget == NULL || GTK_IS_WIDGET (widget), NULL);
   g_return_val_if_fail (icon_size > 0, NULL);
 
-  pixbuf = _fusa_manager_render_icon (user->manager, user, widget, icon_size);
-
-  if (desktop_overlay)
-    {
-      GtkIconTheme *theme;
-      GdkPixbuf *overlay;
-    
-      if (gtk_widget_has_screen (widget))
-	theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (widget));
-      else
-	theme = gtk_icon_theme_get_default ();
-
-      overlay = gtk_icon_theme_load_icon (theme, "gnome-fs-desktop",
-					  icon_size / 2, 0, NULL);
-
-      if (overlay)
-	{
-	  gint pixbuf_width, pixbuf_height, overlay_width, overlay_height;
-	  GdkPixbuf *tmp;
-
-	  pixbuf_width = gdk_pixbuf_get_width (pixbuf);
-	  pixbuf_height = gdk_pixbuf_get_height (pixbuf);
-
-	  tmp = gdk_pixbuf_new (GDK_COLORSPACE_RGB, TRUE, 8,
-				pixbuf_width, pixbuf_height);
-	  gdk_pixbuf_fill (tmp, 0x00000000);
-
-	  overlay_width = gdk_pixbuf_get_width (overlay);
-	  overlay_height = gdk_pixbuf_get_height (overlay);
-
-	  gdk_pixbuf_copy_area (overlay, 0, 0, overlay_width, overlay_height,
-				tmp, (pixbuf_width - overlay_width),
-				(pixbuf_height - overlay_height));
-	  g_object_unref (overlay);
-
-	  gdk_pixbuf_composite (tmp, pixbuf,
-				pixbuf_width - overlay_width,
-				pixbuf_height - overlay_height,
-				overlay_width, overlay_height,
-				0.0, 0.0, 1.0, 1.0,
-				GDK_INTERP_BILINEAR, 255);
-	  g_object_unref (tmp);
-	}
-    }
-
-  return pixbuf;
+  return _fusa_manager_render_icon (user->manager, user, widget, icon_size);
 }
 
 gint

@@ -47,15 +47,15 @@ G_BEGIN_DECLS
 typedef struct _FusaUserMenuItem FusaUserMenuItem;
 typedef struct _FusaUserMenuItemClass FusaUserMenuItemClass;
 
-GType      fusa_user_menu_item_get_type              (void) G_GNUC_CONST;
+GType      fusa_user_menu_item_get_type      (void) G_GNUC_CONST;
 
-GtkWidget *fusa_user_menu_item_new                   (FusaUser         *user);
+GtkWidget *fusa_user_menu_item_new           (FusaUser         *user);
 
-FusaUser  *fusa_user_menu_item_get_user              (FusaUserMenuItem *item);
+FusaUser  *fusa_user_menu_item_get_user      (FusaUserMenuItem *item);
 
-gint       fusa_user_menu_item_get_icon_size         (FusaUserMenuItem *item);
-void       fusa_user_menu_item_set_icon_size         (FusaUserMenuItem *item,
-						      gint              pixel_size);
+gint       fusa_user_menu_item_get_icon_size (FusaUserMenuItem *item);
+void       fusa_user_menu_item_set_icon_size (FusaUserMenuItem *item,
+					      gint              pixel_size);
 
 G_END_DECLS
 

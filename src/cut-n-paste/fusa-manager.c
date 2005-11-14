@@ -439,8 +439,8 @@ fusa_manager_init (FusaManager *manager)
   uri = g_filename_to_uri ("/etc/shells", NULL, &error);
   if (!uri)
     {
-      g_critical ("Could not create URI for shells file `%s': %s",
-		  GDMCONFIGFILE, error->message);
+      g_critical ("Could not create URI for shells file `/etc/shells': %s",
+		  error->message);
       g_error_free (error);
     }
   else
@@ -451,22 +451,22 @@ fusa_manager_init (FusaManager *manager)
       g_free (uri);
 
       if (result != GNOME_VFS_OK)
-	g_critical ("Could not install monitor for shells file `%s': %s",
-		    GDMCONFIGFILE, gnome_vfs_result_to_string (result));
+	g_critical ("Could not install monitor for shells file `/etc/shells': %s",
+		    gnome_vfs_result_to_string (result));
     }
 
   /* /etc/passwd */
   manager->users =
     g_hash_table_new_full (g_str_hash, g_str_equal,
 			   g_free, (GDestroyNotify) g_object_run_dispose);
-  manager->users_by_uid = g_hash_table_new (g_direct_hash, g_direct_equal);
+  manager->users_by_uid = g_hash_table_new (NULL, NULL);
   reload_passwd (manager);
   error = NULL;
   uri = g_filename_to_uri ("/etc/passwd", NULL, &error);
   if (!uri)
     {
-      g_critical ("Could not create URI for password file `%s': %s",
-		  GDMCONFIGFILE, error->message);
+      g_critical ("Could not create URI for password file `/etc/passwd': %s",
+		  error->message);
       g_error_free (error);
     }
   else
@@ -477,8 +477,8 @@ fusa_manager_init (FusaManager *manager)
       g_free (uri);
 
       if (result != GNOME_VFS_OK)
-	g_critical ("Could not install monitor for password file `%s': %s",
-		    GDMCONFIGFILE, gnome_vfs_result_to_string (result));
+	g_critical ("Could not install monitor for password file `/etc/passwd: %s",
+		    gnome_vfs_result_to_string (result));
     }
 
 
@@ -486,8 +486,7 @@ fusa_manager_init (FusaManager *manager)
   manager->displays =
     g_hash_table_new_full (g_str_hash, g_str_equal,
 			   g_free, (GDestroyNotify) g_object_run_dispose);
-  manager->displays_by_console = g_hash_table_new (g_direct_hash,
-						   g_direct_equal);
+  manager->displays_by_console = g_hash_table_new (NULL, NULL);
   manager->results_q = g_async_queue_new ();
   push_update_displays_func (manager);
   manager->update_displays_id =
@@ -1601,6 +1600,7 @@ real_get_display (FusaManager *manager,
   return display;
 }
 
+
 /* ************************************************************************** *
  *  Semi-Private API                                                          *
  * ************************************************************************** */
@@ -1631,15 +1631,16 @@ render_icon_from_home (FusaManager  *manager,
   g_free (path);
 
   /* now check that home dir itself is local */
-  if (is_local) {
-    uri = gnome_vfs_uri_new (homedir);
-    is_local = gnome_vfs_uri_is_local (uri);
-    gnome_vfs_uri_unref (uri);
-  }
+  if (is_local)
+    {
+      uri = gnome_vfs_uri_new (homedir);
+      is_local = gnome_vfs_uri_is_local (uri);
+      gnome_vfs_uri_unref (uri);
+    }
 
   /* only look at local home directories so we don't try to
-     mount remote (e.g. NFS) volumes */
-  if (! is_local)
+     read from remote (e.g. NFS) volumes */
+  if (!is_local)
     return NULL;
 
   /* First, try "~/.face" */
@@ -1720,9 +1721,11 @@ _fusa_manager_render_icon (FusaManager  *manager,
 			   gint          icon_size)
 {
   GdkPixbuf *retval;
-  const gchar *username;
   uid_t uid;
+  const gchar *username;
   gchar *path;
+  gchar *tmp;
+  GtkIconTheme *theme;
 
   g_return_val_if_fail (FUSA_IS_MANAGER (manager), NULL);
   g_return_val_if_fail (FUSA_IS_USER (user), NULL);
@@ -1731,58 +1734,55 @@ _fusa_manager_render_icon (FusaManager  *manager,
 
   retval = render_icon_from_home (manager, user, widget, icon_size);
 
+  if (retval)
+    return retval;
+
   uid = fusa_user_get_uid (user);
+  username = fusa_user_get_user_name (user);
 
   /* Try ${GlobalFaceDir}/${username} */
-  if (!retval)
-    {
-      username = fusa_user_get_user_name (user);
-      path = g_build_filename (manager->global_face_dir, username, NULL);
-      if (check_user_file (path, uid, manager->user_max_file,
-			   manager->relax_group, manager->relax_other))
-	retval = gdk_pixbuf_new_from_file_at_size (path, icon_size, icon_size,
-						   NULL);
-      else
-	retval = NULL;
+  path = g_build_filename (manager->global_face_dir, username, NULL);
+  if (check_user_file (path, uid, manager->user_max_file,
+		       manager->relax_group, manager->relax_other))
+    retval = gdk_pixbuf_new_from_file_at_size (path, icon_size, icon_size,
+					       NULL);
+  else
+    retval = NULL;
 
-      g_free (path);
-    }
+  g_free (path);
+  if (retval)
+    return retval;
 
   /* Finally, ${GlobalFaceDir}/${username}.png */
-  if (!retval)
-    {
-      path = g_build_filename (manager->global_face_dir, username, ".png", NULL);
-      if (check_user_file (path, uid, manager->user_max_file,
-			   manager->relax_group, manager->relax_other))
-	retval = gdk_pixbuf_new_from_file_at_size (path, icon_size, icon_size,
-						   NULL);
-      else
-	retval = NULL;
+  tmp = g_strconcat (username, ".png", NULL);
+  path = g_build_filename (manager->global_face_dir, tmp, NULL);
+  g_free (tmp);
+  if (check_user_file (path, uid, manager->user_max_file,
+		       manager->relax_group, manager->relax_other))
+    retval = gdk_pixbuf_new_from_file_at_size (path, icon_size, icon_size,
+					       NULL);
+  else
+    retval = NULL;
 
-      g_free (path);
-    }
+  g_free (path);
+  if (retval)
+    return retval;
 
   /* Nothing yet, use stock icon */
+  if (widget && gtk_widget_has_screen (widget))
+    theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (widget));
+  else
+    theme = gtk_icon_theme_get_default ();
+
+  retval = gtk_icon_theme_load_icon (theme, DEFAULT_USER_ICON, icon_size,
+				     0, NULL);
+
   if (!retval)
-    {
-      GtkIconTheme *theme;
-
-      if (widget && gtk_widget_has_screen (widget))
-	theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (widget));
-      else
-	theme = gtk_icon_theme_get_default ();
-
-      retval = gtk_icon_theme_load_icon (theme, DEFAULT_USER_ICON, icon_size,
-					 0, NULL);
-
-      if (!retval)
-	retval = gtk_icon_theme_load_icon (theme, GTK_STOCK_MISSING_IMAGE,
-					   icon_size, 0, NULL);
-    }
+    retval = gtk_icon_theme_load_icon (theme, GTK_STOCK_MISSING_IMAGE,
+				       icon_size, 0, NULL);
 
   return retval;
 }
-
 
 /* ************************************************************************** *
  *  Public API                                                                *

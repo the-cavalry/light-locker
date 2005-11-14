@@ -45,8 +45,14 @@
  *  Private Macros  *
  * **************** */
 
-#define DEFAULT_ICON_SIZE	24
-#define CLOSE_ENOUGH_SIZE	2
+#define DEFAULT_ICON_SIZE		24
+#define CLOSE_ENOUGH_SIZE		2
+
+#define INDICATOR_ICON_NAME		GTK_STOCK_MEDIA_PAUSE
+#define INSENSITIVE_INDICATOR_ICON_NAME	GTK_STOCK_MEDIA_PLAY
+#define INDICATOR_ICON_SIZE		GTK_ICON_SIZE_MENU
+#define DEFAULT_INDICATOR_SIZE		16
+
 
 /* ********************** *
  *  Private Enumerations  *
@@ -71,12 +77,14 @@ struct _FusaUserMenuItem
   FusaUser *user;
 
   GtkWidget *image;
+  GtkWidget *indicator_image;
   GtkWidget *label;
 
   gulong user_notify_id;
   gulong user_icon_changed_id;
   gulong user_displays_changed_id;
   gint icon_size;
+  gint indicator_size;
 };
 
 struct _FusaUserMenuItemClass
@@ -108,6 +116,9 @@ static void user_icon_changed_cb     (FusaUser   *user,
 				      gpointer    data);
 static void user_displays_changed_cb (FusaUser   *user,
 				      gpointer    data);
+static void indicator_style_set_cb   (GtkWidget *widget,
+				      GtkStyle  *old_style,
+				      gpointer   data);
 static void user_weak_notify         (gpointer    data,
 				      GObject    *user_ptr);
 
@@ -120,8 +131,9 @@ static void label_style_set_cb (GtkWidget *widget,
 				gpointer   data);
 
 /* Utility Functions */
-static void reset_label (FusaUserMenuItem *item);
-static void reset_icon  (FusaUserMenuItem *item);
+static void reset_label     (FusaUserMenuItem *item);
+static void reset_icon      (FusaUserMenuItem *item);
+static void reset_indicator (FusaUserMenuItem *item);
 
 
 /* ******************* *
@@ -166,21 +178,39 @@ fusa_user_menu_item_class_init (FusaUserMenuItemClass *class)
 static void
 fusa_user_menu_item_init (FusaUserMenuItem *item)
 {
+  GtkWidget *box;
+
   item->icon_size = DEFAULT_ICON_SIZE;
+  item->indicator_size = DEFAULT_INDICATOR_SIZE;
 
   item->image = gtk_image_new ();
   g_signal_connect (item->image, "style-set",
 		    G_CALLBACK (image_style_set_cb), item);
-  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (item), item->image);
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (item),
+				 item->image);
   gtk_widget_show (item->image);
+
+  box = gtk_hbox_new (FALSE, 12);
+  gtk_container_add (GTK_CONTAINER (item), box);
+  gtk_widget_show (box);
 
   item->label = gtk_label_new (NULL);
   gtk_label_set_use_markup (GTK_LABEL (item->label), TRUE);
   gtk_misc_set_alignment (GTK_MISC (item->label), 0.0, 0.5);
   g_signal_connect (item->label, "style-set",
 		    G_CALLBACK (label_style_set_cb), item);
-  gtk_container_add (GTK_CONTAINER (item), item->label);
+  gtk_container_add (GTK_CONTAINER (box), item->label);
   gtk_widget_show (item->label);
+
+  item->indicator_image = gtk_image_new ();
+  gtk_widget_set_size_request (item->indicator_image,
+			       DEFAULT_INDICATOR_SIZE + CLOSE_ENOUGH_SIZE,
+			       DEFAULT_INDICATOR_SIZE + CLOSE_ENOUGH_SIZE);
+  g_signal_connect (item->indicator_image, "style-set",
+		    G_CALLBACK (indicator_style_set_cb), item);
+  gtk_box_pack_start (GTK_BOX (box), item->indicator_image,
+		      FALSE, FALSE, 0);
+  gtk_widget_show (item->indicator_image);
 }
 
 
@@ -302,12 +332,10 @@ user_displays_changed_cb (FusaUser *user,
 			  gpointer  data)
 {
   if (gtk_widget_has_screen (data))
-    reset_icon (data);
+    reset_indicator (data);
 
   if (fusa_user_get_uid (user) == getuid ())
     gtk_widget_set_sensitive (data, (fusa_user_get_n_displays (user) > 1));
-  else
-    gtk_widget_set_sensitive (data, TRUE);
 }
 
 static void
@@ -338,6 +366,14 @@ label_style_set_cb (GtkWidget *widget,
 		    gpointer   data)
 {
   reset_label (data);
+}
+
+static void
+indicator_style_set_cb (GtkWidget *widget,
+			GtkStyle  *old_style,
+			gpointer   data)
+{
+  reset_indicator (data);
 }
 
 
@@ -385,10 +421,48 @@ reset_icon (FusaUserMenuItem *item)
   g_assert (item->icon_size != 0);
 
   pixbuf = fusa_user_render_icon (item->user, GTK_WIDGET (item),
-				  item->icon_size,
-				  fusa_user_get_n_displays (item->user));
+				  item->icon_size);
   gtk_image_set_from_pixbuf (GTK_IMAGE (item->image), pixbuf);
   g_object_unref (pixbuf);
+}
+
+static void
+reset_indicator (FusaUserMenuItem *item)
+{
+  gint width, height;
+  guint n_displays;
+  GtkSettings *settings;
+
+  n_displays = fusa_user_get_n_displays (item->user);
+  if (n_displays > 0)
+    {
+      const gchar *indicator_name;
+
+      if (fusa_user_get_uid (item->user) != getuid () || n_displays > 1)
+	indicator_name = INDICATOR_ICON_NAME;
+      else
+	indicator_name = INSENSITIVE_INDICATOR_ICON_NAME;
+
+      gtk_image_set_from_icon_name (GTK_IMAGE (item->indicator_image),
+				    indicator_name, INDICATOR_ICON_SIZE);
+    }
+  else
+    gtk_image_clear (GTK_IMAGE (item->indicator_image));
+
+  if (gtk_widget_has_screen (item->indicator_image))
+    settings = gtk_settings_get_for_screen (gtk_widget_get_screen (item->indicator_image));
+  else
+    settings = gtk_settings_get_default ();
+
+  if (gtk_icon_size_lookup_for_settings (settings, INDICATOR_ICON_SIZE,
+					 &width, &height))
+    item->indicator_size = MAX (width, height);
+  else
+    item->indicator_size = DEFAULT_INDICATOR_SIZE;
+
+  gtk_widget_set_size_request (item->indicator_image,
+			       item->indicator_size,
+			       item->indicator_size);
 }
 
 
