@@ -1,3 +1,9 @@
+2005-11-15  William Jon McCann  <mccann@jhu.edu>
+
+	* src/fade.c (fade_screens_default): Make sure
+	we show the windows when xorg gamma fading fails.
+	Fixes #321546.
+
 2005-11-14  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.

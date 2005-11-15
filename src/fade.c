@@ -115,7 +115,10 @@ fade_screens_default (int       seconds,
                       gboolean  go_out,
                       GSList   *windows)
 {
-        /* FIXME: use cairo */
+        /* FIXME: fade using cairo ? */
+
+        /* Show windows */
+        show_windows (windows);
 }
 
 
