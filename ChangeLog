@@ -1,3 +1,9 @@
+==== 0.0.20 ====
+
+2005-11-15  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 0.0.20 release
+
 2005-11-15  William Jon McCann  <mccann@jhu.edu>
 
 	* src/fade.c (fade_screens_default): Make sure

@@ -1,4 +1,12 @@
 ==============
+Version 0.0.20
+==============
+
+  gnome-screensaver
+
+        * Fix blanking when running under Xnest
+
+==============
 Version 0.0.19
 ==============
 
