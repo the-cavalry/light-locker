@@ -1,3 +1,7 @@
+2005-11-17  Marcel Telka  <marcel@telka.sk>
+
+	* configure.ac (ALL_LINGUAS): Added sk.
+
 2005-11-15  William Jon McCann  <mccann@jhu.edu>
 
 	* AUTHORS: Not much left of that...
