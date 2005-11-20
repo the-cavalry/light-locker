@@ -1,3 +1,7 @@
+2005-11-20  Amanpreet Singh Alam <amanpreetalam@yahoo.com>
+
+	* configure.ac: Add Punjabi (pa) to ALL_LINGUAS 
+
 2005-11-17  Marcel Telka  <marcel@telka.sk>
 
 	* configure.ac (ALL_LINGUAS): Added sk.
