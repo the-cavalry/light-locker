@@ -44,6 +44,7 @@ libexec_PROGRAMS = \
 noinst_PROGRAMS = 	\
 	test-fade	\
 	test-passwd	\
+	test-watcher	\
 	test-window	\
 	$(NULL)
 
@@ -94,6 +95,19 @@ test_passwd_SOURCES = 			\
 test_passwd_LDADD =			\
 	$(GNOME_SCREENSAVER_LIBS)	\
 	$(AUTH_LIBS)			\
+	$(NULL)
+
+test_watcher_SOURCES =			\
+	test-watcher.c			\
+	gs-watcher.h			\
+	gs-watcher-x11.c		\
+	gs-marshal.c 			\
+	gs-marshal.h			\
+	$(NULL)
+
+test_watcher_LDADD =			\
+	$(GNOME_SCREENSAVER_LIBS)	\
+	$(SAVER_LIBS)			\
 	$(NULL)
 
 test_window_SOURCES =			\

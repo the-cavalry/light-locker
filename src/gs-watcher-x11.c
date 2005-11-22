@@ -119,7 +119,8 @@ enum {
 
 enum {
         PROP_0,
-        PROP_TIMEOUT
+        PROP_TIMEOUT,
+        PROP_DEBUG
 };
 
 static GObjectClass *parent_class = NULL;
@@ -158,6 +159,17 @@ gs_watcher_set_timeout (GSWatcher  *watcher,
 }
 
 static void
+_gs_watcher_set_debug (GSWatcher  *watcher,
+                       gboolean    enabled)
+{
+        g_return_if_fail (GS_IS_WATCHER (watcher));
+
+        if (watcher->priv->debug != enabled) {
+                watcher->priv->debug = enabled;
+        }
+}
+
+static void
 gs_watcher_set_property (GObject            *object,
                          guint               prop_id,
                          const GValue       *value,
@@ -170,6 +182,9 @@ gs_watcher_set_property (GObject            *object,
         switch (prop_id) {
         case PROP_TIMEOUT:
                 gs_watcher_set_timeout (self, g_value_get_uint (value));
+                break;
+        case PROP_DEBUG:
+                _gs_watcher_set_debug (self, g_value_get_boolean (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -190,6 +205,9 @@ gs_watcher_get_property (GObject            *object,
         switch (prop_id) {
         case PROP_TIMEOUT:
                 g_value_set_uint (value, self->priv->timeout);
+                break;
+        case PROP_DEBUG:
+                g_value_set_boolean (value, self->priv->debug);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -228,6 +246,13 @@ gs_watcher_class_init (GSWatcherClass *klass)
                                                             G_MAXUINT,
                                                             600000,
                                                             G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_DEBUG,
+                                         g_param_spec_boolean ("debug",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE));
 
         g_type_class_add_private (klass, sizeof (GSWatcherPrivate));
 }

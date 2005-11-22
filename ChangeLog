@@ -1,5 +1,14 @@
 2005-11-22  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c (_gs_watcher_set_debug) 
+	(gs_watcher_set_property, gs_watcher_get_property) 
+	(gs_watcher_class_init): Add a debug object property.
+
+	* src/test-watcher.c: 
+	* src/Makefile.am: Add unit test for watcher.
+
+2005-11-22  William Jon McCann  <mccann@jhu.edu>
+
 	* src/Makefile.am: One more place.
 
 2005-11-22  William Jon McCann  <mccann@jhu.edu>
