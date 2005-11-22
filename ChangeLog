@@ -1,5 +1,9 @@
 2005-11-22  William Jon McCann  <mccann@jhu.edu>
 
+	* src/Makefile.am: One more place.
+
+2005-11-22  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c: 
 	* src/gs-monitor.c: 
 	* src/gs-watcher.h: Renamed gs-watcher-x11.h to gs-watcher.h.

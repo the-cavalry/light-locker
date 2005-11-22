@@ -149,7 +149,7 @@ gnome_screensaver_SOURCES =	\
 	gs-monitor.c		\
 	gs-monitor.h		\
 	gs-watcher-x11.c	\
-	gs-watcher-x11.h	\
+	gs-watcher.h		\
 	gs-power-x11.c		\
 	gs-power.h		\
 	gs-listener-dbus.c	\
