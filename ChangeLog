@@ -1,5 +1,15 @@
 2005-11-22  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (gs_window_raise, gs_window_xevent) 
+	(gs_window_real_show, gs_window_real_hide):
+	Add a gdk event filter to look for expose events while
+	the screensaver windows are up.  If we see one that means
+	that a window has been mapped on top of one of these windows.
+	When that occurs we raise the window.
+	Fixes #322146.
+
+2005-11-22  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c (_gs_watcher_set_debug) 
 	(gs_watcher_set_property, gs_watcher_get_property) 
 	(gs_watcher_class_init): Add a debug object property.

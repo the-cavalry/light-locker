@@ -11,6 +11,7 @@ gnome-screensaver-dialog
 gnome-screensaver-preferences
 test-fade
 test-passwd
+test-watcher
 test-window
 gs-marshal.c
 gs-marshal.h

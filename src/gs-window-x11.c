@@ -324,6 +324,46 @@ add_emit_deactivated_idle (GSWindow *window)
 }
 
 static void
+gs_window_raise (GSWindow *window)
+{
+        GdkWindow *win;
+
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        win = GTK_WIDGET (window)->window;
+
+        gdk_window_raise (win);
+}
+
+static void
+gs_window_xevent (GSWindow  *window,
+                  GdkXEvent *xevent)
+{
+        XEvent *ev;
+
+        ev = xevent;
+
+        switch (ev->xany.type) {
+        case Expose:
+                gs_window_raise (window);
+                break;
+        default:
+                break;
+        }
+
+}
+
+static GdkFilterReturn
+xevent_filter (GdkXEvent *xevent,
+               GdkEvent  *event,
+               GSWindow  *window)
+{
+        gs_window_xevent (window, xevent);
+
+        return GDK_FILTER_CONTINUE;
+}
+
+static void
 gs_window_real_show (GtkWidget *widget)
 {
         GSWindow *window;
@@ -340,6 +380,8 @@ gs_window_real_show (GtkWidget *widget)
 
         remove_watchdog_timer (window);
         add_watchdog_timer (window, 30000);
+
+        gdk_window_add_filter (NULL, (GdkFilterFunc)xevent_filter, window);
 }
 
 void
@@ -356,6 +398,8 @@ gs_window_real_hide (GtkWidget *widget)
         GSWindow *window;
 
         window = GS_WINDOW (widget);
+
+        gdk_window_remove_filter (NULL, (GdkFilterFunc)xevent_filter, window);
 
         remove_watchdog_timer (window);
 
