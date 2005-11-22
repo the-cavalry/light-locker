@@ -2,14 +2,14 @@
 # Copyright (C) 2005 THE gnome-screensaver'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-screensaver package.
 # Rostislav "zbrox" Raykov <zbrox@i-space.org>, 2005.
-# 
-# 
+# Alexander Shopov <ash@contact.bg>, 2005.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-06 14:05+0300\n"
-"PO-Revision-Date: 2005-10-06 12:06+0300\n"
+"POT-Creation-Date: 2005-11-22 09:01+0200\n"
+"PO-Revision-Date: 2005-11-21 22:50+0200\n"
 "Last-Translator: Rostislav \"zbrox\" Raykov <zbrox@i-space.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -39,13 +39,14 @@ msgstr "Настройки на екранния предпазител"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "_Activate after:"
-msgstr "_Активиране след:"
+msgstr "_Задействане след:"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "_Lock screen when active"
-msgstr "_Заключване на екрана при активиране"
+msgstr "_Заключване на екрана при задействане"
 
 #: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Screensaver themes"
 msgstr "Предпазители на екрана"
 
@@ -54,132 +55,167 @@ msgid "Screensavers"
 msgstr "Предпазители на екрана"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
-msgid ""
-"How many minutes after the screensaver activates until the monitor goes "
-"black."
-msgstr ""
-"Колко минути след активирането на предпазителя на екрана, преди монитора да "
-"покаже черен екран"
+msgid "Allow logout"
+msgstr "Позволяване на изход"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
-msgid "How many minutes until the monitor goes black"
-msgstr "Колко минути преди монитора да покаже черен екран"
+msgid "Allow monitor power management"
+msgstr "Позволяване на управление на енергоспестяващия режим на монитора"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
-msgid ""
-"The number of minutes after blanking the screen before a logout option will "
-"appear"
-msgstr ""
-"Броят минути след като се изчисти екрана преди да се покаже опцията за изход"
+msgid "Allow user switching"
+msgstr "Позволяване на превключването на потребител"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
-msgid ""
-"The number of minutes after blanking the screen before a logout option will "
-"appear."
-msgstr ""
-"Броят минути след като се изчисти екрана преди да се покаже опцията за изход"
+msgid "Lock on activation"
+msgstr "Заключване при задействане"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
-msgid "The number of minutes after blanking the screen before locking"
-msgstr "Броят минути след като се изчисти екрана преди да се заключи"
+msgid "Logout command"
+msgstr "Команда за изход"
 
 #: ../data/gnome-screensaver.schemas.in.h:6
-msgid "The number of minutes after blanking the screen before locking."
-msgstr "Броят минути след като се изчисти екрана преди да се заключи"
-
-#: ../data/gnome-screensaver.schemas.in.h:7
-msgid ""
-"The number of minutes after the screensaver activates until the monitor "
-"power-saves."
-msgstr ""
-"Колко минути след активирането на предпазителя на екрана, преди да се "
-"активира енергоспестителната функция на монитора."
-
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid ""
-"The number of minutes after the screensaver activates until the monitor "
-"powers down."
-msgstr ""
-"Броят минути след активирането на предпазителя на екрана, преди мониторът да "
-"се изключи."
-
-#: ../data/gnome-screensaver.schemas.in.h:9
-msgid "The number of minutes of idle time before blanking the screen"
-msgstr "Броят минути време неактивност преди да се изчисти екрана"
-
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "The number of minutes of idle time before blanking the screen."
-msgstr "Броят минути време неактивност преди да се изчисти екрана"
-
-#: ../data/gnome-screensaver.schemas.in.h:11
-msgid "The number of minutes to run before changing the screensaver"
-msgstr "Броят минути изпълнение преди да се смени екранният предпазител"
-
-#: ../data/gnome-screensaver.schemas.in.h:12
-msgid "The number of minutes to run before changing the screensaver."
-msgstr "Броят минути изпълнение преди да се смени екранният предпазител"
-
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid "The number of minutes until the monitor power-saves"
-msgstr "Броят минути преди монитора да мине в режим за спестяване на енергия"
-
-#: ../data/gnome-screensaver.schemas.in.h:14
-msgid "The number of minutes until the monitor powers down"
-msgstr "Броят минути преди монитора да се изключи"
-
-#: ../data/gnome-screensaver.schemas.in.h:15
-msgid "The screensaver selection mode"
+msgid "Screensaver selection mode"
 msgstr "Режим на избор на екранния предпазител"
 
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Set this to TRUE to allow the screensaver to power down the monitor."
+msgstr "Дали предпазителя на екрана да изключва монитора"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr "Дали екранния предпазител да заключва екрана при задействането си."
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr ""
+"Дали да се дава възможността да се превключва към друг потребител в диалога "
+"за отключване"
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr ""
+"Дали да се дава възможността за изход в диалога за отключване след известно "
+"време. То се задава в ключа „logout_delay“."
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr ""
+"Коя команда да се изпълнява при натискането на бутона за изход. Командата "
+"трябва да доведе до изхода на потребителя без вход от потребителя. Този ключ "
+"е в сила, единствено ако ключът „logout_enable“ е TRUE."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
+msgstr ""
+"Броят минути време след задействане на екранния предпазител преди да се "
+"изчисти екрана"
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr ""
+"Минутите след задействане на екранния предпазител, преди да се появи бутон "
+"за изход в диалога за отключване. Този ключ е в сила, единствено ако ключът "
+"„logout_enable“ е TRUE."
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"goes into standby power mode."
+msgstr ""
+"Броят минути след задействане на предпазителя на екрана, преди мониторът да "
+"влезе в енергоспестяващ режим (standby)."
+
 #: ../data/gnome-screensaver.schemas.in.h:16
-msgid "The selected screensaver themes"
-msgstr "Избраните теми за екранният предпазител"
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"goes into suspend power mode."
+msgstr ""
+"Броят минути след задействане на предпазителя на екрана, преди мониторът да "
+"влезе в енергоспестяващ режим (suspend)."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
-"This key specifies the selection mode used by the screensaver. Possible "
-"values are \"disabled\", \"blank-only\", \"single\", and \"random\"."
+"The number of minutes after the screensaver activation until the monitor "
+"powers off."
 msgstr ""
-"Този ключ указва как се избират визуализации от екранния предпазите. "
-"Възможностите са „disabled“ - предпазителя въобще не се включва, „blank-"
-"only“ - екрана само се изключва, „single“ - единствена визуализация и "
-"„random“ - случайна визуализация."
+"Броят минути след задействане на предпазителя на екрана, преди мониторът да "
+"се изключи."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
-msgid "This key specifies the themes to be used by the screensaver."
-msgstr "Ключът описва темите, които да се използват от екранния предпазител"
+msgid "The number of minutes of idle time before activating the screensaver."
+msgstr ""
+"Броят минути време неактивност, преди да се задейства екранният предпазител"
 
 #: ../data/gnome-screensaver.schemas.in.h:19
-msgid "Whether to allow user switching"
-msgstr "Дали да се позволява превключването на потребител"
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr ""
+"Броят минути изпълнение преди да се смени темата на екранния предпазител"
 
 #: ../data/gnome-screensaver.schemas.in.h:20
-msgid "Whether to lock as well as blank"
-msgstr "Дали да се заключва освен да се изчиства"
+msgid ""
+"The selection mode used by screensaver. May be \"disabled\" to disable "
+"screensaver activation, \"blank-only\" to enable the screensaver without "
+"using any theme on activation, \"single\" to enable screensaver using only "
+"one theme on activation (specified in \"themes\" key), and \"random\" to "
+"enable the screensaver using a random theme on activation."
+msgstr ""
+"Режимът за избор на екранния предпазител. „disabled“ изключва задействането "
+"на екранния предпазител, „blank-only“ позволява задействане без никаква "
+"тема, „single“ позволява задействане с една тема (тя е указана в ключа "
+"„themes“), а „random“ позволява случайна тема при задействане на "
+"предпазителя."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
-msgid "Whether to lock as well as blank."
-msgstr "Дали да се заключва освен да се изчиства"
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"disabled\" or \"blank-only\", should provide "
+"the theme name when \"mode\" is \"single\", and should provide a list of "
+"themes when \"mode\" is \"random\"."
+msgstr ""
+"Ключът указва списъка с темите за екранния предпазител. Този ключ е без "
+"значение, когато режимът в ключа „mode“ е „disabled“ или „blank-only“. Този "
+"ключ трябва да съдържа името на темата, когато режимът е „single“, а когато "
+"режимът е „random“, трябва да съдържа списък с имена на темите."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
-msgid "Whether to offer the option of logging out after logout_delay"
-msgstr "Дали да се предлага възможността за изход след отсрочката за изхода"
+msgid "Time before activation"
+msgstr "Време преди задействане"
 
 #: ../data/gnome-screensaver.schemas.in.h:23
-msgid "Whether to offer the option of logging out after logout_delay."
-msgstr "Дали да се предлага възможността за изход след отсрочката за изхода"
+msgid "Time before locking"
+msgstr "Време преди заключване"
 
 #: ../data/gnome-screensaver.schemas.in.h:24
-msgid "Whether to offer the option of switching to a different user"
-msgstr "Дали да се предлага възможността да се превключва към друг потребител"
+msgid "Time before logout option"
+msgstr "Време преди възможност за изход"
 
 #: ../data/gnome-screensaver.schemas.in.h:25
-msgid "Whether to power down the monitor"
-msgstr "Дали да се изключва монитора"
+msgid "Time before power off"
+msgstr "Време преди изключване"
 
 #: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Whether to power down the monitor."
-msgstr "Дали да се изключва монитора"
+msgid "Time before standby"
+msgstr "Време преди standby"
+
+#: ../data/gnome-screensaver.schemas.in.h:27
+msgid "Time before suspend"
+msgstr "Време преди suspend"
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before theme change"
+msgstr "Време преди промяна на темата"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
@@ -205,11 +241,11 @@ msgstr "Поп-арт изглеждаща мрежа от пулсиращи ц
 msgid "Pop art squares"
 msgstr "Поп-арт квадрати"
 
-#: ../savers/slideshow.c:75
+#: ../savers/slideshow.c:77
 msgid "Location to get images from"
 msgstr "Местонахождение от където да се вземат изображенията"
 
-#: ../savers/slideshow.c:75
+#: ../savers/slideshow.c:77
 msgid "PATH"
 msgstr "ПЪТ"
 
@@ -230,7 +266,7 @@ msgid "The name of the X11 display this object refers to."
 msgstr "Името на Х11 дисплея, към който се обръща обекта"
 
 #: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:152
+#: ../src/cut-n-paste/fusa-user-menu-item.c:164
 msgid "User"
 msgstr "Потребител"
 
@@ -256,41 +292,41 @@ msgstr "Вложен"
 msgid "Whether or not this display is a windowed (Xnest) display."
 msgstr "Дали този дисплей е вложен (Xnest) или не."
 
-#: ../src/cut-n-paste/fusa-manager.c:1264
+#: ../src/cut-n-paste/fusa-manager.c:1263
 msgid "The display manager could not be contacted for unknown reasons."
 msgstr ""
 "Поради неизвестна причина не може да се установи връзка с мениджъра на "
 "дисплеи."
 
-#: ../src/cut-n-paste/fusa-manager.c:1271
+#: ../src/cut-n-paste/fusa-manager.c:1270
 msgid "The display manager is not running or too old."
 msgstr "Мениджърът на дисплеи не работи или е прекалено старт."
 
-#: ../src/cut-n-paste/fusa-manager.c:1274
+#: ../src/cut-n-paste/fusa-manager.c:1273
 msgid "The configured limit of flexible servers has been reached."
 msgstr "Конфигурирания лимит на гъвкави сървъри е достигнат."
 
-#: ../src/cut-n-paste/fusa-manager.c:1277
+#: ../src/cut-n-paste/fusa-manager.c:1276
 msgid "There was an unknown error starting X."
 msgstr "Имаше непозната грешка при стартирането на Х."
 
-#: ../src/cut-n-paste/fusa-manager.c:1280
+#: ../src/cut-n-paste/fusa-manager.c:1279
 msgid "The X server failed to finish starting."
 msgstr "Х сървърът не успя да завърши стартирането си."
 
-#: ../src/cut-n-paste/fusa-manager.c:1283
+#: ../src/cut-n-paste/fusa-manager.c:1282
 msgid "There are too many X sessions running."
 msgstr "Има прекалено много стартирани Х сесии."
 
-#: ../src/cut-n-paste/fusa-manager.c:1286
+#: ../src/cut-n-paste/fusa-manager.c:1285
 msgid "The nested X server (Xnest) cannot connect to your current X server."
 msgstr "Вложеният сървър (Xnest) не може да се свърже с текущия X сървър."
 
-#: ../src/cut-n-paste/fusa-manager.c:1289
+#: ../src/cut-n-paste/fusa-manager.c:1288
 msgid "The X server in the GDM configuration could not be found."
 msgstr "Х сървърът в конфигурацията на GDM не може да бъде открит."
 
-#: ../src/cut-n-paste/fusa-manager.c:1292 ../src/cut-n-paste/gdmcomm.c:492
+#: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
@@ -298,40 +334,40 @@ msgstr ""
 "Опит за задаване на непознато или недостъпно действие за излизане от "
 "системата."
 
-#: ../src/cut-n-paste/fusa-manager.c:1295 ../src/cut-n-paste/gdmcomm.c:495
+#: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
 msgstr "Виртуалните терминали не се поддържат."
 
-#: ../src/cut-n-paste/fusa-manager.c:1298
+#: ../src/cut-n-paste/fusa-manager.c:1297
 msgid "Invalid virtual terminal number."
 msgstr "Невалиден номер на виртуалния терминал."
 
-#: ../src/cut-n-paste/fusa-manager.c:1301 ../src/cut-n-paste/gdmcomm.c:499
+#: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
 msgstr "Опит за обновяване на неподдържан конфигурационен ключ."
 
-#: ../src/cut-n-paste/fusa-manager.c:1304
+#: ../src/cut-n-paste/fusa-manager.c:1303
 msgid "~/.Xauthority file badly configured or missing."
 msgstr "Файлът ~/.Xauthority е зле конфигуриран или е липсващ."
 
-#: ../src/cut-n-paste/fusa-manager.c:1307
+#: ../src/cut-n-paste/fusa-manager.c:1306
 msgid "Too many messages were sent to the display manager, and it hung up."
 msgstr ""
 "Прекалено много съобщения са подадени към мениджъра на дисплеи, който заби"
 
-#: ../src/cut-n-paste/fusa-manager.c:1311
+#: ../src/cut-n-paste/fusa-manager.c:1310
 msgid "The display manager sent an unknown error message."
 msgstr "Мениджърът на дисплеи прати непознато съобщение за грешка."
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:153
+#: ../src/cut-n-paste/fusa-user-menu-item.c:165
 msgid "The user this menu item represents."
 msgstr "Потребителят, който този елемент от менюто представлява"
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:160
+#: ../src/cut-n-paste/fusa-user-menu-item.c:172
 msgid "Icon Size"
 msgstr "Размер на иконите"
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:161
+#: ../src/cut-n-paste/fusa-user-menu-item.c:173
 msgid "The size of the icon to use."
 msgstr "Размера на иконата, който да се използва"
 
@@ -436,8 +472,8 @@ msgstr "Непозната грешка"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
-msgid "Copying file: %i of %i"
-msgstr "Копиране на файл: %i от %i"
+msgid "Copying file: %u of %u"
+msgstr "Копиране на файл: %u от %u"
 
 #: ../src/file-transfer-dialog.c:122
 #, c-format
@@ -500,73 +536,77 @@ msgstr "До:"
 msgid "Connecting..."
 msgstr "Свързване..."
 
-#: ../src/gnome-screensaver-command.c:58
+#: ../src/gnome-screensaver-command.c:59
 msgid "Causes the screensaver to exit gracefully"
 msgstr "Кара екранният предпазител да се затвори грациозно"
 
-#: ../src/gnome-screensaver-command.c:60
+#: ../src/gnome-screensaver-command.c:61
 msgid "Query the state of the screensaver"
 msgstr "Запитване за състоянието на екранния предпазител"
 
-#: ../src/gnome-screensaver-command.c:62
+#: ../src/gnome-screensaver-command.c:63
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "Казва на вървящия екранен предпазител да заключи екрана веднага"
 
-#: ../src/gnome-screensaver-command.c:64
+#: ../src/gnome-screensaver-command.c:65
 msgid "If the screensaver is active then switch to another graphics demo"
 msgstr ""
 "Ако екранният предпазител е включен, да се превключи към друга визуализация"
 
-#: ../src/gnome-screensaver-command.c:66
+#: ../src/gnome-screensaver-command.c:67
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "Включване на екранния предпазител (изчистване на екрана)"
 
-#: ../src/gnome-screensaver-command.c:68
+#: ../src/gnome-screensaver-command.c:69
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr ""
 "Ако екранният предпазител е активен - да се деактивира (включване на екрана)"
 
-#: ../src/gnome-screensaver-command.c:70
+#: ../src/gnome-screensaver-command.c:71
 msgid "Disable running graphical themes while blanked"
 msgstr "Изключване на графичните теми при изчистване на екрана"
 
-#: ../src/gnome-screensaver-command.c:72
+#: ../src/gnome-screensaver-command.c:73
 msgid "Enable running graphical themes while blanked (if applicable)"
 msgstr "Включване на графичните теми при изчистване на екрана (ако е възможно)"
 
-#: ../src/gnome-screensaver-command.c:74
+#: ../src/gnome-screensaver-command.c:75
 msgid "Poke the running screensaver to simulate user activity"
 msgstr ""
 "Взаимодействане с работещия екранен предпазител за симулация на "
 "потребителска дейност"
 
-#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:103
-#: ../src/gnome-screensaver.c:52
+#: ../src/gnome-screensaver-command.c:77 ../src/gnome-screensaver-dialog.c:106
+#: ../src/gnome-screensaver.c:55
 msgid "Version of this application"
 msgstr "Версия на програмата"
 
-#: ../src/gnome-screensaver-command.c:201
+#: ../src/gnome-screensaver-command.c:202
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "Екранният предпазител е %s\n"
 
-#: ../src/gnome-screensaver-command.c:201
+#: ../src/gnome-screensaver-command.c:202
 msgid "active"
 msgstr "активен"
 
-#: ../src/gnome-screensaver-command.c:201
+#: ../src/gnome-screensaver-command.c:202
 msgid "inactive"
 msgstr "неактивен"
 
-#: ../src/gnome-screensaver-dialog.c:101
+#: ../src/gnome-screensaver-dialog.c:104
 msgid "Show debugging output"
 msgstr "Показване на информацията за изчистване на грешки"
 
-#: ../src/gnome-screensaver-dialog.c:105
+#: ../src/gnome-screensaver-dialog.c:108
 msgid "Show the logout button"
 msgstr "Показване на бутона за изход"
 
-#: ../src/gnome-screensaver-dialog.c:107
+#: ../src/gnome-screensaver-dialog.c:110
+msgid "Command to invoke from the logout button"
+msgstr "Команда стартирана от бутона за изход"
+
+#: ../src/gnome-screensaver-dialog.c:112
 msgid "Show the switch user button"
 msgstr "Показване на бутона за смяна на потребителя"
 
@@ -582,29 +622,29 @@ msgstr "Черен екран"
 msgid "Random"
 msgstr "Произволен"
 
-#: ../src/gnome-screensaver-preferences.c:693
+#: ../src/gnome-screensaver-preferences.c:692
 msgid "Invalid screensaver theme"
 msgstr "Невалидна тема за екранния предпазител"
 
-#: ../src/gnome-screensaver-preferences.c:696
+#: ../src/gnome-screensaver-preferences.c:695
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Този файл не изглежда като да е валидна тема за екранния предпазител."
 
-#: ../src/gnome-screensaver-preferences.c:813
+#: ../src/gnome-screensaver-preferences.c:812
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d час"
 msgstr[1] "%d часа"
 
-#: ../src/gnome-screensaver-preferences.c:816
+#: ../src/gnome-screensaver-preferences.c:815
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d минута"
 msgstr[1] "%d минути"
 
-#: ../src/gnome-screensaver-preferences.c:819
+#: ../src/gnome-screensaver-preferences.c:818
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -612,15 +652,15 @@ msgstr[0] "%d секунда"
 msgstr[1] "%d секунди"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:825
+#: ../src/gnome-screensaver-preferences.c:824
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:828
-#: ../src/gnome-screensaver-preferences.c:836
+#: ../src/gnome-screensaver-preferences.c:827
+#: ../src/gnome-screensaver-preferences.c:835
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -628,104 +668,78 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:831
-#: ../src/gnome-screensaver-preferences.c:839
-#: ../src/gnome-screensaver-preferences.c:843
+#: ../src/gnome-screensaver-preferences.c:830
+#: ../src/gnome-screensaver-preferences.c:838
+#: ../src/gnome-screensaver-preferences.c:842
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:846
+#: ../src/gnome-screensaver-preferences.c:845
 msgid "0 seconds"
 msgstr "0 секунди"
 
-#: ../src/gnome-screensaver-preferences.c:861
+#: ../src/gnome-screensaver-preferences.c:860
 msgid "Never"
 msgstr "Никога"
 
-#: ../src/gnome-screensaver-preferences.c:897
+#: ../src/gnome-screensaver-preferences.c:896
 msgid "Could not load the main interface"
 msgstr "Неуспех при зареждането на главния интерфейс"
 
-#: ../src/gnome-screensaver-preferences.c:899
+#: ../src/gnome-screensaver-preferences.c:898
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Уверете се, че екранният предпазител е инсталиран правилно."
 
-#: ../src/gs-listener-dbus.c:921
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "Да не се преминава в режим на демон"
+
+#: ../src/gs-listener-dbus.c:1003
 msgid "failed to register with the message bus"
 msgstr "неуспех при регистрирането към шината за съобщенията"
 
-#: ../src/gs-listener-dbus.c:930
+#: ../src/gs-listener-dbus.c:1013
+msgid "not connected to the message bus"
+msgstr "няма връзка с шината за съобщенията"
+
+#: ../src/gs-listener-dbus.c:1022
 msgid "screensaver already running in this session"
 msgstr "екранният предпазител вече е пуснат в тази сесия"
 
-#: ../src/gs-lock-plug.c:308
+#: ../src/gs-lock-plug.c:346
 msgid "Checking password..."
 msgstr "Проверка на паролата..."
 
-#: ../src/gs-lock-plug.c:351
+#: ../src/gs-lock-plug.c:389
 msgid "Time has expired."
 msgstr "Времето изтече!"
 
-#: ../src/gs-lock-plug.c:375
+#: ../src/gs-lock-plug.c:414
 msgid "You have the Caps Lock key on."
-msgstr "Настинат е Caps Lock клавиша"
+msgstr "Клавишът Caps Lock е натиснат"
 
-#: ../src/gs-lock-plug.c:588
+#: ../src/gs-lock-plug.c:691
 msgid "That password was incorrect."
 msgstr "Тази парола беше невярна."
 
-#: ../src/gs-lock-plug.c:611 ../src/gs-lock-plug.c:644
+#: ../src/gs-lock-plug.c:717 ../src/gs-lock-plug.c:750
 msgid "_Unlock"
 msgstr "_Отключване"
 
-#: ../src/gs-lock-plug.c:614 ../src/gs-lock-plug.c:641
+#: ../src/gs-lock-plug.c:720 ../src/gs-lock-plug.c:747
 msgid "_Switch User..."
 msgstr "_Смяна на потребител..."
 
-#: ../src/gs-lock-plug.c:944
-msgid "Log in as a new user"
-msgstr "Влизане като друг потребител"
-
-#. translators: %s is a computer hostname
-#: ../src/gs-lock-plug.c:1366
-#, c-format
-msgid "Welcome to %s"
-msgstr "Добре дошли! Това е %s."
-
-#: ../src/gs-lock-plug.c:1399
+#: ../src/gs-lock-plug.c:1430
 msgid "_Password:"
 msgstr "Па_рола:"
 
-#: ../src/gs-lock-plug.c:1435
-msgid "Switch to user:"
-msgstr "Смяна на потребител:"
+#: ../src/gs-lock-plug.c:1496
+msgid "S_witch to user:"
+msgstr "_Смяна към потребител:"
 
-#: ../src/gs-lock-plug.c:1480
+#: ../src/gs-lock-plug.c:1543
 msgid "Log _Out"
 msgstr "_Изход"
-
-#~ msgid "How many minutes until the monitor power-saves."
-#~ msgstr ""
-#~ "Колко минути преди монитора да мине в режим за спестяване на енергия"
-
-#~ msgid "How many minutes until the monitor powers down."
-#~ msgstr "Колко минути преди монитора да се изключи"
-
-#~ msgid "About %ld second left"
-#~ msgid_plural "About %ld seconds left"
-#~ msgstr[0] "Остават около %ld секунда"
-#~ msgstr[1] "Остават около %ld секунди"
-
-#~ msgid "Password check failed!"
-#~ msgstr "Проверката на паролата пропадна!"
-
-#~ msgid "Enter a password to unlock the screen"
-#~ msgstr "Въведете парола, за да отключите екрана"
-
-#~ msgid "Name:"
-#~ msgstr "Име:"
-
-#~ msgid "Switch to another user?"
-#~ msgstr "Сменяне към друг потребител?"
