@@ -32,7 +32,7 @@
 #include "gnome-screensaver.h"
 
 #include "gs-manager.h"
-#include "gs-watcher-x11.h"
+#include "gs-watcher.h"
 #include "gs-power.h"
 #include "gs-listener-dbus.h"
 #include "gs-monitor.h"

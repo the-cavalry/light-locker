@@ -1,3 +1,9 @@
+2005-11-22  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-watcher-x11.c: 
+	* src/gs-monitor.c: 
+	* src/gs-watcher.h: Renamed gs-watcher-x11.h to gs-watcher.h.
+
 2005-11-20  Amanpreet Singh Alam <amanpreetalam@yahoo.com>
 
 	* configure.ac: Add Punjabi (pa) to ALL_LINGUAS 

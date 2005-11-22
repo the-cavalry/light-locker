@@ -43,7 +43,7 @@
 #include <gdk/gdkx.h>
 
 #include "gnome-screensaver.h"
-#include "gs-watcher-x11.h"
+#include "gs-watcher.h"
 #include "gs-marshal.h"
 
 static void     gs_watcher_class_init (GSWatcherClass *klass);
