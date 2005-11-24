@@ -344,7 +344,7 @@ gs_window_xevent (GSWindow  *window,
         ev = xevent;
 
         switch (ev->xany.type) {
-        case Expose:
+        case MapNotify:
                 gs_window_raise (window);
                 break;
         default:
@@ -361,6 +361,18 @@ xevent_filter (GdkXEvent *xevent,
         gs_window_xevent (window, xevent);
 
         return GDK_FILTER_CONTINUE;
+}
+
+static void
+select_popup_events (void)
+{
+        XWindowAttributes attr;
+        unsigned long     events;
+
+        XGetWindowAttributes (GDK_DISPLAY (), GDK_ROOT_WINDOW(), &attr);
+
+        events = SubstructureNotifyMask | attr.your_event_mask;
+        XSelectInput (GDK_DISPLAY (), GDK_ROOT_WINDOW(), events);
 }
 
 static void
@@ -381,6 +393,7 @@ gs_window_real_show (GtkWidget *widget)
         remove_watchdog_timer (window);
         add_watchdog_timer (window, 30000);
 
+        select_popup_events ();
         gdk_window_add_filter (NULL, (GdkFilterFunc)xevent_filter, window);
 }
 
