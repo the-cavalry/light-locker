@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-17 18:56+0100\n"
-"PO-Revision-Date: 2005-11-17 22:52+0100\n"
+"POT-Creation-Date: 2005-11-27 11:44+0100\n"
+"PO-Revision-Date: 2005-11-27 12:49+0100\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Šetrič obrazovky"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:2
 msgid "Set your screensaver preferences"
-msgstr ""
+msgstr "Nastaviť predvoľby vášho šetriča obrazovky"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
 msgid "    "
@@ -32,11 +32,11 @@ msgstr "    "
 
 #: ../data/gnome-screensaver-preferences.glade.h:2
 msgid "<b>_Screensaver</b>"
-msgstr ""
+msgstr "<b>Še_trič obrazovky</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "Screensaver Preferences"
-msgstr ""
+msgstr "Predvoľby šetriča obrazovky"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "_Activate after:"
@@ -44,12 +44,12 @@ msgstr "_Aktivovať po:"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "_Lock screen when active"
-msgstr ""
+msgstr "_Uzamknúť obrazovku pri aktivite"
 
 #: ../data/gnome-screensaver.directory.in.h:1
 #: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Screensaver themes"
-msgstr ""
+msgstr "Témy šetriča obrazovky"
 
 #: ../data/gnome-screensaver.directory.in.h:2
 msgid "Screensavers"
@@ -57,19 +57,19 @@ msgstr "Šetriče obrazovky"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
 msgid "Allow logout"
-msgstr ""
+msgstr "Povoliť odhlásenie"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
 msgid "Allow monitor power management"
-msgstr ""
+msgstr "Povoliť sledovanie správy napájania"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow user switching"
-msgstr ""
+msgstr "Povoliť prepnutie používateľa"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Lock on activation"
-msgstr ""
+msgstr "Uzamknúť pri aktivácii"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
 msgid "Logout command"
@@ -77,15 +77,15 @@ msgstr "Príkaz pre odhlásenie"
 
 #: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Screensaver selection mode"
-msgstr ""
+msgstr "Režim výberu šetriča obrazovky"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Set this to TRUE to allow the screensaver to power down the monitor."
-msgstr ""
+msgstr "Ak chcete dovoliť šetriču obrazovky vypnúť monitor, nastavte toto na TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr ""
+msgstr "Nastavte toto na TRUE, ak sa má pri aktivovaní šetriča obrazovky uzamknúť obrazovka."
 
 #: ../data/gnome-screensaver.schemas.in.h:10
 msgid ""
@@ -167,15 +167,15 @@ msgstr "Čas pred aktivovaním"
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid "Time before locking"
-msgstr ""
+msgstr "Čas pred uzamknutím"
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid "Time before logout option"
-msgstr ""
+msgstr "Čas pred odhlásením"
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Time before power off"
-msgstr ""
+msgstr "Čas pred vypnutím"
 
 #: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before standby"
@@ -187,7 +187,7 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before theme change"
-msgstr ""
+msgstr "Čas pred zmenou témy"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
@@ -276,7 +276,7 @@ msgstr ""
 
 #: ../src/cut-n-paste/fusa-manager.c:1276
 msgid "There was an unknown error starting X."
-msgstr ""
+msgstr "Vyskytla sa neznáma chyba pri spustení X."
 
 #: ../src/cut-n-paste/fusa-manager.c:1279
 msgid "The X server failed to finish starting."
@@ -302,19 +302,19 @@ msgstr ""
 
 #: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
-msgstr ""
+msgstr "Virtuálne terminály nie sú podporované."
 
 #: ../src/cut-n-paste/fusa-manager.c:1297
 msgid "Invalid virtual terminal number."
-msgstr ""
+msgstr "Neplatné číslo virtuálneho terminálu."
 
 #: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
-msgstr ""
+msgstr "Pokus o aktualizáciu nepodporovaného konfiguračného kľúča."
 
 #: ../src/cut-n-paste/fusa-manager.c:1303
 msgid "~/.Xauthority file badly configured or missing."
-msgstr ""
+msgstr "Súbor ~/.Xauthority zle nakonfigurovaný alebo chýbajúci."
 
 #: ../src/cut-n-paste/fusa-manager.c:1306
 msgid "Too many messages were sent to the display manager, and it hung up."
@@ -322,7 +322,7 @@ msgstr ""
 
 #: ../src/cut-n-paste/fusa-manager.c:1310
 msgid "The display manager sent an unknown error message."
-msgstr ""
+msgstr "Správca obrazovky odoslal neznámu chybovú správu."
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:165
 msgid "The user this menu item represents."
@@ -334,7 +334,7 @@ msgstr "Veľkosť ikony"
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:173
 msgid "The size of the icon to use."
-msgstr ""
+msgstr "Veľkosť ikon, ktoré použiť."
 
 #: ../src/cut-n-paste/fusa-user.c:151
 msgid "The user manager object this user is controlled by."
@@ -437,7 +437,7 @@ msgstr "Kopírovanie '%s'"
 
 #: ../src/file-transfer-dialog.c:193
 msgid "From URI"
-msgstr ""
+msgstr "Z URI"
 
 #: ../src/file-transfer-dialog.c:194
 msgid "URI currently transferring from"
@@ -445,7 +445,7 @@ msgstr ""
 
 #: ../src/file-transfer-dialog.c:201
 msgid "To URI"
-msgstr ""
+msgstr "Pre URI"
 
 #: ../src/file-transfer-dialog.c:202
 msgid "URI currently transferring to"
@@ -461,7 +461,7 @@ msgstr ""
 
 #: ../src/file-transfer-dialog.c:217
 msgid "Current URI index"
-msgstr ""
+msgstr "Aktuálny index URI"
 
 #: ../src/file-transfer-dialog.c:218
 msgid "Current URI index - starts from 1"
@@ -469,11 +469,11 @@ msgstr ""
 
 #: ../src/file-transfer-dialog.c:225
 msgid "Total URIs"
-msgstr ""
+msgstr "Celkovo URI"
 
 #: ../src/file-transfer-dialog.c:226
 msgid "Total number of URIs"
-msgstr ""
+msgstr "Celkový počet URI"
 
 #: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
 msgid "Copying files"
@@ -485,11 +485,11 @@ msgstr "Od:"
 
 #: ../src/file-transfer-dialog.c:349
 msgid "To:"
-msgstr ""
+msgstr "Pre:"
 
 #: ../src/file-transfer-dialog.c:448
 msgid "Connecting..."
-msgstr ""
+msgstr "Spájanie..."
 
 #: ../src/gnome-screensaver-command.c:59
 msgid "Causes the screensaver to exit gracefully"
@@ -497,7 +497,7 @@ msgstr ""
 
 #: ../src/gnome-screensaver-command.c:61
 msgid "Query the state of the screensaver"
-msgstr ""
+msgstr "Zistiť stav šetriča obrazovky"
 
 #: ../src/gnome-screensaver-command.c:63
 msgid "Tells the running screensaver process to lock the screen immediately"
@@ -509,7 +509,7 @@ msgstr ""
 
 #: ../src/gnome-screensaver-command.c:67
 msgid "Turn the screensaver on (blank the screen)"
-msgstr ""
+msgstr "Zapnúť šetrič obrazovky (vyprázdniť obrazovku)"
 
 #: ../src/gnome-screensaver-command.c:69
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
@@ -547,11 +547,11 @@ msgstr "neaktívne"
 
 #: ../src/gnome-screensaver-dialog.c:104
 msgid "Show debugging output"
-msgstr ""
+msgstr "Zobraziť ladiaci výstup"
 
 #: ../src/gnome-screensaver-dialog.c:108
 msgid "Show the logout button"
-msgstr ""
+msgstr "Zobraziť tlačidlo odhlásenia"
 
 #: ../src/gnome-screensaver-dialog.c:110
 msgid "Command to invoke from the logout button"
@@ -559,7 +559,7 @@ msgstr ""
 
 #: ../src/gnome-screensaver-dialog.c:112
 msgid "Show the switch user button"
-msgstr ""
+msgstr "Zobraziť tlačidlo prepnutia používateľa"
 
 #: ../src/gnome-screensaver-preferences.c:386
 msgid "Disabled"
@@ -567,19 +567,19 @@ msgstr ""
 
 #: ../src/gnome-screensaver-preferences.c:393
 msgid "Blank screen"
-msgstr ""
+msgstr "Prázdna obrazovka"
 
 #: ../src/gnome-screensaver-preferences.c:399
 msgid "Random"
-msgstr ""
+msgstr "Náhodné"
 
 #: ../src/gnome-screensaver-preferences.c:692
 msgid "Invalid screensaver theme"
-msgstr ""
+msgstr "Neplatná téma šetriča obrazovky"
 
 #: ../src/gnome-screensaver-preferences.c:695
 msgid "This file does not appear to be a valid screensaver theme."
-msgstr ""
+msgstr "Tento súbor nevyzerá ako platná téma šetriča obrazovky."
 
 #: ../src/gnome-screensaver-preferences.c:812
 #, c-format
@@ -640,11 +640,11 @@ msgstr "Nikdy"
 
 #: ../src/gnome-screensaver-preferences.c:896
 msgid "Could not load the main interface"
-msgstr ""
+msgstr "Nepodarilo sa načítať hlavné rozhranie"
 
 #: ../src/gnome-screensaver-preferences.c:898
 msgid "Please make sure that the screensaver is properly installed"
-msgstr ""
+msgstr "Prosím, uistite sa, že je šetrič obrazovky správne nainštalovaný"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
@@ -660,7 +660,7 @@ msgstr ""
 
 #: ../src/gs-listener-dbus.c:1022
 msgid "screensaver already running in this session"
-msgstr ""
+msgstr "v tomto sedení už šetrič obrazovky beží"
 
 #: ../src/gs-lock-plug.c:346
 msgid "Checking password..."
@@ -684,7 +684,7 @@ msgstr "_Odomknúť"
 
 #: ../src/gs-lock-plug.c:720 ../src/gs-lock-plug.c:747
 msgid "_Switch User..."
-msgstr ""
+msgstr "_Prepnúť používateľa..."
 
 #: ../src/gs-lock-plug.c:1430
 msgid "_Password:"
@@ -692,7 +692,7 @@ msgstr "_Heslo:"
 
 #: ../src/gs-lock-plug.c:1496
 msgid "S_witch to user:"
-msgstr ""
+msgstr "Pr_epnúť na používateľa:"
 
 #: ../src/gs-lock-plug.c:1543
 msgid "Log _Out"
