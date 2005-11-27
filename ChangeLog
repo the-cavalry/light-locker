@@ -1,3 +1,7 @@
+2005-11-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.ac: Added "th" (Thai) to ALL_LINGUAS.
+
 2005-11-23  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (gs_window_xevent, xevent_filter) 

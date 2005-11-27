@@ -1,0 +1,731 @@
+# Thai translation of gnome-screensaver.
+# Copyright (C) 2005 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-screensaver package.
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver 0.0.21\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-11-27 20:45+0700\n"
+"PO-Revision-Date: 2005-11-27 22:09+0700\n"
+"Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
+"Language-Team: Thai <l10n@opentle.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=0;"
+
+#: data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "โปรแกรมรักษาหน้าจอ"
+
+#: data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "ปรับแต่งโปรแกรมรักษาหน้าจอของคุณ"
+
+#: data/gnome-screensaver-preferences.glade.h:1
+msgid "    "
+msgstr "    "
+
+#: data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>_Screensaver</b>"
+msgstr "<b>โปรแกรม_รักษาหน้าจอ</b>"
+
+#: data/gnome-screensaver-preferences.glade.h:3
+msgid "Screensaver Preferences"
+msgstr "ปรับแต่งโปรแกรมรักษาหน้าจอ"
+
+#: data/gnome-screensaver-preferences.glade.h:4
+msgid "_Activate after:"
+msgstr "_ทำงานหลังจาก:"
+
+#: data/gnome-screensaver-preferences.glade.h:5
+msgid "_Lock screen when active"
+msgstr "_ล็อคหน้าจอเมื่อทำงาน"
+
+#: data/gnome-screensaver.directory.in.h:1
+#: data/gnome-screensaver.schemas.in.h:7
+msgid "Screensaver themes"
+msgstr "ชุดโปรแกรมรักษาหน้าจอ"
+
+#: data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "โปรแกรมรักษาหน้าจอ"
+
+#: data/gnome-screensaver.schemas.in.h:1
+msgid "Allow logout"
+msgstr "ให้ออกจากระบบได้"
+
+#: data/gnome-screensaver.schemas.in.h:2
+msgid "Allow monitor power management"
+msgstr "ให้จัดการการใช้พลังงานของจอภาพได้"
+
+#: data/gnome-screensaver.schemas.in.h:3
+msgid "Allow user switching"
+msgstr "ให้เปลี่ยนผู้ใช้ได้"
+
+#: data/gnome-screensaver.schemas.in.h:4
+msgid "Lock on activation"
+msgstr "ล็อคหน้าจอเมื่อทำงาน"
+
+#: data/gnome-screensaver.schemas.in.h:5
+msgid "Logout command"
+msgstr "คำสั่งออกจากระบบ"
+
+#: data/gnome-screensaver.schemas.in.h:6
+msgid "Screensaver selection mode"
+msgstr "วิธีการเลือกโปรแกรมรักษาหน้าจอ"
+
+#: data/gnome-screensaver.schemas.in.h:8
+msgid "Set this to TRUE to allow the screensaver to power down the monitor."
+msgstr "กำหนดเป็น TRUE เพื่อยอมให้โปรแกรมรักษาหน้าจอสั่งปิดจอภาพ"
+
+#: data/gnome-screensaver.schemas.in.h:9
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr "กำหนดเป็น TRUE เพื่อล็อคหน้าจอเมื่อโปรแกรมรักษาหน้าจอทำงาน"
+
+#: data/gnome-screensaver.schemas.in.h:10
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr ""
+"กำหนดเป็น TRUE เพื่อให้มีตัวเลือกในไดอะล็อกปลดล็อคหน้าจอ "
+"ให้เปลี่ยนไปใช้บัญชีผู้ใช้อื่นได้"
+
+#: data/gnome-screensaver.schemas.in.h:11
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr ""
+"กำหนดเป็น TRUE เพื่อให้มีตัวเลือกในไดอะล็อกปลดล็อคหน้าจอ "
+"ให้ออกจากระบบหลังจากการหน่วงเวลาได้ ช่วงเวลาที่หน่วงกำหนดโดยคีย์ "
+"\"logout_delay\""
+
+#: data/gnome-screensaver.schemas.in.h:12
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr ""
+"คำสั่งที่จะเรียกเมื่อผู้ใช้คลิกปุ่มออกจากระบบ คำสั่งนี้ควรจะออกจากวาระของผู้ใช้ "
+"โดยไม่มีการโต้ตอบกับผู้ใช้อีก คีย์นี้จะมีผลก็ต่อเมื่อคีย์ \"logout_enable\" มีค่าเป็น TRUE"
+
+#: data/gnome-screensaver.schemas.in.h:13
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
+msgstr ""
+"จำนวนนาทีหลังการเริ่มทำงาน ที่โปรแกรมรักษาหน้าจอจะล็อคหน้าจอ"
+
+#: data/gnome-screensaver.schemas.in.h:14
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr ""
+"จำนวนนาทีหลังการเริ่มทำงาน ที่โปรแกรมรักษาหน้าจอจะปรากฏตัวเลือกให้ออกจากระบบ"
+"ในไดอะล็อกปลดล็อคหน้าจอ คีย์นี้จะมีผลก็ต่อเมื่อคีย์ \"logout_enable\" มีค่าเป็น TRUE"
+
+#: data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"goes into standby power mode."
+msgstr ""
+"จำนวนนาทีหลังการเริ่มทำงาน ที่โปรแกรมรักษาหน้าจอจะเปลี่ยนการใช้พลังงานของ"
+"จอภาพเข้าสู่โหมด standby"
+
+#: data/gnome-screensaver.schemas.in.h:16
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"goes into suspend power mode."
+msgstr ""
+"จำนวนนาทีหลังการเริ่มทำงาน ที่โปรแกรมรักษาหน้าจอจะเปลี่ยนการใช้พลังงานของ"
+"จอภาพเข้าสู่โหมด suspend"
+
+#: data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"powers off."
+msgstr ""
+"จำนวนนาทีหลังการเริ่มทำงาน ที่โปรแกรมรักษาหน้าจอจะปิดจอภาพ"
+
+#: data/gnome-screensaver.schemas.in.h:18
+msgid "The number of minutes of idle time before activating the screensaver."
+msgstr "จำนวนนาทีที่หยุดรอ ก่อนที่โปรแกรมรักษาหน้าจอจะเริ่มทำงาน"
+
+#: data/gnome-screensaver.schemas.in.h:19
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr "จำนวนนาทีที่จะทำงาน ก่อนเปลี่ยนชุดโปรแกรมรักษาหน้าจอ"
+
+#: data/gnome-screensaver.schemas.in.h:20
+msgid ""
+"The selection mode used by screensaver. May be \"disabled\" to disable "
+"screensaver activation, \"blank-only\" to enable the screensaver without "
+"using any theme on activation, \"single\" to enable screensaver using only "
+"one theme on activation (specified in \"themes\" key), and \"random\" to "
+"enable the screensaver using a random theme on activation."
+msgstr ""
+"วิธีการเลือกที่โปรแกรมรักษาหน้าจอใช้ อาจเป็น \"disabled\" "
+"เพื่อปิดการเรียกใช้โปรแกรมรักษาหน้าจอ หรือ \"blank-only\" "
+"เพื่อเปิดใช้โปรแกรมรักษาหน้าจอโดยไม่เรียกชุดโปรแกรมใด หรือ \"single\" "
+"เพื่อเปิดใช้โปรแกรมรักษาหน้าจอโดยใช้ชุดโปรแกรมเดียว (กำหนดโดยคีย์ \"themes\") "
+"หรือ \"random\" เพื่อเปิดใช้โดยสุ่มชุดโปรแกรมรักษาหน้าจอ"
+
+#: data/gnome-screensaver.schemas.in.h:21
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"disabled\" or \"blank-only\", should provide "
+"the theme name when \"mode\" is \"single\", and should provide a list of "
+"themes when \"mode\" is \"random\"."
+msgstr ""
+"คีย์นี้กำหนดรายการชุดโปรแกรมที่โปรแกรมรักษาหน้าจอจะใช้ จะไม่มีผลเมื่อคีย์ "
+"\"mode\" เป็น \"disabled\" หรือ \"blank-only\" แต่จะกำหนดชื่อชุดโปรแกรมเมื่อคีย์ "
+"\"mode\" เป็น \"single\" และกำหนดรายการชุดโปรแกรมเมื่อ \"mode\" เป็น \"random\""
+
+#: data/gnome-screensaver.schemas.in.h:22
+msgid "Time before activation"
+msgstr "ช่วงเวลาก่อนเริ่มทำงาน"
+
+#: data/gnome-screensaver.schemas.in.h:23
+msgid "Time before locking"
+msgstr "ช่วงเวลาก่อนล็อคหน้าจอ"
+
+#: data/gnome-screensaver.schemas.in.h:24
+msgid "Time before logout option"
+msgstr "ช่วงเวลาก่อนมีตัวเลือกออกจากระบบ"
+
+#: data/gnome-screensaver.schemas.in.h:25
+msgid "Time before power off"
+msgstr "ช่วงเวลาก่อนปิดจอภาพ"
+
+#: data/gnome-screensaver.schemas.in.h:26
+msgid "Time before standby"
+msgstr "ช่วงเวลาก่อน standby"
+
+#: data/gnome-screensaver.schemas.in.h:27
+msgid "Time before suspend"
+msgstr "ช่วงเวลาก่อน suspend"
+
+#: data/gnome-screensaver.schemas.in.h:28
+msgid "Time before theme change"
+msgstr "ช่วงเวลาก่อนเปลี่ยนชุดโปรแกรม"
+
+#: savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr "อวกาศ"
+
+#: savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "แสดงภาพสไลด์ของภาพจากอวกาศ"
+
+#: savers/personal-slideshow.desktop.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr "แสดงภาพสไลด์จากโฟลเดอร์ภาพของคุณ"
+
+#: savers/personal-slideshow.desktop.in.h:2
+msgid "Pictures folder"
+msgstr "โฟลเดอร์ภาพ"
+
+#: savers/popsquares.desktop.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr "ตารางไฟกะพริบแบบศิลปะแนวป๊อป"
+
+#: savers/popsquares.desktop.in.h:2
+msgid "Pop art squares"
+msgstr "จัตุรัสศิลปะแนวป๊อป"
+
+#: savers/slideshow.c:77
+msgid "Location to get images from"
+msgstr "ตำแหน่งที่จะอ่านข้อมูลรูปภาพ"
+
+#: savers/slideshow.c:77
+msgid "PATH"
+msgstr "PATH"
+
+#: src/cut-n-paste/fusa-display.c:119 src/cut-n-paste/fusa-user.c:150
+msgid "Manager"
+msgstr "โปรแกรมจัดการ"
+
+#: src/cut-n-paste/fusa-display.c:120
+msgid "The manager which owns this object."
+msgstr "โปรแกรมจัดการที่เป็นเจ้าของออบเจกต์นี้"
+
+#: src/cut-n-paste/fusa-display.c:127
+msgid "Name"
+msgstr "ชื่อ"
+
+#: src/cut-n-paste/fusa-display.c:128
+msgid "The name of the X11 display this object refers to."
+msgstr "ชื่อดิสเพลย์ของ X11 ที่ออบเจกต์นี้อ้างถึง"
+
+#: src/cut-n-paste/fusa-display.c:134
+#: src/cut-n-paste/fusa-user-menu-item.c:164
+msgid "User"
+msgstr "ผู้ใช้"
+
+#: src/cut-n-paste/fusa-display.c:135
+msgid "The user currently logged in on this virtual terminal."
+msgstr "ผู้ใช้ที่กำลังเข้าระบบในเทอร์มินัลเสมือนนี้"
+
+#: src/cut-n-paste/fusa-display.c:141
+msgid "Console"
+msgstr "คอนโซล"
+
+#: src/cut-n-paste/fusa-display.c:142
+msgid "The number of the virtual console this display can be found on, or %-1."
+msgstr "หมายเลขคอนโซลเสมือนที่ดิสเพลย์นี้ทำงานอยู่ หรือ %-1"
+
+#: src/cut-n-paste/fusa-display.c:148
+msgid "Nested"
+msgstr "Nested"
+
+#: src/cut-n-paste/fusa-display.c:149
+msgid "Whether or not this display is a windowed (Xnest) display."
+msgstr "กำหนดว่าดิสเพลย์นี้อยู่ในหน้าต่าง Xnest หรือไม่"
+
+#: src/cut-n-paste/fusa-manager.c:1263
+msgid "The display manager could not be contacted for unknown reasons."
+msgstr "ไม่สามารถติดต่อโปรแกรมจัดการการเข้าระบบได้โดยไม่ทราบสาเหตุ"
+
+#: src/cut-n-paste/fusa-manager.c:1270
+msgid "The display manager is not running or too old."
+msgstr "โปรแกรมจัดการการเข้าระบบไม่ได้ทำงานอยู่ หรือเป็นรุ่นเก่าเกินไป"
+
+#: src/cut-n-paste/fusa-manager.c:1273
+msgid "The configured limit of flexible servers has been reached."
+msgstr "จำนวนเซิร์ฟเวอร์ยืดหยุ่นได้มาถึงขีดจำกัดที่ตั้งค่าไว้แล้ว"
+
+#: src/cut-n-paste/fusa-manager.c:1276
+msgid "There was an unknown error starting X."
+msgstr "เกิดข้อผิดพลาดไม่ทราบสาเหตุขณะเริ่มใช้งาน X"
+
+#: src/cut-n-paste/fusa-manager.c:1279
+msgid "The X server failed to finish starting."
+msgstr "X server เริ่มทำงานไม่สำเร็จ"
+
+#: src/cut-n-paste/fusa-manager.c:1282
+msgid "There are too many X sessions running."
+msgstr "มีวาระ X ทำงานอยู่หลายวาระเกินไป"
+
+#: src/cut-n-paste/fusa-manager.c:1285
+msgid "The nested X server (Xnest) cannot connect to your current X server."
+msgstr "เซิร์ฟเวอร์ใน Xnest ไม่สามารถเชื่อมต่อมายัง X server ปัจจุบันของคุณได้"
+
+#: src/cut-n-paste/fusa-manager.c:1288
+msgid "The X server in the GDM configuration could not be found."
+msgstr "ไม่พบ X server ในค่าตั้งของ GDM"
+
+#: src/cut-n-paste/fusa-manager.c:1291 src/cut-n-paste/gdmcomm.c:492
+msgid ""
+"Trying to set an unknown logout action, or trying to set a logout action "
+"which is not available."
+msgstr ""
+"พยายามจะตั้งปฏิบัติการสำหรับออกจากระบบที่ไม่รู้จัก "
+"หรือพยายามตั้งให้เป็นคำสั่งที่ไม่มีอยู่"
+
+#: src/cut-n-paste/fusa-manager.c:1294 src/cut-n-paste/gdmcomm.c:495
+msgid "Virtual terminals not supported."
+msgstr "ไม่สนับสนุนเทอร์มินัลเสมือน"
+
+#: src/cut-n-paste/fusa-manager.c:1297
+msgid "Invalid virtual terminal number."
+msgstr "หมายเลขเทอร์มินัลเสมือนไม่ถูกต้อง"
+
+#: src/cut-n-paste/fusa-manager.c:1300 src/cut-n-paste/gdmcomm.c:499
+msgid "Trying to update an unsupported configuration key."
+msgstr "พยายามจะอัพเดตคีย์ค่าตั้งที่ไม่สนับสนุน"
+
+#: src/cut-n-paste/fusa-manager.c:1303
+msgid "~/.Xauthority file badly configured or missing."
+msgstr "~/.Xauthority ถูกตั้งค่าไว้ไม่เหมาะสม หรือหายไป"
+
+#: src/cut-n-paste/fusa-manager.c:1306
+msgid "Too many messages were sent to the display manager, and it hung up."
+msgstr "ข้อความถูกส่งไปยังโปรแกรมจัดการการเข้าระบบมากเกินไป และมันค้างไปแล้ว"
+
+#: src/cut-n-paste/fusa-manager.c:1310
+msgid "The display manager sent an unknown error message."
+msgstr "โปรแกรมจัดการการเข้าระบบส่งข้อความข้อผิดพลาดที่ไม่รู้จักมาให้"
+
+#: src/cut-n-paste/fusa-user-menu-item.c:165
+msgid "The user this menu item represents."
+msgstr "ผู้ใช้ที่แทนโดยรายการเมนูนี้"
+
+#: src/cut-n-paste/fusa-user-menu-item.c:172
+msgid "Icon Size"
+msgstr "ขนาดไอคอน"
+
+#: src/cut-n-paste/fusa-user-menu-item.c:173
+msgid "The size of the icon to use."
+msgstr "ขนาดของไอคอนที่จะใช้"
+
+#: src/cut-n-paste/fusa-user.c:151
+msgid "The user manager object this user is controlled by."
+msgstr "ออบเจกต์จัดการผู้ใช้ที่ควบคุมผู้ใช้นี้อยู่"
+
+#: src/cut-n-paste/fusa-utils.c:80
+msgid "Show Details"
+msgstr "แสดงรายละเอียด"
+
+#. markup
+#: src/cut-n-paste/gdmcomm.c:413
+msgid "GDM (The GNOME Display Manager) is not running."
+msgstr "GDM (GNOME Display Manager) ไม่ได้ทำงานอยู่"
+
+#: src/cut-n-paste/gdmcomm.c:416
+msgid ""
+"You might in fact be using a different display manager, such as KDM (KDE "
+"Display Manager) or xdm."
+msgstr ""
+"คุณอาจกำลังใช้โปรแกรมจัดการการเข้าระบบตัวอื่น เช่น KDM (KDE Display "
+"Manager) หรือ xdm"
+
+#: src/cut-n-paste/gdmcomm.c:419
+msgid ""
+"If you still wish to use this feature, either start GDM yourself or ask your "
+"system administrator to start GDM."
+msgstr ""
+"ถ้าคุณยังต้องการใช้ความสามารถนี้ กรุณาเปิดใช้ GDM เอง หรือขอให้ผู้ดูแลระบบเปิดใช้ "
+"GDM ให้"
+
+#. markup
+#: src/cut-n-paste/gdmcomm.c:441
+msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+msgstr "ไม่สามารถติดต่อสื่อสารกับ GDM (GNOME Display Manager) ได้"
+
+#: src/cut-n-paste/gdmcomm.c:444
+msgid "Perhaps you have an old version of GDM running."
+msgstr "บางที คุณอาจกำลังใช้ GDM รุ่นเก่าอยู่"
+
+#: src/cut-n-paste/gdmcomm.c:463 src/cut-n-paste/gdmcomm.c:466
+msgid "Cannot communicate with gdm, perhaps you have an old version running."
+msgstr "ไม่สามารถติดต่อสื่อสารกับ gdm บางทีคุณอาจกำลังใช้รุ่นเก่าอยู่"
+
+#: src/cut-n-paste/gdmcomm.c:469
+msgid "The allowed limit of flexible X servers reached."
+msgstr "จำนวน X server แบบยืดหยุ่นได้มาถึงขีดจำกัดที่เป็นไปได้แล้ว"
+
+#: src/cut-n-paste/gdmcomm.c:471
+msgid "There were errors trying to start the X server."
+msgstr "เกิดข้อผิดพลาดขณะพยายามเริ่มใช้ X server"
+
+#: src/cut-n-paste/gdmcomm.c:473
+msgid "The X server failed.  Perhaps it is not configured well."
+msgstr "X server ล้มเหลว บางที อาจจะถูกตั้งค่าไว้ไม่ดี"
+
+#: src/cut-n-paste/gdmcomm.c:476
+msgid "Too many X sessions running."
+msgstr "มีวาระ X ทำงานอยู่หลายวาระเกินไป"
+
+#: src/cut-n-paste/gdmcomm.c:478
+msgid ""
+"The nested X server (Xnest) cannot connect to your current X server.  You "
+"may be missing an X authorization file."
+msgstr ""
+"X server ใน Xnest ไม่สามารถเชื่อมต่อมายัง X server ปัจจุบันของคุณได้ "
+"คุณอาจไม่มีแฟ้ม X authorization"
+
+#: src/cut-n-paste/gdmcomm.c:483
+msgid ""
+"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
+"Please install the Xnest package in order to use the nested login."
+msgstr ""
+"ไม่มี X server ใน Xnest ให้ใช้ หรือ gdm ถูกตั้งค่าไว้ไม่ดี\n"
+"กรุณาติดตั้งแพกเกจ Xnest เพื่อจะใช้การเข้าระบบซ้อนในตัว"
+
+#: src/cut-n-paste/gdmcomm.c:488
+msgid ""
+"The X server is not available, it is likely that gdm is badly configured."
+msgstr ""
+"ไม่มี X server ให้ใช้ เป็นไปได้ว่า gdm ถูกตั้งค่าไว้ไม่ดี"
+
+#: src/cut-n-paste/gdmcomm.c:497
+msgid "Trying to change to an invalid virtual terminal number."
+msgstr "พยายามจะเปลี่ยนไปยังหมายเลขเทอร์มินัลเสมือนที่ผิด"
+
+#: src/cut-n-paste/gdmcomm.c:501
+msgid ""
+"You do not seem to have authentication needed be for this operation.  "
+"Perhaps your .Xauthority file is not set up correctly."
+msgstr ""
+"ดูเหมือนคุณไม่มีข้อมูลยืนยันตัวบุคคลซึ่งจำเป็นสำหรับปฏิบัติการนี้ "
+"บางที แฟ้ม .Xauthority ของคุณอาจตั้งค่าไว้ไม่ถูกต้อง"
+
+#: src/cut-n-paste/gdmcomm.c:505
+msgid "Too many messages were sent to gdm and it hung upon us."
+msgstr "มีข้อความถูกส่งไปให้ gdm มากเกินไป และ gdm ก็ค้างไปแล้ว"
+
+#: src/cut-n-paste/gdmcomm.c:508
+msgid "Unknown error occured."
+msgstr "เกิดข้อผิดพลาดไม่ทราบสาเหตุ"
+
+#: src/file-transfer-dialog.c:94
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "กำลังคัดลอกแฟ้ม: %u จาก %u"
+
+#: src/file-transfer-dialog.c:122
+#, c-format
+msgid "Copying '%s'"
+msgstr "กำลังคัดลอก '%s'"
+
+#: src/file-transfer-dialog.c:193
+msgid "From URI"
+msgstr "URI ต้นทาง"
+
+#: src/file-transfer-dialog.c:194
+msgid "URI currently transferring from"
+msgstr "URI ต้นทางที่กำลังถ่ายข้อมูล"
+
+#: src/file-transfer-dialog.c:201
+msgid "To URI"
+msgstr "URI ปลายทาง"
+
+#: src/file-transfer-dialog.c:202
+msgid "URI currently transferring to"
+msgstr "URI ปลายทางที่กำลังถ่ายข้อมูลไป"
+
+#: src/file-transfer-dialog.c:209
+msgid "Fraction completed"
+msgstr "เสร็จสิ้นบางส่วน"
+
+#: src/file-transfer-dialog.c:210
+msgid "Fraction of transfer currently completed"
+msgstr "การถ่ายข้อมูลเสร็จสิ้นบางส่วน"
+
+#: src/file-transfer-dialog.c:217
+msgid "Current URI index"
+msgstr "หมายเลข URI ปัจจุบัน"
+
+#: src/file-transfer-dialog.c:218
+msgid "Current URI index - starts from 1"
+msgstr "หมายเลข URI ปัจจุบัน - เริ่มจาก 1"
+
+#: src/file-transfer-dialog.c:225
+msgid "Total URIs"
+msgstr "URI ทั้งหมด"
+
+#: src/file-transfer-dialog.c:226
+msgid "Total number of URIs"
+msgstr "จำนวน URI ทั้งหมด"
+
+#: src/file-transfer-dialog.c:327 src/file-transfer-dialog.c:369
+msgid "Copying files"
+msgstr "กำลังคัดลอกแฟ้ม"
+
+#: src/file-transfer-dialog.c:345
+msgid "From:"
+msgstr "จาก:"
+
+#: src/file-transfer-dialog.c:349
+msgid "To:"
+msgstr "ไปยัง:"
+
+#: src/file-transfer-dialog.c:448
+msgid "Connecting..."
+msgstr "กำลังเชื่อมต่อ..."
+
+#: src/gnome-screensaver-command.c:59
+msgid "Causes the screensaver to exit gracefully"
+msgstr "ทำให้โปรแกรมรักษาหน้าจอจบอย่างนุ่มนวล"
+
+#: src/gnome-screensaver-command.c:61
+msgid "Query the state of the screensaver"
+msgstr "สอบถามสถานะของโปรแกรมรักษาหน้าจอ"
+
+#: src/gnome-screensaver-command.c:63
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "บอกโพรเซสโปรแกรมรักษาหน้าจอที่กำลังทำงานอยู่ให้ล็อคหน้าจอทันที"
+
+#: src/gnome-screensaver-command.c:65
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "ถ้าโปรแกรมรักษาหน้าจอกำลังวาดอยู่ ก็ให้สลับไปใช้ชุดโปรแกรมอื่นวาด"
+
+#: src/gnome-screensaver-command.c:67
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "ให้โปรแกรมรักษาหน้าจอเริ่มทำงาน (ล้างหน้าจอ)"
+
+#: src/gnome-screensaver-command.c:69
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "ถ้าโปรแกรมรักษาหน้าจอกำลังวาดอยู่ ก็ให้หยุดวาด (เลิกล้างหน้าจอ)"
+
+#: src/gnome-screensaver-command.c:71
+msgid "Disable running graphical themes while blanked"
+msgstr "ปิดชุดโปรแกรมกราฟิกที่กำลังทำงานอยู่ขณะล้างหน้าจอ"
+
+#: src/gnome-screensaver-command.c:73
+msgid "Enable running graphical themes while blanked (if applicable)"
+msgstr "เปิดใช้ชุดโปรแกรมกราฟิกที่กำลังทำงานอยู่ขณะล้างหน้าจอ (ถ้าทำได้)"
+
+#: src/gnome-screensaver-command.c:75
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "รบเร้าโปรแกรมรักษาหน้าจอที่กำลังทำงานอยู่ เพื่อจำลองการเคลื่อนไหวของผู้ใช้"
+
+#: src/gnome-screensaver-command.c:77 src/gnome-screensaver-dialog.c:106
+#: src/gnome-screensaver.c:55
+msgid "Version of this application"
+msgstr "รุ่นของโปรแกรมนี้"
+
+#: src/gnome-screensaver-command.c:202
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "โปรแกรมรักษาหน้าจอกำลัง%s\n"
+
+#: src/gnome-screensaver-command.c:202
+msgid "active"
+msgstr "ทำงาน"
+
+#: src/gnome-screensaver-command.c:202
+msgid "inactive"
+msgstr "หลับ"
+
+#: src/gnome-screensaver-dialog.c:104
+msgid "Show debugging output"
+msgstr "แสดงข้อความดีบั๊ก"
+
+#: src/gnome-screensaver-dialog.c:108
+msgid "Show the logout button"
+msgstr "แสดงปุ่มออกจากระบบ"
+
+#: src/gnome-screensaver-dialog.c:110
+msgid "Command to invoke from the logout button"
+msgstr "คำสั่งที่จะเรียกจากปุ่มออกจากระบบ"
+
+#: src/gnome-screensaver-dialog.c:112
+msgid "Show the switch user button"
+msgstr "แสดงปุ่มสลับผู้ใช้"
+
+#: src/gnome-screensaver-preferences.c:386
+msgid "Disabled"
+msgstr "ปิด"
+
+#: src/gnome-screensaver-preferences.c:393
+msgid "Blank screen"
+msgstr "จอเปล่า"
+
+#: src/gnome-screensaver-preferences.c:399
+msgid "Random"
+msgstr "สุ่ม"
+
+#: src/gnome-screensaver-preferences.c:692
+msgid "Invalid screensaver theme"
+msgstr "ชุดโปรแกรมรักษาหน้าจอใช้ไม่ได้"
+
+#: src/gnome-screensaver-preferences.c:695
+msgid "This file does not appear to be a valid screensaver theme."
+msgstr "แฟ้มนี้ดูไม่เหมือนชุดโปรแกรมรักษาหน้าจอที่ใช้ได้"
+
+#: src/gnome-screensaver-preferences.c:812
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d ชั่วโมง"
+msgstr[1] "%d ชั่วโมง"
+
+#: src/gnome-screensaver-preferences.c:815
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d นาที"
+msgstr[1] "%d นาที"
+
+#: src/gnome-screensaver-preferences.c:818
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d วินาที"
+msgstr[1] "%d วินาที"
+
+#. hour:minutes:seconds
+#: src/gnome-screensaver-preferences.c:824
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: src/gnome-screensaver-preferences.c:827
+#: src/gnome-screensaver-preferences.c:835
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: src/gnome-screensaver-preferences.c:830
+#: src/gnome-screensaver-preferences.c:838
+#: src/gnome-screensaver-preferences.c:842
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#. 0 seconds
+#: src/gnome-screensaver-preferences.c:845
+msgid "0 seconds"
+msgstr "0 วินาที"
+
+#: src/gnome-screensaver-preferences.c:860
+msgid "Never"
+msgstr "ไม่ทำงาน"
+
+#: src/gnome-screensaver-preferences.c:896
+msgid "Could not load the main interface"
+msgstr "ไม่สามารถโหลดส่วนติดต่อผู้ใช้หลักได้"
+
+#: src/gnome-screensaver-preferences.c:898
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "กรุณาตรวจสอบการติดตั้งโปรแกรมรักษาหน้าจอว่าครบถ้วนหรือไม่"
+
+#: src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "ไม่ต้องเป็นดีมอน"
+
+#: src/gs-listener-dbus.c:1003
+msgid "failed to register with the message bus"
+msgstr "ลงทะเบียนกับบัสข้อความไม่สำเร็จ"
+
+#: src/gs-listener-dbus.c:1013
+msgid "not connected to the message bus"
+msgstr "ไม่ได้เชื่อมต่อกับบัสข้อความ"
+
+#: src/gs-listener-dbus.c:1022
+msgid "screensaver already running in this session"
+msgstr "โปรแกรมรักษาหน้าจอกำลังทำงานอยู่แล้วในวาระนี้"
+
+#: src/gs-lock-plug.c:346
+msgid "Checking password..."
+msgstr "กำลังตรวจสอบรหัสผ่าน..."
+
+#: src/gs-lock-plug.c:389
+msgid "Time has expired."
+msgstr "หมดเวลา"
+
+#: src/gs-lock-plug.c:414
+msgid "You have the Caps Lock key on."
+msgstr "ปุ่ม Caps Lock ถูกกดอยู่"
+
+#: src/gs-lock-plug.c:691
+msgid "That password was incorrect."
+msgstr "รหัสผ่านไม่ถูกต้อง"
+
+#: src/gs-lock-plug.c:717 src/gs-lock-plug.c:750
+msgid "_Unlock"
+msgstr "_ปลดล็อค"
+
+#: src/gs-lock-plug.c:720 src/gs-lock-plug.c:747
+msgid "_Switch User..."
+msgstr "_สลับผู้ใช้..."
+
+#: src/gs-lock-plug.c:1430
+msgid "_Password:"
+msgstr "_รหัสผ่าน:"
+
+#: src/gs-lock-plug.c:1496
+msgid "S_witch to user:"
+msgstr "ส_ลับไปเป็นผู้ใช้:"
+
+#: src/gs-lock-plug.c:1543
+msgid "Log _Out"
+msgstr "_ออกจากระบบ"
+
