@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-04 23:37+0200\n"
-"PO-Revision-Date: 2005-11-04 23:38+0200\n"
+"POT-Creation-Date: 2005-11-27 17:59+0200\n"
+"PO-Revision-Date: 2005-11-27 18:15+0200\n"
 "Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -132,22 +132,20 @@ msgstr ""
 "„logout_enable“ reikšmė yra teigiama."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
-#, fuzzy
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into standby power mode."
 msgstr ""
 "Minučių skaičius nuo ekrano užsklandos aktyvavimo iki vaizduoklio perjungimo "
-"į energijos taupymo režimą."
+"į energijos taupymo režimą (standby)."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
-#, fuzzy
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into suspend power mode."
 msgstr ""
 "Minučių skaičius nuo ekrano užsklandos aktyvavimo iki vaizduoklio perjungimo "
-"į energijos taupymo režimą."
+"į energijos taupymo režimą (suspend)."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
@@ -208,11 +206,11 @@ msgstr "Laikas iki išjungimo"
 
 #: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before standby"
-msgstr ""
+msgstr "Laikas iki energijos taupymo (standby)"
 
 #: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before suspend"
-msgstr ""
+msgstr "Laikas iki suspendavimo (suspend)"
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before theme change"
@@ -267,7 +265,7 @@ msgid "The name of the X11 display this object refers to."
 msgstr "Šį objektą atitinkančio X11 ekrano pavadinimas."
 
 #: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:152
+#: ../src/cut-n-paste/fusa-user-menu-item.c:164
 msgid "User"
 msgstr "Naudotojas"
 
@@ -291,79 +289,79 @@ msgstr "Įterptas"
 msgid "Whether or not this display is a windowed (Xnest) display."
 msgstr "Ar šis ekranas yra lange įterptas (Xnest) ekranas."
 
-#: ../src/cut-n-paste/fusa-manager.c:1264
+#: ../src/cut-n-paste/fusa-manager.c:1263
 msgid "The display manager could not be contacted for unknown reasons."
 msgstr "Dėl nežinomų priežasčių nepavyko susijungti su ekrano tvarkykle."
 
-#: ../src/cut-n-paste/fusa-manager.c:1271
+#: ../src/cut-n-paste/fusa-manager.c:1270
 msgid "The display manager is not running or too old."
 msgstr "Nepaleista ekrano tvarkyklė arba ji yra per sena."
 
-#: ../src/cut-n-paste/fusa-manager.c:1274
+#: ../src/cut-n-paste/fusa-manager.c:1273
 msgid "The configured limit of flexible servers has been reached."
 msgstr "Pasiektas sukonfigūruotas lanksčių serverių limitas."
 
-#: ../src/cut-n-paste/fusa-manager.c:1277
+#: ../src/cut-n-paste/fusa-manager.c:1276
 msgid "There was an unknown error starting X."
 msgstr "Paleidžiant X serverį įvyko nežinoma klaida."
 
-#: ../src/cut-n-paste/fusa-manager.c:1280
+#: ../src/cut-n-paste/fusa-manager.c:1279
 msgid "The X server failed to finish starting."
 msgstr "X serveriui nepavyko užbaigti paleidimo."
 
-#: ../src/cut-n-paste/fusa-manager.c:1283
+#: ../src/cut-n-paste/fusa-manager.c:1282
 msgid "There are too many X sessions running."
 msgstr "Šiuo metu veikia perdaug X sesijų."
 
-#: ../src/cut-n-paste/fusa-manager.c:1286
+#: ../src/cut-n-paste/fusa-manager.c:1285
 msgid "The nested X server (Xnest) cannot connect to your current X server."
 msgstr ""
 "Įterptas X serveris (Xnest) negali prisijungti prie dabartinio Jūsų X "
 "serverio."
 
-#: ../src/cut-n-paste/fusa-manager.c:1289
+#: ../src/cut-n-paste/fusa-manager.c:1288
 msgid "The X server in the GDM configuration could not be found."
 msgstr "GDM konfigūracijoje nerastas X serveris."
 
-#: ../src/cut-n-paste/fusa-manager.c:1292 ../src/cut-n-paste/gdmcomm.c:492
+#: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
 msgstr "Bandoma nustatyti nežinomą arba neprieinamą atsijungimo veiksmą."
 
-#: ../src/cut-n-paste/fusa-manager.c:1295 ../src/cut-n-paste/gdmcomm.c:495
+#: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
 msgstr "Virtualūs terminalai nepalaikomi."
 
-#: ../src/cut-n-paste/fusa-manager.c:1298
+#: ../src/cut-n-paste/fusa-manager.c:1297
 msgid "Invalid virtual terminal number."
 msgstr "Netinkamas virtualaus terminalo numeris."
 
-#: ../src/cut-n-paste/fusa-manager.c:1301 ../src/cut-n-paste/gdmcomm.c:499
+#: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
 msgstr "Bandoma atnaujinti nepalaikomą konfigūracijos raktą."
 
-#: ../src/cut-n-paste/fusa-manager.c:1304
+#: ../src/cut-n-paste/fusa-manager.c:1303
 msgid "~/.Xauthority file badly configured or missing."
 msgstr "~/.Xauthority byla yra logai sukonfigūruota arba trūkstama"
 
-#: ../src/cut-n-paste/fusa-manager.c:1307
+#: ../src/cut-n-paste/fusa-manager.c:1306
 msgid "Too many messages were sent to the display manager, and it hung up."
 msgstr "Ekrano tvarkyklei buvo perduota per daug pranešimų ir ji pakibo."
 
-#: ../src/cut-n-paste/fusa-manager.c:1311
+#: ../src/cut-n-paste/fusa-manager.c:1310
 msgid "The display manager sent an unknown error message."
 msgstr "Ekrano tvarkyklė perdavė nežinomą klaidos pranešimą."
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:153
+#: ../src/cut-n-paste/fusa-user-menu-item.c:165
 msgid "The user this menu item represents."
 msgstr "Naudotojas, kurį atitinka šis meniu elementas."
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:160
+#: ../src/cut-n-paste/fusa-user-menu-item.c:172
 msgid "Icon Size"
 msgstr "Ikonos dydis"
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:161
+#: ../src/cut-n-paste/fusa-user-menu-item.c:173
 msgid "The size of the icon to use."
 msgstr "Naudojamas ikonų dydis."
 
@@ -561,15 +559,15 @@ msgstr ""
 
 #: ../src/gnome-screensaver-command.c:71
 msgid "Disable running graphical themes while blanked"
-msgstr ""
+msgstr "Aktyvavus ekrano užsklandą nerodyti grafinių temų"
 
 #: ../src/gnome-screensaver-command.c:73
 msgid "Enable running graphical themes while blanked (if applicable)"
-msgstr ""
+msgstr "Aktyvavus ekrano užsklandą rodyti grafines temas (jei galima)"
 
 #: ../src/gnome-screensaver-command.c:75
 msgid "Poke the running screensaver to simulate user activity"
-msgstr ""
+msgstr "Simuliuoti naudotojo aktyvumą, kad nebūtų aktyvuota ekrano užsklanda"
 
 #: ../src/gnome-screensaver-command.c:77 ../src/gnome-screensaver-dialog.c:106
 #: ../src/gnome-screensaver.c:55
@@ -718,32 +716,26 @@ msgstr "Baigėsi laikas."
 msgid "You have the Caps Lock key on."
 msgstr "Įjungtas Jūsų Caps Lock klavišas."
 
-#: ../src/gs-lock-plug.c:684
+#: ../src/gs-lock-plug.c:691
 msgid "That password was incorrect."
 msgstr "Slaptažodis neteisingas."
 
-#: ../src/gs-lock-plug.c:710 ../src/gs-lock-plug.c:743
+#: ../src/gs-lock-plug.c:717 ../src/gs-lock-plug.c:750
 msgid "_Unlock"
 msgstr "_Atrakinti"
 
-#: ../src/gs-lock-plug.c:713 ../src/gs-lock-plug.c:740
+#: ../src/gs-lock-plug.c:720 ../src/gs-lock-plug.c:747
 msgid "_Switch User..."
 msgstr "_Pakeisti naudotoją..."
 
-#. translators: %s is a computer hostname
-#: ../src/gs-lock-plug.c:1418
-#, c-format
-msgid "Welcome to %s"
-msgstr "Sveiki atvykę į %s"
-
-#: ../src/gs-lock-plug.c:1454
+#: ../src/gs-lock-plug.c:1430
 msgid "_Password:"
 msgstr "_Slaptažodis:"
 
-#: ../src/gs-lock-plug.c:1491
+#: ../src/gs-lock-plug.c:1496
 msgid "S_witch to user:"
 msgstr "P_ersijungti į naudotoją:"
 
-#: ../src/gs-lock-plug.c:1536
+#: ../src/gs-lock-plug.c:1543
 msgid "Log _Out"
 msgstr "At_sijungti"
