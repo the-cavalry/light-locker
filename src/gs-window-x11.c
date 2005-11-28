@@ -343,8 +343,13 @@ gs_window_xevent (GSWindow  *window,
 
         ev = xevent;
 
+        /* MapNotify is used to tell us when new windows are mapped.
+           ConfigureNofify is used to tell us when windows are raised. */
         switch (ev->xany.type) {
         case MapNotify:
+                gs_window_raise (window);
+                break;
+        case ConfigureNotify:
                 gs_window_raise (window);
                 break;
         default:

@@ -1,3 +1,9 @@
+2005-11-28  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-window-x11.c (gs_window_xevent):
+	Also raise the window on ConfigureNofify for stacking
+	order changes.  Fixes #322146.
+
 2005-11-28  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* configure.ac: Added 'gl' to ALL_LINGUAS.
