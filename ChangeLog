@@ -1,3 +1,12 @@
+2005-11-29  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-fade.c: New singleton class to
+	do asynchronous fading.
+
+	* src/test-fade.c (test_fade, main): 
+	* src/gs-manager.c (gs_manager_activate): 
+	* src/Makefile.am: Use GSFade.
+
 2005-11-28  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (gs_window_xevent):

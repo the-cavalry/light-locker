@@ -74,8 +74,8 @@ endif
 
 test_fade_SOURCES = 			\
 	test-fade.c 			\
-	fade.c	 			\
-	fade.h	 			\
+	gs-fade.c	 		\
+	gs-fade.h	 		\
 	$(NULL)
 
 test_fade_LDADD =			\
@@ -180,8 +180,8 @@ gnome_screensaver_SOURCES =	\
 	subprocs.h		\
 	gs-grab-x11.c		\
 	gs-grab.h		\
-	fade.c			\
-	fade.h			\
+	gs-fade.c		\
+	gs-fade.h		\
 	$(BUILT_SOURCES)	\
 	$(NULL)
 

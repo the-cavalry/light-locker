@@ -32,15 +32,45 @@
 #include <unistd.h>
 
 #include <glib/gi18n.h>
+#include <gdk/gdkx.h>
 #include <gtk/gtk.h>
 
-#include "fade.h"
+#include "gs-fade.h"
 
 #ifdef HAVE_XF86VMODE_GAMMA
 # include <X11/extensions/xf86vmode.h>
 #endif
 
 #define XF86_VIDMODE_NAME "XFree86-VidModeExtension"
+
+static void
+test_fade (void)
+{
+        GSFade *fade;
+        int     reps = 2;
+        int     delay = 2;
+
+        fade = gs_fade_new ();
+
+        while (reps-- > 0) {
+
+                g_print ("fading out...");
+                gs_fade_now (fade);
+                g_print ("done.\n");
+
+                if (delay)
+                        sleep (delay);
+
+                g_print ("fading in...");
+                gs_fade_reset (fade);
+                g_print ("done.\n");
+
+                if (delay)
+                        sleep (delay);
+        }
+
+        g_object_unref (fade);
+}
 
 int
 main (int    argc,
@@ -81,27 +111,7 @@ main (int    argc,
 # endif /* !HAVE_XF86VMODE_GAMMA */
         }
 
-        while (1) {
-                int seconds = 3;
-                int ticks = 20;
-                int delay = 1;
+        test_fade ();
 
-                XSync (GDK_DISPLAY (), False);
-
-                g_print ("fading out...");
-                fade_screens_and_show (seconds, ticks, TRUE, NULL);
-                g_print ("done.\n");
-
-                if (delay)
-                        sleep (delay);
-
-                g_print ("fading in...");
-                fade_screens_and_show (seconds, ticks, FALSE, NULL);
-                g_print ("done.\n");
-
-                if (delay)
-                        sleep (delay);
-        }
-
-	return 0;
+        return 0;
 }

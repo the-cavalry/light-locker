@@ -32,9 +32,7 @@
 #include "gs-job.h"
 #include "gs-grab.h"
 
-#include "fade.h"
-
-#define  FADE_SECONDS 2
+#include "gs-fade.h"
 
 static void gs_manager_class_init (GSManagerClass *klass);
 static void gs_manager_init       (GSManager      *manager);
@@ -944,7 +942,14 @@ gs_manager_activate (GSManager *manager)
         /* fade to black and show windows */
         do_fade = TRUE;
         if (do_fade) {
-                fade_screens_and_show (FADE_SECONDS, 20, TRUE, manager->priv->windows);
+                GSFade *fade;
+
+                fade = gs_fade_new ();
+                gs_fade_now (fade);
+                show_windows (manager->priv->windows);
+                g_usleep (500000);
+                gs_fade_reset (fade);
+                g_object_unref (fade);
         } else {
                 show_windows (manager->priv->windows);
         }
