@@ -83,8 +83,12 @@ struct GSWatcherPrivate
         guint           use_sgi_saver_extension : 1;
         guint           use_mit_saver_extension : 1;
 
+        guint           notice_timeout;
+
         /* state */
         guint            active : 1;
+
+        guint            notice_sent : 1;
 
         PointerPosition *poll_position;
 
@@ -114,6 +118,8 @@ struct GSWatcherPrivate
 
 enum {
         IDLE,
+        IDLE_NOTICE,
+        NOTICE_CANCELLED,
         LAST_SIGNAL
 };
 
@@ -236,6 +242,27 @@ gs_watcher_class_init (GSWatcherClass *klass)
                               gs_marshal_BOOLEAN__INT,
                               G_TYPE_BOOLEAN,
                               1, G_TYPE_INT);
+        signals [IDLE_NOTICE] =
+                g_signal_new ("idle_notice",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSWatcherClass, idle_notice),
+                              NULL,
+                              NULL,
+                              gs_marshal_BOOLEAN__INT,
+                              G_TYPE_BOOLEAN,
+                              1, G_TYPE_INT);
+
+        signals [NOTICE_CANCELLED] =
+                g_signal_new ("notice_cancelled",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSWatcherClass, notice_cancelled),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0, G_TYPE_NONE);
 
         g_object_class_install_property (object_class,
                                          PROP_TIMEOUT,
@@ -518,6 +545,16 @@ _gs_watcher_notice_activity (GSWatcher *watcher)
                 g_message ("Activity detected: resetting timers");
         }
 
+        /* if an idle notice was sent, cancel it */
+        if (watcher->priv->notice_sent) {
+                if (watcher->priv->debug) {
+                        g_message ("Cancelling idle notice");
+                }
+
+                g_signal_emit (watcher, signals [NOTICE_CANCELLED], 0);
+                watcher->priv->notice_sent = FALSE;
+        }
+
         reset_timers (watcher);
 }
 
@@ -754,10 +791,13 @@ gs_watcher_init (GSWatcher *watcher)
         watcher->priv->enabled = TRUE;
         watcher->priv->active = FALSE;
         watcher->priv->timeout = 600000;
-        watcher->priv->pointer_timeout = 5000;
+        watcher->priv->pointer_timeout = 1000;
 
         watcher->priv->verbose = FALSE;
         watcher->priv->debug = FALSE;
+
+        /* time before idle signal to send notice signal */
+        watcher->priv->notice_timeout = 10000;
 
         initialize_server_extensions (watcher);
 
@@ -1093,17 +1133,18 @@ maybe_send_signal (GSWatcher *watcher)
 {
         gboolean polling_for_idleness = TRUE;
         int      idle;
-        gboolean do_signal = FALSE;
+        gboolean do_idle_signal = FALSE;
+        gboolean do_notice_signal = FALSE;
 
         idle = 1000 * (time (NULL) - watcher->priv->last_activity_time);
 
         if (idle >= watcher->priv->timeout) {
                 /* Look, we've been idle long enough.  We're done. */
-                do_signal = TRUE;
+                do_idle_signal = TRUE;
         } else if (watcher->priv->emergency_lock) {
                 /* Oops, the wall clock has jumped far into the future, so
                    we need to lock down in a hurry! */
-                do_signal = TRUE;
+                do_idle_signal = TRUE;
         } else {
                 /* The event went off, but it turns out that the user has not
                    yet been idle for long enough.  So re-signal the event.
@@ -1111,15 +1152,40 @@ maybe_send_signal (GSWatcher *watcher)
                    user has been idle for 2 minutes, then set this timer to
                    go off in 3 minutes.
                 */
-                if (polling_for_idleness)
-                        schedule_wakeup_event (watcher, watcher->priv->timeout - idle, watcher->priv->debug);
-                do_signal = FALSE;
+
+                if (polling_for_idleness) {
+                        guint timeout;
+
+                        timeout = watcher->priv->timeout - idle;
+
+                        if (timeout >= watcher->priv->notice_timeout) {
+                                do_notice_signal = TRUE;
+                        }
+
+                        schedule_wakeup_event (watcher, timeout, watcher->priv->debug);
+                }
+
+                do_idle_signal = FALSE;
         }
 
-        if (do_signal) {
+        if (do_notice_signal
+            && ! watcher->priv->notice_sent) {
+		gboolean res = FALSE;
+
+                if (watcher->priv->debug) {
+                        g_message ("Sending idle notice");
+                }
+
+                watcher->priv->notice_sent = TRUE;
+                g_signal_emit (watcher, signals [IDLE_NOTICE], 0, 0, &res);
+        }
+
+        if (do_idle_signal) {
 		gboolean res = FALSE;
 
                 g_signal_emit (watcher, signals [IDLE], 0, 0, &res);
+
+                watcher->priv->notice_sent = FALSE;
 
                 /* if the event wasn't handled then schedule another timer */
                 if (! res) {
@@ -1149,14 +1215,23 @@ schedule_wakeup_event (GSWatcher *watcher,
                        int        when,
                        gboolean   verbose)
 {
+        guint timeout;
+
         if (watcher->priv->timer_id) {
                 if (verbose)
                         g_message ("idle_timer already running");
                 return;
         }
+        
+        timeout = when;
+
+        /* Wake up before idle so we can send a notice signal */
+        if (timeout > watcher->priv->notice_timeout) {
+                timeout -= watcher->priv->notice_timeout;
+        }
 
         /* Wake up periodically to ask the server if we are idle. */
-        add_idle_timer (watcher, when);
+        add_idle_timer (watcher, timeout);
 }
 
 /* An unfortunate situation is this: the saver is not active, because the

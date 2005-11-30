@@ -1,5 +1,23 @@
 2005-11-29  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c (gs_watcher_class_init) 
+	(_gs_watcher_notice_activity, gs_watcher_init, maybe_send_signal) 
+	(schedule_wakeup_event): Add idle-notice and notice-cancelled
+	signals.  idle-notice fires off 10 secs before idle.  notice-cancelled
+	fires off if an idle-notice has been sent and activity was seen
+	before idle is sent.
+
+	* src/gs-monitor.c (watcher_idle_notice_cb) 
+	(watcher_notice_cancelled_cb, disconnect_watcher_signals) 
+	(connect_watcher_signals, gs_monitor_init, gs_monitor_finalize):
+	Fade in response to idle-notice from watcher.
+
+	* src/gs-manager.c (gs_manager_activate): Set timeout for fade.
+
+	Fixes #309142.
+
+2005-11-29  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-fade.c: New singleton class to
 	do asynchronous fading.
 

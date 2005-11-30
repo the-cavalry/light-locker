@@ -91,6 +91,8 @@ enum {
         PROP_THROTTLE_ENABLED,
 };
 
+#define FADE_TIMEOUT 1000
+
 static GObjectClass *parent_class = NULL;
 static guint         signals [LAST_SIGNAL] = { 0, };
 
@@ -945,6 +947,7 @@ gs_manager_activate (GSManager *manager)
                 GSFade *fade;
 
                 fade = gs_fade_new ();
+                gs_fade_set_timeout (fade, FADE_TIMEOUT);
                 gs_fade_now (fade);
                 show_windows (manager->priv->windows);
                 g_usleep (500000);

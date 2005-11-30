@@ -33,6 +33,7 @@
 
 #include "gs-manager.h"
 #include "gs-watcher.h"
+#include "gs-fade.h"
 #include "gs-power.h"
 #include "gs-listener-dbus.h"
 #include "gs-monitor.h"
@@ -51,11 +52,14 @@ struct GSMonitorPrivate
         GSManager      *manager;
         GSPower        *power;
         GSPrefs        *prefs;
+        GSFade         *fade;
 };
 
 enum {
         PROP_0
 };
+
+#define FADE_TIMEOUT 10000
 
 static GObjectClass *parent_class = NULL;
 
@@ -96,6 +100,27 @@ watcher_idle_cb (GSWatcher *watcher,
         res = gs_listener_set_idle (monitor->priv->listener, TRUE);
 
         return res;
+}
+
+static gboolean
+watcher_idle_notice_cb (GSWatcher *watcher,
+                        int        reserved,
+                        GSMonitor *monitor)
+{
+        /* start slow fade */
+        gs_fade_set_timeout (monitor->priv->fade, FADE_TIMEOUT);
+        gs_fade_set_active (monitor->priv->fade, TRUE);
+
+        return TRUE;
+}
+
+static void
+watcher_notice_cancelled_cb (GSWatcher *watcher,
+                             GSMonitor *monitor)
+{
+        /* cancel the fade */
+        gs_fade_set_active (monitor->priv->fade, FALSE);
+        gs_fade_reset (monitor->priv->fade);
 }
 
 static void
@@ -308,6 +333,8 @@ static void
 disconnect_watcher_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->watcher, watcher_idle_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->watcher, watcher_idle_notice_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->watcher, watcher_notice_cancelled_cb, monitor);
 }
 
 static void
@@ -315,6 +342,10 @@ connect_watcher_signals (GSMonitor *monitor)
 {
         g_signal_connect (monitor->priv->watcher, "idle",
                           G_CALLBACK (watcher_idle_cb), monitor);
+        g_signal_connect (monitor->priv->watcher, "idle_notice",
+                          G_CALLBACK (watcher_idle_notice_cb), monitor);
+        g_signal_connect (monitor->priv->watcher, "notice_cancelled",
+                          G_CALLBACK (watcher_notice_cancelled_cb), monitor);
 }
 
 static void
@@ -371,6 +402,7 @@ gs_monitor_init (GSMonitor *monitor)
         monitor->priv->listener = gs_listener_new ();
         connect_listener_signals (monitor);
 
+        monitor->priv->fade = gs_fade_new ();
         monitor->priv->watcher = gs_watcher_new (monitor->priv->prefs->timeout);
         connect_watcher_signals (monitor);
 
@@ -401,6 +433,7 @@ gs_monitor_finalize (GObject *object)
         disconnect_power_signals (monitor);
         disconnect_prefs_signals (monitor);
 
+        g_object_unref (monitor->priv->fade);
         g_object_unref (monitor->priv->watcher);
         g_object_unref (monitor->priv->listener);
         g_object_unref (monitor->priv->manager);
