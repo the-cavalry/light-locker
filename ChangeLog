@@ -1,5 +1,12 @@
 2005-11-29  William Jon McCann  <mccann@jhu.edu>
 
+	* src/Makefile.am (test_window_LDADD): Add SAVER_LIBS.
+
+	Patch from Damien Carbery <damien.carbery@sun.com>
+	Fixes part of #320501.
+
+2005-11-29  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c (gs_watcher_class_init) 
 	(_gs_watcher_notice_activity, gs_watcher_init, maybe_send_signal) 
 	(schedule_wakeup_event): Add idle-notice and notice-cancelled

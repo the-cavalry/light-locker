@@ -122,6 +122,7 @@ test_window_SOURCES =			\
 
 test_window_LDADD =			\
 	$(GNOME_SCREENSAVER_LIBS)	\
+	$(SAVER_LIBS)			\
 	$(NULL)
 
 gnome_screensaver_dialog_SOURCES = 	\
