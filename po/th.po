@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver 0.0.21\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-11-27 20:45+0700\n"
-"PO-Revision-Date: 2005-11-27 22:09+0700\n"
+"PO-Revision-Date: 2005-12-04 15:03+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <l10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -248,7 +248,7 @@ msgstr "โปรแกรมจัดการ"
 
 #: src/cut-n-paste/fusa-display.c:120
 msgid "The manager which owns this object."
-msgstr "โปรแกรมจัดการที่เป็นเจ้าของออบเจกต์นี้"
+msgstr "โปรแกรมจัดการที่เป็นเจ้าของอ็อบเจกต์นี้"
 
 #: src/cut-n-paste/fusa-display.c:127
 msgid "Name"
@@ -256,7 +256,7 @@ msgstr "ชื่อ"
 
 #: src/cut-n-paste/fusa-display.c:128
 msgid "The name of the X11 display this object refers to."
-msgstr "ชื่อดิสเพลย์ของ X11 ที่ออบเจกต์นี้อ้างถึง"
+msgstr "ชื่อดิสเพลย์ของ X11 ที่อ็อบเจกต์นี้อ้างถึง"
 
 #: src/cut-n-paste/fusa-display.c:134
 #: src/cut-n-paste/fusa-user-menu-item.c:164
@@ -361,7 +361,7 @@ msgstr "ขนาดของไอคอนที่จะใช้"
 
 #: src/cut-n-paste/fusa-user.c:151
 msgid "The user manager object this user is controlled by."
-msgstr "ออบเจกต์จัดการผู้ใช้ที่ควบคุมผู้ใช้นี้อยู่"
+msgstr "อ็อบเจกต์จัดการผู้ใช้ที่ควบคุมผู้ใช้นี้อยู่"
 
 #: src/cut-n-paste/fusa-utils.c:80
 msgid "Show Details"
@@ -430,7 +430,7 @@ msgid ""
 "The nested X server (Xnest) is not available, or gdm is badly configured.\n"
 "Please install the Xnest package in order to use the nested login."
 msgstr ""
-"ไม่มี X server ใน Xnest ให้ใช้ หรือ gdm ถูกตั้งค่าไว้ไม่ดี\n"
+"ไม่มี X server ซ้อน (Xnest) ให้ใช้ หรือ gdm ถูกตั้งค่าไว้ไม่ดี\n"
 "กรุณาติดตั้งแพกเกจ Xnest เพื่อจะใช้การเข้าระบบซ้อนในตัว"
 
 #: src/cut-n-paste/gdmcomm.c:488
