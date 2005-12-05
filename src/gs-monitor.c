@@ -96,6 +96,13 @@ watcher_idle_cb (GSWatcher *watcher,
                  GSMonitor *monitor)
 {
         gboolean res;
+        gboolean fade_active;
+
+        fade_active = gs_fade_get_active (monitor->priv->fade);
+
+        if (fade_active) {
+                gs_fade_set_active (monitor->priv->fade, FALSE);
+        }
 
         res = gs_listener_set_idle (monitor->priv->listener, TRUE);
 

@@ -1,3 +1,8 @@
+2005-12-05  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-monitor.c (watcher_idle_cb): Stop "notice" fading
+	on idle.
+
 2005-11-29  William Jon McCann  <mccann@jhu.edu>
 
 	* src/Makefile.am (test_window_LDADD): Add SAVER_LIBS.
