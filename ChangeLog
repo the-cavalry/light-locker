@@ -1,5 +1,11 @@
 2005-12-05  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c (_gs_watcher_notice_activity):
+	Don't notice activity if we aren't active (and print
+	a warning).
+
+2005-12-05  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-monitor.c (watcher_idle_cb): Stop "notice" fading
 	on idle.
 

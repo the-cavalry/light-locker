@@ -541,6 +541,11 @@ reset_timers (GSWatcher *watcher)
 static void
 _gs_watcher_notice_activity (GSWatcher *watcher)
 {
+        if (! watcher->priv->active) {
+                g_warning ("Noticed activity but watcher is inactive");
+                return;
+        }
+
         if (watcher->priv->debug) {
                 g_message ("Activity detected: resetting timers");
         }
@@ -1191,8 +1196,9 @@ maybe_send_signal (GSWatcher *watcher)
                 if (! res) {
                         g_warning ("Idle signal was not handled, restarting watcher");
 
-                        if (polling_for_idleness)
+                        if (polling_for_idleness) {
                                 schedule_wakeup_event (watcher, watcher->priv->timeout, watcher->priv->debug);
+                        }
                 }
         }
 }
