@@ -796,7 +796,7 @@ gs_watcher_init (GSWatcher *watcher)
         watcher->priv->enabled = TRUE;
         watcher->priv->active = FALSE;
         watcher->priv->timeout = 600000;
-        watcher->priv->pointer_timeout = 1000;
+        watcher->priv->pointer_timeout = 2000;
 
         watcher->priv->verbose = FALSE;
         watcher->priv->debug = FALSE;

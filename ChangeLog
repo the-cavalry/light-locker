@@ -1,3 +1,8 @@
+2005-12-06  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-watcher-x11.c (gs_watcher_init): Checking
+	pointer every 2 sec should be enough.
+
 2005-12-05  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-watcher-x11.c (_gs_watcher_notice_activity):
