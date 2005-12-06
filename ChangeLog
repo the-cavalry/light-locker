@@ -1,3 +1,9 @@
+==== 0.0.21 ====
+
+2005-12-06  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 0.0.21 release
+
 2005-12-06  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-watcher-x11.c (gs_watcher_init): Checking

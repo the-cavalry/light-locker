@@ -1,4 +1,22 @@
 ==============
+Version 0.0.21
+==============
+
+  gnome-screensaver
+
+        * Try to prevent popups over screensaver window
+        * Use an interruptable slow fade before idle activation
+
+  Translators
+
+        * Rostislav \"zbrox\" Raykov (bg)
+        * Ilkka Tuohela (fi)
+        * Åygimantas BeruÄka (lt)
+        * Amanpreet Singh Alam (pa)
+        * Marcel Telka (sk)
+        * Theppitak Karoonboonyanan (th)
+
+==============
 Version 0.0.20
 ==============
 
