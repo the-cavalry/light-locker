@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 0.15\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-16 22:47+0200\n"
-"PO-Revision-Date: 2005-10-16 22:50+0200\n"
+"POT-Creation-Date: 2005-12-08 05:14+0100\n"
+"PO-Revision-Date: 2005-12-07 10:32+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -55,11 +55,11 @@ msgstr "Skjermsparere"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
 msgid "Allow logout"
-msgstr ""
+msgstr "Tillat å logge ut"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
 msgid "Allow monitor power management"
-msgstr ""
+msgstr "Tillat strømstyring for skjerm"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow user switching"
@@ -185,7 +185,7 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before theme change"
-msgstr ""
+msgstr "Tid før endring av tema"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
@@ -197,7 +197,7 @@ msgstr "Lysbildevisning med bilder fra verdensrommet"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
-msgstr ""
+msgstr "Vis en lysbildefremvisning fra din bildemappe"
 
 #: ../savers/personal-slideshow.desktop.in.h:2
 msgid "Pictures folder"
@@ -236,7 +236,7 @@ msgid "The name of the X11 display this object refers to."
 msgstr ""
 
 #: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:152
+#: ../src/cut-n-paste/fusa-user-menu-item.c:164
 msgid "User"
 msgstr "Bruker"
 
@@ -260,79 +260,79 @@ msgstr ""
 msgid "Whether or not this display is a windowed (Xnest) display."
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-manager.c:1264
+#: ../src/cut-n-paste/fusa-manager.c:1263
 msgid "The display manager could not be contacted for unknown reasons."
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-manager.c:1271
+#: ../src/cut-n-paste/fusa-manager.c:1270
 msgid "The display manager is not running or too old."
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-manager.c:1274
+#: ../src/cut-n-paste/fusa-manager.c:1273
 msgid "The configured limit of flexible servers has been reached."
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-manager.c:1277
+#: ../src/cut-n-paste/fusa-manager.c:1276
 msgid "There was an unknown error starting X."
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-manager.c:1280
+#: ../src/cut-n-paste/fusa-manager.c:1279
 msgid "The X server failed to finish starting."
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-manager.c:1283
+#: ../src/cut-n-paste/fusa-manager.c:1282
 msgid "There are too many X sessions running."
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-manager.c:1286
+#: ../src/cut-n-paste/fusa-manager.c:1285
 msgid "The nested X server (Xnest) cannot connect to your current X server."
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-manager.c:1289
+#: ../src/cut-n-paste/fusa-manager.c:1288
 msgid "The X server in the GDM configuration could not be found."
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-manager.c:1292 ../src/cut-n-paste/gdmcomm.c:492
+#: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-manager.c:1295 ../src/cut-n-paste/gdmcomm.c:495
+#: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
-msgstr ""
+msgstr "Virtuelle terminaler er ikke støttet."
 
-#: ../src/cut-n-paste/fusa-manager.c:1298
+#: ../src/cut-n-paste/fusa-manager.c:1297
 msgid "Invalid virtual terminal number."
-msgstr ""
+msgstr "Ugyldig nummer for virtuell terminal."
 
-#: ../src/cut-n-paste/fusa-manager.c:1301 ../src/cut-n-paste/gdmcomm.c:499
+#: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-manager.c:1304
+#: ../src/cut-n-paste/fusa-manager.c:1303
 msgid "~/.Xauthority file badly configured or missing."
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-manager.c:1307
+#: ../src/cut-n-paste/fusa-manager.c:1306
 msgid "Too many messages were sent to the display manager, and it hung up."
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-manager.c:1311
+#: ../src/cut-n-paste/fusa-manager.c:1310
 msgid "The display manager sent an unknown error message."
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:153
+#: ../src/cut-n-paste/fusa-user-menu-item.c:165
 msgid "The user this menu item represents."
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:160
+#: ../src/cut-n-paste/fusa-user-menu-item.c:172
 msgid "Icon Size"
 msgstr "Ikonstørrelse"
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:161
+#: ../src/cut-n-paste/fusa-user-menu-item.c:173
 msgid "The size of the icon to use."
-msgstr ""
+msgstr "Størrelse på ikonet som skal brukes."
 
 #: ../src/cut-n-paste/fusa-user.c:151
 msgid "The user manager object this user is controlled by."
@@ -345,7 +345,7 @@ msgstr "Vis detaljer"
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:413
 msgid "GDM (The GNOME Display Manager) is not running."
-msgstr ""
+msgstr "GDM (GNOME skjermhåndterer) kjører ikke."
 
 #: ../src/cut-n-paste/gdmcomm.c:416
 msgid ""
@@ -386,7 +386,7 @@ msgstr ""
 
 #: ../src/cut-n-paste/gdmcomm.c:476
 msgid "Too many X sessions running."
-msgstr ""
+msgstr "For mange X-sesjoner kjører."
 
 #: ../src/cut-n-paste/gdmcomm.c:478
 msgid ""
@@ -425,8 +425,8 @@ msgstr "Ukjent feil oppsto."
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
-msgid "Copying file: %i of %i"
-msgstr "Kopierer fil: %i av %i"
+msgid "Copying file: %u of %u"
+msgstr "Kopierer fil: %u av %u"
 
 #: ../src/file-transfer-dialog.c:122
 #, c-format
@@ -439,7 +439,7 @@ msgstr "Fra URI"
 
 #: ../src/file-transfer-dialog.c:194
 msgid "URI currently transferring from"
-msgstr ""
+msgstr "URI overføres fra"
 
 #: ../src/file-transfer-dialog.c:201
 msgid "To URI"
@@ -447,7 +447,7 @@ msgstr "Til URI"
 
 #: ../src/file-transfer-dialog.c:202
 msgid "URI currently transferring to"
-msgstr ""
+msgstr "URI overføres til"
 
 #: ../src/file-transfer-dialog.c:209
 msgid "Fraction completed"
@@ -455,15 +455,15 @@ msgstr "Del ferdigstilt"
 
 #: ../src/file-transfer-dialog.c:210
 msgid "Fraction of transfer currently completed"
-msgstr ""
+msgstr "Andel av overføring som er fullført"
 
 #: ../src/file-transfer-dialog.c:217
 msgid "Current URI index"
-msgstr ""
+msgstr "Aktiv URI-indeks"
 
 #: ../src/file-transfer-dialog.c:218
 msgid "Current URI index - starts from 1"
-msgstr ""
+msgstr "Aktiv URI-indeks - starter fra 1"
 
 #: ../src/file-transfer-dialog.c:225
 msgid "Total URIs"
@@ -471,7 +471,7 @@ msgstr "Totalt antall URI'er"
 
 #: ../src/file-transfer-dialog.c:226
 msgid "Total number of URIs"
-msgstr ""
+msgstr "Totalt antall URI'er"
 
 #: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
 msgid "Copying files"
@@ -489,57 +489,57 @@ msgstr "Til:"
 msgid "Connecting..."
 msgstr "Kobler til..."
 
-#: ../src/gnome-screensaver-command.c:58
+#: ../src/gnome-screensaver-command.c:59
 msgid "Causes the screensaver to exit gracefully"
 msgstr ""
 
-#: ../src/gnome-screensaver-command.c:60
+#: ../src/gnome-screensaver-command.c:61
 msgid "Query the state of the screensaver"
 msgstr ""
 
-#: ../src/gnome-screensaver-command.c:62
+#: ../src/gnome-screensaver-command.c:63
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr ""
 
-#: ../src/gnome-screensaver-command.c:64
+#: ../src/gnome-screensaver-command.c:65
 msgid "If the screensaver is active then switch to another graphics demo"
 msgstr ""
 
-#: ../src/gnome-screensaver-command.c:66
+#: ../src/gnome-screensaver-command.c:67
 msgid "Turn the screensaver on (blank the screen)"
 msgstr ""
 
-#: ../src/gnome-screensaver-command.c:68
+#: ../src/gnome-screensaver-command.c:69
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr ""
 
-#: ../src/gnome-screensaver-command.c:70
+#: ../src/gnome-screensaver-command.c:71
 msgid "Disable running graphical themes while blanked"
 msgstr ""
 
-#: ../src/gnome-screensaver-command.c:72
+#: ../src/gnome-screensaver-command.c:73
 msgid "Enable running graphical themes while blanked (if applicable)"
 msgstr ""
 
-#: ../src/gnome-screensaver-command.c:74
+#: ../src/gnome-screensaver-command.c:75
 msgid "Poke the running screensaver to simulate user activity"
 msgstr ""
 
-#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:106
-#: ../src/gnome-screensaver.c:52
+#: ../src/gnome-screensaver-command.c:77 ../src/gnome-screensaver-dialog.c:106
+#: ../src/gnome-screensaver.c:55
 msgid "Version of this application"
 msgstr ""
 
-#: ../src/gnome-screensaver-command.c:201
+#: ../src/gnome-screensaver-command.c:202
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "Skjermsparer er %s\n"
 
-#: ../src/gnome-screensaver-command.c:201
+#: ../src/gnome-screensaver-command.c:202
 msgid "active"
 msgstr "aktiv"
 
-#: ../src/gnome-screensaver-command.c:201
+#: ../src/gnome-screensaver-command.c:202
 msgid "inactive"
 msgstr "inaktiv"
 
@@ -549,7 +549,7 @@ msgstr ""
 
 #: ../src/gnome-screensaver-dialog.c:108
 msgid "Show the logout button"
-msgstr ""
+msgstr "Vis knapp for å logge ut"
 
 #: ../src/gnome-screensaver-dialog.c:110
 msgid "Command to invoke from the logout button"
@@ -557,7 +557,7 @@ msgstr ""
 
 #: ../src/gnome-screensaver-dialog.c:112
 msgid "Show the switch user button"
-msgstr ""
+msgstr "Vis knapp for å bytte bruker"
 
 #: ../src/gnome-screensaver-preferences.c:386
 msgid "Disabled"
@@ -571,29 +571,29 @@ msgstr "Blank skjerm"
 msgid "Random"
 msgstr "Tilfeldig"
 
-#: ../src/gnome-screensaver-preferences.c:693
+#: ../src/gnome-screensaver-preferences.c:692
 msgid "Invalid screensaver theme"
 msgstr "Ugyldig tema for skjermsparer"
 
-#: ../src/gnome-screensaver-preferences.c:696
+#: ../src/gnome-screensaver-preferences.c:695
 msgid "This file does not appear to be a valid screensaver theme."
-msgstr ""
+msgstr "Denne filen ser ikke ut til å være et gyldig tema for skjermsparer."
 
-#: ../src/gnome-screensaver-preferences.c:813
+#: ../src/gnome-screensaver-preferences.c:812
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d time"
 msgstr[1] "%d timer"
 
-#: ../src/gnome-screensaver-preferences.c:816
+#: ../src/gnome-screensaver-preferences.c:815
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minutt"
 msgstr[1] "%d minutter"
 
-#: ../src/gnome-screensaver-preferences.c:819
+#: ../src/gnome-screensaver-preferences.c:818
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -601,15 +601,15 @@ msgstr[0] "%d sekund"
 msgstr[1] "%d sekunder"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:825
+#: ../src/gnome-screensaver-preferences.c:824
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:828
-#: ../src/gnome-screensaver-preferences.c:836
+#: ../src/gnome-screensaver-preferences.c:827
+#: ../src/gnome-screensaver-preferences.c:835
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -617,80 +617,78 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:831
-#: ../src/gnome-screensaver-preferences.c:839
-#: ../src/gnome-screensaver-preferences.c:843
+#: ../src/gnome-screensaver-preferences.c:830
+#: ../src/gnome-screensaver-preferences.c:838
+#: ../src/gnome-screensaver-preferences.c:842
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:846
+#: ../src/gnome-screensaver-preferences.c:845
 msgid "0 seconds"
 msgstr "0 sekunder"
 
-#: ../src/gnome-screensaver-preferences.c:861
+#: ../src/gnome-screensaver-preferences.c:860
 msgid "Never"
 msgstr "Aldri"
 
-#: ../src/gnome-screensaver-preferences.c:897
+#: ../src/gnome-screensaver-preferences.c:896
 msgid "Could not load the main interface"
-msgstr ""
+msgstr "Kunne ikke laste hovedbrukergrensesnittet"
 
-#: ../src/gnome-screensaver-preferences.c:899
+#: ../src/gnome-screensaver-preferences.c:898
 msgid "Please make sure that the screensaver is properly installed"
 msgstr ""
 
-#: ../src/gs-listener-dbus.c:921
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr ""
+
+#: ../src/gs-listener-dbus.c:1003
 msgid "failed to register with the message bus"
 msgstr ""
 
-#: ../src/gs-listener-dbus.c:930
-msgid "screensaver already running in this session"
-msgstr ""
+#: ../src/gs-listener-dbus.c:1013
+msgid "not connected to the message bus"
+msgstr "ikke koblet til meldingsbussen"
 
-#: ../src/gs-lock-plug.c:318
+#: ../src/gs-listener-dbus.c:1022
+msgid "screensaver already running in this session"
+msgstr "skjermsparer kjører allerede i denne sesjonen"
+
+#: ../src/gs-lock-plug.c:346
 msgid "Checking password..."
 msgstr "Sjekker passord..."
 
-#: ../src/gs-lock-plug.c:361
+#: ../src/gs-lock-plug.c:389
 msgid "Time has expired."
 msgstr "Tiden har løpt ut."
 
-#: ../src/gs-lock-plug.c:385
+#: ../src/gs-lock-plug.c:414
 msgid "You have the Caps Lock key on."
-msgstr ""
+msgstr "Caps-Lock tasten er aktivert."
 
-#: ../src/gs-lock-plug.c:643
+#: ../src/gs-lock-plug.c:691
 msgid "That password was incorrect."
 msgstr "Passordet var ikke riktig."
 
-#: ../src/gs-lock-plug.c:669 ../src/gs-lock-plug.c:702
+#: ../src/gs-lock-plug.c:717 ../src/gs-lock-plug.c:750
 msgid "_Unlock"
 msgstr "Lå_s opp"
 
-#: ../src/gs-lock-plug.c:672 ../src/gs-lock-plug.c:699
+#: ../src/gs-lock-plug.c:720 ../src/gs-lock-plug.c:747
 msgid "_Switch User..."
 msgstr "_Bytt bruker..."
 
-#: ../src/gs-lock-plug.c:1003
-msgid "Log in as a new user"
-msgstr "Logg inn som ny bruker"
-
-#. translators: %s is a computer hostname
-#: ../src/gs-lock-plug.c:1425
-#, c-format
-msgid "Welcome to %s"
-msgstr "Velkommen til %s"
-
-#: ../src/gs-lock-plug.c:1458
+#: ../src/gs-lock-plug.c:1430
 msgid "_Password:"
 msgstr "_Passord:"
 
-#: ../src/gs-lock-plug.c:1494
-msgid "Switch to user:"
-msgstr "Bytt til bruker:"
+#: ../src/gs-lock-plug.c:1496
+msgid "S_witch to user:"
+msgstr "B_ytt til bruker:"
 
-#: ../src/gs-lock-plug.c:1539
+#: ../src/gs-lock-plug.c:1543
 msgid "Log _Out"
 msgstr "Logg _ut"
