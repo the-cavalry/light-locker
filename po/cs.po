@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-02 19:18+0100\n"
-"PO-Revision-Date: 2005-11-02 23:13+0100\n"
+"POT-Creation-Date: 2005-12-11 14:33+0100\n"
+"PO-Revision-Date: 2005-12-11 22:34+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,9 @@ msgstr "Jestli vypnout monitor."
 
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr "Nastavte toto na true pro zamknutí obrazovky, když je aktivován šetřič obrazovky."
+msgstr ""
+"Nastavte toto na true pro zamknutí obrazovky, když je aktivován šetřič "
+"obrazovky."
 
 #: ../data/gnome-screensaver.schemas.in.h:10
 #, fuzzy
@@ -244,7 +246,7 @@ msgid "The name of the X11 display this object refers to."
 msgstr "Název displeje X11, na který se tento objekt odkazuje."
 
 #: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:152
+#: ../src/cut-n-paste/fusa-user-menu-item.c:164
 msgid "User"
 msgstr "Uživatel"
 
@@ -268,40 +270,40 @@ msgstr "Vnořený"
 msgid "Whether or not this display is a windowed (Xnest) display."
 msgstr "Jestli je tento displej v okně (Xnest)."
 
-#: ../src/cut-n-paste/fusa-manager.c:1264
+#: ../src/cut-n-paste/fusa-manager.c:1263
 msgid "The display manager could not be contacted for unknown reasons."
 msgstr "Správce displeje nebylo možné kontaktovat z neznámých důvodů."
 
-#: ../src/cut-n-paste/fusa-manager.c:1271
+#: ../src/cut-n-paste/fusa-manager.c:1270
 msgid "The display manager is not running or too old."
 msgstr "Správce displeje neběží nebo je příliš starý."
 
-#: ../src/cut-n-paste/fusa-manager.c:1274
+#: ../src/cut-n-paste/fusa-manager.c:1273
 msgid "The configured limit of flexible servers has been reached."
 msgstr "Byl dosažen nastavený limit flexibilních serverů."
 
-#: ../src/cut-n-paste/fusa-manager.c:1277
+#: ../src/cut-n-paste/fusa-manager.c:1276
 msgid "There was an unknown error starting X."
 msgstr "Při spouštění X došlo k neznámé chybě."
 
-#: ../src/cut-n-paste/fusa-manager.c:1280
+#: ../src/cut-n-paste/fusa-manager.c:1279
 msgid "The X server failed to finish starting."
 msgstr "X server nedokončil spouštění."
 
-#: ../src/cut-n-paste/fusa-manager.c:1283
+#: ../src/cut-n-paste/fusa-manager.c:1282
 msgid "There are too many X sessions running."
 msgstr "Běží příliš mnoho sezení X."
 
-#: ../src/cut-n-paste/fusa-manager.c:1286
+#: ../src/cut-n-paste/fusa-manager.c:1285
 msgid "The nested X server (Xnest) cannot connect to your current X server."
 msgstr ""
 "Vnořený X server (Xnest) se nemůže připojit k vašemu aktuálnímu X serveru."
 
-#: ../src/cut-n-paste/fusa-manager.c:1289
+#: ../src/cut-n-paste/fusa-manager.c:1288
 msgid "The X server in the GDM configuration could not be found."
 msgstr "X server v nastavení GDM nelze najít."
 
-#: ../src/cut-n-paste/fusa-manager.c:1292 ../src/cut-n-paste/gdmcomm.c:492
+#: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
@@ -309,39 +311,39 @@ msgstr ""
 "Pokus nastavit neznámou akci odhlášení nebo akci odhlášení, která není k "
 "dispozici."
 
-#: ../src/cut-n-paste/fusa-manager.c:1295 ../src/cut-n-paste/gdmcomm.c:495
+#: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
 msgstr "Virtuální terminály nejsou podporovány."
 
-#: ../src/cut-n-paste/fusa-manager.c:1298
+#: ../src/cut-n-paste/fusa-manager.c:1297
 msgid "Invalid virtual terminal number."
 msgstr "Neplatné číslo virtuálního terminálu."
 
-#: ../src/cut-n-paste/fusa-manager.c:1301 ../src/cut-n-paste/gdmcomm.c:499
+#: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
 msgstr "Zkouším aktualizovat nepodporovaný klíč nastavení."
 
-#: ../src/cut-n-paste/fusa-manager.c:1304
+#: ../src/cut-n-paste/fusa-manager.c:1303
 msgid "~/.Xauthority file badly configured or missing."
 msgstr "Soubor ~/.Xauthority je špatně nastavený nebo chybí."
 
-#: ../src/cut-n-paste/fusa-manager.c:1307
+#: ../src/cut-n-paste/fusa-manager.c:1306
 msgid "Too many messages were sent to the display manager, and it hung up."
 msgstr "Správci displeje bylo odesláno příliš mnoho zpráv, a on se odpojil."
 
-#: ../src/cut-n-paste/fusa-manager.c:1311
+#: ../src/cut-n-paste/fusa-manager.c:1310
 msgid "The display manager sent an unknown error message."
 msgstr "Správce displeje poslal neznámou zprávu o chybě."
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:153
+#: ../src/cut-n-paste/fusa-user-menu-item.c:165
 msgid "The user this menu item represents."
 msgstr "Uživatel, kterého reprezentuje tato položka menu."
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:160
+#: ../src/cut-n-paste/fusa-user-menu-item.c:172
 msgid "Icon Size"
 msgstr "Velikost ikony"
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:161
+#: ../src/cut-n-paste/fusa-user-menu-item.c:173
 msgid "The size of the icon to use."
 msgstr "Velikost ikony, kterou používat."
 
@@ -670,63 +672,59 @@ msgstr "Přesvědčte se prosím, že šetřič obrazovky je správně nainstalo
 msgid "Don't become a daemon"
 msgstr "Nestát se démonem"
 
-#: ../src/gs-listener-dbus.c:995
+#: ../src/gs-listener-dbus.c:1003
 msgid "failed to register with the message bus"
 msgstr "nemohu se zaregistrovat u sběrnice zpráv"
 
-#: ../src/gs-listener-dbus.c:1005
+#: ../src/gs-listener-dbus.c:1013
 msgid "not connected to the message bus"
 msgstr "nepřipojen ke sběrnici zpráv"
 
-#: ../src/gs-listener-dbus.c:1014
+#: ../src/gs-listener-dbus.c:1022
 msgid "screensaver already running in this session"
 msgstr "šetřič obrazovky již v tomto sezení běží"
 
-#: ../src/gs-lock-plug.c:318
+#: ../src/gs-lock-plug.c:346
 msgid "Checking password..."
 msgstr "Kontroluji heslo..."
 
-#: ../src/gs-lock-plug.c:361
+#: ../src/gs-lock-plug.c:389
 msgid "Time has expired."
 msgstr "Čas vypršel."
 
-#: ../src/gs-lock-plug.c:385
+#: ../src/gs-lock-plug.c:414
 msgid "You have the Caps Lock key on."
 msgstr "Máte zapnut Caps Lock."
 
-#: ../src/gs-lock-plug.c:643
+#: ../src/gs-lock-plug.c:691
 msgid "That password was incorrect."
 msgstr "Toto heslo nebylo správné."
 
-#: ../src/gs-lock-plug.c:669 ../src/gs-lock-plug.c:702
+#: ../src/gs-lock-plug.c:717 ../src/gs-lock-plug.c:750
 msgid "_Unlock"
 msgstr "_Odemknout"
 
-#: ../src/gs-lock-plug.c:672 ../src/gs-lock-plug.c:699
+#: ../src/gs-lock-plug.c:720 ../src/gs-lock-plug.c:747
 msgid "_Switch User..."
 msgstr "_Přepnout uživatele..."
 
-#: ../src/gs-lock-plug.c:1003
-msgid "Log in as a new user"
-msgstr "Přihlásit se jako jiný uživatel"
-
-#. translators: %s is a computer hostname
-#: ../src/gs-lock-plug.c:1407
-#, c-format
-msgid "Welcome to %s"
-msgstr "Vítá vás %s"
-
-#: ../src/gs-lock-plug.c:1441
+#: ../src/gs-lock-plug.c:1430
 msgid "_Password:"
 msgstr "_Heslo:"
 
-#: ../src/gs-lock-plug.c:1477
-msgid "Switch to user:"
-msgstr "Přepnout na uživatele:"
+#: ../src/gs-lock-plug.c:1496
+msgid "S_witch to user:"
+msgstr "_Přepnout na uživatele:"
 
-#: ../src/gs-lock-plug.c:1522
+#: ../src/gs-lock-plug.c:1543
 msgid "Log _Out"
 msgstr "_Odhlásit"
+
+#~ msgid "Log in as a new user"
+#~ msgstr "Přihlásit se jako jiný uživatel"
+
+#~ msgid "Welcome to %s"
+#~ msgstr "Vítá vás %s"
 
 #~ msgid "How many minutes until the monitor goes black"
 #~ msgstr "Kolik minut, než bude monitor černý"
