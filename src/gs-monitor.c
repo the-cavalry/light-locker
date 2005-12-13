@@ -186,7 +186,9 @@ listener_active_changed_cb (GSListener *listener,
 
                         /* since we can't activate then reactivate the watcher
                            and give up */
-                        res = gs_watcher_set_active (monitor->priv->watcher, TRUE);
+                        if (idle_watch_enabled) {
+                                res = gs_watcher_set_active (monitor->priv->watcher, TRUE);
+                        }
 
                         return FALSE;
                 }
