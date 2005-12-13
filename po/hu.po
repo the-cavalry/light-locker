@@ -1,15 +1,14 @@
 # Hungarian translation for gnome-screensaver
+# Szilveszter Farkas <szilveszter.farkas@gmail.com>, 2005.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2005.
 # Copyright (c) (c) 2005 Canonical Ltd, and Rosetta Contributors 2005
 # This file is distributed under the same license as the gnome-screensaver package.
-# Szilveszter Farkas <szilveszter.farkas@gmail.com>, 2005.
-# Gabor kelemen <kelemeng@gnome.hu>, 2005.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-25 19:15+0200\n"
-"PO-Revision-Date: 2005-10-26 00:20+0200\n"
+"POT-Creation-Date: 2005-12-13 06:06+0100\n"
+"PO-Revision-Date: 2005-12-11 22:17+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Rosetta-Version: 0.1\n"
 "Plural-Forms:  nplurals=1; plural=0;\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: KBabel 1.11.1\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
 msgid "Screensaver"
@@ -82,11 +81,13 @@ msgstr "A képernyővédő kiválasztásának módja"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Set this to TRUE to allow the screensaver to power down the monitor."
-msgstr "Állítsa ezt igazra, ha engedélyezi a képernyővédőnek a monitor kikapcsolását."
+msgstr ""
+"Állítsa ezt igazra, ha engedélyezi a képernyővédőnek a monitor kikapcsolását."
 
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr "Állítsa ezt igazra a képernyő zárolásához a képernyővédő aktiválásakor."
+msgstr ""
+"Állítsa ezt igazra a képernyő zárolásához a képernyővédő aktiválásakor."
 
 #: ../data/gnome-screensaver.schemas.in.h:10
 msgid ""
@@ -116,8 +117,10 @@ msgstr ""
 "kulcs csak akkor hatásos, ha a \"logout_enable\" kulcs értéke igaz."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
-msgid "The number of minutes after screensaver activation before locking the screen."
-msgstr "A képernyővédő aktiválásától a képernyő zárolásáig eltelő percek száma."
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
+msgstr ""
+"A képernyővédő aktiválásától a képernyő zárolásáig eltelő percek száma."
 
 #: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
@@ -264,7 +267,7 @@ msgid "The name of the X11 display this object refers to."
 msgstr "Azon X11 képernyő a neve, melyre ez az objektum hivatkozik."
 
 #: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:152
+#: ../src/cut-n-paste/fusa-user-menu-item.c:164
 msgid "User"
 msgstr "Felhasználó"
 
@@ -288,41 +291,42 @@ msgstr "Beágyazott"
 msgid "Whether or not this display is a windowed (Xnest) display."
 msgstr "Ez a képernyő egy ablakban lévő (Xnest) képernyő-e vagy sem."
 
-#: ../src/cut-n-paste/fusa-manager.c:1264
+#: ../src/cut-n-paste/fusa-manager.c:1263
 msgid "The display manager could not be contacted for unknown reasons."
-msgstr "A bejelentkezéskezelőhöz ismeretlen okok miatt nem lehetett csatlakozni."
+msgstr ""
+"A bejelentkezéskezelőhöz ismeretlen okok miatt nem lehetett csatlakozni."
 
-#: ../src/cut-n-paste/fusa-manager.c:1271
+#: ../src/cut-n-paste/fusa-manager.c:1270
 msgid "The display manager is not running or too old."
 msgstr "A bejelentkezéskezelő nem fut, vagy túl régi."
 
-#: ../src/cut-n-paste/fusa-manager.c:1274
+#: ../src/cut-n-paste/fusa-manager.c:1273
 msgid "The configured limit of flexible servers has been reached."
 msgstr "Elérte az engedélyezett flexibilis X-kiszolgálók számát."
 
-#: ../src/cut-n-paste/fusa-manager.c:1277
+#: ../src/cut-n-paste/fusa-manager.c:1276
 msgid "There was an unknown error starting X."
 msgstr "Ismeretlen hiba lépett fel az X indítása során."
 
-#: ../src/cut-n-paste/fusa-manager.c:1280
+#: ../src/cut-n-paste/fusa-manager.c:1279
 msgid "The X server failed to finish starting."
 msgstr "Az X kiszolgáló nem tudott sikeresen elindulni."
 
-#: ../src/cut-n-paste/fusa-manager.c:1283
+#: ../src/cut-n-paste/fusa-manager.c:1282
 msgid "There are too many X sessions running."
 msgstr "Túl sok X munkamenet fut."
 
-#: ../src/cut-n-paste/fusa-manager.c:1286
+#: ../src/cut-n-paste/fusa-manager.c:1285
 msgid "The nested X server (Xnest) cannot connect to your current X server."
 msgstr ""
 "A beágyazott X kiszolgáló (Xnest) nem képes csatlakozni az Ön jelenlegi X "
 "kiszolgálójához."
 
-#: ../src/cut-n-paste/fusa-manager.c:1289
+#: ../src/cut-n-paste/fusa-manager.c:1288
 msgid "The X server in the GDM configuration could not be found."
 msgstr "Az X kiszolgáló nem található a GDM konfigurációjában."
 
-#: ../src/cut-n-paste/fusa-manager.c:1292 ../src/cut-n-paste/gdmcomm.c:492
+#: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
@@ -330,41 +334,41 @@ msgstr ""
 "Próbálkozás történt ismeretlen kijelentkezési művelet beállítására, vagy "
 "próbálkozás egy el nem érhető kijelentkezési művelet beállítására."
 
-#: ../src/cut-n-paste/fusa-manager.c:1295 ../src/cut-n-paste/gdmcomm.c:495
+#: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
 msgstr "A virtuális terminálok nem támogatottak."
 
-#: ../src/cut-n-paste/fusa-manager.c:1298
+#: ../src/cut-n-paste/fusa-manager.c:1297
 msgid "Invalid virtual terminal number."
 msgstr "Érvénytelen virtuális terminál szám."
 
-#: ../src/cut-n-paste/fusa-manager.c:1301 ../src/cut-n-paste/gdmcomm.c:499
+#: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
 msgstr "Kísérlet történt egy nem támogatott beállítási kulcs frissítésére."
 
-#: ../src/cut-n-paste/fusa-manager.c:1304
+#: ../src/cut-n-paste/fusa-manager.c:1303
 msgid "~/.Xauthority file badly configured or missing."
 msgstr "Hiányzó, vagy rosszul beállított ~/.Xauthority fájl."
 
-#: ../src/cut-n-paste/fusa-manager.c:1307
+#: ../src/cut-n-paste/fusa-manager.c:1306
 msgid "Too many messages were sent to the display manager, and it hung up."
 msgstr ""
 "Túl sok üzenet lett küldve a bejelentkezéskezelőnek, ezért az "
 "összezavarodott."
 
-#: ../src/cut-n-paste/fusa-manager.c:1311
+#: ../src/cut-n-paste/fusa-manager.c:1310
 msgid "The display manager sent an unknown error message."
 msgstr "A bejelentkezéskezelő egy ismeretlen hibaüzenetet küldött."
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:153
+#: ../src/cut-n-paste/fusa-user-menu-item.c:165
 msgid "The user this menu item represents."
 msgstr "A felhasználó, akit ez a menüelem képvisel."
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:160
+#: ../src/cut-n-paste/fusa-user-menu-item.c:172
 msgid "Icon Size"
 msgstr "Ikonméret"
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:161
+#: ../src/cut-n-paste/fusa-user-menu-item.c:173
 msgid "The size of the icon to use."
 msgstr "A használni kívánt ikon mérete."
 
@@ -408,7 +412,8 @@ msgstr "Talán a GDM egy régebbi verziója fut."
 
 #: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
 msgid "Cannot communicate with gdm, perhaps you have an old version running."
-msgstr "Nem lehet a gdm-el kommunikálni, valószínűleg egy régebbi verziója fut."
+msgstr ""
+"Nem lehet a gdm-el kommunikálni, valószínűleg egy régebbi verziója fut."
 
 #: ../src/cut-n-paste/gdmcomm.c:469
 msgid "The allowed limit of flexible X servers reached."
@@ -444,8 +449,10 @@ msgstr ""
 "Telepítse az Xnest csomagot, hogy a beágyazott bejelentkezést használhassa."
 
 #: ../src/cut-n-paste/gdmcomm.c:488
-msgid "The X server is not available, it is likely that gdm is badly configured."
-msgstr "Az X kiszolgáló nem érhető el, valószínűleg a gdm rosszul van beállítva."
+msgid ""
+"The X server is not available, it is likely that gdm is badly configured."
+msgstr ""
+"Az X kiszolgáló nem érhető el, valószínűleg a gdm rosszul van beállítva."
 
 #: ../src/cut-n-paste/gdmcomm.c:497
 msgid "Trying to change to an invalid virtual terminal number."
@@ -471,8 +478,8 @@ msgstr "Ismeretlen hiba történt."
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
-msgid "Copying file: %i of %i"
-msgstr "Fájl másolása: %i/%i"
+msgid "Copying file: %u of %u"
+msgstr "Fájl másolása: %u/%u"
 
 #: ../src/file-transfer-dialog.c:122
 #, c-format
@@ -535,59 +542,59 @@ msgstr "Cél:"
 msgid "Connecting..."
 msgstr "Kapcsolódás..."
 
-#: ../src/gnome-screensaver-command.c:58
+#: ../src/gnome-screensaver-command.c:59
 msgid "Causes the screensaver to exit gracefully"
 msgstr "A képernyővédő \"elegáns\" bezárása"
 
-#: ../src/gnome-screensaver-command.c:60
+#: ../src/gnome-screensaver-command.c:61
 msgid "Query the state of the screensaver"
 msgstr "A képernyővédő állapotának lekérdezése"
 
-#: ../src/gnome-screensaver-command.c:62
+#: ../src/gnome-screensaver-command.c:63
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "A futó képernyővédő-folyamatot kéri a képernyő azonnali zárolására"
 
-#: ../src/gnome-screensaver-command.c:64
+#: ../src/gnome-screensaver-command.c:65
 msgid "If the screensaver is active then switch to another graphics demo"
 msgstr "Ha a képernyővédő aktív, akkor egy másik grafikus demóba váltson"
 
-#: ../src/gnome-screensaver-command.c:66
+#: ../src/gnome-screensaver-command.c:67
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "Képernyővédő bekapcsolása (képernyő elsötétítése)"
 
-#: ../src/gnome-screensaver-command.c:68
+#: ../src/gnome-screensaver-command.c:69
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr "Ha a képernyővédő aktív, akkor deaktiválja (képernyő visszaállítása)"
 
-#: ../src/gnome-screensaver-command.c:70
+#: ../src/gnome-screensaver-command.c:71
 msgid "Disable running graphical themes while blanked"
 msgstr "Grafikus témák futásának letiltása elsötétítés közben"
 
-#: ../src/gnome-screensaver-command.c:72
+#: ../src/gnome-screensaver-command.c:73
 msgid "Enable running graphical themes while blanked (if applicable)"
 msgstr ""
 "Grafikus témák futásának engedélyezése elsötétítés közben (amennyiben "
 "lehetséges)"
 
-#: ../src/gnome-screensaver-command.c:74
+#: ../src/gnome-screensaver-command.c:75
 msgid "Poke the running screensaver to simulate user activity"
 msgstr "A futó képernyőkímélő szimuláljon felhasználói aktivitást"
 
-#: ../src/gnome-screensaver-command.c:76 ../src/gnome-screensaver-dialog.c:106
+#: ../src/gnome-screensaver-command.c:77 ../src/gnome-screensaver-dialog.c:106
 #: ../src/gnome-screensaver.c:55
 msgid "Version of this application"
 msgstr "Ezen alkalmazás verziója"
 
-#: ../src/gnome-screensaver-command.c:201
+#: ../src/gnome-screensaver-command.c:202
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "A képernyővédő %s\n"
 
-#: ../src/gnome-screensaver-command.c:201
+#: ../src/gnome-screensaver-command.c:202
 msgid "active"
 msgstr "aktív"
 
-#: ../src/gnome-screensaver-command.c:201
+#: ../src/gnome-screensaver-command.c:202
 msgid "inactive"
 msgstr "inaktív"
 
@@ -619,29 +626,29 @@ msgstr "Üres képernyő"
 msgid "Random"
 msgstr "Véletlen"
 
-#: ../src/gnome-screensaver-preferences.c:693
+#: ../src/gnome-screensaver-preferences.c:692
 msgid "Invalid screensaver theme"
 msgstr "Érvénytelen képernyővédő téma"
 
-#: ../src/gnome-screensaver-preferences.c:696
+#: ../src/gnome-screensaver-preferences.c:695
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Ez a fájl nem egy érvényes képernyővédő téma."
 
-#: ../src/gnome-screensaver-preferences.c:813
+#: ../src/gnome-screensaver-preferences.c:812
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d óra"
 msgstr[1] "%d óra"
 
-#: ../src/gnome-screensaver-preferences.c:816
+#: ../src/gnome-screensaver-preferences.c:815
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d perc"
 msgstr[1] "%d perc"
 
-#: ../src/gnome-screensaver-preferences.c:819
+#: ../src/gnome-screensaver-preferences.c:818
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -649,15 +656,15 @@ msgstr[0] "%d másodperc"
 msgstr[1] "%d másodperc"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:825
+#: ../src/gnome-screensaver-preferences.c:824
 #, c-format
 msgid "%s %s %s"
 msgstr "%s.%s.%s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:828
-#: ../src/gnome-screensaver-preferences.c:836
+#: ../src/gnome-screensaver-preferences.c:827
+#: ../src/gnome-screensaver-preferences.c:835
 #, c-format
 msgid "%s %s"
 msgstr "%s.%s"
@@ -665,85 +672,79 @@ msgstr "%s.%s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:831
-#: ../src/gnome-screensaver-preferences.c:839
-#: ../src/gnome-screensaver-preferences.c:843
+#: ../src/gnome-screensaver-preferences.c:830
+#: ../src/gnome-screensaver-preferences.c:838
+#: ../src/gnome-screensaver-preferences.c:842
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:846
+#: ../src/gnome-screensaver-preferences.c:845
 msgid "0 seconds"
 msgstr "0 másodperc"
 
-#: ../src/gnome-screensaver-preferences.c:861
+#: ../src/gnome-screensaver-preferences.c:860
 msgid "Never"
 msgstr "Soha"
 
-#: ../src/gnome-screensaver-preferences.c:897
+#: ../src/gnome-screensaver-preferences.c:896
 msgid "Could not load the main interface"
 msgstr "A fő kezelőfelület nem tölthető be"
 
-#: ../src/gnome-screensaver-preferences.c:899
+#: ../src/gnome-screensaver-preferences.c:898
 msgid "Please make sure that the screensaver is properly installed"
-msgstr "Kérem győződjön meg arról, hogy a képernyővédő megfelelően telepítve van-e"
+msgstr ""
+"Kérem győződjön meg arról, hogy a képernyővédő megfelelően telepítve van-e"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
 msgstr "Ne démonként fusson"
 
-#: ../src/gs-listener-dbus.c:939
+#: ../src/gs-listener-dbus.c:1003
 msgid "failed to register with the message bus"
 msgstr "nem sikerült regisztrálni az üzenetbusszal"
 
-#: ../src/gs-listener-dbus.c:948
+#: ../src/gs-listener-dbus.c:1013
+msgid "not connected to the message bus"
+msgstr "nincs kapcsolat az üzenetbusszal"
+
+#: ../src/gs-listener-dbus.c:1022
 msgid "screensaver already running in this session"
 msgstr "már fut képernyővédő ebben a munkamenetben"
 
-#: ../src/gs-lock-plug.c:318
+#: ../src/gs-lock-plug.c:346
 msgid "Checking password..."
-msgstr "Jelsző ellenőrzése..."
+msgstr "Jelszó ellenőrzése..."
 
-#: ../src/gs-lock-plug.c:361
+#: ../src/gs-lock-plug.c:389
 msgid "Time has expired."
 msgstr "Az idő lejárt."
 
-#: ../src/gs-lock-plug.c:385
+#: ../src/gs-lock-plug.c:414
 msgid "You have the Caps Lock key on."
 msgstr "A Caps Lock be van kapcsolva."
 
-#: ../src/gs-lock-plug.c:643
+#: ../src/gs-lock-plug.c:691
 msgid "That password was incorrect."
 msgstr "A jelszó hibás."
 
-#: ../src/gs-lock-plug.c:669 ../src/gs-lock-plug.c:702
+#: ../src/gs-lock-plug.c:717 ../src/gs-lock-plug.c:750
 msgid "_Unlock"
 msgstr "_Feloldás"
 
-#: ../src/gs-lock-plug.c:672 ../src/gs-lock-plug.c:699
+#: ../src/gs-lock-plug.c:720 ../src/gs-lock-plug.c:747
 msgid "_Switch User..."
 msgstr "Felhasználó_váltás..."
 
-#: ../src/gs-lock-plug.c:1003
-msgid "Log in as a new user"
-msgstr "Bejelentkezés új felhasználóként"
-
-#. translators: %s is a computer hostname
-#: ../src/gs-lock-plug.c:1422
-#, c-format
-msgid "Welcome to %s"
-msgstr "Üdvözli a(z) %s"
-
-#: ../src/gs-lock-plug.c:1456
+#: ../src/gs-lock-plug.c:1430
 msgid "_Password:"
 msgstr "_Jelszó:"
 
-#: ../src/gs-lock-plug.c:1492
-msgid "Switch to user:"
-msgstr "Új felhasználó:"
+#: ../src/gs-lock-plug.c:1496
+msgid "S_witch to user:"
+msgstr "_Váltás a következő felhasználóra:"
 
-#: ../src/gs-lock-plug.c:1537
+#: ../src/gs-lock-plug.c:1543
 msgid "Log _Out"
 msgstr "_Kijelentkezés"
-
