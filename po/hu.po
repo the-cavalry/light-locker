@@ -413,7 +413,7 @@ msgstr "Talán a GDM egy régebbi verziója fut."
 #: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
 msgid "Cannot communicate with gdm, perhaps you have an old version running."
 msgstr ""
-"Nem lehet a gdm-el kommunikálni, valószínűleg egy régebbi verziója fut."
+"Nem lehet a gdm-mel kommunikálni, valószínűleg egy régebbi verziója fut."
 
 #: ../src/cut-n-paste/gdmcomm.c:469
 msgid "The allowed limit of flexible X servers reached."
