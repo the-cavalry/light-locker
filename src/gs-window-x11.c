@@ -374,7 +374,7 @@ select_popup_events (void)
         XWindowAttributes attr;
         unsigned long     events;
 
-        XGetWindowAttributes (GDK_DISPLAY (), GDK_ROOT_WINDOW(), &attr);
+        XGetWindowAttributes (GDK_DISPLAY (), GDK_ROOT_WINDOW (), &attr);
 
         events = SubstructureNotifyMask | attr.your_event_mask;
         XSelectInput (GDK_DISPLAY (), GDK_ROOT_WINDOW(), events);

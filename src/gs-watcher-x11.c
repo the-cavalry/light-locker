@@ -345,11 +345,25 @@ notice_events_inner (Window   window,
         XGetWindowAttributes (GDK_DISPLAY (), window, &attrs);
 
         if (enable) {
+                /* Select for KeyPress on all windows that already have it selected */
                 events = ((attrs.all_event_masks | attrs.do_not_propagate_mask) & KeyPressMask);
+
+                /* Keep already selected events.  This is important when the
+                   window == GDK_ROOT_WINDOW () since the mask will contain
+                   StructureNotifyMask that is essential for RANDR support */
+                events = attrs.your_event_mask | events;
+
+                /* Select for SubstructureNotify on all windows */
                 events = SubstructureNotifyMask | events;
         } else {
                 /* We want to disable all events */
-                events = 0;
+
+                /* Don't mess up the root window */
+                if (window == GDK_ROOT_WINDOW ()) {
+                        events = attrs.your_event_mask;
+                } else {
+                        events = 0;
+                }
         }
 
         /* Select for SubstructureNotify on all windows.

@@ -1,5 +1,14 @@
 2005-12-13  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c (notice_events_inner): Don't override
+	existing event mask for root window.  This is important when the
+	window == GDK_ROOT_WINDOW () since the mask will contain
+	StructureNotifyMask that is essential for RANDR support.
+
+	Fixes #323980.
+
+2005-12-13  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-monitor.c (listener_active_changed_cb): Only
 	activate watcher if enabled.
 
