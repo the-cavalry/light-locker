@@ -1,4 +1,19 @@
 ==============
+Version 0.0.22
+==============
+
+  gnome-screensaver
+
+        * Don't mess up event mask for root window.
+
+  Translators
+
+        * Miloslav Trmac (cs)
+        * Gabor Kelemen (hu)
+        * Kjartan Maraas (nb)
+        * Kjartan Maraas (no)
+
+==============
 Version 0.0.21
 ==============
 
@@ -11,7 +26,7 @@ Version 0.0.21
 
         * Rostislav \"zbrox\" Raykov (bg)
         * Ilkka Tuohela (fi)
-        * Åygimantas BeruÄka (lt)
+        * Ã…ygimantas BeruÃ„ka (lt)
         * Amanpreet Singh Alam (pa)
         * Marcel Telka (sk)
         * Theppitak Karoonboonyanan (th)
@@ -45,7 +60,7 @@ Version 0.0.19
         * Francisco Javier F. Serrador (es)
         * Davy Defaud (fr)
         * Takeshi AIHANA (ja)
-        * Åygimantas Beruka (lt)
+        * Ã…ygimantas Beruka (lt)
 
 ==============
 Version 0.0.18
@@ -143,7 +158,7 @@ Version 0.0.15
         * Rostislav \"zbrox\" Raykov (bg)
         * Miloslav Trmac (cs)
         * Adam Weinberger (en_CA)
-        * Å½ygimantas BeruÄka (lt)
+        * Ã…Â½ygimantas BeruÃ„ka (lt)
         * Kjartan Maraas (nb)
         * Tino Meinen (nl)
         * Kjartan Maraas (no)

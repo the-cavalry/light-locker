@@ -1,3 +1,9 @@
+==== 0.0.22 ====
+
+2005-12-13  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 0.0.22 release
+
 2005-12-13  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-watcher-x11.c (notice_events_inner): Don't override
