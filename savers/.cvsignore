@@ -10,3 +10,5 @@ slideshow
 *.desktop
 cosmos-slideshow.desktop.in
 savers/cosmos-slideshow.xml
+gs-theme-engine-marshal.c
+gs-theme-engine-marshal.h

@@ -675,6 +675,7 @@ command_watch (GIOChannel   *source,
                 char *str;
 
                 status = g_io_channel_read_line (source, &str, NULL, NULL, &error);
+
 		if (status == G_IO_STATUS_NORMAL) {
 		} else if (status == G_IO_STATUS_EOF) {
                         done = TRUE;

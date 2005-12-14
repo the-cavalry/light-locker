@@ -1,3 +1,18 @@
+2005-12-14  William Jon McCann  <mccann@jhu.edu>
+
+	* savers/gste-popsquares.[ch]: New popsquares class
+	that derives from GSThemeEngine class.
+
+	* savers/gs-theme-engine.[ch]: New base class
+	for screensaver theme engines.
+
+	* savers/popsquares.c (main): Now just a shell
+	around GSTEPopsquares object.
+
+	* savers/Makefile.am: Add new theme engine stuff.
+
+	* savers/.cvsignore: Add marshal files.
+
 2005-12-13  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.
