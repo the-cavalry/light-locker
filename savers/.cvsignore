@@ -7,8 +7,10 @@ Makefile
 Makefile.in
 popsquares
 slideshow
+floaters
 *.desktop
 cosmos-slideshow.desktop.in
+footlogo-floaters.desktop.in
 savers/cosmos-slideshow.xml
 gs-theme-engine-marshal.c
 gs-theme-engine-marshal.h

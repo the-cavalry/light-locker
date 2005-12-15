@@ -39,45 +39,27 @@ typedef struct GSThemeEnginePrivate GSThemeEnginePrivate;
 
 typedef struct
 {
-        GObject               parent;
+        GtkDrawingArea        parent;
         GSThemeEnginePrivate *priv;
 } GSThemeEngine;
 
 typedef struct
 {
-        GObjectClass     parent_class;
+        GtkDrawingAreaClass parent_class;
 
-        void     (* show)	        	(GSThemeEngine	     *engine);
-        gboolean (* delete_event)		(GSThemeEngine	     *engine,
-                                                 GdkEventAny	     *event);
-        gboolean (* destroy_event)		(GSThemeEngine	     *engine,
-                                                 GdkEventAny	     *event);
-        gboolean (* expose_event)		(GSThemeEngine	     *engine,
-                                                 GdkEventExpose      *event);
-        gboolean (* configure_event)		(GSThemeEngine	     *engine,
-                                                 GdkEventConfigure   *event);
-        gboolean (* map_event)   		(GSThemeEngine	     *engine,
-                                                 GdkEventAny	     *event);
-        gboolean (* unmap_event)		(GSThemeEngine	     *engine,
-                                                 GdkEventAny	     *event);
-
+        /* for signals later if needed */
+        gpointer reserved_1;
+        gpointer reserved_2;
+        gpointer reserved_3;
+        gpointer reserved_4;
 } GSThemeEngineClass;
 
 GType           gs_theme_engine_get_type         (void);
 
-gboolean        gs_theme_engine_event            (GSThemeEngine *engine,
-                                                  GdkEvent      *event);
-void            gs_theme_engine_set_window       (GSThemeEngine *engine,
-                                                  GdkWindow     *window);
-GdkWindow      *gs_theme_engine_get_window       (GSThemeEngine *engine);
-void            gs_theme_engine_get_window_size  (GSThemeEngine *engine,
-                                                  int           *width,
-                                                  int           *height);
-
-void            gs_theme_engine_show             (GSThemeEngine *engine);
-void            gs_theme_engine_destroy          (GSThemeEngine *engine);
-void            gs_theme_engine_queue_draw       (GSThemeEngine *engine);
-void            gs_theme_engine_queue_resize     (GSThemeEngine *engine);
+void            gs_theme_engine_get_window_size (GSThemeEngine *engine,
+                                                 int           *width,
+                                                 int           *height);
+GdkWindow      *gs_theme_engine_get_window      (GSThemeEngine *engine);
 
 G_END_DECLS
 

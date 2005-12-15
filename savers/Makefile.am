@@ -45,6 +45,8 @@ libgs_theme_engine_a_CPPFLAGS =					\
 
 libgs_theme_engine_a_SOURCES =		\
 	$(BUILT_SOURCES)		\
+	gs-theme-window.h		\
+	gs-theme-window.c		\
 	gs-theme-engine.c		\
 	gs-theme-engine.h		\
 	$(NULL)
@@ -61,9 +63,9 @@ popsquares_SOURCES = 		\
 	popsquares.c		\
 	$(NULL)
 
-popsquares_LDADD =	\
+popsquares_LDADD =			\
 	$(GNOME_SCREENSAVER_SAVER_LIBS)	\
-	libgs-theme-engine.a \
+	libgs-theme-engine.a 		\
 	$(NULL)
 
 slideshow_SOURCES =   \

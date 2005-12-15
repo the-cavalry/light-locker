@@ -45,8 +45,8 @@ struct GSTEPopsquaresPrivate
 {
         guint timeout_id;
 
-        int ncolors;
-        int subdivision;
+        int        ncolors;
+        int        subdivision;
 
         GdkGC     *gc;
         GdkColor  *colors;
@@ -235,9 +235,9 @@ set_colors (GdkWindow *window,
 
 static void
 gste_popsquares_set_property (GObject            *object,
-                            guint               prop_id,
-                            const GValue       *value,
-                            GParamSpec         *pspec)
+                              guint               prop_id,
+                              const GValue       *value,
+                              GParamSpec         *pspec)
 {
         GSTEPopsquares *self;
 
@@ -277,6 +277,7 @@ setup_squares (GSTEPopsquares *pop)
         int       sw, sh, gw, gh;
 
         gs_theme_engine_get_window_size (GS_THEME_ENGINE (pop), &window_width, &window_height);
+
         sw = window_width / pop->priv->subdivision;
         sh = window_height / pop->priv->subdivision;
 
@@ -312,6 +313,9 @@ setup_colors (GSTEPopsquares *pop)
 
         window = gs_theme_engine_get_window (GS_THEME_ENGINE (pop));
 
+        if (! window)
+                return;
+
         set_colors (window, &fg, &bg);
 
         if (pop->priv->gc) {
@@ -327,7 +331,7 @@ setup_colors (GSTEPopsquares *pop)
         rgb_to_hsv (fg.red, fg.green, fg.blue, &h1, &s1, &v1);
         rgb_to_hsv (bg.red, bg.green, bg.blue, &h2, &s2, &v2);
 
-        make_color_ramp (gdk_drawable_get_colormap (window),
+        make_color_ramp (gtk_widget_get_colormap (GTK_WIDGET (pop)),
                          h1, s1, v1,
                          h2, s2, v2,
                          pop->priv->colors,
@@ -342,20 +346,20 @@ setup_colors (GSTEPopsquares *pop)
 }
 
 static void
-gste_popsquares_real_show (GSThemeEngine *engine)
+gste_popsquares_real_show (GtkWidget *widget)
 {
-        GSTEPopsquares *pop = GSTE_POPSQUARES (engine);
+        GSTEPopsquares *pop = GSTE_POPSQUARES (widget);
 
         /* start */
         setup_squares (pop);
         setup_colors (pop);
 
-        if (GS_THEME_ENGINE_CLASS (parent_class)->show)
-                GS_THEME_ENGINE_CLASS (parent_class)->show (engine);
+        if (GTK_WIDGET_CLASS (parent_class)->show)
+                GTK_WIDGET_CLASS (parent_class)->show (widget);
 }
 
 static gboolean
-gste_popsquares_real_expose (GSThemeEngine  *engine,
+gste_popsquares_real_expose (GtkWidget      *widget,
                              GdkEventExpose *event)
 {
         gboolean handled = FALSE;
@@ -364,18 +368,18 @@ gste_popsquares_real_expose (GSThemeEngine  *engine,
 
         /* FIXME: should double buffer? */
 
-        if (GS_THEME_ENGINE_CLASS (parent_class)->expose_event)
-                handled = GS_THEME_ENGINE_CLASS (parent_class)->expose_event (engine, event);
+        if (GTK_WIDGET_CLASS (parent_class)->expose_event)
+                handled = GTK_WIDGET_CLASS (parent_class)->expose_event (widget, event);
 
         return handled;
 }
 
 static gboolean
-gste_popsquares_real_configure (GSThemeEngine     *engine,
+gste_popsquares_real_configure (GtkWidget         *widget,
                                 GdkEventConfigure *event)
 {
-        GSTEPopsquares *pop = GSTE_POPSQUARES (engine);
-        gboolean handled = FALSE;
+        GSTEPopsquares *pop = GSTE_POPSQUARES (widget);
+        gboolean        handled = FALSE;
 
         /* resize */
 
@@ -384,10 +388,10 @@ gste_popsquares_real_configure (GSThemeEngine     *engine,
         setup_colors (pop);
 
         /* schedule a redraw */
-        gs_theme_engine_queue_draw (engine);
+        gtk_widget_queue_draw (widget);
 
-        if (GS_THEME_ENGINE_CLASS (parent_class)->configure_event)
-                handled = GS_THEME_ENGINE_CLASS (parent_class)->configure_event (engine, event);
+        if (GTK_WIDGET_CLASS (parent_class)->configure_event)
+                handled = GTK_WIDGET_CLASS (parent_class)->configure_event (widget, event);
 
         return handled;
 }
@@ -396,7 +400,7 @@ static void
 gste_popsquares_class_init (GSTEPopsquaresClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
-        GSThemeEngineClass *engine_class = GS_THEME_ENGINE_CLASS (klass);
+        GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
         parent_class = g_type_class_peek_parent (klass);
 
@@ -404,9 +408,9 @@ gste_popsquares_class_init (GSTEPopsquaresClass *klass)
         object_class->get_property = gste_popsquares_get_property;
         object_class->set_property = gste_popsquares_set_property;
 
-        engine_class->show = gste_popsquares_real_show;
-        engine_class->expose_event = gste_popsquares_real_expose;
-        engine_class->configure_event = gste_popsquares_real_configure;
+        widget_class->show = gste_popsquares_real_show;
+        widget_class->expose_event = gste_popsquares_real_expose;
+        widget_class->configure_event = gste_popsquares_real_configure;
 
         g_type_class_add_private (klass, sizeof (GSTEPopsquaresPrivate));
 }

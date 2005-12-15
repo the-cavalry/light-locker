@@ -1,5 +1,18 @@
 2005-12-14  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/popsquares.c (main): use gs-theme-window.
+
+	* savers/gste-popsquares.c: Updated for new theme-engine.
+
+	* savers/gs-theme-engine.c: Derive from GtkDrawingArea.
+
+	* savers/gs-theme-window.[ch]: New toplevel
+	window widget wrapper from Ray Strode.
+
+	* savers/Makefile.am: add new files.
+
+2005-12-14  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/gste-popsquares.[ch]: New popsquares class
 	that derives from GSThemeEngine class.
 
