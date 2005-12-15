@@ -1,5 +1,16 @@
 2005-12-14  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/footlogo-floaters.desktop.in.in: 
+	* savers/floaters.c: 
+	* savers/Makefile.am: Add new theme engine from
+	the Red Hat Desktop Team.
+
+	* data/images/gnome-logo-white.svg: 
+	* data/images/Makefile.am:
+	* configure.ac: Add GNOME logo image (permission pending).
+
+2005-12-14  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/popsquares.c (main): use gs-theme-window.
 
 	* savers/gste-popsquares.c: Updated for new theme-engine.

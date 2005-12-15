@@ -1194,6 +1194,9 @@ SLIDESHOW_COSMOS_DIR="${EXPANDED_DATADIR}/pixmaps/backgrounds/cosmos"
 
 AC_SUBST(SLIDESHOW_COSMOS_DIR)
 
+FLOATERS_FOOT_LOGO_IMAGE="${EXPANDED_DATADIR}/pixmaps/gnome-logo-white.svg"
+AC_SUBST(FLOATERS_FOOT_LOGO_IMAGE)
+
 # Menu stuff
 
 GNOME_SCREENSAVER_THEMES_DIR="${EXPANDED_DATADIR}/gnome-screensaver/themes"
@@ -1212,6 +1215,7 @@ data/images/Makefile
 data/images/cosmos/Makefile
 savers/Makefile
 savers/cosmos-slideshow.desktop.in
+savers/footlogo-floaters.desktop.in
 doc/Makefile
 ])
 

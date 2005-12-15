@@ -4,9 +4,11 @@ data/gnome-screensaver-preferences.desktop.in
 data/gnome-screensaver-preferences.glade
 data/gnome-screensaver.directory.in
 data/gnome-screensaver.schemas.in
+savers/footlogo-floaters.desktop.in.in
 savers/cosmos-slideshow.desktop.in.in
 savers/personal-slideshow.desktop.in
 savers/popsquares.desktop.in
+savers/floaters.c
 savers/slideshow.c
 src/cut-n-paste/fusa-display.c
 src/cut-n-paste/fusa-manager.c

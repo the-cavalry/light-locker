@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Floating Feet
+Comment=Bubbles the GNOME foot logo around the screen
+Exec=floaters @FLOATERS_FOOT_LOGO_IMAGE@
+TryExec=floaters
+StartupNotify=false
+Terminal=false
+Type=Application
+Categories=GNOME;Screensaver

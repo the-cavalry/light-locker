@@ -19,6 +19,7 @@ INCLUDES =							\
 themesdir = $(pkgdatadir)/themes
 themes_in_files = 			\
 	cosmos-slideshow.desktop.in	\
+	footlogo-floaters.desktop.in    \
 	personal-slideshow.desktop.in	\
 	popsquares.desktop.in		\
 	$(NULL)
@@ -53,8 +54,18 @@ libgs_theme_engine_a_SOURCES =		\
 
 saverdir = $(libexecdir)/gnome-screensaver
 saver_PROGRAMS = 	\
+	floaters	\
 	popsquares	\
 	slideshow	\
+	$(NULL)
+
+floaters_SOURCES =	\
+	floaters.c	\
+	$(NULL)
+
+floaters_LDADD =		       \
+	$(GNOME_SCREENSAVER_SAVER_LIBS) \
+	libgs-theme-engine.a		\
 	$(NULL)
 
 popsquares_SOURCES = 		\
@@ -90,6 +101,7 @@ MAINTAINERCLEANFILES =			\
 	*~				\
 	Makefile.in			\
 	cosmos-slideshow.desktop	\
+	footlogo-floaters.desktop	\
 	personal-slideshow.desktop	\
 	popsquares.desktop		\
 	$(NULL)
