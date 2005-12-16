@@ -206,10 +206,11 @@ listener_check_activation (GSListener *listener)
         guint n_inhibitors = 0;
 
         /* if we aren't inhibited then activate */
-        if (listener->priv->inhibitors)
+        if (listener->priv->inhibitors) {
                 n_inhibitors = g_hash_table_size (listener->priv->inhibitors);
 
-        g_hash_table_foreach (listener->priv->inhibitors, list_inhibitors, NULL);
+                g_hash_table_foreach (listener->priv->inhibitors, list_inhibitors, NULL);
+        }
 
         if (listener->priv->idle
             && n_inhibitors == 0) {

@@ -1,5 +1,10 @@
 2005-12-16  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-listener-dbus.c (listener_check_activation):
+	Only list inhibitors if they exist.
+
+2005-12-16  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c (disable_builtin_screensaver) 
 	(check_for_clock_skew, _gs_watcher_check_pointer_position):
 	Use variables to make more readable.
