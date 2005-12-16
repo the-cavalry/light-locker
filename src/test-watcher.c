@@ -29,6 +29,7 @@
 #include <gtk/gtk.h>
 
 #include "gs-watcher.h"
+#include "gs-debug.h"
 
 static gboolean
 watcher_idle_cb (GSWatcher *watcher,
@@ -59,7 +60,6 @@ test_watcher (void)
         watcher = gs_watcher_new (timeout);
         gs_watcher_set_enabled (watcher, TRUE);
         gs_watcher_set_active (watcher, TRUE);
-        g_object_set (watcher, "debug", TRUE, NULL);
 
         connect_watcher_signals (watcher);
 }
@@ -83,6 +83,8 @@ main (int    argc,
                 g_error_free (error);
                 exit (1);
         }
+
+        gs_debug_init (TRUE);
 
         test_watcher ();
 

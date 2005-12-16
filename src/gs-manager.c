@@ -31,8 +31,8 @@
 #include "gs-window.h"
 #include "gs-job.h"
 #include "gs-grab.h"
-
 #include "gs-fade.h"
+#include "gs-debug.h"
 
 static void gs_manager_class_init (GSManagerClass *klass);
 static void gs_manager_init       (GSManager      *manager);

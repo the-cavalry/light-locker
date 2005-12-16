@@ -30,6 +30,7 @@
 
 #include "gs-window.h"
 #include "gs-grab.h"
+#include "gs-debug.h"
 
 static void
 window_deactivated_cb (GSWindow  *window,
@@ -143,6 +144,8 @@ main (int    argc,
                 g_error_free (error);
                 exit (1);
         }
+
+        gs_debug_init (TRUE);
 
         test_window ();
 

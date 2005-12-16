@@ -1,3 +1,32 @@
+2005-12-16  William Jon McCann  <mccann@jhu.edu>
+
+	* src/test-watcher.c (main): 
+	* src/test-window.c (main): 
+	* src/test-fade.c (main): use gs-debug
+
+	* src/gs-watcher-x11.c (gs_watcher_set_property) 
+	(gs_watcher_get_property, gs_watcher_class_init) 
+	(notice_events_inner, notice_events, notice_events_timer) 
+	(remove_idle_timer, add_idle_timer, reset_timers) 
+	(_gs_watcher_notice_activity, _gs_watcher_notice_window_created) 
+	(_gs_watcher_set_active_internal, gs_watcher_set_active) 
+	(gs_watcher_init, init_sgi_saver_extension) 
+	(initialize_server_extensions):
+	Remove the debug object property and the verbose private
+	boolean.  Convert g_messages to gs_debugs.
+
+	* src/gs-window-x11.c: 
+	* src/gs-monitor.c: 
+	* src/gs-manager.c: Add gs-debug.h for
+	later use.
+
+	* src/gnome-screensaver.c (main): Add --debug
+	option.  Init debugging code.
+
+	* src/gs-debug.[ch]:
+	* src/Makefile.am: Add debugging code.  Based
+	on rb-debug.
+
 2005-12-16  Abel Cheung  <maddog@linuxhall.org>
 
 	* configure.ac: Added "nl" "vi" to ALL_LINGUAS.

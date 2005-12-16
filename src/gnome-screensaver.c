@@ -35,6 +35,7 @@
 
 #include "gnome-screensaver.h"
 #include "gs-monitor.h"
+#include "gs-debug.h"
 
 void
 gnome_screensaver_quit (void)
@@ -50,11 +51,11 @@ main (int    argc,
         GError             *error = NULL;
         static gboolean     show_version = FALSE;
         static gboolean     no_daemon    = FALSE;
+        static gboolean     debug        = FALSE;
         static GOptionEntry entries []   = {
-                { "version", 0, 0, G_OPTION_ARG_NONE, &show_version,
-                  N_("Version of this application"), NULL },
-                { "no-daemon", 0, 0, G_OPTION_ARG_NONE, &no_daemon,
-                  N_("Don't become a daemon"), NULL },
+                { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
+                { "no-daemon", 0, 0, G_OPTION_ARG_NONE, &no_daemon, N_("Don't become a daemon"), NULL },
+		{ "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { NULL }
         };
 
@@ -81,6 +82,9 @@ main (int    argc,
                 exit (1);
         }
 
+        gs_debug_init (debug);
+        gs_debug ("initializing gnome-screensaver %s", VERSION);
+
         monitor = gs_monitor_new ();
 
         if (! monitor)
@@ -104,6 +108,8 @@ main (int    argc,
         gtk_main ();
 
         g_object_unref (monitor);
+
+        gs_debug ("gnome-screensaver finished");
 
 	return 0;
 }

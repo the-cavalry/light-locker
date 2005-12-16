@@ -45,6 +45,7 @@
 #include "gnome-screensaver.h"
 #include "gs-watcher.h"
 #include "gs-marshal.h"
+#include "gs-debug.h"
 
 static void     gs_watcher_class_init (GSWatcherClass *klass);
 static void     gs_watcher_init       (GSWatcher      *watcher);
@@ -54,8 +55,7 @@ static void     initialize_server_extensions (GSWatcher *watcher);
 
 static gboolean check_pointer_timer          (GSWatcher      *watcher);
 static void     schedule_wakeup_event        (GSWatcher      *watcher,
-                                              int             when,
-                                              gboolean        verbose);
+                                              int             when);
 static gboolean watchdog_timer               (GSWatcher      *watcher);
 static gboolean idle_timer                   (GSWatcher      *watcher);
 
@@ -73,8 +73,6 @@ struct _PointerPosition
 struct GSWatcherPrivate
 {
         /* settings */
-        guint           verbose : 1;
-        guint           debug : 1;
         guint           enabled : 1;
         guint           timeout;
         guint           pointer_timeout;
@@ -165,17 +163,6 @@ gs_watcher_set_timeout (GSWatcher  *watcher,
 }
 
 static void
-_gs_watcher_set_debug (GSWatcher  *watcher,
-                       gboolean    enabled)
-{
-        g_return_if_fail (GS_IS_WATCHER (watcher));
-
-        if (watcher->priv->debug != enabled) {
-                watcher->priv->debug = enabled;
-        }
-}
-
-static void
 gs_watcher_set_property (GObject            *object,
                          guint               prop_id,
                          const GValue       *value,
@@ -188,9 +175,6 @@ gs_watcher_set_property (GObject            *object,
         switch (prop_id) {
         case PROP_TIMEOUT:
                 gs_watcher_set_timeout (self, g_value_get_uint (value));
-                break;
-        case PROP_DEBUG:
-                _gs_watcher_set_debug (self, g_value_get_boolean (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -211,9 +195,6 @@ gs_watcher_get_property (GObject            *object,
         switch (prop_id) {
         case PROP_TIMEOUT:
                 g_value_set_uint (value, self->priv->timeout);
-                break;
-        case PROP_DEBUG:
-                g_value_set_boolean (value, self->priv->debug);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -273,13 +254,6 @@ gs_watcher_class_init (GSWatcherClass *klass)
                                                             G_MAXUINT,
                                                             600000,
                                                             G_PARAM_READWRITE));
-        g_object_class_install_property (object_class,
-                                         PROP_DEBUG,
-                                         g_param_spec_boolean ("debug",
-                                                               NULL,
-                                                               NULL,
-                                                               FALSE,
-                                                               G_PARAM_READWRITE));
 
         g_type_class_add_private (klass, sizeof (GSWatcherPrivate));
 }
@@ -312,8 +286,7 @@ BadWindow_ehandler (Display     *dpy,
 static void
 notice_events_inner (Window   window,
                      gboolean enable,
-                     gboolean top,
-                     gboolean debug)
+                     gboolean top)
 {
         XWindowAttributes attrs;
         unsigned long     events;
@@ -388,18 +361,18 @@ notice_events_inner (Window   window,
 
         XSelectInput (GDK_DISPLAY (), window, events);
 
-        if (top && debug && (events & KeyPressMask)) {
+        if (top && (events & KeyPressMask)) {
                 /* Only mention one window per tree */
                 top = FALSE;
                 if (enable)
-                        g_message ("Adding events for 0x%lX", (unsigned long)window);
+                        gs_debug ("Adding events for 0x%lX", (unsigned long)window);
                 else
-                        g_message ("Removing events for 0x%lX", (unsigned long)window);
+                        gs_debug ("Removing events for 0x%lX", (unsigned long)window);
         }
 
         if (kids) {
                 while (nkids)
-                        notice_events_inner (kids [--nkids], enable, top, debug);
+                        notice_events_inner (kids [--nkids], enable, top);
 
                 XFree (kids);
         }
@@ -408,14 +381,13 @@ notice_events_inner (Window   window,
 static void
 notice_events (Window   window,
                gboolean enable,
-               gboolean top,
-               gboolean debug)
+               gboolean top)
 {
         XErrorHandler old_handler;
 
         old_handler = XSetErrorHandler (BadWindow_ehandler);
 
-        notice_events_inner (window, enable, top, debug);
+        notice_events_inner (window, enable, top);
         XSync (GDK_DISPLAY (), FALSE);
         XSetErrorHandler (old_handler);
 }
@@ -432,11 +404,10 @@ static gboolean
 notice_events_timer (NoticeTimerData *data)
 {
         gboolean is_top = TRUE;
-        gboolean debug  = data->watcher->priv->debug;
         gboolean enable = data->enable;
         Window   window = data->window;
 
-        notice_events (window, enable, is_top, debug);
+        notice_events (window, enable, is_top);
 
         return FALSE;
 }
@@ -496,11 +467,9 @@ static void
 remove_idle_timer (GSWatcher *watcher)
 {
         if (watcher->priv->timer_id != 0) {
-                if (watcher->priv->debug) {
-                        g_message ("killing idle_timer  (%u, %u)",
-                                   watcher->priv->timeout,
-                                   watcher->priv->timer_id);
-                }
+                gs_debug ("killing idle_timer  (%u, %u)",
+                          watcher->priv->timeout,
+                          watcher->priv->timer_id);
 
                 g_source_remove (watcher->priv->timer_id);
                 watcher->priv->timer_id = 0;
@@ -513,9 +482,7 @@ add_idle_timer (GSWatcher *watcher,
 {
         watcher->priv->timer_id = g_timeout_add (timeout, (GSourceFunc)idle_timer, watcher);
 
-        if (watcher->priv->debug) {
-                g_message ("starting idle_timer (%ld, %u)", timeout, watcher->priv->timer_id);
-        }
+        gs_debug ("starting idle_timer (%ld, %u)", timeout, watcher->priv->timer_id);
 }
 
 static void
@@ -547,7 +514,7 @@ reset_timers (GSWatcher *watcher)
 
         remove_idle_timer (watcher);
 
-        schedule_wakeup_event (watcher, watcher->priv->timeout, watcher->priv->debug);
+        schedule_wakeup_event (watcher, watcher->priv->timeout);
 
         watcher->priv->last_activity_time = time (NULL);
 }
@@ -560,15 +527,11 @@ _gs_watcher_notice_activity (GSWatcher *watcher)
                 return;
         }
 
-        if (watcher->priv->debug) {
-                g_message ("Activity detected: resetting timers");
-        }
+        gs_debug ("Activity detected: resetting timers");
 
         /* if an idle notice was sent, cancel it */
         if (watcher->priv->notice_sent) {
-                if (watcher->priv->debug) {
-                        g_message ("Cancelling idle notice");
-                }
+                gs_debug ("Cancelling idle notice");
 
                 g_signal_emit (watcher, signals [NOTICE_CANCELLED], 0);
                 watcher->priv->notice_sent = FALSE;
@@ -581,9 +544,7 @@ static void
 _gs_watcher_notice_window_created (GSWatcher *watcher,
                                    Window     window)
 {
-        if (watcher->priv->debug) {
-                g_message ("Window created: noticing activity on 0x%lX", (unsigned long)window);
-        }
+        gs_debug ("Window created: noticing activity on 0x%lX", (unsigned long)window);
 
         start_notice_events_timer (watcher, window);
 }
@@ -744,13 +705,11 @@ _gs_watcher_set_active_internal (GSWatcher *watcher,
         if (! active) {
                 watcher->priv->active = FALSE;
                 stop_idle_watcher (watcher);
-                if (watcher->priv->debug)
-                        g_message ("Stopping idle watcher");
+                gs_debug ("Stopping idle watcher");
         } else {
                 watcher->priv->active = TRUE;
                 start_idle_watcher (watcher);
-                if (watcher->priv->debug)
-                        g_message ("Starting idle watcher");
+                gs_debug ("Starting idle watcher");
         }
 
         return TRUE;
@@ -762,6 +721,8 @@ gs_watcher_set_active (GSWatcher *watcher,
                        gboolean   active)
 {
         g_return_val_if_fail (GS_IS_WATCHER (watcher), FALSE);
+
+        gs_debug ("turning watcher: %s", active ? "ON" : "OFF");
 
         if (watcher->priv->active == active) {
                 g_warning ("Idle detection is already %s",
@@ -819,9 +780,6 @@ gs_watcher_init (GSWatcher *watcher)
         watcher->priv->active = FALSE;
         watcher->priv->timeout = 600000;
         watcher->priv->pointer_timeout = 2000;
-
-        watcher->priv->verbose = FALSE;
-        watcher->priv->debug = FALSE;
 
         /* time before idle signal to send notice signal */
         watcher->priv->notice_timeout = 10000;
@@ -954,7 +912,8 @@ init_sgi_saver_extension (gboolean is_blank_active)
 
                 XScreenSaverDisable (GDK_DISPLAY (), XScreenNumberOfScreen (GDK_SCREEN_XSCREEN (screen)));
                 if (! XScreenSaverEnable (GDK_DISPLAY (), XScreenNumberOfScreen (GDK_SCREEN_XSCREEN (screen)))) {
-                        g_message ("%SGI SCREEN_SAVER extension exists, but can't be initialized;\n"
+
+                        g_warning ("%SGI SCREEN_SAVER extension exists, but can't be initialized;\n"
                                    "perhaps some other screensaver program is already running?");
 
                         return FALSE;
@@ -1011,38 +970,41 @@ initialize_server_extensions (GSWatcher *watcher)
                                                                     &watcher->priv->mit_saver_ext_error_number);
 #endif
 
-        if (! server_has_xidle_extension)
+        if (! server_has_xidle_extension) {
                 watcher->priv->using_xidle_extension = FALSE;
-        else if (watcher->priv->verbose) {
-                if (watcher->priv->using_xidle_extension)
-                        g_message ("Using XIDLE extension.");
-                else
-                        g_message ("Not using server's XIDLE extension.");
+        } else {
+                if (watcher->priv->using_xidle_extension) {
+                        gs_debug ("Using XIDLE extension.");
+                } else {
+                        gs_debug ("Not using server's XIDLE extension.");
                 }
-
-        if (! server_has_sgi_saver_extension)
-                watcher->priv->using_sgi_saver_extension = FALSE;
-        else if (watcher->priv->verbose) {
-                if (watcher->priv->using_sgi_saver_extension)
-                        g_message ("Using SGI SCREEN_SAVER extension.");
-                else
-                        g_message ("Not using server's SGI SCREEN_SAVER extension.");
         }
 
-        if (! server_has_mit_saver_extension)
+        if (! server_has_sgi_saver_extension) {
+                watcher->priv->using_sgi_saver_extension = FALSE;
+        } else {
+                if (watcher->priv->using_sgi_saver_extension) {
+                        gs_debug ("Using SGI SCREEN_SAVER extension.");
+                } else {
+                        gs_debug ("Not using server's SGI SCREEN_SAVER extension.");
+                }
+        }
+
+        if (! server_has_mit_saver_extension) {
                 watcher->priv->using_mit_saver_extension = FALSE;
-        else if (watcher->priv->verbose) {
-                if (watcher->priv->using_mit_saver_extension)
-                        g_message ("Using MIT-SCREEN-SAVER extension.");
-                else
-                        g_message ("Not using server's MIT-SCREEN-SAVER extension.");
+        } else {
+                if (watcher->priv->using_mit_saver_extension) {
+                        gs_debug ("Using MIT-SCREEN-SAVER extension.");
+                } else {
+                        gs_debug ("Not using server's MIT-SCREEN-SAVER extension.");
+                }
         }
 
         /* These are incompatible (or at least, our support for them is...) */
         if (watcher->priv->xinerama && watcher->priv->using_mit_saver_extension) {
                 watcher->priv->using_mit_saver_extension = FALSE;
-                if (watcher->priv->verbose)
-                        g_message ("Xinerama in use: disabling MIT-SCREEN-SAVER.");
+
+                gs_debug ("Xinerama in use: disabling MIT-SCREEN-SAVER.");
         }
 }
 
@@ -1111,12 +1073,11 @@ disable_builtin_screensaver (GSWatcher *watcher,
             || desired_prefer_blank    != current_prefer_blank
             || desired_allow_exp       != current_allow_exp) {
  
-               if (watcher->priv->verbose)
-                        g_message ("disabling server builtin screensaver:"
-                                   " (xset s %d %d; xset s %s; xset s %s)",
-                                   desired_server_timeout, desired_server_interval,
-                                   (desired_prefer_blank ? "blank" : "noblank"),
-                                   (desired_allow_exp ? "expose" : "noexpose"));
+                gs_debug ("disabling server builtin screensaver:"
+                          " (xset s %d %d; xset s %s; xset s %s)",
+                          desired_server_timeout, desired_server_interval,
+                          (desired_prefer_blank ? "blank" : "noblank"),
+                          (desired_allow_exp ? "expose" : "noexpose"));
 
                 XSetScreenSaver (GDK_DISPLAY (),
                                  desired_server_timeout, desired_server_interval,
@@ -1194,7 +1155,7 @@ maybe_send_signal (GSWatcher *watcher)
                                 do_notice_signal = TRUE;
                         }
 
-                        schedule_wakeup_event (watcher, time_left, watcher->priv->debug);
+                        schedule_wakeup_event (watcher, time_left);
                 }
 
                 do_idle_signal = FALSE;
@@ -1203,9 +1164,7 @@ maybe_send_signal (GSWatcher *watcher)
         if (do_notice_signal && ! watcher->priv->notice_sent) {
 		gboolean res = FALSE;
 
-                if (watcher->priv->debug) {
-                        g_message ("Sending idle notice");
-                }
+                gs_debug ("Sending idle notice");
 
                 g_signal_emit (watcher, signals [IDLE_NOTICE], 0, 0, &res);
                 watcher->priv->notice_sent = res;
@@ -1224,7 +1183,7 @@ maybe_send_signal (GSWatcher *watcher)
                         g_warning ("Idle signal was not handled, restarting watcher");
 
                         if (polling_for_idleness) {
-                                schedule_wakeup_event (watcher, watcher->priv->timeout, watcher->priv->debug);
+                                schedule_wakeup_event (watcher, watcher->priv->timeout);
                         }
                 }
         }
@@ -1233,6 +1192,8 @@ maybe_send_signal (GSWatcher *watcher)
 static gboolean
 idle_timer (GSWatcher *watcher)
 {
+        gs_debug ("in idle timer");
+
         /* try one last time */
         check_pointer_timer (watcher);
 
@@ -1245,8 +1206,7 @@ idle_timer (GSWatcher *watcher)
 
 static void
 schedule_wakeup_event (GSWatcher *watcher,
-                       int        when,
-                       gboolean   verbose)
+                       int        when)
 {
         guint timeout;
 
@@ -1288,17 +1248,14 @@ check_for_clock_skew (GSWatcher *watcher)
 {
         time_t now = time ((time_t *) 0);
         long shift = now - watcher->priv->last_wall_clock_time;
+        int i = (watcher->priv->last_wall_clock_time == 0 ? 0 : shift);
 
-        if (watcher->priv->debug) {
-                int i = (watcher->priv->last_wall_clock_time == 0 ? 0 : shift);
-                g_message ("checking wall clock for hibernation (%d:%02d:%02d).",
-                           (i / (60 * 60)), ((i / 60) % 60), (i % 60));
-        }
+        gs_debug ("checking wall clock for hibernation (%d:%02d:%02d).",
+                  (i / (60 * 60)), ((i / 60) % 60), (i % 60));
 
         if (watcher->priv->last_wall_clock_time != 0 && shift > (watcher->priv->timeout / 1000)) {
-                if (watcher->priv->verbose)
-                        g_message ("wall clock has jumped by %ld:%02ld:%02ld!",
-                                   (shift / (60 * 60)), ((shift / 60) % 60), (shift % 60));
+                gs_debug ("wall clock has jumped by %ld:%02ld:%02ld!",
+                          (shift / (60 * 60)), ((shift / 60) % 60), (shift % 60));
 
                 watcher->priv->emergency_lock = TRUE;
                 maybe_send_signal (watcher);
@@ -1361,8 +1318,7 @@ _gs_watcher_check_pointer_position (GSWatcher *watcher)
                 _gs_watcher_notice_activity (watcher);
         }
 
-        if (watcher->priv->debug)
-                g_message ("Idle %d seconds", (int)(time (NULL) - watcher->priv->last_activity_time));
+        gs_debug ("Idle %d seconds", (int)(time (NULL) - watcher->priv->last_activity_time));
 
         check_for_clock_skew (watcher);
 }

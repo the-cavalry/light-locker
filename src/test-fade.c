@@ -36,6 +36,7 @@
 #include <gtk/gtk.h>
 
 #include "gs-fade.h"
+#include "gs-debug.h"
 
 #ifdef HAVE_XF86VMODE_GAMMA
 # include <X11/extensions/xf86vmode.h>
@@ -110,6 +111,8 @@ main (int    argc,
                 g_message ("no support for display's " XF86_VIDMODE_NAME " extension");
 # endif /* !HAVE_XF86VMODE_GAMMA */
         }
+
+        gs_debug_init (TRUE);
 
         test_fade ();
 

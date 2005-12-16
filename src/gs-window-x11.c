@@ -33,6 +33,7 @@
 
 #include "gs-window.h"
 #include "subprocs.h"
+#include "gs-debug.h"
 
 static void gs_window_class_init (GSWindowClass *klass);
 static void gs_window_init       (GSWindow      *window);

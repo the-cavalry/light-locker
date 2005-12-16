@@ -76,6 +76,8 @@ test_fade_SOURCES = 			\
 	test-fade.c 			\
 	gs-fade.c	 		\
 	gs-fade.h	 		\
+	gs-debug.c			\
+	gs-debug.h			\
 	$(NULL)
 
 test_fade_LDADD =			\
@@ -103,6 +105,8 @@ test_watcher_SOURCES =			\
 	gs-watcher-x11.c		\
 	gs-marshal.c 			\
 	gs-marshal.h			\
+	gs-debug.c			\
+	gs-debug.h			\
 	$(NULL)
 
 test_watcher_LDADD =			\
@@ -116,6 +120,8 @@ test_window_SOURCES =			\
 	gs-window-x11.c			\
 	gs-grab-x11.c			\
 	gs-grab.h			\
+	gs-debug.c			\
+	gs-debug.h			\
 	subprocs.c			\
 	subprocs.h			\
 	$(NULL)
@@ -177,6 +183,8 @@ gnome_screensaver_SOURCES =	\
 	gs-prefs.h		\
 	gs-job.c		\
 	gs-job.h		\
+	gs-debug.c		\
+	gs-debug.h		\
 	subprocs.c		\
 	subprocs.h		\
 	gs-grab-x11.c		\
