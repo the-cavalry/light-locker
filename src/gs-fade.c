@@ -38,6 +38,7 @@
 #include <gtk/gtk.h>
 
 #include "gs-fade.h"
+#include "gs-debug.h"
 
 /* XFree86 4.x+ Gamma fading */
 
@@ -494,7 +495,7 @@ gs_fade_set_active (GSFade  *fade,
 {
         g_return_val_if_fail (GS_IS_FADE (fade), FALSE);
 
-        /*g_message ("Setting fade: %s", (active ? "ON" : "OFF"));*/
+        gs_debug ("Setting fade: %s", (active ? "ON" : "OFF"));
 
         if (fade->priv->fade_type == FADE_TYPE_NONE) {
                 return FALSE;

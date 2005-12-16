@@ -44,6 +44,7 @@
 #endif
 
 #include "gs-power.h"
+#include "gs-debug.h"
 
 static void     gs_power_class_init (GSPowerClass *klass);
 static void     gs_power_init       (GSPower      *power);
@@ -53,8 +54,6 @@ static void     gs_power_finalize   (GObject        *object);
 
 struct GSPowerPrivate
 {
-        gboolean       verbose;
-
         gboolean       enabled;
         gboolean       active;
 
@@ -89,8 +88,7 @@ x11_sync_server_dpms_settings (Display *dpy,
                                gboolean enabled,
                                int      standby_secs,
                                int      suspend_secs,
-                               int      off_secs,
-                               gboolean verbose)
+                               int      off_secs)
 {
 #ifdef HAVE_DPMS_EXTENSION
 
@@ -114,43 +112,42 @@ x11_sync_server_dpms_settings (Display *dpy,
                 enabled = FALSE;
 
         if (! DPMSQueryExtension (dpy, &event, &error)) {
-                if (verbose)
-                        g_message ("XDPMS extension not supported.");
+                gs_debug ("XDPMS extension not supported.");
+
                 return;
         }
 
         if (! DPMSCapable (dpy)) {
-                if (verbose)
-                        g_message ("DPMS not supported.");
+                gs_debug ("DPMS not supported.");
+
                 return;
         }
 
         if (! DPMSInfo (dpy, &o_power, &o_enabled)) {
-                if (verbose)
-                        g_message ("unable to get DPMS state.");
+                gs_debug ("unable to get DPMS state.");
+
                 return;
         }
 
         if (o_enabled != enabled) {
                 if (! (enabled ? DPMSEnable (dpy) : DPMSDisable (dpy))) {
-                        if (verbose)
-                                g_message ("unable to set DPMS state.");
+                        gs_debug ("unable to set DPMS state.");
+
                         return;
+                } else {
+                        gs_debug ("turned DPMS %s", enabled ? "ON" : "OFF");
                 }
-                else if (verbose)
-                        g_message ("turned DPMS %s.", enabled ? "on" : "off");
         }
 
         if (bogus) {
-                if (verbose)
-                        g_message ("not setting bogus DPMS timeouts: %d %d %d.",
-                                   standby_secs, suspend_secs, off_secs);
+                gs_debug ("not setting bogus DPMS timeouts: %d %d %d.",
+                          standby_secs, suspend_secs, off_secs);
                 return;
         }
 
         if (! DPMSGetTimeouts (dpy, &o_standby, &o_suspend, &o_off)) {
-                if (verbose)
-                        g_message ("unable to get DPMS timeouts.");
+                gs_debug ("unable to get DPMS timeouts.");
+
                 return;
         }
 
@@ -158,19 +155,18 @@ x11_sync_server_dpms_settings (Display *dpy,
             o_suspend != suspend_secs ||
             o_off != off_secs) {
                 if (! DPMSSetTimeouts (dpy, standby_secs, suspend_secs, off_secs)) {
-                        if (verbose)
-                                g_message ("unable to set DPMS timeouts.");
+                        gs_debug ("unable to set DPMS timeouts.");
+
                         return;
+                } else {
+                        gs_debug ("set DPMS timeouts: %d %d %d.", 
+                                  standby_secs, suspend_secs, off_secs);
                 }
-                else if (verbose)
-                        g_message ("set DPMS timeouts: %d %d %d.", 
-                                   standby_secs, suspend_secs, off_secs);
         }
 
 # else  /* !HAVE_DPMS_EXTENSION */
 
-        if (verbose)
-                g_message ("DPMS support not compiled in.");
+        gs_debug ("DPMS support not compiled in.");
 
 # endif /* HAVE_DPMS_EXTENSION */
 }
@@ -289,8 +285,7 @@ sync_settings (GSPower *power)
                                        permitted,
                                        power->priv->standby_timeout / 1000,
                                        power->priv->suspend_timeout / 1000,
-                                       power->priv->off_timeout / 1000,
-                                       power->priv->verbose);
+                                       power->priv->off_timeout / 1000);
 }
 
 gboolean
@@ -467,9 +462,6 @@ static void
 gs_power_init (GSPower *power)
 {
         power->priv = GS_POWER_GET_PRIVATE (power);
-
-        /* FIXME: for testing */
-        power->priv->verbose = TRUE;
 
         add_poll_timer (power, 500);
 }

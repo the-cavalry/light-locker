@@ -1,5 +1,18 @@
 2005-12-16  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-power-x11.c (x11_sync_server_dpms_settings) 
+	(sync_settings, gs_power_init): 
+	* src/gs-listener-dbus.c (list_inhibitors): 
+	* src/gs-grab-x11.c (gs_grab_get_keyboard, gs_grab_get_mouse) 
+	(gs_grab_release_keyboard, gs_grab_release_mouse) 
+	(gs_grab_nuke_focus): 
+	* src/gs-fade.c (gs_fade_set_active): Use gs-debug.
+
+	* src/Makefile.am (gnome_screensaver_dialog_SOURCES): Remove
+	gs-grab from dialog sources.
+
+2005-12-16  William Jon McCann  <mccann@jhu.edu>
+
 	* src/test-watcher.c (main): 
 	* src/test-window.c (main): 
 	* src/test-fade.c (main): use gs-debug

@@ -30,6 +30,7 @@
 
 #include "gs-window.h"
 #include "gs-grab.h"
+#include "gs-debug.h"
 
 gboolean   mouse_hide_cursor = FALSE;
 GdkWindow *mouse_grab_window = NULL;
@@ -105,7 +106,7 @@ gs_grab_get_keyboard (GdkWindow *window,
         g_return_val_if_fail (window != NULL, FALSE);
         g_return_val_if_fail (screen != NULL, FALSE);
 
-        /*g_message ("Grabbing keyboard widget=%X", (guint32) GDK_WINDOW_XID (window));*/
+        gs_debug ("Grabbing keyboard widget=%X", (guint32) GDK_WINDOW_XID (window));
         status = gdk_keyboard_grab (window, FALSE, GDK_CURRENT_TIME);
 
         if (status == GDK_GRAB_SUCCESS) {
@@ -113,8 +114,9 @@ gs_grab_get_keyboard (GdkWindow *window,
                 keyboard_grab_screen = screen;
         }
 
-        if (status != GDK_GRAB_SUCCESS)
+        if (status != GDK_GRAB_SUCCESS) {
                 g_warning ("Couldn't grab keyboard!  (%s)", grab_string (status));
+        }
 
         return status;
 }
@@ -130,7 +132,7 @@ gs_grab_get_mouse (GdkWindow *window,
         g_return_val_if_fail (window != NULL, FALSE);
         g_return_val_if_fail (screen != NULL, FALSE);
 
-        /*g_message ("Grabbing mouse widget=%X", (guint32) GDK_WINDOW_XID (window));*/
+        gs_debug ("Grabbing mouse widget=%X", (guint32) GDK_WINDOW_XID (window));
         status = gdk_pointer_grab (window, TRUE, 0, NULL,
                                    (hide_cursor ? cursor : NULL),
                                    GDK_CURRENT_TIME);
@@ -149,7 +151,7 @@ gs_grab_get_mouse (GdkWindow *window,
 static gboolean
 gs_grab_release_keyboard (void)
 {
-        /*g_message ("Ungrabbing keyboard");*/
+        gs_debug ("Ungrabbing keyboard");
         gdk_keyboard_ungrab (GDK_CURRENT_TIME);
 
         keyboard_grab_window = NULL;
@@ -161,7 +163,7 @@ gs_grab_release_keyboard (void)
 static gboolean
 gs_grab_release_mouse (void)
 {
-        /*g_message ("Ungrabbing pointer");*/
+        gs_debug ("Ungrabbing pointer");
         gdk_pointer_ungrab (GDK_CURRENT_TIME);
 
         mouse_grab_window = NULL;
@@ -249,7 +251,8 @@ gs_grab_nuke_focus (void)
 {
         Window focus = 0;
         int    rev = 0;
-        /*g_message ("NUKING FOCUS");*/
+
+        gs_debug ("Nuking focus");
 
         gdk_error_trap_push ();
 

@@ -35,6 +35,7 @@
 
 #include "gs-listener-dbus.h"
 #include "gs-marshal.h"
+#include "gs-debug.h"
 
 /* this is for dbus < 0.3 */
 #if ((DBUS_VERSION_MAJOR == 0) && (DBUS_VERSION_MINOR < 30))
@@ -191,15 +192,13 @@ gs_listener_send_signal_throttle_enabled_changed (GSListener *listener)
         dbus_message_unref (message);
 }
 
-#ifdef DEBUG_INHIBITORS
 static void
 list_inhibitors (gpointer key,
                  gpointer value,
                  gpointer user_data)
 {
-        g_message ("Inhibited by bus %s for reason: %s", (char *)key, (char *)value);
+        gs_debug ("Inhibited by bus %s for reason: %s", (char *)key, (char *)value);
 }
-#endif
 
 static void
 listener_check_activation (GSListener *listener)
@@ -210,9 +209,7 @@ listener_check_activation (GSListener *listener)
         if (listener->priv->inhibitors)
                 n_inhibitors = g_hash_table_size (listener->priv->inhibitors);
 
-#ifdef DEBUG_INHIBITORS
         g_hash_table_foreach (listener->priv->inhibitors, list_inhibitors, NULL);
-#endif
 
         if (listener->priv->idle
             && n_inhibitors == 0) {
