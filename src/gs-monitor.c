@@ -278,6 +278,8 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
 {
         gboolean idle_detection_enabled;
         gboolean idle_detection_active;
+        gboolean activate_watch;
+        gboolean manager_active;
 
         gs_manager_set_lock_enabled (monitor->priv->manager, monitor->priv->prefs->lock_enabled);
         gs_manager_set_lock_timeout (monitor->priv->manager, monitor->priv->prefs->lock_timeout);
@@ -295,10 +297,13 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
 
         /* in the case where idle detection is reenabled we may need to
            activate the watcher too */
+
+        manager_active = gs_manager_is_active (monitor->priv->manager);
         idle_detection_active = gs_watcher_get_active (monitor->priv->watcher);
-        if (! gs_manager_is_active (monitor->priv->manager)
-            && ! idle_detection_active
-            && idle_detection_enabled) {
+        activate_watch = (! manager_active
+                          && ! idle_detection_active
+                          && idle_detection_enabled);
+        if (activate_watch) {
                 gs_watcher_set_active (monitor->priv->watcher, TRUE);
         }
 

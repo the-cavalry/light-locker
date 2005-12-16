@@ -494,8 +494,11 @@ gs_fade_set_active (GSFade  *fade,
 {
         g_return_val_if_fail (GS_IS_FADE (fade), FALSE);
 
-        if (fade->priv->fade_type == FADE_TYPE_NONE)
+        /*g_message ("Setting fade: %s", (active ? "ON" : "OFF"));*/
+
+        if (fade->priv->fade_type == FADE_TYPE_NONE) {
                 return FALSE;
+        }
 
         if (fade->priv->active != active) {
                 fade->priv->active = active;

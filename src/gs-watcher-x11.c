@@ -737,6 +737,26 @@ gs_watcher_get_active (GSWatcher *watcher)
         return active;
 }
 
+static gboolean
+_gs_watcher_set_active_internal (GSWatcher *watcher,
+                                 gboolean   active)
+{
+        if (! active) {
+                watcher->priv->active = FALSE;
+                stop_idle_watcher (watcher);
+                if (watcher->priv->debug)
+                        g_message ("Stopping idle watcher");
+        } else {
+                watcher->priv->active = TRUE;
+                start_idle_watcher (watcher);
+                if (watcher->priv->debug)
+                        g_message ("Starting idle watcher");
+        }
+
+        return TRUE;
+}
+
+
 gboolean
 gs_watcher_set_active (GSWatcher *watcher,
                        gboolean   active)
@@ -754,19 +774,7 @@ gs_watcher_set_active (GSWatcher *watcher,
                 return FALSE;
         }
 
-        if (! active) {
-                watcher->priv->active = FALSE;
-                stop_idle_watcher (watcher);
-                if (watcher->priv->debug)
-                        g_message ("Stopping idle watcher");
-        } else {
-                watcher->priv->active = TRUE;
-                start_idle_watcher (watcher);
-                if (watcher->priv->debug)
-                        g_message ("Starting idle watcher");
-        }
-
-        return TRUE;
+        return _gs_watcher_set_active_internal (watcher, active);
 }
 
 gboolean
@@ -779,11 +787,11 @@ gs_watcher_set_enabled (GSWatcher *watcher,
                 gboolean is_active = gs_watcher_get_active (watcher);
 
                 watcher->priv->enabled = enabled;
-                g_message ("Enabling watcher");
+
                 /* if we are disabling the watcher and we are
                    active shut it down */
                 if (! enabled && is_active) {
-                        gs_watcher_set_active (watcher, FALSE);
+                        _gs_watcher_set_active_internal (watcher, FALSE);
                 }
         }
 
@@ -1155,6 +1163,11 @@ maybe_send_signal (GSWatcher *watcher)
         gboolean do_idle_signal = FALSE;
         gboolean do_notice_signal = FALSE;
 
+        if (! watcher->priv->active) {
+                g_warning ("Checking for idleness but watcher is inactive");
+                return;
+        }
+
         idle = 1000 * (time (NULL) - watcher->priv->last_activity_time);
 
         if (idle >= watcher->priv->timeout) {
@@ -1173,30 +1186,29 @@ maybe_send_signal (GSWatcher *watcher)
                 */
 
                 if (polling_for_idleness) {
-                        guint timeout;
+                        guint time_left;
 
-                        timeout = watcher->priv->timeout - idle;
+                        time_left = watcher->priv->timeout - idle;
 
-                        if (timeout >= watcher->priv->notice_timeout) {
+                        if (time_left <= watcher->priv->notice_timeout) {
                                 do_notice_signal = TRUE;
                         }
 
-                        schedule_wakeup_event (watcher, timeout, watcher->priv->debug);
+                        schedule_wakeup_event (watcher, time_left, watcher->priv->debug);
                 }
 
                 do_idle_signal = FALSE;
         }
 
-        if (do_notice_signal
-            && ! watcher->priv->notice_sent) {
+        if (do_notice_signal && ! watcher->priv->notice_sent) {
 		gboolean res = FALSE;
 
                 if (watcher->priv->debug) {
                         g_message ("Sending idle notice");
                 }
 
-                watcher->priv->notice_sent = TRUE;
                 g_signal_emit (watcher, signals [IDLE_NOTICE], 0, 0, &res);
+                watcher->priv->notice_sent = res;
         }
 
         if (do_idle_signal) {
@@ -1204,7 +1216,8 @@ maybe_send_signal (GSWatcher *watcher)
 
                 g_signal_emit (watcher, signals [IDLE], 0, 0, &res);
 
-                watcher->priv->notice_sent = FALSE;
+                /* if the idle signal is handled then unset notice sent */
+                watcher->priv->notice_sent = (!res);
 
                 /* if the event wasn't handled then schedule another timer */
                 if (! res) {
@@ -1238,8 +1251,7 @@ schedule_wakeup_event (GSWatcher *watcher,
         guint timeout;
 
         if (watcher->priv->timer_id) {
-                if (verbose)
-                        g_message ("idle_timer already running");
+                g_warning ("idle_timer already running");
                 return;
         }
         

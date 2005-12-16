@@ -305,7 +305,6 @@ select_theme (GSManager *manager)
                 return NULL;
 
         if (manager->priv->saver_mode == GS_MODE_DONT_BLANK) {
-                g_warning ("Selecting no screensaver theme since screensaver is disabled.");
                 return NULL;
         }
 

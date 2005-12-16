@@ -1,3 +1,28 @@
+2005-12-15  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-watcher-x11.c (_gs_watcher_set_active_internal):
+	New function that bypasses the safety checks that
+	were in gs_watcher_set_active.  One of those safety
+	checks causes the function to fail if the watcher
+	isn't "enabled".  This is a problem since set_enabled(FALSE)
+	needs to set_active(FALSE).
+	(gs_watcher_set_active): Use _set_active_internal.
+	(gs_watcher_set_enabled): Removed g_message.
+	Use _set_active_internal.
+	(maybe_send_signal): Add a safety check that fails
+	if already active.  Correct the sense of the logic
+	used for the idle notification signal.  Only set
+	notice_sent if the signal was handled.
+
+	* src/gs-monitor.c (_gs_monitor_update_from_prefs):
+	Use booleans to simplify condition in an if.
+
+	* src/gs-manager.c (select_theme): Remove a warning
+	that isn't really a warning.
+
+	* src/gs-fade.c (gs_fade_set_active):
+	Added commented out debug thingy.
+
 2005-12-14  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/footlogo-floaters.desktop.in.in: 
