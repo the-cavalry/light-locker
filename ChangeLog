@@ -1,5 +1,11 @@
 2005-12-16  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c (disable_builtin_screensaver) 
+	(check_for_clock_skew, _gs_watcher_check_pointer_position):
+	Use variables to make more readable.
+
+2005-12-16  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-power-x11.c (x11_sync_server_dpms_settings) 
 	(sync_settings, gs_power_init): 
 	* src/gs-listener-dbus.c (list_inhibitors): 

@@ -1021,8 +1021,11 @@ disable_builtin_screensaver (GSWatcher *watcher,
         int desired_server_timeout, desired_server_interval;
         int desired_prefer_blank,   desired_allow_exp;
 
-        XGetScreenSaver (GDK_DISPLAY (), &current_server_timeout, &current_server_interval,
-                         &current_prefer_blank, &current_allow_exp);
+        XGetScreenSaver (GDK_DISPLAY (),
+                         &current_server_timeout,
+                         &current_server_interval,
+                         &current_prefer_blank,
+                         &current_allow_exp);
 
         desired_server_timeout  = current_server_timeout;
         desired_server_interval = current_server_interval;
@@ -1075,13 +1078,16 @@ disable_builtin_screensaver (GSWatcher *watcher,
  
                 gs_debug ("disabling server builtin screensaver:"
                           " (xset s %d %d; xset s %s; xset s %s)",
-                          desired_server_timeout, desired_server_interval,
+                          desired_server_timeout,
+                          desired_server_interval,
                           (desired_prefer_blank ? "blank" : "noblank"),
                           (desired_allow_exp ? "expose" : "noexpose"));
 
                 XSetScreenSaver (GDK_DISPLAY (),
-                                 desired_server_timeout, desired_server_interval,
-                                 desired_prefer_blank, desired_allow_exp);
+                                 desired_server_timeout,
+                                 desired_server_interval,
+                                 desired_prefer_blank,
+                                 desired_allow_exp);
 
                 XSync (GDK_DISPLAY (), FALSE);
         }
@@ -1246,16 +1252,36 @@ schedule_wakeup_event (GSWatcher *watcher,
 static void
 check_for_clock_skew (GSWatcher *watcher)
 {
-        time_t now = time ((time_t *) 0);
-        long shift = now - watcher->priv->last_wall_clock_time;
-        int i = (watcher->priv->last_wall_clock_time == 0 ? 0 : shift);
+        time_t now;
+        gint64 shift;
+        gint64 i;
+        gint64 i_h;
+        gint64 i_m;
+        gint64 i_s;
 
-        gs_debug ("checking wall clock for hibernation (%d:%02d:%02d).",
-                  (i / (60 * 60)), ((i / 60) % 60), (i % 60));
+        now   = time (NULL);
+        shift = now - watcher->priv->last_wall_clock_time;
+        i     = (watcher->priv->last_wall_clock_time == 0 ? 0 : shift);
 
-        if (watcher->priv->last_wall_clock_time != 0 && shift > (watcher->priv->timeout / 1000)) {
-                gs_debug ("wall clock has jumped by %ld:%02ld:%02ld!",
-                          (shift / (60 * 60)), ((shift / 60) % 60), (shift % 60));
+        i_h = i / (60 * 60);
+        i_m = (i / 60) % 60;
+        i_s = i % 60;
+        gs_debug ("checking wall clock for hibernation, changed: %" G_GINT64_FORMAT ":%02" G_GINT64_FORMAT ":%02" G_GINT64_FORMAT,
+                  i_h, i_m, i_s);
+
+
+        if (watcher->priv->last_wall_clock_time != 0
+            && shift > (watcher->priv->timeout / 1000)) {
+                gint64 s_h;
+                gint64 s_m;
+                gint64 s_s;
+
+                s_h = shift / (60 * 60);
+                s_m = (shift / 60) % 60;
+                s_s = shift % 60;
+
+                gs_debug ("wall clock has jumped by %" G_GINT64_FORMAT ":%02" G_GINT64_FORMAT ":%02" G_GINT64_FORMAT,
+                          s_h, s_m, s_s);
 
                 watcher->priv->emergency_lock = TRUE;
                 maybe_send_signal (watcher);
@@ -1307,6 +1333,7 @@ _gs_watcher_check_pointer_position (GSWatcher *watcher)
 {
         PointerPosition *pos;
         gboolean         changed;
+        gint64           idle_time;
 
         pos = _gs_watcher_pointer_position_read (watcher);
 
@@ -1318,7 +1345,8 @@ _gs_watcher_check_pointer_position (GSWatcher *watcher)
                 _gs_watcher_notice_activity (watcher);
         }
 
-        gs_debug ("Idle %d seconds", (int)(time (NULL) - watcher->priv->last_activity_time));
+        idle_time = (time (NULL) - watcher->priv->last_activity_time);
+        gs_debug ("Idle %" G_GINT64_FORMAT " seconds", idle_time);
 
         check_for_clock_skew (watcher);
 }
