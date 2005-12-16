@@ -1,3 +1,7 @@
+2005-12-16  Abel Cheung  <maddog@linuxhall.org>
+
+	* configure.ac: Added "nl" "vi" to ALL_LINGUAS.
+
 2005-12-15  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-watcher-x11.c (_gs_watcher_set_active_internal):
