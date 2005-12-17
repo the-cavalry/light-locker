@@ -1,5 +1,12 @@
 2005-12-17  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-power-x11.c (x11_set_mode):
+	Fix build when DPMS is disabled.
+
+	Fixes #324348.
+
+2005-12-17  William Jon McCann  <mccann@jhu.edu>
+
 	* TODO: Fix typo.
 
 	* src/gs-monitor.c (watcher_idle_cb):

@@ -259,8 +259,8 @@ x11_get_mode (GSPower *power)
 }
 
 static void
-x11_set_mode (GSPower     *power,
-              GSPowerMode *mode)
+x11_set_mode (GSPower    *power,
+              GSPowerMode mode)
 {
         return; 
 }
