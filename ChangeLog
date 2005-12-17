@@ -1,3 +1,10 @@
+2005-12-17  William Jon McCann  <mccann@jhu.edu>
+
+	* TODO: Fix typo.
+
+	* src/gs-monitor.c (watcher_idle_cb):
+	Stop fade after going idle instead of before.
+
 2005-12-16  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-listener-dbus.c (listener_check_activation):

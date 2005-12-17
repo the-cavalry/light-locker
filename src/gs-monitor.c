@@ -101,11 +101,11 @@ watcher_idle_cb (GSWatcher *watcher,
 
         fade_active = gs_fade_get_active (monitor->priv->fade);
 
+        res = gs_listener_set_idle (monitor->priv->listener, TRUE);
+
         if (fade_active) {
                 gs_fade_set_active (monitor->priv->fade, FALSE);
         }
-
-        res = gs_listener_set_idle (monitor->priv->listener, TRUE);
 
         return res;
 }
