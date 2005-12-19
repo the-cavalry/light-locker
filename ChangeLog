@@ -1,3 +1,7 @@
+2005-12-19  Ankit Patel  <ankit644@yahoo.com>
+
+        * configure.ac: Added "gu" to ALL_LINGUAS.
+
 2005-12-18  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (get_face_image): 

@@ -1,0 +1,755 @@
+# translation of gnome-screensaver.HEAD.po to Gujarati
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# Ankit Patel <ankit644@yahoo.com>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver.HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-12-19 06:22+0100\n"
+"PO-Revision-Date: 2005-12-19 17:24+0530\n"
+"Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
+"Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"X-Generator: KBabel 1.9.1\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "સ્ક્રીનસેવર"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "તમારી સ્ક્રીનસેવર પસંદગીઓ સુયોજિત કરો"
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "    "
+msgstr "    "
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>_Screensaver</b>"
+msgstr "<b>સ્ક્રીનસેવર (_S)</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Screensaver Preferences"
+msgstr "સ્ક્રીનસેવર પસંદગીઓ"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "_Activate after:"
+msgstr "આના પછી સક્રિય કરો (_A):"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "_Lock screen when active"
+msgstr "જ્યારે સક્રિય હોય ત્યારે સ્ક્રીનને તાળું મારો (_L)"
+
+#: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Screensaver themes"
+msgstr "સ્ક્રીનસેવર થીમો"
+
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "સ્ક્રીનસેવરો"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Allow logout"
+msgstr "બહાર નીકળવાની પરવાનગી આપો"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow monitor power management"
+msgstr "પાવર મેનેજમેન્ટ મોનીટર કરવાની પરવાનગી આપો"
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "Allow user switching"
+msgstr "વપરાશકર્તા બદલવાની પરવાનગી આપો"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Lock on activation"
+msgstr "સક્રિયકરણ પર તાળું મારો"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Logout command"
+msgstr "બહાર નીકળો આદેશ"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "Screensaver selection mode"
+msgstr "સ્ક્રીનસેવર પસંદગી સ્થિતિ"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Set this to TRUE to allow the screensaver to power down the monitor."
+msgstr "મોનીટરનો પાવર નીચો કરવા માટે સ્ક્રીનસેવરને પરવાનગી આપવા માટે આને ખરું સુયોજિત કરો."
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr "જ્યારે સ્ક્રીનસેવર સક્રિય થઈ જાય ત્યારે સ્ક્રીનને તાળું મારવા માટે આને ખરું સુયોજિત કરો."
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr "અલગ વપરાશકર્તા ખાતામાં બદલાવા માટે તાળું ખોલો સંવાદમાં વિકલ્પની તક આપવા માટે આને ખરું સુયોજિત કરો."
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr "વિલંબ પછી બહાર નીકળવા માટે તાળું ખોલો સંવાદમાં વિકલ્પની તક આપવા માટે આને ખરું સુયોજિત કરો. વિલંબ એ \"logout_delay\" કીમાં સ્પષ્ટ થયેલ છે."
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr "જ્યારે પ્રવેશ બહાર નીકળો બટન ક્લિક થયેલ હોય ત્યારે ચલાવવાનો આદેશ. આ આદેશે વપરાશકર્તાના કોઈપણ જાતના સંપર્ક વિના તેને બહાર કાઢી નાંખવો જોઈએ. આ કીને માત્ર ત્યારે જ હોય જો \"logout_enable\" કી એ ખરું તરીકે સુયોજિત થયેલ હોય."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid "The number of minutes after screensaver activation before locking the screen."
+msgstr "સ્ક્રીનને તાળું મારવા પહેલાં સ્ક્રીનસેવર સક્રિયકરણ પછી મિનિટોની સંખ્યા."
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr "તાળું ખોલો સંવાદમાં બહાર નીકળો વિકલ્પ દેખાશે તે પહેલાં સ્ક્રીનસેવર સક્રિયકરણ પછી મિનિટોની સંખ્યા. આ કીને માત્ર ત્યારે જ અસર હશે જો \"logout_enable\" કી એ ખરું તરીકે સુયોજિત થયેલ હોય."
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"goes into standby power mode."
+msgstr "મોનીટર સ્ટેન્ડબાય પાવર સ્થિતિમાં જાય ત્યાં સુધીમાં સ્ક્રીનસેવર સક્રિયકરણ પછી મિનિટોની સંખ્યા."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"goes into suspend power mode."
+msgstr "મોનીટર સસ્પેન્ડ પાવર સ્થિતિમાં જાય ત્યાં સુધીમાં સ્ક્રીનસેવર સક્રિયકરણ પછી મિનિટોની સંખ્યા."
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"powers off."
+msgstr "મોનીટર પાવર ઓફ થાય ત્યાં સુધીમાં સ્ક્રીનસેવર સક્રિયકરણ પછી મિનિટોની સંખ્યા."
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid "The number of minutes of idle time before activating the screensaver."
+msgstr "સ્ક્રીનસેવર સક્રિયકરણ પહેલાં ફાજલ સમયની મિનિટોની સંખ્યા."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr "સ્ક્રીનસેવર થીમ બદલવા પહેલાં ચલાવવા માટેની મિનિટોની સંખ્યા."
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid ""
+"The selection mode used by screensaver. May be \"disabled\" to disable "
+"screensaver activation, \"blank-only\" to enable the screensaver without "
+"using any theme on activation, \"single\" to enable screensaver using only "
+"one theme on activation (specified in \"themes\" key), and \"random\" to "
+"enable the screensaver using a random theme on activation."
+msgstr "સ્ક્રીનસેવર સ્થિતિ દ્વારા વપરાતી પસંદગી સ્થિતિ. કદાચ સ્ક્રીનસેવર સક્રિયકરણ નિષ્ક્રિય કરવા માટે \"નિષ્ક્રિય\", સક્રિયકરણ પર કોઈપણ થીમ વાપર્યા વિના સ્ક્રીનસેવર સક્રિય કરવા માટે \"માત્ર-કોરું\", સક્રિયકરણ (\"થીમો\" કીમાં સ્પષ્ટ થયેલ છે) પર માત્ર એક થીમની મદદથી સ્ક્રીનસેવર સક્રિય કરવા માટે \"એક\", અને સક્રિયકરણ પર રેન્ડમ થીમની મદદથી સ્ક્રીનસેવર સક્રિય કરવા માટે \"રેન્ડમ\"."
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"disabled\" or \"blank-only\", should provide "
+"the theme name when \"mode\" is \"single\", and should provide a list of "
+"themes when \"mode\" is \"random\"."
+msgstr "આ કી સ્ક્રીનસેવર દ્વારા વપરાતી થીમોની યાદી સ્પષ્ટ કરે છે. તે અવગણાય છે જ્યારે \"સ્થિતિ\" કી એ \"નિષ્ક્રિય\" અથવા \"માત્ર-કોરી\" હોય, તમારે થીમ નામ પૂરું પાડવું જોઈએ જ્યારે \"સ્થિતિ\" એ \"એક\" હોય, અને થીમોની યાદી પૂરી પાડવી જોઈએ જ્યારે \"સ્થિતિ\" એ \"રેન્ડમ\" હોય."
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid "Time before activation"
+msgstr "સક્રિયકરણ પહેલાંનો સમય"
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "Time before locking"
+msgstr "તાળું મારવા પહેલાંનો સમય"
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid "Time before logout option"
+msgstr "બહારનીકળો વિકલ્પ પહેલાંનો સમય"
+
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Time before power off"
+msgstr "પાવર ઓફ પહેલાંનો સમય"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Time before standby"
+msgstr "સ્ટેન્ડબાય પહેલાંનો સમય"
+
+#: ../data/gnome-screensaver.schemas.in.h:27
+msgid "Time before suspend"
+msgstr "સસ્પેન્ડ તે પહેલાંનો સમય"
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before theme change"
+msgstr "થીમ બદલાય તે પહેલાંનો સમય"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr "કોસમોસ"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "કોસમોસના ચિત્રોનો સ્લાઈડશો દર્શાવો"
+
+#: ../savers/personal-slideshow.desktop.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr "તમારા ચિત્રો ફોલ્ડરમાંથી સ્લાઈડશો દર્શાવો"
+
+#: ../savers/personal-slideshow.desktop.in.h:2
+msgid "Pictures folder"
+msgstr "ચિત્રો ફોલ્ડર"
+
+#: ../savers/popsquares.desktop.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr "રંગોના કંપન માટે pop-art-ish જાળી."
+
+#: ../savers/popsquares.desktop.in.h:2
+msgid "Pop art squares"
+msgstr "Pop art squares"
+
+#: ../savers/floaters.c:1164
+msgid "show paths that images follow"
+msgstr "ચિત્રો જે પાથ અનુસરે તે બતાવો"
+
+#: ../savers/floaters.c:1171
+msgid "occasionally rotate images as they move"
+msgstr "સામાન્ય રીતે ચિત્રો જેમ ખસે તેમ તેમને ફેરવો"
+
+#: ../savers/floaters.c:1178
+msgid "print out frame rate and other statistics"
+msgstr "ચોકઠાં દર અને અન્ય પરિસ્થિતિઓ છાપો"
+
+#: ../savers/floaters.c:1186
+msgid "the maximum number of images to keep on screen"
+msgstr "સ્ક્રીન પર રાખવા માટેના ચિત્રોની મહત્તમ સંખ્યા"
+
+#. translators: this should be translated to be symbolic of a generic
+#. * number.  e.g, "the screen saver should keep N images on the screen"
+#.
+#: ../savers/floaters.c:1190
+msgid "N"
+msgstr "N"
+
+#: ../savers/floaters.c:1197
+msgid "the source image to use"
+msgstr "વાપરવા માટેનું સ્રોત ચિત્ર"
+
+#: ../savers/floaters.c:1204
+msgid "the initial size and position of window"
+msgstr "વિન્ડોનું આરંભિક માપ અને સ્થાન"
+
+#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
+#. * can be translated, but the 'x' area indicator and '+' offset indicators
+#. * need to be untranslated and can't be rearranged.
+#.
+#: ../savers/floaters.c:1209
+msgid "WIDTHxHEIGHT+X+Y"
+msgstr "WIDTHxHEIGHT+X+Y"
+
+#. translators: the word "image" here
+#. * represents a command line argument
+#.
+#: ../savers/floaters.c:1229
+msgid "image - floats images around the screen"
+msgstr "ચિત્ર - સ્ક્રીનની ફરતે ચિત્રો તરે છે"
+
+#: ../savers/floaters.c:1239
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s. વપરાશ જાણકારી માટે --help જુઓ.\n"
+
+#: ../savers/floaters.c:1248
+msgid "You must specify one image.  See --help for usage information.\n"
+msgstr "તમારે એક ચિત્ર સ્પષ્ટ કરવું જ પડશે.  વપરાશ જાણકારી માટે --help જુઓ.\n"
+
+#: ../savers/slideshow.c:77
+msgid "Location to get images from"
+msgstr "ચિત્રો મેળવવા માટેનું સ્થાન"
+
+#: ../savers/slideshow.c:77
+msgid "PATH"
+msgstr "PATH"
+
+#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
+msgid "Manager"
+msgstr "મેનેજર"
+
+#: ../src/cut-n-paste/fusa-display.c:120
+msgid "The manager which owns this object."
+msgstr "મેનેજર કે જેની માલિકીનો આ ઓબ્જેક્ટ છે."
+
+#: ../src/cut-n-paste/fusa-display.c:127
+msgid "Name"
+msgstr "નામ"
+
+#: ../src/cut-n-paste/fusa-display.c:128
+msgid "The name of the X11 display this object refers to."
+msgstr "આ ઓબ્જેક્ટ જેનો સંદર્ભ લે છે તે X11 ડિસ્પ્લેનું નામ."
+
+#: ../src/cut-n-paste/fusa-display.c:134
+#: ../src/cut-n-paste/fusa-user-menu-item.c:164
+msgid "User"
+msgstr "વપરાશકર્તા"
+
+#: ../src/cut-n-paste/fusa-display.c:135
+msgid "The user currently logged in on this virtual terminal."
+msgstr "વપરાશકર્તા હમણાં આ વર્ચ્યુઅલ ટર્મિનલ પર પ્રવેશ્યો છે."
+
+#: ../src/cut-n-paste/fusa-display.c:141
+msgid "Console"
+msgstr "કન્સોલ"
+
+#: ../src/cut-n-paste/fusa-display.c:142
+msgid "The number of the virtual console this display can be found on, or %-1."
+msgstr "આ ડિસ્પ્લે જેના પર શોધી શકાય તેના વર્ચ્યુઅલ કન્સોલની સંખ્યા, અથવા %-1."
+
+#: ../src/cut-n-paste/fusa-display.c:148
+msgid "Nested"
+msgstr "પુનરાવર્તિત"
+
+#: ../src/cut-n-paste/fusa-display.c:149
+msgid "Whether or not this display is a windowed (Xnest) display."
+msgstr "શું આ ડિસ્પ્લે વિન્ડોવાળું (Xnest) ડિસ્પ્લે છે કે નહિં."
+
+#: ../src/cut-n-paste/fusa-manager.c:1263
+msgid "The display manager could not be contacted for unknown reasons."
+msgstr "ડિસ્પ્લે મેનેજરનો કોઈ અજ્ઞાત કારણોસર સંપર્ક કરી શકાયો નહિં."
+
+#: ../src/cut-n-paste/fusa-manager.c:1270
+msgid "The display manager is not running or too old."
+msgstr "ડિસ્પ્લે મેનેજર ચાલી રહ્યું નથી અથવા ખૂબ જૂનું છે."
+
+#: ../src/cut-n-paste/fusa-manager.c:1273
+msgid "The configured limit of flexible servers has been reached."
+msgstr "રાહતમય સર્વરોની રૂપરેખાંકન મર્યાદાએ પહોંચી ગયા."
+
+#: ../src/cut-n-paste/fusa-manager.c:1276
+msgid "There was an unknown error starting X."
+msgstr "X શરૂ કરવામાં ત્યાં અજ્ઞાત ભૂલ હતી."
+
+#: ../src/cut-n-paste/fusa-manager.c:1279
+msgid "The X server failed to finish starting."
+msgstr "શરૂ કરવાનું સમાપ્ત કરવામાં X સર્વર નિષ્ફળ."
+
+#: ../src/cut-n-paste/fusa-manager.c:1282
+msgid "There are too many X sessions running."
+msgstr "ત્યાં ઘણા બધા X સત્રો ચાલી રહ્યા છે."
+
+#: ../src/cut-n-paste/fusa-manager.c:1285
+msgid "The nested X server (Xnest) cannot connect to your current X server."
+msgstr "પુનરાવર્તિત X સર્વર (Xnest) તમારા વર્તમાન X સર્વર સાથે જોડાઈ શકતું નથી."
+
+#: ../src/cut-n-paste/fusa-manager.c:1288
+msgid "The X server in the GDM configuration could not be found."
+msgstr "GDM રૂપરેખાંકનમાંનુ X સર્વર શોધી શકાયું નહિં."
+
+#: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
+msgid ""
+"Trying to set an unknown logout action, or trying to set a logout action "
+"which is not available."
+msgstr "અજ્ઞાત બહાર નીકળો ક્રિયા સુયોજિત કરવાનો પ્રયત્ન કરી રહ્યા છીએ, અથવા બહાર નીકળો ક્રિયા સુયોજિત કરવાનો પ્રયત્ન કરી રહ્યા છીએ કે જે ઉપલબ્ધ નથી."
+
+#: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
+msgid "Virtual terminals not supported."
+msgstr "વર્ચ્યુઅલ ટર્મિનલો આધારભૂત નથી."
+
+#: ../src/cut-n-paste/fusa-manager.c:1297
+msgid "Invalid virtual terminal number."
+msgstr "અયોગ્ય વર્ચ્યુઅલ ટર્મિનલ નંબર."
+
+#: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
+msgid "Trying to update an unsupported configuration key."
+msgstr "બિનઆધારભૂત રૂપરેખાંકન કી સુધારવાનો પ્રયત્ન કરી રહ્યા છીએ."
+
+#: ../src/cut-n-paste/fusa-manager.c:1303
+msgid "~/.Xauthority file badly configured or missing."
+msgstr "~/.Xauthority ફાઈલ ખરાબ રીતે રૂપરેખાંકિત થઈ અને ગુમ થયેલ છે."
+
+#: ../src/cut-n-paste/fusa-manager.c:1306
+msgid "Too many messages were sent to the display manager, and it hung up."
+msgstr "ઘણા બધા સંદેશાઓ ડિસ્પ્લે મેનેજરને મોકલાયા હતા, અને તે અટકી ગયા."
+
+#: ../src/cut-n-paste/fusa-manager.c:1310
+msgid "The display manager sent an unknown error message."
+msgstr "ડિસ્પ્લે મેનેજરે અજ્ઞાત ભૂલ સંદેશો મોકલ્યો."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:165
+msgid "The user this menu item represents."
+msgstr "વપરાશકર્તા કે જે આ મેનુ વસ્તુ રજૂ કરે છે."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:172
+msgid "Icon Size"
+msgstr "ચિહ્ન માપ"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:173
+msgid "The size of the icon to use."
+msgstr "વાપરવા માટેના ચિહ્નનું માપ."
+
+#: ../src/cut-n-paste/fusa-user.c:151
+msgid "The user manager object this user is controlled by."
+msgstr "વપરાશકર્તા વ્યવસ્થાપક ઓબ્જેક્ટ છે કે જેના દ્વારા આ વપરાશકર્તા નિયંત્રિત છે."
+
+#: ../src/cut-n-paste/fusa-utils.c:80
+msgid "Show Details"
+msgstr "વિગતો બતાવો"
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:413
+msgid "GDM (The GNOME Display Manager) is not running."
+msgstr "GDM (જીનોમ ડિસ્પ્લે મેનેજર) ચાલી રહ્યું નથી."
+
+#: ../src/cut-n-paste/gdmcomm.c:416
+msgid ""
+"You might in fact be using a different display manager, such as KDM (KDE "
+"Display Manager) or xdm."
+msgstr "તમે વાસ્વતવમાં કદાચ અલગ ડિસ્પ્લે મેનેજર વાપરી રહ્યા હશો, જેમ કે KDM (KDE ડિસ્પ્લે મેનેજર) અથવા xdm."
+
+#: ../src/cut-n-paste/gdmcomm.c:419
+msgid ""
+"If you still wish to use this feature, either start GDM yourself or ask your "
+"system administrator to start GDM."
+msgstr "જો તમે હજુ પણ આ લક્ષણ વાપરવા ઈચ્છો છો, તો ક્યાં તો તમારી જાતે GDM શરૂ કરો અથવા GDM શરૂ કરવા માટે તમારા સિસ્ટમ સંચાલકને પૂછો."
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:441
+msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+msgstr "GDM (જીનોમ ડિસ્પ્લે મેનેજર) સાથે સંપર્ક કરી શકતા નથી"
+
+#: ../src/cut-n-paste/gdmcomm.c:444
+msgid "Perhaps you have an old version of GDM running."
+msgstr "કદાચ તમારી પાસે GDM ની જૂની આવૃત્તિ ચાલી રહી છે."
+
+#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
+msgid "Cannot communicate with gdm, perhaps you have an old version running."
+msgstr "gdm સાથે સંપર્ક કરી શકતા નથી, કદાચ તમારી પાસે જૂની આવૃત્તિ ચાલી રહી છે."
+
+#: ../src/cut-n-paste/gdmcomm.c:469
+msgid "The allowed limit of flexible X servers reached."
+msgstr "રાહતમય X સર્વરોની માન્ય મર્યાદાએ પહોંચી ગયા."
+
+#: ../src/cut-n-paste/gdmcomm.c:471
+msgid "There were errors trying to start the X server."
+msgstr "X સર્વર શરૂ કરવામાં ત્યાં ભૂલો હતી."
+
+#: ../src/cut-n-paste/gdmcomm.c:473
+msgid "The X server failed.  Perhaps it is not configured well."
+msgstr "X સર્વર નિષ્ફળ ગયું.  કદાચ તે યોગ્ય રીતે રૂપરેખાંકિત થયેલ નથી."
+
+#: ../src/cut-n-paste/gdmcomm.c:476
+msgid "Too many X sessions running."
+msgstr "ઘણા બધા X સત્રો ચાલી રહ્યા છે."
+
+#: ../src/cut-n-paste/gdmcomm.c:478
+msgid ""
+"The nested X server (Xnest) cannot connect to your current X server.  You "
+"may be missing an X authorization file."
+msgstr "પુનરાવર્તિત X સર્વર (Xnest) તમારા વર્તમાન X સર્વર સાથે જોડાઈ શકતું નથી.  તમારી પાસે કદાચ X સત્તાધિકરણ ફાઈલ ગુમ થયેલ હશે."
+
+#: ../src/cut-n-paste/gdmcomm.c:483
+msgid ""
+"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
+"Please install the Xnest package in order to use the nested login."
+msgstr ""
+"પુનરાવર્તિત X સર્વર (Xnest) ઉપલબ્ધ નથી, અથવા gdm એ ખરાબ રીતે રૂપરેખાંકિત થયેલ છે.\n"
+"મહેરબાની કરીને પુનરાવર્તિત પ્રવેશ વાપરવા માટે Xnest પેકેજ સ્થાપિત કરો."
+
+#: ../src/cut-n-paste/gdmcomm.c:488
+msgid "The X server is not available, it is likely that gdm is badly configured."
+msgstr "X સર્વર ઉપલબ્ધ નથી, એવું લાગે છે કે gdm એ ખરાબ રીતે રૂપરેખાંકિત થયેલ છે."
+
+#: ../src/cut-n-paste/gdmcomm.c:497
+msgid "Trying to change to an invalid virtual terminal number."
+msgstr "અયોગ્ય વર્ચ્યુઅલ ટર્મિનલ નંબર બદલવાનો પ્રયત્ન કરી રહ્યા છીએ."
+
+#: ../src/cut-n-paste/gdmcomm.c:501
+msgid ""
+"You do not seem to have authentication needed be for this operation.  "
+"Perhaps your .Xauthority file is not set up correctly."
+msgstr "તમારી પાસે આ પ્રક્રિયા માટે સત્તાધિકરણ હોય એવું લાગતું નથી.  કદાચ તમારી .Xauthority ફાઈલ એ યોગ્ય રીતે સુયોજિત થયેલ નથી."
+
+#: ../src/cut-n-paste/gdmcomm.c:505
+msgid "Too many messages were sent to gdm and it hung upon us."
+msgstr "ઘણા બધા સંદેશાઓ gdm ને મોકલાયા હતા અને તે આપણા પર અટકી ગયા."
+
+#: ../src/cut-n-paste/gdmcomm.c:508
+msgid "Unknown error occured."
+msgstr "અજ્ઞાત ભૂલ ઉદ્દભવી."
+
+#: ../src/file-transfer-dialog.c:94
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "ફાઈલની નકલ કરી રહ્યા છીએ: %u જેટલું %u માંથી"
+
+#: ../src/file-transfer-dialog.c:122
+#, c-format
+msgid "Copying '%s'"
+msgstr "'%s' ની નકલ કરી રહ્યા છીએ"
+
+#: ../src/file-transfer-dialog.c:193
+msgid "From URI"
+msgstr "URI તરફથી"
+
+#: ../src/file-transfer-dialog.c:194
+msgid "URI currently transferring from"
+msgstr "વર્તમાનમાં આમાંથી પરિવહન કરી રહેલ URI"
+
+#: ../src/file-transfer-dialog.c:201
+msgid "To URI"
+msgstr "URI પ્રતિ"
+
+#: ../src/file-transfer-dialog.c:202
+msgid "URI currently transferring to"
+msgstr "વર્તમાનમાં પરિવહન કરી રહેલ URI"
+
+#: ../src/file-transfer-dialog.c:209
+msgid "Fraction completed"
+msgstr "અંશ સમાપ્ત"
+
+#: ../src/file-transfer-dialog.c:210
+msgid "Fraction of transfer currently completed"
+msgstr "વર્તમાનમાં પૂર્ણ થયેલ પરિવહનનો અંશ"
+
+#: ../src/file-transfer-dialog.c:217
+msgid "Current URI index"
+msgstr "વર્તમાન URI અનુક્રમ"
+
+#: ../src/file-transfer-dialog.c:218
+msgid "Current URI index - starts from 1"
+msgstr "વર્તમાન URI અનુક્રમ - ૧ થી શરૂ થાય છે"
+
+#: ../src/file-transfer-dialog.c:225
+msgid "Total URIs"
+msgstr "કુલ URI"
+
+#: ../src/file-transfer-dialog.c:226
+msgid "Total number of URIs"
+msgstr "URI ની કુલ સંખ્યા"
+
+#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+msgid "Copying files"
+msgstr "ફાઈલોની નકલ કરી રહ્યા છીએ"
+
+#: ../src/file-transfer-dialog.c:345
+msgid "From:"
+msgstr "તરફથી:"
+
+#: ../src/file-transfer-dialog.c:349
+msgid "To:"
+msgstr "પ્રતિ:"
+
+#: ../src/file-transfer-dialog.c:448
+msgid "Connecting..."
+msgstr "જોડાઈ રહ્યા છીએ..."
+
+#: ../src/gnome-screensaver-command.c:59
+msgid "Causes the screensaver to exit gracefully"
+msgstr "સ્ક્રીનસેવરને સારી રીતે બંધ કરવાનું કારણ બને છે"
+
+#: ../src/gnome-screensaver-command.c:61
+msgid "Query the state of the screensaver"
+msgstr "સ્ક્રીનસેવરની સ્થિતિને પ્રશ્ન પૂછે છે"
+
+#: ../src/gnome-screensaver-command.c:63
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "ચાલી રહેલ સ્ક્રીનસેવર પ્રક્રિયાને સ્ક્રીન તુરંત જ તાળું મારવા માટે કહે છે"
+
+#: ../src/gnome-screensaver-command.c:65
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "જો સ્ક્રીનસેવર સક્રિય હોય તો પછી અન્ય ગ્રાફિક્સ ડેમોમાં બદલાવ"
+
+#: ../src/gnome-screensaver-command.c:67
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "સ્ક્રીનસેવરને ચાલુ કરો (સ્ક્રીન કોરી કરો)"
+
+#: ../src/gnome-screensaver-command.c:69
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "જો સ્ક્રીનસેવર સક્રિય હોય તો પછી તેને અસક્રિય કરો (સ્ક્રીનને કોરી-નહિં રાખો)"
+
+#: ../src/gnome-screensaver-command.c:71
+msgid "Disable running graphical themes while blanked"
+msgstr "જ્યારે કોરી કરી નંખાયેલ હોય ત્યારે ચાલી રહેલ ગ્રાફિકવાળી થીમો નિષ્ક્રિય કરો"
+
+#: ../src/gnome-screensaver-command.c:73
+msgid "Enable running graphical themes while blanked (if applicable)"
+msgstr "જ્યારે કોરી કરી નંખાયેલ હોય ત્યારે ચાલી રહેલ ગ્રાફિકવાળી થીમો સક્રિય કરો (જો લાગુ પડે)"
+
+#: ../src/gnome-screensaver-command.c:75
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "વપરાશકર્તા ક્રિયા સિમ્યુલેટ કરવા માટે ચાલી રહેલ સ્ક્રીનસેવરને ધક્કો મારો"
+
+#: ../src/gnome-screensaver-command.c:77 ../src/gnome-screensaver-dialog.c:106
+#: ../src/gnome-screensaver.c:56
+msgid "Version of this application"
+msgstr "આ કાર્યક્રમની આવૃત્તિ"
+
+#: ../src/gnome-screensaver-command.c:202
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "સ્ક્રીનસેવર એ %s છે\n"
+
+#: ../src/gnome-screensaver-command.c:202
+msgid "active"
+msgstr "સક્રિય"
+
+#: ../src/gnome-screensaver-command.c:202
+msgid "inactive"
+msgstr "અસક્રિય"
+
+#: ../src/gnome-screensaver-dialog.c:104
+msgid "Show debugging output"
+msgstr "ડિબગીંગ આઉટપુટ બતાવો"
+
+#: ../src/gnome-screensaver-dialog.c:108
+msgid "Show the logout button"
+msgstr "બહાર નીકળો બટન બતાવો"
+
+#: ../src/gnome-screensaver-dialog.c:110
+msgid "Command to invoke from the logout button"
+msgstr "બહાર નીકળો બટનમાંથી ચલાવવાનો આદેશ"
+
+#: ../src/gnome-screensaver-dialog.c:112
+msgid "Show the switch user button"
+msgstr "વપરાશકર્તા બદલો બટન બતાવો"
+
+#: ../src/gnome-screensaver-preferences.c:386
+msgid "Disabled"
+msgstr "નિષ્ક્રિયકૃત"
+
+#: ../src/gnome-screensaver-preferences.c:393
+msgid "Blank screen"
+msgstr "ખાલી સ્ક્રીન"
+
+#: ../src/gnome-screensaver-preferences.c:399
+msgid "Random"
+msgstr "રેન્ડમ"
+
+#: ../src/gnome-screensaver-preferences.c:692
+msgid "Invalid screensaver theme"
+msgstr "અયોગ્ય સ્ક્રીનસેવર થીમ"
+
+#: ../src/gnome-screensaver-preferences.c:695
+msgid "This file does not appear to be a valid screensaver theme."
+msgstr "આ ફાઈલ માન્ય સ્ક્રીનસેવર થીમ હોય એમ દેખાતું નથી."
+
+#: ../src/gnome-screensaver-preferences.c:812
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d કલાક"
+msgstr[1] "%d કલાકો"
+
+#: ../src/gnome-screensaver-preferences.c:815
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d મિનિટો"
+msgstr[1] "%d મિનિટો"
+
+#: ../src/gnome-screensaver-preferences.c:818
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d સેકન્ડ"
+msgstr[1] "%d સેકન્ડો"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:824
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:827
+#: ../src/gnome-screensaver-preferences.c:835
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:830
+#: ../src/gnome-screensaver-preferences.c:838
+#: ../src/gnome-screensaver-preferences.c:842
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#. 0 seconds
+#: ../src/gnome-screensaver-preferences.c:845
+msgid "0 seconds"
+msgstr "૦ સેકન્ડો"
+
+#: ../src/gnome-screensaver-preferences.c:860
+msgid "Never"
+msgstr "ક્યારેય નહિં"
+
+#: ../src/gnome-screensaver-preferences.c:896
+msgid "Could not load the main interface"
+msgstr "મુખ્ય ઈન્ટરફેસ લાવી શક્યા નહિં"
+
+#: ../src/gnome-screensaver-preferences.c:898
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "મહેરબાની કરીને ખાતરી કરો કે સ્ક્રીનસેવર યોગ્ય રીતે સ્થાપિત થયેલ છે"
+
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "ડિમન બનશો નહિં"
+
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr "ડિબગીંગ કોડ સક્રિય કરો"
+
+#: ../src/gs-listener-dbus.c:1014
+msgid "failed to register with the message bus"
+msgstr "સંદેશા બસ સાથે રજીસ્ટર કરવામાં નિષ્ફળ"
+
+#: ../src/gs-listener-dbus.c:1024
+msgid "not connected to the message bus"
+msgstr "સંદેશા બસમાં જોડાયેલ નથી"
+
+#: ../src/gs-listener-dbus.c:1033
+msgid "screensaver already running in this session"
+msgstr "આ સત્રમાં સ્ક્રીનસેવર પહેલાથી જ ચાલી રહ્યું છે"
+
+#: ../src/gs-lock-plug.c:346
+msgid "Checking password..."
+msgstr "પાસવર્ડ ચકાસી રહ્યા છીએ..."
+
+#: ../src/gs-lock-plug.c:389
+msgid "Time has expired."
+msgstr "સમય સમાપ્ત થઈ ગયો."
+
+#: ../src/gs-lock-plug.c:414
+msgid "You have the Caps Lock key on."
+msgstr "તમારી Caps Lock કી ચાલુ છે."
+
+#: ../src/gs-lock-plug.c:691
+msgid "That password was incorrect."
+msgstr "તે પાસવર્ડ ખોલો હતો."
+
+#: ../src/gs-lock-plug.c:717 ../src/gs-lock-plug.c:750
+msgid "_Unlock"
+msgstr "તાળું ખોલો (_U)"
+
+#: ../src/gs-lock-plug.c:720 ../src/gs-lock-plug.c:747
+msgid "_Switch User..."
+msgstr "વપરાશકર્તા બદલો (_S)..."
+
+#: ../src/gs-lock-plug.c:1432
+msgid "_Password:"
+msgstr "પાસવર્ડ (_P):"
+
+#: ../src/gs-lock-plug.c:1498
+msgid "S_witch to user:"
+msgstr "વપરાશકર્તામાં બદલાવ (_w):"
+
+#: ../src/gs-lock-plug.c:1545
+msgid "Log _Out"
+msgstr "બહાર નીકળો (_O)"
+
