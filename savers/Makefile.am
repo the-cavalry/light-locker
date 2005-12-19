@@ -86,6 +86,7 @@ slideshow_LDADD =     \
 	$(GNOME_SCREENSAVER_SAVER_LIBS)
 
 EXTRA_DIST =				\
+	gs-theme-engine-marshal.list	\
 	$(themes_in_files)		\
 	$(NULL)
 

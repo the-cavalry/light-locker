@@ -1,3 +1,12 @@
+==== 0.0.23 ====
+
+2005-12-19  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 0.0.23 release
+	* savers/Makefile.am (EXTRA_DIST): Add marshal.list
+	* savers/popsquares.c (main): Fix compiler warning.
+	* data/images/Makefile.am (EXTRA_DIST): Add images.
+
 2005-12-19  Ankit Patel  <ankit644@yahoo.com>
 
         * configure.ac: Added "gu" to ALL_LINGUAS.

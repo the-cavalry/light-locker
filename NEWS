@@ -1,4 +1,27 @@
 ==============
+Version 0.0.23
+==============
+
+  gnome-screensaver
+
+        * Fix idle warning cancellation
+        * Changes to D-Bus API
+        * Add --debug command line option
+        * Build fix when DPMS disabled
+
+  themes
+
+        * (floaters) New theme engine (Ray Strode et al)
+
+  Translators
+
+        * Francisco Javier F. Serrador (es)
+        * Ignacio Casal Quinteiro (gl)
+        * Ankit Patel (gu)
+        * Takeshi AIHANA (ja)
+        * Theppitak Karoonboonyanan (th)
+
+==============
 Version 0.0.22
 ==============
 

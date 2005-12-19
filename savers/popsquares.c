@@ -46,7 +46,7 @@ main (int argc, char **argv)
         engine = g_object_new (GSTE_TYPE_POPSQUARES, NULL);
         gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (engine));
 
-        gtk_widget_show (engine);
+        gtk_widget_show (GTK_WIDGET (engine));
 
         gtk_window_set_default_size (GTK_WINDOW (window), 640, 480);
         gtk_widget_show (window);
