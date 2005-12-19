@@ -69,7 +69,7 @@ struct GSListenerPrivate
         guint           throttle_enabled : 1;
         GHashTable     *inhibitors;
 
-        time_t          idle_start;
+        time_t          active_start;
 };
 
 enum {
@@ -200,22 +200,26 @@ list_inhibitors (gpointer key,
         gs_debug ("Inhibited by bus %s for reason: %s", (char *)key, (char *)value);
 }
 
-static void
+static gboolean
 listener_check_activation (GSListener *listener)
 {
-        guint n_inhibitors = 0;
+        guint    n_inhibitors;
+        gboolean res;
 
         /* if we aren't inhibited then activate */
+        n_inhibitors = 0;
         if (listener->priv->inhibitors) {
                 n_inhibitors = g_hash_table_size (listener->priv->inhibitors);
 
                 g_hash_table_foreach (listener->priv->inhibitors, list_inhibitors, NULL);
         }
 
-        if (listener->priv->idle
-            && n_inhibitors == 0) {
-                gs_listener_set_active (listener, TRUE);
+        res = FALSE;
+        if (listener->priv->idle && n_inhibitors == 0) {
+                res = gs_listener_set_active (listener, TRUE);
         }
+
+        return res;
 }
 
 gboolean
@@ -242,14 +246,19 @@ gs_listener_set_active (GSListener *listener,
                 }
 
                 listener->priv->active = active;
+                listener->priv->idle = active;
+
+                if (active) {
+                        listener->priv->active_start = time (NULL);
+                } else {
+                        listener->priv->active_start = 0;
+                }
+
                 gs_listener_send_signal_active_changed (listener);
 
                 if (! active) {
                         /* if we are deactivating then reset the throttle */
                         gs_listener_set_throttle_enabled (listener, FALSE);
-                        /* if we are deactivating then reset the idle */
-                        listener->priv->idle = active;
-                        listener->priv->idle_start = 0;
                 }
         }
 
@@ -271,16 +280,13 @@ gs_listener_set_idle (GSListener *listener,
                 guint n_inhibitors = 0;
 
                 /* if we aren't inhibited then set idle */
-                if (listener->priv->inhibitors)
+                if (listener->priv->inhibitors) {
                         n_inhibitors = g_hash_table_size (listener->priv->inhibitors);
+                }
 
                 if (n_inhibitors != 0) {
                         return FALSE;
                 }
-
-                listener->priv->idle_start = time (NULL);
-        } else {
-                listener->priv->idle_start = 0;
         }
 
         listener->priv->idle = idle;
@@ -389,8 +395,9 @@ listener_add_inhibitor (GSListener     *listener,
         }
 
         reply = dbus_message_new_method_return (message);
-        if (reply == NULL)
+        if (reply == NULL) {
                 g_error ("No memory");
+        }
 
         sender = dbus_message_get_sender (message);
 
@@ -404,8 +411,9 @@ listener_add_inhibitor (GSListener     *listener,
 
         g_hash_table_insert (listener->priv->inhibitors, g_strdup (sender), g_strdup (reason));
 
-        if (! dbus_connection_send (connection, reply, NULL))
+        if (! dbus_connection_send (connection, reply, NULL)) {
                 g_error ("No memory");
+        }
 
         dbus_message_unref (reply);
 
@@ -443,8 +451,9 @@ listener_remove_inhibitor (GSListener     *listener,
         }
 
         /* FIXME?  Pointless? */
-        if (! dbus_connection_send (connection, reply, NULL))
+        if (! dbus_connection_send (connection, reply, NULL)) {
                 g_error ("No memory");
+        }
 
         dbus_message_unref (reply);
 
@@ -600,9 +609,9 @@ listener_get_property (GSListener     *listener,
 }
 
 static DBusHandlerResult
-listener_get_idle_time (GSListener     *listener,
-                        DBusConnection *connection,
-                        DBusMessage    *message)
+listener_get_active_time (GSListener     *listener,
+                          DBusConnection *connection,
+                          DBusMessage    *message)
 {
         DBusMessageIter iter;
         DBusMessage    *reply;
@@ -612,26 +621,34 @@ listener_get_idle_time (GSListener     *listener,
 
         dbus_message_iter_init_append (reply, &iter);
 
-        if (reply == NULL)
+        if (reply == NULL) {
                 g_error ("No memory");
+        }
 
-        if (listener->priv->idle) {
+        if (listener->priv->active) {
                 time_t now = time (NULL);
 
-                if (now < listener->priv->idle_start) {
-                        /* should't happen */
-                        g_warning ("Idle start time is in the future");
+                if (now < listener->priv->active_start) {
+                        /* shouldn't happen */
+                        g_warning ("Active start time is in the future");
+                        secs = 0;
+                } else if (listener->priv->active_start <= 0) {
+                        /* shouldn't happen */
+                        g_warning ("Active start time was not set");
                         secs = 0;
                 } else {
-                        secs = listener->priv->idle_start - now;
+                        secs = now - listener->priv->active_start;
                 }
         } else {
                 secs = 0;
         }
+
+        gs_debug ("Returning screensaver active for %u seconds", secs);
         dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &secs);
 
-        if (! dbus_connection_send (connection, reply, NULL))
+        if (! dbus_connection_send (connection, reply, NULL)) {
                 g_error ("No memory");
+        }
 
         dbus_message_unref (reply);
 
@@ -681,11 +698,8 @@ listener_dbus_filter_handle_methods (DBusConnection *connection,
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getActive")) {
                 return listener_get_property (listener, connection, message, PROP_ACTIVE);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getIdle")) {
-                return listener_get_property (listener, connection, message, PROP_IDLE);
-        }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getIdleTime")) {
-                return listener_get_idle_time (listener, connection, message);
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getActiveTime")) {
+                return listener_get_active_time (listener, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "setThrottleEnabled")) {
                 return listener_set_property (listener, connection, message, PROP_THROTTLE_ENABLED);
@@ -719,7 +733,6 @@ gs_listener_message_handler (DBusConnection *connection,
         if (dbus_message_is_method_call (message, "org.freedesktop.DBus", "AddMatch")) {
                 DBusMessage *reply;
 
-                /* cheat, and handle AddMatch since libhal will try to invoke this method */
                 reply = dbus_message_new_method_return (message);
 
                 if (reply == NULL)

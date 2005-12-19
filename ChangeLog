@@ -1,3 +1,20 @@
+2005-12-18  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-listener-dbus.c (listener_dbus_filter_handle_methods) 
+	(gs_listener_set_idle, gs_listener_set_active) 
+	(listener_get_active_time):
+	Remove getIdle method because it is confusing and not so useful.
+	The screensaver isn't idle it may be active but this depends
+	on whether there are inhibitors.  Change getIdleTime to
+	getActiveTime for similar reasons.
+	(listener_check_activation): Return TRUE if activated.
+
+	* doc/DBUS-API.txt: Updated for getIdleTime -> getActiveTime
+	and removed getIdle method.
+
+	* src/gs-listener-dbus.c (listener_get_idle_time): Fix get idle
+	time reporting.  Patch from Jaap A. Haitsma <jaap@haitsma.org>.
+
 2005-12-17  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-power-x11.c (x11_set_mode):

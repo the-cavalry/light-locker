@@ -28,24 +28,18 @@ Methods
         Description:    Request that the screen saver theme be restarted
                         and if applicable switch to the next one in the list.
 
-        Name:           getIdle
-        Args:           (none)
-        Returns:        DBUS_TYPE_BOOLEAN
-        Descriptions:   Returns the value of the current state of idleness,
-                        TRUE if the session is idle, FALSE if not.
-
-        Name:           getIdleTime
+        Name:           getActiveTime
         Args:           (none)
         Returns:        DBUS_TYPE_UINT32
-        Descriptions:   Returns the number of seconds that the session has
-                        been idle.  Returns zero if the session is not idle.
+        Descriptions:   Returns the number of seconds that the screensaver has
+                        been active.  Returns zero if the screensaver is not active.
 
         Name:           InhibitActivation
         Args:           DBUS_TYPE_STRING reason
                         reason: Description of the reason why saving the screen
                                 should be inhibited.
         Returns:        (nothing)
-        Description:    Request the saving the screen due to system idleness
+        Description:    Request that saving the screen due to system idleness
                         be blocked until AllowActivation is called or the
                         calling process exits.
 
@@ -113,4 +107,4 @@ dbus-send --session \
           --print-reply \
           --reply-timeout=20000 \
           /org/gnome/screensaver \
-          org.gnome.screensaver.getIdleTime
+          org.gnome.screensaver.getActiveTime
