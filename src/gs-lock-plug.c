@@ -1367,6 +1367,8 @@ get_face_image ()
                                                            NULL);
         }
 
+        g_free (path);
+
         if (! pixbuf)
                 return NULL;
 

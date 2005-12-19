@@ -1,5 +1,13 @@
 2005-12-18  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (get_face_image): 
+	* src/gnome-screensaver-dialog.c (print_id): Fix leaks.
+
+	Patch from Kjartan Maraas <kmaraas@gnome.org>
+	Fixes #324445.
+	
+2005-12-18  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-listener-dbus.c (listener_dbus_filter_handle_methods) 
 	(gs_listener_set_idle, gs_listener_set_active) 
 	(listener_get_active_time):

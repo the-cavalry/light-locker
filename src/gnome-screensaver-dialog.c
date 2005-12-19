@@ -129,12 +129,17 @@ get_id_string (GtkWidget *widget)
 static gboolean
 print_id (GtkWidget *widget)
 {
+        char *id;
+
         profile_start ("start", NULL);
 
-        printf ("WINDOW ID=%s\n", get_id_string (widget));
+        id = get_id_string (widget);
+        printf ("WINDOW ID=%s\n", id);
         fflush (stdout);
 
         profile_end ("end", NULL);
+
+        g_free (id);
 
         return FALSE;
 }
