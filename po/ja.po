@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-06 11:43+0900\n"
-"PO-Revision-Date: 2005-11-06 11:43+0900\n"
+"POT-Creation-Date: 2005-12-20 00:57+0900\n"
+"PO-Revision-Date: 2005-12-20 00:56+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -240,6 +240,63 @@ msgstr "四角形が脈打つように見えるポップ・アートを表示し
 msgid "Pop art squares"
 msgstr "ポップな矩形のアート"
 
+#: ../savers/floaters.c:1164
+msgid "show paths that images follow"
+msgstr "画像を表示していくパス名を表示する"
+
+#: ../savers/floaters.c:1171
+msgid "occasionally rotate images as they move"
+msgstr "時々画像が移動しているかのように回転させる"
+
+#: ../savers/floaters.c:1178
+msgid "print out frame rate and other statistics"
+msgstr "画像を描画したときのフレームレートとその他の統計情報を表示する"
+
+#: ../savers/floaters.c:1186
+msgid "the maximum number of images to keep on screen"
+msgstr "スクリーンに残しておく画像の個数 (最大値)"
+
+#. translators: this should be translated to be symbolic of a generic
+#. * number.  e.g, "the screen saver should keep N images on the screen"
+#.
+#: ../savers/floaters.c:1190
+msgid "N"
+msgstr "N"
+
+#: ../savers/floaters.c:1197
+msgid "the source image to use"
+msgstr "使用する元の画像"
+
+#: ../savers/floaters.c:1204
+msgid "the initial size and position of window"
+msgstr "ウィンドウの初期サイズと位置"
+
+#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
+#. * can be translated, but the 'x' area indicator and '+' offset indicators
+#. * need to be untranslated and can't be rearranged.
+#.
+#: ../savers/floaters.c:1209
+msgid "WIDTHxHEIGHT+X+Y"
+msgstr "幅x高さ+X+Y"
+
+#. translators: the word "image" here
+#. * represents a command line argument
+#.
+#: ../savers/floaters.c:1229
+msgid "image - floats images around the screen"
+msgstr "画像 - スクリーンの回りに画像を浮かすfloats images around the screen"
+
+#: ../savers/floaters.c:1239
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s (用法については --help オプションで確認して下さい)\n"
+
+#: ../savers/floaters.c:1248
+msgid "You must specify one image.  See --help for usage information.\n"
+msgstr ""
+"少なくとも画像を一つ指定して下さい (用法については --help オプションで確認し"
+"て下さい)\n"
+
 #: ../savers/slideshow.c:77
 msgid "Location to get images from"
 msgstr "画像を格納している場所"
@@ -265,7 +322,7 @@ msgid "The name of the X11 display this object refers to."
 msgstr "このオブジェクトが参照する X11 ディスプレイの名前です。"
 
 #: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:152
+#: ../src/cut-n-paste/fusa-user-menu-item.c:164
 msgid "User"
 msgstr "ユーザ"
 
@@ -290,41 +347,41 @@ msgid "Whether or not this display is a windowed (Xnest) display."
 msgstr ""
 "このディスプレイが Xnest 対応のウィンドウ・ディスプレイであるかどうかです。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1264
+#: ../src/cut-n-paste/fusa-manager.c:1263
 msgid "The display manager could not be contacted for unknown reasons."
 msgstr "ディスプレイ・マネージャと接続できませんでした (原因不明)。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1271
+#: ../src/cut-n-paste/fusa-manager.c:1270
 msgid "The display manager is not running or too old."
 msgstr ""
 "ディスプレイ・マネージャが起動されていないか、あるいはバージョンが古すぎま"
 "す。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1274
+#: ../src/cut-n-paste/fusa-manager.c:1273
 msgid "The configured limit of flexible servers has been reached."
 msgstr "設定したサーバ数の上限に到達しました。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1277
+#: ../src/cut-n-paste/fusa-manager.c:1276
 msgid "There was an unknown error starting X."
 msgstr "X を起動する際に不明なエラーが発生しました。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1280
+#: ../src/cut-n-paste/fusa-manager.c:1279
 msgid "The X server failed to finish starting."
 msgstr "X サーバが起動を完了できませんでした。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1283
+#: ../src/cut-n-paste/fusa-manager.c:1282
 msgid "There are too many X sessions running."
 msgstr "実行中の X セッションが多すぎます。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1286
+#: ../src/cut-n-paste/fusa-manager.c:1285
 msgid "The nested X server (Xnest) cannot connect to your current X server."
 msgstr "Xnest 対応のサーバが現在使用中の X サーバへ接続できません。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1289
+#: ../src/cut-n-paste/fusa-manager.c:1288
 msgid "The X server in the GDM configuration could not be found."
 msgstr "GDM から起動した X サーバの設定が見つかりませんでした。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1292 ../src/cut-n-paste/gdmcomm.c:492
+#: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
@@ -332,41 +389,41 @@ msgstr ""
 "不明なログアウト操作をセットしようとしている、または利用できないログアウト操"
 "作をセットしようとしています。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1295 ../src/cut-n-paste/gdmcomm.c:495
+#: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
 msgstr "仮想端末はサポートしていません。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1298
+#: ../src/cut-n-paste/fusa-manager.c:1297
 msgid "Invalid virtual terminal number."
 msgstr "仮想端末の番号が間違っています。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1301 ../src/cut-n-paste/gdmcomm.c:499
+#: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
 msgstr "サポートしていない設定キーを更新しようとしています。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1304
+#: ../src/cut-n-paste/fusa-manager.c:1303
 msgid "~/.Xauthority file badly configured or missing."
 msgstr "\"~/.Xauthority\" ファイルの内容が間違っているか、設定が足りません。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1307
+#: ../src/cut-n-paste/fusa-manager.c:1306
 msgid "Too many messages were sent to the display manager, and it hung up."
 msgstr ""
 "ディスプレイ・マネージャにたくさんのメッセージを送信したため、ハングアップし"
 "たようです。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1311
+#: ../src/cut-n-paste/fusa-manager.c:1310
 msgid "The display manager sent an unknown error message."
 msgstr "ディスプレイ・マネージャが不明なエラー・メッセージを送信しました。"
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:153
+#: ../src/cut-n-paste/fusa-user-menu-item.c:165
 msgid "The user this menu item represents."
 msgstr "このメニュー・アイテムが表すユーザです。"
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:160
+#: ../src/cut-n-paste/fusa-user-menu-item.c:172
 msgid "Icon Size"
 msgstr "アイコンのサイズ"
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:161
+#: ../src/cut-n-paste/fusa-user-menu-item.c:173
 msgid "The size of the icon to use."
 msgstr "使用するアイコンの大きさです。"
 
@@ -576,7 +633,7 @@ msgstr ""
 "ユーザが設定できる機能を模擬するためにスクリーンセーバーをランダムに実行する"
 
 #: ../src/gnome-screensaver-command.c:77 ../src/gnome-screensaver-dialog.c:106
-#: ../src/gnome-screensaver.c:55
+#: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "このアプリケーションのバージョンを表示する"
 
@@ -695,15 +752,19 @@ msgstr "gnome-screensaver が正しくインストールされているか確認
 msgid "Don't become a daemon"
 msgstr "デーモン化しない"
 
-#: ../src/gs-listener-dbus.c:1003
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr "デバッグ・モードにする"
+
+#: ../src/gs-listener-dbus.c:1014
 msgid "failed to register with the message bus"
 msgstr "メッセージ・バスへの登録に失敗しました"
 
-#: ../src/gs-listener-dbus.c:1013
+#: ../src/gs-listener-dbus.c:1024
 msgid "not connected to the message bus"
 msgstr "メッセージ・バスに接続していません"
 
-#: ../src/gs-listener-dbus.c:1022
+#: ../src/gs-listener-dbus.c:1033
 msgid "screensaver already running in this session"
 msgstr "このセッションで既にスクリーンセーバーが実行中です"
 
@@ -719,32 +780,26 @@ msgstr "タイムアウトしました"
 msgid "You have the Caps Lock key on."
 msgstr "[Caps Lock] キーが押されています"
 
-#: ../src/gs-lock-plug.c:684
+#: ../src/gs-lock-plug.c:691
 msgid "That password was incorrect."
 msgstr "パスワードが間違っています"
 
-#: ../src/gs-lock-plug.c:710 ../src/gs-lock-plug.c:743
+#: ../src/gs-lock-plug.c:717 ../src/gs-lock-plug.c:750
 msgid "_Unlock"
 msgstr "ロック解除(_U)"
 
-#: ../src/gs-lock-plug.c:713 ../src/gs-lock-plug.c:740
+#: ../src/gs-lock-plug.c:720 ../src/gs-lock-plug.c:747
 msgid "_Switch User..."
 msgstr "ユーザの切り替え(_S)..."
 
-#. translators: %s is a computer hostname
-#: ../src/gs-lock-plug.c:1418
-#, c-format
-msgid "Welcome to %s"
-msgstr "%s へようこそ"
-
-#: ../src/gs-lock-plug.c:1454
+#: ../src/gs-lock-plug.c:1432
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#: ../src/gs-lock-plug.c:1491
+#: ../src/gs-lock-plug.c:1498
 msgid "S_witch to user:"
 msgstr "切り替えるユーザの一覧(_W):"
 
-#: ../src/gs-lock-plug.c:1536
+#: ../src/gs-lock-plug.c:1545
 msgid "Log _Out"
 msgstr "ログアウト(_O)"
