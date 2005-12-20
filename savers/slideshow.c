@@ -67,6 +67,8 @@ main (int argc, char **argv)
         g_set_prgname ("slideshow");
 
         window = gs_theme_window_new ();
+        g_signal_connect (G_OBJECT (window), "delete-event",
+                          G_CALLBACK (gtk_main_quit), NULL);
 
         engine = g_object_new (GSTE_TYPE_SLIDESHOW, NULL);
         if (location != NULL) {

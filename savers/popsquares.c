@@ -40,6 +40,8 @@ main (int argc, char **argv)
         gtk_init_with_args (&argc, &argv, NULL, NULL, NULL, &error);
 
         window = gs_theme_window_new ();
+        g_signal_connect (G_OBJECT (window), "delete-event",
+                          G_CALLBACK (gtk_main_quit), NULL);
 
         g_set_prgname ("popsquares");
 
