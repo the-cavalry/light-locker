@@ -85,8 +85,14 @@ gs_theme_engine_clear (GtkWidget *widget)
 {
         GdkColor     color = { 0, 0, 0 };
         GdkColormap *colormap;
+        GtkStateType state;
 
-        gtk_widget_modify_bg (widget, GTK_STATE_NORMAL, &color);
+        state = (GtkStateType) 0;
+        while (state < (GtkStateType) G_N_ELEMENTS (widget->style->bg)) {
+                gtk_widget_modify_bg (widget, state, &color);
+                state++;
+        }
+
         colormap = gdk_drawable_get_colormap (widget->window);
         gdk_colormap_alloc_color (colormap, &color, FALSE, TRUE);
         gdk_window_set_background (widget->window, &color);

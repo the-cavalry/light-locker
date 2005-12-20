@@ -1,5 +1,16 @@
 2005-12-19  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (gs_window_clear): 
+	* savers/gs-theme-engine.c (gs_theme_engine_clear):
+	Clear all window states.
+
+	* savers/slideshow.c (main): 
+	* savers/gste-slideshow.[ch]: 
+	* savers/Makefile.am: Convert slideshow
+	to GSThemeEngine and GSThemeWindow.
+
+2005-12-19  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Post release version bump.
 
 ==== 0.0.23 ====

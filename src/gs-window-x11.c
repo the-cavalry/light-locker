@@ -165,8 +165,14 @@ gs_window_clear (GSWindow *window)
 {
         GdkColor     color = { 0, 0, 0 };
         GdkColormap *colormap;
+        GtkStateType state;
 
-        gtk_widget_modify_bg (GTK_WIDGET (window), GTK_STATE_NORMAL, &color);
+        state = (GtkStateType) 0;
+        while (state < (GtkStateType) G_N_ELEMENTS (GTK_WIDGET (window)->style->bg)) {
+                gtk_widget_modify_bg (GTK_WIDGET (window), state, &color);
+                state++;
+        }
+
         colormap = gdk_drawable_get_colormap (GTK_WIDGET (window)->window);
         gdk_colormap_alloc_color (colormap, &color, FALSE, TRUE);
         gdk_window_set_background (GTK_WIDGET (window)->window, &color);

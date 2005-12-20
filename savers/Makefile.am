@@ -80,10 +80,15 @@ popsquares_LDADD =			\
 	$(NULL)
 
 slideshow_SOURCES =   \
-	slideshow.c
+	gste-slideshow.c	\
+	gste-slideshow.h	\
+	slideshow.c		\
+	$(NULL)
 
 slideshow_LDADD =     \
-	$(GNOME_SCREENSAVER_SAVER_LIBS)
+	$(GNOME_SCREENSAVER_SAVER_LIBS)	\
+	libgs-theme-engine.a 		\
+	$(NULL)
 
 EXTRA_DIST =				\
 	gs-theme-engine-marshal.list	\
