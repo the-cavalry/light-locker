@@ -1,3 +1,11 @@
+2005-12-30  William Jon McCann  <mccann@jhu.edu>
+
+	* savers/footlogo-floaters.desktop.in.in:
+	Mark fields for translation.
+
+	Patch from Luca Ferretti <elle.uca@libero.it>
+	Fixes #325075.
+
 2005-12-19  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/slideshow.c (main): 
