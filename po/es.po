@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-18 23:28+0100\n"
-"PO-Revision-Date: 2005-12-18 23:32+0100\n"
+"POT-Creation-Date: 2005-12-31 14:38+0100\n"
+"PO-Revision-Date: 2005-12-31 14:39+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -224,6 +224,14 @@ msgstr "Tiempo antes de suspender"
 msgid "Time before theme change"
 msgstr "Tiempo antes de cambiar el tema"
 
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Burbujea el logo del pie de GNOME alrededor de la pantalla"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Pie flotante"
+
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
 msgstr "Cosmos"
@@ -303,11 +311,11 @@ msgstr "%s. Vea --help para la información de uso.\n"
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "Debe especificar una imagen. Vea --help para la información de uso.\n"
 
-#: ../savers/slideshow.c:77
+#: ../savers/slideshow.c:47
 msgid "Location to get images from"
 msgstr "Lugar del que obtener las imágenes"
 
-#: ../savers/slideshow.c:77
+#: ../savers/slideshow.c:47
 msgid "PATH"
 msgstr "RUTA"
 
@@ -764,15 +772,15 @@ msgstr "No convertirse en un demonio"
 msgid "Enable debugging code"
 msgstr "Activar código de depuración"
 
-#: ../src/gs-listener-dbus.c:1001
+#: ../src/gs-listener-dbus.c:1014
 msgid "failed to register with the message bus"
 msgstr "falló al registrarse con el bus del mensaje"
 
-#: ../src/gs-listener-dbus.c:1011
+#: ../src/gs-listener-dbus.c:1024
 msgid "not connected to the message bus"
 msgstr "no conectado al bus de mensajes"
 
-#: ../src/gs-listener-dbus.c:1020
+#: ../src/gs-listener-dbus.c:1033
 msgid "screensaver already running in this session"
 msgstr "ya se está ejecutando el salvapantallas en esta sesión"
 
@@ -800,15 +808,15 @@ msgstr "_Desbloquear"
 msgid "_Switch User..."
 msgstr "_Cambiar usuario..."
 
-#: ../src/gs-lock-plug.c:1430
+#: ../src/gs-lock-plug.c:1432
 msgid "_Password:"
 msgstr "_Contraseña:"
 
-#: ../src/gs-lock-plug.c:1496
+#: ../src/gs-lock-plug.c:1498
 msgid "S_witch to user:"
 msgstr "_Cambiar al usuario:"
 
-#: ../src/gs-lock-plug.c:1543
+#: ../src/gs-lock-plug.c:1545
 msgid "Log _Out"
 msgstr "Cerrar _sesión"
 
