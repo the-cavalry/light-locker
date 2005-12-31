@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 0.0.21\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-17 15:58+0700\n"
-"PO-Revision-Date: 2005-12-17 16:13+0700\n"
+"POT-Creation-Date: 2005-12-31 11:20+0700\n"
+"PO-Revision-Date: 2005-12-31 11:26+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <l10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -89,14 +89,14 @@ msgstr "กำหนดเป็น TRUE เพื่อล็อคหน้า
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
-msgstr "กำหนดเป็น TRUE เพื่อให้มีตัวเลือกในไดอะล็อกปลดล็อคหน้าจอ ให้เปลี่ยนไปใช้บัญชีผู้ใช้อื่นได้"
+msgstr "กำหนดเป็น TRUE เพื่อให้มีตัวเลือกในกล่องโต้ตอบปลดล็อคหน้าจอ ให้เปลี่ยนไปใช้บัญชีผู้ใช้อื่นได้"
 
 #: data/gnome-screensaver.schemas.in.h:11
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
 msgstr ""
-"กำหนดเป็น TRUE เพื่อให้มีตัวเลือกในไดอะล็อกปลดล็อคหน้าจอ "
+"กำหนดเป็น TRUE เพื่อให้มีตัวเลือกในกล่องโต้ตอบปลดล็อคหน้าจอ "
 "ให้ออกจากระบบหลังจากการหน่วงเวลาได้ ช่วงเวลาที่หน่วงกำหนดโดยคีย์ \"logout_delay\""
 
 #: data/gnome-screensaver.schemas.in.h:12
@@ -120,7 +120,7 @@ msgid ""
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
 "จำนวนนาทีหลังการเริ่มทำงาน "
-"ที่โปรแกรมรักษาหน้าจอจะปรากฏตัวเลือกให้ออกจากระบบในไดอะล็อกปลดล็อคหน้าจอ "
+"ที่โปรแกรมรักษาหน้าจอจะปรากฏตัวเลือกให้ออกจากระบบในกล่องโต้ตอบปลดล็อคหน้าจอ "
 "คีย์นี้จะมีผลก็ต่อเมื่อคีย์ \"logout_enable\" มีค่าเป็น TRUE"
 
 #: data/gnome-screensaver.schemas.in.h:15
@@ -206,6 +206,14 @@ msgstr "ช่วงเวลาก่อน suspend"
 msgid "Time before theme change"
 msgstr "ช่วงเวลาก่อนเปลี่ยนชุดโปรแกรม"
 
+#: savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "เลื่อนตรารูปรอยเท้าของ GNOME ไปรอบๆ หน้าจอ"
+
+#: savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "บาทาเหินหาว"
+
 #: savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
 msgstr "อวกาศ"
@@ -285,11 +293,11 @@ msgstr "%s  ลองเรียกด้วย --help เพื่อดูว
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "คุณต้องระบุรูปภาพด้วย  ลองเรียกด้วย --help เพื่อดูวิธีใช้\n"
 
-#: savers/slideshow.c:77
+#: savers/slideshow.c:47
 msgid "Location to get images from"
 msgstr "ตำแหน่งที่จะอ่านข้อมูลรูปภาพ"
 
-#: savers/slideshow.c:77
+#: savers/slideshow.c:47
 msgid "PATH"
 msgstr "PATH"
 
@@ -731,15 +739,15 @@ msgstr "ไม่ต้องเป็นดีมอน"
 msgid "Enable debugging code"
 msgstr "เปิดใช้โค้ดส่วนดีบั๊ก"
 
-#: src/gs-listener-dbus.c:1001
+#: src/gs-listener-dbus.c:1014
 msgid "failed to register with the message bus"
 msgstr "ลงทะเบียนกับบัสข้อความไม่สำเร็จ"
 
-#: src/gs-listener-dbus.c:1011
+#: src/gs-listener-dbus.c:1024
 msgid "not connected to the message bus"
 msgstr "ไม่ได้เชื่อมต่อกับบัสข้อความ"
 
-#: src/gs-listener-dbus.c:1020
+#: src/gs-listener-dbus.c:1033
 msgid "screensaver already running in this session"
 msgstr "โปรแกรมรักษาหน้าจอกำลังทำงานอยู่แล้วในวาระนี้"
 
@@ -767,15 +775,15 @@ msgstr "_ปลดล็อค"
 msgid "_Switch User..."
 msgstr "_สลับผู้ใช้..."
 
-#: src/gs-lock-plug.c:1430
+#: src/gs-lock-plug.c:1432
 msgid "_Password:"
 msgstr "_รหัสผ่าน:"
 
-#: src/gs-lock-plug.c:1496
+#: src/gs-lock-plug.c:1498
 msgid "S_witch to user:"
 msgstr "ส_ลับไปเป็นผู้ใช้:"
 
-#: src/gs-lock-plug.c:1543
+#: src/gs-lock-plug.c:1545
 msgid "Log _Out"
 msgstr "_ออกจากระบบ"
 
