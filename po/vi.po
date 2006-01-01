@@ -6,12 +6,12 @@ msgid ""
 ""
 msgstr "Project-Id-Version: gnome-screensaver Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-20 06:28+0100\n"
-"PO-Revision-Date: 2005-12-20 18:51+1030\n"
+"POT-Creation-Date: 2005-12-31 22:54+0100\n"
+"PO-Revision-Date: 2006-01-01 14:51+1030\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "X-Generator: LocFactoryEditor 1.5.1b\n"
@@ -89,20 +89,24 @@ msgstr "Đặt giá trị này là TRUE (đúng) để khóa màn hình khi bộ
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
-msgstr "Đặt giá trị này là TRUE (đúng) để cung cấp trong hộp thoại bỏ khóa tùy chọn chuyển đổi sang tài khoản người dùng khác."
+msgstr "Đặt giá trị này là TRUE (đúng) để cung cấp trong hộp thoại bỏ khóa tùy chọn "
+"chuyển đổi sang tài khoản người dùng khác."
 
 #:../data/gnome-screensaver.schemas.in.h:11
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
-msgstr "Đặt giá trị này là TRUE (đúng) để cung cấp trong hộp thoại bỏ khóa tùy chọn đăng xuất sau khi trễ. Sự trễ được ghi rõ trong khóa « logout_delay » (sự trễ đăng xuất)."
+msgstr "Đặt giá trị này là TRUE (đúng) để cung cấp trong hộp thoại bỏ khóa tùy chọn "
+"đăng xuất sau khi trễ. Sự trễ được ghi rõ trong khóa « logout_delay » (sự "
+"trễ đăng xuất)."
 
 #:../data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
-msgstr "Lệnh cần chạy khi cái nút đăng xuất được bấm. Lệnh này nên đơn giản đăng xuất người dùng, không tương tác gì."
+msgstr "Lệnh cần chạy khi cái nút đăng xuất được bấm. Lệnh này nên đơn giản đăng "
+"xuất người dùng, không tương tác gì."
 
 #:../data/gnome-screensaver.schemas.in.h:13
 msgid ""
@@ -114,25 +118,30 @@ msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
-msgstr "Số phút sau khi bộ bảo vệ màn hình mới hoạt động, trước khi tùy chọn đăng xuất được hiển thị trong hộp thoại bỏ khóa. Khóa này có tác động chỉ nếu khóa « logout_enable » (bật đăng xuất) được đặt là TRUE (đúng)."
+msgstr "Số phút sau khi bộ bảo vệ màn hình mới hoạt động, trước khi tùy chọn đăng "
+"xuất được hiển thị trong hộp thoại bỏ khóa. Khóa này có tác động chỉ nếu "
+"khóa « logout_enable » (bật đăng xuất) được đặt là TRUE (đúng)."
 
 #:../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into standby power mode."
-msgstr "Số phút sau khi bộ bảo vệ màn hình mới hoạt động, trước khi thiết bị hiển thị vào chế độ chờ."
+msgstr "Số phút sau khi bộ bảo vệ màn hình mới hoạt động, trước khi thiết bị hiển "
+"thị vào chế độ chờ."
 
 #:../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into suspend power mode."
-msgstr "Số phút sau khi bộ bảo vệ màn hình mới hoạt động, trước khi thiết bị hiển thị vào chế độ ngưng điện năng."
+msgstr "Số phút sau khi bộ bảo vệ màn hình mới hoạt động, trước khi thiết bị hiển "
+"thị vào chế độ ngưng điện năng."
 
 #:../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "powers off."
-msgstr "Số phút sau khi bộ bảo vệ màn hình mới hoạt động, trước khi thiết bị hiển thị tắt điện."
+msgstr "Số phút sau khi bộ bảo vệ màn hình mới hoạt động, trước khi thiết bị hiển "
+"thị tắt điện."
 
 #:../data/gnome-screensaver.schemas.in.h:18
 msgid "The number of minutes of idle time before activating the screensaver."
@@ -151,9 +160,12 @@ msgid ""
 "enable the screensaver using a random theme on activation."
 msgstr "Chế độ lựa chọn được dùng bởi bộ bảo vệ màn hình. Chế độ có thể:\n"
 " • disabled (bị tắt) để tắt khả năng hoạt hóa bộ bảo vệ màn hình\n"
-" • blank-only (chỉ trắng) để bật chạy bộ bảo vệ màn hình mà không dùng sắc thái nào khi mới hoạt động\n"
-" • single (đơn) để bật chạy bộ bảo vệ màn hình mà dùng chỉ một sắc thái khi mới hoạt động thôi (được ghi rõ trong khóa « themes » (sắc thái)\n"
-" • random (ngẫu nhiên) để bật chạy bộ bảo vệ màn hình mà dùng sắc thái ngẫu nhiên khi mới hoạt động."
+" • blank-only (chỉ trắng) để bật chạy bộ bảo vệ màn hình mà không dùng sắc "
+"thái nào khi mới hoạt động\n"
+" • single (đơn) để bật chạy bộ bảo vệ màn hình mà dùng chỉ một sắc thái khi "
+"mới hoạt động thôi (được ghi rõ trong khóa « themes » (sắc thái)\n"
+" • random (ngẫu nhiên) để bật chạy bộ bảo vệ màn hình mà dùng sắc thái ngẫu "
+"nhiên khi mới hoạt động."
 
 #:../data/gnome-screensaver.schemas.in.h:21
 msgid ""
@@ -162,9 +174,11 @@ msgid ""
 "the theme name when \"mode\" is \"single\", and should provide a list of "
 "themes when \"mode\" is \"random\"."
 msgstr "Khóa này ghi rõ danh sách các sắc thái cho bộ bảo vệ màn hình dùng. Nó\n"
-" • bị bỏ qua khi khóa « mode » (chế độ) bị tắt (« disabled ») hay chỉ trắng (« blank only »)\n"
+" • bị bỏ qua khi khóa « mode » (chế độ) bị tắt (« disabled ») hay chỉ trắng "
+"(« blank only »)\n"
 " • nên cung cấp tên sắc thái khi « mode » (chế độ) là đơn (« single »)\n"
-" • nên cung cấp danh sách các sắc thái khi « mode » (chế độ) là ngẫu nhiên (« random »)."
+" • nên cung cấp danh sách các sắc thái khi « mode » (chế độ) là ngẫu nhiên "
+"(« random »)."
 
 #:../data/gnome-screensaver.schemas.in.h:22
 msgid "Time before activation"
@@ -193,6 +207,14 @@ msgstr "Thời gian trước khi ngưng"
 #:../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before theme change"
 msgstr "Thời gian trước khi thay đổi sắc thái"
+
+#:../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Thổi bong bóng biểu tượng chân GNOME chung quanh màn hình"
+
+#:../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Chân nổi"
 
 #:../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
@@ -359,7 +381,8 @@ msgstr "Không tìm thấy trình phục vụ X trong cấu hình GDM."
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
-msgstr "Đang cố đặt hành động đăng xuất lạ, hoặc một hành động đăng xuất không sẵn sàng."
+msgstr "Đang cố đặt hành động đăng xuất lạ, hoặc một hành động đăng xuất không sẵn "
+"sàng."
 
 #:../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
@@ -414,13 +437,15 @@ msgstr "GDM (Bộ Quản lý Trình bày Gnome) chưa chạy."
 msgid ""
 "You might in fact be using a different display manager, such as KDM (KDE "
 "Display Manager) or xdm."
-msgstr "Có lẽ bạn thật sự có sử dụng một bộ quản lý trình bày khác, như KDE (Bộ quản lý trình bày KDE) hoặc xdm."
+msgstr "Có lẽ bạn thật sự có sử dụng một bộ quản lý trình bày khác, như KDE (Bộ quản "
+"lý trình bày KDE) hoặc xdm."
 
 #:../src/cut-n-paste/gdmcomm.c:419
 msgid ""
 "If you still wish to use this feature, either start GDM yourself or ask your "
 "system administrator to start GDM."
-msgstr "Nếu bạn vẫn còn muốn sử dụng tính năng này, hãy hoặc tự khởi chạy GDM, hoặc xin quản trị hệ thống làm như thế."
+msgstr "Nếu bạn vẫn còn muốn sử dụng tính năng này, hãy hoặc tự khởi chạy GDM, hoặc "
+"xin quản trị hệ thống làm như thế."
 
 #.markup
 #:../src/cut-n-paste/gdmcomm.c:441
@@ -455,7 +480,8 @@ msgstr "Quá nhiều phiên X đang chạy."
 msgid ""
 "The nested X server (Xnest) cannot connect to your current X server.  You "
 "may be missing an X authorization file."
-msgstr "Trình phục vụ X lồng nhau (Xnest) không thể kết nối đến trình phục vụ X hiện thời của bạn. Có lẽ bạn thiếu một tập tin cấp quyền X."
+msgstr "Trình phục vụ X lồng nhau (Xnest) không thể kết nối đến trình phục vụ X hiện "
+"thời của bạn. Có lẽ bạn thiếu một tập tin cấp quyền X."
 
 #:../src/cut-n-paste/gdmcomm.c:483
 msgid ""
@@ -647,19 +673,19 @@ msgstr "Hình như tập tin này không phải là sắc thái bảo vệ màn 
 #:../src/gnome-screensaver-preferences.c:812
 #,c-format
 msgid "%d hour"
-msgid_plural "%d hour"
+msgid_plural "%d hours"
 msgstr[0] "%d giờ"
 
 #:../src/gnome-screensaver-preferences.c:815
 #,c-format
 msgid "%d minute"
-msgid_plural "%d minute"
+msgid_plural "%d minutes"
 msgstr[0] "%d phút"
 
 #:../src/gnome-screensaver-preferences.c:818
 #,c-format
 msgid "%d second"
-msgid_plural "%d second"
+msgid_plural "%d seconds"
 msgstr[0] "%d giây"
 
 # Variable: don't translate / Biến: đừng dịch
