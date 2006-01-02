@@ -1,3 +1,7 @@
+2006-01-02  Josep Puigdemont i Casamajó  <josep.puigdemont@gmail.com>
+
+	* configure.ac: Added "ca" to ALL_LINGUAS.
+
 2005-12-30  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/footlogo-floaters.desktop.in.in:

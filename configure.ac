@@ -28,7 +28,7 @@ GETTEXT_PACKAGE=gnome-screensaver
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Name of default gettext domain])
 
-ALL_LINGUAS="bg cs de en_CA en_GB es fi fr gl gu hu it ja lt nb nl no pa pt_BR sk sv th uk vi zh_CN zh_TW"
+ALL_LINGUAS="bg ca cs de en_CA en_GB es fi fr gl gu hu it ja lt nb nl no pa pt_BR sk sv th uk vi zh_CN zh_TW"
 AM_GLIB_GNU_GETTEXT
 
 # Dependencies
