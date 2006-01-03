@@ -472,22 +472,8 @@ static void
 gs_lock_plug_size_request (GtkWidget      *widget,
                            GtkRequisition *requisition)
 {
-        int mod_width;
-        int mod_height;
-
         if (GTK_WIDGET_CLASS (parent_class)->size_request)
                 GTK_WIDGET_CLASS (parent_class)->size_request (widget, requisition);
-
-        mod_width = requisition->height * 1.3;
-        mod_height = requisition->width / 1.6;
-        if (requisition->width < mod_width) {
-                /* if the dialog is tall fill out the width */
-                requisition->width = mod_width;
-        } else if (requisition->height < mod_height) {
-                /* if the dialog is wide fill out the height */
-                requisition->height = mod_height;
-        }
-
 }
 
 static void
@@ -1387,54 +1373,58 @@ create_page_one (GSLockPlug *plug)
         GtkWidget            *align;
         GtkWidget            *vbox;
         GtkWidget            *vbox2;
-        GtkWidget            *hbox;
+        GtkWidget            *table;
         char                 *str;
 
         profile_start ("start", "page one");
 
-        align = gtk_alignment_new (0.5, 0.5, 1, 1);
-        gtk_notebook_append_page (GTK_NOTEBOOK (plug->priv->notebook), align, NULL);
-
         vbox = gtk_vbox_new (FALSE, 12);
-        gtk_container_add (GTK_CONTAINER (align), vbox);
+        gtk_notebook_append_page (GTK_NOTEBOOK (plug->priv->notebook), vbox, NULL);
+
+        table = gtk_table_new (3, 2, FALSE);
+        gtk_table_set_row_spacings (GTK_TABLE (table), 24);
+        gtk_table_set_col_spacings (GTK_TABLE (table), 6);
+        gtk_box_pack_start (GTK_BOX (vbox), table, FALSE, FALSE, 0);
 
         widget = get_face_image ();
         if (! widget) {
                 /* placeholder */
                 widget = gtk_label_new (NULL);
         }
-        gtk_box_pack_start (GTK_BOX (vbox), widget, TRUE, TRUE, 0);
-        gtk_misc_set_alignment (GTK_MISC (widget), 0.5, 1.0);
+        gtk_table_attach (GTK_TABLE (table), widget,
+                          0, 1,
+                          0, 1,
+                          GTK_FILL | GTK_SHRINK,
+                          GTK_FILL | GTK_SHRINK,
+                          0, 0);
 
         vbox2 = gtk_vbox_new (FALSE, 0);
-        gtk_box_pack_start (GTK_BOX (vbox), vbox2, FALSE, FALSE, 0);
 
-        str = g_strdup_printf ("<span size=\"x-large\">%s</span>", get_user_display_name ());
+        align = gtk_alignment_new (0.5, 1.0, 1, 1);
+        gtk_container_add (GTK_CONTAINER (align), vbox2);
+
+        gtk_table_attach_defaults (GTK_TABLE (table), align, 1, 2, 0, 1);
+
+        str = g_strdup_printf ("<span size=\"x-large\">%s</span>\n<span size=\"small\">%s</span>",
+                               get_user_display_name (),
+                               g_get_user_name ());
         widget = gtk_label_new (str);
         g_free (str);
-        gtk_misc_set_alignment (GTK_MISC (widget), 0.5, 0.5);
+        gtk_misc_set_alignment (GTK_MISC (widget), 0.0, 0.5);
         gtk_label_set_use_markup (GTK_LABEL (widget), TRUE);
-        gtk_box_pack_start (GTK_BOX (vbox2), widget, FALSE, FALSE, 0);
-
-        str = g_strdup_printf ("<span size=\"small\">%s</span>", g_get_user_name ());
-        plug->priv->username_label = gtk_label_new (str);
-        g_free (str);
-        gtk_misc_set_alignment (GTK_MISC (plug->priv->username_label), 0.5, 0.5);
-        gtk_label_set_use_markup (GTK_LABEL (plug->priv->username_label), TRUE);
-        gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->username_label, FALSE, FALSE, 0);
-
-        vbox2 = gtk_vbox_new (FALSE, 0);
-        gtk_box_pack_start (GTK_BOX (vbox), vbox2, TRUE, TRUE, 0);
-
-        hbox = gtk_hbox_new (FALSE, 6);
-        gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (vbox2), widget, TRUE, TRUE, 0);
 
         password_label = gtk_label_new_with_mnemonic (_("_Password:"));
-        gtk_misc_set_alignment (GTK_MISC (password_label), 0, 0.5);
-        gtk_box_pack_start (GTK_BOX (hbox), password_label, FALSE, FALSE, 0);
+        gtk_misc_set_alignment (GTK_MISC (password_label), 0.0, 0.5);
+        gtk_table_attach (GTK_TABLE (table), password_label,
+                          0, 1,
+                          1, 2,
+                          GTK_FILL | GTK_SHRINK,
+                          GTK_FILL | GTK_SHRINK,
+                          0, 0);
 
         plug->priv->password_entry = gtk_entry_new ();
-        gtk_box_pack_start (GTK_BOX (hbox), plug->priv->password_entry, TRUE, TRUE, 0);
+        gtk_table_attach_defaults (GTK_TABLE (table), plug->priv->password_entry, 1, 2, 1, 2);
 
         /* button press handler used to inhibit popup menu */
         g_signal_connect (plug->priv->password_entry, "button_press_event",
@@ -1449,7 +1439,7 @@ create_page_one (GSLockPlug *plug)
 
         plug->priv->capslock_label = gtk_label_new ("");
         gtk_misc_set_alignment (GTK_MISC (plug->priv->capslock_label), 0.5, 0.5);
-        gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->capslock_label, FALSE, FALSE, 0);
+        gtk_table_attach_defaults (GTK_TABLE (table), plug->priv->capslock_label, 1, 2, 2, 3);
 
         profile_end ("end", "page one");
 }

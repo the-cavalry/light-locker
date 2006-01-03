@@ -1,5 +1,12 @@
 2006-01-03  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (gs_lock_plug_size_request):
+	Don't constrain aspect ratio.
+	(create_page_one): Try using a more tabular layout
+	again.  Based on mock up from Luca Ferretti.
+
+2006-01-03  William Jon McCann  <mccann@jhu.edu>
+
 	* doc/DBUS-API.txt: Document D-Bus API changes.
 
 	* src/gs-watcher-x11.c (gs_watcher_class_init) 
