@@ -1,3 +1,32 @@
+2006-01-03  William Jon McCann  <mccann@jhu.edu>
+
+	* doc/DBUS-API.txt: Document D-Bus API changes.
+
+	* src/gs-watcher-x11.c (gs_watcher_class_init) 
+	(_gs_watcher_set_session_idle_notice) 
+	(_gs_watcher_set_session_idle, _gs_watcher_notice_activity) 
+	(maybe_send_signal): Make idle and idle_notice internal states
+	and change signals to indicate changes in these states.
+
+	* src/gs-monitor.c (watcher_idle_cb, watcher_idle_notice_cb)
+	(_gs_monitor_update_from_prefs, disconnect_watcher_signals)
+	(connect_watcher_signals): Don't disable the watcher when
+	screensaver is disabled.  Always handle idle signals and let
+	listener object manage the activation policy.
+
+	* src/gs-listener-dbus.[ch] (gs_listener_send_signal_session_idle_changed)
+	(listener_is_inhibited, listener_check_activation) 
+	(listener_set_session_idle_internal) 
+	(listener_set_active_internal, gs_listener_set_active) 
+	(gs_listener_set_session_idle) 
+	(gs_listener_get_activation_enabled) 
+	(gs_listener_set_activation_enabled, listener_property_set_bool) 
+	(listener_get_property, listener_get_session_idle_time) 
+	(listener_dbus_filter_handle_methods, gs_listener_set_property) 
+	(gs_listener_get_property, gs_listener_class_init):
+	Add back proper session idle capability.  Manage activation
+	enabled policy.
+
 2006-01-02  Josep Puigdemont i Casamajó  <josep.puigdemont@gmail.com>
 
 	* configure.ac: Added "ca" to ALL_LINGUAS.

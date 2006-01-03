@@ -64,12 +64,14 @@ struct GSListenerPrivate
 {
         DBusConnection *connection;
 
-        guint           idle : 1;
+        guint           session_idle : 1;
         guint           active : 1;
+        guint           activation_enabled : 1;
         guint           throttle_enabled : 1;
         GHashTable     *inhibitors;
 
         time_t          active_start;
+        time_t          session_idle_start;
 };
 
 enum {
@@ -85,8 +87,9 @@ enum {
 enum {
         PROP_0,
         PROP_ACTIVE,
-        PROP_IDLE,
+        PROP_SESSION_IDLE,
         PROP_THROTTLE_ENABLED,
+        PROP_ACTIVATION_ENABLED,
 };
 
 
@@ -169,6 +172,30 @@ gs_listener_send_signal_active_changed (GSListener *listener)
 }
 
 static void
+gs_listener_send_signal_session_idle_changed (GSListener *listener)
+{
+        DBusMessage    *message;
+        DBusMessageIter iter;
+        dbus_bool_t     idle;
+
+        g_return_if_fail (listener != NULL);
+
+        message = dbus_message_new_signal (GS_LISTENER_PATH,
+                                           GS_LISTENER_SERVICE,
+                                           "SessionIdleChanged");
+
+        idle = listener->priv->session_idle;
+        dbus_message_iter_init_append (message, &iter);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &idle);
+
+        if (! send_dbus_message (listener->priv->connection, message)) {
+                g_warning ("Could not send SessionIdleChanged signal");
+        }
+
+        dbus_message_unref (message);
+}
+
+static void
 gs_listener_send_signal_throttle_enabled_changed (GSListener *listener)
 {
         DBusMessage    *message;
@@ -201,10 +228,10 @@ list_inhibitors (gpointer key,
 }
 
 static gboolean
-listener_check_activation (GSListener *listener)
+listener_is_inhibited (GSListener *listener)
 {
         guint    n_inhibitors;
-        gboolean res;
+        gboolean inhibited;
 
         /* if we aren't inhibited then activate */
         n_inhibitors = 0;
@@ -214,12 +241,69 @@ listener_check_activation (GSListener *listener)
                 g_hash_table_foreach (listener->priv->inhibitors, list_inhibitors, NULL);
         }
 
+        inhibited = (n_inhibitors > 0);
+
+        return inhibited;
+}
+
+static gboolean
+listener_check_activation (GSListener *listener)
+{
+        gboolean inhibited;
+        gboolean res;
+
+        if (! listener->priv->activation_enabled) {
+                return FALSE;
+        }
+
+        /* if we aren't inhibited then activate */
+        inhibited = listener_is_inhibited (listener);
+
         res = FALSE;
-        if (listener->priv->idle && n_inhibitors == 0) {
+        if (listener->priv->session_idle && ! inhibited) {
                 res = gs_listener_set_active (listener, TRUE);
         }
 
         return res;
+}
+
+static gboolean
+listener_set_session_idle_internal (GSListener *listener,
+                                    gboolean    idle)
+{
+        listener->priv->session_idle = idle;
+
+        if (idle) {
+                listener->priv->session_idle_start = time (NULL);
+        } else {
+                listener->priv->session_idle_start = 0;
+        }
+
+        gs_listener_send_signal_session_idle_changed (listener);
+
+        return TRUE;
+}
+
+static gboolean
+listener_set_active_internal (GSListener *listener,
+                              gboolean    active)
+{
+        listener->priv->active = active;
+
+        /* if idle not in sync with active, change it */
+        if (listener->priv->session_idle != active) {
+                listener_set_session_idle_internal (listener, active);
+        }
+
+        if (active) {
+                listener->priv->active_start = time (NULL);
+        } else {
+                listener->priv->active_start = 0;
+        }
+
+        gs_listener_send_signal_active_changed (listener);
+
+        return TRUE;
 }
 
 gboolean
@@ -230,66 +314,59 @@ gs_listener_set_active (GSListener *listener,
 
         g_return_val_if_fail (GS_IS_LISTENER (listener), FALSE);
 
-        if (listener->priv->active != active) {
+        if (listener->priv->active == active) {
+                g_warning ("Trying to set active when already active");
+                return FALSE;
+        }
 
-                res = FALSE;
-                g_signal_emit (listener, signals [ACTIVE_CHANGED], 0, active, &res);
-                if (! res) {
-                        /* if the signal is not handled then we haven't changed state */
+        res = FALSE;
+        g_signal_emit (listener, signals [ACTIVE_CHANGED], 0, active, &res);
+        if (! res) {
+                /* if the signal is not handled then we haven't changed state */
 
-                        /* clear the idle state */
-                        if (active) {
-                                gs_listener_set_idle (listener, FALSE);
-                        }
-
-                        return FALSE;
-                }
-
-                listener->priv->active = active;
-                listener->priv->idle = active;
-
+                /* clear the idle state */
                 if (active) {
-                        listener->priv->active_start = time (NULL);
-                } else {
-                        listener->priv->active_start = 0;
+                        gs_listener_set_session_idle (listener, FALSE);
                 }
 
-                gs_listener_send_signal_active_changed (listener);
+                return FALSE;
+        }
 
-                if (! active) {
-                        /* if we are deactivating then reset the throttle */
-                        gs_listener_set_throttle_enabled (listener, FALSE);
-                }
+        listener_set_active_internal (listener, active);
+
+        if (! active) {
+                /* if we are deactivating then reset the throttle */
+                gs_listener_set_throttle_enabled (listener, FALSE);
         }
 
         return TRUE;
 }
 
 gboolean
-gs_listener_set_idle (GSListener *listener,
-                      gboolean    idle)
+gs_listener_set_session_idle (GSListener *listener,
+                              gboolean    idle)
 {
         g_return_val_if_fail (GS_IS_LISTENER (listener), FALSE);
 
-        if (listener->priv->idle == idle) {
+        gs_debug ("Setting session idle: %d", idle);
+
+        if (listener->priv->session_idle == idle) {
                 g_warning ("Trying to set idle when already idle");
                 return FALSE;
         }
 
         if (idle) {
-                guint n_inhibitors = 0;
+                gboolean inhibited;
 
-                /* if we aren't inhibited then set idle */
-                if (listener->priv->inhibitors) {
-                        n_inhibitors = g_hash_table_size (listener->priv->inhibitors);
-                }
+                inhibited = listener_is_inhibited (listener);
 
-                if (n_inhibitors != 0) {
+                /* if we are inhibited then do nothing */
+                if (inhibited) {
                         return FALSE;
                 }
         }
 
-        listener->priv->idle = idle;
+        listener_set_session_idle_internal (listener, idle);
 
         listener_check_activation (listener);
 
@@ -311,6 +388,25 @@ gs_listener_set_throttle_enabled (GSListener *listener,
         }
 }
 
+gboolean
+gs_listener_get_activation_enabled (GSListener *listener)
+{
+        g_return_val_if_fail (GS_IS_LISTENER (listener), FALSE);
+
+        return listener->priv->activation_enabled;
+}
+
+void
+gs_listener_set_activation_enabled (GSListener *listener,
+                                    gboolean    enabled)
+{
+        g_return_if_fail (GS_IS_LISTENER (listener));
+
+        if (listener->priv->activation_enabled != enabled) {
+                listener->priv->activation_enabled = enabled;
+        }
+}
+
 static dbus_bool_t
 listener_property_set_bool (GSListener *listener,
                             guint       prop_id,
@@ -323,10 +419,6 @@ listener_property_set_bool (GSListener *listener,
         switch (prop_id) {
         case PROP_ACTIVE:
                 gs_listener_set_active (listener, value);
-                ret = TRUE;
-                break;
-        case PROP_IDLE:
-                gs_listener_set_idle (listener, value);
                 ret = TRUE;
                 break;
         case PROP_THROTTLE_ENABLED:
@@ -581,10 +673,10 @@ listener_get_property (GSListener     *listener,
                         dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &b);
                 }
                 break;
-        case PROP_IDLE:
+        case PROP_SESSION_IDLE:
                 {
                         dbus_bool_t b;
-                        b = listener->priv->idle;
+                        b = listener->priv->session_idle;
                         dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &b);
                 }
                 break;
@@ -656,6 +748,53 @@ listener_get_active_time (GSListener     *listener,
 }
 
 static DBusHandlerResult
+listener_get_session_idle_time (GSListener     *listener,
+                                DBusConnection *connection,
+                                DBusMessage    *message)
+{
+        DBusMessageIter iter;
+        DBusMessage    *reply;
+        dbus_uint32_t    secs;
+
+        reply = dbus_message_new_method_return (message);
+
+        dbus_message_iter_init_append (reply, &iter);
+
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        if (listener->priv->session_idle) {
+                time_t now = time (NULL);
+
+                if (now < listener->priv->session_idle_start) {
+                        /* shouldn't happen */
+                        g_warning ("Session idle start time is in the future");
+                        secs = 0;
+                } else if (listener->priv->session_idle_start <= 0) {
+                        /* shouldn't happen */
+                        g_warning ("Session idle start time was not set");
+                        secs = 0;
+                } else {
+                        secs = now - listener->priv->session_idle_start;
+                }
+        } else {
+                secs = 0;
+        }
+
+        gs_debug ("Returning session idle for %u seconds", secs);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &secs);
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
 listener_dbus_filter_handle_methods (DBusConnection *connection,
                                      DBusMessage    *message, 
                                      void           *user_data,
@@ -700,6 +839,12 @@ listener_dbus_filter_handle_methods (DBusConnection *connection,
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getActiveTime")) {
                 return listener_get_active_time (listener, connection, message);
+        }
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getSessionIdle")) {
+                return listener_get_property (listener, connection, message, PROP_SESSION_IDLE);
+        }
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getSessionIdleTime")) {
+                return listener_get_session_idle_time (listener, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "setThrottleEnabled")) {
                 return listener_set_property (listener, connection, message, PROP_THROTTLE_ENABLED);
@@ -849,11 +994,14 @@ gs_listener_set_property (GObject            *object,
         case PROP_ACTIVE:
                 gs_listener_set_active (self, g_value_get_boolean (value));
                 break;
-        case PROP_IDLE:
-                gs_listener_set_idle (self, g_value_get_boolean (value));
+        case PROP_SESSION_IDLE:
+                gs_listener_set_session_idle (self, g_value_get_boolean (value));
                 break;
         case PROP_THROTTLE_ENABLED:
                 gs_listener_set_throttle_enabled (self, g_value_get_boolean (value));
+                break;
+        case PROP_ACTIVATION_ENABLED:
+                gs_listener_set_activation_enabled (self, g_value_get_boolean (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -875,11 +1023,14 @@ gs_listener_get_property (GObject            *object,
         case PROP_ACTIVE:
                 g_value_set_boolean (value, self->priv->active);
                 break;
-        case PROP_IDLE:
-                g_value_set_boolean (value, self->priv->idle);
+        case PROP_SESSION_IDLE:
+                g_value_set_boolean (value, self->priv->session_idle);
                 break;
         case PROP_THROTTLE_ENABLED:
                 g_value_set_boolean (value, self->priv->throttle_enabled);
+                break;
+        case PROP_ACTIVATION_ENABLED:
+                g_value_set_boolean (value, self->priv->activation_enabled);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -974,6 +1125,14 @@ gs_listener_class_init (GSListenerClass *klass)
                                                                NULL,
                                                                NULL,
                                                                FALSE,
+                                                               G_PARAM_READWRITE));
+
+        g_object_class_install_property (object_class,
+                                         PROP_ACTIVATION_ENABLED,
+                                         g_param_spec_boolean ("activation-enabled",
+                                                               NULL,
+                                                               NULL,
+                                                               TRUE,
                                                                G_PARAM_READWRITE));
 
         g_type_class_add_private (klass, sizeof (GSListenerPrivate));

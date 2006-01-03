@@ -86,49 +86,52 @@ manager_activated_cb (GSManager *manager,
 
 static void
 manager_deactivated_cb (GSManager *manager,
-                         GSMonitor *monitor)
+                        GSMonitor *monitor)
 {
         gs_listener_set_active (monitor->priv->listener, FALSE);
 }
 
 static gboolean
 watcher_idle_cb (GSWatcher *watcher,
-                 int        reserved,
+                 gboolean   is_idle,
                  GSMonitor *monitor)
 {
         gboolean res;
-        gboolean fade_active;
 
-        fade_active = gs_fade_get_active (monitor->priv->fade);
+        gs_debug ("Idle signal detected: %d", is_idle);
 
-        res = gs_listener_set_idle (monitor->priv->listener, TRUE);
-
-        if (fade_active) {
-                gs_fade_set_active (monitor->priv->fade, FALSE);
-        }
+        res = gs_listener_set_session_idle (monitor->priv->listener, is_idle);
 
         return res;
 }
 
 static gboolean
 watcher_idle_notice_cb (GSWatcher *watcher,
-                        int        reserved,
+                        gboolean   in_effect,
                         GSMonitor *monitor)
 {
-        /* start slow fade */
-        gs_fade_set_timeout (monitor->priv->fade, FADE_TIMEOUT);
-        gs_fade_set_active (monitor->priv->fade, TRUE);
+        gboolean activation_enabled;
+
+        gs_debug ("Idle notice signal detected: %d", in_effect);
+
+        /* only fade if screensaver can activate */
+        activation_enabled = gs_listener_get_activation_enabled (monitor->priv->listener);
+
+        if (! activation_enabled) {
+                return TRUE;
+        }
+
+        if (in_effect) {
+                /* start slow fade */
+                gs_fade_set_timeout (monitor->priv->fade, FADE_TIMEOUT);
+                gs_fade_set_active (monitor->priv->fade, TRUE);
+        } else {
+                /* cancel the fade */
+                gs_fade_set_active (monitor->priv->fade, FALSE);
+                gs_fade_reset (monitor->priv->fade);
+        }
 
         return TRUE;
-}
-
-static void
-watcher_notice_cancelled_cb (GSWatcher *watcher,
-                             GSMonitor *monitor)
-{
-        /* cancel the fade */
-        gs_fade_set_active (monitor->priv->fade, FALSE);
-        gs_fade_reset (monitor->priv->fade);
 }
 
 static void
@@ -292,7 +295,13 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
         gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
         gs_manager_set_themes (monitor->priv->manager, monitor->priv->prefs->themes);
 
-        idle_detection_enabled = (monitor->priv->prefs->mode != GS_MODE_DONT_BLANK);
+        /* enable activation in all cases except when DONT_BLANK */
+        gs_listener_set_activation_enabled (monitor->priv->listener,
+                                            monitor->priv->prefs->mode != GS_MODE_DONT_BLANK);
+
+        /* idle detection always enabled */
+        idle_detection_enabled = TRUE;
+
         gs_watcher_set_timeout (monitor->priv->watcher, monitor->priv->prefs->timeout);
         gs_watcher_set_enabled (monitor->priv->watcher, idle_detection_enabled);
 
@@ -349,18 +358,15 @@ disconnect_watcher_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->watcher, watcher_idle_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->watcher, watcher_idle_notice_cb, monitor);
-        g_signal_handlers_disconnect_by_func (monitor->priv->watcher, watcher_notice_cancelled_cb, monitor);
 }
 
 static void
 connect_watcher_signals (GSMonitor *monitor)
 {
-        g_signal_connect (monitor->priv->watcher, "idle",
+        g_signal_connect (monitor->priv->watcher, "idle_changed",
                           G_CALLBACK (watcher_idle_cb), monitor);
-        g_signal_connect (monitor->priv->watcher, "idle_notice",
+        g_signal_connect (monitor->priv->watcher, "idle_notice_changed",
                           G_CALLBACK (watcher_idle_notice_cb), monitor);
-        g_signal_connect (monitor->priv->watcher, "notice_cancelled",
-                          G_CALLBACK (watcher_notice_cancelled_cb), monitor);
 }
 
 static void

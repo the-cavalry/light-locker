@@ -85,8 +85,8 @@ struct GSWatcherPrivate
 
         /* state */
         guint            active : 1;
-
-        guint            notice_sent : 1;
+        guint            idle : 1;
+        guint            idle_notice : 1;
 
         PointerPosition *poll_position;
 
@@ -115,9 +115,8 @@ struct GSWatcherPrivate
 };
 
 enum {
-        IDLE,
-        IDLE_NOTICE,
-        NOTICE_CANCELLED,
+        IDLE_CHANGED,
+        IDLE_NOTICE_CHANGED,
         LAST_SIGNAL
 };
 
@@ -213,37 +212,26 @@ gs_watcher_class_init (GSWatcherClass *klass)
         object_class->get_property = gs_watcher_get_property;
         object_class->set_property = gs_watcher_set_property;
 
-        signals [IDLE] =
-                g_signal_new ("idle",
+        signals [IDLE_CHANGED] =
+                g_signal_new ("idle_changed",
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSWatcherClass, idle),
+                              G_STRUCT_OFFSET (GSWatcherClass, idle_changed),
                               NULL,
                               NULL,
-                              gs_marshal_BOOLEAN__INT,
+                              gs_marshal_BOOLEAN__BOOLEAN,
                               G_TYPE_BOOLEAN,
-                              1, G_TYPE_INT);
-        signals [IDLE_NOTICE] =
-                g_signal_new ("idle_notice",
+                              1, G_TYPE_BOOLEAN);
+        signals [IDLE_NOTICE_CHANGED] =
+                g_signal_new ("idle_notice_changed",
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSWatcherClass, idle_notice),
+                              G_STRUCT_OFFSET (GSWatcherClass, idle_notice_changed),
                               NULL,
                               NULL,
-                              gs_marshal_BOOLEAN__INT,
+                              gs_marshal_BOOLEAN__BOOLEAN,
                               G_TYPE_BOOLEAN,
-                              1, G_TYPE_INT);
-
-        signals [NOTICE_CANCELLED] =
-                g_signal_new ("notice_cancelled",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSWatcherClass, notice_cancelled),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0, G_TYPE_NONE);
+                              1, G_TYPE_BOOLEAN);
 
         g_object_class_install_property (object_class,
                                          PROP_TIMEOUT,
@@ -519,6 +507,48 @@ reset_timers (GSWatcher *watcher)
         watcher->priv->last_activity_time = time (NULL);
 }
 
+static gboolean
+_gs_watcher_set_session_idle_notice (GSWatcher *watcher,
+                                     gboolean   in_effect)
+{
+        gboolean res;
+
+        res = FALSE;
+
+        if (in_effect != watcher->priv->idle_notice) {
+
+                gs_debug ("Changing idle notice state: %d", in_effect);
+
+                g_signal_emit (watcher, signals [IDLE_NOTICE_CHANGED], 0, in_effect, &res);
+                if (res) {
+                        watcher->priv->idle_notice = in_effect;
+                }
+        }
+
+        return res;
+}
+
+static gboolean
+_gs_watcher_set_session_idle (GSWatcher *watcher,
+                              gboolean   is_idle)
+{
+        gboolean res;
+
+        res = FALSE;
+
+        if (is_idle != watcher->priv->idle) {
+
+                gs_debug ("Changing idle state: %d", is_idle);
+
+                g_signal_emit (watcher, signals [IDLE_CHANGED], 0, is_idle, &res);
+                if (res) {
+                        watcher->priv->idle = is_idle;
+                }
+        }
+
+        return res;
+}
+
 static void
 _gs_watcher_notice_activity (GSWatcher *watcher)
 {
@@ -530,11 +560,15 @@ _gs_watcher_notice_activity (GSWatcher *watcher)
         gs_debug ("Activity detected: resetting timers");
 
         /* if an idle notice was sent, cancel it */
-        if (watcher->priv->notice_sent) {
-                gs_debug ("Cancelling idle notice");
+        if (watcher->priv->idle_notice) {
+                gboolean in_effect = FALSE;
+                _gs_watcher_set_session_idle_notice (watcher, in_effect);
+        }
 
-                g_signal_emit (watcher, signals [NOTICE_CANCELLED], 0);
-                watcher->priv->notice_sent = FALSE;
+        /* if idle signal was sent, cancel it */
+        if (watcher->priv->idle) {
+                gboolean is_idle = FALSE;
+                _gs_watcher_set_session_idle (watcher, is_idle);
         }
 
         reset_timers (watcher);
@@ -1135,6 +1169,11 @@ maybe_send_signal (GSWatcher *watcher)
                 return;
         }
 
+        if (watcher->priv->idle) {
+                /* already idle, do nothing */
+                return;
+        }
+
         idle = 1000 * (time (NULL) - watcher->priv->last_activity_time);
 
         if (idle >= watcher->priv->timeout) {
@@ -1167,22 +1206,21 @@ maybe_send_signal (GSWatcher *watcher)
                 do_idle_signal = FALSE;
         }
 
-        if (do_notice_signal && ! watcher->priv->notice_sent) {
+        if (do_notice_signal && ! watcher->priv->idle_notice) {
 		gboolean res = FALSE;
+                gboolean in_effect = TRUE;
 
-                gs_debug ("Sending idle notice");
-
-                g_signal_emit (watcher, signals [IDLE_NOTICE], 0, 0, &res);
-                watcher->priv->notice_sent = res;
+                res = _gs_watcher_set_session_idle_notice (watcher, in_effect);
         }
 
         if (do_idle_signal) {
 		gboolean res = FALSE;
+                gboolean is_idle = TRUE;
 
-                g_signal_emit (watcher, signals [IDLE], 0, 0, &res);
-
-                /* if the idle signal is handled then unset notice sent */
-                watcher->priv->notice_sent = (!res);
+                res = _gs_watcher_set_session_idle (watcher, is_idle);
+                if (res) {
+                        res = _gs_watcher_set_session_idle_notice (watcher, !is_idle);
+                }
 
                 /* if the event wasn't handled then schedule another timer */
                 if (! res) {
