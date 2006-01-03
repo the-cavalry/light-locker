@@ -1,3 +1,7 @@
+2006-01-03  Slobodan D. Sredojevic  <ssl@uns.ns.ac.yu>
+
+	* configure.ac: Added 'sr' and 'sr@Latn' to ALL_LINGUAS
+
 2006-01-03  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (gs_lock_plug_size_request):
