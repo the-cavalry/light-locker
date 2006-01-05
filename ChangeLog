@@ -1,3 +1,9 @@
+==== 0.0.24 ====
+
+2006-01-05  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 0.0.24 release
+
 2006-01-05  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-listener-dbus.c (gs_listener_set_active): Fix

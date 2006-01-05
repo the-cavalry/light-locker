@@ -1,4 +1,26 @@
 ==============
+Version 0.0.24
+==============
+
+  gnome-screensaver
+
+        * Add proper session idle reporting
+        * Clear all children of toplevel windows
+
+  Translators
+
+        * Josep Puigdemont i Casamajó (ca)
+        * Adam Weinberger (en_CA)
+        * Francisco Javier F. Serrador (es)
+        * Ilkka Tuohela (fi)
+        * Ankit Patel (gu)
+        * Žygimantas Beru�ka (lt)
+        * Tino Meinen (nl)
+        * Слободан �. С�едо�еви� (sr)
+        * Theppitak Karoonboonyanan (th)
+        * Clytie Siddall (vi)
+
+==============
 Version 0.0.23
 ==============
 
