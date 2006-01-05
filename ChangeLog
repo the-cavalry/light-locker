@@ -1,5 +1,13 @@
 2006-01-05  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-listener-dbus.c (gs_listener_set_active): Fix
+	warning message.
+
+	* src/gs-monitor.c (gs_monitor_start): Don't
+	need to set active state to FALSE at start.
+
+2006-01-05  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (clear_children, clear_all_children) 
 	(gs_window_clear): Clear all children of the toplevel
 	window.  This is needed when a screensaver theme engine

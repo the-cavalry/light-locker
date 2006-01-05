@@ -484,7 +484,5 @@ gs_monitor_start (GSMonitor *monitor,
                 return FALSE;
         }
 
-        gs_listener_set_active (monitor->priv->listener, FALSE);
-
         return TRUE;
 }
