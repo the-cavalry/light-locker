@@ -160,12 +160,63 @@ gs_window_override_user_time (GSWindow *window)
         gdk_x11_window_set_user_time (GTK_WIDGET (window)->window, ev_time);
 }
 
+static void
+clear_children (Window window)
+{
+        Window            root;
+        Window            parent;
+        Window           *children;
+        unsigned int      n_children;
+        int               status;
+
+        children = NULL;
+        status = XQueryTree (GDK_DISPLAY (), window, &root, &parent, &children, &n_children);
+
+        if (status == 0) {
+                if (children)
+                        XFree (children);
+                return;
+        }
+
+        if (children) {
+                while (n_children) {
+                        Window child;
+
+                        child = children [--n_children];
+
+                        XClearWindow (GDK_DISPLAY (), child);
+                        clear_children (child);
+                }
+
+                XFree (children);
+        }
+}
+
+static void
+clear_all_children (GSWindow *window)
+{
+        GdkWindow *w;
+
+        gs_debug ("Clearing all child windows");
+
+        gdk_error_trap_push ();
+
+        w = GTK_WIDGET (window)->window;
+
+        clear_children (GDK_WINDOW_XID (w));
+
+        gdk_display_sync (gtk_widget_get_display (GTK_WIDGET (window)));
+        gdk_error_trap_pop ();
+}
+
 void
 gs_window_clear (GSWindow *window)
 {
-        GdkColor     color = { 0, 0, 0 };
+        GdkColor     color = { 0, 0x0000, 0x0000, 0x0000 };
         GdkColormap *colormap;
         GtkStateType state;
+
+        gs_debug ("Clearing window");
 
         state = (GtkStateType) 0;
         while (state < (GtkStateType) G_N_ELEMENTS (GTK_WIDGET (window)->style->bg)) {
@@ -177,6 +228,10 @@ gs_window_clear (GSWindow *window)
         gdk_colormap_alloc_color (colormap, &color, FALSE, TRUE);
         gdk_window_set_background (GTK_WIDGET (window)->window, &color);
         gdk_window_clear (GTK_WIDGET (window)->window);
+
+        /* If a screensaver theme adds child windows we need to clear them too */
+        clear_all_children (window);
+
         gdk_flush ();
 }
 
@@ -336,6 +391,8 @@ gs_window_raise (GSWindow *window)
         GdkWindow *win;
 
         g_return_if_fail (GS_IS_WINDOW (window));
+
+        gs_debug ("Raising screensaver window");
 
         win = GTK_WIDGET (window)->window;
 
@@ -670,6 +727,8 @@ gs_window_dialog_finish (GSWindow *window)
 {
         g_return_if_fail (GS_IS_WINDOW (window));
 
+        gs_debug ("Dialog finished");
+
         if (window->priv->pid > 0) {
                 int exit_status;
                         
@@ -733,7 +792,7 @@ command_watch (GIOChannel   *source,
 
                 switch (status) {
                 case G_IO_STATUS_NORMAL:
-                        /*g_message ("LINE: %s", line);*/
+                        gs_debug ("command output: %s", line);
 
                         if (strstr (line, "WINDOW ID=")) {
                                 guint32 id;
@@ -826,6 +885,8 @@ popup_dialog_idle (GSWindow *window)
         char     *tmp;
         GString  *command;
 
+        gs_debug ("Popping up dialog");
+
         tmp = g_build_filename (LIBEXECDIR, "gnome-screensaver-dialog", NULL);
         command = g_string_new (tmp);
         g_free (tmp);
@@ -863,7 +924,9 @@ gs_window_request_unlock (GSWindow *window)
 {
         g_return_if_fail (GS_IS_WINDOW (window));
 
-        if (window->priv->watch_id)
+        gs_debug ("Requesting unlock");
+
+        if (window->priv->watch_id > 0)
                 return;
 
         if (! window->priv->lock_enabled) {

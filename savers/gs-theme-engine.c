@@ -83,7 +83,7 @@ gs_theme_engine_get_property (GObject            *object,
 static void
 gs_theme_engine_clear (GtkWidget *widget)
 {
-        GdkColor     color = { 0, 0, 0 };
+        GdkColor     color = { 0, 0x0000, 0x0000, 0x0000 };
         GdkColormap *colormap;
         GtkStateType state;
 

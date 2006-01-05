@@ -1,3 +1,17 @@
+2006-01-05  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-window-x11.c (clear_children, clear_all_children) 
+	(gs_window_clear): Clear all children of the toplevel
+	window.  This is needed when a screensaver theme engine
+	adds children.
+	(gs_window_raise, gs_window_dialog_finish, command_watch) 
+	(popup_dialog_idle, gs_window_request_unlock): Add debugging.
+
+	* src/gs-manager.c (window_dialog_up_cb): Add debugging.
+
+	* savers/gs-theme-engine.c (gs_theme_engine_clear):
+	Fix the initialization of the GdkColor.
+
 2006-01-04  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (gs_lock_plug_size_request):

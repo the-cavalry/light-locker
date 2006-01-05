@@ -686,6 +686,8 @@ window_dialog_up_cb (GSWindow  *window,
         g_return_if_fail (manager != NULL);
         g_return_if_fail (GS_IS_MANAGER (manager));
 
+        gs_debug ("Handling dialog up");
+
         manager->priv->dialog_up = TRUE;
 
         /* Grab keyboard so dialog can be used */
@@ -700,6 +702,8 @@ window_dialog_up_cb (GSWindow  *window,
         }
 
         if (! manager->priv->throttle_enabled) {
+                gs_debug ("Suspending jobs");
+
                 for (l = manager->priv->jobs; l; l = l->next) {
                         gs_job_suspend (GS_JOB (l->data), TRUE);
                 }
