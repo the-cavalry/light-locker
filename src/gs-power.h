@@ -74,6 +74,6 @@ void        gs_power_set_timeouts     (GSPower    *power,
 GSPowerMode gs_power_get_mode         (GSPower    *power);
 void        gs_power_set_mode         (GSPower    *power,
                                        GSPowerMode mode);
-
+G_END_DECLS
 
 #endif /* __GS_POWER_H */

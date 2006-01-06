@@ -64,4 +64,6 @@ void        gs_fade_set_enabled      (GSFade    *fade,
 void        gs_fade_set_timeout      (GSFade    *fade,
                                       guint      time);
 
+G_END_DECLS
+
 #endif /* __GS_FADE_H */

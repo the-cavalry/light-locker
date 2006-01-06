@@ -63,4 +63,6 @@ gboolean    gs_watcher_get_active       (GSWatcher *watcher);
 void        gs_watcher_set_timeout      (GSWatcher *watcher,
                                          guint      timeout);
 
+G_END_DECLS
+
 #endif /* __GS_WATCHER_H */

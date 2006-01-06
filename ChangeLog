@@ -1,3 +1,9 @@
+2006-01-06  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-watcher.h: 
+	* src/gs-power.h: 
+	* src/gs-fade.h: Add missing G_END_DECLS.
+
 2006-01-05  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.
