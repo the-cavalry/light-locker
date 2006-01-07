@@ -217,7 +217,7 @@ msgstr "顯示宇宙圖片的幻燈片放映"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
-msgstr "顯示您的圖片資料夾的幻燈片放映"
+msgstr "顯示你的圖片資料夾的幻燈片放映"
 
 #: ../savers/personal-slideshow.desktop.in.h:2
 msgid "Pictures folder"
@@ -285,7 +285,7 @@ msgstr "%s。使用「 --help」以獲得更多資訊。\n"
 
 #: ../savers/floaters.c:1248
 msgid "You must specify one image.  See --help for usage information.\n"
-msgstr "您必須指定一張圖片。請查閱 --help 以取得使用方法的資訊。\n"
+msgstr "你必須指定一張圖片。請查閱 --help 以取得使用方法的資訊。\n"
 
 #: ../savers/slideshow.c:47
 msgid "Location to get images from"
@@ -427,13 +427,13 @@ msgstr "GDM (GNOME 登入總管) 並未執行。"
 msgid ""
 "You might in fact be using a different display manager, such as KDM (KDE "
 "Display Manager) or xdm."
-msgstr "您可能是正在使用另一個登入總管，例如 KDM (KDE 登入總管) 或者 xdm。"
+msgstr "你可能是正在使用另一個登入總管，例如 KDM (KDE 登入總管) 或者 xdm。"
 
 #: ../src/cut-n-paste/gdmcomm.c:419
 msgid ""
 "If you still wish to use this feature, either start GDM yourself or ask your "
 "system administrator to start GDM."
-msgstr "如果您想使用此項功能，請自行啟動 GDM 或要求系統管理員啟動 GDM。"
+msgstr "如果你想使用此項功能，請自行啟動 GDM 或要求系統管理員啟動 GDM。"
 
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:441
@@ -492,7 +492,7 @@ msgid ""
 "You do not seem to have authentication needed be for this operation.  "
 "Perhaps your .Xauthority file is not set up correctly."
 msgstr ""
-"您沒有此項操作程序所需的認證資料。可能是沒有正確設定 .Xauthority 檔案。"
+"你沒有此項操作程序所需的認證資料。可能是沒有正確設定 .Xauthority 檔案。"
 
 #: ../src/cut-n-paste/gdmcomm.c:505
 msgid "Too many messages were sent to gdm and it hung upon us."
@@ -749,7 +749,7 @@ msgstr "時間已經超過了。"
 
 #: ../src/gs-lock-plug.c:414
 msgid "You have the Caps Lock key on."
-msgstr "您按了 Caps Lock 鍵。"
+msgstr "你按了 Caps Lock 鍵。"
 
 #: ../src/gs-lock-plug.c:691
 msgid "That password was incorrect."
