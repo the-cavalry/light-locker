@@ -2,7 +2,7 @@
 # Copyright (C) 2005 The Free Software Foundation
 # This file is distributed under the same license as the 
 # gnome-screensaver package.
-# Tino Meinen <a.t.meinen@chello.nl>, 2005.
+# Tino Meinen <a.t.meinen@chello.nl>, 2005, 2006.
 # -------------
 # idle time - inactiviteit
 # screensaver - schermbeveiliging / screensaver (afhankelijk van context)
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME 2.12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-18 14:31+0100\n"
-"PO-Revision-Date: 2005-12-18 16:48+0100\n"
+"POT-Creation-Date: 2006-01-07 14:37+0100\n"
+"PO-Revision-Date: 2006-01-07 16:14+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -234,6 +234,14 @@ msgstr "Tijd voor slaapstand"
 msgid "Time before theme change"
 msgstr "Tijd voor themawijziging"
 
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Bubbelt het GNOME voet-logo over het scherm"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Drijvende voet"
+
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
 msgstr "Cosmos"
@@ -315,12 +323,12 @@ msgstr "%s. Geef --help voor gebruiksinformatie.\n"
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "U moet een afbeelding opgeven.  Geef --help voor gebruiksinformatie.\n"
 
-#: ../savers/slideshow.c:77
+#: ../savers/slideshow.c:47
 msgid "Location to get images from"
 msgstr "Locatie waar de afbeeldingen vandaan worden gehaald"
 
 # LOCATIE
-#: ../savers/slideshow.c:77
+#: ../savers/slideshow.c:47
 msgid "PATH"
 msgstr "PAD"
 
@@ -797,15 +805,15 @@ msgstr "Niet als daemon uitvoeren"
 msgid "Enable debugging code"
 msgstr "Debugging code gebruiken"
 
-#: ../src/gs-listener-dbus.c:1001
+#: ../src/gs-listener-dbus.c:1174
 msgid "failed to register with the message bus"
 msgstr "kon niet aanmelden bij de berichtenbus"
 
-#: ../src/gs-listener-dbus.c:1011
+#: ../src/gs-listener-dbus.c:1184
 msgid "not connected to the message bus"
 msgstr "kon verbonden met de berichtenbus"
 
-#: ../src/gs-listener-dbus.c:1020
+#: ../src/gs-listener-dbus.c:1193
 msgid "screensaver already running in this session"
 msgstr "schermbeveiliging al actief in deze sessie"
 
@@ -834,15 +842,15 @@ msgstr "_Deblokkeren"
 msgid "_Switch User..."
 msgstr "_Wissel gebruiker..."
 
-#: ../src/gs-lock-plug.c:1430
+#: ../src/gs-lock-plug.c:1432
 msgid "_Password:"
 msgstr "_Wachtwoord:"
 
-#: ../src/gs-lock-plug.c:1496
+#: ../src/gs-lock-plug.c:1498
 msgid "S_witch to user:"
 msgstr "_Wisselen naar gebruiker:"
 
-#: ../src/gs-lock-plug.c:1543
+#: ../src/gs-lock-plug.c:1545
 msgid "Log _Out"
 msgstr "_Afmelden"
 
