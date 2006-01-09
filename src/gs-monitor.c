@@ -20,6 +20,9 @@
  *
  */
 
+/* DPMS support has been moved to gnome-power-manager */
+#undef USE_LEGACY_DPMS_SUPPORT
+
 #include "config.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -34,7 +37,11 @@
 #include "gs-manager.h"
 #include "gs-watcher.h"
 #include "gs-fade.h"
+
+#ifdef USE_LEGACY_DPMS_SUPPORT
 #include "gs-power.h"
+#endif
+
 #include "gs-listener-dbus.h"
 #include "gs-monitor.h"
 #include "gs-prefs.h"
@@ -51,7 +58,9 @@ struct GSMonitorPrivate
         GSWatcher      *watcher;
         GSListener     *listener;
         GSManager      *manager;
+#ifdef USE_LEGACY_DPMS_SUPPORT
         GSPower        *power;
+#endif
         GSPrefs        *prefs;
         GSFade         *fade;
 };
@@ -197,6 +206,7 @@ listener_active_changed_cb (GSListener *listener,
                         return FALSE;
                 }
 
+#ifdef USE_LEGACY_DPMS_SUPPORT
                 /* enable power management */
                 res = gs_power_set_active (monitor->priv->power, TRUE);
                 if (! res) {
@@ -205,6 +215,7 @@ listener_active_changed_cb (GSListener *listener,
                         /* if we can't activate power management it isn't the
                            end of the world */
                 }
+#endif
         } else {
                 /* unblank the screen */
                 res = gs_manager_set_active (monitor->priv->manager, FALSE);
@@ -222,11 +233,13 @@ listener_active_changed_cb (GSListener *listener,
                         }
                 }
 
+#ifdef USE_LEGACY_DPMS_SUPPORT
                 /* disable power management */
                 res = gs_power_set_active (monitor->priv->power, FALSE);
                 if (! res) {
                         g_warning ("Unable to deactivate power management");
                 }
+#endif
         }
 
         return TRUE;
@@ -248,15 +261,18 @@ listener_poke_cb (GSListener *listener,
            idle watcher */
         gs_watcher_reset (monitor->priv->watcher);
 
+#ifdef USE_LEGACY_DPMS_SUPPORT
         /* turn on the monitor power */
         gs_power_set_mode (monitor->priv->power,
                            GS_POWER_MODE_ON);
+#endif
 
         /* request that the manager unlock -
            will pop up a dialog if necessary */
         gs_manager_request_unlock (monitor->priv->manager);
 }
 
+#ifdef USE_LEGACY_DPMS_SUPPORT
 static void
 power_changed_cb (GSPower    *power,
                   GSPowerMode mode,
@@ -275,6 +291,7 @@ power_changed_cb (GSPower    *power,
                 gs_manager_set_throttle_enabled (monitor->priv->manager, TRUE);
         }
 }
+#endif
 
 static void
 _gs_monitor_update_from_prefs (GSMonitor *monitor,
@@ -317,12 +334,15 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
                 gs_watcher_set_active (monitor->priv->watcher, TRUE);
         }
 
+
+#ifdef USE_LEGACY_DPMS_SUPPORT
         gs_power_set_timeouts (monitor->priv->power,
                                monitor->priv->prefs->dpms_standby,
                                monitor->priv->prefs->dpms_suspend,
                                monitor->priv->prefs->dpms_off);
         gs_power_set_enabled (monitor->priv->power,
                               monitor->priv->prefs->dpms_enabled);
+#endif
 }
 
 static void
@@ -385,6 +405,7 @@ connect_manager_signals (GSMonitor *monitor)
                           G_CALLBACK (manager_deactivated_cb), monitor);
 }
 
+#ifdef USE_LEGACY_DPMS_SUPPORT
 static void
 disconnect_power_signals (GSMonitor *monitor)
 {
@@ -397,6 +418,7 @@ connect_power_signals (GSMonitor *monitor)
         g_signal_connect (monitor->priv->power, "changed",
                           G_CALLBACK (power_changed_cb), monitor);
 }
+#endif
 
 static void
 disconnect_prefs_signals (GSMonitor *monitor)
@@ -430,8 +452,10 @@ gs_monitor_init (GSMonitor *monitor)
         monitor->priv->manager = gs_manager_new ();
         connect_manager_signals (monitor);
 
+#ifdef USE_LEGACY_DPMS_SUPPORT
         monitor->priv->power = gs_power_new ();
         connect_power_signals (monitor);
+#endif
 
         _gs_monitor_update_from_prefs (monitor, monitor->priv->prefs);
 }
@@ -451,14 +475,18 @@ gs_monitor_finalize (GObject *object)
         disconnect_watcher_signals (monitor);
         disconnect_listener_signals (monitor);
         disconnect_manager_signals (monitor);
+#ifdef USE_LEGACY_DPMS_SUPPORT
         disconnect_power_signals (monitor);
+#endif
         disconnect_prefs_signals (monitor);
 
         g_object_unref (monitor->priv->fade);
         g_object_unref (monitor->priv->watcher);
         g_object_unref (monitor->priv->listener);
         g_object_unref (monitor->priv->manager);
+#ifdef USE_LEGACY_DPMS_SUPPORT
         g_object_unref (monitor->priv->power);
+#endif
         g_object_unref (monitor->priv->prefs);
 
         G_OBJECT_CLASS (parent_class)->finalize (object);

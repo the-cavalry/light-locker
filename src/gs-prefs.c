@@ -687,7 +687,7 @@ gs_prefs_init (GSPrefs *prefs)
         prefs->lock_enabled            = TRUE;
         prefs->logout_enabled          = FALSE;
         prefs->user_switch_enabled     = FALSE;
-        prefs->dpms_enabled            = TRUE;
+        prefs->dpms_enabled            = FALSE;
         prefs->dpms_standby            = 7200000;
         prefs->dpms_suspend            = 7200000;
         prefs->dpms_off                = 14400000;
