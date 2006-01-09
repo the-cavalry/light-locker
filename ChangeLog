@@ -1,5 +1,10 @@
 2006-01-09  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c (_gs_watcher_check_pointer_position):
+	Free the position if we don't save it.
+
+2006-01-09  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-prefs.c (gs_prefs_init): Disable DPMS here too.
 
 	* src/gs-monitor.c (listener_active_changed_cb, listener_poke_cb) 

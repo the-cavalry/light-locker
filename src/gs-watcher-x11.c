@@ -1381,6 +1381,8 @@ _gs_watcher_check_pointer_position (GSWatcher *watcher)
         if (changed) {
                 _gs_watcher_set_pointer_position (watcher, pos);
                 _gs_watcher_notice_activity (watcher);
+        } else {
+                _gs_watcher_pointer_position_free (pos);
         }
 
         idle_time = (time (NULL) - watcher->priv->last_activity_time);
