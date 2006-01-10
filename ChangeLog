@@ -1,5 +1,13 @@
 2006-01-09  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-manager.c (gs_manager_set_throttle_enabled): Only
+	restart jobs if dialog isn't up.
+	(window_dialog_down_cb): Restart jobs if not running.
+
+	* src/gs-job.[ch] (gs_job_is_running): New public.
+
+2006-01-09  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c (_gs_watcher_check_pointer_position):
 	Free the position if we don't save it.
 

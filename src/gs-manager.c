@@ -137,16 +137,19 @@ gs_manager_set_throttle_enabled (GSManager *manager,
 
                 manager->priv->throttle_enabled = throttle_enabled;
 
-                for (l = manager->priv->jobs; l; l = l->next) {
-                        if (throttle_enabled) {
-                                gs_job_stop (GS_JOB (l->data));
-                        } else {
-                                gs_job_start (GS_JOB (l->data));
-                        }
-                }
+                if (! manager->priv->dialog_up) {
 
-                for (l = manager->priv->windows; l; l = l->next) {
-                        gs_window_clear (l->data);
+                        for (l = manager->priv->jobs; l; l = l->next) {
+                                if (throttle_enabled) {
+                                        gs_job_stop (GS_JOB (l->data));
+                                } else {
+                                        gs_job_start (GS_JOB (l->data));
+                                }
+                        }
+
+                        for (l = manager->priv->windows; l; l = l->next) {
+                                gs_window_clear (l->data);
+                        }
                 }
         }
 }
@@ -726,7 +729,11 @@ window_dialog_down_cb (GSWindow  *window,
 
         if (! manager->priv->throttle_enabled) {
                 for (l = manager->priv->jobs; l; l = l->next) {
-                        gs_job_suspend (GS_JOB (l->data), FALSE);
+                        if (gs_job_is_running (GS_JOB (l->data))) {
+                                gs_job_suspend (GS_JOB (l->data), FALSE);
+                        } else {
+                                gs_job_start (GS_JOB (l->data));
+                        }
                 }
         }
 

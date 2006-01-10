@@ -61,6 +61,8 @@ GType           gs_job_get_type                  (void);
 
 GSJob          *gs_job_new                       (void);
 GSJob          *gs_job_new_for_widget            (GtkWidget  *widget);
+
+gboolean        gs_job_is_running                (GSJob      *job);
 gboolean        gs_job_start                     (GSJob      *job);
 gboolean        gs_job_stop                      (GSJob      *job);
 gboolean        gs_job_suspend                   (GSJob      *job,

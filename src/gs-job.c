@@ -697,6 +697,18 @@ command_watch (GIOChannel   *source,
 }
 
 gboolean
+gs_job_is_running (GSJob *job)
+{
+        gboolean running;
+
+        g_return_val_if_fail (GS_IS_JOB (job), FALSE);
+
+        running = (job->priv->pid > 0);
+
+        return running;
+}
+
+gboolean
 gs_job_start (GSJob *job)
 {
         gboolean        result;
