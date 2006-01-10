@@ -54,9 +54,11 @@ static DBusHandlerResult gs_listener_message_handler    (DBusConnection  *connec
                                                          DBusMessage     *message,
                                                          void            *user_data);
 
-#define GS_LISTENER_SERVICE   "org.gnome.screensaver"
-#define GS_LISTENER_PATH      "/org/gnome/screensaver"
-#define GS_LISTENER_INTERFACE "org.gnome.screensaver"
+#define GS_LISTENER_SERVICE   "org.gnome.ScreenSaver"
+#define GS_LISTENER_PATH      "/org/gnome/ScreenSaver"
+#define GS_LISTENER_INTERFACE "org.gnome.ScreenSaver"
+
+#define TYPE_MISMATCH_ERROR GS_LISTENER_INTERFACE ".TypeMismatch"
 
 #define GS_LISTENER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_LISTENER, GSListenerPrivate))
 
@@ -591,7 +593,7 @@ raise_property_type_error (DBusConnection *connection,
         g_warning (buf);
 
         reply = dbus_message_new_error (in_reply_to,
-                                        "org.gnome.screensaver.TypeMismatch",
+                                        TYPE_MISMATCH_ERROR,
                                         buf);
         if (reply == NULL)
                 g_error ("No memory");

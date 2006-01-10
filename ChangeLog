@@ -1,3 +1,10 @@
+2006-01-10  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-listener-dbus.c (raise_property_type_error): 
+	* src/gnome-screensaver-command.c: 
+	* doc/DBUS-API.txt:
+	Rename the DBUS service from screensaver to ScreenSaver.
+
 2006-01-09  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-manager.c (gs_manager_set_throttle_enabled): Only

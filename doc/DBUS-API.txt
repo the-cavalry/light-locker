@@ -10,9 +10,9 @@ the screensaver in limited ways.
 The following constants are used to uniquely refer to the
 GnomeScreensaver object when making DBUS method calls:
 
-DBUS Service:			"org.gnome.screensaver"
-DBUS Object Path:		"/org/gnome/screensaver"
-DBUS Interface:                 "org.gnome.screensaver"
+DBUS Service:			"org.gnome.ScreenSaver"
+DBUS Object Path:		"/org/gnome/ScreenSaver"
+DBUS Interface:                 "org.gnome.ScreenSaver"
 
 Methods
 =======
@@ -119,9 +119,21 @@ You can get the number of seconds the screensaver has been active by
 running the following:
 
 dbus-send --session \
-          --dest=org.gnome.screensaver \
+          --dest=org.gnome.ScreenSaver \
           --type=method_call \
           --print-reply \
           --reply-timeout=20000 \
-          /org/gnome/screensaver \
-          org.gnome.screensaver.getActiveTime
+          /org/gnome/ScreenSaver \
+          org.gnome.ScreenSaver.getActiveTime
+
+You can activate the screensaver like so:
+
+dbus-send --session \
+          --dest=org.gnome.ScreenSaver \
+          --type=method_call \
+          --print-reply \
+          --reply-timeout=20000 \
+          /org/gnome/ScreenSaver \
+          org.gnome.ScreenSaver.setActive \
+          boolean:true
+

@@ -33,9 +33,9 @@
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
-#define GS_SERVICE   "org.gnome.screensaver"
-#define GS_PATH      "/org/gnome/screensaver"
-#define GS_INTERFACE "org.gnome.screensaver"
+#define GS_SERVICE   "org.gnome.ScreenSaver"
+#define GS_PATH      "/org/gnome/ScreenSaver"
+#define GS_INTERFACE "org.gnome.ScreenSaver"
 
 /* this is for dbus < 0.3 */
 #if ((DBUS_VERSION_MAJOR == 0) && (DBUS_VERSION_MINOR < 30))
