@@ -1,5 +1,18 @@
 2006-01-11  William Jon McCann  <mccann@jhu.edu>
 
+	* src/test-window.c (main): 
+	* src/test-watcher.c (main): 
+	* src/test-fade.c (main): 
+	* src/gnome-screensaver.c (main): Update for
+	debug change.
+	
+	* src/gs-debug.[ch] (gs_debug_real, gs_debug_init) 
+	(gs_debug_shutdown): Add ability to send
+	debugging to a file so it can be used when
+	in daemon mode.
+
+2006-01-11  William Jon McCann  <mccann@jhu.edu>
+
 	* data/gnome-screensaver-preferences.glade: Remove
 	help button until we offer help.
 

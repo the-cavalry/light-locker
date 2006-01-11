@@ -112,9 +112,11 @@ main (int    argc,
 # endif /* !HAVE_XF86VMODE_GAMMA */
         }
 
-        gs_debug_init (TRUE);
+        gs_debug_init (TRUE, FALSE);
 
         test_fade ();
+
+        gs_debug_shutdown ();
 
         return 0;
 }

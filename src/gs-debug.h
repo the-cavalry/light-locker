@@ -36,8 +36,9 @@ G_BEGIN_DECLS
 #define gs_debug
 #endif
 
-void gs_debug_init             (gboolean debug);
-
+void gs_debug_init             (gboolean debug,
+                                gboolean to_file);
+void gs_debug_shutdown         (void);
 void gs_debug_real             (const char *func,
                                 const char *file,
                                 int         line,

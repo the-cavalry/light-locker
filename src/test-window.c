@@ -145,11 +145,13 @@ main (int    argc,
                 exit (1);
         }
 
-        gs_debug_init (TRUE);
+        gs_debug_init (TRUE, FALSE);
 
         test_window ();
 
         gtk_main ();
+
+        gs_debug_shutdown ();
 
 	return 0;
 }

@@ -82,7 +82,8 @@ main (int    argc,
                 exit (1);
         }
 
-        gs_debug_init (debug);
+        /* debug to a file if in deamon mode */
+        gs_debug_init (debug, ! no_daemon);
         gs_debug ("initializing gnome-screensaver %s", VERSION);
 
         monitor = gs_monitor_new ();
@@ -110,6 +111,8 @@ main (int    argc,
         g_object_unref (monitor);
 
         gs_debug ("gnome-screensaver finished");
+
+        gs_debug_shutdown ();
 
 	return 0;
 }

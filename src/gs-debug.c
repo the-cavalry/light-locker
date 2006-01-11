@@ -30,6 +30,7 @@
 #include "gs-debug.h"
 
 static gboolean debugging = FALSE;
+static FILE    *debug_out = NULL;
 
 /* Based on rhythmbox/lib/rb-debug.c */
 /* Our own funky debugging function, should only be used when something
@@ -59,16 +60,53 @@ gs_debug_real (const char *func,
         str_time = g_new0 (char, 255);
         strftime (str_time, 254, "%H:%M:%S", localtime (&the_time));
 
-        g_printerr ("[%s] %s:%d (%s):\t %s\n",
-                    func, file, line, str_time, buffer);
-        
+        fprintf ((debug_out ? debug_out : stderr),
+                 "[%s] %s:%d (%s):\t %s\n",
+                 func, file, line, str_time, buffer);
+
+        if (debug_out)
+                fflush (debug_out);
+
         g_free (str_time);
 }
 
 void
-gs_debug_init (gboolean debug)
+gs_debug_init (gboolean debug,
+               gboolean to_file)
 {
+        /* return if already initialized */
+        if (debugging == TRUE) {
+                return;
+        }
+
         debugging = debug;
 
+        if (debug && to_file) {
+                const char path [50] = "gnome_screensaver_debug_XXXXXX";
+                int        fd;
+
+                fd = g_file_open_tmp (path, NULL, NULL);
+
+                if (fd >= 0) {
+                        debug_out = fdopen (fd, "a");
+                }
+        }
+
         gs_debug ("Debugging %s", (debug) ? "enabled" : "disabled");
+}
+
+void
+gs_debug_shutdown (void)
+{
+        if (! debugging)
+                return;
+
+        gs_debug ("Shutting down debugging");
+
+        debugging = FALSE;
+
+        if (debug_out != NULL) {
+                fclose (debug_out);
+                debug_out = NULL;
+        }
 }
