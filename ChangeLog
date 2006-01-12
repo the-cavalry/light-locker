@@ -1,5 +1,21 @@
 2006-01-12  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-grab-x11.c (xorg_lock_smasher_set_active) 
+	(gs_grab_window, gs_grab_release_keyboard_and_mouse):
+	Try to disable the grab smasher whenever we try to
+	grab a window.  Reenable the grab smasher when
+	we are done with all grabs.
+	(gs_grab_move_mouse, gs_grab_move_keyboard) 
+	(gs_grab_release_keyboard_and_mouse): Add some
+	more debug statements.
+
+	* configure.ac: Check for XF86MiscSetGrabKeysState.
+	Change comment style.
+
+	Fixes #326663.
+
+2006-01-12  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Fix the cvs more warnings test.
 
 2006-01-11  William Jon McCann  <mccann@jhu.edu>

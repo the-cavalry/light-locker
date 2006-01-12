@@ -28,6 +28,10 @@
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 
+#ifdef HAVE_XF86MISCSETGRABKEYSSTATE
+# include <X11/extensions/xf86misc.h>
+#endif /* HAVE_XF86MISCSETGRABKEYSSTATE */
+
 #include "gs-window.h"
 #include "gs-grab.h"
 #include "gs-debug.h"
@@ -81,6 +85,55 @@ grab_string (int status)
         }
 }
 
+#ifdef HAVE_XF86MISCSETGRABKEYSSTATE
+/* This function enables and disables the Ctrl-Alt-KP_star and 
+   Ctrl-Alt-KP_slash hot-keys, which (in XFree86 4.2) break any
+   grabs and/or kill the grabbing client.  That would effectively
+   unlock the screen, so we don't like that.
+
+   The Ctrl-Alt-KP_star and Ctrl-Alt-KP_slash hot-keys only exist
+   if AllowDeactivateGrabs and/or AllowClosedownGrabs are turned on
+   in XF86Config.  I believe they are disabled by default.
+
+   This does not affect any other keys (specifically Ctrl-Alt-BS or
+   Ctrl-Alt-F1) but I wish it did.  Maybe it will someday.
+ */
+static void
+xorg_lock_smasher_set_active (gboolean active)
+{
+        int status;
+
+        if (active) {
+                gs_debug ("Enabling the x.org grab smasher");
+        } else {
+                gs_debug ("Disabling the x.org grab smasher");
+        }
+
+        gdk_error_trap_push ();
+
+        status = XF86MiscSetGrabKeysState (GDK_DISPLAY (), active);
+
+        gdk_error_trap_pop ();
+
+        if (active && status == MiscExtGrabStateAlready) {
+                /* shut up, consider this success */
+                status = MiscExtGrabStateSuccess;
+        }
+
+        gs_debug ("XF86MiscSetGrabKeysState(%s) returned %s\n",
+                  active ? "on" : "off",
+                  (status == MiscExtGrabStateSuccess ? "MiscExtGrabStateSuccess" :
+                   status == MiscExtGrabStateLocked  ? "MiscExtGrabStateLocked"  :
+                   status == MiscExtGrabStateAlready ? "MiscExtGrabStateAlready" :
+                   "unknown value"));
+}
+#else
+static void
+xorg_lock_smasher_set_active (gboolean active)
+{
+}
+#endif /* HAVE_XF86MISCSETGRABKEYSSTATE */
+
 void
 gs_grab_window (GdkWindow *window,
                 GdkScreen *screen,
@@ -88,13 +141,15 @@ gs_grab_window (GdkWindow *window,
 {
         gboolean result = FALSE;
 
-        do
-                result = gs_grab_move_keyboard (window, screen);
-        while (!result);
+        xorg_lock_smasher_set_active (FALSE);
 
-        do
+        do {
+                result = gs_grab_move_keyboard (window, screen);
+        } while (!result);
+
+        do {
                 result = gs_grab_move_mouse (window, screen, hide_cursor);
-        while (!result);
+        } while (!result);
 }
 
 static int
@@ -182,7 +237,8 @@ gs_grab_move_mouse (GdkWindow *window,
         GdkScreen *old_screen;
         gboolean   old_hide_cursor;
 
-        /* FIXME: GTK doesn't like having the pointer grabbed */
+        gs_debug ("Intentionally skipping move pointer grabs");
+        /* GTK doesn't like having the pointer grabbed */
         return TRUE;
 
         gdk_x11_grab_server ();
@@ -220,6 +276,17 @@ gs_grab_move_keyboard (GdkWindow *window,
         GdkWindow *old_window;
         GdkScreen *old_screen;
 
+        if (keyboard_grab_window == window) {
+                gs_debug ("Window %X is already grabbed, skipping",
+                          (guint32) GDK_WINDOW_XID (keyboard_grab_window));
+                return TRUE;
+        }
+
+        gs_debug ("Moving keyboard grab from %X to %X",
+                  (guint32) GDK_WINDOW_XID (keyboard_grab_window),
+                  (guint32) GDK_WINDOW_XID (window));
+
+        gs_debug ("*** doing X server grab");
         gdk_x11_grab_server ();
 
         old_window = keyboard_grab_window;
@@ -240,6 +307,7 @@ gs_grab_move_keyboard (GdkWindow *window,
                 gs_grab_get_keyboard (old_window, old_screen);
         }
 
+        gs_debug ("*** releasing X server grab");
         gdk_x11_ungrab_server ();
         gdk_flush ();
 
@@ -266,8 +334,13 @@ gs_grab_nuke_focus (void)
 void
 gs_grab_release_keyboard_and_mouse (void)
 {
+        gs_debug ("Releasing all grabs");
+
         gs_grab_release_mouse ();
         gs_grab_release_keyboard ();
+
+        /* FIXME: is it right to enable this ? */
+        xorg_lock_smasher_set_active (TRUE);
 }
 
 gboolean
@@ -308,9 +381,10 @@ gs_grab_get_keyboard_and_mouse (GdkWindow *window,
                 sleep (1);
         }
 
-        if (mstatus != GDK_GRAB_SUCCESS)
+        if (mstatus != GDK_GRAB_SUCCESS) {
                 g_warning ("Couldn't grab pointer!  (%s)",
                            grab_string (mstatus));
+        }
 
         /* FIXME: release the pointer grab so GTK will work */
         gs_grab_release_mouse ();
@@ -326,8 +400,10 @@ gs_grab_get_keyboard_and_mouse (GdkWindow *window,
            activity, so that's not a disaster.
         */
 
-        if (kstatus != GDK_GRAB_SUCCESS)	/* Do not blank without a kbd grab.   */
+        if (kstatus != GDK_GRAB_SUCCESS) {
+                /* Do not blank without a kbd grab.   */
                 return FALSE;
+        }
 
         return TRUE;			/* Grab is good, go ahead and blank.  */
 }

@@ -221,11 +221,9 @@ AM_CONDITIONAL(HAVE_USER_SWITCHING, test x$enable_user_switching = xyes)
 AC_SUBST(HAVE_USER_SWITCHING)
 
 
-###############################################################################
-#
-#       Some utility functions to make checking for X things easier.
-#
-###############################################################################
+dnl ---------------------------------------------------------------------------
+dnl - Some utility functions to make checking for X things easier.
+dnl ---------------------------------------------------------------------------
 
 # Like AC_CHECK_HEADER, but it uses the already-computed -I directories.
 #
@@ -331,12 +329,9 @@ AC_DEFUN(HANDLE_X_PATH_ARG, [
    esac
   ])
 
-
-###############################################################################
-#
-#       Check for the SGI SCREEN_SAVER server extension.
-#
-###############################################################################
+dnl ---------------------------------------------------------------------------
+dnl - Check for the SGI SCREEN_SAVER server extension.
+dnl ---------------------------------------------------------------------------
 
 have_sgi=no
 with_sgi_req=unspecified
@@ -368,12 +363,9 @@ elif test "$with_sgi" != no; then
   exit 1
 fi
 
-
-###############################################################################
-#
-#       Check for the MIT-SCREEN-SAVER server extension.
-#
-###############################################################################
+dnl ---------------------------------------------------------------------------
+dnl - Check for the MIT-SCREEN-SAVER server extension.
+dnl ---------------------------------------------------------------------------
 
 have_mit=no
 with_mit_req=unspecified
@@ -420,12 +412,9 @@ elif test "$with_mit" != no; then
   exit 1
 fi
 
-
-###############################################################################
-#
-#       Check for the XIDLE server extension.
-#
-###############################################################################
+dnl ---------------------------------------------------------------------------
+dnl - Check for the XIDLE server extension.
+dnl ---------------------------------------------------------------------------
 
 have_xidle=no
 with_xidle_req=unspecified
@@ -445,12 +434,9 @@ elif test "$with_xidle" != no; then
   exit 1
 fi
 
-
-###############################################################################
-#
-#       Check for the SGI-VIDEO-CONTROL server extension.
-#
-###############################################################################
+dnl ---------------------------------------------------------------------------
+dnl - Check for the SGI-VIDEO-CONTROL server extension.
+dnl ---------------------------------------------------------------------------
 
 have_sgivc=no
 with_sgivc_req=unspecified
@@ -484,12 +470,9 @@ elif test "$with_sgivc" != no; then
   exit 1
 fi
 
-
-###############################################################################
-#
-#       Check for the DPMS server extension.
-#
-###############################################################################
+dnl ---------------------------------------------------------------------------
+dnl - Check for the DPMS server extension.
+dnl ---------------------------------------------------------------------------
 
 have_dpms=no
 with_dpms_req=unspecified
@@ -532,12 +515,9 @@ elif test "$with_dpms" != no; then
   exit 1
 fi
 
-
-###############################################################################
-#
-#       Check for the XINERAMA server extension.
-#
-###############################################################################
+dnl ---------------------------------------------------------------------------
+dnl - Check for the XINERAMA server extension.
+dnl ---------------------------------------------------------------------------
 
 # Check for Xinerama extension (Solaris impl or Xfree impl)
 
@@ -589,11 +569,9 @@ if test "${try_xinerama}" != no; then
     esac
 fi
 
-###############################################################################
-#
-#       Check for the XF86VMODE server extension (for virtual screens.)
-#
-###############################################################################
+dnl ---------------------------------------------------------------------------
+dnl - Check for the XF86VMODE server extension (for virtual screens.)
+dnl ---------------------------------------------------------------------------
 
 have_xf86vmode=no
 with_xf86vmode_req=unspecified
@@ -632,12 +610,9 @@ elif test "$with_xf86vmode" != no; then
   exit 1
 fi
 
-
-###############################################################################
-#
-#       Check for the XF86VMODE server extension (for gamma fading.)
-#
-###############################################################################
+dnl ---------------------------------------------------------------------------
+dnl - Check for the XF86VMODE server extension (for gamma fading.)
+dnl ---------------------------------------------------------------------------
 
 have_xf86gamma=no
 have_xf86gamma_ramp=no
@@ -694,11 +669,9 @@ elif test "$with_xf86gamma" != no; then
   exit 1
 fi
 
-###############################################################################
-#
-#       RANDR Extension
-#
-###############################################################################
+dnl ---------------------------------------------------------------------------
+dnl - RANDR Extension
+dnl ---------------------------------------------------------------------------
 
 RANDR_LIBS=
 found_randr=no
@@ -712,11 +685,26 @@ if test "x$found_randr" = "xyes"; then
    AC_DEFINE(HAVE_RANDR, , [Have the Xrandr extension library])
 fi
 
-###############################################################################
-#
-#       The --enable-locking option
-#
-###############################################################################
+dnl ---------------------------------------------------------------------------
+dnl - Check for XF86MiscSetGrabKeysState (but only bother if we are already
+dnl - using other XF86 stuff.)
+dnl ---------------------------------------------------------------------------
+
+
+have_xf86miscsetgrabkeysstate=no
+if test "$have_xf86gamma" = yes -o "$have_xf86vmode" = yes; then
+  AC_CHECK_X_LIB(Xxf86misc, XF86MiscSetGrabKeysState,
+                [have_xf86miscsetgrabkeysstate=yes],
+                [true], -lXext -lX11)
+  if test "$have_xf86miscsetgrabkeysstate" = yes ; then
+    SAVER_LIBS="$SAVER_LIBS -lXxf86misc"
+    AC_DEFINE(HAVE_XF86MISCSETGRABKEYSSTATE, , [Define this if you have the XF86MiscSetGrabKeysState function])
+  fi
+fi
+
+dnl ---------------------------------------------------------------------------
+dnl - The --enable-locking option
+dnl ---------------------------------------------------------------------------
 
 AC_ARG_ENABLE(locking,[
 Screen locking options:
@@ -794,9 +782,10 @@ else
   AC_MSG_WARN([could not find directory containing xscreensaver hacks])
 fi
 
-#
-# Check for PAM
-#
+dnl ---------------------------------------------------------------------------
+dnl - Check for PAM
+dnl ---------------------------------------------------------------------------
+
 have_pam=no
 AC_ARG_ENABLE(pam, AC_HELP_STRING([--enable-pam],
                    [Enable PAM support @<:@default=auto@:>@],
