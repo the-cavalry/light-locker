@@ -1,3 +1,7 @@
+2006-01-12  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac: Fix the cvs more warnings test.
+
 2006-01-11  William Jon McCann  <mccann@jhu.edu>
 
 	* src/test-window.c (main): 
