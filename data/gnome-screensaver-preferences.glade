@@ -275,7 +275,7 @@
 				  <child>
 				    <widget class="GtkLabel" id="activate_delay_label">
 				      <property name="visible">True</property>
-				      <property name="label" translatable="yes">_Activate after:</property>
+				      <property name="label" translatable="yes">Set session as _idle after:</property>
 				      <property name="use_underline">True</property>
 				      <property name="use_markup">False</property>
 				      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -336,10 +336,29 @@
 			      </child>
 
 			      <child>
+				<widget class="GtkCheckButton" id="enable_checkbox">
+				  <property name="visible">True</property>
+				  <property name="can_focus">True</property>
+				  <property name="label" translatable="yes">_Activate screensaver when session is idle</property>
+				  <property name="use_underline">True</property>
+				  <property name="relief">GTK_RELIEF_NORMAL</property>
+				  <property name="focus_on_click">True</property>
+				  <property name="active">False</property>
+				  <property name="inconsistent">False</property>
+				  <property name="draw_indicator">True</property>
+				</widget>
+				<packing>
+				  <property name="padding">0</property>
+				  <property name="expand">False</property>
+				  <property name="fill">False</property>
+				</packing>
+			      </child>
+
+			      <child>
 				<widget class="GtkCheckButton" id="lock_checkbox">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">_Lock screen when active</property>
+				  <property name="label" translatable="yes">_Lock screen when screensaver is active</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>

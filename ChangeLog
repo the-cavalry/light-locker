@@ -1,5 +1,33 @@
 2006-01-14  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-prefs.c (_gs_prefs_set_idle_activation_enabled) 
+	(gs_prefs_load_from_gconf, key_changed_cb, gs_prefs_init):
+	Use the new activate when idle key.  Rename activate_delay.
+
+	* src/gs-monitor.c (_gs_monitor_update_from_prefs):
+	Use the new activate when idle key.
+
+	* data/gnome-screensaver-preferences.glade: 
+	* src/gnome-screensaver-preferences.c (config_get_mode) 
+	(config_set_mode, config_get_theme, config_set_theme) 
+	(config_get_enabled, config_set_enabled, preview_set_theme) 
+	(populate_model, enabled_checkbox_toggled, invalid_type_warning) 
+	(ui_set_lock, ui_set_enabled, ui_set_delay, key_changed_cb) 
+	(init_capplet): Decouple the screensaver disable setting
+	from the theme list.  This is important because it should
+	be possible to not activate on idle but also select the
+	themes that will be used when explicitly activated or locked.
+	Also reword the label for the delay slider since it is
+	used to determine when the session is idle even when the
+	screensaver activation is disabled.
+
+	* data/gnome-screensaver.schemas.in: Split out activate
+	when idle option from the mode option.  Rename activate_delay.
+
+	Fixes #327008.
+
+2006-01-14  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-preferences.c (preview_set_theme):
 	Don't make the idle delay insensitive when the screensaver
 	activation is disabled.  It should still be used to

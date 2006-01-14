@@ -35,8 +35,7 @@ G_BEGIN_DECLS
 typedef enum {
         GS_MODE_BLANK_ONLY,
         GS_MODE_RANDOM,
-        GS_MODE_SINGLE,
-        GS_MODE_DONT_BLANK
+        GS_MODE_SINGLE
 } GSSaverMode;
 
 typedef struct GSPrefsPrivate GSPrefsPrivate;
@@ -50,6 +49,7 @@ typedef struct
         gboolean         debug;
         gboolean         verbose;		/* whether to print out lots of status info */
 
+        gboolean         idle_activation_enabled; /* whether to activate when idle */
         gboolean         lock_enabled;		/* whether to lock when active */
         gboolean         logout_enabled;	/* Whether to offer the logout option */
         gboolean         user_switch_enabled;	/* Whether to offer the user switch option */

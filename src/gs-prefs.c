@@ -35,9 +35,10 @@ static void gs_prefs_init       (GSPrefs      *prefs);
 static void gs_prefs_finalize   (GObject      *object);
 
 #define KEY_DIR            "/apps/gnome-screensaver"
+#define KEY_IDLE_ACTIVATION_ENABLED         KEY_DIR "/idle_activation_enabled"
 #define KEY_LOCK_ENABLED   KEY_DIR "/lock_enabled"
 #define KEY_MODE           KEY_DIR "/mode"
-#define KEY_ACTIVATE_DELAY KEY_DIR "/activate_delay"
+#define KEY_ACTIVATE_DELAY KEY_DIR "/idle_delay"
 #define KEY_LOCK_DELAY     KEY_DIR "/lock_delay"
 #define KEY_CYCLE_DELAY    KEY_DIR "/cycle_delay"
 #define KEY_DPMS_ENABLED   KEY_DIR "/dpms_enabled"
@@ -70,7 +71,6 @@ static GConfEnumStringPair mode_enum_map [] = {
        { GS_MODE_BLANK_ONLY,       "blank-only" },
        { GS_MODE_RANDOM,           "random"     },
        { GS_MODE_SINGLE,           "single"     },
-       { GS_MODE_DONT_BLANK,       "disabled"   },
        { 0, NULL }
 };
 
@@ -203,6 +203,13 @@ _gs_prefs_set_themes (GSPrefs *prefs,
 }
 
 static void
+_gs_prefs_set_idle_activation_enabled (GSPrefs *prefs,
+                                       gboolean value)
+{
+        prefs->idle_activation_enabled = value;
+}
+
+static void
 _gs_prefs_set_lock_enabled (GSPrefs *prefs,
                             gboolean value)
 {
@@ -329,6 +336,13 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
         GError  *error;
 
         error = NULL;
+
+        bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_IDLE_ACTIVATION_ENABLED, &error);
+        if (! error) {
+                _gs_prefs_set_idle_activation_enabled (prefs, bvalue);
+        } else {
+                key_error_and_free (KEY_IDLE_ACTIVATION_ENABLED, error);
+        }
 
         bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_LOCK_ENABLED, &error);
         if (! error) {
@@ -535,6 +549,19 @@ key_changed_cb (GConfClient *client,
                         invalid_type_warning (key);
                 }
 
+        } else if (strcmp (key, KEY_IDLE_ACTIVATION_ENABLED) == 0) {
+
+                if (value->type == GCONF_VALUE_BOOL) {
+                        gboolean enabled;
+
+                        enabled = gconf_value_get_bool (value);
+                        _gs_prefs_set_idle_activation_enabled (prefs, enabled);
+
+                        changed = TRUE;
+                } else {
+                        invalid_type_warning (key);
+                }
+
         } else if (strcmp (key, KEY_LOCK_ENABLED) == 0) {
 
                 if (value->type == GCONF_VALUE_BOOL) {
@@ -684,6 +711,7 @@ gs_prefs_init (GSPrefs *prefs)
         prefs->verbose                 = FALSE;
         prefs->debug                   = FALSE;
 
+        prefs->idle_activation_enabled = TRUE;
         prefs->lock_enabled            = TRUE;
         prefs->logout_enabled          = FALSE;
         prefs->user_switch_enabled     = FALSE;

@@ -307,10 +307,6 @@ select_theme (GSManager *manager)
         if (manager->priv->saver_mode == GS_MODE_BLANK_ONLY)
                 return NULL;
 
-        if (manager->priv->saver_mode == GS_MODE_DONT_BLANK) {
-                return NULL;
-        }
-
         if (manager->priv->themes) {
                 int number = 0;
 

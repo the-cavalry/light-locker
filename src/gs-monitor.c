@@ -316,9 +316,9 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
         gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
         gs_manager_set_themes (monitor->priv->manager, monitor->priv->prefs->themes);
 
-        /* enable activation in all cases except when DONT_BLANK */
+        /* enable activation when allowed */
         gs_listener_set_activation_enabled (monitor->priv->listener,
-                                            monitor->priv->prefs->mode != GS_MODE_DONT_BLANK);
+                                            monitor->priv->prefs->idle_activation_enabled);
 
         /* idle detection always enabled */
         idle_detection_enabled = TRUE;

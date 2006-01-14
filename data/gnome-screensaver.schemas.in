@@ -2,6 +2,21 @@
   <schemalist>
 
     <schema>
+      <key>/schemas/apps/gnome-screensaver/idle_activation_enabled</key>
+      <applyto>/apps/gnome-screensaver/idle_activation_enabled</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>bool</type>
+      <default>TRUE</default>
+      <locale name="C">
+        <short>Activate when idle</short>
+        <long>
+          Set this to TRUE to activate the screensaver
+          when the session is idle.
+        </long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gnome-screensaver/lock_enabled</key>
       <applyto>/apps/gnome-screensaver/lock_enabled</applyto>
       <owner>gnome-screensaver</owner>
@@ -23,12 +38,11 @@
       <type>string</type>
       <default>blank-only</default>
       <locale name="C">
-        <short>Screensaver selection mode</short>
+        <short>Screensaver theme selection mode</short>
         <long>
-	  The selection mode used by screensaver.  May be "disabled" to
-          disable screensaver activation, "blank-only" to enable the
-          screensaver without using any theme on activation, "single" to
-          enable screensaver using only one theme on activation
+	  The selection mode used by screensaver.  May be "blank-only"
+          to enable the screensaver without using any theme on activation,
+          "single" to enable screensaver using only one theme on activation
           (specified in "themes" key), and "random" to enable the
           screensaver using a random theme on activation.
         </long>
@@ -46,7 +60,7 @@
         <short>Screensaver themes</short>
         <long>
 	  This key specifies the list of themes to be used by the
-          screensaver. It's ignored when "mode" key is "disabled" or
+          screensaver. It's ignored when "mode" key is 
           "blank-only", should provide the theme name when "mode" is
           "single", and should provide a list of themes when "mode" is
           "random".
@@ -55,16 +69,16 @@
     </schema>
 
     <schema>
-      <key>/schemas/apps/gnome-screensaver/activate_delay</key>
-      <applyto>/apps/gnome-screensaver/activate_delay</applyto>
+      <key>/schemas/apps/gnome-screensaver/idle_delay</key>
+      <applyto>/apps/gnome-screensaver/idle_delay</applyto>
       <owner>gnome-screensaver</owner>
       <type>int</type>
       <default>10</default>
       <locale name="C">
         <short>Time before activation</short>
         <long>
-          The number of minutes of idle time before activating the
-          screensaver.
+          The number of minutes of inactivity before the
+          session is considered idle.
         </long>
       </locale>
      </schema>

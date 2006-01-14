@@ -48,8 +48,9 @@
 
 #define KEY_DIR             "/apps/gnome-screensaver"
 #define KEY_LOCK            KEY_DIR "/lock_enabled"
+#define KEY_IDLE_ACTIVATION_ENABLED         KEY_DIR "/idle_activation_enabled"
 #define KEY_MODE            KEY_DIR "/mode"
-#define KEY_ACTIVATE_DELAY  KEY_DIR "/activate_delay"
+#define KEY_ACTIVATE_DELAY  KEY_DIR "/idle_delay"
 #define KEY_LOCK_DELAY      KEY_DIR "/lock_delay"
 #define KEY_CYCLE_DELAY     KEY_DIR "/cycle_delay"
 #define KEY_DPMS_ENABLED    KEY_DIR "/dpms_enabled"
@@ -68,7 +69,6 @@ static GConfEnumStringPair mode_enum_map [] = {
        { GS_MODE_BLANK_ONLY,       "blank-only" },
        { GS_MODE_RANDOM,           "random"     },
        { GS_MODE_SINGLE,           "single"     },
-       { GS_MODE_DONT_BLANK,       "disabled"   },
        { 0, NULL }
 };
 
@@ -123,11 +123,52 @@ config_set_activate_delay (gint32 timeout)
         g_object_unref (client);
 }
 
+static int
+config_get_mode (gboolean *is_writable)
+{
+        GConfClient *client;
+        int          mode;
+        char        *string;
+
+        client = gconf_client_get_default ();
+
+        if (is_writable) {
+                *is_writable = gconf_client_key_is_writable (client,
+                                                             KEY_MODE,
+                                                             NULL);
+        }
+
+        string = gconf_client_get_string (client, KEY_MODE, NULL);
+        if (string) {
+                gconf_string_to_enum (mode_enum_map, string, &mode);
+                g_free (string);
+        } else {
+                mode = GS_MODE_BLANK_ONLY;
+        }
+
+        g_object_unref (client);
+
+        return mode;
+}
+
+static void
+config_set_mode (int mode)
+{
+        GConfClient *client;
+        const char  *mode_string;
+
+        client = gconf_client_get_default ();
+
+        mode_string = gconf_enum_to_string (mode_enum_map, mode);
+        gconf_client_set_string (client, KEY_MODE, mode_string, NULL);
+
+        g_object_unref (client);
+}
+
 static char *
 config_get_theme (gboolean *is_writable)
 {
         GConfClient *client;
-        char        *string;
         char        *name = NULL;
         int          mode;
 
@@ -146,17 +187,10 @@ config_get_theme (gboolean *is_writable)
                 *is_writable = can_write_theme && can_write_mode;
         }
 
-        string = gconf_client_get_string (client, KEY_MODE, NULL);
-        if (string) {
-                gconf_string_to_enum (mode_enum_map, string, &mode);
-                g_free (string);
-        } else
-                mode = GS_MODE_BLANK_ONLY;
+        mode = config_get_mode (NULL);
 
         if (mode == GS_MODE_BLANK_ONLY) {
                 name = g_strdup ("__blank-only");
-        } else if (mode == GS_MODE_DONT_BLANK) {
-                name = g_strdup ("__disabled");
         } else if (mode == GS_MODE_RANDOM) {
                 name = g_strdup ("__random");
         } else {
@@ -204,14 +238,11 @@ config_set_theme (const char *theme_id)
 {
         GConfClient *client;
         GSList      *list = NULL;
-        const char  *mode_string;
         int          mode;
 
         client = gconf_client_get_default ();
 
-        if (theme_id && strcmp (theme_id, "__disabled") == 0) {
-                mode = GS_MODE_DONT_BLANK;
-        } else if (theme_id && strcmp (theme_id, "__blank-only") == 0) {
+        if (theme_id && strcmp (theme_id, "__blank-only") == 0) {
                 mode = GS_MODE_BLANK_ONLY;
         } else if (theme_id && strcmp (theme_id, "__random") == 0) {
                 mode = GS_MODE_RANDOM;
@@ -223,8 +254,7 @@ config_set_theme (const char *theme_id)
                 list = g_slist_append (list, g_strdup (theme_id));
         }
 
-        mode_string = gconf_enum_to_string (mode_enum_map, mode);
-        gconf_client_set_string (client, KEY_MODE, mode_string, NULL);
+        config_set_mode (mode);
 
         gconf_client_set_list (client,
                                KEY_THEMES,
@@ -234,6 +264,39 @@ config_set_theme (const char *theme_id)
 
         g_slist_foreach (list, (GFunc) g_free, NULL);
         g_slist_free (list);
+
+        g_object_unref (client);
+}
+
+static gboolean
+config_get_enabled (gboolean *is_writable)
+{
+        int          enabled;
+        GConfClient *client;
+
+        client = gconf_client_get_default ();
+
+        if (is_writable) {
+                *is_writable = gconf_client_key_is_writable (client,
+                                                             KEY_LOCK,
+                                                             NULL);
+        }
+
+        enabled = gconf_client_get_bool (client, KEY_IDLE_ACTIVATION_ENABLED, NULL);
+
+        g_object_unref (client);
+
+        return enabled;
+}
+
+static void
+config_set_enabled (gboolean enabled)
+{
+        GConfClient *client;
+
+        client = gconf_client_get_default ();
+
+        gconf_client_set_bool (client, KEY_IDLE_ACTIVATION_ENABLED, enabled, NULL);
 
         g_object_unref (client);
 }
@@ -284,14 +347,7 @@ static void
 preview_set_theme (GtkWidget  *widget,
                    const char *theme)
 {
-        GtkWidget *lock_box;
-        gboolean   lock_writable;
-        GError    *error = NULL;
-
-        lock_box = glade_xml_get_widget (xml, "lock_checkbox");
-
-        /* see if the keys are writable */
-        config_get_lock (&lock_writable);
+        GError *error = NULL;
 
         if (job) {
                 gs_job_stop (job);
@@ -299,18 +355,10 @@ preview_set_theme (GtkWidget  *widget,
 
         preview_clear (widget);
 
-        if (theme && strcmp (theme, "__disabled") == 0) {
-                if (lock_writable)
-                        gtk_widget_set_sensitive (lock_box, FALSE);
-                
-        } else if ((theme && strcmp (theme, "__blank-only") == 0)) {
-                if (lock_writable)
-                        gtk_widget_set_sensitive (lock_box, TRUE);
+        if ((theme && strcmp (theme, "__blank-only") == 0)) {
+
         } else if (theme && strcmp (theme, "__random") == 0) {
                 GSList *themes;
-
-                if (lock_writable)
-                        gtk_widget_set_sensitive (lock_box, TRUE);
 
                 themes = get_all_theme_ids (job);
                 if (themes) {
@@ -328,9 +376,6 @@ preview_set_theme (GtkWidget  *widget,
                 }
                 
         } else {
-                if (lock_writable)
-                        gtk_widget_set_sensitive (lock_box, TRUE);
-
                 if (! gs_job_set_theme (job, theme, &error)) {
                         if (error) {
                                 g_warning ("Could not set theme: %s", error->message);
@@ -364,17 +409,8 @@ static void
 populate_model (GtkTreeStore *store)
 {
         GtkTreeIter iter;
-        gboolean    show_disabled = TRUE;
         GSList     *themes        = NULL;
         GSList     *l;
-
-        if (show_disabled) {
-                gtk_tree_store_append (store, &iter, NULL);
-                gtk_tree_store_set (store, &iter,
-                                    NAME_COLUMN, _("Disabled"),
-                                    ID_COLUMN, "__disabled",
-                                    -1);
-        }
 
         gtk_tree_store_append (store, &iter, NULL);
         gtk_tree_store_set (store, &iter,
@@ -471,11 +507,7 @@ compare_theme  (GtkTreeModel *model,
         else if (! id_b)
                 return -1;
 
-        if (strcmp (id_a, "__disabled") == 0)
-                return -1;
-        else if (strcmp (id_b, "__disabled") == 0)
-                return 1;
-        else if (strcmp (id_a, "__blank-only") == 0)
+        if (strcmp (id_a, "__blank-only") == 0)
                 return -1;
         else if (strcmp (id_b, "__blank-only") == 0)
                 return 1;
@@ -857,6 +889,114 @@ lock_checkbox_toggled (GtkToggleButton *button, gpointer user_data)
 }
 
 static void
+enabled_checkbox_toggled (GtkToggleButton *button, gpointer user_data)
+{
+        config_set_enabled (gtk_toggle_button_get_active (button));
+}
+
+static void
+invalid_type_warning (const char *type)
+{
+        g_warning ("Error retrieving configuration key '%s': Invalid type",
+                   type);
+}
+
+static void
+ui_set_lock (gboolean enabled)
+{
+        GtkWidget *widget;
+        gboolean   active;
+
+        widget = glade_xml_get_widget (xml, "lock_checkbox");
+
+        active = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
+        if (active != enabled) {
+                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), enabled);
+        }
+}
+
+static void
+ui_set_enabled (gboolean enabled)
+{
+        GtkWidget *widget;
+        gboolean   active;
+        gboolean   is_writable;
+
+        widget = glade_xml_get_widget (xml, "enable_checkbox");
+        active = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
+        if (active != enabled) {
+                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), enabled);
+        }
+
+        widget = glade_xml_get_widget (xml, "lock_checkbox");
+        config_get_lock (&is_writable);
+        if (is_writable) {
+                gtk_widget_set_sensitive (widget, enabled);
+        }
+}
+
+static void
+ui_set_delay (int delay)
+{
+        GtkWidget *widget;
+
+        widget = glade_xml_get_widget (xml, "activate_delay_hscale");
+        gtk_range_set_value (GTK_RANGE (widget), delay);
+}
+
+static void
+key_changed_cb (GConfClient *client,
+                guint        cnxn_id,
+                GConfEntry  *entry,
+                gpointer     data)
+{
+        const char *key;
+        GConfValue *value;
+
+        key = gconf_entry_get_key (entry);
+
+        if (! g_str_has_prefix (key, KEY_DIR))
+                return;
+
+        value = gconf_entry_get_value (entry);
+
+        if (strcmp (key, KEY_IDLE_ACTIVATION_ENABLED) == 0) {
+                if (value->type == GCONF_VALUE_BOOL) {
+                        gboolean enabled;
+
+                        enabled = gconf_value_get_bool (value);
+
+                        ui_set_enabled (enabled);
+                } else {
+                        invalid_type_warning (key);
+                }
+        } else if (strcmp (key, KEY_LOCK) == 0) {
+                if (value->type == GCONF_VALUE_BOOL) {
+                        gboolean enabled;
+
+                        enabled = gconf_value_get_bool (value);
+
+                        ui_set_lock (enabled);
+                } else {
+                        invalid_type_warning (key);
+                }
+        } else if (strcmp (key, KEY_ACTIVATE_DELAY) == 0) {
+
+                if (value->type == GCONF_VALUE_INT) {
+                        int delay;
+
+                        delay = gconf_value_get_int (value);
+                        ui_set_delay (delay);
+                } else {
+                        invalid_type_warning (key);
+                }
+
+        } else {
+                /*g_warning ("Config key not handled: %s", key);*/
+        }
+}
+
+static void
 init_capplet (void)
 {
         GtkWidget *dialog;
@@ -865,10 +1005,12 @@ init_capplet (void)
         GtkWidget *activate_delay_hscale;
         GtkWidget *activate_delay_hbox;
         GtkWidget *label;
+        GtkWidget *enabled_checkbox;
         GtkWidget *lock_checkbox;
         char      *glade_file;
         char      *string;
         gdouble    activate_delay;
+        gboolean   enabled;
         gboolean   is_writable;
         GConfClient *client;
 
@@ -897,6 +1039,7 @@ init_capplet (void)
         treeview           = glade_xml_get_widget (xml, "savers_treeview");
         activate_delay_hscale = glade_xml_get_widget (xml, "activate_delay_hscale");
         activate_delay_hbox   = glade_xml_get_widget (xml, "activate_delay_hbox");
+        enabled_checkbox   = glade_xml_get_widget (xml, "enable_checkbox");
         lock_checkbox      = glade_xml_get_widget (xml, "lock_checkbox");
 
         label              = glade_xml_get_widget (xml, "activate_delay_label");
@@ -905,7 +1048,7 @@ init_capplet (void)
         gtk_label_set_mnemonic_widget (GTK_LABEL (label), treeview);
 
         activate_delay = config_get_activate_delay (&is_writable);
-        gtk_range_set_value (GTK_RANGE (activate_delay_hscale), activate_delay);
+        ui_set_delay (activate_delay);
         if (! is_writable)
                 gtk_widget_set_sensitive (activate_delay_hbox, FALSE);
         g_signal_connect (activate_delay_hscale, "format-value",
@@ -916,6 +1059,14 @@ init_capplet (void)
                 gtk_widget_set_sensitive (lock_checkbox, FALSE);
         g_signal_connect (lock_checkbox, "toggled",
                           G_CALLBACK (lock_checkbox_toggled), NULL);
+
+        enabled = config_get_enabled (&is_writable);
+        ui_set_enabled (enabled);
+        if (! is_writable)
+                gtk_widget_set_sensitive (enabled_checkbox, FALSE);
+        g_signal_connect (enabled_checkbox, "toggled",
+                          G_CALLBACK (enabled_checkbox_toggled), NULL);
+
             
         gtk_window_set_icon_name (GTK_WINDOW (dialog), "screensaver");
 
@@ -951,6 +1102,14 @@ init_capplet (void)
                         g_slist_free (list);
                 }
         }
+
+	gconf_client_add_dir (client, KEY_DIR,
+			      GCONF_CLIENT_PRELOAD_ONELEVEL,
+                              NULL);
+	gconf_client_notify_add (client,
+                                 KEY_DIR,
+				 key_changed_cb,
+                                 NULL, NULL, NULL);
 
         g_object_unref (client);
 
