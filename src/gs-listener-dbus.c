@@ -399,6 +399,18 @@ gs_listener_get_activation_enabled (GSListener *listener)
         return listener->priv->activation_enabled;
 }
 
+gboolean
+gs_listener_is_inhibited (GSListener *listener)
+{
+        gboolean inhibited;
+
+        g_return_val_if_fail (GS_IS_LISTENER (listener), FALSE);
+
+        inhibited = listener_is_inhibited (listener);
+
+        return inhibited;
+}
+
 void
 gs_listener_set_activation_enabled (GSListener *listener,
                                     gboolean    enabled)

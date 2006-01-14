@@ -1,3 +1,9 @@
+2006-01-13  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-monitor.c (watcher_idle_notice_cb): 
+	* src/gs-listener-dbus.[ch] (gs_listener_is_inhibited):
+	Don't do the slow fade if we are inhibited.
+
 2006-01-12  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-grab-x11.c (xorg_lock_smasher_set_active) 
