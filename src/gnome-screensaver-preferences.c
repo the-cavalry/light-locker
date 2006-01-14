@@ -33,7 +33,7 @@
 #include <gtk/gtk.h>
 #include <glade/glade.h>
 #include <gconf/gconf-client.h>
-#include <libgnome/gnome-help.h>
+
 #include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
@@ -284,17 +284,13 @@ static void
 preview_set_theme (GtkWidget  *widget,
                    const char *theme)
 {
-        GtkWidget *delay_box;
         GtkWidget *lock_box;
-        gboolean   delay_writable;
         gboolean   lock_writable;
         GError    *error = NULL;
 
-        delay_box = glade_xml_get_widget (xml, "activate_delay_hbox");
         lock_box = glade_xml_get_widget (xml, "lock_checkbox");
 
         /* see if the keys are writable */
-        config_get_activate_delay (&delay_writable);
         config_get_lock (&lock_writable);
 
         if (job) {
@@ -304,21 +300,15 @@ preview_set_theme (GtkWidget  *widget,
         preview_clear (widget);
 
         if (theme && strcmp (theme, "__disabled") == 0) {
-                if (delay_writable)
-                        gtk_widget_set_sensitive (delay_box, FALSE);
                 if (lock_writable)
                         gtk_widget_set_sensitive (lock_box, FALSE);
                 
         } else if ((theme && strcmp (theme, "__blank-only") == 0)) {
-                if (delay_writable)
-                        gtk_widget_set_sensitive (delay_box, TRUE);
                 if (lock_writable)
                         gtk_widget_set_sensitive (lock_box, TRUE);
         } else if (theme && strcmp (theme, "__random") == 0) {
                 GSList *themes;
 
-                if (delay_writable)
-                        gtk_widget_set_sensitive (delay_box, TRUE);
                 if (lock_writable)
                         gtk_widget_set_sensitive (lock_box, TRUE);
 
@@ -338,8 +328,6 @@ preview_set_theme (GtkWidget  *widget,
                 }
                 
         } else {
-                if (delay_writable)
-                        gtk_widget_set_sensitive (delay_box, TRUE);
                 if (lock_writable)
                         gtk_widget_set_sensitive (lock_box, TRUE);
 
