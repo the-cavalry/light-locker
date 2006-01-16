@@ -1,5 +1,9 @@
 2006-01-16  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac: Bump version to match GNOME 2.13.5.
+
+2006-01-16  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-monitor.c (watcher_idle_notice_cb): Only cancel
 	the fade if the manager isn't active.  In that case the
 	manager will handle fading.  Yuck.
