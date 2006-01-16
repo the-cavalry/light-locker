@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-07 14:21+0200\n"
-"PO-Revision-Date: 2006-01-07 14:25+0200\n"
+"POT-Creation-Date: 2006-01-16 22:39+0200\n"
+"PO-Revision-Date: 2006-01-16 22:42+0200\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -39,15 +39,19 @@ msgid "Screensaver Preferences"
 msgstr "Näytönsäästäjän asetukset"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
-msgid "_Activate after:"
-msgstr "_Käynnistä ajan kuluttua:"
+msgid "Set session as _idle after:"
+msgstr "Aseta istunto _joutilaaksi viiveellä:"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
-msgid "_Lock screen when active"
-msgstr "_Lukitse näyttö aktiivisena"
+msgid "_Activate screensaver when session is idle"
+msgstr "_Käynnistä näytönsäästäjä, kun istunto on joutilas"
+
+#: ../data/gnome-screensaver-preferences.glade.h:6
+msgid "_Lock screen when screensaver is active"
+msgstr "_Lukitse näyttö, kun näytönsäästäjä on aktiivinen"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Screensaver themes"
 msgstr "Näytönsäästäjän teemat"
 
@@ -56,38 +60,47 @@ msgid "Screensavers"
 msgstr "Näytönsäästäjät"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Activate when idle"
+msgstr "Käynnistä joutilaana"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
 msgid "Allow logout"
 msgstr "Salli uloskirjautuminen"
 
-#: ../data/gnome-screensaver.schemas.in.h:2
+#: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow monitor power management"
 msgstr "Salli näytön virranhallinta"
 
-#: ../data/gnome-screensaver.schemas.in.h:3
+#: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
 msgstr "Salli käyttäjän vaihto"
 
-#: ../data/gnome-screensaver.schemas.in.h:4
+#: ../data/gnome-screensaver.schemas.in.h:5
 msgid "Lock on activation"
 msgstr "Lukitse aktivoitaessa"
 
-#: ../data/gnome-screensaver.schemas.in.h:5
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Logout command"
 msgstr "Uloskirjautumiskomento"
 
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Screensaver selection mode"
-msgstr "Näytönsäästäjän valintatapa"
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Screensaver theme selection mode"
+msgstr "Näytönsäästäjän teeman valinta"
 
-#: ../data/gnome-screensaver.schemas.in.h:8
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr "Aseta todeksi, jos haluat käynnistää näytönsäästäjän, kun istunto ei "
+"ole käytössä."
+
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Set this to TRUE to allow the screensaver to power down the monitor."
 msgstr "Aseta todeksi, jos haluat näytönsäästäjän voivan sammuttaa näytön."
 
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr "Aseta todeksi, jos haluat lukita näytön näytönsäästäjän aktivoituessa."
 
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -95,7 +108,7 @@ msgstr ""
 "Aseta todeksi, jos haluat lukituksen avausikkunan näyttävän valinnan, josta "
 "voi vaihtaa toiseksi käyttäjäksi."
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -104,7 +117,7 @@ msgstr ""
 "käyttäjän voi kirjata ulos järjestelmästä tietyn ajan kuluttua. Viiveen voi "
 "asettaa avaimesta \"logout_delay\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -114,13 +127,13 @@ msgstr ""
 "tulee kirjata käyttäjä ulos vaatimatta mitään toimenpiteitä. Avain on "
 "käytössä vain silloin, kun avain \"logout_enable\" on asetettu arvoon TRUE."
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr ""
 "Kuinka monen minuutin kuluttua näytönsäästäjän aktivoinnista näyttö lukitaan."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -130,7 +143,7 @@ msgstr ""
 "avausikkunaan lisätään uloskirjautumispainike. Tämä avain on käytössä vain "
 "silloin, kun avain \"logout_enable\" on asetettu arvoon TRUE."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into standby power mode."
@@ -138,7 +151,7 @@ msgstr ""
 "Kuinka monen minuutin kuluttua näytönsäästäjän aktivoitumisesta näyttö "
 "siirtyy valmiustilaan."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into suspend power mode."
@@ -146,7 +159,7 @@ msgstr ""
 "Kuinka monen minuutin kuluttua näytönsäästäjän aktivoitumisesta näyttö "
 "siirtyy keskeytystilaan."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "powers off."
@@ -154,65 +167,67 @@ msgstr ""
 "Kuinka monen minuutin kuluttua näytönsäästäjän aktivoitumisesta näyttö "
 "sammutetaan."
 
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid "The number of minutes of idle time before activating the screensaver."
-msgstr "Kuinka pitkän joutenolon kuluttua näytönsäästäjä aktivoidaan."
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
+msgstr ""
+"Kuinka monen minuutin kuluttua istunnon katsotaan olevan jouten."
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "Kuinka pitkän joutenolon kuluttua näytönsäästäjän teemaa vaihdetaa."
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
-"The selection mode used by screensaver. May be \"disabled\" to disable "
-"screensaver activation, \"blank-only\" to enable the screensaver without "
-"using any theme on activation, \"single\" to enable screensaver using only "
-"one theme on activation (specified in \"themes\" key), and \"random\" to "
-"enable the screensaver using a random theme on activation."
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
 msgstr ""
-"Näytönsäästäjän valintatila. Arvo voi olla joko \"disabled\", jolloin "
-"näytönsäästäjää ei käytetä, \"blank-only\", jolloin näytönsäästäjä "
-"käynnistetään ilman teemaa, \"single\", jolloin näytönsäästäjä näyttää aina "
-"\"themes\" avaimessa valittua näytönsäästäjää, tai \"random\", jolloin "
-"näytönsäästäjä valitsee näytettävän teeman satunnaisesti."
+"Näytönsäästäjän valintatila. Arvo voi olla joko \"blank-only\", jolloin "
+"näytönsäästäjä käynnistetään ilman teemaa, \"single\", jolloin "
+"näytönsäästäjä näyttää aina \"themes\" avaimessa valittua näytönsäästäjää, "
+"tai \"random\", jolloin näytönsäästäjä valitsee näytettävän teeman "
+"satunnaisesti."
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
-"ignored when \"mode\" key is \"disabled\" or \"blank-only\", should provide "
-"the theme name when \"mode\" is \"single\", and should provide a list of "
-"themes when \"mode\" is \"random\"."
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
 msgstr ""
 "Tämä avain mmäärittelee näytönsäästäjän käyttämät teemat. Arvolla ei ole "
 "vaikutusta, jos avain \"mode\" on joko \"disabled\" tai \"blank-only\". Sen "
 "tulee sisältää teeman nimen, kun arvo on \"single\", ja sen tulee sisältää "
 "lista teemoista, kun \"mode\"-avaimen arvo on \"random\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid "Time before activation"
 msgstr "Viive ennen aktivointia"
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Time before locking"
 msgstr "Viive ennen lukitsemista"
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before logout option"
 msgstr "Viive ennen uloskirjautumispainiketta"
 
-#: ../data/gnome-screensaver.schemas.in.h:25
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before power off"
 msgstr "Viive ennen näytön virran sammuttamista"
 
-#: ../data/gnome-screensaver.schemas.in.h:26
+#: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before standby"
 msgstr "Viive ennen lepotilaa"
 
-#: ../data/gnome-screensaver.schemas.in.h:27
+#: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before suspend"
 msgstr "Viive ennen säästötilaa"
 
-#: ../data/gnome-screensaver.schemas.in.h:28
+#: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before theme change"
 msgstr "Viive ennen teeman vaihtoa"
 
@@ -666,41 +681,37 @@ msgstr "Uloskirjautumispainikkeesta suoritettava komento"
 msgid "Show the switch user button"
 msgstr "Näytä käyttäjän vaihtopainike"
 
-#: ../src/gnome-screensaver-preferences.c:386
-msgid "Disabled"
-msgstr "Ei käytössä"
-
-#: ../src/gnome-screensaver-preferences.c:393
+#: ../src/gnome-screensaver-preferences.c:417
 msgid "Blank screen"
 msgstr "Tyhjä näyttö"
 
-#: ../src/gnome-screensaver-preferences.c:399
+#: ../src/gnome-screensaver-preferences.c:423
 msgid "Random"
 msgstr "Satunnainen"
 
-#: ../src/gnome-screensaver-preferences.c:692
+#: ../src/gnome-screensaver-preferences.c:712
 msgid "Invalid screensaver theme"
 msgstr "Virheellinen näytönsäästäjäteema"
 
-#: ../src/gnome-screensaver-preferences.c:695
+#: ../src/gnome-screensaver-preferences.c:715
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Tämä tiedosto ei vaikuta olevan eheä näytönsäästäjäteema."
 
-#: ../src/gnome-screensaver-preferences.c:812
+#: ../src/gnome-screensaver-preferences.c:832
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d tunti"
 msgstr[1] "%d tuntia"
 
-#: ../src/gnome-screensaver-preferences.c:815
+#: ../src/gnome-screensaver-preferences.c:835
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minuutti"
 msgstr[1] "%d minuuttia"
 
-#: ../src/gnome-screensaver-preferences.c:818
+#: ../src/gnome-screensaver-preferences.c:838
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -708,15 +719,15 @@ msgstr[0] "%d sekunti"
 msgstr[1] "%d sekuntia"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:824
+#: ../src/gnome-screensaver-preferences.c:844
 #, c-format
 msgid "%s %s %s"
 msgstr "%s, %s, %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:827
-#: ../src/gnome-screensaver-preferences.c:835
+#: ../src/gnome-screensaver-preferences.c:847
+#: ../src/gnome-screensaver-preferences.c:855
 #, c-format
 msgid "%s %s"
 msgstr "%s, %s"
@@ -724,27 +735,27 @@ msgstr "%s, %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:830
-#: ../src/gnome-screensaver-preferences.c:838
-#: ../src/gnome-screensaver-preferences.c:842
+#: ../src/gnome-screensaver-preferences.c:850
+#: ../src/gnome-screensaver-preferences.c:858
+#: ../src/gnome-screensaver-preferences.c:862
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:845
+#: ../src/gnome-screensaver-preferences.c:865
 msgid "0 seconds"
 msgstr "0 sekuntia"
 
-#: ../src/gnome-screensaver-preferences.c:860
+#: ../src/gnome-screensaver-preferences.c:880
 msgid "Never"
 msgstr "Ei koskaan"
 
-#: ../src/gnome-screensaver-preferences.c:896
+#: ../src/gnome-screensaver-preferences.c:1026
 msgid "Could not load the main interface"
 msgstr "Pääkäyttöliittymää ei voitu ladata"
 
-#: ../src/gnome-screensaver-preferences.c:898
+#: ../src/gnome-screensaver-preferences.c:1028
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Varmista, että näytönsäästäjä on kunnolla asennettu"
 
@@ -756,15 +767,15 @@ msgstr "Älä käynnistä palvelinprosessina"
 msgid "Enable debugging code"
 msgstr "Käytä debuggauskoodia"
 
-#: ../src/gs-listener-dbus.c:1174
+#: ../src/gs-listener-dbus.c:1188
 msgid "failed to register with the message bus"
 msgstr "viestiväylään rekisteröityminen epäonnistui"
 
-#: ../src/gs-listener-dbus.c:1184
+#: ../src/gs-listener-dbus.c:1198
 msgid "not connected to the message bus"
 msgstr "viestiväylään ei ole yhteyttä"
 
-#: ../src/gs-listener-dbus.c:1193
+#: ../src/gs-listener-dbus.c:1207
 msgid "screensaver already running in this session"
 msgstr "näytönsäästäjä on jo käynnissä tässä istunnossa"
 
@@ -804,6 +815,16 @@ msgstr "Vaihda käyttäjäksi:"
 msgid "Log _Out"
 msgstr "Kirjaudu _ulos"
 
+#~ msgid "_Activate after:"
+#~ msgstr "_Käynnistä ajan kuluttua:"
+
+#~ msgid ""
+#~ "The number of minutes of idle time before activating the screensaver."
+#~ msgstr "Kuinka pitkän joutenolon kuluttua näytönsäästäjä aktivoidaan."
+
+#~ msgid "Disabled"
+#~ msgstr "Ei käytössä"
+
 #~ msgid "Welcome to %s"
 #~ msgstr "Tervetuloa koneelle %s"
 
@@ -837,9 +858,6 @@ msgstr "Kirjaudu _ulos"
 
 #~ msgid "The number of minutes after blanking the screen before locking."
 #~ msgstr "Minuuttimäärä näytön tyhjentämisestä ennen lukitsemista."
-
-#~ msgid "The number of minutes of idle time before blanking the screen"
-#~ msgstr "Minuuttimäärä joutenoloa ennen näytön tyhjentämistä"
 
 #~ msgid "The number of minutes to run before changing the screensaver"
 #~ msgstr "Minuuttimäärä näytönsäästäjien vaihdon välillä"
