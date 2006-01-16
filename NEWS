@@ -1,4 +1,34 @@
 ==============
+Version 2.13.5
+==============
+
+  gnome-screensaver
+
+        * Move DPMS functionality to gnome-power-manager
+        * Rename the DBUS interface from screensaver to ScreenSaver
+        * Disable the X.org grab smasher
+        * Don't do the slow fade if we are inhibited
+        * Fix screen flashing after idle activation
+
+  gnome-screensaver-preferences
+
+        * Rework dialog for setting session idle timeout
+        * Remove unused help button
+
+  Translators
+
+        * Rostislav \"zbrox\" Raykov (bg)
+        * Adam Weinberger (en_CA)
+        * Francisco Javier F. Serrador (es)
+        * Ilkka Tuohela (fi)
+        * Ignacio Casal Quinteiro (gl)
+        * Takeshi AIHANA (ja)
+        * Tino Meinen (nl)
+        * Clytie Siddall (vi)
+        * Abel Cheung (zh_HK)
+        * Abel Cheung (zh_TW)
+
+==============
 Version 0.0.24
 ==============
 
