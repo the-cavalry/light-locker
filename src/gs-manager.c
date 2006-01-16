@@ -947,6 +947,8 @@ gs_manager_activate (GSManager *manager)
         if (! manager->priv->windows)
                 gs_manager_create (GS_MANAGER (manager));
 
+        manager->priv->active = TRUE;
+
         /* fade to black and show windows */
         do_fade = TRUE;
         if (do_fade) {
@@ -962,8 +964,6 @@ gs_manager_activate (GSManager *manager)
         } else {
                 show_windows (manager->priv->windows);
         }
-
-        manager->priv->active = TRUE;
 
         return TRUE;
 }
@@ -1021,7 +1021,7 @@ gs_manager_set_active (GSManager *manager,
 }
 
 gboolean
-gs_manager_is_active (GSManager *manager)
+gs_manager_get_active (GSManager *manager)
 {
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);

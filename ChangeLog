@@ -1,3 +1,17 @@
+2006-01-16  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-monitor.c (watcher_idle_notice_cb): Only cancel
+	the fade if the manager isn't active.  In that case the
+	manager will handle fading.  Yuck.
+	(_gs_monitor_update_from_prefs): Use get_active.
+
+	* src/gs-manager.c (gs_manager_activate): set active
+	flag before doing fade_now since that interates the
+	main loop.
+	(gs_manager_get_active): Rename.
+
+	Fixes #327125.
+
 2006-01-15  William Jon McCann  <mccann@jhu.edu>
 
 	* doc/DBUS-API.txt: Add dbus-monitor examples.

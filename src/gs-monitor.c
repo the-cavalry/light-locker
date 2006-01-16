@@ -138,9 +138,17 @@ watcher_idle_notice_cb (GSWatcher *watcher,
                         handled = TRUE;
                 }
         } else {
-                /* cancel the fade */
-                gs_fade_set_active (monitor->priv->fade, FALSE);
-                gs_fade_reset (monitor->priv->fade);
+                gboolean manager_active;
+
+                manager_active = gs_manager_get_active (monitor->priv->manager);
+                /* cancel the fade unless manager was activated */
+                if (! manager_active) {
+                        gs_fade_set_active (monitor->priv->fade, FALSE);
+                        gs_fade_reset (monitor->priv->fade);
+                } else {
+                        gs_debug ("manager active, skipping fade cancellation");
+                }
+
                 handled = TRUE;
         }
 
@@ -329,7 +337,7 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
         /* in the case where idle detection is reenabled we may need to
            activate the watcher too */
 
-        manager_active = gs_manager_is_active (monitor->priv->manager);
+        manager_active = gs_manager_get_active (monitor->priv->manager);
         idle_detection_active = gs_watcher_get_active (monitor->priv->watcher);
         activate_watch = (! manager_active
                           && ! idle_detection_active

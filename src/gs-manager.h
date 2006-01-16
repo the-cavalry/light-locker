@@ -57,9 +57,10 @@ GSManager * gs_manager_new                  (void);
 
 gboolean    gs_manager_set_active           (GSManager  *manager,
                                              gboolean    active);
+gboolean    gs_manager_get_active           (GSManager  *manager);
+
 gboolean    gs_manager_cycle                (GSManager  *manager);
 
-gboolean    gs_manager_is_active            (GSManager  *manager);
 void        gs_manager_set_lock_active      (GSManager  *manager,
                                              gboolean    lock_enabled);
 void        gs_manager_set_lock_enabled     (GSManager  *manager,
