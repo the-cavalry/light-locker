@@ -1,3 +1,7 @@
+2006-01-15  William Jon McCann  <mccann@jhu.edu>
+
+	* doc/DBUS-API.txt: Add dbus-monitor examples.
+
 2006-01-14  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-prefs.c (_gs_prefs_set_idle_activation_enabled) 
