@@ -1,3 +1,13 @@
+2006-01-17  William Jon McCann  <mccann@jhu.edu>
+
+	* savers/popsquares.desktop.in: 
+	* savers/personal-slideshow.desktop.in: 
+	* savers/footlogo-floaters.desktop.in: 
+	* savers/cosmos-slideshow.desktop.in.in:
+	Add missing ; to end of Categories.
+
+	Patch from <leroutier@gmail.com>
+
 2006-01-16  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.
