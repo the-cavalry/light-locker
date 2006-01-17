@@ -2,21 +2,21 @@
 # translation of gnome-screensaver.gl.po to
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER, 2005.
-# Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
 #
+# Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-08 22:42+0100\n"
-"PO-Revision-Date: 2006-01-08 22:43+0100\n"
+"POT-Creation-Date: 2006-01-17 21:31+0100\n"
+"PO-Revision-Date: 2006-01-17 21:36+0100\n"
 "Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
 "Language-Team: Galego\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: KBabel 1.11.1\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
 msgid "Screensaver"
@@ -39,15 +39,19 @@ msgid "Screensaver Preferences"
 msgstr "Preferencias do salvapantallas"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
-msgid "_Activate after:"
-msgstr "_Activar tras:"
+msgid "Set session as _idle after:"
+msgstr "Poñer a sesión como _inactiva despois de:"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
-msgid "_Lock screen when active"
-msgstr "_Bloquear pantalla cando está activo"
+msgid "_Activate screensaver when session is idle"
+msgstr "_Activar salvapantallas cando a sesión esté inactiva"
+
+#: ../data/gnome-screensaver-preferences.glade.h:6
+msgid "_Lock screen when screensaver is active"
+msgstr "_Bloquear pantalla cando o salvapantallas está activo"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Screensaver themes"
 msgstr "Temas do salvapantallas"
 
@@ -56,40 +60,48 @@ msgid "Screensavers"
 msgstr "Salvapantallas"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Activate when idle"
+msgstr "Activar cando esté inactivo"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
 msgid "Allow logout"
 msgstr "Permitir pechar sesión"
 
-#: ../data/gnome-screensaver.schemas.in.h:2
+#: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow monitor power management"
 msgstr "Permitir xestión de enerxía do monitor"
 
-#: ../data/gnome-screensaver.schemas.in.h:3
+#: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
 msgstr "Permitir cambiar de usuario"
 
-#: ../data/gnome-screensaver.schemas.in.h:4
+#: ../data/gnome-screensaver.schemas.in.h:5
 msgid "Lock on activation"
 msgstr "Bloquear ao activar"
 
-#: ../data/gnome-screensaver.schemas.in.h:5
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Logout command"
 msgstr "Comando de saída de sesión"
 
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Screensaver selection mode"
-msgstr "Modo de seleccio do salvapantallas"
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Screensaver theme selection mode"
+msgstr "Modo de selección de tema do salvapantallas"
 
-#: ../data/gnome-screensaver.schemas.in.h:8
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr "Establece isto a TRUE para activar o salvapantallas cando a sesión está inactiva."
+
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Set this to TRUE to allow the screensaver to power down the monitor."
 msgstr "Establece isto a TRUE para permitir ao salvapantallas apagar o monitor."
 
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr ""
 "Establece isto a TRUE para bloquear a pantalla cando se activa o "
 "salvapantallas."
 
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -97,7 +109,7 @@ msgstr ""
 "Establece isto a TRUE para ofrecer unha opción no diálogo de desbloqueo para "
 "cambiar a unha conta de usuario diferente."
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -106,7 +118,7 @@ msgstr ""
 "pechar a sesión despois dun intervalo de tempo. O retardo especifícase na "
 "clave \"logout_delay\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -116,13 +128,13 @@ msgstr ""
 "debería pechar a sesión do usuario sen ningunha interacción. Esta clave ten "
 "efecto só se a clave \"logout_enable\" está establecida a TRUE."
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid "The number of minutes after screensaver activation before locking the screen."
 msgstr ""
 "O número de minutos tras a activación do salvapantallas antes de bloquear a "
 "pantalla."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -132,7 +144,7 @@ msgstr ""
 "se amose a opción de pechar sesión no diálogo de desbloqueo. Esta clave ten "
 "efecto só se a clave \"logout_enable\" está establecida a TRUE."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into standby power mode."
@@ -140,7 +152,7 @@ msgstr ""
 "O número de minutos despois da activación do salvapantallas ata que o "
 "monitor entra en estado de espera."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into suspend power mode."
@@ -148,7 +160,7 @@ msgstr ""
 "O número de minutos despois da activación do salvapantallas ata que o "
 "monitor entra en modo de suspensión de enerxía."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "powers off."
@@ -156,65 +168,64 @@ msgstr ""
 "O número de minutos despois de activar o salvapantallas ata que se apaga o "
 "monitor."
 
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid "The number of minutes of idle time before activating the screensaver."
-msgstr "O número de minutos de tempo inactivo antes de activar o salvapantallas."
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid "The number of minutes of inactivity before the session is considered idle."
+msgstr "O número de minutos de tempo inactivo antes de considerar a sesión inactiva."
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "O número de minutos que se executa antes de cambiar o tema do salvapantallas."
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
-"The selection mode used by screensaver. May be \"disabled\" to disable "
-"screensaver activation, \"blank-only\" to enable the screensaver without "
-"using any theme on activation, \"single\" to enable screensaver using only "
-"one theme on activation (specified in \"themes\" key), and \"random\" to "
-"enable the screensaver using a random theme on activation."
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
 msgstr ""
-"O modo de selección usado polo salvapantallas. Pode ser \"disabled\" para "
-"inhibir a activación do salvapantallas, \"blank-only\" para activar o "
+"O modo de selección usado polo salvapantallas. Pode ser \"blank-only\" para activar o "
 "salvapantallas sen usar ningún tema, \"single\" para activar o "
 "salvapantallas usando só un tema (especificado na clave \"themes\"), e "
 "\"random\" para activar o salvapantallas usando un tema aleatorio."
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
-"ignored when \"mode\" key is \"disabled\" or \"blank-only\", should provide "
-"the theme name when \"mode\" is \"single\", and should provide a list of "
-"themes when \"mode\" is \"random\"."
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
 msgstr ""
 "Esta clave especifica a lista de temas que será usada polo salvapantallas. "
-"Ignórase cando a clave \"mode\" sexa \"disabled\" ou \"blank-only\", debe "
+"Ignórase cando a clave \"mode\" sexa \"blank-only\", debe "
 "proporcionar o nome do tema cando \"mode\" é \"single\", e debería "
 "proporcionar unha lista de temas cando \"mode\" é \"random\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid "Time before activation"
 msgstr "Tempo antes de activar"
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Time before locking"
 msgstr "Tempo antes de bloquear"
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before logout option"
 msgstr "Tempo antes da opción de peche de sesión"
 
-#: ../data/gnome-screensaver.schemas.in.h:25
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before power off"
 msgstr "Tempo antes de apagar"
 
-#: ../data/gnome-screensaver.schemas.in.h:26
+#: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before standby"
 msgstr "Tempo antes do modo espera"
 
-#: ../data/gnome-screensaver.schemas.in.h:27
+#: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before suspend"
 msgstr "Tempo antes de suspender"
 
-#: ../data/gnome-screensaver.schemas.in.h:28
+#: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before theme change"
 msgstr "Tempo antes de mudar o tema"
 
@@ -667,41 +678,37 @@ msgstr "Comando para invocar desde o botón de peche de sesión"
 msgid "Show the switch user button"
 msgstr "Amosar o botón de cambio de usuario"
 
-#: ../src/gnome-screensaver-preferences.c:386
-msgid "Disabled"
-msgstr "Desactivado"
-
-#: ../src/gnome-screensaver-preferences.c:393
+#: ../src/gnome-screensaver-preferences.c:417
 msgid "Blank screen"
 msgstr "Ennegrecer pantalla"
 
-#: ../src/gnome-screensaver-preferences.c:399
+#: ../src/gnome-screensaver-preferences.c:423
 msgid "Random"
 msgstr "Ao chou"
 
-#: ../src/gnome-screensaver-preferences.c:692
+#: ../src/gnome-screensaver-preferences.c:712
 msgid "Invalid screensaver theme"
 msgstr "Tema do salvapantallas inválido"
 
-#: ../src/gnome-screensaver-preferences.c:695
+#: ../src/gnome-screensaver-preferences.c:715
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Este ficheiro non parece ser un tema válido do salvapantallas."
 
-#: ../src/gnome-screensaver-preferences.c:812
+#: ../src/gnome-screensaver-preferences.c:832
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d hora"
 msgstr[1] "%d horas"
 
-#: ../src/gnome-screensaver-preferences.c:815
+#: ../src/gnome-screensaver-preferences.c:835
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minuto"
 msgstr[1] "%d minutos"
 
-#: ../src/gnome-screensaver-preferences.c:818
+#: ../src/gnome-screensaver-preferences.c:838
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -709,15 +716,15 @@ msgstr[0] "%d segundo"
 msgstr[1] "%d segundos"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:824
+#: ../src/gnome-screensaver-preferences.c:844
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:827
-#: ../src/gnome-screensaver-preferences.c:835
+#: ../src/gnome-screensaver-preferences.c:847
+#: ../src/gnome-screensaver-preferences.c:855
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -725,27 +732,27 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:830
-#: ../src/gnome-screensaver-preferences.c:838
-#: ../src/gnome-screensaver-preferences.c:842
+#: ../src/gnome-screensaver-preferences.c:850
+#: ../src/gnome-screensaver-preferences.c:858
+#: ../src/gnome-screensaver-preferences.c:862
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:845
+#: ../src/gnome-screensaver-preferences.c:865
 msgid "0 seconds"
 msgstr "0 segundos"
 
-#: ../src/gnome-screensaver-preferences.c:860
+#: ../src/gnome-screensaver-preferences.c:880
 msgid "Never"
 msgstr "Nunca"
 
-#: ../src/gnome-screensaver-preferences.c:896
+#: ../src/gnome-screensaver-preferences.c:1026
 msgid "Could not load the main interface"
 msgstr "Non se puido cargar a interface principal"
 
-#: ../src/gnome-screensaver-preferences.c:898
+#: ../src/gnome-screensaver-preferences.c:1028
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Asegúrese de que o salvapantallas está instalado apropiadamente"
 
@@ -757,15 +764,15 @@ msgstr "Non convertirse nun demonio"
 msgid "Enable debugging code"
 msgstr "Activar código de depuración"
 
-#: ../src/gs-listener-dbus.c:1174
+#: ../src/gs-listener-dbus.c:1188
 msgid "failed to register with the message bus"
 msgstr "fallou ao rexistrarse co bus da mensaxe"
 
-#: ../src/gs-listener-dbus.c:1184
+#: ../src/gs-listener-dbus.c:1198
 msgid "not connected to the message bus"
 msgstr "non conectado ao bus de mensaxes"
 
-#: ../src/gs-listener-dbus.c:1193
+#: ../src/gs-listener-dbus.c:1207
 msgid "screensaver already running in this session"
 msgstr "xa se está executando o salvapantallas nesta sesión"
 
