@@ -399,6 +399,22 @@ gs_window_raise (GSWindow *window)
         gdk_window_raise (win);
 }
 
+static gboolean
+x11_window_is_ours (Window window)
+{
+        GdkWindow *gwindow;
+        gboolean   ret;
+
+        ret = FALSE;
+
+        gwindow = gdk_window_lookup (window);
+        if (gwindow && (window != GDK_ROOT_WINDOW ())) {
+                ret = TRUE;
+        }
+
+        return ret;
+}
+
 static void
 gs_window_xevent (GSWindow  *window,
                   GdkXEvent *xevent)
@@ -411,11 +427,29 @@ gs_window_xevent (GSWindow  *window,
            ConfigureNofify is used to tell us when windows are raised. */
         switch (ev->xany.type) {
         case MapNotify:
-                gs_window_raise (window);
-                break;
+                {
+                        XMapEvent *xme = &ev->xmap;
+
+                        if (! x11_window_is_ours (xme->window)) {
+                                gs_window_raise (window);
+                        } else {
+                                gs_debug ("not raising our windows");
+                        }
+
+                        break;
+                }
         case ConfigureNotify:
-                gs_window_raise (window);
-                break;
+                {
+                        XConfigureEvent *xce = &ev->xconfigure;
+
+                        if (! x11_window_is_ours (xce->window)) {
+                                gs_window_raise (window);
+                        } else {
+                                gs_debug ("not raising our windows");
+                        }
+
+                        break;
+                }
         default:
                 break;
         }
