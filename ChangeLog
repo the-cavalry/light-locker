@@ -1,5 +1,11 @@
 2006-01-18  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (gs_window_real_realize) 
+	(gs_window_real_show): Clear window after show
+	instead of realize.  Fixes #327125.
+
+2006-01-18  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (x11_window_is_ours, gs_window_xevent):
 	Ignore our windows when watching for map and configure events.
 

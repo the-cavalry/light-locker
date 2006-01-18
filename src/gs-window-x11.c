@@ -303,7 +303,6 @@ gs_window_real_realize (GtkWidget *widget)
                 GTK_WIDGET_CLASS (parent_class)->realize (widget);
 
         gs_window_override_user_time (GS_WINDOW (widget));
-        gs_window_clear (GS_WINDOW (widget));
 
         gs_window_move_resize_window (GS_WINDOW (widget), TRUE, TRUE);
 
@@ -485,6 +484,8 @@ gs_window_real_show (GtkWidget *widget)
 
         if (GTK_WIDGET_CLASS (parent_class)->show)
                 GTK_WIDGET_CLASS (parent_class)->show (widget);
+
+        gs_window_clear (GS_WINDOW (widget));
 
         set_invisible_cursor (widget->window, TRUE);
 
