@@ -8,14 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-02 06:38+0100\n"
-"PO-Revision-Date: 2006-01-02 14:23+0530\n"
+"POT-Creation-Date: 2006-01-17 23:22+0100\n"
+"PO-Revision-Date: 2006-01-18 12:47+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "X-Generator: KBabel 1.9.1\n"
 
@@ -40,15 +41,19 @@ msgid "Screensaver Preferences"
 msgstr "સ્ક્રીનસેવર પસંદગીઓ"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
-msgid "_Activate after:"
-msgstr "આના પછી સક્રિય કરો (_A):"
+msgid "Set session as _idle after:"
+msgstr "સત્રને આના પછી ફાજલ તરીકે સુયોજિત કરો (_i):"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
-msgid "_Lock screen when active"
-msgstr "જ્યારે સક્રિય હોય ત્યારે સ્ક્રીનને તાળું મારો (_L)"
+msgid "_Activate screensaver when session is idle"
+msgstr "જ્યારે સત્ર એ ફાજલ હોય ત્યારે સ્ક્રીનસેવર સક્રિય કરો (_A)"
+
+#: ../data/gnome-screensaver-preferences.glade.h:6
+msgid "_Lock screen when screensaver is active"
+msgstr "જ્યારે સ્ક્રીનસેવર સક્રિય હોય ત્યારે સ્ક્રીનને તાળું મારો (_L)"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Screensaver themes"
 msgstr "સ્ક્રીનસેવર થીમો"
 
@@ -57,38 +62,46 @@ msgid "Screensavers"
 msgstr "સ્ક્રીનસેવરો"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Activate when idle"
+msgstr "જ્યારે ફાજલ હોય ત્યારે સક્રિય કરો"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
 msgid "Allow logout"
 msgstr "બહાર નીકળવાની પરવાનગી આપો"
 
-#: ../data/gnome-screensaver.schemas.in.h:2
+#: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow monitor power management"
 msgstr "પાવર મેનેજમેન્ટ મોનીટર કરવાની પરવાનગી આપો"
 
-#: ../data/gnome-screensaver.schemas.in.h:3
+#: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
 msgstr "વપરાશકર્તા બદલવાની પરવાનગી આપો"
 
-#: ../data/gnome-screensaver.schemas.in.h:4
+#: ../data/gnome-screensaver.schemas.in.h:5
 msgid "Lock on activation"
 msgstr "સક્રિયકરણ પર તાળું મારો"
 
-#: ../data/gnome-screensaver.schemas.in.h:5
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Logout command"
 msgstr "બહાર નીકળો આદેશ"
 
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Screensaver selection mode"
-msgstr "સ્ક્રીનસેવર પસંદગી સ્થિતિ"
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Screensaver theme selection mode"
+msgstr "સ્ક્રીનસેવર થીમ પસંદગી સ્થિતિ"
 
-#: ../data/gnome-screensaver.schemas.in.h:8
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr "જ્યારે સત્ર ફાજલ હોય ત્યારે સ્ક્રીનસેવરને સક્રિય કરવા માટે આને TRUE સુયોજિત કરો."
+
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Set this to TRUE to allow the screensaver to power down the monitor."
 msgstr "મોનીટરનો પાવર નીચો કરવા માટે સ્ક્રીનસેવરને પરવાનગી આપવા માટે આને ખરું સુયોજિત કરો."
 
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr "જ્યારે સ્ક્રીનસેવર સક્રિય થઈ જાય ત્યારે સ્ક્રીનને તાળું મારવા માટે આને ખરું સુયોજિત કરો."
 
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -96,7 +109,7 @@ msgstr ""
 "અલગ વપરાશકર્તા ખાતામાં બદલાવા માટે તાળું ખોલો સંવાદમાં વિકલ્પની તક આપવા માટે આને ખરું "
 "સુયોજિત કરો."
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -104,7 +117,7 @@ msgstr ""
 "વિલંબ પછી બહાર નીકળવા માટે તાળું ખોલો સંવાદમાં વિકલ્પની તક આપવા માટે આને ખરું સુયોજિત "
 "કરો. વિલંબ એ \"logout_delay\" કીમાં સ્પષ્ટ થયેલ છે."
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -114,11 +127,11 @@ msgstr ""
 "કોઈપણ જાતના સંપર્ક વિના તેને બહાર કાઢી નાંખવો જોઈએ. આ કીને માત્ર ત્યારે જ હોય જો "
 "\"logout_enable\" કી એ ખરું તરીકે સુયોજિત થયેલ હોય."
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid "The number of minutes after screensaver activation before locking the screen."
 msgstr "સ્ક્રીનને તાળું મારવા પહેલાં સ્ક્રીનસેવર સક્રિયકરણ પછી મિનિટોની સંખ્યા."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -128,7 +141,7 @@ msgstr ""
 "સંખ્યા. આ કીને માત્ર ત્યારે જ અસર હશે જો \"logout_enable\" કી એ ખરું તરીકે સુયોજિત થયેલ "
 "હોય."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into standby power mode."
@@ -136,77 +149,70 @@ msgstr ""
 "મોનીટર સ્ટેન્ડબાય પાવર સ્થિતિમાં જાય ત્યાં સુધીમાં સ્ક્રીનસેવર સક્રિયકરણ પછી મિનિટોની "
 "સંખ્યા."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into suspend power mode."
 msgstr "મોનીટર સસ્પેન્ડ પાવર સ્થિતિમાં જાય ત્યાં સુધીમાં સ્ક્રીનસેવર સક્રિયકરણ પછી મિનિટોની સંખ્યા."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "powers off."
 msgstr "મોનીટર પાવર ઓફ થાય ત્યાં સુધીમાં સ્ક્રીનસેવર સક્રિયકરણ પછી મિનિટોની સંખ્યા."
 
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid "The number of minutes of idle time before activating the screensaver."
-msgstr "સ્ક્રીનસેવર સક્રિયકરણ પહેલાં ફાજલ સમયની મિનિટોની સંખ્યા."
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid "The number of minutes of inactivity before the session is considered idle."
+msgstr "સત્ર એ ફાજલ તરીકે સમજવામાં આવે તે પહેલાં અસક્રિયતાની મિનિટોની સંખ્યા."
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "સ્ક્રીનસેવર થીમ બદલવા પહેલાં ચલાવવા માટેની મિનિટોની સંખ્યા."
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
-"The selection mode used by screensaver. May be \"disabled\" to disable "
-"screensaver activation, \"blank-only\" to enable the screensaver without "
-"using any theme on activation, \"single\" to enable screensaver using only "
-"one theme on activation (specified in \"themes\" key), and \"random\" to "
-"enable the screensaver using a random theme on activation."
-msgstr ""
-"સ્ક્રીનસેવર સ્થિતિ દ્વારા વપરાતી પસંદગી સ્થિતિ. કદાચ સ્ક્રીનસેવર સક્રિયકરણ નિષ્ક્રિય કરવા "
-"માટે \"નિષ્ક્રિય\", સક્રિયકરણ પર કોઈપણ થીમ વાપર્યા વિના સ્ક્રીનસેવર સક્રિય કરવા માટે "
-"\"માત્ર-કોરું\", સક્રિયકરણ (\"થીમો\" કીમાં સ્પષ્ટ થયેલ છે) પર માત્ર એક થીમની મદદથી "
-"સ્ક્રીનસેવર સક્રિય કરવા માટે \"એક\", અને સક્રિયકરણ પર રેન્ડમ થીમની મદદથી સ્ક્રીનસેવર "
-"સક્રિય કરવા માટે \"રેન્ડમ\"."
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
+msgstr "સ્ક્રીનસેવર દ્વારા વપરાતી પસંદગી સ્થિતિ. કદાચ સ્ક્રીનસેવર સક્રિયકરણ પર કોઈપણ થીમ વાપર્યા વિના સ્ક્રીનસેવર સક્રિય કરવા માટે \"માત્ર-કોરું\", સક્રિયકરણ (\"થીમો\" કીમાં સ્પષ્ટ થયેલ છે) પર માત્ર એક થીમની મદદથી સ્ક્રીનસેવર સક્રિય કરવા માટે \"એક\", અને સક્રિયકરણ પર રેન્ડમ થીમની મદદથી સ્ક્રીનસેવર સક્રિય કરવા માટે \"રેન્ડમ\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
-"ignored when \"mode\" key is \"disabled\" or \"blank-only\", should provide "
-"the theme name when \"mode\" is \"single\", and should provide a list of "
-"themes when \"mode\" is \"random\"."
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
 msgstr ""
 "આ કી સ્ક્રીનસેવર દ્વારા વપરાતી થીમોની યાદી સ્પષ્ટ કરે છે. તે અવગણાય છે જ્યારે \"સ્થિતિ\" "
-"કી એ \"નિષ્ક્રિય\" અથવા \"માત્ર-કોરી\" હોય, તમારે થીમ નામ પૂરું પાડવું જોઈએ જ્યારે "
-"\"સ્થિતિ\" એ \"એક\" હોય, અને થીમોની યાદી પૂરી પાડવી જોઈએ જ્યારે \"સ્થિતિ\" એ \"રેન્ડમ"
-"\" હોય."
+"કી એ \"માત્ર-કોરી\" હોય, તમારે થીમ નામ પૂરું પાડવું જોઈએ જ્યારે \"સ્થિતિ\" એ \"એક\" હોય, અને થીમોની યાદી પૂરી પાડવી જોઈએ જ્યારે \"સ્થિતિ\" એ \"રેન્ડમ\" હોય."
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid "Time before activation"
 msgstr "સક્રિયકરણ પહેલાંનો સમય"
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Time before locking"
 msgstr "તાળું મારવા પહેલાંનો સમય"
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before logout option"
 msgstr "બહારનીકળો વિકલ્પ પહેલાંનો સમય"
 
-#: ../data/gnome-screensaver.schemas.in.h:25
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before power off"
 msgstr "પાવર ઓફ પહેલાંનો સમય"
 
-#: ../data/gnome-screensaver.schemas.in.h:26
+#: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before standby"
 msgstr "સ્ટેન્ડબાય પહેલાંનો સમય"
 
-#: ../data/gnome-screensaver.schemas.in.h:27
+#: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before suspend"
 msgstr "સસ્પેન્ડ તે પહેલાંનો સમય"
 
-#: ../data/gnome-screensaver.schemas.in.h:28
+#: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before theme change"
 msgstr "થીમ બદલાય તે પહેલાંનો સમય"
 
@@ -656,41 +662,37 @@ msgstr "બહાર નીકળો બટનમાંથી ચલાવવા
 msgid "Show the switch user button"
 msgstr "વપરાશકર્તા બદલો બટન બતાવો"
 
-#: ../src/gnome-screensaver-preferences.c:386
-msgid "Disabled"
-msgstr "નિષ્ક્રિયકૃત"
-
-#: ../src/gnome-screensaver-preferences.c:393
+#: ../src/gnome-screensaver-preferences.c:417
 msgid "Blank screen"
 msgstr "ખાલી સ્ક્રીન"
 
-#: ../src/gnome-screensaver-preferences.c:399
+#: ../src/gnome-screensaver-preferences.c:423
 msgid "Random"
 msgstr "રેન્ડમ"
 
-#: ../src/gnome-screensaver-preferences.c:692
+#: ../src/gnome-screensaver-preferences.c:712
 msgid "Invalid screensaver theme"
 msgstr "અયોગ્ય સ્ક્રીનસેવર થીમ"
 
-#: ../src/gnome-screensaver-preferences.c:695
+#: ../src/gnome-screensaver-preferences.c:715
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "આ ફાઈલ માન્ય સ્ક્રીનસેવર થીમ હોય એમ દેખાતું નથી."
 
-#: ../src/gnome-screensaver-preferences.c:812
+#: ../src/gnome-screensaver-preferences.c:832
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d કલાક"
 msgstr[1] "%d કલાકો"
 
-#: ../src/gnome-screensaver-preferences.c:815
+#: ../src/gnome-screensaver-preferences.c:835
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d મિનિટો"
 msgstr[1] "%d મિનિટો"
 
-#: ../src/gnome-screensaver-preferences.c:818
+#: ../src/gnome-screensaver-preferences.c:838
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -698,15 +700,15 @@ msgstr[0] "%d સેકન્ડ"
 msgstr[1] "%d સેકન્ડો"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:824
+#: ../src/gnome-screensaver-preferences.c:844
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:827
-#: ../src/gnome-screensaver-preferences.c:835
+#: ../src/gnome-screensaver-preferences.c:847
+#: ../src/gnome-screensaver-preferences.c:855
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -714,27 +716,27 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:830
-#: ../src/gnome-screensaver-preferences.c:838
-#: ../src/gnome-screensaver-preferences.c:842
+#: ../src/gnome-screensaver-preferences.c:850
+#: ../src/gnome-screensaver-preferences.c:858
+#: ../src/gnome-screensaver-preferences.c:862
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:845
+#: ../src/gnome-screensaver-preferences.c:865
 msgid "0 seconds"
 msgstr "૦ સેકન્ડો"
 
-#: ../src/gnome-screensaver-preferences.c:860
+#: ../src/gnome-screensaver-preferences.c:880
 msgid "Never"
 msgstr "ક્યારેય નહિં"
 
-#: ../src/gnome-screensaver-preferences.c:896
+#: ../src/gnome-screensaver-preferences.c:1026
 msgid "Could not load the main interface"
 msgstr "મુખ્ય ઈન્ટરફેસ લાવી શક્યા નહિં"
 
-#: ../src/gnome-screensaver-preferences.c:898
+#: ../src/gnome-screensaver-preferences.c:1028
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "મહેરબાની કરીને ખાતરી કરો કે સ્ક્રીનસેવર યોગ્ય રીતે સ્થાપિત થયેલ છે"
 
@@ -746,15 +748,15 @@ msgstr "ડિમન બનશો નહિં"
 msgid "Enable debugging code"
 msgstr "ડિબગીંગ કોડ સક્રિય કરો"
 
-#: ../src/gs-listener-dbus.c:1014
+#: ../src/gs-listener-dbus.c:1188
 msgid "failed to register with the message bus"
 msgstr "સંદેશા બસ સાથે રજીસ્ટર કરવામાં નિષ્ફળ"
 
-#: ../src/gs-listener-dbus.c:1024
+#: ../src/gs-listener-dbus.c:1198
 msgid "not connected to the message bus"
 msgstr "સંદેશા બસમાં જોડાયેલ નથી"
 
-#: ../src/gs-listener-dbus.c:1033
+#: ../src/gs-listener-dbus.c:1207
 msgid "screensaver already running in this session"
 msgstr "આ સત્રમાં સ્ક્રીનસેવર પહેલાથી જ ચાલી રહ્યું છે"
 
