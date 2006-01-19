@@ -612,7 +612,7 @@ spawn_on_widget (GtkWidget  *widget,
 
         error = NULL;
         result = gdk_spawn_on_screen_with_pipes (gtk_widget_get_screen (widget),
-                                                 g_get_home_dir (),
+                                                 NULL,
                                                  argv,
                                                  (char **)env->pdata,
                                                  G_SPAWN_DO_NOT_REAP_CHILD,
