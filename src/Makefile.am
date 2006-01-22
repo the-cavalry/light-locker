@@ -205,6 +205,8 @@ gnome_screensaver_preferences_SOURCES =	\
 	file-transfer-dialog.h		\
 	gs-job.c			\
 	gs-job.h			\
+	gs-debug.c			\
+	gs-debug.h			\
 	subprocs.c			\
 	subprocs.h			\
 	$(NULL)

@@ -41,6 +41,7 @@
 
 #include "gmenu-tree.h"
 
+#include "gs-debug.h"
 #include "gs-job.h"
 
 #include "subprocs.h"
@@ -104,8 +105,9 @@ find_command (const char *command)
                 path = g_build_filename (known_engine_locations [i], command, NULL);
 
                 if (g_file_test (path, G_FILE_TEST_IS_EXECUTABLE)
-                    && ! g_file_test (path, G_FILE_TEST_IS_DIR))
+                    && ! g_file_test (path, G_FILE_TEST_IS_DIR)) {
                         return path;
+                }
 
                 g_free (path);
         }
@@ -151,8 +153,9 @@ add_known_engine_locations_to_path (void)
         str = g_string_new (g_getenv ("PATH"));
         for (i = 0; known_engine_locations [i]; i++) {
                 /* TODO: check that permissions are safe */
-                if (g_file_test (known_engine_locations [i], G_FILE_TEST_IS_DIR))
+                if (g_file_test (known_engine_locations [i], G_FILE_TEST_IS_DIR)) {
                         g_string_append_printf (str, ":%s", known_engine_locations [i]);
+                }
         }
 
         g_setenv ("PATH", str->str, TRUE);
@@ -164,8 +167,9 @@ get_themes_tree (void)
 {
         static GMenuTree *themes_tree;
 
-        if (themes_tree)
+        if (themes_tree) {
                 return themes_tree;
+        }
 
         /* we only need to add the locations to the path once
            and since this is only run once we'll do it here */
@@ -259,8 +263,9 @@ find_info_for_id (GMenuTree  *tree,
         GSList             *l;
 
 	root = gmenu_tree_get_root_directory (tree);
-        if (! root)
+        if (! root) {
                 return NULL;
+        }
 
         items = gmenu_tree_directory_get_contents (root);
 
@@ -408,12 +413,13 @@ wait_on_child (int pid)
 
  wait_again:
         if (waitpid (pid, &status, 0) < 0) {
-                if (errno == EINTR)
+                if (errno == EINTR) {
                         goto wait_again;
-                else if (errno == ECHILD)
+                } else if (errno == ECHILD) {
                         ; /* do nothing, child already reaped */
-                else
+                } else {
                         g_warning ("waitpid () should not fail in 'GSJob'");
+                }
         }
 
         return status;
@@ -503,8 +509,9 @@ gs_job_set_theme  (GSJob      *job,
 
         g_free (job->priv->current_theme);
 
-        if (theme)
+        if (theme) {
                 job->priv->current_theme = g_strdup (theme);
+        }
 
         return TRUE;
 }
@@ -537,10 +544,12 @@ nice_process (int pid,
 {
         g_return_if_fail (pid > 0);
 
-        if (nice_level == 0)
+        if (nice_level == 0) {
                 return;
+        }
 
 #if defined(HAVE_SETPRIORITY) && defined(PRIO_PROCESS)
+        gs_debug ("Setting child process priority to: %d", nice_level);
         if (setpriority (PRIO_PROCESS, pid, nice_level) != 0) {
                 g_warning ("setpriority(PRIO_PROCESS, %lu, %d) failed",
                            (unsigned long) pid, nice_level);
@@ -570,8 +579,9 @@ spawn_on_widget (GtkWidget  *widget,
         int         id;
         int         i;
 
-        if (! command)
+        if (! command) {
                 return FALSE;
+        }
 
         if (! g_shell_parse_argv (command, NULL, &argv, &error)) {
                 g_warning ("Could not parse command: %s", error->message);
@@ -623,8 +633,9 @@ spawn_on_widget (GtkWidget  *widget,
                                                  NULL,
                                                  &standard_error,
                                                  &error);
-        for (i = 0; i < env->len; i++)
+        for (i = 0; i < env->len; i++) {
                 g_free (g_ptr_array_index (env, i));
+        }
         g_ptr_array_free (env, TRUE);
 
         if (! result) {
@@ -638,10 +649,11 @@ spawn_on_widget (GtkWidget  *widget,
 
         nice_process (child_pid, 10);
 
-        if (pid)
+        if (pid) {
                 *pid = child_pid;
-        else
+        } else {
                 g_spawn_close_pid (child_pid);
+        }
 
         channel = g_io_channel_unix_new (standard_error);
         g_io_channel_set_close_on_unref (channel, TRUE);
@@ -652,8 +664,9 @@ spawn_on_widget (GtkWidget  *widget,
                              G_IO_IN | G_IO_HUP | G_IO_ERR | G_IO_NVAL,
                              watch_func,
                              user_data);
-        if (watch_id)
+        if (watch_id) {
                 *watch_id = id;
+        }
 
         g_io_channel_unref (channel);
 
@@ -747,8 +760,9 @@ gs_job_start (GSJob *job)
                                   job,
                                   &job->priv->watch_id);
 
-        if (result)
+        if (result) {
                 job->priv->status = GS_JOB_RUNNING;
+        }
 
         gs_job_theme_info_unref (info);
 
@@ -770,11 +784,13 @@ gs_job_stop (GSJob *job)
         g_return_val_if_fail (job != NULL, FALSE);
         g_return_val_if_fail (GS_IS_JOB (job), FALSE);
 
-        if (! job->priv->pid)
+        if (! job->priv->pid) {
                 return FALSE;
+        }
 
-        if (job->priv->status == GS_JOB_STOPPED)
+        if (job->priv->status == GS_JOB_STOPPED) {
                 gs_job_suspend (job, FALSE);
+        }
 
         remove_command_watch (job);
 
@@ -794,8 +810,9 @@ gs_job_suspend (GSJob   *job,
         g_return_val_if_fail (job != NULL, FALSE);
         g_return_val_if_fail (GS_IS_JOB (job), FALSE);
 
-        if (! job->priv->pid)
+        if (! job->priv->pid) {
                 return FALSE;
+        }
 
         signal_pid (job->priv->pid, (suspend ? SIGSTOP : SIGCONT));
 

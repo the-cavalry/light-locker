@@ -164,8 +164,9 @@ gs_manager_set_lock_active (GSManager *manager,
                 GSList *l;
 
                 manager->priv->lock_active = lock_active;
-                for (l = manager->priv->windows; l; l = l->next)
+                for (l = manager->priv->windows; l; l = l->next) {
                         gs_window_set_lock_enabled (l->data, lock_active);
+                }
         }
 }
 
@@ -190,8 +191,9 @@ gs_manager_set_logout_enabled (GSManager *manager,
                 GSList *l;
 
                 manager->priv->logout_enabled = logout_enabled;
-                for (l = manager->priv->windows; l; l = l->next)
+                for (l = manager->priv->windows; l; l = l->next) {
                         gs_window_set_logout_enabled (l->data, logout_enabled);
+                }
         }
 }
 
@@ -205,8 +207,9 @@ gs_manager_set_user_switch_enabled (GSManager *manager,
                 GSList *l;
 
                 manager->priv->user_switch_enabled = user_switch_enabled;
-                for (l = manager->priv->windows; l; l = l->next)
+                for (l = manager->priv->windows; l; l = l->next) {
                         gs_window_set_user_switch_enabled (l->data, user_switch_enabled);
+                }
         }
 }
 
@@ -276,8 +279,9 @@ gs_manager_set_logout_timeout (GSManager *manager,
                 GSList *l;
 
                 manager->priv->logout_timeout = logout_timeout;
-                for (l = manager->priv->windows; l; l = l->next)
+                for (l = manager->priv->windows; l; l = l->next) {
                         gs_window_set_logout_timeout (l->data, logout_timeout);
+                }
         }
 }
 
@@ -304,8 +308,9 @@ select_theme (GSManager *manager)
         g_return_val_if_fail (manager != NULL, NULL);
         g_return_val_if_fail (GS_IS_MANAGER (manager), NULL);
 
-        if (manager->priv->saver_mode == GS_MODE_BLANK_ONLY)
+        if (manager->priv->saver_mode == GS_MODE_BLANK_ONLY) {
                 return NULL;
+        }
 
         if (manager->priv->themes) {
                 int number = 0;
@@ -330,14 +335,17 @@ gs_manager_cycle (GSManager *manager)
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
-        if (! manager->priv->active)
+        if (! manager->priv->active) {
                 return FALSE;
+        }
 
-        if (manager->priv->dialog_up)
+        if (manager->priv->dialog_up) {
                 return FALSE;
+        }
 
-        if (manager->priv->throttle_enabled)
+        if (manager->priv->throttle_enabled) {
                 return FALSE;
+        }
 
         theme = select_theme (manager);
 
@@ -346,8 +354,9 @@ gs_manager_cycle (GSManager *manager)
                 gs_job_set_theme (GS_JOB (l->data), theme, NULL);
 
                 /* this success flag is kinda bogus */
-                if (gs_job_start (GS_JOB (l->data)))
+                if (gs_job_start (GS_JOB (l->data))) {
                         success = TRUE;
+                }
         }
 
         return success;
@@ -359,8 +368,9 @@ cycle_timeout (GSManager *manager)
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
-        if (! manager->priv->dialog_up)
+        if (! manager->priv->dialog_up) {
                 gs_manager_cycle (manager);
+        }
 
         return TRUE;
 }
@@ -696,8 +706,9 @@ window_dialog_up_cb (GSWindow  *window,
 
         /* Make all other windows insensitive so we don't get events */
         for (l = manager->priv->windows; l; l = l->next) {
-                if (l->data != window)
+                if (l->data != window) {
                         gtk_widget_set_sensitive (GTK_WIDGET (l->data), FALSE);
+                }
         }
 
         if (! manager->priv->throttle_enabled) {
@@ -896,8 +907,9 @@ gs_manager_create (GSManager *manager)
         }
         g_slist_free (manager->priv->windows);
 
-        for (i = 0; i < n_screens; i++)
+        for (i = 0; i < n_screens; i++) {
                 gs_manager_create_window (manager, gdk_display_get_screen (display, i));
+        }
 }
 
 GSManager *
@@ -1012,10 +1024,11 @@ gs_manager_set_active (GSManager *manager,
 {
         gboolean res;
 
-        if (active)
+        if (active) {
                 res = gs_manager_activate (manager);
-        else
+        } else {
                 res = gs_manager_deactivate (manager);
+        }
 
         return res;
 }
@@ -1040,8 +1053,9 @@ gs_manager_request_unlock (GSManager *manager)
         g_return_if_fail (manager != NULL);
         g_return_if_fail (GS_IS_MANAGER (manager));
 
-        if (! manager->priv->active)
+        if (! manager->priv->active) {
                 return;
+        }
 
         /* Find the screen that contains the pointer */
         display = gdk_display_get_default ();

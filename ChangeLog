@@ -1,3 +1,13 @@
+2006-01-21  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-manager.c: 
+	* src/gs-window-x11.c: Braces.
+
+	* src/gs-job.c (find_command, get_themes_tree, wait_on_child) 
+	(gs_job_set_theme): Braces.
+	(nice_process): Add debug.
+	(spawn_on_widget, gs_job_start, gs_job_suspend): Braces.
+
 2006-01-18  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (spawn_on_window): 

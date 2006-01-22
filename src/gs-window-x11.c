@@ -133,8 +133,9 @@ set_invisible_cursor (GdkWindow *window,
 
         gdk_window_set_cursor (window, cursor);
 
-        if (cursor)
+        if (cursor) {
                 gdk_cursor_unref (cursor);
+        }
 }
 
 /* derived from tomboy */
@@ -269,20 +270,21 @@ gs_window_move_resize_window (GSWindow *window,
 
         g_assert (GTK_WIDGET_REALIZED (widget));
 
-        if (move && resize)
+        if (move && resize) {
                 gdk_window_move_resize (widget->window,
                                         window->priv->geometry.x,
                                         window->priv->geometry.y,
                                         window->priv->geometry.width,
                                         window->priv->geometry.height);
-        else if (move)
+        } else if (move) {
                 gdk_window_move (widget->window,
                                  window->priv->geometry.x,
                                  window->priv->geometry.y);
-        else if (resize)
+        } else if (resize) {
                 gdk_window_resize (widget->window,
                                    window->priv->geometry.width,
                                    window->priv->geometry.height);
+        }
 }
 
 static void
@@ -292,15 +294,17 @@ gs_window_real_unrealize (GtkWidget *widget)
                                               screen_size_changed,
                                               widget);
 
-        if (GTK_WIDGET_CLASS (parent_class)->unrealize)
+        if (GTK_WIDGET_CLASS (parent_class)->unrealize) {
                 GTK_WIDGET_CLASS (parent_class)->unrealize (widget);
+        }
 }
 
 static void
 gs_window_real_realize (GtkWidget *widget)
 {
-        if (GTK_WIDGET_CLASS (parent_class)->realize)
+        if (GTK_WIDGET_CLASS (parent_class)->realize) {
                 GTK_WIDGET_CLASS (parent_class)->realize (widget);
+        }
 
         gs_window_override_user_time (GS_WINDOW (widget));
 
@@ -482,16 +486,18 @@ gs_window_real_show (GtkWidget *widget)
 {
         GSWindow *window;
 
-        if (GTK_WIDGET_CLASS (parent_class)->show)
+        if (GTK_WIDGET_CLASS (parent_class)->show) {
                 GTK_WIDGET_CLASS (parent_class)->show (widget);
+        }
 
         gs_window_clear (GS_WINDOW (widget));
 
         set_invisible_cursor (widget->window, TRUE);
 
         window = GS_WINDOW (widget);
-        if (window->priv->timer)
+        if (window->priv->timer) {
                 g_timer_destroy (window->priv->timer);
+        }
         window->priv->timer = g_timer_new ();
 
         remove_watchdog_timer (window);
@@ -520,8 +526,9 @@ gs_window_real_hide (GtkWidget *widget)
 
         remove_watchdog_timer (window);
 
-        if (GTK_WIDGET_CLASS (parent_class)->hide)
+        if (GTK_WIDGET_CLASS (parent_class)->hide) {
                 GTK_WIDGET_CLASS (parent_class)->hide (widget);
+        }
 }
 
 void
@@ -609,8 +616,9 @@ spawn_on_window (GSWindow *window,
                                                  NULL,
                                                  &error);
 
-        for (i = 0; i < env->len; i++)
+        for (i = 0; i < env->len; i++) {
                 g_free (g_ptr_array_index (env, i));
+        }
         g_ptr_array_free (env, TRUE);
 
         if (! result) {
@@ -620,10 +628,11 @@ spawn_on_window (GSWindow *window,
                 return FALSE;
         }
 
-        if (pid)
+        if (pid) {
                 *pid = child_pid;
-        else
+        } else {
                 g_spawn_close_pid (child_pid);
+        }
 
         channel = g_io_channel_unix_new (standard_output);
         g_io_channel_set_close_on_unref (channel, TRUE);
@@ -634,8 +643,9 @@ spawn_on_window (GSWindow *window,
                              G_IO_IN | G_IO_HUP | G_IO_ERR | G_IO_NVAL,
                              watch_func,
                              user_data);
-        if (watch_id)
+        if (watch_id) {
                 *watch_id = id;
+        }
 
         g_io_channel_unref (channel);
 
@@ -746,12 +756,13 @@ wait_on_child (int pid)
 
  wait_again:
         if (waitpid (pid, &status, 0) < 0) {
-                if (errno == EINTR)
+                if (errno == EINTR) {
                         goto wait_again;
-                else if (errno == ECHILD)
+                } else if (errno == ECHILD) {
                         ; /* do nothing, child already reaped */
-                else
+                } else {
                         g_warning ("waitpid () should not fail in 'GSWindow'");
+                }
         }
 
         return status;
@@ -794,16 +805,18 @@ shake_dialog (GSWindow *window)
                         right = 30;
                 }
 
-                if (! window->priv->box)
+                if (! window->priv->box) {
                         break;
+                }
 
                 gtk_alignment_set_padding (GTK_ALIGNMENT (window->priv->box),
                                            0, 0,
                                            left,
                                            right);
 
-                while (gtk_events_pending ())
+                while (gtk_events_pending ()) {
                         gtk_main_iteration ();
+                }
 
                 g_usleep (10000);
         }
@@ -893,16 +906,19 @@ is_logout_enabled (GSWindow *window)
 {
         double elapsed;
 
-        if (! window->priv->logout_enabled)
+        if (! window->priv->logout_enabled) {
                 return FALSE;
+        }
 
-        if (! window->priv->logout_command)
+        if (! window->priv->logout_command) {
                 return FALSE;
+        }
 
         elapsed = g_timer_elapsed (window->priv->timer, NULL);
 
-        if (window->priv->logout_timeout < (elapsed * 1000))
+        if (window->priv->logout_timeout < (elapsed * 1000)) {
                 return TRUE;
+        }
 
         return FALSE;
 }
@@ -944,8 +960,9 @@ popup_dialog_idle (GSWindow *window)
                                   (GIOFunc)command_watch,
                                   window,
                                   &window->priv->watch_id);
-        if (! result)
+        if (! result) {
                 g_warning ("Could not start command: %s", command->str);
+        }
 
         g_string_free (command, TRUE);
 
@@ -961,8 +978,9 @@ gs_window_request_unlock (GSWindow *window)
 
         gs_debug ("Requesting unlock");
 
-        if (window->priv->watch_id > 0)
+        if (window->priv->watch_id > 0) {
                 return;
+        }
 
         if (! window->priv->lock_enabled) {
                 add_emit_deactivated_idle (window);
@@ -983,8 +1001,9 @@ gs_window_set_lock_enabled (GSWindow *window,
 {
         g_return_if_fail (GS_IS_WINDOW (window));
 
-        if (window->priv->lock_enabled == lock_enabled)
+        if (window->priv->lock_enabled == lock_enabled) {
                 return;
+        }
 
         window->priv->lock_enabled = lock_enabled;
         g_object_notify (G_OBJECT (window), "lock-enabled");
@@ -1033,10 +1052,11 @@ gs_window_set_logout_timeout (GSWindow *window,
 {
         g_return_if_fail (GS_IS_WINDOW (window));
 
-        if (logout_timeout < 0)
+        if (logout_timeout < 0) {
                 window->priv->logout_timeout = 0;
-        else
+        } else {
                 window->priv->logout_timeout = logout_timeout;
+        }
 }
 
 void
@@ -1060,8 +1080,9 @@ gs_window_set_monitor (GSWindow *window,
 {
         g_return_if_fail (GS_IS_WINDOW (window));
 
-        if (window->priv->monitor == monitor)
+        if (window->priv->monitor == monitor) {
                 return;
+        }
 
         window->priv->monitor = monitor;
 
@@ -1193,8 +1214,9 @@ gs_window_real_key_press_event (GtkWidget   *widget,
                 queue_key_event (GS_WINDOW (widget), event);
         }
 
-        if (GTK_WIDGET_CLASS (parent_class)->key_press_event)
+        if (GTK_WIDGET_CLASS (parent_class)->key_press_event) {
                 GTK_WIDGET_CLASS (parent_class)->key_press_event (widget, event);
+        }
 
         return TRUE;
 }
@@ -1247,8 +1269,9 @@ gs_window_real_size_request (GtkWidget      *widget,
         window = GS_WINDOW (widget);
         bin = GTK_BIN (widget);
 
-        if (bin->child && GTK_WIDGET_VISIBLE (bin->child))
+        if (bin->child && GTK_WIDGET_VISIBLE (bin->child)) {
                 gtk_widget_size_request (bin->child, requisition);
+        }
 
 	old_geometry = window->priv->geometry;
 
@@ -1257,16 +1280,19 @@ gs_window_real_size_request (GtkWidget      *widget,
         requisition->width  = window->priv->geometry.width;
         requisition->height = window->priv->geometry.height;
 
-        if (! GTK_WIDGET_REALIZED (widget))
+        if (! GTK_WIDGET_REALIZED (widget)) {
                 return;
+        }
 
         if (old_geometry.width  != window->priv->geometry.width ||
-            old_geometry.height != window->priv->geometry.height)
+            old_geometry.height != window->priv->geometry.height) {
                 size_changed = TRUE;
+        }
 
         if (old_geometry.x != window->priv->geometry.x ||
-            old_geometry.y != window->priv->geometry.y)
+            old_geometry.y != window->priv->geometry.y) {
                 position_changed = TRUE;
+        }
 
         gs_window_move_resize_window (window, position_changed, size_changed);
 }
@@ -1428,8 +1454,9 @@ gs_window_finalize (GObject *object)
         remove_request_unlock_idle (window);
         remove_popup_dialog_idle (window);
 
-        if (window->priv->timer)
+        if (window->priv->timer) {
                 g_timer_destroy (window->priv->timer);
+        }
 
         remove_key_events (window);
 
