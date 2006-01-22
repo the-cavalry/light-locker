@@ -547,6 +547,47 @@ gs_window_get_gdk_window (GSWindow *window)
         return GTK_WIDGET (window)->window;
 }
 
+static GPtrArray *
+get_env_vars (GtkWidget *widget)
+{
+        GPtrArray *env;
+        char      *str;
+        int        i;
+        static const char *allowed_env_vars [] = {
+                "PATH",
+                "SESSION_MANAGER",
+                "XAUTHORITY",
+                "XAUTHLOCALHOSTNAME",
+                "LANG",
+                "LANGUAGE"
+        };
+
+        env = g_ptr_array_new ();
+
+        str = gdk_screen_make_display_name (gtk_widget_get_screen (widget));
+        g_ptr_array_add (env, g_strdup_printf ("DISPLAY=%s", str));
+        g_free (str);
+
+        g_ptr_array_add (env, g_strdup_printf ("HOME=%s",
+                                               g_get_home_dir ()));
+
+        for (i = 0; i < G_N_ELEMENTS (allowed_env_vars); i++) {
+                const char *var;
+                const char *val;
+                var = allowed_env_vars [i];
+                val = g_getenv (var);
+                if (val != NULL) {
+                        g_ptr_array_add (env, g_strdup_printf ("%s=%s",
+                                                               var,
+                                                               val));
+                }
+        }
+
+        g_ptr_array_add (env, NULL);
+
+        return env;
+}
+
 static gboolean
 spawn_on_window (GSWindow *window,
                  char     *command,
@@ -557,7 +598,6 @@ spawn_on_window (GSWindow *window,
 {
         int         argc;
         char      **argv;
-        char       *str;
         GPtrArray  *env;
         GError     *error;
         gboolean    result;
@@ -574,33 +614,7 @@ spawn_on_window (GSWindow *window,
                 return FALSE;
         }
 
-        env = g_ptr_array_new ();
-
-        str = gdk_screen_make_display_name (GTK_WINDOW (window)->screen);
-        g_ptr_array_add (env, g_strdup_printf ("DISPLAY=%s", str));
-        g_free (str);
-
-        g_ptr_array_add (env, g_strdup_printf ("HOME=%s",
-                                               g_get_home_dir ()));
-        if (g_getenv ("PATH"))
-                g_ptr_array_add (env, g_strdup_printf ("PATH=%s",
-                                                       g_getenv ("PATH")));
-        if (g_getenv ("SESSION_MANAGER"))
-                g_ptr_array_add (env, g_strdup_printf ("SESSION_MANAGER=%s",
-                                                       g_getenv ("SESSION_MANAGER")));
-        if (g_getenv ("XAUTHORITY"))
-                g_ptr_array_add (env, g_strdup_printf ("XAUTHORITY=%s",
-                                                       g_getenv ("XAUTHORITY")));
-        if (g_getenv ("XAUTHLOCALHOSTNAME"))
-                g_ptr_array_add (env, g_strdup_printf ("XAUTHLOCALHOSTNAME=%s",
-                                                       g_getenv ("XAUTHLOCALHOSTNAME")));
-        if (g_getenv ("LANG"))
-                g_ptr_array_add (env, g_strdup_printf ("LANG=%s",
-                                                       g_getenv ("LANG")));
-        if (g_getenv ("LANGUAGE"))
-                g_ptr_array_add (env, g_strdup_printf ("LANGUAGE=%s",
-                                                       g_getenv ("LANGUAGE")));
-        g_ptr_array_add (env, NULL);
+        env = get_env_vars (GTK_WIDGET (window));
 
         error = NULL;
         result = gdk_spawn_on_screen_with_pipes (GTK_WINDOW (window)->screen,

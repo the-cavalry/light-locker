@@ -559,6 +559,51 @@ nice_process (int pid,
 #endif
 }
 
+static GPtrArray *
+get_env_vars (GtkWidget *widget)
+{
+        GPtrArray *env;
+        char      *str;
+        int        i;
+        static const char *allowed_env_vars [] = {
+                "PATH",
+                "SESSION_MANAGER",
+                "XAUTHORITY",
+                "XAUTHLOCALHOSTNAME",
+                "LANG",
+                "LANGUAGE"
+        };
+
+        env = g_ptr_array_new ();
+
+        str = gdk_screen_make_display_name (gtk_widget_get_screen (widget));
+        g_ptr_array_add (env, g_strdup_printf ("DISPLAY=%s", str));
+        g_free (str);
+
+        g_ptr_array_add (env, g_strdup_printf ("HOME=%s",
+                                               g_get_home_dir ()));
+
+        for (i = 0; i < G_N_ELEMENTS (allowed_env_vars); i++) {
+                const char *var;
+                const char *val;
+                var = allowed_env_vars [i];
+                val = g_getenv (var);
+                if (val != NULL) {
+                        g_ptr_array_add (env, g_strdup_printf ("%s=%s",
+                                                               var,
+                                                               val));
+                }
+        }
+
+        str = widget_get_id_string (widget);
+        g_ptr_array_add (env, g_strdup_printf ("XSCREENSAVER_WINDOW=%s", str));
+        g_free (str);
+
+        g_ptr_array_add (env, NULL);
+
+        return env;
+}
+
 static gboolean
 spawn_on_widget (GtkWidget  *widget,
                  const char *command,
@@ -594,31 +639,8 @@ spawn_on_widget (GtkWidget  *widget,
                 g_free (argv [0]);
                 argv [0] = path;
         }
-        
-        env = g_ptr_array_new ();
 
-        str = widget_get_id_string (widget);
-        g_ptr_array_add (env, g_strdup_printf ("XSCREENSAVER_WINDOW=%s", str));
-        g_free (str);
-
-        str = gdk_screen_make_display_name (gtk_widget_get_screen (widget));
-        g_ptr_array_add (env, g_strdup_printf ("DISPLAY=%s", str));
-        g_free (str);
-
-        g_ptr_array_add (env, g_strdup_printf ("HOME=%s",
-                                               g_get_home_dir ()));
-        g_ptr_array_add (env, g_strdup_printf ("PATH=%s", g_getenv ("PATH")));
-
-        if (g_getenv ("XAUTHORITY"))
-                g_ptr_array_add (env, g_strdup_printf ("XAUTHORITY=%s",
-                                                       g_getenv ("XAUTHORITY")));
-        if (g_getenv ("LANG"))
-                g_ptr_array_add (env, g_strdup_printf ("LANG=%s",
-                                                       g_getenv ("LANG")));
-        if (g_getenv ("LANGUAGE"))
-                g_ptr_array_add (env, g_strdup_printf ("LANGUAGE=%s",
-                                                       g_getenv ("LANGUAGE")));
-        g_ptr_array_add (env, NULL);
+        env = get_env_vars (widget);
 
         error = NULL;
         result = gdk_spawn_on_screen_with_pipes (gtk_widget_get_screen (widget),

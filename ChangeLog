@@ -1,5 +1,11 @@
 2006-01-21  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (get_env_vars, spawn_on_window): 
+	* src/gs-job.c (get_env_vars, spawn_on_widget):
+	Break out environment passing into function.
+
+2006-01-21  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c: 
 	* src/gs-window-x11.c: Braces.
 
