@@ -1,3 +1,11 @@
+2006-01-23  William Jon McCann  <mccann@jhu.edu>
+
+	* savers/floaters.c (screen_saver_new, screen_saver_free):
+	Cap rate of updates to twice the hardcoded optimal frame rate.
+
+	Patch from Ray Strode <rstrode@redhat.com>
+	Fixes #328212.
+
 2006-01-21  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (get_env_vars, spawn_on_window): 

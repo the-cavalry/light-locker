@@ -39,7 +39,7 @@
 #include "gs-theme-window.h"
 
 #ifndef OPTIMAL_FRAME_RATE
-#define OPTIMAL_FRAME_RATE (30.0)
+#define OPTIMAL_FRAME_RATE (25.0)
 #endif
 
 #ifndef STAT_PRINT_FREQUENCY
@@ -148,7 +148,7 @@ struct _ScreenSaver
   gdouble updates_per_second;
   gdouble frames_per_second;
 
-  guint state_update_idle_id;
+  guint state_update_timeout_id;
   guint stats_update_timeout_id;
 
   GList *floaters;
@@ -828,8 +828,9 @@ screen_saver_new (GtkDrawingArea  *drawing_area,
 
   screen_saver_get_initial_state (screen_saver);
 
-  screen_saver->state_update_idle_id =
-      g_idle_add ((GSourceFunc) screen_saver_do_update_state, screen_saver);
+  screen_saver->state_update_timeout_id =
+      g_timeout_add (1000 / (2.0 * OPTIMAL_FRAME_RATE), 
+                     (GSourceFunc) screen_saver_do_update_state, screen_saver);
 
   screen_saver->stats_update_timeout_id =
       g_timeout_add (1000, (GSourceFunc) screen_saver_do_update_stats, 
@@ -848,8 +849,8 @@ screen_saver_free (ScreenSaver *screen_saver)
 
   g_hash_table_destroy (screen_saver->cached_sources);
 
-  if (screen_saver->state_update_idle_id != 0)
-    g_source_remove (screen_saver->state_update_idle_id);
+  if (screen_saver->state_update_timeout_id != 0)
+    g_source_remove (screen_saver->state_update_timeout_id);
 
   if (screen_saver->stats_update_timeout_id != 0)
     g_source_remove (screen_saver->stats_update_timeout_id);
