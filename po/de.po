@@ -3,20 +3,21 @@
 # This file is distributed under the same license as the gnome-screensaver package.
 # Frank Arnold <frank@scirocco-5v-turbo.de>, 2005.
 # Hendrik Richter <hendi@gnome-de.org>, 2005.
-#
+# Hendrik Brandt  <heb@gnome-de.org>, 2006.
 # Based on German gdm and fast-user-switch-applet translations.
 # Copyright on gdm and fast-user-switch-applet translations is held 
 # by its translators. Please keep in sync with this packages.
-#
-#
+# Hendrik Richter <hendi@gnome-de.org>, 2006.
+# 
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver\n"
+"Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-29 18:36+0100\n"
-"PO-Revision-Date: 2006-01-29 18:46+0100\n"
-"Last-Translator: Hendrik Richter <hendi@gnome-de.org>\n"
-"Language-Team: German GNOME Translations <gnome-de@gnome.org>\n"
+"POT-Creation-Date: 2006-01-30 15:04+0100\n"
+"PO-Revision-Date: 2006-01-30 16:48+0100\n"
+"Last-Translator: Hendrik Brandt <heb@gnome-de.org>\n"
+"Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -99,8 +100,9 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Set this to TRUE to allow the screensaver to power down the monitor."
-msgstr "Setzen·Sie·diesen·Wert·auf·TRUE·(Wahr),·damit·der·Bildschirmschoner·"
-"den Monitor abschalten kann."
+msgstr ""
+"Setzen·Sie·diesen·Wert·auf·TRUE·(Wahr),·damit·der·Bildschirmschoner·den "
+"Monitor abschalten kann."
 
 #: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
@@ -130,28 +132,33 @@ msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
-msgstr ""
+msgstr "Der auszuführende Befehl, wenn der Abmeldeschalter angeklickt wird. "
+"Dieser Befehl sollte den Benutzer ohne weitere Interaktion einfach abmelden. "
+"Dieser Schlüssel wird nur berücksichtigt, wenn der Schlüssel »logout_enable« auf "
+"TRUE (Wahr) gesetzt ist."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
-msgstr "Die Wartezeit in Minuten nach Aktivierung des Bildschirmschoners bis der Bildschirm "
-"gesperrt wird."
+msgstr ""
+"Die Wartezeit in Minuten nach Aktivierung des Bildschirmschoners bis der "
+"Bildschirm gesperrt wird."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
-msgstr ""
+msgstr "Die Anzahl an Minuten nach der Aktivierung des Bildschirmschoners bis eine "
+"Abmeldeoption im Entsperrendialog angezeigt wird. "
+"Dieser·Schlüssel·wird·nur·berücksichtigt,·wenn·der·Schlüssel·»logout_enable«·auf "
+"TRUE·(Wahr)·gesetzt·ist."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into standby power mode."
-msgstr ""
-"Die·Dauer·der·Minuten·zwischen·Aktivierung·des·Bildschirmschoners·und·dem·"
-"Versetzen·des·Bildschirms·in·den·Stromsparmodus."
+msgstr "Die·Dauer·der·Minuten·zwischen·Aktivierung·des·Bildschirmschoners·und·dem·Versetzen·des·Bildschirms·in·den·Stromsparmodus."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
@@ -172,7 +179,8 @@ msgstr ""
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
-msgstr "Die Wartezeit in Minuten, bis der Benutzer als untätig angenommen wird."
+msgstr ""
+"Die Wartezeit in Minuten, bis der Benutzer als untätig angenommen wird."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
@@ -185,7 +193,11 @@ msgid ""
 "screensaver using only one theme on activation (specified in \"themes\" "
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
-msgstr ""
+msgstr "Der Auswahlmodus des Bildschirmschoners. Mögliche Werte sind "
+"»blank-only« um den Bildschirm schwarz zu schalten, ohne dass irgendein Thema "
+"verwendet wird, »single« damit der Bildschirmschoner genau ein Thema verwendet "
+"(dieses wird über den Schlüssel »themes« festgelegt), und »random« damit der Bildschirmschoner "
+"ein zufälliges Thema auswählt."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid ""
@@ -193,7 +205,10 @@ msgid ""
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
-msgstr ""
+msgstr "Dieser Schlüssel legt die vim Bildschirmschoner verwendeten Themen fest. "
+"Der Wert wird ignoriert, wenn der Schlüssel »mode« auf »blank-only« gesetzt ist. "
+"Beim Modus »single« enthält der Schlüssel genau einen Themenname und beim Modus "
+"»random« eine Liste von Themennamen."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid "Time before activation"
@@ -257,19 +272,19 @@ msgstr "Pop-Art-Felder"
 
 #: ../savers/floaters.c:1165
 msgid "show paths that images follow"
-msgstr ""
+msgstr "Die Pfade denen die Bilder folgen anzeigen"
 
 #: ../savers/floaters.c:1172
 msgid "occasionally rotate images as they move"
-msgstr ""
+msgstr "Bilder während der Bewegung ab und zu drehen"
 
 #: ../savers/floaters.c:1179
 msgid "print out frame rate and other statistics"
-msgstr ""
+msgstr "Bildfrequenz und andere Statistiken anzeigen"
 
 #: ../savers/floaters.c:1187
 msgid "the maximum number of images to keep on screen"
-msgstr ""
+msgstr "Die maximale Anzahl gleichzeitig auf dem Bildschirm dargestellter Bilder"
 
 #. translators: this should be translated to be symbolic of a generic
 #. * number.  e.g, "the screen saver should keep N images on the screen"
@@ -280,11 +295,11 @@ msgstr "X"
 
 #: ../savers/floaters.c:1198
 msgid "the source image to use"
-msgstr ""
+msgstr "Das zu verwendende Ausgangsbild"
 
 #: ../savers/floaters.c:1205
 msgid "the initial size and position of window"
-msgstr ""
+msgstr "Die Startgröße und -position des Fensters"
 
 #. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
 #. * can be translated, but the 'x' area indicator and '+' offset indicators
@@ -299,20 +314,20 @@ msgstr "BREITExHÖHE+X+Y"
 #.
 #: ../savers/floaters.c:1230
 msgid "image - floats images around the screen"
-msgstr ""
+msgstr "image - Bilder und Fotos bewegen sich über den Bildschirm"
 
 #: ../savers/floaters.c:1240
 #, c-format
 msgid "%s. See --help for usage information.\n"
-msgstr ""
+msgstr "%s. Benutzen Sie --help für weitere Informationen.\n"
 
 #: ../savers/floaters.c:1249
 msgid "You must specify one image.  See --help for usage information.\n"
-msgstr ""
+msgstr "Sie müssen ein Bild angeben. Benutzen Sie --help für weitere Informationen.\n"
 
 #: ../savers/slideshow.c:47
 msgid "Location to get images from"
-msgstr ""
+msgstr "Der Speicherort von dem Bilder geholt werden"
 
 #: ../savers/slideshow.c:47
 msgid "PATH"
@@ -583,19 +598,19 @@ msgstr "Die·Adresse·zu·der·die·Übertragung·geht"
 
 #: ../src/file-transfer-dialog.c:209
 msgid "Fraction completed"
-msgstr ""
+msgstr "Vollständiger Anteil"
 
 #: ../src/file-transfer-dialog.c:210
 msgid "Fraction of transfer currently completed"
-msgstr ""
+msgstr "Anteil der aktuell abgeschlossenen Übertragung"
 
 #: ../src/file-transfer-dialog.c:217
 msgid "Current URI index"
-msgstr ""
+msgstr "Aktueller Adressindex"
 
 #: ../src/file-transfer-dialog.c:218
 msgid "Current URI index - starts from 1"
-msgstr ""
+msgstr "Aktueller Adressindex - Start bei 1"
 
 #: ../src/file-transfer-dialog.c:225
 msgid "Total URIs"
@@ -603,7 +618,7 @@ msgstr "Adressen ingesamt"
 
 #: ../src/file-transfer-dialog.c:226
 msgid "Total number of URIs"
-msgstr ""
+msgstr "Gesamtmenge aller Adressen"
 
 #: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
 msgid "Copying files"
@@ -651,11 +666,11 @@ msgstr ""
 
 #: ../src/gnome-screensaver-command.c:71
 msgid "Disable running graphical themes while blanked"
-msgstr ""
+msgstr "Grafische Themen beim Bildschirm schonen deaktivieren"
 
 #: ../src/gnome-screensaver-command.c:73
 msgid "Enable running graphical themes while blanked (if applicable)"
-msgstr ""
+msgstr "Grafische·Themen·beim·Bildschirm·schonen·aktivieren (wenn anwendbar)"
 
 #: ../src/gnome-screensaver-command.c:75
 msgid "Poke the running screensaver to simulate user activity"
