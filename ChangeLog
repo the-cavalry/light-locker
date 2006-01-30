@@ -1,3 +1,13 @@
+2006-01-30  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac: Post release version bump.
+
+==== 2.13.90 ====
+
+2006-01-30  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 2.13.90 release
+
 2006-01-23  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/floaters.c (screen_saver_new, screen_saver_free):

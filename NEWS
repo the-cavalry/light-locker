@@ -1,3 +1,29 @@
+===============
+Version 2.13.90
+===============
+
+  gnome-screensaver
+
+        * Ignore our windows when watching for map and configure events
+        * Clear window after showing to prevent flashing
+        * Don't start child processes in home directory
+
+  themes
+
+        * (floaters) Cap update rate (Ray Strode)
+
+  Translators
+
+        * Rostislav \"zbrox\" Raykov (bg)
+        * Hendrik Brandt (de)
+        * Ilkka Tuohela (fi)
+        * Ignacio Casal Quinteiro (gl)
+        * Ankit Patel (gu)
+        * Tino Meinen (nl)
+        * Theppitak Karoonboonyanan (th)
+        * Chao-Hsiung Liao (zh_HK)
+        * Chao-Hsiung Liao (zh_TW)
+
 ==============
 Version 2.13.5
 ==============
