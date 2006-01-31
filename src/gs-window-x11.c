@@ -1399,7 +1399,7 @@ gs_window_class_init (GSWindowClass *klass)
                                          PROP_MONITOR,
                                          g_param_spec_int ("monitor",
                                                            "Xinerama monitor",
-                                                           "The monitor (in terms of Xinerama) which the panel is on",
+                                                           "The monitor (in terms of Xinerama) which the window is on",
                                                            0,
                                                            G_MAXINT,
                                                            0,
