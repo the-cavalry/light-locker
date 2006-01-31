@@ -889,8 +889,9 @@ command_watch (GIOChannel   *source,
                         break;
                 }
 
-        } else if (condition & G_IO_HUP)
+        } else if (condition & G_IO_HUP) {
                 finished = TRUE;
+        }
 
         if (finished) {
                 gs_window_dialog_finish (window);

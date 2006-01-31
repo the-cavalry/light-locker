@@ -1,5 +1,10 @@
 2006-01-31  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (command_watch): Add braces
+	to block.
+
+2006-01-31  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (gs_window_class_init):
 	Fix typo in property desc.
 
