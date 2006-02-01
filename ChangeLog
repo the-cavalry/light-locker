@@ -1,5 +1,11 @@
 2006-02-01  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (get_user_display_name, get_user_name) 
+	(create_page_one): Convert the user and real names to UTF8
+	before displaying them.
+
+2006-02-01  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c (window_dialog_up_cb):
 	Release the pointer grab only when the unlock
 	dialog goes up.  This is necessary so that the

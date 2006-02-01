@@ -1290,10 +1290,11 @@ setup_treeview_idle (GSLockPlug *plug)
         return FALSE;
 }
 
-static const char *
+static char *
 get_user_display_name (void)
 {
         const char *name;
+        char       *utf8_name;
 
         name = g_get_real_name ();
 
@@ -1301,7 +1302,21 @@ get_user_display_name (void)
                 name = g_get_user_name ();
         }
 
-        return name;
+        utf8_name = g_locale_to_utf8 (name, -1, NULL, NULL, NULL);
+
+        return utf8_name;
+}
+
+static char *
+get_user_name (void)
+{
+        const char *name;
+        char       *utf8_name;
+
+        name = g_get_user_name ();
+        utf8_name = g_locale_to_utf8 (name, -1, NULL, NULL, NULL);
+
+        return utf8_name;
 }
 
 static gboolean
@@ -1389,6 +1404,7 @@ create_page_one (GSLockPlug *plug)
         GtkWidget            *vbox2;
         GtkWidget            *hbox;
         char                 *str;
+        char                 *name;
 
         profile_start ("start", "page one");
 
@@ -1409,14 +1425,18 @@ create_page_one (GSLockPlug *plug)
         vbox2 = gtk_vbox_new (FALSE, 0);
         gtk_box_pack_start (GTK_BOX (vbox), vbox2, FALSE, FALSE, 0);
 
-        str = g_strdup_printf ("<span size=\"x-large\">%s</span>", get_user_display_name ());
+        name = get_user_display_name ();
+        str = g_strdup_printf ("<span size=\"x-large\">%s</span>", name);
+        g_free (name);
         widget = gtk_label_new (str);
         g_free (str);
         gtk_misc_set_alignment (GTK_MISC (widget), 0.5, 0.5);
         gtk_label_set_use_markup (GTK_LABEL (widget), TRUE);
         gtk_box_pack_start (GTK_BOX (vbox2), widget, FALSE, FALSE, 0);
 
-        str = g_strdup_printf ("<span size=\"small\">%s</span>", g_get_user_name ());
+        name = get_user_name ();
+        str = g_strdup_printf ("<span size=\"small\">%s</span>", name);
+        g_free (name);
         plug->priv->username_label = gtk_label_new (str);
         g_free (str);
         gtk_misc_set_alignment (GTK_MISC (plug->priv->username_label), 0.5, 0.5);
