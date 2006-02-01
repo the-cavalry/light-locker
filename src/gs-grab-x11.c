@@ -215,7 +215,7 @@ gs_grab_release_keyboard (void)
         return TRUE;
 }
 
-static gboolean
+gboolean
 gs_grab_release_mouse (void)
 {
         gs_debug ("Ungrabbing pointer");
@@ -237,18 +237,37 @@ gs_grab_move_mouse (GdkWindow *window,
         GdkScreen *old_screen;
         gboolean   old_hide_cursor;
 
-        gs_debug ("Intentionally skipping move pointer grabs");
-        /* GTK doesn't like having the pointer grabbed */
-        return TRUE;
+        if (mouse_grab_window == window) {
+                gs_debug ("Window %X is already grabbed, skipping",
+                          (guint32) GDK_WINDOW_XID (mouse_grab_window));
+                return TRUE;
+        }
 
+#if 0
+        gs_debug ("Intentionally skipping move pointer grabs");
+        /* FIXME: GTK doesn't like having the pointer grabbed */
+        return TRUE;
+#else
+        if (mouse_grab_window) {
+                gs_debug ("Moving pointer grab from %X to %X",
+                          (guint32) GDK_WINDOW_XID (mouse_grab_window),
+                          (guint32) GDK_WINDOW_XID (window));
+        } else {
+                gs_debug ("Getting pointer grab on %X",
+                          (guint32) GDK_WINDOW_XID (window));
+        }
+#endif
+
+        gs_debug ("*** doing X server grab");
         gdk_x11_grab_server ();
 
         old_window = mouse_grab_window;
         old_screen = mouse_grab_screen;
         old_hide_cursor = mouse_hide_cursor;
 
-        if (old_window)
+        if (old_window) {
                 gs_grab_release_mouse ();
+        }
 
         result = gs_grab_get_mouse (window, screen, hide_cursor);
 
@@ -262,6 +281,7 @@ gs_grab_move_mouse (GdkWindow *window,
                 gs_grab_get_mouse (old_window, old_screen, old_hide_cursor);
         }
                 
+        gs_debug ("*** releasing X server grab");
         gdk_x11_ungrab_server ();
         gdk_flush ();
 
@@ -292,8 +312,9 @@ gs_grab_move_keyboard (GdkWindow *window,
         old_window = keyboard_grab_window;
         old_screen = keyboard_grab_screen;
 
-        if (old_window)
+        if (old_window) {
                 gs_grab_release_keyboard ();
+        }
 
         result = gs_grab_get_keyboard (window, screen);
 
@@ -374,8 +395,9 @@ gs_grab_get_keyboard_and_mouse (GdkWindow *window,
 
         for (i = 0; i < retries; i++) {
                 mstatus = gs_grab_get_mouse (window, screen, FALSE);
-                if (mstatus == GDK_GRAB_SUCCESS)
+                if (mstatus == GDK_GRAB_SUCCESS) {
                         break;
+                }
 
                 /* else, wait a second and try to grab again. */
                 sleep (1);
@@ -386,8 +408,10 @@ gs_grab_get_keyboard_and_mouse (GdkWindow *window,
                            grab_string (mstatus));
         }
 
+#if 0
         /* FIXME: release the pointer grab so GTK will work */
         gs_grab_release_mouse ();
+#endif
 
         /* When should we allow blanking to proceed?  The current theory
            is that a keyboard grab is manditory; a mouse grab is optional.

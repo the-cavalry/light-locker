@@ -26,6 +26,7 @@
 G_BEGIN_DECLS
 
 void      gs_grab_release_keyboard_and_mouse (void);
+gboolean  gs_grab_release_mouse              (void);
 gboolean  gs_grab_get_keyboard_and_mouse     (GdkWindow *window,
                                               GdkScreen *screen);
 void      gs_grab_window                     (GdkWindow *window,

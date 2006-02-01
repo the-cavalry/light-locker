@@ -1,3 +1,27 @@
+2006-02-01  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-manager.c (window_dialog_up_cb):
+	Release the pointer grab only when the unlock
+	dialog goes up.  This is necessary so that the
+	user can interact with the dialog with the mouse.
+	(window_dialog_down_cb): When the dialog goes
+	away regrab the pointer.
+
+	* src/gs-grab-x11.c (gs_grab_release_mouse):
+	Make public.
+	(gs_grab_move_mouse): Allow the pointer grab
+	to be moved.  Add debugging.
+	(gs_grab_get_keyboard_and_mouse): Don't
+	release the mouse grab.
+
+	Until now we didn't try to keep a grab on the pointer
+	because the unlock dialog doesn't work when the
+	pointer is grabbed on the parent of the socket.  This
+	may cause a problem if another application grabs
+	the pointer while we are running.  So, now we
+	keep the pointer grabbed except for when the unlock
+	dialog is up.  Hopefully fixes #328404.
+
 2006-01-31  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (command_watch): Add braces

@@ -699,10 +699,14 @@ window_dialog_up_cb (GSWindow  *window,
 
         manager->priv->dialog_up = TRUE;
 
-        /* Grab keyboard so dialog can be used */
+        /* Move keyboard and mouse grabs so dialog can be used */
         gs_grab_window (gs_window_get_gdk_window (window),
                         gs_window_get_screen (window),
                         FALSE);
+
+        /* Release the pointer grab while dialog is up so that
+           the dialog can be used.  We'll regrab it when the dialog goes down. */
+        gs_grab_release_mouse ();
 
         /* Make all other windows insensitive so we don't get events */
         for (l = manager->priv->windows; l; l = l->next) {
@@ -728,6 +732,11 @@ window_dialog_down_cb (GSWindow  *window,
 
         g_return_if_fail (manager != NULL);
         g_return_if_fail (GS_IS_MANAGER (manager));
+
+        /* Regrab the mouse */
+        gs_grab_window (gs_window_get_gdk_window (window),
+                        gs_window_get_screen (window),
+                        FALSE);
 
         /* Make all windows sensitive so we get events */
         for (l = manager->priv->windows; l; l = l->next) {
