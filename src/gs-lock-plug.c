@@ -58,8 +58,9 @@ static void
 profile_add_indent (int indent)
 {
         profile_indent += indent;
-        if (profile_indent < 0)
+        if (profile_indent < 0) {
                 g_error ("You screwed up your indentation");
+        }
 }
 
 static void
@@ -70,20 +71,23 @@ _gs_lock_plug_profile_log (const char *func,
 {
         char *str;
 
-        if (indent < 0)
+        if (indent < 0) {
                 profile_add_indent (indent);
+        }
 
-        if (profile_indent == 0)
+        if (profile_indent == 0) {
                 str = g_strdup_printf ("MARK: %s: %s %s %s", G_STRLOC, func, msg1 ? msg1 : "", msg2 ? msg2 : "");
-        else
+        } else {
                 str = g_strdup_printf ("MARK: %s: %*c %s %s %s", G_STRLOC, profile_indent - 1, ' ', func, msg1 ? msg1 : "", msg2 ? msg2 : "");
+        }
 
         access (str, F_OK);
 
         g_free (str);
 
-        if (indent > 0)
+        if (indent > 0) {
                 profile_add_indent (indent);
+        }
 }
 
 #define profile_start(x, y) _gs_lock_plug_profile_log (G_STRFUNC, PROFILE_INDENT, x, y)
@@ -174,8 +178,9 @@ gs_lock_plug_style_set (GtkWidget *widget,
 {
         GSLockPlug *plug;
 
-        if (GTK_WIDGET_CLASS (parent_class)->style_set)
+        if (GTK_WIDGET_CLASS (parent_class)->style_set) {
                 GTK_WIDGET_CLASS (parent_class)->style_set (widget, previous_style);
+        }
 
         plug = GS_LOCK_PLUG (widget);
 
@@ -388,8 +393,9 @@ monitor_progress (GSLockPlug *plug)
                 set_dialog_sensitive (plug, FALSE);
                 set_status_text (plug, _("Time has expired."));
 
-                if (plug->priv->response_idle_id != 0)
+                if (plug->priv->response_idle_id != 0) {
                         g_warning ("Response idle ID already set but shouldn't be");
+                }
 
                 remove_response_idle (plug);
 
@@ -409,12 +415,13 @@ capslock_update (GSLockPlug *plug,
 
         plug->priv->caps_lock_on = is_on;
 
-        if (is_on)
+        if (is_on) {
                 gtk_label_set_text (GTK_LABEL (plug->priv->capslock_label),
                                     _("You have the Caps Lock key on."));
-        else
+        } else {
                 gtk_label_set_text (GTK_LABEL (plug->priv->capslock_label),
                                     "");
+        }
 }
 
 /* adapted from GDM2 */
@@ -426,8 +433,9 @@ is_capslock_on (void)
 
         dsp = GDK_DISPLAY ();
 
-        if (XkbGetIndicatorState (dsp, XkbUseCoreKbd, &states) != Success)
+        if (XkbGetIndicatorState (dsp, XkbUseCoreKbd, &states) != Success) {
                 return FALSE;
+        }
 
         return (states & ShiftMask) != 0;
 }
@@ -449,8 +457,10 @@ gs_lock_plug_show (GtkWidget *widget)
         profile_start ("start", NULL);
 
         profile_start ("start", "parent");
-        if (GTK_WIDGET_CLASS (parent_class)->show)
+        if (GTK_WIDGET_CLASS (parent_class)->show) {
                 GTK_WIDGET_CLASS (parent_class)->show (widget);
+        }
+
         profile_end ("end", "parent");
 
         capslock_update (GS_LOCK_PLUG (widget), is_capslock_on ());
@@ -463,8 +473,9 @@ gs_lock_plug_show (GtkWidget *widget)
 static void
 gs_lock_plug_hide (GtkWidget *widget)
 {
-        if (GTK_WIDGET_CLASS (parent_class)->hide)
+        if (GTK_WIDGET_CLASS (parent_class)->hide) {
                 GTK_WIDGET_CLASS (parent_class)->hide (widget);
+        }
 }
 
 
@@ -475,8 +486,9 @@ gs_lock_plug_size_request (GtkWidget      *widget,
         int mod_width;
         int mod_height;
 
-        if (GTK_WIDGET_CLASS (parent_class)->size_request)
+        if (GTK_WIDGET_CLASS (parent_class)->size_request) {
                 GTK_WIDGET_CLASS (parent_class)->size_request (widget, requisition);
+        }
 
         mod_width = requisition->height * 1.3;
         mod_height = requisition->width / 1.6;
@@ -496,16 +508,18 @@ gs_lock_plug_set_logout_enabled (GSLockPlug *plug,
 {
         g_return_if_fail (GS_LOCK_PLUG (plug));
 
-        if (plug->priv->logout_enabled == logout_enabled)
+        if (plug->priv->logout_enabled == logout_enabled) {
                 return;
+        }
 
         plug->priv->logout_enabled = logout_enabled;
         g_object_notify (G_OBJECT (plug), "logout-enabled");
 
-        if (logout_enabled)
+        if (logout_enabled) {
                 gtk_widget_show (plug->priv->logout_button);
-        else
+        } else {
                 gtk_widget_hide (plug->priv->logout_button);
+        }
 }
 
 static void
@@ -529,16 +543,18 @@ gs_lock_plug_set_switch_enabled (GSLockPlug *plug,
 {
         g_return_if_fail (GS_LOCK_PLUG (plug));
 
-        if (plug->priv->switch_enabled == switch_enabled)
+        if (plug->priv->switch_enabled == switch_enabled) {
                 return;
+        }
 
         plug->priv->switch_enabled = switch_enabled;
         g_object_notify (G_OBJECT (plug), "switch-enabled");
 
-        if (switch_enabled)
+        if (switch_enabled) {
                 gtk_widget_show (plug->priv->switch_button);
-        else
+        } else {
                 gtk_widget_hide (plug->priv->switch_button);
+        }
 }
 
 static void
@@ -804,8 +820,9 @@ logout_button_clicked (GtkButton  *button,
         GError  *error = NULL;
         gboolean res;
 
-        if (! plug->priv->logout_command)
+        if (! plug->priv->logout_command) {
                 return;
+        }
 
         res = g_shell_parse_argv (plug->priv->logout_command, NULL, &argv, &error);
 
@@ -837,8 +854,9 @@ static gint
 entry_button_press (GtkWidget      *widget,
                     GdkEventButton *event)
 {
-        if (event->button == 3 && event->type == GDK_BUTTON_PRESS)
+        if (event->button == 3 && event->type == GDK_BUTTON_PRESS) {
                 return TRUE;
+        }
 
         return FALSE;
 }
@@ -854,8 +872,9 @@ entry_key_press (GtkWidget   *widget,
 
         capslock_on = is_capslock_on ();
 
-        if (capslock_on != plug->priv->caps_lock_on)
+        if (capslock_on != plug->priv->caps_lock_on) {
                 capslock_update (plug, capslock_on);
+        }
 
         return FALSE;
 }
@@ -916,10 +935,11 @@ gs_lock_plug_add_action_widget (GSLockPlug *plug,
 
         ad->response_id = response_id;
 
-        if (GTK_IS_BUTTON (child))
+        if (GTK_IS_BUTTON (child)) {
                 signal_id = g_signal_lookup ("clicked", GTK_TYPE_BUTTON);
-        else
+        } else {
                 signal_id = GTK_WIDGET_GET_CLASS (child)->activate_signal != 0;
+        }
 
         if (signal_id) {
                 GClosure *closure;
@@ -938,8 +958,9 @@ gs_lock_plug_add_action_widget (GSLockPlug *plug,
                           child,
                           FALSE, TRUE, 0);
   
-        if (response_id == GTK_RESPONSE_HELP)
+        if (response_id == GTK_RESPONSE_HELP) {
                 gtk_button_box_set_child_secondary (GTK_BUTTON_BOX (plug->action_area), child, TRUE);
+        }
 }
 
 /* adapted from gtk_dialog_add_button */
@@ -983,8 +1004,9 @@ gs_lock_plug_set_default_response (GSLockPlug *plug,
                 ResponseData *rd = g_object_get_data (G_OBJECT (widget),
                                                       "gs-lock-plug-response-data");
 
-                if (rd && rd->response_id == response_id)
+                if (rd && rd->response_id == response_id) {
                         gtk_widget_grab_default (widget);
+                }
 	    
                 tmp_list = g_list_next (tmp_list);
         }
@@ -1054,10 +1076,11 @@ populate_model (GSLockPlug   *plug,
 
         profile_start ("start", NULL);
 
-        if (gtk_widget_has_screen (plug->priv->user_treeview))
+        if (gtk_widget_has_screen (plug->priv->user_treeview)) {
                 theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (plug->priv->user_treeview));
-        else
+        } else {
                 theme = gtk_icon_theme_get_default ();
+        }
         
         pixbuf = gtk_icon_theme_load_icon (theme, "gdm", icon_size, 0, NULL);
 
@@ -1142,24 +1165,27 @@ compare_users (GtkTreeModel *model,
         gtk_tree_model_get (model, a, REAL_NAME_COLUMN, &label_a, -1);
         gtk_tree_model_get (model, b, REAL_NAME_COLUMN, &label_b, -1);
 
-        if (! name_a)
+        if (! name_a) {
                 return 1;
-        else if (! name_b)
+        } else if (! name_b) {
                 return -1;
+        }
 
-        if (strcmp (name_a, "__new_user") == 0)
+        if (strcmp (name_a, "__new_user") == 0) {
                 return -1;
-        else if (strcmp (name_b, "__new_user") == 0)
+        } else if (strcmp (name_b, "__new_user") == 0) {
                 return 1;
-        else if (strcmp (name_a, "__separator") == 0)
+        } else if (strcmp (name_a, "__separator") == 0) {
                 return -1;
-        else if (strcmp (name_b, "__separator") == 0)
+        } else if (strcmp (name_b, "__separator") == 0) {
                 return 1;
+        }
 
-        if (! label_a)
+        if (! label_a) {
                 return 1;
-        else if (! label_b)
+        } else if (! label_b) {
                 return -1;
+        }
 
         result = strcmp (label_a, label_b);
 
@@ -1176,17 +1202,21 @@ separator_func (GtkTreeModel *model,
                 GtkTreeIter  *iter,
                 gpointer      data)
 {
-        int   column = GPOINTER_TO_INT (data);
-        char *text;
-        
+        int      column = GPOINTER_TO_INT (data);
+        char    *text;
+        gboolean is_separator;
+
         gtk_tree_model_get (model, iter, column, &text, -1);
         
-        if (text && strcmp (text, "__separator") == 0)
-                return TRUE;
-        
+        if (text && strcmp (text, "__separator") == 0) {
+                is_separator = TRUE;
+        } else {
+                is_separator = FALSE;
+        }
+
         g_free (text);
 
-        return FALSE;
+        return is_separator;
 }
 
 static gboolean
@@ -1202,8 +1232,10 @@ filter_out_users (GtkTreeModel *model,
                             USER_NAME_COLUMN, &name,
                             ACTIVE_COLUMN, &is_active,
                             -1);
-        if (! name)
+
+        if (name == NULL) {
                 return FALSE;
+        }
 
         if (strcmp (name, "__new_user") == 0
             || strcmp (name, "__separator") == 0) {
@@ -1228,8 +1260,9 @@ setup_treeview (GSLockPlug *plug)
         GtkTreeModel      *filter;
 
         /* if user switching is not enabled then do nothing */
-        if (! plug->priv->switch_enabled)
+        if (! plug->priv->switch_enabled) {
                 return;
+        }
 
         profile_start ("start", NULL);
 
@@ -1328,32 +1361,39 @@ check_user_file (const gchar *filename,
 {
         struct stat fileinfo;
 
-        if (max_file_size < 0)
+        if (max_file_size < 0) {
                 max_file_size = G_MAXSIZE;
+        }
 
         /* Exists/Readable? */
-        if (g_stat (filename, &fileinfo) < 0)
+        if (g_stat (filename, &fileinfo) < 0) {
                 return FALSE;
+        }
 
         /* Is a regular file */
-        if (G_UNLIKELY (!S_ISREG (fileinfo.st_mode)))
+        if (G_UNLIKELY (!S_ISREG (fileinfo.st_mode))) {
                 return FALSE;
+        }
 
         /* Owned by user? */
-        if (G_UNLIKELY (fileinfo.st_uid != user))
+        if (G_UNLIKELY (fileinfo.st_uid != user)) {
                 return FALSE;
+        }
 
         /* Group not writable or relax_group? */
-        if (G_UNLIKELY ((fileinfo.st_mode & S_IWGRP) == S_IWGRP && !relax_group))
+        if (G_UNLIKELY ((fileinfo.st_mode & S_IWGRP) == S_IWGRP && !relax_group)) {
                 return FALSE;
+        }
 
         /* Other not writable or relax_other? */
-        if (G_UNLIKELY ((fileinfo.st_mode & S_IWOTH) == S_IWOTH && !relax_other))
+        if (G_UNLIKELY ((fileinfo.st_mode & S_IWOTH) == S_IWOTH && !relax_other)) {
                 return FALSE;
+        }
 
         /* Size is kosher? */
-        if (G_UNLIKELY (fileinfo.st_size > max_file_size))
+        if (G_UNLIKELY (fileinfo.st_size > max_file_size)) {
                 return FALSE;
+        }
 
         return TRUE;
 }
@@ -1384,8 +1424,9 @@ get_face_image ()
 
         g_free (path);
 
-        if (! pixbuf)
+        if (pixbuf == NULL) {
                 return NULL;
+        }
 
         image = gtk_image_new_from_pixbuf (pixbuf);
 
@@ -1415,7 +1456,7 @@ create_page_one (GSLockPlug *plug)
         gtk_container_add (GTK_CONTAINER (align), vbox);
 
         widget = get_face_image ();
-        if (! widget) {
+        if (widget == NULL) {
                 /* placeholder */
                 widget = gtk_label_new (NULL);
         }
@@ -1485,8 +1526,9 @@ constrain_list_size (GtkWidget      *widget,
 
         /* don't do anything if we are on the auth page */
         page = gtk_notebook_get_current_page (GTK_NOTEBOOK (plug->priv->notebook));
-        if (page == AUTH_PAGE)
+        if (page == AUTH_PAGE) {
                 return;
+        }
 
         /* constrain height to be the tree height up to a max */
         max_height = (gdk_screen_get_height (gtk_widget_get_screen (widget))) / 4;
@@ -1639,11 +1681,13 @@ gs_lock_plug_init (GSLockPlug *plug)
         gtk_widget_show_all (plug->vbox);
 
         if (! plug->priv->logout_enabled
-            || ! plug->priv->logout_command)
+            || ! plug->priv->logout_command) {
                 gtk_widget_hide (plug->priv->logout_button);
+        }
 
-        if (! plug->priv->switch_enabled)
+        if (! plug->priv->switch_enabled) {
                 gtk_widget_hide (plug->priv->switch_button);
+        }
 
         plug->priv->timeout = DIALOG_TIMEOUT_MSEC;
 
@@ -1670,8 +1714,9 @@ gs_lock_plug_finalize (GObject *object)
 
         g_free (plug->priv->logout_command);
 
-        if (plug->priv->fusa_manager)
+        if (plug->priv->fusa_manager) {
                 g_object_unref (plug->priv->fusa_manager);
+        }
 
         remove_password_check_idle (plug);
         remove_password_reset_idle (plug);

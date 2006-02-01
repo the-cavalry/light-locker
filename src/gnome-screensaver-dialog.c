@@ -55,8 +55,9 @@ static void
 profile_add_indent (int indent)
 {
         profile_indent += indent;
-        if (profile_indent < 0)
+        if (profile_indent < 0) {
                 g_error ("You screwed up your indentation");
+        }
 }
 
 static void
@@ -67,20 +68,23 @@ _gs_lock_plug_profile_log (const char *func,
 {
         char *str;
 
-        if (indent < 0)
+        if (indent < 0) {
                 profile_add_indent (indent);
+        }
 
-        if (profile_indent == 0)
+        if (profile_indent == 0) {
                 str = g_strdup_printf ("MARK: %s: %s %s %s", G_STRLOC, func, msg1 ? msg1 : "", msg2 ? msg2 : "");
-        else
+        } else {
                 str = g_strdup_printf ("MARK: %s: %*c %s %s %s", G_STRLOC, profile_indent - 1, ' ', func, msg1 ? msg1 : "", msg2 ? msg2 : "");
+        }
 
         access (str, F_OK);
 
         g_free (str);
 
-        if (indent > 0)
+        if (indent > 0) {
                 profile_add_indent (indent);
+        }
 }
 
 #define profile_start(x, y) _gs_lock_plug_profile_log (G_STRFUNC, PROFILE_INDENT, x, y)
@@ -243,10 +247,14 @@ privileged_initialization (int     *argc,
         ret = hack_uid (&nolock_reason,
                         &orig_uid,
                         &uid_message);
-        if (nolock_reason)
+
+        if (nolock_reason) {
                 g_warning ("Locking disabled: %s", nolock_reason);
-        if (uid_message && verbose)
+        }
+
+        if (uid_message && verbose) {
                 g_print ("Modified UID: %s", uid_message);
+        }
 
         g_free (nolock_reason);
         g_free (orig_uid);
@@ -272,19 +280,24 @@ lock_initialization (int     *argc,
 {
         profile_start ("start", NULL);
 
-        if (nolock_reason)
+        if (nolock_reason) {
                 *nolock_reason = NULL;
+        }
 
 #ifdef NO_LOCKING
-        if (nolock_reason)
+        if (nolock_reason) {
                 *nolock_reason = g_strdup ("not compiled with locking support");
+        }
+
         return FALSE;
 #else /* !NO_LOCKING */
 
         /* Finish initializing locking, now that we're out of privileged code. */
         if (! lock_init (*argc, argv, verbose)) {
-                if (nolock_reason)
+                if (nolock_reason) {
                         *nolock_reason = g_strdup ("error getting password");
+                }
+
                 return FALSE;
         }
 
@@ -293,8 +306,10 @@ lock_initialization (int     *argc,
            locking just in case.
         */
         if (getenv ("RUNNING_UNDER_GDM")) {
-                if (nolock_reason)
+                if (nolock_reason) {
                         *nolock_reason = g_strdup ("running under GDM");
+                }
+
                 return FALSE;
         }
 
@@ -315,8 +330,10 @@ lock_initialization (int     *argc,
 #endif
 
                 if (macos) {
-                        if (nolock_reason)
+                        if (nolock_reason) {
                                 *nolock_reason = g_strdup ("Cannot lock securely on MacOS X");
+                        }
+
                         return FALSE;
                 }
         }
@@ -332,8 +349,8 @@ int
 main (int    argc,
       char **argv)
 {
-        GError         *error = NULL;
-        char           *nolock_reason = NULL;
+        GError *error = NULL;
+        char   *nolock_reason = NULL;
 
 #ifdef ENABLE_NLS
         bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);

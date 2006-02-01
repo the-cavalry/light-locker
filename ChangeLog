@@ -1,5 +1,11 @@
 2006-02-01  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-dialog.c: 
+	* src/gs-lock-plug.c: Fix brace style.
+	Fix one minor leak.
+
+2006-02-01  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (get_user_display_name, get_user_name) 
 	(create_page_one): Convert the user and real names to UTF8
 	before displaying them.
