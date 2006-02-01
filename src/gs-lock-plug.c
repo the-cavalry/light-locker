@@ -1335,7 +1335,11 @@ get_user_display_name (void)
                 name = g_get_user_name ();
         }
 
-        utf8_name = g_locale_to_utf8 (name, -1, NULL, NULL, NULL);
+        utf8_name = NULL;
+
+        if (name != NULL) {
+                utf8_name = g_locale_to_utf8 (name, -1, NULL, NULL, NULL);
+        }
 
         return utf8_name;
 }
@@ -1347,7 +1351,11 @@ get_user_name (void)
         char       *utf8_name;
 
         name = g_get_user_name ();
-        utf8_name = g_locale_to_utf8 (name, -1, NULL, NULL, NULL);
+
+        utf8_name = NULL;
+        if (name != NULL) {
+                utf8_name = g_locale_to_utf8 (name, -1, NULL, NULL, NULL);
+        }
 
         return utf8_name;
 }
