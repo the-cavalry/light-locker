@@ -1,3 +1,9 @@
+2006-02-06  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-window-x11.c (gs_window_real_grab_broken) 
+	(gs_window_class_init): Add handler for broken
+	grabs.  Debug only for now.
+
 2006-02-01  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (get_user_display_name, get_user_name):

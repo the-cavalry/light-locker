@@ -1312,6 +1312,24 @@ gs_window_real_size_request (GtkWidget      *widget,
         gs_window_move_resize_window (window, position_changed, size_changed);
 }
 
+static gboolean
+gs_window_real_grab_broken (GtkWidget          *widget,
+                            GdkEventGrabBroken *event)
+{
+        if (event->grab_window != NULL) {
+                gs_debug ("Grab broken on window %X %s, new grab on window %X",
+                          (guint32) GDK_WINDOW_XID (event->window),
+                          event->keyboard ? "keyboard" : "pointer",
+                          (guint32) GDK_WINDOW_XID (event->grab_window));
+        } else {
+                gs_debug ("Grab broken on window %X %s, new grab is outside application",
+                          (guint32) GDK_WINDOW_XID (event->window),
+                          event->keyboard ? "keyboard" : "pointer");
+        }
+
+        return FALSE;
+}
+
 static void
 gs_window_class_init (GSWindowClass *klass)
 {
@@ -1331,6 +1349,7 @@ gs_window_class_init (GSWindowClass *klass)
         widget_class->key_press_event     = gs_window_real_key_press_event;
         widget_class->motion_notify_event = gs_window_real_motion_notify_event;
         widget_class->size_request        = gs_window_real_size_request;
+        widget_class->grab_broken_event   = gs_window_real_grab_broken;
 
         g_type_class_add_private (klass, sizeof (GSWindowPrivate));
 
