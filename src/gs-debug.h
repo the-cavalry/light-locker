@@ -33,7 +33,7 @@ G_BEGIN_DECLS
 #elif defined(__GNUC__) && __GNUC__ >= 3
 #define gs_debug(...) gs_debug_real (__FUNCTION__, __FILE__, __LINE__, __VA_ARGS__)
 #else
-#define gs_debug
+#define gs_debug(...)
 #endif
 
 void gs_debug_init             (gboolean debug,

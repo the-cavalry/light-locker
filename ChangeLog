@@ -1,3 +1,10 @@
+2006-02-07  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-debug.h: Fix gcc 2.95 warnings.
+
+	Patch from Jens Granseuer <gensgr@gmx.net>
+	Fixes #329738.
+
 2006-02-06  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (gs_window_real_grab_broken) 
