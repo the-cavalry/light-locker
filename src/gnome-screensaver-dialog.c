@@ -125,7 +125,7 @@ get_id_string (GtkWidget *widget)
         g_return_val_if_fail (widget != NULL, NULL);
         g_return_val_if_fail (GTK_IS_WIDGET (widget), NULL);
 
-        id = g_strdup_printf ("0x%X",
+        id = g_strdup_printf ("%" G_GUINT32_FORMAT,
                               (guint32) GDK_WINDOW_XID (widget->window));
         return id;
 }

@@ -859,7 +859,7 @@ command_watch (GIOChannel   *source,
                         if (strstr (line, "WINDOW ID=")) {
                                 guint32 id;
                                 char    c;
-                                if (1 == sscanf (line, " WINDOW ID= 0x%x %c", &id, &c)) {
+                                if (1 == sscanf (line, " WINDOW ID= %" G_GUINT32_FORMAT " %c", &id, &c)) {
                                         create_socket (window, id);
                                 }
                         } else if (strstr (line, "NOTICE=")) {
