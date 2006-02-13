@@ -757,32 +757,64 @@ window_dialog_down_cb (GSWindow  *window,
 }
 
 static gboolean
-window_map_event_cb (GSWindow  *window,
-                     GdkEvent  *event,
-                     GSManager *manager)
+manager_maybe_grab_window (GSManager *manager,
+                           GSWindow  *window)
 {
         GdkDisplay *display;
         GdkScreen  *screen;
         int         monitor;
         int         x, y;
-
-        g_return_val_if_fail (manager != NULL, FALSE);
-        g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
-        g_return_val_if_fail (window != NULL, FALSE);
-        g_return_val_if_fail (GS_IS_WINDOW (window), FALSE);
+        gboolean    grabbed;
 
         display = gdk_display_get_default ();
         gdk_display_get_pointer (display, &screen, &x, &y, NULL);
         monitor = gdk_screen_get_monitor_at_point (screen, x, y);
 
+        grabbed = FALSE;
         if (gs_window_get_screen (window) == screen
             && gs_window_get_monitor (window) == monitor) {
                 gs_grab_window (gs_window_get_gdk_window (window),
                                 gs_window_get_screen (window),
                                 FALSE);
+                grabbed = TRUE;
         }
 
-        return FALSE;
+        return grabbed;
+}
+
+static void
+window_grab_broken_cb (GSWindow           *window,
+                       GdkEventGrabBroken *event,
+                       GSManager          *manager)
+{
+        gs_debug ("GRAB BROKEN DUDE!");
+        if (event->keyboard) {
+                gs_grab_keyboard_reset ();
+        } else {
+                gs_grab_mouse_reset ();
+        }
+
+        manager_maybe_grab_window (manager, window);
+}
+
+static void
+window_map_cb (GSWindow  *window,
+               GSManager *manager)
+{
+        g_return_if_fail (manager != NULL);
+        g_return_if_fail (GS_IS_MANAGER (manager));
+        g_return_if_fail (window != NULL);
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        gs_debug ("Handling window map event");
+        manager_maybe_grab_window (manager, window);
+}
+
+static void
+window_unmap_cb (GSWindow  *window,
+                 GSManager *manager)
+{
+        gs_debug ("window unmapped!");
 }
 
 static void
@@ -796,6 +828,8 @@ window_show_cb (GSWindow  *window,
         g_return_if_fail (GS_IS_MANAGER (manager));
         g_return_if_fail (window != NULL);
         g_return_if_fail (GS_IS_WINDOW (window));
+
+        gs_debug ("Handling window show");
 
         job = gs_job_new_for_widget (GTK_WIDGET (window));
 
@@ -835,7 +869,8 @@ disconnect_window_signals (GSManager *manager,
         g_signal_handlers_disconnect_by_func (window, window_dialog_up_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_dialog_down_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_show_cb, manager);
-        g_signal_handlers_disconnect_by_func (window, window_map_event_cb, manager);
+        g_signal_handlers_disconnect_by_func (window, window_map_cb, manager);
+        g_signal_handlers_disconnect_by_func (window, window_grab_broken_cb, manager);
 }
 
 static void
@@ -859,8 +894,12 @@ connect_window_signals (GSManager *manager,
                                  G_CALLBACK (window_dialog_down_cb), manager, 0);
         g_signal_connect_object (window, "show",
                                  G_CALLBACK (window_show_cb), manager, G_CONNECT_AFTER);
-        g_signal_connect_object (window, "map_event",
-                                 G_CALLBACK (window_map_event_cb), manager, G_CONNECT_AFTER);
+        g_signal_connect_object (window, "map",
+                                 G_CALLBACK (window_map_cb), manager, G_CONNECT_AFTER);
+        g_signal_connect_object (window, "unmap",
+                                 G_CALLBACK (window_unmap_cb), manager, G_CONNECT_AFTER);
+        g_signal_connect_object (window, "grab_broken_event",
+                                 G_CALLBACK (window_grab_broken_cb), manager, G_CONNECT_AFTER);
 }
 
 static void

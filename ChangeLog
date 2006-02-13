@@ -1,5 +1,23 @@
 2006-02-13  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-manager.c (manager_maybe_grab_window) 
+	(window_grab_broken_cb): If the grab is broken,
+	invalidate the saved grab window and try to grab back.
+	(window_map_cb): Use map signal instead of map_event signal
+	because the map_event was occurring after the show event.  When
+	this happens the theme is started before the window is grabbed.
+	If the theme does its own grab then we may not get ours.
+	(window_unmap_cb): Connect to unmap for debugging.
+
+	* src/gs-grab-x11.c (gs_grab_keyboard_reset, gs_grab_mouse_reset):
+	New functions to clear saved grab window when grab is broken.
+	(gs_grab_release_keyboard, gs_grab_release_mouse): Use new functions.
+	(gs_grab_move_mouse): Add extra check for broken grab.
+
+	Fixes #328404
+
+2006-02-13  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c (connect_window_signals): Run
 	map-event and show handlers after the default handlers.
 

@@ -203,16 +203,29 @@ gs_grab_get_mouse (GdkWindow *window,
         return status;
 }
 
+void
+gs_grab_keyboard_reset (void)
+{
+        keyboard_grab_window = NULL;
+        keyboard_grab_screen = NULL;
+}
+
 static gboolean
 gs_grab_release_keyboard (void)
 {
         gs_debug ("Ungrabbing keyboard");
         gdk_keyboard_ungrab (GDK_CURRENT_TIME);
 
-        keyboard_grab_window = NULL;
-        keyboard_grab_screen = NULL;
+        gs_grab_keyboard_reset ();
 
         return TRUE;
+}
+
+void
+gs_grab_mouse_reset (void)
+{
+        mouse_grab_window = NULL;
+        mouse_grab_screen = NULL;
 }
 
 gboolean
@@ -221,8 +234,7 @@ gs_grab_release_mouse (void)
         gs_debug ("Ungrabbing pointer");
         gdk_pointer_ungrab (GDK_CURRENT_TIME);
 
-        mouse_grab_window = NULL;
-        mouse_grab_screen = NULL;
+        gs_grab_mouse_reset ();
 
         return TRUE;
 }
@@ -236,6 +248,12 @@ gs_grab_move_mouse (GdkWindow *window,
         GdkWindow *old_window;
         GdkScreen *old_screen;
         gboolean   old_hide_cursor;
+
+        /* if the pointer is not grabbed and we have a
+           mouse_grab_window defined then we lost the grab */
+        if (! gdk_pointer_is_grabbed ()) {
+                gs_grab_mouse_reset ();
+        }
 
         if (mouse_grab_window == window) {
                 gs_debug ("Window %X is already grabbed, skipping",
