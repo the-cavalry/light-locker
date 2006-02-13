@@ -615,7 +615,6 @@ spawn_on_widget (GtkWidget  *widget,
         char       *path;
         char      **argv;
         GPtrArray  *env;
-        char       *str;
         gboolean    result;
         GIOChannel *channel;
         GError     *error = NULL;

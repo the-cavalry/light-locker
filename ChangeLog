@@ -1,5 +1,9 @@
 2006-02-13  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-job.c (spawn_on_widget): Remove unused variable.
+
+2006-02-13  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-grab-x11.c (gs_grab_move_keyboard):
 	Don't print grab window id if not set.
 
