@@ -43,7 +43,7 @@ static void gs_manager_finalize   (GObject        *object);
 struct GSManagerPrivate
 {
         GSList      *windows;
-        GSList      *jobs;
+        GHashTable  *jobs;
 
         /* Policy */
         glong        lock_timeout;
@@ -98,6 +98,119 @@ static guint         signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSManager, gs_manager, G_TYPE_OBJECT)
 
+static void
+manager_add_job_for_window (GSManager *manager,
+                            GSWindow  *window,
+                            GSJob     *job)
+{
+        g_hash_table_insert (manager->priv->jobs, window, job);
+}
+
+static const char *
+select_theme (GSManager *manager)
+{
+        const char *theme = NULL;
+
+        g_return_val_if_fail (manager != NULL, NULL);
+        g_return_val_if_fail (GS_IS_MANAGER (manager), NULL);
+
+        if (manager->priv->saver_mode == GS_MODE_BLANK_ONLY) {
+                return NULL;
+        }
+
+        if (manager->priv->themes) {
+                int number = 0;
+
+                if (manager->priv->saver_mode == GS_MODE_RANDOM) {
+                        g_random_set_seed (time (NULL));
+                        number = g_random_int_range (0, g_slist_length (manager->priv->themes));
+                }
+                theme = g_slist_nth_data (manager->priv->themes, number);
+        }
+
+        return theme;
+}
+
+static void
+cycle_job (GSWindow  *window,
+           GSJob     *job,
+           GSManager *manager)
+{
+        const char *theme;
+
+        theme = select_theme (manager);
+
+        gs_job_stop (job);
+        gs_job_set_theme (job, theme, NULL);
+        gs_job_start (job);
+}
+
+static void
+manager_cycle_jobs (GSManager *manager)
+{
+        g_hash_table_foreach (manager->priv->jobs, (GHFunc) cycle_job, manager);
+}
+
+static void
+throttle_job (GSWindow  *window,
+              GSJob     *job,
+              GSManager *manager)
+{
+        if (manager->priv->throttle_enabled) {
+                gs_job_stop (job);
+        } else {
+                gs_job_start (job);
+        }
+}
+
+static void
+manager_throttle_jobs (GSManager *manager)
+{
+        g_hash_table_foreach (manager->priv->jobs, (GHFunc) throttle_job, manager);
+}
+
+static void
+resume_job (GSWindow  *window,
+            GSJob     *job,
+            GSManager *manager)
+{
+        if (gs_job_is_running (job)) {
+                gs_job_suspend (job, FALSE);
+        } else {
+                gs_job_start (job);
+        }
+}
+
+static void
+manager_resume_jobs (GSManager *manager)
+{
+        g_hash_table_foreach (manager->priv->jobs, (GHFunc) resume_job, manager);
+}
+
+static void
+suspend_job (GSWindow  *window,
+             GSJob     *job,
+             GSManager *manager)
+{
+        gs_job_suspend (job, TRUE);
+}
+
+static void
+manager_suspend_jobs (GSManager *manager)
+{
+        g_hash_table_foreach (manager->priv->jobs, (GHFunc) suspend_job, manager);
+}
+
+static void
+manager_stop_jobs (GSManager *manager)
+{
+        if (manager->priv->jobs) {
+                g_hash_table_destroy (manager->priv->jobs);
+
+        }
+        manager->priv->jobs = NULL;
+}
+
 void
 gs_manager_set_mode (GSManager  *manager,
                      GSSaverMode mode)
@@ -139,13 +252,7 @@ gs_manager_set_throttle_enabled (GSManager *manager,
 
                 if (! manager->priv->dialog_up) {
 
-                        for (l = manager->priv->jobs; l; l = l->next) {
-                                if (throttle_enabled) {
-                                        gs_job_stop (GS_JOB (l->data));
-                                } else {
-                                        gs_job_start (GS_JOB (l->data));
-                                }
-                        }
+                        manager_throttle_jobs (manager);
 
                         for (l = manager->priv->windows; l; l = l->next) {
                                 gs_window_clear (l->data);
@@ -300,38 +407,9 @@ gs_manager_set_logout_command (GSManager  *manager,
         }
 }
 
-static const char *
-select_theme (GSManager *manager)
-{
-        const char *theme = NULL;
-
-        g_return_val_if_fail (manager != NULL, NULL);
-        g_return_val_if_fail (GS_IS_MANAGER (manager), NULL);
-
-        if (manager->priv->saver_mode == GS_MODE_BLANK_ONLY) {
-                return NULL;
-        }
-
-        if (manager->priv->themes) {
-                int number = 0;
-
-                if (manager->priv->saver_mode == GS_MODE_RANDOM) {
-                        g_random_set_seed (time (NULL));
-                        number = g_random_int_range (0, g_slist_length (manager->priv->themes));
-                }
-                theme = g_slist_nth_data (manager->priv->themes, number);
-        }
-
-        return theme;
-}
-
 gboolean
 gs_manager_cycle (GSManager *manager)
 {
-        GSList     *l;
-        const char *theme;
-        gboolean    success = FALSE;
-
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
@@ -347,19 +425,9 @@ gs_manager_cycle (GSManager *manager)
                 return FALSE;
         }
 
-        theme = select_theme (manager);
+        manager_cycle_jobs (manager);
 
-        for (l = manager->priv->jobs; l; l = l->next) {
-                gs_job_stop (GS_JOB (l->data));
-                gs_job_set_theme (GS_JOB (l->data), theme, NULL);
-
-                /* this success flag is kinda bogus */
-                if (gs_job_start (GS_JOB (l->data))) {
-                        success = TRUE;
-                }
-        }
-
-        return success;
+        return TRUE;
 }
 
 static gboolean
@@ -643,12 +711,7 @@ gs_manager_finalize (GObject *object)
 
         gs_grab_release_keyboard_and_mouse ();
 
-        for (l = manager->priv->jobs; l; l = l->next) {
-                gs_job_stop (GS_JOB (l->data));
-                g_object_unref (l->data);
-        }
-        g_slist_free (manager->priv->jobs);
-        manager->priv->jobs = NULL;
+        manager_stop_jobs (manager);
 
         for (l = manager->priv->windows; l; l = l->next) {
                 gs_window_destroy (l->data);
@@ -718,9 +781,7 @@ window_dialog_up_cb (GSWindow  *window,
         if (! manager->priv->throttle_enabled) {
                 gs_debug ("Suspending jobs");
 
-                for (l = manager->priv->jobs; l; l = l->next) {
-                        gs_job_suspend (GS_JOB (l->data), TRUE);
-                }
+                manager_suspend_jobs (manager);
         }
 }
 
@@ -744,16 +805,28 @@ window_dialog_down_cb (GSWindow  *window,
         }
 
         if (! manager->priv->throttle_enabled) {
-                for (l = manager->priv->jobs; l; l = l->next) {
-                        if (gs_job_is_running (GS_JOB (l->data))) {
-                                gs_job_suspend (GS_JOB (l->data), FALSE);
-                        } else {
-                                gs_job_start (GS_JOB (l->data));
-                        }
-                }
+                manager_resume_jobs (manager);
         }
 
         manager->priv->dialog_up = FALSE;
+}
+
+static void
+manager_maybe_start_job_for_window (GSManager *manager,
+                                    GSWindow  *window)
+{
+        GSJob *job;
+
+        job = g_hash_table_lookup (manager->priv->jobs, window);
+
+        if (job == NULL) {
+                gs_debug ("Job not found for window");
+                return;
+        }
+
+        if (! manager->priv->throttle_enabled) {
+                gs_job_start (job);
+        }
 }
 
 static gboolean
@@ -770,6 +843,7 @@ manager_maybe_grab_window (GSManager *manager,
         gdk_display_get_pointer (display, &screen, &x, &y, NULL);
         monitor = gdk_screen_get_monitor_at_point (screen, x, y);
 
+        gdk_flush ();
         grabbed = FALSE;
         if (gs_window_get_screen (window) == screen
             && gs_window_get_monitor (window) == monitor) {
@@ -787,27 +861,33 @@ window_grab_broken_cb (GSWindow           *window,
                        GdkEventGrabBroken *event,
                        GSManager          *manager)
 {
-        gs_debug ("GRAB BROKEN DUDE!");
+        gs_debug ("GRAB BROKEN!");
         if (event->keyboard) {
                 gs_grab_keyboard_reset ();
         } else {
                 gs_grab_mouse_reset ();
         }
+}
+
+static gboolean
+window_map_event_cb (GSWindow  *window,
+                     GdkEvent  *event,
+                     GSManager *manager)
+{
+        gs_debug ("Handling window map_event event");
 
         manager_maybe_grab_window (manager, window);
+
+        manager_maybe_start_job_for_window (manager, window);
+
+        return FALSE;
 }
 
 static void
 window_map_cb (GSWindow  *window,
                GSManager *manager)
 {
-        g_return_if_fail (manager != NULL);
-        g_return_if_fail (GS_IS_MANAGER (manager));
-        g_return_if_fail (window != NULL);
-        g_return_if_fail (GS_IS_WINDOW (window));
-
         gs_debug ("Handling window map event");
-        manager_maybe_grab_window (manager, window);
 }
 
 static void
@@ -818,29 +898,18 @@ window_unmap_cb (GSWindow  *window,
 }
 
 static void
-window_show_cb (GSWindow  *window,
-                GSManager *manager)
+manager_show_window (GSManager *manager,
+                     GSWindow  *window)
 {
         GSJob      *job;
         const char *theme;
-
-        g_return_if_fail (manager != NULL);
-        g_return_if_fail (GS_IS_MANAGER (manager));
-        g_return_if_fail (window != NULL);
-        g_return_if_fail (GS_IS_WINDOW (window));
-
-        gs_debug ("Handling window show");
 
         job = gs_job_new_for_widget (GTK_WIDGET (window));
 
         theme = select_theme (manager);
         gs_job_set_theme (job, theme, NULL);
 
-        if (! manager->priv->throttle_enabled) {
-                gs_job_start (job);
-        }
-
-        manager->priv->jobs = g_slist_append (manager->priv->jobs, job);
+        manager_add_job_for_window (manager, window, job);
 
         manager->priv->activate_time = time (NULL);
 
@@ -862,6 +931,20 @@ window_show_cb (GSWindow  *window,
 }
 
 static void
+window_show_cb (GSWindow  *window,
+                GSManager *manager)
+{
+
+        g_return_if_fail (manager != NULL);
+        g_return_if_fail (GS_IS_MANAGER (manager));
+        g_return_if_fail (window != NULL);
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        gs_debug ("Handling window show");
+        manager_show_window (manager, window);
+}
+
+static void
 disconnect_window_signals (GSManager *manager,
                            GSWindow  *window)
 {
@@ -870,6 +953,8 @@ disconnect_window_signals (GSManager *manager,
         g_signal_handlers_disconnect_by_func (window, window_dialog_down_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_show_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_map_cb, manager);
+        g_signal_handlers_disconnect_by_func (window, window_map_event_cb, manager);
+        g_signal_handlers_disconnect_by_func (window, window_unmap_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_grab_broken_cb, manager);
 }
 
@@ -896,6 +981,8 @@ connect_window_signals (GSManager *manager,
                                  G_CALLBACK (window_show_cb), manager, G_CONNECT_AFTER);
         g_signal_connect_object (window, "map",
                                  G_CALLBACK (window_map_cb), manager, G_CONNECT_AFTER);
+        g_signal_connect_object (window, "map_event",
+                                 G_CALLBACK (window_map_event_cb), manager, G_CONNECT_AFTER);
         g_signal_connect_object (window, "unmap",
                                  G_CALLBACK (window_unmap_cb), manager, G_CONNECT_AFTER);
         g_signal_connect_object (window, "grab_broken_event",
@@ -980,6 +1067,17 @@ show_windows (GSList *windows)
         }
 }
 
+static void
+remove_job (GSJob *job)
+{
+        if (job == NULL) {
+                return;
+        }
+
+        gs_job_stop (job);
+        g_object_unref (job);
+}
+
 static gboolean
 gs_manager_activate (GSManager *manager)
 {
@@ -1004,8 +1102,14 @@ gs_manager_activate (GSManager *manager)
                 return FALSE;
         }
 
-        if (! manager->priv->windows)
+        if (! manager->priv->windows) {
                 gs_manager_create (GS_MANAGER (manager));
+        }
+
+        manager->priv->jobs = g_hash_table_new_full (g_direct_hash,
+                                                     g_direct_equal,
+                                                     NULL,
+                                                     (GDestroyNotify)remove_job);
 
         manager->priv->active = TRUE;
 
@@ -1045,12 +1149,7 @@ gs_manager_deactivate (GSManager *manager)
 
         gs_grab_release_keyboard_and_mouse ();
 
-        for (l = manager->priv->jobs; l; l = l->next) {
-                gs_job_stop (GS_JOB (l->data));
-                g_object_unref (l->data);
-        }
-        g_slist_free (manager->priv->jobs);
-        manager->priv->jobs = NULL;
+        manager_stop_jobs (manager);
 
         for (l = manager->priv->windows; l; l = l->next) {
                 gs_window_destroy (l->data);

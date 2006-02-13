@@ -145,10 +145,12 @@ gs_grab_window (GdkWindow *window,
 
         do {
                 result = gs_grab_move_keyboard (window, screen);
+                gdk_flush ();
         } while (!result);
 
         do {
                 result = gs_grab_move_mouse (window, screen, hide_cursor);
+                gdk_flush ();
         } while (!result);
 }
 

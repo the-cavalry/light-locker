@@ -1,5 +1,26 @@
 2006-02-13  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-manager.c (manager_add_job_for_window, cycle_job) 
+	(manager_cycle_jobs, throttle_job, manager_throttle_jobs) 
+	(resume_job, manager_resume_jobs, suspend_job) 
+	(manager_suspend_jobs, manager_stop_jobs) 
+	(gs_manager_set_throttle_enabled, gs_manager_cycle, remove_job) 
+	(gs_manager_finalize, window_dialog_up_cb, window_dialog_down_cb) 
+	(manager_maybe_start_job_for_window): Make jobs a hash.  Simplify
+	the way we handle jobs and make it possible to lookup a job by
+	window pointer.  This allows us to separate the creation and
+	starting of jobs.
+	(window_map_event_cb): Move the grabbing back to map-event
+	and only start jobs after grabbing.
+	(manager_show_window, window_show_cb): Create jobs in show
+	but wait until map-event to start them.
+	(remove_job, gs_manager_activate, gs_manager_deactivate):
+	Create/destroy jobs hash.
+
+	* src/gs-grab-x11.c (gs_grab_window): Flush events.
+
+2006-02-13  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-job.c (spawn_on_widget): Remove unused variable.
 
 2006-02-13  William Jon McCann  <mccann@jhu.edu>
