@@ -320,9 +320,15 @@ gs_grab_move_keyboard (GdkWindow *window,
                 return TRUE;
         }
 
-        gs_debug ("Moving keyboard grab from %X to %X",
-                  (guint32) GDK_WINDOW_XID (keyboard_grab_window),
-                  (guint32) GDK_WINDOW_XID (window));
+        if (keyboard_grab_window) {
+                gs_debug ("Moving keyboard grab from %X to %X",
+                          (guint32) GDK_WINDOW_XID (keyboard_grab_window),
+                          (guint32) GDK_WINDOW_XID (window));
+        } else {
+                gs_debug ("Getting keyboard grab on %X",
+                          (guint32) GDK_WINDOW_XID (window));
+
+        }
 
         gs_debug ("*** doing X server grab");
         gdk_x11_grab_server ();

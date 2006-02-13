@@ -1,5 +1,10 @@
 2006-02-13  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-grab-x11.c (gs_grab_move_keyboard):
+	Don't print grab window id if not set.
+
+2006-02-13  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c (manager_maybe_grab_window) 
 	(window_grab_broken_cb): If the grab is broken,
 	invalidate the saved grab window and try to grab back.
