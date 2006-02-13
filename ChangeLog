@@ -1,3 +1,8 @@
+2006-02-13  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-manager.c (connect_window_signals): Run
+	map-event and show handlers after the default handlers.
+
 2006-02-10  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-dialog.c (get_id_string): 

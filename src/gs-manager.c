@@ -858,9 +858,9 @@ connect_window_signals (GSManager *manager,
         g_signal_connect_object (window, "dialog-down",
                                  G_CALLBACK (window_dialog_down_cb), manager, 0);
         g_signal_connect_object (window, "show",
-                                 G_CALLBACK (window_show_cb), manager, 0);
+                                 G_CALLBACK (window_show_cb), manager, G_CONNECT_AFTER);
         g_signal_connect_object (window, "map_event",
-                                 G_CALLBACK (window_map_event_cb), manager, 0);
+                                 G_CALLBACK (window_map_event_cb), manager, G_CONNECT_AFTER);
 }
 
 static void
