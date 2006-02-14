@@ -1,3 +1,16 @@
+2006-02-14  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gnome-screensaver-preferences.c (main): 
+	* src/Makefile.am (INCLUDES): Add stuff required for help.
+
+	* src/gnome-screensaver-preferences.c (response_cb):
+	Show help.
+
+	* data/gnome-screensaver-preferences.glade: Add help
+	button back.
+
+	Fixes #331011
+
 2006-02-13  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-manager.c (manager_add_job_for_window, cycle_job) 

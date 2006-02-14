@@ -35,6 +35,7 @@
 #include <gconf/gconf-client.h>
 
 #include <libgnomeui/gnome-ui-init.h>
+#include <libgnomeui/gnome-help.h> /* for gnome_help_display */
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
@@ -392,8 +393,21 @@ response_cb (GtkWidget *widget,
              int        response_id)
 {
 
-        if (response_id == GTK_RESPONSE_HELP)
+        if (response_id == GTK_RESPONSE_HELP) {
+                GError *error;
+                error = NULL;
+                gnome_help_display_desktop (NULL,
+                                            "user-guide",
+                                            "user-guide.xml",
+                                            "prefs-screensaver",
+                                            &error);
+                if (error != NULL) {
+                        g_warning ("%s", error->message);
+                        g_error_free (error);
+                }
+
                 return;
+        }
 
         gtk_widget_destroy (widget);
         gtk_main_quit ();
@@ -1139,8 +1153,11 @@ main (int    argc,
         textdomain (GETTEXT_PACKAGE);
 #endif 
 
-        gnome_program_init (PACKAGE, VERSION, LIBGNOMEUI_MODULE, argc, argv,
-                            GNOME_PARAM_NONE);
+        gnome_program_init (PACKAGE, VERSION,
+                            LIBGNOMEUI_MODULE,
+                            argc, argv,
+                            GNOME_PROGRAM_STANDARD_PROPERTIES,
+                            NULL);
 
         job = gs_job_new ();
 

@@ -18,12 +18,16 @@ INCLUDES =							\
 	$(GNOME_SCREENSAVER_DIALOG_CFLAGS)			\
 	$(GNOME_SCREENSAVER_CAPPLET_CFLAGS)			\
 	$(DISABLE_DEPRECATED_CFLAGS)				\
-	-DG_LOG_DOMAIN=\"gnome-screensaver\"			\
+	-DPREFIX=\""$(prefix)"\" 				\
 	-DBINDIR=\""$(bindir)"\"				\
+	-DLIBDIR=\""$(libdir)"\" 				\
 	-DLIBEXECDIR=\""$(libexecdir)"\"			\
+	-DDATADIR=\""$(datadir)"\"				\
+	-DSYSCONFDIR=\""$(sysconfdir)"\" 			\
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"		\
+	-DG_LOG_DOMAIN=\"gnome-screensaver\"			\
 	-DSAVERDIR=\""$(saverdir)"\"				\
 	-DTHEMESDIR=\""$(themesdir)"\"				\
-	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
 	-DGLADEDIR=\"$(pkgdatadir)\"				\
 	-DPAM_SERVICE_NAME=\""gnome-screensaver"\"		\
 	$(WARN_CFLAGS)						\
