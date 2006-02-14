@@ -1,5 +1,12 @@
 2006-02-14  William Jon McCann  <mccann@jhu.edu>
 
+	* data/images/gnome-logo-white.svg: Updated
+	foot logo.
+
+	Fixes #331090
+
+2006-02-14  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-fade.c (gamma_info_init): Don't
 	abort when fade type is none.
 
