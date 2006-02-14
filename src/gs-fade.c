@@ -326,8 +326,10 @@ gamma_info_init (GSFade *fade)
                                 goto FAIL;
                 }
 # endif /* HAVE_XF86VMODE_GAMMA_RAMP */
-                else {
-                        abort ();
+                else if (FADE_TYPE_NONE == fade->priv->fade_type) {
+                        goto FAIL;
+                } else {
+                        g_assert_not_reached ();
                 }
         }
 
