@@ -1,3 +1,9 @@
+==== 2.13.91 ====
+
+2006-02-14  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 2.13.91 release
+
 2006-02-14  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (get_user_on_host_name, create_page_one):

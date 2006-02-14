@@ -1,4 +1,34 @@
 ===============
+Version 2.13.91
+===============
+
+  gnome-screensaver
+
+        * Maintain a pointer grab unless the unlock dialog is up
+        * Convert the real and user names to UTF8
+        * Use G_GUINT32_FORMAT for communicating XID
+        * Start themes after grabbing window
+        * Handle broken grabs
+        * Don't abort when fade isn't available
+        * Display host name in unlock dialog
+
+  gnome-screensaver-preferences
+
+        * Add help
+        * Don't make heading bold or indent under it
+
+  Themes
+
+        * (floaters) More performance work (Ray Strode)
+
+  Translators
+
+        * Gil Forcada (ca)
+        * Lukas Novotny (cs)
+        * Å½ygimantas BeruÄka (lt)
+        * Ãivind Hoel (nb)
+
+===============
 Version 2.13.90
 ===============
 
