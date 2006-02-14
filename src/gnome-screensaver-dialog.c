@@ -375,9 +375,12 @@ main (int    argc,
                 exit (1);
         }
 
+        error = NULL;
         if (! gtk_init_with_args (&argc, &argv, NULL, entries, NULL, &error)) {
-                fprintf (stderr, "%s", error->message);
-                g_error_free (error);
+                if (error != NULL) {
+                        fprintf (stderr, "%s", error->message);
+                        g_error_free (error);
+                }
                 exit (1);
         }
 

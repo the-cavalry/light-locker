@@ -1,5 +1,10 @@
 2006-02-14  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-dialog.c (main):
+	Add explicit check for error after gtk_init fails.
+
+2006-02-14  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/floaters.c (screen_saver_floater_update_state) 
 	(screen_saver_get_image_cache_usage) 
 	(screen_saver_on_expose_event):
