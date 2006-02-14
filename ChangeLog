@@ -1,5 +1,16 @@
 2006-02-14  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (get_user_on_host_name, create_page_one):
+	Display "username on host" string instead of just "username".
+
+	* data/gnome-screensaver-preferences.glade:
+	Don't make the screensaver label bold or indent
+	the rest of the dialog under it.
+
+	Fixes #331185
+
+2006-02-14  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-dialog.c (main):
 	Add explicit check for error after gtk_init fails.
 

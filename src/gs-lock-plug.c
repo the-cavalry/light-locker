@@ -1345,19 +1345,26 @@ get_user_display_name (void)
 }
 
 static char *
-get_user_name (void)
+get_user_on_host_name (void)
 {
         const char *name;
+        const char *host_name;
         char       *utf8_name;
+        char       *str;
 
         name = g_get_user_name ();
+        host_name = g_get_host_name ();
 
         utf8_name = NULL;
         if (name != NULL) {
                 utf8_name = g_locale_to_utf8 (name, -1, NULL, NULL, NULL);
         }
 
-        return utf8_name;
+        /* Translators: this is "username on hostname" */
+        str = g_strdup_printf (_("%s on %s"), utf8_name, host_name);
+        g_free (utf8_name);
+
+        return str;
 }
 
 static gboolean
@@ -1483,7 +1490,7 @@ create_page_one (GSLockPlug *plug)
         gtk_label_set_use_markup (GTK_LABEL (widget), TRUE);
         gtk_box_pack_start (GTK_BOX (vbox2), widget, FALSE, FALSE, 0);
 
-        name = get_user_name ();
+        name = get_user_on_host_name ();
         str = g_strdup_printf ("<span size=\"small\">%s</span>", name);
         g_free (name);
         plug->priv->username_label = gtk_label_new (str);
