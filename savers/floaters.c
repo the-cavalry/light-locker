@@ -47,14 +47,14 @@
 #endif
 
 #ifndef FLOATER_MAX_SIZE
-#define FLOATER_MAX_SIZE (256.0)
+#define FLOATER_MAX_SIZE (128.0)
 #endif
 
 #ifndef FLOATER_MIN_SIZE
 #define FLOATER_MIN_SIZE (16.0)
 #endif
 #ifndef FLOATER_DEFAULT_COUNT
-#define FLOATER_DEFAULT_COUNT (16)
+#define FLOATER_DEFAULT_COUNT (9)
 #endif
 
 #ifndef SMALL_ANGLE
@@ -565,7 +565,7 @@ screen_saver_floater_update_state (ScreenSaver        *screen_saver,
       floater->path_start_scale = floater->scale;
 
       if (g_random_double () > .5)
-        floater->path_end_scale = g_random_double_range (0.25, 1.0);
+        floater->path_end_scale = g_random_double_range (0.10, performance_ratio);
 
       /* poor man's distribution */
       if (screen_saver->should_do_rotations &&
@@ -914,7 +914,7 @@ screen_saver_get_frames_per_second (ScreenSaver *screen_saver)
 static gdouble
 screen_saver_get_image_cache_usage (ScreenSaver *screen_saver)
 {
-  static const gdouble cache_capacity = (FLOATER_MAX_SIZE - FLOATER_MIN_SIZE);
+  static const gdouble cache_capacity = (FLOATER_MAX_SIZE - FLOATER_MIN_SIZE + 1);
 
   return g_hash_table_size (screen_saver->cached_sources) / cache_capacity;
 }
@@ -988,8 +988,8 @@ screen_saver_on_expose_event (ScreenSaver    *screen_saver,
       GdkRectangle rect;
       gint size;
 
-      rect.x = (int) (floater->position.x - .5 * size);
-      rect.y = (int) (floater->position.y - .5 * size);
+      rect.x = (int) (floater->position.x - .5 * G_SQRT2 * size);
+      rect.y = (int) (floater->position.y - .5 * G_SQRT2 * size);
       rect.width = G_SQRT2 * size;
       rect.height = G_SQRT2 * size;
 
