@@ -1,3 +1,9 @@
+2006-02-15  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c (get_user_on_host_name):
+	Elaborated on message to translators as
+	suggested by Danilo Segan.
+
 2006-02-14  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.

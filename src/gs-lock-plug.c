@@ -1360,7 +1360,9 @@ get_user_on_host_name (void)
                 utf8_name = g_locale_to_utf8 (name, -1, NULL, NULL, NULL);
         }
 
-        /* Translators: this is "username on hostname" */
+        /* Translators: this is "username on hostname".  You
+           can translate this to "%s@%s" if it is otherwise tricky
+           for your language. */
         str = g_strdup_printf (_("%s on %s"), utf8_name, host_name);
         g_free (utf8_name);
 
