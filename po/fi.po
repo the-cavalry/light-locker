@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-15 05:32+0200\n"
-"PO-Revision-Date: 2006-02-15 05:40+0200\n"
+"POT-Creation-Date: 2006-02-15 19:06+0200\n"
+"PO-Revision-Date: 2006-02-15 19:08+0200\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -799,21 +799,23 @@ msgstr "_Avaa lukitus"
 msgid "_Switch User..."
 msgstr "_Vaihda käyttäjää..."
 
-#. Translators: this is "username on hostname"
-#: ../src/gs-lock-plug.c:1364
+#. Translators: this is "username on hostname".  You
+#. can translate this to "%s@%s" if it is otherwise tricky
+#. for your language.
+#: ../src/gs-lock-plug.c:1366
 #, c-format
 msgid "%s on %s"
-msgstr "%s - %s"
+msgstr "%s@%s"
 
-#: ../src/gs-lock-plug.c:1508
+#: ../src/gs-lock-plug.c:1510
 msgid "_Password:"
 msgstr "_Salasana:"
 
-#: ../src/gs-lock-plug.c:1575
+#: ../src/gs-lock-plug.c:1577
 msgid "S_witch to user:"
 msgstr "Vaihda käyttäjäksi:"
 
-#: ../src/gs-lock-plug.c:1622
+#: ../src/gs-lock-plug.c:1624
 msgid "Log _Out"
 msgstr "Kirjaudu _ulos"
 
