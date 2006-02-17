@@ -33,12 +33,16 @@ menu_DATA =					\
 gladedir = $(pkgdatadir)
 glade_DATA = gnome-screensaver-preferences.glade
 
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = gnome-screensaver.pc
+
 EXTRA_DIST = 				\
 	$(schemas_in_files)		\
 	$(desktop_in_files)		\
 	$(directory_in_files)		\
 	$(glade_DATA)			\
 	gnome-screensaver		\
+	gnome-screensaver.pc.in		\
 	xscreensaver-config.xsl		\
 	migrate-xscreensaver-config.sh	\
 	$(NULL)

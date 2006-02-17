@@ -1192,6 +1192,19 @@ AC_SUBST(FLOATERS_FOOT_LOGO_IMAGE)
 GNOME_SCREENSAVER_THEMES_DIR="${EXPANDED_DATADIR}/gnome-screensaver/themes"
 AC_SUBST(GNOME_SCREENSAVER_THEMES_DIR)
 
+# Special directories
+# Used for .pc.in file
+
+privlibexecdir='${libexecdir}'/gnome-screensaver
+AC_SUBST(privlibexecdir)
+
+privdatadir='${datadir}'/gnome-screensaver
+AC_SUBST(privdatadir)
+
+themesdir='${privdatadir}'/themes
+AC_SUBST(themesdir)
+
+
 # Files
 
 AC_OUTPUT([
@@ -1201,6 +1214,7 @@ src/Makefile
 src/cut-n-paste/Makefile
 data/Makefile
 data/gnome-screensavers.menu
+data/gnome-screensaver.pc
 data/images/Makefile
 data/images/cosmos/Makefile
 savers/Makefile

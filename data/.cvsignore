@@ -5,3 +5,4 @@ Makefile.in
 *.gladep
 *.menu
 *.directory
+*.pc

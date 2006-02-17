@@ -1,5 +1,16 @@
 2006-02-17  William Jon McCann  <mccann@jhu.edu>
 
+	* data/gnome-screensaver.pc.in:
+	* data/Makefile.am:
+	* data/.cvsignore: 
+	* configure.ac:
+	Add a pkg-config file so applications can determine
+	theme paths and things.
+
+	Fixes #331560
+
+2006-02-17  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/floaters.c (main): Try more to
 	fix translations.
 
