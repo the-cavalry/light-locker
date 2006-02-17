@@ -42,11 +42,19 @@ main (int argc, char **argv)
         GError        *error;
         gboolean       ret;
         char          *location = NULL;
-         GOptionEntry  entries [] = {
-                 { "location", 0, 0, G_OPTION_ARG_STRING, &location,
-                   N_("Location to get images from"), N_("PATH") },
-                 { NULL }
-         };
+        GOptionEntry  entries [] = {
+                { "location", 0, 0, G_OPTION_ARG_STRING, &location,
+                  N_("Location to get images from"), N_("PATH") },
+                { NULL }
+        };
+
+#ifdef ENABLE_NLS
+        bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+# ifdef HAVE_BIND_TEXTDOMAIN_CODESET
+        bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+# endif 
+        textdomain (GETTEXT_PACKAGE);
+#endif 
 
         error = NULL;
 

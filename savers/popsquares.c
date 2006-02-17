@@ -35,6 +35,14 @@ main (int argc, char **argv)
         GtkWidget     *window;
         GError        *error;
 
+#ifdef ENABLE_NLS
+        bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+# ifdef HAVE_BIND_TEXTDOMAIN_CODESET
+        bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+# endif 
+        textdomain (GETTEXT_PACKAGE);
+#endif 
+
         error = NULL;
 
         gtk_init_with_args (&argc, &argv, NULL, NULL, NULL, &error);

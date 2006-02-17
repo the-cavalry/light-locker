@@ -1,3 +1,10 @@
+2006-02-17  William Jon McCann  <mccann@jhu.edu>
+
+	* savers/slideshow.c (main): 
+	* savers/popsquares.c (main): 
+	* savers/Makefile.am: Try to fix translation
+	of command line help #331515.
+
 2006-02-15  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c (get_user_on_host_name):

@@ -9,7 +9,7 @@ INCLUDES =							\
 	$(GNOME_SCREENSAVER_SAVER_CFLAGS)			\
 	$(DISABLE_DEPRECATED_CFLAGS)				\
 	-DLIBEXECDIR=\""$(libexecdir)"\"			\
-	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
+	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"		\
 	-DDATADIR=\""$(datadir)"\"				\
 	$(WARN_CFLAGS)						\
 	$(NULL)
