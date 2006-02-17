@@ -1,6 +1,11 @@
 2006-02-17  William Jon McCann  <mccann@jhu.edu>
 
 	* data/gnome-screensaver.pc.in:
+	Add missing libexecdir.
+
+2006-02-17  William Jon McCann  <mccann@jhu.edu>
+
+	* data/gnome-screensaver.pc.in:
 	* data/Makefile.am:
 	* data/.cvsignore: 
 	* configure.ac:
