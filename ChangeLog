@@ -1,5 +1,10 @@
 2006-02-17  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/floaters.c (main): Try more to
+	fix translations.
+
+2006-02-17  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/slideshow.c (main): 
 	* savers/popsquares.c (main): 
 	* savers/Makefile.am: Try to fix translation

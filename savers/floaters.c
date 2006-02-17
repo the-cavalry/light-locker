@@ -1214,9 +1214,7 @@ main (int   argc,
 
   error = NULL;
 
-#if defined(ENABLE_NLS)                                                       \
-  && defined (GETTEXT_PACKAGE)                                                \
-  && defined (GNOMELOCALEDIR)
+#ifdef ENABLE_NLS
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 #ifdef HAVE_BIND_TEXTDOMAIN_CODESET
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
