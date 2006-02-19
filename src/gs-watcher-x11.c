@@ -137,8 +137,9 @@ gs_watcher_reset (GSWatcher *watcher)
         g_return_if_fail (GS_IS_WATCHER (watcher));
 
         /* just return quietly if not enabled */
-        if (! watcher->priv->enabled)
+        if (! watcher->priv->enabled) {
                 return;
+        }
 
         /* restart if necessary */
         if (watcher->priv->active) {
@@ -517,11 +518,13 @@ _gs_watcher_set_session_idle_notice (GSWatcher *watcher,
 
         if (in_effect != watcher->priv->idle_notice) {
 
-                gs_debug ("Changing idle notice state: %d", in_effect);
-
                 g_signal_emit (watcher, signals [IDLE_NOTICE_CHANGED], 0, in_effect, &res);
                 if (res) {
+                        gs_debug ("Changing idle notice state: %d", in_effect);
+
                         watcher->priv->idle_notice = in_effect;
+                } else {
+                        gs_debug ("Idle notice signal not handled: %d", in_effect);
                 }
         }
 
@@ -538,11 +541,13 @@ _gs_watcher_set_session_idle (GSWatcher *watcher,
 
         if (is_idle != watcher->priv->idle) {
 
-                gs_debug ("Changing idle state: %d", is_idle);
-
                 g_signal_emit (watcher, signals [IDLE_CHANGED], 0, is_idle, &res);
                 if (res) {
+                        gs_debug ("Changing idle state: %d", is_idle);
+
                         watcher->priv->idle = is_idle;
+                } else {
+                        gs_debug ("Idle changed signal not handled: %d", is_idle);
                 }
         }
 
@@ -553,7 +558,7 @@ static void
 _gs_watcher_notice_activity (GSWatcher *watcher)
 {
         if (! watcher->priv->active) {
-                g_warning ("Noticed activity but watcher is inactive");
+                gs_debug ("Noticed activity but watcher is inactive");
                 return;
         }
 
@@ -759,13 +764,13 @@ gs_watcher_set_active (GSWatcher *watcher,
         gs_debug ("turning watcher: %s", active ? "ON" : "OFF");
 
         if (watcher->priv->active == active) {
-                g_warning ("Idle detection is already %s",
-                           active ? "active" : "inactive");
+                gs_debug ("Idle detection is already %s",
+                          active ? "active" : "inactive");
                 return FALSE;
         }
 
         if (! watcher->priv->enabled) {
-                g_warning ("Idle detection is disabled, cannot activate");
+                gs_debug ("Idle detection is disabled, cannot activate");
                 return FALSE;
         }
 
@@ -1165,7 +1170,7 @@ maybe_send_signal (GSWatcher *watcher)
         gboolean do_notice_signal = FALSE;
 
         if (! watcher->priv->active) {
-                g_warning ("Checking for idleness but watcher is inactive");
+                gs_debug ("Checking for idleness but watcher is inactive");
                 return;
         }
 
@@ -1218,17 +1223,12 @@ maybe_send_signal (GSWatcher *watcher)
                 gboolean is_idle = TRUE;
 
                 res = _gs_watcher_set_session_idle (watcher, is_idle);
-                if (res) {
-                        res = _gs_watcher_set_session_idle_notice (watcher, !is_idle);
-                }
+                _gs_watcher_set_session_idle_notice (watcher, !is_idle);
 
                 /* if the event wasn't handled then schedule another timer */
                 if (! res) {
-                        g_warning ("Idle signal was not handled, restarting watcher");
-
-                        if (polling_for_idleness) {
-                                schedule_wakeup_event (watcher, watcher->priv->timeout);
-                        }
+                        gs_debug ("Idle signal was not handled, restarting watcher");
+                        gs_watcher_reset (watcher);
                 }
         }
 }
@@ -1255,7 +1255,7 @@ schedule_wakeup_event (GSWatcher *watcher,
         guint timeout;
 
         if (watcher->priv->timer_id) {
-                g_warning ("idle_timer already running");
+                gs_debug ("idle_timer already running");
                 return;
         }
         

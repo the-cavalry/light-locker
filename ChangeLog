@@ -1,3 +1,42 @@
+2006-02-18  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-watcher-x11.c (gs_watcher_reset): Braces.
+	(_gs_watcher_set_session_idle_notice) 
+	(_gs_watcher_set_session_idle): Indicate what
+	happened in the debug statement.
+	(_gs_watcher_notice_activity): Use debug instead of
+	warning.
+	(gs_watcher_set_active):  Ditto.
+	(maybe_send_signal): Ditto.  Always stop the idle
+	notice after an idle signal.  Actually do a _reset()
+	if the idle signal isn't handled.
+	(schedule_wakeup_event): Use debug instead of warning.
+
+	* src/gs-monitor.c (listener_lock_cb): Use gs-debug
+	instead of warning so it shows up in log.
+	(listener_active_changed_cb): Simplify.  Only
+	change watcher status if the manager activation
+	is successful.
+
+	* src/gs-listener-dbus.c (listener_check_activation):
+	Only return FALSE if should activate and failed.
+	(gs_listener_set_active): Use a gs_debug instead
+	of a warning so that it shows up in log file.
+	Use set_session_idle_internal so it bypasses checks.
+	(gs_listener_set_session_idle): Use gs_debug
+	instead of warning.  Fail if should activate
+	and activation fails.
+	(raise_error, raise_property_type_error, listener_set_property) 
+	(gs_listener_message_handler, listener_dbus_filter_function) 
+	(screensaver_is_running, gs_listener_acquire) 
+	(gs_listener_finalize): Add braces.
+
+	* src/gs-grab-x11.c (gs_grab_get_keyboard_and_mouse):
+	Add braces.
+
+	This fixes a problem when activation is repeatedly
+	blocked by something that has the keyboard grabbed.
+
 2006-02-17  William Jon McCann  <mccann@jhu.edu>
 
 	* data/gnome-screensaver.pc.in:

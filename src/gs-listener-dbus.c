@@ -254,15 +254,22 @@ listener_check_activation (GSListener *listener)
         gboolean inhibited;
         gboolean res;
 
+        gs_debug ("Checking for activation");
+
         if (! listener->priv->activation_enabled) {
-                return FALSE;
+                return TRUE;
+        }
+
+        if (! listener->priv->session_idle) {
+                return TRUE;
         }
 
         /* if we aren't inhibited then activate */
         inhibited = listener_is_inhibited (listener);
 
         res = FALSE;
-        if (listener->priv->session_idle && ! inhibited) {
+        if (! inhibited) {
+                gs_debug ("Trying to activate");
                 res = gs_listener_set_active (listener, TRUE);
         }
 
@@ -317,8 +324,8 @@ gs_listener_set_active (GSListener *listener,
         g_return_val_if_fail (GS_IS_LISTENER (listener), FALSE);
 
         if (listener->priv->active == active) {
-                g_warning ("Trying to set active state when already: %s",
-                           active ? "active" : "inactive");
+                gs_debug ("Trying to set active state when already: %s",
+                          active ? "active" : "inactive");
                 return FALSE;
         }
 
@@ -326,10 +333,11 @@ gs_listener_set_active (GSListener *listener,
         g_signal_emit (listener, signals [ACTIVE_CHANGED], 0, active, &res);
         if (! res) {
                 /* if the signal is not handled then we haven't changed state */
+                gs_debug ("Active-changed signal not handled");
 
                 /* clear the idle state */
                 if (active) {
-                        gs_listener_set_session_idle (listener, FALSE);
+                        listener_set_session_idle_internal (listener, FALSE);
                 }
 
                 return FALSE;
@@ -349,12 +357,15 @@ gboolean
 gs_listener_set_session_idle (GSListener *listener,
                               gboolean    idle)
 {
+        gboolean res;
+
         g_return_val_if_fail (GS_IS_LISTENER (listener), FALSE);
 
         gs_debug ("Setting session idle: %d", idle);
 
         if (listener->priv->session_idle == idle) {
-                g_warning ("Trying to set idle when already idle");
+                gs_debug ("Trying to set idle state when already %s",
+                          idle ? "idle" : "not idle");
                 return FALSE;
         }
 
@@ -369,11 +380,18 @@ gs_listener_set_session_idle (GSListener *listener,
                 }
         }
 
-        listener_set_session_idle_internal (listener, idle);
+        listener->priv->session_idle = idle;
+        res = listener_check_activation (listener);
 
-        listener_check_activation (listener);
+        /* if activation fails then don't set idle */
+        if (res) {
+                listener_set_session_idle_internal (listener, idle);
+        } else {
+                gs_debug ("Idle activation failed");
+                listener->priv->session_idle = !idle;
+        }
 
-        return TRUE;
+        return res;
 }
 
 void
@@ -463,10 +481,12 @@ raise_error (DBusConnection *connection,
 
         g_warning (buf);
         reply = dbus_message_new_error (in_reply_to, error_name, buf);
-        if (reply == NULL)
+        if (reply == NULL) {
                 g_error ("No memory");
-        if (! dbus_connection_send (connection, reply, NULL))
+        }
+        if (! dbus_connection_send (connection, reply, NULL)) {
                 g_error ("No memory");
+        }
 
         dbus_message_unref (reply);
 }
@@ -607,10 +627,12 @@ raise_property_type_error (DBusConnection *connection,
         reply = dbus_message_new_error (in_reply_to,
                                         TYPE_MISMATCH_ERROR,
                                         buf);
-        if (reply == NULL)
+        if (reply == NULL) {
                 g_error ("No memory");
-        if (! dbus_connection_send (connection, reply, NULL))
+        }
+        if (! dbus_connection_send (connection, reply, NULL)) {
                 g_error ("No memory");
+        }
 
         dbus_message_unref (reply);
 }
@@ -653,11 +675,13 @@ listener_set_property (GSListener     *listener,
 
         reply = dbus_message_new_method_return (message);
 
-        if (reply == NULL)
+        if (reply == NULL) {
                 g_error ("No memory");
+        }
 
-        if (! dbus_connection_send (connection, reply, NULL))
+        if (! dbus_connection_send (connection, reply, NULL)) {
                 g_error ("No memory");
+        }
 
         dbus_message_unref (reply);
 
@@ -707,8 +731,9 @@ listener_get_property (GSListener     *listener,
                 break;
         }
 
-        if (! dbus_connection_send (connection, reply, NULL))
+        if (! dbus_connection_send (connection, reply, NULL)) {
                 g_error ("No memory");
+        }
 
         dbus_message_unref (reply);
 
@@ -895,11 +920,13 @@ gs_listener_message_handler (DBusConnection *connection,
 
                 reply = dbus_message_new_method_return (message);
 
-                if (reply == NULL)
+                if (reply == NULL) {
                         g_error ("No memory");
+                }
 
-                if (! dbus_connection_send (connection, reply, NULL))
+                if (! dbus_connection_send (connection, reply, NULL)) {
                         g_error ("No memory");
+                }
 
                 dbus_message_unref (reply);
 
@@ -910,8 +937,9 @@ gs_listener_message_handler (DBusConnection *connection,
                 dbus_connection_unref (connection);
 
                 return DBUS_HANDLER_RESULT_HANDLED;
-        } 
-        else return listener_dbus_filter_handle_methods (connection, message, user_data, TRUE);
+        } else {
+                return listener_dbus_filter_handle_methods (connection, message, user_data, TRUE);
+        }
 }
 
 static gboolean
@@ -989,8 +1017,9 @@ listener_dbus_filter_function (DBusConnection *connection,
 
                 if (listener->priv->inhibitors != NULL)
                         listener_service_deleted (listener, message);
-        } else 
+        } else {
                 return listener_dbus_filter_handle_methods (connection, message, user_data, FALSE);
+        }
 
         return DBUS_HANDLER_RESULT_HANDLED;
 }
@@ -1164,8 +1193,9 @@ screensaver_is_running (DBusConnection *connection)
 
         dbus_error_init (&error);
         exists = dbus_bus_name_has_owner (connection, GS_LISTENER_SERVICE, &error);
-        if (dbus_error_is_set (&error))
+        if (dbus_error_is_set (&error)) {
                 dbus_error_free (&error);
+        }
 
         return exists;
 }
@@ -1221,12 +1251,13 @@ gs_listener_acquire (GSListener *listener,
         acquired = dbus_bus_request_name (listener->priv->connection,
                                           GS_LISTENER_SERVICE,
                                           0, &buserror) != -1;
-        if (dbus_error_is_set (&buserror))
+        if (dbus_error_is_set (&buserror)) {
                 g_set_error (error,
                              GS_LISTENER_ERROR,
                              GS_LISTENER_ERROR_ACQUISITION_FAILURE,
                              "%s",
                              buserror.message);
+        }
 
         dbus_error_free (&buserror);
 
@@ -1263,12 +1294,14 @@ gs_listener_finalize (GObject *object)
         g_return_if_fail (listener->priv != NULL);
 
 #if 0
-        if (listener->priv->connection)
+        if (listener->priv->connection) {
                 dbus_connection_unref (listener->priv->connection);
+        }
 #endif
 
-        if (listener->priv->inhibitors)
+        if (listener->priv->inhibitors) {
                 g_hash_table_destroy (listener->priv->inhibitors);
+        }
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }

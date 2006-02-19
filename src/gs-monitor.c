@@ -165,7 +165,7 @@ listener_lock_cb (GSListener *listener,
         if (res) {
                 gs_manager_set_lock_active (monitor->priv->manager, TRUE);
         } else {
-                g_warning ("Unable to lock the screen");
+                gs_debug ("Unable to lock the screen");
         }
 }
 
@@ -190,71 +190,40 @@ listener_active_changed_cb (GSListener *listener,
                             GSMonitor  *monitor)
 {
         gboolean res;
+        gboolean ret;
         gboolean idle_watch_enabled;
 
-        idle_watch_enabled = gs_watcher_get_enabled (monitor->priv->watcher);
-
-        if (active) {
-                if (idle_watch_enabled) {
-                        /* turn off the idleness watcher */
-                        res = gs_watcher_set_active (monitor->priv->watcher, FALSE);
-                        if (! res) {
-                                g_warning ("Unable to deactivate the idle watcher");
-                                return FALSE;
-                        }
-                }
-
-                /* blank the screen */
-                res = gs_manager_set_active (monitor->priv->manager, TRUE);
-                if (! res) {
-                        g_warning ("Unable to blank the screen");
-
-                        /* since we can't activate then reactivate the watcher
-                           and give up */
-                        if (idle_watch_enabled) {
-                                res = gs_watcher_set_active (monitor->priv->watcher, TRUE);
-                        }
-
-                        return FALSE;
-                }
+        res = gs_manager_set_active (monitor->priv->manager, active);
+        if (! res) {
+                gs_debug ("Unable to set manager active: %d", active);
+                ret = FALSE;
+                goto done;
+        }
 
 #ifdef USE_LEGACY_DPMS_SUPPORT
                 /* enable power management */
-                res = gs_power_set_active (monitor->priv->power, TRUE);
+                res = gs_power_set_active (monitor->priv->power, active);
                 if (! res) {
-                        g_warning ("Unable to activate power management");
+                        gs_debug ("Unable to set power management active: %d", active);
 
                         /* if we can't activate power management it isn't the
                            end of the world */
                 }
 #endif
-        } else {
-                /* unblank the screen */
-                res = gs_manager_set_active (monitor->priv->manager, FALSE);
-                if (! res) {
-                        g_warning ("Unable to unblank the screen");
-                        return FALSE;
-                }
 
-                if (idle_watch_enabled) {
-                        /* turn on the idleness watcher */
-                        res = gs_watcher_set_active (monitor->priv->watcher, TRUE);
-                        if (! res) {
-                                g_warning ("Unable to activate the idle watcher");
-                                return FALSE;
-                        }
-                }
+        ret = TRUE;
 
-#ifdef USE_LEGACY_DPMS_SUPPORT
-                /* disable power management */
-                res = gs_power_set_active (monitor->priv->power, FALSE);
+ done:
+
+        idle_watch_enabled = gs_watcher_get_enabled (monitor->priv->watcher);
+        if (ret && idle_watch_enabled) {
+                res = gs_watcher_set_active (monitor->priv->watcher, !active);
                 if (! res) {
-                        g_warning ("Unable to deactivate power management");
+                        gs_debug ("Unable to set the idle watcher active: %d", !active);
                 }
-#endif
         }
 
-        return TRUE;
+        return ret;
 }
 
 static void

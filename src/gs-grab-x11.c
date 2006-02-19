@@ -404,8 +404,9 @@ gs_grab_get_keyboard_and_mouse (GdkWindow *window,
 
         for (i = 0; i < retries; i++) {
                 kstatus = gs_grab_get_keyboard (window, screen);
-                if (kstatus == GDK_GRAB_SUCCESS)
+                if (kstatus == GDK_GRAB_SUCCESS) {
                         break;
+                }
 
                 /* else, wait a second and try to grab again. */
                 sleep (1);

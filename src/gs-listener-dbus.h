@@ -48,8 +48,10 @@ typedef struct
         void            (* cycle)       (GSListener *listener);
         void            (* quit)        (GSListener *listener);
         void            (* poke)        (GSListener *listener);
-        gboolean        (* active_changed)           (GSListener *listener, gboolean active);
-        void            (* throttle_enabled_changed) (GSListener *listener, gboolean enabled);
+        gboolean        (* active_changed)           (GSListener *listener,
+                                                      gboolean    active);
+        void            (* throttle_enabled_changed) (GSListener *listener,
+                                                      gboolean    enabled);
 
 } GSListenerClass;
 
