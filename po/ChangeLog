@@ -1,6 +1,10 @@
-2006-02-01  Ankit Patel  <ankit644@yahoo.com>
+2006-02-21  Slobodan D. Sredojevic  <slobo@akrep.be>
 
-        * gu.po: Updated Gujarati Translation.
+	* sr.po, sr@Latn.po: Updated Serbian translation
+
+2006-02-21  Ankit Patel  <ankit644@yahoo.com>
+
+	* gu.po: Updated Gujarati Translation.
 
 2006-02-18  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
 
