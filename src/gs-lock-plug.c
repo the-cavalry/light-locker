@@ -1452,6 +1452,11 @@ get_face_image ()
         return image;
 }
 
+#define INVISIBLE_CHAR_DEFAULT       '*'
+#define INVISIBLE_CHAR_BLACK_CIRCLE  0x25cf
+#define INVISIBLE_CHAR_WHITE_BULLET  0x25e6
+#define INVISIBLE_CHAR_NONE          0
+
 static void
 create_page_one (GSLockPlug *plug)
 {
@@ -1463,6 +1468,7 @@ create_page_one (GSLockPlug *plug)
         GtkWidget            *hbox;
         char                 *str;
         char                 *name;
+        gunichar              invisible_char;
 
         profile_start ("start", "page one");
 
@@ -1521,6 +1527,13 @@ create_page_one (GSLockPlug *plug)
                           G_CALLBACK (entry_key_press), plug);
         gtk_entry_set_activates_default (GTK_ENTRY (plug->priv->password_entry), TRUE);
         gtk_entry_set_visibility (GTK_ENTRY (plug->priv->password_entry), FALSE);
+
+        /* White bullets look nice but there is some concern that they
+           look too much like common chars on the keyboard */
+        /*invisible_char = INVISIBLE_CHAR_WHITE_BULLET;*/
+        /*invisible_char = INVISIBLE_CHAR_BLACK_CIRCLE;*/
+        invisible_char = INVISIBLE_CHAR_DEFAULT;
+        gtk_entry_set_invisible_char (GTK_ENTRY (plug->priv->password_entry), invisible_char);
 
         gtk_label_set_mnemonic_widget (GTK_LABEL (password_label),
                                        plug->priv->password_entry);
