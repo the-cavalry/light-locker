@@ -103,6 +103,10 @@ manager_add_job_for_window (GSManager *manager,
                             GSWindow  *window,
                             GSJob     *job)
 {
+        if (manager->priv->jobs == NULL) {
+                return;
+        }
+
         g_hash_table_insert (manager->priv->jobs, window, job);
 }
 
@@ -148,7 +152,9 @@ cycle_job (GSWindow  *window,
 static void
 manager_cycle_jobs (GSManager *manager)
 {
-        g_hash_table_foreach (manager->priv->jobs, (GHFunc) cycle_job, manager);
+        if (manager->priv->jobs != NULL) {
+                g_hash_table_foreach (manager->priv->jobs, (GHFunc) cycle_job, manager);
+        }
 }
 
 static void
@@ -166,7 +172,9 @@ throttle_job (GSWindow  *window,
 static void
 manager_throttle_jobs (GSManager *manager)
 {
-        g_hash_table_foreach (manager->priv->jobs, (GHFunc) throttle_job, manager);
+        if (manager->priv->jobs != NULL) {
+                g_hash_table_foreach (manager->priv->jobs, (GHFunc) throttle_job, manager);
+        }
 }
 
 static void
@@ -184,7 +192,9 @@ resume_job (GSWindow  *window,
 static void
 manager_resume_jobs (GSManager *manager)
 {
-        g_hash_table_foreach (manager->priv->jobs, (GHFunc) resume_job, manager);
+        if (manager->priv->jobs != NULL) {
+                g_hash_table_foreach (manager->priv->jobs, (GHFunc) resume_job, manager);
+        }
 }
 
 static void
@@ -198,13 +208,15 @@ suspend_job (GSWindow  *window,
 static void
 manager_suspend_jobs (GSManager *manager)
 {
-        g_hash_table_foreach (manager->priv->jobs, (GHFunc) suspend_job, manager);
+        if (manager->priv->jobs != NULL) {
+                g_hash_table_foreach (manager->priv->jobs, (GHFunc) suspend_job, manager);
+        }
 }
 
 static void
 manager_stop_jobs (GSManager *manager)
 {
-        if (manager->priv->jobs) {
+        if (manager->priv->jobs != NULL) {
                 g_hash_table_destroy (manager->priv->jobs);
 
         }
@@ -816,6 +828,10 @@ manager_maybe_start_job_for_window (GSManager *manager,
                                     GSWindow  *window)
 {
         GSJob *job;
+
+        if (manager->priv->jobs == NULL) {
+                return;
+        }
 
         job = g_hash_table_lookup (manager->priv->jobs, window);
 
