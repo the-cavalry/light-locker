@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-06 18:24+0200\n"
-"PO-Revision-Date: 2006-02-06 18:33+0200\n"
+"POT-Creation-Date: 2006-02-23 01:40+0200\n"
+"PO-Revision-Date: 2006-02-23 01:41+0200\n"
 "Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -25,28 +25,24 @@ msgid "Set your screensaver preferences"
 msgstr "Nurodykite ekrano užsklandos nustatymus"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
-msgid "    "
-msgstr "    "
-
-#: ../data/gnome-screensaver-preferences.glade.h:2
-msgid "<b>_Screensaver</b>"
-msgstr "<b>_Ekrano užsklanda</b>"
-
-#: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "Screensaver Preferences"
 msgstr "Ekrano užsklandos nustatymai"
 
-#: ../data/gnome-screensaver-preferences.glade.h:4
+#: ../data/gnome-screensaver-preferences.glade.h:2
 msgid "Set session as _idle after:"
 msgstr "Padaryt_i sesiją neveiklia po:"
 
-#: ../data/gnome-screensaver-preferences.glade.h:5
+#: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "_Activate screensaver when session is idle"
 msgstr "_Aktyvuoti ekrano užsklandą, kai sesija neveikli"
 
-#: ../data/gnome-screensaver-preferences.glade.h:6
+#: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "_Lock screen when screensaver is active"
 msgstr "_Užrakinti ekraną, kai aktyvuota ekrano užsklanda"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "_Screensaver"
+msgstr "_Ekrano užsklanda"
 
 #: ../data/gnome-screensaver.directory.in.h:1
 #: ../data/gnome-screensaver.schemas.in.h:8
@@ -171,8 +167,7 @@ msgstr ""
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
-msgstr ""
-"Neveiklumo trukmė minutėmis iki tol, kol sesija nelaikoma neveiklia."
+msgstr "Neveiklumo trukmė minutėmis iki tol, kol sesija nelaikoma neveiklia."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
@@ -187,9 +182,9 @@ msgid ""
 "activation."
 msgstr ""
 "Ekrano užsklandos naudojamas pasirinkimo režimas. Gali būti „blank-only“, "
-"kai norima įjungti ekrano užsklandą nenaudojant jokios temos, „single“, "
-"kai norima įjungti ekrano užsklandą naudojant tik vieną temą (nurodytą "
-"„themes“ rakte), ir „random“, kai norima įjungti ekrano užsklandą naudojant "
+"kai norima įjungti ekrano užsklandą nenaudojant jokios temos, „single“, kai "
+"norima įjungti ekrano užsklandą naudojant tik vieną temą (nurodytą „themes“ "
+"rakte), ir „random“, kai norima įjungti ekrano užsklandą naudojant "
 "atsitiktinę temą."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
@@ -200,9 +195,9 @@ msgid ""
 "\" is \"random\"."
 msgstr ""
 "Šiame rakte nurodoma ekrano užsklandos naudojamų temų sąrašas. Jo nepaisoma, "
-"kai rakto „mode“ reikšmė yra „blank-only“; kai rakto „mode“ reikšmė "
-"yra „single“, reikia nurodyti vieną temos pavadinimą, kai rakto „mode“ "
-"reikšmė yra „random“, reikia nurodyti temų sąrašą."
+"kai rakto „mode“ reikšmė yra „blank-only“; kai rakto „mode“ reikšmė yra "
+"„single“, reikia nurodyti vieną temos pavadinimą, kai rakto „mode“ reikšmė "
+"yra „random“, reikia nurodyti temų sąrašą."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid "Time before activation"
@@ -306,16 +301,16 @@ msgstr "PLOTISxAUKŠTIS+X+Y"
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1230
+#: ../savers/floaters.c:1228
 msgid "image - floats images around the screen"
 msgstr "image - ekrane plaukioja paveikslėlis"
 
-#: ../savers/floaters.c:1240
+#: ../savers/floaters.c:1238
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Norėdami daugiau informacijos, žr. --help.\n"
 
-#: ../savers/floaters.c:1249
+#: ../savers/floaters.c:1247
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
 "Turite nurodyti bent vieną paveikslėlį. Norėdami sužinoti kaip naudotis, žr. "
@@ -536,8 +531,8 @@ msgid ""
 "You do not seem to have authentication needed be for this operation.  "
 "Perhaps your .Xauthority file is not set up correctly."
 msgstr ""
-"Panašu, kad Jūs neturite šiai operacijai reikalingos autentikacijos rinkmenos. "
-"Galbūt neteisingai sukonfigūruota Jūsų .Xauthority rinkmena."
+"Panašu, kad Jūs neturite šiai operacijai reikalingos autentikacijos "
+"rinkmenos. Galbūt neteisingai sukonfigūruota Jūsų .Xauthority rinkmena."
 
 #: ../src/cut-n-paste/gdmcomm.c:505
 msgid "Too many messages were sent to gdm and it hung upon us."
@@ -684,23 +679,23 @@ msgstr "Komanda vykdoma paspaudus atsijungimo mygtuką"
 msgid "Show the switch user button"
 msgstr "Rodyti naudotojo perjungimo mygtuką"
 
-#: ../src/gnome-screensaver-preferences.c:417
+#: ../src/gnome-screensaver-preferences.c:431
 msgid "Blank screen"
 msgstr "Tuščias ekranas"
 
-#: ../src/gnome-screensaver-preferences.c:423
+#: ../src/gnome-screensaver-preferences.c:437
 msgid "Random"
 msgstr "Atsitiktinė"
 
-#: ../src/gnome-screensaver-preferences.c:712
+#: ../src/gnome-screensaver-preferences.c:726
 msgid "Invalid screensaver theme"
 msgstr "Netinkama ekrano užsklandos tema"
 
-#: ../src/gnome-screensaver-preferences.c:715
+#: ../src/gnome-screensaver-preferences.c:729
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Panašu, kad ši rinkmena nėra tinkama ekrano užsklandos tema."
 
-#: ../src/gnome-screensaver-preferences.c:832
+#: ../src/gnome-screensaver-preferences.c:846
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -708,7 +703,7 @@ msgstr[0] "%d valanda"
 msgstr[1] "%d valandos"
 msgstr[2] "%d valandų"
 
-#: ../src/gnome-screensaver-preferences.c:835
+#: ../src/gnome-screensaver-preferences.c:849
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -716,7 +711,7 @@ msgstr[0] "%d minutė"
 msgstr[1] "%d minutės"
 msgstr[2] "%d minučių"
 
-#: ../src/gnome-screensaver-preferences.c:838
+#: ../src/gnome-screensaver-preferences.c:852
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -725,15 +720,15 @@ msgstr[1] "%d sekundės"
 msgstr[2] "%d sekundžių"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:844
+#: ../src/gnome-screensaver-preferences.c:858
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:847
-#: ../src/gnome-screensaver-preferences.c:855
+#: ../src/gnome-screensaver-preferences.c:861
+#: ../src/gnome-screensaver-preferences.c:869
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -741,27 +736,27 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:850
-#: ../src/gnome-screensaver-preferences.c:858
-#: ../src/gnome-screensaver-preferences.c:862
+#: ../src/gnome-screensaver-preferences.c:864
+#: ../src/gnome-screensaver-preferences.c:872
+#: ../src/gnome-screensaver-preferences.c:876
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:865
+#: ../src/gnome-screensaver-preferences.c:879
 msgid "0 seconds"
 msgstr "0 sekundžių"
 
-#: ../src/gnome-screensaver-preferences.c:880
+#: ../src/gnome-screensaver-preferences.c:894
 msgid "Never"
 msgstr "Niekada"
 
-#: ../src/gnome-screensaver-preferences.c:1026
+#: ../src/gnome-screensaver-preferences.c:1040
 msgid "Could not load the main interface"
 msgstr "Nepavyko įkelti pagrindinės sąsajos"
 
-#: ../src/gnome-screensaver-preferences.c:1028
+#: ../src/gnome-screensaver-preferences.c:1042
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Įsitikinkite, kad ekrano užsklanda yra tinkamai įdiegta"
 
@@ -773,15 +768,15 @@ msgstr "Netapti demonu"
 msgid "Enable debugging code"
 msgstr "Įjungti derinimo kodą"
 
-#: ../src/gs-listener-dbus.c:1188
+#: ../src/gs-listener-dbus.c:1218
 msgid "failed to register with the message bus"
 msgstr "nepavyko prisiregistruoti prie pranešimų prievado"
 
-#: ../src/gs-listener-dbus.c:1198
+#: ../src/gs-listener-dbus.c:1228
 msgid "not connected to the message bus"
 msgstr "neprisijungta prie pranešimų prievado"
 
-#: ../src/gs-listener-dbus.c:1207
+#: ../src/gs-listener-dbus.c:1237
 msgid "screensaver already running in this session"
 msgstr "šioje sesijoje jau paleista ekrano užsklanda"
 
@@ -809,20 +804,22 @@ msgstr "_Atrakinti"
 msgid "_Switch User..."
 msgstr "_Pakeisti naudotoją..."
 
-#: ../src/gs-lock-plug.c:1501
+#. Translators: this is "username on hostname".  You
+#. can translate this to "%s@%s" if it is otherwise tricky
+#. for your language.
+#: ../src/gs-lock-plug.c:1366
+#, c-format
+msgid "%s on %s"
+msgstr "%s@%s"
+
+#: ../src/gs-lock-plug.c:1516
 msgid "_Password:"
 msgstr "_Slaptažodis:"
 
-#: ../src/gs-lock-plug.c:1568
+#: ../src/gs-lock-plug.c:1590
 msgid "S_witch to user:"
 msgstr "P_ersijungti į naudotoją:"
 
-#: ../src/gs-lock-plug.c:1615
+#: ../src/gs-lock-plug.c:1637
 msgid "Log _Out"
 msgstr "At_sijungti"
-
-#~ msgid "_Activate after:"
-#~ msgstr "_Aktyvuoti po:"
-
-#~ msgid "Disabled"
-#~ msgstr "Išjungta"
