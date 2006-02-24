@@ -1,3 +1,8 @@
+2006-02-24  William Jon McCann  <mccann@jhu.edu>
+
+	* data/gnome-screensaver-preferences.glade:  Reverted
+	part of last patch since it changes a string.
+
 2006-02-15  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* data/gnome-screensaver-preferences.glade:  Small HIG fixes
