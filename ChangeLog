@@ -1,3 +1,8 @@
+2006-02-15  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* data/gnome-screensaver-preferences.glade:  Small HIG fixes
+	for recent layout changes.  Fixes #331330
+	
 2006-02-24  William Jon McCann  <mccann@jhu.edu>
 
 	* doc/DBUS-API.txt: 

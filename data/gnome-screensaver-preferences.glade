@@ -85,12 +85,12 @@
 		<widget class="GtkVBox" id="vbox8">
 		  <property name="visible">True</property>
 		  <property name="homogeneous">False</property>
-		  <property name="spacing">12</property>
+		  <property name="spacing">6</property>
 
 		  <child>
 		    <widget class="GtkLabel" id="savers_label">
 		      <property name="visible">True</property>
-		      <property name="label" translatable="yes">_Screensaver</property>
+		      <property name="label" translatable="yes">_Screensaver:</property>
 		      <property name="use_underline">True</property>
 		      <property name="use_markup">True</property>
 		      <property name="justify">GTK_JUSTIFY_LEFT</property>
