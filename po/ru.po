@@ -1,7 +1,6 @@
-# translation of ru.po to
-# Russian translation of PACKAGE.
-# Copyright (C) 2006 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Russian translation of gnome-screensaver.
+# Copyright (C) 2006 Free Software Foundation
+# This file is distributed under the same license as the gnome-screensaver package.
 #
 # Sergio Kvantos <kvantos@plotinka.ru>, 2006.
 # Leonid Kanter <leon@asplinux.ru>, 2006.
@@ -10,7 +9,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-23 18:11+0200\n"
-"PO-Revision-Date: 2006-02-23 18:14+0200\n"
+"PO-Revision-Date: 2006-02-24 11:27+0200\n"
 "Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
 "Language-Team:  <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +32,7 @@ msgstr "Параметры хранителя экрана"
 
 #: ../data/gnome-screensaver-preferences.glade.h:2
 msgid "Set session as _idle after:"
-msgstr ""
+msgstr "Считать сеанс _неактивным через:"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "_Activate screensaver when session is idle"
@@ -58,7 +57,7 @@ msgstr "Хранители экрана"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
 msgid "Activate when idle"
-msgstr ""
+msgstr "Активировать при простое"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
 msgid "Allow logout"
@@ -167,16 +166,14 @@ msgstr ""
 "монитора будет отключено."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
-#, fuzzy
 msgid "The number of minutes of inactivity before the session is considered idle."
-msgstr "Количество минут простоя системы до активации хранителя экрана."
+msgstr "Интервал неактивности, по истечении которого сеанс считается простаивающим."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "Интервал между сменами тем хранителя экрана."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
-#, fuzzy
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
