@@ -1,5 +1,13 @@
 2006-02-24  William Jon McCann  <mccann@jhu.edu>
 
+	* doc/DBUS-API.txt: 
+	* src/gnome-screensaver-command.c (do_command): 
+	* src/gs-listener-dbus.c (listener_dbus_filter_handle_methods):
+	Capitalize action method names to be consistent with
+	all other DBUS methods.
+
+2006-02-24  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (create_page_one): 
 	Use black bullet as entry instead of default '*'.
 	Fixes #332053.

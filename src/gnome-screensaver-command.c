@@ -183,7 +183,7 @@ do_command (DBusConnection *connection)
         DBusMessage *reply;
 
         if (do_quit) {
-                reply = screensaver_send_message_void (connection, "quit", FALSE);
+                reply = screensaver_send_message_void (connection, "Quit", FALSE);
                 goto done;
         }
 
@@ -205,15 +205,15 @@ do_command (DBusConnection *connection)
         }
 
         if (do_lock) {
-                reply = screensaver_send_message_void (connection, "lock", FALSE);
+                reply = screensaver_send_message_void (connection, "Lock", FALSE);
         }
 
         if (do_cycle) {
-                reply = screensaver_send_message_void (connection, "cycle", FALSE);
+                reply = screensaver_send_message_void (connection, "Cycle", FALSE);
         }
 
         if (do_poke) {
-                reply = screensaver_send_message_void (connection, "poke", FALSE);
+                reply = screensaver_send_message_void (connection, "Poke", FALSE);
         }
 
         if (do_activate) {

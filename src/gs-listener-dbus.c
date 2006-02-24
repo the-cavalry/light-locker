@@ -853,15 +853,15 @@ listener_dbus_filter_handle_methods (DBusConnection *connection,
         g_return_val_if_fail (connection != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
         g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
 
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "lock")) {
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Lock")) {
                 g_signal_emit (listener, signals [LOCK], 0);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "quit")) {
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Quit")) {
                 g_signal_emit (listener, signals [QUIT], 0);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "cycle")) {
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Cycle")) {
                 g_signal_emit (listener, signals [CYCLE], 0);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
@@ -892,10 +892,11 @@ listener_dbus_filter_handle_methods (DBusConnection *connection,
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getThrottleEnabled")) {
                 return listener_get_property (listener, connection, message, PROP_THROTTLE_ENABLED);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "poke")) {
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Poke")) {
                 g_signal_emit (listener, signals [POKE], 0);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
+
         return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
 }
 

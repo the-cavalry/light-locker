@@ -17,16 +17,21 @@ DBUS Interface:                 "org.gnome.ScreenSaver"
 Methods
 =======
 
-        Name:           lock
+        Name:           Lock
         Args:           (none)
         Returns:        (nothing)
         Description:    Request that the screen be locked
 
-        Name:           cycle
+        Name:           Cycle
         Args:           (none)
         Returns:        (nothing)
         Description:    Request that the screen saver theme be restarted
                         and if applicable switch to the next one in the list.
+
+        Name:           Poke
+        Args:           (none)
+        Returns:        (nothing)
+        Description:    Simulate user activity.
 
         Name:           InhibitActivation
         Args:           DBUS_TYPE_STRING reason
