@@ -1,3 +1,9 @@
+2006-02-24  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c (create_page_one): 
+	Use black bullet as entry instead of default '*'.
+	Fixes #332053.
+	
 2006-02-21  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-manager.c (manager_cycle_jobs, manager_throttle_jobs) 
