@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-16 14:16+0100\n"
-"PO-Revision-Date: 2006-02-16 14:37+0100\n"
+"PO-Revision-Date: 2006-02-25 10:22+0100\n"
 "Last-Translator: Luca Ferretti <elle.uca@libero.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -30,15 +30,15 @@ msgstr "Preferenze del salvaschermo"
 
 #: ../data/gnome-screensaver-preferences.glade.h:2
 msgid "Set session as _idle after:"
-msgstr "Impostare la sessione come in _pausa dopo:"
+msgstr "I_mpostare la sessione come inattiva dopo:"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "_Activate screensaver when session is idle"
-msgstr "_Attivare il salvaschermo quando la sessione è in pausa"
+msgstr "_Avviare il salvaschermo quando la sessione è inattiva"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "_Lock screen when screensaver is active"
-msgstr "_Bloccare lo schermo quando il salvaschermo è attivo"
+msgstr "_Bloccare lo schermo quando il salvaschermo viene avviato"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "_Screensaver"
@@ -55,7 +55,7 @@ msgstr "Salvaschermo"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
 msgid "Activate when idle"
-msgstr "Attivare quando in pausa"
+msgstr "Attivare quando inattiva"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
 msgid "Allow logout"
@@ -83,44 +83,35 @@ msgstr "Modalità selezione tema salvaschermo"
 
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr "Impostare a VERO per attivare il salvaschermo quando la sessione è in pausa."
+msgstr "Impostare a TRUE per attivare il salvaschermo quando la sessione è inattiva."
 
 # non è detto che lo spenga direttamente, no? -Luca
 #: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Set this to TRUE to allow the screensaver to power down the monitor."
-msgstr "Impostare a VERO per consentire al salvaschermo di ridurre il consumo energetico del monitor."
+msgstr "Impostare a TRUE per consentire al salvaschermo di ridurre il consumo energetico del monitor."
 
 #: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr "Impostare a VERO per bloccare lo schermo quando il salvaschermo viene attivato."
+msgstr "Impostare a TRUE per bloccare lo schermo quando il salvaschermo viene attivato."
 
 #: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
-msgstr ""
-"Impostare a VERO per fornire un'opzione nel dialogo di sblocco con cui "
-"passare ad un diverso account utente."
+msgstr "Impostare a TRUE per fornire un'opzione nel dialogo di sblocco con cui passare ad un diverso account utente."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
-msgstr ""
-"Impostare a VERO per fornire un'opzione nel dialogo di sblocco per poter "
-"effettuare il logout dopo un certo intervallo di tempo. Tale intervallo è "
-"specificato nella chiave \"logout_delay\"."
+msgstr "Impostare a TRUE per fornire un'opzione nel dialogo di sblocco per poter effettuare il logout dopo un certo intervallo di tempo. Tale intervallo è specificato nella chiave \"logout_delay\"."
 
 #: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
-msgstr ""
-"Il comando da invocare quando si fa clic sul pulsante di logout. Questo "
-"comando dovrebbe semplicemente disconnettere l'utente senza alcuna "
-"interazione. Questa chiave ha effetto solo se la chiave \"logout_enable\" è "
-"impostata a VERO."
+msgstr "Il comando da invocare quando si fa clic sul pulsante di logout. Questo comando dovrebbe semplicemente disconnettere l'utente senza alcuna interazione. Questa chiave ha effetto solo se la chiave \"logout_enable\" è impostata a TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
@@ -134,10 +125,7 @@ msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
-msgstr ""
-"Il numero di minuti dopo l'attivazione del salvaschermo prima che appaia una "
-"opzione per il logout nel dialogo di sblocco. Questa chiave ha effetto solo "
-"se la chiave \"logout_enable\" è impostata a VERO."
+msgstr "Il numero di minuti dopo l'attivazione del salvaschermo prima che appaia una opzione per il logout nel dialogo di sblocco. Questa chiave ha effetto solo se la chiave \"logout_enable\" è impostata a TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
@@ -151,9 +139,7 @@ msgstr ""
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into suspend power mode."
-msgstr ""
-"Il numero di minuti dopo l'attivazione del salvaschermo prima che il monitor "
-"entri nella modalità energetica suspend."
+msgstr "Il numero di minuti dopo l'attivazione del salvaschermo prima che il monitor entri nella modalità energetica sospensione."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
@@ -166,7 +152,7 @@ msgstr ""
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
-msgstr "Il numero di minuti di inattività prima che la sessione sia considerata in pausa."
+msgstr "Il numero di minuti di senza attività prima che la sessione sia considerata inattiva."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
@@ -301,13 +287,11 @@ msgstr "IMMAGINE - fa fluttuare immagini sullo schermo"
 #: ../savers/floaters.c:1240
 #, c-format
 msgid "%s. See --help for usage information.\n"
-msgstr "%s. Provare --help per informazioni sull'uso.\n"
+msgstr "%s. Usare --help per informazioni sull'uso.\n"
 
 #: ../savers/floaters.c:1249
 msgid "You must specify one image.  See --help for usage information.\n"
-msgstr ""
-"È necessario specificare una immagine. Provare --help per informazioni "
-"sull'uso.\n"
+msgstr "È necessario specificare una immagine. Usare --help per informazioni sull'uso.\n"
 
 #: ../savers/slideshow.c:47
 msgid "Location to get images from"
@@ -363,15 +347,15 @@ msgstr "Annidato"
 
 #: ../src/cut-n-paste/fusa-display.c:149
 msgid "Whether or not this display is a windowed (Xnest) display."
-msgstr "Indisa se questo display è un display in finestra (Xnest) oppure no."
+msgstr "Indica se questo display è un display in finestra (Xnest) oppure no."
 
 #: ../src/cut-n-paste/fusa-manager.c:1263
 msgid "The display manager could not be contacted for unknown reasons."
-msgstr "Non è possibile contattare il display manager per motivi sconosciuti."
+msgstr "Non è possibile contattare il gestore di display per motivi sconosciuti."
 
 #: ../src/cut-n-paste/fusa-manager.c:1270
 msgid "The display manager is not running or too old."
-msgstr "Il display manager non è in esecuzione, oppure è obsoleto."
+msgstr "Il gestore di display non è in esecuzione, oppure è obsoleto."
 
 #: ../src/cut-n-paste/fusa-manager.c:1273
 msgid "The configured limit of flexible servers has been reached."
@@ -403,9 +387,7 @@ msgstr "Non è possibile trovare il server X nella configurazione di GDM."
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
-msgstr ""
-"Tentativo di impostare una azione di logout sconosciuto, o tentativo ci "
-"impostare una azione di logout che non disponibile."
+msgstr "Tentativo di impostare una azione sconosciuta o non disponibile per il logout."
 
 #: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
@@ -421,19 +403,17 @@ msgstr "Tentativo di aggiornare una chiave di configurazione non supportata."
 
 #: ../src/cut-n-paste/fusa-manager.c:1303
 msgid "~/.Xauthority file badly configured or missing."
-msgstr "File ~/.Xauthority configurato in modo errato o mancante."
+msgstr "File ~/.Xauthority mancante o configurato in modo errato."
 
 # terminazione ???? -Luca
 #: ../src/cut-n-paste/fusa-manager.c:1306
 #, fuzzy
 msgid "Too many messages were sent to the display manager, and it hung up."
-msgstr ""
-"Sono stati inviati troppi messaggi al display manager, causandone la "
-"terminazione."
+msgstr "Sono stati inviati troppi messaggi al gestore di display, causandone la terminazione."
 
 #: ../src/cut-n-paste/fusa-manager.c:1310
 msgid "The display manager sent an unknown error message."
-msgstr "Il display manager ha inviato un messaggio d'errore sconosciuto."
+msgstr "Il gestore di display ha inviato un messaggio d'errore sconosciuto."
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:165
 msgid "The user this menu item represents."
@@ -472,9 +452,7 @@ msgstr ""
 msgid ""
 "If you still wish to use this feature, either start GDM yourself or ask your "
 "system administrator to start GDM."
-msgstr ""
-"Se si desidera usare questa funzionalità, avviare GDM o domandare "
-"all'amministratore di avviarlo."
+msgstr "Se si desidera usare questa funzionalità, avviare GDM o chiedere all'amministratore di avviarlo."
 
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:441
@@ -504,7 +482,7 @@ msgstr "Si sono verificati degli errori tentando di avviare il server X."
 #   -Luca
 #: ../src/cut-n-paste/gdmcomm.c:473
 msgid "The X server failed.  Perhaps it is not configured well."
-msgstr "Il server X ha fallito. Forse non è ben configurato."
+msgstr "Il server X ha fallito l'avvio. Forse non è ben configurato."
 
 #: ../src/cut-n-paste/gdmcomm.c:476
 msgid "Too many X sessions running."
@@ -651,11 +629,11 @@ msgstr "Se il salvaschermo è attivo lo disattiva (unblanking dello schermo)"
 
 #: ../src/gnome-screensaver-command.c:71
 msgid "Disable running graphical themes while blanked"
-msgstr "Disabilita l'esecuzione di temi grafici quando in black"
+msgstr "Disabilita l'esecuzione di temi grafici quando in blanking"
 
 #: ../src/gnome-screensaver-command.c:73
 msgid "Enable running graphical themes while blanked (if applicable)"
-msgstr "Abilita l'esecuzione di temi grafici quando in black (se applicabile)"
+msgstr "Abilita l'esecuzione di temi grafici quando in blanking (se applicabile)"
 
 #: ../src/gnome-screensaver-command.c:75
 msgid "Poke the running screensaver to simulate user activity"
@@ -710,7 +688,7 @@ msgstr "Tema di salvaschermo non valido"
 
 #: ../src/gnome-screensaver-preferences.c:729
 msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Questo file non sembra essere un theme di salvaschermo valido."
+msgstr "Questo file non sembra essere un tema di salvaschermo valido."
 
 #: ../src/gnome-screensaver-preferences.c:846
 #, c-format
@@ -776,7 +754,7 @@ msgstr "Assicurarsi che il salvaschermo sia installato in modo corretto"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
-msgstr "Non diventare un daemon"
+msgstr "Non diventare un demone"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
