@@ -1,3 +1,9 @@
+2006-02-27  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gnome-screensaver-preferences.c (setup_treeview_selection) 
+	(key_changed_cb): Monitor theme gconf key changes.
+	Fixes #332750
+
 2006-02-24  William Jon McCann  <mccann@jhu.edu>
 
 	* data/gnome-screensaver-preferences.glade:  Reverted

@@ -54,10 +54,6 @@
 #define KEY_ACTIVATE_DELAY  KEY_DIR "/idle_delay"
 #define KEY_LOCK_DELAY      KEY_DIR "/lock_delay"
 #define KEY_CYCLE_DELAY     KEY_DIR "/cycle_delay"
-#define KEY_DPMS_ENABLED    KEY_DIR "/dpms_enabled"
-#define KEY_DPMS_STANDBY    KEY_DIR "/dpms_standby"
-#define KEY_DPMS_SUSPEND    KEY_DIR "/dpms_suspend"
-#define KEY_DPMS_OFF        KEY_DIR "/dpms_off"
 #define KEY_THEMES          KEY_DIR "/themes"
 
 enum {
@@ -625,8 +621,9 @@ setup_treeview_selection (GtkWidget *tree)
 
         theme = config_get_theme (&is_writable);
 
-        if (! is_writable)
+        if (! is_writable) {
                 gtk_widget_set_sensitive (tree, FALSE);
+        }
 
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (tree));
 
@@ -969,8 +966,9 @@ key_changed_cb (GConfClient *client,
 
         key = gconf_entry_get_key (entry);
 
-        if (! g_str_has_prefix (key, KEY_DIR))
+        if (! g_str_has_prefix (key, KEY_DIR)) {
                 return;
+        }
 
         value = gconf_entry_get_value (entry);
 
@@ -991,6 +989,15 @@ key_changed_cb (GConfClient *client,
                         enabled = gconf_value_get_bool (value);
 
                         ui_set_lock (enabled);
+                } else {
+                        invalid_type_warning (key);
+                }
+        } else if (strcmp (key, KEY_THEMES) == 0) {
+                if (value->type == GCONF_VALUE_LIST) {
+                        GtkWidget *treeview;
+
+                        treeview = glade_xml_get_widget (xml, "savers_treeview");
+                        setup_treeview_selection (treeview);
                 } else {
                         invalid_type_warning (key);
                 }
