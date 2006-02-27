@@ -1,4 +1,40 @@
 ===============
+Version 2.13.92
+===============
+
+  gnome-screensaver
+
+        * Fix problems when some other program has keyboard grabbed
+        * Add a pkg-config file for out of tree themes
+        * Use a black bullet character instead of * for password entry
+        * Capitalize DBUS method names that weren't already
+
+  gnome-screensaver-preferences
+
+        * Track gconf key changes for themes
+
+  Translators
+
+        * Kostas Papadimas (el)
+        * Francisco Javier F. Serrador (es)
+        * Ilkka Tuohela (fi)
+        * Ignacio Casal Quinteiro (gl)
+        * Ankit Patel (gu)
+        * Gabor Kelemen (hu)
+        * Luca Ferretti (it)
+        * Satoru SATOH (ja)
+        * Vladimer SIchinava (ka)
+        * Hyun-Jin Moon (ko)
+        * Å½ygimantas BeruÄka (lt)
+        * Kjartan Maraas (nb)
+        * Tino Meinen (nl)
+        * Kjartan Maraas (no)
+        * Raphael Higino (pt_BR)
+        * Leonid Kanter (ru)
+        * Theppitak Karoonboonyanan (th)
+        * Clytie Siddall (vi)
+
+===============
 Version 2.13.91
 ===============
 

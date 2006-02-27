@@ -1,3 +1,9 @@
+==== 2.13.92 ====
+
+2006-02-27  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 2.13.92 release
+
 2006-02-27  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-preferences.c (setup_treeview_selection) 
