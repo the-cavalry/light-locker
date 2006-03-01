@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-10 08:19+0100\n"
-"PO-Revision-Date: 2006-02-07 12:30+0100\n"
+"POT-Creation-Date: 2006-03-01 01:23+0100\n"
+"PO-Revision-Date: 2006-03-01 01:26+0100\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.net>\n"
 "MIME-Version: 1.0\n"
@@ -29,28 +29,24 @@ msgid "Set your screensaver preferences"
 msgstr "Establiu les preferències de l'estalvi de pantalla"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
-msgid "    "
-msgstr "    "
-
-#: ../data/gnome-screensaver-preferences.glade.h:2
-msgid "<b>_Screensaver</b>"
-msgstr "<b>_Estalvi de pantalla</b>"
-
-#: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "Screensaver Preferences"
 msgstr "Preferències de l'estalvi de pantalla"
 
-#: ../data/gnome-screensaver-preferences.glade.h:4
+#: ../data/gnome-screensaver-preferences.glade.h:2
 msgid "Set session as _idle after:"
 msgstr "Establiu la sessió com a _inactiva després de:"
 
-#: ../data/gnome-screensaver-preferences.glade.h:5
+#: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "_Activate screensaver when session is idle"
 msgstr "_Activa l'estalvi de pantalla quan la sessió estigui inactiva"
 
-#: ../data/gnome-screensaver-preferences.glade.h:6
+#: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "_Lock screen when screensaver is active"
-msgstr "B_loca la pantalla quan l'estalvi de pantalla estigui actiu"
+msgstr "_Bloca la pantalla quan l'estalvi de pantalla estigui actiu"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "_Screensaver"
+msgstr "_Estalvi de pantalla"
 
 #: ../data/gnome-screensaver.directory.in.h:1
 #: ../data/gnome-screensaver.schemas.in.h:8
@@ -198,10 +194,9 @@ msgid ""
 msgstr ""
 "El mode de selecció utilitzat per l'estalvi de pantalla. Podria ser «blank-"
 "only» per habilitar l'estalvi de pantalla sense utilitzar cap tema en "
-"l'activació, \"single\" per habilitar que l'estalvi de pantalla utilitzi "
-"només un tema en activar-se (especificat en la clau «themes»), i «random» "
-"per habilitar que l'estalvi de pantalla utilitzi un tema aleatori en activar-"
-"se."
+"l'activació, «single» per habilitar que l'estalvi de pantalla utilitzi només "
+"un tema en activar-se (especificat en la clau «themes»), i «random» per "
+"habilitar que l'estalvi de pantalla utilitzi un tema aleatori en activar-se."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid ""
@@ -269,7 +264,7 @@ msgstr "Carpeta d'imatges"
 
 #: ../savers/popsquares.desktop.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
-msgstr "Una xarxa de colors de pulsació a l'estil pop-art."
+msgstr "Una xarxa de colors de pulsació d'estil pop-art."
 
 #: ../savers/popsquares.desktop.in.h:2
 msgid "Pop art squares"
@@ -317,19 +312,19 @@ msgstr "AMPLADAxALÇADA+X+Y"
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1230
+#: ../savers/floaters.c:1228
 msgid "image - floats images around the screen"
 msgstr "imatge - fa flotar imatges per la pantalla"
 
-#: ../savers/floaters.c:1240
+#: ../savers/floaters.c:1238
 #, c-format
 msgid "%s. See --help for usage information.\n"
-msgstr "%s. Vegeu --help per a informació quan a l'ús.\n"
+msgstr "%s. Vegeu --help per a informació quant a l'ús.\n"
 
-#: ../savers/floaters.c:1249
+#: ../savers/floaters.c:1247
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
-"Heu d'indicar una imatge. Vegeu --Ajuda per a informació quan a l'ús.\n"
+"Heu d'indicar una imatge. Vegeu --Ajuda per a informació quant a l'ús.\n"
 
 #: ../savers/slideshow.c:47
 msgid "Location to get images from"
@@ -709,37 +704,37 @@ msgstr "Ordre per invocar des del botó de sortir"
 msgid "Show the switch user button"
 msgstr "Mostra el botó de canvi d'usuari"
 
-#: ../src/gnome-screensaver-preferences.c:417
+#: ../src/gnome-screensaver-preferences.c:427
 msgid "Blank screen"
 msgstr "Pantalla en negre"
 
-#: ../src/gnome-screensaver-preferences.c:423
+#: ../src/gnome-screensaver-preferences.c:433
 msgid "Random"
 msgstr "Aleatori"
 
-#: ../src/gnome-screensaver-preferences.c:712
+#: ../src/gnome-screensaver-preferences.c:723
 msgid "Invalid screensaver theme"
 msgstr "Tema de l'estalvi de pantalla invàlid"
 
-#: ../src/gnome-screensaver-preferences.c:715
+#: ../src/gnome-screensaver-preferences.c:726
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Aquest fitxer no sembla que sigui un tema d'estalvi de pantalla vàlid."
 
-#: ../src/gnome-screensaver-preferences.c:832
+#: ../src/gnome-screensaver-preferences.c:843
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d hora"
 msgstr[1] "%d hores"
 
-#: ../src/gnome-screensaver-preferences.c:835
+#: ../src/gnome-screensaver-preferences.c:846
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minut"
 msgstr[1] "%d minuts"
 
-#: ../src/gnome-screensaver-preferences.c:838
+#: ../src/gnome-screensaver-preferences.c:849
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -747,15 +742,15 @@ msgstr[0] "%d segon"
 msgstr[1] "%d segons"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:844
+#: ../src/gnome-screensaver-preferences.c:855
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:847
-#: ../src/gnome-screensaver-preferences.c:855
+#: ../src/gnome-screensaver-preferences.c:858
+#: ../src/gnome-screensaver-preferences.c:866
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -763,27 +758,27 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:850
-#: ../src/gnome-screensaver-preferences.c:858
-#: ../src/gnome-screensaver-preferences.c:862
+#: ../src/gnome-screensaver-preferences.c:861
+#: ../src/gnome-screensaver-preferences.c:869
+#: ../src/gnome-screensaver-preferences.c:873
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:865
+#: ../src/gnome-screensaver-preferences.c:876
 msgid "0 seconds"
 msgstr "0 segons"
 
-#: ../src/gnome-screensaver-preferences.c:880
+#: ../src/gnome-screensaver-preferences.c:891
 msgid "Never"
 msgstr "Mai"
 
-#: ../src/gnome-screensaver-preferences.c:1026
+#: ../src/gnome-screensaver-preferences.c:1047
 msgid "Could not load the main interface"
 msgstr "No s'ha pogut carregar la interfície principal"
 
-#: ../src/gnome-screensaver-preferences.c:1028
+#: ../src/gnome-screensaver-preferences.c:1049
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Assegureu-vos que l'estalvi de pantalla estigui ben instal·lat"
 
@@ -795,15 +790,15 @@ msgstr "No esdevinguis un dimoni"
 msgid "Enable debugging code"
 msgstr "Habilita el codi de depuració"
 
-#: ../src/gs-listener-dbus.c:1188
+#: ../src/gs-listener-dbus.c:1219
 msgid "failed to register with the message bus"
 msgstr "no s'ha pogut registrar en el bus de missatges"
 
-#: ../src/gs-listener-dbus.c:1198
+#: ../src/gs-listener-dbus.c:1229
 msgid "not connected to the message bus"
 msgstr "no s'ha pogut connectar al bus de missatges"
 
-#: ../src/gs-listener-dbus.c:1207
+#: ../src/gs-listener-dbus.c:1238
 msgid "screensaver already running in this session"
 msgstr "l'estalvi de pantalla ja està funcionant en aquesta sessió"
 
@@ -831,17 +826,31 @@ msgstr "_Desbloca"
 msgid "_Switch User..."
 msgstr "Canvia d'_usuari..."
 
-#: ../src/gs-lock-plug.c:1501
+#. Translators: this is "username on hostname".  You
+#. can translate this to "%s@%s" if it is otherwise tricky
+#. for your language.
+#: ../src/gs-lock-plug.c:1366
+#, c-format
+msgid "%s on %s"
+msgstr "%s a %s"
+
+#: ../src/gs-lock-plug.c:1517
 msgid "_Password:"
 msgstr "_Contrasenya:"
 
-#: ../src/gs-lock-plug.c:1568
+#: ../src/gs-lock-plug.c:1590
 msgid "S_witch to user:"
 msgstr "Ca_nvia a l'usuari:"
 
-#: ../src/gs-lock-plug.c:1615
+#: ../src/gs-lock-plug.c:1637
 msgid "Log _Out"
 msgstr "_Surt"
+
+#~ msgid "    "
+#~ msgstr "    "
+
+#~ msgid "<b>_Screensaver</b>"
+#~ msgstr "<b>_Estalvi de pantalla</b>"
 
 #~ msgid "_Activate after:"
 #~ msgstr "_Activa al cap de:"
