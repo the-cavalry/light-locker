@@ -1,16 +1,16 @@
-# translation of gnome-screensaver.
+# gnome-screensaver korean translation.
 # Copyright (C) 2006 THE gnome-screensaver'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-screensaver package.
-# Hyun-Jin Moon <moonhyunjin@gmail.com>, 2006.
-# 
+# Young-Ho Cha <ganadist@gmail.com>, 2006.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver 2.13.91\n"
+"Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-19 22:40-0500\n"
-"PO-Revision-Date: 2006-02-19 23:50-0500\n"
-"Last-Translator: Hyun-Jin Moon <moonhyunjin@gmail.com>\n"
-"Language-Team: Korean <gnome.org>\n"
+"POT-Creation-Date: 2006-03-01 22:43+0900\n"
+"PO-Revision-Date: 2006-03-01 22:44+0900\n"
+"Last-Translator: Young-Ho Cha <ganadist@gmail.com>\n"
+"Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,27 +22,27 @@ msgstr "화면 보호기"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:2
 msgid "Set your screensaver preferences"
-msgstr ""
+msgstr "화면보호기를 설정합니다"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
 msgid "Screensaver Preferences"
-msgstr "화면 보호기 설정창"
+msgstr "화면보호기 기본 설정"
 
 #: ../data/gnome-screensaver-preferences.glade.h:2
 msgid "Set session as _idle after:"
-msgstr "화면 보호기 대기 시간"
+msgstr "다음 시간후 세션 정지(_I):"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "_Activate screensaver when session is idle"
-msgstr "아무것도 안할 때 화면 보호기 작동(_A)"
+msgstr "세션이 정지되면 화면 보호기 켜기(_A)"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "_Lock screen when screensaver is active"
-msgstr "화면 보호기가 작동되면 화면 잠그기(_L)"
+msgstr "화면보호기가 켜지면 화면 잠그기(_L)"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "_Screensaver"
-msgstr "화면 보호기"
+msgstr "화면 보호기(_S)"
 
 #: ../data/gnome-screensaver.directory.in.h:1
 #: ../data/gnome-screensaver.schemas.in.h:8
@@ -55,55 +55,59 @@ msgstr "화면 보호기"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
 msgid "Activate when idle"
-msgstr ""
+msgstr "세션이 정지되면 시작"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
 msgid "Allow logout"
-msgstr "로그아웃 허락"
+msgstr "로그아웃 허용"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow monitor power management"
-msgstr "모니터 전원 관리 허락"
+msgstr "모니터 전원 관리 허용"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
-msgstr "사용자 바꾸기를 허락함"
+msgstr "사용자 전환 허용"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
 msgid "Lock on activation"
-msgstr "작동할때 잠그기"
+msgstr "활성화 되면 잠그기"
 
 #: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Logout command"
-msgstr "로그 아웃 명령어"
+msgstr "로그아웃 명령"
 
 #: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Screensaver theme selection mode"
-msgstr "화면 보호기 테마 선택 화면"
+msgstr "화면 보호기 선택 모드"
 
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr ""
+msgstr "세션이 정지될 때 화면보호기를 시작하려면 이 값을 TRUE로 설정하십시오."
 
 #: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Set this to TRUE to allow the screensaver to power down the monitor."
-msgstr ""
+msgstr "화면보호기가 모니터 전원을 끄도록 하려면 이 값을 TRUE로 설정하십시오."
 
 #: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr ""
+msgstr "화면보호기가 켜질 때 화면을 잠그려면 이 값을 TRUE로 설정하십시오."
 
 #: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr ""
+"잠금 풀기 창에서 다른 사용자 계정으로 바꾸는 옵션을 보이려면 이 값을 TRUE로 "
+"설정하십시오."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
 msgstr ""
+"지연 후, 잠금 풀기 창에서 로그아웃 옵션을 제공하려면 이 값을 TRUE로 설정하십"
+"시오. 지연값은 \"logout_delay\" 키로 지정합니다."
 
 #: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
@@ -111,11 +115,14 @@ msgid ""
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
+"로그아웃 단추를 누를 때 실행할 명령. 이 명령은 아무 상호 작용없이 로그아웃 하"
+"도록 합니다. 이 키 값은 \"logout_enable\"키 값이 TRUE로 설정되어 있을 때만 영"
+"향을 끼칩니다."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
-msgstr ""
+msgstr "화면 보호기가 켜진 후 화면이 잠기는데 걸리는 시간(분)."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
@@ -123,33 +130,35 @@ msgid ""
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
+"화면보호기가 켜진 후, 잠금 풀기 창에서 로그아웃 옵션이 나타나기 까지 시간. "
+"이 키는 \"logout_enable\"키가 TRUE로 설정되어 있을 때 만 영향을 끼칩니다."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into standby power mode."
-msgstr ""
+msgstr "화면 보호기가 켜진 후 모니터가 대기 모드로 바뀌는데 걸리는 시간(분)."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into suspend power mode."
-msgstr ""
+msgstr "화면 보호기가 켜진 후 모니터가 잠자기 모드로 바뀌는데 걸리는 시간(분)."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "powers off."
-msgstr ""
+msgstr "화면 보호기가 켜진 후 모니터의 전원을 끄는데 걸리는 시간(분)."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
-msgstr ""
+msgstr "세션이 정지되었다고 판단되는 시간(분)."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
-msgstr ""
+msgstr "화면 보호기 테마가 바뀌기 전 실행 시간(분)."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
@@ -159,6 +168,9 @@ msgid ""
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
 msgstr ""
+"화면 보호기세어 쓸 선택 모드. \"blank-only\"는 테마를 쓰지 않고 화면보호기를 "
+"켭니다. \"single\"은 화면보호기에서 (\"themes\"키에서 지정한) 하나의 테마만 "
+"씁니다. \"random\"은 아무 테마나 써서 화면보호기를 켭니다."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid ""
@@ -167,38 +179,41 @@ msgid ""
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
 msgstr ""
+"화면 보호기에서 쓸 테마 목록이 이 키에 지정됩니다. \"mode\"키가 \"blank-only"
+"\"이면 무시됩니다. \"mode\"키가 \"single\"이면 테마 이름이, \"random\"이면 테"
+"마 목록이 지정됩니다."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid "Time before activation"
-msgstr ""
+msgstr "활성하기 전 시간"
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Time before locking"
-msgstr ""
+msgstr "잠그기 전 시간"
 
 #: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before logout option"
-msgstr ""
+msgstr "로그아웃 옵션 전 시간"
 
 #: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before power off"
-msgstr ""
+msgstr "전원 끄기 전 시간"
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before standby"
-msgstr ""
+msgstr "대기 전 시간"
 
 #: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before suspend"
-msgstr ""
+msgstr "잠자기 전 시간"
 
 #: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before theme change"
-msgstr ""
+msgstr "테마 바뀌기 전 시간"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:1
 msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "그놈 발바닥 로고가 화면을 떠다닙니다."
+msgstr "화면에 그놈 발바닥 로고가 떠다닙니다"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:2
 msgid "Floating Feet"
@@ -210,54 +225,54 @@ msgstr "우주"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:2
 msgid "Display a slideshow of pictures of the cosmos"
-msgstr "우주 사진을 슬라이드쇼로 보여줍니다."
+msgstr "우주 그림의 슬라이드를 보여줍니다"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
-msgstr "사진 폴더를 슬라이드쇼로 보여줍니다."
+msgstr "그림 폴더에 있는 그림의 슬라이드를 보여줍니다"
 
 #: ../savers/personal-slideshow.desktop.in.h:2
 msgid "Pictures folder"
-msgstr "사진 폴더"
+msgstr "그림 폴더"
 
 #: ../savers/popsquares.desktop.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
-msgstr ""
+msgstr "고동치는 색깔의 팝아트 형식 격자 모양."
 
 #: ../savers/popsquares.desktop.in.h:2
 msgid "Pop art squares"
-msgstr "팝 아트 스퀘어"
+msgstr "팝 아트 사각형"
 
 #: ../savers/floaters.c:1165
 msgid "show paths that images follow"
-msgstr ""
+msgstr "다음 그림의 경로를 보입니다"
 
 #: ../savers/floaters.c:1172
 msgid "occasionally rotate images as they move"
-msgstr ""
+msgstr "그림이 움직이면서 때때로 회전하도록 합니다"
 
 #: ../savers/floaters.c:1179
 msgid "print out frame rate and other statistics"
-msgstr ""
+msgstr "프레임 개수와 다른 상태 출력"
 
 #: ../savers/floaters.c:1187
 msgid "the maximum number of images to keep on screen"
-msgstr ""
+msgstr "화면에 나타날 그림의 최대 개수"
 
 #. translators: this should be translated to be symbolic of a generic
 #. * number.  e.g, "the screen saver should keep N images on the screen"
 #.
 #: ../savers/floaters.c:1191
 msgid "N"
-msgstr ""
+msgstr "N"
 
 #: ../savers/floaters.c:1198
 msgid "the source image to use"
-msgstr ""
+msgstr "사용할 원본 그림"
 
 #: ../savers/floaters.c:1205
 msgid "the initial size and position of window"
-msgstr ""
+msgstr "창의 초기 크기와 위치"
 
 #. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
 #. * can be translated, but the 'x' area indicator and '+' offset indicators
@@ -265,47 +280,47 @@ msgstr ""
 #.
 #: ../savers/floaters.c:1210
 msgid "WIDTHxHEIGHT+X+Y"
-msgstr ""
+msgstr "WIDTHxHEIGHT+X+Y"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1230
+#: ../savers/floaters.c:1228
 msgid "image - floats images around the screen"
-msgstr ""
+msgstr "그림 - 화면에 그림을 떠다니게 합니다"
 
-#: ../savers/floaters.c:1240
+#: ../savers/floaters.c:1238
 #, c-format
 msgid "%s. See --help for usage information.\n"
-msgstr ""
+msgstr "%s. 사용법을 보려면 --help를 쓰십시오.\n"
 
-#: ../savers/floaters.c:1249
+#: ../savers/floaters.c:1247
 msgid "You must specify one image.  See --help for usage information.\n"
-msgstr "사진 하나를 선택해야합니다. --help 옵션으로 사용법을 보세요.\n"
+msgstr "그림 하나를 지정해야 합니다. 사용법을 보려면 --help를 쓰십시오.\n"
 
 #: ../savers/slideshow.c:47
 msgid "Location to get images from"
-msgstr ""
+msgstr "그림을 가져오는 경로"
 
 #: ../savers/slideshow.c:47
 msgid "PATH"
-msgstr ""
+msgstr "경로"
 
 #: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
 msgid "Manager"
-msgstr ""
+msgstr "관리자"
 
 #: ../src/cut-n-paste/fusa-display.c:120
 msgid "The manager which owns this object."
-msgstr ""
+msgstr "이 개체를 소유하는 관리자."
 
 #: ../src/cut-n-paste/fusa-display.c:127
 msgid "Name"
-msgstr ""
+msgstr "이름"
 
 #: ../src/cut-n-paste/fusa-display.c:128
 msgid "The name of the X11 display this object refers to."
-msgstr ""
+msgstr "이 개체를 참조하는 X11 화면의 이름."
 
 #: ../src/cut-n-paste/fusa-display.c:134
 #: ../src/cut-n-paste/fusa-user-menu-item.c:164
@@ -314,7 +329,7 @@ msgstr "사용자"
 
 #: ../src/cut-n-paste/fusa-display.c:135
 msgid "The user currently logged in on this virtual terminal."
-msgstr ""
+msgstr "현재 가상터미널에 로그인 된 사용자."
 
 #: ../src/cut-n-paste/fusa-display.c:141
 msgid "Console"
@@ -322,81 +337,83 @@ msgstr "콘솔"
 
 #: ../src/cut-n-paste/fusa-display.c:142
 msgid "The number of the virtual console this display can be found on, or %-1."
-msgstr ""
+msgstr "지금 보여지는 가상 콘솔의 번호, 또는 %-1."
 
 #: ../src/cut-n-paste/fusa-display.c:148
 msgid "Nested"
-msgstr ""
+msgstr "포함됨"
 
 #: ../src/cut-n-paste/fusa-display.c:149
 msgid "Whether or not this display is a windowed (Xnest) display."
-msgstr ""
+msgstr "이 화면이 포함된 화면인지 여부."
 
 #: ../src/cut-n-paste/fusa-manager.c:1263
 msgid "The display manager could not be contacted for unknown reasons."
-msgstr ""
+msgstr "화면 관리자와 알 수 없는 이유로 연결되지 않습니다."
 
 #: ../src/cut-n-paste/fusa-manager.c:1270
 msgid "The display manager is not running or too old."
-msgstr ""
+msgstr "화면 관리자가 실행되지 않거나 너무 이전 것 입니다."
 
 #: ../src/cut-n-paste/fusa-manager.c:1273
 msgid "The configured limit of flexible servers has been reached."
-msgstr ""
+msgstr "설정된 탄력적 서버의 개수 제한에 다다랐습니다."
 
 #: ../src/cut-n-paste/fusa-manager.c:1276
 msgid "There was an unknown error starting X."
-msgstr ""
+msgstr "X를 시작하는데 알 수 없는 오류가 생겼습니다."
 
 #: ../src/cut-n-paste/fusa-manager.c:1279
 msgid "The X server failed to finish starting."
-msgstr ""
+msgstr "X서버가 시작하는데 실패 했습니다."
 
 #: ../src/cut-n-paste/fusa-manager.c:1282
 msgid "There are too many X sessions running."
-msgstr "너무 많은 X 세션이 작동중입니다."
+msgstr "너무 많은 X세션이 실행중입니다."
 
 #: ../src/cut-n-paste/fusa-manager.c:1285
 msgid "The nested X server (Xnest) cannot connect to your current X server."
-msgstr ""
+msgstr "중첩 X 서버(Xnest)가 현재 X서버에 연결할 수 없습니다."
 
 #: ../src/cut-n-paste/fusa-manager.c:1288
 msgid "The X server in the GDM configuration could not be found."
-msgstr ""
+msgstr "GDM설정에서 X 서버를 찾을 수 없습니다."
 
 #: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
 msgstr ""
+"알 수 없는 로그아웃 동작을 설정하려 시도했거나, 사용할 수 없는 로그아웃 동작"
+"을 설정하려 시도했습니다."
 
 #: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
-msgstr "가상 터미널을 지원하지 않습니다."
+msgstr "가상 터미널이 지원되지 않습니다."
 
 #: ../src/cut-n-paste/fusa-manager.c:1297
 msgid "Invalid virtual terminal number."
-msgstr "잘못된 가상 터미널 번호."
+msgstr "잘못된 가상 터미널 번호입니다."
 
 #: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
-msgstr ""
+msgstr "지원하지 않는 설정 키를 고치려합니다."
 
 #: ../src/cut-n-paste/fusa-manager.c:1303
 msgid "~/.Xauthority file badly configured or missing."
-msgstr ""
+msgstr "~/.Xauthority 파일이 없거나 잘못 설정되어 있습니다."
 
 #: ../src/cut-n-paste/fusa-manager.c:1306
 msgid "Too many messages were sent to the display manager, and it hung up."
-msgstr ""
+msgstr "화면 관리자에 너무 많은 메세지가 보내졌고, 얼어버렸습니다."
 
 #: ../src/cut-n-paste/fusa-manager.c:1310
 msgid "The display manager sent an unknown error message."
-msgstr ""
+msgstr "화면 관리자가 알 수 없는 오류 메세지를 보냈습니다."
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:165
 msgid "The user this menu item represents."
-msgstr ""
+msgstr "이 메뉴 항목에 나타나는 사용자."
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:172
 msgid "Icon Size"
@@ -404,11 +421,11 @@ msgstr "아이콘 크기"
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:173
 msgid "The size of the icon to use."
-msgstr ""
+msgstr "쓰이는 아이콘의 크기."
 
 #: ../src/cut-n-paste/fusa-user.c:151
 msgid "The user manager object this user is controlled by."
-msgstr ""
+msgstr "현재 사용자가 제어되는 사용자 관리자 개체."
 
 #: ../src/cut-n-paste/fusa-utils.c:80
 msgid "Show Details"
@@ -417,355 +434,364 @@ msgstr "자세히 보기"
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:413
 msgid "GDM (The GNOME Display Manager) is not running."
-msgstr "GDM (The GNOME Display Manager)가 작동중이 아닙니다."
+msgstr "GDM(그놈 화면 관리자)이 실행되지 않았습니다."
 
 #: ../src/cut-n-paste/gdmcomm.c:416
 msgid ""
 "You might in fact be using a different display manager, such as KDM (KDE "
 "Display Manager) or xdm."
 msgstr ""
+"KDM(KDE 화면 관리자)나 xdm같은 다른 화면관리자가 실행되고 있는 것 같습니다."
 
 #: ../src/cut-n-paste/gdmcomm.c:419
 msgid ""
 "If you still wish to use this feature, either start GDM yourself or ask your "
 "system administrator to start GDM."
 msgstr ""
+"이 기능을 쓰고 싶다면 GDM믈 실행하거나 시스템 관리자에게 GDM을 시작해달라고 "
+"요청하십시오."
 
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:441
 msgid "Cannot communicate with GDM (The GNOME Display Manager)"
-msgstr ""
+msgstr "GDM(그놈 화면 관리자)와 통신할 수 없습니다"
 
 #: ../src/cut-n-paste/gdmcomm.c:444
 msgid "Perhaps you have an old version of GDM running."
-msgstr "구 버전의 GDM이 작동중인 것 같습니다."
+msgstr "옛날 버젼의 GDM이 실행되고 있는 것 같습니다."
 
 #: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
 msgid "Cannot communicate with gdm, perhaps you have an old version running."
-msgstr ""
+msgstr "GDM과 통신할 수 없습니다, 옛날 버젼의 GDM이 실행되고 있는 것 같습니다."
 
 #: ../src/cut-n-paste/gdmcomm.c:469
 msgid "The allowed limit of flexible X servers reached."
-msgstr ""
+msgstr "탄력적 X 서버의 최대 허용치에 다다랐습니다."
 
 #: ../src/cut-n-paste/gdmcomm.c:471
 msgid "There were errors trying to start the X server."
-msgstr "X 서버를 시작하는 중 오류가 발생하였습니다."
+msgstr "X서버를 시작하는데 오류가 생겼습니다."
 
 #: ../src/cut-n-paste/gdmcomm.c:473
 msgid "The X server failed.  Perhaps it is not configured well."
-msgstr "X 서버가 죽었습니다. 설정이 잘못된 것 같습니다."
+msgstr "X서버가 실패했습니다. 설정이 잘못된 것 같습니다."
 
 #: ../src/cut-n-paste/gdmcomm.c:476
 msgid "Too many X sessions running."
-msgstr "너무 많은 X 세션이 작동중 입니다."
+msgstr "너무 많은 X 세션이 실행중입니다."
 
 #: ../src/cut-n-paste/gdmcomm.c:478
 msgid ""
 "The nested X server (Xnest) cannot connect to your current X server.  You "
 "may be missing an X authorization file."
 msgstr ""
+"중첩 X서버 (Xnest)가 현재 X서버와 연결할 수 없습니다. X인증 파일이 없는 것 같"
+"습니다."
 
 #: ../src/cut-n-paste/gdmcomm.c:483
 msgid ""
 "The nested X server (Xnest) is not available, or gdm is badly configured.\n"
 "Please install the Xnest package in order to use the nested login."
 msgstr ""
+"중첩 X서버 (Xnest)를 쓸 수 없거나 GDM이 잘못 설정된 것 같습니다.\n"
+"중첩 로그인을 쓰려면 Xnest 꾸러미를 설치하십시오."
 
 #: ../src/cut-n-paste/gdmcomm.c:488
 msgid ""
 "The X server is not available, it is likely that gdm is badly configured."
-msgstr ""
+msgstr "X서버를 쓸 수 없습니다. GDM이 잘못 설정된 것 같습니다."
 
 #: ../src/cut-n-paste/gdmcomm.c:497
 msgid "Trying to change to an invalid virtual terminal number."
-msgstr ""
+msgstr "잘못된 가상 터미널 번호로 바꾸려고합니다."
 
 #: ../src/cut-n-paste/gdmcomm.c:501
 msgid ""
 "You do not seem to have authentication needed be for this operation.  "
 "Perhaps your .Xauthority file is not set up correctly."
 msgstr ""
+"이 작업을 하기 위해 필요한 인증한 내용이 없습니다.  아마도 .Xauthority 파일"
+"이 올바르게 설정되지 않았을 것입니다."
 
 #: ../src/cut-n-paste/gdmcomm.c:505
 msgid "Too many messages were sent to gdm and it hung upon us."
-msgstr ""
+msgstr "너무 많은 메세지를 GDM에 보내서 죽었습니다."
 
 #: ../src/cut-n-paste/gdmcomm.c:508
 msgid "Unknown error occured."
-msgstr "알수없는 오류 발생."
+msgstr "알 수 없는 오류가 발생했습니다."
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
 msgid "Copying file: %u of %u"
-msgstr ""
+msgstr "파일 복사 중: %2$u개 중 %1$u개"
 
 #: ../src/file-transfer-dialog.c:122
 #, c-format
 msgid "Copying '%s'"
-msgstr ""
+msgstr "'%s' 복사 중"
 
 #: ../src/file-transfer-dialog.c:193
 msgid "From URI"
-msgstr ""
+msgstr "원본 URI"
 
 #: ../src/file-transfer-dialog.c:194
 msgid "URI currently transferring from"
-msgstr ""
+msgstr "현재 전송되고 있는 URI"
 
 #: ../src/file-transfer-dialog.c:201
 msgid "To URI"
-msgstr ""
+msgstr "대상 URI"
 
 #: ../src/file-transfer-dialog.c:202
 msgid "URI currently transferring to"
-msgstr ""
+msgstr "현재 전송받는 URI"
 
 #: ../src/file-transfer-dialog.c:209
 msgid "Fraction completed"
-msgstr ""
+msgstr "일부가 완료되었습니다"
 
 #: ../src/file-transfer-dialog.c:210
 msgid "Fraction of transfer currently completed"
-msgstr ""
+msgstr "전송의 일부가 현재 끝났습니다"
 
 #: ../src/file-transfer-dialog.c:217
 msgid "Current URI index"
-msgstr ""
+msgstr "현재 URI 색인"
 
 #: ../src/file-transfer-dialog.c:218
 msgid "Current URI index - starts from 1"
-msgstr ""
+msgstr "현재 URI 색인 - 1부터 시작"
 
 #: ../src/file-transfer-dialog.c:225
 msgid "Total URIs"
-msgstr ""
+msgstr "모든 URI"
 
 #: ../src/file-transfer-dialog.c:226
 msgid "Total number of URIs"
-msgstr ""
+msgstr "URI의 총 개수"
 
 #: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
 msgid "Copying files"
-msgstr ""
+msgstr "파일 복사 중"
 
 #: ../src/file-transfer-dialog.c:345
 msgid "From:"
-msgstr ""
+msgstr "원본:"
 
 #: ../src/file-transfer-dialog.c:349
 msgid "To:"
-msgstr ""
+msgstr "대상:"
 
 #: ../src/file-transfer-dialog.c:448
 msgid "Connecting..."
-msgstr "접속중..."
+msgstr "연결중..."
 
 #: ../src/gnome-screensaver-command.c:59
 msgid "Causes the screensaver to exit gracefully"
-msgstr ""
+msgstr "화면 보호기를 정상적으로 끝냅니다"
 
 #: ../src/gnome-screensaver-command.c:61
 msgid "Query the state of the screensaver"
-msgstr ""
+msgstr "화면 보호기의 상태를 알아봅니다"
 
 #: ../src/gnome-screensaver-command.c:63
 msgid "Tells the running screensaver process to lock the screen immediately"
-msgstr ""
+msgstr "실행 중인 화면보호기 프로세스에게 바로 화면을 잠그도록 합니다"
 
 #: ../src/gnome-screensaver-command.c:65
 msgid "If the screensaver is active then switch to another graphics demo"
-msgstr ""
+msgstr "화면보호기가 실행중이면, 다른 화면이 시작하도록 합니다"
 
 #: ../src/gnome-screensaver-command.c:67
 msgid "Turn the screensaver on (blank the screen)"
-msgstr "화면 보호기를 작동"
+msgstr "화면 보호기를 켭니다(빈 화면)"
 
 #: ../src/gnome-screensaver-command.c:69
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
+msgstr "화면보호기가 실행중이면, 화면보호기를 끕니다"
 
 #: ../src/gnome-screensaver-command.c:71
 msgid "Disable running graphical themes while blanked"
-msgstr ""
+msgstr "화면보호기가 실행 될 때 그래픽 테마가 실행되지 않게 합니다"
 
 #: ../src/gnome-screensaver-command.c:73
 msgid "Enable running graphical themes while blanked (if applicable)"
-msgstr ""
+msgstr "화면보호기가 실행 될 때 (적당하면) 그래픽 테마가 실행되게 합니다"
 
 #: ../src/gnome-screensaver-command.c:75
 msgid "Poke the running screensaver to simulate user activity"
-msgstr ""
+msgstr "사용자가 움직이는 것처럼 해서 화면보호기를 멈춥니다"
 
 #: ../src/gnome-screensaver-command.c:77 ../src/gnome-screensaver-dialog.c:110
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
-msgstr "이 프로그램의 버전"
+msgstr "이 프로그램의 판번호"
 
 #: ../src/gnome-screensaver-command.c:202
 #, c-format
 msgid "The screensaver is %s\n"
-msgstr "화면 보호기는 %s입니다.\n"
+msgstr "화면 보호기가 %s\n"
 
 #: ../src/gnome-screensaver-command.c:202
 msgid "active"
-msgstr ""
+msgstr "활성화 되었습니다"
 
 #: ../src/gnome-screensaver-command.c:202
 msgid "inactive"
-msgstr ""
+msgstr "비활성화 되었습니다"
 
 #: ../src/gnome-screensaver-dialog.c:108
 msgid "Show debugging output"
-msgstr "디버깅 출력 보이기"
+msgstr "디버깅 출력 보기"
 
 #: ../src/gnome-screensaver-dialog.c:112
 msgid "Show the logout button"
-msgstr "로그 아웃 버튼 보이기"
+msgstr "로그아웃 단추 보이기"
 
 #: ../src/gnome-screensaver-dialog.c:114
 msgid "Command to invoke from the logout button"
-msgstr ""
+msgstr "로그아웃 단추를 누를 때 실행할 명령"
 
 #: ../src/gnome-screensaver-dialog.c:116
 msgid "Show the switch user button"
-msgstr "사용자 바꾸기 버튼 보이기"
+msgstr "사용자 전환 단추 보이기"
 
-#: ../src/gnome-screensaver-preferences.c:431
+#: ../src/gnome-screensaver-preferences.c:427
 msgid "Blank screen"
 msgstr "빈 화면"
 
-#: ../src/gnome-screensaver-preferences.c:437
+#: ../src/gnome-screensaver-preferences.c:433
 msgid "Random"
-msgstr "무작위"
+msgstr "아무거나"
+
+#: ../src/gnome-screensaver-preferences.c:723
+msgid "Invalid screensaver theme"
+msgstr "잘못된 화면보호기 테마"
 
 #: ../src/gnome-screensaver-preferences.c:726
-msgid "Invalid screensaver theme"
-msgstr "잘못된 화면 보호기 테마"
-
-#: ../src/gnome-screensaver-preferences.c:729
 msgid "This file does not appear to be a valid screensaver theme."
-msgstr "이 파일은 올바른 화면 보호기 테마가 아닙니다."
+msgstr "이 파일은 올바른 화면 보호기 테마가 아닌 것 같습니다."
 
-#: ../src/gnome-screensaver-preferences.c:846
+#: ../src/gnome-screensaver-preferences.c:843
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
-msgstr[0] "%d 시"
+msgstr[0] "%d시간"
 
-#: ../src/gnome-screensaver-preferences.c:849
+#: ../src/gnome-screensaver-preferences.c:846
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
-msgstr[0] "%d 분"
+msgstr[0] "%d분"
 
-#: ../src/gnome-screensaver-preferences.c:852
+#: ../src/gnome-screensaver-preferences.c:849
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] "%d 초"
+msgstr[0] "%d초"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:858
+#: ../src/gnome-screensaver-preferences.c:855
 #, c-format
 msgid "%s %s %s"
-msgstr ""
+msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:861
-#: ../src/gnome-screensaver-preferences.c:869
+#: ../src/gnome-screensaver-preferences.c:858
+#: ../src/gnome-screensaver-preferences.c:866
 #, c-format
 msgid "%s %s"
-msgstr ""
+msgstr "%s %s"
 
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:864
-#: ../src/gnome-screensaver-preferences.c:872
-#: ../src/gnome-screensaver-preferences.c:876
+#: ../src/gnome-screensaver-preferences.c:861
+#: ../src/gnome-screensaver-preferences.c:869
+#: ../src/gnome-screensaver-preferences.c:873
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:879
+#: ../src/gnome-screensaver-preferences.c:876
 msgid "0 seconds"
-msgstr ""
+msgstr "0초"
 
-#: ../src/gnome-screensaver-preferences.c:894
+#: ../src/gnome-screensaver-preferences.c:891
 msgid "Never"
-msgstr ""
+msgstr "쓰지 않기"
 
-#: ../src/gnome-screensaver-preferences.c:1040
+#: ../src/gnome-screensaver-preferences.c:1047
 msgid "Could not load the main interface"
-msgstr ""
+msgstr "메인 인터페이스를 읽을 수 없습니다"
 
-#: ../src/gnome-screensaver-preferences.c:1042
+#: ../src/gnome-screensaver-preferences.c:1049
 msgid "Please make sure that the screensaver is properly installed"
-msgstr "화면 보호기의 설치 상태를 확인해주세요."
+msgstr "화면보호기를 올바로 설치하십시오"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
-msgstr "데몬으로 만들지 않음."
+msgstr "데몬이 되지 않았습니다"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
-msgstr "디버깅 코드 활성화"
+msgstr "디버깅 코드 쓰기"
 
-#: ../src/gs-listener-dbus.c:1188
+#: ../src/gs-listener-dbus.c:1219
 msgid "failed to register with the message bus"
-msgstr ""
+msgstr "메세지 버스에 등록 실패"
 
-#: ../src/gs-listener-dbus.c:1198
+#: ../src/gs-listener-dbus.c:1229
 msgid "not connected to the message bus"
-msgstr ""
+msgstr "메세지 버스에 연결 안됨"
 
-#: ../src/gs-listener-dbus.c:1207
+#: ../src/gs-listener-dbus.c:1238
 msgid "screensaver already running in this session"
-msgstr "이미 화면 보호기가 작동 중 입니다."
+msgstr "이 세션에 화면보호기가 이미 실행중입니다"
 
 #: ../src/gs-lock-plug.c:351
 msgid "Checking password..."
-msgstr "비밀번호 검사 중..."
+msgstr "열쇠글 확인 중..."
 
 #: ../src/gs-lock-plug.c:394
 msgid "Time has expired."
-msgstr "시간 초과"
+msgstr "시간이 지났습니다."
 
 #: ../src/gs-lock-plug.c:420
 msgid "You have the Caps Lock key on."
-msgstr "캡스락이 켜있습니다."
+msgstr "Caps Lock키가 눌려져있습니다."
 
 #: ../src/gs-lock-plug.c:707
 msgid "That password was incorrect."
-msgstr "비밀 번호가 틀렸습니다."
+msgstr "열쇠글이 틀립니다."
 
 #: ../src/gs-lock-plug.c:733 ../src/gs-lock-plug.c:766
 msgid "_Unlock"
-msgstr "잠김 풀기"
+msgstr "잠금 풀기(_U)"
 
 #: ../src/gs-lock-plug.c:736 ../src/gs-lock-plug.c:763
 msgid "_Switch User..."
-msgstr ""
+msgstr "사용자 바꾸기(_S)..."
 
-#. Translators: this is "username on hostname"
-#: ../src/gs-lock-plug.c:1364
+#. Translators: this is "username on hostname".  You
+#. can translate this to "%s@%s" if it is otherwise tricky
+#. for your language.
+#: ../src/gs-lock-plug.c:1366
 #, c-format
 msgid "%s on %s"
-msgstr "%s 사용자는 %s 컴퓨터에 있습니다."
+msgstr "%2$s의 사용자 %1$s"
 
-#: ../src/gs-lock-plug.c:1508
+#: ../src/gs-lock-plug.c:1517
 msgid "_Password:"
-msgstr "비밀번호:"
+msgstr "열쇠글(_P):"
 
-#: ../src/gs-lock-plug.c:1575
+#: ../src/gs-lock-plug.c:1590
 msgid "S_witch to user:"
-msgstr ""
+msgstr "사용자 바꾸기(_W):"
 
-#: ../src/gs-lock-plug.c:1622
+#: ../src/gs-lock-plug.c:1637
 msgid "Log _Out"
-msgstr "로그아웃"
-
-
+msgstr "로그아웃(_O)"
