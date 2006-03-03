@@ -33,10 +33,10 @@
 
 static gboolean
 watcher_idle_cb (GSWatcher *watcher,
-                 int        reserved,
+                 gboolean   is_idle,
                  gpointer   data)
 {
-        g_message ("Idle detected");
+        g_message ("Idle status changed: %s", is_idle ? "idle" : "not idle");
 
         /* return FALSE so that the idle watcher continues */
         return FALSE;
@@ -45,7 +45,7 @@ watcher_idle_cb (GSWatcher *watcher,
 static void
 connect_watcher_signals (GSWatcher *watcher)
 {
-        g_signal_connect (watcher, "idle",
+        g_signal_connect (watcher, "idle_changed",
                           G_CALLBACK (watcher_idle_cb), NULL);
 }
 
