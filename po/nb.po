@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 2.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-18 10:51+0100\n"
-"PO-Revision-Date: 2006-02-18 10:56+0100\n"
+"POT-Creation-Date: 2006-03-05 15:33+0100\n"
+"PO-Revision-Date: 2006-03-05 15:40+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -83,27 +83,27 @@ msgstr "Modus for valg av tema"
 
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr ""
+msgstr "Sett denne til TRUE for å aktivere skjermspareren når sesjonen er ubrukt."
 
 #: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Set this to TRUE to allow the screensaver to power down the monitor."
-msgstr ""
+msgstr "Sett denne til TRUE for å la skjermspareren slå av strømmen på skjermen."
 
 #: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr ""
+msgstr "Sett denne til TRUE for å låse skjermen når skjermspareren aktiveres."
 
 #: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
-msgstr ""
+msgstr "Sett denne til TRUE for å gi et valg for å bytte til en annen brukerkonto i dialogen for å låse opp skjermen."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
-msgstr ""
+msgstr "Sett denne til TRUE for å gi et valg for å logge ut etter et tidsavbrudd i dialogen for å låse opp skjermen. Tidsavbruddet spesifiseres i nøkkelen «logout_delay»."
 
 #: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
@@ -119,41 +119,41 @@ msgstr ""
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
-msgstr ""
+msgstr "Antall minutter før skjermen låses etter aktivering av skjermsparer."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
-msgstr ""
+msgstr "Antall minutter før valg for utlogging vises i dialogen for å låse opp skjermen. Denne nøkkelen vil kun fungere hvis nøkkelen «logout_enable» er satt til TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into standby power mode."
-msgstr ""
+msgstr "Antall minuntter før skjermen går i hvilemodus etter aktivering av skjermsparer."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "goes into suspend power mode."
-msgstr ""
+msgstr "Antall minutter før skjermen går i hvilemodus etter aktivering av skjermsparer."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "powers off."
-msgstr ""
+msgstr "Antall minutter før skjermen slår av strømmen etter aktivering av skjermsparer."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
-msgstr ""
+msgstr "Antall minutter med inaktivitet før sesjonen betraktes som ubrukt."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
-msgstr ""
+msgstr "Antall minutter før endring av skjermsparertema."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
@@ -334,11 +334,11 @@ msgstr "Nøstet"
 
 #: ../src/cut-n-paste/fusa-display.c:149
 msgid "Whether or not this display is a windowed (Xnest) display."
-msgstr ""
+msgstr "Om denne skjemen er en skjem i et vindu (Xnest)."
 
 #: ../src/cut-n-paste/fusa-manager.c:1263
 msgid "The display manager could not be contacted for unknown reasons."
-msgstr ""
+msgstr "Skjermhåndtereren kunne ikke kontaktes av ukjente årsaker."
 
 #: ../src/cut-n-paste/fusa-manager.c:1270
 msgid "The display manager is not running or too old."
@@ -366,13 +366,13 @@ msgstr "Den nøstede X-tjeneren (Xnest) kan ikke koble til nåværende X-tjener.
 
 #: ../src/cut-n-paste/fusa-manager.c:1288
 msgid "The X server in the GDM configuration could not be found."
-msgstr ""
+msgstr "X-tjener oppgitt i GDM-konfigurasjonen ble ikke funnet."
 
 #: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
-msgstr ""
+msgstr "Prøver å sette en ukjent handling for utlogging, eller en handling som ikke er tilgjengelig."
 
 #: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
@@ -392,7 +392,7 @@ msgstr "Filen ~/.Xauthority inneholder feil eller mangler."
 
 #: ../src/cut-n-paste/fusa-manager.c:1306
 msgid "Too many messages were sent to the display manager, and it hung up."
-msgstr ""
+msgstr "For mange meldinger ble sendt til skjermhåndtereren og den la på."
 
 #: ../src/cut-n-paste/fusa-manager.c:1310
 msgid "The display manager sent an unknown error message."
@@ -412,7 +412,7 @@ msgstr "Størrelse på ikonet som skal brukes."
 
 #: ../src/cut-n-paste/fusa-user.c:151
 msgid "The user manager object this user is controlled by."
-msgstr ""
+msgstr "Brukerhåndteringsobjekt denne brukeren kontrolleres av."
 
 #: ../src/cut-n-paste/fusa-utils.c:80
 msgid "Show Details"
@@ -480,11 +480,11 @@ msgstr ""
 #: ../src/cut-n-paste/gdmcomm.c:488
 msgid ""
 "The X server is not available, it is likely that gdm is badly configured."
-msgstr ""
+msgstr "X-tjeneren er ikke tilgjengelig. Det er sannsynlig at GDM er feilkonfigurert."
 
 #: ../src/cut-n-paste/gdmcomm.c:497
 msgid "Trying to change to an invalid virtual terminal number."
-msgstr ""
+msgstr "Prøver å bytte til en ugyldig virtuell terminal."
 
 #: ../src/cut-n-paste/gdmcomm.c:501
 msgid ""
@@ -636,37 +636,37 @@ msgstr "Kommando som skal kjøres ved klikk på utloggingsknappen"
 msgid "Show the switch user button"
 msgstr "Vis knapp for å bytte bruker"
 
-#: ../src/gnome-screensaver-preferences.c:431
+#: ../src/gnome-screensaver-preferences.c:427
 msgid "Blank screen"
 msgstr "Blank skjerm"
 
-#: ../src/gnome-screensaver-preferences.c:437
+#: ../src/gnome-screensaver-preferences.c:433
 msgid "Random"
 msgstr "Tilfeldig"
 
-#: ../src/gnome-screensaver-preferences.c:726
+#: ../src/gnome-screensaver-preferences.c:723
 msgid "Invalid screensaver theme"
 msgstr "Ugyldig tema for skjermsparer"
 
-#: ../src/gnome-screensaver-preferences.c:729
+#: ../src/gnome-screensaver-preferences.c:726
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Denne filen ser ikke ut til å være et gyldig tema for skjermsparer."
 
-#: ../src/gnome-screensaver-preferences.c:846
+#: ../src/gnome-screensaver-preferences.c:843
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d time"
 msgstr[1] "%d timer"
 
-#: ../src/gnome-screensaver-preferences.c:849
+#: ../src/gnome-screensaver-preferences.c:846
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minutt"
 msgstr[1] "%d minutter"
 
-#: ../src/gnome-screensaver-preferences.c:852
+#: ../src/gnome-screensaver-preferences.c:849
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -674,15 +674,15 @@ msgstr[0] "%d sekund"
 msgstr[1] "%d sekunder"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:858
+#: ../src/gnome-screensaver-preferences.c:855
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:861
-#: ../src/gnome-screensaver-preferences.c:869
+#: ../src/gnome-screensaver-preferences.c:858
+#: ../src/gnome-screensaver-preferences.c:866
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -690,27 +690,27 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:864
-#: ../src/gnome-screensaver-preferences.c:872
-#: ../src/gnome-screensaver-preferences.c:876
+#: ../src/gnome-screensaver-preferences.c:861
+#: ../src/gnome-screensaver-preferences.c:869
+#: ../src/gnome-screensaver-preferences.c:873
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:879
+#: ../src/gnome-screensaver-preferences.c:876
 msgid "0 seconds"
 msgstr "0 sekunder"
 
-#: ../src/gnome-screensaver-preferences.c:894
+#: ../src/gnome-screensaver-preferences.c:891
 msgid "Never"
 msgstr "Aldri"
 
-#: ../src/gnome-screensaver-preferences.c:1040
+#: ../src/gnome-screensaver-preferences.c:1047
 msgid "Could not load the main interface"
 msgstr "Kunne ikke laste hovedbrukergrensesnittet"
 
-#: ../src/gnome-screensaver-preferences.c:1042
+#: ../src/gnome-screensaver-preferences.c:1049
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Vennligst se til at skjermspareren er skikkelig installert"
 
@@ -722,15 +722,15 @@ msgstr "Ikke kjør som tjeneste"
 msgid "Enable debugging code"
 msgstr "Aktiver avlusingskode"
 
-#: ../src/gs-listener-dbus.c:1188
+#: ../src/gs-listener-dbus.c:1219
 msgid "failed to register with the message bus"
 msgstr "klarte ikke å registrere hos meldingsbussen"
 
-#: ../src/gs-listener-dbus.c:1198
+#: ../src/gs-listener-dbus.c:1229
 msgid "not connected to the message bus"
 msgstr "ikke koblet til meldingsbussen"
 
-#: ../src/gs-listener-dbus.c:1207
+#: ../src/gs-listener-dbus.c:1238
 msgid "screensaver already running in this session"
 msgstr "skjermsparer kjører allerede i denne sesjonen"
 
@@ -766,14 +766,14 @@ msgstr "_Bytt bruker..."
 msgid "%s on %s"
 msgstr "%s på %s"
 
-#: ../src/gs-lock-plug.c:1510
+#: ../src/gs-lock-plug.c:1517
 msgid "_Password:"
 msgstr "_Passord:"
 
-#: ../src/gs-lock-plug.c:1577
+#: ../src/gs-lock-plug.c:1590
 msgid "S_witch to user:"
 msgstr "B_ytt til bruker:"
 
-#: ../src/gs-lock-plug.c:1624
+#: ../src/gs-lock-plug.c:1637
 msgid "Log _Out"
 msgstr "Logg _ut"
