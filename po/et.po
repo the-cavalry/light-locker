@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-03-04 14:58+0100\n"
-"PO-Revision-Date: 2006-03-04 21:23+0200\n"
+"PO-Revision-Date: 2006-03-05 09:51+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -59,11 +59,11 @@ msgstr "Ekraanisäästjad"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
 msgid "Activate when idle"
-msgstr ""
+msgstr "Aktiveerimine jõudeolekul"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
 msgid "Allow logout"
-msgstr ""
+msgstr "Väljalogimine lubatud"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow monitor power management"
@@ -71,19 +71,19 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
-msgstr ""
+msgstr "Kasutaja vahetamine lubatud"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
 msgid "Lock on activation"
-msgstr ""
+msgstr "Lukustamine aktiveerimisel"
 
 #: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Logout command"
-msgstr ""
+msgstr "Väljalogimise käsk"
 
 #: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Screensaver theme selection mode"
-msgstr ""
+msgstr "Ekraanisäästja teemavalimise režiim"
 
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
@@ -174,11 +174,11 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid "Time before activation"
-msgstr ""
+msgstr "Aeg enne aktiveerimist"
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Time before locking"
-msgstr ""
+msgstr "Aeg enne lukustamist"
 
 #: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before logout option"
@@ -186,7 +186,7 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before power off"
-msgstr ""
+msgstr "Aeg enne voolu väljalülitamist"
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before standby"
@@ -198,11 +198,11 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before theme change"
-msgstr ""
+msgstr "Aeg enne teemavahetust"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:1
 msgid "Bubbles the GNOME foot logo around the screen"
-msgstr ""
+msgstr "GNOME jalajälje logod ekraanil ringi hõljumas"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:2
 msgid "Floating Feet"
@@ -497,17 +497,17 @@ msgstr ""
 
 #: ../src/cut-n-paste/gdmcomm.c:508
 msgid "Unknown error occured."
-msgstr ""
+msgstr "Tundmatu viga."
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
 msgid "Copying file: %u of %u"
-msgstr ""
+msgstr "Faili kopeerimine: %u (%u'st)"
 
 #: ../src/file-transfer-dialog.c:122
 #, c-format
 msgid "Copying '%s'"
-msgstr ""
+msgstr "'%s' kopeerimine"
 
 #: ../src/file-transfer-dialog.c:193
 msgid "From URI"
@@ -551,7 +551,7 @@ msgstr ""
 
 #: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
 msgid "Copying files"
-msgstr ""
+msgstr "Failide kopeerimine"
 
 #: ../src/file-transfer-dialog.c:345
 msgid "From:"
@@ -563,19 +563,20 @@ msgstr ""
 
 #: ../src/file-transfer-dialog.c:448
 msgid "Connecting..."
-msgstr ""
+msgstr "Ühendumine..."
 
 #: ../src/gnome-screensaver-command.c:59
 msgid "Causes the screensaver to exit gracefully"
-msgstr ""
+msgstr "Ekraanisäästjat töö lõpetamine (ilma veakoodita)"
 
 #: ../src/gnome-screensaver-command.c:61
 msgid "Query the state of the screensaver"
-msgstr ""
+msgstr "Ekraanisäästja oleku küsimine"
 
 #: ../src/gnome-screensaver-command.c:63
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr ""
+"Töötavale ekraanisäästja protsessile kohese ekraanilukustamise käsu saatmine"
 
 #: ../src/gnome-screensaver-command.c:65
 msgid "If the screensaver is active then switch to another graphics demo"
@@ -583,11 +584,13 @@ msgstr ""
 
 #: ../src/gnome-screensaver-command.c:67
 msgid "Turn the screensaver on (blank the screen)"
-msgstr ""
+msgstr "Ekraanisäästja sisselülitamine (ekraani puhastamine)"
 
 #: ../src/gnome-screensaver-command.c:69
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr ""
+"Kui ekraanisäästja on aktiivne, siis selle deaktiveerimine (ekraani "
+"taastamine)"
 
 #: ../src/gnome-screensaver-command.c:71
 msgid "Disable running graphical themes while blanked"
@@ -613,11 +616,11 @@ msgstr "Ekraanisäästja on %s\n"
 
 #: ../src/gnome-screensaver-command.c:202
 msgid "active"
-msgstr ""
+msgstr "aktiivne"
 
 #: ../src/gnome-screensaver-command.c:202
 msgid "inactive"
-msgstr ""
+msgstr "aktiveerimata"
 
 #: ../src/gnome-screensaver-dialog.c:108
 msgid "Show debugging output"
@@ -715,11 +718,11 @@ msgstr "Palun veendu, et ekraanisäästja on korrektselt paigaldatud"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
-msgstr ""
+msgstr "Deemoniks ei minda"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
-msgstr ""
+msgstr "Silumise lubamine"
 
 #: ../src/gs-listener-dbus.c:1219
 msgid "failed to register with the message bus"
@@ -743,19 +746,19 @@ msgstr "Ajapiirang ületati."
 
 #: ../src/gs-lock-plug.c:420
 msgid "You have the Caps Lock key on."
-msgstr ""
+msgstr "Sul on Caps Lock klahv sisse lülitatud"
 
 #: ../src/gs-lock-plug.c:707
 msgid "That password was incorrect."
-msgstr ""
+msgstr "Parool ei klapi."
 
 #: ../src/gs-lock-plug.c:733 ../src/gs-lock-plug.c:766
 msgid "_Unlock"
-msgstr ""
+msgstr "_Lukusta lahti"
 
 #: ../src/gs-lock-plug.c:736 ../src/gs-lock-plug.c:763
 msgid "_Switch User..."
-msgstr ""
+msgstr "_Vaheta kasutajat..."
 
 #. Translators: this is "username on hostname".  You
 #. can translate this to "%s@%s" if it is otherwise tricky
