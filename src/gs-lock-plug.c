@@ -1531,7 +1531,7 @@ create_page_one (GSLockPlug *plug)
 
         /* Only change the invisible character if it '*' otherwise assume it is OK */
         if ('*' == gtk_entry_get_invisible_char (GTK_ENTRY (plug->priv->password_entry))) {
-                invisible_char = INVISIBLE_CHAR_BULLET;
+                invisible_char = INVISIBLE_CHAR_BLACK_CIRCLE;
                 gtk_entry_set_invisible_char (GTK_ENTRY (plug->priv->password_entry), invisible_char);
         }
 

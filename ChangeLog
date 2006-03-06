@@ -1,5 +1,11 @@
 2006-03-03  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (create_page_one): Use large
+	black circle for invisible character in password entry.
+	Fixes #333287
+
+2006-03-03  William Jon McCann  <mccann@jhu.edu>
+
 	* src/test-watcher.c (connect_watcher_signals, watcher_idle_cb):
 	Use correct signal.
 
