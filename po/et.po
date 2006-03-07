@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-03-04 14:58+0100\n"
-"PO-Revision-Date: 2006-03-05 09:51+0200\n"
+"PO-Revision-Date: 2006-03-07 11:02+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -34,15 +34,15 @@ msgstr "Ekraanisäästja eelistused"
 
 #: ../data/gnome-screensaver-preferences.glade.h:2
 msgid "Set session as _idle after:"
-msgstr ""
+msgstr "Seansi _jõudeoleku määramine peale:"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "_Activate screensaver when session is idle"
-msgstr ""
+msgstr "Ekraanisäästja _aktiveerimine kui seanss on jõude§"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "_Lock screen when screensaver is active"
-msgstr ""
+msgstr "Ekraani _lukustamine kui seanss on jõude"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "_Screensaver"
@@ -88,14 +88,17 @@ msgstr "Ekraanisäästja teemavalimise režiim"
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr ""
+"Märgi see valik kui ekraanisäästja tuleb seansi jõudeoleku korral käivitada."
 
 #: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Set this to TRUE to allow the screensaver to power down the monitor."
 msgstr ""
+"Märgi see valik kui ekraanisäästja peab monitori voolu välja lülitama."
 
 #: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr ""
+"Märgi see valik kui ekraanisäästja peab aktiveerumisel ekraani lukustama."
 
 #: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
@@ -119,7 +122,7 @@ msgstr ""
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
-msgstr ""
+msgstr "Ekraanisäästja tööminutite arv peale mida ekraan lukustatakse."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
@@ -144,16 +147,16 @@ msgstr ""
 msgid ""
 "The number of minutes after the screensaver activation until the monitor "
 "powers off."
-msgstr ""
+msgstr "Ekraanisäästja tööminutite arv peale mida monitor välja lülitatakse."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
-msgstr ""
+msgstr "Jõudeoleku minutite arv enne kui seanss hinnatakse jõude olevaks."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
-msgstr ""
+msgstr "Tööminutite arv enne ekraanisäästja teema vahetamist."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
@@ -218,11 +221,11 @@ msgstr "Kosmosepiltide slaidiesituse kuvamine"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
-msgstr ""
+msgstr "Slaidiesitluse kuvamine Sinu pildikataloogi põhjal"
 
 #: ../savers/personal-slideshow.desktop.in.h:2
 msgid "Pictures folder"
-msgstr ""
+msgstr "Pildikataloog"
 
 #: ../savers/popsquares.desktop.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
@@ -246,7 +249,7 @@ msgstr ""
 
 #: ../savers/floaters.c:1187
 msgid "the maximum number of images to keep on screen"
-msgstr ""
+msgstr "suurim ekraanil hoitavate piltide arv"
 
 #. translators: this should be translated to be symbolic of a generic
 #. * number.  e.g, "the screen saver should keep N images on the screen"
@@ -257,11 +260,11 @@ msgstr ""
 
 #: ../savers/floaters.c:1198
 msgid "the source image to use"
-msgstr ""
+msgstr "lähtepilt"
 
 #: ../savers/floaters.c:1205
 msgid "the initial size and position of window"
-msgstr ""
+msgstr "lähtesuurus ja -asukoht ekraanil"
 
 #. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
 #. * can be translated, but the 'x' area indicator and '+' offset indicators
@@ -276,20 +279,21 @@ msgstr "LAIUSxKÕRGUS+X+Y"
 #.
 #: ../savers/floaters.c:1228
 msgid "image - floats images around the screen"
-msgstr ""
+msgstr "pilt - hõljub ekraanil ringi"
 
 #: ../savers/floaters.c:1238
 #, c-format
 msgid "%s. See --help for usage information.\n"
-msgstr ""
+msgstr "%s. Lähema teabe saamiseks kasuta --help võtit.\n"
 
 #: ../savers/floaters.c:1247
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
+"Sa pead määrama ühe pilti.  Lähema teabe saamiseks kasuta --help võtit.\n"
 
 #: ../savers/slideshow.c:47
 msgid "Location to get images from"
-msgstr ""
+msgstr "Piltide hankimise lähtekoht"
 
 #: ../savers/slideshow.c:47
 msgid "PATH"
@@ -342,7 +346,7 @@ msgstr ""
 
 #: ../src/cut-n-paste/fusa-manager.c:1270
 msgid "The display manager is not running or too old."
-msgstr ""
+msgstr "Kuvahaldur ei tööta või on liiga vana."
 
 #: ../src/cut-n-paste/fusa-manager.c:1273
 msgid "The configured limit of flexible servers has been reached."
@@ -350,7 +354,7 @@ msgstr ""
 
 #: ../src/cut-n-paste/fusa-manager.c:1276
 msgid "There was an unknown error starting X."
-msgstr ""
+msgstr "X'i käivitamisel tekkis tundmatu viga."
 
 #: ../src/cut-n-paste/fusa-manager.c:1279
 msgid "The X server failed to finish starting."
@@ -376,11 +380,11 @@ msgstr ""
 
 #: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
-msgstr ""
+msgstr "Virtuaalterminalid pole toetatud."
 
 #: ../src/cut-n-paste/fusa-manager.c:1297
 msgid "Invalid virtual terminal number."
-msgstr ""
+msgstr "Vigane virtuaalterminali number."
 
 #: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
@@ -388,7 +392,7 @@ msgstr ""
 
 #: ../src/cut-n-paste/fusa-manager.c:1303
 msgid "~/.Xauthority file badly configured or missing."
-msgstr ""
+msgstr "~/.Xauthority fail on puudu või vigaselt seadistatud."
 
 #: ../src/cut-n-paste/fusa-manager.c:1306
 msgid "Too many messages were sent to the display manager, and it hung up."
@@ -404,11 +408,11 @@ msgstr ""
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:172
 msgid "Icon Size"
-msgstr ""
+msgstr "Ikooni suurus"
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:173
 msgid "The size of the icon to use."
-msgstr ""
+msgstr "Ikooninile määratav suurus."
 
 #: ../src/cut-n-paste/fusa-user.c:151
 msgid "The user manager object this user is controlled by."
@@ -416,12 +420,12 @@ msgstr ""
 
 #: ../src/cut-n-paste/fusa-utils.c:80
 msgid "Show Details"
-msgstr ""
+msgstr "Üksikasjade kuvamine"
 
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:413
 msgid "GDM (The GNOME Display Manager) is not running."
-msgstr ""
+msgstr "GNOME kuvahaldur (GDM) ei tööta."
 
 #: ../src/cut-n-paste/gdmcomm.c:416
 msgid ""
@@ -438,11 +442,11 @@ msgstr ""
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:441
 msgid "Cannot communicate with GDM (The GNOME Display Manager)"
-msgstr ""
+msgstr "GNOME kuvahalduriga (GDM) pole võimalik suhelda"
 
 #: ../src/cut-n-paste/gdmcomm.c:444
 msgid "Perhaps you have an old version of GDM running."
-msgstr ""
+msgstr "Võib-olla on sul liiga vana GDM-i versioon."
 
 #: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
 msgid "Cannot communicate with gdm, perhaps you have an old version running."
@@ -511,19 +515,19 @@ msgstr "'%s' kopeerimine"
 
 #: ../src/file-transfer-dialog.c:193
 msgid "From URI"
-msgstr ""
+msgstr "URI-lt"
 
 #: ../src/file-transfer-dialog.c:194
 msgid "URI currently transferring from"
-msgstr ""
+msgstr "URI millelt hetkel üle kantakse"
 
 #: ../src/file-transfer-dialog.c:201
 msgid "To URI"
-msgstr ""
+msgstr "URI-le"
 
 #: ../src/file-transfer-dialog.c:202
 msgid "URI currently transferring to"
-msgstr ""
+msgstr "URI kuhu hetkel üle kantakse"
 
 #: ../src/file-transfer-dialog.c:209
 msgid "Fraction completed"
@@ -535,19 +539,19 @@ msgstr ""
 
 #: ../src/file-transfer-dialog.c:217
 msgid "Current URI index"
-msgstr ""
+msgstr "Käesolev URI indeks"
 
 #: ../src/file-transfer-dialog.c:218
 msgid "Current URI index - starts from 1"
-msgstr ""
+msgstr "Käesolev URI indeks - alustades esimesest"
 
 #: ../src/file-transfer-dialog.c:225
 msgid "Total URIs"
-msgstr ""
+msgstr "URI-sid kokku"
 
 #: ../src/file-transfer-dialog.c:226
 msgid "Total number of URIs"
-msgstr ""
+msgstr "URI-de koguarv"
 
 #: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
 msgid "Copying files"
@@ -555,11 +559,11 @@ msgstr "Failide kopeerimine"
 
 #: ../src/file-transfer-dialog.c:345
 msgid "From:"
-msgstr ""
+msgstr "Lähtekoht:"
 
 #: ../src/file-transfer-dialog.c:349
 msgid "To:"
-msgstr ""
+msgstr "Sihtkoht:"
 
 #: ../src/file-transfer-dialog.c:448
 msgid "Connecting..."
@@ -624,11 +628,11 @@ msgstr "aktiveerimata"
 
 #: ../src/gnome-screensaver-dialog.c:108
 msgid "Show debugging output"
-msgstr ""
+msgstr "Silumisväljundi näitamine"
 
 #: ../src/gnome-screensaver-dialog.c:112
 msgid "Show the logout button"
-msgstr ""
+msgstr "Väljalogimisnupu näitamine"
 
 #: ../src/gnome-screensaver-dialog.c:114
 msgid "Command to invoke from the logout button"
@@ -636,7 +640,7 @@ msgstr ""
 
 #: ../src/gnome-screensaver-dialog.c:116
 msgid "Show the switch user button"
-msgstr ""
+msgstr "Kasutajate vahel lülitumise nupu näitamine"
 
 #: ../src/gnome-screensaver-preferences.c:427
 msgid "Blank screen"
@@ -774,8 +778,8 @@ msgstr "_Parool:"
 
 #: ../src/gs-lock-plug.c:1590
 msgid "S_witch to user:"
-msgstr ""
+msgstr "Vaheta _kasutajat:"
 
 #: ../src/gs-lock-plug.c:1637
 msgid "Log _Out"
-msgstr ""
+msgstr "Logi _välja"
