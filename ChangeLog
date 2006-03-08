@@ -1,3 +1,7 @@
+2006-03-08  Rhys Jones  <rhys@sucs.org>
+
+	* configure.ac: Added 'cy' (Welsh) to ALL_LINGUAS.
+
 2006-03-06  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (queue_key_event): Don't
