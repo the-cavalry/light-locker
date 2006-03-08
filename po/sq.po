@@ -1,0 +1,808 @@
+# Përkthimi i mesazheve të gnome-screensaver në shqip
+# Copyright (C) 2006 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-screensaver package.
+#
+# Laurent Dhima <laurenti@alblinux.net>, 2006.
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-03-06 14:58+0100\n"
+"PO-Revision-Date: 2006-03-08 18:14+0100\n"
+"Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
+"Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "Ruajtës ekrani"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "Përcakto preferimet e ruajtësit tuaj të ekranit"
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "Screensaver Preferences"
+msgstr "Preferimet e ruajtësit të ekranit"
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "Set session as _idle after:"
+msgstr "Cakto seancën si joakt_ive mbas:"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "_Activate screensaver when session is idle"
+msgstr "_Aktivo ruajtësin e ekranit kur seanca është joaktive"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "_Lock screen when screensaver is active"
+msgstr "B_Lloko ekranin kur ruajtësi i ekranit është aktiv"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "_Screensaver"
+msgstr "Ruajtë_S ekrani"
+
+#: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Screensaver themes"
+msgstr "Temat e ruajtësit të ekranit"
+
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "Ruajtës ekrani"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Activate when idle"
+msgstr "Aktivo kur nuk ka aktivitet"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow logout"
+msgstr "Lejo daljen"
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "Allow monitor power management"
+msgstr "Lejo manazhimin e energjisë së monitorit"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow user switching"
+msgstr "Lejo shkëmbimin e përdoruesve"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Lock on activation"
+msgstr "Blloko kur aktivohet"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "Logout command"
+msgstr "Komanda e daljes"
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Screensaver theme selection mode"
+msgstr "Modaliteti i zgjedhjes së temave të ruajtësit të ekranit"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr "Vendose në TRUE për të aktivuar ruajtësin e ekranit kur nuk ka aktivitet në seancë."
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "Set this to TRUE to allow the screensaver to power down the monitor."
+msgstr "Vendose në TRUE për të lejuar fikjen e monitorit nga ruajtësi i ekranit."
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr "Vendose në TRUE për të bllokuar ekranin kur hyn në funksion ruajtësi i ekranit."
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr ""
+"Vendose në TRUE që të afrosh një opsionin e kalimit në një profil tjetër "
+"përdoruesi tek dialogu i zhbllokimit."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr ""
+"Vendose në TRUE për të afruar opsionin e shkëputjes pas një intervali të caktuar "
+"tek dialogu i zhbllokimit. Intervali përcaktohet tek vlera \"logout_delay\"."
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr ""
+"Komanda që duhet zbatuar kur klikohet pulsanti i daljes. Kjo komandë duhet "
+"thjesht të shkëpusë përdoruesin pa asnjë lloj komunikimi. Kjo vlerë ka efekt vetëm "
+"nëse vlera \"logout_enable\" është vendosur në TRUE."
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid "The number of minutes after screensaver activation before locking the screen."
+msgstr "Numri i minutave mbas aktivimit të ruajtësit të ekranit para se të bllokohet ekrani."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr ""
+"Numri i minutave mbas aktivimit të ruajtësit të ekranit para se opsioni i "
+"daljes të shfaqet tek dialogu i zhbllokimit. Kjo vlerë ka efekt vetëm nëse "
+"vlera \"logout_enable\" është vendosur në TRUE."
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"goes into standby power mode."
+msgstr ""
+"Numri i minutave mbas aktivimit të ruajtësit të ekranit para se monitori të shkojë "
+"në modalitetin e kursimit të energjisë."
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"goes into suspend power mode."
+msgstr ""
+"Numri i minutave mbas aktivimit të ruajtësit të ekranit para se monitori të shkojë "
+"në modalitetin ndërprerjes së energjisë."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid ""
+"The number of minutes after the screensaver activation until the monitor "
+"powers off."
+msgstr "Numri i minutave mbas aktivimit të ruajtësit të ekranit para se monitori të fiket."
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid "The number of minutes of inactivity before the session is considered idle."
+msgstr "Numri i minutave pa aktivitet para se seanca të konsiderohet jo aktive."
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr "Numri i minutave para se të ndryshohet tema e ruajtësit të ekranit."
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid ""
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
+msgstr ""
+"Modaliteti i zgjedhjes i përdorur nga ruajtësi i ekranit. Mund të jetë \"blank-only\" "
+"për të aktivuar ruajtësin pa asnjë lloj teme, \"single\" për të aktivuar ruajtësin duke "
+"përdorur një temë të vetme (të përcaktuar tek vlera \"temat\"), dhe \"random\" për "
+"të aktivuar ruajtësin e ekranit duke përdorur një temë të rastit në aktivim."
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
+msgstr ""
+"Kjo vlerë përcakton listën e temave që duhen përdorur nga ruajtësi. Vlera "
+"shpërfillet kur vlera \"modaliteti\" është \"blank-only\", duhet të japër emrin e "
+"temës kur \"modaliteti\" është \"single\", dhe duhet të afrojë një listë temash "
+"kur \"modaliteti\" është \"random\"."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid "Time before activation"
+msgstr "Koha para aktivimit"
+
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Time before locking"
+msgstr "Koha para bllokimit"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Time before logout option"
+msgstr "Koha para opsionit të daljes"
+
+#: ../data/gnome-screensaver.schemas.in.h:27
+msgid "Time before power off"
+msgstr "Koha para fikjes"
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before standby"
+msgstr "Koha para se të kalojë në pritje"
+
+#: ../data/gnome-screensaver.schemas.in.h:29
+msgid "Time before suspend"
+msgstr "Koha para se të ndalohet"
+
+#: ../data/gnome-screensaver.schemas.in.h:30
+msgid "Time before theme change"
+msgstr "Koha para ndryshimit të temës"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Bubbles dhe stema e GNOME rreth e qark ekranit"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Shputa në lundrim"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr "Kozmos"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "Shfaq minjatura fotografish nga kozmosi"
+
+#: ../savers/personal-slideshow.desktop.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr "Shfaq minjatura fotografish nga kartela juaj e fotografive"
+
+#: ../savers/personal-slideshow.desktop.in.h:2
+msgid "Pictures folder"
+msgstr "Kartela e fotografive"
+
+#: ../savers/popsquares.desktop.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr "Një rrjetë me ngjyra pulsuese."
+
+#: ../savers/popsquares.desktop.in.h:2
+msgid "Pop art squares"
+msgstr "Kuadrate arti pop"
+
+#: ../savers/floaters.c:1165
+msgid "show paths that images follow"
+msgstr "shfaq pozicionin që ndjekin figurat"
+
+#: ../savers/floaters.c:1172
+msgid "occasionally rotate images as they move"
+msgstr "rrotullo në menyrë të rastësishme figurat në lëvizje"
+
+#: ../savers/floaters.c:1179
+msgid "print out frame rate and other statistics"
+msgstr "printo frame rate dhe statistika të tjera"
+
+#: ../savers/floaters.c:1187
+msgid "the maximum number of images to keep on screen"
+msgstr "numri maksimum i figurave në ekran"
+
+#. translators: this should be translated to be symbolic of a generic
+#. * number.  e.g, "the screen saver should keep N images on the screen"
+#.
+#: ../savers/floaters.c:1191
+msgid "N"
+msgstr "N"
+
+#: ../savers/floaters.c:1198
+msgid "the source image to use"
+msgstr "figurë bazë për tu përdorur"
+
+#: ../savers/floaters.c:1205
+msgid "the initial size and position of window"
+msgstr "madhësia dhe pozicioni fillestar i dritares"
+
+#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
+#. * can be translated, but the 'x' area indicator and '+' offset indicators
+#. * need to be untranslated and can't be rearranged.
+#.
+#: ../savers/floaters.c:1210
+msgid "WIDTHxHEIGHT+X+Y"
+msgstr "GJERËSIxLARTËSI+X+Y"
+
+#. translators: the word "image" here
+#. * represents a command line argument
+#.
+#: ../savers/floaters.c:1228
+msgid "image - floats images around the screen"
+msgstr "image - figura që lëvizin rreth e qark në ekran"
+
+#: ../savers/floaters.c:1238
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s. Shiko --help për informacionet mbi përdorimin.\n"
+
+#: ../savers/floaters.c:1247
+msgid "You must specify one image.  See --help for usage information.\n"
+msgstr "Duhet të përcaktoni një figurë.  Shiko --help për informacionet mbi përdorimin.\n"
+
+#: ../savers/slideshow.c:47
+msgid "Location to get images from"
+msgstr "Pozicioni nga ku duhen marrë figurat"
+
+#: ../savers/slideshow.c:47
+msgid "PATH"
+msgstr "POZICIONI"
+
+#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
+msgid "Manager"
+msgstr "Manazhuesi"
+
+#: ../src/cut-n-paste/fusa-display.c:120
+msgid "The manager which owns this object."
+msgstr "Manazhuesi që trajton këtë objekt."
+
+#: ../src/cut-n-paste/fusa-display.c:127
+msgid "Name"
+msgstr "Emri"
+
+#: ../src/cut-n-paste/fusa-display.c:128
+msgid "The name of the X11 display this object refers to."
+msgstr "Emri i ekranit X11 kujt i referohet ky objekt."
+
+#: ../src/cut-n-paste/fusa-display.c:134
+#: ../src/cut-n-paste/fusa-user-menu-item.c:164
+msgid "User"
+msgstr "Përdoruesi"
+
+#: ../src/cut-n-paste/fusa-display.c:135
+msgid "The user currently logged in on this virtual terminal."
+msgstr "Përdoruesi aktualisht i futur në këtë terminal virtual."
+
+#: ../src/cut-n-paste/fusa-display.c:141
+msgid "Console"
+msgstr "Konsolë"
+
+#: ../src/cut-n-paste/fusa-display.c:142
+msgid "The number of the virtual console this display can be found on, or %-1."
+msgstr "Numri i konsolës virtuale ku mund të gjendet ky ekran, ose %-1."
+
+#: ../src/cut-n-paste/fusa-display.c:148
+msgid "Nested"
+msgstr "Mbivendosur"
+
+#: ../src/cut-n-paste/fusa-display.c:149
+msgid "Whether or not this display is a windowed (Xnest) display."
+msgstr "Nëse është ose jo ky ekran një dritare (Xnest) ekrani."
+
+#: ../src/cut-n-paste/fusa-manager.c:1263
+msgid "The display manager could not be contacted for unknown reasons."
+msgstr "E pamundur vënia në kontakt me manazhuesin e ekraneve për arsye të panjohura."
+
+#: ../src/cut-n-paste/fusa-manager.c:1270
+msgid "The display manager is not running or too old."
+msgstr "Manazhuesi i dritares nuk është në ekzekutim ose është tepër i vjetër."
+
+#: ../src/cut-n-paste/fusa-manager.c:1273
+msgid "The configured limit of flexible servers has been reached."
+msgstr "U arrit kufiri i konfiguruar i server-ëve fleksibël."
+
+#: ../src/cut-n-paste/fusa-manager.c:1276
+msgid "There was an unknown error starting X."
+msgstr "Gabim i panjohur gjatë nisjes së X."
+
+#: ../src/cut-n-paste/fusa-manager.c:1279
+msgid "The X server failed to finish starting."
+msgstr "Serveri X nuk arriti të plotësojë nisjen."
+
+#: ../src/cut-n-paste/fusa-manager.c:1282
+msgid "There are too many X sessions running."
+msgstr "Tepër seanca X në ekzekutim."
+
+#: ../src/cut-n-paste/fusa-manager.c:1285
+msgid "The nested X server (Xnest) cannot connect to your current X server."
+msgstr "Serveri X i mbivendosur (Xnest) nuk arrin të lidhet me serverin tuaj aktual X."
+
+#: ../src/cut-n-paste/fusa-manager.c:1288
+msgid "The X server in the GDM configuration could not be found."
+msgstr "E pamundur gjetja e serverit X tek konfigurimi i GDM."
+
+#: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
+msgid ""
+"Trying to set an unknown logout action, or trying to set a logout action "
+"which is not available."
+msgstr ""
+"Jeni duke u përpjekur të kryeni një procedurë dalje të panjohur, ose që nuk "
+"është në dispozicion."
+
+#: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
+msgid "Virtual terminals not supported."
+msgstr "Terminalët virtualë nuk suportohen."
+
+#: ../src/cut-n-paste/fusa-manager.c:1297
+msgid "Invalid virtual terminal number."
+msgstr "Numër i pavlefshëm terminali virtual."
+
+#: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
+msgid "Trying to update an unsupported configuration key."
+msgstr "Përpjekje për të rifreskuar një vlerë konfigurimi të pasuportuar."
+
+#: ../src/cut-n-paste/fusa-manager.c:1303
+msgid "~/.Xauthority file badly configured or missing."
+msgstr "~/.Xauthority file është konfiguruar keq ose mungon."
+
+#: ../src/cut-n-paste/fusa-manager.c:1306
+msgid "Too many messages were sent to the display manager, and it hung up."
+msgstr "Manazhuesit të ekraneve i janë dërguar tepër mesazhe, dhe ai po i përcjell."
+
+#: ../src/cut-n-paste/fusa-manager.c:1310
+msgid "The display manager sent an unknown error message."
+msgstr "Manazhuesi i ekraneve ka dërguar një mesazh të panjohur gabimi."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:165
+msgid "The user this menu item represents."
+msgstr "Përdoruesi që përfaqsohet nga ky zë menuje."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:172
+msgid "Icon Size"
+msgstr "Madhësia e ikonës"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:173
+msgid "The size of the icon to use."
+msgstr "Madhësia e ikonës së përdorur."
+
+#: ../src/cut-n-paste/fusa-user.c:151
+msgid "The user manager object this user is controlled by."
+msgstr "Manazhuesi i objektit përdorues nga i cili kontrollohet ky përdorues."
+
+#: ../src/cut-n-paste/fusa-utils.c:80
+msgid "Show Details"
+msgstr "Shfaq hollësitë"
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:413
+msgid "GDM (The GNOME Display Manager) is not running."
+msgstr "GDM (GNOME Display Manager) nuk është në ekzekutim."
+
+#: ../src/cut-n-paste/gdmcomm.c:416
+msgid ""
+"You might in fact be using a different display manager, such as KDM (KDE "
+"Display Manager) or xdm."
+msgstr ""
+"Ndoshta je duke përdorur një organizues tjetër të display, si p.sh. KDM (KDE "
+"Display Manager) ose xdm."
+
+#: ../src/cut-n-paste/gdmcomm.c:419
+msgid ""
+"If you still wish to use this feature, either start GDM yourself or ask your "
+"system administrator to start GDM."
+msgstr ""
+"Nëse dëshiron të shfrytëzosh këtë mundësi, duhet të nisësh vetë GDM ose t'i "
+"kërkosh administratorit të sistemit të nisë GDM."
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:441
+msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+msgstr "Nuk arrij të komunikoj me GDM (GNOME Display Manager)"
+
+#: ../src/cut-n-paste/gdmcomm.c:444
+msgid "Perhaps you have an old version of GDM running."
+msgstr "Ka mundësi që versioni në përdorim i GDM të jetë i vjetër."
+
+#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
+msgid "Cannot communicate with gdm, perhaps you have an old version running."
+msgstr ""
+"Nuk arrij të komunikoj me gdm, ka mundësi që versioni në përdorim të jetë i "
+"vjetër."
+
+#: ../src/cut-n-paste/gdmcomm.c:469
+msgid "The allowed limit of flexible X servers reached."
+msgstr "Është arritur kufiri maksimum i lejuar për servers X flexible."
+
+#: ../src/cut-n-paste/gdmcomm.c:471
+msgid "There were errors trying to start the X server."
+msgstr "Janë verifikuar disa gabime gjatë nisjes së server-it X."
+
+#: ../src/cut-n-paste/gdmcomm.c:473
+msgid "The X server failed.  Perhaps it is not configured well."
+msgstr "Serveri X dështoi.  Ndoshta nuk është i konfiguruar si duhet."
+
+#: ../src/cut-n-paste/gdmcomm.c:476
+msgid "Too many X sessions running."
+msgstr "Shumë seanca X aktive."
+
+#: ../src/cut-n-paste/gdmcomm.c:478
+msgid ""
+"The nested X server (Xnest) cannot connect to your current X server.  You "
+"may be missing an X authorization file."
+msgstr ""
+"Xnest nuk arrin të lidhet me server-in tuaj X aktual.  Ka mundësi që file "
+"autorizues i X mungon."
+
+#: ../src/cut-n-paste/gdmcomm.c:483
+msgid ""
+"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
+"Please install the Xnest package in order to use the nested login."
+msgstr ""
+"Xnest jo në dispozicion, ose gdm i konfiguruar keq.\n"
+"Instalo pakon Xnest që të përdorësh dritaren e login."
+
+#: ../src/cut-n-paste/gdmcomm.c:488
+msgid "The X server is not available, it is likely that gdm is badly configured."
+msgstr "Server-i X jo në dispozicion, ka mundësi që gdm të jetë konfiguruar keq."
+
+#: ../src/cut-n-paste/gdmcomm.c:497
+msgid "Trying to change to an invalid virtual terminal number."
+msgstr "Përpjekje për të kaluar në një terminal virtual me numër të pasaktë."
+
+#: ../src/cut-n-paste/gdmcomm.c:501
+msgid ""
+"You do not seem to have authentication needed be for this operation.  "
+"Perhaps your .Xauthority file is not set up correctly."
+msgstr ""
+"Nuk keni të drejtat e duhura për këtë operacion. Ka mundësi që file juaj \"."
+"Xauthority\" të mos jetë konfiguruar si duhet."
+
+#: ../src/cut-n-paste/gdmcomm.c:505
+msgid "Too many messages were sent to gdm and it hung upon us."
+msgstr "Janë dërguar tepër mesazhe drejt gdm dhe ai na i ka përcjellë neve."
+
+#: ../src/cut-n-paste/gdmcomm.c:508
+msgid "Unknown error occured."
+msgstr "Gabim i panjohur."
+
+#: ../src/file-transfer-dialog.c:94
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Duke kopjuar file: %u në %u"
+
+#: ../src/file-transfer-dialog.c:122
+#, c-format
+msgid "Copying '%s'"
+msgstr "Duke kopjuar '%s'"
+
+#: ../src/file-transfer-dialog.c:193
+msgid "From URI"
+msgstr "Nga URl"
+
+#: ../src/file-transfer-dialog.c:194
+msgid "URI currently transferring from"
+msgstr "Adresa URl nga po transferohet aktualisht"
+
+#: ../src/file-transfer-dialog.c:201
+msgid "To URI"
+msgstr "Tek URl"
+
+#: ../src/file-transfer-dialog.c:202
+msgid "URI currently transferring to"
+msgstr "Adresa URl ku po transferohet aktualisht"
+
+#: ../src/file-transfer-dialog.c:209
+msgid "Fraction completed"
+msgstr "Pjesa e plotësuar"
+
+#: ../src/file-transfer-dialog.c:210
+msgid "Fraction of transfer currently completed"
+msgstr "Pjesa aktualisht e plotësuar e transferimit"
+
+#: ../src/file-transfer-dialog.c:217
+msgid "Current URI index"
+msgstr "Indeksi i URl të tanishëm"
+
+#: ../src/file-transfer-dialog.c:218
+msgid "Current URI index - starts from 1"
+msgstr "Indeksi i URl të tanishëm - fillon nga 1"
+
+#: ../src/file-transfer-dialog.c:225
+msgid "Total URIs"
+msgstr "Gjithsej URl"
+
+#: ../src/file-transfer-dialog.c:226
+msgid "Total number of URIs"
+msgstr "Numri i përgjithshëm i URlve"
+
+#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+msgid "Copying files"
+msgstr "Duke kopjuar files"
+
+#: ../src/file-transfer-dialog.c:345
+msgid "From:"
+msgstr "Nga:"
+
+#: ../src/file-transfer-dialog.c:349
+msgid "To:"
+msgstr "Për:"
+
+#: ../src/file-transfer-dialog.c:448
+msgid "Connecting..."
+msgstr "Duke u lidhur..."
+
+#: ../src/gnome-screensaver-command.c:59
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Shkakton daljen e plotë të ruajtësit të ekranit"
+
+#: ../src/gnome-screensaver-command.c:61
+msgid "Query the state of the screensaver"
+msgstr "Kontrollon gjendjen e ruajtësit të ekranit"
+
+#: ../src/gnome-screensaver-command.c:63
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "I thotë proçesit në zbatim të ruajtësit të bllokojë menjëherë ekranin"
+
+#: ../src/gnome-screensaver-command.c:65
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "Nëse reuajtësi është aktiv atëhere kalon tek një grafik tjetër demostrativ"
+
+#: ../src/gnome-screensaver-command.c:67
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "Aktivon ruajtësin e ekranit (ekrani bosh)"
+
+#: ../src/gnome-screensaver-command.c:69
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "Nëse reujatësi është akitv atëhere e çaktivon (ekrani jo bosh)"
+
+#: ../src/gnome-screensaver-command.c:71
+msgid "Disable running graphical themes while blanked"
+msgstr "Çaktivon temat grafike në ekzekutim kur zbrazet"
+
+#: ../src/gnome-screensaver-command.c:73
+msgid "Enable running graphical themes while blanked (if applicable)"
+msgstr "Aktivon temat grafike në ekzekutim kur zbrazet (nëse e mundur)"
+
+#: ../src/gnome-screensaver-command.c:75
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "Ngacmo ruajtësin e ekranit në ekzekutim për të simuluar aktivitet përdoruesi"
+
+#: ../src/gnome-screensaver-command.c:77 ../src/gnome-screensaver-dialog.c:110
+#: ../src/gnome-screensaver.c:56
+msgid "Version of this application"
+msgstr "Versioni i këtij programi"
+
+#: ../src/gnome-screensaver-command.c:202
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "Ruajtësi i ekranit është %s\n"
+
+#: ../src/gnome-screensaver-command.c:202
+msgid "active"
+msgstr "aktiv"
+
+#: ../src/gnome-screensaver-command.c:202
+msgid "inactive"
+msgstr "jo aktiv"
+
+#: ../src/gnome-screensaver-dialog.c:108
+msgid "Show debugging output"
+msgstr "Shfaq rezultatet e debug"
+
+#: ../src/gnome-screensaver-dialog.c:112
+msgid "Show the logout button"
+msgstr "Shfaq pulsantin e daljes"
+
+#: ../src/gnome-screensaver-dialog.c:114
+msgid "Command to invoke from the logout button"
+msgstr "Komanda që duhet zbatuar nga pulsanti i daljes"
+
+#: ../src/gnome-screensaver-dialog.c:116
+msgid "Show the switch user button"
+msgstr "Shfaq pulsantin e ndryshimit të përdoruesit"
+
+#: ../src/gnome-screensaver-preferences.c:427
+msgid "Blank screen"
+msgstr "Ekran bosh"
+
+#: ../src/gnome-screensaver-preferences.c:433
+msgid "Random"
+msgstr "Pa renditje"
+
+#: ../src/gnome-screensaver-preferences.c:723
+msgid "Invalid screensaver theme"
+msgstr "Temë e pavlefshme ruajtës ekrani"
+
+#: ../src/gnome-screensaver-preferences.c:726
+msgid "This file does not appear to be a valid screensaver theme."
+msgstr "Ky file nuk duket të jetë një file teme i vlefshëm ruajtësi."
+
+#: ../src/gnome-screensaver-preferences.c:843
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d orë"
+msgstr[1] "%d orë"
+
+#: ../src/gnome-screensaver-preferences.c:846
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minutë"
+msgstr[1] "%d minuta"
+
+#: ../src/gnome-screensaver-preferences.c:849
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekondë"
+msgstr[1] "%d sekonda"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:855
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:858
+#: ../src/gnome-screensaver-preferences.c:866
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:861
+#: ../src/gnome-screensaver-preferences.c:869
+#: ../src/gnome-screensaver-preferences.c:873
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#. 0 seconds
+#: ../src/gnome-screensaver-preferences.c:876
+msgid "0 seconds"
+msgstr "0 sekonda"
+
+#: ../src/gnome-screensaver-preferences.c:891
+msgid "Never"
+msgstr "Asnjëherë"
+
+#: ../src/gnome-screensaver-preferences.c:1047
+msgid "Could not load the main interface"
+msgstr "I pamundur ngarkimi i interfaqes kryesore"
+
+#: ../src/gnome-screensaver-preferences.c:1049
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "Sigurohu që ruajtësi i ekranit të jetë instaluar si duhet"
+
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "Mos u kthe në deamon"
+
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr "Aktivo kodin e debug"
+
+#: ../src/gs-listener-dbus.c:1219
+msgid "failed to register with the message bus"
+msgstr "regjistrimi me bus e mesazheve dështoi"
+
+#: ../src/gs-listener-dbus.c:1229
+msgid "not connected to the message bus"
+msgstr "i palidhur me bus e mesazheve"
+
+#: ../src/gs-listener-dbus.c:1238
+msgid "screensaver already running in this session"
+msgstr "ruajtësi i ekranit është në funksion në këtë seancë"
+
+#: ../src/gs-lock-plug.c:351
+msgid "Checking password..."
+msgstr "Duke kontrolluar fjalëkalimin..."
+
+#: ../src/gs-lock-plug.c:394
+msgid "Time has expired."
+msgstr "Koha skadoi."
+
+#: ../src/gs-lock-plug.c:420
+msgid "You have the Caps Lock key on."
+msgstr "Butoni Caps Lock është i shtypur."
+
+#: ../src/gs-lock-plug.c:707
+msgid "That password was incorrect."
+msgstr "Fjalëkalim i pavlefshëm."
+
+#: ../src/gs-lock-plug.c:733 ../src/gs-lock-plug.c:766
+msgid "_Unlock"
+msgstr "_Liro"
+
+#: ../src/gs-lock-plug.c:736 ../src/gs-lock-plug.c:763
+msgid "_Switch User..."
+msgstr "Ndry_Sho përdorues..."
+
+#. Translators: this is "username on hostname".  You
+#. can translate this to "%s@%s" if it is otherwise tricky
+#. for your language.
+#: ../src/gs-lock-plug.c:1366
+#, c-format
+msgid "%s on %s"
+msgstr "%s në %s"
+
+#: ../src/gs-lock-plug.c:1517
+msgid "_Password:"
+msgstr "_Fjalëkalimi:"
+
+#: ../src/gs-lock-plug.c:1590
+msgid "S_witch to user:"
+msgstr "K_alo tek përdoruesi:"
+
+#: ../src/gs-lock-plug.c:1637
+msgid "Log _Out"
+msgstr "_Dil jashtë"
+
