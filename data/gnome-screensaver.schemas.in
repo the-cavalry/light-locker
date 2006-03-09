@@ -114,66 +114,6 @@
     </schema>
 
     <schema>
-      <key>/schemas/apps/gnome-screensaver/dpms_enabled</key>
-      <applyto>/apps/gnome-screensaver/dpms_enabled</applyto>
-      <owner>gnome-screensaver</owner>
-      <type>bool</type>
-      <default>FALSE</default>
-      <locale name="C">
-        <short>Allow monitor power management</short>
-        <long>
-          Set this to TRUE to allow the screensaver to
-          power down the monitor.
-        </long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gnome-screensaver/dpms_standby</key>
-      <applyto>/apps/gnome-screensaver/dpms_standby</applyto>
-      <owner>gnome-screensaver</owner>
-      <type>int</type>
-      <default>60</default>
-      <locale name="C">
-        <short>Time before standby</short>
-        <long>
-          The number of minutes after the screensaver activation
-          until the monitor goes into standby power mode.
-        </long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gnome-screensaver/dpms_suspend</key>
-      <applyto>/apps/gnome-screensaver/dpms_suspend</applyto>
-      <owner>gnome-screensaver</owner>
-      <type>int</type>
-      <default>60</default>
-      <locale name="C">
-        <short>Time before suspend</short>
-        <long>
-          The number of minutes after the screensaver activation
-          until the monitor goes into suspend power mode.
-        </long>
-      </locale>
-    </schema>
-
-    <schema>
-      <key>/schemas/apps/gnome-screensaver/dpms_off</key>
-      <applyto>/apps/gnome-screensaver/dpms_off</applyto>
-      <owner>gnome-screensaver</owner>
-      <type>int</type>
-      <default>120</default>
-      <locale name="C">
-        <short>Time before power off</short>
-        <long>
-          The number of minutes after the screensaver activation
-          until the monitor powers off.
-        </long>
-      </locale>
-    </schema>
-
-    <schema>
       <key>/schemas/apps/gnome-screensaver/logout_enabled</key>
       <applyto>/apps/gnome-screensaver/logout_enabled</applyto>
       <owner>gnome-screensaver</owner>
