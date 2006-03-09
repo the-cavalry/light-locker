@@ -1,3 +1,7 @@
+2006-03-09 Arangel Angov <ufo@linux.net.mk>
+
+	* configure.ac: Added "mk" (Macedonian) to ALL_LINGUAS
+
 2006-03-09  William Jon McCann  <mccann@jhu.edu>
 
 	* data/gnome-screensaver.schemas.in: Remove
