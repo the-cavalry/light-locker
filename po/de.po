@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-03-11 15:39+0100\n"
-"PO-Revision-Date: 2006-03-11 15:35+0100\n"
+"PO-Revision-Date: 2006-03-11 17:20+0100\n"
 "Last-Translator: Frank Arnold <frank@scirocco-5v-turbo.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -86,8 +86,8 @@ msgstr "Bildschirmschonerauswahlmodus"
 #: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr ""
-"Setzen Sie diesen Wert auf TRUE (Wahr), damit der Bildschirmschoner "
-"aktiviert wird, wenn der Benutzer untätig ist."
+"Setzen Sie diesen Wert auf TRUE (Wahr), um den Bildschirmschoner zu "
+"aktivieren, wenn der Benutzer untätig ist."
 
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
@@ -127,7 +127,7 @@ msgstr ""
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr ""
-"Die Wartezeit in Minuten nach Aktivierung des Bildschirmschoners bis der "
+"Die Anzahl an Minuten nach Aktivierung des Bildschirmschoners bis der "
 "Bildschirm gesperrt wird."
 
 #: ../data/gnome-screensaver.schemas.in.h:14
@@ -145,11 +145,11 @@ msgstr ""
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr ""
-"Die Wartezeit in Minuten, bis der Benutzer als untätig angenommen wird."
+"Die Anzahl der Minuten von Inaktivität, bis der Benutzer als untätig angenommen wird."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid "The number of minutes to run before changing the screensaver theme."
-msgstr "Die Dauer in Minuten bis der Bildschirmschoner gewechselt wird."
+msgstr "Die Anzahl an Minuten bis der Bildschirmschoner gewechselt wird."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
@@ -162,7 +162,7 @@ msgstr ""
 "Der Auswahlmodus des Bildschirmschoners. Mögliche Werte sind »blank-only« um "
 "den Bildschirm schwarz zu schalten, ohne dass irgendein Thema verwendet "
 "wird, »single« damit der Bildschirmschoner genau ein Thema verwendet (dieses "
-"wird über den Schlüssel »themes« festgelegt), und »random« damit der "
+"wird über den Schlüssel »themes« festgelegt) und »random« damit der "
 "Bildschirmschoner ein zufälliges Thema auswählt."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
@@ -172,9 +172,9 @@ msgid ""
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
 msgstr ""
-"Dieser Schlüssel legt die vim Bildschirmschoner verwendeten Themen fest. Der "
+"Dieser Schlüssel legt die vom Bildschirmschoner verwendeten Themen fest. Der "
 "Wert wird ignoriert, wenn der Schlüssel »mode« auf »blank-only« gesetzt ist. "
-"Beim Modus »single« enthält der Schlüssel genau einen Themenname und beim "
+"Im Modus »single« enthält der Schlüssel genau einen Themenname und im "
 "Modus »random« eine Liste von Themennamen."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
@@ -270,7 +270,7 @@ msgstr "BREITExHÖHE+X+Y"
 #.
 #: ../savers/floaters.c:1228
 msgid "image - floats images around the screen"
-msgstr "image - Bilder und Fotos bewegen sich über den Bildschirm"
+msgstr "image - Bilder bewegen sich über den Bildschirm"
 
 #: ../savers/floaters.c:1238
 #, c-format
@@ -304,7 +304,7 @@ msgstr "Name"
 
 #: ../src/cut-n-paste/fusa-display.c:128
 msgid "The name of the X11 display this object refers to."
-msgstr "Der Name des X11-Bildschirms, zu dem dieses Objekt gehört."
+msgstr "Der Name des X11-Bildschirms, zu dem dieses Objekt verweist."
 
 #: ../src/cut-n-paste/fusa-display.c:134
 #: ../src/cut-n-paste/fusa-user-menu-item.c:164
@@ -331,16 +331,16 @@ msgstr "Verschachtelt"
 
 #: ../src/cut-n-paste/fusa-display.c:149
 msgid "Whether or not this display is a windowed (Xnest) display."
-msgstr "Gibt an, ob dieser Bildschirm ein verschachteltes Fenster (Xnest) ist."
+msgstr "Gibt an, ob dieser Bildschirm eine Fensterdarstellung (Xnest) ist."
 
 #: ../src/cut-n-paste/fusa-manager.c:1263
 msgid "The display manager could not be contacted for unknown reasons."
 msgstr ""
-"Aus unbekanntem Grund konnte der Display-Manager nicht kontaktiert werden."
+"Aus unbekannten Gründen konnte der Display-Manager nicht kontaktiert werden."
 
 #: ../src/cut-n-paste/fusa-manager.c:1270
 msgid "The display manager is not running or too old."
-msgstr "Der Display-Manager läuft nicht oder ist veraltet."
+msgstr "Der Display-Manager läuft nicht oder ist zu alt."
 
 #: ../src/cut-n-paste/fusa-manager.c:1273
 msgid "The configured limit of flexible servers has been reached."
@@ -428,15 +428,15 @@ msgstr "Details anzeigen"
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:413
 msgid "GDM (The GNOME Display Manager) is not running."
-msgstr "GDM (Der GNOME Display Manager) ist nicht aktiv."
+msgstr "GDM (Der GNOME-Display-Manager) ist nicht aktiv."
 
 #: ../src/cut-n-paste/gdmcomm.c:416
 msgid ""
 "You might in fact be using a different display manager, such as KDM (KDE "
 "Display Manager) or xdm."
 msgstr ""
-"Eventuell benutzen Sie einen anderen Display-Manager, wie z.B. KDM (KDE "
-"Display Manager) oder xdm."
+"Eventuell benutzen Sie einen anderen Display-Manager, wie z.B. KDM (KDE-"
+"Display-Manager) oder xdm."
 
 #: ../src/cut-n-paste/gdmcomm.c:419
 msgid ""
@@ -450,17 +450,17 @@ msgstr ""
 #: ../src/cut-n-paste/gdmcomm.c:441
 msgid "Cannot communicate with GDM (The GNOME Display Manager)"
 msgstr ""
-"Es konnte kein Kontakt mit GDM (dem GNOME Display Manager) hergestellt werden"
+"Es konnte kein Kontakt mit GDM (dem GNOME-Display-Manager) hergestellt werden"
 
 #: ../src/cut-n-paste/gdmcomm.c:444
 msgid "Perhaps you have an old version of GDM running."
-msgstr "Eventuell läuft bei Ihnen eine veraltete Version von GDM."
+msgstr "Eventuell läuft bei Ihnen eine alte Version von GDM."
 
 #: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
 msgid "Cannot communicate with gdm, perhaps you have an old version running."
 msgstr ""
 "Es konnte kein Kontakt mit GDM hergestellt werden, eventuell verwenden Sie "
-"eine veraltete Version."
+"eine alte Version."
 
 #: ../src/cut-n-paste/gdmcomm.c:469
 msgid "The allowed limit of flexible X servers reached."
@@ -591,7 +591,7 @@ msgstr "Nach:"
 
 #: ../src/file-transfer-dialog.c:448
 msgid "Connecting..."
-msgstr "Verbinden..."
+msgstr "Verbinden ..."
 
 #: ../src/gnome-screensaver-command.c:59
 msgid "Causes the screensaver to exit gracefully"
@@ -623,7 +623,7 @@ msgstr ""
 
 #: ../src/gnome-screensaver-command.c:71
 msgid "Disable running graphical themes while blanked"
-msgstr "Grafische Themen beim Bildschirm schonen deaktivieren"
+msgstr "Grafische Themen beim Bildschirmschonen deaktivieren"
 
 #: ../src/gnome-screensaver-command.c:73
 msgid "Enable running graphical themes while blanked (if applicable)"
@@ -758,7 +758,7 @@ msgstr "Fehlererkennungsfunktionen aktivieren"
 
 #: ../src/gs-listener-dbus.c:1219
 msgid "failed to register with the message bus"
-msgstr "Registrierung am Message-Bus fehlgeschlagen"
+msgstr "Registrierung am Benachrichtigungssystem fehlgeschlagen"
 
 #: ../src/gs-listener-dbus.c:1229
 msgid "not connected to the message bus"
@@ -770,7 +770,7 @@ msgstr "Der Bildschirmschoner ist in dieser Sitzung bereits aktiv"
 
 #: ../src/gs-lock-plug.c:351
 msgid "Checking password..."
-msgstr "Passwort wird überprüft..."
+msgstr "Passwort wird überprüft ..."
 
 #: ../src/gs-lock-plug.c:394
 msgid "Time has expired."
@@ -790,7 +790,7 @@ msgstr "Sperrung auf_heben"
 
 #: ../src/gs-lock-plug.c:736 ../src/gs-lock-plug.c:763
 msgid "_Switch User..."
-msgstr "Benutzer _wechseln..."
+msgstr "Benutzer _wechseln ..."
 
 #. Translators: this is "username on hostname".  You
 #. can translate this to "%s@%s" if it is otherwise tricky
