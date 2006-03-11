@@ -1,3 +1,7 @@
+2006-03-11  Duarte Loreto <happyguy_pt@hotmail.com>
+
+	* configure.ac: Added Portuguese (pt) to ALL_LINGUAS.
+
 2006-03-10 Rajesh Ranjan <rranjan@redhat.com>
 
 	* configure.ac: Added "hi" (Hindi) to ALL_LINGUAS
