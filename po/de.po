@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-02 20:59+0100\n"
-"PO-Revision-Date: 2006-03-02 21:01+0100\n"
-"Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
+"POT-Creation-Date: 2006-03-11 15:39+0100\n"
+"PO-Revision-Date: 2006-03-11 15:35+0100\n"
+"Last-Translator: Frank Arnold <frank@scirocco-5v-turbo.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +51,7 @@ msgid "_Screensaver"
 msgstr "_Bildschirmschoner"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:8
+#: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Screensaver themes"
 msgstr "Bildschirmschonerthemen"
 
@@ -68,44 +68,34 @@ msgid "Allow logout"
 msgstr "Abmelden zulassen"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow monitor power management"
-msgstr "Energieverwaltung des Bildschirms zulassen"
-
-#: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
 msgstr "Benutzerwechsel zulassen"
 
-#: ../data/gnome-screensaver.schemas.in.h:5
+#: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Lock on activation"
 msgstr "Bei Aktivierung sperren"
 
-#: ../data/gnome-screensaver.schemas.in.h:6
+#: ../data/gnome-screensaver.schemas.in.h:5
 msgid "Logout command"
 msgstr "Abmeldebefehl"
 
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Screensaver theme selection mode"
 msgstr "Bildschirmschonerauswahlmodus"
 
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr ""
 "Setzen Sie diesen Wert auf TRUE (Wahr), damit der Bildschirmschoner "
 "aktiviert wird, wenn der Benutzer untätig ist."
 
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Set this to TRUE to allow the screensaver to power down the monitor."
-msgstr ""
-"Setzen·Sie·diesen·Wert·auf·TRUE·(Wahr),·damit·der·Bildschirmschoner·den "
-"Monitor abschalten kann."
-
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr ""
 "Setzen Sie diesen Wert auf TRUE (Wahr), um den Bildschirm zu sperren, wenn "
 "der Bildschirmschoner aktiviert wird."
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -113,7 +103,7 @@ msgstr ""
 "Setzen Sie diesen Wert auf TRUE (Wahr), um einen Benutzerwechsel an einem "
 "gesperrten Bildschirm zu ermöglichen."
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -122,7 +112,7 @@ msgstr ""
 "Option zum Abmelden nach einer festgelegten Zeit anzuzeigen. Die Verzögerung "
 "wird im Schlüssel »logout_delay« festgelegt."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -133,57 +123,35 @@ msgstr ""
 "Schlüssel wird nur berücksichtigt, wenn der Schlüssel »logout_enable« auf "
 "TRUE (Wahr) gesetzt ist."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr ""
 "Die Wartezeit in Minuten nach Aktivierung des Bildschirmschoners bis der "
 "Bildschirm gesperrt wird."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
 "Die Anzahl an Minuten nach der Aktivierung des Bildschirmschoners bis eine "
-"Abmeldeoption im Entsperrendialog angezeigt wird. "
-"Dieser·Schlüssel·wird·nur·berücksichtigt,"
-"·wenn·der·Schlüssel·»logout_enable«·auf TRUE·(Wahr)·gesetzt·ist."
+"Abmeldeoption im Entsperrendialog angezeigt wird. Dieser Schlüssel wird nur "
+"berücksichtigt, wenn der Schlüssel »logout_enable« auf TRUE (Wahr) gesetzt "
+"ist."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"goes into standby power mode."
-msgstr "Die·Dauer·der·Minuten·zwischen·Aktivierung·des·Bildschirmschoners·und·dem·Versetzen·des·Bildschirms·in·den·Stromsparmodus."
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"goes into suspend power mode."
-msgstr ""
-"Die Dauer der Minuten zwischen Aktivierung des Bildschirmschoners und dem "
-"Versetzen des Bildschirms in den Ruhesparmodus."
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"powers off."
-msgstr ""
-"Die Dauer der Minuten zwischen Aktivierung des Bildschirmschoners und dem "
-"Abschalten des Bildschirms."
-
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr ""
 "Die Wartezeit in Minuten, bis der Benutzer als untätig angenommen wird."
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "Die Dauer in Minuten bis der Bildschirmschoner gewechselt wird."
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
@@ -197,7 +165,7 @@ msgstr ""
 "wird über den Schlüssel »themes« festgelegt), und »random« damit der "
 "Bildschirmschoner ein zufälliges Thema auswählt."
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -209,31 +177,19 @@ msgstr ""
 "Beim Modus »single« enthält der Schlüssel genau einen Themenname und beim "
 "Modus »random« eine Liste von Themennamen."
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid "Time before activation"
 msgstr "Zeit bis zur Aktivierung"
 
-#: ../data/gnome-screensaver.schemas.in.h:25
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid "Time before locking"
 msgstr "Zeit bis zum Sperren"
 
-#: ../data/gnome-screensaver.schemas.in.h:26
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid "Time before logout option"
 msgstr "Zeit bis zur Abmeldeoption"
 
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid "Time before power off"
-msgstr "Zeit bis zum Abschalten des Rechners"
-
-#: ../data/gnome-screensaver.schemas.in.h:28
-msgid "Time before standby"
-msgstr "Zeit bis zum Wartemodus des Rechners"
-
-#: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before suspend"
-msgstr "Zeit bis zum Ruhemodus des Rechners"
-
-#: ../data/gnome-screensaver.schemas.in.h:30
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid "Time before theme change"
 msgstr "Zeit bis zum Wechsel des Bildschirmschoners"
 
@@ -595,7 +551,7 @@ msgstr "Nach Adresse"
 
 #: ../src/file-transfer-dialog.c:202
 msgid "URI currently transferring to"
-msgstr "Die·Adresse·zu·der·die·Übertragung·geht"
+msgstr "Die Adresse zu der die Übertragung geht"
 
 #: ../src/file-transfer-dialog.c:209
 msgid "Fraction completed"
@@ -671,7 +627,7 @@ msgstr "Grafische Themen beim Bildschirm schonen deaktivieren"
 
 #: ../src/gnome-screensaver-command.c:73
 msgid "Enable running graphical themes while blanked (if applicable)"
-msgstr "Grafische·Themen·beim·Bildschirm·schonen·aktivieren (wenn anwendbar)"
+msgstr "Grafische Themen beim Bildschirmschonen aktivieren (wenn anwendbar)"
 
 #: ../src/gnome-screensaver-command.c:75
 msgid "Poke the running screensaver to simulate user activity"
@@ -855,6 +811,32 @@ msgstr "_Zu Benutzer wechseln:"
 #: ../src/gs-lock-plug.c:1637
 msgid "Log _Out"
 msgstr "A_bmelden"
+
+#~ msgid "Allow monitor power management"
+#~ msgstr "Energieverwaltung des Bildschirms zulassen"
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation until the monitor "
+#~ "goes into suspend power mode."
+#~ msgstr ""
+#~ "Die Dauer der Minuten zwischen Aktivierung des Bildschirmschoners und dem "
+#~ "Versetzen des Bildschirms in den Ruhesparmodus."
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation until the monitor "
+#~ "powers off."
+#~ msgstr ""
+#~ "Die Dauer der Minuten zwischen Aktivierung des Bildschirmschoners und dem "
+#~ "Abschalten des Bildschirms."
+
+#~ msgid "Time before power off"
+#~ msgstr "Zeit bis zum Abschalten des Rechners"
+
+#~ msgid "Time before standby"
+#~ msgstr "Zeit bis zum Wartemodus des Rechners"
+
+#~ msgid "Time before suspend"
+#~ msgstr "Zeit bis zum Ruhemodus des Rechners"
 
 #~ msgid "    "
 #~ msgstr "    "

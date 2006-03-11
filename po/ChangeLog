@@ -1,3 +1,7 @@
+2006-03-11  Frank Arnold  <farnold@cvs.gnome.org>
+
+	* de.po: Replaced wrong spaces caused by copy/paste inside gtranslator.
+
 2006-03-11  Duarte Loreto <happyguy_pt@hotmail.com>
 
 	* pt.po: Added Portuguese translation.
