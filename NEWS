@@ -1,4 +1,35 @@
 ===============
+Version 2.14.0
+===============
+
+  gnome-screensaver
+
+        * Removed unused GConf keys from schemas
+        * Don't queue keypad enter keypresses
+        * Use black circle as invisible character in password entry
+
+  Translators
+
+        * Rostislav \"zbrox\" Raykov (bg)
+        * Mahay Alam Khan (bn)
+        * Gil Forcada (ca)
+        * Petr Tomeš (cs)
+        * Rhys Jones (cy)
+        * David Nielsen (da)
+        * Frank Arnold (de)
+        * Ivar Smolin (et)
+        * Rajesh Ranjan (hi)
+        * Luca Ferretti (it)
+        * Young-Ho Cha (ko)
+        * Kjartan Maraas (nb)
+        * Kjartan Maraas (no)
+        * Raphael Higino (pt_BR)
+        * Duarte Loreto (pt)
+        * Laurent Dhima (sq)
+        * Daniel Nylander (sv)
+        * Maxim V. Dziumanenko (uk)
+
+===============
 Version 2.13.92
 ===============
 
