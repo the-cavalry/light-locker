@@ -1,3 +1,7 @@
+2006-03-13  Erdal Ronahi <erdal.ronahi@gmail.com>
+
+	* configure.ac: Added Kurdish (ku) to ALL_LINGUAS.
+
 2006-03-13  Runa Bhattacharjee <runa@bengalinux.org>
 
 	* configure.ac: Added Bengali (bn) to ALL_LINGUAS.
