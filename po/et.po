@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-03-04 14:58+0100\n"
-"PO-Revision-Date: 2006-03-07 11:02+0200\n"
+"PO-Revision-Date: 2006-03-13 18:39+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -105,6 +105,8 @@ msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr ""
+"Selle valiku märkimine lisab lahtilukustamise dialoogi valiku teisele "
+"kasutajakontole ümberlülitumiseks."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
@@ -233,7 +235,7 @@ msgstr ""
 
 #: ../savers/popsquares.desktop.in.h:2
 msgid "Pop art squares"
-msgstr ""
+msgstr "Popkunstist inspireeritud ruudud"
 
 #: ../savers/floaters.c:1165
 msgid "show paths that images follow"
@@ -362,7 +364,7 @@ msgstr ""
 
 #: ../src/cut-n-paste/fusa-manager.c:1282
 msgid "There are too many X sessions running."
-msgstr ""
+msgstr "Liiga palju X'i seansse on käimas."
 
 #: ../src/cut-n-paste/fusa-manager.c:1285
 msgid "The nested X server (Xnest) cannot connect to your current X server."
@@ -400,7 +402,7 @@ msgstr ""
 
 #: ../src/cut-n-paste/fusa-manager.c:1310
 msgid "The display manager sent an unknown error message."
-msgstr ""
+msgstr "Kuvahaldur saatis tundmatu veateate."
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:165
 msgid "The user this menu item represents."
@@ -451,6 +453,7 @@ msgstr "Võib-olla on sul liiga vana GDM-i versioon."
 #: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
 msgid "Cannot communicate with gdm, perhaps you have an old version running."
 msgstr ""
+"GDM-iga pole võimalik suhelda, võib-olla on sellel liiga vana versioon."
 
 #: ../src/cut-n-paste/gdmcomm.c:469
 msgid "The allowed limit of flexible X servers reached."
@@ -466,7 +469,7 @@ msgstr ""
 
 #: ../src/cut-n-paste/gdmcomm.c:476
 msgid "Too many X sessions running."
-msgstr ""
+msgstr "Liiga palju X'i seansse käimas."
 
 #: ../src/cut-n-paste/gdmcomm.c:478
 msgid ""
