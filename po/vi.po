@@ -34,11 +34,11 @@ msgstr "Lập phiên chạy nghỉ sau :"
 
 #:../data/gnome-screensaver-preferences.glade.h:3
 msgid "_Activate screensaver when session is idle"
-msgstr "_Hoạt hóa bộ bảo vậ màn hình một khi phiên chạy nghỉ"
+msgstr "_Hoạt hóa bộ bảo vệ màn hình một khi phiên chạy nghỉ"
 
 #:../data/gnome-screensaver-preferences.glade.h:4
 msgid "_Lock screen when screensaver is active"
-msgstr "_Khoá màn hình khi bộ bảo vậ màn hình hoạt động"
+msgstr "_Khoá màn hình khi bộ bảo vệ màn hình hoạt động"
 
 #:../data/gnome-screensaver-preferences.glade.h:5
 msgid "_Screensaver"
@@ -775,7 +775,7 @@ msgstr "Bạn đã bật phím Khóa Chữ Hoa (CapsLock)."
 
 #:../src/gs-lock-plug.c:707
 msgid "That password was incorrect."
-msgstr "Bạn mới gỏ một mật khẩu không đúng."
+msgstr "Bạn đã nhập sai mật khẩu."
 
 #:../src/gs-lock-plug.c:733 ../src/gs-lock-plug.c:766
 msgid "_Unlock"
@@ -795,7 +795,7 @@ msgstr "%s trên %s"
 
 #:../src/gs-lock-plug.c:1510
 msgid "_Password:"
-msgstr "_Mật khẩu :"
+msgstr "_Mật khẩu:"
 
 #:../src/gs-lock-plug.c:1577
 msgid "S_witch to user:"
