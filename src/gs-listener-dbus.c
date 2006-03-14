@@ -537,6 +537,7 @@ listener_add_inhibitor (GSListener     *listener,
         }
 
         g_hash_table_insert (listener->priv->inhibitors, g_strdup (sender), g_strdup (reason));
+        gs_debug ("adding inhibitor from %s for reason: %s", sender, reason);
 
         if (! dbus_connection_send (connection, reply, NULL)) {
                 g_error ("No memory");
@@ -572,9 +573,10 @@ listener_remove_inhibitor (GSListener     *listener,
 
         if (g_hash_table_lookup (listener->priv->inhibitors, sender)) {
                 g_hash_table_remove (listener->priv->inhibitors, sender);
+                gs_debug ("removing inhibitor from %s", sender);
                 listener_check_activation (listener);
         } else {
-                g_warning ("Service '%s' was not in the list of inhibitors!", sender);
+                gs_debug ("Service '%s' was not in the list of inhibitors!", sender);
         }
 
         /* FIXME?  Pointless? */
