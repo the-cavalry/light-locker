@@ -1,3 +1,11 @@
+2006-03-16  William Jon McCann  <mccann@jhu.edu>
+
+	* src/passwd-pam.c (pam_passwd_valid): Call pam_acct_mgmt.
+	Braces.
+	(pam_priv_init, pam_conversation): Braces.
+
+	Fixes #333411.
+
 2006-03-14  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-listener-dbus.c (listener_add_inhibitor) 

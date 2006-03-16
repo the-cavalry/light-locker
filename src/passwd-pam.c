@@ -174,8 +174,10 @@ pam_passwd_valid (const char *typed_passwd, gboolean verbose)
         struct timespec    timeout;
 
         struct passwd *p = getpwuid (getuid ());
-        if (!p)
+
+        if (!p) {
                 return FALSE;
+        }
 
         user = strdup (p->pw_name);
 
@@ -194,11 +196,15 @@ pam_passwd_valid (const char *typed_passwd, gboolean verbose)
         /* Initialize PAM.
          */
         status = pam_start (service, c.user, &pc, &pamh);
-        if (verbose)
+        if (verbose) {
                 g_message ("pam_start (\"%s\", \"%s\", ...) ==> %d (%s)",
                            service, c.user,
                            status, PAM_STRERROR (pamh, status));
-        if (status != PAM_SUCCESS) goto DONE;
+        }
+
+        if (status != PAM_SUCCESS) {
+                goto DONE;
+        }
 
         /* #### We should set PAM_TTY to the display we're using, but we
            don't have that handy from here.  So set it to :0.0, which is a
@@ -208,9 +214,11 @@ pam_passwd_valid (const char *typed_passwd, gboolean verbose)
         {
                 char *tty = strdup (":0.0");
                 status = pam_set_item (pamh, PAM_TTY, tty);
-                if (verbose)
+                if (verbose) {
                         g_message ("   pam_set_item (p, PAM_TTY, \"%s\") ==> %d (%s)\n",
                                    tty, status, PAM_STRERROR (pamh, status));
+                }
+
                 free (tty);
         }
 
@@ -243,10 +251,25 @@ pam_passwd_valid (const char *typed_passwd, gboolean verbose)
         sigtimedwait (&set, NULL, &timeout);
         unblock_sigchld ();
 
-        if (verbose)
+        if (verbose) {
                 g_message ("   pam_authenticate (...) ==> %d (%s)",
                            status, PAM_STRERROR (pamh, status));
+        }
+
         if (status == PAM_SUCCESS)  /* Win! */ {
+                int status2;
+
+                /* We don't actually care if the account modules fail or succeed,
+                 * but we need to run them anyway because certain pam modules
+                 * depend on side effects of the account modules getting run.
+                 */
+                status2 = pam_acct_mgmt (pamh, 0);
+
+                if (verbose) {
+                        g_message ("pam_acct_mgmt (...) ==> %d (%s)\n",
+                                   status2, PAM_STRERROR (pamh, status2));
+                }
+
                 /* Each time we successfully authenticate, refresh credentials,
                    for Kerberos/AFS/DCE/etc.  If this fails, just ignore that
                    failure and blunder along; it shouldn't matter.
@@ -256,26 +279,32 @@ pam_passwd_valid (const char *typed_passwd, gboolean verbose)
                    says that the Linux PAM library ignores that one, and only refreshes
                    credentials when using PAM_REINITIALIZE_CRED.
                 */
-                int status2 = pam_setcred (pamh, PAM_REINITIALIZE_CRED);
-                if (verbose)
+                status2 = pam_setcred (pamh, PAM_REINITIALIZE_CRED);
+                if (verbose) {
                         g_message ("   pam_setcred (...) ==> %d (%s)",
                                    status2, PAM_STRERROR (pamh, status2));
+                }
+
                 goto DONE;
         }
 
         /* If that didn't work, set the user to root, and try to authenticate again.
          */
-        if (user)
+        if (user) {
                 free (user);
+        }
+
         user = strdup ("root");
         c.user = user;
         status = pam_set_item (pamh, PAM_USER, c.user);
-        if (verbose)
+        if (verbose) {
                 g_message ("   pam_set_item(p, PAM_USER, \"%s\") ==> %d (%s)",
                            c.user, status, PAM_STRERROR (pamh, status));
+        }
 
-        if (status != PAM_SUCCESS)
+        if (status != PAM_SUCCESS) {
                 goto DONE;
+        }
 
         PAM_NO_DELAY (pamh);
 
@@ -284,20 +313,23 @@ pam_passwd_valid (const char *typed_passwd, gboolean verbose)
         sigtimedwait (&set, NULL, &timeout);
         unblock_sigchld ();
 
-        if (verbose)
+        if (verbose) {
                 g_message ("   pam_authenticate (...) ==> %d (%s)",
                            status, PAM_STRERROR (pamh, status));
+        }
 
  DONE:
-        if (user)
+        if (user) {
                 free (user);
+        }
         if (pamh) {
                 int status2 = pam_end (pamh, status);
                 pamh = 0;
-                if (verbose)
+                if (verbose) {
                         g_message (" pam_end (...) ==> %d (%s)",
                                    status2,
                                    (status2 == PAM_SUCCESS ? "Success" : "Failure"));
+                }
         }
 
         return (status == PAM_SUCCESS ? TRUE : FALSE);
@@ -323,21 +355,24 @@ pam_priv_init (int      argc,
         struct stat st;
 
         if (g_stat (dir, &st) == 0 && st.st_mode & S_IFDIR) {
-                if (g_stat (file, &st) != 0)
+                if (g_stat (file, &st) != 0) {
                         g_warning ("%s does not exist.\n"
                                    "Password authentication via PAM is unlikely to work.",
                                    file);
+                }
         }
         else if (g_stat (file2, &st) == 0) {
                 FILE *f = g_fopen (file2, "r");
                 if (f) {
                         gboolean ok = FALSE;
                         char buf[255];
-                        while (fgets (buf, sizeof(buf), f))
+                        while (fgets (buf, sizeof(buf), f)) {
                                 if (strstr (buf, PAM_SERVICE_NAME)) {
                                         ok = TRUE;
                                         break;
                                 }
+                        }
+
                         fclose (f);
                         if (!ok) {
                                 g_warning ("%s does not list the `%s' service.\n"
@@ -386,47 +421,59 @@ pam_conversation (int                        nmsgs,
 
 
         reply = (struct pam_response *) calloc (nmsgs, sizeof (*reply));
-        if (!reply) return PAM_CONV_ERR;
+        if (!reply) {
+                return PAM_CONV_ERR;
+        }
 	
         for (replies = 0; replies < nmsgs; replies++) {
                 switch (msg [replies]->msg_style) {
                 case PAM_PROMPT_ECHO_ON:
                         reply [replies].resp_retcode = PAM_SUCCESS;
                         reply [replies].resp = strdup (c->user);	   /* freed by PAM */
-                        if (c->verbose)
+                        if (c->verbose) {
                                 g_message ("     PAM ECHO_ON(\"%s\") ==> \"%s\"",
                                            msg [replies]->msg,
                                            reply [replies].resp);
+                        }
+
                         break;
                 case PAM_PROMPT_ECHO_OFF:
                         reply [replies].resp_retcode = PAM_SUCCESS;
                         reply [replies].resp = strdup (c->typed_passwd);   /* freed by PAM */
-                        if (c->verbose)
+                        if (c->verbose) {
                                 g_message ("     PAM ECHO_OFF(\"%s\") ==> password",
                                            msg [replies]->msg);
+                        }
+
                         break;
                 case PAM_TEXT_INFO:
                         /* ignore it... */
                         reply [replies].resp_retcode = PAM_SUCCESS;
                         reply [replies].resp = 0;
-                        if (c->verbose)
+                        if (c->verbose) {
                                 g_message ("     PAM TEXT_INFO(\"%s\") ==> ignored",
                                            msg [replies]->msg);
+                        }
+
                         break;
                 case PAM_ERROR_MSG:
                         /* ignore it... */
                         reply [replies].resp_retcode = PAM_SUCCESS;
                         reply [replies].resp = 0;
-                        if (c->verbose)
+                        if (c->verbose) {
                                 g_message ("     PAM ERROR_MSG(\"%s\") ==> ignored",
                                            msg [replies]->msg);
+                        }
+
                         break;
                 default:
                         /* Must be an error of some sort... */
                         free (reply);
-                        if (c->verbose)
+                        if (c->verbose) {
                                 g_message ("     PAM unknown %d(\"%s\") ==> ignored",
                                            msg [replies]->msg_style, msg [replies]->msg);
+                        }
+
                         return PAM_CONV_ERR;
                 }
         }
