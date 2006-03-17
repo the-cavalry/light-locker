@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-04 14:58+0100\n"
-"PO-Revision-Date: 2006-03-17 10:37+0200\n"
+"POT-Creation-Date: 2006-03-17 14:56+0100\n"
+"PO-Revision-Date: 2006-03-17 20:28+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgid "_Screensaver"
 msgstr "_Ekraanisäästja"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:8
+#: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Screensaver themes"
 msgstr "Ekraanisäästja teemad"
 
@@ -66,41 +66,32 @@ msgid "Allow logout"
 msgstr "Väljalogimine lubatud"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow monitor power management"
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
 msgstr "Kasutaja vahetamine lubatud"
 
-#: ../data/gnome-screensaver.schemas.in.h:5
+#: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Lock on activation"
 msgstr "Lukustamine aktiveerimisel"
 
-#: ../data/gnome-screensaver.schemas.in.h:6
+#: ../data/gnome-screensaver.schemas.in.h:5
 msgid "Logout command"
 msgstr "Väljalogimise käsk"
 
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Screensaver theme selection mode"
 msgstr "Ekraanisäästja teemavalimise režiim"
 
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr ""
 "Märgi see valik kui ekraanisäästja tuleb seansi jõudeoleku korral käivitada."
 
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Set this to TRUE to allow the screensaver to power down the monitor."
-msgstr ""
-"Märgi see valik kui ekraanisäästja peab monitori voolu välja lülitama."
-
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr ""
 "Märgi see valik kui ekraanisäästja peab aktiveerumisel ekraani lukustama."
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -108,59 +99,41 @@ msgstr ""
 "Selle valiku märkimine lisab lahtilukustamise dialoogi valiku teisele "
 "kasutajakontole ümberlülitumiseks."
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr "Ekraanisäästja tööminutite arv peale mida ekraan lukustatakse."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"goes into standby power mode."
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"goes into suspend power mode."
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"powers off."
-msgstr "Ekraanisäästja tööminutite arv peale mida monitor välja lülitatakse."
-
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr "Jõudeoleku minutite arv enne kui seanss hinnatakse jõude olevaks."
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "Tööminutite arv enne ekraanisäästja teema vahetamist."
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
@@ -169,7 +142,7 @@ msgid ""
 "activation."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -177,31 +150,19 @@ msgid ""
 "\" is \"random\"."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid "Time before activation"
 msgstr "Aeg enne aktiveerimist"
 
-#: ../data/gnome-screensaver.schemas.in.h:25
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid "Time before locking"
 msgstr "Aeg enne lukustamist"
 
-#: ../data/gnome-screensaver.schemas.in.h:26
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid "Time before logout option"
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid "Time before power off"
-msgstr "Aeg enne voolu väljalülitamist"
-
-#: ../data/gnome-screensaver.schemas.in.h:28
-msgid "Time before standby"
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before suspend"
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:30
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid "Time before theme change"
 msgstr "Aeg enne teemavahetust"
 
@@ -352,7 +313,7 @@ msgstr "Kuvahaldur ei tööta või on liiga vana."
 
 #: ../src/cut-n-paste/fusa-manager.c:1273
 msgid "The configured limit of flexible servers has been reached."
-msgstr ""
+msgstr "Paindlike serverite suurim määratud hulk on saavutatud."
 
 #: ../src/cut-n-paste/fusa-manager.c:1276
 msgid "There was an unknown error starting X."
@@ -360,7 +321,7 @@ msgstr "X'i käivitamisel tekkis tundmatu viga."
 
 #: ../src/cut-n-paste/fusa-manager.c:1279
 msgid "The X server failed to finish starting."
-msgstr ""
+msgstr "Tõrge X-serveri käivitamise lõpuleviimisel."
 
 #: ../src/cut-n-paste/fusa-manager.c:1282
 msgid "There are too many X sessions running."
@@ -457,15 +418,15 @@ msgstr ""
 
 #: ../src/cut-n-paste/gdmcomm.c:469
 msgid "The allowed limit of flexible X servers reached."
-msgstr ""
+msgstr "Paindlike serverite suurim lubatud hulk on saavutatud."
 
 #: ../src/cut-n-paste/gdmcomm.c:471
 msgid "There were errors trying to start the X server."
-msgstr ""
+msgstr "X-serveri käivitamisel ilmnesid vead."
 
 #: ../src/cut-n-paste/gdmcomm.c:473
 msgid "The X server failed.  Perhaps it is not configured well."
-msgstr ""
+msgstr "X-serveri tõrge.  Arvatavasti on see vigasel seadistatud."
 
 #: ../src/cut-n-paste/gdmcomm.c:476
 msgid "Too many X sessions running."
@@ -731,15 +692,15 @@ msgstr "Deemoniks ei minda"
 msgid "Enable debugging code"
 msgstr "Silumise lubamine"
 
-#: ../src/gs-listener-dbus.c:1219
+#: ../src/gs-listener-dbus.c:1221
 msgid "failed to register with the message bus"
 msgstr ""
 
-#: ../src/gs-listener-dbus.c:1229
+#: ../src/gs-listener-dbus.c:1231
 msgid "not connected to the message bus"
 msgstr ""
 
-#: ../src/gs-listener-dbus.c:1238
+#: ../src/gs-listener-dbus.c:1240
 msgid "screensaver already running in this session"
 msgstr ""
 
@@ -786,3 +747,16 @@ msgstr "Vaheta _kasutajat:"
 #: ../src/gs-lock-plug.c:1637
 msgid "Log _Out"
 msgstr "Logi _välja"
+
+#~ msgid "Set this to TRUE to allow the screensaver to power down the monitor."
+#~ msgstr ""
+#~ "Märgi see valik kui ekraanisäästja peab monitori voolu välja lülitama."
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation until the monitor "
+#~ "powers off."
+#~ msgstr ""
+#~ "Ekraanisäästja tööminutite arv peale mida monitor välja lülitatakse."
+
+#~ msgid "Time before power off"
+#~ msgstr "Aeg enne voolu väljalülitamist"
