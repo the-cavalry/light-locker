@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-03-04 14:58+0100\n"
-"PO-Revision-Date: 2006-03-13 18:39+0200\n"
+"PO-Revision-Date: 2006-03-17 10:37+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "Seansi _jõudeoleku määramine peale:"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "_Activate screensaver when session is idle"
-msgstr "Ekraanisäästja _aktiveerimine kui seanss on jõude§"
+msgstr "E_kraanisäästja aktiveerimine kui seanss on jõude"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "_Lock screen when screensaver is active"
@@ -46,7 +46,7 @@ msgstr "Ekraani _lukustamine kui seanss on jõude"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "_Screensaver"
-msgstr "Ekraani_säästja"
+msgstr "_Ekraanisäästja"
 
 #: ../data/gnome-screensaver.directory.in.h:1
 #: ../data/gnome-screensaver.schemas.in.h:8
