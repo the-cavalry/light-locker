@@ -1,3 +1,7 @@
+2006-03-20  Vladimer Sichinava  <vlsichinava@gmail.com>
+
+        * configure.in: Added "ka" (Georgian) to ALL_LINGUAS
+
 2006-03-16  William Jon McCann  <mccann@jhu.edu>
 
 	* src/passwd-pam.c (pam_passwd_valid): Call pam_acct_mgmt.
