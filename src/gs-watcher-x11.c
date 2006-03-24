@@ -1187,6 +1187,7 @@ maybe_send_signal (GSWatcher *watcher)
         } else if (watcher->priv->emergency_lock) {
                 /* Oops, the wall clock has jumped far into the future, so
                    we need to lock down in a hurry! */
+                gs_debug ("Doing emergency lock");
                 do_idle_signal = TRUE;
         } else {
                 /* The event went off, but it turns out that the user has not
