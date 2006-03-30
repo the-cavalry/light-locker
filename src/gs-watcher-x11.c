@@ -3,7 +3,7 @@
  * Portions derived from xscreensaver,
  * Copyright (c) 1991-2004 Jamie Zawinski <jwz@jwz.org>
  *
- * Copyright (C) 2004-2005 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2004-2006 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -90,8 +90,8 @@ struct GSWatcherPrivate
 
         PointerPosition *poll_position;
 
-        time_t          last_wall_clock_time;
-        time_t          last_activity_time;
+        GTimer         *idle_timer;
+        GTimer         *jump_timer;
         guint           emergency_lock : 1;
 
         guint           timer_id;
@@ -498,14 +498,15 @@ static void
 reset_timers (GSWatcher *watcher)
 {
 
-        if (watcher->priv->using_mit_saver_extension || watcher->priv->using_sgi_saver_extension)
+        if (watcher->priv->using_mit_saver_extension || watcher->priv->using_sgi_saver_extension) {
                 return;
+        }
 
         remove_idle_timer (watcher);
 
         schedule_wakeup_event (watcher, watcher->priv->timeout);
 
-        watcher->priv->last_activity_time = time (NULL);
+        g_timer_start (watcher->priv->idle_timer);
 }
 
 static gboolean
@@ -693,8 +694,8 @@ start_idle_watcher (GSWatcher *watcher)
         g_return_val_if_fail (watcher != NULL, FALSE);
         g_return_val_if_fail (GS_IS_WATCHER (watcher), FALSE);
 
-        watcher->priv->last_wall_clock_time = 0;
-        watcher->priv->last_activity_time = time (NULL);
+        g_timer_start (watcher->priv->jump_timer);
+        g_timer_start (watcher->priv->idle_timer);
 
         start_pointer_poll (watcher);
 
@@ -712,8 +713,8 @@ stop_idle_watcher (GSWatcher *watcher)
         g_return_val_if_fail (watcher != NULL, FALSE);
         g_return_val_if_fail (GS_IS_WATCHER (watcher), FALSE);
 
-        watcher->priv->last_wall_clock_time = 0;
-        watcher->priv->last_activity_time = time (NULL);
+        g_timer_stop (watcher->priv->jump_timer);
+        g_timer_stop (watcher->priv->idle_timer);
 
         remove_idle_timer (watcher);
 
@@ -823,6 +824,9 @@ gs_watcher_init (GSWatcher *watcher)
         /* time before idle signal to send notice signal */
         watcher->priv->notice_timeout = 10000;
 
+        watcher->priv->idle_timer = g_timer_new ();
+        watcher->priv->jump_timer = g_timer_new ();
+
         initialize_server_extensions (watcher);
 
         add_watchdog_timer (watcher, 600000);
@@ -846,6 +850,11 @@ gs_watcher_finalize (GObject *object)
         stop_idle_watcher (watcher);
 
         _gs_watcher_pointer_position_free (watcher->priv->poll_position);
+
+        g_timer_destroy (watcher->priv->idle_timer);
+        watcher->priv->idle_timer = NULL;
+        g_timer_destroy (watcher->priv->jump_timer);
+        watcher->priv->jump_timer = NULL;
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -1165,7 +1174,7 @@ static void
 maybe_send_signal (GSWatcher *watcher)
 {
         gboolean polling_for_idleness = TRUE;
-        int      idle;
+        gint64   elapsed;
         gboolean do_idle_signal = FALSE;
         gboolean do_notice_signal = FALSE;
 
@@ -1179,9 +1188,9 @@ maybe_send_signal (GSWatcher *watcher)
                 return;
         }
 
-        idle = 1000 * (time (NULL) - watcher->priv->last_activity_time);
+        elapsed = 1000 * g_timer_elapsed (watcher->priv->idle_timer, NULL);
 
-        if (idle >= watcher->priv->timeout) {
+        if (elapsed >= watcher->priv->timeout) {
                 /* Look, we've been idle long enough.  We're done. */
                 do_idle_signal = TRUE;
         } else if (watcher->priv->emergency_lock) {
@@ -1200,7 +1209,7 @@ maybe_send_signal (GSWatcher *watcher)
                 if (polling_for_idleness) {
                         guint time_left;
 
-                        time_left = watcher->priv->timeout - idle;
+                        time_left = watcher->priv->timeout - elapsed;
 
                         if (time_left <= watcher->priv->notice_timeout) {
                                 do_notice_signal = TRUE;
@@ -1299,8 +1308,8 @@ check_for_clock_skew (GSWatcher *watcher)
         gint64 i_s;
 
         now   = time (NULL);
-        shift = now - watcher->priv->last_wall_clock_time;
-        i     = (watcher->priv->last_wall_clock_time == 0 ? 0 : shift);
+        shift = g_timer_elapsed (watcher->priv->jump_timer, NULL);
+        i     = shift;
 
         i_h = i / (60 * 60);
         i_m = (i / 60) % 60;
@@ -1308,9 +1317,7 @@ check_for_clock_skew (GSWatcher *watcher)
         gs_debug ("checking wall clock for hibernation, changed: %" G_GINT64_FORMAT ":%02" G_GINT64_FORMAT ":%02" G_GINT64_FORMAT,
                   i_h, i_m, i_s);
 
-
-        if (watcher->priv->last_wall_clock_time != 0
-            && shift > (watcher->priv->timeout / 1000)) {
+        if (shift > (watcher->priv->timeout / 1000)) {
                 gint64 s_h;
                 gint64 s_m;
                 gint64 s_s;
@@ -1326,7 +1333,7 @@ check_for_clock_skew (GSWatcher *watcher)
                 maybe_send_signal (watcher);
         }
 
-        watcher->priv->last_wall_clock_time = now;
+        g_timer_start (watcher->priv->jump_timer);
 }
 
 static PointerPosition *
@@ -1372,7 +1379,7 @@ _gs_watcher_check_pointer_position (GSWatcher *watcher)
 {
         PointerPosition *pos;
         gboolean         changed;
-        gint64           idle_time;
+        gint64           elapsed;
 
         pos = _gs_watcher_pointer_position_read (watcher);
 
@@ -1386,8 +1393,8 @@ _gs_watcher_check_pointer_position (GSWatcher *watcher)
                 _gs_watcher_pointer_position_free (pos);
         }
 
-        idle_time = (time (NULL) - watcher->priv->last_activity_time);
-        gs_debug ("Idle %" G_GINT64_FORMAT " seconds", idle_time);
+        elapsed = g_timer_elapsed (watcher->priv->idle_timer, NULL);
+        gs_debug ("Idle %" G_GINT64_FORMAT " seconds", elapsed);
 
         check_for_clock_skew (watcher);
 }

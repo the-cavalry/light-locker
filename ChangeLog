@@ -1,3 +1,11 @@
+2006-03-30  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-watcher-x11.c (reset_timers, start_idle_watcher) 
+	(stop_idle_watcher, gs_watcher_init, gs_watcher_finalize) 
+	(maybe_send_signal, check_for_clock_skew) 
+	(_gs_watcher_check_pointer_position):
+	Use GTimer instead of using time().
+
 2005-03-27  Nikos Charonitakis  <nikosx@gmail.com>
 
 	* cofigure.ac: Added missing Greek (el) to ALL_LINGUAS
