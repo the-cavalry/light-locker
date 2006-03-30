@@ -64,8 +64,8 @@ floaters_SOURCES =	\
 	$(NULL)
 
 floaters_LDADD =		       \
-	$(GNOME_SCREENSAVER_SAVER_LIBS) \
 	libgs-theme-engine.a		\
+	$(GNOME_SCREENSAVER_SAVER_LIBS) \
 	$(NULL)
 
 popsquares_SOURCES = 		\
@@ -75,8 +75,8 @@ popsquares_SOURCES = 		\
 	$(NULL)
 
 popsquares_LDADD =			\
-	$(GNOME_SCREENSAVER_SAVER_LIBS)	\
 	libgs-theme-engine.a 		\
+	$(GNOME_SCREENSAVER_SAVER_LIBS)	\
 	$(NULL)
 
 slideshow_SOURCES =   \
@@ -86,8 +86,8 @@ slideshow_SOURCES =   \
 	$(NULL)
 
 slideshow_LDADD =     \
-	$(GNOME_SCREENSAVER_SAVER_LIBS)	\
 	libgs-theme-engine.a 		\
+	$(GNOME_SCREENSAVER_SAVER_LIBS)	\
 	$(NULL)
 
 EXTRA_DIST =				\

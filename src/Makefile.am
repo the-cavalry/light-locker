@@ -147,11 +147,11 @@ gnome_screensaver_dialog_SOURCES = 	\
 	$(NULL)
 
 gnome_screensaver_dialog_LDADD =	\
+	$(top_builddir)/src/cut-n-paste/libfast-user-switch.a \
 	$(GNOME_SCREENSAVER_DIALOG_LIBS)\
 	$(SAVER_LIBS)			\
 	$(FAST_USER_SWITCH_LIBS)	\
 	$(AUTH_LIBS)			\
-	$(top_builddir)/src/cut-n-paste/libfast-user-switch.a \
 	$(NULL)
 
 BUILT_SOURCES = 		\

@@ -1,5 +1,14 @@
 2006-03-30  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/Makefile.am:
+	* src/Makefile.am:
+	Cygwin build fix.
+
+	Patch from <yselkowitz@users.sourceforge.net>
+	Fixes #336672.
+
+2006-03-30  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c (reset_timers, start_idle_watcher) 
 	(stop_idle_watcher, gs_watcher_init, gs_watcher_finalize) 
 	(maybe_send_signal, check_for_clock_skew) 
