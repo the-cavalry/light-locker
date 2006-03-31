@@ -945,9 +945,6 @@ screen_saver_on_size_allocate (ScreenSaver   *screen_saver,
   canvas_rectangle.bottom_right_point.y = allocation->y + (1.1 * allocation->height);
 
   screen_saver->canvas_rectangle = canvas_rectangle;
-
-  if (screen_saver->floaters == NULL)
-    screen_saver_create_floaters (screen_saver);
 }
 
 static gint
@@ -968,6 +965,9 @@ screen_saver_on_expose_event (ScreenSaver    *screen_saver,
 {
   GList *tmp;
   cairo_t *context;
+
+  if (screen_saver->floaters == NULL)
+    screen_saver_create_floaters (screen_saver);
 
   context = gdk_cairo_create (screen_saver->drawing_area->window);
 
