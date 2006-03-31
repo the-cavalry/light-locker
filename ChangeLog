@@ -1,3 +1,9 @@
+2006-03-31  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-window-x11.c (get_env_vars): Add "KRB5CCNAME" and
+	"KRBTKFILE" to the list of allowed environment variables.
+	Pulled from RH bug #187341.
+
 2006-03-30  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/Makefile.am:

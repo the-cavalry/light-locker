@@ -558,6 +558,8 @@ get_env_vars (GtkWidget *widget)
                 "SESSION_MANAGER",
                 "XAUTHORITY",
                 "XAUTHLOCALHOSTNAME",
+                "KRB5CCNAME",
+                "KRBTKFILE",
                 "LANG",
                 "LANGUAGE"
         };
