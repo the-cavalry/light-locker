@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 0.0.21\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-16 08:39+0700\n"
-"PO-Revision-Date: 2006-02-16 08:52+0700\n"
+"POT-Creation-Date: 2006-04-03 14:42+0700\n"
+"PO-Revision-Date: 2006-04-03 14:43+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <l10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,11 +30,11 @@ msgstr "ปรับแต่งโปรแกรมรักษาหน้า
 
 #: data/gnome-screensaver-preferences.glade.h:2
 msgid "Set session as _idle after:"
-msgstr "กำหนดให้วาระเดินเครื่องเ_ปล่าหลังจาก:"
+msgstr "ถือว่าเครื่องไ_ม่ถูกใช้งานหลังจาก:"
 
 #: data/gnome-screensaver-preferences.glade.h:3
 msgid "_Activate screensaver when session is idle"
-msgstr "เ_ริ่มใช้โปรแกรมรักษาหน้าจอเมื่อวาระเดินเครื่องเปล่า"
+msgstr "แ_สดงโปรแกรมรักษาหน้าจอเมื่อเครื่องไม่ถูกใช้งาน"
 
 #: data/gnome-screensaver-preferences.glade.h:4
 msgid "_Lock screen when screensaver is active"
@@ -45,7 +45,7 @@ msgid "_Screensaver"
 msgstr "โปรแกรม_รักษาหน้าจอ"
 
 #: data/gnome-screensaver.directory.in.h:1
-#: data/gnome-screensaver.schemas.in.h:8
+#: data/gnome-screensaver.schemas.in.h:7
 msgid "Screensaver themes"
 msgstr "ชุดโปรแกรมรักษาหน้าจอ"
 
@@ -62,44 +62,36 @@ msgid "Allow logout"
 msgstr "ให้ออกจากระบบได้"
 
 #: data/gnome-screensaver.schemas.in.h:3
-msgid "Allow monitor power management"
-msgstr "ให้จัดการการใช้พลังงานของจอภาพได้"
-
-#: data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
 msgstr "ให้เปลี่ยนผู้ใช้ได้"
 
-#: data/gnome-screensaver.schemas.in.h:5
+#: data/gnome-screensaver.schemas.in.h:4
 msgid "Lock on activation"
 msgstr "ล็อคหน้าจอเมื่อทำงาน"
 
-#: data/gnome-screensaver.schemas.in.h:6
+#: data/gnome-screensaver.schemas.in.h:5
 msgid "Logout command"
 msgstr "คำสั่งออกจากระบบ"
 
-#: data/gnome-screensaver.schemas.in.h:7
+#: data/gnome-screensaver.schemas.in.h:6
 msgid "Screensaver theme selection mode"
 msgstr "วิธีการเลือกชุดโปรแกรมรักษาหน้าจอ"
 
-#: data/gnome-screensaver.schemas.in.h:9
+#: data/gnome-screensaver.schemas.in.h:8
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr "กำหนดเป็น TRUE เพื่อเริ่มโปรแกรมรักษาหน้าจอเมื่อวาระเดินเครื่องเปล่า"
 
-#: data/gnome-screensaver.schemas.in.h:10
-msgid "Set this to TRUE to allow the screensaver to power down the monitor."
-msgstr "กำหนดเป็น TRUE เพื่อยอมให้โปรแกรมรักษาหน้าจอสั่งปิดจอภาพ"
-
-#: data/gnome-screensaver.schemas.in.h:11
+#: data/gnome-screensaver.schemas.in.h:9
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr "กำหนดเป็น TRUE เพื่อล็อคหน้าจอเมื่อโปรแกรมรักษาหน้าจอทำงาน"
 
-#: data/gnome-screensaver.schemas.in.h:12
+#: data/gnome-screensaver.schemas.in.h:10
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr "กำหนดเป็น TRUE เพื่อให้มีตัวเลือกในกล่องโต้ตอบปลดล็อคหน้าจอ ให้เปลี่ยนไปใช้บัญชีผู้ใช้อื่นได้"
 
-#: data/gnome-screensaver.schemas.in.h:13
+#: data/gnome-screensaver.schemas.in.h:11
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -107,7 +99,7 @@ msgstr ""
 "กำหนดเป็น TRUE เพื่อให้มีตัวเลือกในกล่องโต้ตอบปลดล็อคหน้าจอ "
 "ให้ออกจากระบบหลังจากการหน่วงเวลาได้ ช่วงเวลาที่หน่วงกำหนดโดยคีย์ \"logout_delay\""
 
-#: data/gnome-screensaver.schemas.in.h:14
+#: data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -116,12 +108,12 @@ msgstr ""
 "คำสั่งที่จะเรียกเมื่อผู้ใช้คลิกปุ่มออกจากระบบ คำสั่งนี้ควรจะออกจากวาระของผู้ใช้ "
 "โดยไม่มีการโต้ตอบกับผู้ใช้อีก คีย์นี้จะมีผลก็ต่อเมื่อคีย์ \"logout_enable\" มีค่าเป็น TRUE"
 
-#: data/gnome-screensaver.schemas.in.h:15
+#: data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr "จำนวนนาทีหลังการเริ่มทำงาน ที่โปรแกรมรักษาหน้าจอจะล็อคหน้าจอ"
 
-#: data/gnome-screensaver.schemas.in.h:16
+#: data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -131,38 +123,16 @@ msgstr ""
 "ที่โปรแกรมรักษาหน้าจอจะปรากฏตัวเลือกให้ออกจากระบบในกล่องโต้ตอบปลดล็อคหน้าจอ "
 "คีย์นี้จะมีผลก็ต่อเมื่อคีย์ \"logout_enable\" มีค่าเป็น TRUE"
 
-#: data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"goes into standby power mode."
-msgstr ""
-"จำนวนนาทีหลังการเริ่มทำงาน ที่โปรแกรมรักษาหน้าจอจะเปลี่ยนการใช้พลังงานของจอภาพเข้าสู่โหมด "
-"standby"
-
-#: data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"goes into suspend power mode."
-msgstr ""
-"จำนวนนาทีหลังการเริ่มทำงาน ที่โปรแกรมรักษาหน้าจอจะเปลี่ยนการใช้พลังงานของจอภาพเข้าสู่โหมด "
-"suspend"
-
-#: data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"powers off."
-msgstr "จำนวนนาทีหลังการเริ่มทำงาน ที่โปรแกรมรักษาหน้าจอจะปิดจอภาพ"
-
-#: data/gnome-screensaver.schemas.in.h:20
+#: data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr "จำนวนนาทีที่ไม่มีความเคลื่อนไหว ก่อนที่จะถือว่าวาระเริ่มเดินเครื่องเปล่า"
 
-#: data/gnome-screensaver.schemas.in.h:21
+#: data/gnome-screensaver.schemas.in.h:16
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "จำนวนนาทีที่จะทำงาน ก่อนเปลี่ยนชุดโปรแกรมรักษาหน้าจอ"
 
-#: data/gnome-screensaver.schemas.in.h:22
+#: data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
@@ -175,7 +145,7 @@ msgstr ""
 "เพื่อเปิดใช้โปรแกรมรักษาหน้าจอโดยใช้ชุดโปรแกรมเดียว (กำหนดโดยคีย์ \"themes\") หรือ "
 "\"random\" เพื่อเปิดใช้โดยสุ่มชุดโปรแกรมรักษาหน้าจอ"
 
-#: data/gnome-screensaver.schemas.in.h:23
+#: data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -186,31 +156,19 @@ msgstr ""
 "\"blank-only\" แต่จะกำหนดชื่อชุดโปรแกรมเมื่อคีย์ \"mode\" เป็น \"single\" "
 "และกำหนดรายการชุดโปรแกรมเมื่อ \"mode\" เป็น \"random\""
 
-#: data/gnome-screensaver.schemas.in.h:24
+#: data/gnome-screensaver.schemas.in.h:19
 msgid "Time before activation"
 msgstr "ช่วงเวลาก่อนเริ่มทำงาน"
 
-#: data/gnome-screensaver.schemas.in.h:25
+#: data/gnome-screensaver.schemas.in.h:20
 msgid "Time before locking"
 msgstr "ช่วงเวลาก่อนล็อคหน้าจอ"
 
-#: data/gnome-screensaver.schemas.in.h:26
+#: data/gnome-screensaver.schemas.in.h:21
 msgid "Time before logout option"
 msgstr "ช่วงเวลาก่อนมีตัวเลือกออกจากระบบ"
 
-#: data/gnome-screensaver.schemas.in.h:27
-msgid "Time before power off"
-msgstr "ช่วงเวลาก่อนปิดจอภาพ"
-
-#: data/gnome-screensaver.schemas.in.h:28
-msgid "Time before standby"
-msgstr "ช่วงเวลาก่อน standby"
-
-#: data/gnome-screensaver.schemas.in.h:29
-msgid "Time before suspend"
-msgstr "ช่วงเวลาก่อน suspend"
-
-#: data/gnome-screensaver.schemas.in.h:30
+#: data/gnome-screensaver.schemas.in.h:22
 msgid "Time before theme change"
 msgstr "ช่วงเวลาก่อนเปลี่ยนชุดโปรแกรม"
 
@@ -288,16 +246,16 @@ msgstr "WIDTHxHEIGHT+X+Y"
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: savers/floaters.c:1230
+#: savers/floaters.c:1228
 msgid "image - floats images around the screen"
 msgstr "image - เลื่อนรูปไปรอบๆ หน้าจอ"
 
-#: savers/floaters.c:1240
+#: savers/floaters.c:1238
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s  ลองเรียกด้วย --help เพื่อดูวิธีใช้\n"
 
-#: savers/floaters.c:1249
+#: savers/floaters.c:1247
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "คุณต้องระบุรูปภาพด้วย  ลองเรียกด้วย --help เพื่อดูวิธีใช้\n"
 
@@ -657,37 +615,37 @@ msgstr "คำสั่งที่จะเรียกจากปุ่มอ
 msgid "Show the switch user button"
 msgstr "แสดงปุ่มสลับผู้ใช้"
 
-#: src/gnome-screensaver-preferences.c:431
+#: src/gnome-screensaver-preferences.c:427
 msgid "Blank screen"
 msgstr "จอเปล่า"
 
-#: src/gnome-screensaver-preferences.c:437
+#: src/gnome-screensaver-preferences.c:433
 msgid "Random"
 msgstr "สุ่ม"
 
-#: src/gnome-screensaver-preferences.c:726
+#: src/gnome-screensaver-preferences.c:723
 msgid "Invalid screensaver theme"
 msgstr "ชุดโปรแกรมรักษาหน้าจอใช้ไม่ได้"
 
-#: src/gnome-screensaver-preferences.c:729
+#: src/gnome-screensaver-preferences.c:726
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "แฟ้มนี้ดูไม่เหมือนชุดโปรแกรมรักษาหน้าจอที่ใช้ได้"
 
-#: src/gnome-screensaver-preferences.c:846
+#: src/gnome-screensaver-preferences.c:843
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d ชั่วโมง"
 msgstr[1] "%d ชั่วโมง"
 
-#: src/gnome-screensaver-preferences.c:849
+#: src/gnome-screensaver-preferences.c:846
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d นาที"
 msgstr[1] "%d นาที"
 
-#: src/gnome-screensaver-preferences.c:852
+#: src/gnome-screensaver-preferences.c:849
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -695,15 +653,15 @@ msgstr[0] "%d วินาที"
 msgstr[1] "%d วินาที"
 
 #. hour:minutes:seconds
-#: src/gnome-screensaver-preferences.c:858
+#: src/gnome-screensaver-preferences.c:855
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: src/gnome-screensaver-preferences.c:861
-#: src/gnome-screensaver-preferences.c:869
+#: src/gnome-screensaver-preferences.c:858
+#: src/gnome-screensaver-preferences.c:866
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -711,27 +669,27 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: src/gnome-screensaver-preferences.c:864
-#: src/gnome-screensaver-preferences.c:872
-#: src/gnome-screensaver-preferences.c:876
+#: src/gnome-screensaver-preferences.c:861
+#: src/gnome-screensaver-preferences.c:869
+#: src/gnome-screensaver-preferences.c:873
 #, c-format
 msgid "%s"
 msgstr "%s"
 
 #. 0 seconds
-#: src/gnome-screensaver-preferences.c:879
+#: src/gnome-screensaver-preferences.c:876
 msgid "0 seconds"
 msgstr "0 วินาที"
 
-#: src/gnome-screensaver-preferences.c:894
+#: src/gnome-screensaver-preferences.c:891
 msgid "Never"
 msgstr "ไม่ทำงาน"
 
-#: src/gnome-screensaver-preferences.c:1040
+#: src/gnome-screensaver-preferences.c:1047
 msgid "Could not load the main interface"
 msgstr "ไม่สามารถโหลดส่วนติดต่อผู้ใช้หลักได้"
 
-#: src/gnome-screensaver-preferences.c:1042
+#: src/gnome-screensaver-preferences.c:1049
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "กรุณาตรวจสอบการติดตั้งโปรแกรมรักษาหน้าจอว่าครบถ้วนหรือไม่"
 
@@ -743,15 +701,15 @@ msgstr "ไม่ต้องเป็นดีมอน"
 msgid "Enable debugging code"
 msgstr "เปิดใช้โค้ดส่วนดีบั๊ก"
 
-#: src/gs-listener-dbus.c:1188
+#: src/gs-listener-dbus.c:1221
 msgid "failed to register with the message bus"
 msgstr "ลงทะเบียนกับบัสข้อความไม่สำเร็จ"
 
-#: src/gs-listener-dbus.c:1198
+#: src/gs-listener-dbus.c:1231
 msgid "not connected to the message bus"
 msgstr "ไม่ได้เชื่อมต่อกับบัสข้อความ"
 
-#: src/gs-listener-dbus.c:1207
+#: src/gs-listener-dbus.c:1240
 msgid "screensaver already running in this session"
 msgstr "โปรแกรมรักษาหน้าจอกำลังทำงานอยู่แล้วในวาระนี้"
 
@@ -787,17 +745,51 @@ msgstr "_สลับผู้ใช้..."
 msgid "%s on %s"
 msgstr "%s ที่เครื่อง %s"
 
-#: src/gs-lock-plug.c:1510
+#: src/gs-lock-plug.c:1517
 msgid "_Password:"
 msgstr "_รหัสผ่าน:"
 
-#: src/gs-lock-plug.c:1577
+#: src/gs-lock-plug.c:1590
 msgid "S_witch to user:"
 msgstr "ส_ลับไปเป็นผู้ใช้:"
 
-#: src/gs-lock-plug.c:1624
+#: src/gs-lock-plug.c:1637
 msgid "Log _Out"
 msgstr "_ออกจากระบบ"
+
+#~ msgid "Allow monitor power management"
+#~ msgstr "ให้จัดการการใช้พลังงานของจอภาพได้"
+
+#~ msgid "Set this to TRUE to allow the screensaver to power down the monitor."
+#~ msgstr "กำหนดเป็น TRUE เพื่อยอมให้โปรแกรมรักษาหน้าจอสั่งปิดจอภาพ"
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation until the monitor "
+#~ "goes into standby power mode."
+#~ msgstr ""
+#~ "จำนวนนาทีหลังการเริ่มทำงาน "
+#~ "ที่โปรแกรมรักษาหน้าจอจะเปลี่ยนการใช้พลังงานของจอภาพเข้าสู่โหมด standby"
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation until the monitor "
+#~ "goes into suspend power mode."
+#~ msgstr ""
+#~ "จำนวนนาทีหลังการเริ่มทำงาน "
+#~ "ที่โปรแกรมรักษาหน้าจอจะเปลี่ยนการใช้พลังงานของจอภาพเข้าสู่โหมด suspend"
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation until the monitor "
+#~ "powers off."
+#~ msgstr "จำนวนนาทีหลังการเริ่มทำงาน ที่โปรแกรมรักษาหน้าจอจะปิดจอภาพ"
+
+#~ msgid "Time before power off"
+#~ msgstr "ช่วงเวลาก่อนปิดจอภาพ"
+
+#~ msgid "Time before standby"
+#~ msgstr "ช่วงเวลาก่อน standby"
+
+#~ msgid "Time before suspend"
+#~ msgstr "ช่วงเวลาก่อน suspend"
 
 #~ msgid "    "
 #~ msgstr "    "
