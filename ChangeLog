@@ -1,5 +1,13 @@
 2006-04-04  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-preferences.c (compare_theme_names) 
+	(compare_theme, setup_treeview_selection): Fix leaks.
+
+	Patch from Emmanuel Rodriguez <emmanuel.rodriquez@gmail.com>
+	Fixes #336800
+
+2006-04-04  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-command.c (main):
 	Don't ignore unknown options.
 

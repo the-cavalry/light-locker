@@ -496,6 +496,42 @@ activate_delay_value_changed_cb (GtkRange *range,
 }
 
 static int
+compare_theme_names (char *name_a,
+                     char *name_b,
+                     char *id_a,
+                     char *id_b)
+{
+
+        if (! id_a) {
+                return 1;
+        } else if (! id_b) {
+                return -1;
+        }
+
+        if (strcmp (id_a, "__blank-only") == 0) {
+                return -1;
+        } else if (strcmp (id_b, "__blank-only") == 0) {
+                return 1;
+        } else if (strcmp (id_a, "__random") == 0) {
+                return -1;
+        } else if (strcmp (id_b, "__random") == 0) {
+                return 1;
+        } else if (strcmp (id_a, "__separator") == 0) {
+                return -1;
+        } else if (strcmp (id_b, "__separator") == 0) {
+                return 1;
+        }
+
+        if (! name_a) {
+                return 1;
+        } else if (! name_b) {
+                return -1;
+        }
+
+        return strcmp (name_a, name_b);
+}
+
+static int
 compare_theme  (GtkTreeModel *model,
                 GtkTreeIter  *a,
                 GtkTreeIter  *b,
@@ -512,30 +548,7 @@ compare_theme  (GtkTreeModel *model,
         gtk_tree_model_get (model, a, ID_COLUMN, &id_a, -1);
         gtk_tree_model_get (model, b, ID_COLUMN, &id_b, -1);
 
-        if (! id_a)
-                return 1;
-        else if (! id_b)
-                return -1;
-
-        if (strcmp (id_a, "__blank-only") == 0)
-                return -1;
-        else if (strcmp (id_b, "__blank-only") == 0)
-                return 1;
-        else if (strcmp (id_a, "__random") == 0)
-                return -1;
-        else if (strcmp (id_b, "__random") == 0)
-                return 1;
-        else if (strcmp (id_a, "__separator") == 0)
-                return -1;
-        else if (strcmp (id_b, "__separator") == 0)
-                return 1;
-
-        if (! name_a)
-                return 1;
-        else if (! name_b)
-                return -1;
-
-        result = strcmp (name_a, name_b);
+        result = compare_theme_names (name_a, name_b, id_a, id_b);
 
         g_free (name_a);
         g_free (name_b);
@@ -628,12 +641,17 @@ setup_treeview_selection (GtkWidget *tree)
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (tree));
 
         if (theme && gtk_tree_model_get_iter_first (model, &iter)) {
-                char *id;
 
                 do {
+                        char *id;
+                        gboolean found;
+
                         gtk_tree_model_get (model, &iter,
                                             ID_COLUMN, &id, -1);
-                        if (id && strcmp (id, theme) == 0) {
+                        found = (id && strcmp (id, theme) == 0);
+                        g_free (id);
+
+                        if (found) {
                                 path = gtk_tree_model_get_path (model, &iter);
                                 break;
                         }
