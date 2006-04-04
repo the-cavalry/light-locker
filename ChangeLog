@@ -1,5 +1,10 @@
 2006-04-04  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-command.c (main):
+	Don't ignore unknown options.
+
+2006-04-04  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c (notice_events_inner, gs_watcher_xevent):
 	Watch for user time changes on windows to detect
 	mouse button events.
