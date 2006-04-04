@@ -1,3 +1,11 @@
+2006-04-04  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-watcher-x11.c (check_for_clock_skew):
+	Make sure to reset emergency lock flag.
+
+	Patch from Ray Strode <rstrode@redhat.com>
+	Fixes #332576
+
 2006-03-31  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/floaters.c (screen_saver_on_size_allocate) 

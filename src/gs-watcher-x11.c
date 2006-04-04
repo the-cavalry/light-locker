@@ -1331,6 +1331,7 @@ check_for_clock_skew (GSWatcher *watcher)
 
                 watcher->priv->emergency_lock = TRUE;
                 maybe_send_signal (watcher);
+                watcher->priv->emergency_lock = FALSE;
         }
 
         g_timer_start (watcher->priv->jump_timer);
