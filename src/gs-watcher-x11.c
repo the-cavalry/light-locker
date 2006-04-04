@@ -317,6 +317,9 @@ notice_events_inner (Window   window,
 
                 /* Select for SubstructureNotify on all windows */
                 events = SubstructureNotifyMask | events;
+
+                /* Select for PropertyNotify events to get user time changes */
+                events = PropertyChangeMask | events;
         } else {
                 /* We want to disable all events */
 
@@ -596,8 +599,9 @@ gs_watcher_xevent (GSWatcher *watcher,
         XEvent *ev;
 
         /* do nothing if we aren't watching */
-        if (! watcher->priv->active)
+        if (! watcher->priv->active) {
                 return;
+        }
 
         ev = xevent;
 
@@ -607,6 +611,11 @@ gs_watcher_xevent (GSWatcher *watcher,
         case ButtonPress:
         case ButtonRelease:
                 _gs_watcher_notice_activity (watcher);
+                break;
+        case PropertyNotify:
+                if (ev->xproperty.atom == gdk_x11_get_xatom_by_name ("_NET_WM_USER_TIME")) {
+                        _gs_watcher_notice_activity (watcher);
+                }
                 break;
         case CreateNotify:
                 {
