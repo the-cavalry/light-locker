@@ -1,3 +1,7 @@
+2006-04-05  Pema Geyleg  <pema.geyleg@gmail.com>
+
+	* configure.ac: Added dz (Dzongkha) to ALL_LINGUAS.
+
 2006-04-04  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-preferences.c (compare_theme_names) 
