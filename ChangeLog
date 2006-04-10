@@ -1,6 +1,11 @@
 2006-04-10  William Jon McCann  <mccann@jhu.edu>
 
 	* data/gnome-screensaver-preferences.glade:
+	Use lowercase for "theme".
+
+2006-04-10  William Jon McCann  <mccann@jhu.edu>
+
+	* data/gnome-screensaver-preferences.glade:
 	Small HIG fix.
 
 	Patch from Dennis Cranston <dennis_cranston@yahoo.com>
