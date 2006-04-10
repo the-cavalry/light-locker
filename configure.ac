@@ -1,7 +1,7 @@
 dnl -*- mode: m4 -*-
 
 AC_INIT([gnome-screensaver],
-        [2.14.2],
+        [2.15.1],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver])
 
 AC_CONFIG_SRCDIR(src/gnome-screensaver.c)
