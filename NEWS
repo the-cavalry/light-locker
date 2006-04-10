@@ -1,4 +1,30 @@
 ===============
+Version 2.14.1
+===============
+
+  gnome-screensaver
+
+        * Detect button press activity (Ray Strode)
+        * Make operation after system suspend (Ray Strode)
+        * Cygwin build fix
+        * Use GTimer for portability
+        * Obtain new Kerberos credentials when unlocking screen
+
+  Themes
+
+        * (floaters) Use the entire screen at start
+
+  Translators
+
+        * Lukas Novotny (cs)
+        * Ivar Smolin (et)
+        * Beno√Æt Dejean (fr)
+        * Wouter Bolsterlee (nl)
+        * Andrzej Polaty≈ski (pl)
+        * Theppitak Karoonboonyanan (th)
+        * Clytie Siddall (vi)
+
+===============
 Version 2.14.0
 ===============
 

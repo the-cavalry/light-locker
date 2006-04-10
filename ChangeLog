@@ -1,3 +1,9 @@
+==== 2.14.1 ====
+
+2006-04-10  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 2.14.1 release
+
 2006-04-10  Artur Flinta  <aflinta@cvs.gnome.org>
 
 	* configure.ac: Added pl (Polish) to ALL_LINGUAS.
