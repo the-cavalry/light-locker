@@ -1,5 +1,13 @@
 2006-04-10  William Jon McCann  <mccann@jhu.edu>
 
+	* data/gnome-screensaver-preferences.glade:
+	Small HIG fix.
+
+	Patch from Dennis Cranston <dennis_cranston@yahoo.com>
+	Fixes #331330
+
+2006-04-10  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-job.c (gs_job_set_widget): Restart job when
 	target widget is changed.
 
