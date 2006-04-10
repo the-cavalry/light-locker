@@ -1,3 +1,7 @@
+2006-04-10  Artur Flinta  <aflinta@cvs.gnome.org>
+
+	* configure.ac: Added pl (Polish) to ALL_LINGUAS.
+
 2006-04-05  Pema Geyleg  <pema.geyleg@gmail.com>
 
 	* configure.ac: Added dz (Dzongkha) to ALL_LINGUAS.

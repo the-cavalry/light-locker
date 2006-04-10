@@ -29,7 +29,7 @@ AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Name of default gettext domain])
 
 ALL_LINGUAS="bg bn ca cs cy da de dz el en_CA en_GB es et fi fr gl gu hi hu it 
-ja ka ko ku lt mk nb nl no pa pt pt_BR sk sq sr sr@Latn sv th uk vi zh_CN 
+ja ka ko ku lt mk nb nl no pa pl pt pt_BR sk sq sr sr@Latn sv th uk vi zh_CN 
 zh_HK zh_TW"
 AM_GLIB_GNU_GETTEXT
 
