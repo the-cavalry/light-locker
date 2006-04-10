@@ -475,7 +475,15 @@ gs_job_set_widget  (GSJob     *job,
         g_return_if_fail (job != NULL);
         g_return_if_fail (GS_IS_JOB (job));
 
-        job->priv->widget = widget;
+        if (widget != job->priv->widget) {
+                job->priv->widget = widget;
+
+                /* restart job */
+                if (gs_job_is_running (job)) {
+                        gs_job_stop (job);
+                        gs_job_start (job);
+                }
+        }
 }
 
 gboolean

@@ -1,5 +1,18 @@
 2006-04-10  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-job.c (gs_job_set_widget): Restart job when
+	target widget is changed.
+
+	* data/gnome-screensaver-preferences.glade: 
+	* src/gnome-screensaver-preferences.c:
+	Add a fullscreen preview.  Also try to constrain theme list
+	so that at least a few are visible at once.
+
+	Based on patch from Emmanuel Rodriguez <emmanuel.rodriquez@gmail.com>
+	Fixes #329246
+
+2006-04-10  William Jon McCann  <mccann@jhu.edu>
+
 	* po/LINGUAS: New file listing all supported languages.
 
 	* configure.ac: Use po/LINGUAS instead of including all languages
