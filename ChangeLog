@@ -1,5 +1,16 @@
 2006-04-10  William Jon McCann  <mccann@jhu.edu>
 
+	* po/LINGUAS: New file listing all supported languages.
+
+	* configure.ac: Use po/LINGUAS instead of including all languages
+	directly in this file. See the wiki for more information:
+	http://live.gnome.org/GnomeGoals/PoLinguas
+
+	Patch from Brian Pepple  <bdpepple@gmail.com>
+	Fixes #337961
+
+2006-04-10  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Bump version to 2.15.1 after branching.
 
 2006-04-10  William Jon McCann  <mccann@jhu.edu>
