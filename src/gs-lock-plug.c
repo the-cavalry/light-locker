@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * Copyright (C) 2004-2005 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2004-2006 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,6 +36,8 @@
 #include <gdk/gdkx.h>
 #include <X11/XKBlib.h>
 #include <gtk/gtk.h>
+#include <glade/glade-xml.h>
+#include <gconf/gconf-client.h>
 
 /* for fast user switching */
 #include <libgnomevfs/gnome-vfs-init.h>
@@ -47,6 +49,8 @@
 #include "fusa-manager.h"
 
 /* Profiling stuff adapted from gtkfilechooserdefault */
+
+#define KEY_LOCK_DIALOG_THEME "/apps/gnome-screensaver/lock_dialog_theme"
 
 #undef PROFILE_LOCK_DIALOG
 #ifdef PROFILE_LOCK_DIALOG
@@ -118,17 +122,25 @@ static gboolean password_check_idle_cb (GSLockPlug *plug);
 
 struct GSLockPlugPrivate
 {
-        GtkWidget   *notebook;
-        GtkWidget   *username_label;
-        GtkWidget   *password_entry;
-        GtkWidget   *capslock_label;
-        GtkWidget   *status_label;
-        GtkWidget   *user_treeview;
+        GtkWidget   *vbox;
+        GtkWidget   *auth_action_area;
+        GtkWidget   *switch_action_area;
 
-        GtkWidget   *ok_button;
-        GtkWidget   *cancel_button;
-        GtkWidget   *logout_button;
-        GtkWidget   *switch_button;
+        GtkWidget   *notebook;
+        GtkWidget   *auth_face_image;
+        GtkWidget   *auth_realname_label;
+        GtkWidget   *auth_username_label;
+        GtkWidget   *auth_password_entry;
+        GtkWidget   *auth_capslock_label;
+        GtkWidget   *auth_status_label;
+        GtkWidget   *switch_user_treeview;
+
+        GtkWidget   *auth_unlock_button;
+        GtkWidget   *auth_switch_button;
+        GtkWidget   *auth_cancel_button;
+        GtkWidget   *auth_logout_button;
+        GtkWidget   *switch_cancel_button;
+        GtkWidget   *switch_switch_button;
 
         FusaManager *fusa_manager;
 
@@ -184,11 +196,15 @@ gs_lock_plug_style_set (GtkWidget *widget,
 
         plug = GS_LOCK_PLUG (widget);
 
-        gtk_container_set_border_width (GTK_CONTAINER (plug->vbox), 24);
-        gtk_box_set_spacing (GTK_BOX (plug->vbox), 12);
+        if (! plug->priv->vbox) {
+                return;
+        }
 
-        gtk_container_set_border_width (GTK_CONTAINER (plug->action_area), 0);
-        gtk_box_set_spacing (GTK_BOX (plug->action_area), 5);
+        gtk_container_set_border_width (GTK_CONTAINER (plug->priv->vbox), 24);
+        gtk_box_set_spacing (GTK_BOX (plug->priv->vbox), 12);
+
+        gtk_container_set_border_width (GTK_CONTAINER (plug->priv->auth_action_area), 0);
+        gtk_box_set_spacing (GTK_BOX (plug->priv->auth_action_area), 5);
 }
 
 static void
@@ -210,8 +226,8 @@ do_user_switch (GSLockPlug  *plug,
 {
         GdkScreen *screen;
 
-        if (gtk_widget_has_screen (plug->priv->user_treeview)) {
-                screen = gtk_widget_get_screen (plug->priv->user_treeview);
+        if (gtk_widget_has_screen (plug->priv->switch_user_treeview)) {
+                screen = gtk_widget_get_screen (plug->priv->switch_user_treeview);
         } else {
                 screen = gdk_screen_get_default ();
         }
@@ -246,7 +262,7 @@ switch_user_response (GSLockPlug *plug)
         GSList           *displays;
         char             *name;
 
-        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (plug->priv->user_treeview));
+        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (plug->priv->switch_user_treeview));
         gtk_tree_selection_get_selected (selection,
                                          &model,
                                          &iter);
@@ -271,15 +287,17 @@ static void
 set_status_text (GSLockPlug *plug,
                  const char *text)
 {
-        gtk_label_set_text (GTK_LABEL (plug->priv->status_label), text);
+        if (plug->priv->auth_status_label != NULL) {
+                gtk_label_set_text (GTK_LABEL (plug->priv->auth_status_label), text);
+        }
 }
 
 static void
 set_dialog_sensitive (GSLockPlug *plug,
                       gboolean    sensitive)
 {
-        gtk_widget_set_sensitive (plug->priv->password_entry, sensitive);
-        gtk_widget_set_sensitive (plug->action_area, sensitive);
+        gtk_widget_set_sensitive (plug->priv->auth_password_entry, sensitive);
+        gtk_widget_set_sensitive (plug->priv->auth_action_area, sensitive);
 }
 
 static void
@@ -340,11 +358,15 @@ gs_lock_plug_response (GSLockPlug *plug,
         remove_response_idle (plug);
 
         if (response_id == GS_LOCK_PLUG_RESPONSE_CANCEL) {
-                gtk_entry_set_text (GTK_ENTRY (plug->priv->password_entry), "");
+                gtk_entry_set_text (GTK_ENTRY (plug->priv->auth_password_entry), "");
         }
 
         if (response_id == GS_LOCK_PLUG_RESPONSE_OK) {
-                gint current_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (plug->priv->notebook));
+                gint current_page = AUTH_PAGE;
+
+                if (plug->priv->notebook != NULL) {
+                        current_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (plug->priv->notebook));
+                }
 
                 if (current_page == AUTH_PAGE) {
                         set_dialog_sensitive (plug, FALSE);
@@ -415,11 +437,15 @@ capslock_update (GSLockPlug *plug,
 
         plug->priv->caps_lock_on = is_on;
 
+        if (plug->priv->auth_capslock_label == NULL) {
+                return;
+        }
+
         if (is_on) {
-                gtk_label_set_text (GTK_LABEL (plug->priv->capslock_label),
+                gtk_label_set_text (GTK_LABEL (plug->priv->auth_capslock_label),
                                     _("You have the Caps Lock key on."));
         } else {
-                gtk_label_set_text (GTK_LABEL (plug->priv->capslock_label),
+                gtk_label_set_text (GTK_LABEL (plug->priv->auth_capslock_label),
                                     "");
         }
 }
@@ -483,11 +509,17 @@ static void
 gs_lock_plug_size_request (GtkWidget      *widget,
                            GtkRequisition *requisition)
 {
+        GSLockPlug *plug = GS_LOCK_PLUG (widget);
         int mod_width;
         int mod_height;
 
         if (GTK_WIDGET_CLASS (parent_class)->size_request) {
                 GTK_WIDGET_CLASS (parent_class)->size_request (widget, requisition);
+        }
+
+        /* don't constrain size when themed */
+        if (plug->priv->vbox == NULL) {
+                return;
         }
 
         mod_width = requisition->height * 1.3;
@@ -499,7 +531,6 @@ gs_lock_plug_size_request (GtkWidget      *widget,
                 /* if the dialog is wide fill out the height */
                 requisition->height = mod_height;
         }
-
 }
 
 static void
@@ -515,10 +546,14 @@ gs_lock_plug_set_logout_enabled (GSLockPlug *plug,
         plug->priv->logout_enabled = logout_enabled;
         g_object_notify (G_OBJECT (plug), "logout-enabled");
 
+        if (plug->priv->auth_logout_button == NULL) {
+                return;
+        }
+
         if (logout_enabled) {
-                gtk_widget_show (plug->priv->logout_button);
+                gtk_widget_show (plug->priv->auth_logout_button);
         } else {
-                gtk_widget_hide (plug->priv->logout_button);
+                gtk_widget_hide (plug->priv->auth_logout_button);
         }
 }
 
@@ -551,9 +586,9 @@ gs_lock_plug_set_switch_enabled (GSLockPlug *plug,
         g_object_notify (G_OBJECT (plug), "switch-enabled");
 
         if (switch_enabled) {
-                gtk_widget_show (plug->priv->switch_button);
+                gtk_widget_show (plug->priv->auth_switch_button);
         } else {
-                gtk_widget_hide (plug->priv->switch_button);
+                gtk_widget_hide (plug->priv->auth_switch_button);
         }
 }
 
@@ -664,13 +699,13 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
 static gboolean
 password_reset_idle_cb (GSLockPlug *plug)
 {
-        gtk_entry_set_text (GTK_ENTRY (plug->priv->password_entry), "");
+        gtk_entry_set_text (GTK_ENTRY (plug->priv->auth_password_entry), "");
         set_status_text (plug, "");
         set_dialog_sensitive (plug, TRUE);
 
         restart_monitor_progress (plug);
 
-        gtk_widget_grab_focus (plug->priv->password_entry);
+        gtk_widget_grab_focus (plug->priv->auth_password_entry);
 
         return FALSE;
 }
@@ -684,12 +719,12 @@ password_check_idle_cb (GSLockPlug *plug)
 
         plug->priv->password_check_idle_id = 0;
 
-        typed_password = gtk_entry_get_text (GTK_ENTRY (plug->priv->password_entry));
+        typed_password = gtk_entry_get_text (GTK_ENTRY (plug->priv->auth_password_entry));
         local_password = g_locale_from_utf8 (typed_password, strlen (typed_password), NULL, NULL, NULL);
 
         null_password = g_strnfill (strlen (typed_password) + 1, '\b');
-        gtk_entry_set_text (GTK_ENTRY (plug->priv->password_entry), null_password);
-        gtk_entry_set_text (GTK_ENTRY (plug->priv->password_entry), "");
+        gtk_entry_set_text (GTK_ENTRY (plug->priv->auth_password_entry), null_password);
+        gtk_entry_set_text (GTK_ENTRY (plug->priv->auth_password_entry), "");
         g_free (null_password);
 
         if (validate_password (local_password, FALSE)) {
@@ -716,72 +751,10 @@ password_check_idle_cb (GSLockPlug *plug)
         return FALSE;
 }
 
-static GtkWidget *
-get_ok_button_for_page (gint page)
-{
-        GtkWidget *align;
-        GtkWidget *hbox;
-        GtkWidget *widget;
-        const char *label = NULL;
-
-        align = gtk_alignment_new (0.5, 0.5, 0, 0);
-        hbox = gtk_hbox_new (FALSE, 2);
-        gtk_container_add (GTK_CONTAINER (align), hbox);
-
-        switch (page) {
-        case (AUTH_PAGE):
-                label = _("_Unlock");
-                break;
-        case (SWITCH_PAGE):
-                label = _("_Switch User...");
-                break;
-        default:
-                g_assert ("Invalid notebook page");
-                break;
-        }
-
-        widget = gtk_label_new_with_mnemonic (label);
-        gtk_box_pack_end (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
-
-        return align;
-}
-
-static GtkWidget *
-get_switch_button_for_page (gint page)
-{
-        GtkWidget *align;
-        GtkWidget *hbox;
-        GtkWidget *widget;
-        const char *label = NULL;
-
-        align = gtk_alignment_new (0.5, 0.5, 0, 0);
-        hbox = gtk_hbox_new (FALSE, 2);
-        gtk_container_add (GTK_CONTAINER (align), hbox);
-
-        switch (page) {
-        case (AUTH_PAGE):
-                label = _("_Switch User...");
-                break;
-        case (SWITCH_PAGE):
-                label = _("_Unlock");
-                break;
-        default:
-                g_assert ("Invalid notebook page");
-                break;
-        }
-
-        widget = gtk_label_new_with_mnemonic (label);
-        gtk_box_pack_end (GTK_BOX (hbox), widget, FALSE, FALSE, 0);
-
-        return align;
-}
-
 static void
 switch_page (GSLockPlug *plug,
              GtkButton  *button)
 {
-        GtkWidget *ok_widget;
-        GtkWidget *other_widget;
         gint       current_page;
         gint       next_page;
 
@@ -789,22 +762,6 @@ switch_page (GSLockPlug *plug,
 
         current_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (plug->priv->notebook));
         next_page = (current_page == AUTH_PAGE) ? SWITCH_PAGE : AUTH_PAGE;
-
-        other_widget = get_switch_button_for_page (next_page);
-        ok_widget = get_ok_button_for_page (next_page);
-
-        gtk_widget_destroy (GTK_BIN (plug->priv->switch_button)->child);
-        gtk_widget_show_all (other_widget);
-        gtk_container_add (GTK_CONTAINER (plug->priv->switch_button), other_widget);
-
-        gtk_widget_destroy (GTK_BIN (plug->priv->ok_button)->child);
-        gtk_widget_show_all (ok_widget);
-        gtk_container_add (GTK_CONTAINER (plug->priv->ok_button), ok_widget);
-
-        /* don't show the switch button on the switch page */
-        if (next_page == SWITCH_PAGE) {
-                gtk_widget_hide (plug->priv->switch_button);
-        }
 
         gtk_notebook_set_current_page (GTK_NOTEBOOK (plug->priv->notebook), next_page);
 
@@ -879,95 +836,11 @@ entry_key_press (GtkWidget   *widget,
         return FALSE;
 }
 
-static ResponseData*
-get_response_data (GtkWidget *widget,
-		   gboolean   create)
-{
-        ResponseData *ad = g_object_get_data (G_OBJECT (widget),
-                                              "gs-lock-plug-response-data");
-
-        if (ad == NULL && create) {
-                ad = g_new (ResponseData, 1);
-      
-                g_object_set_data_full (G_OBJECT (widget),
-                                        "gs-lock-plug-response-data",
-                                        ad,
-                                        g_free);
-        }
-
-        return ad;
-}
-
-/* adapted from gtkdialog */
-static void
-action_widget_activated (GtkWidget  *widget,
-                         GSLockPlug *plug)
-{
-        ResponseData *ad;
-        gint response_id;
-  
-        g_return_if_fail (GS_IS_LOCK_PLUG (plug));
-
-        response_id = GS_LOCK_PLUG_RESPONSE_NONE;
-  
-        ad = get_response_data (widget, TRUE);
-
-        g_assert (ad != NULL);
-  
-        response_id = ad->response_id;
-
-        gs_lock_plug_response (plug, response_id);
-}
-
-/* adapted from gtk_dialog_add_action_widget */
-static void
-gs_lock_plug_add_action_widget (GSLockPlug *plug,
-                                GtkWidget  *child,
-                                gint        response_id)
-{
-        ResponseData *ad;
-        gint signal_id = 0;
-  
-        g_return_if_fail (GS_IS_LOCK_PLUG (plug));
-        g_return_if_fail (GTK_IS_WIDGET (child));
-
-        ad = get_response_data (child, TRUE);
-
-        ad->response_id = response_id;
-
-        if (GTK_IS_BUTTON (child)) {
-                signal_id = g_signal_lookup ("clicked", GTK_TYPE_BUTTON);
-        } else {
-                signal_id = GTK_WIDGET_GET_CLASS (child)->activate_signal != 0;
-        }
-
-        if (signal_id) {
-                GClosure *closure;
-
-                closure = g_cclosure_new_object (G_CALLBACK (action_widget_activated),
-                                                 G_OBJECT (plug));
-                g_signal_connect_closure_by_id (child,
-                                                signal_id,
-                                                0,
-                                                closure,
-                                                FALSE);
-        } else
-                g_warning ("Only 'activatable' widgets can be packed into the action area of a GSLockPlug");
-
-        gtk_box_pack_end (GTK_BOX (plug->action_area),
-                          child,
-                          FALSE, TRUE, 0);
-  
-        if (response_id == GTK_RESPONSE_HELP) {
-                gtk_button_box_set_child_secondary (GTK_BUTTON_BOX (plug->action_area), child, TRUE);
-        }
-}
-
 /* adapted from gtk_dialog_add_button */
 static GtkWidget *
 gs_lock_plug_add_button (GSLockPlug  *plug,
-                         const gchar *button_text,
-                         gint         response_id)
+                         GtkWidget   *action_area,
+                         const gchar *button_text)
 {
         GtkWidget *button;
 
@@ -980,38 +853,11 @@ gs_lock_plug_add_button (GSLockPlug  *plug,
 
         gtk_widget_show (button);
 
-        gs_lock_plug_add_action_widget (plug,
-                                        button,
-                                        response_id);
+        gtk_box_pack_end (GTK_BOX (action_area),
+                          button,
+                          FALSE, TRUE, 0);
 
         return button;
-}
-
-static void
-gs_lock_plug_set_default_response (GSLockPlug *plug,
-                                   gint        response_id)
-{
-        GList *children;
-        GList *tmp_list;
-
-        g_return_if_fail (GS_IS_LOCK_PLUG (plug));
-
-        children = gtk_container_get_children (GTK_CONTAINER (plug->action_area));
-
-        tmp_list = children;
-        while (tmp_list != NULL) {
-                GtkWidget *widget = tmp_list->data;
-                ResponseData *rd = g_object_get_data (G_OBJECT (widget),
-                                                      "gs-lock-plug-response-data");
-
-                if (rd && rd->response_id == response_id) {
-                        gtk_widget_grab_default (widget);
-                }
-	    
-                tmp_list = g_list_next (tmp_list);
-        }
-
-        g_list_free (children);
 }
 
 typedef struct
@@ -1076,8 +922,8 @@ populate_model (GSLockPlug   *plug,
 
         profile_start ("start", NULL);
 
-        if (gtk_widget_has_screen (plug->priv->user_treeview)) {
-                theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (plug->priv->user_treeview));
+        if (gtk_widget_has_screen (plug->priv->switch_user_treeview)) {
+                theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (plug->priv->switch_user_treeview));
         } else {
                 theme = gtk_icon_theme_get_default ();
         }
@@ -1086,9 +932,11 @@ populate_model (GSLockPlug   *plug,
 
         profile_start ("start", "FUSA list users");
         if (! plug->priv->fusa_manager) {
-                profile_start ("start", "g_thread_init");
-                g_thread_init (NULL);
-                profile_end ("end", "g_thread_init");
+                if (! g_thread_supported ()) {
+                        profile_start ("start", "g_thread_init");
+                        g_thread_init (NULL);
+                        profile_end ("end", "g_thread_init");
+                }
                 profile_start ("start", "gnome_vfs_init");
                 gnome_vfs_init ();
                 profile_end ("end", "gnome_vfs_init");
@@ -1119,7 +967,7 @@ populate_model (GSLockPlug   *plug,
                 n_displays = fusa_user_get_n_displays (user);
                 is_active = n_displays > 0;
 
-                pixbuf = fusa_user_render_icon (user, plug->priv->user_treeview, icon_size);
+                pixbuf = fusa_user_render_icon (user, plug->priv->switch_user_treeview, icon_size);
 
                 label = get_user_display_label (user);
 
@@ -1136,7 +984,7 @@ populate_model (GSLockPlug   *plug,
 
                 ddata = g_new0 (DisplayChangedData, 1);
                 ddata->iter = iter;
-                ddata->tree = plug->priv->user_treeview;
+                ddata->tree = plug->priv->switch_user_treeview;
 
                 g_signal_connect_data (user, "displays-changed",
                                        G_CALLBACK (user_displays_changed_cb), ddata,
@@ -1281,7 +1129,7 @@ setup_treeview (GSLockPlug *plug)
                                                 plug,
                                                 NULL);
 
-        gtk_tree_view_set_model (GTK_TREE_VIEW (plug->priv->user_treeview),
+        gtk_tree_view_set_model (GTK_TREE_VIEW (plug->priv->switch_user_treeview),
                                  filter);
 
         g_object_unref (store);
@@ -1291,15 +1139,15 @@ setup_treeview (GSLockPlug *plug)
         column = gtk_tree_view_column_new_with_attributes ("Image", renderer,
                                                            "pixbuf", PIXBUF_COLUMN,
                                                            NULL);
-        gtk_tree_view_append_column (GTK_TREE_VIEW (plug->priv->user_treeview), column);
+        gtk_tree_view_append_column (GTK_TREE_VIEW (plug->priv->switch_user_treeview), column);
 
         renderer = gtk_cell_renderer_text_new ();
         column = gtk_tree_view_column_new_with_attributes ("Name", renderer,
                                                            "markup", DISPLAY_LABEL_COLUMN,
                                                            NULL);
-        gtk_tree_view_append_column (GTK_TREE_VIEW (plug->priv->user_treeview), column);
+        gtk_tree_view_append_column (GTK_TREE_VIEW (plug->priv->switch_user_treeview), column);
 
-        gtk_tree_view_set_row_separator_func (GTK_TREE_VIEW (plug->priv->user_treeview),
+        gtk_tree_view_set_row_separator_func (GTK_TREE_VIEW (plug->priv->switch_user_treeview),
                                               separator_func,
                                               GINT_TO_POINTER (USER_NAME_COLUMN),
                                               NULL);
@@ -1415,10 +1263,9 @@ check_user_file (const gchar *filename,
         return TRUE;
 }
 
-static GtkWidget *
-get_face_image ()
+static gboolean
+set_face_image (GSLockPlug *plug)
 {
-        GtkWidget    *image;
         GdkPixbuf    *pixbuf;
         const char   *homedir;
         char         *path;
@@ -1442,26 +1289,69 @@ get_face_image ()
         g_free (path);
 
         if (pixbuf == NULL) {
-                return NULL;
+                return FALSE;
         }
 
-        image = gtk_image_new_from_pixbuf (pixbuf);
+        gtk_image_set_from_pixbuf (GTK_IMAGE (plug->priv->auth_face_image), pixbuf);
 
         g_object_unref (pixbuf);
 
-        return image;
+        return TRUE;
 }
 
-#define INVISIBLE_CHAR_DEFAULT       '*'
-#define INVISIBLE_CHAR_BLACK_CIRCLE  0x25cf
-#define INVISIBLE_CHAR_WHITE_BULLET  0x25e6
-#define INVISIBLE_CHAR_BULLET        0x2022
-#define INVISIBLE_CHAR_NONE          0
+static void
+create_page_one_buttons (GSLockPlug *plug)
+{
+
+        profile_start ("start", "page one buttons");
+
+        plug->priv->auth_switch_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
+                                                                   plug->priv->auth_action_area,
+                                                                   _("S_witch User..."));
+        gtk_button_box_set_child_secondary (GTK_BUTTON_BOX (plug->priv->auth_action_area),
+                                            plug->priv->auth_switch_button,
+                                            TRUE);
+        gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->auth_switch_button), FALSE);
+
+        plug->priv->auth_logout_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
+                                                              plug->priv->auth_action_area,
+                                                              _("Log _Out"));
+        gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->auth_logout_button), FALSE);
+
+        plug->priv->auth_cancel_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
+                                                                   plug->priv->auth_action_area,
+                                                                   GTK_STOCK_CANCEL);
+        gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->auth_cancel_button), FALSE);
+
+        plug->priv->auth_unlock_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
+                                                                   plug->priv->auth_action_area,
+                                                                   _("_Unlock"));
+        gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->auth_unlock_button), FALSE);
+
+        gtk_window_set_default (GTK_WINDOW (plug), plug->priv->auth_unlock_button);
+
+        profile_end ("end", "page one buttons");
+}
+
+static void
+create_page_two_buttons (GSLockPlug *plug)
+{
+        profile_start ("start", "page two buttons");
+        plug->priv->switch_cancel_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
+                                                                     plug->priv->switch_action_area,
+                                                                     GTK_STOCK_CANCEL);
+        gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->switch_cancel_button), FALSE);
+
+        plug->priv->switch_switch_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
+                                                                     plug->priv->switch_action_area,
+                                                                     _("S_witch User..."));
+
+        profile_end ("end", "page two buttons");
+}
 
 static void
 create_page_one (GSLockPlug *plug)
 {
-        GtkWidget            *widget;
         GtkWidget            *password_label;
         GtkWidget            *align;
         GtkWidget            *vbox;
@@ -1469,7 +1359,6 @@ create_page_one (GSLockPlug *plug)
         GtkWidget            *hbox;
         char                 *str;
         char                 *name;
-        gunichar              invisible_char;
 
         profile_start ("start", "page one");
 
@@ -1479,13 +1368,9 @@ create_page_one (GSLockPlug *plug)
         vbox = gtk_vbox_new (FALSE, 12);
         gtk_container_add (GTK_CONTAINER (align), vbox);
 
-        widget = get_face_image ();
-        if (widget == NULL) {
-                /* placeholder */
-                widget = gtk_label_new (NULL);
-        }
-        gtk_box_pack_start (GTK_BOX (vbox), widget, TRUE, TRUE, 0);
-        gtk_misc_set_alignment (GTK_MISC (widget), 0.5, 1.0);
+        plug->priv->auth_face_image = gtk_image_new ();
+        gtk_box_pack_start (GTK_BOX (vbox), plug->priv->auth_face_image, TRUE, TRUE, 0);
+        gtk_misc_set_alignment (GTK_MISC (plug->priv->auth_face_image), 0.5, 1.0);
 
         vbox2 = gtk_vbox_new (FALSE, 0);
         gtk_box_pack_start (GTK_BOX (vbox), vbox2, FALSE, FALSE, 0);
@@ -1493,20 +1378,20 @@ create_page_one (GSLockPlug *plug)
         name = get_user_display_name ();
         str = g_strdup_printf ("<span size=\"x-large\">%s</span>", name);
         g_free (name);
-        widget = gtk_label_new (str);
+        plug->priv->auth_realname_label = gtk_label_new (str);
         g_free (str);
-        gtk_misc_set_alignment (GTK_MISC (widget), 0.5, 0.5);
-        gtk_label_set_use_markup (GTK_LABEL (widget), TRUE);
-        gtk_box_pack_start (GTK_BOX (vbox2), widget, FALSE, FALSE, 0);
+        gtk_misc_set_alignment (GTK_MISC (plug->priv->auth_realname_label), 0.5, 0.5);
+        gtk_label_set_use_markup (GTK_LABEL (plug->priv->auth_realname_label), TRUE);
+        gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->auth_realname_label, FALSE, FALSE, 0);
 
         name = get_user_on_host_name ();
         str = g_strdup_printf ("<span size=\"small\">%s</span>", name);
         g_free (name);
-        plug->priv->username_label = gtk_label_new (str);
+        plug->priv->auth_username_label = gtk_label_new (str);
         g_free (str);
-        gtk_misc_set_alignment (GTK_MISC (plug->priv->username_label), 0.5, 0.5);
-        gtk_label_set_use_markup (GTK_LABEL (plug->priv->username_label), TRUE);
-        gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->username_label, FALSE, FALSE, 0);
+        gtk_misc_set_alignment (GTK_MISC (plug->priv->auth_username_label), 0.5, 0.5);
+        gtk_label_set_use_markup (GTK_LABEL (plug->priv->auth_username_label), TRUE);
+        gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->auth_username_label, FALSE, FALSE, 0);
 
         vbox2 = gtk_vbox_new (FALSE, 0);
         gtk_box_pack_start (GTK_BOX (vbox), vbox2, TRUE, TRUE, 0);
@@ -1518,29 +1403,32 @@ create_page_one (GSLockPlug *plug)
         gtk_misc_set_alignment (GTK_MISC (password_label), 0, 0.5);
         gtk_box_pack_start (GTK_BOX (hbox), password_label, FALSE, FALSE, 0);
 
-        plug->priv->password_entry = gtk_entry_new ();
-        gtk_box_pack_start (GTK_BOX (hbox), plug->priv->password_entry, TRUE, TRUE, 0);
-
-        /* button press handler used to inhibit popup menu */
-        g_signal_connect (plug->priv->password_entry, "button_press_event",
-                          G_CALLBACK (entry_button_press), NULL);
-        g_signal_connect (plug->priv->password_entry, "key_press_event",
-                          G_CALLBACK (entry_key_press), plug);
-        gtk_entry_set_activates_default (GTK_ENTRY (plug->priv->password_entry), TRUE);
-        gtk_entry_set_visibility (GTK_ENTRY (plug->priv->password_entry), FALSE);
-
-        /* Only change the invisible character if it '*' otherwise assume it is OK */
-        if ('*' == gtk_entry_get_invisible_char (GTK_ENTRY (plug->priv->password_entry))) {
-                invisible_char = INVISIBLE_CHAR_BLACK_CIRCLE;
-                gtk_entry_set_invisible_char (GTK_ENTRY (plug->priv->password_entry), invisible_char);
-        }
+        plug->priv->auth_password_entry = gtk_entry_new ();
+        gtk_box_pack_start (GTK_BOX (hbox), plug->priv->auth_password_entry, TRUE, TRUE, 0);
 
         gtk_label_set_mnemonic_widget (GTK_LABEL (password_label),
-                                       plug->priv->password_entry);
+                                       plug->priv->auth_password_entry);
 
-        plug->priv->capslock_label = gtk_label_new ("");
-        gtk_misc_set_alignment (GTK_MISC (plug->priv->capslock_label), 0.5, 0.5);
-        gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->capslock_label, FALSE, FALSE, 0);
+        plug->priv->auth_capslock_label = gtk_label_new ("");
+        gtk_misc_set_alignment (GTK_MISC (plug->priv->auth_capslock_label), 0.5, 0.5);
+        gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->auth_capslock_label, FALSE, FALSE, 0);
+
+        /* Status text */
+
+        plug->priv->auth_status_label = gtk_label_new (NULL);
+        gtk_box_pack_start (GTK_BOX (vbox), plug->priv->auth_status_label,
+                            FALSE, FALSE, 0);
+        /* Buttons */
+        plug->priv->auth_action_area = gtk_hbutton_box_new ();
+
+        gtk_button_box_set_layout (GTK_BUTTON_BOX (plug->priv->auth_action_area),
+                                   GTK_BUTTONBOX_END);
+
+        gtk_box_pack_end (GTK_BOX (vbox), plug->priv->auth_action_area,
+                          FALSE, TRUE, 0);
+        gtk_widget_show (plug->priv->auth_action_area);
+
+        create_page_one_buttons (plug);
 
         profile_end ("end", "page one");
 }
@@ -1562,7 +1450,7 @@ constrain_list_size (GtkWidget      *widget,
 
         /* constrain height to be the tree height up to a max */
         max_height = (gdk_screen_get_height (gtk_widget_get_screen (widget))) / 4;
-        gtk_widget_size_request (plug->priv->user_treeview, &req);
+        gtk_widget_size_request (plug->priv->switch_user_treeview, &req);
 
         requisition->height = MIN (req.height, max_height);
 }
@@ -1601,131 +1489,253 @@ create_page_two (GSLockPlug *plug)
 
         setup_list_size_constraint (userlist_scroller, plug);
 
-        plug->priv->user_treeview = gtk_tree_view_new ();
-        gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (plug->priv->user_treeview), FALSE);
-        gtk_container_add (GTK_CONTAINER (userlist_scroller), plug->priv->user_treeview);
+        plug->priv->switch_user_treeview = gtk_tree_view_new ();
+        gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (plug->priv->switch_user_treeview), FALSE);
+        gtk_container_add (GTK_CONTAINER (userlist_scroller), plug->priv->switch_user_treeview);
 
-        gtk_label_set_mnemonic_widget (GTK_LABEL (header_label), plug->priv->user_treeview);
+        gtk_label_set_mnemonic_widget (GTK_LABEL (header_label), plug->priv->switch_user_treeview);
 
-        g_idle_add ((GSourceFunc)setup_treeview_idle, plug);
+        /* Buttons */
+        plug->priv->switch_action_area = gtk_hbutton_box_new ();
+
+        gtk_button_box_set_layout (GTK_BUTTON_BOX (plug->priv->switch_action_area),
+                                   GTK_BUTTONBOX_END);
+
+        gtk_box_pack_end (GTK_BOX (vbox), plug->priv->switch_action_area,
+                          FALSE, TRUE, 0);
+        gtk_widget_show (plug->priv->switch_action_area);
+
+        create_page_two_buttons (plug);
 
         profile_end ("end", "page two");
 }
 
 static void
-create_buttons (GSLockPlug *plug)
+unlock_button_clicked (GtkButton  *button,
+                       GSLockPlug *plug)
 {
-        GtkWidget            *widget;
-
-        profile_start ("start", "buttons");
-
-        plug->priv->switch_button = gtk_button_new ();
-        gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->switch_button), FALSE);
-
-        widget = get_switch_button_for_page (AUTH_PAGE);
-        gtk_container_add (GTK_CONTAINER (plug->priv->switch_button), widget);
-
-        GTK_WIDGET_SET_FLAGS (plug->priv->switch_button, GTK_CAN_DEFAULT);
-        gtk_widget_show_all (plug->priv->switch_button);
-        gtk_box_pack_start (GTK_BOX (plug->action_area), plug->priv->switch_button,
-                            TRUE, TRUE, 0);
-        gtk_button_box_set_child_secondary (GTK_BUTTON_BOX (plug->action_area),
-                                            plug->priv->switch_button,
-                                            TRUE);
-
-        plug->priv->logout_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
-                                                              _("Log _Out"),
-                                                              GS_LOCK_PLUG_RESPONSE_CANCEL);
-        gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->logout_button), FALSE);
-
-        plug->priv->cancel_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
-                                                              GTK_STOCK_CANCEL,
-                                                              GS_LOCK_PLUG_RESPONSE_CANCEL);
-        gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->cancel_button), FALSE);
-
-        plug->priv->ok_button = gtk_button_new ();
-        gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->ok_button), FALSE);
-
-        widget = get_ok_button_for_page (AUTH_PAGE);
-        gtk_container_add (GTK_CONTAINER (plug->priv->ok_button), widget);
-        GTK_WIDGET_SET_FLAGS (plug->priv->ok_button, GTK_CAN_DEFAULT);
-        gtk_window_set_default (GTK_WINDOW (plug), plug->priv->ok_button);
-        gtk_widget_show_all (plug->priv->ok_button);
-        gs_lock_plug_add_action_widget (GS_LOCK_PLUG (plug), plug->priv->ok_button,
-                                        GS_LOCK_PLUG_RESPONSE_OK);
-
-        gs_lock_plug_set_default_response (plug, GS_LOCK_PLUG_RESPONSE_OK);
-
-        profile_end ("end", "buttons");
+        gs_lock_plug_response (plug, GS_LOCK_PLUG_RESPONSE_OK);
 }
+
+static void
+cancel_button_clicked (GtkButton  *button,
+                       GSLockPlug *plug)
+{
+        gs_lock_plug_response (plug, GS_LOCK_PLUG_RESPONSE_CANCEL);
+}
+
+static void
+switch_user_button_clicked (GtkButton  *button,
+                            GSLockPlug *plug)
+{
+        gs_lock_plug_response (plug, GS_LOCK_PLUG_RESPONSE_OK);
+}
+
+static char *
+get_dialog_theme_name (GSLockPlug *plug)
+{
+        char        *name;
+        GConfClient *client;
+
+        client = gconf_client_get_default ();
+        name = gconf_client_get_string (client, KEY_LOCK_DIALOG_THEME, NULL);
+        g_object_unref (client);
+
+        return name;
+}
+
+static gboolean
+load_theme (GSLockPlug *plug)
+{
+        char       *theme;
+        char       *filename;
+        char       *glade;
+        char       *rc;
+        GladeXML   *xml;
+        GtkWidget  *lock_dialog;
+
+        theme = get_dialog_theme_name (plug);
+        if (theme == NULL) {
+                return FALSE;
+        }
+
+        filename = g_strdup_printf ("lock-dialog-%s.glade", theme);
+        glade = g_build_filename (GLADEDIR, filename, NULL);
+        g_free (filename);
+        if (! g_file_test (glade, G_FILE_TEST_IS_REGULAR)) {
+                g_free (glade);
+                g_free (theme);
+                return FALSE;
+        }
+
+        filename = g_strdup_printf ("lock-dialog-%s.gtkrc", theme);
+        g_free (theme);
+
+        rc = g_build_filename (GLADEDIR, filename, NULL);
+        g_free (filename);
+        if (g_file_test (rc, G_FILE_TEST_IS_REGULAR)) {
+                gtk_rc_parse (rc);
+        }
+        g_free (rc);
+
+        xml = glade_xml_new (glade, "lock-dialog", NULL);
+
+        if (xml == NULL) {
+                g_warning ("Failed to load '%s'\n", glade);
+                g_free (glade);
+                return FALSE;
+        }
+        g_free (glade);
+
+        lock_dialog = glade_xml_get_widget (xml, "lock-dialog");
+        gtk_container_add (GTK_CONTAINER (plug), lock_dialog);
+        gtk_widget_show_all (lock_dialog);
+
+        plug->priv->vbox = NULL;
+        plug->priv->notebook = glade_xml_get_widget (xml, "notebook");
+
+        plug->priv->auth_face_image = glade_xml_get_widget (xml, "auth-face-image");
+        plug->priv->auth_action_area = glade_xml_get_widget (xml, "auth-action-area");
+        plug->priv->auth_realname_label = glade_xml_get_widget (xml, "auth-realname-label");
+        plug->priv->auth_username_label = glade_xml_get_widget (xml, "auth-username-label");
+        plug->priv->auth_password_entry = glade_xml_get_widget (xml, "auth-password-entry");
+        plug->priv->auth_capslock_label = glade_xml_get_widget (xml, "auth-capslock-label");
+        plug->priv->auth_status_label = glade_xml_get_widget (xml, "auth-status-label");
+        plug->priv->auth_unlock_button = glade_xml_get_widget (xml, "auth-unlock-button");
+        plug->priv->auth_cancel_button = glade_xml_get_widget (xml, "auth-cancel-button");
+        plug->priv->auth_logout_button = glade_xml_get_widget (xml, "auth-logout-button");
+        plug->priv->auth_switch_button = glade_xml_get_widget (xml, "auth-switch-button");
+
+        plug->priv->switch_action_area = glade_xml_get_widget (xml, "switch-action-area");
+        plug->priv->switch_user_treeview = glade_xml_get_widget (xml, "switch-user-treeview");
+        plug->priv->switch_cancel_button = glade_xml_get_widget (xml, "switch-cancel-button");
+        plug->priv->switch_switch_button = glade_xml_get_widget (xml, "switch-switch-button");
+
+        return TRUE;
+}
+
+#define INVISIBLE_CHAR_DEFAULT       '*'
+#define INVISIBLE_CHAR_BLACK_CIRCLE  0x25cf
+#define INVISIBLE_CHAR_WHITE_BULLET  0x25e6
+#define INVISIBLE_CHAR_BULLET        0x2022
+#define INVISIBLE_CHAR_NONE          0
 
 static void
 gs_lock_plug_init (GSLockPlug *plug)
 {
+        gunichar              invisible_char;
+
         profile_start ("start", NULL);
 
         plug->priv = GS_LOCK_PLUG_GET_PRIVATE (plug);
 
         plug->priv->fusa_manager = NULL;
 
-        /* Dialog emulation */
+        if (! load_theme (plug)) {
 
-        plug->vbox = gtk_vbox_new (FALSE, 0);
+                plug->priv->vbox = gtk_vbox_new (FALSE, 0);
 
-        gtk_container_add (GTK_CONTAINER (plug), plug->vbox);
+                gtk_container_add (GTK_CONTAINER (plug), plug->priv->vbox);
 
-        plug->action_area = gtk_hbutton_box_new ();
+                /* Notebook */
 
-        gtk_button_box_set_layout (GTK_BUTTON_BOX (plug->action_area),
-                                   GTK_BUTTONBOX_END);
+                plug->priv->notebook = gtk_notebook_new ();
+                gtk_notebook_set_show_tabs (GTK_NOTEBOOK (plug->priv->notebook), FALSE);
+                gtk_notebook_set_show_border (GTK_NOTEBOOK (plug->priv->notebook), FALSE);
+                gtk_box_pack_start (GTK_BOX (plug->priv->vbox), plug->priv->notebook, TRUE, TRUE, 0);
 
-        gtk_box_pack_end (GTK_BOX (plug->vbox), plug->action_area,
-                          FALSE, TRUE, 0);
-        gtk_widget_show (plug->action_area);
+                /* Page 1 */
 
-        /* Notebook */
+                create_page_one (plug);
 
-        plug->priv->notebook = gtk_notebook_new ();
-        gtk_notebook_set_show_tabs (GTK_NOTEBOOK (plug->priv->notebook), FALSE);
-        gtk_notebook_set_show_border (GTK_NOTEBOOK (plug->priv->notebook), FALSE);
-        gtk_box_pack_start (GTK_BOX (plug->vbox), plug->priv->notebook, TRUE, TRUE, 0);
+                /* Page 2 */
 
-        /* Page 1 */
+                create_page_two (plug);
 
-        create_page_one (plug);
+                gtk_widget_show_all (plug->priv->vbox);
+        }
 
-        /* Page 2 */
+        gtk_widget_grab_default (plug->priv->auth_unlock_button);
 
-        create_page_two (plug);
+        if (plug->priv->auth_username_label != NULL) {
+                char       *str;
+                char       *name;
 
-        /* Status text */
+                /* FIXME should let the theme determine the font size */
+                name = get_user_on_host_name ();
+                str = g_strdup_printf ("<span size=\"small\">%s</span>", name);
+                g_free (name);
+                gtk_label_set_markup (GTK_LABEL (plug->priv->auth_username_label), str);
+                g_free (str);
+        }
 
-        plug->priv->status_label = gtk_label_new (NULL);
-        gtk_box_pack_start (GTK_BOX (plug->vbox), plug->priv->status_label,
-                            FALSE, FALSE, 0);
+        if (plug->priv->auth_realname_label != NULL) {
+                char       *str;
+                char       *name;
 
-        /* Buttons */
-
-        create_buttons (plug);
-
-        gtk_widget_show_all (plug->vbox);
+                /* FIXME should let the theme determine the font size */
+                name = get_user_display_name ();
+                str = g_strdup_printf ("<span size=\"x-large\">%s</span>", name);
+                g_free (name);
+                gtk_label_set_markup (GTK_LABEL (plug->priv->auth_realname_label), str);
+                g_free (str);
+        }
 
         if (! plug->priv->logout_enabled
             || ! plug->priv->logout_command) {
-                gtk_widget_hide (plug->priv->logout_button);
+                gtk_widget_hide (plug->priv->auth_logout_button);
         }
 
         if (! plug->priv->switch_enabled) {
-                gtk_widget_hide (plug->priv->switch_button);
+                gtk_widget_hide (plug->priv->auth_switch_button);
         }
 
         plug->priv->timeout = DIALOG_TIMEOUT_MSEC;
 
-        g_signal_connect_swapped (plug->priv->switch_button, "clicked",
-                                  G_CALLBACK (switch_page), plug);
+        /* button press handler used to inhibit popup menu */
+        g_signal_connect (plug->priv->auth_password_entry, "button_press_event",
+                          G_CALLBACK (entry_button_press), NULL);
+        g_signal_connect (plug->priv->auth_password_entry, "key_press_event",
+                          G_CALLBACK (entry_key_press), plug);
+        gtk_entry_set_activates_default (GTK_ENTRY (plug->priv->auth_password_entry), TRUE);
+        gtk_entry_set_visibility (GTK_ENTRY (plug->priv->auth_password_entry), FALSE);
 
-        g_signal_connect (plug->priv->logout_button, "clicked",
-                          G_CALLBACK (logout_button_clicked), plug);
+        /* Only change the invisible character if it '*' otherwise assume it is OK */
+        if ('*' == gtk_entry_get_invisible_char (GTK_ENTRY (plug->priv->auth_password_entry))) {
+                invisible_char = INVISIBLE_CHAR_BLACK_CIRCLE;
+                gtk_entry_set_invisible_char (GTK_ENTRY (plug->priv->auth_password_entry), invisible_char);
+        }
+
+        g_signal_connect (plug->priv->auth_unlock_button, "clicked",
+                          G_CALLBACK (unlock_button_clicked), plug);
+
+        g_signal_connect (plug->priv->auth_cancel_button, "clicked",
+                          G_CALLBACK (cancel_button_clicked), plug);
+
+        if (plug->priv->auth_switch_button != NULL) {
+                g_signal_connect_swapped (plug->priv->auth_switch_button, "clicked",
+                                          G_CALLBACK (switch_page), plug);
+        }
+
+        if (plug->priv->auth_logout_button != NULL) {
+                g_signal_connect (plug->priv->auth_logout_button, "clicked",
+                                  G_CALLBACK (logout_button_clicked), plug);
+        }
+
+        if (plug->priv->switch_cancel_button != NULL) {
+                g_signal_connect (plug->priv->switch_cancel_button, "clicked",
+                                  G_CALLBACK (cancel_button_clicked), plug);
+        }
+        if (plug->priv->switch_switch_button != NULL) {
+                g_signal_connect (plug->priv->switch_switch_button, "clicked",
+                                  G_CALLBACK (switch_user_button_clicked), plug);
+        }
+
+        if (plug->priv->auth_face_image) {
+                set_face_image (plug);
+        }
+
+        g_idle_add ((GSourceFunc)setup_treeview_idle, plug);
 
         profile_end ("end", NULL);
 }

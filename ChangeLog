@@ -1,3 +1,26 @@
+2006-04-11  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac: Add glade dependency.
+	* data/Makefile.am: Install dialog glade file.
+	* data/gnome-screensaver.schemas.in: Add dialog theme key.
+	* data/lock-dialog-default.glade: New file.
+	* src/gs-lock-plug.c: (gs_lock_plug_style_set), (do_user_switch),
+	(switch_user_response), (set_status_text), (set_dialog_sensitive),
+	(gs_lock_plug_response), (capslock_update),
+	(gs_lock_plug_size_request), (gs_lock_plug_set_logout_enabled),
+	(gs_lock_plug_set_switch_enabled), (password_reset_idle_cb),
+	(password_check_idle_cb), (switch_page), (gs_lock_plug_add_button),
+	(populate_model), (setup_treeview), (set_face_image),
+	(create_page_one_buttons), (create_page_two_buttons),
+	(create_page_one), (constrain_list_size), (create_page_two),
+	(unlock_button_clicked), (cancel_button_clicked),
+	(switch_user_button_clicked), (get_dialog_theme_name),
+	(load_theme), (gs_lock_plug_init):
+	* src/gs-lock-plug.h: Rework the lock dialog to allow theming.
+
+	Based on patch from Matthias Clasen <mclasen@redhat.com>
+	Fixes #324086
+
 2006-04-10  William Jon McCann  <mccann@jhu.edu>
 
 	* data/gnome-screensaver-preferences.glade:

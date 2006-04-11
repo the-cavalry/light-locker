@@ -45,9 +45,6 @@ typedef struct
 {
         GtkPlug              parent;
 
-        GtkWidget           *vbox;
-        GtkWidget           *action_area;
-
         GSLockPlugPrivate *priv;
 } GSLockPlug;
 

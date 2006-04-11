@@ -31,7 +31,10 @@ menu_DATA =					\
 	$(NULL)
 
 gladedir = $(pkgdatadir)
-glade_DATA = gnome-screensaver-preferences.glade
+glade_DATA = 					\
+	gnome-screensaver-preferences.glade	\
+	lock-dialog-default.glade		\
+	$(NULL)
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gnome-screensaver.pc
