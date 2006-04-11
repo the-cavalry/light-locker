@@ -932,12 +932,9 @@ time_to_string_text (long time)
                         /* minutes */
                         string = g_strdup_printf (_("%s"), mins);
                 }
-        } else if (sec > 0) {
+        } else {
                 /* seconds */
                 string = g_strdup_printf (_("%s"), secs);
-        } else {
-                /* 0 seconds */
-                string = g_strdup (_("0 seconds"));
         }
 
         g_free (hours);
