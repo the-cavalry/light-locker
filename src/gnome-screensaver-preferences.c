@@ -42,6 +42,7 @@
 
 #include "file-transfer-dialog.h"
 
+#include "gs-visual-gl.h"
 #include "gs-job.h"
 #include "gs-prefs.h" /* for GS_MODE enum */
 
@@ -1236,6 +1237,8 @@ init_capplet (void)
         gtk_label_set_mnemonic_widget (GTK_LABEL (label), activate_delay_hscale);
         label              = glade_xml_get_widget (xml, "savers_label");
         gtk_label_set_mnemonic_widget (GTK_LABEL (label), treeview);
+
+        gs_visual_gl_widget_set_best_colormap (preview);
 
         activate_delay = config_get_activate_delay (&is_writable);
         ui_set_delay (activate_delay);

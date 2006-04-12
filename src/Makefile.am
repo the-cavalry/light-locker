@@ -124,6 +124,8 @@ test_window_SOURCES =			\
 	gs-window-x11.c			\
 	gs-grab-x11.c			\
 	gs-grab.h			\
+	gs-visual-gl.c			\
+	gs-visual-gl.h			\
 	gs-debug.c			\
 	gs-debug.h			\
 	subprocs.c			\
@@ -133,6 +135,7 @@ test_window_SOURCES =			\
 test_window_LDADD =			\
 	$(GNOME_SCREENSAVER_LIBS)	\
 	$(SAVER_LIBS)			\
+	$(GL_LIBS)			\
 	$(NULL)
 
 gnome_screensaver_dialog_SOURCES = 	\
@@ -181,6 +184,8 @@ gnome_screensaver_SOURCES =	\
 	gs-manager.h		\
 	gs-window-x11.c		\
 	gs-window.h		\
+	gs-visual-gl.c		\
+	gs-visual-gl.h		\
 	gs-prefs.c		\
 	gs-prefs.h		\
 	gs-job.c		\
@@ -199,6 +204,7 @@ gnome_screensaver_SOURCES =	\
 gnome_screensaver_LDADD =		\
 	$(SAVER_LIBS)			\
 	$(GNOME_SCREENSAVER_LIBS)	\
+	$(GL_LIBS)			\
 	$(NULL)
 
 gnome_screensaver_LDFLAGS = -export-dynamic
@@ -209,6 +215,8 @@ gnome_screensaver_preferences_SOURCES =	\
 	file-transfer-dialog.h		\
 	gs-job.c			\
 	gs-job.h			\
+	gs-visual-gl.c			\
+	gs-visual-gl.h			\
 	gs-debug.c			\
 	gs-debug.h			\
 	subprocs.c			\
@@ -217,6 +225,7 @@ gnome_screensaver_preferences_SOURCES =	\
 
 gnome_screensaver_preferences_LDADD =	\
 	$(GNOME_SCREENSAVER_CAPPLET_LIBS)	\
+	$(GL_LIBS)			\
 	$(NULL)
 
 EXTRA_DIST =				\

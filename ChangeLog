@@ -1,3 +1,20 @@
+2006-04-12  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac:
+	* data/gnome-screensaver-preferences.glade:
+	* src/Makefile.am:
+	* src/gnome-screensaver-preferences.c: (init_capplet):
+	* src/gs-visual-gl.c: (gs_visual_gl_get_best),
+	(gs_visual_gl_get_best_colormap),
+	(gs_visual_gl_widget_set_best_colormap):
+	* src/gs-visual-gl.h:
+	* src/gs-window-x11.c: (gs_window_real_realize):
+
+	Optionally depend on GL.  Try to get the optimal
+	visual to use with GL theme engines.  Get the
+	colormap for this visual and set it as colormap
+	for the windows to use.  Should fix #332463.
+
 2006-04-11  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-preferences.c: (time_to_string_text):

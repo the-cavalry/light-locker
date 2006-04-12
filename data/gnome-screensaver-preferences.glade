@@ -164,7 +164,7 @@
 
 			  <child>
 			    <widget class="GtkDrawingArea" id="preview_area">
-			      <property name="visible">True</property>
+			      <property name="visible">False</property>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">1</property>

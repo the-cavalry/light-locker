@@ -32,6 +32,7 @@
 #include <gtk/gtk.h>
 
 #include "gs-window.h"
+#include "gs-visual-gl.h"
 #include "subprocs.h"
 #include "gs-debug.h"
 
@@ -302,6 +303,8 @@ gs_window_real_unrealize (GtkWidget *widget)
 static void
 gs_window_real_realize (GtkWidget *widget)
 {
+        gs_visual_gl_widget_set_best_colormap (widget);
+
         if (GTK_WIDGET_CLASS (parent_class)->realize) {
                 GTK_WIDGET_CLASS (parent_class)->realize (widget);
         }
