@@ -164,7 +164,6 @@
 
 			  <child>
 			    <widget class="GtkDrawingArea" id="preview_area">
-			      <property name="visible">False</property>
 			    </widget>
 			    <packing>
 			      <property name="left_attach">1</property>
@@ -331,7 +330,7 @@
 				  <child>
 				    <widget class="GtkLabel" id="activate_delay_label">
 				      <property name="visible">True</property>
-				      <property name="label" translatable="yes">Set session as _idle after:</property>
+				      <property name="label" translatable="yes">Regard the computer as _idle after:</property>
 				      <property name="use_underline">True</property>
 				      <property name="use_markup">False</property>
 				      <property name="justify">GTK_JUSTIFY_LEFT</property>
@@ -395,7 +394,7 @@
 				<widget class="GtkCheckButton" id="enable_checkbox">
 				  <property name="visible">True</property>
 				  <property name="can_focus">True</property>
-				  <property name="label" translatable="yes">_Activate screensaver when session is idle</property>
+				  <property name="label" translatable="yes">_Activate screensaver when computer is idle</property>
 				  <property name="use_underline">True</property>
 				  <property name="relief">GTK_RELIEF_NORMAL</property>
 				  <property name="focus_on_click">True</property>

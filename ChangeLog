@@ -1,5 +1,10 @@
 2006-04-12  William Jon McCann  <mccann@jhu.edu>
 
+	* data/gnome-screensaver-preferences.glade:
+	Try using "regard" and "computer".
+
+2006-04-12  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac:
 	* data/gnome-screensaver-preferences.glade:
 	* src/Makefile.am:
