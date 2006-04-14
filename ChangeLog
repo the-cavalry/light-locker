@@ -1,3 +1,9 @@
+2006-04-14  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-visual-gl.c: (gs_visual_gl_get_best),
+	(gs_visual_gl_widget_set_best_colormap):
+	Try to trap X errors.
+
 2006-04-12  William Jon McCann  <mccann@jhu.edu>
 
 	* data/gnome-screensaver-preferences.glade:

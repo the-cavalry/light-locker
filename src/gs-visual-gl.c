@@ -41,6 +41,7 @@
 GdkVisual *
 gs_visual_gl_get_best (GdkScreen *screen)
 {
+        GdkVisual  *visual;
 #ifdef HAVE_LIBGL
         GdkDisplay *display;
         int         screen_num;
@@ -76,11 +77,17 @@ gs_visual_gl_get_best (GdkScreen *screen)
         display = gdk_screen_get_display (screen);
         screen_num = gdk_screen_get_number (screen);
 
-        for (i = 0; i < G_N_ELEMENTS (attrs); i++) {
-                XVisualInfo *vi = glXChooseVisual (GDK_DISPLAY_XDISPLAY (display), screen_num, attrs [i]);
+        gs_debug ("Looking for best visual for GL");
 
-                if (vi) {
-                        GdkVisual *visual;
+        gdk_error_trap_push();
+
+        visual = NULL;
+        for (i = 0; i < G_N_ELEMENTS (attrs); i++) {
+                XVisualInfo *vi;
+
+                vi = glXChooseVisual (GDK_DISPLAY_XDISPLAY (display), screen_num, attrs [i]);
+
+                if (vi != NULL) {
                         VisualID   vid;
 
                         vid = XVisualIDFromVisual (vi->visual);
@@ -92,12 +99,21 @@ gs_visual_gl_get_best (GdkScreen *screen)
 
                         XFree (vi);
 
-                        return visual;
+                        if (visual != NULL) {
+                                break;
+                        }
                 }
         }
+
+        gdk_flush ();
+        gdk_error_trap_pop ();
+
+#else
+        visual = NULL;
+
 #endif /* HAVE_LIBGL */
 
-        return NULL;
+        return visual;
 }
 
 GdkColormap *
@@ -126,7 +142,7 @@ gs_visual_gl_widget_set_best_colormap (GtkWidget *widget)
         g_return_if_fail (widget != NULL);
 
         colormap = gs_visual_gl_get_best_colormap (gtk_widget_get_screen (widget));
-        if (colormap) {
+        if (colormap != NULL) {
                 gtk_widget_set_colormap (widget, colormap);
                 g_object_unref (colormap);
         }
