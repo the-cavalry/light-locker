@@ -1,5 +1,14 @@
 2006-04-14  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-visual-gl.c: (gs_visual_gl_get_best):
+	* src/gs-watcher-x11.c: (notice_events_inner), (notice_events),
+	(init_mit_saver_extension):
+	* src/gs-window-x11.c: (clear_children), (clear_all_children),
+	(select_popup_events):
+	Use gdk_error_trap_* instead of homegrown.
+
+2006-04-14  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-visual-gl.c: (gs_visual_gl_get_best),
 	(gs_visual_gl_widget_set_best_colormap):
 	Try to trap X errors.

@@ -79,7 +79,7 @@ gs_visual_gl_get_best (GdkScreen *screen)
 
         gs_debug ("Looking for best visual for GL");
 
-        gdk_error_trap_push();
+        gdk_error_trap_push ();
 
         visual = NULL;
         for (i = 0; i < G_N_ELEMENTS (attrs); i++) {

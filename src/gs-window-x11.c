@@ -175,8 +175,9 @@ clear_children (Window window)
         status = XQueryTree (GDK_DISPLAY (), window, &root, &parent, &children, &n_children);
 
         if (status == 0) {
-                if (children)
+                if (children) {
                         XFree (children);
+                }
                 return;
         }
 
@@ -208,6 +209,7 @@ clear_all_children (GSWindow *window)
         clear_children (GDK_WINDOW_XID (w));
 
         gdk_display_sync (gtk_widget_get_display (GTK_WIDGET (window)));
+        gdk_flush ();
         gdk_error_trap_pop ();
 }
 
@@ -478,10 +480,14 @@ select_popup_events (void)
         XWindowAttributes attr;
         unsigned long     events;
 
+        gdk_error_trap_push ();
+
         XGetWindowAttributes (GDK_DISPLAY (), GDK_ROOT_WINDOW (), &attr);
 
         events = SubstructureNotifyMask | attr.your_event_mask;
-        XSelectInput (GDK_DISPLAY (), GDK_ROOT_WINDOW(), events);
+        XSelectInput (GDK_DISPLAY (), GDK_ROOT_WINDOW (), events);
+        gdk_flush ();
+        gdk_error_trap_pop ();
 }
 
 static void

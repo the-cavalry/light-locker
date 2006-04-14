@@ -247,31 +247,6 @@ gs_watcher_class_init (GSWatcherClass *klass)
         g_type_class_add_private (klass, sizeof (GSWatcherPrivate));
 }
 
-static int
-saver_ehandler (Display     *dpy,
-                XErrorEvent *error)
-{
-        g_warning ("BUG BUG BUG!");
-        exit (1);
-}
-
-static int
-BadWindow_ehandler (Display     *dpy,
-                    XErrorEvent *error)
-{
-    /* When we notice a window being created, we spawn a timer that waits
-       30 seconds or so, and then selects events on that window.  This error
-       handler is used so that we can cope with the fact that the window
-       may have been destroyed <30 seconds after it was created.
-    */
-    if (error->error_code == BadWindow ||
-        error->error_code == BadMatch ||
-        error->error_code == BadDrawable)
-        return 0;
-    else
-        return saver_ehandler (dpy, error);
-}
-
 static void
 notice_events_inner (Window   window,
                      gboolean enable,
@@ -296,8 +271,9 @@ notice_events_inner (Window   window,
         status = XQueryTree (GDK_DISPLAY (), window, &root, &parent, &kids, &nkids);
 
         if (status == 0) {
-                if (kids)
+                if (kids) {
                         XFree (kids);
+                }
                 return;
         }
 
@@ -356,15 +332,17 @@ notice_events_inner (Window   window,
         if (top && (events & KeyPressMask)) {
                 /* Only mention one window per tree */
                 top = FALSE;
-                if (enable)
+                if (enable) {
                         gs_debug ("Adding events for 0x%lX", (unsigned long)window);
-                else
+                } else {
                         gs_debug ("Removing events for 0x%lX", (unsigned long)window);
+                }
         }
 
         if (kids) {
-                while (nkids)
+                while (nkids) {
                         notice_events_inner (kids [--nkids], enable, top);
+                }
 
                 XFree (kids);
         }
@@ -375,13 +353,12 @@ notice_events (Window   window,
                gboolean enable,
                gboolean top)
 {
-        XErrorHandler old_handler;
-
-        old_handler = XSetErrorHandler (BadWindow_ehandler);
+        gdk_error_trap_push ();
 
         notice_events_inner (window, enable, top);
-        XSync (GDK_DISPLAY (), FALSE);
-        XSetErrorHandler (old_handler);
+
+        gdk_flush ();
+        gdk_error_trap_pop ();
 }
 
 typedef struct _NoticeTimerData NoticeTimerData;
@@ -881,14 +858,6 @@ query_mit_saver_extension (int *event_number,
                                            error_number);
 }
 
-static int
-ignore_all_errors_ehandler (Display     *dpy,
-                            XErrorEvent *error)
-{
-        return 0;
-}
-
-
 /* MIT SCREEN-SAVER server extension hackery.
  */
 static gboolean
@@ -914,12 +883,11 @@ init_mit_saver_extension ()
                                                XScreenNumberOfScreen (GDK_SCREEN_XSCREEN (screen)),
                                                &kill_id, &kill_type)
                     && kill_id != blank_pix[i]) {
-                        XErrorHandler old_handler =
-                                XSetErrorHandler (ignore_all_errors_ehandler);
+                        gdk_error_trap_push ();
 
                         XKillClient (GDK_DISPLAY (), kill_id);
-                        XSync (GDK_DISPLAY (), FALSE);
-                        XSetErrorHandler (old_handler);
+                        gdk_flush ();
+                        gdk_error_trap_pop ();
                 }
 
                 XScreenSaverSelectInput (GDK_DISPLAY (), root, ScreenSaverNotifyMask);
