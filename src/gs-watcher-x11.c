@@ -805,7 +805,7 @@ gs_watcher_init (GSWatcher *watcher)
         watcher->priv->enabled = TRUE;
         watcher->priv->active = FALSE;
         watcher->priv->timeout = 600000;
-        watcher->priv->pointer_timeout = 2000;
+        watcher->priv->pointer_timeout = 1000;
 
         /* time before idle signal to send notice signal */
         watcher->priv->notice_timeout = 10000;

@@ -1,3 +1,8 @@
+2006-04-18  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-watcher-x11.c (gs_watcher_init): Shorten
+	pointer poll interval to one second.
+
 2006-04-14  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-visual-gl.c: (gs_visual_gl_get_best):
