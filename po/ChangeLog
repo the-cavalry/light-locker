@@ -1,3 +1,8 @@
+2006-04-18  William Jon McCann  <mccann@jhu.edu>
+
+	* LINGUAS: Don't split over multiple lines as it
+	breaks the build.
+
 2006-04-18  Ankit Patel  <ankit644@yahoo.com>
 
         * gu.po: Updated Gujarati Translation.
