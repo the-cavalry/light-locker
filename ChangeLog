@@ -1,5 +1,12 @@
 2006-04-21  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-command.c: (do_command):
+	Remove throttle options because they don't work.  A throttle
+	request must be removed when a program leaves the bus and
+	the gnome-screensaver-command doesn't stay on the bus.
+	
+2006-04-21  William Jon McCann  <mccann@jhu.edu>
+
 	* doc/DBUS-API.txt: Updated for new throttle and inhibit API.
 	
 	* src/gs-listener-dbus.h:
