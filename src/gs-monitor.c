@@ -227,11 +227,11 @@ listener_active_changed_cb (GSListener *listener,
 }
 
 static void
-listener_throttled_changed_cb (GSListener *listener,
-                               gboolean    enabled,
-                               GSMonitor  *monitor)
+listener_throttle_changed_cb (GSListener *listener,
+                              gboolean    throttled,
+                              GSMonitor  *monitor)
 {
-        gs_manager_set_throttle_enabled (monitor->priv->manager, enabled);
+        gs_manager_set_throttled (monitor->priv->manager, throttled);
 }
 
 static void
@@ -269,7 +269,7 @@ power_changed_cb (GSPower    *power,
 
         /* Don't run themes if the monitor power is off */
         if (! is_on) {
-                gs_manager_set_throttle_enabled (monitor->priv->manager, TRUE);
+                gs_manager_set_throttled (monitor->priv->manager, TRUE);
         }
 }
 #endif
@@ -333,7 +333,7 @@ disconnect_listener_signals (GSMonitor *monitor)
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_quit_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_cycle_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_active_changed_cb, monitor);
-        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_throttled_changed_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_throttle_changed_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_poke_cb, monitor);
 }
 
@@ -348,8 +348,8 @@ connect_listener_signals (GSMonitor *monitor)
                           G_CALLBACK (listener_cycle_cb), monitor);
         g_signal_connect (monitor->priv->listener, "active-changed",
                           G_CALLBACK (listener_active_changed_cb), monitor);
-        g_signal_connect (monitor->priv->listener, "throttle-enabled-changed",
-                          G_CALLBACK (listener_throttled_changed_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "throttle-changed",
+                          G_CALLBACK (listener_throttle_changed_cb), monitor);
         g_signal_connect (monitor->priv->listener, "poke",
                           G_CALLBACK (listener_poke_cb), monitor);
 }

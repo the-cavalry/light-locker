@@ -50,8 +50,8 @@ typedef struct
         void            (* poke)        (GSListener *listener);
         gboolean        (* active_changed)           (GSListener *listener,
                                                       gboolean    active);
-        void            (* throttle_enabled_changed) (GSListener *listener,
-                                                      gboolean    enabled);
+        void            (* throttle_changed) (GSListener *listener,
+                                              gboolean    throttled);
 
 } GSListenerClass;
 
@@ -75,8 +75,6 @@ gboolean    gs_listener_set_active              (GSListener *listener,
                                                  gboolean    active);
 gboolean    gs_listener_set_session_idle        (GSListener *listener,
                                                  gboolean    idle);
-void        gs_listener_set_throttle_enabled    (GSListener *listener,
-                                                 gboolean    enabled);
 void        gs_listener_set_activation_enabled  (GSListener *listener,
                                                  gboolean    enabled);
 gboolean    gs_listener_get_activation_enabled  (GSListener *listener);

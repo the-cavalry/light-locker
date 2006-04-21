@@ -69,12 +69,22 @@ struct GSListenerPrivate
         guint           session_idle : 1;
         guint           active : 1;
         guint           activation_enabled : 1;
-        guint           throttle_enabled : 1;
+        guint           throttled : 1;
         GHashTable     *inhibitors;
+        GHashTable     *throttlers;
 
         time_t          active_start;
         time_t          session_idle_start;
 };
+
+typedef struct
+{
+        int      entry_type;
+        char    *application;
+        char    *reason;
+        char    *connection;
+        guint32  cookie;
+} GSListenerRefEntry;
 
 enum {
         LOCK,
@@ -82,7 +92,7 @@ enum {
         QUIT,
         POKE,
         ACTIVE_CHANGED,
-        THROTTLE_ENABLED_CHANGED,
+        THROTTLE_CHANGED,
         LAST_SIGNAL
 };
 
@@ -90,10 +100,13 @@ enum {
         PROP_0,
         PROP_ACTIVE,
         PROP_SESSION_IDLE,
-        PROP_THROTTLE_ENABLED,
         PROP_ACTIVATION_ENABLED,
 };
 
+enum {
+        REF_ENTRY_TYPE_INHIBIT,
+        REF_ENTRY_TYPE_THROTTLE
+};
 
 static DBusObjectPathVTable
 gs_listener_vtable = { &gs_listener_unregister_handler,
@@ -116,6 +129,16 @@ gs_listener_error_quark (void)
                 quark = g_quark_from_static_string ("gs_listener_error");
 
         return quark;
+}
+
+static void
+gs_listener_ref_entry_free (GSListenerRefEntry *entry)
+{
+	g_free (entry->connection);
+	g_free (entry->application);
+	g_free (entry->reason);
+	g_free (entry);
+	entry = NULL;
 }
 
 static void
@@ -197,55 +220,83 @@ gs_listener_send_signal_session_idle_changed (GSListener *listener)
         dbus_message_unref (message);
 }
 
-static void
-gs_listener_send_signal_throttle_enabled_changed (GSListener *listener)
+static const char *
+get_name_for_entry_type (int entry_type)
 {
-        DBusMessage    *message;
-        DBusMessageIter iter;
-        dbus_bool_t     enabled;
+        const char *name;
 
-        g_return_if_fail (listener != NULL);
-
-        message = dbus_message_new_signal (GS_LISTENER_PATH,
-                                           GS_LISTENER_SERVICE,
-                                           "ThrottleEnabledChanged");
-
-        enabled = listener->priv->throttle_enabled;
-        dbus_message_iter_init_append (message, &iter);
-        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &enabled);
-
-        if (! send_dbus_message (listener->priv->connection, message)) {
-                g_warning ("Could not send ThrottleEnabledChanged signal");
+        switch (entry_type) {
+        case REF_ENTRY_TYPE_INHIBIT:
+                name = "inhibitor";
+                break;
+        case REF_ENTRY_TYPE_THROTTLE:
+                name = "throttler";
+                break;
+        default:
+                g_assert_not_reached ();
+                break;
         }
 
-        dbus_message_unref (message);
+        return name;
+}
+
+static GHashTable *
+get_hash_for_entry_type (GSListener         *listener,
+                         int                 entry_type)
+{
+        GHashTable *hash;
+
+        switch (entry_type) {
+        case REF_ENTRY_TYPE_INHIBIT:
+                hash = listener->priv->inhibitors;
+                break;
+        case REF_ENTRY_TYPE_THROTTLE:
+                hash = listener->priv->throttlers;
+                break;
+        default:
+                g_assert_not_reached ();
+                break;
+        }
+
+        return hash;
 }
 
 static void
-list_inhibitors (gpointer key,
-                 gpointer value,
-                 gpointer user_data)
+list_ref_entry (gpointer key,
+                gpointer value,
+                gpointer user_data)
 {
-        gs_debug ("Inhibited by bus %s for reason: %s", (char *)key, (char *)value);
+        GSListenerRefEntry *entry;
+
+        entry =  (GSListenerRefEntry *)value;
+
+        gs_debug ("%s: %s for reason: %s",
+                  get_name_for_entry_type (entry->entry_type),
+                  entry->application,
+                  entry->reason);
 }
 
 static gboolean
-listener_is_inhibited (GSListener *listener)
+listener_ref_entry_is_present (GSListener *listener,
+                               int         entry_type)
 {
-        guint    n_inhibitors;
-        gboolean inhibited;
+        guint       n_entries;
+        gboolean    is_set;
+        GHashTable *hash;
+
+        hash = get_hash_for_entry_type (listener, entry_type);
 
         /* if we aren't inhibited then activate */
-        n_inhibitors = 0;
-        if (listener->priv->inhibitors) {
-                n_inhibitors = g_hash_table_size (listener->priv->inhibitors);
+        n_entries = 0;
+        if (hash != NULL) {
+                n_entries = g_hash_table_size (hash);
 
-                g_hash_table_foreach (listener->priv->inhibitors, list_inhibitors, NULL);
+                g_hash_table_foreach (hash, list_ref_entry, NULL);
         }
 
-        inhibited = (n_inhibitors > 0);
+        is_set = (n_entries > 0);
 
-        return inhibited;
+        return is_set;
 }
 
 static gboolean
@@ -265,7 +316,7 @@ listener_check_activation (GSListener *listener)
         }
 
         /* if we aren't inhibited then activate */
-        inhibited = listener_is_inhibited (listener);
+        inhibited = listener_ref_entry_is_present (listener, REF_ENTRY_TYPE_INHIBIT);
 
         res = FALSE;
         if (! inhibited) {
@@ -274,6 +325,37 @@ listener_check_activation (GSListener *listener)
         }
 
         return res;
+}
+
+static void
+gs_listener_set_throttle (GSListener *listener,
+                          gboolean    throttled)
+{
+        g_return_if_fail (GS_IS_LISTENER (listener));
+
+        if (listener->priv->throttled != throttled) {
+                gs_debug ("Changine throttle status: %d", throttled);
+
+                listener->priv->throttled = throttled;
+
+                g_signal_emit (listener, signals [THROTTLE_CHANGED], 0, throttled);
+        }
+}
+
+static gboolean
+listener_check_throttle (GSListener *listener)
+{
+        gboolean throttled;
+
+        gs_debug ("Checking for throttle");
+
+        throttled = listener_ref_entry_is_present (listener, REF_ENTRY_TYPE_THROTTLE);
+
+        if (throttled != listener->priv->throttled) {
+                gs_listener_set_throttle (listener, throttled);
+        }
+
+        return TRUE;
 }
 
 static gboolean
@@ -345,11 +427,6 @@ gs_listener_set_active (GSListener *listener,
 
         listener_set_active_internal (listener, active);
 
-        if (! active) {
-                /* if we are deactivating then reset the throttle */
-                gs_listener_set_throttle_enabled (listener, FALSE);
-        }
-
         return TRUE;
 }
 
@@ -372,7 +449,7 @@ gs_listener_set_session_idle (GSListener *listener,
         if (idle) {
                 gboolean inhibited;
 
-                inhibited = listener_is_inhibited (listener);
+                inhibited = listener_ref_entry_is_present (listener, REF_ENTRY_TYPE_INHIBIT);
 
                 /* if we are inhibited then do nothing */
                 if (inhibited) {
@@ -394,21 +471,6 @@ gs_listener_set_session_idle (GSListener *listener,
         return res;
 }
 
-void
-gs_listener_set_throttle_enabled (GSListener *listener,
-                                  gboolean    enabled)
-{
-        g_return_if_fail (GS_IS_LISTENER (listener));
-
-        if (listener->priv->throttle_enabled != enabled) {
-
-                listener->priv->throttle_enabled = enabled;
-
-                g_signal_emit (listener, signals [THROTTLE_ENABLED_CHANGED], 0, enabled);
-                gs_listener_send_signal_throttle_enabled_changed (listener);
-        }
-}
-
 gboolean
 gs_listener_get_activation_enabled (GSListener *listener)
 {
@@ -424,7 +486,7 @@ gs_listener_is_inhibited (GSListener *listener)
 
         g_return_val_if_fail (GS_IS_LISTENER (listener), FALSE);
 
-        inhibited = listener_is_inhibited (listener);
+        inhibited = listener_ref_entry_is_present (listener, REF_ENTRY_TYPE_INHIBIT);
 
         return inhibited;
 }
@@ -452,10 +514,6 @@ listener_property_set_bool (GSListener *listener,
         switch (prop_id) {
         case PROP_ACTIVE:
                 gs_listener_set_active (listener, value);
-                ret = TRUE;
-                break;
-        case PROP_THROTTLE_ENABLED:
-                gs_listener_set_throttle_enabled (listener, value);
                 ret = TRUE;
                 break;
         default:
@@ -502,21 +560,124 @@ raise_syntax (DBusConnection *connection,
                      method_name);
 }
 
-static DBusHandlerResult
-listener_add_inhibitor (GSListener     *listener,
-                        DBusConnection *connection,
-                        DBusMessage    *message)
+static guint32
+generate_cookie ()
 {
-        const char     *sender;
-        DBusMessage    *reply;
-        DBusError       error;
-        char           *reason;
+        guint32 cookie;
+
+        cookie = (guint32)g_random_int_range (1, G_MAXINT32);
+
+        return cookie;
+}
+
+static guint32
+listener_generate_unique_key (GSListener *listener,
+                              int         entry_type)
+{
+        guint32     cookie;
+        GHashTable *hash;
+
+        hash = get_hash_for_entry_type (listener, entry_type);
+
+        do {
+                cookie = generate_cookie ();
+        } while (g_hash_table_lookup (hash, &cookie) != NULL);
+
+        return cookie;
+}
+
+static void
+listener_ref_entry_check (GSListener *listener,
+                          int         entry_type)
+{
+        switch (entry_type) {
+        case REF_ENTRY_TYPE_INHIBIT:
+                listener_check_activation (listener);
+                break;
+        case REF_ENTRY_TYPE_THROTTLE:
+                listener_check_throttle (listener);
+                break;
+        default:
+                g_assert_not_reached ();
+                break;
+        }
+}
+
+static void
+listener_add_ref_entry (GSListener         *listener,
+                        int                 entry_type,
+                        GSListenerRefEntry *entry)
+{
+        GHashTable *hash;
+
+        gs_debug ("adding %s from %s for reason '%s' on connection %s",
+                  get_name_for_entry_type (entry_type),
+                  entry->application,
+                  entry->reason,
+                  entry->connection);
+
+        hash = get_hash_for_entry_type (listener, entry_type);
+        g_hash_table_insert (hash, &entry->cookie, entry);
+
+        listener_ref_entry_check (listener, entry_type);
+}
+
+static gboolean
+listener_remove_ref_entry (GSListener *listener,
+                           int         entry_type,
+                           guint32     cookie)
+{
+        GHashTable         *hash;
+        gboolean            removed;
+        GSListenerRefEntry *entry;
+
+        hash = get_hash_for_entry_type (listener, entry_type);
+
+        entry = g_hash_table_lookup (hash, &cookie);
+        if (entry != NULL) {
+                gs_debug ("removing %s from %s for reason '%s' on connection %s",
+                          get_name_for_entry_type (entry_type),
+                          entry->application,
+                          entry->reason,
+                          entry->connection);
+        }
+
+        removed = g_hash_table_remove (hash, &cookie);
+
+        if (removed) {
+                listener_ref_entry_check (listener, entry_type);
+        } else {
+                gs_debug ("Cookie %u was not in the list!", cookie);
+        }
+
+        return removed;
+}
+
+static DBusHandlerResult
+listener_dbus_add_ref_entry (GSListener     *listener,
+                             int             entry_type,
+                             DBusConnection *connection,
+                             DBusMessage    *message)
+{
+        DBusMessage        *reply;
+        DBusError           error;
+        char               *application;
+        char               *reason;
+        GSListenerRefEntry *entry;
+        DBusMessageIter     iter;
 
         dbus_error_init (&error);
         if (! dbus_message_get_args (message, &error,
+                                     DBUS_TYPE_STRING, &application,
                                      DBUS_TYPE_STRING, &reason,
                                      DBUS_TYPE_INVALID)) {
-                raise_syntax (connection, message, "InhibitActivation");
+                if (entry_type == REF_ENTRY_TYPE_INHIBIT) {
+                        raise_syntax (connection, message, "Inhibit");
+                } else if (entry_type == REF_ENTRY_TYPE_THROTTLE) {
+                        raise_syntax (connection, message, "Throttle");
+                } else {
+                        g_assert_not_reached ();
+                 }
 
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
@@ -526,18 +687,17 @@ listener_add_inhibitor (GSListener     *listener,
                 g_error ("No memory");
         }
 
-        sender = dbus_message_get_sender (message);
+        entry = g_new0 (GSListenerRefEntry, 1);
+        entry->entry_type = entry_type;
+        entry->connection = g_strdup (dbus_message_get_sender (message));
+        entry->cookie = listener_generate_unique_key (listener, entry_type);
+        entry->application = g_strdup (application);
+        entry->reason = g_strdup (reason);
 
-        if (listener->priv->inhibitors == NULL) {
-                listener->priv->inhibitors =
-                        g_hash_table_new_full (g_str_hash,
-                                               g_str_equal,
-                                               g_free,
-                                               g_free);
-        }
+        listener_add_ref_entry (listener, entry_type, entry);
 
-        g_hash_table_insert (listener->priv->inhibitors, g_strdup (sender), g_strdup (reason));
-        gs_debug ("adding inhibitor from %s for reason: %s", sender, reason);
+        dbus_message_iter_init_append (reply, &iter);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &entry->cookie);
 
         if (! dbus_connection_send (connection, reply, NULL)) {
                 g_error ("No memory");
@@ -549,18 +709,27 @@ listener_add_inhibitor (GSListener     *listener,
 }
 
 static DBusHandlerResult
-listener_remove_inhibitor (GSListener     *listener,
-                           DBusConnection *connection,
-                           DBusMessage    *message)
+listener_dbus_remove_ref_entry (GSListener     *listener,
+                                int             entry_type,
+                                DBusConnection *connection,
+                                DBusMessage    *message)
 {
-        DBusMessage *reply;
-        DBusError    error;
-        const char  *sender;
+        DBusMessage        *reply;
+        DBusError           error;
+        const char         *sender;
+        guint32             cookie;
 
         dbus_error_init (&error);
         if (! dbus_message_get_args (message, &error,
+                                     DBUS_TYPE_UINT32, &cookie,
                                      DBUS_TYPE_INVALID)) {
-                raise_syntax (connection, message, "AllowActivation");
+                if (entry_type == REF_ENTRY_TYPE_INHIBIT) {
+                        raise_syntax (connection, message, "UnInhibit");
+                } else if (entry_type == REF_ENTRY_TYPE_THROTTLE) {
+                        raise_syntax (connection, message, "UnThrottle");
+                } else {
+                        g_assert_not_reached ();
+                }
 
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
@@ -569,17 +738,12 @@ listener_remove_inhibitor (GSListener     *listener,
         if (reply == NULL)
                 g_error ("No memory");
 
+        /* FIXME: check sender is from same connection as entry */
         sender = dbus_message_get_sender (message);
 
-        if (g_hash_table_lookup (listener->priv->inhibitors, sender)) {
-                g_hash_table_remove (listener->priv->inhibitors, sender);
-                gs_debug ("removing inhibitor from %s", sender);
-                listener_check_activation (listener);
-        } else {
-                gs_debug ("Service '%s' was not in the list of inhibitors!", sender);
-        }
+        listener_remove_ref_entry (listener, entry_type, cookie);
 
-        /* FIXME?  Pointless? */
+        /* FIXME:  Pointless? */
         if (! dbus_connection_send (connection, reply, NULL)) {
                 g_error ("No memory");
         }
@@ -589,13 +753,59 @@ listener_remove_inhibitor (GSListener     *listener,
         return DBUS_HANDLER_RESULT_HANDLED;
 }
 
+static gboolean
+listener_ref_entry_has_connection (gpointer key,
+                                   gpointer value,
+                                   gpointer user_data)
+{
+        GSListenerRefEntry *entry;
+        const char         *connection;
+        gboolean            matches;
+
+        entry = (GSListenerRefEntry *)value;
+        connection = (const char *) user_data;
+
+        matches = FALSE;
+        if (connection != NULL && entry->connection != NULL) {
+                matches = (strcmp (connection, entry->connection) == 0);
+                if (matches) {
+                        gs_debug ("removing %s from %s for reason '%s' on connection %s",
+                                  get_name_for_entry_type (entry->entry_type),
+                                  entry->application,
+                                  entry->reason,
+                                  entry->connection);
+                }
+        }
+
+        return matches;
+}
+
+static gboolean
+listener_ref_entry_remove_for_connection (GSListener  *listener,
+                                          int          entry_type,
+                                          const char  *connection)
+{
+        gboolean    removed;
+        guint       n_removed;
+        GHashTable *hash;
+
+        hash = get_hash_for_entry_type (listener, entry_type);
+
+        removed = FALSE;
+        n_removed = g_hash_table_foreach_remove (hash, listener_ref_entry_has_connection, (gpointer)connection);
+
+        removed = (n_removed > 0);
+
+        return removed;
+}
+
 static void
 listener_service_deleted (GSListener  *listener,
                           DBusMessage *message)
 {
-        char *old_service_name;
-        char *new_service_name;
-        char *reason;
+        char    *old_service_name;
+        char    *new_service_name;
+        gboolean removed;
 
         if (! dbus_message_get_args (message, NULL,
                                      DBUS_TYPE_STRING, &old_service_name,
@@ -605,12 +815,18 @@ listener_service_deleted (GSListener  *listener,
                 return;
         }
 
-        reason = g_hash_table_lookup (listener->priv->inhibitors, new_service_name);
+        g_debug ("DBUS service deleted: %s", new_service_name);
 
-        if (reason != NULL) {
-                g_hash_table_remove (listener->priv->inhibitors, new_service_name);
-                listener_check_activation (listener);
+        removed = listener_ref_entry_remove_for_connection (listener, REF_ENTRY_TYPE_THROTTLE, new_service_name);
+        if (removed) {
+                listener_ref_entry_check (listener, REF_ENTRY_TYPE_THROTTLE);
         }
+
+        removed = listener_ref_entry_remove_for_connection (listener, REF_ENTRY_TYPE_INHIBIT, new_service_name);
+        if (removed) {
+                listener_ref_entry_check (listener, REF_ENTRY_TYPE_INHIBIT);
+        }
+
 }
 
 static void
@@ -721,13 +937,6 @@ listener_get_property (GSListener     *listener,
                         dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &b);
                 }
                 break;
-        case PROP_THROTTLE_ENABLED:
-                {
-                        dbus_bool_t b;
-                        b = listener->priv->throttle_enabled;
-                        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &b);
-                }
-                break;
         default:
                 g_warning ("Unsupported property id %u", prop_id);
                 break;
@@ -800,11 +1009,11 @@ listener_get_session_idle_time (GSListener     *listener,
 
         reply = dbus_message_new_method_return (message);
 
-        dbus_message_iter_init_append (reply, &iter);
-
         if (reply == NULL) {
                 g_error ("No memory");
         }
+
+        dbus_message_iter_init_append (reply, &iter);
 
         if (listener->priv->session_idle) {
                 time_t now = time (NULL);
@@ -867,11 +1076,17 @@ listener_dbus_filter_handle_methods (DBusConnection *connection,
                 g_signal_emit (listener, signals [CYCLE], 0);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "InhibitActivation")) {
-                return listener_add_inhibitor (listener, connection, message);
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Inhibit")) {
+                return listener_dbus_add_ref_entry (listener, REF_ENTRY_TYPE_INHIBIT, connection, message);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "AllowActivation")) {
-                return listener_remove_inhibitor (listener, connection, message);
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "UnInhibit")) {
+                return listener_dbus_remove_ref_entry (listener, REF_ENTRY_TYPE_INHIBIT, connection, message);
+        }
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Throttle")) {
+                return listener_dbus_add_ref_entry (listener, REF_ENTRY_TYPE_THROTTLE, connection, message);
+        }
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "UnThrottle")) {
+                return listener_dbus_remove_ref_entry (listener, REF_ENTRY_TYPE_THROTTLE, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "setActive")) {
                 return listener_set_property (listener, connection, message, PROP_ACTIVE);
@@ -887,12 +1102,6 @@ listener_dbus_filter_handle_methods (DBusConnection *connection,
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getSessionIdleTime")) {
                 return listener_get_session_idle_time (listener, connection, message);
-        }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "setThrottleEnabled")) {
-                return listener_set_property (listener, connection, message, PROP_THROTTLE_ENABLED);
-        }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getThrottleEnabled")) {
-                return listener_get_property (listener, connection, message, PROP_THROTTLE_ENABLED);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Poke")) {
                 g_signal_emit (listener, signals [POKE], 0);
@@ -1044,9 +1253,6 @@ gs_listener_set_property (GObject            *object,
         case PROP_SESSION_IDLE:
                 gs_listener_set_session_idle (self, g_value_get_boolean (value));
                 break;
-        case PROP_THROTTLE_ENABLED:
-                gs_listener_set_throttle_enabled (self, g_value_get_boolean (value));
-                break;
         case PROP_ACTIVATION_ENABLED:
                 gs_listener_set_activation_enabled (self, g_value_get_boolean (value));
                 break;
@@ -1072,9 +1278,6 @@ gs_listener_get_property (GObject            *object,
                 break;
         case PROP_SESSION_IDLE:
                 g_value_set_boolean (value, self->priv->session_idle);
-                break;
-        case PROP_THROTTLE_ENABLED:
-                g_value_set_boolean (value, self->priv->throttle_enabled);
                 break;
         case PROP_ACTIVATION_ENABLED:
                 g_value_set_boolean (value, self->priv->activation_enabled);
@@ -1147,11 +1350,11 @@ gs_listener_class_init (GSListenerClass *klass)
                               G_TYPE_BOOLEAN,
                               1,
                               G_TYPE_BOOLEAN);
-        signals [THROTTLE_ENABLED_CHANGED] =
-                g_signal_new ("throttle-enabled-changed",
+        signals [THROTTLE_CHANGED] =
+                g_signal_new ("throttle-changed",
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, throttle_enabled_changed),
+                              G_STRUCT_OFFSET (GSListenerClass, throttle_changed),
                               NULL,
                               NULL,
                               g_cclosure_marshal_VOID__BOOLEAN,
@@ -1166,14 +1369,6 @@ gs_listener_class_init (GSListenerClass *klass)
                                                                NULL,
                                                                FALSE,
                                                                G_PARAM_READWRITE));
-        g_object_class_install_property (object_class,
-                                         PROP_THROTTLE_ENABLED,
-                                         g_param_spec_boolean ("throttle-enabled",
-                                                               NULL,
-                                                               NULL,
-                                                               FALSE,
-                                                               G_PARAM_READWRITE));
-
         g_object_class_install_property (object_class,
                                          PROP_ACTIVATION_ENABLED,
                                          g_param_spec_boolean ("activation-enabled",
@@ -1282,6 +1477,16 @@ gs_listener_init (GSListener *listener)
         listener->priv = GS_LISTENER_GET_PRIVATE (listener);
 
         gs_listener_dbus_init (listener);
+
+        listener->priv->inhibitors = g_hash_table_new_full (g_int_hash,
+                                                            g_int_equal,
+                                                            NULL,
+                                                            (GDestroyNotify)gs_listener_ref_entry_free);
+        listener->priv->throttlers = g_hash_table_new_full (g_int_hash,
+                                                            g_int_equal,
+                                                            NULL,
+                                                            (GDestroyNotify)gs_listener_ref_entry_free);
+
 }
 
 static void
@@ -1296,14 +1501,12 @@ gs_listener_finalize (GObject *object)
 
         g_return_if_fail (listener->priv != NULL);
 
-#if 0
-        if (listener->priv->connection) {
-                dbus_connection_unref (listener->priv->connection);
-        }
-#endif
-
         if (listener->priv->inhibitors) {
                 g_hash_table_destroy (listener->priv->inhibitors);
+        }
+
+        if (listener->priv->throttlers) {
+                g_hash_table_destroy (listener->priv->throttlers);
         }
 
         G_OBJECT_CLASS (parent_class)->finalize (object);

@@ -1,3 +1,46 @@
+2006-04-21  William Jon McCann  <mccann@jhu.edu>
+
+	* doc/DBUS-API.txt: Updated for new throttle and inhibit API.
+	
+	* src/gs-listener-dbus.h:
+	* src/gs-listener-dbus.c: (gs_listener_ref_entry_free),
+	(get_name_for_entry_type), (get_hash_for_entry_type),
+	(list_ref_entry), (listener_ref_entry_is_present),
+	(listener_check_activation), (gs_listener_set_throttle),
+	(listener_check_throttle), (gs_listener_set_active),
+	(gs_listener_set_session_idle), (gs_listener_is_inhibited),
+	(listener_property_set_bool), (generate_cookie),
+	(listener_generate_unique_key), (listener_ref_entry_check),
+	(listener_add_ref_entry), (listener_remove_ref_entry),
+	(listener_dbus_add_ref_entry), (listener_dbus_remove_ref_entry),
+	(listener_ref_entry_has_connection),
+	(listener_ref_entry_remove_for_connection),
+	(listener_service_deleted), (listener_get_property),
+	(listener_get_session_idle_time),
+	(listener_dbus_filter_handle_methods), (gs_listener_set_property),
+	(gs_listener_get_property), (gs_listener_class_init),
+	(gs_listener_init), (gs_listener_finalize):
+	Change throttle and inhibit API to do reference counting.  The
+	way we had it before we only kept track of one inhibitor per
+	connection.  This doesn't work when connections are shared.
+	Also create a cookie for each request to be able to track it.
+	Make the throttle and inhibit methods share code.
+	And don't clear the throttle state when changing activation.
+
+	* src/gs-manager.c: (throttle_job), (gs_manager_set_throttled),
+	(gs_manager_cycle), (gs_manager_set_property),
+	(gs_manager_get_property), (gs_manager_class_init),
+	(window_dialog_up_cb), (window_dialog_down_cb),
+	(manager_maybe_start_job_for_window), (gs_manager_deactivate):
+	Don't use the term enabled with respect to throttling.
+
+	* src/gs-monitor.c: (listener_throttle_changed_cb),
+	(power_changed_cb), (disconnect_listener_signals),
+	(connect_listener_signals):
+	Update for new signals.
+
+	Fixes #334907 and probably #338814
+
 2006-04-18  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-watcher-x11.c (gs_watcher_init): Shorten

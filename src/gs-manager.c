@@ -53,7 +53,7 @@ struct GSManagerPrivate
         guint        lock_enabled : 1;
         guint        logout_enabled : 1;
         guint        user_switch_enabled : 1;
-        guint        throttle_enabled : 1;
+        guint        throttled : 1;
 
         char        *logout_command;
 
@@ -88,7 +88,7 @@ enum {
         PROP_LOGOUT_TIMEOUT,
         PROP_LOGOUT_COMMAND,
         PROP_ACTIVE,
-        PROP_THROTTLE_ENABLED,
+        PROP_THROTTLED,
 };
 
 #define FADE_TIMEOUT 1000
@@ -162,7 +162,7 @@ throttle_job (GSWindow  *window,
               GSJob     *job,
               GSManager *manager)
 {
-        if (manager->priv->throttle_enabled) {
+        if (manager->priv->throttled) {
                 gs_job_stop (job);
         } else {
                 gs_job_start (job);
@@ -252,15 +252,15 @@ gs_manager_set_themes (GSManager *manager,
 }
 
 void
-gs_manager_set_throttle_enabled (GSManager *manager,
-                                 gboolean   throttle_enabled)
+gs_manager_set_throttled (GSManager *manager,
+                          gboolean   throttled)
 {
         g_return_if_fail (GS_IS_MANAGER (manager));
 
-        if (manager->priv->throttle_enabled != throttle_enabled) {
+        if (manager->priv->throttled != throttled) {
                 GSList *l;
 
-                manager->priv->throttle_enabled = throttle_enabled;
+                manager->priv->throttled = throttled;
 
                 if (! manager->priv->dialog_up) {
 
@@ -433,7 +433,7 @@ gs_manager_cycle (GSManager *manager)
                 return FALSE;
         }
 
-        if (manager->priv->throttle_enabled) {
+        if (manager->priv->throttled) {
                 return FALSE;
         }
 
@@ -512,8 +512,8 @@ gs_manager_set_property (GObject            *object,
         self = GS_MANAGER (object);
 
         switch (prop_id) {
-        case PROP_THROTTLE_ENABLED:
-                gs_manager_set_throttle_enabled (self, g_value_get_boolean (value));
+        case PROP_THROTTLED:
+                gs_manager_set_throttled (self, g_value_get_boolean (value));
                 break;
         case PROP_LOCK_ENABLED:
                 gs_manager_set_lock_enabled (self, g_value_get_boolean (value));
@@ -553,8 +553,8 @@ gs_manager_get_property (GObject            *object,
         self = GS_MANAGER (object);
 
         switch (prop_id) {
-        case PROP_THROTTLE_ENABLED:
-                g_value_set_boolean (value, self->priv->throttle_enabled);
+        case PROP_THROTTLED:
+                g_value_set_boolean (value, self->priv->throttled);
                 break;
         case PROP_LOCK_ENABLED:
                 g_value_set_boolean (value, self->priv->lock_enabled);
@@ -681,8 +681,8 @@ gs_manager_class_init (GSManagerClass *klass)
                                                             300000,
                                                             G_PARAM_READWRITE));
         g_object_class_install_property (object_class,
-                                         PROP_THROTTLE_ENABLED,
-                                         g_param_spec_boolean ("throttle-enabled",
+                                         PROP_THROTTLED,
+                                         g_param_spec_boolean ("throttled",
                                                                NULL,
                                                                NULL,
                                                                TRUE,
@@ -790,7 +790,7 @@ window_dialog_up_cb (GSWindow  *window,
                 }
         }
 
-        if (! manager->priv->throttle_enabled) {
+        if (! manager->priv->throttled) {
                 gs_debug ("Suspending jobs");
 
                 manager_suspend_jobs (manager);
@@ -816,7 +816,7 @@ window_dialog_down_cb (GSWindow  *window,
                 gtk_widget_set_sensitive (GTK_WIDGET (l->data), TRUE);
         }
 
-        if (! manager->priv->throttle_enabled) {
+        if (! manager->priv->throttled) {
                 manager_resume_jobs (manager);
         }
 
@@ -840,7 +840,7 @@ manager_maybe_start_job_for_window (GSManager *manager,
                 return;
         }
 
-        if (! manager->priv->throttle_enabled) {
+        if (! manager->priv->throttled) {
                 gs_job_start (job);
         }
 }
@@ -1176,7 +1176,7 @@ gs_manager_deactivate (GSManager *manager)
         manager->priv->active = FALSE;
         manager->priv->activate_time = 0;
         manager->priv->lock_active = FALSE;
-        manager->priv->throttle_enabled = FALSE;
+        manager->priv->throttled = FALSE;
 
         return TRUE;
 }
