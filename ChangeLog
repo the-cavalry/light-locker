@@ -1,3 +1,11 @@
+2006-04-24  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac:
+	* po/LINGUAS: Use po/linguas guidelines.
+
+	Patch from Przemys©aw Grzegorczyk <pgrzegorczyk@gmail.com>
+	Fixes #339165
+
 2006-04-21  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-command.c: (do_command):
