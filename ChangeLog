@@ -1,5 +1,11 @@
 2006-04-24  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-fade.c: (xf86_whack_gamma), (check_gamma_extension),
+	(gamma_info_init), (gamma_info_free), (gs_fade_now):
+	Add braces and debugging.
+
+2006-04-24  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac:
 	* po/LINGUAS: Use po/linguas guidelines.
 
