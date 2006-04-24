@@ -1692,11 +1692,12 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         plug->priv->timeout = DIALOG_TIMEOUT_MSEC;
 
+        g_signal_connect (plug, "key_press_event",
+                          G_CALLBACK (entry_key_press), plug);
+
         /* button press handler used to inhibit popup menu */
         g_signal_connect (plug->priv->auth_password_entry, "button_press_event",
                           G_CALLBACK (entry_button_press), NULL);
-        g_signal_connect (plug->priv->auth_password_entry, "key_press_event",
-                          G_CALLBACK (entry_key_press), plug);
         gtk_entry_set_activates_default (GTK_ENTRY (plug->priv->auth_password_entry), TRUE);
         gtk_entry_set_visibility (GTK_ENTRY (plug->priv->auth_password_entry), FALSE);
 
