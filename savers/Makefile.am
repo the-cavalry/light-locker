@@ -16,7 +16,7 @@ INCLUDES =							\
 
 @INTLTOOL_DESKTOP_RULE@
 
-themesdir = $(pkgdatadir)/themes
+themesdir = $(datadir)/applications/screensavers
 themes_in_files = 			\
 	cosmos-slideshow.desktop.in	\
 	footlogo-floaters.desktop.in    \

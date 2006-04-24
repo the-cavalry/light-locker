@@ -23,8 +23,6 @@ directory_in_files =                            \
 	$(NULL)
 directory_DATA = $(directory_in_files:.directory.in=.directory)
 
-themesdir = $(pkgdatadir)/themes
-
 menudir = $(sysconfdir)/xdg/menus
 menu_DATA =					\
 	gnome-screensavers.menu			\

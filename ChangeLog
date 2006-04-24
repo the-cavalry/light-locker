@@ -1,5 +1,17 @@
 2006-04-24  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac:
+	* data/Makefile.am:
+	* data/gnome-screensaver.directory.in:
+	* data/gnome-screensavers.menu.in:
+	* savers/Makefile.am:
+	Use ${datadir}/applications/screensavers for themes
+	instead of ${datadir}/gnome-screensaver/themes.
+
+	Fixes #325070
+
+2006-04-24  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-fade.c: (xf86_whack_gamma), (check_gamma_extension),
 	(gamma_info_init), (gamma_info_free), (gs_fade_now):
 	Add braces and debugging.

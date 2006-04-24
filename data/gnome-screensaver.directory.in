@@ -5,4 +5,4 @@ _Comment=Screensaver themes
 Icon=screensaver
 Type=Directory
 OnlyShowIn=GNOME;
-NoDisplay=true
+NoDisplay=false

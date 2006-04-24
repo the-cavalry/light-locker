@@ -1214,7 +1214,7 @@ AC_SUBST(FLOATERS_FOOT_LOGO_IMAGE)
 
 # Menu stuff
 
-GNOME_SCREENSAVER_THEMES_DIR="${EXPANDED_DATADIR}/gnome-screensaver/themes"
+GNOME_SCREENSAVER_THEMES_DIR="${EXPANDED_DATADIR}/applications/screensavers"
 AC_SUBST(GNOME_SCREENSAVER_THEMES_DIR)
 
 # Special directories
@@ -1226,7 +1226,7 @@ AC_SUBST(privlibexecdir)
 privdatadir='${datadir}'/gnome-screensaver
 AC_SUBST(privdatadir)
 
-themesdir='${privdatadir}'/themes
+themesdir='${datadir}'/applications/screensavers
 AC_SUBST(themesdir)
 
 
