@@ -1,4 +1,30 @@
 ===============
+Version 2.15.1
+===============
+
+  gnome-screensaver
+
+        * Add support for theming the lock dialog
+        * Use OpenGL to get the best visual and use it
+        * Shorten mouse poll interval
+        * New DBUS API for throttle and inhibit
+        * Support themes in all XDG dirs (including $HOME)
+        * Make caps-lock warning more accurate
+
+  gnome-screensaver-preferences
+
+        * Add fullscreen preview
+        * Update wording
+
+  Translators
+
+        * Priit Laes (et)
+        * Ilkka Tuohela (fi)
+        * Ignacio Casal Quinteiro (gl)
+        * Ankit Patel (gu)
+        * Clytie Siddall (vi)
+
+===============
 Version 2.14.1
 ===============
 
