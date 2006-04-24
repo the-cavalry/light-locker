@@ -1,5 +1,13 @@
 2006-04-24  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/gs-theme-window.c: (gs_theme_window_real_realize):
+	Don't unset flags on window.
+
+	Patch from Dan Winship <danw@novell.com>
+	Fixes #338246
+
+2006-04-24  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac:
 	* data/Makefile.am:
 	* data/gnome-screensaver.directory.in:

@@ -106,12 +106,29 @@ gs_theme_window_real_realize (GtkWidget *widget)
                         window = gdk_window_foreign_new (remote_xwindow);
 
                         if (window != NULL) {
-                                gdk_window_set_events (window,
-                                                       GDK_EXPOSURE_MASK
-                                                       | GDK_STRUCTURE_MASK
+                                /* This is a kludge; we need to set the same
+                                 * flags gs-window-x11.c does, to ensure they
+                                 * don't get unset by gtk_window_map() later.
+                                 */
+                                gtk_window_set_decorated (GTK_WINDOW (widget), FALSE);
+
+                                gtk_window_set_skip_taskbar_hint (GTK_WINDOW (widget), TRUE);
+                                gtk_window_set_skip_pager_hint (GTK_WINDOW (widget), TRUE);
+
+                                gtk_window_set_keep_above (GTK_WINDOW (widget), TRUE);
+
+                                gtk_window_fullscreen (GTK_WINDOW (widget));
+
+                                gtk_widget_set_events (widget,
+                                                       gtk_widget_get_events (widget)
+                                                       | GDK_POINTER_MOTION_MASK
+                                                       | GDK_BUTTON_PRESS_MASK
+                                                       | GDK_BUTTON_RELEASE_MASK
+                                                       | GDK_KEY_PRESS_MASK
+                                                       | GDK_KEY_RELEASE_MASK
+                                                       | GDK_EXPOSURE_MASK
                                                        | GDK_ENTER_NOTIFY_MASK
-                                                       | GDK_LEAVE_NOTIFY_MASK
-                                                       | GDK_FOCUS_CHANGE_MASK);
+                                                       | GDK_LEAVE_NOTIFY_MASK);
                         }
                 }
         }
