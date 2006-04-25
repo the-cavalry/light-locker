@@ -8,14 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-17 22:47+0200\n"
-"PO-Revision-Date: 2006-04-18 10:26+0530\n"
+"POT-Creation-Date: 2006-04-24 22:29+0200\n"
+"PO-Revision-Date: 2006-04-25 09:22+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -198,6 +199,42 @@ msgstr "બહારનીકળો વિકલ્પ પહેલાંનો 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid "Time before theme change"
 msgstr "થીમ બદલાય તે પહેલાંનો સમય"
+
+#: ../data/lock-dialog-default.glade.h:1
+msgid "<span size=\"small\">username on hostname</span>"
+msgstr "<span size=\"small\">યજમાનનામ પર વપરાશકર્તાનામ</span>"
+
+#: ../data/lock-dialog-default.glade.h:2
+msgid "<span size=\"x-large\">Real Name</span>"
+msgstr "<span size=\"x-large\">વાસ્તવિક નામ</span>"
+
+#: ../data/lock-dialog-default.glade.h:3 ../src/gs-lock-plug.c:1478
+msgid "S_witch to user:"
+msgstr "વપરાશકર્તામાં બદલાવ (_w):"
+
+#: ../data/lock-dialog-default.glade.h:4
+msgid "_Cancel"
+msgstr "રદ કરો (_C)"
+
+#: ../data/lock-dialog-default.glade.h:5
+msgid "_Log Out"
+msgstr "બહાર નીકળો (_L)"
+
+#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1402
+msgid "_Password:"
+msgstr "પાસવર્ડ (_P):"
+
+#: ../data/lock-dialog-default.glade.h:7
+msgid "_Switch User..."
+msgstr "વપરાશકર્તા બદલો (_S)..."
+
+#: ../data/lock-dialog-default.glade.h:8
+msgid "_Switch user..."
+msgstr "વપરાશકર્તા બદલો (_S)..."
+
+#: ../data/lock-dialog-default.glade.h:9 ../src/gs-lock-plug.c:1328
+msgid "_Unlock"
+msgstr "તાળું ખોલો (_U)"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:1
 msgid "Bubbles the GNOME foot logo around the screen"
@@ -575,57 +612,49 @@ msgstr "પ્રતિ:"
 msgid "Connecting..."
 msgstr "જોડાઈ રહ્યા છીએ..."
 
-#: ../src/gnome-screensaver-command.c:59
+#: ../src/gnome-screensaver-command.c:57
 msgid "Causes the screensaver to exit gracefully"
 msgstr "સ્ક્રીનસેવરને સારી રીતે બંધ કરવાનું કારણ બને છે"
 
-#: ../src/gnome-screensaver-command.c:61
+#: ../src/gnome-screensaver-command.c:59
 msgid "Query the state of the screensaver"
 msgstr "સ્ક્રીનસેવરની સ્થિતિને પ્રશ્ન પૂછે છે"
 
-#: ../src/gnome-screensaver-command.c:63
+#: ../src/gnome-screensaver-command.c:61
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "ચાલી રહેલ સ્ક્રીનસેવર પ્રક્રિયાને સ્ક્રીન તુરંત જ તાળું મારવા માટે કહે છે"
 
-#: ../src/gnome-screensaver-command.c:65
+#: ../src/gnome-screensaver-command.c:63
 msgid "If the screensaver is active then switch to another graphics demo"
 msgstr "જો સ્ક્રીનસેવર સક્રિય હોય તો પછી અન્ય ગ્રાફિક્સ ડેમોમાં બદલાવ"
 
-#: ../src/gnome-screensaver-command.c:67
+#: ../src/gnome-screensaver-command.c:65
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "સ્ક્રીનસેવરને ચાલુ કરો (સ્ક્રીન કોરી કરો)"
 
-#: ../src/gnome-screensaver-command.c:69
+#: ../src/gnome-screensaver-command.c:67
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr "જો સ્ક્રીનસેવર સક્રિય હોય તો પછી તેને અસક્રિય કરો (સ્ક્રીનને કોરી-નહિં રાખો)"
 
-#: ../src/gnome-screensaver-command.c:71
-msgid "Disable running graphical themes while blanked"
-msgstr "જ્યારે કોરી કરી નંખાયેલ હોય ત્યારે ચાલી રહેલ ગ્રાફિકવાળી થીમો નિષ્ક્રિય કરો"
-
-#: ../src/gnome-screensaver-command.c:73
-msgid "Enable running graphical themes while blanked (if applicable)"
-msgstr "જ્યારે કોરી કરી નંખાયેલ હોય ત્યારે ચાલી રહેલ ગ્રાફિકવાળી થીમો સક્રિય કરો (જો લાગુ પડે)"
-
-#: ../src/gnome-screensaver-command.c:75
+#: ../src/gnome-screensaver-command.c:69
 msgid "Poke the running screensaver to simulate user activity"
 msgstr "વપરાશકર્તા ક્રિયા સિમ્યુલેટ કરવા માટે ચાલી રહેલ સ્ક્રીનસેવરને ધક્કો મારો"
 
-#: ../src/gnome-screensaver-command.c:77 ../src/gnome-screensaver-dialog.c:110
+#: ../src/gnome-screensaver-command.c:71 ../src/gnome-screensaver-dialog.c:110
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "આ કાર્યક્રમની આવૃત્તિ"
 
-#: ../src/gnome-screensaver-command.c:202
+#: ../src/gnome-screensaver-command.c:196
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "સ્ક્રીનસેવર એ %s છે\n"
 
-#: ../src/gnome-screensaver-command.c:202
+#: ../src/gnome-screensaver-command.c:196
 msgid "active"
 msgstr "સક્રિય"
 
-#: ../src/gnome-screensaver-command.c:202
+#: ../src/gnome-screensaver-command.c:196
 msgid "inactive"
 msgstr "અસક્રિય"
 
@@ -726,15 +755,15 @@ msgstr "ડિમન બનશો નહિં"
 msgid "Enable debugging code"
 msgstr "ડિબગીંગ કોડ સક્રિય કરો"
 
-#: ../src/gs-listener-dbus.c:1221
+#: ../src/gs-listener-dbus.c:1416
 msgid "failed to register with the message bus"
 msgstr "સંદેશા બસ સાથે રજીસ્ટર કરવામાં નિષ્ફળ"
 
-#: ../src/gs-listener-dbus.c:1231
+#: ../src/gs-listener-dbus.c:1426
 msgid "not connected to the message bus"
 msgstr "સંદેશા બસમાં જોડાયેલ નથી"
 
-#: ../src/gs-listener-dbus.c:1240
+#: ../src/gs-listener-dbus.c:1435
 msgid "screensaver already running in this session"
 msgstr "આ સત્રમાં સ્ક્રીનસેવર પહેલાથી જ ચાલી રહ્યું છે"
 
@@ -769,16 +798,4 @@ msgstr "વપરાશકર્તા બદલો (_w)..."
 #: ../src/gs-lock-plug.c:1318
 msgid "Log _Out"
 msgstr "બહાર નીકળો (_O)"
-
-#: ../src/gs-lock-plug.c:1328
-msgid "_Unlock"
-msgstr "તાળું ખોલો (_U)"
-
-#: ../src/gs-lock-plug.c:1402
-msgid "_Password:"
-msgstr "પાસવર્ડ (_P):"
-
-#: ../src/gs-lock-plug.c:1478
-msgid "S_witch to user:"
-msgstr "વપરાશકર્તામાં બદલાવ (_w):"
 
