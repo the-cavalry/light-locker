@@ -189,7 +189,7 @@ AC_ARG_WITH([gdm_config],
 	    [gdmconfigfile="$withval"])
 
 if test "x$gdmconfigfile" = "x" -o "x$gdmconfigfile" = "xyes"; then
-	AC_MSG_CHECKING([for gdm.conf])
+	AC_MSG_CHECKING([for GDM configuration file])
 
 	if test -f "/etc/gdm/gdm.conf"; then
 		gdmconfigfile="/etc/gdm/gdm.conf"
@@ -197,6 +197,14 @@ if test "x$gdmconfigfile" = "x" -o "x$gdmconfigfile" = "xyes"; then
 		gdmconfigfile="/etc/X11/gdm/gdm.conf"
 	elif test -f "/etc/opt/gnome/gdm/gdm.conf"; then
 		gdmconfigfile="/etc/opt/gnome/gdm/gdm.conf"
+        elif test -f "/etc/gdm/custom.conf"; then
+                gdmconfigfile="/etc/gdm/custom.conf"
+        elif test -f "/etc/X11/gdm/custom.conf"; then
+                gdmconfigfile="/etc/X11/gdm/custom.conf"
+        elif test -f "/etc/gdm/gdm.conf-custom"; then
+                gdmconfigfile="/etc/gdm/gdm.conf-custom"
+        elif test -f "/etc/X11/gdm/gdm.conf-custom"; then
+                gdmconfigfile="/etc/X11/gdm/gdm.conf-custom"
 	else
 		gdmconfigfile=""
 	fi
@@ -205,7 +213,7 @@ if test "x$gdmconfigfile" = "x" -o "x$gdmconfigfile" = "xyes"; then
 elif test "x$gdmconfigfile" = "xno"; then
         gdmconfigfile=""
 else
-	AC_MSG_RESULT([using "$gdmconfigfile" as the gdm.conf location])
+	AC_MSG_RESULT([using "$gdmconfigfile" as the GDM configuration file location])
 fi
 
 AC_DEFINE_UNQUOTED(GDMCONFIGFILE, "$gdmconfigfile", [The location of the GDM configuration file])

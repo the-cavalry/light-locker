@@ -36,6 +36,7 @@ G_BEGIN_DECLS
 #define GDM_SUP_FLEXI_XSERVER		"FLEXI_XSERVER"			/* <xserver type> */
 #define GDM_SUP_FLEXI_XNEST		"FLEXI_XNEST"			/* <display> <uid> <xauth cookie> <xauth file> */
 #define GDM_SUP_CONSOLE_SERVERS		"CONSOLE_SERVERS"		/* None */
+#define GDM_SUP_GET_CONFIG_FILE		"GET_CONFIG_FILE"		/* None */
 #define GDM_SUP_ALL_SERVERS		"ALL_SERVERS"			/* None */
 #define GDM_SUP_UPDATE_CONFIG		"UPDATE_CONFIG"			/* <key> */
 #define GDM_SUP_GREETERPIDS		"GREETERPIDS"			/* None */

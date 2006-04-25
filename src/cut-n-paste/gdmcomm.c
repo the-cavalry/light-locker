@@ -505,6 +505,6 @@ gdmcomm_get_error_message (const char *ret,
 		return _("Too many messages were sent to gdm and it hung up"
 			 "on us.");
 	} else {
-		return _("Unknown error occured.");
+		return _("Unknown error occurred.");
 	}
 }

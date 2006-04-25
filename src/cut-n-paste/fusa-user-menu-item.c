@@ -48,11 +48,6 @@
 #define DEFAULT_ICON_SIZE		24
 #define CLOSE_ENOUGH_SIZE		2
 
-#define INDICATOR_ICON_NAME		GTK_STOCK_MEDIA_PAUSE
-#define INSENSITIVE_INDICATOR_ICON_NAME	GTK_STOCK_MEDIA_PLAY
-#define INDICATOR_ICON_SIZE		GTK_ICON_SIZE_MENU
-#define DEFAULT_INDICATOR_SIZE		16
-
 
 /* ********************** *
  *  Private Enumerations  *
@@ -77,14 +72,12 @@ struct _FusaUserMenuItem
   FusaUser *user;
 
   GtkWidget *image;
-  GtkWidget *indicator_image;
   GtkWidget *label;
 
   gulong user_notify_id;
   gulong user_icon_changed_id;
   gulong user_displays_changed_id;
   gint icon_size;
-  gint indicator_size;
 };
 
 struct _FusaUserMenuItemClass
@@ -98,29 +91,31 @@ struct _FusaUserMenuItemClass
  * ********************* */
 
 /* GObject Functions */
-static void fusa_user_menu_item_set_property (GObject      *object,
-					      guint         param_id,
-					      const GValue *value,
-					      GParamSpec   *pspec);
-static void fusa_user_menu_item_get_property (GObject      *object,
-					      guint         param_id,
-					      GValue       *value,
-					      GParamSpec   *pspec);
-static void fusa_user_menu_item_finalize     (GObject      *object);
+static void     fusa_user_menu_item_set_property  (GObject        *object,
+						   guint           param_id,
+						   const GValue   *value,
+						   GParamSpec     *pspec);
+static void     fusa_user_menu_item_get_property  (GObject        *object,
+						   guint           param_id,
+						   GValue         *value,
+						   GParamSpec     *pspec);
+static void     fusa_user_menu_item_finalize      (GObject        *object);
+
+static gboolean fusa_user_menu_item_expose_event  (GtkWidget      *widget,
+						   GdkEventExpose *event);
+static void     fusa_user_menu_item_size_request  (GtkWidget      *widget,
+						   GtkRequisition *req);
 
 /* FusaUser Callbacks */
-static void user_notify_cb           (GObject    *object,
-				      GParamSpec *pspec,
-				      gpointer    data);
-static void user_icon_changed_cb     (FusaUser   *user,
-				      gpointer    data);
-static void user_displays_changed_cb (FusaUser   *user,
-				      gpointer    data);
-static void indicator_style_set_cb   (GtkWidget *widget,
-				      GtkStyle  *old_style,
-				      gpointer   data);
-static void user_weak_notify         (gpointer    data,
-				      GObject    *user_ptr);
+static void user_notify_cb            (GObject    *object,
+				       GParamSpec *pspec,
+				       gpointer    data);
+static void user_icon_changed_cb      (FusaUser   *user,
+				       gpointer    data);
+static void user_displays_changed_cb  (FusaUser   *user,
+				       gpointer    data);
+static void user_weak_notify          (gpointer    data,
+				       GObject    *user_ptr);
 
 /* Widget Callbacks */
 static void image_style_set_cb (GtkWidget *widget,
@@ -133,7 +128,6 @@ static void label_style_set_cb (GtkWidget *widget,
 /* Utility Functions */
 static void reset_label     (FusaUserMenuItem *item);
 static void reset_icon      (FusaUserMenuItem *item);
-static void reset_indicator (FusaUserMenuItem *item);
 
 
 /* ******************* *
@@ -151,12 +145,17 @@ static void
 fusa_user_menu_item_class_init (FusaUserMenuItemClass *class)
 {
   GObjectClass *gobject_class;
+  GtkWidgetClass *widget_class;
 
   gobject_class = G_OBJECT_CLASS (class);
+  widget_class = GTK_WIDGET_CLASS (class);
 
   gobject_class->set_property = fusa_user_menu_item_set_property;
   gobject_class->get_property = fusa_user_menu_item_get_property;
   gobject_class->finalize = fusa_user_menu_item_finalize;
+
+  widget_class->size_request = fusa_user_menu_item_size_request;
+  widget_class->expose_event = fusa_user_menu_item_expose_event;
 
   g_object_class_install_property (gobject_class,
 				   PROP_USER,
@@ -173,6 +172,19 @@ fusa_user_menu_item_class_init (FusaUserMenuItemClass *class)
 						     _("The size of the icon to use."),
 						     12, G_MAXINT, DEFAULT_ICON_SIZE,
 						     G_PARAM_READWRITE));
+
+  gtk_widget_class_install_style_property (widget_class,
+                                           g_param_spec_int ("indicator-size",
+                                                             _("Indicator Size"),
+                                                             _("Size of check indicator"),
+                                                             0, G_MAXINT, 12,
+                                                             G_PARAM_READABLE));
+  gtk_widget_class_install_style_property (widget_class,
+                                           g_param_spec_int ("indicator-spacing",
+                                                             _("Indicator Spacing"),
+                                                             _("Space between the username and the indicator"),
+                                                             0, G_MAXINT, 8,
+                                                             G_PARAM_READABLE));
 }
 
 static void
@@ -181,7 +193,6 @@ fusa_user_menu_item_init (FusaUserMenuItem *item)
   GtkWidget *box;
 
   item->icon_size = DEFAULT_ICON_SIZE;
-  item->indicator_size = DEFAULT_INDICATOR_SIZE;
 
   item->image = gtk_image_new ();
   g_signal_connect (item->image, "style-set",
@@ -201,16 +212,6 @@ fusa_user_menu_item_init (FusaUserMenuItem *item)
 		    G_CALLBACK (label_style_set_cb), item);
   gtk_container_add (GTK_CONTAINER (box), item->label);
   gtk_widget_show (item->label);
-
-  item->indicator_image = gtk_image_new ();
-  gtk_widget_set_size_request (item->indicator_image,
-			       DEFAULT_INDICATOR_SIZE + CLOSE_ENOUGH_SIZE,
-			       DEFAULT_INDICATOR_SIZE + CLOSE_ENOUGH_SIZE);
-  g_signal_connect (item->indicator_image, "style-set",
-		    G_CALLBACK (indicator_style_set_cb), item);
-  gtk_box_pack_start (GTK_BOX (box), item->indicator_image,
-		      FALSE, FALSE, 0);
-  gtk_widget_show (item->indicator_image);
 }
 
 
@@ -302,6 +303,86 @@ fusa_user_menu_item_finalize (GObject *object)
 }
 
 
+static gboolean
+fusa_user_menu_item_expose_event (GtkWidget      *widget,
+				  GdkEventExpose *event)
+{
+  gboolean retval;
+
+  if (GTK_WIDGET_CLASS (fusa_user_menu_item_parent_class)->expose_event)
+    retval = (*GTK_WIDGET_CLASS (fusa_user_menu_item_parent_class)->expose_event) (widget,
+										   event);
+  else
+    retval = TRUE;
+  if (GTK_WIDGET_DRAWABLE (widget))
+    {
+      gint horizontal_padding,
+           indicator_size,
+           indicator_spacing,
+	   offset,
+	   x,
+	   y;
+      GtkShadowType shadow_type;
+
+      horizontal_padding = 0;
+      indicator_size = 0;
+      indicator_spacing = 0;
+      gtk_widget_style_get (widget,
+ 			    "horizontal-padding", &horizontal_padding,
+			    "indicator-size", &indicator_size,
+			    "indicator-spacing", &indicator_spacing,
+			    NULL);
+
+      offset = GTK_CONTAINER (widget)->border_width + widget->style->xthickness + 2; 
+
+      if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_LTR)
+	{
+	  x = widget->allocation.x + widget->allocation.width -
+	    offset - horizontal_padding - indicator_size + indicator_spacing +
+	    (indicator_size - indicator_spacing - indicator_size) / 2;
+	}
+      else 
+	{
+	  x = widget->allocation.x + offset + horizontal_padding +
+	    (indicator_size - indicator_spacing - indicator_size) / 2;
+	}
+      
+      y = widget->allocation.y + (widget->allocation.height - indicator_size) / 2;
+
+      if (fusa_user_get_n_displays (FUSA_USER_MENU_ITEM (widget)->user) > 0)
+        shadow_type = GTK_SHADOW_IN;
+      else
+        shadow_type = GTK_SHADOW_OUT;
+
+      gtk_paint_check (widget->style, widget->window, GTK_WIDGET_STATE (widget),
+		       shadow_type, &(event->area), widget, "check",
+		       x, y, indicator_size, indicator_size);
+    }
+
+  return TRUE;
+}
+
+static void
+fusa_user_menu_item_size_request (GtkWidget      *widget,
+				  GtkRequisition *req)
+{
+  gint indicator_size,
+       indicator_spacing;
+
+  if (GTK_WIDGET_CLASS (fusa_user_menu_item_parent_class)->size_request)
+    (*GTK_WIDGET_CLASS (fusa_user_menu_item_parent_class)->size_request) (widget,
+									  req);
+
+  indicator_size = 0;
+  indicator_spacing = 0;
+  gtk_widget_style_get (widget,
+		        "indicator-size", &indicator_size,
+			"indicator-spacing", &indicator_spacing,
+			NULL);
+  req->width += indicator_size + indicator_spacing;
+}
+
+
 /* ******************** *
  *  FusaUser Callbacks  *
  * ******************** */
@@ -331,9 +412,6 @@ static void
 user_displays_changed_cb (FusaUser *user,
 			  gpointer  data)
 {
-  if (gtk_widget_has_screen (data))
-    reset_indicator (data);
-
   if (fusa_user_get_uid (user) == getuid ())
     gtk_widget_set_sensitive (data, (fusa_user_get_n_displays (user) > 1));
 }
@@ -366,14 +444,6 @@ label_style_set_cb (GtkWidget *widget,
 		    gpointer   data)
 {
   reset_label (data);
-}
-
-static void
-indicator_style_set_cb (GtkWidget *widget,
-			GtkStyle  *old_style,
-			gpointer   data)
-{
-  reset_indicator (data);
 }
 
 
@@ -424,45 +494,6 @@ reset_icon (FusaUserMenuItem *item)
 				  item->icon_size);
   gtk_image_set_from_pixbuf (GTK_IMAGE (item->image), pixbuf);
   g_object_unref (pixbuf);
-}
-
-static void
-reset_indicator (FusaUserMenuItem *item)
-{
-  gint width, height;
-  guint n_displays;
-  GtkSettings *settings;
-
-  n_displays = fusa_user_get_n_displays (item->user);
-  if (n_displays > 0)
-    {
-      const gchar *indicator_name;
-
-      if (fusa_user_get_uid (item->user) != getuid () || n_displays > 1)
-	indicator_name = INDICATOR_ICON_NAME;
-      else
-	indicator_name = INSENSITIVE_INDICATOR_ICON_NAME;
-
-      gtk_image_set_from_icon_name (GTK_IMAGE (item->indicator_image),
-				    indicator_name, INDICATOR_ICON_SIZE);
-    }
-  else
-    gtk_image_clear (GTK_IMAGE (item->indicator_image));
-
-  if (gtk_widget_has_screen (item->indicator_image))
-    settings = gtk_settings_get_for_screen (gtk_widget_get_screen (item->indicator_image));
-  else
-    settings = gtk_settings_get_default ();
-
-  if (gtk_icon_size_lookup_for_settings (settings, INDICATOR_ICON_SIZE,
-					 &width, &height))
-    item->indicator_size = MAX (width, height);
-  else
-    item->indicator_size = DEFAULT_INDICATOR_SIZE;
-
-  gtk_widget_set_size_request (item->indicator_image,
-			       item->indicator_size,
-			       item->indicator_size);
 }
 
 

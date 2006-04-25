@@ -90,7 +90,7 @@
 				  NULL }
 
 /* Magic */
-#define MINIMAL_GDM_VERSION	"2.6.0.1"
+#define MINIMAL_GDM_VERSION	"2.8.0"
 
 
 /* ********************** *
@@ -141,14 +141,13 @@ struct _FusaManager
   GHashTable *users_by_uid;
 
   /* Updaters */
-  GnomeVFSMonitorHandle *passwd_monitor;
   GnomeVFSMonitorHandle *gdmconfig_monitor;
+  GnomeVFSMonitorHandle *passwd_monitor;
   GnomeVFSMonitorHandle *shells_monitor;
   GAsyncQueue *results_q;
   guint results_pull_id;
   guint update_displays_id;
 
-  /* GDM Config */
   GHashTable *shells;
   GHashTable *exclusions;
   gchar *global_face_dir;
@@ -323,15 +322,15 @@ static gboolean     clear_hash_table_hrfunc   (gpointer      key,
 static FusaDisplay *real_get_display          (FusaManager  *manager,
 					       const gchar  *name);
 
-
 /* ****************** *
  *  Global Variables  *
  * ****************** */
 
-static guint        signals[LAST_SIGNAL] = { 0 };
-static gpointer     default_manager = NULL;
-static GThread     *dm_op_thread = NULL;
-static GAsyncQueue *op_q = NULL;
+static guint          signals[LAST_SIGNAL] = { 0 };
+static gpointer       default_manager = NULL;
+static GThread       *dm_op_thread = NULL;
+static GAsyncQueue   *op_q = NULL;
+static gchar         *default_config_file = NULL;
 
 
 /* ******************* *
@@ -350,6 +349,7 @@ fusa_manager_class_init (FusaManagerClass *class)
 {
   GObjectClass *gobject_class;
   GError *err;
+  gchar *config_result;
 
   gobject_class = G_OBJECT_CLASS (class);
 
@@ -390,6 +390,7 @@ fusa_manager_class_init (FusaManagerClass *class)
 
   /* Classwide Variables */
   op_q = g_async_queue_new ();
+  /*sleep (1);*/
   err = NULL;
   dm_op_thread = g_thread_create (dm_op_threadfunc, NULL, FALSE, &err);
   if (!dm_op_thread)
@@ -397,6 +398,27 @@ fusa_manager_class_init (FusaManagerClass *class)
       g_error ("Could not create a thread to contact the display manager: %s",
 	       err->message);
       exit (-1);
+    }
+
+  config_result = gdmcomm_call_gdm (GDM_SUP_GET_CONFIG_FILE, NULL, MINIMAL_GDM_VERSION, 1);
+
+  if (config_result)
+    {
+      if (strncmp (config_result, "OK ", 3) == 0)
+        {
+	  config_result = g_strstrip (config_result);
+	  
+	  if (!default_config_file ||
+	      strcmp (config_result + 3, default_config_file) != 0)
+	    {
+              if (default_config_file)
+                g_free (default_config_file);
+
+              default_config_file = g_strdup (config_result + 3);
+	    }
+	}
+
+      g_free (config_result);
     }
 }
 
@@ -614,6 +636,9 @@ strv_equals_string_table (gchar      **strv,
 {
   guint i;
 
+  if (!strv)
+    return FALSE;
+
   /* Ensure sizes are equal */
   if (g_strv_length (strv) != g_hash_table_size (table))
     return FALSE;
@@ -667,163 +692,325 @@ check_user_file (const gchar *filename,
   return TRUE;
 }
 
-static void
-reload_gdm_config (FusaManager *manager,
-		   gboolean    *users_dirty,
-		   gboolean    *icons_dirty)
+/* Returns TRUE if found/valid */
+static gboolean
+get_gdm_minimal_uid (FusaManager *manager,
+		     GKeyFile    *key_file,
+		     gboolean    *users_dirty)
 {
-  GKeyFile *key_file;
-  GError *error;
+  gboolean retval;
+  gchar *tmp;
 
-  error = NULL;
-  key_file = g_key_file_new ();
+  if (!key_file)
+    return FALSE;
 
-  if (!g_key_file_load_from_file (key_file, GDMCONFIGFILE, G_KEY_FILE_NONE,
-				  &error))
+  retval = FALSE;
+  tmp = g_key_file_get_value (key_file, "greeter", "MinimalUID", NULL);
+  if (tmp)
     {
-      g_critical ("Could not parse GDM configuration file `%s': %s",
-		  GDMCONFIGFILE, error->message);
-      g_error_free (error);
-    }
-  else
-    {
-      gchar *tmp;
-      gint tmp_max_width, tmp_max_height, tmp_max_icon_size;
-      gboolean tmp_allow_root;
-      gchar **excludev;
-      guint i;
-      static const gchar *exclude_default[] = DEFAULT_EXCLUDE;
+      uid_t tmp_uid;
 
-      tmp = g_key_file_get_value (key_file, "greeter", "MinimalUID", NULL);
-      if (tmp)
+      tmp_uid = strtoul (tmp, NULL, 10);
+      g_free (tmp);
+
+      if (tmp_uid != ULONG_MAX)
 	{
-	  uid_t tmp_uid;
-
-	  tmp_uid = strtoul (tmp, NULL, 10);
-	  g_free (tmp);
-
-	  if (tmp_uid == ULONG_MAX)
-	    tmp_uid = DEFAULT_MINIMAL_UID;
-
 	  if (tmp_uid != manager->minimal_uid)
 	    {
 	      manager->minimal_uid = tmp_uid;
 	      if (users_dirty)
 		*users_dirty = TRUE;
 	    }
-	}
-      else if (manager->minimal_uid != DEFAULT_MINIMAL_UID)
-	{
-	  manager->minimal_uid = DEFAULT_MINIMAL_UID;
-	  if (users_dirty)
-	    *users_dirty = TRUE;
-	}
 
-      excludev = g_key_file_get_string_list (key_file, "greeter", "Exclude",
-					     NULL, NULL);
-      if (!excludev)
-	excludev = g_strdupv ((gchar **) exclude_default);
-
-      if (!strv_equals_string_table (excludev, manager->exclusions))
-	{
-	  g_hash_table_foreach_remove (manager->exclusions,
-				       clear_hash_table_hrfunc, NULL);
-
-	  /* Always include the defaults */
-	  for (i = 0; exclude_default[i] != NULL; i++)
-	    g_hash_table_insert (manager->exclusions,
-				 g_strdup (exclude_default[i]),
-				 GUINT_TO_POINTER (TRUE));
-
-	  for (i = 0; excludev[i] != NULL; i++)
-	    g_hash_table_insert (manager->exclusions,
-				 excludev[i], GUINT_TO_POINTER (TRUE));
-
-	  if (users_dirty)
-	    *users_dirty = TRUE;
-
-	  g_free (excludev);
-	}
-      else
-	g_strfreev (excludev);
-
-      tmp = g_key_file_get_string (key_file, "greeter", "GlobalFaceDir", NULL);
-      if (!tmp)
-	{
-	  if (!manager->global_face_dir ||
-	      strcmp (manager->global_face_dir, DEFAULT_GLOBAL_FACE_DIR) != 0)
-	    {
-	      g_free (manager->global_face_dir);
-	      manager->global_face_dir = g_strdup (DEFAULT_GLOBAL_FACE_DIR);
-	    }
-	}
-      else
-	{
-	  if (!manager->global_face_dir ||
-	      strcmp (tmp, manager->global_face_dir) != 0)
-	    {
-	      g_free (manager->global_face_dir);
-	      manager->global_face_dir = g_strdup (tmp);
-	    }
-
-	  g_free (tmp);
-	}
-
-      tmp = g_key_file_get_value (key_file, "security", "UserMaxFile", NULL);
-      if (tmp)
-	{
-	  gsize tmp_user_max_file;
-
-	  tmp_user_max_file = strtol (tmp, NULL, 10);
-	  g_free (tmp);
-
-	  if (tmp_user_max_file == ULONG_MAX)
-	    tmp_user_max_file = DEFAULT_USER_MAX_FILE;
-
-	  if (tmp_user_max_file != manager->user_max_file)
-	    {
-	      manager->user_max_file = tmp_user_max_file;
-	      if (icons_dirty)
-		*icons_dirty = TRUE;
-	    }
-	}
-      else if (manager->user_max_file != DEFAULT_USER_MAX_FILE)
-	{
-	  manager->user_max_file = DEFAULT_USER_MAX_FILE;
-	  if (icons_dirty)
-	    *icons_dirty = TRUE;
-	}
-
-      tmp_allow_root = g_key_file_get_boolean (key_file, "security",
-					       "AllowRoot", NULL);
-      if ((tmp_allow_root && !manager->allow_root) ||
-	  (!tmp_allow_root && manager->allow_root))
-	{
-	  manager->allow_root = (tmp_allow_root != FALSE);
-	  if (users_dirty)
-	    *users_dirty = TRUE;
-	}
-      
-      tmp_max_width = g_key_file_get_integer (key_file, "gui", "MaxIconWidth",
-					      NULL);
-      if (tmp_max_width == -1)
-	tmp_max_width = DEFAULT_MAX_ICON_SIZE;
-
-      tmp_max_height = g_key_file_get_integer (key_file, "gui", "MaxIconHeight",
-					       NULL);
-      if (tmp_max_height == -1)
-	tmp_max_height = DEFAULT_MAX_ICON_SIZE;
-
-      tmp_max_icon_size = MAX (tmp_max_width, tmp_max_height);
-      if (tmp_max_icon_size != manager->max_icon_size)
-	{
-	  manager->max_icon_size = tmp_max_icon_size;
-	  if (icons_dirty)
-	    *icons_dirty = TRUE;
+	  retval = TRUE;
 	}
     }
 
-  g_key_file_free (key_file);
+  return retval;
+}
+
+/* Returns TRUE if changed */
+static gboolean
+merge_gdm_exclusions (FusaManager  *manager,
+		      gchar       **excludev,
+		      const gchar  *exclude_default[])
+{
+  gint i;
+
+  if (strv_equals_string_table (excludev, manager->exclusions))
+    return FALSE;
+
+  g_hash_table_foreach_remove (manager->exclusions,
+			       clear_hash_table_hrfunc, NULL);
+
+  if (exclude_default)
+    {
+      for (i = 0; exclude_default[i] != NULL; i++)
+        g_hash_table_insert (manager->exclusions,
+			     g_strdup (exclude_default[i]),
+			     GUINT_TO_POINTER (TRUE));
+    }
+
+  if (excludev)
+    {
+      for (i = 0; excludev[i] != NULL; i++)
+        g_hash_table_insert (manager->exclusions,
+			     g_strdup (excludev[i]), GUINT_TO_POINTER (TRUE));
+    }
+
+  return TRUE;
+}
+
+/* Returns TRUE if found */
+static gboolean
+get_gdm_exclude (FusaManager *manager,
+		 GKeyFile    *key_file,
+		 const gchar *exclude_default[],
+		 gboolean    *users_dirty)
+{
+  gchar **excludev;
+
+  if (!key_file)
+    return FALSE;
+
+  excludev = g_key_file_get_string_list (key_file, "greeter", "Exclude",
+					 NULL, NULL);
+  if (!excludev)
+    return FALSE;
+
+  if (merge_gdm_exclusions (manager, excludev, exclude_default) && users_dirty)
+    *users_dirty = TRUE;
+
+  g_strfreev (excludev);
+
+  return TRUE;
+}
+
+static gboolean
+get_gdm_global_face_dir (FusaManager *manager,
+			 GKeyFile    *key_file,
+			 gboolean    *icons_dirty)
+{
+  gchar *tmp;
+
+  if (!key_file)
+    return FALSE;
+
+  tmp = g_key_file_get_string (key_file, "greeter", "GlobalFaceDir", NULL);
+  if (!tmp)
+    return FALSE;
+
+  if (!manager->global_face_dir ||
+      strcmp (tmp, manager->global_face_dir) != 0)
+    {
+      g_free (manager->global_face_dir);
+      manager->global_face_dir = g_strdup (tmp);
+      if (icons_dirty)
+	*icons_dirty = TRUE;
+    }
+  
+  g_free (tmp);
+
+  return TRUE;
+}
+
+static gboolean
+get_gdm_user_max_file (FusaManager *manager,
+		       GKeyFile    *key_file,
+		       gboolean    *icons_dirty)
+{
+  gchar *tmp;
+  gsize tmp_user_max_file;
+
+  if (!key_file)
+    return FALSE;
+
+  tmp = g_key_file_get_value (key_file, "security", "UserMaxFile", NULL);
+  if (!tmp)
+    return FALSE;
+
+  tmp_user_max_file = strtol (tmp, NULL, 10);
+  g_free (tmp);
+
+  if (tmp_user_max_file == ULONG_MAX)
+    return FALSE;
+
+  if (tmp_user_max_file != manager->user_max_file)
+    {
+      manager->user_max_file = tmp_user_max_file;
+      if (icons_dirty)
+	*icons_dirty = TRUE;
+    }
+
+  return TRUE;
+}
+
+static gboolean
+get_gdm_allow_root (FusaManager *manager,
+		    GKeyFile    *key_file,
+		    gboolean    *users_dirty)
+{
+  gboolean tmp;
+  GError *error;
+
+  if (!key_file)
+    return FALSE;
+
+  error = NULL;
+  tmp = g_key_file_get_boolean (key_file, "security", "AllowRoot", &error);
+  if (error)
+    {
+      g_error_free (error);
+      return FALSE;
+    }
+
+  if ((tmp && !manager->allow_root) || (!tmp && manager->allow_root))
+    {
+      manager->allow_root = (tmp != FALSE);
+      
+      if (users_dirty)
+	*users_dirty = TRUE;
+    }
+
+  return TRUE;
+}
+
+static gboolean
+get_gdm_max_icon_size (FusaManager *manager,
+		       GKeyFile    *key_file,
+		       gboolean    *icons_dirty)
+{
+  gint max_width, max_height, max_icon_size;
+
+  if (!key_file)
+    return FALSE;
+  
+  max_width = g_key_file_get_integer (key_file, "gui", "MaxIconWidth", NULL);
+  if (max_width < 1)
+    return FALSE;
+  
+  max_height = g_key_file_get_integer (key_file, "gui", "MaxIconHeight", NULL);
+  if (max_height < 1)
+    return FALSE;
+
+  max_icon_size = MAX (max_width, max_height);
+  if (max_icon_size != manager->max_icon_size)
+    {
+      manager->max_icon_size = max_icon_size;
+      if (icons_dirty)
+	*icons_dirty = TRUE;
+    }
+
+  return TRUE;
+}
+
+static void
+reload_gdm_config (FusaManager *manager,
+		   gboolean    *users_dirty,
+		   gboolean    *icons_dirty)
+{
+  GKeyFile *key_file, *default_key_file;
+  GError *error;
+  const gchar *exclude_default[] = DEFAULT_EXCLUDE;
+
+  error = NULL;
+  key_file = g_key_file_new ();
+
+  if (default_config_file)
+    default_key_file = g_key_file_new ();
+  else
+    default_key_file = NULL;
+
+  if (!g_key_file_load_from_file (key_file, GDMCONFIGFILE, G_KEY_FILE_NONE,
+				  &error))
+    {
+      if (error)
+        {
+	  g_message ("Could not parse GDM configuration file `%s': %s",
+		     GDMCONFIGFILE, error->message);
+	  g_error_free (error);
+	  error = NULL;
+	}
+
+      g_key_file_free (key_file);
+      key_file = NULL;
+    }
+
+  if (default_config_file &&
+      !g_key_file_load_from_file (default_key_file, default_config_file,
+				  G_KEY_FILE_NONE, &error))
+    {
+      if (error)
+        {
+	  g_message ("Could not parse default GDM configuration file `%s': %s",
+		     default_config_file, error->message);
+	  g_error_free (error);
+	  error = NULL;
+	}
+
+      g_key_file_free (default_key_file);
+      default_key_file = NULL;
+    }
+
+
+  if (!get_gdm_minimal_uid (manager, key_file, users_dirty) &&
+      !get_gdm_minimal_uid (manager, default_key_file, users_dirty) &&
+      manager->minimal_uid != DEFAULT_MINIMAL_UID)
+    {
+      manager->minimal_uid = DEFAULT_MINIMAL_UID;
+      if (users_dirty)
+	*users_dirty = TRUE;
+    }
+
+  if (!get_gdm_exclude (manager, key_file, exclude_default, users_dirty) &&
+      !get_gdm_exclude (manager, default_key_file, exclude_default, users_dirty) &&
+      merge_gdm_exclusions (manager, NULL, exclude_default) && users_dirty)
+    *users_dirty = TRUE;
+
+  if (!get_gdm_global_face_dir (manager, key_file, icons_dirty) &&
+      !get_gdm_global_face_dir (manager, default_key_file, icons_dirty) &&
+      (!manager->global_face_dir ||
+       strcmp (manager->global_face_dir, DEFAULT_GLOBAL_FACE_DIR) != 0))
+    {
+      g_free (manager->global_face_dir);
+      manager->global_face_dir = g_strdup (DEFAULT_GLOBAL_FACE_DIR);
+
+      if (icons_dirty)
+	*icons_dirty = TRUE;
+    }
+
+  if (!get_gdm_user_max_file (manager, key_file, icons_dirty) &&
+      !get_gdm_user_max_file (manager, default_key_file, icons_dirty) &&
+      manager->user_max_file != DEFAULT_USER_MAX_FILE)
+    {
+      manager->user_max_file = DEFAULT_USER_MAX_FILE;
+      if (icons_dirty)
+	*icons_dirty = TRUE;
+    }
+
+  if (!get_gdm_allow_root (manager, key_file, users_dirty) &&
+      !get_gdm_allow_root (manager, default_key_file, users_dirty) &&
+      manager->allow_root)
+    {
+      manager->allow_root = FALSE;
+      if (users_dirty)
+	*users_dirty = TRUE;
+    }
+
+  if (!get_gdm_max_icon_size (manager, key_file, icons_dirty) &&
+      !get_gdm_max_icon_size (manager, default_key_file, icons_dirty) &&
+      manager->max_icon_size != DEFAULT_MAX_ICON_SIZE)
+    {
+      manager->max_icon_size = DEFAULT_MAX_ICON_SIZE;
+      if (icons_dirty)
+	*icons_dirty = TRUE;
+    }
+
+  if (default_key_file)
+    g_key_file_free (default_key_file);
+
+  if (key_file)
+    g_key_file_free (key_file);
 }
 
 static void
@@ -1066,6 +1253,9 @@ process_display_updates (FusaManager *manager,
 static void
 display_closure_free (DisplayClosure *closure)
 {
+  if (!closure)
+    return;
+
   if (closure->data && closure->notify)
     (*closure->notify) (closure->data);
 
@@ -1517,7 +1707,11 @@ dm_op_threadfunc (gpointer data)
 {
   Op *op;
 
-  op = g_async_queue_pop (op_q);
+  if (op_q)
+    op = g_async_queue_pop (op_q);
+  else
+    op = NULL;
+
   while (op)
     {
       switch (op->type)
@@ -1548,6 +1742,9 @@ dm_op_threadfunc (gpointer data)
 
       if (op->manager)
 	g_object_unref (op->manager);
+
+      if (op->closure)
+        display_closure_free (op->closure);
       GDK_THREADS_LEAVE ();
 
       g_free (op);

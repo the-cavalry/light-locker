@@ -1,5 +1,23 @@
 2006-04-25  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac:
+	* src/cut-n-paste/fusa-manager.c: (fusa_manager_class_init),
+	(strv_equals_string_table), (get_gdm_minimal_uid),
+	(merge_gdm_exclusions), (get_gdm_exclude),
+	(get_gdm_global_face_dir), (get_gdm_user_max_file),
+	(get_gdm_allow_root), (get_gdm_max_icon_size), (reload_gdm_config),
+	(display_closure_free), (dm_op_threadfunc):
+	* src/cut-n-paste/fusa-user-menu-item.c:
+	(fusa_user_menu_item_class_init), (fusa_user_menu_item_init),
+	(fusa_user_menu_item_expose_event),
+	(fusa_user_menu_item_size_request), (user_displays_changed_cb),
+	(reset_icon):
+	* src/cut-n-paste/gdmcomm.c: (gdmcomm_get_error_message):
+	* src/cut-n-paste/gdmcomm.h:
+	Sync with FUSA.  Updated for new GDM configuration system.
+
+2006-04-25  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-grab-x11.c: (gs_grab_get_mouse):
 	Don't leak cursor on failure.
 	
