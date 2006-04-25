@@ -184,10 +184,12 @@ gs_grab_get_mouse (GdkWindow *window,
                    gboolean   hide_cursor)
 {
         GdkGrabStatus status;
-        GdkCursor    *cursor = get_cursor ();
+        GdkCursor    *cursor;
 
         g_return_val_if_fail (window != NULL, FALSE);
         g_return_val_if_fail (screen != NULL, FALSE);
+
+        cursor = get_cursor ();
 
         gs_debug ("Grabbing mouse widget=%X", (guint32) GDK_WINDOW_XID (window));
         status = gdk_pointer_grab (window, TRUE, 0, NULL,

@@ -1,3 +1,11 @@
+2006-04-25  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-grab-x11.c: (gs_grab_get_mouse):
+	Don't leak cursor on failure.
+	
+	* src/gs-listener-dbus.c: (listener_service_deleted):
+	Fix typo.
+
 2006-04-24  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.

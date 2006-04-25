@@ -815,7 +815,7 @@ listener_service_deleted (GSListener  *listener,
                 return;
         }
 
-        g_debug ("DBUS service deleted: %s", new_service_name);
+        gs_debug ("DBUS service deleted: %s", new_service_name);
 
         removed = listener_ref_entry_remove_for_connection (listener, REF_ENTRY_TYPE_THROTTLE, new_service_name);
         if (removed) {
