@@ -8,14 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-24 22:29+0200\n"
-"PO-Revision-Date: 2006-04-25 09:22+0530\n"
+"POT-Creation-Date: 2006-04-26 06:18+0200\n"
+"PO-Revision-Date: 2006-04-26 11:22+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -348,7 +349,7 @@ msgid "The name of the X11 display this object refers to."
 msgstr "આ ઓબ્જેક્ટ જેનો સંદર્ભ લે છે તે X11 ડિસ્પ્લેનું નામ."
 
 #: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:164
+#: ../src/cut-n-paste/fusa-user-menu-item.c:163
 msgid "User"
 msgstr "વપરાશકર્તા"
 
@@ -372,39 +373,39 @@ msgstr "પુનરાવર્તિત"
 msgid "Whether or not this display is a windowed (Xnest) display."
 msgstr "શું આ ડિસ્પ્લે વિન્ડોવાળું (Xnest) ડિસ્પ્લે છે કે નહિં."
 
-#: ../src/cut-n-paste/fusa-manager.c:1263
+#: ../src/cut-n-paste/fusa-manager.c:1453
 msgid "The display manager could not be contacted for unknown reasons."
 msgstr "ડિસ્પ્લે મેનેજરનો કોઈ અજ્ઞાત કારણોસર સંપર્ક કરી શકાયો નહિં."
 
-#: ../src/cut-n-paste/fusa-manager.c:1270
+#: ../src/cut-n-paste/fusa-manager.c:1460
 msgid "The display manager is not running or too old."
 msgstr "ડિસ્પ્લે મેનેજર ચાલી રહ્યું નથી અથવા ખૂબ જૂનું છે."
 
-#: ../src/cut-n-paste/fusa-manager.c:1273
+#: ../src/cut-n-paste/fusa-manager.c:1463
 msgid "The configured limit of flexible servers has been reached."
 msgstr "રાહતમય સર્વરોની રૂપરેખાંકન મર્યાદાએ પહોંચી ગયા."
 
-#: ../src/cut-n-paste/fusa-manager.c:1276
+#: ../src/cut-n-paste/fusa-manager.c:1466
 msgid "There was an unknown error starting X."
 msgstr "X શરૂ કરવામાં ત્યાં અજ્ઞાત ભૂલ હતી."
 
-#: ../src/cut-n-paste/fusa-manager.c:1279
+#: ../src/cut-n-paste/fusa-manager.c:1469
 msgid "The X server failed to finish starting."
 msgstr "શરૂ કરવાનું સમાપ્ત કરવામાં X સર્વર નિષ્ફળ."
 
-#: ../src/cut-n-paste/fusa-manager.c:1282
+#: ../src/cut-n-paste/fusa-manager.c:1472
 msgid "There are too many X sessions running."
 msgstr "ત્યાં ઘણા બધા X સત્રો ચાલી રહ્યા છે."
 
-#: ../src/cut-n-paste/fusa-manager.c:1285
+#: ../src/cut-n-paste/fusa-manager.c:1475
 msgid "The nested X server (Xnest) cannot connect to your current X server."
 msgstr "પુનરાવર્તિત X સર્વર (Xnest) તમારા વર્તમાન X સર્વર સાથે જોડાઈ શકતું નથી."
 
-#: ../src/cut-n-paste/fusa-manager.c:1288
+#: ../src/cut-n-paste/fusa-manager.c:1478
 msgid "The X server in the GDM configuration could not be found."
 msgstr "GDM રૂપરેખાંકનમાંનુ X સર્વર શોધી શકાયું નહિં."
 
-#: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
+#: ../src/cut-n-paste/fusa-manager.c:1481 ../src/cut-n-paste/gdmcomm.c:492
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
@@ -412,41 +413,57 @@ msgstr ""
 "અજ્ઞાત બહાર નીકળો ક્રિયા સુયોજિત કરવાનો પ્રયત્ન કરી રહ્યા છીએ, અથવા બહાર નીકળો "
 "ક્રિયા સુયોજિત કરવાનો પ્રયત્ન કરી રહ્યા છીએ કે જે ઉપલબ્ધ નથી."
 
-#: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
+#: ../src/cut-n-paste/fusa-manager.c:1484 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
 msgstr "વર્ચ્યુઅલ ટર્મિનલો આધારભૂત નથી."
 
-#: ../src/cut-n-paste/fusa-manager.c:1297
+#: ../src/cut-n-paste/fusa-manager.c:1487
 msgid "Invalid virtual terminal number."
 msgstr "અયોગ્ય વર્ચ્યુઅલ ટર્મિનલ નંબર."
 
-#: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
+#: ../src/cut-n-paste/fusa-manager.c:1490 ../src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
 msgstr "બિનઆધારભૂત રૂપરેખાંકન કી સુધારવાનો પ્રયત્ન કરી રહ્યા છીએ."
 
-#: ../src/cut-n-paste/fusa-manager.c:1303
+#: ../src/cut-n-paste/fusa-manager.c:1493
 msgid "~/.Xauthority file badly configured or missing."
 msgstr "~/.Xauthority ફાઈલ ખરાબ રીતે રૂપરેખાંકિત થઈ અને ગુમ થયેલ છે."
 
-#: ../src/cut-n-paste/fusa-manager.c:1306
+#: ../src/cut-n-paste/fusa-manager.c:1496
 msgid "Too many messages were sent to the display manager, and it hung up."
 msgstr "ઘણા બધા સંદેશાઓ ડિસ્પ્લે મેનેજરને મોકલાયા હતા, અને તે અટકી ગયા."
 
-#: ../src/cut-n-paste/fusa-manager.c:1310
+#: ../src/cut-n-paste/fusa-manager.c:1500
 msgid "The display manager sent an unknown error message."
 msgstr "ડિસ્પ્લે મેનેજરે અજ્ઞાત ભૂલ સંદેશો મોકલ્યો."
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:165
+#: ../src/cut-n-paste/fusa-user-menu-item.c:164
 msgid "The user this menu item represents."
 msgstr "વપરાશકર્તા કે જે આ મેનુ વસ્તુ રજૂ કરે છે."
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:172
+#: ../src/cut-n-paste/fusa-user-menu-item.c:171
 msgid "Icon Size"
 msgstr "ચિહ્ન માપ"
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:173
+#: ../src/cut-n-paste/fusa-user-menu-item.c:172
 msgid "The size of the icon to use."
 msgstr "વાપરવા માટેના ચિહ્નનું માપ."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:178
+msgid "Indicator Size"
+msgstr "સૂચક માપ"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:179
+msgid "Size of check indicator"
+msgstr "ચકાસણી સૂચકનું માપ"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:184
+msgid "Indicator Spacing"
+msgstr "સૂચક જગ્યા"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:185
+msgid "Space between the username and the indicator"
+msgstr "વપરાશકર્તા નામ અને સૂચક વચ્ચેની જગ્યા"
 
 #: ../src/cut-n-paste/fusa-user.c:151
 msgid "The user manager object this user is controlled by."
@@ -543,7 +560,7 @@ msgid "Too many messages were sent to gdm and it hung upon us."
 msgstr "ઘણા બધા સંદેશાઓ gdm ને મોકલાયા હતા અને તે આપણા પર અટકી ગયા."
 
 #: ../src/cut-n-paste/gdmcomm.c:508
-msgid "Unknown error occured."
+msgid "Unknown error occurred."
 msgstr "અજ્ઞાત ભૂલ ઉદ્દભવી."
 
 #: ../src/file-transfer-dialog.c:94
