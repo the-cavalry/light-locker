@@ -1,5 +1,14 @@
 2006-04-26  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c: (maybe_request_unlock),
+	(gs_window_real_key_press_event),
+	(gs_window_real_motion_notify_event),
+	(gs_window_real_button_press_event), (gs_window_real_scroll_event),
+	(gs_window_class_init):
+	Make button presses and scroll events request an unlock.
+
+2006-04-26  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c: (gs_lock_plug_close),
 	(gs_lock_plug_class_init), (delete_handler),
 	(gs_lock_plug_init):

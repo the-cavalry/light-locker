@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * Copyright (C) 2004-2005 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2004-2006 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1216,6 +1216,23 @@ queue_key_event (GSWindow    *window,
 }
 
 static gboolean
+maybe_request_unlock (GSWindow *window)
+{
+        gboolean ret;
+
+        ret = FALSE;
+
+        /* if we don't already have a socket then request an unlock */
+        if (! window->priv->socket
+            && (window->priv->request_unlock_idle_id == 0)) {
+                add_request_unlock_idle (window);
+                ret = TRUE;
+        }
+
+        return ret;
+}
+
+static gboolean
 gs_window_real_key_press_event (GtkWidget   *widget,
                                 GdkEventKey *event)
 {
@@ -1225,9 +1242,7 @@ gs_window_real_key_press_event (GtkWidget   *widget,
 
         /* if we don't already have a socket then request an unlock */
         if (! GS_WINDOW (widget)->priv->socket) {
-                if (GS_WINDOW (widget)->priv->request_unlock_idle_id == 0) {
-                        add_request_unlock_idle (GS_WINDOW (widget));
-                }
+                maybe_request_unlock (GS_WINDOW (widget));
 
                 catch_events = TRUE;
         } else {
@@ -1271,14 +1286,35 @@ gs_window_real_motion_notify_event (GtkWidget      *widget,
                         ABS (window->priv->last_y - event->y));
 
         if (distance > min_distance) {
-                /* if we don't already have a socket then request an unlock */
-                if (! window->priv->socket
-                    && (window->priv->request_unlock_idle_id == 0)) {
-                        add_request_unlock_idle (window);
-                }
+                maybe_request_unlock (window);
+
                 window->priv->last_x = -1;
                 window->priv->last_y = -1;
         }
+
+        return FALSE;
+}
+
+static gboolean
+gs_window_real_button_press_event (GtkWidget      *widget,
+                                   GdkEventButton *event)
+{
+        GSWindow *window;
+
+        window = GS_WINDOW (widget);
+        maybe_request_unlock (window);
+
+        return FALSE;
+}
+
+static gboolean
+gs_window_real_scroll_event (GtkWidget      *widget,
+                             GdkEventScroll *event)
+{
+        GSWindow *window;
+
+        window = GS_WINDOW (widget);
+        maybe_request_unlock (window);
 
         return FALSE;
 }
@@ -1360,6 +1396,8 @@ gs_window_class_init (GSWindowClass *klass)
         widget_class->unrealize           = gs_window_real_unrealize;
         widget_class->key_press_event     = gs_window_real_key_press_event;
         widget_class->motion_notify_event = gs_window_real_motion_notify_event;
+        widget_class->button_press_event  = gs_window_real_button_press_event;
+        widget_class->scroll_event        = gs_window_real_scroll_event;
         widget_class->size_request        = gs_window_real_size_request;
         widget_class->grab_broken_event   = gs_window_real_grab_broken;
 
