@@ -1,3 +1,11 @@
+2006-04-26  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c: (gs_lock_plug_close),
+	(gs_lock_plug_class_init), (delete_handler),
+	(gs_lock_plug_init):
+	* src/gs-lock-plug.h:
+	Make Escape cancel the unlock dialog.
+
 2006-04-25  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac:

@@ -54,6 +54,9 @@ typedef struct
 
         void (* response) (GSLockPlug *plug, gint response_id);
 
+        /* Keybinding signals */
+        void (* close)    (GSLockPlug *plug);
+
 } GSLockPlugClass;
 
 GType       gs_lock_plug_get_type (void);

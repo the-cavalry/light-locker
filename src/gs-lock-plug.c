@@ -169,6 +169,7 @@ struct _ResponseData
 
 enum {
         RESPONSE,
+        CLOSE,
         LAST_SIGNAL
 };
 
@@ -645,10 +646,28 @@ gs_lock_plug_get_property (GObject    *object,
 }
 
 static void
+gs_lock_plug_close (GSLockPlug *plug)
+{
+        /* Synthesize delete_event to close dialog. */
+  
+        GtkWidget *widget = GTK_WIDGET (plug);
+        GdkEvent  *event;
+
+        event = gdk_event_new (GDK_DELETE);
+  
+        event->any.window = g_object_ref (widget->window);
+        event->any.send_event = TRUE;
+  
+        gtk_main_do_event (event);
+        gdk_event_free (event);
+}
+
+static void
 gs_lock_plug_class_init (GSLockPlugClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
         GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+        GtkBindingSet  *binding_set;
 
         parent_class = g_type_class_peek_parent (klass);
 
@@ -661,8 +680,9 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
         widget_class->hide         = gs_lock_plug_hide;
         widget_class->size_request = gs_lock_plug_size_request;
 
-        g_type_class_add_private (klass, sizeof (GSLockPlugPrivate));
+        klass->close = gs_lock_plug_close;
 
+        g_type_class_add_private (klass, sizeof (GSLockPlugPrivate));
 
         lock_plug_signals [RESPONSE] = g_signal_new ("response",
                                                      G_OBJECT_CLASS_TYPE (klass),
@@ -672,6 +692,13 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
                                                      g_cclosure_marshal_VOID__INT,
                                                      G_TYPE_NONE, 1,
                                                      G_TYPE_INT);
+        lock_plug_signals [CLOSE] = g_signal_new ("close",
+                                                  G_OBJECT_CLASS_TYPE (klass),
+                                                  G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                                                  G_STRUCT_OFFSET (GSLockPlugClass, close),
+                                                  NULL, NULL,
+                                                  g_cclosure_marshal_VOID__VOID,
+                                                  G_TYPE_NONE, 0);
 
         g_object_class_install_property (object_class,
                                          PROP_LOGOUT_ENABLED,
@@ -694,6 +721,11 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
                                                                NULL,
                                                                FALSE,
                                                                G_PARAM_READWRITE));
+
+        binding_set = gtk_binding_set_by_class (klass);
+  
+        gtk_binding_entry_add_signal (binding_set, GDK_Escape, 0,
+                                      "close", 0);
 }
 
 static gboolean
@@ -1614,6 +1646,16 @@ load_theme (GSLockPlug *plug)
         return TRUE;
 }
 
+static int
+delete_handler (GSLockPlug  *plug,
+                GdkEventAny *event,
+                gpointer     data)
+{
+        gs_lock_plug_response (plug, GS_LOCK_PLUG_RESPONSE_CANCEL);
+
+        return TRUE; /* Do not destroy */
+}
+
 #define INVISIBLE_CHAR_DEFAULT       '*'
 #define INVISIBLE_CHAR_BLACK_CIRCLE  0x25cf
 #define INVISIBLE_CHAR_WHITE_BULLET  0x25e6
@@ -1735,6 +1777,8 @@ gs_lock_plug_init (GSLockPlug *plug)
         if (plug->priv->auth_face_image) {
                 set_face_image (plug);
         }
+
+        g_signal_connect (plug, "delete_event", G_CALLBACK (delete_handler), NULL);
 
         g_idle_add ((GSourceFunc)setup_treeview_idle, plug);
 
