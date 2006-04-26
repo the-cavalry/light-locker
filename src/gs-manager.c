@@ -75,6 +75,8 @@ struct GSManagerPrivate
 enum {
         ACTIVATED,
         DEACTIVATED,
+        AUTH_REQUEST_BEGIN,
+        AUTH_REQUEST_END,
         LAST_SIGNAL
 };
 
@@ -616,6 +618,26 @@ gs_manager_class_init (GSManagerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
+        signals [AUTH_REQUEST_BEGIN] =
+                g_signal_new ("auth-request-begin",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSManagerClass, auth_request_begin),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals [AUTH_REQUEST_END] =
+                g_signal_new ("auth-request-end",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSManagerClass, auth_request_end),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
 
         g_object_class_install_property (object_class,
                                          PROP_ACTIVE,
@@ -772,6 +794,8 @@ window_dialog_up_cb (GSWindow  *window,
 
         gs_debug ("Handling dialog up");
 
+        g_signal_emit (manager, signals [AUTH_REQUEST_BEGIN], 0);
+
         manager->priv->dialog_up = TRUE;
 
         /* Move keyboard and mouse grabs so dialog can be used */
@@ -821,6 +845,8 @@ window_dialog_down_cb (GSWindow  *window,
         }
 
         manager->priv->dialog_up = FALSE;
+
+        g_signal_emit (manager, signals [AUTH_REQUEST_END], 0);
 }
 
 static void

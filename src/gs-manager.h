@@ -46,8 +46,10 @@ typedef struct
 {
         GObjectClass     parent_class;
 
-        void            (* activated)       (GSManager *manager);
-        void            (* deactivated)     (GSManager *manager);
+        void            (* activated)          (GSManager *manager);
+        void            (* deactivated)        (GSManager *manager);
+        void            (* auth_request_begin) (GSManager *manager);
+        void            (* auth_request_end)   (GSManager *manager);
 
 } GSManagerClass;
 
@@ -75,7 +77,7 @@ void        gs_manager_set_logout_timeout   (GSManager  *manager,
                                              glong       logout_timeout);
 void        gs_manager_set_logout_command   (GSManager  *manager,
                                              const char *command);
-void        gs_manager_set_throttle_enabled (GSManager  *manager,
+void        gs_manager_set_throttled        (GSManager  *manager,
                                              gboolean    lock_enabled);
 void        gs_manager_set_cycle_timeout    (GSManager  *manager,
                                              glong       cycle_timeout);

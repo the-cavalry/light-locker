@@ -1,5 +1,21 @@
 2006-04-26  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-listener-dbus.c: (send_dbus_void_signal),
+	(gs_listener_emit_auth_request_begin),
+	(gs_listener_emit_auth_request_end):
+	* src/gs-listener-dbus.h:
+	* src/gs-manager.c: (gs_manager_class_init), (window_dialog_up_cb),
+	(window_dialog_down_cb):
+	* src/gs-manager.h:
+	* src/gs-monitor.c: (manager_auth_request_begin_cb),
+	(manager_auth_request_end_cb), (disconnect_manager_signals),
+	(connect_manager_signals):
+	Send signals before and after authentication is requested
+	so that gnome-power-manager can undim the screen.
+	See bug #333290.
+
+2006-04-26  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c: (maybe_request_unlock),
 	(gs_window_real_key_press_event),
 	(gs_window_real_motion_notify_event),

@@ -100,6 +100,20 @@ manager_deactivated_cb (GSManager *manager,
         gs_listener_set_active (monitor->priv->listener, FALSE);
 }
 
+static void
+manager_auth_request_begin_cb (GSManager *manager,
+                               GSMonitor *monitor)
+{
+        gs_listener_emit_auth_request_begin (monitor->priv->listener);
+}
+
+static void
+manager_auth_request_end_cb (GSManager *manager,
+                             GSMonitor *monitor)
+{
+        gs_listener_emit_auth_request_end (monitor->priv->listener);
+}
+
 static gboolean
 watcher_idle_cb (GSWatcher *watcher,
                  gboolean   is_idle,
@@ -375,6 +389,8 @@ disconnect_manager_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->manager, manager_activated_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->manager, manager_deactivated_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->manager, manager_auth_request_begin_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->manager, manager_auth_request_end_cb, monitor);
 }
 
 static void
@@ -384,6 +400,10 @@ connect_manager_signals (GSMonitor *monitor)
                           G_CALLBACK (manager_activated_cb), monitor);
         g_signal_connect (monitor->priv->manager, "deactivated",
                           G_CALLBACK (manager_deactivated_cb), monitor);
+        g_signal_connect (monitor->priv->manager, "auth-request-begin",
+                          G_CALLBACK (manager_auth_request_begin_cb), monitor);
+        g_signal_connect (monitor->priv->manager, "auth-request-end",
+                          G_CALLBACK (manager_auth_request_end_cb), monitor);
 }
 
 #ifdef USE_LEGACY_DPMS_SUPPORT

@@ -173,6 +173,41 @@ send_dbus_message (DBusConnection *connection,
 }
 
 static void
+send_dbus_void_signal (GSListener *listener,
+                       const char *name)
+{
+        DBusMessage  *message;
+
+        g_return_if_fail (listener != NULL);
+
+        message = dbus_message_new_signal (GS_LISTENER_PATH,
+                                           GS_LISTENER_SERVICE,
+                                           name);
+
+        if (! send_dbus_message (listener->priv->connection, message)) {
+                g_warning ("Could not send %s signal", name);
+        }
+
+        dbus_message_unref (message);
+}
+
+void
+gs_listener_emit_auth_request_begin (GSListener *listener)
+{
+        g_return_if_fail (listener != NULL);
+
+        send_dbus_void_signal (listener, "AuthenticationRequestBegin");
+}
+
+void
+gs_listener_emit_auth_request_end (GSListener *listener)
+{
+        g_return_if_fail (listener != NULL);
+
+        send_dbus_void_signal (listener, "AuthenticationRequestEnd");
+}
+
+static void
 gs_listener_send_signal_active_changed (GSListener *listener)
 {
         DBusMessage    *message;
