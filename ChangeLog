@@ -1,3 +1,21 @@
+2006-04-27  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-fade.c: (gs_fade_out_iter), (gs_fade_stop),
+	(gs_fade_finish), (fade_out_timer), (gs_fade_set_timeout),
+	(gs_fade_start), (gs_fade_async_callback), (gs_fade_async),
+	(gs_fade_sync_callback), (gs_fade_sync), (gs_fade_reset),
+	(gs_fade_init):
+	* src/gs-fade.h:
+	* src/gs-manager.c: (gs_manager_init), (gs_manager_finalize),
+	(unfade_idle), (remove_unfade_idle), (add_unfade_idle),
+	(manager_show_window), (fade_done_cb), (gs_manager_activate):
+	* src/gs-monitor.c: (watcher_idle_notice_cb):
+	* src/test-fade.c: (test_fade):
+	Create a real async API for fading.  Don't set the alpha
+	based on an absolute scale because this causes it to be
+	reset when a new fade is started on top of an existing one.
+	Fixes #333180
+
 2006-04-26  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-listener-dbus.c: (send_dbus_void_signal),

@@ -48,21 +48,28 @@ typedef struct
         void          (* faded)        (GSFade *fade);
 } GSFadeClass;
 
+typedef void  (* GSFadeDoneFunc) (GSFade       *fade,
+                                  gpointer      data);
+
+
 GType       gs_fade_get_type         (void);
 
 GSFade    * gs_fade_new              (void);
 
-void        gs_fade_now              (GSFade    *fade);
+void        gs_fade_async            (GSFade        *fade,
+                                      guint          timeout,
+                                      GSFadeDoneFunc done_cb,
+                                      gpointer       data);
+void        gs_fade_sync             (GSFade        *fade,
+                                      guint          timeout);
+
 void        gs_fade_reset            (GSFade    *fade);
 
 gboolean    gs_fade_get_active       (GSFade    *fade);
-gboolean    gs_fade_set_active       (GSFade    *fade,
-                                      gboolean   active);
+
 gboolean    gs_fade_get_enabled      (GSFade    *fade);
 void        gs_fade_set_enabled      (GSFade    *fade,
                                       gboolean   enabled);
-void        gs_fade_set_timeout      (GSFade    *fade,
-                                      guint      time);
 
 G_END_DECLS
 

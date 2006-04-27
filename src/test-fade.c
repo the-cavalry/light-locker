@@ -56,18 +56,16 @@ test_fade (void)
         while (reps-- > 0) {
 
                 g_print ("fading out...");
-                gs_fade_now (fade);
+                gs_fade_sync (fade, 1000);
                 g_print ("done.\n");
-
-                if (delay)
-                        sleep (delay);
 
                 g_print ("fading in...");
                 gs_fade_reset (fade);
                 g_print ("done.\n");
 
-                if (delay)
+                if (delay) {
                         sleep (delay);
+                }
         }
 
         g_object_unref (fade);

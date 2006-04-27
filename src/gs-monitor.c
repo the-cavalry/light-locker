@@ -147,8 +147,7 @@ watcher_idle_notice_cb (GSWatcher *watcher,
         if (in_effect) {
                 if (activation_enabled && ! inhibited) {
                         /* start slow fade */
-                        gs_fade_set_timeout (monitor->priv->fade, FADE_TIMEOUT);
-                        gs_fade_set_active (monitor->priv->fade, TRUE);
+                        gs_fade_async (monitor->priv->fade, FADE_TIMEOUT, NULL, NULL);
                         handled = TRUE;
                 }
         } else {
@@ -157,7 +156,7 @@ watcher_idle_notice_cb (GSWatcher *watcher,
                 manager_active = gs_manager_get_active (monitor->priv->manager);
                 /* cancel the fade unless manager was activated */
                 if (! manager_active) {
-                        gs_fade_set_active (monitor->priv->fade, FALSE);
+                        gs_debug ("manager not active, performing fade cancellation");
                         gs_fade_reset (monitor->priv->fade);
                 } else {
                         gs_debug ("manager active, skipping fade cancellation");

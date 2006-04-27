@@ -70,6 +70,8 @@ struct GSManagerPrivate
 
         GSList      *themes;
         GSSaverMode  saver_mode;
+        GSFade      *fade;
+        guint        unfade_idle_id;
 };
 
 enum {
@@ -717,6 +719,8 @@ static void
 gs_manager_init (GSManager *manager)
 {
         manager->priv = GS_MANAGER_GET_PRIVATE (manager);
+
+        manager->priv->fade = gs_fade_new ();
 }
 
 static void
@@ -756,6 +760,8 @@ gs_manager_finalize (GObject *object)
         manager->priv->active = FALSE;
         manager->priv->activate_time = 0;
         manager->priv->lock_enabled = FALSE;
+
+        g_object_unref (manager->priv->fade);
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -912,6 +918,32 @@ window_grab_broken_cb (GSWindow           *window,
 }
 
 static gboolean
+unfade_idle (GSManager *manager)
+{
+        gs_debug ("resetting fade");
+        gs_fade_reset (manager->priv->fade);
+        manager->priv->unfade_idle_id = 0;
+        return FALSE;
+}
+
+
+static void
+remove_unfade_idle (GSManager *manager)
+{
+        if (manager->priv->unfade_idle_id > 0) {
+                g_source_remove (manager->priv->unfade_idle_id);
+                manager->priv->unfade_idle_id = 0;
+        }
+}
+
+static void
+add_unfade_idle (GSManager *manager)
+{
+        remove_unfade_idle (manager);
+        manager->priv->unfade_idle_id = g_idle_add ((GSourceFunc)unfade_idle, manager);
+}
+
+static gboolean
 window_map_event_cb (GSWindow  *window,
                      GdkEvent  *event,
                      GSManager *manager)
@@ -967,6 +999,8 @@ manager_show_window (GSManager *manager,
                 remove_cycle_timer (manager);
                 add_cycle_timer (manager, manager->priv->cycle_timeout);
         }
+
+        add_unfade_idle (manager);
 
         /* FIXME: only emit signal once */
         g_signal_emit (manager, signals [ACTIVATED], 0);
@@ -1120,6 +1154,14 @@ remove_job (GSJob *job)
         g_object_unref (job);
 }
 
+static void
+fade_done_cb (GSFade    *fade,
+              GSManager *manager)
+{
+        gs_debug ("fade completed, showing windows");
+        show_windows (manager->priv->windows);
+}
+
 static gboolean
 gs_manager_activate (GSManager *manager)
 {
@@ -1158,15 +1200,11 @@ gs_manager_activate (GSManager *manager)
         /* fade to black and show windows */
         do_fade = TRUE;
         if (do_fade) {
-                GSFade *fade;
-
-                fade = gs_fade_new ();
-                gs_fade_set_timeout (fade, FADE_TIMEOUT);
-                gs_fade_now (fade);
-                show_windows (manager->priv->windows);
-                g_usleep (500000);
-                gs_fade_reset (fade);
-                g_object_unref (fade);
+                gs_debug ("fading out");
+                gs_fade_async (manager->priv->fade,
+                               FADE_TIMEOUT,
+                               (GSFadeDoneFunc)fade_done_cb,
+                               manager);
         } else {
                 show_windows (manager->priv->windows);
         }
