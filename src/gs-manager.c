@@ -283,6 +283,8 @@ gs_manager_set_lock_active (GSManager *manager,
 {
         g_return_if_fail (GS_IS_MANAGER (manager));
 
+        gs_debug ("Setting lock active: %d", lock_active);
+
         if (manager->priv->lock_active != lock_active) {
                 GSList *l;
 
@@ -339,8 +341,9 @@ gs_manager_set_user_switch_enabled (GSManager *manager,
 static gboolean
 activate_lock_timeout (GSManager *manager)
 {
-        if (manager->priv->lock_enabled)
+        if (manager->priv->lock_enabled) {
                 gs_manager_set_lock_active (manager, TRUE);
+        }
 
         manager->priv->lock_timeout_id = 0;
 
@@ -986,9 +989,6 @@ manager_show_window (GSManager *manager,
         manager_add_job_for_window (manager, window, job);
 
         manager->priv->activate_time = time (NULL);
-
-        /* Set lock state to off initially.  It may be enabled by activate_lock_timout() */
-        gs_manager_set_lock_active (manager, FALSE);
 
         if (manager->priv->lock_timeout >= 0) {
                 remove_lock_timer (manager);
