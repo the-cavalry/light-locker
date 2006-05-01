@@ -478,51 +478,6 @@ elif test "$with_sgivc" != no; then
 fi
 
 dnl ---------------------------------------------------------------------------
-dnl - Check for the DPMS server extension.
-dnl ---------------------------------------------------------------------------
-
-have_dpms=no
-with_dpms_req=unspecified
-AC_ARG_WITH(dpms-ext,
-[  --with-dpms-ext         Include support for the DPMS extension.],
-  [with_dpms="$withval"; with_dpms_req="$withval"],[with_dpms=yes])
-
-HANDLE_X_PATH_ARG(with_dpms, --with-dpms-ext, DPMS)
-
-if test "$with_dpms" = yes; then
-
-  # first check for dpms.h
-  AC_CHECK_X_HEADER(X11/extensions/dpms.h, [have_dpms=yes],,
-                    [#include <X11/Xlib.h>
-		     #include <X11/Xmd.h>])
-
-  # if that succeeded, then check for the DPMS code in the libraries
-  if test "$have_dpms" = yes; then
-
-    # first look in -lXext (this is where it is with XFree86 4.0)
-    have_dpms=no
-    AC_CHECK_X_LIB(Xext, DPMSInfo, [have_dpms=yes], [true], -lXext -lX11)
-
-    # if that failed, look in -lXdpms (this is where it was in XFree86 3.x)
-    if test "$have_dpms" = no; then
-      AC_CHECK_X_LIB(Xdpms, DPMSInfo,
-                    [have_dpms=yes; XDPMS_LIBS="-lXdpms"], [true],
-                    -lXext -lX11)
-    fi
-  fi
-
-
-  # if that succeeded, then we've really got it.
-  if test "$have_dpms" = yes; then
-    AC_DEFINE(HAVE_DPMS_EXTENSION, 1, [Define if the DPMS extension is available])
-  fi
-
-elif test "$with_dpms" != no; then
-  echo "error: must be yes or no: --with-dpms-ext=$with_dpms"
-  exit 1
-fi
-
-dnl ---------------------------------------------------------------------------
 dnl - Check for the XINERAMA server extension.
 dnl ---------------------------------------------------------------------------
 
@@ -1280,7 +1235,6 @@ echo "
 	GL:                       ${have_libgl}
 
         Screen locking enabled:   ${enable_locking}
-        Power management enabled: ${have_dpms}
         User switching enabled:   ${enable_user_switching}
         PAM support:              ${have_pam}
         Have shadow passords:     ${have_shadow}

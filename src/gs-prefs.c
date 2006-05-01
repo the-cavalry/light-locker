@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * Copyright (C) 2004-2005 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2004-2006 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,10 +41,6 @@ static void gs_prefs_finalize   (GObject      *object);
 #define KEY_ACTIVATE_DELAY KEY_DIR "/idle_delay"
 #define KEY_LOCK_DELAY     KEY_DIR "/lock_delay"
 #define KEY_CYCLE_DELAY    KEY_DIR "/cycle_delay"
-#define KEY_DPMS_ENABLED   KEY_DIR "/dpms_enabled"
-#define KEY_DPMS_STANDBY   KEY_DIR "/dpms_standby"
-#define KEY_DPMS_SUSPEND   KEY_DIR "/dpms_suspend"
-#define KEY_DPMS_OFF       KEY_DIR "/dpms_off"
 #define KEY_THEMES         KEY_DIR "/themes"
 #define KEY_USER_SWITCH_ENABLED KEY_DIR "/user_switch_enabled"
 #define KEY_LOGOUT_ENABLED KEY_DIR "/logout_enabled"
@@ -217,64 +213,6 @@ _gs_prefs_set_lock_enabled (GSPrefs *prefs,
 }
 
 static void
-_gs_prefs_set_dpms_enabled (GSPrefs *prefs,
-                            gboolean value)
-{
-        prefs->dpms_enabled = value;
-}
-
-static void
-_gs_prefs_set_dpms_standby_timeout (GSPrefs *prefs,
-                                    int      value)
-{
-        if (value < 0)
-                value = 0;
-
-        /* pick a reasonable large number for the
-           upper bound */
-        if (value > 480)
-                value = 480;
-
-        /* FIXME: should make sure standby < suspend < off */
-
-        prefs->dpms_standby = value * 60000;
-}
-
-static void
-_gs_prefs_set_dpms_suspend_timeout (GSPrefs *prefs,
-                                    int      value)
-{
-        if (value < 0)
-                value = 0;
-
-        /* pick a reasonable large number for the
-           upper bound */
-        if (value > 480)
-                value = 480;
-
-        /* FIXME: should make sure standby < suspend < off */
-
-        prefs->dpms_suspend = value * 60000;
-}
-
-static void
-_gs_prefs_set_dpms_off_timeout (GSPrefs *prefs,
-                                int      value)
-{
-        if (value < 0)
-                value = 0;
-
-        /* pick a reasonable large number for the
-           upper bound */
-        if (value > 480)
-                value = 480;
-
-        /* FIXME: should make sure standby < suspend < off */
-
-        prefs->dpms_off = value * 60000;
-}
-
-static void
 _gs_prefs_set_logout_enabled (GSPrefs *prefs,
                               gboolean value)
 {
@@ -386,36 +324,6 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 _gs_prefs_set_themes (prefs, list);
         } else {
                 key_error_and_free (KEY_THEMES, error);
-        }
-
-        /* DPMS options */
-
-        bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_DPMS_ENABLED, &error);
-        if (! error) {
-                _gs_prefs_set_dpms_enabled (prefs, bvalue);
-        } else {
-                key_error_and_free (KEY_DPMS_ENABLED, error);
-        }
-
-        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_DPMS_STANDBY, &error);
-        if (! error) {
-                _gs_prefs_set_dpms_standby_timeout (prefs, value);
-        } else {
-                key_error_and_free (KEY_DPMS_STANDBY, error);
-        }
-
-        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_DPMS_SUSPEND, &error);
-        if (! error) {
-                _gs_prefs_set_dpms_suspend_timeout (prefs, value);
-        } else {
-                key_error_and_free (KEY_DPMS_SUSPEND, error);
-        }
-
-        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_DPMS_OFF, &error);
-        if (! error) {
-                _gs_prefs_set_dpms_off_timeout (prefs, value);
-        } else {
-                key_error_and_free (KEY_DPMS_OFF, error);
         }
 
         /* Logout options */
@@ -588,58 +496,6 @@ key_changed_cb (GConfClient *client,
                         invalid_type_warning (key);
                 }
 
-        } else if (strcmp (key, KEY_DPMS_ENABLED) == 0) {
-
-                if (value->type == GCONF_VALUE_BOOL) {
-                        gboolean enabled;
-
-                        enabled = gconf_value_get_bool (value);
-                        _gs_prefs_set_dpms_enabled (prefs, enabled);
-
-                        changed = TRUE;
-                } else {
-                        invalid_type_warning (key);
-                }
-
-        } else if (strcmp (key, KEY_DPMS_STANDBY) == 0) {
-
-                if (value->type == GCONF_VALUE_INT) {
-                        int timeout;
-
-                        timeout = gconf_value_get_int (value);
-                        _gs_prefs_set_dpms_standby_timeout (prefs, timeout);
-
-                        changed = TRUE;
-                } else {
-                        invalid_type_warning (key);
-                }
-
-        } else if (strcmp (key, KEY_DPMS_SUSPEND) == 0) {
-
-                if (value->type == GCONF_VALUE_INT) {
-                        int timeout;
-
-                        timeout = gconf_value_get_int (value);
-                        _gs_prefs_set_dpms_suspend_timeout (prefs, timeout);
-
-                        changed = TRUE;
-                } else {
-                        invalid_type_warning (key);
-                }
-
-        } else if (strcmp (key, KEY_DPMS_OFF) == 0) {
-
-                if (value->type == GCONF_VALUE_INT) {
-                        int timeout;
-
-                        timeout = gconf_value_get_int (value);
-                        _gs_prefs_set_dpms_off_timeout (prefs, timeout);
-
-                        changed = TRUE;
-                } else {
-                        invalid_type_warning (key);
-                }
-
         } else if (strcmp (key, KEY_LOGOUT_ENABLED) == 0) {
 
                 if (value->type == GCONF_VALUE_BOOL) {
@@ -715,10 +571,6 @@ gs_prefs_init (GSPrefs *prefs)
         prefs->lock_enabled            = TRUE;
         prefs->logout_enabled          = FALSE;
         prefs->user_switch_enabled     = FALSE;
-        prefs->dpms_enabled            = FALSE;
-        prefs->dpms_standby            = 7200000;
-        prefs->dpms_suspend            = 7200000;
-        prefs->dpms_off                = 14400000;
 
         prefs->timeout                 = 600000;
         prefs->lock_timeout            = 0;

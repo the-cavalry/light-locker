@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * Copyright (C) 2004-2005 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2004-2006 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,11 +53,6 @@ typedef struct
         gboolean         lock_enabled;		/* whether to lock when active */
         gboolean         logout_enabled;	/* Whether to offer the logout option */
         gboolean         user_switch_enabled;	/* Whether to offer the user switch option */
-
-        gboolean         dpms_enabled;		/* Whether power management is enabled */
-        guint            dpms_standby;		/* how long until monitor goes black */
-        guint            dpms_suspend;		/* how long until monitor power-saves */
-        guint            dpms_off;		/* how long until monitor powers down */
 
         guint            timeout;	       	/* how much idle time before activation */
         guint            lock_timeout;		/* how long after activation locking starts */

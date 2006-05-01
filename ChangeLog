@@ -1,3 +1,17 @@
+2006-05-01  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac:
+	* src/Makefile.am:
+	* src/gs-monitor.c: (listener_active_changed_cb),
+	(listener_poke_cb), (_gs_monitor_update_from_prefs),
+	(gs_monitor_init), (gs_monitor_finalize):
+	* src/gs-power-x11.c:
+	* src/gs-power.h:
+	* src/gs-prefs.c: (gs_prefs_load_from_gconf), (key_changed_cb),
+	(gs_prefs_init):
+	* src/gs-prefs.h:
+	Remove DPMS stuff from CVS.
+
 2006-04-28  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-manager.c: (gs_manager_set_lock_active),
