@@ -1,3 +1,7 @@
+2006-05-02  William Jon McCann  <mccann@jhu.edu>
+
+	* doc/DBUS-API.txt: Add API doc for bug #333290
+
 2006-05-01  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac:

@@ -98,16 +98,23 @@ Methods
 Signals
 =======
 
-	Name:           ActiveChanged
+        Name:           ActiveChanged
         Args:           DBUS_TYPE_BOOLEAN state
         Returns:        Returns the value of the current state of activity.
         Description:    See method getActive().
 
-	Name:           SessionIdleChanged
+        Name:           SessionIdleChanged
         Args:           DBUS_TYPE_BOOLEAN state
         Returns:        Returns the value of the current state of activity.
         Description:    See method getActive().
 
+        Name:           AuthenticationRequestBegin
+        Args:           (none)
+        Description:    Emitted before an authentication request
+
+        Name:           AuthenticationRequestEnd
+        Args:           (none)
+        Description:    Emitted after an authentication request
 
 Examples
 ========
