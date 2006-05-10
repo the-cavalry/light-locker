@@ -220,6 +220,12 @@ gs_window_clear (GSWindow *window)
         GdkColormap *colormap;
         GtkStateType state;
 
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        if (! GTK_WIDGET_VISIBLE (GTK_WIDGET (window))) {
+                return;
+        }
+
         gs_debug ("Clearing window");
 
         state = (GtkStateType) 0;
@@ -1003,6 +1009,11 @@ gs_window_request_unlock (GSWindow *window)
         g_return_if_fail (GS_IS_WINDOW (window));
 
         gs_debug ("Requesting unlock");
+
+        if (! GTK_WIDGET_VISIBLE (GTK_WIDGET (window))) {
+                gs_debug ("Request unlock but window is not visible!");
+                return;
+        }
 
         if (window->priv->watch_id > 0) {
                 return;

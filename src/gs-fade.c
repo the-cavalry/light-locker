@@ -470,9 +470,15 @@ gs_fade_stop (GSFade *fade)
         return TRUE;
 }
 
-static void
+void
 gs_fade_finish (GSFade *fade)
 {
+        g_return_if_fail (GS_IS_FADE (fade));
+
+        if (! fade->priv->active) {
+                return;
+        }
+
         gs_fade_stop (fade);
 
         g_signal_emit (fade, signals [FADED], 0);

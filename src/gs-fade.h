@@ -63,6 +63,7 @@ void        gs_fade_async            (GSFade        *fade,
 void        gs_fade_sync             (GSFade        *fade,
                                       guint          timeout);
 
+void        gs_fade_finish           (GSFade    *fade);
 void        gs_fade_reset            (GSFade    *fade);
 
 gboolean    gs_fade_get_active       (GSFade    *fade);

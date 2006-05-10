@@ -61,6 +61,7 @@ struct GSManagerPrivate
         guint        active : 1;
         guint        lock_active : 1;
 
+        guint        fading : 1;
         guint        dialog_up : 1;
 
         guint        lock_timeout_id;
@@ -875,8 +876,13 @@ manager_maybe_start_job_for_window (GSManager *manager,
                 return;
         }
 
-        if (! manager->priv->throttled) {
-                gs_job_start (job);
+        if (! manager->priv->dialog_up) {
+                if (! manager->priv->throttled) {
+                        if (! gs_job_is_running (job)) {
+                                gs_debug ("Starting job for window");
+                                gs_job_start (job);
+                        }
+                }
         }
 }
 
@@ -1160,6 +1166,7 @@ fade_done_cb (GSFade    *fade,
 {
         gs_debug ("fade completed, showing windows");
         show_windows (manager->priv->windows);
+        manager->priv->fading = FALSE;
 }
 
 static gboolean
@@ -1200,6 +1207,7 @@ gs_manager_activate (GSManager *manager)
         /* fade to black and show windows */
         do_fade = TRUE;
         if (do_fade) {
+                manager->priv->fading = TRUE;
                 gs_debug ("fading out");
                 gs_fade_async (manager->priv->fade,
                                FADE_TIMEOUT,
@@ -1281,7 +1289,13 @@ gs_manager_request_unlock (GSManager *manager)
         g_return_if_fail (GS_IS_MANAGER (manager));
 
         if (! manager->priv->active) {
+                gs_debug ("Request unlock but manager is not active");
                 return;
+        }
+
+        if (manager->priv->fading) {
+                gs_debug ("Request unlock so finishing fade");
+                gs_fade_finish (manager->priv->fade);
         }
 
         /* Find the screen that contains the pointer */
@@ -1291,7 +1305,9 @@ gs_manager_request_unlock (GSManager *manager)
 
         /* Find the gs-window that is on that screen */
         for (l = manager->priv->windows; l; l = l->next) {
-                int num = gdk_screen_get_number (GTK_WINDOW (l->data)->screen);
+                int num;
+
+                num = gdk_screen_get_number (GTK_WINDOW (l->data)->screen);
                 if (num == screen_num) {
                         gs_window_request_unlock (GS_WINDOW (l->data));
                         break;

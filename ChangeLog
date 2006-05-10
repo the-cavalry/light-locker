@@ -1,3 +1,21 @@
+2006-05-10  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-fade.c: (gs_fade_finish):
+	* src/gs-fade.h:  Expose gs_fade_finish as public.
+	
+	* src/gs-manager.c: (manager_maybe_start_job_for_window),
+	(fade_done_cb), (gs_manager_activate), (gs_manager_request_unlock):
+	Set a flag while async fading is active.  If a request is seen
+	while fading is active then explicitly finish the fade.  Don't
+	try to start a job if the dialog is alread up or the job is
+	already active.
+	
+	* src/gs-window-x11.c: (gs_window_clear),
+	(gs_window_request_unlock):
+	Check that window is visible before doing stuff.
+
+	Fixes #341276
+
 2006-05-02  William Jon McCann  <mccann@jhu.edu>
 
 	* doc/DBUS-API.txt: Add API doc for bug #333290
