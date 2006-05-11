@@ -130,6 +130,7 @@ struct GSLockPlugPrivate
         GtkWidget   *auth_face_image;
         GtkWidget   *auth_realname_label;
         GtkWidget   *auth_username_label;
+        GtkWidget   *auth_short_username_label;
         GtkWidget   *auth_password_entry;
         GtkWidget   *auth_capslock_label;
         GtkWidget   *auth_status_label;
@@ -1249,6 +1250,22 @@ get_user_on_host_name (void)
         return str;
 }
 
+static char *
+get_user_name (void)
+{
+        const char *name;
+        char       *utf8_name;
+
+        name = g_get_user_name ();
+
+        utf8_name = NULL;
+        if (name != NULL) {
+                utf8_name = g_locale_to_utf8 (name, -1, NULL, NULL, NULL);
+        }
+
+        return utf8_name;
+}
+
 static gboolean
 check_user_file (const gchar *filename,
 		 uid_t        user,
@@ -1630,6 +1647,7 @@ load_theme (GSLockPlug *plug)
         plug->priv->auth_action_area = glade_xml_get_widget (xml, "auth-action-area");
         plug->priv->auth_realname_label = glade_xml_get_widget (xml, "auth-realname-label");
         plug->priv->auth_username_label = glade_xml_get_widget (xml, "auth-username-label");
+        plug->priv->auth_short_username_label = glade_xml_get_widget (xml, "auth-short-username-label");
         plug->priv->auth_password_entry = glade_xml_get_widget (xml, "auth-password-entry");
         plug->priv->auth_capslock_label = glade_xml_get_widget (xml, "auth-capslock-label");
         plug->priv->auth_status_label = glade_xml_get_widget (xml, "auth-status-label");
@@ -1708,6 +1726,18 @@ gs_lock_plug_init (GSLockPlug *plug)
                 str = g_strdup_printf ("<span size=\"small\">%s</span>", name);
                 g_free (name);
                 gtk_label_set_markup (GTK_LABEL (plug->priv->auth_username_label), str);
+                g_free (str);
+        }
+
+        if (plug->priv->auth_short_username_label != NULL) {
+                char       *str;
+                char       *name;
+
+                /* FIXME should let the theme determine the font size */
+                name = get_user_name ();
+                str = g_strdup_printf ("<span size=\"x-large\">%s</span>", name);
+                g_free (name);
+                gtk_label_set_markup (GTK_LABEL (plug->priv->auth_short_username_label), str);
                 g_free (str);
         }
 

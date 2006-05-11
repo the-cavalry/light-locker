@@ -1,3 +1,13 @@
+2006-05-11  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c: (get_user_name), (load_theme),
+	(gs_lock_plug_init):
+	Add a short (ie. just username without hostname) field
+	for themes to use.
+
+	Patch from Matthias Clasen <mclasen@redhat.com>
+	Fixes #341408
+
 2006-05-10  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-fade.c: (gs_fade_finish):
