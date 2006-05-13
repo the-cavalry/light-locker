@@ -1,15 +1,15 @@
-# traditional Chinese translation of gnome-screensaver.
+# Chinese (Taiwan) translation of gnome-screensaver.
 # Copyright (C) 2005 Free Software Foundation, Inc.
 # Abel Cheung <abel@oaka.org>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver 2.13.90\n"
+"Project-Id-Version: gnome-screensaver 2.14\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-26 07:50+0100\n"
-"PO-Revision-Date: 2006-01-26 20:20+0800\n"
+"POT-Creation-Date: 2006-05-14 06:37+0800\n"
+"PO-Revision-Date: 2006-04-17 13:08+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
-"Language-Team: Chinese (traditional) <community@linuxhall.org>\n"
+"Language-Team: Chinese (Taiwan) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,31 +24,44 @@ msgid "Set your screensaver preferences"
 msgstr "設定螢幕保護程式"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
-msgid "    "
-msgstr "    "
+#, fuzzy
+msgid "<b>Screensaver preview</b>"
+msgstr "<b>螢幕保護程式(_S)</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:2
-msgid "<b>_Screensaver</b>"
-msgstr "<b>螢幕保護程式(_S)</b>"
+#, fuzzy
+msgid "Regard the computer as _idle after:"
+msgstr "在此時間後將作業階段設為閒置(_I):"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "Screensaver Preferences"
 msgstr "螢幕保護程式偏好設定"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
-msgid "Set session as _idle after:"
-msgstr "在此時間後將作業階段設為閒置(_I):"
+#, fuzzy
+msgid "Screensaver Preview"
+msgstr "螢幕保護程式偏好設定"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
-msgid "_Activate screensaver when session is idle"
+#, fuzzy
+msgid "_Activate screensaver when computer is idle"
 msgstr "當作業階段閒置時喚起螢幕保護程式(_A)"
 
 #: ../data/gnome-screensaver-preferences.glade.h:6
 msgid "_Lock screen when screensaver is active"
 msgstr "當螢幕保護程式作用時鎖定螢幕(_L)"
 
+#: ../data/gnome-screensaver-preferences.glade.h:7
+msgid "_Preview"
+msgstr ""
+
+#: ../data/gnome-screensaver-preferences.glade.h:8
+#, fuzzy
+msgid "_Screensaver theme:"
+msgstr "螢幕保護程式佈景主題"
+
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:8
+#: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Screensaver themes"
 msgstr "螢幕保護程式佈景主題"
 
@@ -65,112 +78,161 @@ msgid "Allow logout"
 msgstr "允許登出"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow monitor power management"
-msgstr "允許顯示器電源管理功能"
-
-#: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
 msgstr "允許切換使用者"
 
-#: ../data/gnome-screensaver.schemas.in.h:5
+#: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Lock on activation"
 msgstr "作用時鎖定"
 
-#: ../data/gnome-screensaver.schemas.in.h:6
+#: ../data/gnome-screensaver.schemas.in.h:5
 msgid "Logout command"
 msgstr "登出指令"
 
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Screensaver theme selection mode"
 msgstr "螢幕保護程式選擇模式"
 
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr "將此項設為 TRUE 則當作業階段為閒置時會鎖定螢幕。"
 
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Set this to TRUE to allow the screensaver to power down the monitor."
-msgstr "設定此項為 TRUE 以允許螢幕保護程式關閉顯示器。"
-
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr "將此項設為 TRUE 則當螢幕保護程式啟動時會鎖定螢幕。"
 
-#: ../data/gnome-screensaver.schemas.in.h:12
-msgid "Set this to TRUE to offer an option in the unlock dialog to switch to a different user account."
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
 msgstr "將此項設為 TRUE 以在解除鎖定對話盒中提供切換為不同使用者帳號的選項。"
 
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr ""
+"將此項設為 TRUE 以在解除鎖定對話盒中提供經過一段時間後登出的選項。該延遲時間"
+"可在“logout_delay”鍵值中指定。"
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr ""
+"當「登出」按鈕被按下時所執行的指令。這個指令應該要能直接、迅速的讓使用者登"
+"出。這個鍵值只有在“logout_enable”鍵值設為 TRUE 時才會生效。"
+
 #: ../data/gnome-screensaver.schemas.in.h:13
-msgid "Set this to TRUE to offer an option in unlock dialog to logging out after a delay. The Delay is specified in the \"logout_delay\" key."
-msgstr "將此項設為 TRUE 以在解除鎖定對話盒中提供經過一段時間後登出的選項。該延遲時間可在「logout_delay」鍵值中指定。"
-
-#: ../data/gnome-screensaver.schemas.in.h:14
-msgid "The command to invoke when the logout button is clicked. This command should simply log the user out without any interaction. This key has effect only if the \"logout_enable\" key is set to TRUE."
-msgstr "當「登出」按鈕被按下時所執行的指令。這個指令應該要能直接、迅速的讓使用者登出。這個鍵值只有在「logout_enable」鍵值設為 TRUE 時才會生效。"
-
-#: ../data/gnome-screensaver.schemas.in.h:15
-msgid "The number of minutes after screensaver activation before locking the screen."
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
 msgstr "螢幕保護程式作用閒置多少分鐘後會鎖定畫面。"
 
-#: ../data/gnome-screensaver.schemas.in.h:16
-msgid "The number of minutes after the screensaver activation before a logout option will appear in unlock dialog. This key has effect only if the \"logout_enable\" key is set to TRUE."
-msgstr "螢幕保護程式作用後到「登出」選項出現在解除鎖定對話盒中所需的時間。這個鍵值只有在「logout_enable」鍵值設為 TRUE 時才會生效。"
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr ""
+"螢幕保護程式作用後到「登出」選項出現在解除鎖定對話盒中所需的時間。這個鍵值只"
+"有在“logout_enable”鍵值設為 TRUE 時才會生效。"
 
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid "The number of minutes after the screensaver activation until the monitor goes into standby power mode."
-msgstr "螢幕保護程式作用閒置多少分鐘後會讓顯示器進入待命電源模式。"
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid "The number of minutes after the screensaver activation until the monitor goes into suspend power mode."
-msgstr "螢幕保護程式作用閒置多少分鐘後會讓顯示器進入暫停電源模式。"
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid "The number of minutes after the screensaver activation until the monitor powers off."
-msgstr "螢幕保護程式作用閒置多少分鐘後會讓顯示器關閉電源。"
-
-#: ../data/gnome-screensaver.schemas.in.h:20
-msgid "The number of minutes of inactivity before the session is considered idle."
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
 msgstr "沒有動作多少分鐘後會令作業階段被視為閒置。"
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "執行多少分鐘後會切換螢幕保護程式主題。"
 
-#: ../data/gnome-screensaver.schemas.in.h:22
-msgid "The selection mode used by screensaver. May be \"blank-only\" to enable the screensaver without using any theme on activation, \"single\" to enable screensaver using only one theme on activation (specified in \"themes\" key), and \"random\" to enable the screensaver using a random theme on activation."
-msgstr "用於螢幕保護程式的選擇模式。可以為「只有空白」會啟用螢幕保護程式但不使用任何主題；「單一」會啟用螢幕保護程式但只使用一種主題(在「佈景主題」鍵值指定)；還有「亂數」會啟用螢幕保護程式且使用亂數主題。"
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
+msgstr ""
+"用於螢幕保護程式的選擇模式。可以為「只有空白」會啟用螢幕保護程式但不使用任何"
+"主題；「單一」會啟用螢幕保護程式但只使用一種主題(在「佈景主題」鍵值指定)；還"
+"有「亂數」會啟用螢幕保護程式且使用亂數主題。"
 
-#: ../data/gnome-screensaver.schemas.in.h:23
-msgid "This key specifies the list of themes to be used by the screensaver. It's ignored when \"mode\" key is \"blank-only\", should provide the theme name when \"mode\" is \"single\", and should provide a list of themes when \"mode\" is \"random\"."
-msgstr "這個鍵值指定用於螢幕保護程式的主題清單。但是當「mode」鍵值為「只有空白」時會忽略此項，當「mode」鍵值為「單一」時應提供該主題的名稱，而當「mode」鍵值為「亂數」時應提供主題的清單。"
+#: ../data/gnome-screensaver.schemas.in.h:18
+#, fuzzy
+msgid "Theme for lock dialog"
+msgstr "鎖定時間"
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:19
+#, fuzzy
+msgid "Theme to use for the lock dialog."
+msgstr "鎖定時間"
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
+msgstr ""
+"這個鍵值指定用於螢幕保護程式的主題清單。但是當“mode”鍵值為「只有空白」時會忽"
+"略此項，當“mode”鍵值為「單一」時應提供該主題的名稱，而當“mode”鍵值為「亂數」"
+"時應提供主題的清單。"
+
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid "Time before activation"
 msgstr "作用時間"
 
-#: ../data/gnome-screensaver.schemas.in.h:25
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid "Time before locking"
 msgstr "鎖定時間"
 
-#: ../data/gnome-screensaver.schemas.in.h:26
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid "Time before logout option"
 msgstr "「登出」選項出現前的時間"
 
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid "Time before power off"
-msgstr "關機之前的時間"
-
-#: ../data/gnome-screensaver.schemas.in.h:28
-msgid "Time before standby"
-msgstr "待命時間"
-
-#: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before suspend"
-msgstr "暫停時間"
-
-#: ../data/gnome-screensaver.schemas.in.h:30
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid "Time before theme change"
 msgstr "改變佈景主題前的時間"
+
+#: ../data/lock-dialog-default.glade.h:1
+msgid "<span size=\"small\">username on hostname</span>"
+msgstr ""
+
+#: ../data/lock-dialog-default.glade.h:2
+msgid "<span size=\"x-large\">Real Name</span>"
+msgstr ""
+
+#: ../data/lock-dialog-default.glade.h:3 ../src/gs-lock-plug.c:1527
+msgid "S_witch to user:"
+msgstr "切換為使用者(_W):"
+
+#: ../data/lock-dialog-default.glade.h:4
+msgid "_Cancel"
+msgstr ""
+
+#: ../data/lock-dialog-default.glade.h:5
+#, fuzzy
+msgid "_Log Out"
+msgstr "登出(_O)"
+
+#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1451
+msgid "_Password:"
+msgstr "密碼(_P):"
+
+#: ../data/lock-dialog-default.glade.h:7
+msgid "_Switch User..."
+msgstr "切換使用者(_S)..."
+
+#: ../data/lock-dialog-default.glade.h:8
+#, fuzzy
+msgid "_Switch user..."
+msgstr "切換使用者(_S)..."
+
+#: ../data/lock-dialog-default.glade.h:9 ../src/gs-lock-plug.c:1377
+msgid "_Unlock"
+msgstr "解除鎖定(_U)"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:1
 msgid "Bubbles the GNOME foot logo around the screen"
@@ -197,9 +259,8 @@ msgid "Pictures folder"
 msgstr "圖片資料夾"
 
 #: ../savers/popsquares.desktop.in.h:1
-#, fuzzy
 msgid "A pop-art-ish grid of pulsing colors."
-msgstr "它顯示一個交替轉換深淺色的方陣。由 Levi Burton 提供。"
+msgstr "一個交替轉換深淺色的方陣。"
 
 #: ../savers/popsquares.desktop.in.h:2
 msgid "Pop art squares"
@@ -247,18 +308,18 @@ msgstr "WIDTHxHEIGHT+X+Y"
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1230
+#: ../savers/floaters.c:1228
 msgid "image - floats images around the screen"
 msgstr "圖片 - 圖片圍繞畫面"
 
-#: ../savers/floaters.c:1240
+#: ../savers/floaters.c:1238
 #, c-format
 msgid "%s. See --help for usage information.\n"
-msgstr "%s。使用「 --help」以獲得更多資訊。\n"
+msgstr "%s。參閱 --help 以取得更多資訊。\n"
 
-#: ../savers/floaters.c:1249
+#: ../savers/floaters.c:1247
 msgid "You must specify one image.  See --help for usage information.\n"
-msgstr "您必須指定一張圖片。請查閱 --help 以取得使用方法的資訊。\n"
+msgstr "您必須指定一張圖片。請參閱 --help 以取得更多資訊。\n"
 
 #: ../savers/slideshow.c:47
 msgid "Location to get images from"
@@ -268,8 +329,7 @@ msgstr "取得圖片的位置"
 msgid "PATH"
 msgstr "路徑"
 
-#: ../src/cut-n-paste/fusa-display.c:119
-#: ../src/cut-n-paste/fusa-user.c:150
+#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
 msgid "Manager"
 msgstr "管理程式"
 
@@ -286,21 +346,21 @@ msgid "The name of the X11 display this object refers to."
 msgstr "這個物件指向的 X11 畫面名稱。"
 
 #: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:164
+#: ../src/cut-n-paste/fusa-user-menu-item.c:163
 msgid "User"
-msgstr "用戶"
+msgstr "使用者"
 
 #: ../src/cut-n-paste/fusa-display.c:135
 msgid "The user currently logged in on this virtual terminal."
-msgstr "目前登入了這個虛擬終端機的用戶。"
+msgstr "目前登入了這個虛擬終端機的使用者。"
 
 #: ../src/cut-n-paste/fusa-display.c:141
 msgid "Console"
-msgstr "主控台"
+msgstr "終端機"
 
 #: ../src/cut-n-paste/fusa-display.c:142
 msgid "The number of the virtual console this display can be found on, or %-1."
-msgstr "這個畫面可以找到的虛擬主控台數量，或 %-1。"
+msgstr "這個畫面可以找到的虛擬終端機數量，或 %-1。"
 
 #: ../src/cut-n-paste/fusa-display.c:148
 msgid "Nested"
@@ -310,80 +370,96 @@ msgstr "巢狀"
 msgid "Whether or not this display is a windowed (Xnest) display."
 msgstr "這個畫面是否屬於另一個畫面的某個視窗 (Xnest) 之內。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1263
+#: ../src/cut-n-paste/fusa-manager.c:1453
 msgid "The display manager could not be contacted for unknown reasons."
-msgstr "無法連接登入總管，原因不明。"
+msgstr "無法連接登入管理員，原因不明。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1270
+#: ../src/cut-n-paste/fusa-manager.c:1460
 msgid "The display manager is not running or too old."
-msgstr "登入總管沒有執行，或者版本太舊。"
+msgstr "登入管理員沒有執行，或者版本太舊。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1273
+#: ../src/cut-n-paste/fusa-manager.c:1463
 msgid "The configured limit of flexible servers has been reached."
-msgstr "已達到可開啟的靈活模式伺服器數目上限。"
+msgstr "已達到可開啟的彈性伺服器數目上限。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1276
+#: ../src/cut-n-paste/fusa-manager.c:1466
 msgid "There was an unknown error starting X."
 msgstr "啟動 X 伺服器時出現原因不明的錯誤。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1279
+#: ../src/cut-n-paste/fusa-manager.c:1469
 msgid "The X server failed to finish starting."
 msgstr "X 伺服器無法完成啟動程序。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1282
+#: ../src/cut-n-paste/fusa-manager.c:1472
 msgid "There are too many X sessions running."
-msgstr "X 伺服器執行次數太多。"
+msgstr "X 作業階段執行次數太多。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1285
+#: ../src/cut-n-paste/fusa-manager.c:1475
 msgid "The nested X server (Xnest) cannot connect to your current X server."
 msgstr "Xnest 伺服器無法連上目前的 X 伺服器。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1288
+#: ../src/cut-n-paste/fusa-manager.c:1478
 msgid "The X server in the GDM configuration could not be found."
-msgstr "GDM 組態中所指定的 X 伺服器並不存在。"
+msgstr "GDM 設定中所指定的 X 伺服器並不存在。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1291
-#: ../src/cut-n-paste/gdmcomm.c:492
-msgid "Trying to set an unknown logout action, or trying to set a logout action which is not available."
+#: ../src/cut-n-paste/fusa-manager.c:1481 ../src/cut-n-paste/gdmcomm.c:492
+msgid ""
+"Trying to set an unknown logout action, or trying to set a logout action "
+"which is not available."
 msgstr "嘗試設定不明的或不存在的登出行動。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1294
-#: ../src/cut-n-paste/gdmcomm.c:495
+#: ../src/cut-n-paste/fusa-manager.c:1484 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
 msgstr "不支援虛擬終端機"
 
-#: ../src/cut-n-paste/fusa-manager.c:1297
+#: ../src/cut-n-paste/fusa-manager.c:1487
 msgid "Invalid virtual terminal number."
 msgstr "虛擬終端機編號無效。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1300
-#: ../src/cut-n-paste/gdmcomm.c:499
+#: ../src/cut-n-paste/fusa-manager.c:1490 ../src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
 msgstr "嘗試更新不支援的設定鍵。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1303
+#: ../src/cut-n-paste/fusa-manager.c:1493
 msgid "~/.Xauthority file badly configured or missing."
 msgstr "~/.Xauthority 檔案內容錯誤，或者根本不存在。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1306
+#: ../src/cut-n-paste/fusa-manager.c:1496
 msgid "Too many messages were sent to the display manager, and it hung up."
-msgstr "太多訊息傳送至登入總管，令它當掉。"
+msgstr "太多訊息傳送至登入管理員，令它當掉。"
 
-#: ../src/cut-n-paste/fusa-manager.c:1310
+#: ../src/cut-n-paste/fusa-manager.c:1500
 msgid "The display manager sent an unknown error message."
-msgstr "登入總管傳回不明的錯誤訊息。"
+msgstr "登入管理員傳回不明的錯誤訊息。"
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:165
+#: ../src/cut-n-paste/fusa-user-menu-item.c:164
 msgid "The user this menu item represents."
-msgstr "這個選單項目所表示的用戶。"
+msgstr "這個選單項目所表示的使用者。"
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:172
+#: ../src/cut-n-paste/fusa-user-menu-item.c:171
 msgid "Icon Size"
 msgstr "圖示大小"
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:173
+#: ../src/cut-n-paste/fusa-user-menu-item.c:172
 msgid "The size of the icon to use."
+msgstr "圖示的大小。"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:178
+#, fuzzy
+msgid "Indicator Size"
 msgstr "圖示大小"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:179
+msgid "Size of check indicator"
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:184
+msgid "Indicator Spacing"
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:185
+msgid "Space between the username and the indicator"
+msgstr ""
 
 #: ../src/cut-n-paste/fusa-user.c:151
 msgid "The user manager object this user is controlled by."
@@ -396,33 +472,36 @@ msgstr "顯示詳細資訊"
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:413
 msgid "GDM (The GNOME Display Manager) is not running."
-msgstr "GDM (GNOME 登入總管) 並未執行。"
+msgstr "GDM (GNOME 登入管理員) 並未執行。"
 
 #: ../src/cut-n-paste/gdmcomm.c:416
-msgid "You might in fact be using a different display manager, such as KDM (KDE Display Manager) or xdm."
-msgstr "您可能是正在使用另一個登入總管，例如 KDM (KDE 登入總管) 或者 xdm。"
+msgid ""
+"You might in fact be using a different display manager, such as KDM (KDE "
+"Display Manager) or xdm."
+msgstr "您可能是正在使用另一個登入管理員，例如 KDM (KDE 登入管理員) 或者 xdm。"
 
 #: ../src/cut-n-paste/gdmcomm.c:419
-msgid "If you still wish to use this feature, either start GDM yourself or ask your system administrator to start GDM."
+msgid ""
+"If you still wish to use this feature, either start GDM yourself or ask your "
+"system administrator to start GDM."
 msgstr "如果您想使用此項功能，請自行啟動 GDM 或要求系統管理員啟動 GDM。"
 
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:441
 msgid "Cannot communicate with GDM (The GNOME Display Manager)"
-msgstr "無法與 GDM (GNOME 登入總管) 溝通"
+msgstr "無法與 GDM (GNOME 登入管理員) 溝通"
 
 #: ../src/cut-n-paste/gdmcomm.c:444
 msgid "Perhaps you have an old version of GDM running."
-msgstr "可能是正在使用的 GDM 版本比較舊。"
+msgstr "可能是正在使用舊版本的 GDM。"
 
-#: ../src/cut-n-paste/gdmcomm.c:463
-#: ../src/cut-n-paste/gdmcomm.c:466
+#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
 msgid "Cannot communicate with gdm, perhaps you have an old version running."
-msgstr "無法與 GDM 溝通，可能是正在使用的 GDM 版本比較舊。"
+msgstr "無法與 GDM 溝通，可能是正在使用舊版本的 GDM。"
 
 #: ../src/cut-n-paste/gdmcomm.c:469
 msgid "The allowed limit of flexible X servers reached."
-msgstr "已達到可開啟的靈活模式伺服器數目上限"
+msgstr "已達到可開啟的彈性伺服器數目上限"
 
 #: ../src/cut-n-paste/gdmcomm.c:471
 msgid "There were errors trying to start the X server."
@@ -437,7 +516,9 @@ msgid "Too many X sessions running."
 msgstr "正在執行的 X 作業階段太多了。"
 
 #: ../src/cut-n-paste/gdmcomm.c:478
-msgid "The nested X server (Xnest) cannot connect to your current X server.  You may be missing an X authorization file."
+msgid ""
+"The nested X server (Xnest) cannot connect to your current X server.  You "
+"may be missing an X authorization file."
 msgstr "Xnest 無法連接至目前的 X 伺服程式。可能是缺少了 X 認證資料檔。"
 
 #: ../src/cut-n-paste/gdmcomm.c:483
@@ -449,7 +530,8 @@ msgstr ""
 "請重新安裝 Xnest 套件，使得以視窗模式重新登入的功能可以繼續使用。"
 
 #: ../src/cut-n-paste/gdmcomm.c:488
-msgid "The X server is not available, it is likely that gdm is badly configured."
+msgid ""
+"The X server is not available, it is likely that gdm is badly configured."
 msgstr "無法提供 X 伺服程式服務，可能是設定出錯。"
 
 #: ../src/cut-n-paste/gdmcomm.c:497
@@ -457,15 +539,19 @@ msgid "Trying to change to an invalid virtual terminal number."
 msgstr "嘗試更改無效的虛擬終端機號碼。"
 
 #: ../src/cut-n-paste/gdmcomm.c:501
-msgid "You do not seem to have authentication needed be for this operation.  Perhaps your .Xauthority file is not set up correctly."
-msgstr "您沒有此項操作程序所需的認證資料。可能是沒有正確設定 .Xauthority 檔案。"
+msgid ""
+"You do not seem to have authentication needed be for this operation.  "
+"Perhaps your .Xauthority file is not set up correctly."
+msgstr ""
+"您沒有此項操作程序所需的認證資料。可能是沒有正確設定 .Xauthority 檔案。"
 
 #: ../src/cut-n-paste/gdmcomm.c:505
 msgid "Too many messages were sent to gdm and it hung upon us."
-msgstr "太多信息傳送到 gdm 令到它當了機。"
+msgstr "太多信息傳送到 gdm 令到它當了。"
 
 #: ../src/cut-n-paste/gdmcomm.c:508
-msgid "Unknown error occured."
+#, fuzzy
+msgid "Unknown error occurred."
 msgstr "出現原因不明的錯誤。"
 
 #: ../src/file-transfer-dialog.c:94
@@ -476,7 +562,7 @@ msgstr "複製檔案：%2$u 之 %1$u"
 #: ../src/file-transfer-dialog.c:122
 #, c-format
 msgid "Copying '%s'"
-msgstr "正在複製「%s」"
+msgstr "正在複製‘%s’"
 
 #: ../src/file-transfer-dialog.c:193
 msgid "From URI"
@@ -518,8 +604,7 @@ msgstr "URI 總數"
 msgid "Total number of URIs"
 msgstr "URI 總數"
 
-#: ../src/file-transfer-dialog.c:327
-#: ../src/file-transfer-dialog.c:369
+#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
 msgid "Copying files"
 msgstr "複製檔案"
 
@@ -535,121 +620,112 @@ msgstr "到:"
 msgid "Connecting..."
 msgstr "連線中..."
 
-#: ../src/gnome-screensaver-command.c:59
+#: ../src/gnome-screensaver-command.c:57
 msgid "Causes the screensaver to exit gracefully"
 msgstr "令螢幕保護程式正常結束"
 
-#: ../src/gnome-screensaver-command.c:61
+#: ../src/gnome-screensaver-command.c:59
 msgid "Query the state of the screensaver"
 msgstr "查詢螢幕保護程式狀態"
 
-#: ../src/gnome-screensaver-command.c:63
+#: ../src/gnome-screensaver-command.c:61
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "要求螢幕保護程式立刻鎖定畫定"
 
-#: ../src/gnome-screensaver-command.c:65
+#: ../src/gnome-screensaver-command.c:63
 msgid "If the screensaver is active then switch to another graphics demo"
 msgstr "如果螢幕保護程已經啟動，立刻切換直另一種畫面"
 
-#: ../src/gnome-screensaver-command.c:67
+#: ../src/gnome-screensaver-command.c:65
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "啟動螢幕保護程式 (畫面變黑)"
 
-#: ../src/gnome-screensaver-command.c:69
+#: ../src/gnome-screensaver-command.c:67
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr "如果螢幕保護程已經啟動，立刻回復狀態 (不變黑)"
 
-#: ../src/gnome-screensaver-command.c:71
-msgid "Disable running graphical themes while blanked"
-msgstr "畫面變黑時不會使用任何畫面主題"
-
-#: ../src/gnome-screensaver-command.c:73
-msgid "Enable running graphical themes while blanked (if applicable)"
-msgstr "畫面變黑時可能使用其它畫面主題 (如適用)"
-
-#: ../src/gnome-screensaver-command.c:75
+#: ../src/gnome-screensaver-command.c:69
 msgid "Poke the running screensaver to simulate user activity"
 msgstr "模擬用家使用電腦，令螢幕保護程式重設計時器"
 
-#: ../src/gnome-screensaver-command.c:77
-#: ../src/gnome-screensaver-dialog.c:106
+#: ../src/gnome-screensaver-command.c:71 ../src/gnome-screensaver-dialog.c:110
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "本程式的版本"
 
-#: ../src/gnome-screensaver-command.c:202
+#: ../src/gnome-screensaver-command.c:196
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "螢幕保護程式目前%s\n"
 
-#: ../src/gnome-screensaver-command.c:202
+#: ../src/gnome-screensaver-command.c:196
 msgid "active"
 msgstr "啟動中"
 
-#: ../src/gnome-screensaver-command.c:202
+#: ../src/gnome-screensaver-command.c:196
 msgid "inactive"
 msgstr "暫停運作"
 
-#: ../src/gnome-screensaver-dialog.c:104
+#: ../src/gnome-screensaver-dialog.c:108
 msgid "Show debugging output"
 msgstr "顯示詳細偵錯訊息"
 
-#: ../src/gnome-screensaver-dialog.c:108
+#: ../src/gnome-screensaver-dialog.c:112
 msgid "Show the logout button"
 msgstr "顯示「登出」按鈕"
 
-#: ../src/gnome-screensaver-dialog.c:110
+#: ../src/gnome-screensaver-dialog.c:114
 msgid "Command to invoke from the logout button"
 msgstr "「登出」按鈕呼叫的指令"
 
-#: ../src/gnome-screensaver-dialog.c:112
+#: ../src/gnome-screensaver-dialog.c:116
 msgid "Show the switch user button"
 msgstr "顯示「切換使用者」按鈕"
 
-#: ../src/gnome-screensaver-preferences.c:417
+#: ../src/gnome-screensaver-preferences.c:436
 msgid "Blank screen"
 msgstr "空白畫面"
 
-#: ../src/gnome-screensaver-preferences.c:423
+#: ../src/gnome-screensaver-preferences.c:442
 msgid "Random"
 msgstr "亂數"
 
-#: ../src/gnome-screensaver-preferences.c:712
+#: ../src/gnome-screensaver-preferences.c:788
 msgid "Invalid screensaver theme"
 msgstr "螢幕保護程式主題無效"
 
-#: ../src/gnome-screensaver-preferences.c:715
+#: ../src/gnome-screensaver-preferences.c:791
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "這個檔案似乎不是有效的螢幕保護程式主題檔案。"
 
-#: ../src/gnome-screensaver-preferences.c:832
+#: ../src/gnome-screensaver-preferences.c:908
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d 時"
 
-#: ../src/gnome-screensaver-preferences.c:835
+#: ../src/gnome-screensaver-preferences.c:911
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d 分"
 
-#: ../src/gnome-screensaver-preferences.c:838
+#: ../src/gnome-screensaver-preferences.c:914
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d 秒"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:844
+#: ../src/gnome-screensaver-preferences.c:920
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:847
-#: ../src/gnome-screensaver-preferences.c:855
+#: ../src/gnome-screensaver-preferences.c:923
+#: ../src/gnome-screensaver-preferences.c:931
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -657,158 +733,223 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:850
-#: ../src/gnome-screensaver-preferences.c:858
-#: ../src/gnome-screensaver-preferences.c:862
+#: ../src/gnome-screensaver-preferences.c:926
+#: ../src/gnome-screensaver-preferences.c:934
+#: ../src/gnome-screensaver-preferences.c:938
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:865
-msgid "0 seconds"
-msgstr "0 秒"
-
-#: ../src/gnome-screensaver-preferences.c:880
+#: ../src/gnome-screensaver-preferences.c:953
 msgid "Never"
-msgstr "不會"
+msgstr "永不"
 
-#: ../src/gnome-screensaver-preferences.c:1026
+#: ../src/gnome-screensaver-preferences.c:1210
 msgid "Could not load the main interface"
 msgstr "無法載入主視窗介面"
 
-#: ../src/gnome-screensaver-preferences.c:1028
+#: ../src/gnome-screensaver-preferences.c:1212
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "請確保螢幕保護程式已經正確安裝"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
-msgstr "不要成為伺服程式"
+msgstr "不要成為服務程式"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
 msgstr "啟用除錯碼"
 
 # (Abel) 我真是無恥，連 dbus 的運作也未清楚就譯了
-#: ../src/gs-listener-dbus.c:1188
+#: ../src/gs-listener-dbus.c:1451
 msgid "failed to register with the message bus"
 msgstr "無法向 message bus 登記"
 
 # (Abel) 我真是無恥，連 dbus 的運作也未清楚就譯了
-#: ../src/gs-listener-dbus.c:1198
+#: ../src/gs-listener-dbus.c:1461
 msgid "not connected to the message bus"
 msgstr "無法向 message bus 登記"
 
-#: ../src/gs-listener-dbus.c:1207
+#: ../src/gs-listener-dbus.c:1470
 msgid "screensaver already running in this session"
-msgstr "螢幕保護程式已經執行中"
+msgstr "螢幕保護程式正在執行中"
 
-#: ../src/gs-lock-plug.c:346
+#: ../src/gs-lock-plug.c:375
 msgid "Checking password..."
 msgstr "檢驗密碼..."
 
-#: ../src/gs-lock-plug.c:389
+#: ../src/gs-lock-plug.c:418
 msgid "Time has expired."
-msgstr "時間已經超過了。"
+msgstr "已經逾時了。"
 
-#: ../src/gs-lock-plug.c:414
+#: ../src/gs-lock-plug.c:448
 msgid "You have the Caps Lock key on."
-msgstr "您按了 Caps Lock 鍵。"
+msgstr "您按下了 Caps Lock 鍵。"
 
-#: ../src/gs-lock-plug.c:691
+#: ../src/gs-lock-plug.c:775
 msgid "That password was incorrect."
 msgstr "該密碼是錯誤的。"
 
-#: ../src/gs-lock-plug.c:717
-#: ../src/gs-lock-plug.c:750
-msgid "_Unlock"
-msgstr "解除封鎖(_U)"
+#. Translators: this is "username on hostname".  You
+#. can translate this to "%s@%s" if it is otherwise tricky
+#. for your language.
+#: ../src/gs-lock-plug.c:1247
+#, c-format
+msgid "%s on %s"
+msgstr "%s@%s"
 
-#: ../src/gs-lock-plug.c:720
-#: ../src/gs-lock-plug.c:747
-msgid "_Switch User..."
+#: ../src/gs-lock-plug.c:1359 ../src/gs-lock-plug.c:1396
+#, fuzzy
+msgid "S_witch User..."
 msgstr "切換使用者(_S)..."
 
-#: ../src/gs-lock-plug.c:1432
-msgid "_Password:"
-msgstr "密碼(_P):"
-
-#: ../src/gs-lock-plug.c:1498
-msgid "S_witch to user:"
-msgstr "切換為使用者(_W):"
-
-#: ../src/gs-lock-plug.c:1545
+#: ../src/gs-lock-plug.c:1367
 msgid "Log _Out"
 msgstr "登出(_O)"
 
+#~ msgid "_Screensaver"
+#~ msgstr "螢幕保護程式(_S)"
+
+#~ msgid "Disable running graphical themes while blanked"
+#~ msgstr "畫面變黑時不會使用任何畫面主題"
+
+#~ msgid "Enable running graphical themes while blanked (if applicable)"
+#~ msgstr "畫面變黑時可能使用其它畫面主題 (如適用)"
+
+#~ msgid "    "
+#~ msgstr "    "
+
+#~ msgid "Allow monitor power management"
+#~ msgstr "允許顯示器電源管理功能"
+
+#~ msgid "Set this to TRUE to allow the screensaver to power down the monitor."
+#~ msgstr "設定此項為 TRUE 以允許螢幕保護程式關閉顯示器。"
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation until the monitor "
+#~ "goes into standby power mode."
+#~ msgstr "螢幕保護程式作用閒置多少分鐘後會讓顯示器進入待命電源模式。"
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation until the monitor "
+#~ "goes into suspend power mode."
+#~ msgstr "螢幕保護程式作用閒置多少分鐘後會讓顯示器進入暫停電源模式。"
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation until the monitor "
+#~ "powers off."
+#~ msgstr "螢幕保護程式作用閒置多少分鐘後會讓顯示器關閉電源。"
+
+#~ msgid "Time before power off"
+#~ msgstr "關機之前的時間"
+
+#~ msgid "Time before standby"
+#~ msgstr "待命時間"
+
+#~ msgid "Time before suspend"
+#~ msgstr "暫停時間"
+
+#~ msgid "0 seconds"
+#~ msgstr "0 秒"
+
 #~ msgid "_Activate after:"
 #~ msgstr "指定時間後啟用(_A):"
+
 #~ msgid ""
 #~ "The number of minutes of idle time before activating the screensaver."
 #~ msgstr "閒置多少分鐘後會令螢幕保護程式開始作用。"
+
 #~ msgid "Disabled"
 #~ msgstr "已停用"
+
 #~ msgid "How many minutes until the monitor goes black"
 #~ msgstr "螢幕會在多少分鐘之後變黑"
+
 #~ msgid "How many minutes until the monitor goes black."
 #~ msgstr "螢幕會在多少分鐘之後變黑。"
+
 #~ msgid "How many minutes until the monitor power-saves"
 #~ msgstr "多少分鐘後螢幕進入待命狀態"
+
 #~ msgid "How many minutes until the monitor power-saves."
 #~ msgstr "多少分鐘後螢幕進入待命狀態。"
+
 #~ msgid "How many minutes until the monitor powers down"
 #~ msgstr "多少分鐘後關掉螢幕"
+
 #~ msgid "How many minutes until the monitor powers down."
 #~ msgstr "多少分鐘後關掉螢幕。"
+
 #~ msgid ""
 #~ "The number of minutes after blanking the screen before a logout option "
 #~ "will appear"
 #~ msgstr "畫面變黑後相隔多少分鐘會顯示「登出」選項"
+
 #~ msgid "The number of minutes after blanking the screen before locking"
 #~ msgstr "畫面變黑後相隔多少分鐘會鎖定畫面"
+
 #~ msgid "The number of minutes after blanking the screen before locking."
 #~ msgstr "畫面變黑後相隔多少分鐘會鎖定畫面。"
+
 #~ msgid "The number of minutes to run before changing the screensaver"
 #~ msgstr "執行多少分鐘後會切換螢幕保護程式畫面"
+
 #~ msgid "The selected screensaver themes"
 #~ msgstr "使用中的螢幕保護程式主題"
+
 #~ msgid ""
 #~ "This key specifies the selection mode used by the screensaver. Possible "
 #~ "values are \"disabled\", \"blank-only\", \"single\", and \"random\"."
 #~ msgstr ""
 #~ "本設定指定螢幕保護程式以甚麼模式運作。可接受的值為 ‘disabled’, ‘blank-"
 #~ "only’, ‘single’ 或 ‘random’。"
+
 #~ msgid "This key specifies the themes to be used by the screensaver."
 #~ msgstr "本設定鍵指定使用哪個螢幕保護程式畫面主題。"
+
 #~ msgid "Whether to lock as well as blank"
 #~ msgstr "令畫面變黑之餘，是否同時鎖定畫面"
+
 #~ msgid "Whether to lock as well as blank."
 #~ msgstr "令畫面變黑之餘，是否同時鎖定畫面"
+
 #~ msgid "Whether to offer the option of logging out after logout_delay"
 #~ msgstr "是否過了 logout_delay 所指定的時間後提供登出的選項"
+
 #~ msgid "Whether to offer the option of logging out after logout_delay."
 #~ msgstr "是否過了 logout_delay 所指定的時間後提供登出的選項。"
+
 #~ msgid "Whether to power down the monitor"
 #~ msgstr "是否完全關閉螢幕"
+
 #~ msgid "%i of %i"
 #~ msgstr "%2$i 之 %1$i"
+
 #~ msgid "Transferring: %s"
 #~ msgstr "正在傳送：%s"
+
 #~ msgid "Downloading..."
 #~ msgstr "下載中..."
+
 #~ msgid "About %ld second left"
 #~ msgid_plural "About %ld seconds left"
 #~ msgstr[0] "大約剩餘 %ld 秒"
+
 #~ msgid "Password check failed!"
 #~ msgstr "密碼檢驗失敗！"
+
 #~ msgid "_New Login"
 #~ msgstr "重新登入(_N)"
+
 #~ msgid "Enter a password to unlock the screen"
 #~ msgstr "請輸入密碼來將畫面解鎖"
+
 #~ msgid "Name:"
 #~ msgstr "名稱:"
+
 #~ msgid "Log in as another user?"
 #~ msgstr "是否以另一個身分登入？"
+
 #~ msgid ""
 #~ "This option will bring you to the login screen.\n"
 #~ "From the login screen you may log in to this system\n"
@@ -817,6 +958,6 @@ msgstr "登出(_O)"
 #~ "這個選項會顯示登入畫面。\n"
 #~ "在登入畫面中，您可以用另一個用家的身分\n"
 #~ "登入，或者選擇「離開」回到這個畫面。"
+
 #~ msgid "_Login Screen"
 #~ msgstr "登入畫面(_L)"
-
