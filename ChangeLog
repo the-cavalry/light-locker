@@ -1,3 +1,9 @@
+==== 2.15.2 ====
+
+2006-05-15  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 2.15.2 release.
+
 2006-05-15  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Bump intltool req.

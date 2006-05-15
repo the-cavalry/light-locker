@@ -1,4 +1,31 @@
 ===============
+Version 2.15.2
+===============
+
+  gnome-screensaver
+
+        * Sync with FUSA code (fixes GDM configuration)
+        * Make cancel close the unlock dialog
+        * Make button presses and scroll events request an unlock
+        * Send DBUS signals before/after authentication is requested
+        * Various fixes for async fade out
+        * Fix potential crasher when poked while fading
+        * Support short username in themed dialog (Matthias Clasen)
+
+  Themes
+
+        * (popsquares) Fix crash when window is NULL (Joe Marcus Clarke)
+
+  Translators
+
+        * Francisco Javier F. Serrador (es)
+        * Ignacio Casal Quinteiro (gl)
+        * Ankit Patel (gu)
+        * Kjartan Maraas (nb)
+        * Chao-Hsiung Liao (zh_HK)
+        * Chao-Hsiung Liao (zh_TW)
+
+===============
 Version 2.15.1
 ===============
 
