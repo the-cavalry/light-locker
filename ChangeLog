@@ -1,5 +1,9 @@
 2006-05-15  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac: Bump intltool req.
+
+2006-05-15  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/gs-theme-engine.c: (gs_theme_engine_clear),
 	(gs_theme_engine_get_window_size):
 	* savers/gste-popsquares.c: (hsv_to_rgb), (rgb_to_hsv),
