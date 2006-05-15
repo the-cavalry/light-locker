@@ -73,10 +73,18 @@ hsv_to_rgb (int             h,
         double f;
         int    i;
 
-        if (s < 0) s = 0;
-        if (v < 0) v = 0;
-        if (s > 1) s = 1;
-        if (v > 1) v = 1;
+        if (s < 0) {
+                s = 0;
+        }
+        if (v < 0) {
+                v = 0;
+        }
+        if (s > 1) {
+                s = 1;
+        }
+        if (v > 1) {
+                v = 1;
+        }
 
         S = s; V = v;
         H = (h % 360) / 60.0;
@@ -86,12 +94,31 @@ hsv_to_rgb (int             h,
         p2 = V * (1 - (S * f));
         p3 = V * (1 - (S * (1 - f)));
 
-        if	  (i == 0) { R = V;  G = p3; B = p1; }
-        else if (i == 1) { R = p2; G = V;  B = p1; }
-        else if (i == 2) { R = p1; G = V;  B = p3; }
-        else if (i == 3) { R = p1; G = p2; B = V;  }
-        else if (i == 4) { R = p3; G = p1; B = V;  }
-        else		   { R = V;  G = p1; B = p2; }
+        if (i == 0) {
+                R = V;
+                G = p3;
+                B = p1;
+        } else if (i == 1) {
+                R = p2;
+                G = V;
+                B = p1;
+        } else if (i == 2) {
+                R = p1;
+                G = V;
+                B = p3;
+        } else if (i == 3) {
+                R = p1;
+                G = p2;
+                B = V;
+        } else if (i == 4) {
+                R = p3;
+                G = p1;
+                B = V;
+        } else {
+                R = V;
+                G = p1;
+                B = p2;
+        }
 
         *r = R * 65535;
         *g = G * 65535;
@@ -114,23 +141,39 @@ rgb_to_hsv (unsigned short r,
         R = ((double) r) / 65535.0;
         G = ((double) g) / 65535.0;
         B = ((double) b) / 65535.0;
-        cmax = R; cmin = G; imax = 1;
+        cmax = R;
+        cmin = G;
+        imax = 1;
 
-        if  ( cmax < G ) { cmax = G; cmin = R; imax = 2; }
-        if  ( cmax < B ) { cmax = B; imax = 3; }
-        if  ( cmin > B ) { cmin = B; }
+        if (cmax < G) {
+                cmax = G; cmin = R; imax = 2;
+        }
+        if (cmax < B) {
+                cmax = B; imax = 3;
+        }
+        if (cmin > B) {
+                cmin = B;
+        }
 
         cmm = cmax - cmin;
         V = cmax;
 
-        if (cmm == 0)
+        if (cmm == 0) {
                 S = H = 0;
-        else {
+        } else {
                 S = cmm / cmax;
-                if       (imax == 1)    H =       (G - B) / cmm;
-                else  if (imax == 2)    H = 2.0 + (B - R) / cmm;
-                else /*if (imax == 3)*/ H = 4.0 + (R - G) / cmm;
-                if (H < 0) H += 6.0;
+                if (imax == 1) {
+                        H = (G - B) / cmm;
+                } else if (imax == 2) {
+                        H = 2.0 + (B - R) / cmm;
+                } else {
+                        /*if (imax == 3)*/
+                        H = 4.0 + (R - G) / cmm;
+                }
+
+                if (H < 0) {
+                        H += 6.0;
+                }
         }
 
         *h = (H * 60.0);
@@ -158,15 +201,17 @@ make_color_ramp (GdkColormap *colormap,
         int      total_ncolors   = n_colors;
 
         wanted = total_ncolors;
-        if (closed)
+        if (closed) {
                 wanted = (wanted / 2) + 1;
+        }
 
         ncolors = total_ncolors;
 
         memset (colors, 0, n_colors * sizeof (*colors));
 
-        if (closed)
+        if (closed) {
                 ncolors = (ncolors / 2) + 1;
+        }
 
         /* Note: unlike other routines in this module, this function assumes that
            if h1 and h2 are more than 180 degrees apart, then the desired direction
@@ -193,8 +238,9 @@ make_color_ramp (GdkColormap *colormap,
         }
 
         if (closed) {
-                for (i = ncolors; i < n_colors; i++)
+                for (i = ncolors; i < n_colors; i++) {
                         colors [i] = colors [n_colors - i];
+                }
         }
 
 }
@@ -209,8 +255,9 @@ randomize_square_colors (square *squares,
 
         s = squares;
 
-        for (i = 0; i < nsquares; i++) 
+        for (i = 0; i < nsquares; i++) {
                 s[i].color = g_random_int_range (0, ncolors);
+        }
 }
 
 static void
@@ -275,6 +322,13 @@ setup_squares (GSTEPopsquares *pop)
         int       nsquares;
         int       x, y;
         int       sw, sh, gw, gh;
+        GdkWindow *window;
+
+        window = gs_theme_engine_get_window (GS_THEME_ENGINE (pop));
+
+        if (window == NULL) {
+                return;
+        }
 
         gs_theme_engine_get_window_size (GS_THEME_ENGINE (pop), &window_width, &window_height);
 
@@ -313,8 +367,9 @@ setup_colors (GSTEPopsquares *pop)
 
         window = gs_theme_engine_get_window (GS_THEME_ENGINE (pop));
 
-        if (! window)
+        if (window == NULL) {
                 return;
+        }
 
         set_colors (window, &fg, &bg);
 
@@ -354,8 +409,9 @@ gste_popsquares_real_show (GtkWidget *widget)
         setup_squares (pop);
         setup_colors (pop);
 
-        if (GTK_WIDGET_CLASS (parent_class)->show)
+        if (GTK_WIDGET_CLASS (parent_class)->show) {
                 GTK_WIDGET_CLASS (parent_class)->show (widget);
+        }
 }
 
 static gboolean
@@ -368,8 +424,9 @@ gste_popsquares_real_expose (GtkWidget      *widget,
 
         /* FIXME: should double buffer? */
 
-        if (GTK_WIDGET_CLASS (parent_class)->expose_event)
+        if (GTK_WIDGET_CLASS (parent_class)->expose_event) {
                 handled = GTK_WIDGET_CLASS (parent_class)->expose_event (widget, event);
+        }
 
         return handled;
 }
@@ -390,8 +447,9 @@ gste_popsquares_real_configure (GtkWidget         *widget,
         /* schedule a redraw */
         gtk_widget_queue_draw (widget);
 
-        if (GTK_WIDGET_CLASS (parent_class)->configure_event)
+        if (GTK_WIDGET_CLASS (parent_class)->configure_event) {
                 handled = GTK_WIDGET_CLASS (parent_class)->configure_event (widget, event);
+        }
 
         return handled;
 }
@@ -429,6 +487,10 @@ draw_iter (GSTEPopsquares *pop)
 
         window = gs_theme_engine_get_window (GS_THEME_ENGINE (pop));
 
+        if (window == NULL) {
+                return TRUE;
+        }
+
         gs_theme_engine_get_window_size (GS_THEME_ENGINE (pop),
                                          &window_width,
                                          &window_height);
@@ -450,10 +512,11 @@ draw_iter (GSTEPopsquares *pop)
                         s->color++;
 
                         if (s->color == pop->priv->ncolors) {
-                                if (twitch && ((g_random_int_range (0, 4)) == 0))
+                                if (twitch && ((g_random_int_range (0, 4)) == 0)) {
                                         randomize_square_colors (pop->priv->squares, nsquares, pop->priv->ncolors);
-                                else
+                                } else {
                                         s->color = g_random_int_range (0, pop->priv->ncolors);
+                                }
                         }
                 }
         }

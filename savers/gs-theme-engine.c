@@ -87,6 +87,12 @@ gs_theme_engine_clear (GtkWidget *widget)
         GdkColormap *colormap;
         GtkStateType state;
 
+        g_return_if_fail (GS_IS_THEME_ENGINE (widget));
+
+        if (! GTK_WIDGET_VISIBLE (widget)) {
+                return;
+        }
+
         state = (GtkStateType) 0;
         while (state < (GtkStateType) G_N_ELEMENTS (widget->style->bg)) {
                 gtk_widget_modify_bg (widget, state, &color);
@@ -154,7 +160,18 @@ gs_theme_engine_get_window_size (GSThemeEngine *engine,
                                  int           *width,
                                  int           *height)
 {
+        if (width != NULL) {
+                *width = 0;
+        }
+        if (height != NULL) {
+                *height = 0;
+        }
+
         g_return_if_fail (GS_IS_THEME_ENGINE (engine));
+
+        if (! GTK_WIDGET_VISIBLE (GTK_WIDGET (engine))) {
+                return;
+        }
 
         gdk_window_get_geometry (GTK_WIDGET (engine)->window,
                                  NULL,

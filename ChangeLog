@@ -1,3 +1,17 @@
+2006-05-15  William Jon McCann  <mccann@jhu.edu>
+
+	* savers/gs-theme-engine.c: (gs_theme_engine_clear),
+	(gs_theme_engine_get_window_size):
+	* savers/gste-popsquares.c: (hsv_to_rgb), (rgb_to_hsv),
+	(make_color_ramp), (randomize_square_colors), (setup_squares),
+	(setup_colors), (gste_popsquares_real_show),
+	(gste_popsquares_real_expose), (gste_popsquares_real_configure),
+	(draw_iter):
+	Guard against using a null window.  Fixup brace style.
+
+	Based on patch from Joe Marcus Clarke <marcus@freebsd.org>
+	Fixes #341699
+
 2006-05-11  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c: (get_user_name), (load_theme),
