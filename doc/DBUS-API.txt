@@ -128,7 +128,7 @@ dbus-send --session \
           --print-reply \
           --reply-timeout=20000 \
           /org/gnome/ScreenSaver \
-          org.gnome.ScreenSaver.getActiveTime
+          org.gnome.ScreenSaver.getSessionIdleTime
 
 
 You can activate the screensaver like so:
@@ -152,4 +152,4 @@ dbus-monitor --session \
 Or watch for a specific screensaver signal:
 
 dbus-monitor --session \
-          "type='signal',interface='org.gnome.ScreenSaver',member='ActiveChanged'"
+          "type='signal',interface='org.gnome.ScreenSaver',member='SessionIdleChanged'"
