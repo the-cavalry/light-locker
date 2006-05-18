@@ -1,5 +1,10 @@
 2006-05-18  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (get_env_vars): Add RUNNING_UNDER_GDM
+	to env var whitelist.  Found in downstream Ubuntu patches.
+
+2006-05-18  William Jon McCann  <mccann@jhu.edu>
+
 	* data/lock-dialog-default.glade:
 	* src/gs-lock-plug.c: (expand_string), (expand_string_for_label),
 	(create_page_one), (load_theme), (gs_lock_plug_init):

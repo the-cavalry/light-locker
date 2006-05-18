@@ -576,7 +576,8 @@ get_env_vars (GtkWidget *widget)
                 "KRB5CCNAME",
                 "KRBTKFILE",
                 "LANG",
-                "LANGUAGE"
+                "LANGUAGE",
+                "RUNNING_UNDER_GDM"
         };
 
         env = g_ptr_array_new ();
