@@ -28,6 +28,7 @@
 #include <errno.h>
 #include <time.h>
 #include <unistd.h>
+#include <sys/utsname.h>
 
 #include <glib/gprintf.h>
 #include <glib/gstdio.h>
@@ -130,7 +131,6 @@ struct GSLockPlugPrivate
         GtkWidget   *auth_face_image;
         GtkWidget   *auth_realname_label;
         GtkWidget   *auth_username_label;
-        GtkWidget   *auth_short_username_label;
         GtkWidget   *auth_password_entry;
         GtkWidget   *auth_capslock_label;
         GtkWidget   *auth_status_label;
@@ -1226,31 +1226,6 @@ get_user_display_name (void)
 }
 
 static char *
-get_user_on_host_name (void)
-{
-        const char *name;
-        const char *host_name;
-        char       *utf8_name;
-        char       *str;
-
-        name = g_get_user_name ();
-        host_name = g_get_host_name ();
-
-        utf8_name = NULL;
-        if (name != NULL) {
-                utf8_name = g_locale_to_utf8 (name, -1, NULL, NULL, NULL);
-        }
-
-        /* Translators: this is "username on hostname".  You
-           can translate this to "%s@%s" if it is otherwise tricky
-           for your language. */
-        str = g_strdup_printf (_("%s on %s"), utf8_name, host_name);
-        g_free (utf8_name);
-
-        return str;
-}
-
-static char *
 get_user_name (void)
 {
         const char *name;
@@ -1398,6 +1373,130 @@ create_page_two_buttons (GSLockPlug *plug)
         profile_end ("end", "page two buttons");
 }
 
+/* adapted from GDM */
+static char *
+expand_string (const char *text)
+{
+        GString       *str;
+        const char    *p;
+        char          *username;
+        int            i;
+        int            n_chars;
+        struct utsname name;
+
+        str = g_string_sized_new (strlen (text));
+
+        p = text;
+        n_chars = g_utf8_strlen (text, -1);
+        i = 0;
+  
+        while (i < n_chars) {
+                gunichar ch;
+
+                ch = g_utf8_get_char (p);
+
+                /* Backslash commands */
+                if (ch == '\\') {
+                        p = g_utf8_next_char (p);
+                        i++;
+                        ch = g_utf8_get_char (p);
+
+                        if (i >= n_chars || ch == '\0') {
+                                g_warning ("Unescaped \\ at end of text\n");
+                                goto bail;
+                        } else if (ch == 'n') {
+                                g_string_append_unichar (str, '\n');
+                        } else {
+                                g_string_append_unichar (str, ch);
+                        }
+                } else if (ch == '%') {
+                        p = g_utf8_next_char (p);
+                        i++;
+                        ch = g_utf8_get_char (p);
+
+                        if (i >= n_chars || ch == '\0') {
+                                g_warning ("Unescaped %% at end of text\n");
+                                goto bail;
+                        }
+
+                        switch (ch) {
+                        case '%':
+                                g_string_append (str, "%");
+                                break;
+                        case 'c':
+                                /* clock */
+                                break;
+                        case 'd':
+                                /* display */
+                                g_string_append (str, g_getenv ("DISPLAY"));
+                                break;
+                        case 'h':
+                                /* hostname */
+                                g_string_append (str, g_get_host_name ());
+                                break;
+                        case 'm':
+                                /* machine name */
+                                uname (&name);
+                                g_string_append (str, name.machine);
+                                break;
+                        case 'n':
+                                /* nodename */
+                                uname (&name);
+                                g_string_append (str, name.nodename);
+                                break;
+                        case 'r':
+                                /* release */
+                                uname (&name);
+                                g_string_append (str, name.release);
+                                break;
+                        case 'R':
+                                /* Real name */
+                                username = get_user_display_name ();
+                                g_string_append (str, username);
+                                g_free (username);
+                                break;
+                        case 's':
+                                /* system name */
+                                uname (&name);
+                                g_string_append (str, name.sysname);
+                                break;
+                        case 'U':
+                                /* Username */
+                                username = get_user_name ();
+                                g_string_append (str, username);
+                                g_free (username);
+                                break;
+                        default:
+                                if (ch < 127) {
+                                        g_warning ("unknown escape code %%%c in text\n", (char)ch);
+                                } else {
+                                        g_warning ("unknown escape code %%(U%x) in text\n", (int)ch);
+                                }
+                        }
+                } else {
+                        g_string_append_unichar (str, ch);
+                }
+                p = g_utf8_next_char (p);
+                i++;
+        }
+  
+ bail:
+
+        return g_string_free (str, FALSE);
+}
+
+static void
+expand_string_for_label (GtkWidget *label)
+{
+        const char *template;
+        char       *str;
+
+        template = gtk_label_get_label (GTK_LABEL (label));
+        str = expand_string (template);
+        gtk_label_set_label (GTK_LABEL (label), str);
+        g_free (str);
+}
+
 static void
 create_page_one (GSLockPlug *plug)
 {
@@ -1407,7 +1506,6 @@ create_page_one (GSLockPlug *plug)
         GtkWidget            *vbox2;
         GtkWidget            *hbox;
         char                 *str;
-        char                 *name;
 
         profile_start ("start", "page one");
 
@@ -1424,20 +1522,18 @@ create_page_one (GSLockPlug *plug)
         vbox2 = gtk_vbox_new (FALSE, 0);
         gtk_box_pack_start (GTK_BOX (vbox), vbox2, FALSE, FALSE, 0);
 
-        name = get_user_display_name ();
-        str = g_strdup_printf ("<span size=\"x-large\">%s</span>", name);
-        g_free (name);
+        str = g_strdup ("<span size=\"x-large\">%R</span>");
         plug->priv->auth_realname_label = gtk_label_new (str);
         g_free (str);
+        expand_string_for_label (plug->priv->auth_realname_label);
         gtk_misc_set_alignment (GTK_MISC (plug->priv->auth_realname_label), 0.5, 0.5);
         gtk_label_set_use_markup (GTK_LABEL (plug->priv->auth_realname_label), TRUE);
         gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->auth_realname_label, FALSE, FALSE, 0);
 
-        name = get_user_on_host_name ();
-        str = g_strdup_printf ("<span size=\"small\">%s</span>", name);
-        g_free (name);
+        str = g_strdup_printf ("<span size=\"small\">%s</span>", _("%U on %h"));
         plug->priv->auth_username_label = gtk_label_new (str);
         g_free (str);
+        expand_string_for_label (plug->priv->auth_username_label);
         gtk_misc_set_alignment (GTK_MISC (plug->priv->auth_username_label), 0.5, 0.5);
         gtk_label_set_use_markup (GTK_LABEL (plug->priv->auth_username_label), TRUE);
         gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->auth_username_label, FALSE, FALSE, 0);
@@ -1647,7 +1743,6 @@ load_theme (GSLockPlug *plug)
         plug->priv->auth_action_area = glade_xml_get_widget (xml, "auth-action-area");
         plug->priv->auth_realname_label = glade_xml_get_widget (xml, "auth-realname-label");
         plug->priv->auth_username_label = glade_xml_get_widget (xml, "auth-username-label");
-        plug->priv->auth_short_username_label = glade_xml_get_widget (xml, "auth-short-username-label");
         plug->priv->auth_password_entry = glade_xml_get_widget (xml, "auth-password-entry");
         plug->priv->auth_capslock_label = glade_xml_get_widget (xml, "auth-capslock-label");
         plug->priv->auth_status_label = glade_xml_get_widget (xml, "auth-status-label");
@@ -1718,39 +1813,11 @@ gs_lock_plug_init (GSLockPlug *plug)
         gtk_widget_grab_default (plug->priv->auth_unlock_button);
 
         if (plug->priv->auth_username_label != NULL) {
-                char       *str;
-                char       *name;
-
-                /* FIXME should let the theme determine the font size */
-                name = get_user_on_host_name ();
-                str = g_strdup_printf ("<span size=\"small\">%s</span>", name);
-                g_free (name);
-                gtk_label_set_markup (GTK_LABEL (plug->priv->auth_username_label), str);
-                g_free (str);
-        }
-
-        if (plug->priv->auth_short_username_label != NULL) {
-                char       *str;
-                char       *name;
-
-                /* FIXME should let the theme determine the font size */
-                name = get_user_name ();
-                str = g_strdup_printf ("<span size=\"x-large\">%s</span>", name);
-                g_free (name);
-                gtk_label_set_markup (GTK_LABEL (plug->priv->auth_short_username_label), str);
-                g_free (str);
+                expand_string_for_label (plug->priv->auth_username_label);
         }
 
         if (plug->priv->auth_realname_label != NULL) {
-                char       *str;
-                char       *name;
-
-                /* FIXME should let the theme determine the font size */
-                name = get_user_display_name ();
-                str = g_strdup_printf ("<span size=\"x-large\">%s</span>", name);
-                g_free (name);
-                gtk_label_set_markup (GTK_LABEL (plug->priv->auth_realname_label), str);
-                g_free (str);
+                expand_string_for_label (plug->priv->auth_realname_label);
         }
 
         if (! plug->priv->logout_enabled

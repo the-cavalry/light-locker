@@ -1,3 +1,30 @@
+2006-05-18  William Jon McCann  <mccann@jhu.edu>
+
+	* data/lock-dialog-default.glade:
+	* src/gs-lock-plug.c: (expand_string), (expand_string_for_label),
+	(create_page_one), (load_theme), (gs_lock_plug_init):
+	Use tokens in the lock dialog theme glade file to be
+	replaced with actual values.  This allows one to format
+	the label (including size) in the glade file.  The
+	replacement tokens are mostly compatible with the
+	GDM ones.  For now we support:
+
+	%d		DISPLAY
+	%h		hostname
+	%m		machine hardware name
+	%n		node name
+	%r		kernel release
+	%R		user's real name
+	%s		system name
+	%U		username
+
+	The default lock dialog theme uses:
+
+	auth_realname_label = "<span size=\"x-large\">%R</span>"
+	auth_username_label = "<span size=\"small\">%U on %h</span>"
+
+	Fixes #341408
+
 2006-05-16  William Jon McCann  <mccann@jhu.edu>
 
 	* doc/DBUS-API.txt: Use session idle in examples.
