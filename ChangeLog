@@ -1,5 +1,11 @@
 2006-05-18  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (gs_window_real_motion_notify_event):
+	Increase minimum distance the mouse must move to detect the
+	motion from 10 to 50 pixels.
+
+2006-05-18  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (get_env_vars): Add RUNNING_UNDER_GDM
 	to env var whitelist.  Found in downstream Ubuntu patches.
 

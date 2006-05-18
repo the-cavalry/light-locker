@@ -1281,7 +1281,7 @@ gs_window_real_motion_notify_event (GtkWidget      *widget,
 {
         GSWindow *window;
         gdouble   distance;
-        gdouble   min_distance = 10;
+        gdouble   min_distance = 50;
 
         window = GS_WINDOW (widget);
 
