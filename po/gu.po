@@ -8,14 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-26 06:18+0200\n"
-"PO-Revision-Date: 2006-04-26 11:22+0530\n"
+"POT-Creation-Date: 2006-05-18 23:19+0200\n"
+"PO-Revision-Date: 2006-05-19 09:53+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -201,39 +202,41 @@ msgstr "બહારનીકળો વિકલ્પ પહેલાંનો 
 msgid "Time before theme change"
 msgstr "થીમ બદલાય તે પહેલાંનો સમય"
 
-#: ../data/lock-dialog-default.glade.h:1
-msgid "<span size=\"small\">username on hostname</span>"
-msgstr "<span size=\"small\">યજમાનનામ પર વપરાશકર્તાનામ</span>"
-
 #: ../data/lock-dialog-default.glade.h:2
-msgid "<span size=\"x-large\">Real Name</span>"
-msgstr "<span size=\"x-large\">વાસ્તવિક નામ</span>"
+#, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
+msgstr "<span size=\"small\">%U એ %h પર</span>"
 
-#: ../data/lock-dialog-default.glade.h:3 ../src/gs-lock-plug.c:1478
+#: ../data/lock-dialog-default.glade.h:4
+#, no-c-format
+msgid "<span size=\"x-large\">%R</span>"
+msgstr "<span size=\"x-large\">%R</span>"
+
+#: ../data/lock-dialog-default.glade.h:5 ../src/gs-lock-plug.c:1623
 msgid "S_witch to user:"
 msgstr "વપરાશકર્તામાં બદલાવ (_w):"
 
-#: ../data/lock-dialog-default.glade.h:4
+#: ../data/lock-dialog-default.glade.h:6
 msgid "_Cancel"
 msgstr "રદ કરો (_C)"
 
-#: ../data/lock-dialog-default.glade.h:5
+#: ../data/lock-dialog-default.glade.h:7
 msgid "_Log Out"
 msgstr "બહાર નીકળો (_L)"
 
-#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1402
+#: ../data/lock-dialog-default.glade.h:8 ../src/gs-lock-plug.c:1547
 msgid "_Password:"
 msgstr "પાસવર્ડ (_P):"
 
-#: ../data/lock-dialog-default.glade.h:7
+#: ../data/lock-dialog-default.glade.h:9
 msgid "_Switch User..."
 msgstr "વપરાશકર્તા બદલો (_S)..."
 
-#: ../data/lock-dialog-default.glade.h:8
+#: ../data/lock-dialog-default.glade.h:10
 msgid "_Switch user..."
 msgstr "વપરાશકર્તા બદલો (_S)..."
 
-#: ../data/lock-dialog-default.glade.h:9 ../src/gs-lock-plug.c:1328
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1352
 msgid "_Unlock"
 msgstr "તાળું ખોલો (_U)"
 
@@ -772,47 +775,43 @@ msgstr "ડિમન બનશો નહિં"
 msgid "Enable debugging code"
 msgstr "ડિબગીંગ કોડ સક્રિય કરો"
 
-#: ../src/gs-listener-dbus.c:1416
+#: ../src/gs-listener-dbus.c:1451
 msgid "failed to register with the message bus"
 msgstr "સંદેશા બસ સાથે રજીસ્ટર કરવામાં નિષ્ફળ"
 
-#: ../src/gs-listener-dbus.c:1426
+#: ../src/gs-listener-dbus.c:1461
 msgid "not connected to the message bus"
 msgstr "સંદેશા બસમાં જોડાયેલ નથી"
 
-#: ../src/gs-listener-dbus.c:1435
+#: ../src/gs-listener-dbus.c:1470
 msgid "screensaver already running in this session"
 msgstr "આ સત્રમાં સ્ક્રીનસેવર પહેલાથી જ ચાલી રહ્યું છે"
 
-#: ../src/gs-lock-plug.c:373
+#: ../src/gs-lock-plug.c:375
 msgid "Checking password..."
 msgstr "પાસવર્ડ ચકાસી રહ્યા છીએ..."
 
-#: ../src/gs-lock-plug.c:416
+#: ../src/gs-lock-plug.c:418
 msgid "Time has expired."
 msgstr "સમય સમાપ્ત થઈ ગયો."
 
-#: ../src/gs-lock-plug.c:446
+#: ../src/gs-lock-plug.c:448
 msgid "You have the Caps Lock key on."
 msgstr "તમારી Caps Lock કી ચાલુ છે."
 
-#: ../src/gs-lock-plug.c:742
+#: ../src/gs-lock-plug.c:775
 msgid "That password was incorrect."
 msgstr "તે પાસવર્ડ ખોલો હતો."
 
-#. Translators: this is "username on hostname".  You
-#. can translate this to "%s@%s" if it is otherwise tricky
-#. for your language.
-#: ../src/gs-lock-plug.c:1214
-#, c-format
-msgid "%s on %s"
-msgstr "%s એ %s પર"
-
-#: ../src/gs-lock-plug.c:1310 ../src/gs-lock-plug.c:1347
+#: ../src/gs-lock-plug.c:1334 ../src/gs-lock-plug.c:1371
 msgid "S_witch User..."
 msgstr "વપરાશકર્તા બદલો (_w)..."
 
-#: ../src/gs-lock-plug.c:1318
+#: ../src/gs-lock-plug.c:1342
 msgid "Log _Out"
 msgstr "બહાર નીકળો (_O)"
+
+#: ../src/gs-lock-plug.c:1533
+msgid "%U on %h"
+msgstr "%U એ %h પર"
 
