@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 8; tab-width: 8 -*-
  *
- * Copyright (C) 2005 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2005-2006 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -50,27 +50,32 @@ static void     gste_slideshow_finalize   (GObject            *object);
 struct GSTESlideshowPrivate
 {
         /* Image at full opacity */
-        GdkPixbuf   *pixbuf1;
+        cairo_pattern_t *pat1;
         /* Image at partial opacity */
-        GdkPixbuf   *pixbuf2;
-        /* Alpha of pixbuf2 */
-        gdouble      alpha2;
+        cairo_pattern_t *pat2;
+        /* Alpha of pat2 */
+        gdouble          alpha2;
+        /* edges of pat2 */
+        int              pat2top;
+        int              pat2bottom;
+        int              pat2left;
+        int              pat2right;
 
-        gint64       fade_ticks;
+        gint64           fade_ticks;
 
-        GThread     *load_thread;
-        GAsyncQueue *op_q;
-        GAsyncQueue *results_q;
+        GThread         *load_thread;
+        GAsyncQueue     *op_q;
+        GAsyncQueue     *results_q;
 
-        guint        results_pull_id;
-        guint        update_image_id;
+        guint           results_pull_id;
+        guint           update_image_id;
 
-        GSList      *filename_list;
-        char        *images_location;
-        int          window_width;
-        int          window_height;
+        GSList         *filename_list;
+        char           *images_location;
+        int             window_width;
+        int             window_height;
 
-        guint        timeout_id;
+        guint           timeout_id;
 };
 
 enum {
@@ -124,15 +129,16 @@ get_exif_orientation (const char *filename)
 
         edata = exif_data_new_from_file (filename);
 
-        if (edata == NULL)
+        if (edata == NULL) {
                 return 0;
+        }
 
         o = exif_data_get_byte_order (edata);
 
         for (i = 0; i < EXIF_IFD_COUNT; i++) {
                 entry = exif_content_get_entry (edata->ifd [i], 
                                                 EXIF_TAG_ORIENTATION);
-                if (entry) {
+                if (entry != NULL) {
                         s = (ExifRotation)exif_get_short (entry->data, o);
                         exif_data_unref (edata);
 
@@ -168,8 +174,9 @@ pixbuf_copy_rotate_90 (GdkPixbuf *src,
         int        i, j;
         int        a;
 
-        if (!src)
+        if (src == NULL) {
                 return NULL;
+        }
 
         sw = gdk_pixbuf_get_width (src);
         sh = gdk_pixbuf_get_height (src);
@@ -188,15 +195,18 @@ pixbuf_copy_rotate_90 (GdkPixbuf *src,
         for (i = 0; i < sh; i++) {
                 sp = s_pix + (i * srs);
                 for (j = 0; j < sw; j++) {
-                        if (counter_clockwise)
+                        if (counter_clockwise) {
                                 dp = d_pix + ((dh - j - 1) * drs) + (i * a);
-                        else
+                        } else {
                                 dp = d_pix + (j * drs) + ((dw - i - 1) * a);
+                        }
 
                         *(dp++) = *(sp++);	/* r */
                         *(dp++) = *(sp++);	/* g */
                         *(dp++) = *(sp++);	/* b */
-                        if (has_alpha) *(dp) = *(sp++);	/* a */
+                        if (has_alpha) {
+                                *(dp) = *(sp++);	/* a */
+                        }
                 }
         }
 
@@ -222,7 +232,9 @@ pixbuf_copy_mirror (GdkPixbuf *src,
         int        i, j;
         int        a;
 
-        if (!src) return NULL;
+        if (src == NULL) {
+                return NULL;
+        }
 
         w = gdk_pixbuf_get_width (src);
         h = gdk_pixbuf_get_height (src);
@@ -238,10 +250,11 @@ pixbuf_copy_mirror (GdkPixbuf *src,
 
         for (i = 0; i < h; i++)	{
                 sp = s_pix + (i * srs);
-                if (flip)
+                if (flip) {
                         dp = d_pix + ((h - i - 1) * drs);
-                else
+                } else {
                         dp = d_pix + (i * drs);
+                }
 
                 if (mirror) {
                         dp += (w - 1) * a;
@@ -249,8 +262,9 @@ pixbuf_copy_mirror (GdkPixbuf *src,
                                 *(dp++) = *(sp++);	/* r */
                                 *(dp++) = *(sp++);	/* g */
                                 *(dp++) = *(sp++);	/* b */
-                                if (has_alpha)
+                                if (has_alpha) {
                                         *(dp) = *(sp++);	/* a */
+                                }
                                 dp -= (a + 3);
                         }
                 } else {
@@ -258,8 +272,9 @@ pixbuf_copy_mirror (GdkPixbuf *src,
                                 *(dp++) = *(sp++);	/* r */
                                 *(dp++) = *(sp++);	/* g */
                                 *(dp++) = *(sp++);	/* b */
-                                if (has_alpha)
+                                if (has_alpha) {
                                         *(dp++) = *(sp++);	/* a */
+                                }
                         }
                 }
         }
@@ -274,8 +289,9 @@ update_from_exif_data (char      *filename,
         GdkPixbuf *newpixbuf = NULL;
         GdkPixbuf *tmppixbuf = NULL;
 
-        if (! pixbuf)
+        if (pixbuf == NULL) {
                 return NULL;
+        }
 
         switch (get_exif_orientation (filename)) {
         case NORMAL:
@@ -347,11 +363,37 @@ static void
 start_fade (GSTESlideshow *show,
             GdkPixbuf     *pixbuf)
 {
-        if (show->priv->pixbuf2) {
-                g_object_unref (show->priv->pixbuf2);
+        int      pw;
+        int      ph;
+        int      x;
+        int      y;
+        cairo_t *cr;
+        int      window_width;
+        int      window_height;
+
+        window_width = show->priv->window_width;
+        window_height = show->priv->window_height;
+
+        if (show->priv->pat2 != NULL) {
+                cairo_pattern_destroy (show->priv->pat2);
         }
 
-        show->priv->pixbuf2 = g_object_ref (pixbuf);
+        pw = gdk_pixbuf_get_width (pixbuf);
+        ph = gdk_pixbuf_get_height (pixbuf);
+        x = (window_width - pw) / 2;
+        y = (window_height - ph) / 2;
+
+        cr = gdk_cairo_create (GTK_WIDGET (show)->window);
+
+        /* XXX Handle out of memory? */
+        gdk_cairo_set_source_pixbuf (cr, pixbuf, x, y);
+        show->priv->pat2 = cairo_pattern_reference (cairo_get_source (cr));
+        show->priv->pat2top = y;
+        show->priv->pat2bottom = y + ph;
+        show->priv->pat2left = x;
+        show->priv->pat2right = x + pw;
+
+        cairo_destroy (cr);
 
         show->priv->fade_ticks = 0;
 }
@@ -359,12 +401,12 @@ start_fade (GSTESlideshow *show,
 static void
 finish_fade (GSTESlideshow *show)
 {
-        if (show->priv->pixbuf1) {
-                g_object_unref (show->priv->pixbuf1);
+        if (show->priv->pat1 != NULL) {
+                cairo_pattern_destroy (show->priv->pat1);
         }
 
-        show->priv->pixbuf1 = show->priv->pixbuf2;
-        show->priv->pixbuf2 = NULL;
+        show->priv->pat1 = show->priv->pat2;
+        show->priv->pat2 = NULL;
 
         start_new_load (show, IMAGE_LOAD_TIMEOUT);
 }
@@ -372,10 +414,6 @@ finish_fade (GSTESlideshow *show)
 static void
 update_display (GSTESlideshow *show)
 {
-        int      pw;
-        int      ph;
-        int      x;
-        int      y;
         int      window_width;
         int      window_height;
         cairo_t *cr;
@@ -386,46 +424,36 @@ update_display (GSTESlideshow *show)
                                          &window_width,
                                          &window_height);
 
-        if (show->priv->pixbuf2) {
-                pw = gdk_pixbuf_get_width (show->priv->pixbuf2);
-                ph = gdk_pixbuf_get_height (show->priv->pixbuf2);
-
-                x = (window_width - pw) / 2;
-                y = (window_height - ph) / 2;
-
+        if (show->priv->pat2 != NULL) {
                 /* fade out areas not covered by the new image */
                 /* top */
-                cairo_rectangle (cr, 0, 0, window_width, y);
+                cairo_rectangle (cr, 0, 0, window_width, show->priv->pat2top);
                 cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
                 cairo_fill (cr);
-                /* left */
-                cairo_rectangle (cr, 0, 0, x, window_height);
+                /* left (excluding what's covered by top and bottom) */
+                cairo_rectangle (cr, 0, show->priv->pat2top,
+                                 show->priv->pat2left,
+                                 show->priv->pat2bottom - show->priv->pat2top);
                 cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
                 cairo_fill (cr);
                 /* bottom */
-                cairo_rectangle (cr, 0, y + ph, window_width, window_height);
+                cairo_rectangle (cr, 0, show->priv->pat2bottom, window_width,
+                                 window_height - show->priv->pat2bottom);
                 cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
                 cairo_fill (cr);
-                /* right */
-                cairo_rectangle (cr, x + pw, 0, window_width, window_height);
+                /* right (excluding what's covered by top and bottom) */
+                cairo_rectangle (cr, show->priv->pat2right,
+                                 show->priv->pat2top,
+                                 window_width - show->priv->pat2right,
+                                 show->priv->pat2bottom - show->priv->pat2top);
                 cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
                 cairo_fill (cr);
-                
-                gdk_cairo_set_source_pixbuf (cr,
-                                             show->priv->pixbuf2,
-                                             x, y);
 
+                cairo_set_source (cr, show->priv->pat2);
                 cairo_paint_with_alpha (cr, show->priv->alpha2);
         } else {
-                if (show->priv->pixbuf1) {
-                        pw = gdk_pixbuf_get_width (show->priv->pixbuf1);
-                        ph = gdk_pixbuf_get_height (show->priv->pixbuf1);
-                        x = (window_width - pw) / 2;
-                        y = (window_height - ph) / 2;
-                        
-                        gdk_cairo_set_source_pixbuf (cr,
-                                                     show->priv->pixbuf1,
-                                                     x, y);
+                if (show->priv->pat1 != NULL) {
+                        cairo_set_source (cr, show->priv->pat1);
                         cairo_paint (cr);
                 }
         }
@@ -436,16 +464,35 @@ update_display (GSTESlideshow *show)
 static gboolean
 draw_iter (GSTESlideshow *show)
 {
-        gdouble      max_alpha = 1.0;
-
-        if (show->priv->pixbuf2) {
+        if (show->priv->pat2 != NULL) {
                 /* we are in a fade */
                 show->priv->fade_ticks++;
-                show->priv->alpha2 = max_alpha * (double)show->priv->fade_ticks / (double)N_FADE_TICKS;
+
+                /*
+                 * We have currently drawn pat2 with old_opacity, and we
+                 * want to set alpha2 so that drawing pat2 at alpha2
+                 * yields it drawn with new_opacity
+                 *
+                 * Solving
+                 *   new_opacity = 1 - (1 - alpha2) * (1 - old_opacity)
+                 * yields
+                 *   alpha2 = 1 - (1 - new_opacity) / (1 - old_opacity)
+                 *
+                 * XXX This assumes that cairo doesn't correct alpha for
+                 * the color profile.  However, any error is guaranteed
+                 * to be cleaned up by the last iteration, where alpha2
+                 * becomes 1 because new_opacity is 1.
+                 */
+                double old_opacity = (double) (show->priv->fade_ticks - 1) /
+                                     (double) N_FADE_TICKS;
+                double new_opacity = (double) show->priv->fade_ticks /
+                                     (double) N_FADE_TICKS;
+                show->priv->alpha2 = 1.0 - (1.0 - new_opacity) /
+                                           (1.0 - old_opacity);
 
                 update_display (show);
 
-                if (show->priv->alpha2 >= max_alpha) {
+                if (show->priv->fade_ticks >= N_FADE_TICKS) {
                         finish_fade (show);
                 }
         }
@@ -457,7 +504,7 @@ static void
 process_new_pixbuf (GSTESlideshow *show,
                     GdkPixbuf     *pixbuf)
 {
-        if (pixbuf) {
+        if (pixbuf != NULL) {
                 start_fade (show, pixbuf);
         } else {
                 start_new_load (show, 10);
@@ -467,11 +514,13 @@ process_new_pixbuf (GSTESlideshow *show,
 static void
 op_result_free (OpResult *result)
 {
-        if (! result)
+        if (result == NULL) {
                 return;
+        }
 
-        if (result->pixbuf)
+        if (result->pixbuf != NULL) {
                 g_object_unref (result->pixbuf);
+        }
 
         g_free (result);
 }
@@ -488,7 +537,7 @@ results_pull_func (GSTESlideshow *show)
         result = g_async_queue_try_pop_unlocked (show->priv->results_q);
         g_assert (result);
 
-        while (result) {
+        while (result != NULL) {
                 process_new_pixbuf (show, result->pixbuf);
                 op_result_free (result);
 
@@ -529,10 +578,11 @@ scale_pixbuf (GdkPixbuf *pixbuf,
         scale_factor_x = (float) max_width / (float) pw;
         scale_factor_y = (float) max_height / (float) ph;
 
-        if (scale_factor_x > scale_factor_y)
+        if (scale_factor_x > scale_factor_y) {
                 scale_factor = scale_factor_y;
-        else
+        } else {
                 scale_factor = scale_factor_x;
+        }
 
         if (1) {
                 int scale_x = (int) (pw * scale_factor);
@@ -555,7 +605,7 @@ add_files_to_list (GSList    **list,
         const char *d_name;
 
         d = g_dir_open (base, 0, NULL);
-        if (! d) {
+        if (d == NULL) {
                 g_warning ("Could not open directory: %s", base);
                 return;
         }
@@ -594,7 +644,7 @@ get_pixbuf_from_local_dir (GSTESlideshow *show,
         GSList    *l;
 
         /* rebuild the cache */
-        if (! show->priv->filename_list) {
+        if (show->priv->filename_list == NULL) {
                 show->priv->filename_list = build_filename_list_local_dir (location);
         }
 
@@ -607,7 +657,7 @@ get_pixbuf_from_local_dir (GSTESlideshow *show,
 
 #if HAVE_EXIF
         /* try to get exif data and rotate the image if necessary */
-        if (pixbuf) {
+        if (pixbuf != NULL) {
                 GdkPixbuf *rotated;
 
                 rotated = update_from_exif_data (filename, pixbuf);
@@ -631,8 +681,9 @@ get_pixbuf_from_location (GSTESlideshow *show,
         GdkPixbuf *pixbuf = NULL;
         gboolean   is_dir;
 
-        if (! location)
+        if (location == NULL) {
                 return NULL;
+        }
 
         is_dir = g_file_test (location, G_FILE_TEST_IS_DIR);
 
@@ -652,12 +703,13 @@ get_pixbuf (GSTESlideshow *show,
         GdkPixbuf *pixbuf;
         GdkPixbuf *scaled = NULL;
 
-        if (! location)
+        if (location == NULL) {
                 return NULL;
+        }
 
         pixbuf = get_pixbuf_from_location (show, location);
 
-        if (pixbuf) {
+        if (pixbuf != NULL) {
                 scaled = scale_pixbuf (pixbuf, width, height);
                 g_object_unref (pixbuf);
         }
@@ -707,7 +759,7 @@ load_threadfunc (GAsyncQueue *op_q)
                 op_load_image (op->slideshow,
                                op->location);
 
-                if (op->slideshow) {
+                if (op->slideshow != NULL) {
                         g_object_unref (op->slideshow);
                 }
                 g_free (op->location);
@@ -775,8 +827,9 @@ gste_slideshow_real_show (GtkWidget *widget)
         GSTESlideshow *show = GSTE_SLIDESHOW (widget);
         int            delay;
 
-        if (GTK_WIDGET_CLASS (parent_class)->show)
+        if (GTK_WIDGET_CLASS (parent_class)->show) {
                 GTK_WIDGET_CLASS (parent_class)->show (widget);
+        }
 
         start_new_load (show, 10);
 
@@ -793,8 +846,9 @@ gste_slideshow_real_expose (GtkWidget      *widget,
 
         update_display (show);
 
-        if (GTK_WIDGET_CLASS (parent_class)->expose_event)
+        if (GTK_WIDGET_CLASS (parent_class)->expose_event) {
                 handled = GTK_WIDGET_CLASS (parent_class)->expose_event (widget, event);
+        }
 
         return handled;
 }
@@ -814,8 +868,9 @@ gste_slideshow_real_configure (GtkWidget         *widget,
         /* schedule a redraw */
         gtk_widget_queue_draw (widget);
 
-        if (GTK_WIDGET_CLASS (parent_class)->configure_event)
+        if (GTK_WIDGET_CLASS (parent_class)->configure_event) {
                 handled = GTK_WIDGET_CLASS (parent_class)->configure_event (widget, event);
+        }
 
         return handled;
 }
@@ -862,7 +917,7 @@ gste_slideshow_init (GSTESlideshow *show)
 
         error = NULL;
         show->priv->load_thread = g_thread_create ((GThreadFunc)load_threadfunc, show->priv->op_q, FALSE, &error);
-        if (! show->priv->load_thread) {
+        if (show->priv->load_thread == NULL) {
                 g_error ("Could not create a thread to load images: %s",
                          error->message);
                 g_error_free (error);
@@ -893,7 +948,7 @@ gste_slideshow_finalize (GObject *object)
                 g_source_remove (show->priv->results_pull_id);
         }
 
-        if (show->priv->results_q) {
+        if (show->priv->results_q != NULL) {
                 result = g_async_queue_try_pop (show->priv->results_q);
 
                 while (result) {

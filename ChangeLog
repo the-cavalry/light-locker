@@ -1,3 +1,18 @@
+2006-05-24  L. David Baron  <dbaron@dbaron.org>
+
+	* savers/gste-slideshow.c:
+	Cache the result of gdk_cairo_set_source_pixbuf as a pattern to
+	avoid calling it for each iteration of a fade.
+	Fixes #339090
+
+	* savers/gste-slideshow.c (draw_iter):
+	Make the fade effect linear by computing delta to use for alpha2.
+
+	Patch from L. David Baron <dbaron@dbaron.org>
+
+	* savers/gste-slideshow.c: Fix conditionals to test for NULL
+	explicitly.  Add braces.
+
 2006-05-18  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (gs_window_real_motion_notify_event):
