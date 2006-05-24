@@ -46,6 +46,31 @@ static GObjectClass *parent_class = NULL;
 
 G_DEFINE_ABSTRACT_TYPE (GSThemeEngine, gs_theme_engine, GTK_TYPE_DRAWING_AREA)
 
+void
+_gs_theme_engine_profile_log (const char *func,
+                              const char *format,
+                              ...)
+{
+        va_list args;
+        char   *str;
+        char   *formatted;
+
+        va_start (args, format);
+        formatted = g_strdup_vprintf (format, args);
+        va_end (args);
+
+        if (func != NULL) {
+                str = g_strdup_printf ("MARK: %s %s: %s", g_get_prgname(), func, formatted);
+        } else {
+                str = g_strdup_printf ("MARK: %s: %s", g_get_prgname(), formatted);
+        }
+
+        g_free (formatted);
+
+        access (str, F_OK);
+        g_free (str);
+}
+
 static void
 gs_theme_engine_set_property (GObject            *object,
                               guint               prop_id,

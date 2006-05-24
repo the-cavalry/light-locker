@@ -334,6 +334,8 @@ push_load_image_func (GSTESlideshow *show)
 {
         Op *op;
 
+        gs_theme_engine_profile_msg ("Starting a new image load");
+
         op = g_new (Op, 1);
 
         op->location = g_strdup (show->priv->images_location);
@@ -351,6 +353,8 @@ static void
 start_new_load (GSTESlideshow *show,
                 guint          timeout)
 {
+        gs_theme_engine_profile_msg ("Scheduling a new image load");
+
         /* queue a new load */
         if (show->priv->update_image_id <= 0) {
                 show->priv->update_image_id = g_timeout_add_full (G_PRIORITY_LOW, timeout,
@@ -370,6 +374,8 @@ start_fade (GSTESlideshow *show,
         cairo_t *cr;
         int      window_width;
         int      window_height;
+
+        gs_theme_engine_profile_start ("start");
 
         window_width = show->priv->window_width;
         window_height = show->priv->window_height;
@@ -396,11 +402,15 @@ start_fade (GSTESlideshow *show,
         cairo_destroy (cr);
 
         show->priv->fade_ticks = 0;
+
+        gs_theme_engine_profile_end ("end");
 }
 
 static void
 finish_fade (GSTESlideshow *show)
 {
+        gs_theme_engine_profile_start ("start");
+
         if (show->priv->pat1 != NULL) {
                 cairo_pattern_destroy (show->priv->pat1);
         }
@@ -409,6 +419,8 @@ finish_fade (GSTESlideshow *show)
         show->priv->pat2 = NULL;
 
         start_new_load (show, IMAGE_LOAD_TIMEOUT);
+
+        gs_theme_engine_profile_end ("end");
 }
 
 static void
@@ -417,6 +429,8 @@ update_display (GSTESlideshow *show)
         int      window_width;
         int      window_height;
         cairo_t *cr;
+
+        gs_theme_engine_profile_start ("start");
 
         cr = gdk_cairo_create (GTK_WIDGET (show)->window);
 
@@ -459,6 +473,8 @@ update_display (GSTESlideshow *show)
         }
 
         cairo_destroy (cr);
+
+        gs_theme_engine_profile_end ("end");
 }
 
 static gboolean
@@ -504,6 +520,8 @@ static void
 process_new_pixbuf (GSTESlideshow *show,
                     GdkPixbuf     *pixbuf)
 {
+        gs_theme_engine_profile_msg ("Processing a new image");
+
         if (pixbuf != NULL) {
                 start_fade (show, pixbuf);
         } else {

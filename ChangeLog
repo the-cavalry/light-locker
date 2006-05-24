@@ -1,5 +1,17 @@
 2006-05-24  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/gs-theme-engine.[ch]: (_gs_theme_engine_profile_log):
+	Add some profiling API.
+	
+	* savers/gste-slideshow.c: (push_load_image_func),
+	(start_new_load), (start_fade), (finish_fade), (update_display),
+	(process_new_pixbuf):
+	Use profiling API.  Can be used by:
+	strace -ttt -f -o /tmp/logfile.strace ./slideshow
+	python plot-timeline.py -o prettygraph.png /tmp/logfile.strace
+
+2006-05-24  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/gste-slideshow.c:
 	Cache the result of gdk_cairo_set_source_pixbuf as a pattern to
 	avoid calling it for each iteration of a fade.
