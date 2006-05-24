@@ -883,6 +883,10 @@ gste_slideshow_real_configure (GtkWidget         *widget,
                                          &show->priv->window_width,
                                          &show->priv->window_height);
 
+        gs_theme_engine_profile_msg ("Resize to x:%d y:%d",
+                                     show->priv->window_width,
+                                     show->priv->window_height);
+
         /* schedule a redraw */
         gtk_widget_queue_draw (widget);
 

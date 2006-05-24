@@ -1,5 +1,10 @@
 2006-05-24  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/gste-slideshow.c: (gste_slideshow_real_configure):
+	Add profile message for configure events.
+
+2006-05-24  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/gs-theme-engine.[ch]: (_gs_theme_engine_profile_log):
 	Add some profiling API.
 	
