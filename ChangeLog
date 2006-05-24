@@ -1,4 +1,4 @@
-2006-05-24  L. David Baron  <dbaron@dbaron.org>
+2006-05-24  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/gste-slideshow.c:
 	Cache the result of gdk_cairo_set_source_pixbuf as a pattern to
