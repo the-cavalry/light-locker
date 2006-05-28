@@ -1,3 +1,14 @@
+2006-05-28  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac:
+	* data/gnome-screensaver-preferences.glade:
+	* src/gnome-screensaver-preferences.c: (config_get_activate_delay),
+	(check_is_root_user), (setup_for_root_user), (init_capplet):
+	If the preferences dialog is run as root then disable the lock
+	checkbox and print a warning.
+
+	Fixes #343118.
+
 2006-05-24  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/gste-slideshow.c: (gste_slideshow_real_configure):

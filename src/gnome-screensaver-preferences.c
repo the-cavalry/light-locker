@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * Copyright (C) 2004-2005 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2004-2006 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -27,6 +27,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/types.h>		/* For uid_t, gid_t */
 
 #include <glib/gi18n.h>
 #include <gdk/gdkx.h>
@@ -101,8 +102,9 @@ config_get_activate_delay (gboolean *is_writable)
 
         delay = gconf_client_get_int (client, KEY_ACTIVATE_DELAY, NULL);
 
-        if (delay < 1)
+        if (delay < 1) {
                 delay = 1;
+        }
 
         g_object_unref (client);
 
@@ -1173,6 +1175,52 @@ setup_list_size_constraint (GtkWidget *widget,
                           G_CALLBACK (constrain_list_size), to_size);
 }
 
+static gboolean
+check_is_root_user (void)
+{
+#ifndef G_OS_WIN32
+  uid_t ruid, euid, suid; /* Real, effective and saved user ID's */
+  gid_t rgid, egid, sgid; /* Real, effective and saved group ID's */
+  
+#ifdef HAVE_GETRESUID
+  /* These aren't in the header files, so we prototype them here.
+   */
+  int getresuid(uid_t *ruid, uid_t *euid, uid_t *suid);
+  int getresgid(gid_t *rgid, gid_t *egid, gid_t *sgid);
+
+  if (getresuid (&ruid, &euid, &suid) != 0 ||
+      getresgid (&rgid, &egid, &sgid) != 0)
+#endif /* HAVE_GETRESUID */
+    {
+      suid = ruid = getuid ();
+      sgid = rgid = getgid ();
+      euid = geteuid ();
+      egid = getegid ();
+    }
+
+  if (ruid == 0) {
+          return TRUE;
+  }
+
+#endif
+  return FALSE;
+}
+
+static void
+setup_for_root_user (void)
+{
+        GtkWidget *lock_checkbox;
+        GtkWidget *label;
+
+        lock_checkbox = glade_xml_get_widget (xml, "lock_checkbox");
+        label = glade_xml_get_widget (xml, "root_warning_label");
+
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (lock_checkbox), FALSE);
+        gtk_widget_set_sensitive (lock_checkbox, FALSE);
+
+        gtk_widget_show (label);
+}
+
 static void
 init_capplet (void)
 {
@@ -1185,6 +1233,7 @@ init_capplet (void)
         GtkWidget *label;
         GtkWidget *enabled_checkbox;
         GtkWidget *lock_checkbox;
+        GtkWidget *root_warning_label;
         GtkWidget *preview_button;
         GtkWidget *fullscreen_preview_window;
         GtkWidget *fullscreen_preview_previous;
@@ -1226,6 +1275,7 @@ init_capplet (void)
         activate_delay_hbox   = glade_xml_get_widget (xml, "activate_delay_hbox");
         enabled_checkbox   = glade_xml_get_widget (xml, "enable_checkbox");
         lock_checkbox      = glade_xml_get_widget (xml, "lock_checkbox");
+        root_warning_label = glade_xml_get_widget (xml, "root_warning_label");
         preview_button     = glade_xml_get_widget (xml, "preview_button");
         fullscreen_preview_window = glade_xml_get_widget (xml, "fullscreen_preview_window");
         fullscreen_preview_area = glade_xml_get_widget (xml, "fullscreen_preview_area");
@@ -1238,25 +1288,29 @@ init_capplet (void)
         label              = glade_xml_get_widget (xml, "savers_label");
         gtk_label_set_mnemonic_widget (GTK_LABEL (label), treeview);
 
+        gtk_widget_set_no_show_all (root_warning_label, TRUE);
         gs_visual_gl_widget_set_best_colormap (preview);
 
         activate_delay = config_get_activate_delay (&is_writable);
         ui_set_delay (activate_delay);
-        if (! is_writable)
+        if (! is_writable) {
                 gtk_widget_set_sensitive (activate_delay_hbox, FALSE);
+        }
         g_signal_connect (activate_delay_hscale, "format-value",
                           G_CALLBACK (format_value_callback_time), NULL);
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (lock_checkbox), config_get_lock (&is_writable));
-        if (! is_writable)
+        if (! is_writable) {
                 gtk_widget_set_sensitive (lock_checkbox, FALSE);
+        }
         g_signal_connect (lock_checkbox, "toggled",
                           G_CALLBACK (lock_checkbox_toggled), NULL);
 
         enabled = config_get_enabled (&is_writable);
         ui_set_enabled (enabled);
-        if (! is_writable)
+        if (! is_writable) {
                 gtk_widget_set_sensitive (enabled_checkbox, FALSE);
+        }
         g_signal_connect (enabled_checkbox, "toggled",
                           G_CALLBACK (enabled_checkbox_toggled), NULL);
 
@@ -1281,7 +1335,7 @@ init_capplet (void)
         /* Update list of themes if using random screensaver */
         client = gconf_client_get_default ();
         string = gconf_client_get_string (client, KEY_MODE, NULL);
-        if (string) {
+        if (string != NULL) {
                 int mode;
                 GSList *list;
 
@@ -1312,6 +1366,10 @@ init_capplet (void)
 
         setup_treeview (treeview, preview);
         setup_treeview_selection (treeview);
+
+        if (check_is_root_user ()) {
+                setup_for_root_user ();
+        }
 
         g_signal_connect (activate_delay_hscale, "value-changed",
                           G_CALLBACK (activate_delay_value_changed_cb), NULL);
