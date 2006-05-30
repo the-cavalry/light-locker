@@ -61,6 +61,11 @@ struct GSTESlideshowPrivate
         int              pat2left;
         int              pat2right;
 
+        /* backbuffer that we do all the alpha drawing into (no round
+         * trips to the X server when the server doesn't support drawing
+         * pixmaps with alpha?) */
+        cairo_surface_t *surf;
+
         gint64           fade_ticks;
 
         GThread         *load_thread;
@@ -89,7 +94,7 @@ static GObjectClass *parent_class = NULL;
 
 G_DEFINE_TYPE (GSTESlideshow, gste_slideshow, GS_TYPE_THEME_ENGINE)
 
-#define N_FADE_TICKS 40
+#define N_FADE_TICKS 20
 #define DEFAULT_IMAGES_LOCATION DATADIR "/pixmaps/backgrounds"
 #define IMAGE_LOAD_TIMEOUT 10000
 
@@ -389,7 +394,7 @@ start_fade (GSTESlideshow *show,
         x = (window_width - pw) / 2;
         y = (window_height - ph) / 2;
 
-        cr = gdk_cairo_create (GTK_WIDGET (show)->window);
+        cr = cairo_create (show->priv->surf);
 
         /* XXX Handle out of memory? */
         gdk_cairo_set_source_pixbuf (cr, pixbuf, x, y);
@@ -432,7 +437,7 @@ update_display (GSTESlideshow *show)
 
         gs_theme_engine_profile_start ("start");
 
-        cr = gdk_cairo_create (GTK_WIDGET (show)->window);
+        cr = cairo_create (show->priv->surf);
 
         gs_theme_engine_get_window_size (GS_THEME_ENGINE (show),
                                          &window_width,
@@ -472,6 +477,12 @@ update_display (GSTESlideshow *show)
                 }
         }
 
+        cairo_destroy (cr);
+
+        /* paint the image buffer into the window */
+        cr = gdk_cairo_create (GTK_WIDGET (show)->window);
+        cairo_set_source_surface (cr, show->priv->surf, 0, 0);
+        cairo_paint (cr);
         cairo_destroy (cr);
 
         gs_theme_engine_profile_end ("end");
@@ -887,6 +898,13 @@ gste_slideshow_real_configure (GtkWidget         *widget,
                                      show->priv->window_width,
                                      show->priv->window_height);
 
+        if (show->priv->surf != NULL) {
+                cairo_surface_destroy (show->priv->surf);
+        }
+        show->priv->surf = cairo_image_surface_create (CAIRO_FORMAT_RGB24,
+                                                       show->priv->window_width,
+                                                       show->priv->window_height);
+
         /* schedule a redraw */
         gtk_widget_queue_draw (widget);
 
@@ -960,6 +978,10 @@ gste_slideshow_finalize (GObject *object)
         show = GSTE_SLIDESHOW (object);
 
         g_return_if_fail (show->priv != NULL);
+
+        if (show->priv->surf) {
+                cairo_surface_destroy (show->priv->surf);
+        }
 
         if (show->priv->timeout_id > 0) {
                 g_source_remove (show->priv->timeout_id);

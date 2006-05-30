@@ -1,3 +1,12 @@
+2006-05-30  William Jon McCann  <mccann@jhu.edu>
+
+	* savers/gste-slideshow.c: (start_fade), (update_display),
+	(gste_slideshow_real_configure), (gste_slideshow_finalize):
+	Use an image buffer to fix performance problem.
+	
+	Patch from L. David Baron <dbaron@dbaron.org>
+	Fixes #339090
+
 2006-05-28  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac:
