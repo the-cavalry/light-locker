@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * Copyright (C) 2004-2005 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2004-2006 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1248,7 +1248,6 @@ gs_manager_deactivate (GSManager *manager)
         manager->priv->active = FALSE;
         manager->priv->activate_time = 0;
         manager->priv->lock_active = FALSE;
-        manager->priv->throttled = FALSE;
 
         return TRUE;
 }
