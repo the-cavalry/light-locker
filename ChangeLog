@@ -1,3 +1,10 @@
+2006-05-31  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c: (row_activated_cb), (setup_treeview):
+	Switch user on row activation.
+
+	Fixes #343045
+
 2006-05-30  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/gste-slideshow.c: (start_fade), (update_display),

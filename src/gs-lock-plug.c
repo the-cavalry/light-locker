@@ -1132,6 +1132,36 @@ filter_out_users (GtkTreeModel *model,
         return visible;
 }
 
+static gboolean
+row_activated_cb (GtkTreeView       *view,
+                  GtkTreePath       *path,
+                  GtkTreeViewColumn *column,
+                  GSLockPlug        *plug)
+{
+        GtkTreeModel *filter_model;
+        GtkTreeModel *model;
+        GtkTreeIter   iter;
+        GtkTreePath  *child_path;
+        char         *username;
+
+        filter_model = gtk_tree_view_get_model (view);
+        model = gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (filter_model));
+
+        child_path = gtk_tree_model_filter_convert_path_to_child_path (GTK_TREE_MODEL_FILTER (filter_model), path);
+
+        gtk_tree_model_get_iter (model, &iter, child_path);
+        gtk_tree_model_get (model, &iter, USER_NAME_COLUMN, &username, -1);
+
+        /* FIXME: do something with username? */
+
+        switch_user_response (plug);
+
+        g_free (username);
+        gtk_tree_path_free (child_path);
+
+        return TRUE;
+}
+
 static void
 setup_treeview (GSLockPlug *plug)
 {
@@ -1193,6 +1223,11 @@ setup_treeview (GSLockPlug *plug)
         gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store),
                                               0,
                                               GTK_SORT_ASCENDING);
+
+        g_signal_connect (GTK_TREE_VIEW (plug->priv->switch_user_treeview),
+                          "row-activated",
+                          G_CALLBACK (row_activated_cb), plug);
+
         profile_end ("end", NULL);
 }
 
