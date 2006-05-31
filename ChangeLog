@@ -2,7 +2,7 @@
 
 	* configure.ac (themesdir): Fix typo.
 
-	Patch from  Paul Blazejowski <>
+	Patch from  Paul Blazejowski <paulb@blazebox.homeip.net>
 	Fixes #343497
 
 2006-05-31  William Jon McCann  <mccann@jhu.edu>
