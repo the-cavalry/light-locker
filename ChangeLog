@@ -1,5 +1,12 @@
 2006-05-31  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac (themesdir): Fix typo.
+
+	Patch from  Paul Blazejowski <>
+	Fixes #343497
+
+2006-05-31  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c (gs_manager_deactivate): 
 	Don't set throttle to FALSE when deactivating.
 
