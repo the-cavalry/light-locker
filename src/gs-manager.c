@@ -71,6 +71,7 @@ struct GSManagerPrivate
 
         GSList      *themes;
         GSSaverMode  saver_mode;
+        GSGrab      *grab;
         GSFade      *fade;
         guint        unfade_idle_id;
 };
@@ -738,6 +739,7 @@ gs_manager_init (GSManager *manager)
         manager->priv = GS_MANAGER_GET_PRIVATE (manager);
 
         manager->priv->fade = gs_fade_new ();
+        manager->priv->grab = gs_grab_new ();
 }
 
 static void
@@ -764,7 +766,7 @@ gs_manager_finalize (GObject *object)
 
         remove_timers (manager);
 
-        gs_grab_release_keyboard_and_mouse ();
+        gs_grab_release (manager->priv->grab);
 
         manager_stop_jobs (manager);
 
@@ -779,6 +781,7 @@ gs_manager_finalize (GObject *object)
         manager->priv->lock_enabled = FALSE;
 
         g_object_unref (manager->priv->fade);
+        g_object_unref (manager->priv->grab);
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -822,13 +825,14 @@ window_dialog_up_cb (GSWindow  *window,
         manager->priv->dialog_up = TRUE;
 
         /* Move keyboard and mouse grabs so dialog can be used */
-        gs_grab_window (gs_window_get_gdk_window (window),
-                        gs_window_get_screen (window),
-                        FALSE);
+        gs_grab_move_to_window (manager->priv->grab,
+                                gs_window_get_gdk_window (window),
+                                gs_window_get_screen (window),
+                                FALSE);
 
         /* Release the pointer grab while dialog is up so that
            the dialog can be used.  We'll regrab it when the dialog goes down. */
-        gs_grab_release_mouse ();
+        gs_grab_release_mouse (manager->priv->grab);
 
         /* Make all other windows insensitive so we don't get events */
         for (l = manager->priv->windows; l; l = l->next) {
@@ -854,9 +858,10 @@ window_dialog_down_cb (GSWindow  *window,
         g_return_if_fail (GS_IS_MANAGER (manager));
 
         /* Regrab the mouse */
-        gs_grab_window (gs_window_get_gdk_window (window),
-                        gs_window_get_screen (window),
-                        FALSE);
+        gs_grab_move_to_window (manager->priv->grab,
+                                gs_window_get_gdk_window (window),
+                                gs_window_get_screen (window),
+                                FALSE);
 
         /* Make all windows sensitive so we get events */
         for (l = manager->priv->windows; l; l = l->next) {
@@ -917,9 +922,10 @@ manager_maybe_grab_window (GSManager *manager,
         grabbed = FALSE;
         if (gs_window_get_screen (window) == screen
             && gs_window_get_monitor (window) == monitor) {
-                gs_grab_window (gs_window_get_gdk_window (window),
-                                gs_window_get_screen (window),
-                                FALSE);
+                gs_grab_move_to_window (manager->priv->grab,
+                                        gs_window_get_gdk_window (window),
+                                        gs_window_get_screen (window),
+                                        FALSE);
                 grabbed = TRUE;
         }
 
@@ -933,9 +939,9 @@ window_grab_broken_cb (GSWindow           *window,
 {
         gs_debug ("GRAB BROKEN!");
         if (event->keyboard) {
-                gs_grab_keyboard_reset ();
+                gs_grab_keyboard_reset (manager->priv->grab);
         } else {
-                gs_grab_mouse_reset ();
+                gs_grab_mouse_reset (manager->priv->grab);
         }
 }
 
@@ -1185,10 +1191,8 @@ fade_done_cb (GSFade    *fade,
 static gboolean
 gs_manager_activate (GSManager *manager)
 {
-        GdkDisplay *display;
-        GdkScreen  *screen;
-        GdkWindow  *root;
         gboolean    do_fade;
+        gboolean    res;
 
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
@@ -1198,11 +1202,8 @@ gs_manager_activate (GSManager *manager)
                 return FALSE;
         }
 
-        display = gdk_display_get_default ();
-        gdk_display_get_pointer (display, &screen, NULL, NULL, NULL);
-        root = gdk_screen_get_root_window (screen);
-
-        if (! gs_grab_get_keyboard_and_mouse (root, screen)) {
+        res = gs_grab_grab_root (manager->priv->grab, FALSE);
+        if (! res) {
                 return FALSE;
         }
 
@@ -1248,7 +1249,7 @@ gs_manager_deactivate (GSManager *manager)
 
         remove_timers (manager);
 
-        gs_grab_release_keyboard_and_mouse ();
+        gs_grab_release (manager->priv->grab);
 
         manager_stop_jobs (manager);
 

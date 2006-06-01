@@ -1,5 +1,39 @@
 2006-06-01  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-grab-x11.c: (xorg_lock_smasher_set_active),
+	(gs_grab_get_keyboard), (gs_grab_get_mouse),
+	(gs_grab_keyboard_reset), (gs_grab_release_keyboard),
+	(gs_grab_mouse_reset), (gs_grab_release_mouse),
+	(gs_grab_move_mouse), (gs_grab_move_keyboard), (gs_grab_release),
+	(gs_grab_grab_window), (gs_grab_grab_root),
+	(gs_grab_grab_offscreen), (gs_grab_move_to_window),
+	(gs_grab_class_init), (gs_grab_init), (gs_grab_finalize),
+	(gs_grab_new):
+	* src/gs-grab.h:
+	Turn grab stuff into a singleton class.
+	
+	* src/gs-manager.c: (gs_manager_init), (gs_manager_finalize),
+	(window_dialog_up_cb), (window_dialog_down_cb),
+	(manager_maybe_grab_window), (window_grab_broken_cb),
+	(gs_manager_activate), (gs_manager_deactivate):
+	* src/test-window.c: (window_show_cb), (window_destroyed_cb),
+	(main):
+	Update for grab API.
+	
+	* src/gs-monitor.c: (release_grab_timeout),
+	(watcher_idle_notice_cb), (gs_monitor_init), (gs_monitor_finalize):
+	Try to do a grab before the idle notice fade-out.  There are two
+	reasons for this.  First, this prevents the user from thinking that
+	the screen is locked and typing a password which will go into an
+	underlying window.  Second, if the grab doesn't succeed then there
+	is an excellent chance that locking will not succeed either - so we
+	shouldn't fade at all.  This prevents fade-outs while playing games.
+
+	Also delay releasing the grab for a second to help even more with
+	typing passwords.
+
+2006-06-01  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c: (gs_manager_get_lock_active):
 	* src/gs-manager.h: Add get_lock_active to API.
 	

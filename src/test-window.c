@@ -32,6 +32,8 @@
 #include "gs-grab.h"
 #include "gs-debug.h"
 
+static GSGrab *grab = NULL;
+
 static void
 window_deactivated_cb (GSWindow  *window,
                        gpointer   data)
@@ -56,9 +58,10 @@ window_show_cb (GSWindow  *window,
                 gpointer   data)
 {
         /* Grab keyboard so dialog can be used */
-        gs_grab_window (gs_window_get_gdk_window (window),
-                        gs_window_get_screen (window),
-                        FALSE);
+        gs_grab_move_to_window (grab,
+                                gs_window_get_gdk_window (window),
+                                gs_window_get_screen (window),
+                                FALSE);
 
 }
 
@@ -79,7 +82,7 @@ window_destroyed_cb (GtkWindow *window,
                      gpointer   data)
 {
         disconnect_window_signals (GS_WINDOW (window));
-        gs_grab_release_keyboard_and_mouse ();
+        gs_grab_release (grab);
         gtk_main_quit ();
 }
 
@@ -147,9 +150,13 @@ main (int    argc,
 
         gs_debug_init (TRUE, FALSE);
 
+        grab = gs_grab_new ();
+
         test_window ();
 
         gtk_main ();
+
+        g_object_unref (grab);
 
         gs_debug_shutdown ();
 
