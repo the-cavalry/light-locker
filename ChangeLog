@@ -1,5 +1,10 @@
 2006-06-01  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-monitor.c (release_grab_timeout):
+	Only release grabs if the manager isn't active.
+
+2006-06-01  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-grab-x11.c: (xorg_lock_smasher_set_active),
 	(gs_grab_get_keyboard), (gs_grab_get_mouse),
 	(gs_grab_keyboard_reset), (gs_grab_release_keyboard),

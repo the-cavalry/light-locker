@@ -125,7 +125,13 @@ watcher_idle_cb (GSWatcher *watcher,
 static gboolean
 release_grab_timeout (GSMonitor *monitor)
 {
-        gs_grab_release (monitor->priv->grab);
+        gboolean manager_active;
+
+        manager_active = gs_manager_get_active (monitor->priv->manager);
+        if (! manager_active) {
+                gs_grab_release (monitor->priv->grab);
+        }
+
         monitor->priv->release_grab_id = 0;
         return FALSE;
 }
