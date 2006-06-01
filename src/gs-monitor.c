@@ -163,11 +163,17 @@ listener_lock_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
         gboolean res;
+        gboolean locked;
 
+        /* set lock flag before trying to activate screensaver
+           in case something tries to react to the ActiveChanged signal */
+
+        gs_manager_get_lock_active (monitor->priv->manager, &locked);
+        gs_manager_set_lock_active (monitor->priv->manager, TRUE);
         res = gs_listener_set_active (monitor->priv->listener, TRUE);
-        if (res) {
-                gs_manager_set_lock_active (monitor->priv->manager, TRUE);
-        } else {
+        if (! res) {
+                /* If we've failed then restore lock status */
+                gs_manager_set_lock_active (monitor->priv->manager, locked);
                 gs_debug ("Unable to lock the screen");
         }
 }

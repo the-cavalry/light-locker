@@ -1,3 +1,14 @@
+2006-06-01  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-manager.c: (gs_manager_get_lock_active):
+	* src/gs-manager.h: Add get_lock_active to API.
+	
+	* src/gs-monitor.c: (listener_lock_cb): Set lock flag
+	before activing screensaver to avoid problems when
+	something reacts to the ActiveChanged signal.
+
+	Patch from Rodrigo Moya <rodrigo@novell.com>
+
 2006-05-31  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac (themesdir): Fix typo.

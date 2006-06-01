@@ -279,6 +279,19 @@ gs_manager_set_throttled (GSManager *manager,
 }
 
 void
+gs_manager_get_lock_active (GSManager *manager,
+                            gboolean  *lock_active)
+{
+        if (lock_active != NULL) {
+                *lock_active = FALSE;
+        }
+
+        g_return_if_fail (GS_IS_MANAGER (manager));
+
+        *lock_active = manager->priv->lock_active;
+}
+
+void
 gs_manager_set_lock_active (GSManager *manager,
                             gboolean   lock_active)
 {
