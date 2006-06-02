@@ -1,5 +1,13 @@
 2006-06-01  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-listener-dbus.c: (gs_listener_send_signal_active_changed):
+	* src/gs-manager.c: (gs_manager_activate):
+	Make activation wait for fade to complete.
+
+	Fixes #343608
+
+2006-06-01  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-monitor.c (release_grab_timeout):
 	Only release grabs if the manager isn't active.
 

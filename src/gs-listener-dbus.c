@@ -216,6 +216,9 @@ gs_listener_send_signal_active_changed (GSListener *listener)
 
         g_return_if_fail (listener != NULL);
 
+        gs_debug ("Sending the ActiveChanged(%s) signal on the session bus",
+                  listener->priv->active ? "TRUE" : "FALSE");
+
         message = dbus_message_new_signal (GS_LISTENER_PATH,
                                            GS_LISTENER_SERVICE,
                                            "ActiveChanged");

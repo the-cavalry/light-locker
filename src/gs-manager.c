@@ -1227,6 +1227,10 @@ gs_manager_activate (GSManager *manager)
                                FADE_TIMEOUT,
                                (GSFadeDoneFunc)fade_done_cb,
                                manager);
+
+                while (manager->priv->fading) {
+                        gtk_main_iteration ();
+                }
         } else {
                 show_windows (manager->priv->windows);
         }
