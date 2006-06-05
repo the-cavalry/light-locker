@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * Copyright (C) 2005 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2005-2006 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -33,7 +33,7 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#include "passwd.h"
+#include "gs-auth.h"
 #include "setuid.h"
 
 /* Initializations that potentially take place as a priveleged user:
@@ -41,9 +41,7 @@
    are run as root, before discarding privileges.
 */
 static gboolean
-privileged_initialization (int     *argc,
-                           char   **argv,
-                           gboolean verbose)
+privileged_initialization (void)
 {
         gboolean ret;
         char    *nolock_reason;
@@ -52,16 +50,18 @@ privileged_initialization (int     *argc,
 
 #ifndef NO_LOCKING
         /* before hack_uid () for proper permissions */
-        lock_priv_init (*argc, argv, verbose);
+        gs_auth_priv_init ();
 #endif /* NO_LOCKING */
 
         ret = hack_uid (&nolock_reason,
                         &orig_uid,
                         &uid_message);
-        if (nolock_reason)
+        if (nolock_reason) {
                 g_warning ("Locking disabled: %s", nolock_reason);
-        if (uid_message && verbose)
+        }
+        if (uid_message && gs_auth_get_verbose ()) {
                 g_print ("Modified UID: %s", uid_message);
+        }
 
         g_free (nolock_reason);
         g_free (orig_uid);
@@ -74,24 +74,24 @@ privileged_initialization (int     *argc,
 /* Figure out what locking mechanisms are supported.
  */
 static gboolean
-lock_initialization (int     *argc,
-                     char   **argv,
-                     char   **nolock_reason,
-                     gboolean verbose)
+lock_initialization (char **nolock_reason)
 {
-        if (nolock_reason)
+        if (nolock_reason) {
                 *nolock_reason = NULL;
+        }
 
 #ifdef NO_LOCKING
-        if (nolock_reason)
+        if (nolock_reason) {
                 *nolock_reason = g_strdup ("not compiled with locking support");
+        }
         return FALSE;
 #else /* !NO_LOCKING */
 
         /* Finish initializing locking, now that we're out of privileged code. */
-        if (! lock_init (*argc, argv, verbose)) {
-                if (nolock_reason)
+        if (! gs_auth_init ()) {
+                if (nolock_reason) {
                         *nolock_reason = g_strdup ("error getting password");
+                }
                 return FALSE;
         }
 
@@ -100,8 +100,9 @@ lock_initialization (int     *argc,
            locking just in case.
         */
         if (getenv ("RUNNING_UNDER_GDM")) {
-                if (nolock_reason)
+                if (nolock_reason) {
                         *nolock_reason = g_strdup ("running under GDM");
+                }
                 return FALSE;
         }
 
@@ -122,8 +123,9 @@ lock_initialization (int     *argc,
 #endif
 
                 if (macos) {
-                        if (nolock_reason)
+                        if (nolock_reason) {
                                 *nolock_reason = g_strdup ("Cannot lock securely on MacOS X");
+                        }
                         return FALSE;
                 }
         }
@@ -133,6 +135,78 @@ lock_initialization (int     *argc,
         return TRUE;
 }
 
+static char *
+request_password (const char *prompt)
+{
+        char           buf [255];
+        char          *pass;
+        char          *password;
+        struct termios ts0;
+        struct termios ts1;
+
+        tcgetattr (fileno (stdin), &ts0);
+        ts1 = ts0;
+        ts1.c_lflag &= ~ECHO;
+
+        printf ("%s", prompt);
+
+        if (tcsetattr (fileno (stdin), TCSAFLUSH, &ts1) != 0) {
+                fprintf (stderr, "Could not set terminal attributes\n");
+                exit (1);
+        }
+
+        pass = fgets (buf, sizeof (buf) - 1, stdin);
+
+        tcsetattr (fileno (stdin), TCSANOW, &ts0);
+
+        if (!pass || !*pass) {
+                exit (0);
+        }
+
+        if (pass [strlen (pass) - 1] == '\n') {
+                pass [strlen (pass) - 1] = 0;
+        }
+
+        password = g_strdup (pass);
+
+        memset (pass, '\b', strlen (pass));
+
+        return password;
+}
+
+static gboolean
+auth_message_handler (GSAuthMessageStyle style,
+                      const char        *msg,
+                      char             **response,
+                      gpointer           data)
+{
+        gboolean ret;
+
+        g_message ("Got message style %d: '%s'", style, msg);
+
+        ret = TRUE;
+
+        switch (style) {
+        case GS_AUTH_MESSAGE_PROMPT_ECHO_ON:
+                break;
+        case GS_AUTH_MESSAGE_PROMPT_ECHO_OFF:
+                {
+                        char *password;
+                        password = request_password (msg);
+                        *response = password;
+                }
+                break;
+        case GS_AUTH_MESSAGE_ERROR_MSG:
+                break;
+        case GS_AUTH_MESSAGE_TEXT_INFO:
+                break;
+        default:
+                g_assert_not_reached ();
+        }
+
+        return ret;
+}
+
 int
 main (int    argc,
       char **argv)
@@ -140,9 +214,6 @@ main (int    argc,
         GError         *error         = NULL;
         gboolean        verbose       = TRUE;
         char           *nolock_reason = NULL;
-        char            buf [255];
-        char           *pass;
-        struct termios  ts0, ts1;
 
 #ifdef ENABLE_NLS
         bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
@@ -157,7 +228,8 @@ main (int    argc,
                 exit (1);
         }
 
-        if (! privileged_initialization (&argc, argv, verbose)) {
+        gs_auth_set_verbose (verbose);
+        if (! privileged_initialization ()) {
                 exit (1);
         }
 
@@ -167,7 +239,7 @@ main (int    argc,
                 exit (1);
         }
 
-        if (! lock_initialization (&argc, argv, &nolock_reason, verbose)) {
+        if (! lock_initialization (&nolock_reason)) {
                 if (nolock_reason) {
                         g_warning ("Screen locking disabled: %s", nolock_reason);
                         g_free (nolock_reason);
@@ -176,33 +248,11 @@ main (int    argc,
                 exit (1);
         }
 
-        tcgetattr (fileno (stdin), &ts0);
-        ts1 = ts0;
-        ts1.c_lflag &= ~ECHO;
-
-        printf ("Password: ");
-
-        if (tcsetattr (fileno (stdin), TCSAFLUSH, &ts1) != 0) {
-                fprintf (stderr, "Could not set terminal attributes\n");
-                exit (1);
-        }
-
-        pass = fgets (buf, sizeof (buf) - 1, stdin);
-
-        tcsetattr (fileno (stdin), TCSANOW, &ts0);
-
-        if (!pass || !*pass)
-                exit (0);
-        if (pass [strlen (pass) - 1] == '\n')
-                pass [strlen (pass) - 1] = 0;
-
-        if (validate_password (pass, verbose)) {
+        if (gs_auth_verify_user (g_get_user_name (), g_getenv ("DISPLAY"), auth_message_handler, NULL, &error)) {
                 printf ("Correct!\n");
         } else {
                 printf ("Incorrect\n");
         }
-
-        memset (pass, '\b', strlen (pass));
 
 	return 0;
 }

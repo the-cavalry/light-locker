@@ -43,7 +43,7 @@ typedef struct GSLockPlugPrivate GSLockPlugPrivate;
 
 typedef struct
 {
-        GtkPlug              parent;
+        GtkPlug            parent;
 
         GSLockPlugPrivate *priv;
 } GSLockPlug;

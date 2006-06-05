@@ -45,7 +45,7 @@
 
 #include "gs-lock-plug.h"
 
-#include "passwd.h"
+#include "gs-auth.h"
 
 #include "fusa-manager.h"
 
@@ -117,7 +117,7 @@ static void gs_lock_plug_class_init (GSLockPlugClass *klass);
 static void gs_lock_plug_init       (GSLockPlug      *plug);
 static void gs_lock_plug_finalize   (GObject         *object);
 
-static gboolean password_check_idle_cb (GSLockPlug *plug);
+static gboolean auth_check_idle_cb (GSLockPlug *plug);
 
 #define GS_LOCK_PLUG_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_LOCK_PLUG, GSLockPlugPrivate))
 
@@ -132,6 +132,7 @@ struct GSLockPlugPrivate
         GtkWidget   *auth_realname_label;
         GtkWidget   *auth_username_label;
         GtkWidget   *auth_password_entry;
+        GtkWidget   *auth_password_box;
         GtkWidget   *auth_capslock_label;
         GtkWidget   *auth_status_label;
         GtkWidget   *switch_user_treeview;
@@ -153,9 +154,11 @@ struct GSLockPlugPrivate
         guint        timeout;
 
         guint        idle_id;
-        guint        password_check_idle_id;
+        guint        auth_check_idle_id;
         guint        password_reset_idle_id;
         guint        response_idle_id;
+
+        gboolean     initial_auth_check;
 
         GTimeVal     start_time;
 };
@@ -312,11 +315,11 @@ remove_monitor_idle (GSLockPlug *plug)
 }
 
 static void
-remove_password_check_idle (GSLockPlug *plug)
+remove_auth_check_idle (GSLockPlug *plug)
 {
-        if (plug->priv->password_check_idle_id > 0) {
-                g_source_remove (plug->priv->password_check_idle_id);
-                plug->priv->password_check_idle_id = 0;
+        if (plug->priv->auth_check_idle_id > 0) {
+                g_source_remove (plug->priv->auth_check_idle_id);
+                plug->priv->auth_check_idle_id = 0;
         }
 }
 
@@ -355,7 +358,7 @@ gs_lock_plug_response (GSLockPlug *plug,
         }
 
         remove_monitor_idle (plug);
-        remove_password_check_idle (plug);
+        remove_auth_check_idle (plug);
         remove_password_reset_idle (plug);
         remove_response_idle (plug);
 
@@ -374,8 +377,8 @@ gs_lock_plug_response (GSLockPlug *plug,
                         set_dialog_sensitive (plug, FALSE);
                         set_status_text (plug, _("Checking password..."));
 
-                        plug->priv->password_check_idle_id = g_idle_add ((GSourceFunc)password_check_idle_cb,
-                                                                         plug);
+                        plug->priv->auth_check_idle_id = g_idle_add ((GSourceFunc)auth_check_idle_cb,
+                                                                     plug);
                         return;
                 } else {
                         /* switch user */
@@ -482,6 +485,8 @@ restart_monitor_progress (GSLockPlug *plug)
 static void
 gs_lock_plug_show (GtkWidget *widget)
 {
+        GSLockPlug *plug = GS_LOCK_PLUG (widget);
+
         profile_start ("start", NULL);
 
         profile_start ("start", "parent");
@@ -491,9 +496,15 @@ gs_lock_plug_show (GtkWidget *widget)
 
         profile_end ("end", "parent");
 
-        capslock_update (GS_LOCK_PLUG (widget), is_capslock_on ());
+        capslock_update (plug, is_capslock_on ());
 
-        restart_monitor_progress (GS_LOCK_PLUG (widget));
+        restart_monitor_progress (plug);
+
+#if 0
+        /* Try to check auth right away */
+        plug->priv->initial_auth_check = TRUE;
+        plug->priv->auth_check_idle_id = g_idle_add ((GSourceFunc)auth_check_idle_cb, plug);
+#endif
 
         profile_end ("end", NULL);
 }
@@ -743,14 +754,13 @@ password_reset_idle_cb (GSLockPlug *plug)
         return FALSE;
 }
 
-static gboolean
-password_check_idle_cb (GSLockPlug *plug)
+static char *
+request_password (GSLockPlug *plug,
+                  const char *prompt)
 {
         const char *typed_password;
         char       *null_password;
         char       *local_password;
-
-        plug->priv->password_check_idle_id = 0;
 
         typed_password = gtk_entry_get_text (GTK_ENTRY (plug->priv->auth_password_entry));
         local_password = g_locale_from_utf8 (typed_password, strlen (typed_password), NULL, NULL, NULL);
@@ -760,26 +770,79 @@ password_check_idle_cb (GSLockPlug *plug)
         gtk_entry_set_text (GTK_ENTRY (plug->priv->auth_password_entry), "");
         g_free (null_password);
 
-        if (validate_password (local_password, FALSE)) {
+        return local_password;
+}
+
+static gboolean
+auth_message_handler (GSAuthMessageStyle style,
+                      const char        *msg,
+                      char             **response,
+                      gpointer           data)
+{
+        gboolean ret;
+        GSLockPlug *plug;
+
+        plug = GS_LOCK_PLUG (data);
+
+        g_message ("Got message style %d: '%s'", style, msg);
+
+        ret = TRUE;
+        *response = NULL;
+
+        switch (style) {
+        case GS_AUTH_MESSAGE_PROMPT_ECHO_ON:
+                break;
+        case GS_AUTH_MESSAGE_PROMPT_ECHO_OFF:
+                if (msg != NULL && g_str_has_prefix (msg, "Password:")) {
+                        char *password;
+                        password = request_password (plug, msg);
+                        *response = password;
+                }
+                break;
+        case GS_AUTH_MESSAGE_ERROR_MSG:
+                break;
+        case GS_AUTH_MESSAGE_TEXT_INFO:
+                break;
+        default:
+                g_assert_not_reached ();
+        }
+
+        return ret;
+}
+
+static gboolean
+auth_check_idle_cb (GSLockPlug *plug)
+{
+        GError *error;
+
+        plug->priv->auth_check_idle_id = 0;
+
+        error = NULL;
+        if (gs_auth_verify_user (g_get_user_name (), g_getenv ("DISPLAY"), auth_message_handler, plug, &error)) {
                 g_signal_emit (plug,
                                lock_plug_signals [RESPONSE],
                                0,
                                GS_LOCK_PLUG_RESPONSE_OK);
         } else {
-                remove_password_reset_idle (plug);
+                if (! plug->priv->initial_auth_check) {
+                        remove_password_reset_idle (plug);
 
-                plug->priv->password_reset_idle_id = g_timeout_add (3000,
-                                                                    (GSourceFunc)password_reset_idle_cb,
-                                                                    plug);
+                        plug->priv->password_reset_idle_id = g_timeout_add (3000,
+                                                                            (GSourceFunc)password_reset_idle_cb,
+                                                                            plug);
 
-                set_status_text (plug, _("That password was incorrect."));
+                        set_status_text (plug, _("Authentication failed."));
 
-                printf ("NOTICE=AUTH FAILED\n");
-                fflush (stdout);
+                        printf ("NOTICE=AUTH FAILED\n");
+                        fflush (stdout);
+                }
+
+                if (error != NULL) {
+                        g_error_free (error);
+                }
         }
 
-        memset (local_password, '\b', strlen (local_password));
-        g_free (local_password);
+        plug->priv->initial_auth_check = FALSE;
 
         return FALSE;
 }
@@ -1779,6 +1842,7 @@ load_theme (GSLockPlug *plug)
         plug->priv->auth_realname_label = glade_xml_get_widget (xml, "auth-realname-label");
         plug->priv->auth_username_label = glade_xml_get_widget (xml, "auth-username-label");
         plug->priv->auth_password_entry = glade_xml_get_widget (xml, "auth-password-entry");
+        plug->priv->auth_password_box = glade_xml_get_widget (xml, "auth-password-box");
         plug->priv->auth_capslock_label = glade_xml_get_widget (xml, "auth-capslock-label");
         plug->priv->auth_status_label = glade_xml_get_widget (xml, "auth-status-label");
         plug->priv->auth_unlock_button = glade_xml_get_widget (xml, "auth-unlock-button");
@@ -1935,7 +1999,7 @@ gs_lock_plug_finalize (GObject *object)
                 g_object_unref (plug->priv->fusa_manager);
         }
 
-        remove_password_check_idle (plug);
+        remove_auth_check_idle (plug);
         remove_password_reset_idle (plug);
         remove_response_idle (plug);
         remove_monitor_idle (plug);

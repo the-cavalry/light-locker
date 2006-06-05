@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * Copyright (C) 2004-2005 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2004-2006 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -36,7 +36,7 @@
 
 #include "gs-lock-plug.h"
 
-#include "passwd.h"
+#include "gs-auth.h"
 #include "setuid.h"
 
 
@@ -241,7 +241,7 @@ privileged_initialization (int     *argc,
 
 #ifndef NO_LOCKING
         /* before hack_uid () for proper permissions */
-        lock_priv_init (*argc, argv, verbose);
+        gs_auth_priv_init ();
 #endif /* NO_LOCKING */
 
         ret = hack_uid (&nolock_reason,
@@ -293,7 +293,7 @@ lock_initialization (int     *argc,
 #else /* !NO_LOCKING */
 
         /* Finish initializing locking, now that we're out of privileged code. */
-        if (! lock_init (*argc, argv, verbose)) {
+        if (! gs_auth_init ()) {
                 if (nolock_reason) {
                         *nolock_reason = g_strdup ("error getting password");
                 }

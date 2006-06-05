@@ -1,21 +1,26 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * passwd-pwent.c --- verifying typed passwords with the OS.
+ * Copyright (c) 1993-1998 Jamie Zawinski <jwz@jwz.org>
+ * Copyright (C) 2006 William Jon McCann <mccann@jhu.edu>
  *
- * xscreensaver, Copyright (c) 1993-1998 Jamie Zawinski <jwz@jwz.org>
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
  *
- * Permission to use, copy, modify, distribute, and sell this software and its
- * documentation for any purpose is hereby granted without fee, provided that
- * the above copyright notice appear in all copies and that both that
- * copyright notice and this permission notice appear in supporting
- * documentation.  No representations are made about the suitability of this
- * software for any purpose.  It is provided "as is" without express or 
- * implied warranty.
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
  */
 
 #include "config.h"
-
-#ifndef NO_LOCKING  /* whole file */
 
 #include <stdlib.h>
 #ifdef HAVE_UNISTD_H
@@ -29,12 +34,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/types.h>
-#ifndef VMS
-# include <pwd.h>
-# include <grp.h>
-#else /* VMS */
-# include "vms-pwd.h"
-#endif /* VMS */
+#include <pwd.h>
+#include <grp.h>
 
 #ifdef __bsdi__
 # include <sys/param.h>
@@ -44,6 +45,7 @@
 #endif /* __bsdi__ */
 
 #include <glib.h>
+#include <glib/gi18n.h>
 
 #if defined(HAVE_SHADOW_PASSWD)	      /* passwds live in /etc/shadow */
 
@@ -84,16 +86,37 @@
 
 #endif
 
-#include "passwd-pwent.h"
+#include "gs-auth.h"
+
+static gboolean verbose_enabled = FALSE;
 
 static char *encrypted_root_passwd = NULL;
 static char *encrypted_user_passwd = NULL;
 
-#ifdef VMS
-# define ROOT "SYSTEM"
-#else
-# define ROOT "root"
-#endif
+#define ROOT "root"
+
+GQuark
+gs_auth_error_quark (void)
+{
+        static GQuark quark = 0;
+        if (! quark) {
+                quark = g_quark_from_static_string ("gs_auth_error");
+        }
+
+        return quark;
+}
+
+void
+gs_auth_set_verbose (gboolean enabled)
+{
+        verbose_enabled = enabled;
+}
+
+gboolean
+gs_auth_get_verbose (void)
+{
+        return verbose_enabled;
+}
 
 static gboolean
 passwd_known (const char *pw)
@@ -112,16 +135,18 @@ get_encrypted_passwd (const char *user)
         if (user && *user && !result) {
                 /* First check the shadow passwords. */
                 PWTYPE p = GETPW ((char *) user);
-                if (p && passwd_known (p->PWPSLOT))
+                if (p && passwd_known (p->PWPSLOT)) {
                         result = g_strdup (p->PWPSLOT);
+                }
         }
 #endif /* PWTYPE */
 
         if (user && *user && !result) {
                 /* Check non-shadow passwords too. */
                 struct passwd *p = getpwnam (user);
-                if (p && passwd_known (p->pw_passwd))
+                if (p && passwd_known (p->pw_passwd)) {
                         result = g_strdup (p->pw_passwd);
+                }
         }
 
         /* The manual for passwd(4) on HPUX 10.10 says:
@@ -137,8 +162,9 @@ get_encrypted_passwd (const char *user)
         */
         if (result && strlen (result) > 13) {
                 char *s = strchr (result + 13, ',');
-                if (s)
+                if (s) {
                         *s = 0;
+                }
         }
 
 #ifndef HAVE_PAM
@@ -160,44 +186,33 @@ get_encrypted_passwd (const char *user)
    locking isn't possible.  (It will also have written to stderr.)
 */
 
-#ifndef VMS
-
 gboolean
-pwent_priv_init (int      argc,
-                 char   **argv,
-                 gboolean verbose)
+gs_auth_priv_init (void)
 {
         const char *u;
-
-#ifdef HAVE_ENHANCED_PASSWD
-        set_auth_parameters (argc, argv);
-        check_auth_parameters ();
-#endif /* HAVE_DEC_ENHANCED */
 
         u = g_get_user_name ();
 
         encrypted_user_passwd = get_encrypted_passwd (u);
         encrypted_root_passwd = get_encrypted_passwd (ROOT);
 
-        if (encrypted_user_passwd)
+        if (encrypted_user_passwd != NULL) {
                 return TRUE;
-        else
+        } else {
                 return FALSE;
+        }
 }
 
 
 gboolean
-pwent_lock_init (int      argc,
-                 char   **argv,
-                 gboolean verbose)
+gs_auth_init (void)
 {
-        if (encrypted_user_passwd)
+        if (encrypted_user_passwd != NULL) {
                 return TRUE;
-        else
+        } else {
                 return FALSE;
+        }
 }
-
-
 
 static gboolean
 passwds_match (const char *cleartext,
@@ -224,41 +239,35 @@ passwds_match (const char *cleartext,
         return FALSE;
 }
 
-
-
-/* This can be called at any time, and says whether the typed password
-   belongs to either the logged in user (real uid, not effective); or
-   to root.
-*/
-
 gboolean
-pwent_passwd_valid (const char *typed_passwd,
-                    gboolean    verbose)
+gs_auth_verify_user (const char       *username,
+                     const char       *display,
+                     GSAuthMessageFunc func,
+                     gpointer          data,
+                     GError          **error)
 {
-        if (encrypted_user_passwd &&
-            passwds_match (typed_passwd, encrypted_user_passwd))
-                return TRUE;
+        char *password;
 
-        /* do not allow root to have a null password. */
-        else if (typed_passwd [0] &&
-                 encrypted_root_passwd &&
-                 passwds_match (typed_passwd, encrypted_root_passwd))
-                return TRUE;
+        password = NULL;
 
-        else
+        /* ask for the password for user */
+        if (func != NULL) {
+                func (GS_AUTH_MESSAGE_PROMPT_ECHO_OFF,
+                      "Password: ",
+                      &password,
+                      data);
+        }
+
+        if (password == NULL) {
                 return FALSE;
+        }
+
+        if (encrypted_user_passwd && passwds_match (password, encrypted_user_passwd)) {
+                return TRUE;
+        } else if (password [0] && encrypted_root_passwd && passwds_match (password, encrypted_root_passwd)) {
+                /* do not allow root to have a null password. */
+                return TRUE;
+        } else {
+                return FALSE;
+        }
 }
-
-#else  /* VMS */
-
-gboolean
-pwent_lock_init (int      argc,
-                 char   **argv,
-                 gboolean verbose_p)
-{
-        return TRUE;
-}
-
-#endif /* VMS */
-
-#endif /* NO_LOCKING -- whole file */

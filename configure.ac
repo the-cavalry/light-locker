@@ -1058,6 +1058,48 @@ else
 fi
 AC_SUBST(NEED_SETUID)
 
+dnl ---------------------------------------------------------------------------
+dnl  Authentication scheme
+dnl ---------------------------------------------------------------------------
+
+AC_ARG_ENABLE(authentication-scheme,
+  [  --enable-authentication-scheme=[auto/pam/helper/pwent]  Choose a specific
+                          authentication scheme [default=auto]],,
+  enable_authentication_scheme=auto)
+
+AUTH_SCHEME="auth-pam"
+
+if test x$enable_authentication_scheme = xpam -a x$have_pam = xno ; then
+	AC_MSG_ERROR(PAM support requested but not available)
+fi
+if test x$enable_authentication_scheme = xhelper -a x$have_passwd_helper = xno ; then
+	AC_MSG_ERROR(Password helper support requested but not available)
+fi
+
+if test x$enable_authentication_scheme = xpam ; then
+        AUTH_SCHEME="pam"
+elif test x$enable_authentication_scheme = xhelper ; then
+        AUTH_SCHEME="helper"
+elif test x$enable_authentication_scheme = xpwent ; then
+        AUTH_SCHEME="pwent"
+elif test x$enable_authentication_scheme = xauto ; then
+	if test x$have_pam != xno ; then
+		AUTH_SCHEME="pam"
+	elif test x$have_passwd_helper != xno ; then
+		AUTH_SCHEME="helper"
+	else
+		AUTH_SCHEME="pwent"
+        fi
+else
+	AC_MSG_ERROR(Unknown authentication scheme)
+fi
+
+AC_SUBST(AUTH_SCHEME)
+
+dnl ---------------------------------------------------------------------------
+dnl Finish
+dnl ---------------------------------------------------------------------------
+
 AC_SUBST(AUTH_LIBS)
 AC_SUBST(SAVER_LIBS)
 AC_SUBST(GL_LIBS)
@@ -1243,7 +1285,8 @@ echo "
         Have adjunct shadow:      ${have_shadow_adjunct}
         Have enhanced shadow:     ${have_shadow_enhanced}
         Have HPUX shadow:         ${have_shadow_hpux}
-        Have password helper:     ${have_passwd_helper}"
+        Have password helper:     ${have_passwd_helper}
+        Authentication scheme:    ${AUTH_SCHEME}"
 
 if test "x$need_setuid" = "xyes" -a "x$have_pam" != "xyes" ; then
 echo \

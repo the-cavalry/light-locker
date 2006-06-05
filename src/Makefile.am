@@ -1,10 +1,11 @@
 ## We require new-style dependency handling.
 AUTOMAKE_OPTIONS = 1.7
 
-SUBDIRS = \
-	cut-n-paste
-
 NULL =
+
+SUBDIRS = \
+	cut-n-paste	\
+	$(NULL)
 
 saverdir = $(libexecdir)/gnome-screensaver
 themesdir = $(pkgdatadir)/themes
@@ -59,22 +60,15 @@ gnome_screensaver_command_LDADD =	\
 	$(GNOME_SCREENSAVER_COMMAND_LIBS)
 
 AUTH_SOURCES = 			\
-	passwd.c		\
-	passwd.h		\
-	passwd-pwent.c		\
-	passwd-pwent.h
+	gs-auth.h		\
+	gs-auth-@AUTH_SCHEME@.c	\
+	$(NULL)
 
-if HAVE_PAM
-AUTH_SOURCES += 		\
-	passwd-pam.c		\
-	passwd-pam.h
-endif
-
-if HAVE_PASSWD_HELPER
-AUTH_SOURCES += 		\
-	passwd-helper.c		\
-	passwd-helper.h
-endif
+EXTRA_AUTH_SOURCES = 		\
+	auth-pam.c		\
+	auth-helper.c		\
+	auth-pwent.c		\
+	$(NULL)
 
 test_fade_SOURCES = 			\
 	test-fade.c 			\
@@ -147,6 +141,10 @@ gnome_screensaver_dialog_SOURCES = 	\
 	subprocs.c			\
 	subprocs.h			\
 	$(AUTH_SOURCES)			\
+	$(NULL)
+
+EXTRA_gnome_screensaver_dialog_SOURCES = \
+	$(EXTRA_AUTH_SOURCE)		\
 	$(NULL)
 
 gnome_screensaver_dialog_LDADD =	\

@@ -1,3 +1,45 @@
+2006-06-05  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac:
+	* data/lock-dialog-default.glade:
+	* src/Makefile.am:
+	* src/gnome-screensaver-dialog.c: (privileged_initialization),
+	(lock_initialization):
+	* src/gs-auth-helper.c: (gs_auth_error_quark),
+	(gs_auth_set_verbose), (gs_auth_get_verbose), (ext_run),
+	(gs_auth_verify_user), (gs_auth_init), (gs_auth_priv_init):
+	* src/gs-auth-pam.c: (gs_auth_error_quark), (gs_auth_set_verbose),
+	(gs_auth_get_verbose), (pam_conversation), (close_pam_handle),
+	(create_pam_handle), (gs_auth_verify_user), (gs_auth_init),
+	(gs_auth_priv_init):
+	* src/gs-auth-pwent.c: (gs_auth_error_quark),
+	(gs_auth_set_verbose), (gs_auth_get_verbose), (passwd_known),
+	(get_encrypted_passwd), (gs_auth_priv_init), (gs_auth_init),
+	(passwds_match), (gs_auth_verify_user):
+	* src/gs-auth.h:
+	* src/gs-lock-plug.c: (remove_auth_check_idle),
+	(gs_lock_plug_response), (gs_lock_plug_show), (request_password),
+	(auth_message_handler), (auth_check_idle_cb), (load_theme),
+	(gs_lock_plug_finalize):
+	* src/gs-lock-plug.h:
+
+	* src/passwd-helper.c:
+	* src/passwd-helper.h:
+	* src/passwd-pam.c:
+	* src/passwd-pam.h:
+	* src/passwd-pwent.c:
+	* src/passwd-pwent.h:
+	* src/passwd.c:
+	* src/passwd.h:
+	Removed files.
+	
+	* src/test-passwd.c: (privileged_initialization),
+	(lock_initialization), (request_password), (auth_message_handler),
+	(main):
+
+	Refactor the authentication process so it can drive the GUI better.  No longer
+	support authentication scheme fallbacks.  
+
 2006-06-01  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-listener-dbus.c: (gs_listener_send_signal_active_changed):

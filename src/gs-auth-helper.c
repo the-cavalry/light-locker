@@ -1,7 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * passwd-helper.c --- verifying typed passwords with external helper program
- *
  * written by Olaf Kirch <okir@suse.de>
  * xscreensaver, Copyright (c) 1993-2004 Jamie Zawinski <jwz@jwz.org>
  *
@@ -34,8 +32,6 @@
 
 #include "config.h"
 
-#ifndef NO_LOCKING  /* whole file */
-
 #include <stdlib.h>
 #ifdef HAVE_UNISTD_H
 # include <unistd.h>
@@ -49,9 +45,35 @@
 #include <sys/wait.h>
 
 #include <glib.h>
+#include <glib/gstdio.h>
 
-#include "passwd-helper.h"
+#include "gs-auth.h"
 #include "subprocs.h"
+
+static gboolean verbose_enabled = FALSE;
+
+GQuark
+gs_auth_error_quark (void)
+{
+        static GQuark quark = 0;
+        if (! quark) {
+                quark = g_quark_from_static_string ("gs_auth_error");
+        }
+
+        return quark;
+}
+
+void
+gs_auth_set_verbose (gboolean enabled)
+{
+        verbose_enabled = enabled;
+}
+
+gboolean
+gs_auth_get_verbose (void)
+{
+        return verbose_enabled;
+}
 
 static gboolean
 ext_run (const char *user,
@@ -91,8 +113,9 @@ ext_run (const char *user,
         close (pfd [0]);
 
         /* Write out password to helper process */
-        if (!typed_passwd)
+        if (!typed_passwd) {
                 typed_passwd = "";
+        }
         write (pfd [1], typed_passwd, strlen (typed_passwd));
         close (pfd [1]);
 
@@ -114,34 +137,50 @@ ext_run (const char *user,
         return TRUE;
 }
 
-/* This can be called at any time, and says whether the typed password
-   belongs to either the logged in user (real uid, not effective); or
-   to root.
-*/
 gboolean
-ext_passwd_valid (const char *typed_passwd,
-                  gboolean    verbose)
+gs_auth_verify_user (const char       *username,
+                     const char       *display,
+                     GSAuthMessageFunc func,
+                     gpointer          data,
+                     GError          **error)
 {
-        struct passwd *pw;
         gboolean       res = FALSE;
+        char          *password;
 
-        if ((pw = getpwuid (getuid ())) != NULL)
-                res = ext_run (pw->pw_name, typed_passwd, verbose);
-        endpwent ();
+        password = NULL;
 
-        if (!res)
-                res = ext_run ("root", typed_passwd, verbose);
+        /* ask for the password for user */
+        if (func != NULL) {
+                func (GS_AUTH_MESSAGE_PROMPT_ECHO_OFF,
+                      "Password: ",
+                      &password,
+                      data);
+        }
+
+        if (password == NULL) {
+                return FALSE;
+        }
+
+        res = ext_run (username, password, gs_auth_get_verbose ());
+
+        if (! res) {
+                res = ext_run ("root", password, gs_auth_get_verbose ());
+        }
 
         return res;
 }
 
+gboolean
+gs_auth_init (void)
+{
+        return TRUE;
+}
+
 gboolean 
-ext_priv_init (int      argc,
-               char   **argv,
-               gboolean verbose)
+gs_auth_priv_init (void)
 {
         /* Make sure the passwd helper exists */
-        if (access (PASSWD_HELPER_PROGRAM, X_OK) < 0) {
+        if (g_access (PASSWD_HELPER_PROGRAM, X_OK) < 0) {
                 g_warning ("%s does not exist. "
                            "password authentication via "
                            "external helper will not work.",
@@ -151,5 +190,3 @@ ext_priv_init (int      argc,
 
         return TRUE;
 }
-
-#endif /* NO_LOCKING -- whole file */
