@@ -177,6 +177,21 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/gnome-screensaver/try_auth_first</key>
+      <applyto>/apps/gnome-screensaver/try_auth_first</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>bool</type>
+      <default>FALSE</default>
+      <locale name="C">
+        <short>Try authentication first</short>
+        <long>
+          Set this to TRUE to try to authenticate before a password
+          has been entered.
+        </long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/gnome-screensaver/lock_dialog_theme</key>
       <applyto>/apps/gnome-screensaver/lock_dialog_theme</applyto>
       <owner>gnome-screensaver</owner>

@@ -49,9 +49,10 @@
 
 #include "fusa-manager.h"
 
-/* Profiling stuff adapted from gtkfilechooserdefault */
-
 #define KEY_LOCK_DIALOG_THEME "/apps/gnome-screensaver/lock_dialog_theme"
+#define KEY_TRY_AUTH_FIRST    "/apps/gnome-screensaver/try_auth_first"
+
+/* Profiling stuff adapted from gtkfilechooserdefault */
 
 #undef PROFILE_LOCK_DIALOG
 #ifdef PROFILE_LOCK_DIALOG
@@ -482,6 +483,19 @@ restart_monitor_progress (GSLockPlug *plug)
                                              plug);
 }
 
+static gboolean
+get_try_lock_first (GSLockPlug *plug)
+{
+        gboolean     try_first;
+        GConfClient *client;
+
+        client = gconf_client_get_default ();
+        try_first = gconf_client_get_bool (client, KEY_TRY_AUTH_FIRST, NULL);
+        g_object_unref (client);
+
+        return try_first;
+}
+
 static void
 gs_lock_plug_show (GtkWidget *widget)
 {
@@ -500,11 +514,11 @@ gs_lock_plug_show (GtkWidget *widget)
 
         restart_monitor_progress (plug);
 
-#if 0
-        /* Try to check auth right away */
-        plug->priv->initial_auth_check = TRUE;
-        plug->priv->auth_check_idle_id = g_idle_add ((GSourceFunc)auth_check_idle_cb, plug);
-#endif
+        if (get_try_lock_first (plug)) {
+                /* Try to check auth right away */
+                plug->priv->initial_auth_check = TRUE;
+                plug->priv->auth_check_idle_id = g_idle_add ((GSourceFunc)auth_check_idle_cb, plug);
+        }
 
         profile_end ("end", NULL);
 }

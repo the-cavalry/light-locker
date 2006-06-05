@@ -1,5 +1,14 @@
 2006-06-05  William Jon McCann  <mccann@jhu.edu>
 
+	* data/gnome-screensaver.schemas.in:
+	* src/gs-lock-plug.c: (get_try_lock_first), (gs_lock_plug_show):
+	Add a try_auth_first gconf key to enable trying authentication
+	before a password has been entered.
+
+	Fixes #338635.
+
+2006-06-05  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac:
 	* data/lock-dialog-default.glade:
 	* src/Makefile.am:
