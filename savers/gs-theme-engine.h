@@ -64,13 +64,13 @@ GdkWindow      *gs_theme_engine_get_window      (GSThemeEngine *engine);
 #define ENABLE_PROFILING 1
 #ifdef ENABLE_PROFILING
 #ifdef G_HAVE_ISO_VARARGS
-#define gs_theme_engine_profile_start(...) _gs_theme_engine_profile_log (G_STRFUNC, __VA_ARGS__)
-#define gs_theme_engine_profile_end(...)   _gs_theme_engine_profile_log (G_STRFUNC, __VA_ARGS__)
-#define gs_theme_engine_profile_msg(...)   _gs_theme_engine_profile_log (NULL, __VA_ARGS__)
+#define gs_theme_engine_profile_start(...) _gs_theme_engine_profile_log (G_STRFUNC, "start", __VA_ARGS__)
+#define gs_theme_engine_profile_end(...)   _gs_theme_engine_profile_log (G_STRFUNC, "end", __VA_ARGS__)
+#define gs_theme_engine_profile_msg(...)   _gs_theme_engine_profile_log (NULL, NULL, __VA_ARGS__)
 #elif defined(G_HAVE_GNUC_VARARGS)
-#define gs_theme_engine_profile_start(format...) _gs_theme_engine_profile_log (G_STRFUNC, format)
-#define gs_theme_engine_profile_end(format...)   _gs_theme_engine_profile_log (G_STRFUNC, format)
-#define gs_theme_engine_profile_msg(format...)   _gs_theme_engine_profile_log (NULL, format)
+#define gs_theme_engine_profile_start(format...) _gs_theme_engine_profile_log (G_STRFUNC, "start", format)
+#define gs_theme_engine_profile_end(format...)   _gs_theme_engine_profile_log (G_STRFUNC, "end", format)
+#define gs_theme_engine_profile_msg(format...)   _gs_theme_engine_profile_log (NULL, NULL, format)
 #endif
 #else
 #define gs_theme_engine_profile_start(...)
@@ -79,8 +79,9 @@ GdkWindow      *gs_theme_engine_get_window      (GSThemeEngine *engine);
 #endif
 
 void            _gs_theme_engine_profile_log    (const char *func,
+                                                 const char *note,
                                                  const char *format,
-                                                 ...) G_GNUC_PRINTF (2, 3);
+                                                 ...) G_GNUC_PRINTF (3, 4);
 
 G_END_DECLS
 

@@ -48,6 +48,7 @@ G_DEFINE_ABSTRACT_TYPE (GSThemeEngine, gs_theme_engine, GTK_TYPE_DRAWING_AREA)
 
 void
 _gs_theme_engine_profile_log (const char *func,
+                              const char *note,
                               const char *format,
                               ...)
 {
@@ -60,9 +61,9 @@ _gs_theme_engine_profile_log (const char *func,
         va_end (args);
 
         if (func != NULL) {
-                str = g_strdup_printf ("MARK: %s %s: %s", g_get_prgname(), func, formatted);
+                str = g_strdup_printf ("MARK: %s %s: %s %s", g_get_prgname(), func, note ? note : "", formatted);
         } else {
-                str = g_strdup_printf ("MARK: %s: %s", g_get_prgname(), formatted);
+                str = g_strdup_printf ("MARK: %s: %s %s", g_get_prgname(), note ? note : "", formatted);
         }
 
         g_free (formatted);

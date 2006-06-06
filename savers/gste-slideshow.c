@@ -468,8 +468,10 @@ update_display (GSTESlideshow *show)
                 cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
                 cairo_fill (cr);
 
+                gs_theme_engine_profile_start ("paint pattern to surface");
                 cairo_set_source (cr, show->priv->pat2);
                 cairo_paint_with_alpha (cr, show->priv->alpha2);
+                gs_theme_engine_profile_end ("paint pattern to surface");
         } else {
                 if (show->priv->pat1 != NULL) {
                         cairo_set_source (cr, show->priv->pat1);
@@ -481,8 +483,13 @@ update_display (GSTESlideshow *show)
 
         /* paint the image buffer into the window */
         cr = gdk_cairo_create (GTK_WIDGET (show)->window);
+
         cairo_set_source_surface (cr, show->priv->surf, 0, 0);
+
+        gs_theme_engine_profile_start ("paint surface to window");
         cairo_paint (cr);
+        gs_theme_engine_profile_end ("paint surface to window");
+
         cairo_destroy (cr);
 
         gs_theme_engine_profile_end ("end");
