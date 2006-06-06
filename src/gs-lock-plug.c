@@ -845,7 +845,11 @@ auth_check_idle_cb (GSLockPlug *plug)
                                                                             (GSourceFunc)password_reset_idle_cb,
                                                                             plug);
 
-                        set_status_text (plug, _("Authentication failed."));
+                        if (error != NULL) {
+                                set_status_text (plug, error->message);
+                        } else {
+                                set_status_text (plug, _("Authentication failed."));
+                        }
 
                         printf ("NOTICE=AUTH FAILED\n");
                         fflush (stdout);

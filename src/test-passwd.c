@@ -251,6 +251,10 @@ main (int    argc,
         if (gs_auth_verify_user (g_get_user_name (), g_getenv ("DISPLAY"), auth_message_handler, NULL, &error)) {
                 printf ("Correct!\n");
         } else {
+                if (error != NULL) {
+                        fprintf (stderr, "ERROR: %s\n", error->message);
+                        g_error_free (error);
+                }
                 printf ("Incorrect\n");
         }
 

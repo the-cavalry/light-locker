@@ -1,5 +1,15 @@
 2006-06-05  William Jon McCann  <mccann@jhu.edu>
 
+	* src/Makefile.am:
+	* src/gs-auth-pam.c: (pam_style_to_gs_style),
+	(auth_message_handler), (pam_conversation), (set_pam_error),
+	(gs_auth_verify_user):
+	* src/gs-lock-plug.c: (auth_check_idle_cb):
+	* src/test-passwd.c: (main):
+	More auth tweaking.
+
+2006-06-05  William Jon McCann  <mccann@jhu.edu>
+
 	* data/gnome-screensaver.schemas.in:
 	* src/gs-lock-plug.c: (get_try_lock_first), (gs_lock_plug_show):
 	Add a try_auth_first gconf key to enable trying authentication

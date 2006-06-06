@@ -64,12 +64,6 @@ AUTH_SOURCES = 			\
 	gs-auth-@AUTH_SCHEME@.c	\
 	$(NULL)
 
-EXTRA_AUTH_SOURCES = 		\
-	auth-pam.c		\
-	auth-helper.c		\
-	auth-pwent.c		\
-	$(NULL)
-
 test_fade_SOURCES = 			\
 	test-fade.c 			\
 	gs-fade.c	 		\
@@ -144,7 +138,9 @@ gnome_screensaver_dialog_SOURCES = 	\
 	$(NULL)
 
 EXTRA_gnome_screensaver_dialog_SOURCES = \
-	$(EXTRA_AUTH_SOURCE)		\
+	auth-pam.c		\
+	auth-helper.c		\
+	auth-pwent.c		\
 	$(NULL)
 
 gnome_screensaver_dialog_LDADD =	\

@@ -75,6 +75,7 @@
 
 static gboolean verbose_enabled = FALSE;
 static pam_handle_t *pam_handle = NULL;
+static gboolean did_we_ask_for_password = FALSE;
 
 struct pam_closure {
         const char       *username;
@@ -105,6 +106,62 @@ gs_auth_get_verbose (void)
         return verbose_enabled;
 }
 
+static GSAuthMessageStyle
+pam_style_to_gs_style (int pam_style)
+{
+        GSAuthMessageStyle style;
+
+        switch (pam_style) {
+        case PAM_PROMPT_ECHO_ON:
+                style = GS_AUTH_MESSAGE_PROMPT_ECHO_ON;
+                break;
+        case PAM_PROMPT_ECHO_OFF:
+                style = GS_AUTH_MESSAGE_PROMPT_ECHO_OFF;
+                break;
+        case PAM_ERROR_MSG:
+                style = GS_AUTH_MESSAGE_ERROR_MSG;
+                break;
+        case PAM_TEXT_INFO:
+                style = GS_AUTH_MESSAGE_TEXT_INFO;
+                break;
+        default:
+                g_assert_not_reached ();
+                break;
+        }
+
+        return style;
+}
+
+static gboolean
+auth_message_handler (GSAuthMessageStyle style,
+                      const char        *msg,
+                      char             **response,
+                      gpointer           data)
+{
+        gboolean ret;
+
+        ret = TRUE;
+        *response = NULL;
+
+        switch (style) {
+        case GS_AUTH_MESSAGE_PROMPT_ECHO_ON:
+                break;
+        case GS_AUTH_MESSAGE_PROMPT_ECHO_OFF:
+                if (msg != NULL && g_str_has_prefix (msg, "Password:")) {
+                        did_we_ask_for_password = TRUE;                        
+                }
+                break;
+        case GS_AUTH_MESSAGE_ERROR_MSG:
+                break;
+        case GS_AUTH_MESSAGE_TEXT_INFO:
+                break;
+        default:
+                g_assert_not_reached ();
+        }
+
+        return ret;
+}
+
 static int
 pam_conversation (int                        nmsgs,
                   const struct pam_message **msg,
@@ -122,8 +179,18 @@ pam_conversation (int                        nmsgs,
         }
 	
         for (replies = 0; replies < nmsgs; replies++) {
+                GSAuthMessageStyle style;
+
+                style = pam_style_to_gs_style (msg [replies]->msg_style);
+
+                /* handle message locally first */
+                auth_message_handler (style,
+                                      msg [replies]->msg,
+                                      &reply [replies].resp,
+                                      NULL);
+
                 if (c->cb_func != NULL) {
-                        c->cb_func (msg [replies]->msg_style,
+                        c->cb_func (style,
                                     msg [replies]->msg,
                                     &reply [replies].resp,
                                     c->cb_data);
@@ -228,6 +295,28 @@ create_pam_handle (const char      *username,
         return ret;
 }
 
+static void
+set_pam_error (GError **error,
+               int      status)
+{
+        char *msg;
+
+        msg = NULL;
+        if (status == PAM_AUTH_ERR || status == PAM_USER_UNKNOWN) {
+                if (did_we_ask_for_password) {
+                        msg = g_strdup (_("Incorrect password."));
+                } else {
+                        msg = g_strdup (_("Authentication failed."));
+                }
+
+                g_set_error (error,
+                             GS_AUTH_ERROR,
+                             GS_AUTH_ERROR_AUTH_ERROR,
+                             "%s",
+                             msg);
+        }
+}
+
 gboolean
 gs_auth_verify_user (const char       *username,
                      const char       *display,
@@ -236,12 +325,14 @@ gs_auth_verify_user (const char       *username,
                      GError          **error)
 {
         int                status = -1;
+        int                status2;
         struct pam_conv    conv;
         struct pam_closure c;
         sigset_t           set;
         struct timespec    timeout;
         struct passwd     *pwent;
         int                null_tok = 0;
+        const void        *p;
 
         pwent = getpwnam (username);
         if (pwent == NULL) {
@@ -269,6 +360,7 @@ gs_auth_verify_user (const char       *username,
         timeout.tv_nsec = 1;
         set = block_sigchld ();
 
+        did_we_ask_for_password = FALSE;
         status = pam_authenticate (pam_handle, null_tok);
 
         sigtimedwait (&set, NULL, &timeout);
@@ -280,55 +372,64 @@ gs_auth_verify_user (const char       *username,
                            PAM_STRERROR (pam_handle, status));
         }
 
-        if (status == PAM_SUCCESS) {
-                int status2;
-
-                /* We don't actually care if the account modules fail or succeed,
-                 * but we need to run them anyway because certain pam modules
-                 * depend on side effects of the account modules getting run.
-                 */
-                status2 = pam_acct_mgmt (pam_handle, null_tok);
-
-                if (gs_auth_get_verbose ()) {
-                        g_message ("pam_acct_mgmt (...) ==> %d (%s)\n",
-                                   status2,
-                                   PAM_STRERROR (pam_handle, status2));
-                }
-
-                /* FIXME: should be handle these? */
-                switch (status2) {
-                case PAM_SUCCESS :
-                        break;
-                case PAM_NEW_AUTHTOK_REQD :
-                        break;
-                case PAM_ACCT_EXPIRED :
-                        break;
-                case PAM_PERM_DENIED :
-                        break;
-                default :
-                        break;
-                }
-
-                /* Each time we successfully authenticate, refresh credentials,
-                   for Kerberos/AFS/DCE/etc.  If this fails, just ignore that
-                   failure and blunder along; it shouldn't matter.
-                   
-                   Note: this used to be PAM_REFRESH_CRED instead of
-                   PAM_REINITIALIZE_CRED, but Jason Heiss <jheiss@ee.washington.edu>
-                   says that the Linux PAM library ignores that one, and only refreshes
-                   credentials when using PAM_REINITIALIZE_CRED.
-                */
-                status2 = pam_setcred (pam_handle, PAM_REINITIALIZE_CRED);
-                if (gs_auth_get_verbose ()) {
-                        g_message ("   pam_setcred (...) ==> %d (%s)",
-                                   status2,
-                                   PAM_STRERROR (pam_handle, status2));
-                }
-
+        if (status != PAM_SUCCESS) {
                 goto DONE;
         }
 
+        if ((status = pam_get_item (pam_handle, PAM_USER, &p)) != PAM_SUCCESS) {
+                /* is not really an auth problem, but it will
+                   pretty much look as such, it shouldn't really
+                   happen */
+                goto DONE;
+        }
+
+        /* We don't actually care if the account modules fail or succeed,
+         * but we need to run them anyway because certain pam modules
+         * depend on side effects of the account modules getting run.
+         */
+        status2 = pam_acct_mgmt (pam_handle, null_tok);
+
+        if (gs_auth_get_verbose ()) {
+                g_message ("pam_acct_mgmt (...) ==> %d (%s)\n",
+                           status2,
+                           PAM_STRERROR (pam_handle, status2));
+        }
+
+        /* FIXME: should be handle these? */
+        switch (status2) {
+        case PAM_SUCCESS :
+                break;
+        case PAM_NEW_AUTHTOK_REQD :
+                break;
+        case PAM_ACCT_EXPIRED :
+                break;
+        case PAM_PERM_DENIED :
+                break;
+        default :
+                break;
+        }
+
+        /* Each time we successfully authenticate, refresh credentials,
+           for Kerberos/AFS/DCE/etc.  If this fails, just ignore that
+           failure and blunder along; it shouldn't matter.
+           
+           Note: this used to be PAM_REFRESH_CRED instead of
+           PAM_REINITIALIZE_CRED, but Jason Heiss <jheiss@ee.washington.edu>
+           says that the Linux PAM library ignores that one, and only refreshes
+           credentials when using PAM_REINITIALIZE_CRED.
+        */
+        status2 = pam_setcred (pam_handle, PAM_REINITIALIZE_CRED);
+        if (gs_auth_get_verbose ()) {
+                g_message ("   pam_setcred (...) ==> %d (%s)",
+                           status2,
+                           PAM_STRERROR (pam_handle, status2));
+        }
+
  DONE:
+        if (status != PAM_SUCCESS) {
+                set_pam_error (error, status);
+        }
+
         close_pam_handle (status);
 
         return (status == PAM_SUCCESS ? TRUE : FALSE);
