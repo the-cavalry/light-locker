@@ -1,5 +1,9 @@
 2006-06-06  William Jon McCann  <mccann@jhu.edu>
 
+	* src/Makefile.am: Fix filenames.  Fixes distcheck.
+
+2006-06-06  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/gste-slideshow.c (N_FADE_TICKS):
 	Reduce the number of fade ticks.
 

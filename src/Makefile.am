@@ -138,9 +138,9 @@ gnome_screensaver_dialog_SOURCES = 	\
 	$(NULL)
 
 EXTRA_gnome_screensaver_dialog_SOURCES = \
-	auth-pam.c		\
-	auth-helper.c		\
-	auth-pwent.c		\
+	gs-auth-pam.c		\
+	gs-auth-helper.c	\
+	gs-auth-pwent.c		\
 	$(NULL)
 
 gnome_screensaver_dialog_LDADD =	\
