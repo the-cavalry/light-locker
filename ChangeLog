@@ -1,5 +1,10 @@
 2006-06-06  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/gste-slideshow.c (N_FADE_TICKS):
+	Reduce the number of fade ticks.
+
+2006-06-06  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/gs-theme-engine.c: (_gs_theme_engine_profile_log):
 	* savers/gs-theme-engine.h:
 	* savers/gste-slideshow.c: (update_display):

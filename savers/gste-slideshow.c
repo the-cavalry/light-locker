@@ -94,7 +94,7 @@ static GObjectClass *parent_class = NULL;
 
 G_DEFINE_TYPE (GSTESlideshow, gste_slideshow, GS_TYPE_THEME_ENGINE)
 
-#define N_FADE_TICKS 20
+#define N_FADE_TICKS 10
 #define DEFAULT_IMAGES_LOCATION DATADIR "/pixmaps/backgrounds"
 #define IMAGE_LOAD_TIMEOUT 10000
 
