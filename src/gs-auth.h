@@ -36,7 +36,8 @@ typedef enum {
 typedef enum {
 	GS_AUTH_ERROR_GENERAL,
         GS_AUTH_ERROR_AUTH_ERROR,
-        GS_AUTH_ERROR_USER_UNKNOWN
+        GS_AUTH_ERROR_USER_UNKNOWN,
+        GS_AUTH_ERROR_AUTH_DENIED
 } GSAuthError;
 
 typedef gboolean  (* GSAuthMessageFunc) (GSAuthMessageStyle style,

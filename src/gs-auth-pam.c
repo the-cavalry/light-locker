@@ -299,10 +299,9 @@ static void
 set_pam_error (GError **error,
                int      status)
 {
-        char *msg;
-
-        msg = NULL;
         if (status == PAM_AUTH_ERR || status == PAM_USER_UNKNOWN) {
+                char *msg;
+
                 if (did_we_ask_for_password) {
                         msg = g_strdup (_("Incorrect password."));
                 } else {
@@ -314,7 +313,21 @@ set_pam_error (GError **error,
                              GS_AUTH_ERROR_AUTH_ERROR,
                              "%s",
                              msg);
+                g_free (msg);
+        } else if (status == PAM_PERM_DENIED) {
+                g_set_error (error,
+                             GS_AUTH_ERROR,
+                             GS_AUTH_ERROR_AUTH_DENIED,
+                             "%s",
+                             _("Not permitted to gain access at this time."));
+        } else if (status == PAM_ACCT_EXPIRED) {
+                g_set_error (error,
+                             GS_AUTH_ERROR,
+                             GS_AUTH_ERROR_AUTH_DENIED,
+                             "%s",
+                             _("No longer permitted to access the system."));
         }
+
 }
 
 gboolean
@@ -395,15 +408,17 @@ gs_auth_verify_user (const char       *username,
                            PAM_STRERROR (pam_handle, status2));
         }
 
-        /* FIXME: should be handle these? */
+        /* FIXME: should we handle these? */
         switch (status2) {
-        case PAM_SUCCESS :
+        case PAM_SUCCESS:
                 break;
-        case PAM_NEW_AUTHTOK_REQD :
+        case PAM_NEW_AUTHTOK_REQD:
                 break;
-        case PAM_ACCT_EXPIRED :
+        case PAM_AUTHINFO_UNAVAIL:
                 break;
-        case PAM_PERM_DENIED :
+        case PAM_ACCT_EXPIRED:
+                break;
+        case PAM_PERM_DENIED:
                 break;
         default :
                 break;

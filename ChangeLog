@@ -1,3 +1,10 @@
+2006-06-06  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-auth-pam.c: (set_pam_error), (gs_auth_verify_user):
+	* src/gs-auth.h:
+	Cover a few more error cases even though they don't ever
+	seem to occur.
+
 2006-06-05  William Jon McCann  <mccann@jhu.edu>
 
 	* src/Makefile.am:
