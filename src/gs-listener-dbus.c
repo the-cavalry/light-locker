@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * Copyright (C) 2004-2005 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2004-2006 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -90,7 +90,7 @@ enum {
         LOCK,
         CYCLE,
         QUIT,
-        POKE,
+        SIMULATE_USER_ACTIVITY,
         ACTIVE_CHANGED,
         THROTTLE_CHANGED,
         LAST_SIGNAL
@@ -1141,8 +1141,8 @@ listener_dbus_filter_handle_methods (DBusConnection *connection,
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getSessionIdleTime")) {
                 return listener_get_session_idle_time (listener, connection, message);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Poke")) {
-                g_signal_emit (listener, signals [POKE], 0);
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "SimulateUserActivity")) {
+                g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
 
@@ -1367,11 +1367,11 @@ gs_listener_class_init (GSListenerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
-        signals [POKE] =
-                g_signal_new ("poke",
+        signals [SIMULATE_USER_ACTIVITY] =
+                g_signal_new ("simulate-user-activity",
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, poke),
+                              G_STRUCT_OFFSET (GSListenerClass, simulate_user_activity),
                               NULL,
                               NULL,
                               g_cclosure_marshal_VOID__VOID,

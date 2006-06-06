@@ -262,8 +262,8 @@ listener_throttle_changed_cb (GSListener *listener,
 }
 
 static void
-listener_poke_cb (GSListener *listener,
-                  GSMonitor  *monitor)
+listener_simulate_user_activity_cb (GSListener *listener,
+                                    GSMonitor  *monitor)
 {
         /* in case the screen isn't blanked reset the
            idle watcher */
@@ -324,7 +324,7 @@ disconnect_listener_signals (GSMonitor *monitor)
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_cycle_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_active_changed_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_throttle_changed_cb, monitor);
-        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_poke_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_simulate_user_activity_cb, monitor);
 }
 
 static void
@@ -340,8 +340,8 @@ connect_listener_signals (GSMonitor *monitor)
                           G_CALLBACK (listener_active_changed_cb), monitor);
         g_signal_connect (monitor->priv->listener, "throttle-changed",
                           G_CALLBACK (listener_throttle_changed_cb), monitor);
-        g_signal_connect (monitor->priv->listener, "poke",
-                          G_CALLBACK (listener_poke_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "simulate-user-activity",
+                          G_CALLBACK (listener_simulate_user_activity_cb), monitor);
 }
 
 static void

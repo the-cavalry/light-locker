@@ -1,5 +1,19 @@
 2006-06-06  William Jon McCann  <mccann@jhu.edu>
 
+	* doc/DBUS-API.txt: Rename poke and add some more
+	descriptions.
+
+	* src/gnome-screensaver-command.c: (do_command):
+	* src/gs-listener-dbus.c: (listener_dbus_filter_handle_methods),
+	(gs_listener_class_init):
+	* src/gs-listener-dbus.h:
+	* src/gs-monitor.c: (listener_simulate_user_activity_cb),
+	(disconnect_listener_signals), (connect_listener_signals):
+	Rename Poke to SimulateUserActivity since that seems to be
+	preferred from feedback on XDG list.  How boring.
+
+2006-06-06  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-auth-pam.c: (set_pam_error), (gs_auth_verify_user):
 	* src/gs-auth.h:
 	Cover a few more error cases even though they don't ever

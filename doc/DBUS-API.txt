@@ -20,18 +20,21 @@ Methods
         Name:           Lock
         Args:           (none)
         Returns:        (nothing)
-        Description:    Request that the screen be locked
+        Description:    Request that the screen be locked.  This bypasses
+                        all Inhibit requests.
 
         Name:           Cycle
         Args:           (none)
         Returns:        (nothing)
         Description:    Request that the screen saver theme be restarted
-                        and if applicable switch to the next one in the list.
+                        and, if applicable, switch to the next one in the list.
 
-        Name:           Poke
+        Name:           SimulateUserActivity
         Args:           (none)
         Returns:        (nothing)
-        Description:    Simulate user activity.
+        Description:    Simulate user activity.  If the screensaver is activated this will
+                        attempt to deactivate and authentication will be requested if necessary.
+                        If the screensaver is not activated then the idle timers will be reset.
 
         Name:           Inhibit
         Args:           DBUS_TYPE_STRING "application-name"
