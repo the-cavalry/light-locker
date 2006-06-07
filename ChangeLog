@@ -1,5 +1,9 @@
 2006-06-06  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac: Add missing DOCDIR stuff.
+
+2006-06-06  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac:
 	* doc/.cvsignore:
 	* doc/DBUS-API.txt:

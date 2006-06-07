@@ -230,6 +230,19 @@ AM_CONDITIONAL(HAVE_USER_SWITCHING, test x$enable_user_switching = xyes)
 AC_SUBST(HAVE_USER_SWITCHING)
 
 dnl ---------------------------------------------------------------------------
+dnl - Where should we put documentation ?
+dnl ---------------------------------------------------------------------------
+AC_ARG_WITH(doc-dir,
+              [AC_HELP_STRING([--with-doc-dir=<dir>],
+              [directory to install documentation])])
+if ! test -z "$with_doc_dir"; then
+   DOCDIR="$with_doc_dir/gnome-screensaver-$VERSION"
+else
+   DOCDIR="$datadir/doc/gnome-screensaver-$VERSION"
+fi
+AC_SUBST(DOCDIR)
+
+dnl ---------------------------------------------------------------------------
 dnl - DocBook Documentation
 dnl ---------------------------------------------------------------------------
 AC_ARG_ENABLE(docbook-docs, [  --enable-docbook-docs   build documentation (requires xmlto)],enable_docbook_docs=$enableval,enable_docbook_docs=auto)
