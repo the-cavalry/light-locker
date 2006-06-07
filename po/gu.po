@@ -8,14 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-29 06:58+0200\n"
-"PO-Revision-Date: 2006-05-29 11:42+0530\n"
+"POT-Creation-Date: 2006-06-07 06:58+0200\n"
+"PO-Revision-Date: 2006-06-07 12:21+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -128,6 +129,10 @@ msgstr ""
 "કરો. વિલંબ એ \"logout_delay\" કીમાં સ્પષ્ટ થયેલ છે."
 
 #: ../data/gnome-screensaver.schemas.in.h:12
+msgid "Set this to TRUE to try to authenticate before a password has been entered."
+msgstr "પાસવર્ડ દાખલ થાય તે પહેલાં સત્તાધિકરારીત કરવાનો પ્રયાસ કરતાં પહેલાં આને TRUE સુયોજિત કરો."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -137,11 +142,11 @@ msgstr ""
 "કોઈપણ જાતના સંપર્ક વિના તેને બહાર કાઢી નાંખવો જોઈએ. આ કીને માત્ર ત્યારે જ હોય જો "
 "\"logout_enable\" કી એ ખરું તરીકે સુયોજિત થયેલ હોય."
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid "The number of minutes after screensaver activation before locking the screen."
 msgstr "સ્ક્રીનને તાળું મારવા પહેલાં સ્ક્રીનસેવર સક્રિયકરણ પછી મિનિટોની સંખ્યા."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -151,15 +156,15 @@ msgstr ""
 "સંખ્યા. આ કીને માત્ર ત્યારે જ અસર હશે જો \"logout_enable\" કી એ ખરું તરીકે સુયોજિત થયેલ "
 "હોય."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid "The number of minutes of inactivity before the session is considered idle."
 msgstr "સત્ર એ ફાજલ તરીકે સમજવામાં આવે તે પહેલાં અસક્રિયતાની મિનિટોની સંખ્યા."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "સ્ક્રીનસેવર થીમ બદલવા પહેલાં ચલાવવા માટેની મિનિટોની સંખ્યા."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
@@ -172,15 +177,15 @@ msgstr ""
 "સ્પષ્ટ થયેલ છે) પર માત્ર એક થીમની મદદથી સ્ક્રીનસેવર સક્રિય કરવા માટે \"એક\", અને "
 "સક્રિયકરણ પર રેન્ડમ થીમની મદદથી સ્ક્રીનસેવર સક્રિય કરવા માટે \"રેન્ડમ\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:18
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid "Theme for lock dialog"
 msgstr "તાળા સંવાદ માટે થીમ"
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid "Theme to use for the lock dialog."
 msgstr "તાળા સંવાદ માટે વાપરવા માટેની થીમ."
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -191,21 +196,25 @@ msgstr ""
 "કી એ \"માત્ર-કોરી\" હોય, તમારે થીમ નામ પૂરું પાડવું જોઈએ જ્યારે \"સ્થિતિ\" એ \"એક\" "
 "હોય, અને થીમોની યાદી પૂરી પાડવી જોઈએ જ્યારે \"સ્થિતિ\" એ \"રેન્ડમ\" હોય."
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid "Time before activation"
 msgstr "સક્રિયકરણ પહેલાંનો સમય"
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid "Time before locking"
 msgstr "તાળું મારવા પહેલાંનો સમય"
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid "Time before logout option"
 msgstr "બહારનીકળો વિકલ્પ પહેલાંનો સમય"
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Time before theme change"
 msgstr "થીમ બદલાય તે પહેલાંનો સમય"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Try authentication first"
+msgstr "સત્તાધિકરણ પ્રથમ પ્રયત્ન કરો"
 
 #: ../data/lock-dialog-default.glade.h:2
 #, no-c-format
@@ -217,7 +226,7 @@ msgstr "<span size=\"small\">%U એ %h પર</span>"
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5 ../src/gs-lock-plug.c:1623
+#: ../data/lock-dialog-default.glade.h:5 ../src/gs-lock-plug.c:1739
 msgid "S_witch to user:"
 msgstr "વપરાશકર્તામાં બદલાવ (_w):"
 
@@ -229,7 +238,7 @@ msgstr "રદ કરો (_C)"
 msgid "_Log Out"
 msgstr "બહાર નીકળો (_L)"
 
-#: ../data/lock-dialog-default.glade.h:8 ../src/gs-lock-plug.c:1547
+#: ../data/lock-dialog-default.glade.h:8 ../src/gs-lock-plug.c:1663
 msgid "_Password:"
 msgstr "પાસવર્ડ (_P):"
 
@@ -241,7 +250,7 @@ msgstr "વપરાશકર્તા બદલો (_S)..."
 msgid "_Switch user..."
 msgstr "વપરાશકર્તા બદલો (_S)..."
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1352
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1468
 msgid "_Unlock"
 msgstr "તાળું ખોલો (_U)"
 
@@ -780,43 +789,43 @@ msgstr "ડિમન બનશો નહિં"
 msgid "Enable debugging code"
 msgstr "ડિબગીંગ કોડ સક્રિય કરો"
 
-#: ../src/gs-listener-dbus.c:1451
+#: ../src/gs-listener-dbus.c:1552
 msgid "failed to register with the message bus"
 msgstr "સંદેશા બસ સાથે રજીસ્ટર કરવામાં નિષ્ફળ"
 
-#: ../src/gs-listener-dbus.c:1461
+#: ../src/gs-listener-dbus.c:1562
 msgid "not connected to the message bus"
 msgstr "સંદેશા બસમાં જોડાયેલ નથી"
 
-#: ../src/gs-listener-dbus.c:1470
+#: ../src/gs-listener-dbus.c:1571
 msgid "screensaver already running in this session"
 msgstr "આ સત્રમાં સ્ક્રીનસેવર પહેલાથી જ ચાલી રહ્યું છે"
 
-#: ../src/gs-lock-plug.c:375
+#: ../src/gs-lock-plug.c:379
 msgid "Checking password..."
 msgstr "પાસવર્ડ ચકાસી રહ્યા છીએ..."
 
-#: ../src/gs-lock-plug.c:418
+#: ../src/gs-lock-plug.c:422
 msgid "Time has expired."
 msgstr "સમય સમાપ્ત થઈ ગયો."
 
-#: ../src/gs-lock-plug.c:448
+#: ../src/gs-lock-plug.c:452
 msgid "You have the Caps Lock key on."
 msgstr "તમારી Caps Lock કી ચાલુ છે."
 
-#: ../src/gs-lock-plug.c:775
-msgid "That password was incorrect."
-msgstr "તે પાસવર્ડ ખોલો હતો."
+#: ../src/gs-lock-plug.c:851
+msgid "Authentication failed."
+msgstr "સત્તાધિકરણ નિષ્ફળ."
 
-#: ../src/gs-lock-plug.c:1334 ../src/gs-lock-plug.c:1371
+#: ../src/gs-lock-plug.c:1450 ../src/gs-lock-plug.c:1487
 msgid "S_witch User..."
 msgstr "વપરાશકર્તા બદલો (_w)..."
 
-#: ../src/gs-lock-plug.c:1342
+#: ../src/gs-lock-plug.c:1458
 msgid "Log _Out"
 msgstr "બહાર નીકળો (_O)"
 
-#: ../src/gs-lock-plug.c:1533
+#: ../src/gs-lock-plug.c:1649
 msgid "%U on %h"
 msgstr "%U એ %h પર"
 
