@@ -211,9 +211,9 @@
       </informaltable>
     </sect2>
 
-    <sect2 id="gs-method-setActive">
+    <sect2 id="gs-method-SetActive">
       <title>
-        <literal>setActive</literal>
+        <literal>SetActive</literal>
       </title>
       <para>
         Request a change in the state of the screensaver.
@@ -241,12 +241,12 @@
       </informaltable>
     </sect2>
 
-    <sect2 id="gs-method-getActive">
+    <sect2 id="gs-method-GetActive">
       <title>
-        <literal>getActive</literal>
+        <literal>GetActive</literal>
       </title>
       <para>
-        Returns the value of the current state of activity. See setActive().
+        Returns the value of the current state of activity. See SetActive().
       </para>
       <informaltable>
         <tgroup cols="2">
@@ -268,9 +268,37 @@
       </informaltable>
     </sect2>
 
-    <sect2 id="gs-method-getSessionIdle">
+    <sect2 id="gs-method-GetActiveTime">
       <title>
-        <literal>getSessionIdle</literal>
+        <literal>GetActiveTime</literal>
+      </title>
+      <para>
+        Returns the number of seconds that the screensaver has been active.
+        Returns zero if the screensaver is not active.
+      </para>
+      <informaltable>
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry>Direction</entry>
+              <entry>Type</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>out</entry>
+              <entry>unsigned integer</entry>
+              <entry>Active time in seconds</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+    </sect2>
+
+    <sect2 id="gs-method-GetSessionIdle">
+      <title>
+        <literal>GetSessionIdle</literal>
       </title>
       <para>
         Returns the value of the current state of session idleness.
@@ -295,9 +323,9 @@
       </informaltable>
     </sect2>
 
-    <sect2 id="gs-method-getSessionIdleTime">
+    <sect2 id="gs-method-GetSessionIdleTime">
       <title>
-        <literal>getSessionIdleTime</literal>
+        <literal>GetSessionIdleTime</literal>
       </title>
       <para>
         Returns the number of seconds that the session has been idle.
@@ -315,7 +343,7 @@
           <tbody>
             <row>
               <entry>out</entry>
-              <entry>integer</entry>
+              <entry>unsigned integer</entry>
               <entry>Idle time in seconds</entry>
             </row>
           </tbody>
@@ -335,7 +363,7 @@
         <literal>ActiveChanged</literal>
       </title>
       <para>
-        See method getActive().
+        See method GetActive().
       </para>
       <informaltable>
         <tgroup cols="2">
@@ -362,7 +390,7 @@
         <literal>SessionIdleChanged</literal>
       </title>
       <para>
-        See method getActive().
+        See method GetActive().
       </para>
       <informaltable>
         <tgroup cols="2">
@@ -416,7 +444,7 @@ dbus-send --session \
           --print-reply \
           --reply-timeout=20000 \
           /org/gnome/ScreenSaver \
-          org.gnome.ScreenSaver.getSessionIdleTime
+          org.gnome.ScreenSaver.GetSessionIdleTime
     </screen>
     <para>
       You can activate the screensaver like so:
@@ -428,7 +456,7 @@ dbus-send --session \
           --print-reply \
           --reply-timeout=20000 \
           /org/gnome/ScreenSaver \
-          org.gnome.ScreenSaver.setActive \
+          org.gnome.ScreenSaver.SetActive \
           boolean:true
     </screen>
 

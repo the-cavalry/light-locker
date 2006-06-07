@@ -185,7 +185,7 @@ do_command (DBusConnection *connection)
                 DBusMessageIter iter;
                 dbus_bool_t     v;
 
-                reply = screensaver_send_message_void (connection, "getActive", TRUE);
+                reply = screensaver_send_message_void (connection, "GetActive", TRUE);
                 if (! reply) {
                         g_message ("Did not receive a reply from the screensaver.");
                         goto done;
@@ -211,7 +211,7 @@ do_command (DBusConnection *connection)
         }
 
         if (do_activate) {
-                reply = screensaver_send_message_bool (connection, "setActive", TRUE);
+                reply = screensaver_send_message_bool (connection, "SetActive", TRUE);
                 if (! reply) {
                         g_message ("Did not receive a reply from the screensaver.");
                         goto done;
@@ -220,7 +220,7 @@ do_command (DBusConnection *connection)
         }
 
         if (do_deactivate) {
-                reply = screensaver_send_message_bool (connection, "setActive", FALSE);
+                reply = screensaver_send_message_bool (connection, "SetActive", FALSE);
                 if (! reply) {
                         g_message ("Did not receive a reply from the screensaver.");
                         goto done;

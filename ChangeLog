@@ -1,5 +1,15 @@
 2006-06-06  William Jon McCann  <mccann@jhu.edu>
 
+	* doc/dbus-interface.xml:
+	* src/gnome-screensaver-command.c: (do_command):
+	* src/gs-listener-dbus.c: (do_introspect),
+	(listener_dbus_filter_handle_methods):
+	Add introspection after learning how to do it
+	from hal.  Change setActive and others to
+	use the DBUS naming convention.
+
+2006-06-06  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Add missing DOCDIR stuff.
 
 2006-06-06  William Jon McCann  <mccann@jhu.edu>

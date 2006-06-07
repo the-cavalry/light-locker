@@ -1084,6 +1084,101 @@ listener_get_session_idle_time (GSListener     *listener,
 }
 
 static DBusHandlerResult
+do_introspect (DBusConnection *connection,
+               DBusMessage    *message,
+               dbus_bool_t     local_interface)
+{
+        DBusMessage *reply;
+        GString     *xml;
+        char        *xml_string;
+
+        /* standard header */
+        xml = g_string_new ("<!DOCTYPE node PUBLIC \"-//freedesktop//DTD D-BUS Object Introspection 1.0//EN\"\n"
+                            "\"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd\">\n"
+                            "<node>\n"
+                            "  <interface name=\"org.freedesktop.DBus.Introspectable\">\n"
+                            "    <method name=\"Introspect\">\n"
+                            "      <arg name=\"data\" direction=\"out\" type=\"s\"/>\n"
+                            "    </method>\n"
+                            "  </interface>\n");
+
+        /* ScreenSaver interface */
+        xml = g_string_append (xml,
+                               "  <interface name=\"org.gnome.ScreenSaver\">\n"
+                               "    <method name=\"Lock\">\n"
+                               "    </method>\n"
+                               "    <method name=\"Cycle\">\n"
+                               "    </method>\n"
+                               "    <method name=\"SimulateUserActivity\">\n"
+                               "    </method>\n"
+                               "    <method name=\"Inhibit\">\n"
+                               "      <arg name=\"application_name\" direction=\"in\" type=\"s\"/>\n"
+                               "      <arg name=\"reason\" direction=\"in\" type=\"s\"/>\n"
+                               "      <arg name=\"cookie\" direction=\"out\" type=\"u\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"UnInhibit\">\n"
+                               "      <arg name=\"cookie\" direction=\"in\" type=\"u\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"Throttle\">\n"
+                               "      <arg name=\"application_name\" direction=\"in\" type=\"s\"/>\n"
+                               "      <arg name=\"reason\" direction=\"in\" type=\"s\"/>\n"
+                               "      <arg name=\"cookie\" direction=\"out\" type=\"u\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"UnThrottle\">\n"
+                               "      <arg name=\"cookie\" direction=\"in\" type=\"u\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"GetActive\">\n"
+                               "      <arg name=\"value\" direction=\"out\" type=\"b\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"GetActiveTime\">\n"
+                               "      <arg name=\"seconds\" direction=\"out\" type=\"u\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"SetActive\">\n"
+                               "      <arg name=\"value\" direction=\"in\" type=\"b\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"GetSessionIdle\">\n"
+                               "      <arg name=\"value\" direction=\"out\" type=\"b\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"GetSessionIdleTime\">\n"
+                               "      <arg name=\"seconds\" direction=\"out\" type=\"u\"/>\n"
+                               "    </method>\n"
+                               "    <signal name=\"ActiveChanged\">\n"
+                               "      <arg name=\"new_value\" type=\"b\"/>\n"
+                               "    </signal>\n"
+                               "    <signal name=\"SessionIdleChanged\">\n"
+                               "      <arg name=\"new_value\" type=\"b\"/>\n"
+                               "    </signal>\n"
+                               "    <signal name=\"AuthenticationRequestBegin\">\n"
+                               "    </signal>\n"
+                               "    <signal name=\"AuthenticationRequestEnd\">\n"
+                               "    </signal>\n"
+                               "  </interface>\n");
+
+        reply = dbus_message_new_method_return (message);
+
+        xml = g_string_append (xml, "</node>\n");
+        xml_string = g_string_free (xml, FALSE);
+
+        dbus_message_append_args (reply, 
+                                  DBUS_TYPE_STRING, &xml_string,
+                                  DBUS_TYPE_INVALID);
+
+        g_free (xml_string);
+
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
 listener_dbus_filter_handle_methods (DBusConnection *connection,
                                      DBusMessage    *message, 
                                      void           *user_data,
@@ -1126,24 +1221,27 @@ listener_dbus_filter_handle_methods (DBusConnection *connection,
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "UnThrottle")) {
                 return listener_dbus_remove_ref_entry (listener, REF_ENTRY_TYPE_THROTTLE, connection, message);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "setActive")) {
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "SetActive")) {
                 return listener_set_property (listener, connection, message, PROP_ACTIVE);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getActive")) {
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "GetActive")) {
                 return listener_get_property (listener, connection, message, PROP_ACTIVE);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getActiveTime")) {
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "GetActiveTime")) {
                 return listener_get_active_time (listener, connection, message);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getSessionIdle")) {
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "GetSessionIdle")) {
                 return listener_get_property (listener, connection, message, PROP_SESSION_IDLE);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "getSessionIdleTime")) {
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "GetSessionIdleTime")) {
                 return listener_get_session_idle_time (listener, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "SimulateUserActivity")) {
                 g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
                 return DBUS_HANDLER_RESULT_HANDLED;
+        }
+	if (dbus_message_is_method_call (message, "org.freedesktop.DBus.Introspectable", "Introspect")) {
+		return do_introspect (connection, message, local_interface);
         }
 
         return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
