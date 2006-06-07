@@ -235,7 +235,7 @@ passwds_match (const char *cleartext,
                 return TRUE;
 
 #endif /* HAVE_BIGCRYPT */
-  
+
         return FALSE;
 }
 

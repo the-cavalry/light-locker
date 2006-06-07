@@ -382,7 +382,6 @@ preview_set_theme (GtkWidget  *widget,
 
                         gs_job_start (job);
                 }
-                
         } else {
                 if (! gs_job_set_theme (job, theme, &error)) {
                         if (error) {
@@ -453,9 +452,10 @@ populate_model (GtkTreeStore *store)
 
         themes = get_theme_info_list ();
 
-        if (! themes)
+        if (themes == NULL) {
                 return;
-        
+        }
+
         for (l = themes; l; l = l->next) {
                 GSJobThemeInfo *info = l->data;
 
@@ -614,12 +614,13 @@ separator_func (GtkTreeModel *model,
 {
         int   column = GPOINTER_TO_INT (data);
         char *text;
-        
+
         gtk_tree_model_get (model, iter, column, &text, -1);
-        
-        if (text && strcmp (text, "__separator") == 0)
+
+        if (text != NULL && strcmp (text, "__separator") == 0) {
                 return TRUE;
-        
+        }
+
         g_free (text);
 
         return FALSE;
@@ -806,7 +807,7 @@ theme_installer_run (GtkWidget *parent,
                 if (! gnome_vfs_uri_exists (gnome_vfs_uri_new (target_path)))
                         break;
         }
-                
+
         g_free (user_dir);
 
         target = g_list_append (NULL, gnome_vfs_uri_new (target_path));
@@ -1083,7 +1084,7 @@ key_changed_cb (GConfClient *client,
 
 static void
 fullscreen_preview_previous_cb (GtkWidget *fullscreen_preview_window,
-                                gpointer   user_data) 
+                                gpointer   user_data)
 {
         GtkWidget        *treeview;
         GtkTreeSelection *selection;
@@ -1095,7 +1096,7 @@ fullscreen_preview_previous_cb (GtkWidget *fullscreen_preview_window,
 
 static void
 fullscreen_preview_next_cb (GtkWidget *fullscreen_preview_window,
-                            gpointer   user_data) 
+                            gpointer   user_data)
 {
         GtkWidget        *treeview;
         GtkTreeSelection *selection;
@@ -1107,7 +1108,7 @@ fullscreen_preview_next_cb (GtkWidget *fullscreen_preview_window,
 
 static void
 fullscreen_preview_cancelled_cb (GtkWidget *button,
-                                 gpointer   user_data) 
+                                 gpointer   user_data)
 {
 
         GtkWidget *fullscreen_preview_area;
@@ -1120,7 +1121,7 @@ fullscreen_preview_cancelled_cb (GtkWidget *button,
 
         fullscreen_preview_area = glade_xml_get_widget (xml, "fullscreen_preview_area");
         preview_clear (fullscreen_preview_area);
-        
+
         fullscreen_preview_window = glade_xml_get_widget (xml, "fullscreen_preview_window");
         gtk_widget_hide (fullscreen_preview_window);
 
@@ -1139,14 +1140,14 @@ fullscreen_preview_start_cb (GtkWidget *widget,
 
         dialog = glade_xml_get_widget (xml, "prefs_dialog");
         gtk_widget_hide (dialog);
-        
+
         fullscreen_preview_window = glade_xml_get_widget (xml, "fullscreen_preview_window");
         gtk_widget_show (fullscreen_preview_window);
         gtk_widget_grab_focus (fullscreen_preview_window);
 
         gtk_window_fullscreen (GTK_WINDOW (fullscreen_preview_window));
         gtk_window_set_keep_above (GTK_WINDOW (fullscreen_preview_window), TRUE);
-				
+
         fullscreen_preview_area = glade_xml_get_widget (xml, "fullscreen_preview_area");
         gs_job_set_widget (job, fullscreen_preview_area);
 }
@@ -1181,7 +1182,7 @@ check_is_root_user (void)
 #ifndef G_OS_WIN32
   uid_t ruid, euid, suid; /* Real, effective and saved user ID's */
   gid_t rgid, egid, sgid; /* Real, effective and saved group ID's */
-  
+
 #ifdef HAVE_GETRESUID
   /* These aren't in the header files, so we prototype them here.
    */
@@ -1398,9 +1399,9 @@ main (int    argc,
         bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 # ifdef HAVE_BIND_TEXTDOMAIN_CODESET
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-# endif 
+# endif
         textdomain (GETTEXT_PACKAGE);
-#endif 
+#endif
 
         gnome_program_init (PACKAGE, VERSION,
                             LIBGNOMEUI_MODULE,

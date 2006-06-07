@@ -106,7 +106,7 @@ _gs_lock_plug_profile_log (const char *func,
 #endif
 
 
-enum { 
+enum {
         AUTH_PAGE = 0,
         SWITCH_PAGE
 };
@@ -675,15 +675,14 @@ static void
 gs_lock_plug_close (GSLockPlug *plug)
 {
         /* Synthesize delete_event to close dialog. */
-  
+
         GtkWidget *widget = GTK_WIDGET (plug);
         GdkEvent  *event;
 
         event = gdk_event_new (GDK_DELETE);
-  
         event->any.window = g_object_ref (widget->window);
         event->any.send_event = TRUE;
-  
+
         gtk_main_do_event (event);
         gdk_event_free (event);
 }
@@ -749,7 +748,7 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
                                                                G_PARAM_READWRITE));
 
         binding_set = gtk_binding_set_by_class (klass);
-  
+
         gtk_binding_entry_add_signal (binding_set, GDK_Escape, 0,
                                       "close", 0);
 }
@@ -985,7 +984,7 @@ get_user_display_label (FusaUser *user)
 {
         char *label;
 
-        label = g_strdup_printf ("<big>%s</big>\n<small>%s</small>", 
+        label = g_strdup_printf ("<big>%s</big>\n<small>%s</small>",
                                  fusa_user_get_display_name (user),
                                  fusa_user_get_user_name (user));
 
@@ -1041,7 +1040,7 @@ populate_model (GSLockPlug   *plug,
         } else {
                 theme = gtk_icon_theme_get_default ();
         }
-        
+
         pixbuf = gtk_icon_theme_load_icon (theme, "gdm", icon_size, 0, NULL);
 
         profile_start ("start", "FUSA list users");
@@ -1169,7 +1168,7 @@ separator_func (GtkTreeModel *model,
         gboolean is_separator;
 
         gtk_tree_model_get (model, iter, column, &text, -1);
-        
+
         if (text && strcmp (text, "__separator") == 0) {
                 is_separator = TRUE;
         } else {
@@ -1505,7 +1504,7 @@ expand_string (const char *text)
         p = text;
         n_chars = g_utf8_strlen (text, -1);
         i = 0;
-  
+
         while (i < n_chars) {
                 gunichar ch;
 
@@ -1595,7 +1594,7 @@ expand_string (const char *text)
                 p = g_utf8_next_char (p);
                 i++;
         }
-  
+
  bail:
 
         return g_string_free (str, FALSE);

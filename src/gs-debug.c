@@ -53,7 +53,7 @@ gs_debug_real (const char *func,
         va_start (args, format);
 
         g_vsnprintf (buffer, 1024, format, args);
-        
+
         va_end (args);
 
         time (&the_time);

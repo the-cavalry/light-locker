@@ -71,7 +71,7 @@ struct GSJobPrivate
         char           *current_theme;
 };
 
-typedef struct 
+typedef struct
 {
         char  *dir;
         time_t mtime; /* 0 == not existing or not a dir */
@@ -430,7 +430,7 @@ gs_job_died (GSJob *job)
 {
         if (job->priv->pid > 0) {
                 int exit_status;
-                        
+
                 exit_status = wait_on_child (job->priv->pid);
 
                 job->priv->status = GS_JOB_DEAD;

@@ -1,5 +1,45 @@
 2006-06-07  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-command.c: (main):
+	* src/gnome-screensaver-dialog.c: (main):
+	* src/gnome-screensaver-preferences.c: (preview_set_theme),
+	(populate_model), (separator_func), (theme_installer_run),
+	(fullscreen_preview_previous_cb), (fullscreen_preview_next_cb),
+	(fullscreen_preview_cancelled_cb), (fullscreen_preview_start_cb),
+	(check_is_root_user), (main):
+	* src/gnome-screensaver.c: (main):
+	* src/gs-auth-helper.c:
+	* src/gs-auth-pam.c: (auth_message_handler), (pam_conversation),
+	(gs_auth_verify_user):
+	* src/gs-auth-pwent.c: (passwds_match):
+	* src/gs-debug.c: (gs_debug_real):
+	* src/gs-fade.c: (check_gamma_extension), (gamma_info_init):
+	* src/gs-grab-x11.c: (gs_grab_move_mouse):
+	* src/gs-job.c: (gs_job_died):
+	* src/gs-listener-dbus.c: (do_introspect),
+	(listener_dbus_filter_handle_methods),
+	(gs_listener_message_handler), (listener_dbus_filter_function),
+	(screensaver_is_running):
+	* src/gs-lock-plug.c: (gs_lock_plug_close),
+	(gs_lock_plug_class_init), (get_user_display_label),
+	(populate_model), (separator_func), (expand_string):
+	* src/gs-manager.c: (window_deactivated_cb):
+	* src/gs-prefs.c: (key_changed_cb):
+	* src/gs-watcher-x11.c: (disable_builtin_screensaver),
+	(schedule_wakeup_event):
+	* src/gs-window-x11.c: (gs_window_override_user_time),
+	(gs_window_dialog_finish):
+	* src/test-fade.c: (main):
+	* src/test-passwd.c: (main):
+	* src/test-watcher.c: (main):
+	* src/test-window.c: (main):
+
+	Eliminate trailing whitespace found using
+	(setq-default show-trailing-whitespace t)
+	in ~/.emacs.
+
+2006-06-07  William Jon McCann  <mccann@jhu.edu>
+
 	* doc/.cvsignore:
 	* doc/gnome-screensaver.html:
 	Check in generated html documentation so

@@ -1100,7 +1100,7 @@ disable_builtin_screensaver (GSWatcher *watcher,
             || desired_server_interval != current_server_interval
             || desired_prefer_blank    != current_prefer_blank
             || desired_allow_exp       != current_allow_exp) {
- 
+
                 gs_debug ("disabling server builtin screensaver:"
                           " (xset s %d %d; xset s %s; xset s %s)",
                           desired_server_timeout,
@@ -1245,7 +1245,7 @@ schedule_wakeup_event (GSWatcher *watcher,
                 gs_debug ("idle_timer already running");
                 return;
         }
-        
+
         timeout = when;
 
         /* Wake up before idle so we can send a notice signal */

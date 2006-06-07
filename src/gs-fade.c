@@ -86,7 +86,7 @@ struct GSFadePrivate
 
 };
 
-enum { 
+enum {
         FADED,
         LAST_SIGNAL
 };
@@ -248,13 +248,13 @@ check_gamma_extension (void)
                 return FADE_TYPE_NONE;  /* unable to get version number? */
         }
 
-        if (major < XF86_VIDMODE_GAMMA_MIN_MAJOR || 
+        if (major < XF86_VIDMODE_GAMMA_MIN_MAJOR ||
             (major == XF86_VIDMODE_GAMMA_MIN_MAJOR &&
              minor < XF86_VIDMODE_GAMMA_MIN_MINOR)) {
                 return FADE_TYPE_NONE;  /* extension is too old for gamma. */
         }
 
-        if (major < XF86_VIDMODE_GAMMA_RAMP_MIN_MAJOR || 
+        if (major < XF86_VIDMODE_GAMMA_RAMP_MIN_MAJOR ||
             (major == XF86_VIDMODE_GAMMA_RAMP_MIN_MAJOR &&
              minor < XF86_VIDMODE_GAMMA_RAMP_MIN_MINOR)) {
                 return FADE_TYPE_GAMMA_NUMBER;  /* extension is too old for gamma ramps. */
@@ -303,7 +303,7 @@ gamma_info_init (GSFade *fade)
 
         info = g_new0 (xf86_gamma_info, fade->priv->num_screens);
         fade->priv->gamma_info = info;
-        
+
         /* Get the current gamma maps for all screens.
            Bug out and return -1 if we can't get them for some screen.
         */

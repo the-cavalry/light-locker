@@ -45,7 +45,7 @@
 
 #include "subprocs.h"
 
-/* Some time between Red Hat 4.2 and 7.0, the words were transposed 
+/* Some time between Red Hat 4.2 and 7.0, the words were transposed
    in the various PAM_x_CRED macro names.  Yay!
 */
 #ifndef  PAM_REFRESH_CRED
@@ -148,7 +148,7 @@ auth_message_handler (GSAuthMessageStyle style,
                 break;
         case GS_AUTH_MESSAGE_PROMPT_ECHO_OFF:
                 if (msg != NULL && g_str_has_prefix (msg, "Password:")) {
-                        did_we_ask_for_password = TRUE;                        
+                        did_we_ask_for_password = TRUE;
                 }
                 break;
         case GS_AUTH_MESSAGE_ERROR_MSG:
@@ -177,7 +177,7 @@ pam_conversation (int                        nmsgs,
         if (reply == NULL) {
                 return PAM_CONV_ERR;
         }
-	
+
         for (replies = 0; replies < nmsgs; replies++) {
                 GSAuthMessageStyle style;
 
@@ -427,7 +427,7 @@ gs_auth_verify_user (const char       *username,
         /* Each time we successfully authenticate, refresh credentials,
            for Kerberos/AFS/DCE/etc.  If this fails, just ignore that
            failure and blunder along; it shouldn't matter.
-           
+
            Note: this used to be PAM_REFRESH_CRED instead of
            PAM_REINITIALIZE_CRED, but Jason Heiss <jheiss@ee.washington.edu>
            says that the Linux PAM library ignores that one, and only refreshes
@@ -456,7 +456,7 @@ gs_auth_init (void)
         return TRUE;
 }
 
-gboolean 
+gboolean
 gs_auth_priv_init (void)
 {
         /* We have nothing to do at init-time.

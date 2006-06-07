@@ -303,7 +303,7 @@ gs_grab_move_mouse (GSGrab    *grab,
                 g_warning ("Could not grab mouse for new window.  Resuming previous grab.");
                 gs_grab_get_mouse (grab, old_window, old_screen, old_hide_cursor);
         }
-                
+
         gs_debug ("*** releasing X server grab");
         gdk_x11_ungrab_server ();
         gdk_flush ();

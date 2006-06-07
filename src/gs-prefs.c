@@ -404,7 +404,7 @@ key_changed_cb (GConfClient *client,
                     || value->type != GCONF_VALUE_LIST) {
                         return;
                 }
-                            
+
                 list = gconf_value_get_list (value);
 
                 if (list

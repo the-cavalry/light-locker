@@ -805,7 +805,7 @@ window_deactivated_cb (GSWindow  *window,
 {
         g_return_if_fail (manager != NULL);
         g_return_if_fail (GS_IS_MANAGER (manager));
-        
+
         g_idle_add ((GSourceFunc)window_deactivated_idle, manager);
 }
 

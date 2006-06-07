@@ -1159,7 +1159,7 @@ do_introspect (DBusConnection *connection,
         xml = g_string_append (xml, "</node>\n");
         xml_string = g_string_free (xml, FALSE);
 
-        dbus_message_append_args (reply, 
+        dbus_message_append_args (reply,
                                   DBUS_TYPE_STRING, &xml_string,
                                   DBUS_TYPE_INVALID);
 
@@ -1180,15 +1180,15 @@ do_introspect (DBusConnection *connection,
 
 static DBusHandlerResult
 listener_dbus_filter_handle_methods (DBusConnection *connection,
-                                     DBusMessage    *message, 
+                                     DBusMessage    *message,
                                      void           *user_data,
                                      dbus_bool_t     local_interface)
 {
         GSListener *listener = GS_LISTENER (user_data);
 
 #if 0
-        g_message ("obj_path=%s interface=%s method=%s destination=%s", 
-                   dbus_message_get_path (message), 
+        g_message ("obj_path=%s interface=%s method=%s destination=%s",
+                   dbus_message_get_path (message),
                    dbus_message_get_interface (message),
                    dbus_message_get_member (message),
                    dbus_message_get_destination (message));
@@ -1256,8 +1256,8 @@ gs_listener_message_handler (DBusConnection *connection,
         g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
 
 #if 0
-        g_message ("obj_path=%s interface=%s method=%s destination=%s", 
-                   dbus_message_get_path (message), 
+        g_message ("obj_path=%s interface=%s method=%s destination=%s",
+                   dbus_message_get_path (message),
                    dbus_message_get_interface (message),
                    dbus_message_get_member (message),
                    dbus_message_get_destination (message));
@@ -1281,7 +1281,6 @@ gs_listener_message_handler (DBusConnection *connection,
                 return DBUS_HANDLER_RESULT_HANDLED;
         } else if (dbus_message_is_signal (message, DBUS_INTERFACE_LOCAL, "Disconnected") &&
                    strcmp (dbus_message_get_path (message), DBUS_PATH_LOCAL) == 0) {
-                
                 dbus_connection_unref (connection);
 
                 return DBUS_HANDLER_RESULT_HANDLED;
@@ -1343,8 +1342,8 @@ listener_dbus_filter_function (DBusConnection *connection,
         path = dbus_message_get_path (message);
 
         /*
-        g_message ("obj_path=%s interface=%s method=%s", 
-                   dbus_message_get_path (message), 
+        g_message ("obj_path=%s interface=%s method=%s",
+                   dbus_message_get_path (message),
                    dbus_message_get_interface (message),
                    dbus_message_get_member (message));
         */
@@ -1522,7 +1521,7 @@ screensaver_is_running (DBusConnection *connection)
 {
         DBusError error;
         gboolean  exists;
-              
+
         g_return_val_if_fail (connection != NULL, FALSE);
 
         dbus_error_init (&error);

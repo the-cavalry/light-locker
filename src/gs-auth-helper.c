@@ -176,7 +176,7 @@ gs_auth_init (void)
         return TRUE;
 }
 
-gboolean 
+gboolean
 gs_auth_priv_init (void)
 {
         /* Make sure the passwd helper exists */

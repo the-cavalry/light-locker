@@ -152,9 +152,9 @@ gs_window_override_user_time (GSWindow *window)
                                                GDK_PROPERTY_CHANGE_MASK);
                 }
 
-                /* 
+                /*
                  * NOTE: Last resort for D-BUS or other non-interactive
-                 *       openings.  Causes roundtrip to server.  Lame. 
+                 *       openings.  Causes roundtrip to server.  Lame.
                  */
                 ev_time = gdk_x11_get_server_time (GTK_WIDGET (window)->window);
         }
@@ -809,7 +809,7 @@ gs_window_dialog_finish (GSWindow *window)
 
         if (window->priv->pid > 0) {
                 int exit_status;
-                        
+
                 exit_status = wait_on_child (window->priv->pid);
 
                 g_spawn_close_pid (window->priv->pid);
