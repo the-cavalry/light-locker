@@ -1,5 +1,19 @@
 2006-06-06  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac:
+	* doc/.cvsignore:
+	* doc/DBUS-API.txt:
+	* doc/Makefile.am:
+	* doc/config.xsl:
+	* doc/dbus-interface.xml:
+	* doc/docbook.css:
+	* doc/gnome-screensaver.xml.in:
+	Convert API documentation to docbook.
+
+	Patch from Richard Hughes.
+
+2006-06-06  William Jon McCann  <mccann@jhu.edu>
+
 	* src/Makefile.am: Fix filenames.  Fixes distcheck.
 
 2006-06-06  William Jon McCann  <mccann@jhu.edu>

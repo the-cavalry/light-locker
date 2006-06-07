@@ -229,6 +229,31 @@ fi
 AM_CONDITIONAL(HAVE_USER_SWITCHING, test x$enable_user_switching = xyes)
 AC_SUBST(HAVE_USER_SWITCHING)
 
+dnl ---------------------------------------------------------------------------
+dnl - DocBook Documentation
+dnl ---------------------------------------------------------------------------
+AC_ARG_ENABLE(docbook-docs, [  --enable-docbook-docs   build documentation (requires xmlto)],enable_docbook_docs=$enableval,enable_docbook_docs=auto)
+AC_PATH_PROG(XMLTO, xmlto, no)
+AC_MSG_CHECKING([whether to build DocBook documentation])
+if test x$XMLTO = xno ; then
+    have_docbook=no
+else
+    have_docbook=yes
+fi
+if test x$enable_docbook_docs = xauto ; then
+    if test x$have_docbook = xno ; then
+        enable_docbook_docs=no
+    else
+        enable_docbook_docs=yes
+    fi
+fi
+if test x$enable_docbook_docs = xyes; then
+    if test x$have_docbook = xno; then
+	AC_MSG_ERROR([Building DocBook docs explicitly required, but DocBook not found])
+    fi
+fi
+AM_CONDITIONAL(DOCBOOK_DOCS_ENABLED, test x$enable_docbook_docs = xyes)
+AC_MSG_RESULT(yes)
 
 dnl ---------------------------------------------------------------------------
 dnl - Some utility functions to make checking for X things easier.
@@ -1253,6 +1278,7 @@ savers/Makefile
 savers/cosmos-slideshow.desktop.in
 savers/footlogo-floaters.desktop.in
 doc/Makefile
+doc/gnome-screensaver.xml
 ])
 
 echo "

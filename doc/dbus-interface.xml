@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- CVSID: $Id$ -->
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+
+<chapter id="dbus-interface">
+  <title>DBUS Interface</title>
+  <para>
+    This API is currently unstable and is likely to change in the future.
+  </para>
+
+  <sect1 id="gs-intro">
+    <title>Introduction</title>
+    <para>
+      GNOME Screensaver exposes a DBUS API for programs to obtain information about
+      the screensaver state and to interact with the screensaver in limited ways.
+    </para>
+    <para>
+      The following constants are used to uniquely refer to the GnomeScreensaver
+      object when making DBUS method calls:
+    </para>
+    <informaltable>
+      <tgroup cols="2">
+        <tbody>
+          <row>
+            <entry>DBUS Service:</entry>
+            <entry><literal>org.gnome.ScreenSaver</literal></entry>
+          </row>
+          <row>
+            <entry>DBUS Object Path:</entry>
+            <entry><literal>/org/gnome/ScreenSaver</literal></entry>
+          </row>
+          <row>
+            <entry>DBUS Interface:</entry>
+            <entry><literal>org.gnome.ScreenSaver</literal></entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+  </sect1>
+
+  <sect1 id="gs-methods">
+    <title>Methods</title>
+    <para>
+      These are the DBUS methods.
+    </para>
+
+    <sect2 id="gs-method-Lock">
+      <title>
+        <literal>Lock</literal>
+      </title>
+      <para>
+        Request that the screen be locked.  This bypasses all Inhibit requests.
+      </para>
+    </sect2>
+
+    <sect2 id="gs-method-Cycle">
+      <title>
+        <literal>Cycle</literal>
+      </title>
+      <para>
+        Request that the screen saver theme be restarted and, if applicable,
+        switch to the next one in the list.
+      </para>
+    </sect2>
+
+    <sect2 id="gs-method-SimulateUserActivity">
+      <title>
+        <literal>SimulateUserActivity</literal>
+      </title>
+      <para>
+        Simulate user activity.  If the screensaver is activated this
+        will attempt to deactivate and authentication will be
+        requested if necessary.  If the screensaver is not activated
+        then the idle timers will be reset.
+      </para>
+    </sect2>
+
+    <sect2 id="gs-method-Inhibit">
+      <title>
+        <literal>Inhibit</literal>
+      </title>
+      <para>
+        Request that saving the screen due to system idleness be blocked until
+        UnInhibit is called or the calling process exits.
+      </para>
+      <informaltable>
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry>Direction</entry>
+              <entry>Type</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>in</entry>
+              <entry>string</entry>
+              <entry>the application name, e.g. "totem"</entry>
+            </row>
+            <row>
+              <entry>in</entry>
+              <entry>string</entry>
+              <entry>the localized reason to inhibit, e.g. "playing movie"</entry>
+            </row>
+            <row>
+              <entry>out</entry>
+              <entry>unsigned integer</entry>
+              <entry>the cookie</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+      <para>
+        A cookie is a random, unique, non-zero UINT32 used to identify the inhibit.
+      </para>
+    </sect2>
+
+    <sect2 id="gs-method-UnInhibit">
+      <title>
+        <literal>UnInhibit</literal>
+      </title>
+      <para>
+        Cancel a previous call to Inhibit() identified by the cookie.
+      </para>
+      <informaltable>
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry>Direction</entry>
+              <entry>Type</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>in</entry>
+              <entry>unsigned integer</entry>
+              <entry>the cookie</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+    </sect2>
+
+    <sect2 id="gs-method-Throttle">
+      <title>
+        <literal>Throttle</literal>
+      </title>
+      <para>
+        Request that running themes while the screensaver is active be blocked
+        until UnThrottle is called or the calling process exits.
+      </para>
+      <informaltable>
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry>Direction</entry>
+              <entry>Type</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>in</entry>
+              <entry>string</entry>
+              <entry>the application name, e.g. "gnome-power-manager"</entry>
+            </row>
+            <row>
+              <entry>in</entry>
+              <entry>string</entry>
+              <entry>the localized reason to inhibit, e.g. "on battery power"</entry>
+            </row>
+            <row>
+              <entry>out</entry>
+              <entry>unsigned integer</entry>
+              <entry>the cookie</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+      <para>
+        A cookie is a random, unique, non-zero UINT32 used to identify the inhibit.
+      </para>
+    </sect2>
+
+    <sect2 id="gs-method-UnThrottle">
+      <title>
+        <literal>UnThrottle</literal>
+      </title>
+      <para>
+        Cancel a previous call to Throttle() identified by the cookie.
+      </para>
+      <informaltable>
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry>Direction</entry>
+              <entry>Type</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>in</entry>
+              <entry>unsigned integer</entry>
+              <entry>the cookie</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+    </sect2>
+
+    <sect2 id="gs-method-setActive">
+      <title>
+        <literal>setActive</literal>
+      </title>
+      <para>
+        Request a change in the state of the screensaver.
+        Set to TRUE to request that the screensaver activate.
+        Active means that the screensaver has blanked the screen and may run a
+        graphical theme.  This does not necessary mean that the screen is locked.
+      </para>
+      <informaltable>
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry>Direction</entry>
+              <entry>Type</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>in</entry>
+              <entry>boolean</entry>
+              <entry>TRUE to request activation, FALSE to request deactivation</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+    </sect2>
+
+    <sect2 id="gs-method-getActive">
+      <title>
+        <literal>getActive</literal>
+      </title>
+      <para>
+        Returns the value of the current state of activity. See setActive().
+      </para>
+      <informaltable>
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry>Direction</entry>
+              <entry>Type</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>out</entry>
+              <entry>boolean</entry>
+              <entry>Activation state</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+    </sect2>
+
+    <sect2 id="gs-method-getSessionIdle">
+      <title>
+        <literal>getSessionIdle</literal>
+      </title>
+      <para>
+        Returns the value of the current state of session idleness.
+      </para>
+      <informaltable>
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry>Direction</entry>
+              <entry>Type</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>out</entry>
+              <entry>boolean</entry>
+              <entry>If the session is idle</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+    </sect2>
+
+    <sect2 id="gs-method-getSessionIdleTime">
+      <title>
+        <literal>getSessionIdleTime</literal>
+      </title>
+      <para>
+        Returns the number of seconds that the session has been idle.
+        Returns zero if the session is not idle.
+      </para>
+      <informaltable>
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry>Direction</entry>
+              <entry>Type</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>out</entry>
+              <entry>integer</entry>
+              <entry>Idle time in seconds</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+    </sect2>
+  </sect1>
+
+  <sect1 id="gs-signals">
+    <title>Signals</title>
+    <para>
+      These are the DBUS signals.
+    </para>
+
+    <sect2 id="gs-signal-ActiveChanged">
+      <title>
+        <literal>ActiveChanged</literal>
+      </title>
+      <para>
+        See method getActive().
+      </para>
+      <informaltable>
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry>Direction</entry>
+              <entry>Type</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>out</entry>
+              <entry>boolean</entry>
+              <entry>Returns the value of the current state of activity.</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+    </sect2>
+
+    <sect2 id="gs-signal-SessionIdleChanged">
+      <title>
+        <literal>SessionIdleChanged</literal>
+      </title>
+      <para>
+        See method getActive().
+      </para>
+      <informaltable>
+        <tgroup cols="2">
+          <thead>
+            <row>
+              <entry>Direction</entry>
+              <entry>Type</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>out</entry>
+              <entry>boolean</entry>
+              <entry>Returns the value of the current state of activity.</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+    </sect2>
+
+    <sect2 id="gs-signal-AuthenticationRequestBegin">
+      <title>
+        <literal>AuthenticationRequestBegin</literal>
+      </title>
+      <para>
+        Emitted before an authentication request
+      </para>
+    </sect2>
+
+    <sect2 id="gs-signal-AuthenticationRequestEnd">
+      <title>
+        <literal>AuthenticationRequestEnd</literal>
+      </title>
+      <para>
+        Emitted after an authentication request
+      </para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="gs-examples">
+    <title>Examples</title>
+    <para>
+      You can get the number of seconds the screensaver has been active by
+      running the following:
+    </para>
+    <screen>
+dbus-send --session \
+          --dest=org.gnome.ScreenSaver \
+          --type=method_call \
+          --print-reply \
+          --reply-timeout=20000 \
+          /org/gnome/ScreenSaver \
+          org.gnome.ScreenSaver.getSessionIdleTime
+    </screen>
+    <para>
+      You can activate the screensaver like so:
+    </para>
+    <screen>
+dbus-send --session \
+          --dest=org.gnome.ScreenSaver \
+          --type=method_call \
+          --print-reply \
+          --reply-timeout=20000 \
+          /org/gnome/ScreenSaver \
+          org.gnome.ScreenSaver.setActive \
+          boolean:true
+    </screen>
+
+    <para>
+      You can monitor screensaver changes:
+    </para>
+    <screen>
+dbus-monitor --session \
+          "type='signal',interface='org.gnome.ScreenSaver'"
+    </screen>
+
+    <para>
+      Or watch for a specific screensaver signal:
+    </para>
+    <screen>
+dbus-monitor --session \
+          "type='signal',interface='org.gnome.ScreenSaver',member='SessionIdleChanged'"
+    </screen>
+  </sect1>
+
+</chapter>
