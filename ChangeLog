@@ -1,3 +1,7 @@
+2006-06-07  William Jon McCann  <mccann@jhu.edu>
+
+	* doc/dbus-interface.xml: Fix description.
+
 2006-06-06  William Jon McCann  <mccann@jhu.edu>
 
 	* doc/dbus-interface.xml:

@@ -112,7 +112,7 @@
         </tgroup>
       </informaltable>
       <para>
-        A cookie is a random, unique, non-zero UINT32 used to identify the inhibit.
+        A cookie is a random, unique, non-zero UINT32 used to identify the inhibit request.
       </para>
     </sect2>
 
@@ -180,7 +180,7 @@
         </tgroup>
       </informaltable>
       <para>
-        A cookie is a random, unique, non-zero UINT32 used to identify the inhibit.
+        A cookie is a random, unique, non-zero UINT32 used to identify the throttle request.
       </para>
     </sect2>
 
