@@ -1,0 +1,190 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>GNOME Screensaver 2.15.3 Documentation</title><link rel="stylesheet" href="docbook.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.69.1"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="book" lang="en"><div class="titlepage"><div><div><h1 class="title"><a name="index"></a>GNOME Screensaver 2.15.3 Documentation</h1></div><div><div class="authorgroup"><div class="author"><h3 class="author"><span class="firstname">William Jon</span> <span class="surname">McCann</span></h3><div class="affiliation"><div class="address"><p><br>
+            <code class="email">&lt;<a href="mailto:mccann@jhu.edu">mccann@jhu.edu</a>&gt;</code><br>
+          </p></div></div></div></div></div><div><p class="releaseinfo">Version 2.15.3</p></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="chapter"><a href="#dbus-interface">1. DBUS Interface</a></span></dt><dd><dl><dt><span class="sect1"><a href="#gs-intro">Introduction</a></span></dt><dt><span class="sect1"><a href="#gs-methods">Methods</a></span></dt><dd><dl><dt><span class="sect2"><a href="#gs-method-Lock">
+        <code class="literal">Lock</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-Cycle">
+        <code class="literal">Cycle</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-SimulateUserActivity">
+        <code class="literal">SimulateUserActivity</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-Inhibit">
+        <code class="literal">Inhibit</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-UnInhibit">
+        <code class="literal">UnInhibit</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-Throttle">
+        <code class="literal">Throttle</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-UnThrottle">
+        <code class="literal">UnThrottle</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-SetActive">
+        <code class="literal">SetActive</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-GetActive">
+        <code class="literal">GetActive</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-GetActiveTime">
+        <code class="literal">GetActiveTime</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-GetSessionIdle">
+        <code class="literal">GetSessionIdle</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-GetSessionIdleTime">
+        <code class="literal">GetSessionIdleTime</code>
+      </a></span></dt></dl></dd><dt><span class="sect1"><a href="#gs-signals">Signals</a></span></dt><dd><dl><dt><span class="sect2"><a href="#gs-signal-ActiveChanged">
+        <code class="literal">ActiveChanged</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-signal-SessionIdleChanged">
+        <code class="literal">SessionIdleChanged</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-signal-AuthenticationRequestBegin">
+        <code class="literal">AuthenticationRequestBegin</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-signal-AuthenticationRequestEnd">
+        <code class="literal">AuthenticationRequestEnd</code>
+      </a></span></dt></dl></dd><dt><span class="sect1"><a href="#gs-examples">Examples</a></span></dt></dl></dd></dl></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="dbus-interface"></a>Chapter 1. DBUS Interface</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="#gs-intro">Introduction</a></span></dt><dt><span class="sect1"><a href="#gs-methods">Methods</a></span></dt><dd><dl><dt><span class="sect2"><a href="#gs-method-Lock">
+        <code class="literal">Lock</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-Cycle">
+        <code class="literal">Cycle</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-SimulateUserActivity">
+        <code class="literal">SimulateUserActivity</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-Inhibit">
+        <code class="literal">Inhibit</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-UnInhibit">
+        <code class="literal">UnInhibit</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-Throttle">
+        <code class="literal">Throttle</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-UnThrottle">
+        <code class="literal">UnThrottle</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-SetActive">
+        <code class="literal">SetActive</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-GetActive">
+        <code class="literal">GetActive</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-GetActiveTime">
+        <code class="literal">GetActiveTime</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-GetSessionIdle">
+        <code class="literal">GetSessionIdle</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-method-GetSessionIdleTime">
+        <code class="literal">GetSessionIdleTime</code>
+      </a></span></dt></dl></dd><dt><span class="sect1"><a href="#gs-signals">Signals</a></span></dt><dd><dl><dt><span class="sect2"><a href="#gs-signal-ActiveChanged">
+        <code class="literal">ActiveChanged</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-signal-SessionIdleChanged">
+        <code class="literal">SessionIdleChanged</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-signal-AuthenticationRequestBegin">
+        <code class="literal">AuthenticationRequestBegin</code>
+      </a></span></dt><dt><span class="sect2"><a href="#gs-signal-AuthenticationRequestEnd">
+        <code class="literal">AuthenticationRequestEnd</code>
+      </a></span></dt></dl></dd><dt><span class="sect1"><a href="#gs-examples">Examples</a></span></dt></dl></div><p>
+    This API is currently unstable and is likely to change in the future.
+  </p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gs-intro"></a>Introduction</h2></div></div></div><p>
+      GNOME Screensaver exposes a DBUS API for programs to obtain information about
+      the screensaver state and to interact with the screensaver in limited ways.
+    </p><p>
+      The following constants are used to uniquely refer to the GnomeScreensaver
+      object when making DBUS method calls:
+    </p><div class="informaltable"><table border="1"><colgroup><col><col></colgroup><tbody><tr><td>DBUS Service:</td><td><code class="literal">org.gnome.ScreenSaver</code></td></tr><tr><td>DBUS Object Path:</td><td><code class="literal">/org/gnome/ScreenSaver</code></td></tr><tr><td>DBUS Interface:</td><td><code class="literal">org.gnome.ScreenSaver</code></td></tr></tbody></table></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gs-methods"></a>Methods</h2></div></div></div><p>
+      These are the DBUS methods.
+    </p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-method-Lock"></a>
+        <code class="literal">Lock</code>
+      </h3></div></div></div><p>
+        Request that the screen be locked.  This bypasses all Inhibit requests.
+      </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-method-Cycle"></a>
+        <code class="literal">Cycle</code>
+      </h3></div></div></div><p>
+        Request that the screen saver theme be restarted and, if applicable,
+        switch to the next one in the list.
+      </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-method-SimulateUserActivity"></a>
+        <code class="literal">SimulateUserActivity</code>
+      </h3></div></div></div><p>
+        Simulate user activity.  If the screensaver is activated this
+        will attempt to deactivate and authentication will be
+        requested if necessary.  If the screensaver is not activated
+        then the idle timers will be reset.
+      </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-method-Inhibit"></a>
+        <code class="literal">Inhibit</code>
+      </h3></div></div></div><p>
+        Request that saving the screen due to system idleness be blocked until
+        UnInhibit is called or the calling process exits.
+      </p><div class="informaltable"><table border="1"><colgroup><col><col></colgroup><thead><tr><th>Direction</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>in</td><td>string</td><td>the application name, e.g. "totem"</td></tr><tr><td>in</td><td>string</td><td>the localized reason to inhibit, e.g. "playing movie"</td></tr><tr><td>out</td><td>unsigned integer</td><td>the cookie</td></tr></tbody></table></div><p>
+        A cookie is a random, unique, non-zero UINT32 used to identify the inhibit request.
+      </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-method-UnInhibit"></a>
+        <code class="literal">UnInhibit</code>
+      </h3></div></div></div><p>
+        Cancel a previous call to Inhibit() identified by the cookie.
+      </p><div class="informaltable"><table border="1"><colgroup><col><col></colgroup><thead><tr><th>Direction</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>in</td><td>unsigned integer</td><td>the cookie</td></tr></tbody></table></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-method-Throttle"></a>
+        <code class="literal">Throttle</code>
+      </h3></div></div></div><p>
+        Request that running themes while the screensaver is active be blocked
+        until UnThrottle is called or the calling process exits.
+      </p><div class="informaltable"><table border="1"><colgroup><col><col></colgroup><thead><tr><th>Direction</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>in</td><td>string</td><td>the application name, e.g. "gnome-power-manager"</td></tr><tr><td>in</td><td>string</td><td>the localized reason to inhibit, e.g. "on battery power"</td></tr><tr><td>out</td><td>unsigned integer</td><td>the cookie</td></tr></tbody></table></div><p>
+        A cookie is a random, unique, non-zero UINT32 used to identify the throttle request.
+      </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-method-UnThrottle"></a>
+        <code class="literal">UnThrottle</code>
+      </h3></div></div></div><p>
+        Cancel a previous call to Throttle() identified by the cookie.
+      </p><div class="informaltable"><table border="1"><colgroup><col><col></colgroup><thead><tr><th>Direction</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>in</td><td>unsigned integer</td><td>the cookie</td></tr></tbody></table></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-method-SetActive"></a>
+        <code class="literal">SetActive</code>
+      </h3></div></div></div><p>
+        Request a change in the state of the screensaver.
+        Set to TRUE to request that the screensaver activate.
+        Active means that the screensaver has blanked the screen and may run a
+        graphical theme.  This does not necessary mean that the screen is locked.
+      </p><div class="informaltable"><table border="1"><colgroup><col><col></colgroup><thead><tr><th>Direction</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>in</td><td>boolean</td><td>TRUE to request activation, FALSE to request deactivation</td></tr></tbody></table></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-method-GetActive"></a>
+        <code class="literal">GetActive</code>
+      </h3></div></div></div><p>
+        Returns the value of the current state of activity. See SetActive().
+      </p><div class="informaltable"><table border="1"><colgroup><col><col></colgroup><thead><tr><th>Direction</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>out</td><td>boolean</td><td>Activation state</td></tr></tbody></table></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-method-GetActiveTime"></a>
+        <code class="literal">GetActiveTime</code>
+      </h3></div></div></div><p>
+        Returns the number of seconds that the screensaver has been active.
+        Returns zero if the screensaver is not active.
+      </p><div class="informaltable"><table border="1"><colgroup><col><col></colgroup><thead><tr><th>Direction</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>out</td><td>unsigned integer</td><td>Active time in seconds</td></tr></tbody></table></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-method-GetSessionIdle"></a>
+        <code class="literal">GetSessionIdle</code>
+      </h3></div></div></div><p>
+        Returns the value of the current state of session idleness.
+      </p><div class="informaltable"><table border="1"><colgroup><col><col></colgroup><thead><tr><th>Direction</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>out</td><td>boolean</td><td>If the session is idle</td></tr></tbody></table></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-method-GetSessionIdleTime"></a>
+        <code class="literal">GetSessionIdleTime</code>
+      </h3></div></div></div><p>
+        Returns the number of seconds that the session has been idle.
+        Returns zero if the session is not idle.
+      </p><div class="informaltable"><table border="1"><colgroup><col><col></colgroup><thead><tr><th>Direction</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>out</td><td>unsigned integer</td><td>Idle time in seconds</td></tr></tbody></table></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gs-signals"></a>Signals</h2></div></div></div><p>
+      These are the DBUS signals.
+    </p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-signal-ActiveChanged"></a>
+        <code class="literal">ActiveChanged</code>
+      </h3></div></div></div><p>
+        See method GetActive().
+      </p><div class="informaltable"><table border="1"><colgroup><col><col></colgroup><thead><tr><th>Direction</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>out</td><td>boolean</td><td>Returns the value of the current state of activity.</td></tr></tbody></table></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-signal-SessionIdleChanged"></a>
+        <code class="literal">SessionIdleChanged</code>
+      </h3></div></div></div><p>
+        See method GetActive().
+      </p><div class="informaltable"><table border="1"><colgroup><col><col></colgroup><thead><tr><th>Direction</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>out</td><td>boolean</td><td>Returns the value of the current state of activity.</td></tr></tbody></table></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-signal-AuthenticationRequestBegin"></a>
+        <code class="literal">AuthenticationRequestBegin</code>
+      </h3></div></div></div><p>
+        Emitted before an authentication request
+      </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="gs-signal-AuthenticationRequestEnd"></a>
+        <code class="literal">AuthenticationRequestEnd</code>
+      </h3></div></div></div><p>
+        Emitted after an authentication request
+      </p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="gs-examples"></a>Examples</h2></div></div></div><p>
+      You can get the number of seconds the screensaver has been active by
+      running the following:
+    </p><pre class="screen">
+dbus-send --session \
+          --dest=org.gnome.ScreenSaver \
+          --type=method_call \
+          --print-reply \
+          --reply-timeout=20000 \
+          /org/gnome/ScreenSaver \
+          org.gnome.ScreenSaver.GetSessionIdleTime
+    </pre><p>
+      You can activate the screensaver like so:
+    </p><pre class="screen">
+dbus-send --session \
+          --dest=org.gnome.ScreenSaver \
+          --type=method_call \
+          --print-reply \
+          --reply-timeout=20000 \
+          /org/gnome/ScreenSaver \
+          org.gnome.ScreenSaver.SetActive \
+          boolean:true
+    </pre><p>
+      You can monitor screensaver changes:
+    </p><pre class="screen">
+dbus-monitor --session \
+          "type='signal',interface='org.gnome.ScreenSaver'"
+    </pre><p>
+      Or watch for a specific screensaver signal:
+    </p><pre class="screen">
+dbus-monitor --session \
+          "type='signal',interface='org.gnome.ScreenSaver',member='SessionIdleChanged'"
+    </pre></div></div></div></body></html>
