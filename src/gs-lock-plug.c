@@ -45,7 +45,6 @@
 
 #include "gs-lock-plug.h"
 
-#include "gs-auth.h"
 #include "gs-debug.h"
 
 #include "fusa-manager.h"
@@ -61,11 +60,7 @@ enum {
 #define FACE_ICON_SIZE 48
 #define DIALOG_TIMEOUT_MSEC 60000
 
-static void gs_lock_plug_class_init (GSLockPlugClass *klass);
-static void gs_lock_plug_init       (GSLockPlug      *plug);
 static void gs_lock_plug_finalize   (GObject         *object);
-
-static gboolean auth_check_idle_cb (GSLockPlug *plug);
 
 #define GS_LOCK_PLUG_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_LOCK_PLUG, GSLockPlugPrivate))
 
@@ -79,10 +74,11 @@ struct GSLockPlugPrivate
         GtkWidget   *auth_face_image;
         GtkWidget   *auth_realname_label;
         GtkWidget   *auth_username_label;
-        GtkWidget   *auth_password_entry;
-        GtkWidget   *auth_password_box;
+        GtkWidget   *auth_prompt_label;
+        GtkWidget   *auth_prompt_entry;
+        GtkWidget   *auth_prompt_box;
         GtkWidget   *auth_capslock_label;
-        GtkWidget   *auth_status_label;
+        GtkWidget   *auth_message_label;
         GtkWidget   *switch_user_treeview;
 
         GtkWidget   *auth_unlock_button;
@@ -103,10 +99,7 @@ struct GSLockPlugPrivate
 
         guint        idle_id;
         guint        auth_check_idle_id;
-        guint        password_reset_idle_id;
         guint        response_idle_id;
-
-        gboolean     initial_auth_check;
 
         GTimeVal     start_time;
 };
@@ -132,8 +125,7 @@ enum {
         PROP_SWITCH_ENABLED
 };
 
-static GObjectClass *parent_class = NULL;
-static guint         lock_plug_signals [LAST_SIGNAL];
+static guint lock_plug_signals [LAST_SIGNAL];
 
 G_DEFINE_TYPE (GSLockPlug, gs_lock_plug, GTK_TYPE_PLUG)
 
@@ -143,8 +135,8 @@ gs_lock_plug_style_set (GtkWidget *widget,
 {
         GSLockPlug *plug;
 
-        if (GTK_WIDGET_CLASS (parent_class)->style_set) {
-                GTK_WIDGET_CLASS (parent_class)->style_set (widget, previous_style);
+        if (GTK_WIDGET_CLASS (gs_lock_plug_parent_class)->style_set) {
+                GTK_WIDGET_CLASS (gs_lock_plug_parent_class)->style_set (widget, previous_style);
         }
 
         plug = GS_LOCK_PLUG (widget);
@@ -240,8 +232,8 @@ static void
 set_status_text (GSLockPlug *plug,
                  const char *text)
 {
-        if (plug->priv->auth_status_label != NULL) {
-                gtk_label_set_text (GTK_LABEL (plug->priv->auth_status_label), text);
+        if (plug->priv->auth_message_label != NULL) {
+                gtk_label_set_text (GTK_LABEL (plug->priv->auth_message_label), text);
         }
 }
 
@@ -249,7 +241,7 @@ static void
 set_dialog_sensitive (GSLockPlug *plug,
                       gboolean    sensitive)
 {
-        gtk_widget_set_sensitive (plug->priv->auth_password_entry, sensitive);
+        gtk_widget_set_sensitive (plug->priv->auth_prompt_entry, sensitive);
         gtk_widget_set_sensitive (plug->priv->auth_action_area, sensitive);
 }
 
@@ -259,24 +251,6 @@ remove_monitor_idle (GSLockPlug *plug)
         if (plug->priv->idle_id > 0) {
                 g_source_remove (plug->priv->idle_id);
                 plug->priv->idle_id = 0;
-        }
-}
-
-static void
-remove_auth_check_idle (GSLockPlug *plug)
-{
-        if (plug->priv->auth_check_idle_id > 0) {
-                g_source_remove (plug->priv->auth_check_idle_id);
-                plug->priv->auth_check_idle_id = 0;
-        }
-}
-
-static void
-remove_password_reset_idle (GSLockPlug *plug)
-{
-        if (plug->priv->password_reset_idle_id > 0) {
-                g_source_remove (plug->priv->password_reset_idle_id);
-                plug->priv->password_reset_idle_id = 0;
         }
 }
 
@@ -306,12 +280,10 @@ gs_lock_plug_response (GSLockPlug *plug,
         }
 
         remove_monitor_idle (plug);
-        remove_auth_check_idle (plug);
-        remove_password_reset_idle (plug);
         remove_response_idle (plug);
 
         if (response_id == GS_LOCK_PLUG_RESPONSE_CANCEL) {
-                gtk_entry_set_text (GTK_ENTRY (plug->priv->auth_password_entry), "");
+                gtk_entry_set_text (GTK_ENTRY (plug->priv->auth_prompt_entry), "");
         }
 
         if (response_id == GS_LOCK_PLUG_RESPONSE_OK) {
@@ -321,14 +293,7 @@ gs_lock_plug_response (GSLockPlug *plug,
                         current_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (plug->priv->notebook));
                 }
 
-                if (current_page == AUTH_PAGE) {
-                        set_dialog_sensitive (plug, FALSE);
-                        set_status_text (plug, _("Checking password..."));
-
-                        plug->priv->auth_check_idle_id = g_idle_add ((GSourceFunc)auth_check_idle_cb,
-                                                                     plug);
-                        return;
-                } else {
+                if (current_page != AUTH_PAGE) {
                         /* switch user */
                         switch_user_response (plug);
                         return;
@@ -347,16 +312,6 @@ response_cancel_idle_cb (GSLockPlug *plug)
         plug->priv->response_idle_id = 0;
 
         gs_lock_plug_response (plug, GS_LOCK_PLUG_RESPONSE_CANCEL);
-
-        return FALSE;
-}
-
-static gboolean
-response_ok_idle_cb (GSLockPlug *plug)
-{
-        plug->priv->response_idle_id = 0;
-
-        gs_lock_plug_response (plug, GS_LOCK_PLUG_RESPONSE_OK);
 
         return FALSE;
 }
@@ -440,106 +395,158 @@ restart_monitor_progress (GSLockPlug *plug)
                                              plug);
 }
 
-static gboolean
-get_try_lock_first (GSLockPlug *plug)
+void
+gs_lock_plug_get_text (GSLockPlug *plug,
+                       char      **text)
 {
-        gboolean     try_first;
-        GConfClient *client;
+        const char *typed_text;
+        char       *null_text;
+        char       *local_text;
 
-        client = gconf_client_get_default ();
-        try_first = gconf_client_get_bool (client, KEY_TRY_AUTH_FIRST, NULL);
-        g_object_unref (client);
+        typed_text = gtk_entry_get_text (GTK_ENTRY (plug->priv->auth_prompt_entry));
+        local_text = g_locale_from_utf8 (typed_text, strlen (typed_text), NULL, NULL, NULL);
 
-        return try_first;
+        null_text = g_strnfill (strlen (typed_text) + 1, '\b');
+        gtk_entry_set_text (GTK_ENTRY (plug->priv->auth_prompt_entry), null_text);
+        gtk_entry_set_text (GTK_ENTRY (plug->priv->auth_prompt_entry), "");
+        g_free (null_text);
+
+        if (text != NULL) {
+                *text = local_text;
+        }
 }
 
-static char *
-request_password (GSLockPlug *plug,
-                  const char *prompt)
+typedef struct
 {
-        const char *typed_password;
-        char       *null_password;
-        char       *local_password;
-
-        typed_password = gtk_entry_get_text (GTK_ENTRY (plug->priv->auth_password_entry));
-        local_password = g_locale_from_utf8 (typed_password, strlen (typed_password), NULL, NULL, NULL);
-
-        null_password = g_strnfill (strlen (typed_password) + 1, '\b');
-        gtk_entry_set_text (GTK_ENTRY (plug->priv->auth_password_entry), null_password);
-        gtk_entry_set_text (GTK_ENTRY (plug->priv->auth_password_entry), "");
-        g_free (null_password);
-
-        return local_password;
-}
-
-static gboolean
-auth_message_handler (GSAuthMessageStyle style,
-                      const char        *msg,
-                      char             **response,
-                      gpointer           data)
-{
-        gboolean ret;
         GSLockPlug *plug;
+        gint response_id;
+        GMainLoop *loop;
+        gboolean destroyed;
+} RunInfo;
 
-        plug = GS_LOCK_PLUG (data);
-
-        gs_profile_start (NULL);
-        gs_debug ("Got message style %d: '%s'", style, msg);
-
-        ret = TRUE;
-        *response = NULL;
-
-        switch (style) {
-        case GS_AUTH_MESSAGE_PROMPT_ECHO_ON:
-                break;
-        case GS_AUTH_MESSAGE_PROMPT_ECHO_OFF:
-                if (msg != NULL
-                    && g_str_has_prefix (msg, "Password:")) {
-                        if (plug->priv->initial_auth_check) {
-
-                        } else {
-                                char *password;
-                                password = request_password (plug, msg);
-                                *response = password;
-                        }
-                }
-                break;
-        case GS_AUTH_MESSAGE_ERROR_MSG:
-                break;
-        case GS_AUTH_MESSAGE_TEXT_INFO:
-                break;
-        default:
-                g_assert_not_reached ();
-        }
-
-        if (*response == NULL) {
-                gs_debug ("Got not response");
-                ret = FALSE;
-        }
-
-        gs_profile_end (NULL);
-
-        return ret;
+static void
+shutdown_loop (RunInfo *ri)
+{
+        if (g_main_loop_is_running (ri->loop))
+                g_main_loop_quit (ri->loop);
 }
 
 static void
-do_initial_auth_check (GSLockPlug *plug)
+run_unmap_handler (GSLockPlug *plug,
+                   gpointer data)
 {
-        GError *error;
+        RunInfo *ri = data;
 
-        gs_profile_start (NULL);
+        shutdown_loop (ri);
+}
 
-        set_dialog_sensitive (plug, FALSE);
-        error = NULL;
-        if (gs_auth_verify_user (g_get_user_name (), g_getenv ("DISPLAY"), auth_message_handler, plug, &error)) {
-                remove_response_idle (plug);
+static void
+run_response_handler (GSLockPlug *plug,
+                      gint response_id,
+                      gpointer data)
+{
+        RunInfo *ri;
 
-                plug->priv->response_idle_id = g_idle_add ((GSourceFunc)response_ok_idle_cb,
-                                                           plug);
+        ri = data;
+
+        ri->response_id = response_id;
+
+        shutdown_loop (ri);
+}
+
+static gint
+run_delete_handler (GSLockPlug *plug,
+                    GdkEventAny *event,
+                    gpointer data)
+{
+        RunInfo *ri = data;
+
+        shutdown_loop (ri);
+
+        return TRUE; /* Do not destroy */
+}
+
+static void
+run_destroy_handler (GSLockPlug *plug,
+                     gpointer data)
+{
+        RunInfo *ri = data;
+
+        /* shutdown_loop will be called by run_unmap_handler */
+        ri->destroyed = TRUE;
+}
+
+/* adapted from GTK+ gtkdialog.c */
+int
+gs_lock_plug_run (GSLockPlug *plug)
+{
+        RunInfo ri = { NULL, GTK_RESPONSE_NONE, NULL, FALSE };
+        gboolean was_modal;
+        gulong response_handler;
+        gulong unmap_handler;
+        gulong destroy_handler;
+        gulong delete_handler;
+
+        g_return_val_if_fail (GS_IS_LOCK_PLUG (plug), -1);
+
+        g_object_ref (plug);
+
+        was_modal = GTK_WINDOW (plug)->modal;
+        if (!was_modal) {
+                gtk_window_set_modal (GTK_WINDOW (plug), TRUE);
         }
-        set_dialog_sensitive (plug, TRUE);
 
-        gs_profile_end (NULL);
+        if (!GTK_WIDGET_VISIBLE (plug))
+                gtk_widget_show (GTK_WIDGET (plug));
+
+        response_handler =
+                g_signal_connect (plug,
+                                  "response",
+                                  G_CALLBACK (run_response_handler),
+                                  &ri);
+
+        unmap_handler =
+                g_signal_connect (plug,
+                                  "unmap",
+                                  G_CALLBACK (run_unmap_handler),
+                                  &ri);
+
+        delete_handler =
+                g_signal_connect (plug,
+                                  "delete_event",
+                                  G_CALLBACK (run_delete_handler),
+                                  &ri);
+
+        destroy_handler =
+                g_signal_connect (plug,
+                                  "destroy",
+                                  G_CALLBACK (run_destroy_handler),
+                                  &ri);
+
+        ri.loop = g_main_loop_new (NULL, FALSE);
+
+        GDK_THREADS_LEAVE ();
+        g_main_loop_run (ri.loop);
+        GDK_THREADS_ENTER ();
+
+        g_main_loop_unref (ri.loop);
+
+        ri.loop = NULL;
+
+        if (!ri.destroyed) {
+                if (! was_modal) {
+                        gtk_window_set_modal (GTK_WINDOW (plug), FALSE);
+                }
+
+                g_signal_handler_disconnect (plug, response_handler);
+                g_signal_handler_disconnect (plug, unmap_handler);
+                g_signal_handler_disconnect (plug, delete_handler);
+                g_signal_handler_disconnect (plug, destroy_handler);
+        }
+
+        g_object_unref (plug);
+
+        return ri.response_id;
 }
 
 static void
@@ -550,8 +557,8 @@ gs_lock_plug_show (GtkWidget *widget)
         gs_profile_start (NULL);
 
         gs_profile_start ("parent");
-        if (GTK_WIDGET_CLASS (parent_class)->show) {
-                GTK_WIDGET_CLASS (parent_class)->show (widget);
+        if (GTK_WIDGET_CLASS (gs_lock_plug_parent_class)->show) {
+                GTK_WIDGET_CLASS (gs_lock_plug_parent_class)->show (widget);
         }
 
         gs_profile_end ("parent");
@@ -560,21 +567,14 @@ gs_lock_plug_show (GtkWidget *widget)
 
         restart_monitor_progress (plug);
 
-        if (get_try_lock_first (plug)) {
-                /* Try to check auth right away */
-                plug->priv->initial_auth_check = TRUE;
-                do_initial_auth_check (plug);
-                plug->priv->initial_auth_check = FALSE;
-        }
-
         gs_profile_end (NULL);
 }
 
 static void
 gs_lock_plug_hide (GtkWidget *widget)
 {
-        if (GTK_WIDGET_CLASS (parent_class)->hide) {
-                GTK_WIDGET_CLASS (parent_class)->hide (widget);
+        if (GTK_WIDGET_CLASS (gs_lock_plug_parent_class)->hide) {
+                GTK_WIDGET_CLASS (gs_lock_plug_parent_class)->hide (widget);
         }
 }
 
@@ -587,8 +587,8 @@ gs_lock_plug_size_request (GtkWidget      *widget,
         int mod_width;
         int mod_height;
 
-        if (GTK_WIDGET_CLASS (parent_class)->size_request) {
-                GTK_WIDGET_CLASS (parent_class)->size_request (widget, requisition);
+        if (GTK_WIDGET_CLASS (gs_lock_plug_parent_class)->size_request) {
+                GTK_WIDGET_CLASS (gs_lock_plug_parent_class)->size_request (widget, requisition);
         }
 
         /* don't constrain size when themed */
@@ -741,8 +741,6 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
         GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
         GtkBindingSet  *binding_set;
 
-        parent_class = g_type_class_peek_parent (klass);
-
         object_class->finalize     = gs_lock_plug_finalize;
         object_class->get_property = gs_lock_plug_get_property;
         object_class->set_property = gs_lock_plug_set_property;
@@ -800,57 +798,6 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
                                       "close", 0);
 }
 
-static gboolean
-password_reset_idle_cb (GSLockPlug *plug)
-{
-        gtk_entry_set_text (GTK_ENTRY (plug->priv->auth_password_entry), "");
-        set_status_text (plug, "");
-        set_dialog_sensitive (plug, TRUE);
-
-        restart_monitor_progress (plug);
-
-        gtk_widget_grab_focus (plug->priv->auth_password_entry);
-
-        return FALSE;
-}
-
-static gboolean
-auth_check_idle_cb (GSLockPlug *plug)
-{
-        GError *error;
-
-        plug->priv->auth_check_idle_id = 0;
-
-        error = NULL;
-        if (gs_auth_verify_user (g_get_user_name (), g_getenv ("DISPLAY"), auth_message_handler, plug, &error)) {
-                g_signal_emit (plug,
-                               lock_plug_signals [RESPONSE],
-                               0,
-                               GS_LOCK_PLUG_RESPONSE_OK);
-        } else {
-                remove_password_reset_idle (plug);
-
-                plug->priv->password_reset_idle_id = g_timeout_add (3000,
-                                                                    (GSourceFunc)password_reset_idle_cb,
-                                                                    plug);
-
-                if (error != NULL) {
-                        set_status_text (plug, error->message);
-                } else {
-                        set_status_text (plug, _("Authentication failed."));
-                }
-
-                printf ("NOTICE=AUTH FAILED\n");
-                fflush (stdout);
-
-                if (error != NULL) {
-                        g_error_free (error);
-                }
-        }
-
-        return FALSE;
-}
-
 static void
 switch_page (GSLockPlug *plug,
              GtkButton  *button)
@@ -904,6 +851,30 @@ logout_button_clicked (GtkButton  *button,
                 g_warning ("Could not run logout command: %s", error->message);
                 g_error_free (error);
         }
+}
+
+void
+gs_lock_plug_show_prompt (GSLockPlug *plug,
+                          const char *message,
+                          gboolean    visible)
+{
+        g_return_if_fail (GS_IS_LOCK_PLUG (plug));
+
+        gs_debug ("Setting prompt to: %s", message);
+
+        gtk_label_set_text (GTK_LABEL (plug->priv->auth_prompt_label), message);
+        gtk_entry_set_visibility (GTK_ENTRY (plug->priv->auth_prompt_entry), visible);
+
+        restart_monitor_progress (plug);
+}
+
+void
+gs_lock_plug_show_message (GSLockPlug *plug,
+                           const char *message)
+{
+        g_return_if_fail (GS_IS_LOCK_PLUG (plug));
+
+        set_status_text (plug, message ? message : "");
 }
 
 /* button press handler used to inhibit popup menu */
@@ -1650,11 +1621,11 @@ create_page_one (GSLockPlug *plug)
         gtk_misc_set_alignment (GTK_MISC (password_label), 0, 0.5);
         gtk_box_pack_start (GTK_BOX (hbox), password_label, FALSE, FALSE, 0);
 
-        plug->priv->auth_password_entry = gtk_entry_new ();
-        gtk_box_pack_start (GTK_BOX (hbox), plug->priv->auth_password_entry, TRUE, TRUE, 0);
+        plug->priv->auth_prompt_entry = gtk_entry_new ();
+        gtk_box_pack_start (GTK_BOX (hbox), plug->priv->auth_prompt_entry, TRUE, TRUE, 0);
 
         gtk_label_set_mnemonic_widget (GTK_LABEL (password_label),
-                                       plug->priv->auth_password_entry);
+                                       plug->priv->auth_prompt_entry);
 
         plug->priv->auth_capslock_label = gtk_label_new ("");
         gtk_misc_set_alignment (GTK_MISC (plug->priv->auth_capslock_label), 0.5, 0.5);
@@ -1662,8 +1633,8 @@ create_page_one (GSLockPlug *plug)
 
         /* Status text */
 
-        plug->priv->auth_status_label = gtk_label_new (NULL);
-        gtk_box_pack_start (GTK_BOX (vbox), plug->priv->auth_status_label,
+        plug->priv->auth_message_label = gtk_label_new (NULL);
+        gtk_box_pack_start (GTK_BOX (vbox), plug->priv->auth_message_label,
                             FALSE, FALSE, 0);
         /* Buttons */
         plug->priv->auth_action_area = gtk_hbutton_box_new ();
@@ -1845,10 +1816,11 @@ load_theme (GSLockPlug *plug)
         plug->priv->auth_action_area = glade_xml_get_widget (xml, "auth-action-area");
         plug->priv->auth_realname_label = glade_xml_get_widget (xml, "auth-realname-label");
         plug->priv->auth_username_label = glade_xml_get_widget (xml, "auth-username-label");
-        plug->priv->auth_password_entry = glade_xml_get_widget (xml, "auth-password-entry");
-        plug->priv->auth_password_box = glade_xml_get_widget (xml, "auth-password-box");
+        plug->priv->auth_prompt_label = glade_xml_get_widget (xml, "auth-prompt-label");
+        plug->priv->auth_prompt_entry = glade_xml_get_widget (xml, "auth-prompt-entry");
+        plug->priv->auth_prompt_box = glade_xml_get_widget (xml, "auth-prompt-box");
         plug->priv->auth_capslock_label = glade_xml_get_widget (xml, "auth-capslock-label");
-        plug->priv->auth_status_label = glade_xml_get_widget (xml, "auth-status-label");
+        plug->priv->auth_message_label = glade_xml_get_widget (xml, "auth-status-label");
         plug->priv->auth_unlock_button = glade_xml_get_widget (xml, "auth-unlock-button");
         plug->priv->auth_cancel_button = glade_xml_get_widget (xml, "auth-cancel-button");
         plug->priv->auth_logout_button = glade_xml_get_widget (xml, "auth-logout-button");
@@ -1890,6 +1862,7 @@ gs_lock_plug_init (GSLockPlug *plug)
         plug->priv->fusa_manager = NULL;
 
         if (! load_theme (plug)) {
+                gs_debug ("Unable to load theme!");
 
                 plug->priv->vbox = gtk_vbox_new (FALSE, 0);
 
@@ -1938,15 +1911,15 @@ gs_lock_plug_init (GSLockPlug *plug)
                           G_CALLBACK (entry_key_press), plug);
 
         /* button press handler used to inhibit popup menu */
-        g_signal_connect (plug->priv->auth_password_entry, "button_press_event",
+        g_signal_connect (plug->priv->auth_prompt_entry, "button_press_event",
                           G_CALLBACK (entry_button_press), NULL);
-        gtk_entry_set_activates_default (GTK_ENTRY (plug->priv->auth_password_entry), TRUE);
-        gtk_entry_set_visibility (GTK_ENTRY (plug->priv->auth_password_entry), FALSE);
+        gtk_entry_set_activates_default (GTK_ENTRY (plug->priv->auth_prompt_entry), TRUE);
+        gtk_entry_set_visibility (GTK_ENTRY (plug->priv->auth_prompt_entry), FALSE);
 
         /* Only change the invisible character if it '*' otherwise assume it is OK */
-        if ('*' == gtk_entry_get_invisible_char (GTK_ENTRY (plug->priv->auth_password_entry))) {
+        if ('*' == gtk_entry_get_invisible_char (GTK_ENTRY (plug->priv->auth_prompt_entry))) {
                 invisible_char = INVISIBLE_CHAR_BLACK_CIRCLE;
-                gtk_entry_set_invisible_char (GTK_ENTRY (plug->priv->auth_password_entry), invisible_char);
+                gtk_entry_set_invisible_char (GTK_ENTRY (plug->priv->auth_prompt_entry), invisible_char);
         }
 
         g_signal_connect (plug->priv->auth_unlock_button, "clicked",
@@ -2003,12 +1976,10 @@ gs_lock_plug_finalize (GObject *object)
                 g_object_unref (plug->priv->fusa_manager);
         }
 
-        remove_auth_check_idle (plug);
-        remove_password_reset_idle (plug);
         remove_response_idle (plug);
         remove_monitor_idle (plug);
 
-        G_OBJECT_CLASS (parent_class)->finalize (object);
+        G_OBJECT_CLASS (gs_lock_plug_parent_class)->finalize (object);
 }
 
 GtkWidget *

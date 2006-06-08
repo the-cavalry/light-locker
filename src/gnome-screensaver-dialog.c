@@ -106,6 +106,22 @@ response_ok (void)
         fflush (stdout);
 }
 
+static gboolean
+quit_response_ok (void)
+{
+        response_ok ();
+        gtk_main_quit ();
+        return FALSE;
+}
+
+static gboolean
+quit_response_cancel (void)
+{
+        response_cancel ();
+        gtk_main_quit ();
+        return FALSE;
+}
+
 static void
 response_lock_init_failed (void)
 {
@@ -113,21 +129,142 @@ response_lock_init_failed (void)
         response_ok ();
 }
 
+static char *
+request_response (GSLockPlug *plug,
+                  const char *prompt,
+                  gboolean    visible)
+{
+        int   response;
+        char *text;
+
+        gs_lock_plug_show_prompt (plug, prompt, visible);
+        response = gs_lock_plug_run (plug);
+
+        gs_debug ("got response: %d", response);
+
+        text = NULL;
+        if (response == GS_LOCK_PLUG_RESPONSE_OK) {
+                gs_lock_plug_get_text (plug, &text);
+        }
+
+        return text;
+}
+
+static gboolean
+auth_message_handler (GSAuthMessageStyle style,
+                      const char        *msg,
+                      char             **response,
+                      gpointer           data)
+{
+        gboolean ret;
+        GSLockPlug *plug;
+
+        plug = GS_LOCK_PLUG (data);
+
+        gs_profile_start (NULL);
+        gs_debug ("Got message style %d: '%s'", style, msg);
+
+        ret = TRUE;
+        *response = NULL;
+
+        switch (style) {
+        case GS_AUTH_MESSAGE_PROMPT_ECHO_ON:
+                if (msg != NULL) {
+                        char *resp;
+                        resp = request_response (plug, msg, TRUE);
+                        *response = resp;
+                }
+                break;
+        case GS_AUTH_MESSAGE_PROMPT_ECHO_OFF:
+                if (msg != NULL) {
+                        char *resp;
+                        resp = request_response (plug, msg, FALSE);
+                        *response = resp;
+                }
+                break;
+        case GS_AUTH_MESSAGE_ERROR_MSG:
+                gs_lock_plug_show_message (plug, msg);
+                break;
+        case GS_AUTH_MESSAGE_TEXT_INFO:
+                gs_lock_plug_show_message (plug, msg);
+                break;
+        default:
+                g_assert_not_reached ();
+        }
+
+        if (*response == NULL) {
+                gs_debug ("Got not response");
+                ret = FALSE;
+        }
+
+        gs_profile_end (NULL);
+
+        return ret;
+}
+
+static gboolean
+reset_idle_cb (GSLockPlug *plug)
+{
+        gtk_widget_set_sensitive (GTK_WIDGET (plug), TRUE);
+        gs_lock_plug_show_message (plug, NULL);
+
+        return FALSE;
+}
+
+static gboolean
+do_auth_check (GSLockPlug *plug)
+{
+        GError *error;
+        gboolean res;
+
+        error = NULL;
+
+        res = gs_auth_verify_user (g_get_user_name (), g_getenv ("DISPLAY"), auth_message_handler, plug, &error);
+
+        gs_debug ("Verify user returned: %s", res ? "TRUE" : "FALSE");
+        if (! res) {
+                if (error != NULL) {
+                        gs_debug ("Verify user returned error: %s", error->message);
+                        gs_lock_plug_show_message (plug, error->message);
+                } else {
+                        gs_lock_plug_show_message (plug, _("Authentication failed."));
+                }
+
+                gtk_widget_set_sensitive (GTK_WIDGET (plug), FALSE);
+                g_timeout_add (3000, (GSourceFunc)reset_idle_cb, plug);
+
+                printf ("NOTICE=AUTH FAILED\n");
+                fflush (stdout);
+
+                if (error != NULL) {
+                        g_error_free (error);
+                }
+        }
+
+        return res;
+}
+
 static void
 response_cb (GSLockPlug *plug,
              gint        response_id)
 {
-        switch (response_id) {
-        case (GS_LOCK_PLUG_RESPONSE_OK):
-                response_ok ();
-                break;
-        case (GS_LOCK_PLUG_RESPONSE_CANCEL):
-        default:
-                response_cancel ();
-                break;
+        if (response_id == GS_LOCK_PLUG_RESPONSE_CANCEL) {
+                quit_response_cancel ();
+        }
+}
+
+static gboolean
+auth_check_idle (GSLockPlug *plug)
+{
+        gboolean res;
+
+        res = do_auth_check (plug);
+
+        if (res) {
+                g_idle_add ((GSourceFunc)quit_response_ok, NULL);
         }
 
-        gtk_main_quit ();
+        return !res;
 }
 
 static gboolean
@@ -156,6 +293,8 @@ popup_dialog_idle (void)
         gtk_widget_show (widget);
 
         print_id (widget);
+
+        g_idle_add ((GSourceFunc)auth_check_idle, widget);
 
         gs_profile_end (NULL);
 

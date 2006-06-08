@@ -1,5 +1,30 @@
 2006-06-08  William Jon McCann  <mccann@jhu.edu>
 
+	* data/gnome-screensaver.schemas.in: Remove the try_auth_first key.
+
+	* data/lock-dialog-default.glade: Rename the auth_password_* widgets
+	to auth_prompt_*
+
+	* src/gnome-screensaver-dialog.c: (quit_response_ok),
+	(quit_response_cancel), (request_response), (auth_message_handler),
+	(reset_idle_cb), (do_auth_check), (response_cb), (auth_check_idle),
+	(popup_dialog_idle):
+	* src/gs-lock-plug.c: (gs_lock_plug_style_set), (set_status_text),
+	(set_dialog_sensitive), (gs_lock_plug_response),
+	(gs_lock_plug_get_text), (shutdown_loop), (run_unmap_handler),
+	(run_response_handler), (run_delete_handler),
+	(run_destroy_handler), (gs_lock_plug_run), (gs_lock_plug_show),
+	(gs_lock_plug_hide), (gs_lock_plug_size_request),
+	(gs_lock_plug_class_init), (gs_lock_plug_show_prompt),
+	(gs_lock_plug_show_message), (create_page_one), (load_theme),
+	(gs_lock_plug_init), (gs_lock_plug_finalize):
+	* src/gs-lock-plug.h:
+
+	Don't do authentication from within the lock plug.  Allow the
+	authentication to drive the GUI.
+
+2006-06-08  William Jon McCann  <mccann@jhu.edu>
+
 	* src/Makefile.am:
 	* src/gnome-screensaver-dialog.c: (print_id), (popup_dialog_idle),
 	(privileged_initialization), (lock_initialization), (main):
