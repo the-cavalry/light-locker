@@ -1,5 +1,31 @@
 2006-06-08  William Jon McCann  <mccann@jhu.edu>
 
+	* src/Makefile.am:
+	* src/gnome-screensaver-dialog.c: (print_id), (popup_dialog_idle),
+	(privileged_initialization), (lock_initialization), (main):
+	* src/gs-auth-pam.c: (pam_conversation):
+	* src/gs-debug.c: (gs_debug_enabled), (gs_debug_shutdown),
+	(_gs_profile_log):
+	* src/gs-debug.h:
+	* src/gs-lock-plug.c: (response_cancel_idle_cb),
+	(response_ok_idle_cb), (monitor_progress), (request_password),
+	(auth_message_handler), (do_initial_auth_check),
+	(gs_lock_plug_show), (auth_check_idle_cb), (populate_model),
+	(setup_treeview), (create_page_one_buttons),
+	(create_page_two_buttons), (create_page_one), (create_page_two),
+	(gs_lock_plug_init):
+	* src/gs-window-x11.c: (popup_dialog_idle):
+
+	Share the profiling code.  Add a verbose option to gnome-screensaver-dialog.
+	Do the initial auth check at start.  Interrupt the PAM stack if
+	there is no response.
+
+	The dialog can now be profiled like so:
+	strace -ttt -f -o /tmp/logfile.strace /usr/libexec/gnome-screensaver-dialog --verbose
+	python plot-timeline.py -o prettygraph.png /tmp/logfile.strace
+
+2006-06-08  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Turn off docbook generation by default.
 
 	Patch from Richard Hughes <richard@hughsie.com>

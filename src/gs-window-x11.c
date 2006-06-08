@@ -984,6 +984,10 @@ popup_dialog_idle (GSWindow *window)
                 command = g_string_append (command, " --enable-switch");
         }
 
+        if (gs_debug_enabled ()) {
+                command = g_string_append (command, " --verbose");
+        }
+
         gs_window_clear (window);
         set_invisible_cursor (GTK_WIDGET (window)->window, FALSE);
 

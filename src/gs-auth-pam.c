@@ -171,12 +171,17 @@ pam_conversation (int                        nmsgs,
         int                  replies = 0;
         struct pam_response *reply = NULL;
         struct pam_closure  *c = (struct pam_closure *) closure;
+        gboolean             res;
+        int                  ret;
 
         reply = (struct pam_response *) calloc (nmsgs, sizeof (*reply));
 
         if (reply == NULL) {
                 return PAM_CONV_ERR;
         }
+
+        res = TRUE;
+        ret = PAM_SUCCESS;
 
         for (replies = 0; replies < nmsgs; replies++) {
                 GSAuthMessageStyle style;
@@ -190,16 +195,23 @@ pam_conversation (int                        nmsgs,
                                       NULL);
 
                 if (c->cb_func != NULL) {
-                        c->cb_func (style,
-                                    msg [replies]->msg,
-                                    &reply [replies].resp,
-                                    c->cb_data);
+                        res = c->cb_func (style,
+                                          msg [replies]->msg,
+                                          &reply [replies].resp,
+                                          c->cb_data);
+
+                        /* If the handler returns FALSE - interrupt the PAM stack */
+                        if (res) {
+                                reply [replies].resp_retcode = PAM_SUCCESS;
+                        } else {
+                                reply [replies].resp_retcode = PAM_INCOMPLETE;
+                        }
                 }
         }
 
         *resp = reply;
 
-        return PAM_SUCCESS;
+        return ret;
 }
 
 static gboolean

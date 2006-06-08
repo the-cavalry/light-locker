@@ -130,6 +130,8 @@ gnome_screensaver_dialog_SOURCES = 	\
 	gnome-screensaver-dialog.c	\
 	gs-lock-plug.c			\
 	gs-lock-plug.h			\
+	gs-debug.c			\
+	gs-debug.h			\
 	setuid.c			\
 	setuid.h			\
 	subprocs.c			\

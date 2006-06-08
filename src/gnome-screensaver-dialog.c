@@ -39,63 +39,7 @@
 #include "gs-auth.h"
 #include "setuid.h"
 
-
-/* Profiling stuff adapted from gtkfilechooserdefault */
-/* To use run:
- *  strace -ttt -f -o logfile.txt ./gnome-screensaver-dialog
- */
-
-#undef PROFILE_LOCK_DIALOG
-#ifdef PROFILE_LOCK_DIALOG
-
-#define PROFILE_INDENT 4
-static int profile_indent;
-
-static void
-profile_add_indent (int indent)
-{
-        profile_indent += indent;
-        if (profile_indent < 0) {
-                g_error ("You screwed up your indentation");
-        }
-}
-
-static void
-_gs_lock_plug_profile_log (const char *func,
-                           int         indent,
-                           const char *msg1,
-                           const char *msg2)
-{
-        char *str;
-
-        if (indent < 0) {
-                profile_add_indent (indent);
-        }
-
-        if (profile_indent == 0) {
-                str = g_strdup_printf ("MARK: %s: %s %s %s", G_STRLOC, func, msg1 ? msg1 : "", msg2 ? msg2 : "");
-        } else {
-                str = g_strdup_printf ("MARK: %s: %*c %s %s %s", G_STRLOC, profile_indent - 1, ' ', func, msg1 ? msg1 : "", msg2 ? msg2 : "");
-        }
-
-        access (str, F_OK);
-
-        g_free (str);
-
-        if (indent > 0) {
-                profile_add_indent (indent);
-        }
-}
-
-#define profile_start(x, y) _gs_lock_plug_profile_log (G_STRFUNC, PROFILE_INDENT, x, y)
-#define profile_end(x, y)   _gs_lock_plug_profile_log (G_STRFUNC, -PROFILE_INDENT, x, y)
-#define profile_msg(x, y)   _gs_lock_plug_profile_log (NULL, 0, x, y)
-#else
-#define profile_start(x, y)
-#define profile_end(x, y)
-#define profile_msg(x, y)
-#endif
-
+#include "gs-debug.h"
 
 static gboolean verbose        = FALSE;
 static gboolean show_version   = FALSE;
@@ -135,13 +79,13 @@ print_id (GtkWidget *widget)
 {
         char *id;
 
-        profile_start ("start", NULL);
+        gs_profile_start (NULL);
 
         id = get_id_string (widget);
         printf ("WINDOW ID=%s\n", id);
         fflush (stdout);
 
-        profile_end ("end", NULL);
+        gs_profile_end (NULL);
 
         g_free (id);
 
@@ -191,7 +135,7 @@ popup_dialog_idle (void)
 {
         GtkWidget *widget;
 
-        profile_start ("start", NULL);
+        gs_profile_start (NULL);
 
         widget = gs_lock_plug_new ();
 
@@ -213,7 +157,7 @@ popup_dialog_idle (void)
 
         print_id (widget);
 
-        profile_end ("end", NULL);
+        gs_profile_end (NULL);
 
         return FALSE;
 }
@@ -237,7 +181,7 @@ privileged_initialization (int     *argc,
         char    *orig_uid;
         char    *uid_message;
 
-        profile_start ("start", NULL);
+        gs_profile_start (NULL);
 
 #ifndef NO_LOCKING
         /* before hack_uid () for proper permissions */
@@ -260,7 +204,7 @@ privileged_initialization (int     *argc,
         g_free (orig_uid);
         g_free (uid_message);
 
-        profile_end ("end", NULL);
+        gs_profile_end (NULL);
 
         return ret;
 }
@@ -278,7 +222,7 @@ lock_initialization (int     *argc,
                      char   **nolock_reason,
                      gboolean verbose)
 {
-        profile_start ("start", NULL);
+        gs_profile_start (NULL);
 
         if (nolock_reason) {
                 *nolock_reason = NULL;
@@ -340,7 +284,7 @@ lock_initialization (int     *argc,
 
 #endif /* NO_LOCKING */
 
-        profile_end ("end", NULL);
+        gs_profile_end (NULL);
 
         return TRUE;
 }
@@ -368,7 +312,7 @@ main (int    argc,
                 exit (1);
         }
 
-        profile_start ("start", NULL);
+        gs_profile_start (NULL);
 
         if (! privileged_initialization (&argc, argv, verbose)) {
                 response_lock_init_failed ();
@@ -398,11 +342,14 @@ main (int    argc,
                 exit (1);
         }
 
+        gs_debug_init (verbose, FALSE);
+
         g_idle_add ((GSourceFunc)popup_dialog_idle, NULL);
 
         gtk_main ();
 
-        profile_end ("end", NULL);
+        gs_profile_end (NULL);
+        gs_debug_shutdown ();
 
 	return 0;
 }
