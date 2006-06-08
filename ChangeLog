@@ -1,3 +1,10 @@
+2006-06-08  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac: Turn off docbook generation by default.
+
+	Patch from Richard Hughes <richard@hughsie.com>
+	Fixes #344207
+
 2006-06-07  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-command.c: (main):
