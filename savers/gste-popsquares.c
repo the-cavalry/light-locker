@@ -37,7 +37,7 @@ static void     gste_popsquares_init       (GSTEPopsquares      *engine);
 static void     gste_popsquares_finalize   (GObject            *object);
 
 typedef struct _square {
-        int x, y, w, h; 
+        int x, y, w, h;
         int color;
 } square;
 
@@ -506,8 +506,8 @@ draw_iter (GSTEPopsquares *pop)
                         square *s = (square *) &pop->priv->squares [gw * y + x];
 
                         gdk_gc_set_foreground (pop->priv->gc, &(pop->priv->colors [s->color]));
-                        gdk_draw_rectangle (window, pop->priv->gc, TRUE, s->x, s->y, 
-                                            border ? s->w - border : s->w, 
+                        gdk_draw_rectangle (window, pop->priv->gc, TRUE, s->x, s->y,
+                                            border ? s->w - border : s->w,
                                             border ? s->h - border : s->h);
                         s->color++;
 

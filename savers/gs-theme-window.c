@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU Lesser General
  * Public License along with this program; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.  
+ * Boston, MA 02111-1307, USA.
  *
  * Originally written by: Ray Strode <rstrode@redhat.com>
  */
@@ -79,7 +79,7 @@ gs_theme_window_finalize (GObject *object)
                 parent_class->finalize (object);
 }
 
-static void 
+static void
 gs_theme_window_real_realize (GtkWidget *widget)
 {
         GdkWindow     *window;
@@ -100,7 +100,7 @@ gs_theme_window_real_realize (GtkWidget *widget)
 
                 remote_xwindow = (Window) strtoul (preview_xid, &end, 0);
 
-                if ((remote_xwindow != 0) && (end != NULL) && 
+                if ((remote_xwindow != 0) && (end != NULL) &&
                     ((*end == ' ') || (*end == '\0')) &&
                     ((remote_xwindow < G_MAXULONG) || (errno != ERANGE))) {
                         window = gdk_window_foreign_new (remote_xwindow);
@@ -132,7 +132,7 @@ gs_theme_window_real_realize (GtkWidget *widget)
                         }
                 }
         }
-        
+
         if (window == NULL) {
                 GtkWidgetClass *parent_class;
 
@@ -143,11 +143,11 @@ gs_theme_window_real_realize (GtkWidget *widget)
 
                 return;
         }
-        
+
         gtk_style_set_background (widget->style,
                                   window,
                                   GTK_STATE_NORMAL);
-        gdk_window_set_decorations (window, (GdkWMDecoration) 0); 
+        gdk_window_set_decorations (window, (GdkWMDecoration) 0);
 
         widget->window = window;
         gdk_window_set_user_data (window, widget);
@@ -168,7 +168,7 @@ gs_theme_window_new (void)
 {
         GSThemeWindow *window;
 
-        window = g_object_new (GS_TYPE_THEME_WINDOW, 
+        window = g_object_new (GS_TYPE_THEME_WINDOW,
                                "type", GTK_WINDOW_TOPLEVEL,
                                NULL);
 

@@ -1,5 +1,27 @@
 2006-06-08  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/floaters.c: (path_new),
+	(screen_saver_floater_should_come_on_screen),
+	(screen_saver_floater_get_position_from_time),
+	(screen_saver_floater_update_state), (gamma_correct),
+	(screen_saver_floater_do_draw), (screen_saver_new),
+	(screen_saver_destroy_floaters), (screen_saver_update_state),
+	(screen_saver_do_update_state), (screen_saver_do_update_stats),
+	(do_print_screen_saver_stats), (main):
+	* savers/gs-theme-window.c: (gs_theme_window_real_realize),
+	(gs_theme_window_new):
+	* savers/gs-theme-window.h:
+	* savers/gste-popsquares.c: (draw_iter):
+	* savers/gste-slideshow.c: (get_exif_orientation),
+	(pixbuf_copy_rotate_90), (pixbuf_copy_mirror), (add_files_to_list),
+	(load_threadfunc):
+	* savers/popsquares.c: (main):
+	* savers/slideshow.c: (main):
+
+	Eliminate trailing whitespace.
+
+2006-06-08  William Jon McCann  <mccann@jhu.edu>
+
 	* data/gnome-screensaver.schemas.in: Remove the try_auth_first key.
 
 	* data/lock-dialog-default.glade: Rename the auth_password_* widgets

@@ -39,9 +39,9 @@ main (int argc, char **argv)
         bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 # ifdef HAVE_BIND_TEXTDOMAIN_CODESET
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-# endif 
+# endif
         textdomain (GETTEXT_PACKAGE);
-#endif 
+#endif
 
         error = NULL;
 

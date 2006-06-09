@@ -112,13 +112,13 @@ typedef struct _OpResult
 #if HAVE_EXIF
 
 enum _ExifRotation {
-        NORMAL = 1, 
-        HFLIP, 
-        ROTATE180, 
-        VFLIP, 
-        ROTATE90_HFLIP, 
+        NORMAL = 1,
+        HFLIP,
+        ROTATE180,
+        VFLIP,
+        ROTATE90_HFLIP,
         ROTATE90,
-        ROTATE90_VFLIP, 
+        ROTATE90_VFLIP,
         ROTATE270
 };
 typedef enum _ExifRotation ExifRotation;
@@ -130,7 +130,7 @@ get_exif_orientation (const char *filename)
         ExifEntry    *entry;
         ExifByteOrder o;
         ExifRotation  s;
-        unsigned int  i; 
+        unsigned int  i;
 
         edata = exif_data_new_from_file (filename);
 
@@ -141,7 +141,7 @@ get_exif_orientation (const char *filename)
         o = exif_data_get_byte_order (edata);
 
         for (i = 0; i < EXIF_IFD_COUNT; i++) {
-                entry = exif_content_get_entry (edata->ifd [i], 
+                entry = exif_content_get_entry (edata->ifd [i],
                                                 EXIF_TAG_ORIENTATION);
                 if (entry != NULL) {
                         s = (ExifRotation)exif_get_short (entry->data, o);
@@ -157,15 +157,15 @@ get_exif_orientation (const char *filename)
 }
 
 /* Routines for rotating a GdkPixbuf.
- * Borrowed from f-spot. 
- * For copyright information see libfspot/f-pixbuf-utils.c in the f-spot 
+ * Borrowed from f-spot.
+ * For copyright information see libfspot/f-pixbuf-utils.c in the f-spot
  * package.
  */
 
 /* Returns a copy of pixbuf src rotated 90 degrees clockwise or 90
    counterclockwise.  */
 static GdkPixbuf *
-pixbuf_copy_rotate_90 (GdkPixbuf *src, 
+pixbuf_copy_rotate_90 (GdkPixbuf *src,
                        gboolean   counter_clockwise)
 {
         GdkPixbuf *dest;
@@ -222,8 +222,8 @@ pixbuf_copy_rotate_90 (GdkPixbuf *src,
    rotations set both mirror and flipped TRUE if mirror and flip are FALSE,
    result is a simple copy.  */
 static GdkPixbuf *
-pixbuf_copy_mirror (GdkPixbuf *src, 
-                    gboolean   mirror, 
+pixbuf_copy_mirror (GdkPixbuf *src,
+                    gboolean   mirror,
                     gboolean   flip)
 {
         GdkPixbuf *dest;
@@ -352,7 +352,6 @@ push_load_image_func (GSTESlideshow *show)
 
         return FALSE;
 }
-
 
 static void
 start_new_load (GSTESlideshow *show,
@@ -637,7 +636,7 @@ static void
 add_files_to_list (GSList    **list,
                    const char *base)
 {
-        GDir       *d; 
+        GDir       *d;
         const char *d_name;
 
         d = g_dir_open (base, 0, NULL);
@@ -803,7 +802,7 @@ load_threadfunc (GAsyncQueue *op_q)
 
                 op = g_async_queue_pop (op_q);
         }
-  
+
         return NULL;
 }
 
