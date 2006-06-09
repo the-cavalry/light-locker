@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 0.0.21\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-29 18:13+0700\n"
-"PO-Revision-Date: 2006-05-29 18:30+0700\n"
+"POT-Creation-Date: 2006-06-09 15:59+0700\n"
+"PO-Revision-Date: 2006-06-09 16:09+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <l10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -206,21 +206,21 @@ msgstr "<span size=\"small\">%U ที่เครื่อง %h</span>"
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: data/lock-dialog-default.glade.h:5 src/gs-lock-plug.c:1623
+#: data/lock-dialog-default.glade.h:5
+msgid "Prompt:"
+msgstr "คำถาม:"
+
+#: data/lock-dialog-default.glade.h:6 src/gs-lock-plug.c:1696
 msgid "S_witch to user:"
 msgstr "ส_ลับไปเป็นผู้ใช้:"
 
-#: data/lock-dialog-default.glade.h:6
+#: data/lock-dialog-default.glade.h:7
 msgid "_Cancel"
 msgstr "_ยกเลิก"
 
-#: data/lock-dialog-default.glade.h:7
+#: data/lock-dialog-default.glade.h:8
 msgid "_Log Out"
 msgstr "_ออกจากระบบ"
-
-#: data/lock-dialog-default.glade.h:8 src/gs-lock-plug.c:1547
-msgid "_Password:"
-msgstr "_รหัสผ่าน:"
 
 #: data/lock-dialog-default.glade.h:9
 msgid "_Switch User..."
@@ -230,7 +230,7 @@ msgstr "_สลับผู้ใช้..."
 msgid "_Switch user..."
 msgstr "_สลับผู้ใช้..."
 
-#: data/lock-dialog-default.glade.h:11 src/gs-lock-plug.c:1352
+#: data/lock-dialog-default.glade.h:11 src/gs-lock-plug.c:1425
 msgid "_Unlock"
 msgstr "_ปลดล็อค"
 
@@ -651,7 +651,7 @@ msgstr "ถ้าโปรแกรมรักษาหน้าจอกำล
 msgid "Poke the running screensaver to simulate user activity"
 msgstr "รบเร้าโปรแกรมรักษาหน้าจอที่กำลังทำงานอยู่ เพื่อจำลองการเคลื่อนไหวของผู้ใช้"
 
-#: src/gnome-screensaver-command.c:71 src/gnome-screensaver-dialog.c:110
+#: src/gnome-screensaver-command.c:71 src/gnome-screensaver-dialog.c:54
 #: src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "รุ่นของโปรแกรมนี้"
@@ -669,53 +669,57 @@ msgstr "ทำงาน"
 msgid "inactive"
 msgstr "หลับ"
 
-#: src/gnome-screensaver-dialog.c:108
+#: src/gnome-screensaver-dialog.c:52
 msgid "Show debugging output"
 msgstr "แสดงข้อความดีบั๊ก"
 
-#: src/gnome-screensaver-dialog.c:112
+#: src/gnome-screensaver-dialog.c:56
 msgid "Show the logout button"
 msgstr "แสดงปุ่มออกจากระบบ"
 
-#: src/gnome-screensaver-dialog.c:114
+#: src/gnome-screensaver-dialog.c:58
 msgid "Command to invoke from the logout button"
 msgstr "คำสั่งที่จะเรียกจากปุ่มออกจากระบบ"
 
-#: src/gnome-screensaver-dialog.c:116
+#: src/gnome-screensaver-dialog.c:60
 msgid "Show the switch user button"
 msgstr "แสดงปุ่มสลับผู้ใช้"
 
-#: src/gnome-screensaver-preferences.c:438
+#: src/gnome-screensaver-dialog.c:230
+msgid "Authentication failed."
+msgstr "การยืนยันตัวบุคคลไม่ผ่าน"
+
+#: src/gnome-screensaver-preferences.c:437
 msgid "Blank screen"
 msgstr "จอเปล่า"
 
-#: src/gnome-screensaver-preferences.c:444
+#: src/gnome-screensaver-preferences.c:443
 msgid "Random"
 msgstr "สุ่ม"
 
-#: src/gnome-screensaver-preferences.c:790
+#: src/gnome-screensaver-preferences.c:791
 msgid "Invalid screensaver theme"
 msgstr "ชุดโปรแกรมรักษาหน้าจอใช้ไม่ได้"
 
-#: src/gnome-screensaver-preferences.c:793
+#: src/gnome-screensaver-preferences.c:794
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "แฟ้มนี้ดูไม่เหมือนชุดโปรแกรมรักษาหน้าจอที่ใช้ได้"
 
-#: src/gnome-screensaver-preferences.c:910
+#: src/gnome-screensaver-preferences.c:911
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d ชั่วโมง"
 msgstr[1] "%d ชั่วโมง"
 
-#: src/gnome-screensaver-preferences.c:913
+#: src/gnome-screensaver-preferences.c:914
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d นาที"
 msgstr[1] "%d นาที"
 
-#: src/gnome-screensaver-preferences.c:916
+#: src/gnome-screensaver-preferences.c:917
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -723,15 +727,15 @@ msgstr[0] "%d วินาที"
 msgstr[1] "%d วินาที"
 
 #. hour:minutes:seconds
-#: src/gnome-screensaver-preferences.c:922
+#: src/gnome-screensaver-preferences.c:923
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: src/gnome-screensaver-preferences.c:925
-#: src/gnome-screensaver-preferences.c:933
+#: src/gnome-screensaver-preferences.c:926
+#: src/gnome-screensaver-preferences.c:934
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -739,22 +743,22 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: src/gnome-screensaver-preferences.c:928
-#: src/gnome-screensaver-preferences.c:936
-#: src/gnome-screensaver-preferences.c:940
+#: src/gnome-screensaver-preferences.c:929
+#: src/gnome-screensaver-preferences.c:937
+#: src/gnome-screensaver-preferences.c:941
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: src/gnome-screensaver-preferences.c:955
+#: src/gnome-screensaver-preferences.c:956
 msgid "Never"
 msgstr "ไม่ทำงาน"
 
-#: src/gnome-screensaver-preferences.c:1259
+#: src/gnome-screensaver-preferences.c:1260
 msgid "Could not load the main interface"
 msgstr "ไม่สามารถโหลดส่วนติดต่อผู้ใช้หลักได้"
 
-#: src/gnome-screensaver-preferences.c:1261
+#: src/gnome-screensaver-preferences.c:1262
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "กรุณาตรวจสอบการติดตั้งโปรแกรมรักษาหน้าจอว่าครบถ้วนหรือไม่"
 
@@ -766,45 +770,47 @@ msgstr "ไม่ต้องเป็นดีมอน"
 msgid "Enable debugging code"
 msgstr "เปิดใช้โค้ดส่วนดีบั๊ก"
 
-#: src/gs-listener-dbus.c:1451
+#: src/gs-listener-dbus.c:1551
 msgid "failed to register with the message bus"
 msgstr "ลงทะเบียนกับบัสข้อความไม่สำเร็จ"
 
-#: src/gs-listener-dbus.c:1461
+#: src/gs-listener-dbus.c:1561
 msgid "not connected to the message bus"
 msgstr "ไม่ได้เชื่อมต่อกับบัสข้อความ"
 
-#: src/gs-listener-dbus.c:1470
+#: src/gs-listener-dbus.c:1570
 msgid "screensaver already running in this session"
 msgstr "โปรแกรมรักษาหน้าจอกำลังทำงานอยู่แล้วในวาระนี้"
 
-#: src/gs-lock-plug.c:375
-msgid "Checking password..."
-msgstr "กำลังตรวจสอบรหัสผ่าน..."
-
-#: src/gs-lock-plug.c:418
+#: src/gs-lock-plug.c:334
 msgid "Time has expired."
 msgstr "หมดเวลา"
 
-#: src/gs-lock-plug.c:448
+#: src/gs-lock-plug.c:364
 msgid "You have the Caps Lock key on."
 msgstr "ปุ่ม Caps Lock ถูกกดอยู่"
 
-#: src/gs-lock-plug.c:775
-msgid "That password was incorrect."
-msgstr "รหัสผ่านไม่ถูกต้อง"
-
-#: src/gs-lock-plug.c:1334 src/gs-lock-plug.c:1371
+#: src/gs-lock-plug.c:1407 src/gs-lock-plug.c:1444
 msgid "S_witch User..."
 msgstr "_สลับผู้ใช้..."
 
-#: src/gs-lock-plug.c:1342
+#: src/gs-lock-plug.c:1415
 msgid "Log _Out"
 msgstr "_ออกจากระบบ"
 
-#: src/gs-lock-plug.c:1533
+#: src/gs-lock-plug.c:1606
 msgid "%U on %h"
 msgstr "%s ที่เครื่อง %s"
+
+#: src/gs-lock-plug.c:1620
+msgid "_Password:"
+msgstr "_รหัสผ่าน:"
+
+#~ msgid "Checking password..."
+#~ msgstr "กำลังตรวจสอบรหัสผ่าน..."
+
+#~ msgid "That password was incorrect."
+#~ msgstr "รหัสผ่านไม่ถูกต้อง"
 
 #~ msgid "_Screensaver"
 #~ msgstr "โปรแกรม_รักษาหน้าจอ"
