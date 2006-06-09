@@ -894,6 +894,7 @@ gste_slideshow_real_configure (GtkWidget         *widget,
 {
         GSTESlideshow *show = GSTE_SLIDESHOW (widget);
         gboolean       handled = FALSE;
+        cairo_t       *cr;
 
         /* resize */
         gs_theme_engine_get_window_size (GS_THEME_ENGINE (show),
@@ -907,9 +908,13 @@ gste_slideshow_real_configure (GtkWidget         *widget,
         if (show->priv->surf != NULL) {
                 cairo_surface_destroy (show->priv->surf);
         }
-        show->priv->surf = cairo_image_surface_create (CAIRO_FORMAT_RGB24,
-                                                       show->priv->window_width,
-                                                       show->priv->window_height);
+
+        cr = gdk_cairo_create (widget->window);
+        show->priv->surf = cairo_surface_create_similar (cairo_get_target (cr),
+                                                         CAIRO_CONTENT_COLOR_ALPHA,
+                                                         show->priv->window_width,
+                                                         show->priv->window_height);
+        cairo_destroy (cr);
 
         /* schedule a redraw */
         gtk_widget_queue_draw (widget);

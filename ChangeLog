@@ -1,5 +1,11 @@
 2006-06-08  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/gste-slideshow.c: (gste_slideshow_real_configure):
+	Use a similar surface to the target as the buffer.  Seems
+	to improve performance.
+
+2006-06-08  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/floaters.c: (path_new),
 	(screen_saver_floater_should_come_on_screen),
 	(screen_saver_floater_get_position_from_time),
