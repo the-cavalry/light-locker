@@ -81,6 +81,9 @@ struct GSTESlideshowPrivate
         int             window_height;
 
         guint           timeout_id;
+
+        GTimer         *timer;
+        gboolean        fade_disabled;
 };
 
 enum {
@@ -95,6 +98,7 @@ static GObjectClass *parent_class = NULL;
 G_DEFINE_TYPE (GSTESlideshow, gste_slideshow, GS_TYPE_THEME_ENGINE)
 
 #define N_FADE_TICKS 10
+#define MINIMUM_FPS 5.0
 #define DEFAULT_IMAGES_LOCATION DATADIR "/pixmaps/backgrounds"
 #define IMAGE_LOAD_TIMEOUT 10000
 
@@ -406,6 +410,7 @@ start_fade (GSTESlideshow *show,
         cairo_destroy (cr);
 
         show->priv->fade_ticks = 0;
+        g_timer_start (show->priv->timer);
 
         gs_theme_engine_profile_end ("end");
 }
@@ -470,13 +475,11 @@ update_display (GSTESlideshow *show)
                 gs_theme_engine_profile_start ("paint pattern to surface");
                 cairo_set_source (cr, show->priv->pat2);
 
-                cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
                 cairo_paint_with_alpha (cr, show->priv->alpha2);
                 gs_theme_engine_profile_end ("paint pattern to surface");
         } else {
                 if (show->priv->pat1 != NULL) {
                         cairo_set_source (cr, show->priv->pat1);
-                        cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
                         cairo_paint (cr);
                 }
         }
@@ -489,7 +492,6 @@ update_display (GSTESlideshow *show)
         cairo_set_source_surface (cr, show->priv->surf, 0, 0);
 
         gs_theme_engine_profile_start ("paint surface to window");
-        cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
         cairo_paint (cr);
         gs_theme_engine_profile_end ("paint surface to window");
 
@@ -502,6 +504,16 @@ static gboolean
 draw_iter (GSTESlideshow *show)
 {
         if (show->priv->pat2 != NULL) {
+                gdouble fps;
+                gdouble elapsed;
+
+                if (show->priv->fade_disabled) {
+                        show->priv->alpha2 = 1.0;
+                        update_display (show);
+                        finish_fade (show);
+                        return TRUE;
+                }
+
                 /* we are in a fade */
                 show->priv->fade_ticks++;
 
@@ -528,6 +540,14 @@ draw_iter (GSTESlideshow *show)
                                            (1.0 - old_opacity);
 
                 update_display (show);
+
+                elapsed = g_timer_elapsed (show->priv->timer, NULL);
+                fps = (gdouble)show->priv->fade_ticks / elapsed;
+                if (fps < MINIMUM_FPS) {
+                        g_warning ("Getting less than %.2f frames per second, disabling fade", MINIMUM_FPS);
+                        show->priv->fade_ticks = N_FADE_TICKS - 1;
+                        show->priv->fade_disabled = TRUE;
+                }
 
                 if (show->priv->fade_ticks >= N_FADE_TICKS) {
                         finish_fade (show);
@@ -874,6 +894,11 @@ gste_slideshow_real_show (GtkWidget *widget)
 
         delay = 25;
         show->priv->timeout_id = g_timeout_add (delay, (GSourceFunc)draw_iter, show);
+
+        if (show->priv->timer != NULL) {
+                g_timer_destroy (show->priv->timer);
+        }
+        show->priv->timer = g_timer_new ();
 }
 
 static gboolean
@@ -915,7 +940,7 @@ gste_slideshow_real_configure (GtkWidget         *widget,
 
         cr = gdk_cairo_create (widget->window);
         show->priv->surf = cairo_surface_create_similar (cairo_get_target (cr),
-                                                         CAIRO_CONTENT_COLOR_ALPHA,
+                                                         CAIRO_CONTENT_COLOR,
                                                          show->priv->window_width,
                                                          show->priv->window_height);
         cairo_destroy (cr);
@@ -1034,6 +1059,10 @@ gste_slideshow_finalize (GObject *object)
 
         g_free (show->priv->images_location);
         show->priv->images_location = NULL;
+
+        if (show->priv->timer != NULL) {
+                g_timer_destroy (show->priv->timer);
+        }
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }
