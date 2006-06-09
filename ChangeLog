@@ -1,5 +1,11 @@
 2006-06-08  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/gste-slideshow.c: (update_display), (set_colormap),
+	(gste_slideshow_init):
+	Use CAIRO_OPERATOR_OVER.  Explicitly set the colormap.
+
+2006-06-08  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/gste-slideshow.c: (gste_slideshow_real_configure):
 	Use a similar surface to the target as the buffer.  Seems
 	to improve performance.

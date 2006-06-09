@@ -469,11 +469,14 @@ update_display (GSTESlideshow *show)
 
                 gs_theme_engine_profile_start ("paint pattern to surface");
                 cairo_set_source (cr, show->priv->pat2);
+
+                cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
                 cairo_paint_with_alpha (cr, show->priv->alpha2);
                 gs_theme_engine_profile_end ("paint pattern to surface");
         } else {
                 if (show->priv->pat1 != NULL) {
                         cairo_set_source (cr, show->priv->pat1);
+                        cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
                         cairo_paint (cr);
                 }
         }
@@ -486,6 +489,7 @@ update_display (GSTESlideshow *show)
         cairo_set_source_surface (cr, show->priv->surf, 0, 0);
 
         gs_theme_engine_profile_start ("paint surface to window");
+        cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
         cairo_paint (cr);
         gs_theme_engine_profile_end ("paint surface to window");
 
@@ -955,6 +959,21 @@ gste_slideshow_class_init (GSTESlideshowClass *klass)
 }
 
 static void
+set_colormap (GtkWidget *widget)
+{
+        GdkScreen   *screen;
+        GdkColormap *colormap;
+
+        screen = gtk_widget_get_screen (widget);
+        colormap = gdk_screen_get_rgba_colormap (screen);
+        if (colormap == NULL) {
+                colormap = gdk_screen_get_rgb_colormap (screen);
+        }
+
+        gtk_widget_set_colormap (widget, colormap);
+}
+
+static void
 gste_slideshow_init (GSTESlideshow *show)
 {
         GError *error;
@@ -975,6 +994,7 @@ gste_slideshow_init (GSTESlideshow *show)
                 exit (-1);
         }
 
+        set_colormap (GTK_WIDGET (show));
 }
 
 static void
