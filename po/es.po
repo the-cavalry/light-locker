@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-09 19:56+0200\n"
-"PO-Revision-Date: 2006-06-09 19:57+0200\n"
+"POT-Creation-Date: 2006-06-11 01:24+0200\n"
+"PO-Revision-Date: 2006-06-11 01:25+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -719,11 +719,11 @@ msgstr "Mostrar el botón de cambio de usuario"
 
 #: ../src/gnome-screensaver-dialog.c:230
 msgid "Authentication failed."
-msgstr ""
+msgstr "La autenticación ha fallado."
 
 #: ../src/gnome-screensaver-preferences.c:437
 msgid "Blank screen"
-msgstr "Ennegrecer pantalla"
+msgstr "Oscurecer pantalla"
 
 #: ../src/gnome-screensaver-preferences.c:443
 msgid "Random"
@@ -735,7 +735,7 @@ msgstr "Tema del salvapantallas inválido"
 
 #: ../src/gnome-screensaver-preferences.c:794
 msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Este archivo no parece ser un tema válido del salvapantallas"
+msgstr "Este archivo no parece ser un tema válido del salvapantallas."
 
 #: ../src/gnome-screensaver-preferences.c:911
 #, c-format
