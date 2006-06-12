@@ -1,3 +1,12 @@
+2006-06-12  William Jon McCann  <mccann@jhu.edu>
+
+	* data/lock-dialog-default.glade:
+	Use Password as default label for prompt
+	since it is the most likely one.
+	
+	* savers/gste-slideshow.c:
+	Reduce minimum fps to 3.
+
 2006-06-09  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/gste-slideshow.c: (start_fade), (update_display),
