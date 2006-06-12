@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-11 01:24+0200\n"
-"PO-Revision-Date: 2006-06-11 01:25+0200\n"
+"POT-Creation-Date: 2006-06-12 19:20+0200\n"
+"PO-Revision-Date: 2006-06-12 19:22+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -224,8 +224,8 @@ msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
 #: ../data/lock-dialog-default.glade.h:5
-msgid "Prompt:"
-msgstr "Pregunta:"
+msgid "Password:"
+msgstr "Contraseña:"
 
 #: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1696
 msgid "S_witch to user:"
@@ -717,7 +717,7 @@ msgstr "Comando para invocar desde el botón de cierre de sesión"
 msgid "Show the switch user button"
 msgstr "Mostrar el botón de cambio de usuario"
 
-#: ../src/gnome-screensaver-dialog.c:230
+#: ../src/gnome-screensaver-dialog.c:230 ../src/gs-auth-pam.c:320
 msgid "Authentication failed."
 msgstr "La autenticación ha fallado."
 
@@ -802,6 +802,32 @@ msgstr "No convertirse en un demonio"
 msgid "Enable debugging code"
 msgstr "Activar código de depuración"
 
+#: ../src/gs-auth-pam.c:262
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr "Incapaz de establecer el servicio %s: %s\n"
+
+#: ../src/gs-auth-pam.c:288
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr "No se puede establecer PAM_TTY=%s"
+
+#: ../src/gs-auth-pam.c:318
+msgid "Incorrect password."
+msgstr "Contraseña incorrecta."
+
+#: ../src/gs-auth-pam.c:334
+msgid "Not permitted to gain access at this time."
+msgstr "No le está permitido ganar acceso en este instante."
+
+#: ../src/gs-auth-pam.c:340
+msgid "No longer permitted to access the system."
+msgstr "Ya no se le permite acceder en adelante a este sistema."
+
+#: ../src/gs-auth-pam.c:380
+msgid "Username:"
+msgstr "Usuario:"
+
 #: ../src/gs-listener-dbus.c:1551
 msgid "failed to register with the message bus"
 msgstr "falló al registrarse con el bus del mensaje"
@@ -838,8 +864,8 @@ msgstr "%U en %h"
 msgid "_Password:"
 msgstr "_Contraseña:"
 
-#~ msgid "Checking password..."
-#~ msgstr "Comprobando contraseña..."
+#~ msgid "Prompt:"
+#~ msgstr "Pregunta:"
 
 #~ msgid "That password was incorrect."
 #~ msgstr "Esa contraseña fue incorrecta."
