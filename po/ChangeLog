@@ -1,3 +1,8 @@
+2006-06-12  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* POTFILES.in: Add src/gs-auth-pam.c
+	* nb.po: Updated Norwegian bokmål translation.
+
 2006-06-12  Ankit Patel  <ankit644@yahoo.com>
 
 	* gu.po: Updated Gujarati Translation.

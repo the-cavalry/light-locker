@@ -22,5 +22,6 @@ src/gnome-screensaver-command.c
 src/gnome-screensaver-dialog.c
 src/gnome-screensaver-preferences.c
 src/gnome-screensaver.c
+src/gs-auth-pam.c
 src/gs-listener-dbus.c
 src/gs-lock-plug.c
