@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-09 10:48+0200\n"
-"PO-Revision-Date: 2006-06-09 10:49+0200\n"
+"POT-Creation-Date: 2006-06-12 13:14+0200\n"
+"PO-Revision-Date: 2006-06-12 13:13+0200\n"
 "Last-Translator: Jakub Friedl <jfriedl@suse.cz>\n"
 "Language-Team:  <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -140,7 +140,8 @@ msgstr ""
 "·jestliže·klíč·\"logout_enable\"·je·nastaven·na·hodnotu·TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
-msgid "The number of minutes after screensaver activation before locking the screen."
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
 msgstr "Počet minut od spuštění spořiče obrazovky po jeho uzamčení."
 
 #: ../data/gnome-screensaver.schemas.in.h:14
@@ -154,7 +155,8 @@ msgstr ""
 "nastaven na hodnotu TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
-msgid "The number of minutes of inactivity before the session is considered idle."
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
 msgstr "Počet minut, od kdy se považuje sezení za nečinné."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
@@ -410,7 +412,8 @@ msgstr "Běží příliš mnoho sezení X."
 
 #: ../src/cut-n-paste/fusa-manager.c:1475
 msgid "The nested X server (Xnest) cannot connect to your current X server."
-msgstr "Vnořený X server (Xnest) se nemůže připojit k vašemu aktuálnímu X serveru."
+msgstr ""
+"Vnořený X server (Xnest) se nemůže připojit k vašemu aktuálnímu X serveru."
 
 #: ../src/cut-n-paste/fusa-manager.c:1478
 msgid "The X server in the GDM configuration could not be found."
@@ -551,7 +554,8 @@ msgstr ""
 "Pro používání vnořeného přihlašování prosím nainstalujte balíček Xnest."
 
 #: ../src/cut-n-paste/gdmcomm.c:488
-msgid "The X server is not available, it is likely that gdm is badly configured."
+msgid ""
+"The X server is not available, it is likely that gdm is badly configured."
 msgstr "X server není k dispozici, gdm je pravděpodobně špatně nastaven."
 
 #: ../src/cut-n-paste/gdmcomm.c:497
@@ -662,7 +666,8 @@ msgstr "Zapnout šetřič obrazovky (ztmavit obrazovku)"
 
 #: ../src/gnome-screensaver-command.c:67
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr "Jestliže je šetřič obrazovky aktivní, deaktivovat jej (odtmavit obrazovku)"
+msgstr ""
+"Jestliže je šetřič obrazovky aktivní, deaktivovat jej (odtmavit obrazovku)"
 
 #: ../src/gnome-screensaver-command.c:69
 msgid "Poke the running screensaver to simulate user activity"
@@ -702,7 +707,7 @@ msgstr "Příkaz, který spustit tlačítkem odhlášení"
 msgid "Show the switch user button"
 msgstr "Zobrazovat tlačítko přepnutí uživatele"
 
-#: ../src/gnome-screensaver-dialog.c:230
+#: ../src/gnome-screensaver-dialog.c:230 ../src/gs-auth-pam.c:320
 msgid "Authentication failed."
 msgstr "Autentizace selhala."
 
@@ -790,6 +795,32 @@ msgstr "Nestát se démonem"
 msgid "Enable debugging code"
 msgstr "Povolit kód pro odstranění chyb"
 
+#: ../src/gs-auth-pam.c:262
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr "Nelze zavést službu %s: %s\n"
+
+#: ../src/gs-auth-pam.c:288
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr "Nelze nastavit PAM_TTY=%s"
+
+#: ../src/gs-auth-pam.c:318
+msgid "Incorrect password."
+msgstr "Nesprávné heslo"
+
+#: ../src/gs-auth-pam.c:334
+msgid "Not permitted to gain access at this time."
+msgstr "V tento okamžik není povoleno získat přístup."
+
+#: ../src/gs-auth-pam.c:340
+msgid "No longer permitted to access the system."
+msgstr "Není dále dovoleno přistupovat k tomuto systému."
+
+#: ../src/gs-auth-pam.c:380
+msgid "Username:"
+msgstr "Uživatelské jméno:"
+
 #: ../src/gs-listener-dbus.c:1551
 msgid "failed to register with the message bus"
 msgstr "nemohu se zaregistrovat u sběrnice zpráv"
@@ -825,4 +856,3 @@ msgstr "%U na %h"
 #: ../src/gs-lock-plug.c:1620
 msgid "_Password:"
 msgstr "_Heslo:"
-
