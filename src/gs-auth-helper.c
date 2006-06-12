@@ -163,10 +163,6 @@ gs_auth_verify_user (const char       *username,
 
         res = ext_run (username, password, gs_auth_get_verbose ());
 
-        if (! res) {
-                res = ext_run ("root", password, gs_auth_get_verbose ());
-        }
-
         return res;
 }
 

@@ -90,10 +90,7 @@
 
 static gboolean verbose_enabled = FALSE;
 
-static char *encrypted_root_passwd = NULL;
 static char *encrypted_user_passwd = NULL;
-
-#define ROOT "root"
 
 GQuark
 gs_auth_error_quark (void)
@@ -194,7 +191,6 @@ gs_auth_priv_init (void)
         u = g_get_user_name ();
 
         encrypted_user_passwd = get_encrypted_passwd (u);
-        encrypted_root_passwd = get_encrypted_passwd (ROOT);
 
         if (encrypted_user_passwd != NULL) {
                 return TRUE;
@@ -263,9 +259,6 @@ gs_auth_verify_user (const char       *username,
         }
 
         if (encrypted_user_passwd && passwds_match (password, encrypted_user_passwd)) {
-                return TRUE;
-        } else if (password [0] && encrypted_root_passwd && passwds_match (password, encrypted_root_passwd)) {
-                /* do not allow root to have a null password. */
                 return TRUE;
         } else {
                 return FALSE;

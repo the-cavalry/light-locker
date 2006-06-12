@@ -1,5 +1,11 @@
 2006-06-12  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-auth-helper.c: (gs_auth_verify_user):
+	* src/gs-auth-pwent.c: (gs_auth_priv_init), (gs_auth_verify_user):
+	Don't try to unlock screen with root's password.
+
+2006-06-12  William Jon McCann  <mccann@jhu.edu>
+
 	* data/lock-dialog-default.glade:
 	Use Password as default label for prompt
 	since it is the most likely one.
