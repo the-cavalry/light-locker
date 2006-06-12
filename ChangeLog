@@ -1,3 +1,9 @@
+==== 2.15.3 ====
+
+2006-06-12  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 2.15.3 release.
+
 2006-06-12  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-auth-helper.c: (gs_auth_verify_user):
@@ -9,7 +15,7 @@
 	* data/lock-dialog-default.glade:
 	Use Password as default label for prompt
 	since it is the most likely one.
-	
+
 	* savers/gste-slideshow.c:
 	Reduce minimum fps to 3.
 
@@ -282,7 +288,7 @@
 	* src/passwd.c:
 	* src/passwd.h:
 	Removed files.
-	
+
 	* src/test-passwd.c: (privileged_initialization),
 	(lock_initialization), (request_password), (auth_message_handler),
 	(main):
@@ -316,7 +322,7 @@
 	(gs_grab_new):
 	* src/gs-grab.h:
 	Turn grab stuff into a singleton class.
-	
+
 	* src/gs-manager.c: (gs_manager_init), (gs_manager_finalize),
 	(window_dialog_up_cb), (window_dialog_down_cb),
 	(manager_maybe_grab_window), (window_grab_broken_cb),
@@ -324,7 +330,7 @@
 	* src/test-window.c: (window_show_cb), (window_destroyed_cb),
 	(main):
 	Update for grab API.
-	
+
 	* src/gs-monitor.c: (release_grab_timeout),
 	(watcher_idle_notice_cb), (gs_monitor_init), (gs_monitor_finalize):
 	Try to do a grab before the idle notice fade-out.  There are two
@@ -341,7 +347,7 @@
 
 	* src/gs-manager.c: (gs_manager_get_lock_active):
 	* src/gs-manager.h: Add get_lock_active to API.
-	
+
 	* src/gs-monitor.c: (listener_lock_cb): Set lock flag
 	before activing screensaver to avoid problems when
 	something reacts to the ActiveChanged signal.
@@ -372,7 +378,7 @@
 	* savers/gste-slideshow.c: (start_fade), (update_display),
 	(gste_slideshow_real_configure), (gste_slideshow_finalize):
 	Use an image buffer to fix performance problem.
-	
+
 	Patch from L. David Baron <dbaron@dbaron.org>
 	Fixes #339090
 
@@ -396,7 +402,7 @@
 
 	* savers/gs-theme-engine.[ch]: (_gs_theme_engine_profile_log):
 	Add some profiling API.
-	
+
 	* savers/gste-slideshow.c: (push_load_image_func),
 	(start_new_load), (start_fade), (finish_fade), (update_display),
 	(process_new_pixbuf):

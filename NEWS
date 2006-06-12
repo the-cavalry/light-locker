@@ -1,4 +1,42 @@
 ===============
+Version 2.15.3
+===============
+
+  gnome-screensaver
+
+        * Fully support PAM driving the unlock dialog
+        * Only support one auth backend configured at build time
+        * Don't try to unlock using root's password
+        * DBUS API changes based on XDG feedback
+        * Add docbook documentation (Richard Hughes)
+        * Use replacable tokens in the lock dialog theme glade file
+        * Set lock flag before activating (Rodrigo Moya)
+        * Fix support for RUNNING_UNDER_GDM environment variable
+        * Increase minimum distance the mouse must move to detect motion
+        * Add theme engine profiling support
+        * Switch user when double clicking in treeview
+        * Don't reset throttle when deactivating
+        * Try to grab keyboard before doing idle notice fade-out
+        * Make activation wait for fade to complete.
+
+  gnome-screensaver-preferences
+
+        * Print a warning that locking is disabled when running as root
+
+  Themes
+
+        * (slideshow) Performance improvements (L. David Baron)
+
+  Translators
+
+        * Jakub Friedl (cs)
+        * Francisco Javier F. Serrador (es)
+        * Ankit Patel (gu)
+        * Kjartan Maraas (nb)
+        * Theppitak Karoonboonyanan (th)
+        * Clytie Siddall (vi)
+
+===============
 Version 2.15.2
 ===============
 
