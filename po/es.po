@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-12 19:20+0200\n"
-"PO-Revision-Date: 2006-06-12 19:22+0200\n"
+"POT-Creation-Date: 2006-06-13 23:44+0200\n"
+"PO-Revision-Date: 2006-06-13 23:48+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -223,7 +223,8 @@ msgstr "<span size=\"small\">%U en %h</span>"
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5
+#: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:171
+#: ../src/gnome-screensaver-dialog.c:172
 msgid "Password:"
 msgstr "Contraseña:"
 
@@ -717,7 +718,69 @@ msgstr "Comando para invocar desde el botón de cierre de sesión"
 msgid "Show the switch user button"
 msgstr "Mostrar el botón de cambio de usuario"
 
-#: ../src/gnome-screensaver-dialog.c:230 ../src/gs-auth-pam.c:320
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:168 ../src/gnome-screensaver-dialog.c:169
+#: ../src/gnome-screensaver-dialog.c:170 ../src/gs-auth-pam.c:380
+msgid "Username:"
+msgstr "Usuario:"
+
+#: ../src/gnome-screensaver-dialog.c:173
+msgid "You are required to change your password immediately (password aged)"
+msgstr "Tiene que cambiar la contraseña inmediatamente (la contraseña caducó)"
+
+#: ../src/gnome-screensaver-dialog.c:174
+msgid "You are required to change your password immediately (root enforced)"
+msgstr "Tiene que cambiar la contraseña inmediatamente (forzado por el administrador)"
+
+#: ../src/gnome-screensaver-dialog.c:175
+msgid "Your account has expired; please contact your system administrator"
+msgstr "Su cuenta ha caducado. Contacte con su administrador de sistemas"
+
+#: ../src/gnome-screensaver-dialog.c:176
+msgid "No password supplied"
+msgstr "No introdujo ninguna contraseña"
+
+#: ../src/gnome-screensaver-dialog.c:177
+msgid "Password unchanged"
+msgstr "Contraseña no cambiada"
+
+#: ../src/gnome-screensaver-dialog.c:178
+msgid "Can not get username"
+msgstr "No se puede obtener el nombre de usuario"
+
+#: ../src/gnome-screensaver-dialog.c:179
+msgid "Retype new UNIX password:"
+msgstr "Vuelva a teclear la contraseña de UNIX nueva:"
+
+#: ../src/gnome-screensaver-dialog.c:180
+msgid "Enter new UNIX password:"
+msgstr "Introduzca una contraseña UNIX nueva:"
+
+#: ../src/gnome-screensaver-dialog.c:181
+msgid "(current) UNIX password:"
+msgstr "Contraseña UNIX (actual):"
+
+#: ../src/gnome-screensaver-dialog.c:182
+msgid "Error while changing NIS password."
+msgstr "Error al cambiar la contraseña NIS."
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "You must choose a longer password"
+msgstr "Debe elegir una contraseña más larga"
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "Password has been already used. Choose another."
+msgstr "La contraseña ya ha sido usada. Elija otra."
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "You must wait longer to change your password"
+msgstr "Debe esperar más para cambiar su contraseña"
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "Sorry, passwords do not match"
+msgstr "Las contraseñas no coinciden"
+
+#: ../src/gnome-screensaver-dialog.c:280 ../src/gs-auth-pam.c:320
 msgid "Authentication failed."
 msgstr "La autenticación ha fallado."
 
@@ -823,10 +886,6 @@ msgstr "No le está permitido ganar acceso en este instante."
 #: ../src/gs-auth-pam.c:340
 msgid "No longer permitted to access the system."
 msgstr "Ya no se le permite acceder en adelante a este sistema."
-
-#: ../src/gs-auth-pam.c:380
-msgid "Username:"
-msgstr "Usuario:"
 
 #: ../src/gs-listener-dbus.c:1551
 msgid "failed to register with the message bus"
