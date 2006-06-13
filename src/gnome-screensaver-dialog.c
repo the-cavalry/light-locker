@@ -150,14 +150,63 @@ request_response (GSLockPlug *plug,
         return text;
 }
 
+/* Adapted from GDM2 daemon/verify-pam.c on 2006-06-13 */
+static const char *
+maybe_translate_message (const char *msg)
+{
+	char              *s;
+	const char        *ret;
+	static GHashTable *hash = NULL;
+
+	if (hash == NULL) {
+		/* Here we come with some fairly standard messages so that
+		   we have as much as possible translated.  Should really be
+		   translated in pam I suppose.  This way we can "change"
+		   some of these messages to be more sane. */
+		hash = g_hash_table_new (g_str_hash, g_str_equal);
+		/* login: is whacked always translate to Username: */
+		g_hash_table_insert (hash, "login:", _("Username:"));
+		g_hash_table_insert (hash, "Username:", _("Username:"));
+		g_hash_table_insert (hash, "username:", _("Username:"));
+		g_hash_table_insert (hash, "Password:", _("Password:"));
+		g_hash_table_insert (hash, "password:", _("Password:"));
+		g_hash_table_insert (hash, "You are required to change your password immediately (password aged)", _("You are required to change your password immediately (password aged)"));
+		g_hash_table_insert (hash, "You are required to change your password immediately (root enforced)", _("You are required to change your password immediately (root enforced)"));
+		g_hash_table_insert (hash, "Your account has expired; please contact your system administrator", _("Your account has expired; please contact your system administrator"));
+		g_hash_table_insert (hash, "No password supplied", _("No password supplied"));
+		g_hash_table_insert (hash, "Password unchanged", _("Password unchanged"));
+		g_hash_table_insert (hash, "Can not get username", _("Can not get username"));
+		g_hash_table_insert (hash, "Retype new UNIX password:", _("Retype new UNIX password:"));
+		g_hash_table_insert (hash, "Enter new UNIX password:", _("Enter new UNIX password:"));
+		g_hash_table_insert (hash, "(current) UNIX password:", _("(current) UNIX password:"));
+		g_hash_table_insert (hash, "Error while changing NIS password.", _("Error while changing NIS password."));
+		g_hash_table_insert (hash, "You must choose a longer password", _("You must choose a longer password"));
+		g_hash_table_insert (hash, "Password has been already used. Choose another.", _("Password has been already used. Choose another."));
+		g_hash_table_insert (hash, "You must wait longer to change your password", _("You must wait longer to change your password"));
+		g_hash_table_insert (hash, "Sorry, passwords do not match", _("Sorry, passwords do not match"));
+		/* FIXME: what about messages which have some variables in them, perhaps try to do those as well */
+	}
+
+	s = g_strstrip (g_strdup (msg));
+	ret = g_hash_table_lookup (hash, s);
+	g_free (s);
+
+	if (ret != NULL) {
+		return ret;
+        } else {
+		return msg;
+        }
+}
+
 static gboolean
 auth_message_handler (GSAuthMessageStyle style,
                       const char        *msg,
                       char             **response,
                       gpointer           data)
 {
-        gboolean ret;
+        gboolean    ret;
         GSLockPlug *plug;
+	const char *message;
 
         plug = GS_LOCK_PLUG (data);
 
@@ -166,27 +215,28 @@ auth_message_handler (GSAuthMessageStyle style,
 
         ret = TRUE;
         *response = NULL;
+	message = maybe_translate_message (msg);
 
         switch (style) {
         case GS_AUTH_MESSAGE_PROMPT_ECHO_ON:
                 if (msg != NULL) {
                         char *resp;
-                        resp = request_response (plug, msg, TRUE);
+                        resp = request_response (plug, message, TRUE);
                         *response = resp;
                 }
                 break;
         case GS_AUTH_MESSAGE_PROMPT_ECHO_OFF:
                 if (msg != NULL) {
                         char *resp;
-                        resp = request_response (plug, msg, FALSE);
+                        resp = request_response (plug, message, FALSE);
                         *response = resp;
                 }
                 break;
         case GS_AUTH_MESSAGE_ERROR_MSG:
-                gs_lock_plug_show_message (plug, msg);
+                gs_lock_plug_show_message (plug, message);
                 break;
         case GS_AUTH_MESSAGE_TEXT_INFO:
-                gs_lock_plug_show_message (plug, msg);
+                gs_lock_plug_show_message (plug, message);
                 break;
         default:
                 g_assert_not_reached ();

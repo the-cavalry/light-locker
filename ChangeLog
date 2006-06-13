@@ -1,3 +1,13 @@
+2006-06-13  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gnome-screensaver-dialog.c: (maybe_translate_message),
+	(auth_message_handler):
+	Try to translate some common messages from PAM.
+
+	* src/gs-auth-helper.c: (ext_run):
+	* src/gs-auth-pwent.c: (get_encrypted_passwd), (passwds_match):
+	Add some braces.
+
 2006-06-12  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.

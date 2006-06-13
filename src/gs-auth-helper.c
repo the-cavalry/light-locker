@@ -83,12 +83,14 @@ ext_run (const char *user,
         int   pfd[2], status;
         pid_t pid;
 
-        if (pipe (pfd) < 0)
+        if (pipe (pfd) < 0) {
                 return 0;
+        }
 
-        if (verbose)
+        if (verbose) {
                 g_message ("ext_run (%s, %s)",
                            PASSWD_HELPER_PROGRAM, user);
+        }
 
         block_sigchld ();
 
@@ -100,13 +102,16 @@ ext_run (const char *user,
 
         if (pid == 0) {
                 close (pfd [1]);
-                if (pfd [0] != 0)
+                if (pfd [0] != 0) {
                         dup2 (pfd [0], 0);
+                }
 
                 /* Helper is invoked as helper service-name [user] */
                 execlp (PASSWD_HELPER_PROGRAM, PASSWD_HELPER_PROGRAM, "gnome-screensaver", user, NULL);
-                if (verbose)
+                if (verbose) {
                         g_message ("%s: %s", PASSWD_HELPER_PROGRAM, strerror (errno));
+                }
+
                 exit (1);
         }
 
@@ -120,19 +125,24 @@ ext_run (const char *user,
         close (pfd [1]);
 
         while (waitpid (pid, &status, 0) < 0) {
-                if (errno == EINTR)
+                if (errno == EINTR) {
                         continue;
-                if (verbose)
+                }
+
+                if (verbose) {
                         g_message ("ext_run: waitpid failed: %s\n",
                                    strerror (errno));
+                }
+
                 unblock_sigchld ();
                 return FALSE;
         }
 
         unblock_sigchld ();
 
-        if (! WIFEXITED (status) || WEXITSTATUS (status) != 0)
+        if (! WIFEXITED (status) || WEXITSTATUS (status) != 0) {
                 return FALSE;
+        }
 
         return TRUE;
 }

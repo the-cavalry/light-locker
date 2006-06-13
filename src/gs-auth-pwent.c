@@ -169,9 +169,11 @@ get_encrypted_passwd (const char *user)
            If we're using PAM, it's not unheard of that normal pwent passwords
            would be unavailable. */
 
-        if (!result)
+        if (!result) {
                 g_warning ("Couldn't get password of \"%s\"",
                            (user ? user : "(null)"));
+        }
+
 #endif /* !HAVE_PAM */
 
         return result;
@@ -217,8 +219,9 @@ passwds_match (const char *cleartext,
         char *s = NULL;  /* note that on some systems, crypt() may return null */
 
         s = (char *) crypt (cleartext, ciphertext);
-        if (s && !strcmp (s, ciphertext))
+        if (s && !strcmp (s, ciphertext)) {
                 return TRUE;
+        }
 
 #ifdef HAVE_BIGCRYPT
         /* There seems to be no way to tell at runtime if an HP machine is in
@@ -227,8 +230,9 @@ passwds_match (const char *cleartext,
            one works. */
 
         s = (char *) bigcrypt (cleartext, ciphertext);
-        if (s && !strcmp (s, ciphertext))
+        if (s && !strcmp (s, ciphertext)) {
                 return TRUE;
+        }
 
 #endif /* HAVE_BIGCRYPT */
 
