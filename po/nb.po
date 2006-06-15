@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 2.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-12 10:57+0200\n"
-"PO-Revision-Date: 2006-06-12 11:42+0200\n"
+"POT-Creation-Date: 2006-06-15 14:46+0200\n"
+"PO-Revision-Date: 2006-06-15 14:52+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -198,16 +198,17 @@ msgstr "Tid før endring av tema"
 #: ../data/lock-dialog-default.glade.h:2
 #, no-c-format
 msgid "<span size=\"small\">%U on %h</span>"
-msgstr "<span size=\"small>%U på %h</span>"
+msgstr "<span size=\"small\">%U på %h</span>"
 
 #: ../data/lock-dialog-default.glade.h:4
 #, no-c-format
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5
-msgid "Prompt:"
-msgstr "Spør:"
+#: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:171
+#: ../src/gnome-screensaver-dialog.c:172
+msgid "Password:"
+msgstr "Passord:"
 
 #: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1696
 msgid "S_witch to user:"
@@ -680,7 +681,69 @@ msgstr "Kommando som skal kjøres ved klikk på utloggingsknappen"
 msgid "Show the switch user button"
 msgstr "Vis knapp for å bytte bruker"
 
-#: ../src/gnome-screensaver-dialog.c:230 ../src/gs-auth-pam.c:320
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:168 ../src/gnome-screensaver-dialog.c:169
+#: ../src/gnome-screensaver-dialog.c:170 ../src/gs-auth-pam.c:380
+msgid "Username:"
+msgstr "Brukernavn:"
+
+#: ../src/gnome-screensaver-dialog.c:173
+msgid "You are required to change your password immediately (password aged)"
+msgstr "Du må endre ditt passord nå (passordet er utløpt)"
+
+#: ../src/gnome-screensaver-dialog.c:174
+msgid "You are required to change your password immediately (root enforced)"
+msgstr "Du må endre ditt passord nå (bestemt av administrator)"
+
+#: ../src/gnome-screensaver-dialog.c:175
+msgid "Your account has expired; please contact your system administrator"
+msgstr "Din konto har utgått; vennligst kontakt systemadministrator"
+
+#: ../src/gnome-screensaver-dialog.c:176
+msgid "No password supplied"
+msgstr "Ingen passord oppgitt"
+
+#: ../src/gnome-screensaver-dialog.c:177
+msgid "Password unchanged"
+msgstr "Passordet er ikke endret"
+
+#: ../src/gnome-screensaver-dialog.c:178
+msgid "Can not get username"
+msgstr "Kan ikke finne brukernavn"
+
+#: ../src/gnome-screensaver-dialog.c:179
+msgid "Retype new UNIX password:"
+msgstr "Skriv inn nytt UNIX-passord på nytt:"
+
+#: ../src/gnome-screensaver-dialog.c:180
+msgid "Enter new UNIX password:"
+msgstr "Oppgi nytt UNIX-passord:"
+
+#: ../src/gnome-screensaver-dialog.c:181
+msgid "(current) UNIX password:"
+msgstr "(aktivt) UNIX-passord:"
+
+#: ../src/gnome-screensaver-dialog.c:182
+msgid "Error while changing NIS password."
+msgstr "Feil under endring av NIS-passord."
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "You must choose a longer password"
+msgstr "Du må velge et lenger passord"
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "Password has been already used. Choose another."
+msgstr "Passordet er allerede brukt. Velg et annet."
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "You must wait longer to change your password"
+msgstr "Du må vente lenger før du endrer ditt passord"
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "Sorry, passwords do not match"
+msgstr "Beklager, passordene er ikke like"
+
+#: ../src/gnome-screensaver-dialog.c:280 ../src/gs-auth-pam.c:320
 msgid "Authentication failed."
 msgstr "Autentisering feilet."
 
@@ -786,10 +849,6 @@ msgstr "Ingen tillatelse til å aksessere ressursen nå."
 #: ../src/gs-auth-pam.c:340
 msgid "No longer permitted to access the system."
 msgstr "Tilgang til å aksessere systemet er fjernet."
-
-#: ../src/gs-auth-pam.c:380
-msgid "Username:"
-msgstr "Brukernavn:"
 
 #: ../src/gs-listener-dbus.c:1551
 msgid "failed to register with the message bus"
