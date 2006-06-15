@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-03-11 15:39+0100\n"
-"PO-Revision-Date: 2006-03-11 17:20+0100\n"
-"Last-Translator: Frank Arnold <frank@scirocco-5v-turbo.de>\n"
+"PO-Revision-Date: 2006-06-15 17:06+0200\n"
+"Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -591,7 +591,7 @@ msgstr "Nach:"
 
 #: ../src/file-transfer-dialog.c:448
 msgid "Connecting..."
-msgstr "Verbinden ..."
+msgstr "Verbinden …"
 
 #: ../src/gnome-screensaver-command.c:59
 msgid "Causes the screensaver to exit gracefully"
@@ -770,7 +770,7 @@ msgstr "Der Bildschirmschoner ist in dieser Sitzung bereits aktiv"
 
 #: ../src/gs-lock-plug.c:351
 msgid "Checking password..."
-msgstr "Passwort wird überprüft ..."
+msgstr "Passwort wird überprüft …"
 
 #: ../src/gs-lock-plug.c:394
 msgid "Time has expired."
@@ -790,7 +790,7 @@ msgstr "Sperrung auf_heben"
 
 #: ../src/gs-lock-plug.c:736 ../src/gs-lock-plug.c:763
 msgid "_Switch User..."
-msgstr "Benutzer _wechseln ..."
+msgstr "Benutzer _wechseln …"
 
 #. Translators: this is "username on hostname".  You
 #. can translate this to "%s@%s" if it is otherwise tricky
@@ -843,3 +843,6 @@ msgstr "A_bmelden"
 
 #~ msgid "<b>_Screensaver</b>"
 #~ msgstr "<b>_Bildschirmschoner</b>"
+
+
+
