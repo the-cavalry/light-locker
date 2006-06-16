@@ -719,6 +719,8 @@ command_watch (GIOChannel   *source,
                 status = g_io_channel_read_line (source, &str, NULL, NULL, &error);
 
 		if (status == G_IO_STATUS_NORMAL) {
+                        gs_debug ("command output: %s", str);
+
 		} else if (status == G_IO_STATUS_EOF) {
                         done = TRUE;
 		}
@@ -730,6 +732,7 @@ command_watch (GIOChannel   *source,
 
         if (done) {
                 gs_job_died (job);
+                gs_debug ("job died");
 
                 job->priv->watch_id = 0;
                 return FALSE;

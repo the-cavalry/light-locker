@@ -1,3 +1,13 @@
+2006-06-16  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-job.c (command_watch): Add debugging.
+
+	* src/gs-debug.c (_gs_profile_log): Don't crash with NULL format
+	strings.
+
+	Patch from Joe Marcus Clarke <marcus@freebsd.org>
+	Fixes #344805
+
 2006-06-13  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-dialog.c: (maybe_translate_message),
