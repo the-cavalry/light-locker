@@ -61,8 +61,35 @@ gs_theme_window_class_init (GSThemeWindowClass *klass)
 }
 
 static void
+force_no_pixmap_background (GtkWidget *widget)
+{
+        static gboolean first_time = TRUE;
+
+        if (first_time) {
+                gtk_rc_parse_string ("\n"
+                                     "   style \"gs-theme-engine-style\"\n"
+                                     "   {\n"
+                                     "      bg_pixmap[NORMAL] = \"<none>\"\n"
+                                     "      bg_pixmap[INSENSITIVE] = \"<none>\"\n"
+                                     "      bg_pixmap[ACTIVE] = \"<none>\"\n"
+                                     "      bg_pixmap[PRELIGHT] = \"<none>\"\n"
+                                     "      bg[NORMAL] = { 0.0, 0.0, 0.0 }\n"
+                                     "      bg[INSENSITIVE] = { 0.0, 0.0, 0.0 }\n"
+                                     "      bg[ACTIVE] = { 0.0, 0.0, 0.0 }\n"
+                                     "      bg[PRELIGHT] = { 0.0, 0.0, 0.0 }\n"
+                                     "   }\n"
+                                     "   widget \"gs-window*\" style : highest \"gs-theme-engine-style\"\n"
+                                     "\n");
+                first_time = FALSE;
+        }
+
+        gtk_widget_set_name (widget, "gs-window");
+}
+
+static void
 gs_theme_window_init (GSThemeWindow *window)
 {
+        force_no_pixmap_background (GTK_WIDGET (window));
 }
 
 static void

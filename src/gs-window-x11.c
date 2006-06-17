@@ -163,6 +163,32 @@ gs_window_override_user_time (GSWindow *window)
 }
 
 static void
+force_no_pixmap_background (GtkWidget *widget)
+{
+        static gboolean first_time = TRUE;
+
+        if (first_time) {
+                gtk_rc_parse_string ("\n"
+                                     "   style \"gs-theme-engine-style\"\n"
+                                     "   {\n"
+                                     "      bg_pixmap[NORMAL] = \"<none>\"\n"
+                                     "      bg_pixmap[INSENSITIVE] = \"<none>\"\n"
+                                     "      bg_pixmap[ACTIVE] = \"<none>\"\n"
+                                     "      bg_pixmap[PRELIGHT] = \"<none>\"\n"
+                                     "      bg[NORMAL] = { 0.0, 0.0, 0.0 }\n"
+                                     "      bg[INSENSITIVE] = { 0.0, 0.0, 0.0 }\n"
+                                     "      bg[ACTIVE] = { 0.0, 0.0, 0.0 }\n"
+                                     "      bg[PRELIGHT] = { 0.0, 0.0, 0.0 }\n"
+                                     "   }\n"
+                                     "   widget \"gs-window*\" style : highest \"gs-theme-engine-style\"\n"
+                                     "\n");
+                first_time = FALSE;
+        }
+
+        gtk_widget_set_name (widget, "gs-window");
+}
+
+static void
 clear_children (Window window)
 {
         Window            root;
@@ -1525,6 +1551,7 @@ gs_window_init (GSWindow *window)
                                | GDK_EXPOSURE_MASK
                                | GDK_ENTER_NOTIFY_MASK
                                | GDK_LEAVE_NOTIFY_MASK);
+        force_no_pixmap_background (GTK_WIDGET (window));
 }
 
 static void

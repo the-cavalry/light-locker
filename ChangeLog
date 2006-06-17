@@ -1,5 +1,13 @@
 2006-06-16  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/gs-theme-window.c: (force_no_pixmap_background),
+	(gs_theme_window_init):
+	* src/gs-window-x11.c: (force_no_pixmap_background),
+	(gs_window_init):
+	Override gtk theme background.  Fixes #344936
+
+2006-06-16  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-job.c (command_watch): Add debugging.
 
 	* src/gs-debug.c (_gs_profile_log): Don't crash with NULL format
