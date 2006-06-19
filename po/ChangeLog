@@ -1,3 +1,9 @@
+2006-06-19  Raivis Dejus  <orvils@gmail.com>
+
+	* lv.po: Added Latvian translation.
+
+	* LINGUAS: Added Latvian (lv) entry.
+
 2006-06-16  Jakub Friedl  <jfriedl@suse.cz>
 
 	* cs.po: Updated Czech translation.
