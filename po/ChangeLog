@@ -1,3 +1,9 @@
+2006-06-23  I. felix  <ifelix25@gmail.com>
+
+	* ta.po: Added Tamil translation.
+
+	* LINGUAS: Added Tamil (ta) entry.
+
 2006-06-19  Raivis Dejus  <orvils@gmail.com>
 
 	* lv.po: Added Latvian translation.
