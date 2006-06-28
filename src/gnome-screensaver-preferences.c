@@ -43,7 +43,6 @@
 
 #include "file-transfer-dialog.h"
 
-#include "gs-visual-gl.h"
 #include "gs-job.h"
 #include "gs-prefs.h" /* for GS_MODE enum */
 
@@ -1222,6 +1221,77 @@ setup_for_root_user (void)
         gtk_widget_show (label);
 }
 
+static GdkVisual *
+get_best_visual (void)
+{
+        char         *command;
+        char         *std_output;
+        int           exit_status;
+        GError       *error;
+        unsigned long v;
+        char          c;
+        GdkVisual    *visual;
+
+        visual = NULL;
+
+        command = g_build_filename (LIBEXECDIR, "gnome-screensaver-gl-helper", NULL);
+
+        error = NULL;
+        g_spawn_command_line_sync (command,
+                                   &std_output,
+                                   NULL,
+                                   &exit_status,
+                                   &error);
+
+        if (1 == sscanf (std_output, "0x%lx %c", &v, &c)) {
+                if (v != 0) {
+                        VisualID      visual_id;
+
+                        visual_id = (VisualID) v;
+                        visual = gdkx_visual_get (visual_id);
+
+                        g_message ("Found best visual for GL: 0x%x",
+                                   (unsigned int) visual_id);
+                }
+        }
+
+        g_free (std_output);
+
+        return visual;
+}
+
+static GdkColormap *
+get_best_colormap_for_screen (GdkScreen *screen)
+{
+        GdkColormap *colormap;
+        GdkVisual   *visual;
+
+        g_return_val_if_fail (screen != NULL, NULL);
+
+        visual = get_best_visual ();
+
+        colormap = NULL;
+        if (visual != NULL) {
+                colormap = gdk_colormap_new (visual, FALSE);
+        }
+
+        return colormap;
+}
+
+static void
+widget_set_best_colormap (GtkWidget *widget)
+{
+        GdkColormap *colormap;
+
+        g_return_if_fail (widget != NULL);
+
+        colormap = get_best_colormap_for_screen (gtk_widget_get_screen (widget));
+        if (colormap != NULL) {
+                gtk_widget_set_colormap (widget, colormap);
+                g_object_unref (colormap);
+        }
+}
+
 static void
 init_capplet (void)
 {
@@ -1290,7 +1360,7 @@ init_capplet (void)
         gtk_label_set_mnemonic_widget (GTK_LABEL (label), treeview);
 
         gtk_widget_set_no_show_all (root_warning_label, TRUE);
-        gs_visual_gl_widget_set_best_colormap (preview);
+        widget_set_best_colormap (preview);
 
         activate_delay = config_get_activate_delay (&is_writable);
         ui_set_delay (activate_delay);

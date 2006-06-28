@@ -8,6 +8,7 @@ Makefile.in
 gnome-screensaver
 gnome-screensaver-command
 gnome-screensaver-dialog
+gnome-screensaver-gl-helper
 gnome-screensaver-preferences
 test-fade
 test-passwd

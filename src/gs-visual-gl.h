@@ -25,9 +25,7 @@
 
 G_BEGIN_DECLS
 
-GdkVisual   *gs_visual_gl_get_best                 (GdkScreen *screen);
-GdkColormap *gs_visual_gl_get_best_colormap        (GdkScreen *screen);
-void         gs_visual_gl_widget_set_best_colormap (GtkWidget *widget);
+GdkVisual   *gs_visual_gl_get_best_for_screen      (GdkScreen *screen);
 
 G_END_DECLS
 

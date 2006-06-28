@@ -1,3 +1,19 @@
+2006-06-28  William Jon McCann  <mccann@jhu.edu>
+
+	* src/.cvsignore:
+	* src/Makefile.am:
+	* src/gnome-screensaver-gl-helper.c: (main):
+	* src/gnome-screensaver-preferences.c: (get_best_visual),
+	(get_best_colormap_for_screen), (widget_set_best_colormap),
+	(init_capplet):
+	* src/gs-visual-gl.c: (gs_visual_gl_get_best_for_screen):
+	* src/gs-visual-gl.h:
+	* src/gs-window-x11.c: (get_best_visual),
+	(get_best_colormap_for_screen), (widget_set_best_colormap),
+	(gs_window_real_realize):
+	Move getting best visual for GL into a separate process
+	to avoid linking to libGL.
+
 2006-06-16  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/gs-theme-window.c: (force_no_pixmap_background),

@@ -39,7 +39,7 @@
 #include "gs-debug.h"
 
 GdkVisual *
-gs_visual_gl_get_best (GdkScreen *screen)
+gs_visual_gl_get_best_for_screen (GdkScreen *screen)
 {
         GdkVisual  *visual;
 #ifdef HAVE_LIBGL
@@ -77,8 +77,6 @@ gs_visual_gl_get_best (GdkScreen *screen)
         display = gdk_screen_get_display (screen);
         screen_num = gdk_screen_get_number (screen);
 
-        gs_debug ("Looking for best visual for GL");
-
         gdk_error_trap_push ();
 
         visual = NULL;
@@ -91,9 +89,6 @@ gs_visual_gl_get_best (GdkScreen *screen)
                         VisualID   vid;
 
                         vid = XVisualIDFromVisual (vi->visual);
-
-                        gs_debug ("Found best visual for GL: 0x%x",
-                                  (unsigned int) vid);
 
                         visual = gdkx_visual_get (vid);
 
@@ -114,36 +109,4 @@ gs_visual_gl_get_best (GdkScreen *screen)
 #endif /* HAVE_LIBGL */
 
         return visual;
-}
-
-GdkColormap *
-gs_visual_gl_get_best_colormap (GdkScreen *screen)
-{
-        GdkColormap *colormap;
-        GdkVisual   *visual;
-
-        g_return_val_if_fail (screen != NULL, NULL);
-
-        visual = gs_visual_gl_get_best (screen);
-
-        colormap = NULL;
-        if (visual != NULL) {
-                colormap = gdk_colormap_new (visual, FALSE);
-        }
-
-        return colormap;
-}
-
-void
-gs_visual_gl_widget_set_best_colormap (GtkWidget *widget)
-{
-        GdkColormap *colormap;
-
-        g_return_if_fail (widget != NULL);
-
-        colormap = gs_visual_gl_get_best_colormap (gtk_widget_get_screen (widget));
-        if (colormap != NULL) {
-                gtk_widget_set_colormap (widget, colormap);
-                g_object_unref (colormap);
-        }
 }

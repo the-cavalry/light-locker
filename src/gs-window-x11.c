@@ -32,7 +32,6 @@
 #include <gtk/gtk.h>
 
 #include "gs-window.h"
-#include "gs-visual-gl.h"
 #include "subprocs.h"
 #include "gs-debug.h"
 
@@ -334,10 +333,81 @@ gs_window_real_unrealize (GtkWidget *widget)
         }
 }
 
+static GdkVisual *
+get_best_visual (void)
+{
+        char         *command;
+        char         *std_output;
+        int           exit_status;
+        GError       *error;
+        unsigned long v;
+        char          c;
+        GdkVisual    *visual;
+
+        visual = NULL;
+
+        command = g_build_filename (LIBEXECDIR, "gnome-screensaver-gl-helper", NULL);
+
+        error = NULL;
+        g_spawn_command_line_sync (command,
+                                   &std_output,
+                                   NULL,
+                                   &exit_status,
+                                   &error);
+
+        if (1 == sscanf (std_output, "0x%lx %c", &v, &c)) {
+                if (v != 0) {
+                        VisualID      visual_id;
+
+                        visual_id = (VisualID) v;
+                        visual = gdkx_visual_get (visual_id);
+
+                        gs_debug ("Found best visual for GL: 0x%x",
+                                  (unsigned int) visual_id);
+                }
+        }
+
+        g_free (std_output);
+
+        return visual;
+}
+
+static GdkColormap *
+get_best_colormap_for_screen (GdkScreen *screen)
+{
+        GdkColormap *colormap;
+        GdkVisual   *visual;
+
+        g_return_val_if_fail (screen != NULL, NULL);
+
+        visual = get_best_visual ();
+
+        colormap = NULL;
+        if (visual != NULL) {
+                colormap = gdk_colormap_new (visual, FALSE);
+        }
+
+        return colormap;
+}
+
+static void
+widget_set_best_colormap (GtkWidget *widget)
+{
+        GdkColormap *colormap;
+
+        g_return_if_fail (widget != NULL);
+
+        colormap = get_best_colormap_for_screen (gtk_widget_get_screen (widget));
+        if (colormap != NULL) {
+                gtk_widget_set_colormap (widget, colormap);
+                g_object_unref (colormap);
+        }
+}
+
 static void
 gs_window_real_realize (GtkWidget *widget)
 {
-        gs_visual_gl_widget_set_best_colormap (widget);
+        widget_set_best_colormap (widget);
 
         if (GTK_WIDGET_CLASS (parent_class)->realize) {
                 GTK_WIDGET_CLASS (parent_class)->realize (widget);
