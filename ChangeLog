@@ -1,3 +1,10 @@
+2006-06-29  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gnome-screensaver-command.c:
+	(screensaver_send_message_inhibit), (do_command):
+	Add a blocking inhibit to the command line tool.
+	Also add short options.
+
 2006-06-28  William Jon McCann  <mccann@jhu.edu>
 
 	* src/.cvsignore:

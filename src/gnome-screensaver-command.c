@@ -49,25 +49,35 @@ static gboolean do_activate   = FALSE;
 static gboolean do_deactivate = FALSE;
 static gboolean do_version    = FALSE;
 static gboolean do_poke       = FALSE;
+static gboolean do_inhibit    = FALSE;
 
 static gboolean do_query      = FALSE;
+
+static char    *inhibit_reason      = NULL;
+static char    *inhibit_application = NULL;
 
 static GOptionEntry entries [] = {
         { "exit", 0, 0, G_OPTION_ARG_NONE, &do_quit,
           N_("Causes the screensaver to exit gracefully"), NULL },
-        { "query", 0, 0, G_OPTION_ARG_NONE, &do_query,
+        { "query", 'q', 0, G_OPTION_ARG_NONE, &do_query,
           N_("Query the state of the screensaver"), NULL },
-        { "lock", 0, 0, G_OPTION_ARG_NONE, &do_lock,
+        { "lock", 'l', 0, G_OPTION_ARG_NONE, &do_lock,
           N_("Tells the running screensaver process to lock the screen immediately"), NULL },
-        { "cycle", 0, 0, G_OPTION_ARG_NONE, &do_cycle,
+        { "cycle", 'c', 0, G_OPTION_ARG_NONE, &do_cycle,
           N_("If the screensaver is active then switch to another graphics demo"), NULL },
-        { "activate", 0, 0, G_OPTION_ARG_NONE, &do_activate,
+        { "activate", 'a', 0, G_OPTION_ARG_NONE, &do_activate,
           N_("Turn the screensaver on (blank the screen)"), NULL },
-        { "deactivate", 0, 0, G_OPTION_ARG_NONE, &do_deactivate,
+        { "deactivate", 'd', 0, G_OPTION_ARG_NONE, &do_deactivate,
           N_("If the screensaver is active then deactivate it (un-blank the screen)"), NULL },
-        { "poke", 0, 0, G_OPTION_ARG_NONE, &do_poke,
+        { "poke", 'p', 0, G_OPTION_ARG_NONE, &do_poke,
           N_("Poke the running screensaver to simulate user activity"), NULL },
-        { "version", 0, 0, G_OPTION_ARG_NONE, &do_version,
+        { "inhibit", 'i', 0, G_OPTION_ARG_NONE, &do_inhibit,
+          N_("Inhibit the screensaver from activating.  Command blocks while inhibit is active."), NULL },
+        { "application-name", 'n', 0, G_OPTION_ARG_STRING, &inhibit_application,
+          N_("The calling application that is inhibiting the screensaver"), NULL },
+        { "reason", 'r', 0, G_OPTION_ARG_STRING, &inhibit_reason,
+          N_("The reason for inhibiting the screensaver"), NULL },
+        { "version", 'V', 0, G_OPTION_ARG_NONE, &do_version,
           N_("Version of this application"), NULL },
         { NULL }
 };
@@ -88,6 +98,46 @@ screensaver_is_running (DBusConnection *connection)
                 dbus_error_free (&error);
 
         return exists;
+}
+
+static DBusMessage *
+screensaver_send_message_inhibit (DBusConnection *connection,
+                                  const char     *application,
+                                  const char     *reason)
+{
+        DBusMessage    *message;
+        DBusMessage    *reply;
+        DBusError       error;
+	DBusMessageIter iter;
+
+        g_return_val_if_fail (connection != NULL, NULL);
+
+        dbus_error_init (&error);
+
+        message = dbus_message_new_method_call (GS_SERVICE, GS_PATH, GS_INTERFACE, "Inhibit");
+        if (message == NULL) {
+                g_warning ("Couldn't allocate the dbus message");
+                return NULL;
+        }
+
+	dbus_message_iter_init_append (message, &iter);
+	dbus_message_iter_append_basic (&iter, DBUS_TYPE_STRING, &application);
+	dbus_message_iter_append_basic (&iter, DBUS_TYPE_STRING, &reason);
+
+        reply = dbus_connection_send_with_reply_and_block (connection,
+                                                           message,
+                                                           -1, &error);
+        if (dbus_error_is_set (&error)) {
+                g_warning ("%s raised:\n %s\n\n", error.name, error.message);
+                reply = NULL;
+        }
+
+        dbus_connection_flush (connection);
+
+        dbus_message_unref (message);
+        dbus_error_free (&error);
+
+        return reply;
 }
 
 static DBusMessage *
@@ -226,6 +276,19 @@ do_command (DBusConnection *connection)
                         goto done;
                 }
                 dbus_message_unref (reply);
+        }
+
+        if (do_inhibit) {
+                reply = screensaver_send_message_inhibit (connection,
+                                                          inhibit_application ? inhibit_application : "Unknown",
+                                                          inhibit_reason ? inhibit_reason : "Unknown");
+                if (! reply) {
+                        g_message ("Did not receive a reply from the screensaver.");
+                        goto done;
+                }
+                dbus_message_unref (reply);
+
+                return FALSE;
         }
 
  done:
