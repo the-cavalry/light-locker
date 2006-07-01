@@ -1,3 +1,9 @@
+2006-07-01  Pawan Chitrakar  <pchitrakar@gmail.com>
+
+	* ne.po: Added Nepali translation
+
+	* LINGUAS: Added ne 
+
 2006-06-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* th.po: Updated Thai translation.
