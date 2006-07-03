@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-01 11:34+0200\n"
-"PO-Revision-Date: 2006-06-29 19:12+0200\n"
+"POT-Creation-Date: 2006-07-03 10:37+0300\n"
+"PO-Revision-Date: 2006-07-02 20:01+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -641,50 +641,66 @@ msgstr "Mihin:"
 msgid "Connecting..."
 msgstr "Otetaan yhteyttä..."
 
-#: ../src/gnome-screensaver-command.c:57
+#: ../src/gnome-screensaver-command.c:61
 msgid "Causes the screensaver to exit gracefully"
 msgstr "Johtaa näytönsäästäjän tahdikkaaseen poistumiseen"
 
-#: ../src/gnome-screensaver-command.c:59
+#: ../src/gnome-screensaver-command.c:63
 msgid "Query the state of the screensaver"
 msgstr "Kysy näytönsäästäjän tila"
 
-#: ../src/gnome-screensaver-command.c:61
+#: ../src/gnome-screensaver-command.c:65
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr ""
 "Käskee käynnissä olevan näytönsäästäjäprosessin lukkiutua välittömästi "
 
-#: ../src/gnome-screensaver-command.c:63
+#: ../src/gnome-screensaver-command.c:67
 msgid "If the screensaver is active then switch to another graphics demo"
 msgstr "Jos näytönsäästäjä on aktiivinen, vaihtaa uuden grafiikkademon"
 
-#: ../src/gnome-screensaver-command.c:65
+#: ../src/gnome-screensaver-command.c:69
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "Laittaa näytönsäästäjän päälle (tyhjentää näytön)"
 
-#: ../src/gnome-screensaver-command.c:67
+#: ../src/gnome-screensaver-command.c:71
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr "Jos näytönsäästäjä on aktiivinen, sulje se (palauta näyttö)"
 
-#: ../src/gnome-screensaver-command.c:69
+#: ../src/gnome-screensaver-command.c:73
 msgid "Poke the running screensaver to simulate user activity"
 msgstr "Töki käynnissä olevaa näytönsäästäjää simuloimaan käyttäjätoimintaa"
 
-#: ../src/gnome-screensaver-command.c:71 ../src/gnome-screensaver-dialog.c:54
+#: ../src/gnome-screensaver-command.c:75
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr ""
+"Estä näytönsäästäjän käynnistyminen. Komento pysähtyy niin pitkäksi aikaa "
+"kun esto on päällä."
+
+#: ../src/gnome-screensaver-command.c:77
+msgid "The calling application that is inhibiting the screensaver"
+msgstr "Kutsuva ohjelma, joka estää näytönsäästäjän käynnistymisen"
+
+#: ../src/gnome-screensaver-command.c:79
+msgid "The reason for inhibiting the screensaver"
+msgstr "Syy näytönsäästäjän käynnistymisen ehkäisemiseen"
+
+#: ../src/gnome-screensaver-command.c:81 ../src/gnome-screensaver-dialog.c:54
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Tämän ohjelman versio"
 
-#: ../src/gnome-screensaver-command.c:196
+#: ../src/gnome-screensaver-command.c:246
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "Näytönsäästäjä on %s\n"
 
-#: ../src/gnome-screensaver-command.c:196
+#: ../src/gnome-screensaver-command.c:246
 msgid "active"
 msgstr "käytössä"
 
-#: ../src/gnome-screensaver-command.c:196
+#: ../src/gnome-screensaver-command.c:246
 msgid "inactive"
 msgstr "pois käytöstä"
 
@@ -1006,9 +1022,6 @@ msgstr "_Salasana:"
 
 #~ msgid "The number of minutes after blanking the screen before locking."
 #~ msgstr "Minuuttimäärä näytön tyhjentämisestä ennen lukitsemista."
-
-#~ msgid "The number of minutes to run before changing the screensaver"
-#~ msgstr "Minuuttimäärä näytönsäästäjien vaihdon välillä"
 
 #~ msgid "The selected screensaver themes"
 #~ msgstr "Valitut näytönsäästäjäteemat"
