@@ -49,7 +49,7 @@ static gpointer grab_object = NULL;
 
 struct GSGrabPrivate
 {
-        gboolean   mouse_hide_cursor;
+        guint      mouse_hide_cursor : 1;
         GdkWindow *mouse_grab_window;
         GdkWindow *keyboard_grab_window;
         GdkScreen *mouse_grab_screen;

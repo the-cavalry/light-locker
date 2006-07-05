@@ -72,7 +72,6 @@ struct GSListenerPrivate
         guint           throttled : 1;
         GHashTable     *inhibitors;
         GHashTable     *throttlers;
-
         time_t          active_start;
         time_t          session_idle_start;
 };
@@ -116,7 +115,6 @@ gs_listener_vtable = { &gs_listener_unregister_handler,
                        NULL,
                        NULL };
 
-static GObjectClass *parent_class = NULL;
 static guint         signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSListener, gs_listener, G_TYPE_OBJECT)
@@ -125,8 +123,9 @@ GQuark
 gs_listener_error_quark (void)
 {
         static GQuark quark = 0;
-        if (!quark)
+        if (!quark) {
                 quark = g_quark_from_static_string ("gs_listener_error");
+        }
 
         return quark;
 }
@@ -1428,8 +1427,6 @@ gs_listener_class_init (GSListenerClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
 
-        parent_class = g_type_class_peek_parent (klass);
-
         object_class->finalize     = gs_listener_finalize;
         object_class->get_property = gs_listener_get_property;
         object_class->set_property = gs_listener_set_property;
@@ -1621,7 +1618,6 @@ gs_listener_init (GSListener *listener)
                                                             g_int_equal,
                                                             NULL,
                                                             (GDestroyNotify)gs_listener_ref_entry_free);
-
 }
 
 static void
@@ -1644,7 +1640,7 @@ gs_listener_finalize (GObject *object)
                 g_hash_table_destroy (listener->priv->throttlers);
         }
 
-        G_OBJECT_CLASS (parent_class)->finalize (object);
+        G_OBJECT_CLASS (gs_listener_parent_class)->finalize (object);
 }
 
 GSListener *

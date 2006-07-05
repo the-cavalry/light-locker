@@ -46,13 +46,10 @@ typedef struct
 
         GSPrefsPrivate  *priv;
 
-        gboolean         debug;
-        gboolean         verbose;		/* whether to print out lots of status info */
-
-        gboolean         idle_activation_enabled; /* whether to activate when idle */
-        gboolean         lock_enabled;		/* whether to lock when active */
-        gboolean         logout_enabled;	/* Whether to offer the logout option */
-        gboolean         user_switch_enabled;	/* Whether to offer the user switch option */
+        guint            idle_activation_enabled : 1; /* whether to activate when idle */
+        guint            lock_enabled : 1;		/* whether to lock when active */
+        guint            logout_enabled : 1;	/* Whether to offer the logout option */
+        guint            user_switch_enabled : 1;	/* Whether to offer the user switch option */
 
         guint            timeout;	       	/* how much idle time before activation */
         guint            lock_timeout;		/* how long after activation locking starts */

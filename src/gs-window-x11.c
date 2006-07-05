@@ -101,7 +101,6 @@ enum {
         PROP_MONITOR
 };
 
-static GObjectClass   *parent_class = NULL;
 static guint           signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSWindow, gs_window, GTK_TYPE_WINDOW)
@@ -328,8 +327,8 @@ gs_window_real_unrealize (GtkWidget *widget)
                                               screen_size_changed,
                                               widget);
 
-        if (GTK_WIDGET_CLASS (parent_class)->unrealize) {
-                GTK_WIDGET_CLASS (parent_class)->unrealize (widget);
+        if (GTK_WIDGET_CLASS (gs_window_parent_class)->unrealize) {
+                GTK_WIDGET_CLASS (gs_window_parent_class)->unrealize (widget);
         }
 }
 
@@ -409,8 +408,8 @@ gs_window_real_realize (GtkWidget *widget)
 {
         widget_set_best_colormap (widget);
 
-        if (GTK_WIDGET_CLASS (parent_class)->realize) {
-                GTK_WIDGET_CLASS (parent_class)->realize (widget);
+        if (GTK_WIDGET_CLASS (gs_window_parent_class)->realize) {
+                GTK_WIDGET_CLASS (gs_window_parent_class)->realize (widget);
         }
 
         gs_window_override_user_time (GS_WINDOW (widget));
@@ -597,8 +596,8 @@ gs_window_real_show (GtkWidget *widget)
 {
         GSWindow *window;
 
-        if (GTK_WIDGET_CLASS (parent_class)->show) {
-                GTK_WIDGET_CLASS (parent_class)->show (widget);
+        if (GTK_WIDGET_CLASS (gs_window_parent_class)->show) {
+                GTK_WIDGET_CLASS (gs_window_parent_class)->show (widget);
         }
 
         gs_window_clear (GS_WINDOW (widget));
@@ -637,8 +636,8 @@ gs_window_real_hide (GtkWidget *widget)
 
         remove_watchdog_timer (window);
 
-        if (GTK_WIDGET_CLASS (parent_class)->hide) {
-                GTK_WIDGET_CLASS (parent_class)->hide (widget);
+        if (GTK_WIDGET_CLASS (gs_window_parent_class)->hide) {
+                GTK_WIDGET_CLASS (gs_window_parent_class)->hide (widget);
         }
 }
 
@@ -1368,8 +1367,8 @@ gs_window_real_key_press_event (GtkWidget   *widget,
                 queue_key_event (GS_WINDOW (widget), event);
         }
 
-        if (GTK_WIDGET_CLASS (parent_class)->key_press_event) {
-                GTK_WIDGET_CLASS (parent_class)->key_press_event (widget, event);
+        if (GTK_WIDGET_CLASS (gs_window_parent_class)->key_press_event) {
+                GTK_WIDGET_CLASS (gs_window_parent_class)->key_press_event (widget, event);
         }
 
         return TRUE;
@@ -1495,8 +1494,6 @@ gs_window_class_init (GSWindowClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
         GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-
-        parent_class = g_type_class_peek_parent (klass);
 
         object_class->finalize     = gs_window_finalize;
         object_class->get_property = gs_window_get_property;
@@ -1666,7 +1663,7 @@ gs_window_finalize (GObject *object)
         }
         gs_window_dialog_finish (window);
 
-        G_OBJECT_CLASS (parent_class)->finalize (object);
+        G_OBJECT_CLASS (gs_window_parent_class)->finalize (object);
 }
 
 GSWindow *

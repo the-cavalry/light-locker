@@ -64,8 +64,8 @@ static void     gs_fade_finalize   (GObject        *object);
 
 struct GSFadePrivate
 {
-        gboolean         enabled;
-        gboolean         active;
+        guint            enabled : 1;
+        guint            active : 1;
 
         guint            timeout;
 
@@ -92,16 +92,11 @@ enum {
 };
 
 enum {
-        PROP_0
-};
-
-enum {
         FADE_TYPE_NONE,
         FADE_TYPE_GAMMA_NUMBER,
         FADE_TYPE_GAMMA_RAMP
 };
 
-static GObjectClass *parent_class = NULL;
 static guint         signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSFade, gs_fade, G_TYPE_OBJECT)
@@ -192,9 +187,9 @@ xf86_whack_gamma (int              screen,
                 unsigned short *r, *g, *b;
                 int i;
 
-                r = (unsigned short *) malloc (info->size * sizeof (unsigned short));
-                g = (unsigned short *) malloc (info->size * sizeof (unsigned short));
-                b = (unsigned short *) malloc (info->size * sizeof (unsigned short));
+                r = g_new0 (unsigned short, info->size);
+                g = g_new0 (unsigned short, info->size);
+                b = g_new0 (unsigned short, info->size);
 
                 for (i = 0; i < info->size; i++) {
                         r[i] = info->r[i] * ratio;
@@ -333,12 +328,9 @@ gamma_info_init (GSFade *fade)
                                 goto FAIL;
                         }
 
-                        info [screen].r = (unsigned short *)
-                                calloc (info[screen].size, sizeof (unsigned short));
-                        info [screen].g = (unsigned short *)
-                                calloc (info[screen].size, sizeof (unsigned short));
-                        info [screen].b = (unsigned short *)
-                                calloc (info[screen].size, sizeof (unsigned short));
+                        info [screen].r = g_new0 (unsigned short, info[screen].size);
+                        info [screen].g = g_new0 (unsigned short, info[screen].size);
+                        info [screen].b = g_new0 (unsigned short, info[screen].size);
 
                         if (! (info [screen].r && info [screen].g && info [screen].b)) {
                                 goto FAIL;
@@ -649,41 +641,11 @@ gs_fade_reset (GSFade *fade)
 }
 
 static void
-gs_fade_set_property (GObject            *object,
-                      guint               prop_id,
-                      const GValue       *value,
-                      GParamSpec         *pspec)
-{
-        switch (prop_id) {
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
-        }
-}
-
-static void
-gs_fade_get_property (GObject            *object,
-                      guint               prop_id,
-                      GValue             *value,
-                      GParamSpec         *pspec)
-{
-        switch (prop_id) {
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
-        }
-}
-
-static void
 gs_fade_class_init (GSFadeClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
 
-        parent_class = g_type_class_peek_parent (klass);
-
-        object_class->finalize     = gs_fade_finalize;
-        object_class->get_property = gs_fade_get_property;
-        object_class->set_property = gs_fade_set_property;
+        object_class->finalize = gs_fade_finalize;
 
         signals [FADED] =
                 g_signal_new ("faded",
@@ -731,7 +693,7 @@ gs_fade_finalize (GObject *object)
 
         gamma_info_free (fade);
 
-        G_OBJECT_CLASS (parent_class)->finalize (object);
+        G_OBJECT_CLASS (gs_fade_parent_class)->finalize (object);
 }
 
 GSFade *

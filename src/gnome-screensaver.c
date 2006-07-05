@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 8; tab-width: 8 -*-
  *
- * Copyright (C) 2004-2005 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2004-2006 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -88,8 +88,9 @@ main (int    argc,
 
         monitor = gs_monitor_new ();
 
-        if (! monitor)
+        if (monitor == NULL) {
                 exit (1);
+        }
 
         error = NULL;
         if (! gs_monitor_start (monitor, &error)) {
@@ -103,8 +104,9 @@ main (int    argc,
         }
 
         /* Don't close stdout and stderr for now */
-        if (! no_daemon && daemon (0, 1))
+        if (! no_daemon && daemon (0, 1)) {
                 g_error ("Could not daemonize: %s", g_strerror (errno));
+        }
 
         gtk_main ();
 

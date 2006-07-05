@@ -70,7 +70,6 @@ static GConfEnumStringPair mode_enum_map [] = {
        { 0, NULL }
 };
 
-static GObjectClass *parent_class = NULL;
 static guint         signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSPrefs, gs_prefs, G_TYPE_OBJECT)
@@ -105,8 +104,6 @@ static void
 gs_prefs_class_init (GSPrefsClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
-
-        parent_class = g_type_class_peek_parent (klass);
 
         object_class->finalize     = gs_prefs_finalize;
         object_class->get_property = gs_prefs_get_property;
@@ -564,9 +561,6 @@ gs_prefs_init (GSPrefs *prefs)
 
         prefs->priv->gconf_client      = gconf_client_get_default ();
 
-        prefs->verbose                 = FALSE;
-        prefs->debug                   = FALSE;
-
         prefs->idle_activation_enabled = TRUE;
         prefs->lock_enabled            = TRUE;
         prefs->logout_enabled          = FALSE;
@@ -576,7 +570,6 @@ gs_prefs_init (GSPrefs *prefs)
         prefs->lock_timeout            = 0;
         prefs->logout_timeout          = 14400000;
         prefs->cycle                   = 600000;
-
 
         prefs->mode                    = GS_MODE_SINGLE;
 
@@ -618,7 +611,7 @@ gs_prefs_finalize (GObject *object)
 
         g_free (prefs->logout_command);
 
-        G_OBJECT_CLASS (parent_class)->finalize (object);
+        G_OBJECT_CLASS (gs_prefs_parent_class)->finalize (object);
 }
 
 GSPrefs *

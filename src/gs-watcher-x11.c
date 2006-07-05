@@ -42,7 +42,6 @@
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 
-#include "gnome-screensaver.h"
 #include "gs-watcher.h"
 #include "gs-marshal.h"
 #include "gs-debug.h"
@@ -122,11 +121,9 @@ enum {
 
 enum {
         PROP_0,
-        PROP_TIMEOUT,
-        PROP_DEBUG
+        PROP_TIMEOUT
 };
 
-static GObjectClass *parent_class = NULL;
 static guint         signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSWatcher, gs_watcher, G_TYPE_OBJECT)
@@ -206,8 +203,6 @@ static void
 gs_watcher_class_init (GSWatcherClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
-
-        parent_class = g_type_class_peek_parent (klass);
 
         object_class->finalize     = gs_watcher_finalize;
         object_class->get_property = gs_watcher_get_property;
@@ -361,75 +356,20 @@ notice_events (Window   window,
         gdk_error_trap_pop ();
 }
 
-typedef struct _NoticeTimerData NoticeTimerData;
-struct _NoticeTimerData
-{
-        GSWatcher *watcher;
-        Window     window;
-        gboolean   enable;
-};
-
-static gboolean
-notice_events_timer (NoticeTimerData *data)
-{
-        gboolean is_top = TRUE;
-        gboolean enable = data->enable;
-        Window   window = data->window;
-
-        notice_events (window, enable, is_top);
-
-        return FALSE;
-}
-
 static void
 stop_notice_events (GSWatcher *watcher,
                     Window     window)
 {
-        NoticeTimerData *data;
-
-        data = g_new0 (NoticeTimerData, 1);
-
-        data->window = window;
-        data->watcher = watcher;
-        data->enable = FALSE;
-
-        notice_events_timer (data);
-        g_free (data);
+        gboolean is_top = TRUE;
+        notice_events (window, FALSE, is_top);
 }
 
 static void
-start_notice_events_timer (GSWatcher *watcher,
-                           Window     window)
+start_notice_events (GSWatcher *watcher,
+                     Window     window)
 {
-        NoticeTimerData *data;
-
-        data = g_new0 (NoticeTimerData, 1);
-
-        data->window = window;
-        data->watcher = watcher;
-        data->enable = TRUE;
-
-        /* FIXME: we should defer noticing events
-           using a timeout so that we ignore short
-           lived windows */
-
-        /* The hard part is keeping track of all the
-           timeouts for each window so that we can
-           remove them when necessary */
-        if (0) {
-                guint timeout;
-
-                timeout = 10000;
-                g_timeout_add_full (G_PRIORITY_DEFAULT_IDLE,
-                                    timeout,
-                                    (GSourceFunc)notice_events_timer,
-                                    data,
-                                    (GDestroyNotify)g_free);
-        } else {
-                notice_events_timer (data);
-                g_free (data);
-        }
-
+        gboolean is_top = TRUE;
+        notice_events (window, TRUE, is_top);
 }
 
 static void
@@ -566,7 +506,7 @@ _gs_watcher_notice_window_created (GSWatcher *watcher,
 {
         gs_debug ("Window created: noticing activity on 0x%lX", (unsigned long)window);
 
-        start_notice_events_timer (watcher, window);
+        start_notice_events (watcher, window);
 }
 
 static void
@@ -649,8 +589,9 @@ start_pointer_poll (GSWatcher *watcher)
 static void
 _gs_watcher_pointer_position_free (PointerPosition *pos)
 {
-        if (! pos)
+        if (pos == NULL) {
                 return;
+        }
 
         g_free (pos);
         pos = NULL;
@@ -660,8 +601,9 @@ static void
 _gs_watcher_set_pointer_position (GSWatcher       *watcher,
                                   PointerPosition *pos)
 {
-        if (watcher->priv->poll_position)
+        if (watcher->priv->poll_position != NULL) {
                 _gs_watcher_pointer_position_free (watcher->priv->poll_position);
+        }
 
         watcher->priv->poll_position = pos;
 }
@@ -686,7 +628,7 @@ start_idle_watcher (GSWatcher *watcher)
         start_pointer_poll (watcher);
 
         gdk_window_add_filter (NULL, (GdkFilterFunc)xevent_filter, watcher);
-        start_notice_events_timer (watcher, DefaultRootWindow (GDK_DISPLAY ()));
+        start_notice_events (watcher, DefaultRootWindow (GDK_DISPLAY ()));
 
         watchdog_timer (watcher);
 
@@ -842,7 +784,7 @@ gs_watcher_finalize (GObject *object)
         g_timer_destroy (watcher->priv->jump_timer);
         watcher->priv->jump_timer = NULL;
 
-        G_OBJECT_CLASS (parent_class)->finalize (object);
+        G_OBJECT_CLASS (gs_watcher_parent_class)->finalize (object);
 }
 
 #ifdef HAVE_MIT_SAVER_EXTENSION

@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * Copyright (C) 2004-2005 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2004-2006 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,14 +71,6 @@ struct GSJobPrivate
         char           *current_theme;
 };
 
-typedef struct
-{
-        char  *dir;
-        time_t mtime; /* 0 == not existing or not a dir */
-} ThemeDirMtime;
-
-static GObjectClass *parent_class = NULL;
-
 G_DEFINE_TYPE (GSJob, gs_job, G_TYPE_OBJECT)
 
 static const char *known_engine_locations [] = {
@@ -143,8 +135,9 @@ add_known_engine_locations_to_path (void)
         GString *str;
 
         /* We only want to add the items to the path once */
-        if (already_added)
+        if (already_added) {
                 return;
+        }
 
         already_added = TRUE;
 
@@ -167,7 +160,7 @@ get_themes_tree (void)
 {
         static GMenuTree *themes_tree;
 
-        if (themes_tree) {
+        if (themes_tree != NULL) {
                 return themes_tree;
         }
 
@@ -263,7 +256,7 @@ find_info_for_id (GMenuTree  *tree,
         GSList             *l;
 
 	root = gmenu_tree_get_root_directory (tree);
-        if (! root) {
+        if (root == NULL) {
                 return NULL;
         }
 
@@ -367,7 +360,7 @@ gs_job_get_theme_info_list (GSJob *job)
         tree = get_themes_tree ();
         root = gmenu_tree_get_root_directory (tree);
 
-        if (root) {
+        if (root != NULL) {
                 make_theme_list (&l, root, "gnome-screensavers.menu");
                 gmenu_tree_item_unref (root);
         }
@@ -391,8 +384,6 @@ static void
 gs_job_class_init (GSJobClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-        parent_class = g_type_class_peek_parent (klass);
 
         object_class->finalize  = gs_job_finalize;
 
@@ -465,7 +456,7 @@ gs_job_finalize (GObject *object)
         g_free (job->priv->current_theme);
         job->priv->current_theme = NULL;
 
-        G_OBJECT_CLASS (parent_class)->finalize (object);
+        G_OBJECT_CLASS (gs_job_parent_class)->finalize (object);
 }
 
 void
@@ -497,7 +488,7 @@ gs_job_set_theme  (GSJob      *job,
 
         /* NULL theme is interpreted as a no-op job */
 
-        if (theme) {
+        if (theme != NULL) {
                 info = gs_job_lookup_theme_info (job, theme);
 
                 if (! info) {
@@ -517,7 +508,7 @@ gs_job_set_theme  (GSJob      *job,
 
         g_free (job->priv->current_theme);
 
-        if (theme) {
+        if (theme != NULL) {
                 job->priv->current_theme = g_strdup (theme);
         }
 
@@ -678,7 +669,7 @@ spawn_on_widget (GtkWidget  *widget,
 
         nice_process (child_pid, 10);
 
-        if (pid) {
+        if (pid != NULL) {
                 *pid = child_pid;
         } else {
                 g_spawn_close_pid (child_pid);
@@ -693,7 +684,7 @@ spawn_on_widget (GtkWidget  *widget,
                              G_IO_IN | G_IO_HUP | G_IO_ERR | G_IO_NVAL,
                              watch_func,
                              user_data);
-        if (watch_id) {
+        if (watch_id != NULL) {
                 *watch_id = id;
         }
 
@@ -762,17 +753,17 @@ gs_job_start (GSJob *job)
         g_return_val_if_fail (job != NULL, FALSE);
         g_return_val_if_fail (GS_IS_JOB (job), FALSE);
 
-        if (job->priv->pid) {
+        if (job->priv->pid != 0) {
                 g_warning ("Cannot restart active job.");
                 return FALSE;
         }
 
-        if (! job->priv->widget) {
+        if (job->priv->widget == NULL) {
                 g_warning ("Could not start job: screensaver window is not set.");
                 return FALSE;
         }
 
-        if (! job->priv->current_theme) {
+        if (job->priv->current_theme == NULL) {
                 /* no warning here because a NULL theme is interpreted
                    as a no-op job */
                 return FALSE;
@@ -816,7 +807,7 @@ gs_job_stop (GSJob *job)
         g_return_val_if_fail (job != NULL, FALSE);
         g_return_val_if_fail (GS_IS_JOB (job), FALSE);
 
-        if (! job->priv->pid) {
+        if (job->priv->pid == 0) {
                 return FALSE;
         }
 
@@ -842,7 +833,7 @@ gs_job_suspend (GSJob   *job,
         g_return_val_if_fail (job != NULL, FALSE);
         g_return_val_if_fail (GS_IS_JOB (job), FALSE);
 
-        if (! job->priv->pid) {
+        if (job->priv->pid == 0) {
                 return FALSE;
         }
 

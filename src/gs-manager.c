@@ -99,7 +99,6 @@ enum {
 
 #define FADE_TIMEOUT 1000
 
-static GObjectClass *parent_class = NULL;
 static guint         signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSManager, gs_manager, G_TYPE_OBJECT)
@@ -238,6 +237,15 @@ gs_manager_set_mode (GSManager  *manager,
         manager->priv->saver_mode = mode;
 }
 
+static void
+free_themes (GSManager *manager)
+{
+        if (manager->priv->themes) {
+                g_slist_foreach (manager->priv->themes, (GFunc)g_free, NULL);
+                g_slist_free (manager->priv->themes);
+        }
+}
+
 void
 gs_manager_set_themes (GSManager *manager,
                        GSList    *themes)
@@ -246,10 +254,7 @@ gs_manager_set_themes (GSManager *manager,
 
         g_return_if_fail (GS_IS_MANAGER (manager));
 
-        if (manager->priv->themes) {
-                g_slist_foreach (manager->priv->themes, (GFunc)g_free, NULL);
-                g_slist_free (manager->priv->themes);
-        }
+        free_themes (manager);
         manager->priv->themes = NULL;
 
         for (l = themes; l; l = l->next) {
@@ -612,8 +617,6 @@ gs_manager_class_init (GSManagerClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
 
-        parent_class = g_type_class_peek_parent (klass);
-
         object_class->finalize     = gs_manager_finalize;
         object_class->get_property = gs_manager_get_property;
         object_class->set_property = gs_manager_set_property;
@@ -762,6 +765,7 @@ gs_manager_finalize (GObject *object)
 
         g_return_if_fail (manager->priv != NULL);
 
+        free_themes (manager);
         g_free (manager->priv->logout_command);
 
         remove_timers (manager);
@@ -783,7 +787,7 @@ gs_manager_finalize (GObject *object)
         g_object_unref (manager->priv->fade);
         g_object_unref (manager->priv->grab);
 
-        G_OBJECT_CLASS (parent_class)->finalize (object);
+        G_OBJECT_CLASS (gs_manager_parent_class)->finalize (object);
 }
 
 static gboolean

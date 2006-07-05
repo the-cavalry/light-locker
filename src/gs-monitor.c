@@ -59,13 +59,7 @@ struct GSMonitorPrivate
         guint           release_grab_id;
 };
 
-enum {
-        PROP_0
-};
-
 #define FADE_TIMEOUT 10000
-
-static GObjectClass *parent_class = NULL;
 
 G_DEFINE_TYPE (GSMonitor, gs_monitor, G_TYPE_OBJECT)
 
@@ -73,8 +67,6 @@ static void
 gs_monitor_class_init (GSMonitorClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
-
-        parent_class = g_type_class_peek_parent (klass);
 
         object_class->finalize = gs_monitor_finalize;
 
@@ -443,7 +435,7 @@ gs_monitor_finalize (GObject *object)
         g_object_unref (monitor->priv->manager);
         g_object_unref (monitor->priv->prefs);
 
-        G_OBJECT_CLASS (parent_class)->finalize (object);
+        G_OBJECT_CLASS (gs_monitor_parent_class)->finalize (object);
 }
 
 GSMonitor *
