@@ -392,6 +392,9 @@ gs_grab_release (GSGrab *grab)
 
         /* FIXME: is it right to enable this ? */
         xorg_lock_smasher_set_active (grab, TRUE);
+
+        gdk_display_sync (gdk_display_get_default ());
+        gdk_flush ();
 }
 
 gboolean
