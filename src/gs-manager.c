@@ -768,6 +768,7 @@ gs_manager_finalize (GObject *object)
         free_themes (manager);
         g_free (manager->priv->logout_command);
 
+        remove_unfade_idle (manager);
         remove_timers (manager);
 
         gs_grab_release (manager->priv->grab);
@@ -926,6 +927,7 @@ manager_maybe_grab_window (GSManager *manager,
         grabbed = FALSE;
         if (gs_window_get_screen (window) == screen
             && gs_window_get_monitor (window) == monitor) {
+                gs_debug ("Moving grab to %p", window);
                 gs_grab_move_to_window (manager->priv->grab,
                                         gs_window_get_gdk_window (window),
                                         gs_window_get_screen (window),
@@ -1211,7 +1213,7 @@ gs_manager_activate (GSManager *manager)
                 return FALSE;
         }
 
-        if (! manager->priv->windows) {
+        if (manager->priv->windows == NULL) {
                 gs_manager_create (GS_MANAGER (manager));
         }
 
@@ -1255,6 +1257,7 @@ gs_manager_deactivate (GSManager *manager)
                 return FALSE;
         }
 
+        remove_unfade_idle (manager);
         remove_timers (manager);
 
         gs_grab_release (manager->priv->grab);

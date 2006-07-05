@@ -353,6 +353,7 @@ get_best_visual (void)
                                    NULL,
                                    &exit_status,
                                    &error);
+        g_free (command);
 
         if (1 == sscanf (std_output, "0x%lx %c", &v, &c)) {
                 if (v != 0) {

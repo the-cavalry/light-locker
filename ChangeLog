@@ -1,5 +1,15 @@
 2006-07-05  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-manager.c: (gs_manager_finalize),
+	(manager_maybe_grab_window), (gs_manager_activate),
+	(gs_manager_deactivate):
+	Remove unfade idle.
+
+	* src/gs-window-x11.c: (get_best_visual):
+	Fix leak.
+
+2006-07-05  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-grab-x11.c (gs_grab_release): Do a gdk
 	display sync and flush to make sure the grabs are released.
 
