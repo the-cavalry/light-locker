@@ -753,6 +753,15 @@ remove_timers (GSManager *manager)
 }
 
 static void
+remove_unfade_idle (GSManager *manager)
+{
+        if (manager->priv->unfade_idle_id > 0) {
+                g_source_remove (manager->priv->unfade_idle_id);
+                manager->priv->unfade_idle_id = 0;
+        }
+}
+
+static void
 gs_manager_finalize (GObject *object)
 {
         GSManager *manager;
@@ -960,15 +969,6 @@ unfade_idle (GSManager *manager)
         return FALSE;
 }
 
-
-static void
-remove_unfade_idle (GSManager *manager)
-{
-        if (manager->priv->unfade_idle_id > 0) {
-                g_source_remove (manager->priv->unfade_idle_id);
-                manager->priv->unfade_idle_id = 0;
-        }
-}
 
 static void
 add_unfade_idle (GSManager *manager)
