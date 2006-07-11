@@ -194,8 +194,14 @@ manager_maybe_start_job_for_window (GSManager *manager,
                                 } else {
                                         gs_debug ("Window is obscured deferring start of job");
                                 }
+                        } else {
+                                gs_debug ("Not starting job because job is running");
                         }
+                } else {
+                        gs_debug ("Not starting job because throttled");
                 }
+        } else {
+                gs_debug ("Not starting job because dialog is up");
         }
 }
 
@@ -943,11 +949,11 @@ window_dialog_down_cb (GSWindow  *window,
                 gtk_widget_set_sensitive (GTK_WIDGET (l->data), TRUE);
         }
 
+        manager->priv->dialog_up = FALSE;
+
         if (! manager->priv->throttled) {
                 manager_resume_jobs (manager);
         }
-
-        manager->priv->dialog_up = FALSE;
 
         g_signal_emit (manager, signals [AUTH_REQUEST_END], 0);
 }
