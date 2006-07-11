@@ -54,6 +54,7 @@ struct GSWindowPrivate
         int        monitor;
 
         GdkRectangle geometry;
+        guint      obscured : 1;
 
         guint      lock_enabled : 1;
         guint      user_switch_enabled : 1;
@@ -94,6 +95,7 @@ enum {
 
 enum {
         PROP_0,
+        PROP_OBSCURED,
         PROP_LOCK_ENABLED,
         PROP_LOGOUT_ENABLED,
         PROP_LOGOUT_COMMAND,
@@ -1295,6 +1297,9 @@ gs_window_get_property (GObject    *object,
         case PROP_MONITOR:
                 g_value_set_int (value, self->priv->monitor);
                 break;
+        case PROP_OBSCURED:
+                g_value_set_boolean (value, self->priv->obscured);
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -1490,6 +1495,46 @@ gs_window_real_grab_broken (GtkWidget          *widget,
         return FALSE;
 }
 
+gboolean
+gs_window_is_obscured (GSWindow *window)
+{
+        g_return_val_if_fail (GS_IS_WINDOW (window), FALSE);
+
+        return window->priv->obscured;
+}
+
+static void
+window_set_obscured (GSWindow *window,
+                     gboolean  obscured)
+{
+        if (window->priv->obscured == obscured) {
+                return;
+        }
+
+        window->priv->obscured = obscured;
+        g_object_notify (G_OBJECT (window), "obscured");
+}
+
+static gboolean
+gs_window_real_visibility_notify_event (GtkWidget          *widget,
+                                        GdkEventVisibility *event)
+{
+        switch (event->state) {
+        case GDK_VISIBILITY_FULLY_OBSCURED:
+                window_set_obscured (GS_WINDOW (widget), TRUE);
+                break;
+        case GDK_VISIBILITY_PARTIAL:
+                break;
+        case GDK_VISIBILITY_UNOBSCURED:
+                window_set_obscured (GS_WINDOW (widget), FALSE);
+                break;
+        default:
+                break;
+        }
+
+        return FALSE;
+}
+
 static void
 gs_window_class_init (GSWindowClass *klass)
 {
@@ -1510,6 +1555,7 @@ gs_window_class_init (GSWindowClass *klass)
         widget_class->scroll_event        = gs_window_real_scroll_event;
         widget_class->size_request        = gs_window_real_size_request;
         widget_class->grab_broken_event   = gs_window_real_grab_broken;
+        widget_class->visibility_notify_event = gs_window_real_visibility_notify_event;
 
         g_type_class_add_private (klass, sizeof (GSWindowPrivate));
 
@@ -1544,6 +1590,13 @@ gs_window_class_init (GSWindowClass *klass)
                               G_TYPE_NONE,
                               0);
 
+        g_object_class_install_property (object_class,
+                                         PROP_OBSCURED,
+                                         g_param_spec_boolean ("obscured",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READABLE));
         g_object_class_install_property (object_class,
                                          PROP_LOCK_ENABLED,
                                          g_param_spec_boolean ("lock-enabled",
@@ -1617,6 +1670,7 @@ gs_window_init (GSWindow *window)
                                | GDK_KEY_PRESS_MASK
                                | GDK_KEY_RELEASE_MASK
                                | GDK_EXPOSURE_MASK
+                               | GDK_VISIBILITY_NOTIFY_MASK
                                | GDK_ENTER_NOTIFY_MASK
                                | GDK_LEAVE_NOTIFY_MASK);
         force_no_pixmap_background (GTK_WIDGET (window));

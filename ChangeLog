@@ -1,5 +1,28 @@
 2006-07-11  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-job.c: (gs_job_died), (command_watch), (gs_job_start),
+	(gs_job_stop), (gs_job_suspend):
+	* src/gs-manager.c: (lookup_job_for_window),
+	(manager_maybe_stop_job_for_window),
+	(manager_maybe_start_job_for_window), (cycle_job), (throttle_job),
+	(resume_job), (gs_manager_cycle), (maybe_set_window_throttle),
+	(window_obscured_cb), (disconnect_window_signals),
+	(connect_window_signals), (gs_manager_request_unlock):
+	* src/gs-window-x11.c: (gs_window_get_property),
+	(gs_window_is_obscured), (window_set_obscured),
+	(gs_window_real_visibility_notify_event), (gs_window_class_init),
+	(gs_window_init):
+	* src/gs-window.h:
+
+	Stop running screensaver themes on each window when
+	it is completely obscured.  This happens when the
+	VT switches.  We resume running the theme when the
+	window is unobscured.  We additionally try to attempt
+	unlock (or request authentication) when unobscured.
+	Fixes #339330
+
+2006-07-11  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-command.c (main):
 	Use dbus_connection_close not _disconnect
 	Fixes #347126
