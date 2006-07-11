@@ -1,4 +1,37 @@
 ===============
+Version 2.15.4
+===============
+
+  gnome-screensaver
+
+        * Override gtk+ theme background style
+        * Use helper command to get best GL visual
+        * Add a blocking inhibit option to the command-line tool
+        * Add short options to the command-line tool
+        * Misc memory reduction
+
+  Translators
+
+        * Rostislav \"zbrox\" Raykov (bg)
+        * Mahay Alam Khan (bn_IN)
+        * Jakub Friedl (cs)
+        * Hendrik Richter (de)
+        * Francisco Javier F. Serrador (es)
+        * Ilkka Tuohela (fi)
+        * Robert-André Mauchin (fr)
+        * Ignacio Casal Quinteiro (gl)
+        * Ankit Patel (gu)
+        * Yaniv Abir (he)
+        * Rajesh Ranjan (hi)
+        * Raivis Dejus (lv)
+        * Jovan Naumovski (mk)
+        * Kjartan Maraas (nb)
+        * Shyam Krishna Bal (ne)
+        * Daniel Nylander (sv)
+        * Felix (ta)
+        * Theppitak Karoonboonyanan (th)
+
+===============
 Version 2.15.3
 ===============
 
