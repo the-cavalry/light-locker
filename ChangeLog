@@ -1,3 +1,9 @@
+2006-07-11  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gnome-screensaver-command.c (main):
+	Use dbus_connection_close not _disconnect
+	Fixes #347126
+
 2006-07-10  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump
