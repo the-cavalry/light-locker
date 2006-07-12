@@ -1,3 +1,23 @@
+2006-07-12  William Jon McCann  <mccann@jhu.edu>
+
+	* src/Makefile.am:
+	* src/gs-manager.c: (window_dialog_up_cb),
+	(find_window_at_pointer), (window_activity_cb),
+	(disconnect_window_signals), (connect_window_signals),
+	(gs_manager_request_unlock):
+	* src/gs-manager.h:
+	* src/gs-marshal.list:
+	* src/gs-window-x11.c: (maybe_handle_activity),
+	(gs_window_real_key_press_event),
+	(gs_window_real_motion_notify_event),
+	(gs_window_real_button_press_event), (gs_window_real_scroll_event),
+	(gs_window_class_init), (gs_window_finalize):
+	* src/gs-window.h:
+	Emit a signal when activity is detected on the window.  Allow
+	the manager to decide whether an unlock request should occur and
+	where.  Make the dialog appear on the correct window when
+	in xinerama.
+
 2006-07-11  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c: (queue_key_event):

@@ -87,7 +87,7 @@ void        gs_manager_set_themes           (GSManager  *manager,
                                              GSList     *themes);
 void        gs_manager_set_mode             (GSManager  *manager,
                                              GSSaverMode mode);
-void        gs_manager_request_unlock       (GSManager  *manager);
+gboolean    gs_manager_request_unlock       (GSManager  *manager);
 
 G_END_DECLS
 

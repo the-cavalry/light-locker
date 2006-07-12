@@ -115,6 +115,8 @@ test_window_SOURCES =			\
 	gs-window-x11.c			\
 	gs-grab-x11.c			\
 	gs-grab.h			\
+	gs-marshal.c 			\
+	gs-marshal.h			\
 	gs-debug.c			\
 	gs-debug.h			\
 	subprocs.c			\

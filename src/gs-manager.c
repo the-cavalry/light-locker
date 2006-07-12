@@ -904,6 +904,12 @@ window_dialog_up_cb (GSWindow  *window,
         g_signal_emit (manager, signals [AUTH_REQUEST_BEGIN], 0);
 
         manager->priv->dialog_up = TRUE;
+        /* Make all other windows insensitive so we don't get events */
+        for (l = manager->priv->windows; l; l = l->next) {
+                if (l->data != window) {
+                        gtk_widget_set_sensitive (GTK_WIDGET (l->data), FALSE);
+                }
+        }
 
         /* Move keyboard and mouse grabs so dialog can be used */
         gs_grab_move_to_window (manager->priv->grab,
@@ -914,13 +920,6 @@ window_dialog_up_cb (GSWindow  *window,
         /* Release the pointer grab while dialog is up so that
            the dialog can be used.  We'll regrab it when the dialog goes down. */
         gs_grab_release_mouse (manager->priv->grab);
-
-        /* Make all other windows insensitive so we don't get events */
-        for (l = manager->priv->windows; l; l = l->next) {
-                if (l->data != window) {
-                        gtk_widget_set_sensitive (GTK_WIDGET (l->data), FALSE);
-                }
-        }
 
         if (! manager->priv->throttled) {
                 gs_debug ("Suspending jobs");
@@ -956,6 +955,43 @@ window_dialog_down_cb (GSWindow  *window,
         }
 
         g_signal_emit (manager, signals [AUTH_REQUEST_END], 0);
+}
+
+static GSWindow *
+find_window_at_pointer (GSManager *manager)
+{
+        GdkDisplay *display;
+        GdkScreen  *screen;
+        int         monitor;
+        int         x, y;
+        GSWindow   *window;
+        int         screen_num;
+        GSList     *l;
+
+        display = gdk_display_get_default ();
+        gdk_display_get_pointer (display, &screen, &x, &y, NULL);
+        monitor = gdk_screen_get_monitor_at_point (screen, x, y);
+        screen_num = gdk_screen_get_number (screen);
+
+        /* Find the gs-window that is on that screen */
+        window = NULL;
+        for (l = manager->priv->windows; l; l = l->next) {
+                GSWindow *win = GS_WINDOW (l->data);
+                if (gs_window_get_screen (win) == screen
+                    && gs_window_get_monitor (win) == monitor) {
+                        window = win;
+                }
+        }
+
+        if (window == NULL) {
+                gs_debug ("WARNING: Could not find the GSWindow for screen %d", screen_num);
+                /* take the first one */
+                window = manager->priv->windows->data;
+        } else {
+                gs_debug ("Requesting unlock for screen %d", screen_num);
+        }
+
+        return window;
 }
 
 static gboolean
@@ -1120,11 +1156,23 @@ window_obscured_cb (GSWindow   *window,
         }
 }
 
+static gboolean
+window_activity_cb (GSWindow  *window,
+                    GSManager *manager)
+{
+        gboolean handled;
+
+        handled = gs_manager_request_unlock (manager);
+
+        return handled;
+}
+
 static void
 disconnect_window_signals (GSManager *manager,
                            GSWindow  *window)
 {
         g_signal_handlers_disconnect_by_func (window, window_deactivated_cb, manager);
+        g_signal_handlers_disconnect_by_func (window, window_activity_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_dialog_up_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_dialog_down_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_show_cb, manager);
@@ -1148,6 +1196,8 @@ connect_window_signals (GSManager *manager,
 {
         g_signal_connect_object (window, "destroy",
                                  G_CALLBACK (window_destroyed_cb), manager, 0);
+        g_signal_connect_object (window, "activity",
+                                 G_CALLBACK (window_activity_cb), manager, 0);
         g_signal_connect_object (window, "deactivated",
                                  G_CALLBACK (window_deactivated_cb), manager, 0);
         g_signal_connect_object (window, "dialog-up",
@@ -1373,25 +1423,22 @@ gs_manager_get_active (GSManager *manager)
         return manager->priv->active;
 }
 
-void
+gboolean
 gs_manager_request_unlock (GSManager *manager)
 {
-        GSList     *l;
-        GdkDisplay *display;
-        GdkScreen  *screen;
-        int         screen_num;
+        GSWindow *window;
 
-        g_return_if_fail (manager != NULL);
-        g_return_if_fail (GS_IS_MANAGER (manager));
+        g_return_val_if_fail (manager != NULL, FALSE);
+        g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
         if (! manager->priv->active) {
                 gs_debug ("Request unlock but manager is not active");
-                return;
+                return FALSE;
         }
 
         if (manager->priv->dialog_up) {
                 gs_debug ("Request unlock but dialog is already up");
-                return;
+                return FALSE;
         }
 
         if (manager->priv->fading) {
@@ -1399,19 +1446,14 @@ gs_manager_request_unlock (GSManager *manager)
                 gs_fade_finish (manager->priv->fade);
         }
 
-        /* Find the screen that contains the pointer */
-        display = gdk_display_get_default ();
-        gdk_display_get_pointer (display, &screen, NULL, NULL, NULL);
-        screen_num = gdk_screen_get_number (screen);
-
-        /* Find the gs-window that is on that screen */
-        for (l = manager->priv->windows; l; l = l->next) {
-                int num;
-
-                num = gdk_screen_get_number (GTK_WINDOW (l->data)->screen);
-                if (num == screen_num) {
-                        gs_window_request_unlock (GS_WINDOW (l->data));
-                        break;
-                }
+        if (manager->priv->windows == NULL) {
+                gs_debug ("We don't have any windows!");
+                return FALSE;
         }
+
+        /* Find the GSWindow that contains the pointer */
+        window = find_window_at_pointer (manager);
+        gs_window_request_unlock (window);
+
+        return TRUE;
 }
