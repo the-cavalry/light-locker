@@ -1320,10 +1320,11 @@ static void
 queue_key_event (GSWindow    *window,
                  GdkEventKey *event)
 {
-        /* Eat the first return, enter, or space */
+        /* Eat the first return, enter, escape, or space */
         if (window->priv->key_events == NULL
             && (event->keyval == GDK_Return
                 || event->keyval == GDK_KP_Enter
+                || event->keyval == GDK_Escape
                 || event->keyval == GDK_space)) {
                 return;
         }

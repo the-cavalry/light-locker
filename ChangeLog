@@ -1,5 +1,10 @@
 2006-07-11  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c: (queue_key_event):
+	Don't queue escape.
+
+2006-07-11  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c: (manager_maybe_start_job_for_window),
 	(window_dialog_down_cb):
 	Add some debug spew.  Resume jobs after resetting dialog up flag.
