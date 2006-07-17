@@ -1,7 +1,12 @@
+2006-07-17  Thierry Randrianiriana  <thierryR@cvs.gnome.org>
+
+	* mg.po: Added Malagasy translation.
+	* LINGUAS: Added Malagasy 'mg'.
+
 2006-07-16  Daniel Nylander  <po@danielnylander.se>
 
         * sv.po: Updated Swedish translation.
-	
+
 2006-07-14  Priit Laes  <amd@store20.com>
 
 	* et.po: Translation updated.
@@ -36,7 +41,7 @@
 
 	* ne.po: Added Nepali translation
 
-	* LINGUAS: Added ne 
+	* LINGUAS: Added ne
 
 2006-06-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
@@ -212,7 +217,7 @@
 
 	* zh_HK.po: Updated Traditional Chinese translation(Hong Kong).
 	* zh_TW.po: Updated Traditional Chinese translation(Taiwan).
-	
+
 2006-05-11  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* gl.po: Updated Galician Translation.
@@ -410,17 +415,17 @@
 	* ru.po: Initial Russian translation
 
 2006-02-23  Kostas Papadimas <pkst@gnome.org>
-      
+
           *el.po Updated Greek Translation
 
 2006-02-23  Kostas Papadimas <pkst@gnome.org>
-      
+
           *el.po Updated Greek Translation
 
 2006-02-23  Clytie Siddall <clytie@riverland.net.au>
 
 	* ka.po: Added Georgian translation by Alexander Didebulidze <didebuli@in.tum.de> and Vladimer SIchinava <alinux@siena.linux.it>.
-	
+
 2006-02-23  Žygimantas Beručka  <zygis@gnome.org>
 
 	* lt.po: Updated Lithuanian translation.
@@ -570,7 +575,7 @@
 	* nl.po: Translation updated by Tino Meinen.
 
 2006-01-07  Ilkka Tuohela  <hile@iki.fi>
-	
+
 	* fi.po: Updated Finnish translation.
 
 2006-01-07  Chao-Hsiung Liao  <j_h_liau@yahoo.com.tw>
@@ -1044,4 +1049,3 @@
 
 	* POTFILES.in: Added this file.
 	* .cvsignore: Updated this file.
-
