@@ -430,7 +430,9 @@ gs_window_real_realize (GtkWidget *widget)
 static gboolean
 watchdog_timer (GSWindow *window)
 {
-        gtk_window_present (GTK_WINDOW (window));
+        GtkWidget *widget = GTK_WIDGET (window);
+
+        gdk_window_focus (widget->window, GDK_CURRENT_TIME);
 
         return TRUE;
 }

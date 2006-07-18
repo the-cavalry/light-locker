@@ -1,3 +1,12 @@
+2006-07-17  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-window-x11.c (watchdog_timer):
+	Use gdk_window_focus instead of gtk_window_present
+	to prevent theme flicker.
+
+	Patch from Ryan Lortie <desrt@desrt.ca>
+	Fixes #347853.
+
 2006-07-12  William Jon McCann  <mccann@jhu.edu>
 
 	* src/Makefile.am:
