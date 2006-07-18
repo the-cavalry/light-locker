@@ -224,8 +224,6 @@ auth_message_handler (GSAuthMessageStyle style,
                         char *resp;
                         resp = request_response (plug, message, TRUE);
                         *response = resp;
-                        gs_lock_plug_show_message (plug, _("Checking..."));
-                        gs_lock_plug_set_sensitive (plug, FALSE);
                 }
                 break;
         case GS_AUTH_MESSAGE_PROMPT_ECHO_OFF:
@@ -233,8 +231,6 @@ auth_message_handler (GSAuthMessageStyle style,
                         char *resp;
                         resp = request_response (plug, message, FALSE);
                         *response = resp;
-                        gs_lock_plug_show_message (plug, _("Checking..."));
-                        gs_lock_plug_set_sensitive (plug, FALSE);
                 }
                 break;
         case GS_AUTH_MESSAGE_ERROR_MSG:
@@ -248,8 +244,11 @@ auth_message_handler (GSAuthMessageStyle style,
         }
 
         if (*response == NULL) {
-                gs_debug ("Got not response");
+                gs_debug ("Got no response");
                 ret = FALSE;
+        } else {
+                gs_lock_plug_show_message (plug, _("Checking..."));
+                gs_lock_plug_set_sensitive (plug, FALSE);
         }
 
         /* we may have pending events that should be processed before continuing back into PAM */

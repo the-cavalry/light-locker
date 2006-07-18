@@ -1,5 +1,10 @@
 2006-07-18  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-dialog.c: (auth_message_handler):
+	Only show message when we have a response.
+
+2006-07-18  William Jon McCann  <mccann@jhu.edu>
+
 	* data/lock-dialog-default.glade:
 	Add a bit more padding to make it more like what
 	we had for 2.14 and to stand out more since we don't
