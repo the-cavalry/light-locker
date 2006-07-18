@@ -1,5 +1,12 @@
 2006-07-18  William Jon McCann  <mccann@jhu.edu>
 
+	* data/lock-dialog-default.glade:
+	Add a bit more padding to make it more like what
+	we had for 2.14 and to stand out more since we don't
+	have window decoration.
+
+2006-07-18  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-dialog.c: (request_response),
 	(auth_message_handler), (reset_idle_cb), (do_auth_check):
 	* src/gs-lock-plug.c: (gs_lock_plug_set_sensitive),

@@ -21,7 +21,7 @@
 
   <child>
     <widget class="GtkVBox" id="lock-dialog">
-      <property name="border_width">12</property>
+      <property name="border_width">18</property>
       <property name="visible">True</property>
       <property name="homogeneous">False</property>
       <property name="spacing">0</property>
