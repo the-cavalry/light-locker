@@ -1,3 +1,9 @@
+2006-07-18  William Jon McCann  <mccann@jhu.edu>
+
+	* src/test-window.c: (window_activity_cb),
+	(disconnect_window_signals), (connect_window_signals):
+	Make test-window work again after signal changes.
+
 2006-07-17  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (watchdog_timer):

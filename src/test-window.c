@@ -65,12 +65,22 @@ window_show_cb (GSWindow  *window,
 
 }
 
+static gboolean
+window_activity_cb (GSWindow  *window,
+                    gpointer   data)
+{
+        gs_window_request_unlock (window);
+
+        return TRUE;
+}
+
 static void
 disconnect_window_signals (GSWindow *window)
 {
         gpointer data;
 
         data = NULL;
+        g_signal_handlers_disconnect_by_func (window, window_activity_cb, data);
         g_signal_handlers_disconnect_by_func (window, window_deactivated_cb, data);
         g_signal_handlers_disconnect_by_func (window, window_dialog_up_cb, data);
         g_signal_handlers_disconnect_by_func (window, window_dialog_down_cb, data);
@@ -93,6 +103,8 @@ connect_window_signals (GSWindow *window)
 
         data = NULL;
 
+        g_signal_connect_object (window, "activity",
+                                 G_CALLBACK (window_activity_cb), data, 0);
         g_signal_connect_object (window, "destroy",
                                  G_CALLBACK (window_destroyed_cb), data, 0);
         g_signal_connect_object (window, "deactivated",
