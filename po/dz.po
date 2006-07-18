@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.Head\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-29 00:47+0530\n"
-"PO-Revision-Date: 2006-06-12 15:33+0530\n"
+"POT-Creation-Date: 2006-07-18 22:22+0530\n"
+"PO-Revision-Date: 2006-07-18 14:47+0530\n"
 "Last-Translator: Mindu Dorji\n"
 "Language-Team: Dzongkha <pgeyleg@dit.gov.bt>\n"
 "MIME-Version: 1.0\n"
@@ -221,9 +221,8 @@ msgstr "<span size=\"x-large\">%R</span>"
 
 #: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:171
 #: ../src/gnome-screensaver-dialog.c:172
-#, fuzzy
 msgid "Password:"
-msgstr "ཆོག་ཡིག(_P)"
+msgstr "ཆོག་ཡིག་:"
 
 #: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1696
 msgid "S_witch to user:"
@@ -645,51 +644,67 @@ msgstr "ལུ་:"
 msgid "Connecting..."
 msgstr "མཐུད་དོ་..."
 
-#: ../src/gnome-screensaver-command.c:57
+#: ../src/gnome-screensaver-command.c:61
 msgid "Causes the screensaver to exit gracefully"
 msgstr "གསལ་གཞི་ཉེན་སྲུང་དེ་ སྤྲོ་ཉམས་ཐོག་ལས་ ཕྱིར་འཐོན་འབད་བཅུགཔ་ཨིན།"
 
-#: ../src/gnome-screensaver-command.c:59
+#: ../src/gnome-screensaver-command.c:63
 msgid "Query the state of the screensaver"
 msgstr "གསལ་གཞི་ཉེན་སྲུང་གི་གནས་ལུགས་དྲི་དཔྱད་འབད།"
 
-#: ../src/gnome-screensaver-command.c:61
+#: ../src/gnome-screensaver-command.c:65
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr ""
 "གསལ་གཞི་དེ་འཕྲལ་ལས་ལྡེ་མིག་བརྐྱབ་ནིའི་དོན་ལུ་ གཡོག་བཀོལ་བཞིན་ཡོད་མི་ གསལ་གཞི་ཉེན་སྲུང་གི་ལས་སྦྱོར་ལུ་"
 "སླབ་ཨིན།"
 
-#: ../src/gnome-screensaver-command.c:63
+#: ../src/gnome-screensaver-command.c:67
 msgid "If the screensaver is active then switch to another graphics demo"
 msgstr "གསལ་གཞི་ཉེན་སྲུང་དེ་ ཤུགས་ལྡན་ཨིན་པ་ཅིན་ ཚད་རིས་ཌེ་མོ་གཞན་མི་ལུ་ སོར་བསྒྱུར་འབད།"
 
-#: ../src/gnome-screensaver-command.c:65
+#: ../src/gnome-screensaver-command.c:69
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "གསལ་གཞི་ཉེན་སྲུང་ཨཱོན་འབད། (གསལ་གཞི་སྟོངམ་བཟོ)"
 
-#: ../src/gnome-screensaver-command.c:67
+#: ../src/gnome-screensaver-command.c:71
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr "གསལ་གཞི་ཉེན་སྲུང་དེ་ ཤུགས་ལྡན་ཨིན་པ་ཅིན་ ཤུགས་མེད་བཟོ།(གསལ་གཞི་སྟོངམ་བཟོ་ནི་བཤོལ)"
 
-#: ../src/gnome-screensaver-command.c:69
+#: ../src/gnome-screensaver-command.c:73
 msgid "Poke the running screensaver to simulate user activity"
 msgstr "ལག་ལེན་པའི་བྱ་བ་ མཚུངས་བཟོ་འབད་ནི་ལུ་ གཡོག་བཀོལ་བཞིན་ཡོད་མི་གསལ་གཞི་ཉེན་སྲུང་དེ་ལུ་གསོབ།"
 
-#: ../src/gnome-screensaver-command.c:71 ../src/gnome-screensaver-dialog.c:54
+#: ../src/gnome-screensaver-command.c:75
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr ""
+"གསལ་གཞི་ཉེན་སྲུང་ཤུགས་ལྡན་བཟོ་ནི་ལུ་ བར་ཆད་རྐྱབས། བར་ཆད་ཤུགས་ལྡན་ཨིན་པའི་སྐབས་ བརྡ་བཀོད་བཀག་ཆ་"
+"འབདཝ་ཨིན།"
+
+#: ../src/gnome-screensaver-command.c:77
+msgid "The calling application that is inhibiting the screensaver"
+msgstr "གསལ་གཞི་ཉེན་སྲུང་ལུ་ བར་ཆན་རྐྱབ་མི་ གློག་རིམ་དེ།"
+
+#: ../src/gnome-screensaver-command.c:79
+msgid "The reason for inhibiting the screensaver"
+msgstr "གསལ་གཞི་ཉེན་སྲུང་ལུ་ བར་ཆད་རྐྱབ་དགོ་པའི་རྒྱུ་མཚན།"
+
+#: ../src/gnome-screensaver-command.c:81 ../src/gnome-screensaver-dialog.c:54
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "གློག་རིམ་འདི་གི་ཐོན་རིམ།"
 
-#: ../src/gnome-screensaver-command.c:196
+#: ../src/gnome-screensaver-command.c:246
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "གསལ་གཞི་ཉེན་སྲུང་དེ་%sཨིན།\n"
 
-#: ../src/gnome-screensaver-command.c:196
+#: ../src/gnome-screensaver-command.c:246
 msgid "active"
 msgstr "ཤུགས་ལྡན།"
 
-#: ../src/gnome-screensaver-command.c:196
+#: ../src/gnome-screensaver-command.c:246
 msgid "inactive"
 msgstr "ཤུགས་མེད།"
 
@@ -712,65 +727,64 @@ msgstr "སོར་བསྒྱུར་ལག་ལེན་པའི་ཨེ
 #. login: is whacked always translate to Username:
 #: ../src/gnome-screensaver-dialog.c:168 ../src/gnome-screensaver-dialog.c:169
 #: ../src/gnome-screensaver-dialog.c:170 ../src/gs-auth-pam.c:380
-#, fuzzy
 msgid "Username:"
-msgstr "ལག་ལེན་པ།"
+msgstr "ལག་ལེན་པའི་མིང་:"
 
 #: ../src/gnome-screensaver-dialog.c:173
 msgid "You are required to change your password immediately (password aged)"
-msgstr ""
+msgstr "ཁྱོད་ཀྱི་ཆོག་ཡིག་དེ་ དེ་འཕྲལ་ལས་སོར་དགོ་པས། (ཆོག་ཡིག་རྒས་སོ་ནུག)"
 
 #: ../src/gnome-screensaver-dialog.c:174
 msgid "You are required to change your password immediately (root enforced)"
-msgstr ""
+msgstr "ཁྱོད་ཀྱི་ཆོག་ཡིག་དེ་ དེ་འཕྲལ་ལས་སོར་དགོ་པས། (རྩ་བ་ལག་ལེན་འཐབ་ནུག)"
 
 #: ../src/gnome-screensaver-dialog.c:175
 msgid "Your account has expired; please contact your system administrator"
-msgstr ""
+msgstr "ཁྱོད་ཀྱི་ཆོག་ཡིག་དེ་དུས་ཡོལ་ཐལ་སོ་ནུག། ཁྱོད་རའི་རིམ་ལུགས་བདག་སྐྱོང་པ་ལུ་ འབྲེལ་བ་འཐབ་གནང་།"
 
 #: ../src/gnome-screensaver-dialog.c:176
 msgid "No password supplied"
-msgstr ""
+msgstr "ཆོག་ཡིག་མ་བྱིན་པས།"
 
 #: ../src/gnome-screensaver-dialog.c:177
 msgid "Password unchanged"
-msgstr ""
+msgstr "ཆོག་ཡིག་མ་སོར་བས།"
 
 #: ../src/gnome-screensaver-dialog.c:178
 msgid "Can not get username"
-msgstr ""
+msgstr "ལག་ལེན་པའི་མིང་ འཐོབ་མི་ཚུགས་པས།"
 
 #: ../src/gnome-screensaver-dialog.c:179
 msgid "Retype new UNIX password:"
-msgstr ""
+msgstr "ཡུ་ཨེན་ཨའི་ཨེགསི་ ཆོག་ཡིག་གསརཔ་ ལོག་ཡིག་དཔར་རྐྱབས།"
 
 #: ../src/gnome-screensaver-dialog.c:180
 msgid "Enter new UNIX password:"
-msgstr ""
+msgstr "ཡུ་ཨེན་ཨའི་ཨེགསི་ ཆོག་ཡིག་གསར་བཙུགས།"
 
 #: ../src/gnome-screensaver-dialog.c:181
 msgid "(current) UNIX password:"
-msgstr ""
+msgstr "(ད་ལྟོའི་)ཡུ་ཨེན་ཨའི་ཨེགསི་ཆོག་ཡིག།"
 
 #: ../src/gnome-screensaver-dialog.c:182
 msgid "Error while changing NIS password."
-msgstr ""
+msgstr "ཨེན་ཨའི་ཨེསི་ ཆོག་ཡིག་སོར་བའི་སྐབས་ལུ་འཛོལ་བ།"
 
 #: ../src/gnome-screensaver-dialog.c:183
 msgid "You must choose a longer password"
-msgstr ""
+msgstr "ཁྱོད་ཀྱིས་ཆོག་ཡིག་ དེ་བ་རིང་སུ་ཅིག་ གདམ་ཁ་རྐྱབས།"
 
 #: ../src/gnome-screensaver-dialog.c:184
 msgid "Password has been already used. Choose another."
-msgstr ""
+msgstr "ཆོག་ཡིག་ཧེ་མ་ལས་རང་ ལག་ལེན་འཐབ་སྟེ་འདུག། གཞན་མི་ཅིག་ གདམ་ཁ་རྐྱབས།"
 
 #: ../src/gnome-screensaver-dialog.c:185
 msgid "You must wait longer to change your password"
-msgstr ""
+msgstr "ཁྱོད་ཀྱི་ཆོག་ཡིག་དེ་ སོར་ནིའི་དོན་ལུ་ དུས་ཡུན་རིང་སུ་ཅིག་ བསྒུག་སྡོད་དགོ།"
 
 #: ../src/gnome-screensaver-dialog.c:186
 msgid "Sorry, passwords do not match"
-msgstr ""
+msgstr "དགོངསམ་མ་ཁྲེལ། ཆོག་ཡིག་མཐུན་སྒྲིག་མིན་འདུག།"
 
 #: ../src/gnome-screensaver-dialog.c:280 ../src/gs-auth-pam.c:320
 msgid "Authentication failed."
@@ -860,35 +874,34 @@ msgstr "རྐྱེན་སེལ་གྱི་ཀོཌི་ ལྕོག�
 #: ../src/gs-auth-pam.c:262
 #, c-format
 msgid "Unable to establish service %s: %s\n"
-msgstr ""
+msgstr "ཞབས་ཏོག་%s: %sགཞི་བཙུགས་འབད་མ་ཚུགས།\n"
 
 #: ../src/gs-auth-pam.c:288
 #, c-format
 msgid "Can't set PAM_TTY=%s"
-msgstr ""
+msgstr "པི་ཨེ་ཨེམ་ཊི་ཊི་ཝའི་=%s གཞི་སྒྲིག་འབད་མི་ཚུགས་པས།"
 
 #: ../src/gs-auth-pam.c:318
-#, fuzzy
 msgid "Incorrect password."
-msgstr "ཆོག་ཡིག་ཞིབ་དཔྱད་འབད་དོ།"
+msgstr "ཆོག་ཡིག་མ་བདེནམ།"
 
 #: ../src/gs-auth-pam.c:334
 msgid "Not permitted to gain access at this time."
-msgstr ""
+msgstr "དུས་ཚོད་འདི་ཁར་ འཛུལ་སྤྱོད་འབད་ནིའི་ གནང་བ་མེད།"
 
 #: ../src/gs-auth-pam.c:340
 msgid "No longer permitted to access the system."
-msgstr ""
+msgstr "ད་ལས་ཕར་ རིམ་ལུགས་ལུ་འཛུལ་སྤྱོད་འབད་ནིའི་གནང་བ་མེད།"
 
-#: ../src/gs-listener-dbus.c:1551
+#: ../src/gs-listener-dbus.c:1548
 msgid "failed to register with the message bus"
 msgstr "འཕྲིན་དོན་གྱི་བརྡ་རྟགས་འགྲུལ་ལམ་ལུ་ ཐོ་འགོད་འབད་མ་ཚུགས།"
 
-#: ../src/gs-listener-dbus.c:1561
+#: ../src/gs-listener-dbus.c:1558
 msgid "not connected to the message bus"
 msgstr "འཕྲིན་དོན་གྱི་བརྡ་རྟགས་འགྲུལ་ལམ་ལུ་ མ་མཐུད་པས།"
 
-#: ../src/gs-listener-dbus.c:1570
+#: ../src/gs-listener-dbus.c:1567
 msgid "screensaver already running in this session"
 msgstr "ལཱ་ཡུན་འདི་ནང་ གསལ་གཞིང་ཉེན་སྲུང་ ཧེ་མ་ལས་རང་ གཡོག་བཀོལ་བཞིན་འདུག"
 
