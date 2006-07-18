@@ -137,6 +137,7 @@ request_response (GSLockPlug *plug,
         int   response;
         char *text;
 
+        gs_lock_plug_set_sensitive (plug, TRUE);
         gs_lock_plug_show_prompt (plug, prompt, visible);
         response = gs_lock_plug_run (plug);
 
@@ -223,6 +224,8 @@ auth_message_handler (GSAuthMessageStyle style,
                         char *resp;
                         resp = request_response (plug, message, TRUE);
                         *response = resp;
+                        gs_lock_plug_show_message (plug, _("Checking..."));
+                        gs_lock_plug_set_sensitive (plug, FALSE);
                 }
                 break;
         case GS_AUTH_MESSAGE_PROMPT_ECHO_OFF:
@@ -230,6 +233,8 @@ auth_message_handler (GSAuthMessageStyle style,
                         char *resp;
                         resp = request_response (plug, message, FALSE);
                         *response = resp;
+                        gs_lock_plug_show_message (plug, _("Checking..."));
+                        gs_lock_plug_set_sensitive (plug, FALSE);
                 }
                 break;
         case GS_AUTH_MESSAGE_ERROR_MSG:
@@ -247,6 +252,11 @@ auth_message_handler (GSAuthMessageStyle style,
                 ret = FALSE;
         }
 
+        /* we may have pending events that should be processed before continuing back into PAM */
+        while (gtk_events_pending ()) {
+                gtk_main_iteration ();
+        }
+
         gs_profile_end (NULL);
 
         return ret;
@@ -255,7 +265,7 @@ auth_message_handler (GSAuthMessageStyle style,
 static gboolean
 reset_idle_cb (GSLockPlug *plug)
 {
-        gtk_widget_set_sensitive (GTK_WIDGET (plug), TRUE);
+        gs_lock_plug_set_sensitive (plug, TRUE);
         gs_lock_plug_show_message (plug, NULL);
 
         return FALSE;
@@ -280,7 +290,6 @@ do_auth_check (GSLockPlug *plug)
                         gs_lock_plug_show_message (plug, _("Authentication failed."));
                 }
 
-                gtk_widget_set_sensitive (GTK_WIDGET (plug), FALSE);
                 g_timeout_add (3000, (GSourceFunc)reset_idle_cb, plug);
 
                 printf ("NOTICE=AUTH FAILED\n");

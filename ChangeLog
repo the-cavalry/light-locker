@@ -1,5 +1,16 @@
 2006-07-18  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-dialog.c: (request_response),
+	(auth_message_handler), (reset_idle_cb), (do_auth_check):
+	* src/gs-lock-plug.c: (gs_lock_plug_set_sensitive),
+	(monitor_progress), (gs_lock_plug_run), (gs_lock_plug_show_prompt):
+	* src/gs-lock-plug.h:
+	Make sure to grab focus to the entry when a prompt is shown.  Only
+	desensitize the buttons and entry box as we did in 2.14.
+	Fixes #347788.
+
+2006-07-18  William Jon McCann  <mccann@jhu.edu>
+
 	* src/test-window.c: (window_activity_cb),
 	(disconnect_window_signals), (connect_window_signals):
 	Make test-window work again after signal changes.

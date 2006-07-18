@@ -59,17 +59,19 @@ typedef struct
 
 } GSLockPlugClass;
 
-GType       gs_lock_plug_get_type     (void);
-GtkWidget * gs_lock_plug_new          (void);
+GType       gs_lock_plug_get_type      (void);
+GtkWidget * gs_lock_plug_new           (void);
 
-int         gs_lock_plug_run          (GSLockPlug *plug);
-void        gs_lock_plug_show_prompt  (GSLockPlug *plug,
-                                       const char *message,
-                                       gboolean    visible);
-void        gs_lock_plug_get_text     (GSLockPlug *plug,
-                                       char      **text);
-void        gs_lock_plug_show_message (GSLockPlug *plug,
-                                       const char *message);
+int         gs_lock_plug_run           (GSLockPlug *plug);
+void        gs_lock_plug_set_sensitive (GSLockPlug *plug,
+                                        gboolean    sensitive);
+void        gs_lock_plug_show_prompt   (GSLockPlug *plug,
+                                        const char *message,
+                                        gboolean    visible);
+void        gs_lock_plug_get_text      (GSLockPlug *plug,
+                                        char      **text);
+void        gs_lock_plug_show_message  (GSLockPlug *plug,
+                                        const char *message);
 
 G_END_DECLS
 

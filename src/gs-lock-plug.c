@@ -237,10 +237,12 @@ set_status_text (GSLockPlug *plug,
         }
 }
 
-static void
-set_dialog_sensitive (GSLockPlug *plug,
-                      gboolean    sensitive)
+void
+gs_lock_plug_set_sensitive (GSLockPlug *plug,
+                            gboolean    sensitive)
 {
+        g_return_if_fail (GS_IS_LOCK_PLUG (plug));
+
         gtk_widget_set_sensitive (plug->priv->auth_prompt_entry, sensitive);
         gtk_widget_set_sensitive (plug->priv->auth_action_area, sensitive);
 }
@@ -330,7 +332,7 @@ monitor_progress (GSLockPlug *plug)
         remaining = plug->priv->timeout - elapsed;
 
         if ((remaining <= 0) || (remaining > plug->priv->timeout)) {
-                set_dialog_sensitive (plug, FALSE);
+                gs_lock_plug_set_sensitive (plug, FALSE);
                 set_status_text (plug, _("Time has expired."));
 
                 if (plug->priv->response_idle_id != 0) {
@@ -496,8 +498,9 @@ gs_lock_plug_run (GSLockPlug *plug)
                 gtk_window_set_modal (GTK_WINDOW (plug), TRUE);
         }
 
-        if (!GTK_WIDGET_VISIBLE (plug))
+        if (!GTK_WIDGET_VISIBLE (plug)) {
                 gtk_widget_show (GTK_WIDGET (plug));
+        }
 
         response_handler =
                 g_signal_connect (plug,
@@ -864,6 +867,7 @@ gs_lock_plug_show_prompt (GSLockPlug *plug,
 
         gtk_label_set_text (GTK_LABEL (plug->priv->auth_prompt_label), message);
         gtk_entry_set_visibility (GTK_ENTRY (plug->priv->auth_prompt_entry), visible);
+        gtk_widget_grab_focus (plug->priv->auth_prompt_entry);
 
         restart_monitor_progress (plug);
 }
