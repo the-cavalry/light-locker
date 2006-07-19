@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-30 00:32+0200\n"
-"PO-Revision-Date: 2006-06-30 00:34+0200\n"
+"POT-Creation-Date: 2006-07-19 23:38+0200\n"
+"PO-Revision-Date: 2006-07-19 23:39+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -135,8 +135,7 @@ msgstr ""
 "establecida a TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
-msgid ""
-"The number of minutes after screensaver activation before locking the screen."
+msgid "The number of minutes after screensaver activation before locking the screen."
 msgstr ""
 "El número de minutos tras la activación del salvapantallas antes de bloquear "
 "la pantalla."
@@ -153,10 +152,8 @@ msgstr ""
 "TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr ""
-"El número de minutos de inactividad antes de considerar la sesión inactiva."
+msgid "The number of minutes of inactivity before the session is considered idle."
+msgstr "El número de minutos de inactividad antes de considerar la sesión inactiva."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid "The number of minutes to run before changing the screensaver theme."
@@ -223,12 +220,12 @@ msgstr "<span size=\"small\">%U en %h</span>"
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:171
-#: ../src/gnome-screensaver-dialog.c:172
+#: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:172
+#: ../src/gnome-screensaver-dialog.c:173
 msgid "Password:"
 msgstr "Contraseña:"
 
-#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1696
+#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1700
 msgid "S_witch to user:"
 msgstr "_Cambiar al usuario:"
 
@@ -242,13 +239,13 @@ msgstr "_Salir"
 
 #: ../data/lock-dialog-default.glade.h:9
 msgid "_Switch User..."
-msgstr "_Cambiar usuario..."
+msgstr "_Cambiar usuario…"
 
 #: ../data/lock-dialog-default.glade.h:10
 msgid "_Switch user..."
-msgstr "_Cambiar usuario..."
+msgstr "_Cambiar usuario…"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1425
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1429
 msgid "_Unlock"
 msgstr "_Desbloquear"
 
@@ -378,8 +375,7 @@ msgstr "Consola"
 
 #: ../src/cut-n-paste/fusa-display.c:142
 msgid "The number of the virtual console this display can be found on, or %-1."
-msgstr ""
-"El número de consolas virtuales que esta pantalla puede encontrar o %-1."
+msgstr "El número de consolas virtuales que esta pantalla puede encontrar o %-1."
 
 #: ../src/cut-n-paste/fusa-display.c:148
 msgid "Nested"
@@ -391,8 +387,7 @@ msgstr "Indica si esta pantalla es una pantalla en ventana anidada (Xnest)."
 
 #: ../src/cut-n-paste/fusa-manager.c:1453
 msgid "The display manager could not be contacted for unknown reasons."
-msgstr ""
-"No se pudo contactar con el gestor de pantallas por razones desconocidas."
+msgstr "No se pudo contactar con el gestor de pantallas por razones desconocidas."
 
 #: ../src/cut-n-paste/fusa-manager.c:1460
 msgid "The display manager is not running or too old."
@@ -416,8 +411,7 @@ msgstr "Hay demasiadas sesiones X en ejecución."
 
 #: ../src/cut-n-paste/fusa-manager.c:1475
 msgid "The nested X server (Xnest) cannot connect to your current X server."
-msgstr ""
-"El servidor X anidado (Xnest) no puede conectar con su servidor X actual."
+msgstr "El servidor X anidado (Xnest) no puede conectar con su servidor X actual."
 
 #: ../src/cut-n-paste/fusa-manager.c:1478
 msgid "The X server in the GDM configuration could not be found."
@@ -449,8 +443,7 @@ msgstr "El archivo ~/.Xauthority está mal configurado o falta."
 
 #: ../src/cut-n-paste/fusa-manager.c:1496
 msgid "Too many messages were sent to the display manager, and it hung up."
-msgstr ""
-"Se han enviado demasiados mensajes al gestor de pantallas, y se ha colgado."
+msgstr "Se han enviado demasiados mensajes al gestor de pantallas, y se ha colgado."
 
 #: ../src/cut-n-paste/fusa-manager.c:1500
 msgid "The display manager sent an unknown error message."
@@ -524,8 +517,7 @@ msgstr "Quizá tiene una versión antigua de GDM en ejecución."
 
 #: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
 msgid "Cannot communicate with gdm, perhaps you have an old version running."
-msgstr ""
-"No se puede comunicar con gdm, quizás tiene una versión antigua en ejecución."
+msgstr "No se puede comunicar con gdm, quizás tiene una versión antigua en ejecución."
 
 #: ../src/cut-n-paste/gdmcomm.c:469
 msgid "The allowed limit of flexible X servers reached."
@@ -561,8 +553,7 @@ msgstr ""
 "Instale el paquete Xnest para usar el inicio de sesión anidado."
 
 #: ../src/cut-n-paste/gdmcomm.c:488
-msgid ""
-"The X server is not available, it is likely that gdm is badly configured."
+msgid "The X server is not available, it is likely that gdm is badly configured."
 msgstr "El servidor X no está disponible, parece que gdm está mal configurado."
 
 #: ../src/cut-n-paste/gdmcomm.c:497
@@ -649,7 +640,7 @@ msgstr "A:"
 
 #: ../src/file-transfer-dialog.c:448
 msgid "Connecting..."
-msgstr "Conectando..."
+msgstr "Conectando…"
 
 #: ../src/gnome-screensaver-command.c:61
 msgid "Causes the screensaver to exit gracefully"
@@ -681,14 +672,15 @@ msgstr ""
 
 #: ../src/gnome-screensaver-command.c:73
 msgid "Poke the running screensaver to simulate user activity"
-msgstr ""
-"Similar el salvapantallas en ejecución para similar la actividad del usuario"
+msgstr "Similar el salvapantallas en ejecución para similar la actividad del usuario"
 
 #: ../src/gnome-screensaver-command.c:75
 msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
-msgstr "Inhibir la activación del salvapantallas. El comando se bloquea cuando está activa la inhibición."
+msgstr ""
+"Inhibir la activación del salvapantallas. El comando se bloquea cuando está "
+"activa la inhibición."
 
 #: ../src/gnome-screensaver-command.c:77
 msgid "The calling application that is inhibiting the screensaver"
@@ -733,69 +725,72 @@ msgid "Show the switch user button"
 msgstr "Mostrar el botón de cambio de usuario"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:168 ../src/gnome-screensaver-dialog.c:169
-#: ../src/gnome-screensaver-dialog.c:170 ../src/gs-auth-pam.c:380
+#: ../src/gnome-screensaver-dialog.c:169 ../src/gnome-screensaver-dialog.c:170
+#: ../src/gnome-screensaver-dialog.c:171 ../src/gs-auth-pam.c:380
 msgid "Username:"
 msgstr "Usuario:"
 
-#: ../src/gnome-screensaver-dialog.c:173
+#: ../src/gnome-screensaver-dialog.c:174
 msgid "You are required to change your password immediately (password aged)"
 msgstr "Tiene que cambiar la contraseña inmediatamente (la contraseña caducó)"
 
-#: ../src/gnome-screensaver-dialog.c:174
-msgid "You are required to change your password immediately (root enforced)"
-msgstr ""
-"Tiene que cambiar la contraseña inmediatamente (forzado por el administrador)"
-
 #: ../src/gnome-screensaver-dialog.c:175
+msgid "You are required to change your password immediately (root enforced)"
+msgstr "Tiene que cambiar la contraseña inmediatamente (forzado por el administrador)"
+
+#: ../src/gnome-screensaver-dialog.c:176
 msgid "Your account has expired; please contact your system administrator"
 msgstr "Su cuenta ha caducado. Contacte con su administrador de sistemas"
 
-#: ../src/gnome-screensaver-dialog.c:176
+#: ../src/gnome-screensaver-dialog.c:177
 msgid "No password supplied"
 msgstr "No introdujo ninguna contraseña"
 
-#: ../src/gnome-screensaver-dialog.c:177
+#: ../src/gnome-screensaver-dialog.c:178
 msgid "Password unchanged"
 msgstr "Contraseña no cambiada"
 
-#: ../src/gnome-screensaver-dialog.c:178
+#: ../src/gnome-screensaver-dialog.c:179
 msgid "Can not get username"
 msgstr "No se puede obtener el nombre de usuario"
 
-#: ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:180
 msgid "Retype new UNIX password:"
 msgstr "Vuelva a teclear la contraseña de UNIX nueva:"
 
-#: ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:181
 msgid "Enter new UNIX password:"
 msgstr "Introduzca una contraseña UNIX nueva:"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:182
 msgid "(current) UNIX password:"
 msgstr "Contraseña UNIX (actual):"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:183
 msgid "Error while changing NIS password."
 msgstr "Error al cambiar la contraseña NIS."
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "You must choose a longer password"
 msgstr "Debe elegir una contraseña más larga"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "Password has been already used. Choose another."
 msgstr "La contraseña ya ha sido usada. Elija otra."
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "You must wait longer to change your password"
 msgstr "Debe esperar más para cambiar su contraseña"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:187
 msgid "Sorry, passwords do not match"
 msgstr "Las contraseñas no coinciden"
 
-#: ../src/gnome-screensaver-dialog.c:280 ../src/gs-auth-pam.c:320
+#: ../src/gnome-screensaver-dialog.c:250
+msgid "Checking..."
+msgstr "Comprobando…"
+
+#: ../src/gnome-screensaver-dialog.c:289 ../src/gs-auth-pam.c:320
 msgid "Authentication failed."
 msgstr "La autenticación ha fallado."
 
@@ -902,44 +897,39 @@ msgstr "No le está permitido ganar acceso en este instante."
 msgid "No longer permitted to access the system."
 msgstr "Ya no se le permite acceder en adelante a este sistema."
 
-#: ../src/gs-listener-dbus.c:1551
+#: ../src/gs-listener-dbus.c:1548
 msgid "failed to register with the message bus"
 msgstr "falló al registrarse con el bus del mensaje"
 
-#: ../src/gs-listener-dbus.c:1561
+#: ../src/gs-listener-dbus.c:1558
 msgid "not connected to the message bus"
 msgstr "no conectado al bus de mensajes"
 
-#: ../src/gs-listener-dbus.c:1570
+#: ../src/gs-listener-dbus.c:1567
 msgid "screensaver already running in this session"
 msgstr "ya se está ejecutando el salvapantallas en esta sesión"
 
-#: ../src/gs-lock-plug.c:334
+#: ../src/gs-lock-plug.c:336
 msgid "Time has expired."
 msgstr "Tiempo agotado."
 
-#: ../src/gs-lock-plug.c:364
+#: ../src/gs-lock-plug.c:366
 msgid "You have the Caps Lock key on."
 msgstr "Tiene la tecla «Bloq. Mayúsculas» pulsada."
 
-#: ../src/gs-lock-plug.c:1407 ../src/gs-lock-plug.c:1444
+#: ../src/gs-lock-plug.c:1411 ../src/gs-lock-plug.c:1448
 msgid "S_witch User..."
 msgstr "_Cambiar usuario..."
 
-#: ../src/gs-lock-plug.c:1415
+#: ../src/gs-lock-plug.c:1419
 msgid "Log _Out"
 msgstr "Cerrar _sesión"
 
-#: ../src/gs-lock-plug.c:1606
+#: ../src/gs-lock-plug.c:1610
 msgid "%U on %h"
 msgstr "%U en %h"
 
-#: ../src/gs-lock-plug.c:1620
+#: ../src/gs-lock-plug.c:1624
 msgid "_Password:"
 msgstr "_Contraseña:"
 
-#~ msgid "Prompt:"
-#~ msgstr "Pregunta:"
-
-#~ msgid "That password was incorrect."
-#~ msgstr "Esa contraseña fue incorrecta."
