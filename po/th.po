@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 0.0.21\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-30 17:49+0700\n"
-"PO-Revision-Date: 2006-06-30 18:15+0700\n"
+"POT-Creation-Date: 2006-07-20 18:59+0700\n"
+"PO-Revision-Date: 2006-07-20 19:02+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <l10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -206,12 +206,12 @@ msgstr "<span size=\"small\">%U ที่เครื่อง %h</span>"
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: data/lock-dialog-default.glade.h:5 src/gnome-screensaver-dialog.c:171
-#: src/gnome-screensaver-dialog.c:172
+#: data/lock-dialog-default.glade.h:5 src/gnome-screensaver-dialog.c:172
+#: src/gnome-screensaver-dialog.c:173
 msgid "Password:"
 msgstr "รหัสผ่าน:"
 
-#: data/lock-dialog-default.glade.h:6 src/gs-lock-plug.c:1696
+#: data/lock-dialog-default.glade.h:6 src/gs-lock-plug.c:1700
 msgid "S_witch to user:"
 msgstr "ส_ลับไปเป็นผู้ใช้:"
 
@@ -231,7 +231,7 @@ msgstr "_สลับผู้ใช้..."
 msgid "_Switch user..."
 msgstr "_สลับผู้ใช้..."
 
-#: data/lock-dialog-default.glade.h:11 src/gs-lock-plug.c:1425
+#: data/lock-dialog-default.glade.h:11 src/gs-lock-plug.c:1429
 msgid "_Unlock"
 msgstr "_ปลดล็อค"
 
@@ -656,8 +656,7 @@ msgstr "รบเร้าโปรแกรมรักษาหน้าจอ
 msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
-msgstr ""
-"ระงับไม่ให้เรียกโปรแกรมรักษาหน้าจอ คำสั่งจะหยุดรอในระหว่างที่มีการระงับ"
+msgstr "ระงับไม่ให้เรียกโปรแกรมรักษาหน้าจอ คำสั่งจะหยุดรอในระหว่างที่มีการระงับ"
 
 #: src/gnome-screensaver-command.c:77
 msgid "The calling application that is inhibiting the screensaver"
@@ -702,68 +701,72 @@ msgid "Show the switch user button"
 msgstr "แสดงปุ่มสลับผู้ใช้"
 
 #. login: is whacked always translate to Username:
-#: src/gnome-screensaver-dialog.c:168 src/gnome-screensaver-dialog.c:169
-#: src/gnome-screensaver-dialog.c:170 src/gs-auth-pam.c:380
+#: src/gnome-screensaver-dialog.c:169 src/gnome-screensaver-dialog.c:170
+#: src/gnome-screensaver-dialog.c:171 src/gs-auth-pam.c:380
 msgid "Username:"
 msgstr "ชื่อผู้ใช้:"
 
-#: src/gnome-screensaver-dialog.c:173
+#: src/gnome-screensaver-dialog.c:174
 msgid "You are required to change your password immediately (password aged)"
 msgstr "คุณต้องเปลี่ยนรหัสผ่านเดี๋ยวนี้ (รหัสผ่านหมดอายุแล้ว)"
 
-#: src/gnome-screensaver-dialog.c:174
+#: src/gnome-screensaver-dialog.c:175
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "คุณต้องเปลี่ยนรหัสผ่านเดี๋ยวนี้ (ผู้ดูแลระบบบังคับให้เปลี่ยน)"
 
-#: src/gnome-screensaver-dialog.c:175
+#: src/gnome-screensaver-dialog.c:176
 msgid "Your account has expired; please contact your system administrator"
 msgstr "บัญชีของคุณหมดอายุแล้ว กรุณาติดต่อผู้ดูแลระบบ"
 
-#: src/gnome-screensaver-dialog.c:176
+#: src/gnome-screensaver-dialog.c:177
 msgid "No password supplied"
 msgstr "ไม่ได้ป้อนรหัสผ่าน"
 
-#: src/gnome-screensaver-dialog.c:177
+#: src/gnome-screensaver-dialog.c:178
 msgid "Password unchanged"
 msgstr "รหัสผ่านไม่เปลี่ยน"
 
-#: src/gnome-screensaver-dialog.c:178
+#: src/gnome-screensaver-dialog.c:179
 msgid "Can not get username"
 msgstr "หาชื่อผู้ใช้ไม่พบ"
 
-#: src/gnome-screensaver-dialog.c:179
+#: src/gnome-screensaver-dialog.c:180
 msgid "Retype new UNIX password:"
 msgstr "ป้อนรหัสผ่านยูนิกซ์อีกครั้ง:"
 
-#: src/gnome-screensaver-dialog.c:180
+#: src/gnome-screensaver-dialog.c:181
 msgid "Enter new UNIX password:"
 msgstr "ตั้งรหัสผ่านยูนิกซ์:"
 
-#: src/gnome-screensaver-dialog.c:181
+#: src/gnome-screensaver-dialog.c:182
 msgid "(current) UNIX password:"
 msgstr "รหัสผ่านยูนิกซ์ปัจจุบัน:"
 
-#: src/gnome-screensaver-dialog.c:182
+#: src/gnome-screensaver-dialog.c:183
 msgid "Error while changing NIS password."
 msgstr "เกิดข้อผิดพลาดขณะเปลี่ยนรหัสผ่าน NIS"
 
-#: src/gnome-screensaver-dialog.c:183
+#: src/gnome-screensaver-dialog.c:184
 msgid "You must choose a longer password"
 msgstr "คุณต้องตั้งรหัสผ่านยาวกว่านี้"
 
-#: src/gnome-screensaver-dialog.c:184
+#: src/gnome-screensaver-dialog.c:185
 msgid "Password has been already used. Choose another."
 msgstr "รหัสผ่านนี้ถูกใช้อยู่ กรุณาตั้งรหัสผ่านอื่น"
 
-#: src/gnome-screensaver-dialog.c:185
+#: src/gnome-screensaver-dialog.c:186
 msgid "You must wait longer to change your password"
 msgstr "คุณต้องหยุดคอยก่อนเปลี่ยนรหัสผ่าน"
 
-#: src/gnome-screensaver-dialog.c:186
+#: src/gnome-screensaver-dialog.c:187
 msgid "Sorry, passwords do not match"
 msgstr "ขออภัย รหัสผ่านไม่ตรงกัน"
 
-#: src/gnome-screensaver-dialog.c:280 src/gs-auth-pam.c:320
+#: src/gnome-screensaver-dialog.c:250
+msgid "Checking..."
+msgstr "กำลังตรวจสอบ..."
+
+#: src/gnome-screensaver-dialog.c:289 src/gs-auth-pam.c:320
 msgid "Authentication failed."
 msgstr "การยืนยันตัวบุคคลไม่ผ่าน"
 
@@ -870,39 +873,39 @@ msgstr "คุณไม่ได้รับอนุญาตให้ใช้
 msgid "No longer permitted to access the system."
 msgstr "คุณไม่ได้รับอนุญาตให้ใช้ระบบอีกต่อไป"
 
-#: src/gs-listener-dbus.c:1551
+#: src/gs-listener-dbus.c:1548
 msgid "failed to register with the message bus"
 msgstr "ลงทะเบียนกับบัสข้อความไม่สำเร็จ"
 
-#: src/gs-listener-dbus.c:1561
+#: src/gs-listener-dbus.c:1558
 msgid "not connected to the message bus"
 msgstr "ไม่ได้เชื่อมต่อกับบัสข้อความ"
 
-#: src/gs-listener-dbus.c:1570
+#: src/gs-listener-dbus.c:1567
 msgid "screensaver already running in this session"
 msgstr "โปรแกรมรักษาหน้าจอกำลังทำงานอยู่แล้วในวาระนี้"
 
-#: src/gs-lock-plug.c:334
+#: src/gs-lock-plug.c:336
 msgid "Time has expired."
 msgstr "หมดเวลา"
 
-#: src/gs-lock-plug.c:364
+#: src/gs-lock-plug.c:366
 msgid "You have the Caps Lock key on."
 msgstr "ปุ่ม Caps Lock ถูกกดอยู่"
 
-#: src/gs-lock-plug.c:1407 src/gs-lock-plug.c:1444
+#: src/gs-lock-plug.c:1411 src/gs-lock-plug.c:1448
 msgid "S_witch User..."
 msgstr "_สลับผู้ใช้..."
 
-#: src/gs-lock-plug.c:1415
+#: src/gs-lock-plug.c:1419
 msgid "Log _Out"
 msgstr "_ออกจากระบบ"
 
-#: src/gs-lock-plug.c:1606
+#: src/gs-lock-plug.c:1610
 msgid "%U on %h"
 msgstr "%s ที่เครื่อง %s"
 
-#: src/gs-lock-plug.c:1620
+#: src/gs-lock-plug.c:1624
 msgid "_Password:"
 msgstr "_รหัสผ่าน:"
 
