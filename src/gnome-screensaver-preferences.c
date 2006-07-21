@@ -1292,6 +1292,21 @@ widget_set_best_colormap (GtkWidget *widget)
         }
 }
 
+static gboolean
+setup_treeview_idle (gpointer data)
+{
+        GtkWidget *preview;
+        GtkWidget *treeview;
+
+        preview  = glade_xml_get_widget (xml, "preview_area");
+        treeview = glade_xml_get_widget (xml, "savers_treeview");
+
+        setup_treeview (treeview, preview);
+        setup_treeview_selection (treeview);
+
+        return FALSE;
+}
+
 static void
 init_capplet (void)
 {
@@ -1435,9 +1450,6 @@ init_capplet (void)
         preview_clear (preview);
         gs_job_set_widget (job, preview);
 
-        setup_treeview (treeview, preview);
-        setup_treeview_selection (treeview);
-
         if (check_is_root_user ()) {
                 setup_for_root_user ();
         }
@@ -1458,6 +1470,8 @@ init_capplet (void)
                           G_CALLBACK (fullscreen_preview_previous_cb), NULL);
         g_signal_connect (fullscreen_preview_next, "clicked", 
                           G_CALLBACK (fullscreen_preview_next_cb), NULL);
+
+        g_idle_add ((GSourceFunc)setup_treeview_idle, NULL);
 }
 
 int
