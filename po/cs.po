@@ -1,3 +1,4 @@
+# translation of cs.po to Czech
 # translation of cs.po to
 # Czech translation of gnome-2.14.
 # Copyright (C) 2005 Miloslav Trmac <mitr@volny.cz>
@@ -13,10 +14,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-14 14:06+0200\n"
-"PO-Revision-Date: 2006-07-14 14:10+0200\n"
+"POT-Creation-Date: 2006-07-21 14:56+0200\n"
+"PO-Revision-Date: 2006-07-21 14:57+0200\n"
 "Last-Translator: Jakub Friedl <jfriedl@suse.cz>\n"
-"Language-Team:  <cs@li.org>\n"
+"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -220,12 +221,12 @@ msgstr "<span size=\"small\">%U na %h</span>"
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:171
-#: ../src/gnome-screensaver-dialog.c:172
+#: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:172
+#: ../src/gnome-screensaver-dialog.c:173
 msgid "Password:"
 msgstr "Heslo:"
 
-#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1696
+#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1700
 msgid "S_witch to user:"
 msgstr "_Přepnout na uživatele:"
 
@@ -245,7 +246,7 @@ msgstr "_Přepnout uživatele..."
 msgid "_Switch user..."
 msgstr "_Přepnout uživatele..."
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1425
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1429
 msgid "_Unlock"
 msgstr "_Odemknout"
 
@@ -673,7 +674,9 @@ msgstr "Šťouchnout běžící šetřič obrazovky pro simulaci aktivity uživa
 msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
-msgstr "Potlačit aktivaci šetřiče obrazovky. Blokování příkazu během aktivity potlačení."
+msgstr ""
+"Potlačit aktivaci šetřiče obrazovky. Blokování příkazu během aktivity "
+"potlačení."
 
 #: ../src/gnome-screensaver-command.c:77
 msgid "The calling application that is inhibiting the screensaver"
@@ -718,68 +721,72 @@ msgid "Show the switch user button"
 msgstr "Zobrazovat tlačítko přepnutí uživatele"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:168 ../src/gnome-screensaver-dialog.c:169
-#: ../src/gnome-screensaver-dialog.c:170 ../src/gs-auth-pam.c:380
+#: ../src/gnome-screensaver-dialog.c:169 ../src/gnome-screensaver-dialog.c:170
+#: ../src/gnome-screensaver-dialog.c:171 ../src/gs-auth-pam.c:380
 msgid "Username:"
 msgstr "Uživatelské jméno:"
 
-#: ../src/gnome-screensaver-dialog.c:173
+#: ../src/gnome-screensaver-dialog.c:174
 msgid "You are required to change your password immediately (password aged)"
 msgstr "Musíte si okamžitě změnit heslo (heslo je staré)"
 
-#: ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:175
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "Musíte si okamžitě změnit heslo (vyžadováno rootem)"
 
-#: ../src/gnome-screensaver-dialog.c:175
+#: ../src/gnome-screensaver-dialog.c:176
 msgid "Your account has expired; please contact your system administrator"
 msgstr "Váš účet vypršel; kontaktujte prosím administrátora systému."
 
-#: ../src/gnome-screensaver-dialog.c:176
+#: ../src/gnome-screensaver-dialog.c:177
 msgid "No password supplied"
 msgstr "Nebylo zadáno žádné heslo"
 
-#: ../src/gnome-screensaver-dialog.c:177
+#: ../src/gnome-screensaver-dialog.c:178
 msgid "Password unchanged"
 msgstr "Heslo nezměněno"
 
-#: ../src/gnome-screensaver-dialog.c:178
+#: ../src/gnome-screensaver-dialog.c:179
 msgid "Can not get username"
 msgstr "Nelze získat uživatelské jméno"
 
-#: ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:180
 msgid "Retype new UNIX password:"
 msgstr "Zadejte znovu nové unixové heslo:"
 
-#: ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:181
 msgid "Enter new UNIX password:"
 msgstr "Zadejte nové unixové heslo:"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:182
 msgid "(current) UNIX password:"
 msgstr "(aktuální) unixové heslo:"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:183
 msgid "Error while changing NIS password."
 msgstr "Chyba při změně NIS hesla."
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "You must choose a longer password"
 msgstr "Musíte zvolit delší heslo."
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "Password has been already used. Choose another."
 msgstr "Heslo bylo již použito. Zvolte jiné."
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "You must wait longer to change your password"
 msgstr "Pro změnu vašeho hesla musíte vyčkat déle"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:187
 msgid "Sorry, passwords do not match"
 msgstr "Hesla bohužel nesouhlasí"
 
-#: ../src/gnome-screensaver-dialog.c:280 ../src/gs-auth-pam.c:320
+#: ../src/gnome-screensaver-dialog.c:250
+msgid "Checking..."
+msgstr "Probíhá kontrola..."
+
+#: ../src/gnome-screensaver-dialog.c:289 ../src/gs-auth-pam.c:320
 msgid "Authentication failed."
 msgstr "Autentizace selhala."
 
@@ -901,27 +908,27 @@ msgstr "nepřipojen ke sběrnici zpráv"
 msgid "screensaver already running in this session"
 msgstr "šetřič obrazovky již v tomto sezení běží"
 
-#: ../src/gs-lock-plug.c:334
+#: ../src/gs-lock-plug.c:336
 msgid "Time has expired."
 msgstr "Čas vypršel."
 
-#: ../src/gs-lock-plug.c:364
+#: ../src/gs-lock-plug.c:366
 msgid "You have the Caps Lock key on."
 msgstr "Máte zapnut Caps Lock."
 
-#: ../src/gs-lock-plug.c:1407 ../src/gs-lock-plug.c:1444
+#: ../src/gs-lock-plug.c:1411 ../src/gs-lock-plug.c:1448
 msgid "S_witch User..."
 msgstr "_Přepnout uživatele..."
 
-#: ../src/gs-lock-plug.c:1415
+#: ../src/gs-lock-plug.c:1419
 msgid "Log _Out"
 msgstr "_Odhlásit"
 
-#: ../src/gs-lock-plug.c:1606
+#: ../src/gs-lock-plug.c:1610
 msgid "%U on %h"
 msgstr "%U na %h"
 
-#: ../src/gs-lock-plug.c:1620
+#: ../src/gs-lock-plug.c:1624
 msgid "_Password:"
 msgstr "_Heslo:"
 

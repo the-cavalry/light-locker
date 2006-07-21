@@ -1,3 +1,7 @@
+2006-07-21  Jakub Friedl  <jfriedl@suse.cz>
+
+	* cs.po: Updated Czech translation
+
 2006-07-21  Josep Puigdemont i Casamajó  <josep.puigdemont@gmail.com>
 
 	* ca.po: Updated Catalan translation by Gil Forcada.
@@ -25,7 +29,7 @@
 2006-07-18  Guntupalli Karunakar  <karunakar@freedomink.org>
 
 	* dz.po: Updated Dzongkha translation by
-        Dzongkhalinux team, DIT
+	Dzongkhalinux team, DIT
 
 2006-07-17  Thierry Randrianiriana  <thierryR@cvs.gnome.org>
 
@@ -34,7 +38,7 @@
 
 2006-07-16  Daniel Nylander  <po@danielnylander.se>
 
-        * sv.po: Updated Swedish translation.
+	* sv.po: Updated Swedish translation.
 
 2006-07-14  Priit Laes  <amd@store20.com>
 
