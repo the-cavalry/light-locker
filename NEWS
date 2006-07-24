@@ -1,4 +1,36 @@
 ===============
+Version 2.15.5
+===============
+
+  gnome-screensaver
+
+        * Turn off themes when screen is not visible
+        * Make the unlock dialog show on correct window under Xinerama
+        * Prevent theme flickering from watchdog timer
+        * Listen for HAL coffee key events
+        * Ignore brightness key events
+
+  gnome-screensaver-preferences
+
+        * Populate themes list in an idle after startup
+
+  Translators
+
+        * Mahay Alam Khan (bn_IN)
+        * Gil Forcada (ca)
+        * Jakub Friedl (cs)
+        * Hendrik Richter (de)
+        * Kostas Papadimas (el)
+        * Francisco Javier F. Serrador (es)
+        * Priit Laes (et)
+        * Ankit Patel (gu)
+        * Rajesh Ranjan (hi)
+        * Changwoo Ryu (ko)
+        * Fano Rajaonarisoa (mg)
+        * Daniel Nylander (sv)
+        * Theppitak Karoonboonyanan (th)
+
+===============
 Version 2.15.4
 ===============
 

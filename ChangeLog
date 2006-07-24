@@ -1,3 +1,9 @@
+==== 2.15.5 ====
+
+2006-07-24  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 2.15.5 release.
+
 2006-07-24  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (gs_window_real_key_press_event):
