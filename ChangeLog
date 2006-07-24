@@ -1,5 +1,13 @@
 2006-07-24  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (gs_window_real_key_press_event):
+	Ignore brightness keys.
+
+	Patch from Matthew Garrett.
+	Fixes #347854
+
+2006-07-24  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-listener-dbus.c: (listener_dbus_add_ref_entry),
 	(listener_service_deleted), (listener_dbus_handle_session_message),
 	(listener_dbus_handle_system_message),

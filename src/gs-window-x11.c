@@ -1334,6 +1334,12 @@ gs_window_real_key_press_event (GtkWidget   *widget,
 
         /*g_message ("KEY PRESS state: %u keyval %u", event->state, event->keyval);*/
 
+        /* Ignore brightness keys */
+        if (event->hardware_keycode == 101 || event->hardware_keycode == 212) {
+                gs_debug ("Ignoring brightness keys");
+                return TRUE;
+        }
+
         catch_events = maybe_handle_activity (GS_WINDOW (widget));
 
         /* Catch all keypresses up until the lock dialog is shown */
