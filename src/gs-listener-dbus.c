@@ -58,6 +58,8 @@ static DBusHandlerResult gs_listener_message_handler    (DBusConnection  *connec
 #define GS_LISTENER_PATH      "/org/gnome/ScreenSaver"
 #define GS_LISTENER_INTERFACE "org.gnome.ScreenSaver"
 
+#define DBUS_INTERFACE_HAL "org.freedesktop.Hal.Device"
+
 #define TYPE_MISMATCH_ERROR GS_LISTENER_INTERFACE ".TypeMismatch"
 
 #define GS_LISTENER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_LISTENER, GSListenerPrivate))
@@ -65,6 +67,7 @@ static DBusHandlerResult gs_listener_message_handler    (DBusConnection  *connec
 struct GSListenerPrivate
 {
         DBusConnection *connection;
+        DBusConnection *system_connection;
 
         guint           session_idle : 1;
         guint           active : 1;
@@ -698,8 +701,8 @@ listener_dbus_add_ref_entry (GSListener     *listener,
 {
         DBusMessage        *reply;
         DBusError           error;
-        char               *application;
-        char               *reason;
+        const char         *application;
+        const char         *reason;
         GSListenerRefEntry *entry;
         DBusMessageIter     iter;
 
@@ -840,9 +843,9 @@ static void
 listener_service_deleted (GSListener  *listener,
                           DBusMessage *message)
 {
-        char    *old_service_name;
-        char    *new_service_name;
-        gboolean removed;
+        const char *old_service_name;
+        const char *new_service_name;
+        gboolean    removed;
 
         if (! dbus_message_get_args (message, NULL,
                                      DBUS_TYPE_STRING, &old_service_name,
@@ -1178,10 +1181,10 @@ do_introspect (DBusConnection *connection,
 }
 
 static DBusHandlerResult
-listener_dbus_filter_handle_methods (DBusConnection *connection,
-                                     DBusMessage    *message,
-                                     void           *user_data,
-                                     dbus_bool_t     local_interface)
+listener_dbus_handle_session_message (DBusConnection *connection,
+                                      DBusMessage    *message,
+                                      void           *user_data,
+                                      dbus_bool_t     local_interface)
 {
         GSListener *listener = GS_LISTENER (user_data);
 
@@ -1247,6 +1250,43 @@ listener_dbus_filter_handle_methods (DBusConnection *connection,
 }
 
 static DBusHandlerResult
+listener_dbus_handle_system_message (DBusConnection *connection,
+                                     DBusMessage    *message,
+                                     void           *user_data,
+                                     dbus_bool_t     local_interface)
+{
+        GSListener *listener = GS_LISTENER (user_data);
+
+        g_return_val_if_fail (connection != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
+        g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
+
+        if (dbus_message_is_signal (message, DBUS_INTERFACE_HAL, "Condition")) {
+                DBusError   error;
+                const char *event;
+                const char *keyname;
+
+                dbus_error_init (&error);
+                if (dbus_message_get_args (message, &error,
+                                           DBUS_TYPE_STRING, &event,
+                                           DBUS_TYPE_STRING, &keyname,
+                                           DBUS_TYPE_INVALID)) {
+                        if ((event && strcmp (event, "ButtonPressed") == 0) &&
+                            (keyname && strcmp (keyname, "coffee") == 0)) {
+                                gs_debug ("Coffee key was pressed - locking");
+                                g_signal_emit (listener, signals [LOCK], 0);
+                        }
+                }
+                if (dbus_error_is_set (&error)) {
+                        dbus_error_free (&error);
+                }
+
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+
+        return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+}
+
+static DBusHandlerResult
 gs_listener_message_handler (DBusConnection *connection,
                              DBusMessage    *message,
                              void           *user_data)
@@ -1284,7 +1324,7 @@ gs_listener_message_handler (DBusConnection *connection,
 
                 return DBUS_HANDLER_RESULT_HANDLED;
         } else {
-                return listener_dbus_filter_handle_methods (connection, message, user_data, TRUE);
+                return listener_dbus_handle_session_message (connection, message, user_data, TRUE);
         }
 }
 
@@ -1295,19 +1335,35 @@ gs_listener_dbus_init (GSListener *listener)
 
         dbus_error_init (&error);
 
-        listener->priv->connection = dbus_bus_get (DBUS_BUS_SESSION, &error);
-
         if (listener->priv->connection == NULL) {
-                if (dbus_error_is_set (&error)) {
-                        g_warning ("couldn't connect to session bus: %s",
-                                   error.message);
-                        dbus_error_free (&error);
+                listener->priv->connection = dbus_bus_get (DBUS_BUS_SESSION, &error);
+                if (listener->priv->connection == NULL) {
+                        if (dbus_error_is_set (&error)) {
+                                g_warning ("couldn't connect to session bus: %s",
+                                           error.message);
+                                dbus_error_free (&error);
+                        }
+                        return FALSE;
                 }
-                return FALSE;
+
+                dbus_connection_setup_with_g_main (listener->priv->connection, NULL);
+                dbus_connection_set_exit_on_disconnect (listener->priv->connection, FALSE);
         }
 
-        dbus_connection_setup_with_g_main (listener->priv->connection, NULL);
-	dbus_connection_set_exit_on_disconnect (listener->priv->connection, FALSE);
+        if (listener->priv->system_connection == NULL) {
+                listener->priv->system_connection = dbus_bus_get (DBUS_BUS_SYSTEM, &error);
+                if (listener->priv->system_connection == NULL) {
+                        if (dbus_error_is_set (&error)) {
+                                g_warning ("couldn't connect to system bus: %s",
+                                           error.message);
+                                dbus_error_free (&error);
+                        }
+                        return FALSE;
+                }
+
+                dbus_connection_setup_with_g_main (listener->priv->system_connection, NULL);
+                dbus_connection_set_exit_on_disconnect (listener->priv->system_connection, FALSE);
+        }
 
         return TRUE;
 }
@@ -1347,14 +1403,14 @@ listener_dbus_filter_function (DBusConnection *connection,
                    dbus_message_get_member (message));
         */
 
-        if (dbus_message_is_signal (message, DBUS_INTERFACE_LOCAL, "Disconnected") &&
-            strcmp (path, DBUS_PATH_LOCAL) == 0) {
+        if (dbus_message_is_signal (message, DBUS_INTERFACE_LOCAL, "Disconnected")
+            && strcmp (path, DBUS_PATH_LOCAL) == 0) {
 
-                g_message ("Got disconnected from the system message bus; "
+                g_message ("Got disconnected from the session message bus; "
                            "retrying to reconnect every 10 seconds");
 
                 dbus_connection_unref (connection);
-                connection = NULL;
+                listener->priv->connection = NULL;
 
                 g_timeout_add (10000, (GSourceFunc)reinit_dbus, listener);
         } else if (dbus_message_is_signal (message,
@@ -1364,7 +1420,34 @@ listener_dbus_filter_function (DBusConnection *connection,
                 if (listener->priv->inhibitors != NULL)
                         listener_service_deleted (listener, message);
         } else {
-                return listener_dbus_filter_handle_methods (connection, message, user_data, FALSE);
+                return listener_dbus_handle_session_message (connection, message, user_data, FALSE);
+        }
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
+listener_dbus_system_filter_function (DBusConnection *connection,
+                                      DBusMessage    *message,
+                                      void           *user_data)
+{
+        GSListener *listener = GS_LISTENER (user_data);
+        const char *path;
+
+        path = dbus_message_get_path (message);
+
+        if (dbus_message_is_signal (message, DBUS_INTERFACE_LOCAL, "Disconnected")
+            && strcmp (path, DBUS_PATH_LOCAL) == 0) {
+
+                g_message ("Got disconnected from the system message bus; "
+                           "retrying to reconnect every 10 seconds");
+
+                dbus_connection_unref (connection);
+                listener->priv->system_connection = NULL;
+
+                g_timeout_add (10000, (GSourceFunc)reinit_dbus, listener);
+        } else {
+                return listener_dbus_handle_system_message (connection, message, user_data, FALSE);
         }
 
         return DBUS_HANDLER_RESULT_HANDLED;
@@ -1598,6 +1681,14 @@ gs_listener_acquire (GSListener *listener,
                             ",interface='"DBUS_INTERFACE_DBUS"'"
                             ",sender='"DBUS_SERVICE_DBUS"'"
                             ",member='NameOwnerChanged'",
+                            NULL);
+
+        dbus_connection_add_filter (listener->priv->system_connection, listener_dbus_system_filter_function, listener, NULL);
+
+        dbus_bus_add_match (listener->priv->system_connection,
+                            "type='signal'"
+                            ",interface='"DBUS_INTERFACE_HAL"'"
+                            ",member='Condition'",
                             NULL);
 
         return acquired;

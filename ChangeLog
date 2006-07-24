@@ -1,3 +1,16 @@
+2006-07-24  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-listener-dbus.c: (listener_dbus_add_ref_entry),
+	(listener_service_deleted), (listener_dbus_handle_session_message),
+	(listener_dbus_handle_system_message),
+	(gs_listener_message_handler), (gs_listener_dbus_init),
+	(listener_dbus_filter_function),
+	(listener_dbus_system_filter_function), (gs_listener_acquire):
+	Listen for KEY_COFEE from HAL.  Lock screen in response.
+
+	Based on patch from downstream Ubuntu.
+	Fixes #347854
+
 2006-07-21  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-preferences.c: (setup_treeview_idle),
