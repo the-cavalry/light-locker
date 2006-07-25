@@ -374,7 +374,7 @@ gs_listener_set_throttle (GSListener *listener,
         g_return_if_fail (GS_IS_LISTENER (listener));
 
         if (listener->priv->throttled != throttled) {
-                gs_debug ("Changine throttle status: %d", throttled);
+                gs_debug ("Changing throttle status: %d", throttled);
 
                 listener->priv->throttled = throttled;
 

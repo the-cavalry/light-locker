@@ -1,3 +1,8 @@
+2006-07-25  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-listener-dbus.c: (gs_listener_set_throttle):
+	Fix typo in debug output.
+
 2006-07-24  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.
