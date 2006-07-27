@@ -293,7 +293,7 @@ create_titled_label (GtkTable   *table,
 	gtk_widget_show (*title_widget);
 
 	*label_text_widget = gtk_label_new ("");
-	gtk_label_set_ellipsize (GTK_LABEL (label_text_widget), PANGO_ELLIPSIZE_END);
+	gtk_label_set_ellipsize (GTK_LABEL (*label_text_widget), PANGO_ELLIPSIZE_END);
 	gtk_table_attach (table, *label_text_widget,
 			  1, 2,
 			  row, row + 1,

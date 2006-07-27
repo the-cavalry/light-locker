@@ -763,26 +763,36 @@ theme_installer_run (GtkWidget *parent,
 {
         GtkWidget    *dialog;
         GnomeVFSURI  *src_uri;
-        GList        *src, *target;
-        char         *target_path;
+        GList        *src;
+        GList        *target;
         char         *user_dir;
-        char         *base;
+        char         *short_name;
+        char         *base_name;
+        char         *target_path;
+        gboolean      is_desktop;
 
         src_uri = gnome_vfs_uri_new (filename);
         src = g_list_append (NULL, src_uri);
-
-        user_dir = g_build_filename (g_get_user_data_dir (), "gnome-screensaver", "themes", NULL);
-        base = gnome_vfs_uri_extract_short_name (src_uri);
-
+        target = NULL;
         target_path = NULL;
 
-        while (TRUE) {
-                char      *file_tmp;
-                int        len = strlen (base);
+        user_dir = g_build_filename (g_get_user_data_dir (), "applications", "screensavers", NULL);
+        short_name = gnome_vfs_uri_extract_short_name (src_uri);
+        base_name = NULL;
 
-                if (base && len > 4 && (!strcmp (base + len - 4, ".xml"))) {
-                        file_tmp = g_strdup_printf ("screensaver-theme-%d.xml", rand ());
-                } else {
+        is_desktop = FALSE;
+        if (short_name != NULL
+            && g_str_has_suffix (short_name, ".desktop")) {
+                /* FIXME: validate key file? */
+                is_desktop = TRUE;
+                base_name = g_strndup (short_name, strlen (short_name) - 8);
+        }
+
+        while (TRUE) {
+                char *tmp;
+                gboolean exists;
+
+                if (! is_desktop) {
                         dialog = gtk_message_dialog_new (GTK_WINDOW (parent),
                                                          GTK_DIALOG_MODAL,
                                                          GTK_MESSAGE_ERROR,
@@ -797,19 +807,24 @@ theme_installer_run (GtkWidget *parent,
                         gtk_dialog_run (GTK_DIALOG (dialog));
                         gtk_widget_destroy (dialog);
                         g_free (target_path);
-                        return;
+                        goto out;
                 }
 
-                target_path = g_build_filename (user_dir, file_tmp, NULL);
+                g_free (target_path);
+                target_path = g_build_filename (user_dir, short_name, NULL);
 
-                g_free (file_tmp);
-                if (! gnome_vfs_uri_exists (gnome_vfs_uri_new (target_path)))
+                /* FIXME: racy, oh well */
+                exists = gnome_vfs_uri_exists (gnome_vfs_uri_new (target_path));
+                if (! exists) {
+                        target = g_list_append (NULL, gnome_vfs_uri_new (target_path));
                         break;
+                }
+
+                /* try another name */
+                tmp = g_strdup_printf ("%s-%u.desktop",  base_name, g_random_int ());
+                g_free (short_name);
+                short_name = tmp;
         }
-
-        g_free (user_dir);
-
-        target = g_list_append (NULL, gnome_vfs_uri_new (target_path));
 
         dialog = file_transfer_dialog_new ();
         gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (parent));
@@ -821,8 +836,6 @@ theme_installer_run (GtkWidget *parent,
                                               GNOME_VFS_XFER_ERROR_MODE_QUERY,
                                               GNOME_VFS_XFER_OVERWRITE_MODE_QUERY,
                                               GNOME_VFS_PRIORITY_DEFAULT);
-        gnome_vfs_uri_list_unref (src);
-        gnome_vfs_uri_list_unref (target);
 
         g_signal_connect (dialog, "cancel",
                           G_CALLBACK (transfer_cancel_cb), target_path);
@@ -830,6 +843,14 @@ theme_installer_run (GtkWidget *parent,
                           G_CALLBACK (transfer_done_cb), target_path);
 
         gtk_widget_show (dialog);
+
+ out:
+        gnome_vfs_uri_list_unref (src);
+        gnome_vfs_uri_list_unref (target);
+
+        g_free (user_dir);
+        g_free (base_name);
+        g_free (short_name);
 }
 
 /* Callback issued during drag movements */
@@ -876,14 +897,13 @@ drag_data_received_cb (GtkWidget        *widget,
         if (uris != NULL && uris->data != NULL) {
                 GnomeVFSURI *uri = (GnomeVFSURI *) uris->data;
 
-                if (gnome_vfs_uri_is_local (uri))
-                        filename = gnome_vfs_unescape_string (
-                                        gnome_vfs_uri_get_path (uri),
-                                        G_DIR_SEPARATOR_S);
-                else
-                        filename = gnome_vfs_unescape_string (
-                                        gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE),
-                                        G_DIR_SEPARATOR_S);
+                if (gnome_vfs_uri_is_local (uri)) {
+                        filename = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri),
+                                                              G_DIR_SEPARATOR_S);
+                } else {
+                        filename = gnome_vfs_unescape_string (gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE),
+                                                              G_DIR_SEPARATOR_S);
+                }
 
                 gnome_vfs_uri_list_unref (uris);
         }
