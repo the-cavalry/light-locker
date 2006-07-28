@@ -180,6 +180,8 @@ gs_theme_window_real_realize (GtkWidget *widget)
         gdk_window_set_user_data (window, widget);
         GTK_WIDGET_SET_FLAGS (widget, GTK_REALIZED);
 
+        gdk_window_set_events (window, gtk_widget_get_events (widget));
+
         gdk_window_get_geometry (window, &x, &y, &width, &height, NULL);
         gtk_widget_size_request (widget, &requisition);
         allocation.x = x;

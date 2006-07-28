@@ -1,3 +1,9 @@
+2006-07-28  William Jon McCann  <mccann@jhu.edu>
+
+	* savers/gs-theme-window.c (gs_theme_window_real_realize):
+	Make sure to call gdk_window_set_events to actually
+	apply the event mask.  Follow up to bug #338246
+
 2006-07-27  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-preferences.c (theme_installer_run):
