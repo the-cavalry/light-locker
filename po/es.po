@@ -1,6 +1,6 @@
 # translation of es.po to Spanish
 # This file is distributed under the same license as the gnome-screensaver package.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER, 2005.
+# Copyright (C) 2005 The GNOME Foundation, 2005.
 #
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2005, 2006.
 msgid ""
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-07-26 15:54+0200\n"
-"PO-Revision-Date: 2006-07-26 15:55+0200\n"
+"PO-Revision-Date: 2006-07-29 18:40+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr "Vista _previa"
 
 #: ../data/gnome-screensaver-preferences.glade.h:9
 msgid "_Screensaver theme:"
-msgstr "Temas del _salvapantallas:"
+msgstr "Tema del _salvapantallas:"
 
 #: ../data/gnome-screensaver.directory.in.h:1
 #: ../data/gnome-screensaver.schemas.in.h:7
@@ -88,7 +88,7 @@ msgstr "Bloquear al activar"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
 msgid "Logout command"
-msgstr "Comando de salida de sesión"
+msgstr "Comando de cierre de sesión"
 
 #: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Screensaver theme selection mode"
@@ -129,8 +129,8 @@ msgid ""
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
-"El comando que invocar cuando se pulsa el botón de salida de sesión. Este "
-"comando debería simplemente cerrar la sesión del usuario sin ninguna "
+"El comando que invocar cuando se pulsa el botón de cierre de sesión. Este "
+"comando simplemente debe cerrar la sesión del usuario sin ninguna "
 "interacción. Esta clave tiene efecto sólo si la clave \"logout_enable\" está "
 "establecida a TRUE."
 
@@ -227,7 +227,7 @@ msgstr "Contraseña:"
 
 #: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1700
 msgid "S_witch to user:"
-msgstr "_Cambiar al usuario:"
+msgstr "Cambiar al _usuario:"
 
 #: ../data/lock-dialog-default.glade.h:7
 msgid "_Cancel"
@@ -251,7 +251,7 @@ msgstr "_Desbloquear"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:1
 msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "Burbujea el logo del pie de GNOME alrededor de la pantalla"
+msgstr "Burbujea el logotipo del pie de GNOME alrededor de la pantalla"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:2
 msgid "Floating Feet"
@@ -592,7 +592,7 @@ msgstr "Desde la URI"
 
 #: ../src/file-transfer-dialog.c:194
 msgid "URI currently transferring from"
-msgstr "URI que está transfiriendo ahora"
+msgstr "URI desde la que está transfiriendo ahora"
 
 #: ../src/file-transfer-dialog.c:201
 msgid "To URI"
