@@ -1,5 +1,12 @@
 2006-07-31  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac:
+	* src/gs-watcher-x11.c: (initialize_server_extensions):
+	Remove unused code and configure checks.  Don't explicitly
+	link to libraries that we don't have to.
+
+2006-07-31  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/floaters.c: (screen_saver_on_expose_event):
 	Another speed up patch for floaters.
 

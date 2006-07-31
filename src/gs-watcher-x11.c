@@ -97,7 +97,6 @@ struct GSWatcherPrivate
         guint           check_pointer_timer_id;
         guint           watchdog_timer_id;
 
-        guint           xinerama : 1;
         guint           using_xidle_extension : 1;
         guint           using_sgi_saver_extension : 1;
         guint           using_mit_saver_extension : 1;
@@ -965,13 +964,6 @@ initialize_server_extensions (GSWatcher *watcher)
                 } else {
                         gs_debug ("Not using server's MIT-SCREEN-SAVER extension.");
                 }
-        }
-
-        /* These are incompatible (or at least, our support for them is...) */
-        if (watcher->priv->xinerama && watcher->priv->using_mit_saver_extension) {
-                watcher->priv->using_mit_saver_extension = FALSE;
-
-                gs_debug ("Xinerama in use: disabling MIT-SCREEN-SAVER.");
         }
 }
 

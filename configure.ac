@@ -16,6 +16,7 @@ AC_ISC_POSIX
 AC_PROG_CC
 AC_STDC_HEADERS
 AC_PROG_LIBTOOL
+AC_CANONICAL_HOST
 
 AC_HEADER_STDC
 
@@ -92,8 +93,12 @@ AM_GCONF_SOURCE_2
 GNOME_COMPILE_WARNINGS(yes)
 
 # Solaris requires libresolv for daemon()
-AC_CHECK_LIB(resolv, daemon, [GNOME_SCREENSAVER_LIBS="$GNOME_SCREENSAVER_LIBS -lresolv"])
- 
+case "$host" in
+	*-*-solaris*)
+		AC_CHECK_LIB(resolv, daemon, [GNOME_SCREENSAVER_LIBS="$GNOME_SCREENSAVER_LIBS -lresolv"])
+	;;
+esac
+
 # Optional dependencies for the theme engines
 
 SAVER_MODULES="gthread-2.0 gtk+-2.0 >= $GTK_REQUIRED_VERSION"
@@ -104,7 +109,7 @@ AC_ARG_WITH(libexif, [  --without-libexif	  disable special EXIF support])
 have_exif=no
 if test x$with_libexif != xno; then
     PKG_CHECK_MODULES(EXIF, libexif >= $LIBEXIF_REQUIRED_VERSION, have_exif=yes, have_exif=no)
-fi 
+fi
 if test "x$have_exif" = "xyes"; then
   AC_DEFINE(HAVE_EXIF, 1, [Define if libexif is available])
   SAVER_MODULES="$SAVER_MODULES libexif >= $LIBEXIF_REQUIRED_VERSION"
@@ -482,140 +487,10 @@ elif test "$with_xidle" != no; then
 fi
 
 dnl ---------------------------------------------------------------------------
-dnl - Check for the SGI-VIDEO-CONTROL server extension.
-dnl ---------------------------------------------------------------------------
-
-have_sgivc=no
-with_sgivc_req=unspecified
-AC_ARG_WITH(sgivc-ext,
-[  --with-sgivc-ext        Include support for the SGI-VIDEO-CONTROL extension.],
-  [with_sgivc="$withval"; with_sgivc_req="$withval"],[with_sgivc=yes])
-
-HANDLE_X_PATH_ARG(with_sgivc, --with-sgivc-ext, SGI-VIDEO-CONTROL)
-
-if test "$with_sgivc" = yes; then
-
-  # first check for XSGIvc.h
-  AC_CHECK_X_HEADER(X11/extensions/XSGIvc.h, [have_sgivc=yes],,
-                    [#include <X11/Xlib.h>])
-
-  # if that succeeded, then check for the -lXsgivc
-  if test "$have_sgivc" = yes; then
-    have_sgivc=no
-    AC_CHECK_X_LIB(Xsgivc, XSGIvcQueryGammaMap,
-                  [have_sgivc=yes; SAVER_LIBS="$SAVER_LIBS -lXsgivc"], [true],
-                  -lXext -lX11)
-  fi
-
-  # if that succeeded, then we've really got it.
-  if test "$have_sgivc" = yes; then
-    AC_DEFINE(HAVE_SGI_VC_EXTENSION, 1, [Define if the SGI VC extension is available])
-  fi
-
-elif test "$with_sgivc" != no; then
-  echo "error: must be yes or no: --with-sgivc-ext=$with_sgivc"
-  exit 1
-fi
-
-dnl ---------------------------------------------------------------------------
-dnl - Check for the XINERAMA server extension.
-dnl ---------------------------------------------------------------------------
-
-# Check for Xinerama extension (Solaris impl or Xfree impl)
-
-AC_ARG_ENABLE(xinerama,
-  AC_HELP_STRING([--disable-xinerama],
-                 [disable use of the Xinerama extension]),
-  try_xinerama=$enable_xinerama,try_xinerama=yes)
-
-use_solaris_xinerama=no
-use_xfree_xinerama=no
-if test "${try_xinerama}" != no; then
-    case "$host" in
-        *-*-solaris*)
-            # Check for solaris
-            use_solaris_xinerama=yes
-            AC_CHECK_X_LIB(Xext, XineramaGetInfo,
-                           use_solaris_xinerama=yes, use_solaris_xinerama=no,
-                           $ALL_X_LIBS)
-            if test "x$use_solaris_xinerama" = "xyes"; then
-                AC_CHECK_X_HEADER(X11/extensions/xinerama.h,
-                                  if test -z "`echo $ALL_X_LIBS | grep "\-lXext" 2> /dev/null`"; then
-                                      SAVER_LIBS="$SAVER_LIBS -lXext"
-                                  fi
-                                  AC_DEFINE(HAVE_SOLARIS_XINERAMA, , [Have Solaris-style Xinerama])
-                                  AC_DEFINE(HAVE_XINERAMA, , [Have some version of Xinerama]),
-                                  use_solaris_xinerama=no,
-                                  [#include <X11/Xlib.h>])
-            fi	
-            AC_MSG_CHECKING(for Xinerama support on Solaris)
-            AC_MSG_RESULT($use_solaris_xinerama);
-            ;;
-        *)
-            # Check for XFree
-            use_xfree_xinerama=yes
-            AC_CHECK_X_LIB(Xinerama, XineramaQueryExtension,
-                [AC_CHECK_X_HEADER(X11/extensions/Xinerama.h,
-                                   SAVER_LIBS="$SAVER_LIBS -lXinerama"   
-                                   if test -z "`echo $ALL_X_LIBS | grep "\-lXext" 2> /dev/null`"; then
-                                       SAVER_LIBS="$SAVER_LIBS -lXext"
-                                   fi
-                                   AC_DEFINE(HAVE_XFREE_XINERAMA, , [Have XFree86-style Xinerama])
-                                   AC_DEFINE(HAVE_XINERAMA,, [Have some version of Xinerama]), 
-                                   use_xfree_xinerama=no,
-                                   [#include <X11/Xlib.h>])],
-                use_xfree_xinerama=no, -lXext $ALL_X_LIBS)
-            AC_MSG_CHECKING(for Xinerama support on XFree86)
-            AC_MSG_RESULT($use_xfree_xinerama);
-            ;;
-    esac
-fi
-
-dnl ---------------------------------------------------------------------------
-dnl - Check for the XF86VMODE server extension (for virtual screens.)
-dnl ---------------------------------------------------------------------------
-
-have_xf86vmode=no
-with_xf86vmode_req=unspecified
-AC_ARG_WITH(xf86vmode-ext,
-[  --with-xf86vmode-ext    Include support for XFree86 virtual screens.],
-  [with_xf86vmode="$withval"; with_xf86vmode_req="$withval"],
-  [with_xf86vmode=yes])
-
-HANDLE_X_PATH_ARG(with_xf86vmode, --with-xf86vmode-ext, xf86vmode)
-
-VIDMODE_LIBS=""
-
-if test "$with_xf86vmode" = yes; then
-
-  # first check for xf86vmode.h
-  AC_CHECK_X_HEADER(X11/extensions/xf86vmode.h, [have_xf86vmode=yes],,
-                    [#include <X11/Xlib.h>])
-
-  # if that succeeded, then check for the -lXxf86vm
-  if test "$have_xf86vmode" = yes; then
-    have_xf86vmode=no
-    AC_CHECK_X_LIB(Xxf86vm, XF86VidModeGetViewPort,
-                  [have_xf86vmode=yes;
-                   VIDMODE_LIBS="-lXxf86vm";
-                   SAVER_LIBS="$SAVER_LIBS $VIDMODE_LIBS"],
-                   [true], -lXext -lX11)
-  fi
-
-  # if that succeeded, then we've really got it.
-  if test "$have_xf86vmode" = yes; then
-    AC_DEFINE(HAVE_XF86VMODE, 1, [Define if XF86VMODE is available])
-  fi
-
-elif test "$with_xf86vmode" != no; then
-  echo "error: must be yes or no: --with-xf86vmode-ext=$with_xf86vmode"
-  exit 1
-fi
-
-dnl ---------------------------------------------------------------------------
 dnl - Check for the XF86VMODE server extension (for gamma fading.)
 dnl ---------------------------------------------------------------------------
 
+have_xf86vmode=no
 have_xf86gamma=no
 have_xf86gamma_ramp=no
 with_xf86gamma_req=unspecified
@@ -669,22 +544,6 @@ if test "$with_xf86gamma" = yes; then
 elif test "$with_xf86gamma" != no; then
   echo "error: must be yes or no: --with-xf86gamma-ext=$with_xf86vmode"
   exit 1
-fi
-
-dnl ---------------------------------------------------------------------------
-dnl - RANDR Extension
-dnl ---------------------------------------------------------------------------
-
-RANDR_LIBS=
-found_randr=no
-AC_CHECK_LIB(Xrandr, XRRUpdateConfiguration,
-               [AC_CHECK_HEADER(X11/extensions/Xrandr.h,
-                                RANDR_LIBS=-lXrandr found_randr=yes,,
-				[#include <X11/Xlib.h>])],
-               , -lXrender -lXext $ALL_X_LIBS)
-
-if test "x$found_randr" = "xyes"; then
-   AC_DEFINE(HAVE_RANDR, , [Have the Xrandr extension library])
 fi
 
 dnl ---------------------------------------------------------------------------
@@ -801,7 +660,7 @@ if test x$with_libgl != xno; then
 
   if test "$have_gl" = yes ; then
     AC_CHECK_X_LIB(GL, glXChooseVisual, have_libgl=yes, have_libgl=no, -lm)
-  fi 
+  fi
 fi
 
 if test "x$have_libgl" = "xyes"; then
@@ -858,7 +717,7 @@ if test "x$have_pam" = "xyes"; then
     else
       AC_MSG_RESULT(unknown)
     fi
- 
+
 fi
 AM_CONDITIONAL(HAVE_PAM, test x$have_pam = xyes)
 AC_SUBST(HAVE_PAM)
@@ -937,9 +796,9 @@ if test "$with_shadow" = yes ; then
     # (I'm told it needs -lcurses too, but I don't understand why.)
     # But on DEC, it's in -lsecurity.
     #
-    AC_CHECK_LIB(prot, getprpwnam, 
+    AC_CHECK_LIB(prot, getprpwnam,
                  [AUTH_LIBS="$AUTH_LIBS -lprot -lcurses -lx"],
-                 [AC_CHECK_LIB(security, getprpwnam, 
+                 [AC_CHECK_LIB(security, getprpwnam,
                                [AUTH_LIBS="$AUTH_LIBS -lsecurity"])],
                  [-lx])
   fi
@@ -1229,7 +1088,7 @@ else
 fi
 
 #
-# Enable Debug 
+# Enable Debug
 #
 AC_ARG_ENABLE(debug, [AC_HELP_STRING([--enable-debug=[no/yes]], [turn on debugging])],, enable_debug=yes)
 if test "$enable_debug" = "yes"; then
@@ -1309,12 +1168,10 @@ echo "
 	source code location:	  ${srcdir}
 	compiler:		  ${CC}
 	cflags:		          ${CFLAGS}
+        Base libs:                ${GNOME_SCREENSAVER_LIBS}
         Extension libs:           ${SAVER_LIBS}
         Maintainer mode:          ${USE_MAINTAINER_MODE}
 
-	XFree86 Xinerama:         ${use_xfree_xinerama}
-	Solaris Xinerama:         ${use_solaris_xinerama}
-	Resize-and-rotate:        ${found_randr}
 	GL:                       ${have_libgl}
 
         Screen locking enabled:   ${enable_locking}
