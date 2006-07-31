@@ -777,6 +777,8 @@ theme_installer_run (GtkWidget *parent,
         target_path = NULL;
 
         user_dir = g_build_filename (g_get_user_data_dir (), "applications", "screensavers", NULL);
+        g_mkdir_with_parents (user_dir, S_IRWXU);
+
         short_name = gnome_vfs_uri_extract_short_name (src_uri);
         base_name = NULL;
 
