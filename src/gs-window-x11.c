@@ -59,11 +59,16 @@ struct GSWindowPrivate
         guint      lock_enabled : 1;
         guint      user_switch_enabled : 1;
         guint      logout_enabled : 1;
+        guint      keyboard_enabled : 1;
+
         guint64    logout_timeout;
         char      *logout_command;
+        char      *keyboard_command;
 
-        GtkWidget *box;
-        GtkWidget *socket;
+        GtkWidget *vbox;
+        GtkWidget *lock_box;
+        GtkWidget *lock_socket;
+        GtkWidget *keyboard_socket;
 
         guint      popup_dialog_idle_id;
 
@@ -73,9 +78,12 @@ struct GSWindowPrivate
 
         guint      watchdog_timer_id;
 
-        gint       pid;
-        gint       watch_id;
+        gint       lock_pid;
+        gint       lock_watch_id;
         gint       dialog_response;
+
+        gint       keyboard_pid;
+        gint       keyboard_watch_id;
 
         GList     *key_events;
 
@@ -98,6 +106,8 @@ enum {
         PROP_OBSCURED,
         PROP_LOCK_ENABLED,
         PROP_LOGOUT_ENABLED,
+        PROP_KEYBOARD_ENABLED,
+        PROP_KEYBOARD_COMMAND,
         PROP_LOGOUT_COMMAND,
         PROP_LOGOUT_TIMEOUT,
         PROP_MONITOR
@@ -655,6 +665,7 @@ get_env_vars (GtkWidget *widget)
         int        i;
         static const char *allowed_env_vars [] = {
                 "PATH",
+                "LD_LIBRARY_PATH",
                 "SESSION_MANAGER",
                 "XAUTHORITY",
                 "XAUTHLOCALHOSTNAME",
@@ -662,7 +673,10 @@ get_env_vars (GtkWidget *widget)
                 "KRBTKFILE",
                 "LANG",
                 "LANGUAGE",
-                "RUNNING_UNDER_GDM"
+                "RUNNING_UNDER_GDM",
+                "MB_KBD_CONFIG",
+                "MB_KBD_VARIANT",
+                "MB_KBD_LANG"
         };
 
         env = g_ptr_array_new ();
@@ -712,7 +726,7 @@ spawn_on_window (GSWindow *window,
 
         error = NULL;
         if (! g_shell_parse_argv (command, &argc, &argv, &error)) {
-                g_warning ("Could not parse command: %s", error->message);
+                gs_debug ("Could not parse command: %s", error->message);
                 g_error_free (error);
                 return FALSE;
         }
@@ -739,7 +753,7 @@ spawn_on_window (GSWindow *window,
         g_ptr_array_free (env, TRUE);
 
         if (! result) {
-                g_warning ("Could not start command '%s': %s", command, error->message);
+                gs_debug ("Could not start command '%s': %s", command, error->message);
                 g_error_free (error);
                 g_strfreev (argv);
                 return FALSE;
@@ -772,21 +786,49 @@ spawn_on_window (GSWindow *window,
 }
 
 static void
-plug_added (GtkWidget *widget,
-            GSWindow  *window)
+lock_plug_added (GtkWidget *widget,
+                 GSWindow  *window)
 {
-        gtk_widget_show (window->priv->socket);
+        gtk_widget_show (widget);
 }
 
 static gboolean
-plug_removed (GtkWidget *widget,
-              GSWindow  *window)
+lock_plug_removed (GtkWidget *widget,
+                   GSWindow  *window)
 {
-        gtk_widget_hide (window->priv->socket);
-        gtk_container_remove (GTK_CONTAINER (window), GTK_WIDGET (window->priv->box));
-        window->priv->box = NULL;
+        gtk_widget_hide (widget);
+        gtk_container_remove (GTK_CONTAINER (window->priv->vbox), GTK_WIDGET (window->priv->lock_box));
+        window->priv->lock_box = NULL;
 
         return TRUE;
+}
+
+static void
+keyboard_plug_added (GtkWidget *widget,
+                     GSWindow  *window)
+{
+        gtk_widget_show (widget);
+}
+
+static gboolean
+keyboard_plug_removed (GtkWidget *widget,
+                       GSWindow  *window)
+{
+        gtk_widget_hide (widget);
+        gtk_container_remove (GTK_CONTAINER (window->priv->vbox), GTK_WIDGET (window->priv->keyboard_socket));
+
+        return TRUE;
+}
+
+static void
+keyboard_socket_destroyed (GtkWidget *widget,
+                           GSWindow  *window)
+{
+        g_signal_handlers_disconnect_by_func (widget, keyboard_socket_destroyed, window);
+        g_signal_handlers_disconnect_by_func (widget, keyboard_plug_added, window);
+        g_signal_handlers_disconnect_by_func (widget, keyboard_plug_removed, window);
+
+        window->priv->keyboard_socket = NULL;
 }
 
 static void
@@ -820,49 +862,46 @@ remove_key_events (GSWindow *window)
 }
 
 static void
-socket_show (GtkWidget *widget,
-             GSWindow  *window)
+lock_socket_show (GtkWidget *widget,
+                  GSWindow  *window)
 {
-        gtk_widget_child_focus (window->priv->socket, GTK_DIR_TAB_FORWARD);
+        gtk_widget_child_focus (window->priv->lock_socket, GTK_DIR_TAB_FORWARD);
 
         /* send queued events to the dialog */
         forward_key_events (window);
 }
 
 static void
-socket_destroyed (GtkWidget *widget,
-                  GSWindow  *window)
+lock_socket_destroyed (GtkWidget *widget,
+                       GSWindow  *window)
 {
-        g_signal_handlers_disconnect_by_func (window->priv->socket, socket_show, window);
-        g_signal_handlers_disconnect_by_func (window->priv->socket, socket_destroyed, window);
-        g_signal_handlers_disconnect_by_func (window->priv->socket, plug_added, window);
-        g_signal_handlers_disconnect_by_func (window->priv->socket, plug_removed, window);
+        g_signal_handlers_disconnect_by_func (widget, lock_socket_show, window);
+        g_signal_handlers_disconnect_by_func (widget, lock_socket_destroyed, window);
+        g_signal_handlers_disconnect_by_func (widget, lock_plug_added, window);
+        g_signal_handlers_disconnect_by_func (widget, lock_plug_removed, window);
 
-        window->priv->socket = NULL;
+        window->priv->lock_socket = NULL;
 }
 
 static void
-create_socket (GSWindow *window,
-               guint32   id)
+create_keyboard_socket (GSWindow *window,
+                        guint32   id)
 {
-        window->priv->socket = gtk_socket_new ();
-        window->priv->box = gtk_alignment_new (0.5, 0.5, 0, 0);
-        gtk_widget_show (window->priv->box);
+        int height;
 
-        gtk_container_add (GTK_CONTAINER (window), window->priv->box);
+        height = (gdk_screen_get_height (gtk_widget_get_screen (GTK_WIDGET (window)))) / 4;
 
-        gtk_container_add (GTK_CONTAINER (window->priv->box), window->priv->socket);
+        window->priv->keyboard_socket = gtk_socket_new ();
+        gtk_widget_set_size_request (window->priv->keyboard_socket, -1, height);
 
-        g_signal_connect (window->priv->socket, "show",
-                          G_CALLBACK (socket_show), window);
-        g_signal_connect (window->priv->socket, "destroy",
-                          G_CALLBACK (socket_destroyed), window);
-        g_signal_connect (window->priv->socket, "plug_added",
-                          G_CALLBACK (plug_added), window);
-        g_signal_connect (window->priv->socket, "plug_removed",
-                          G_CALLBACK (plug_removed), window);
-
-        gtk_socket_add_id (GTK_SOCKET (window->priv->socket), id);
+        g_signal_connect (window->priv->keyboard_socket, "destroy",
+                          G_CALLBACK (keyboard_socket_destroyed), window);
+        g_signal_connect (window->priv->keyboard_socket, "plug_added",
+                          G_CALLBACK (keyboard_plug_added), window);
+        g_signal_connect (window->priv->keyboard_socket, "plug_removed",
+                          G_CALLBACK (keyboard_plug_removed), window);
+        gtk_box_pack_start (GTK_BOX (window->priv->vbox), window->priv->keyboard_socket, FALSE, FALSE, 0);
+        gtk_socket_add_id (GTK_SOCKET (window->priv->keyboard_socket), id);
 }
 
 /* adapted from gspawn.c */
@@ -878,11 +917,143 @@ wait_on_child (int pid)
                 } else if (errno == ECHILD) {
                         ; /* do nothing, child already reaped */
                 } else {
-                        g_warning ("waitpid () should not fail in 'GSWindow'");
+                        gs_debug ("waitpid () should not fail in 'GSWindow'");
                 }
         }
 
         return status;
+}
+
+static void
+keyboard_command_finish (GSWindow *window)
+{
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        gs_debug ("Keyboard finished");
+
+        if (window->priv->keyboard_pid > 0) {
+                int exit_status;
+
+                exit_status = wait_on_child (window->priv->keyboard_pid);
+
+                g_spawn_close_pid (window->priv->keyboard_pid);
+                window->priv->keyboard_pid = 0;
+        }
+}
+
+static void
+kill_keyboard_command (GSWindow *window)
+{
+        if (window->priv->keyboard_pid > 0) {
+                signal_pid (window->priv->keyboard_pid, SIGTERM);
+        }
+        keyboard_command_finish (window);
+}
+
+static gboolean
+keyboard_command_watch (GIOChannel   *source,
+                        GIOCondition  condition,
+                        GSWindow     *window)
+{
+        gboolean finished = FALSE;
+
+        g_return_val_if_fail (GS_IS_WINDOW (window), FALSE);
+
+        if (condition & G_IO_IN) {
+                GIOStatus status;
+                GError   *error = NULL;
+                char     *line;
+
+                status = g_io_channel_read_line (source, &line, NULL, NULL, &error);
+
+                switch (status) {
+                case G_IO_STATUS_NORMAL:
+                        {
+                                guint32 id;
+                                char    c;
+                                gs_debug ("keyboard command output: %s", line);
+                                if (1 == sscanf (line, " %" G_GUINT32_FORMAT " %c", &id, &c)) {
+                                        create_keyboard_socket (window, id);
+                                }
+                                g_free (line);
+                        }
+                        break;
+                case G_IO_STATUS_EOF:
+                        finished = TRUE;
+                        break;
+                case G_IO_STATUS_ERROR:
+                        finished = TRUE;
+                        fprintf (stderr, "Error reading fd from child: %s\n", error->message);
+                        return FALSE;
+                case G_IO_STATUS_AGAIN:
+                default:
+                        break;
+                }
+
+        } else if (condition & G_IO_HUP) {
+                finished = TRUE;
+        }
+
+        if (finished) {
+                window->priv->keyboard_watch_id = 0;
+                keyboard_command_finish (window);
+                return FALSE;
+        }
+
+        return TRUE;
+}
+
+static void
+embed_keyboard (GSWindow *window)
+{
+        gboolean res;
+
+        if (! window->priv->keyboard_enabled
+            || window->priv->keyboard_command == NULL)
+                return;
+
+        gs_debug ("Adding embedded keyboard widget");
+
+        /* FIXME: verify command is safe */
+
+        gs_debug ("Running command: %s", window->priv->keyboard_command);
+
+        res = spawn_on_window (window,
+                               window->priv->keyboard_command,
+                               &window->priv->keyboard_pid,
+                               (GIOFunc)keyboard_command_watch,
+                               window,
+                               &window->priv->keyboard_watch_id);
+        if (! res) {
+                gs_debug ("Could not start command: %s", window->priv->keyboard_command);
+        }
+}
+
+static void
+create_lock_socket (GSWindow *window,
+                    guint32   id)
+{
+        window->priv->lock_socket = gtk_socket_new ();
+        window->priv->lock_box = gtk_alignment_new (0.5, 0.5, 0, 0);
+        gtk_widget_show (window->priv->lock_box);
+        gtk_box_pack_start (GTK_BOX (window->priv->vbox), window->priv->lock_box, TRUE, TRUE, 0);
+
+        gtk_container_add (GTK_CONTAINER (window->priv->lock_box), window->priv->lock_socket);
+
+        g_signal_connect (window->priv->lock_socket, "show",
+                          G_CALLBACK (lock_socket_show), window);
+        g_signal_connect (window->priv->lock_socket, "destroy",
+                          G_CALLBACK (lock_socket_destroyed), window);
+        g_signal_connect (window->priv->lock_socket, "plug_added",
+                          G_CALLBACK (lock_plug_added), window);
+        g_signal_connect (window->priv->lock_socket, "plug_removed",
+                          G_CALLBACK (lock_plug_removed), window);
+
+        gtk_socket_add_id (GTK_SOCKET (window->priv->lock_socket), id);
+
+        if (window->priv->keyboard_enabled) {
+                embed_keyboard (window);
+        }
 }
 
 static void
@@ -891,18 +1062,31 @@ gs_window_dialog_finish (GSWindow *window)
         g_return_if_fail (GS_IS_WINDOW (window));
 
         gs_debug ("Dialog finished");
+        kill_keyboard_command (window);
 
-        if (window->priv->pid > 0) {
+        if (window->priv->lock_pid > 0) {
                 int exit_status;
 
-                exit_status = wait_on_child (window->priv->pid);
+                exit_status = wait_on_child (window->priv->lock_pid);
 
-                g_spawn_close_pid (window->priv->pid);
-                window->priv->pid = 0;
+                g_spawn_close_pid (window->priv->lock_pid);
+                window->priv->lock_pid = 0;
         }
 
         /* remove events for the case were we failed to show socket */
         remove_key_events (window);
+}
+
+static void
+kill_dialog_command (GSWindow *window)
+{
+        /* If a dialog is up we need to signal it
+           and wait on it */
+        if (window->priv->lock_pid > 0) {
+                signal_pid (window->priv->lock_pid, SIGTERM);
+        }
+
+        gs_window_dialog_finish (window);
 }
 
 /* very rudimentary animation for indicating an auth failure */
@@ -922,11 +1106,11 @@ shake_dialog (GSWindow *window)
                         right = 30;
                 }
 
-                if (! window->priv->box) {
+                if (! window->priv->lock_box) {
                         break;
                 }
 
-                gtk_alignment_set_padding (GTK_ALIGNMENT (window->priv->box),
+                gtk_alignment_set_padding (GTK_ALIGNMENT (window->priv->lock_box),
                                            0, 0,
                                            left,
                                            right);
@@ -940,9 +1124,9 @@ shake_dialog (GSWindow *window)
 }
 
 static gboolean
-command_watch (GIOChannel   *source,
-               GIOCondition  condition,
-               GSWindow     *window)
+lock_command_watch (GIOChannel   *source,
+                    GIOCondition  condition,
+                    GSWindow     *window)
 {
         gboolean finished = FALSE;
 
@@ -963,7 +1147,7 @@ command_watch (GIOChannel   *source,
                                 guint32 id;
                                 char    c;
                                 if (1 == sscanf (line, " WINDOW ID= %" G_GUINT32_FORMAT " %c", &id, &c)) {
-                                        create_socket (window, id);
+                                        create_lock_socket (window, id);
                                 }
                         } else if (strstr (line, "NOTICE=")) {
                                 if (strstr (line, "NOTICE=AUTH FAILED")) {
@@ -1011,7 +1195,7 @@ command_watch (GIOChannel   *source,
                 window->priv->last_x = -1;
                 window->priv->last_y = -1;
 
-                window->priv->watch_id = 0;
+                window->priv->lock_watch_id = 0;
 
                 return FALSE;
         }
@@ -1078,12 +1262,12 @@ popup_dialog_idle (GSWindow *window)
 
         result = spawn_on_window (window,
                                   command->str,
-                                  &window->priv->pid,
-                                  (GIOFunc)command_watch,
+                                  &window->priv->lock_pid,
+                                  (GIOFunc)lock_command_watch,
                                   window,
-                                  &window->priv->watch_id);
+                                  &window->priv->lock_watch_id);
         if (! result) {
-                g_warning ("Could not start command: %s", command->str);
+                gs_debug ("Could not start command: %s", command->str);
         }
 
         g_string_free (command, TRUE);
@@ -1105,7 +1289,7 @@ gs_window_request_unlock (GSWindow *window)
                 return;
         }
 
-        if (window->priv->watch_id > 0) {
+        if (window->priv->lock_watch_id > 0) {
                 return;
         }
 
@@ -1153,6 +1337,30 @@ gs_window_get_screen (GSWindow  *window)
         g_return_val_if_fail (GS_IS_WINDOW (window), NULL);
 
         return GTK_WINDOW (window)->screen;
+}
+
+void
+gs_window_set_keyboard_enabled (GSWindow *window,
+                                gboolean  enabled)
+{
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        window->priv->keyboard_enabled = enabled;
+}
+
+void
+gs_window_set_keyboard_command (GSWindow   *window,
+                                const char *command)
+{
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        g_free (window->priv->keyboard_command);
+
+        if (command != NULL) {
+                window->priv->keyboard_command = g_strdup (command);
+        } else {
+                window->priv->keyboard_command = NULL;
+        }
 }
 
 void
@@ -1240,6 +1448,12 @@ gs_window_set_property (GObject            *object,
         case PROP_LOCK_ENABLED:
                 gs_window_set_lock_enabled (self, g_value_get_boolean (value));
                 break;
+        case PROP_KEYBOARD_ENABLED:
+                gs_window_set_keyboard_enabled (self, g_value_get_boolean (value));
+                break;
+        case PROP_KEYBOARD_COMMAND:
+                gs_window_set_keyboard_command (self, g_value_get_string (value));
+                break;
         case PROP_LOGOUT_ENABLED:
                 gs_window_set_logout_enabled (self, g_value_get_boolean (value));
                 break;
@@ -1271,6 +1485,12 @@ gs_window_get_property (GObject    *object,
         switch (prop_id) {
         case PROP_LOCK_ENABLED:
                 g_value_set_boolean (value, self->priv->lock_enabled);
+                break;
+        case PROP_KEYBOARD_ENABLED:
+                g_value_set_boolean (value, self->priv->keyboard_enabled);
+                break;
+        case PROP_KEYBOARD_COMMAND:
+                g_value_set_string (value, self->priv->keyboard_command);
                 break;
         case PROP_LOGOUT_ENABLED:
                 g_value_set_boolean (value, self->priv->logout_enabled);
@@ -1318,7 +1538,7 @@ maybe_handle_activity (GSWindow *window)
         handled = FALSE;
 
         /* if we already have a socket then don't bother */
-        if (! window->priv->socket
+        if (! window->priv->lock_socket
             && GTK_WIDGET_IS_SENSITIVE (GTK_WIDGET (window))) {
                 g_signal_emit (window, signals [ACTIVITY], 0, &handled);
         }
@@ -1605,8 +1825,22 @@ gs_window_class_init (GSWindowClass *klass)
                                                             0,
                                                             G_PARAM_READWRITE));
         g_object_class_install_property (object_class,
-                                         PROP_LOGOUT_TIMEOUT,
+                                         PROP_LOGOUT_COMMAND,
                                          g_param_spec_string ("logout-command",
+                                                              NULL,
+                                                              NULL,
+                                                              NULL,
+                                                              G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_KEYBOARD_ENABLED,
+                                         g_param_spec_boolean ("keyboard-enabled",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_KEYBOARD_COMMAND,
+                                         g_param_spec_string ("keyboard-command",
                                                               NULL,
                                                               NULL,
                                                               NULL,
@@ -1658,14 +1892,22 @@ gs_window_init (GSWindow *window)
                                | GDK_ENTER_NOTIFY_MASK
                                | GDK_LEAVE_NOTIFY_MASK);
         force_no_pixmap_background (GTK_WIDGET (window));
+
+        window->priv->vbox = gtk_vbox_new (FALSE, 12);
+        gtk_widget_show (window->priv->vbox);
+        gtk_container_add (GTK_CONTAINER (window), window->priv->vbox);
 }
 
 static void
-remove_command_watch (GSWindow *window)
+remove_command_watches (GSWindow *window)
 {
-        if (window->priv->watch_id != 0) {
-                g_source_remove (window->priv->watch_id);
-                window->priv->watch_id = 0;
+        if (window->priv->lock_watch_id != 0) {
+                g_source_remove (window->priv->lock_watch_id);
+                window->priv->lock_watch_id = 0;
+        }
+        if (window->priv->keyboard_watch_id != 0) {
+                g_source_remove (window->priv->keyboard_watch_id);
+                window->priv->keyboard_watch_id = 0;
         }
 }
 
@@ -1682,6 +1924,7 @@ gs_window_finalize (GObject *object)
         g_return_if_fail (window->priv != NULL);
 
         g_free (window->priv->logout_command);
+        g_free (window->priv->keyboard_command);
 
         remove_watchdog_timer (window);
         remove_popup_dialog_idle (window);
@@ -1692,14 +1935,10 @@ gs_window_finalize (GObject *object)
 
         remove_key_events (window);
 
-        remove_command_watch (window);
+        remove_command_watches (window);
 
-        /* If a dialog is up we need to signal it
-           and wait on it */
-        if (window->priv->pid > 0) {
-                signal_pid (window->priv->pid, SIGTERM);
-        }
-        gs_window_dialog_finish (window);
+        kill_keyboard_command (window);
+        kill_dialog_command (window);
 
         G_OBJECT_CLASS (gs_window_parent_class)->finalize (object);
 }

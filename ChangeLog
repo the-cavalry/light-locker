@@ -1,3 +1,35 @@
+2006-07-31  William Jon McCann  <mccann@jhu.edu>
+
+	* data/gnome-screensaver.schemas.in:
+	* src/gs-manager.c: (gs_manager_set_keyboard_enabled),
+	(gs_manager_set_logout_command), (gs_manager_set_keyboard_command),
+	(gs_manager_set_property), (gs_manager_get_property),
+	(gs_manager_finalize), (gs_manager_create_window):
+	* src/gs-manager.h:
+	* src/gs-monitor.c: (_gs_monitor_update_from_prefs):
+	* src/gs-prefs.c: (_gs_prefs_set_keyboard_enabled),
+	(_gs_prefs_set_keyboard_command), (gs_prefs_load_from_gconf),
+	(key_changed_cb):
+	* src/gs-prefs.h:
+	* src/gs-window-x11.c: (get_env_vars), (spawn_on_window),
+	(lock_plug_added), (lock_plug_removed), (keyboard_plug_added),
+	(keyboard_plug_removed), (keyboard_socket_destroyed),
+	(lock_socket_show), (lock_socket_destroyed),
+	(create_keyboard_socket), (wait_on_child),
+	(keyboard_command_finish), (kill_keyboard_command),
+	(keyboard_command_watch), (embed_keyboard), (create_lock_socket),
+	(gs_window_dialog_finish), (kill_dialog_command), (shake_dialog),
+	(lock_command_watch), (popup_dialog_idle),
+	(gs_window_request_unlock), (gs_window_set_keyboard_enabled),
+	(gs_window_set_keyboard_command), (gs_window_set_property),
+	(gs_window_get_property), (maybe_handle_activity),
+	(gs_window_class_init), (gs_window_init), (remove_command_watches),
+	(gs_window_finalize):
+	* src/gs-window.h:
+
+	Add support (disabled by default) for embedding a keyboard
+	in the screen lock window.  Fixes #347721
+
 2006-07-28  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/gs-theme-window.c (gs_theme_window_real_realize):

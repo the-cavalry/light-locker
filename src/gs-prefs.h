@@ -50,6 +50,7 @@ typedef struct
         guint            lock_enabled : 1;		/* whether to lock when active */
         guint            logout_enabled : 1;	/* Whether to offer the logout option */
         guint            user_switch_enabled : 1;	/* Whether to offer the user switch option */
+        guint            keyboard_enabled : 1;	/* Whether to try to embed a keyboard */
 
         guint            timeout;	       	/* how much idle time before activation */
         guint            lock_timeout;		/* how long after activation locking starts */
@@ -57,6 +58,7 @@ typedef struct
         guint            cycle;			/* how long each theme should run */
 
         char            *logout_command;        /* command to use to logout */
+        char            *keyboard_command;      /* command to use to embed a keyboard */
 
         GSList          *themes;       		/* the screensaver themes to run */
         GSSaverMode      mode;			/* theme selection mode */

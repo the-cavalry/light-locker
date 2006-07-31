@@ -52,10 +52,12 @@ struct GSManagerPrivate
 
         guint        lock_enabled : 1;
         guint        logout_enabled : 1;
+        guint        keyboard_enabled : 1;
         guint        user_switch_enabled : 1;
         guint        throttled : 1;
 
         char        *logout_command;
+        char        *keyboard_command;
 
         /* State */
         guint        active : 1;
@@ -89,10 +91,12 @@ enum {
         PROP_LOCK_ENABLED,
         PROP_LOGOUT_ENABLED,
         PROP_USER_SWITCH_ENABLED,
+        PROP_KEYBOARD_ENABLED,
         PROP_LOCK_TIMEOUT,
         PROP_CYCLE_TIMEOUT,
         PROP_LOGOUT_TIMEOUT,
         PROP_LOGOUT_COMMAND,
+        PROP_KEYBOARD_COMMAND,
         PROP_ACTIVE,
         PROP_THROTTLED,
 };
@@ -408,6 +412,22 @@ gs_manager_set_logout_enabled (GSManager *manager,
 }
 
 void
+gs_manager_set_keyboard_enabled (GSManager *manager,
+                                 gboolean   enabled)
+{
+        g_return_if_fail (GS_IS_MANAGER (manager));
+
+        if (manager->priv->keyboard_enabled != enabled) {
+                GSList *l;
+
+                manager->priv->keyboard_enabled = enabled;
+                for (l = manager->priv->windows; l; l = l->next) {
+                        gs_window_set_keyboard_enabled (l->data, enabled);
+                }
+        }
+}
+
+void
 gs_manager_set_user_switch_enabled (GSManager *manager,
                                     gboolean   user_switch_enabled)
 {
@@ -500,6 +520,8 @@ void
 gs_manager_set_logout_command (GSManager  *manager,
                                const char *command)
 {
+        GSList *l;
+
         g_return_if_fail (GS_IS_MANAGER (manager));
 
         g_free (manager->priv->logout_command);
@@ -508,6 +530,31 @@ gs_manager_set_logout_command (GSManager  *manager,
                 manager->priv->logout_command = g_strdup (command);
         } else {
                 manager->priv->logout_command = NULL;
+        }
+
+        for (l = manager->priv->windows; l; l = l->next) {
+                gs_window_set_logout_command (l->data, manager->priv->logout_command);
+        }
+}
+
+void
+gs_manager_set_keyboard_command (GSManager  *manager,
+                                 const char *command)
+{
+        GSList *l;
+
+        g_return_if_fail (GS_IS_MANAGER (manager));
+
+        g_free (manager->priv->keyboard_command);
+
+        if (command) {
+                manager->priv->keyboard_command = g_strdup (command);
+        } else {
+                manager->priv->keyboard_command = NULL;
+        }
+
+        for (l = manager->priv->windows; l; l = l->next) {
+                gs_window_set_logout_command (l->data, manager->priv->keyboard_command);
         }
 }
 
@@ -618,6 +665,9 @@ gs_manager_set_property (GObject            *object,
         case PROP_LOGOUT_ENABLED:
                 gs_manager_set_logout_enabled (self, g_value_get_boolean (value));
                 break;
+        case PROP_KEYBOARD_ENABLED:
+                gs_manager_set_keyboard_enabled (self, g_value_get_boolean (value));
+                break;
         case PROP_USER_SWITCH_ENABLED:
                 gs_manager_set_user_switch_enabled (self, g_value_get_boolean (value));
                 break;
@@ -626,6 +676,9 @@ gs_manager_set_property (GObject            *object,
                 break;
         case PROP_LOGOUT_COMMAND:
                 gs_manager_set_logout_command (self, g_value_get_string (value));
+                break;
+        case PROP_KEYBOARD_COMMAND:
+                gs_manager_set_keyboard_command (self, g_value_get_string (value));
                 break;
         case PROP_CYCLE_TIMEOUT:
                 gs_manager_set_cycle_timeout (self, g_value_get_long (value));
@@ -659,6 +712,9 @@ gs_manager_get_property (GObject            *object,
         case PROP_LOGOUT_ENABLED:
                 g_value_set_boolean (value, self->priv->logout_enabled);
                 break;
+        case PROP_KEYBOARD_ENABLED:
+                g_value_set_boolean (value, self->priv->keyboard_enabled);
+                break;
         case PROP_USER_SWITCH_ENABLED:
                 g_value_set_boolean (value, self->priv->user_switch_enabled);
                 break;
@@ -667,6 +723,9 @@ gs_manager_get_property (GObject            *object,
                 break;
         case PROP_LOGOUT_COMMAND:
                 g_value_set_string (value, self->priv->logout_command);
+                break;
+        case PROP_KEYBOARD_COMMAND:
+                g_value_set_string (value, self->priv->keyboard_command);
                 break;
         case PROP_CYCLE_TIMEOUT:
                 g_value_set_long (value, self->priv->cycle_timeout);
@@ -843,6 +902,7 @@ gs_manager_finalize (GObject *object)
 
         free_themes (manager);
         g_free (manager->priv->logout_command);
+        g_free (manager->priv->keyboard_command);
 
         remove_unfade_idle (manager);
         remove_timers (manager);
@@ -1242,6 +1302,8 @@ gs_manager_create_window (GSManager *manager,
                 gs_window_set_logout_enabled (window, manager->priv->logout_enabled);
                 gs_window_set_logout_timeout (window, manager->priv->logout_timeout);
                 gs_window_set_logout_command (window, manager->priv->logout_command);
+                gs_window_set_keyboard_enabled (window, manager->priv->keyboard_enabled);
+                gs_window_set_keyboard_command (window, manager->priv->keyboard_command);
 
                 connect_window_signals (manager, window);
 

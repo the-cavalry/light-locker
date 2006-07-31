@@ -46,6 +46,8 @@ static void gs_prefs_finalize   (GObject      *object);
 #define KEY_LOGOUT_ENABLED KEY_DIR "/logout_enabled"
 #define KEY_LOGOUT_DELAY   KEY_DIR "/logout_delay"
 #define KEY_LOGOUT_COMMAND KEY_DIR "/logout_command"
+#define KEY_KEYBOARD_ENABLED KEY_DIR "/embedded_keyboard_enabled"
+#define KEY_KEYBOARD_COMMAND KEY_DIR "/embedded_keyboard_command"
 
 #define GS_PREFS_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_PREFS, GSPrefsPrivate))
 
@@ -210,6 +212,27 @@ _gs_prefs_set_lock_enabled (GSPrefs *prefs,
 }
 
 static void
+_gs_prefs_set_keyboard_enabled (GSPrefs *prefs,
+                                gboolean value)
+{
+        prefs->keyboard_enabled = value;
+}
+
+static void
+_gs_prefs_set_keyboard_command (GSPrefs    *prefs,
+                                const char *value)
+{
+        g_free (prefs->keyboard_command);
+        prefs->keyboard_command = NULL;
+
+       if (value) {
+               /* FIXME: check command */
+
+               prefs->keyboard_command = g_strdup (value);
+        }
+}
+
+static void
 _gs_prefs_set_logout_enabled (GSPrefs *prefs,
                               gboolean value)
 {
@@ -322,6 +345,23 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
         } else {
                 key_error_and_free (KEY_THEMES, error);
         }
+
+        /* Embedded keyboard options */
+
+        bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_KEYBOARD_ENABLED, &error);
+        if (! error) {
+                _gs_prefs_set_keyboard_enabled (prefs, bvalue);
+        } else {
+                key_error_and_free (KEY_KEYBOARD_ENABLED, error);
+        }
+
+        string = gconf_client_get_string (prefs->priv->gconf_client, KEY_KEYBOARD_COMMAND, &error);
+        if (! error) {
+                _gs_prefs_set_keyboard_command (prefs, string);
+        } else {
+                key_error_and_free (KEY_KEYBOARD_COMMAND, error);
+        }
+        g_free (string);
 
         /* Logout options */
 
@@ -487,6 +527,32 @@ key_changed_cb (GConfClient *client,
 
                         delay = gconf_value_get_int (value);
                         _gs_prefs_set_cycle_timeout (prefs, delay);
+
+                        changed = TRUE;
+                } else {
+                        invalid_type_warning (key);
+                }
+
+        } else if (strcmp (key, KEY_KEYBOARD_ENABLED) == 0) {
+
+                if (value->type == GCONF_VALUE_BOOL) {
+                        gboolean enabled;
+
+                        enabled = gconf_value_get_bool (value);
+                        _gs_prefs_set_keyboard_enabled (prefs, enabled);
+
+                        changed = TRUE;
+                } else {
+                        invalid_type_warning (key);
+                }
+
+        } else if (strcmp (key, KEY_KEYBOARD_COMMAND) == 0) {
+
+                if (value->type == GCONF_VALUE_STRING) {
+                        const char *command;
+
+                        command = gconf_value_get_string (value);
+                        _gs_prefs_set_keyboard_command (prefs, command);
 
                         changed = TRUE;
                 } else {

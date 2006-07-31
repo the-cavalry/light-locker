@@ -67,6 +67,10 @@ void        gs_manager_get_lock_active      (GSManager  *manager,
                                              gboolean   *lock_active);
 void        gs_manager_set_lock_active      (GSManager  *manager,
                                              gboolean    lock_active);
+void        gs_manager_set_keyboard_enabled (GSManager  *manager,
+                                             gboolean    enabled);
+void        gs_manager_set_keyboard_command (GSManager  *manager,
+                                             const char *command);
 void        gs_manager_set_lock_enabled     (GSManager  *manager,
                                              gboolean    lock_enabled);
 void        gs_manager_set_lock_timeout     (GSManager  *manager,
