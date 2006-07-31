@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 2.15.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-31 00:36+0200\n"
+"POT-Creation-Date: 2006-07-31 12:11+0200\n"
 "PO-Revision-Date: 2006-07-31 00:36+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -39,9 +39,8 @@ msgstr ""
 "<b>Attention : l'écran ne sera pas verrouillé pour l'utilisateur root.</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
-#, fuzzy
 msgid "Regard the computer as _idle after:"
-msgstr "La session est _inactive après :"
+msgstr "Considérer l'ordinateur _inactif après :"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "Screensaver Preferences"
@@ -181,9 +180,8 @@ msgstr ""
 "ou bien « random » pour l'activer en utilisant un thème aléatoire."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
-#, fuzzy
 msgid "Theme for lock dialog"
-msgstr "Délai avant verrouillage"
+msgstr "Thème pour la boîte de dialogue de verrouillage"
 
 #: ../data/gnome-screensaver.schemas.in.h:19
 msgid "Theme to use for the lock dialog."
@@ -376,7 +374,7 @@ msgstr "Utilisateur"
 
 #: ../src/cut-n-paste/fusa-display.c:135
 msgid "The user currently logged in on this virtual terminal."
-msgstr "L'utilisateur est actuellement connecté à ce terminal virtuel."
+msgstr "L'utilisateur connecté actuellement sur ce terminal virtuel."
 
 #: ../src/cut-n-paste/fusa-display.c:141
 msgid "Console"
@@ -404,7 +402,9 @@ msgstr ""
 
 #: ../src/cut-n-paste/fusa-manager.c:1460
 msgid "The display manager is not running or too old."
-msgstr "Le gestionnaire de connexions ne fonctionne pas ou est trop ancien."
+msgstr ""
+"Le gestionnaire de connexions n'est pas en cours de fonctionnement ou est "
+"trop ancien."
 
 #: ../src/cut-n-paste/fusa-manager.c:1463
 msgid "The configured limit of flexible servers has been reached."
@@ -454,7 +454,8 @@ msgstr "Tente de mettre à jour une clé de configuration non prise en charge."
 
 #: ../src/cut-n-paste/fusa-manager.c:1493
 msgid "~/.Xauthority file badly configured or missing."
-msgstr "Le fichier ~/.Xauthority n'est pas correctement configuré ou manquant."
+msgstr ""
+"Le fichier ~/.Xauthority n'est pas correctement configuré ou est manquant."
 
 #: ../src/cut-n-paste/fusa-manager.c:1496
 msgid "Too many messages were sent to the display manager, and it hung up."
@@ -506,7 +507,8 @@ msgstr "Afficher les détails"
 #: ../src/cut-n-paste/gdmcomm.c:413
 msgid "GDM (The GNOME Display Manager) is not running."
 msgstr ""
-"GDM (le gestionnaire de connexions GNOME) n'est pas en cours d'exécution."
+"GDM (le gestionnaire de connexions GNOME) n'est pas en cours de "
+"fonctionnement."
 
 #: ../src/cut-n-paste/gdmcomm.c:416
 msgid ""
@@ -514,7 +516,7 @@ msgid ""
 "Display Manager) or xdm."
 msgstr ""
 "Vous êtes peut-être en train d'utiliser un gestionnaire de connexions "
-"différent tel que KDM (le gestionnaire de connexions KDE) ou xdm."
+"différent, comme KDM (le gestionnaire de connexions KDE) ou xdm."
 
 #: ../src/cut-n-paste/gdmcomm.c:419
 msgid ""
@@ -558,15 +560,15 @@ msgstr ""
 
 #: ../src/cut-n-paste/gdmcomm.c:476
 msgid "Too many X sessions running."
-msgstr "Trop de sessions X en cours de fonctionnement."
+msgstr "Trop de sessions X sont en cours de fonctionnement."
 
 #: ../src/cut-n-paste/gdmcomm.c:478
 msgid ""
 "The nested X server (Xnest) cannot connect to your current X server.  You "
 "may be missing an X authorization file."
 msgstr ""
-"Le serveur X imbriqué (Xnest) ne peut se connecter à votre serveur X en "
-"cours. Il vous manque peut-être un fichier d'autorisation X."
+"Le serveur X imbriqué (Xnest) ne peut pas se connecter à votre serveur X "
+"actuel. Il vous manque peut-être un fichier d'autorisation X."
 
 #: ../src/cut-n-paste/gdmcomm.c:483
 msgid ""
@@ -575,12 +577,14 @@ msgid ""
 msgstr ""
 "Le serveur X imbriqué (Xnest) n'est pas disponible, ou gdm est mal "
 "configuré.\n"
-"Veuillez installer le paquet Xnest afin d'utiliser une connexion imbriquée."
+"Veuillez installer le paquet Xnest afin d'utiliser la connexion imbriquée."
 
 #: ../src/cut-n-paste/gdmcomm.c:488
 msgid ""
 "The X server is not available, it is likely that gdm is badly configured."
-msgstr "Le serveur X n'est pas disponible, gdm est probablement mal configuré."
+msgstr ""
+"Le serveur X n'est pas disponible, il est probable que gdm soit mal "
+"configuré."
 
 #: ../src/cut-n-paste/gdmcomm.c:497
 msgid "Trying to change to an invalid virtual terminal number."
@@ -592,7 +596,7 @@ msgid ""
 "Perhaps your .Xauthority file is not set up correctly."
 msgstr ""
 "Vous semblez ne pas avoir les autorisations requises pour cette opération. "
-"Votre fichier .Xauthority n'est peut être pas réglé correctement."
+"Votre fichier .Xauthority n'est peut-être pas configuré correctement."
 
 #: ../src/cut-n-paste/gdmcomm.c:505
 msgid "Too many messages were sent to gdm and it hung upon us."
@@ -679,7 +683,8 @@ msgstr "Vérifier l'état de l'économiseur d'écran"
 #: ../src/gnome-screensaver-command.c:65
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr ""
-"Indique à l'économiseur d'écran en cours de verrouiller l'écran immédiatement"
+"Indique à l'économiseur d'écran en cours de fonctionnement de verrouiller "
+"l'écran immédiatement"
 
 #: ../src/gnome-screensaver-command.c:67
 msgid "If the screensaver is active then switch to another graphics demo"
@@ -697,7 +702,9 @@ msgstr ""
 
 #: ../src/gnome-screensaver-command.c:73
 msgid "Poke the running screensaver to simulate user activity"
-msgstr "Demande à l'économiseur d'écran de simuler l'activité d'un utilisateur"
+msgstr ""
+"Demande à l'économiseur d'écran en cours de fonctionnement de simuler "
+"l'activité d'un utilisateur"
 
 #: ../src/gnome-screensaver-command.c:75
 msgid ""
@@ -931,7 +938,8 @@ msgstr "non connecté au bus de message"
 
 #: ../src/gs-listener-dbus.c:1650
 msgid "screensaver already running in this session"
-msgstr "L'économiseur d'écran est déjà ouvert pour cette session"
+msgstr ""
+"l'économiseur d'écran est déjà en cours de fonctionnement pour cette session"
 
 #: ../src/gs-lock-plug.c:336
 msgid "Time has expired."
