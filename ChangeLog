@@ -1,5 +1,13 @@
 2006-07-31  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/floaters.c: (screen_saver_on_expose_event):
+	Another speed up patch for floaters.
+
+	Patch from Matthias Clasen <mclasen@redhat.com>
+	Fixes part of #331145
+
+2006-07-31  William Jon McCann  <mccann@jhu.edu>
+
 	* data/gnome-screensaver.schemas.in:
 	* src/gs-manager.c: (gs_manager_set_keyboard_enabled),
 	(gs_manager_set_logout_command), (gs_manager_set_keyboard_command),

@@ -54,7 +54,7 @@
 #define FLOATER_MIN_SIZE (16.0)
 #endif
 #ifndef FLOATER_DEFAULT_COUNT
-#define FLOATER_DEFAULT_COUNT (9)
+#define FLOATER_DEFAULT_COUNT (5)
 #endif
 
 #ifndef SMALL_ANGLE
@@ -984,9 +984,13 @@ screen_saver_on_expose_event (ScreenSaver    *screen_saver,
   for (tmp = screen_saver->floaters; tmp != NULL; tmp = tmp->next)
     {
       ScreenSaverFloater *floater;
-#ifdef CULL_FLOATERS
       GdkRectangle rect;
       gint size;
+
+      floater = (ScreenSaverFloater *) tmp->data;
+
+      size = CLAMP ((int) (FLOATER_MAX_SIZE * floater->scale),
+		    FLOATER_MIN_SIZE, FLOATER_MAX_SIZE);
 
       rect.x = (int) (floater->position.x - .5 * G_SQRT2 * size);
       rect.y = (int) (floater->position.y - .5 * G_SQRT2 * size);
@@ -995,9 +999,6 @@ screen_saver_on_expose_event (ScreenSaver    *screen_saver,
 
       if (!gdk_region_rect_in (event->region, &rect))
         continue;
-#endif
-
-      floater = (ScreenSaverFloater *) tmp->data;
 
       if (!screen_saver_floater_do_draw (screen_saver, floater, context))
         {
