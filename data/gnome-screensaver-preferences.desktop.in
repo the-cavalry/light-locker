@@ -2,7 +2,7 @@
 Encoding=UTF-8
 _Name=Screensaver
 _Comment=Set your screensaver preferences
-Icon=screensaver
+Icon=preferences-desktop-screensaver
 Exec=gnome-screensaver-preferences
 Terminal=false
 Type=Application

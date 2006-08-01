@@ -1,5 +1,11 @@
 2006-08-01  William Jon McCann  <mccann@jhu.edu>
 
+	* data/gnome-screensaver-preferences.desktop.in:
+	Updated icon name to new one from gnome-icon-themes.
+	Fixes #349463
+
+2006-08-01  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/gs-theme-window.c: (gs_theme_window_real_realize):
 	Fix more fallout from bug #338246.
 
