@@ -118,7 +118,9 @@ gs_theme_window_real_realize (GtkWidget *widget)
         int            y;
         int            width;
         int            height;
+        int            event_mask;
 
+        event_mask = 0;
         window = NULL;
         preview_xid = g_getenv ("XSCREENSAVER_WINDOW");
 
@@ -146,16 +148,8 @@ gs_theme_window_real_realize (GtkWidget *widget)
 
                                 gtk_window_fullscreen (GTK_WINDOW (widget));
 
-                                gtk_widget_set_events (widget,
-                                                       gtk_widget_get_events (widget)
-                                                       | GDK_POINTER_MOTION_MASK
-                                                       | GDK_BUTTON_PRESS_MASK
-                                                       | GDK_BUTTON_RELEASE_MASK
-                                                       | GDK_KEY_PRESS_MASK
-                                                       | GDK_KEY_RELEASE_MASK
-                                                       | GDK_EXPOSURE_MASK
-                                                       | GDK_ENTER_NOTIFY_MASK
-                                                       | GDK_LEAVE_NOTIFY_MASK);
+                                event_mask = GDK_EXPOSURE_MASK | GDK_STRUCTURE_MASK;
+                                gtk_widget_set_events (widget, gtk_widget_get_events (widget) | event_mask);
                         }
                 }
         }
@@ -175,12 +169,11 @@ gs_theme_window_real_realize (GtkWidget *widget)
                                   window,
                                   GTK_STATE_NORMAL);
         gdk_window_set_decorations (window, (GdkWMDecoration) 0);
+        gdk_window_set_events (window, gdk_window_get_events (window) | event_mask);
 
         widget->window = window;
         gdk_window_set_user_data (window, widget);
         GTK_WIDGET_SET_FLAGS (widget, GTK_REALIZED);
-
-        gdk_window_set_events (window, gtk_widget_get_events (widget));
 
         gdk_window_get_geometry (window, &x, &y, &width, &height, NULL);
         gtk_widget_size_request (widget, &requisition);

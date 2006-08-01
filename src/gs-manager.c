@@ -144,7 +144,6 @@ select_theme (GSManager *manager)
         return theme;
 }
 
-
 static GSJob *
 lookup_job_for_window (GSManager *manager,
                        GSWindow  *window)

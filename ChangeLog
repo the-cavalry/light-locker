@@ -1,5 +1,13 @@
 2006-08-01  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/gs-theme-window.c: (gs_theme_window_real_realize):
+	Fix more fallout from bug #338246.
+
+	* src/gs-window-x11.c: (get_env_vars):
+	Debug spew the environment variables.
+
+2006-08-01  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c: (error_watch), (spawn_on_window),
 	(keyboard_command_watch), (lock_command_watch):
 	Watch the error output from the child process for debugging

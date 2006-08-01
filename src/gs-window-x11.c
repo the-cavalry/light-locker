@@ -694,9 +694,10 @@ get_env_vars (GtkWidget *widget)
                 var = allowed_env_vars [i];
                 val = g_getenv (var);
                 if (val != NULL) {
-                        g_ptr_array_add (env, g_strdup_printf ("%s=%s",
-                                                               var,
-                                                               val));
+                        char *str;
+                        str = g_strdup_printf ("%s=%s", var, val);
+                        g_ptr_array_add (env, str);
+                        gs_debug ("adding environment: %s", str);
                 }
         }
 
