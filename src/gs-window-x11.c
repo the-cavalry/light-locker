@@ -705,6 +705,49 @@ get_env_vars (GtkWidget *widget)
         return env;
 }
 
+/* just for debugging */
+static gboolean
+error_watch (GIOChannel   *source,
+             GIOCondition  condition,
+             gpointer      data)
+{
+        gboolean finished = FALSE;
+
+        if (condition & G_IO_IN) {
+                GIOStatus status;
+                GError   *error = NULL;
+                char     *line;
+
+                line = NULL;
+                status = g_io_channel_read_line (source, &line, NULL, NULL, &error);
+
+                switch (status) {
+                case G_IO_STATUS_NORMAL:
+                        gs_debug ("command error output: %s", line);
+                        break;
+                case G_IO_STATUS_EOF:
+                        finished = TRUE;
+                        break;
+                case G_IO_STATUS_ERROR:
+                        finished = TRUE;
+                        gs_debug ("Error reading from child: %s\n", error->message);
+                        return FALSE;
+                case G_IO_STATUS_AGAIN:
+                default:
+                        break;
+                }
+                g_free (line);
+        } else if (condition & G_IO_HUP) {
+                finished = TRUE;
+        }
+
+        if (finished) {
+                return FALSE;
+        }
+
+        return TRUE;
+}
+
 static gboolean
 spawn_on_window (GSWindow *window,
                  char     *command,
@@ -720,6 +763,7 @@ spawn_on_window (GSWindow *window,
         gboolean    result;
         GIOChannel *channel;
         int         standard_output;
+        int         standard_error;
         int         child_pid;
         int         id;
         int         i;
@@ -744,7 +788,7 @@ spawn_on_window (GSWindow *window,
                                                  &child_pid,
                                                  NULL,
                                                  &standard_output,
-                                                 NULL,
+                                                 &standard_error,
                                                  &error);
 
         for (i = 0; i < env->len; i++) {
@@ -759,12 +803,13 @@ spawn_on_window (GSWindow *window,
                 return FALSE;
         }
 
-        if (pid) {
+        if (pid != NULL) {
                 *pid = child_pid;
         } else {
                 g_spawn_close_pid (child_pid);
         }
 
+        /* output channel */
         channel = g_io_channel_unix_new (standard_output);
         g_io_channel_set_close_on_unref (channel, TRUE);
         g_io_channel_set_flags (channel,
@@ -774,10 +819,21 @@ spawn_on_window (GSWindow *window,
                              G_IO_IN | G_IO_HUP | G_IO_ERR | G_IO_NVAL,
                              watch_func,
                              user_data);
-        if (watch_id) {
+        if (watch_id != NULL) {
                 *watch_id = id;
         }
+        g_io_channel_unref (channel);
 
+        /* error channel */
+        channel = g_io_channel_unix_new (standard_error);
+        g_io_channel_set_close_on_unref (channel, TRUE);
+        g_io_channel_set_flags (channel,
+                                g_io_channel_get_flags (channel) | G_IO_FLAG_NONBLOCK,
+                                NULL);
+        id = g_io_add_watch (channel,
+                             G_IO_IN | G_IO_HUP | G_IO_ERR | G_IO_NVAL,
+                             error_watch,
+                             NULL);
         g_io_channel_unref (channel);
 
         g_strfreev (argv);
@@ -964,6 +1020,7 @@ keyboard_command_watch (GIOChannel   *source,
                 GError   *error = NULL;
                 char     *line;
 
+                line = NULL;
                 status = g_io_channel_read_line (source, &line, NULL, NULL, &error);
 
                 switch (status) {
@@ -975,7 +1032,6 @@ keyboard_command_watch (GIOChannel   *source,
                                 if (1 == sscanf (line, " %" G_GUINT32_FORMAT " %c", &id, &c)) {
                                         create_keyboard_socket (window, id);
                                 }
-                                g_free (line);
                         }
                         break;
                 case G_IO_STATUS_EOF:
@@ -983,13 +1039,14 @@ keyboard_command_watch (GIOChannel   *source,
                         break;
                 case G_IO_STATUS_ERROR:
                         finished = TRUE;
-                        fprintf (stderr, "Error reading fd from child: %s\n", error->message);
+                        gs_debug ("Error reading from child: %s\n", error->message);
                         return FALSE;
                 case G_IO_STATUS_AGAIN:
                 default:
                         break;
                 }
 
+                g_free (line);
         } else if (condition & G_IO_HUP) {
                 finished = TRUE;
         }
@@ -1137,6 +1194,7 @@ lock_command_watch (GIOChannel   *source,
                 GError   *error = NULL;
                 char     *line;
 
+                line = NULL;
                 status = g_io_channel_read_line (source, &line, NULL, NULL, &error);
 
                 switch (status) {
@@ -1161,21 +1219,20 @@ lock_command_watch (GIOChannel   *source,
                                 }
                                 finished = TRUE;
                         }
-
-                        g_free (line);
                         break;
                 case G_IO_STATUS_EOF:
                         finished = TRUE;
                         break;
                 case G_IO_STATUS_ERROR:
                         finished = TRUE;
-                        fprintf (stderr, "Error reading fd from child: %s\n", error->message);
+                        gs_debug ("Error reading from child: %s\n", error->message);
                         return FALSE;
                 case G_IO_STATUS_AGAIN:
                 default:
                         break;
                 }
 
+                g_free (line);
         } else if (condition & G_IO_HUP) {
                 finished = TRUE;
         }

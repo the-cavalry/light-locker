@@ -1,3 +1,10 @@
+2006-08-01  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-window-x11.c: (error_watch), (spawn_on_window),
+	(keyboard_command_watch), (lock_command_watch):
+	Watch the error output from the child process for debugging
+	purposes.
+
 2006-07-31  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac:
