@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-26 15:54+0200\n"
-"PO-Revision-Date: 2006-07-29 18:40+0200\n"
+"POT-Creation-Date: 2006-08-02 10:47+0200\n"
+"PO-Revision-Date: 2006-08-02 10:50+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgid "_Screensaver theme:"
 msgstr "Tema del _salvapantallas:"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver themes"
 msgstr "Temas del salvapantallas"
 
@@ -75,38 +75,53 @@ msgid "Activate when idle"
 msgstr "Activar cuando esté inactivo"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow embedding a keyboard into the window"
+msgstr "Permitir empotrar un teclado en la ventana"
+
+#: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow logout"
 msgstr "Permitir cerrar sesión"
 
-#: ../data/gnome-screensaver.schemas.in.h:3
+#: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
 msgstr "Permitir cambiar usuario"
 
-#: ../data/gnome-screensaver.schemas.in.h:4
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Embedded keyboard command"
+msgstr "Comando de teclado empotrado"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Lock on activation"
 msgstr "Bloquear al activar"
 
-#: ../data/gnome-screensaver.schemas.in.h:5
+#: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Logout command"
 msgstr "Comando de cierre de sesión"
 
-#: ../data/gnome-screensaver.schemas.in.h:6
+#: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Screensaver theme selection mode"
 msgstr "Modo de selección del tema del salvapantallas"
 
-#: ../data/gnome-screensaver.schemas.in.h:8
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr ""
 "Ponga esto a TRUE para activar el salvapantallas cuando la sesión esté "
 "inactiva."
 
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr "Estableczca esto a TRUE para permitir embeber un teclado en la ventana al intentar desbloquear. La clave \"keyboard_command\" debe estar establecida con el comando apropiado."
+
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr ""
 "Ponga esto a TRUE para bloquear la pantalla cuando se activa el "
 "salvapantallas"
 
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -114,7 +129,7 @@ msgstr ""
 "Ponga esto a TRUE para ofrecer una opción en el diálogo de desbloqueo para "
 "cambiar a una cuenta de usuario diferente."
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -123,7 +138,15 @@ msgstr ""
 "cerrar la sesión después de un intervalo de tiempo. El retardo se especifica "
 "en la clave \"logout_delay\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr "El comando que se ejecutará, si la clave \"embadded_keyboard_enabled\" está establecida a TRUE, para embeber un widget de teclado dentro de la ventana. Este comando debería implementar un interfaz XEMBED y sacar una ventana XID en la salida estándar."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -134,13 +157,14 @@ msgstr ""
 "interacción. Esta clave tiene efecto sólo si la clave \"logout_enable\" está "
 "establecida a TRUE."
 
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid "The number of minutes after screensaver activation before locking the screen."
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
 msgstr ""
 "El número de minutos tras la activación del salvapantallas antes de bloquear "
 "la pantalla."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -151,17 +175,19 @@ msgstr ""
 "clave tiene efecto sólo si la clave \"logout_enable\" está establecida a "
 "TRUE."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
-msgid "The number of minutes of inactivity before the session is considered idle."
-msgstr "El número de minutos de inactividad antes de considerar la sesión inactiva."
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
+msgstr ""
+"El número de minutos de inactividad antes de considerar la sesión inactiva."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr ""
 "El número de minutos que se ejecuta antes de cambiar el tema del "
 "salvapantallas."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
@@ -174,15 +200,15 @@ msgstr ""
 "el salvapantallas usando sólo un tema (especificado en la clave \"themes"
 "\" ), y \"random\" para activar el salvapantallas usando un tema aleatorio."
 
-#: ../data/gnome-screensaver.schemas.in.h:18
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid "Theme for lock dialog"
 msgstr "Tema para el diálogo de bloqueo"
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid "Theme to use for the lock dialog."
 msgstr "Tema para usar en el diálogo de bloqueo."
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -194,19 +220,19 @@ msgstr ""
 "nombre del tema cuando \"mode\" es \"single\", y debería proporcionar una "
 "lista de temas cuando \"mode\" es \"random\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Time before activation"
 msgstr "Tiempo antes de activar"
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before locking"
 msgstr "Tiempo antes de bloquear"
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before logout option"
 msgstr "Tiempo antes de la opción de cierre de sesión"
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before theme change"
 msgstr "Tiempo antes de cambiar el tema"
 
@@ -281,34 +307,34 @@ msgstr "Esto dibuja una rejilla de cuadros pop-art de colores pulsantes. "
 msgid "Pop art squares"
 msgstr "Cuadrados pop art"
 
-#: ../savers/floaters.c:1165
+#: ../savers/floaters.c:1166
 msgid "show paths that images follow"
 msgstr "mostrar las rutas que siguen las imágenes"
 
-#: ../savers/floaters.c:1172
+#: ../savers/floaters.c:1173
 msgid "occasionally rotate images as they move"
 msgstr "ocasionalmente rotar las imágenes mientras se mueven"
 
-#: ../savers/floaters.c:1179
+#: ../savers/floaters.c:1180
 msgid "print out frame rate and other statistics"
 msgstr "imprimir la tasa de fotogramas y otras estadísticas"
 
-#: ../savers/floaters.c:1187
+#: ../savers/floaters.c:1188
 msgid "the maximum number of images to keep on screen"
 msgstr "el número máximo de imágenes que mantener en la pantalla"
 
 #. translators: this should be translated to be symbolic of a generic
 #. * number.  e.g, "the screen saver should keep N images on the screen"
 #.
-#: ../savers/floaters.c:1191
+#: ../savers/floaters.c:1192
 msgid "N"
 msgstr "N"
 
-#: ../savers/floaters.c:1198
+#: ../savers/floaters.c:1199
 msgid "the source image to use"
 msgstr "La imagen de fuente a usar"
 
-#: ../savers/floaters.c:1205
+#: ../savers/floaters.c:1206
 msgid "the initial size and position of window"
 msgstr "el tamaño inicial y la posición de la ventana"
 
@@ -316,23 +342,23 @@ msgstr "el tamaño inicial y la posición de la ventana"
 #. * can be translated, but the 'x' area indicator and '+' offset indicators
 #. * need to be untranslated and can't be rearranged.
 #.
-#: ../savers/floaters.c:1210
+#: ../savers/floaters.c:1211
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "ANCHURAxALTURA+X+Y"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1228
+#: ../savers/floaters.c:1229
 msgid "image - floats images around the screen"
 msgstr "imagen - las imágenes flotan alrededor de la pantalla"
 
-#: ../savers/floaters.c:1238
+#: ../savers/floaters.c:1239
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Vea --help para la información de uso.\n"
 
-#: ../savers/floaters.c:1247
+#: ../savers/floaters.c:1248
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "Debe especificar una imagen. Vea --help para la información de uso.\n"
 
@@ -375,7 +401,8 @@ msgstr "Consola"
 
 #: ../src/cut-n-paste/fusa-display.c:142
 msgid "The number of the virtual console this display can be found on, or %-1."
-msgstr "El número de consolas virtuales que esta pantalla puede encontrar o %-1."
+msgstr ""
+"El número de consolas virtuales que esta pantalla puede encontrar o %-1."
 
 #: ../src/cut-n-paste/fusa-display.c:148
 msgid "Nested"
@@ -387,7 +414,8 @@ msgstr "Indica si esta pantalla es una pantalla en ventana anidada (Xnest)."
 
 #: ../src/cut-n-paste/fusa-manager.c:1453
 msgid "The display manager could not be contacted for unknown reasons."
-msgstr "No se pudo contactar con el gestor de pantallas por razones desconocidas."
+msgstr ""
+"No se pudo contactar con el gestor de pantallas por razones desconocidas."
 
 #: ../src/cut-n-paste/fusa-manager.c:1460
 msgid "The display manager is not running or too old."
@@ -411,7 +439,8 @@ msgstr "Hay demasiadas sesiones X en ejecución."
 
 #: ../src/cut-n-paste/fusa-manager.c:1475
 msgid "The nested X server (Xnest) cannot connect to your current X server."
-msgstr "El servidor X anidado (Xnest) no puede conectar con su servidor X actual."
+msgstr ""
+"El servidor X anidado (Xnest) no puede conectar con su servidor X actual."
 
 #: ../src/cut-n-paste/fusa-manager.c:1478
 msgid "The X server in the GDM configuration could not be found."
@@ -443,7 +472,8 @@ msgstr "El archivo ~/.Xauthority está mal configurado o falta."
 
 #: ../src/cut-n-paste/fusa-manager.c:1496
 msgid "Too many messages were sent to the display manager, and it hung up."
-msgstr "Se han enviado demasiados mensajes al gestor de pantallas, y se ha colgado."
+msgstr ""
+"Se han enviado demasiados mensajes al gestor de pantallas, y se ha colgado."
 
 #: ../src/cut-n-paste/fusa-manager.c:1500
 msgid "The display manager sent an unknown error message."
@@ -517,7 +547,8 @@ msgstr "Quizá tiene una versión antigua de GDM en ejecución."
 
 #: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
 msgid "Cannot communicate with gdm, perhaps you have an old version running."
-msgstr "No se puede comunicar con gdm, quizás tiene una versión antigua en ejecución."
+msgstr ""
+"No se puede comunicar con gdm, quizás tiene una versión antigua en ejecución."
 
 #: ../src/cut-n-paste/gdmcomm.c:469
 msgid "The allowed limit of flexible X servers reached."
@@ -553,7 +584,8 @@ msgstr ""
 "Instale el paquete Xnest para usar el inicio de sesión anidado."
 
 #: ../src/cut-n-paste/gdmcomm.c:488
-msgid "The X server is not available, it is likely that gdm is badly configured."
+msgid ""
+"The X server is not available, it is likely that gdm is badly configured."
 msgstr "El servidor X no está disponible, parece que gdm está mal configurado."
 
 #: ../src/cut-n-paste/gdmcomm.c:497
@@ -672,7 +704,8 @@ msgstr ""
 
 #: ../src/gnome-screensaver-command.c:73
 msgid "Poke the running screensaver to simulate user activity"
-msgstr "Similar el salvapantallas en ejecución para similar la actividad del usuario"
+msgstr ""
+"Similar el salvapantallas en ejecución para similar la actividad del usuario"
 
 #: ../src/gnome-screensaver-command.c:75
 msgid ""
@@ -736,7 +769,8 @@ msgstr "Tiene que cambiar la contraseña inmediatamente (la contraseña caducó)
 
 #: ../src/gnome-screensaver-dialog.c:175
 msgid "You are required to change your password immediately (root enforced)"
-msgstr "Tiene que cambiar la contraseña inmediatamente (forzado por el administrador)"
+msgstr ""
+"Tiene que cambiar la contraseña inmediatamente (forzado por el administrador)"
 
 #: ../src/gnome-screensaver-dialog.c:176
 msgid "Your account has expired; please contact your system administrator"
@@ -802,29 +836,29 @@ msgstr "Oscurecer pantalla"
 msgid "Random"
 msgstr "Aleatorio"
 
-#: ../src/gnome-screensaver-preferences.c:790
+#: ../src/gnome-screensaver-preferences.c:802
 msgid "Invalid screensaver theme"
 msgstr "Tema del salvapantallas inválido"
 
-#: ../src/gnome-screensaver-preferences.c:793
+#: ../src/gnome-screensaver-preferences.c:805
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Este archivo no parece ser un tema válido del salvapantallas."
 
-#: ../src/gnome-screensaver-preferences.c:910
+#: ../src/gnome-screensaver-preferences.c:932
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d hora"
 msgstr[1] "%d horas"
 
-#: ../src/gnome-screensaver-preferences.c:913
+#: ../src/gnome-screensaver-preferences.c:935
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minuto"
 msgstr[1] "%d minutos"
 
-#: ../src/gnome-screensaver-preferences.c:916
+#: ../src/gnome-screensaver-preferences.c:938
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -832,15 +866,15 @@ msgstr[0] "%d segundo"
 msgstr[1] "%d segundos"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:922
+#: ../src/gnome-screensaver-preferences.c:944
 #, c-format
 msgid "%s %s %s"
 msgstr "%s:%s:%s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:925
-#: ../src/gnome-screensaver-preferences.c:933
+#: ../src/gnome-screensaver-preferences.c:947
+#: ../src/gnome-screensaver-preferences.c:955
 #, c-format
 msgid "%s %s"
 msgstr "%s:%s"
@@ -848,22 +882,22 @@ msgstr "%s:%s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:928
-#: ../src/gnome-screensaver-preferences.c:936
-#: ../src/gnome-screensaver-preferences.c:940
+#: ../src/gnome-screensaver-preferences.c:950
+#: ../src/gnome-screensaver-preferences.c:958
+#: ../src/gnome-screensaver-preferences.c:962
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:955
+#: ../src/gnome-screensaver-preferences.c:977
 msgid "Never"
 msgstr "Nunca"
 
-#: ../src/gnome-screensaver-preferences.c:1345
+#: ../src/gnome-screensaver-preferences.c:1367
 msgid "Could not load the main interface"
 msgstr "No se pudo cargar el interfaz principal"
 
-#: ../src/gnome-screensaver-preferences.c:1347
+#: ../src/gnome-screensaver-preferences.c:1369
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Asegúrese de que el salvapantallas está instalado apropiadamente"
 
@@ -932,4 +966,3 @@ msgstr "%U en %h"
 #: ../src/gs-lock-plug.c:1624
 msgid "_Password:"
 msgstr "_Contraseña:"
-
