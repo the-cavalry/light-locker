@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.mk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-31 09:40+0200\n"
-"PO-Revision-Date: 2006-07-31 20:24+0200\n"
+"POT-Creation-Date: 2006-08-02 18:39+0200\n"
+"PO-Revision-Date: 2006-08-02 22:51+0200\n"
 "Last-Translator: Jovan Naumovski <jovan@lugola.net>\n"
 "Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgid "_Screensaver theme:"
 msgstr "Тема за _затишје:"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver themes"
 msgstr "Тени за затишје"
 
@@ -77,34 +77,52 @@ msgid "Activate when idle"
 msgstr "Активирај кога е неактивно"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow embedding a keyboard into the window"
+msgstr "Дозволи вградување тастатура во прозорецот"
+
+#: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow logout"
 msgstr "Дозволи одлогирање"
 
-#: ../data/gnome-screensaver.schemas.in.h:3
+#: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
 msgstr "Дозволи промена на корисници"
 
-#: ../data/gnome-screensaver.schemas.in.h:4
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Embedded keyboard command"
+msgstr "Команда за вградена тастатура"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Lock on activation"
 msgstr "Заклучи на активација"
 
-#: ../data/gnome-screensaver.schemas.in.h:5
+#: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Logout command"
 msgstr "Команда за одјава"
 
-#: ../data/gnome-screensaver.schemas.in.h:6
+#: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Screensaver theme selection mode"
 msgstr "Режим за селекција на тема за затишје"
 
-#: ../data/gnome-screensaver.schemas.in.h:8
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr "Постави го ова како TRUE за активирање на ззтишје кога сесијата е неактивна"
 
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr ""
+"Поставете го ова како TRUE за да дозволите вградена тастатура во прозорецот кога се "
+"обидувате да отклучете. \"keyboard_command\" клучот мора да биде поставен со "
+"соодветната команда."
+
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr "постави го ова како TRUE да заклучите екран кога затишјето се активира"
 
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -112,7 +130,7 @@ msgstr ""
 "Поставете го ова како TRUE да се овозможи опција во отклучувачкиот дијалог "
 "за промена на друга корисничка сметка."
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -120,7 +138,19 @@ msgstr ""
 "Постави го ова како TRUE да понуди опција во отклучувачкиот дијалог за "
 "одлогирање по истекот. Истекот е специфициран во копчето  \"logout_delay\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr ""
+"Оваа команда ќе биде извршена ако \"embedded_keyboard_enabled\" клучот е "
+"поставен како TRUE за да вгради графичка контрола за тастатура во прозорецот. Оваа "
+"команда треба да имплементира XEMBED приклучен интерфејс и да извади XID прозорец "
+"на стандардниот излезен уред."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -130,11 +160,11 @@ msgstr ""
 "едноставно да го одјави корисникот без никаква интеракција. Ова копче ќе има "
 "ефект само ако \"logout_enable\" копчето е поставено како TRUE"
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid "The number of minutes after screensaver activation before locking the screen."
 msgstr "Број на минути по активација на затишјето пред заклучување на екранот."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -144,15 +174,15 @@ msgstr ""
 "покажат во отклучувачкиот диалог. Ова копче ќе има ефект само ако "
 "\"logout_enable\" копчето е поставено како TRUE."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid "The number of minutes of inactivity before the session is considered idle."
 msgstr "Број на минутите на неактивност пред сесијата да прогласи неактивност."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "Број на минутити да извршува пред промена на тема за затишјето."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
@@ -165,15 +195,15 @@ msgstr ""
 "копчето \"теми\"), и \"рандом\" за да се овозможи затишјето да користи "
 "рандом тема на активацијата."
 
-#: ../data/gnome-screensaver.schemas.in.h:18
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid "Theme for lock dialog"
 msgstr "Тема за дијалог прозорецот за заклучување"
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid "Theme to use for the lock dialog."
 msgstr "Тема која ќе се користи за дијалог прозорецот за заклучување."
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -185,19 +215,19 @@ msgstr ""
 "фа произведе име на тема кофа \"режм\" e \"single\", и треба да произведе "
 "листа од теми кога \"режим\" e \"рандом\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Time before activation"
 msgstr "Бреме пред активација"
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before locking"
 msgstr "Време пред заклучување"
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before logout option"
 msgstr "Време пред опција за одјава"
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before theme change"
 msgstr "Време пред промена на тема"
 
@@ -272,34 +302,34 @@ msgstr "pop-art-ish мрежа од пулсирачки бои"
 msgid "Pop art squares"
 msgstr "Pop art квадрати"
 
-#: ../savers/floaters.c:1165
+#: ../savers/floaters.c:1166
 msgid "show paths that images follow"
 msgstr "Прикажи патеки кои следат слики"
 
-#: ../savers/floaters.c:1172
+#: ../savers/floaters.c:1173
 msgid "occasionally rotate images as they move"
 msgstr "повремено ротирај ги сликите како што тие с движат"
 
-#: ../savers/floaters.c:1179
+#: ../savers/floaters.c:1180
 msgid "print out frame rate and other statistics"
 msgstr "печати стапка на опкружување и други статистики"
 
-#: ../savers/floaters.c:1187
+#: ../savers/floaters.c:1188
 msgid "the maximum number of images to keep on screen"
 msgstr "максималниот број на опкружување на слики да се задржи на екранот"
 
 #. translators: this should be translated to be symbolic of a generic
 #. * number.  e.g, "the screen saver should keep N images on the screen"
 #.
-#: ../savers/floaters.c:1191
+#: ../savers/floaters.c:1192
 msgid "N"
 msgstr "N"
 
-#: ../savers/floaters.c:1198
+#: ../savers/floaters.c:1199
 msgid "the source image to use"
 msgstr "изворна слика"
 
-#: ../savers/floaters.c:1205
+#: ../savers/floaters.c:1206
 msgid "the initial size and position of window"
 msgstr "Почетната големина и позицијата на прозорот"
 
@@ -307,23 +337,23 @@ msgstr "Почетната големина и позицијата на про�
 #. * can be translated, but the 'x' area indicator and '+' offset indicators
 #. * need to be untranslated and can't be rearranged.
 #.
-#: ../savers/floaters.c:1210
+#: ../savers/floaters.c:1211
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "WIDTHxHEIGHT+X+Y"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1228
+#: ../savers/floaters.c:1229
 msgid "image - floats images around the screen"
 msgstr "слика - подвижни слики околу екранот"
 
-#: ../savers/floaters.c:1238
+#: ../savers/floaters.c:1239
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Види --помож за употрбливи информации.\n"
 
-#: ../savers/floaters.c:1247
+#: ../savers/floaters.c:1248
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
 "Морате да специфицирате една слика. Видете --помош за употребливи "
@@ -793,15 +823,15 @@ msgstr "Црн екран"
 msgid "Random"
 msgstr "Рандом"
 
-#: ../src/gnome-screensaver-preferences.c:800
+#: ../src/gnome-screensaver-preferences.c:802
 msgid "Invalid screensaver theme"
 msgstr "Невалидна тема за затишје"
 
-#: ../src/gnome-screensaver-preferences.c:803
+#: ../src/gnome-screensaver-preferences.c:805
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Оваа датотека не појавува да е валидна тема за затишје."
 
-#: ../src/gnome-screensaver-preferences.c:930
+#: ../src/gnome-screensaver-preferences.c:932
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -809,7 +839,7 @@ msgstr[0] "%d час"
 msgstr[1] "%d часови"
 msgstr[2] "%d часови"
 
-#: ../src/gnome-screensaver-preferences.c:933
+#: ../src/gnome-screensaver-preferences.c:935
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -817,7 +847,7 @@ msgstr[0] "%d минута"
 msgstr[1] "%d минути"
 msgstr[2] "%d минути"
 
-#: ../src/gnome-screensaver-preferences.c:936
+#: ../src/gnome-screensaver-preferences.c:938
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -826,15 +856,15 @@ msgstr[1] "%d  секунди"
 msgstr[2] "%d секунди"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:942
+#: ../src/gnome-screensaver-preferences.c:944
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:945
-#: ../src/gnome-screensaver-preferences.c:953
+#: ../src/gnome-screensaver-preferences.c:947
+#: ../src/gnome-screensaver-preferences.c:955
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -842,22 +872,22 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:948
-#: ../src/gnome-screensaver-preferences.c:956
-#: ../src/gnome-screensaver-preferences.c:960
+#: ../src/gnome-screensaver-preferences.c:950
+#: ../src/gnome-screensaver-preferences.c:958
+#: ../src/gnome-screensaver-preferences.c:962
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:975
+#: ../src/gnome-screensaver-preferences.c:977
 msgid "Never"
 msgstr "Никогаш"
 
-#: ../src/gnome-screensaver-preferences.c:1365
+#: ../src/gnome-screensaver-preferences.c:1367
 msgid "Could not load the main interface"
 msgstr "Не можам да го вчитам главниот интерфејс"
 
-#: ../src/gnome-screensaver-preferences.c:1367
+#: ../src/gnome-screensaver-preferences.c:1369
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Ве молам осигурајте се дека затишјето е правилно инсталирано"
 
