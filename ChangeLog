@@ -1,3 +1,14 @@
+2006-08-02  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-job.c: (get_themes_tree), (gs_job_lookup_theme_info),
+	(gs_job_get_theme_info_list):
+	Don't keep GMenuTree around as a static object.  This
+	was done initially to work around gnome-menus leaks
+	and to avoid fragmentation.
+
+	* src/gs-prefs.c: (gs_prefs_finalize):
+	Free keyboard_command.
+
 2006-08-01  William Jon McCann  <mccann@jhu.edu>
 
 	* data/gnome-screensaver-preferences.desktop.in:

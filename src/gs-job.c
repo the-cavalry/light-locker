@@ -158,11 +158,7 @@ add_known_engine_locations_to_path (void)
 static GMenuTree *
 get_themes_tree (void)
 {
-        static GMenuTree *themes_tree;
-
-        if (themes_tree != NULL) {
-                return themes_tree;
-        }
+        GMenuTree *themes_tree;
 
         /* we only need to add the locations to the path once
            and since this is only run once we'll do it here */
@@ -302,6 +298,8 @@ gs_job_lookup_theme_info (GSJob      *job,
         info = find_info_for_id (tree, id);
         g_free (id);
 
+        gmenu_tree_unref (tree);
+
         return info;
 }
 
@@ -364,6 +362,8 @@ gs_job_get_theme_info_list (GSJob *job)
                 make_theme_list (&l, root, "gnome-screensavers.menu");
                 gmenu_tree_item_unref (root);
         }
+
+        gmenu_tree_unref (tree);
 
         return l;
 }

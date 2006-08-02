@@ -676,6 +676,7 @@ gs_prefs_finalize (GObject *object)
         }
 
         g_free (prefs->logout_command);
+        g_free (prefs->keyboard_command);
 
         G_OBJECT_CLASS (gs_prefs_parent_class)->finalize (object);
 }
