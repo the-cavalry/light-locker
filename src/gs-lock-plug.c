@@ -867,7 +867,10 @@ gs_lock_plug_show_prompt (GSLockPlug *plug,
 
         gtk_label_set_text (GTK_LABEL (plug->priv->auth_prompt_label), message);
         gtk_entry_set_visibility (GTK_ENTRY (plug->priv->auth_prompt_entry), visible);
-        gtk_widget_grab_focus (plug->priv->auth_prompt_entry);
+
+        if (! GTK_WIDGET_HAS_FOCUS (plug->priv->auth_prompt_entry)) {
+                gtk_widget_grab_focus (plug->priv->auth_prompt_entry);
+        }
 
         restart_monitor_progress (plug);
 }

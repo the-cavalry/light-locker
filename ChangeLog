@@ -1,5 +1,18 @@
 2006-08-03  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c: (gs_lock_plug_show_prompt):
+	Don't grab focus if entry already has it.  In
+	that case it was selecting the existing text and
+	any new keypress would overwrite it.  This
+	causes a problem for the key forwarding.
+
+	* src/gs-window-x11.c: (queue_key_event),
+	(gs_window_real_key_press_event):
+	Fix problem where we were only queuing one key event.
+	Also add a paranoid limit on the number of queued keys.
+
+2006-08-03  William Jon McCann  <mccann@jhu.edu>
+
 	* src/Makefile.am:
 	* src/gnome-screensaver-preferences.c: (get_all_theme_ids),
 	(config_set_theme), (job_set_theme), (preview_set_theme),

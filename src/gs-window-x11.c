@@ -47,6 +47,8 @@ enum {
         DIALOG_RESPONSE_OK
 };
 
+#define MAX_QUEUED_EVENTS 16
+
 #define GS_WINDOW_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_WINDOW, GSWindowPrivate))
 
 struct GSWindowPrivate
@@ -1584,8 +1586,12 @@ queue_key_event (GSWindow    *window,
                 return;
         }
 
-        window->priv->key_events = g_list_prepend (window->priv->key_events,
-                                                   gdk_event_copy ((GdkEvent *)event));
+        /* Only cache MAX_QUEUED_EVENTS key events.  If there are any more than this then
+           something is wrong */
+        if (g_list_length (window->priv->key_events) < MAX_QUEUED_EVENTS) {
+                window->priv->key_events = g_list_prepend (window->priv->key_events,
+                                                           gdk_event_copy ((GdkEvent *)event));
+        }
 }
 
 static gboolean
@@ -1608,8 +1614,6 @@ static gboolean
 gs_window_real_key_press_event (GtkWidget   *widget,
                                 GdkEventKey *event)
 {
-        gboolean catch_events = FALSE;
-
         /*g_message ("KEY PRESS state: %u keyval %u", event->state, event->keyval);*/
 
         /* Ignore brightness keys */
@@ -1618,12 +1622,9 @@ gs_window_real_key_press_event (GtkWidget   *widget,
                 return TRUE;
         }
 
-        catch_events = maybe_handle_activity (GS_WINDOW (widget));
+        maybe_handle_activity (GS_WINDOW (widget));
 
-        /* Catch all keypresses up until the lock dialog is shown */
-        if (catch_events) {
-                queue_key_event (GS_WINDOW (widget), event);
-        }
+        queue_key_event (GS_WINDOW (widget), event);
 
         if (GTK_WIDGET_CLASS (gs_window_parent_class)->key_press_event) {
                 GTK_WIDGET_CLASS (gs_window_parent_class)->key_press_event (widget, event);
