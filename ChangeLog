@@ -1,3 +1,27 @@
+2006-08-03  William Jon McCann  <mccann@jhu.edu>
+
+	* src/Makefile.am:
+	* src/gnome-screensaver-preferences.c: (get_all_theme_ids),
+	(config_set_theme), (job_set_theme), (preview_set_theme),
+	(get_theme_info_list), (populate_model),
+	(tree_selection_changed_cb), (init_capplet), (main):
+	* src/gs-job.c: (gs_job_finalize), (gs_job_set_command),
+	(spawn_on_widget), (gs_job_start):
+	* src/gs-job.h:
+	* src/gs-manager.c: (manager_select_theme_for_job), (cycle_job),
+	(manager_show_window):
+	* src/gs-theme-manager.[ch]: (find_command), (check_command),
+	(add_known_engine_locations_to_path), (gs_theme_info_ref),
+	(gs_theme_info_unref), (gs_theme_info_get_id),
+	(gs_theme_info_get_name), (gs_theme_info_get_exec),
+	(gs_theme_info_new_from_gmenu_tree_entry), (find_info_for_id),
+	(gs_theme_manager_lookup_theme_info), (theme_prepend_entry),
+	(make_theme_list), (gs_theme_manager_get_info_list),
+	(gs_theme_manager_class_init), (get_themes_tree),
+	(gs_theme_manager_init), (gs_theme_manager_finalize),
+	(gs_theme_manager_new):
+	Separate out theme management from job mechanism.
+
 2006-08-02  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-job.c: (get_themes_tree), (gs_job_lookup_theme_info),

@@ -47,16 +47,6 @@ typedef struct
         GObjectClass  parent_class;
 } GSJobClass;
 
-typedef struct {
-        char  *name;
-        char  *comment;
-        char  *exec;
-        char  *icon;
-        char  *path;
-        char  *file_id;
-        guint  refcount;
-} GSJobThemeInfo;
-
 GType           gs_job_get_type                  (void);
 
 GSJob          *gs_job_new                       (void);
@@ -71,28 +61,8 @@ gboolean        gs_job_suspend                   (GSJob      *job,
 void            gs_job_set_widget                (GSJob      *job,
                                                   GtkWidget  *widget);
 
-gboolean        gs_job_set_theme                 (GSJob          *job,
-                                                  const char     *theme,
-                                                  GError        **error);
-
-void            gs_job_set_theme_path            (GSJob          *job,
-                                                  const char     *path[],
-                                                  int             n_elements);
-void            gs_job_get_theme_path            (GSJob          *job,
-                                                  char          **path[],
-                                                  int            *n_elements);
-void            gs_job_append_theme_path         (GSJob          *job,
-                                                  const char     *path);
-void            gs_job_prepend_theme_path        (GSJob          *job,
-                                                  const char     *path);
-
-GSList         *gs_job_get_theme_info_list       (GSJob          *job);
-GSJobThemeInfo *gs_job_lookup_theme_info         (GSJob          *job,
-                                                  const char     *theme);
-GSJobThemeInfo *gs_job_theme_info_ref            (GSJobThemeInfo *info);
-void            gs_job_theme_info_unref          (GSJobThemeInfo *info);
-const char     *gs_job_theme_info_get_id         (GSJobThemeInfo *info);
-const char     *gs_job_theme_info_get_name       (GSJobThemeInfo *info);
+gboolean        gs_job_set_command               (GSJob          *job,
+                                                  const char     *command);
 
 G_END_DECLS
 

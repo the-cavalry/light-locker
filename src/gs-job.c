@@ -39,8 +39,6 @@
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 
-#include "gmenu-tree.h"
-
 #include "gs-debug.h"
 #include "gs-job.h"
 
@@ -68,305 +66,10 @@ struct GSJobPrivate
         gint            pid;
         guint           watch_id;
 
-        char           *current_theme;
+        char           *command;
 };
 
 G_DEFINE_TYPE (GSJob, gs_job, G_TYPE_OBJECT)
-
-static const char *known_engine_locations [] = {
-        SAVERDIR,
-#ifdef XSCREENSAVER_HACK_DIR
-        XSCREENSAVER_HACK_DIR,
-#endif
-        LIBEXECDIR "/xscreensaver",
-        "/usr/X11R6/lib/xscreensaver",
-        "/usr/libexec/xscreensaver",
-        "/usr/lib/xscreensaver",
-        NULL
-};
-
-/* Returns the full path to the queried command */
-static char *
-find_command (const char *command)
-{
-        int i;
-
-        for (i = 0; known_engine_locations [i]; i++){
-                char *path;
-
-                path = g_build_filename (known_engine_locations [i], command, NULL);
-
-                if (g_file_test (path, G_FILE_TEST_IS_EXECUTABLE)
-                    && ! g_file_test (path, G_FILE_TEST_IS_DIR)) {
-                        return path;
-                }
-
-                g_free (path);
-        }
-
-        return NULL;
-}
-
-static gboolean
-check_command (char *command)
-{
-        char *path;
-        char **argv;
-
-        g_return_val_if_fail (command != NULL, FALSE);
-
-        g_shell_parse_argv (command, NULL, &argv, NULL);
-        path = find_command (argv [0]);
-        g_strfreev (argv);
-
-        if (path) {
-                g_free (path);
-                return TRUE;
-        }
-
-        return FALSE;
-}
-
-static void
-add_known_engine_locations_to_path (void)
-{
-        static gboolean already_added;
-        int      i;
-        GString *str;
-
-        /* We only want to add the items to the path once */
-        if (already_added) {
-                return;
-        }
-
-        already_added = TRUE;
-
-        /* TODO: set a default PATH ? */
-
-        str = g_string_new (g_getenv ("PATH"));
-        for (i = 0; known_engine_locations [i]; i++) {
-                /* TODO: check that permissions are safe */
-                if (g_file_test (known_engine_locations [i], G_FILE_TEST_IS_DIR)) {
-                        g_string_append_printf (str, ":%s", known_engine_locations [i]);
-                }
-        }
-
-        g_setenv ("PATH", str->str, TRUE);
-        g_string_free (str, TRUE);
-}
-
-static GMenuTree *
-get_themes_tree (void)
-{
-        GMenuTree *themes_tree;
-
-        /* we only need to add the locations to the path once
-           and since this is only run once we'll do it here */
-        add_known_engine_locations_to_path ();
-
-	themes_tree = gmenu_tree_lookup ("gnome-screensavers.menu", GMENU_TREE_FLAGS_NONE);
-
-        return themes_tree;
-}
-
-GSJobThemeInfo *
-gs_job_theme_info_ref (GSJobThemeInfo *info)
-{
-        g_return_val_if_fail (info != NULL, NULL);
-        g_return_val_if_fail (info->refcount > 0, NULL);
-
-        info->refcount++;
-
-        return info;
-}
-
-void
-gs_job_theme_info_unref (GSJobThemeInfo *info)
-{
-        g_return_if_fail (info != NULL);
-        g_return_if_fail (info->refcount > 0);
-
-        if (--info->refcount == 0) {
-                g_free (info->name);
-                g_free (info->comment);
-                g_free (info->icon);
-                g_free (info->exec);
-                g_free (info->path);
-                g_free (info->file_id);
-
-                g_free (info);
-        }
-}
-
-const char *
-gs_job_theme_info_get_id (GSJobThemeInfo *info)
-{
-        g_return_val_if_fail (info != NULL, NULL);
-
-        return info->file_id;
-}
-
-const char *
-gs_job_theme_info_get_name (GSJobThemeInfo *info)
-{
-        g_return_val_if_fail (info != NULL, NULL);
-
-        return info->name;
-}
-
-static GSJobThemeInfo *
-gs_job_theme_info_new_from_gmenu_tree_entry (GMenuTreeEntry *entry)
-{
-        GSJobThemeInfo *info;
-        const char     *str;
-        char           *pos;
-
-        info = g_new0 (GSJobThemeInfo, 1);
-
-        info->refcount = 1;
-        info->name     = g_strdup (gmenu_tree_entry_get_name (entry));
-        info->comment  = g_strdup (gmenu_tree_entry_get_comment (entry));
-        info->icon     = g_strdup (gmenu_tree_entry_get_icon (entry));
-        info->exec     = g_strdup (gmenu_tree_entry_get_exec (entry));
-        info->path     = g_strdup (gmenu_tree_entry_get_desktop_file_path (entry));
-
-        /* remove the .desktop suffix */
-        str = gmenu_tree_entry_get_desktop_file_id (entry);
-        pos = g_strrstr (str, ".desktop");
-        if (pos) {
-                info->file_id = g_strndup (str, pos - str);
-        } else {
-                info->file_id  = g_strdup (str);
-        }
-
-        return info;
-}
-
-static GSJobThemeInfo *
-find_info_for_id (GMenuTree  *tree,
-                  const char *id)
-{
-        GSJobThemeInfo     *info;
-	GMenuTreeDirectory *root;
-        GSList             *items;
-        GSList             *l;
-
-	root = gmenu_tree_get_root_directory (tree);
-        if (root == NULL) {
-                return NULL;
-        }
-
-        items = gmenu_tree_directory_get_contents (root);
-
-        info = NULL;
-
-        for (l = items; l; l = l->next) {
-                if (info == NULL
-                    && gmenu_tree_item_get_type (l->data) == GMENU_TREE_ITEM_ENTRY) {
-                        GMenuTreeEntry *entry = l->data;
-                        const char     *file_id;
-
-                        file_id = gmenu_tree_entry_get_desktop_file_id (entry);
-                        if (file_id && id && strcmp (file_id, id) == 0) {
-                                info = gs_job_theme_info_new_from_gmenu_tree_entry (entry);
-                        }
-                }
-
-                gmenu_tree_item_unref (l->data);
-        }
-
-        g_slist_free (items);
-        gmenu_tree_item_unref (root);
-
-        return info;
-}
-
-GSJobThemeInfo *
-gs_job_lookup_theme_info (GSJob      *job,
-                          const char *name)
-{
-        GSJobThemeInfo *info;
-        char           *id;
-        GMenuTree      *tree;
-
-        g_return_val_if_fail (GS_IS_JOB (job), NULL);
-        g_return_val_if_fail (name != NULL, NULL);
-
-        tree = get_themes_tree ();
-
-        id = g_strdup_printf ("%s.desktop", name);
-        info = find_info_for_id (tree, id);
-        g_free (id);
-
-        gmenu_tree_unref (tree);
-
-        return info;
-}
-
-static void
-theme_prepend_entry (GSList         **parent_list,
-                     GMenuTreeEntry  *entry,
-                     const char      *filename)
-{
-        GSJobThemeInfo *info;
-
-        info = gs_job_theme_info_new_from_gmenu_tree_entry (entry);
-
-        *parent_list = g_slist_prepend (*parent_list, info);
-}
-
-static void
-make_theme_list (GSList             **parent_list,
-                 GMenuTreeDirectory  *directory,
-                 const char          *filename)
-{
-        GSList *items;
-        GSList *l;
-
-        items = gmenu_tree_directory_get_contents (directory);
-
-        for (l = items; l; l = l->next) {
-                switch (gmenu_tree_item_get_type (l->data)) {
-
-                case GMENU_TREE_ITEM_ENTRY:
-                        theme_prepend_entry (parent_list, l->data, filename);
-                        break;
-
-                case GMENU_TREE_ITEM_ALIAS:
-                case GMENU_TREE_ITEM_DIRECTORY:
-                default:
-                        break;
-                }
-
-                gmenu_tree_item_unref (l->data);
-        }
-
-        g_slist_free (items);
-
-        *parent_list = g_slist_reverse (*parent_list);
-}
-
-GSList *
-gs_job_get_theme_info_list (GSJob *job)
-{
-        GSList             *l = NULL;
-        GMenuTreeDirectory *root;
-        GMenuTree          *tree;
-
-        g_return_val_if_fail (GS_IS_JOB (job), NULL);
-
-        tree = get_themes_tree ();
-        root = gmenu_tree_get_root_directory (tree);
-
-        if (root != NULL) {
-                make_theme_list (&l, root, "gnome-screensavers.menu");
-                gmenu_tree_item_unref (root);
-        }
-
-        gmenu_tree_unref (tree);
-
-        return l;
-}
 
 static char *
 widget_get_id_string (GtkWidget *widget)
@@ -456,8 +159,8 @@ gs_job_finalize (GObject *object)
                 gs_job_died (job);
         }
 
-        g_free (job->priv->current_theme);
-        job->priv->current_theme = NULL;
+        g_free (job->priv->command);
+        job->priv->command = NULL;
 
         G_OBJECT_CLASS (gs_job_parent_class)->finalize (object);
 }
@@ -481,38 +184,15 @@ gs_job_set_widget  (GSJob     *job,
 }
 
 gboolean
-gs_job_set_theme  (GSJob      *job,
-                   const char *theme,
-                   GError    **error)
+gs_job_set_command  (GSJob      *job,
+                     const char *command)
 {
-        GSJobThemeInfo *info;
-
         g_return_val_if_fail (GS_IS_JOB (job), FALSE);
 
-        /* NULL theme is interpreted as a no-op job */
+        g_free (job->priv->command);
 
-        if (theme != NULL) {
-                info = gs_job_lookup_theme_info (job, theme);
-
-                if (! info) {
-                        /* FIXME: set error */
-                        g_warning ("Could not lookup info for theme: %s", theme);
-                        return FALSE;
-                }
-
-                if (! check_command (info->exec)) {
-                        /* FIXME: set error */
-                        g_warning ("Could not execute command for theme: %s", info->exec);
-                        return FALSE;
-                }
-
-                gs_job_theme_info_unref (info);
-        }
-
-        g_free (job->priv->current_theme);
-
-        if (theme != NULL) {
-                job->priv->current_theme = g_strdup (theme);
+        if (command != NULL) {
+                job->priv->command = g_strdup (command);
         }
 
         return TRUE;
@@ -614,7 +294,6 @@ spawn_on_widget (GtkWidget  *widget,
                  gpointer    user_data,
                  guint      *watch_id)
 {
-        char       *path;
         char      **argv;
         GPtrArray  *env;
         gboolean    result;
@@ -635,12 +314,6 @@ spawn_on_widget (GtkWidget  *widget,
                 return FALSE;
         }
 
-        path = find_command (argv [0]);
-        if (path) {
-                g_free (argv [0]);
-                argv [0] = path;
-        }
-
         env = get_env_vars (widget);
 
         error = NULL;
@@ -648,7 +321,7 @@ spawn_on_widget (GtkWidget  *widget,
                                                  NULL,
                                                  argv,
                                                  (char **)env->pdata,
-                                                 G_SPAWN_DO_NOT_REAP_CHILD,
+                                                 G_SPAWN_SEARCH_PATH | G_SPAWN_DO_NOT_REAP_CHILD,
                                                  NULL,
                                                  NULL,
                                                  &child_pid,
@@ -749,8 +422,7 @@ gs_job_is_running (GSJob *job)
 gboolean
 gs_job_start (GSJob *job)
 {
-        gboolean        result;
-        GSJobThemeInfo *info;
+        gboolean result;
 
         g_return_val_if_fail (job != NULL, FALSE);
         g_return_val_if_fail (GS_IS_JOB (job), FALSE);
@@ -767,21 +439,14 @@ gs_job_start (GSJob *job)
                 return FALSE;
         }
 
-        if (job->priv->current_theme == NULL) {
-                /* no warning here because a NULL theme is interpreted
+        if (job->priv->command == NULL) {
+                /* no warning here because a NULL command is interpreted
                    as a no-op job */
                 return FALSE;
         }
 
-        info = gs_job_lookup_theme_info (job, job->priv->current_theme);
-
-        if (! check_command (info->exec)) {
-                g_warning ("Could not start job: unable to execute theme engine");
-                return FALSE;
-        }
-
         result = spawn_on_widget (job->priv->widget,
-                                  info->exec,
+                                  job->priv->command,
                                   &job->priv->pid,
                                   (GIOFunc)command_watch,
                                   job,
@@ -790,8 +455,6 @@ gs_job_start (GSJob *job)
         if (result) {
                 job->priv->status = GS_JOB_RUNNING;
         }
-
-        gs_job_theme_info_unref (info);
 
         return result;
 }

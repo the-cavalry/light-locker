@@ -43,6 +43,7 @@
 
 #include "file-transfer-dialog.h"
 
+#include "gs-theme-manager.h"
 #include "gs-job.h"
 #include "gs-prefs.h" /* for GS_MODE enum */
 
@@ -82,8 +83,9 @@ static GtkTargetEntry drop_types [] =
         { "_NETSCAPE_URL", 0, TARGET_NS_URL }
 };
 
-static GladeXML *xml = NULL;
-static GSJob    *job = NULL;
+static GladeXML       *xml = NULL;
+static GSThemeManager *theme_manager = NULL;
+static GSJob          *job = NULL;
 
 static gint32
 config_get_activate_delay (gboolean *is_writable)
@@ -214,18 +216,18 @@ config_get_theme (gboolean *is_writable)
 }
 
 static GSList *
-get_all_theme_ids (GSJob *job)
+get_all_theme_ids (GSThemeManager *theme_manager)
 {
         GSList *ids = NULL;
         GSList *entries;
         GSList *l;
 
-        entries = gs_job_get_theme_info_list (job);
+        entries = gs_theme_manager_get_info_list (theme_manager);
         for (l = entries; l; l = l->next) {
-                GSJobThemeInfo *info = l->data;
+                GSThemeInfo *info = l->data;
 
-                ids = g_slist_prepend (ids, g_strdup (gs_job_theme_info_get_id (info)));
-                gs_job_theme_info_unref (info);
+                ids = g_slist_prepend (ids, g_strdup (gs_theme_info_get_id (info)));
+                gs_theme_info_unref (info);
         }
         g_slist_free (entries);
 
@@ -247,7 +249,7 @@ config_set_theme (const char *theme_id)
                 mode = GS_MODE_RANDOM;
 
                 /* set the themes key to contain all available screensavers */
-                list = get_all_theme_ids (job);
+                list = get_all_theme_ids (theme_manager);
         } else {
                 mode = GS_MODE_SINGLE;
                 list = g_slist_append (list, g_strdup (theme_id));
@@ -343,15 +345,27 @@ preview_clear (GtkWidget *widget)
 }
 
 static void
+job_set_theme (GSJob      *job,
+               const char *theme)
+{
+        GSThemeInfo *info;
+        const char  *command;
+
+        info = gs_theme_manager_lookup_theme_info (theme_manager, theme);
+        command = gs_theme_info_get_exec (info);
+        gs_job_set_command (job, command);
+        gs_theme_info_unref (info);
+}
+
+static void
 preview_set_theme (GtkWidget  *widget,
                    const char *theme,
                    const char *name)
 {
-        GError    *error = NULL;
         GtkWidget *label;
         char      *markup;
 
-        if (job) {
+        if (job != NULL) {
                 gs_job_stop (job);
         }
 
@@ -367,28 +381,16 @@ preview_set_theme (GtkWidget  *widget,
         } else if (theme && strcmp (theme, "__random") == 0) {
                 GSList *themes;
 
-                themes = get_all_theme_ids (job);
-                if (themes) {
-                        if (! gs_job_set_theme (job, (const char *) themes->data, &error)) {
-                                if (error) {
-                                        g_warning ("Could not set theme: %s", error->message);
-                                        g_error_free (error);
-                                }
-                                return;
-                        }
+                themes = get_all_theme_ids (theme_manager);
+                if (themes != NULL) {
+                        job_set_theme (job, (const char *) themes->data);
                         g_slist_foreach (themes, (GFunc) g_free, NULL);
                         g_slist_free (themes);
 
                         gs_job_start (job);
                 }
         } else {
-                if (! gs_job_set_theme (job, theme, &error)) {
-                        if (error) {
-                                g_warning ("Could not set theme: %s", error->message);
-                                g_error_free (error);
-                        }
-                        return;
-                }
+                job_set_theme (job, theme);
                 gs_job_start (job);
         }
 }
@@ -421,7 +423,7 @@ response_cb (GtkWidget *widget,
 static GSList *
 get_theme_info_list (void)
 {
-        return gs_job_get_theme_info_list (job);
+        return gs_theme_manager_get_info_list (theme_manager);
 }
 
 static void
@@ -456,18 +458,18 @@ populate_model (GtkTreeStore *store)
         }
 
         for (l = themes; l; l = l->next) {
-                GSJobThemeInfo *info = l->data;
+                GSThemeInfo *info = l->data;
 
                 if (! info)
                         continue;
 
                 gtk_tree_store_append (store, &iter, NULL);
                 gtk_tree_store_set (store, &iter,
-                                    NAME_COLUMN, gs_job_theme_info_get_name (info),
-                                    ID_COLUMN, gs_job_theme_info_get_id (info),
+                                    NAME_COLUMN, gs_theme_info_get_name (info),
+                                    ID_COLUMN, gs_theme_info_get_id (info),
                                     -1);
 
-                gs_job_theme_info_unref (info);
+                gs_theme_info_unref (info);
         }
 
         g_slist_free (themes);
@@ -521,7 +523,7 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
 
         gtk_tree_model_get (model, &iter, ID_COLUMN, &theme, NAME_COLUMN, &name, -1);
 
-        if (! theme) {
+        if (theme == NULL) {
                 g_free (name);
                 return;
         }
@@ -1451,7 +1453,7 @@ init_capplet (void)
                 g_free (string);
 
                 if (mode == GS_MODE_RANDOM) {
-                        list = get_all_theme_ids (job);
+                        list = get_all_theme_ids (theme_manager);
                         gconf_client_set_list (client, KEY_THEMES, GCONF_VALUE_STRING, list, NULL);
 
                         g_slist_foreach (list, (GFunc) g_free, NULL);
@@ -1516,11 +1518,13 @@ main (int    argc,
                             NULL);
 
         job = gs_job_new ();
+        theme_manager = gs_theme_manager_new ();
 
         init_capplet ();
 
         gtk_main ();
 
+        g_object_unref (theme_manager);
         g_object_unref (job);
 
 	return 0;

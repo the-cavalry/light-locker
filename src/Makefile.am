@@ -182,6 +182,8 @@ gnome_screensaver_SOURCES =	\
 	gs-window.h		\
 	gs-prefs.c		\
 	gs-prefs.h		\
+	gs-theme-manager.c	\
+	gs-theme-manager.h	\
 	gs-job.c		\
 	gs-job.h		\
 	gs-debug.c		\
@@ -217,6 +219,8 @@ gnome_screensaver_preferences_SOURCES =	\
 	gnome-screensaver-preferences.c	\
 	file-transfer-dialog.c		\
 	file-transfer-dialog.h		\
+	gs-theme-manager.c		\
+	gs-theme-manager.h		\
 	gs-job.c			\
 	gs-job.h			\
 	gs-debug.c			\

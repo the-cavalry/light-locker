@@ -29,6 +29,7 @@
 
 #include "gs-manager.h"
 #include "gs-window.h"
+#include "gs-theme-manager.h"
 #include "gs-job.h"
 #include "gs-grab.h"
 #include "gs-fade.h"
@@ -209,16 +210,38 @@ manager_maybe_start_job_for_window (GSManager *manager,
 }
 
 static void
-cycle_job (GSWindow  *window,
-           GSJob     *job,
-           GSManager *manager)
+manager_select_theme_for_job (GSManager *manager,
+                              GSJob     *job)
 {
         const char *theme;
 
         theme = select_theme (manager);
 
+        if (theme != NULL) {
+                GSThemeManager *theme_manager;
+                GSThemeInfo    *info;
+                const char     *command;
+
+                theme_manager = gs_theme_manager_new ();
+                info = gs_theme_manager_lookup_theme_info (theme_manager, theme);
+                command = gs_theme_info_get_exec (info);
+
+                gs_job_set_command (job, command);
+
+                gs_theme_info_unref (info);
+                g_object_unref (theme_manager);
+        } else {
+                gs_job_set_command (job, NULL);
+        }
+}
+
+static void
+cycle_job (GSWindow  *window,
+           GSJob     *job,
+           GSManager *manager)
+{
         gs_job_stop (job);
-        gs_job_set_theme (job, theme, NULL);
+        manager_select_theme_for_job (manager, job);
         manager_maybe_start_job_for_window (manager, window);
 }
 
@@ -1144,14 +1167,11 @@ static void
 manager_show_window (GSManager *manager,
                      GSWindow  *window)
 {
-        GSJob      *job;
-        const char *theme;
+        GSJob *job;
 
         job = gs_job_new_for_widget (GTK_WIDGET (window));
 
-        theme = select_theme (manager);
-        gs_job_set_theme (job, theme, NULL);
-
+        manager_select_theme_for_job (manager, job);
         manager_add_job_for_window (manager, window, job);
 
         manager->priv->activate_time = time (NULL);
