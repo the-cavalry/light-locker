@@ -356,18 +356,24 @@ get_best_visual (void)
         unsigned long v;
         char          c;
         GdkVisual    *visual;
+        gboolean      res;
 
         visual = NULL;
 
         command = g_build_filename (LIBEXECDIR, "gnome-screensaver-gl-helper", NULL);
 
         error = NULL;
-        g_spawn_command_line_sync (command,
-                                   &std_output,
-                                   NULL,
-                                   &exit_status,
-                                   &error);
-        g_free (command);
+        std_output = NULL;
+        res = g_spawn_command_line_sync (command,
+                                         &std_output,
+                                         NULL,
+                                         &exit_status,
+                                         &error);
+        if (! res) {
+                gs_debug ("Could not run command '%s': %s", command, error->message);
+                g_error_free (error);
+                goto out;
+        }
 
         if (1 == sscanf (std_output, "0x%lx %c", &v, &c)) {
                 if (v != 0) {
@@ -380,8 +386,9 @@ get_best_visual (void)
                                   (unsigned int) visual_id);
                 }
         }
-
+ out:
         g_free (std_output);
+        g_free (command);
 
         return visual;
 }
