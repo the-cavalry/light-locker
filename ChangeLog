@@ -1,5 +1,14 @@
 2006-08-04  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-manager.c: (gs_manager_get_lock_enabled):
+	* src/gs-manager.h:
+	* src/gs-monitor.c: (gs_monitor_lock_screen),
+	(gs_monitor_simulate_user_activity), (listener_lock_cb),
+	(listener_simulate_user_activity_cb):
+	Add some of the safe parts of the patch from #347798
+
+2006-08-04  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c: (get_best_visual):
 	Check result of g_spawn.
 

@@ -407,6 +407,19 @@ gs_manager_set_lock_active (GSManager *manager,
 }
 
 void
+gs_manager_get_lock_enabled (GSManager *manager,
+                             gboolean  *lock_enabled)
+{
+        if (lock_enabled != NULL) {
+                *lock_enabled = FALSE;
+        }
+
+        g_return_if_fail (GS_IS_MANAGER (manager));
+
+        *lock_enabled = manager->priv->lock_enabled;
+}
+
+void
 gs_manager_set_lock_enabled (GSManager *manager,
                              gboolean   lock_enabled)
 {

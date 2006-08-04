@@ -180,8 +180,7 @@ watcher_idle_notice_cb (GSWatcher *watcher,
 }
 
 static void
-listener_lock_cb (GSListener *listener,
-                  GSMonitor  *monitor)
+gs_monitor_lock_screen (GSMonitor *monitor)
 {
         gboolean res;
         gboolean locked;
@@ -197,6 +196,26 @@ listener_lock_cb (GSListener *listener,
                 gs_manager_set_lock_active (monitor->priv->manager, locked);
                 gs_debug ("Unable to lock the screen");
         }
+}
+
+static void
+gs_monitor_simulate_user_activity (GSMonitor *monitor)
+{
+        /* in case the screen isn't blanked reset the
+           idle watcher */
+        gs_watcher_reset (monitor->priv->watcher);
+
+        /* request that the manager unlock -
+           will pop up a dialog if necessary */
+        gs_manager_request_unlock (monitor->priv->manager);
+}
+
+static void
+listener_lock_cb (GSListener *listener,
+                  GSMonitor  *monitor)
+{
+        gs_monitor_lock_screen (monitor);
+
 }
 
 static void
@@ -257,13 +276,7 @@ static void
 listener_simulate_user_activity_cb (GSListener *listener,
                                     GSMonitor  *monitor)
 {
-        /* in case the screen isn't blanked reset the
-           idle watcher */
-        gs_watcher_reset (monitor->priv->watcher);
-
-        /* request that the manager unlock -
-           will pop up a dialog if necessary */
-        gs_manager_request_unlock (monitor->priv->manager);
+        gs_monitor_simulate_user_activity (monitor);
 }
 
 static void
