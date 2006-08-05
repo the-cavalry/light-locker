@@ -503,6 +503,9 @@ update_display (GSTESlideshow *show)
 static gboolean
 draw_iter (GSTESlideshow *show)
 {
+        double old_opacity;
+        double new_opacity;
+
         if (show->priv->pat2 != NULL) {
                 gdouble fps;
                 gdouble elapsed;
@@ -532,10 +535,10 @@ draw_iter (GSTESlideshow *show)
                  * to be cleaned up by the last iteration, where alpha2
                  * becomes 1 because new_opacity is 1.
                  */
-                double old_opacity = (double) (show->priv->fade_ticks - 1) /
-                                     (double) N_FADE_TICKS;
-                double new_opacity = (double) show->priv->fade_ticks /
-                                     (double) N_FADE_TICKS;
+                old_opacity = (double) (show->priv->fade_ticks - 1) /
+                              (double) N_FADE_TICKS;
+                new_opacity = (double) show->priv->fade_ticks /
+                              (double) N_FADE_TICKS;
                 show->priv->alpha2 = 1.0 - (1.0 - new_opacity) /
                                            (1.0 - old_opacity);
 

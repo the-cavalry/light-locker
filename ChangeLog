@@ -1,3 +1,14 @@
+2006-08-05  William Jon McCann  <mccann@jhu.edu>
+
+	* savers/gste-slideshow.c: (draw_iter):
+	* src/gnome-screensaver-gl-helper.c: (main):
+	* src/gnome-screensaver-preferences.c: (check_is_root_user):
+	* src/gs-listener-dbus.c: (generate_cookie):
+	* src/gs-watcher-x11.c: (init_mit_saver_extension):
+
+	Fix warnings from sparse.  Fixes #350049
+	Patch from Kjartan Maraas <kmaraas@gnome.org>
+
 2006-08-04  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-manager.c: (gs_manager_get_lock_enabled):

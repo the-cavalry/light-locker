@@ -24,6 +24,7 @@
 
 #include "config.h"
 
+#define _GNU_SOURCE
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1207,11 +1208,6 @@ check_is_root_user (void)
   gid_t rgid, egid, sgid; /* Real, effective and saved group ID's */
 
 #ifdef HAVE_GETRESUID
-  /* These aren't in the header files, so we prototype them here.
-   */
-  int getresuid(uid_t *ruid, uid_t *euid, uid_t *suid);
-  int getresgid(gid_t *rgid, gid_t *egid, gid_t *sgid);
-
   if (getresuid (&ruid, &euid, &suid) != 0 ||
       getresgid (&rgid, &egid, &sgid) != 0)
 #endif /* HAVE_GETRESUID */

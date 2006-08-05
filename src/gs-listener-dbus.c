@@ -601,7 +601,7 @@ raise_syntax (DBusConnection *connection,
 }
 
 static guint32
-generate_cookie ()
+generate_cookie (void)
 {
         guint32 cookie;
 

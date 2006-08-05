@@ -802,7 +802,7 @@ query_mit_saver_extension (int *event_number,
 /* MIT SCREEN-SAVER server extension hackery.
  */
 static gboolean
-init_mit_saver_extension ()
+init_mit_saver_extension (void)
 {
         int         i;
         GdkDisplay *display   = gdk_display_get_default ();

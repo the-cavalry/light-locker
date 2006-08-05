@@ -28,11 +28,12 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 
+#include "gs-visual-gl.h"
+
 int
 main (int    argc,
       char **argv)
 {
-        gboolean        retval;
         GdkDisplay     *display;
         GdkScreen      *screen;
         GdkVisual      *visual;
