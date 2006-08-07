@@ -1,3 +1,9 @@
+==== 2.15.6 ====
+
+2006-08-07  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 2.15.6 release.
+
 2006-08-05  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/gste-slideshow.c: (draw_iter):

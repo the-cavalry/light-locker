@@ -1,4 +1,29 @@
 ===============
+Version 2.15.6
+===============
+
+  gnome-screensaver
+
+        * Support drag-n-drop of themes to preferences dialog
+        * Add support for embedding a keyboard in window
+        * More memory usage reduction
+        * Only allow a small number of queued key events
+
+  Translators
+
+        * Francisco Javier F. Serrador (es)
+        * Ivar Smolin (et)
+        * Ilkka Tuohela (fi)
+        * Christophe Merlet (RedFox) (fr)
+        * Ankit Patel (gu)
+        * ahmad riza h nst (id)
+        * %GŽ%@ygimantas Beru%Gč%@ka (lt)
+        * Jovan Naumovski (mk)
+        * Kjartan Maraas (nb)
+        * Matic %GŽ%@gur (sl)
+        * Theppitak Karoonboonyanan (th)
+
+===============
 Version 2.15.5
 ===============
 
