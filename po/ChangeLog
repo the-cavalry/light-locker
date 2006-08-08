@@ -1,5 +1,9 @@
-2006-08-02  Jovan Naumovski  <jovan@lugola.net>
+2006-08-08  Ani Peter <peter.ani@gmail.com>
 
+	* ml.po: Added and Updated Malayalam translation
+	* LINGUAS: Added Malayalam (ml) to the list of Languages
+
+2006-08-02  Jovan Naumovski  <jovan@lugola.net>
 	* mk.po: Updated Macedonian translation.
 
 2006-08-02  Kjartan Maraas  <kmaraas@gnome.org>
