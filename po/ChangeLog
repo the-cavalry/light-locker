@@ -1,3 +1,7 @@
+2006-08-12  Wouter Bolsterlee  <uws+gnome@xs4all.nl>
+
+	* nl.po: Translation updated by Wouter Bolsterlee.
+
 2006-08-12  Changwoo Ryu  <cwryu@debian.org>
 
 	* ko.po: Updated Korean translation.
@@ -372,7 +376,7 @@
 
 2006-04-18  Ankit Patel  <ankit644@yahoo.com>
 
-        * gu.po: Updated Gujarati Translation.
+	* gu.po: Updated Gujarati Translation.
 
 2006-04-17  Kjartan Maraas  <kmaraas@gnome.org>
 
@@ -385,7 +389,7 @@
 
 2006-04-13  Vladimer Sichinava  <vlsichinava@gmail.com>
 
-        * ka.po: Updated Georgian translation.
+	* ka.po: Updated Georgian translation.
 
 2006-04-10  Artur Flinta  <aflinta@cvs.gnome.org>
 
@@ -485,11 +489,11 @@
 
 2006-03-07  Daniel Nylander <po@danielnylander.se>
 
-        * sv.po: Updated Swedish translation.
+	* sv.po: Updated Swedish translation.
 
 2006-03-06  Maxim Dziumanenko <mvd@mylinux.ua>
 
-        * uk.po: Updated Ukrainian translation.
+	* uk.po: Updated Ukrainian translation.
 
 2006-03-05  Kjartan Maraas  <kmaraas@gnome.org>
 
@@ -535,11 +539,11 @@
 
 2006-02-23  Kostas Papadimas <pkst@gnome.org>
 
-          *el.po Updated Greek Translation
+	  *el.po Updated Greek Translation
 
 2006-02-23  Kostas Papadimas <pkst@gnome.org>
 
-          *el.po Updated Greek Translation
+	  *el.po Updated Greek Translation
 
 2006-02-23  Clytie Siddall <clytie@riverland.net.au>
 
@@ -717,7 +721,7 @@
 
 2006-01-01  Ankit Patel  <ankit644@yahoo.com>
 
-        * gu.po: Updated Gujarati Translation.
+	* gu.po: Updated Gujarati Translation.
 
 2006-01-01  Clytie Siddall <clytie@riverland.net.au>
 
@@ -761,7 +765,7 @@
 
 2005-12-19  Ankit Patel  <ankit644@yahoo.com>
 
-        * gu.po: Added Gujarati Translation.
+	* gu.po: Added Gujarati Translation.
 
 2005-12-19  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
@@ -990,7 +994,7 @@
 
 2005-09-16  Clytie Siddall <clytie@riverland.net.au>
 
-        * vi.po: Updated Vietnamese translation.
+	* vi.po: Updated Vietnamese translation.
 
 2005-09-06  Adam Weinberger  <adamw@gnome.org>
 
@@ -1002,7 +1006,7 @@
 
 2005-09-02  Clytie Siddall <clytie@riverland.net.au>
 
-        * vi.po: Updated Vietnamese translation.
+	* vi.po: Updated Vietnamese translation.
 
 2005-09-01  Vincent van Adrighem  <adrighem@gnome.org>
 
@@ -1010,7 +1014,7 @@
 
 2005-08-31  Clytie Siddall <clytie@riverland.net.au>
 
-        * vi.po: Updated Vietnamese translation.
+	* vi.po: Updated Vietnamese translation.
 
 2005-08-31  Takeshi AIHANA <aihana@gnome.gr.jp>
 
@@ -1022,7 +1026,7 @@
 
 2005-08-27  Clytie Siddall <clytie@riverland.net.au>
 
-        * vi.po: Updated Vietnamese translation.
+	* vi.po: Updated Vietnamese translation.
 
 2005-08-26  Christophe Merlet  <redfox@redfoxcenter.org>
 
