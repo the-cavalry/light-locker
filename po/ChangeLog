@@ -1,3 +1,8 @@
+2006-08-14  Sanlig Badral  <badral@openmn.org>
+
+        * mn.po: Added Mongolian translation.
+	* LINGUAS: Added mn entry.
+
 2006-08-14  Clytie Siddall <clytie@riverland.net.au>
 
 	* vi.po: Updated Vietnamese translation.

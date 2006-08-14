@@ -1,0 +1,957 @@
+# translation of mn.po to Mongolian
+# translation of screensever.po to Mongolian
+# translation of PACKAGE.
+# Copyright (C) 2006 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# <>, 2006.
+# Badral <badral@openmn.org>, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: mn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-08-14 23:51+0200\n"
+"PO-Revision-Date: 2006-08-15 00:03+0200\n"
+"Last-Translator: Badral <badral@openmn.org>\n"
+"Language-Team: Mongolian <openmn-translation@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.10.2\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "Дэлгэц гамнагч"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "Дэлгэц гамнагчийн тохиргоонуудыг байрлуул."
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "<b>Screensaver preview</b>"
+msgstr "<b>Дэлгэц гамнагчийг урьдчилан харах</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+msgstr "<b>Анхааруулга: Дэлгэц эзэн (root) хэрэглэгчээр түгжигдэхгүй.</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Regard the computer as _idle after:"
+msgstr "Дараа нь компютерийг чөлөөтэй гэж үз."
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "Screensaver Preferences"
+msgstr "Дэлгэц гамнагчийн Tохиргоонууд"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "Screensaver Preview"
+msgstr "Дэлгэц гамнагч урьдчилан харах"
+
+#: ../data/gnome-screensaver-preferences.glade.h:6
+msgid "_Activate screensaver when computer is idle"
+msgstr ""
+"Комьпютер дээр ямар нэг үйлдэл хийлгүй тодорхой хугацаа өнгөрөхөд скринсевер "
+"_идэвхиждэг."
+
+#: ../data/gnome-screensaver-preferences.glade.h:7
+msgid "_Lock screen when screensaver is active"
+msgstr "_Дэлгэц гамнагч идэвхитэй байх үед дэлгэц түгжигддэг"
+
+#: ../data/gnome-screensaver-preferences.glade.h:8
+msgid "_Preview"
+msgstr "_Урьдчилан харах"
+
+#: ../data/gnome-screensaver-preferences.glade.h:9
+msgid "_Screensaver theme:"
+msgstr "_Дэлгэц гамнагчийн сэдэв"
+
+#: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Screensaver themes"
+msgstr "_Дэлгэц гамнагчийн загварууд"
+
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "_Дэлгэц гамнагчүүд"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Activate when idle"
+msgstr "Үйлдэл хийгдээгүй үед идэвхждэг"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow embedding a keyboard into the window"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "Allow logout"
+msgstr "Гарахыг зөвшөөрөх"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow user switching"
+msgstr "Хэрэглэгч шилжүүлэхийг зөвшөөрөх"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Embedded keyboard command"
+msgstr "Embedded гарын тушаал"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "Lock on activation"
+msgstr "Түгжээ идэвхижих"
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Logout command"
+msgstr "Гарах команд"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Screensaver theme selection mode"
+msgstr "Дэлгэц гамнагчийн загвар сонголт"
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr ""
+"Хэрвээ тодорхой хугацаанд үйлдэл хийгдэхгүй бол скринсеверийг "
+"идэвхижүүлэхийн тулд ҮНЭН-д байрлуулна."
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr "Дэлгэц гамнагч идэвхижиж дэлгэцийг түгжихэд ҮНЭН-д байрлуулна."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr ""
+"Сонголтонд байгаа түгжээгүй үйлдлийг өөр хэрэглэгчтэй холбоход ҮНЭН-д "
+"байрлуулна."
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr ""
+"Сонголтонд байгаа түгжээгүй үйлдлийг саатлын дараах гаралт руу оруулахад "
+"ҮНЭН-д байрлуулна. Саатал нь \"гарах_боломжгүй\" түлхүүрт тусгагдана."
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr ""
+"Гарах товчлуурыг дарахад комманд ажиллаж эхэлнэ. Энэ комманд нь хэрэглэгчийг "
+"ямар нэг нөлөөгүйгээр хялбар гарах боломжийг өгдөг. Зөвхөн \"гарах_боломжтой"
+"\" түлхүүр ҮНЭН-д байгаа үед энэ түлхүүр нөлөөтэй."
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid "The number of minutes after screensaver activation before locking the screen."
+msgstr "Дэлгэц түгжигдэхийн өмнө скринсевер идэвхижсэний дараах минутын тоо "
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr ""
+"Сонголтод байгаа түгжээгүй үйлдлийн үед гарч болох гарахын өмнөх скринсевер "
+"идэвхижсэний дараах минутын тоо. Зөвхөн \"гарах_боломжтой\" түлхүүр ҮНЭН-д "
+"байгаа үед энэ түлхүүр нөлөөтэй.."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid "The number of minutes of inactivity before the session is considered idle."
+msgstr "Үйлдэл хийх боломжгүй байх үеээс өмнөх идэвхигүй байх минутын тоо."
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr "Дэлгэц гамнагчийн загвар өөрчлөгдөхийн өмнөх ажиллах минутын тоо."
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid ""
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
+msgstr ""
+"Дэлгэц гамнагч энэ сонголтын хэлбэрийг хэрэглэдэг. \"зөвхөн_хар\" үед ямар "
+"нэг идэвхижүүлэх загвар хэрэглэхгүйгээр скринсевер ажиллах боломжтой, \"ганц"
+"\" үед зөвхөн (\"загварууд\" түлхүүрийн) идэвхижүүлэх загварыг хэрэглэснээр "
+"скринсевер ажиллах боломжтой, \"тохиолдлын\" нь идэвхижүүлэх тохиолдлын "
+"загвар хэрэглэн скринсеверт ажиллах боломж олгоно."
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid "Theme for lock dialog"
+msgstr "Түгжигдсэн үйлдлийн сэдэв"
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "Theme to use for the lock dialog."
+msgstr "Түгжигдсэн үйлдлийг хэрэглэх загвар"
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
+msgstr ""
+"Энэ бол скринсеверт хэрэглэдэг загварын жагсаалтны түлхүүр. Энэ нь \"загвар"
+"\" түлхүүр нь \"зөвхөн-хар\" байх үед үгүйсгэгддэг бөгөөд \"загвар\" түлхүүр "
+"\"ганц\" бол загварын нэр ажиллахад бэлэн, хэрвээ \"загвар\" нь \"тохиолдлын"
+"\" бол загварын жагсаалт ажиллахад бэлэн байна."
+
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Time before activation"
+msgstr "Идэвхижихийн өмнөх хугацаа"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Time before locking"
+msgstr "Түгжихийн өмнөх хугацаа"
+
+#: ../data/gnome-screensaver.schemas.in.h:27
+msgid "Time before logout option"
+msgstr "Сонголтоос гарахын өмнөх хугацаа"
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before theme change"
+msgstr "Загварыг өөрчлөхөөс өмнөх хугацаа"
+
+#: ../data/lock-dialog-default.glade.h:2
+#, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
+msgstr "<span size=\"small\">%U on %h</span>"
+
+#: ../data/lock-dialog-default.glade.h:4
+#, no-c-format
+msgid "<span size=\"x-large\">%R</span>"
+msgstr "<span size=\"x-large\">%R</span>"
+
+#: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:172
+#: ../src/gnome-screensaver-dialog.c:173
+msgid "Password:"
+msgstr "Нууц үг:"
+
+#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1703
+msgid "S_witch to user:"
+msgstr "Хэрэглэгч рүү _шилжих"
+
+#: ../data/lock-dialog-default.glade.h:7
+msgid "_Cancel"
+msgstr "_Буцах"
+
+#: ../data/lock-dialog-default.glade.h:8
+msgid "_Log Out"
+msgstr "_Гарах"
+
+#: ../data/lock-dialog-default.glade.h:9
+msgid "_Switch User..."
+msgstr "_Хэрэглэгч Шилжүүлэх..."
+
+#: ../data/lock-dialog-default.glade.h:10
+msgid "_Switch user..."
+msgstr "_Хэрэглэгч Шилжүүлэх..."
+
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1432
+msgid "_Unlock"
+msgstr "_Онгойлгох"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Дэлгэцний доор хөлний лого бүхий GNOME-г гаргах."
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Хөлийг ашиглалтанд оруулах"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr "Сансар"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "Сансрын зургуудын слайдыг үзүүлэх"
+
+#: ../savers/personal-slideshow.desktop.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr "Таны Зургийн хавтаснаас слайдыг харуулах"
+
+#: ../savers/personal-slideshow.desktop.in.h:2
+msgid "Pictures folder"
+msgstr "Зурийн хавтас"
+
+#: ../savers/popsquares.desktop.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr "Шаргал өнгийн pop-art-ish grid хүснэг"
+
+#: ../savers/popsquares.desktop.in.h:2
+msgid "Pop art squares"
+msgstr "Тэгш өнцөгтийн pop хэлбэр"
+
+#: ../savers/floaters.c:1166
+msgid "show paths that images follow"
+msgstr "Зургуудын явах замыг харуулах"
+
+#: ../savers/floaters.c:1173
+msgid "occasionally rotate images as they move"
+msgstr "Хөдөлж байгаагаар зургийг хөдөлгөх"
+
+#: ../savers/floaters.c:1180
+msgid "print out frame rate and other statistics"
+msgstr "Тоон үзүүлэлт ба хэмжээг харуулна уу."
+
+#: ../savers/floaters.c:1188
+msgid "the maximum number of images to keep on screen"
+msgstr "дэлгэцэнд хадгалах зургуудын хамгийн их дугаар"
+
+#. translators: this should be translated to be symbolic of a generic
+#. * number.  e.g, "the screen saver should keep N images on the screen"
+#.
+#: ../savers/floaters.c:1192
+msgid "N"
+msgstr "N"
+
+#: ../savers/floaters.c:1199
+msgid "the source image to use"
+msgstr "хэрэглэх зургуудын нөөц"
+
+#: ../savers/floaters.c:1206
+msgid "the initial size and position of window"
+msgstr "Цонхны үндсэн хэмжээ ба байрлал"
+
+#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
+#. * can be translated, but the 'x' area indicator and '+' offset indicators
+#. * need to be untranslated and can't be rearranged.
+#.
+#: ../savers/floaters.c:1211
+msgid "WIDTHxHEIGHT+X+Y"
+msgstr "WIDTHxHEIGHT+X+Y"
+
+#. translators: the word "image" here
+#. * represents a command line argument
+#.
+#: ../savers/floaters.c:1229
+msgid "image - floats images around the screen"
+msgstr "Зураг - дэлгэцэн дэх зургуудыг ашиглалтанд оруулах"
+
+#: ../savers/floaters.c:1239
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s. Хэрэглэх зааврыг харна уу.\n"
+
+#: ../savers/floaters.c:1248
+msgid "You must specify one image.  See --help for usage information.\n"
+msgstr "Та нэг зургийг сонгох хэрэгтэй. Та хэрэглэх зааврыг харна уу.\n"
+
+#: ../savers/slideshow.c:47
+msgid "Location to get images from"
+msgstr "Зурагнууд руу орох байрлал"
+
+#: ../savers/slideshow.c:47
+msgid "PATH"
+msgstr "ЗАМ"
+
+#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
+msgid "Manager"
+msgstr "Зохицуулагч"
+
+#: ../src/cut-n-paste/fusa-display.c:120
+msgid "The manager which owns this object."
+msgstr "Энэ объектыг эзэмшдэг менежер."
+
+#: ../src/cut-n-paste/fusa-display.c:127
+msgid "Name"
+msgstr "Нэр"
+
+#: ../src/cut-n-paste/fusa-display.c:128
+msgid "The name of the X11 display this object refers to."
+msgstr "Энэ обьектэд хамаарах X11 дэлгэцийн нэр."
+
+#: ../src/cut-n-paste/fusa-display.c:134
+#: ../src/cut-n-paste/fusa-user-menu-item.c:163
+msgid "User"
+msgstr "Хэрэглэгч"
+
+#: ../src/cut-n-paste/fusa-display.c:135
+msgid "The user currently logged in on this virtual terminal."
+msgstr "Одоогоор терминальд байгаа хэрэглэгч."
+
+#: ../src/cut-n-paste/fusa-display.c:141
+msgid "Console"
+msgstr "Консол"
+
+#: ../src/cut-n-paste/fusa-display.c:142
+msgid "The number of the virtual console this display can be found on, or %-1."
+msgstr "Дэлгэцийн консолын дугаар одохгүй байна, эсвэл %-1."
+
+#: ../src/cut-n-paste/fusa-display.c:148
+msgid "Nested"
+msgstr "Үүрлэсэн"
+
+#: ../src/cut-n-paste/fusa-display.c:149
+msgid "Whether or not this display is a windowed (Xnest) display."
+msgstr "Цонхтой (Xnest) дэлгэц энэ дэлгэц мөн эсэх"
+
+#: ../src/cut-n-paste/fusa-manager.c:1453
+msgid "The display manager could not be contacted for unknown reasons."
+msgstr "Үл мэдэгдэх шалтгааны улмаас дэлгэц зохицуулагч холбогдож чадахгүй байна."
+
+#: ../src/cut-n-paste/fusa-manager.c:1460
+msgid "The display manager is not running or too old."
+msgstr "Дэлгэц зохицуулагч ажиллахгүй байна эсвэл хэтэрхий хуучин байна."
+
+#: ../src/cut-n-paste/fusa-manager.c:1463
+msgid "The configured limit of flexible servers has been reached."
+msgstr "Уян хатан серверийн тохируулга хязгаартаа хүрсэн байна."
+
+#: ../src/cut-n-paste/fusa-manager.c:1466
+msgid "There was an unknown error starting X."
+msgstr "Тэнд X эхлүүлэх үл мэдэгдэх алдаа байсан."
+
+#: ../src/cut-n-paste/fusa-manager.c:1469
+msgid "The X server failed to finish starting."
+msgstr "Дуусах үйлдэл эхлэхэд X серверт алдаа гарлаа."
+
+#: ../src/cut-n-paste/fusa-manager.c:1472
+msgid "There are too many X sessions running."
+msgstr "Ажиллаж буй маш олон үйлдлүүд байна."
+
+#: ../src/cut-n-paste/fusa-manager.c:1475
+msgid "The nested X server (Xnest) cannot connect to your current X server."
+msgstr ""
+"Үүрлэсэн X сервер (Xnest) нь таны одоогийн X серверт холбогдож чадахгүй "
+"байна."
+
+#: ../src/cut-n-paste/fusa-manager.c:1478
+msgid "The X server in the GDM configuration could not be found."
+msgstr "GDM тохируулгын X сервер олдохгүй байна."
+
+#: ../src/cut-n-paste/fusa-manager.c:1481 ../src/cut-n-paste/gdmcomm.c:492
+msgid ""
+"Trying to set an unknown logout action, or trying to set a logout action "
+"which is not available."
+msgstr ""
+"Үл мэдэгдэх холболтоос гарах ажиллагааг үргэлжлүүлэх, эсвэл боломжгүй байгаа "
+"холболтоос гарах ажиллагааг үргэлжлүүлэх."
+
+#: ../src/cut-n-paste/fusa-manager.c:1484 ../src/cut-n-paste/gdmcomm.c:495
+msgid "Virtual terminals not supported."
+msgstr "Терминалиуд таарахгүй байна."
+
+#: ../src/cut-n-paste/fusa-manager.c:1487
+msgid "Invalid virtual terminal number."
+msgstr "Терминалууд ажиллах боломжгүй байна."
+
+#: ../src/cut-n-paste/fusa-manager.c:1490 ../src/cut-n-paste/gdmcomm.c:499
+msgid "Trying to update an unsupported configuration key."
+msgstr "Дэмжлэггүй тохиргооны түлхүүрийг идэвхижүүлэх"
+
+#: ../src/cut-n-paste/fusa-manager.c:1493
+msgid "~/.Xauthority file badly configured or missing."
+msgstr "~/.Xauthority файл буруу тохируулагдсан эсвэл байхгүй байна."
+
+#: ../src/cut-n-paste/fusa-manager.c:1496
+msgid "Too many messages were sent to the display manager, and it hung up."
+msgstr ""
+"Дэлгэц зохицуулагч руу маш олон мессэж илгээснээс тэр нь эмх замбараагүй "
+"болно."
+
+#: ../src/cut-n-paste/fusa-manager.c:1500
+msgid "The display manager sent an unknown error message."
+msgstr "Дэлгэц зохицуулагч нь үл мэдэгдэх алдааны мессэжийг илгээсэн байна."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:164
+msgid "The user this menu item represents."
+msgstr "Хэрэглэгч энэ цэсийн төрлийг илэрхийлнэ."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:171
+msgid "Icon Size"
+msgstr "Дүрсийн хэмжээ"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:172
+msgid "The size of the icon to use."
+msgstr "Ашиглах дүрсийн хэмжээ."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:178
+msgid "Indicator Size"
+msgstr "Заагчийн хэмжээ‫"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:179
+msgid "Size of check indicator"
+msgstr "Заагчийг шалгах хэмжээ"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:184
+msgid "Indicator Spacing"
+msgstr "Заагчийн зай"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:185
+msgid "Space between the username and the indicator"
+msgstr "Заагч ба хэрэглэгчийн нэр хоорондын зай"
+
+#: ../src/cut-n-paste/fusa-user.c:151
+msgid "The user manager object this user is controlled by."
+msgstr "Энэ хэрэглэгч нь обьектын хэрэглэгч зохицуулагчаар хянагддаг."
+
+#: ../src/cut-n-paste/fusa-utils.c:80
+msgid "Show Details"
+msgstr "Хэсэгчилж үзүүлэх"
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:413
+msgid "GDM (The GNOME Display Manager) is not running."
+msgstr "GDM (GNOME дэлгэц зохицуулагч) нь ажиллахгүй байна."
+
+#: ../src/cut-n-paste/gdmcomm.c:416
+msgid ""
+"You might in fact be using a different display manager, such as KDM (KDE "
+"Display Manager) or xdm."
+msgstr ""
+"Та өөр өөр дэлгэцийн зохицуулалтыг ашиглаж болно, жишээлбэл KDM (KDE \" "
+"дэлгэц зохицуулагч) эсвэл xdm."
+
+#: ../src/cut-n-paste/gdmcomm.c:419
+msgid ""
+"If you still wish to use this feature, either start GDM yourself or ask your "
+"system administrator to start GDM."
+msgstr ""
+"Хэрвээ та энэ онцлогийг ашиглахыг хүсч байвал GDM-ийг та өөрөө эхлүүлэх "
+"эсвэл GDM-ийг эхлүүлэхийн тулд өөрийнхөө \"систем администратороос асууна."
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:441
+msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+msgstr "GDM-тэй холбогдож чадахгүй байна.(GNOME дэлгэц зохицуулагч)"
+
+#: ../src/cut-n-paste/gdmcomm.c:444
+msgid "Perhaps you have an old version of GDM running."
+msgstr "Магадгүй та GDM-ийн хуучин хувилбарыг ажиллуулж байна."
+
+#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
+msgid "Cannot communicate with gdm, perhaps you have an old version running."
+msgstr ""
+"Ggm-тэй холбогдож чадахгүй байна, магадгүй та хуучин хувилбар дээр ажиллаж "
+"байна."
+
+#: ../src/cut-n-paste/gdmcomm.c:469
+msgid "The allowed limit of flexible X servers reached."
+msgstr "Үян хатан X серверийн зөвшөөрөгдсөн хугацаа хүрсэн байна."
+
+#: ../src/cut-n-paste/gdmcomm.c:471
+msgid "There were errors trying to start the X server."
+msgstr "X серверийг эхлүүлэхэд алдаанууд байна."
+
+#: ../src/cut-n-paste/gdmcomm.c:473
+msgid "The X server failed.  Perhaps it is not configured well."
+msgstr "X сервер эвдэрсэн байна.  Магадгүй энэ нь сайн тохируулагдаагүй байна."
+
+#: ../src/cut-n-paste/gdmcomm.c:476
+msgid "Too many X sessions running."
+msgstr "Маш олон X үйлдлүүд ажиллаж байна."
+
+#: ../src/cut-n-paste/gdmcomm.c:478
+msgid ""
+"The nested X server (Xnest) cannot connect to your current X server.  You "
+"may be missing an X authorization file."
+msgstr ""
+"Үүрлэсэн X сервер (Xnest) таны одоогийн X серверт холбогдож чадахгүй. Танд "
+"магадгүй X зөвшөөрлийн файл байхгүй."
+
+#: ../src/cut-n-paste/gdmcomm.c:483
+msgid ""
+"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
+"Please install the Xnest package in order to use the nested login."
+msgstr ""
+"Үүрлэсэн X сервер (X nest) нь ажиллах боломжгүй эсвэл gdm нь муу "
+"тохируулагдсан.\n"
+"Үүрлэсэн логин ашиглах зорилгоор X nest багцыг суулгана уу."
+
+#: ../src/cut-n-paste/gdmcomm.c:488
+msgid "The X server is not available, it is likely that gdm is badly configured."
+msgstr "X сервер бэлэн биш байна, магадгүй gdm муу тохируулагдсантай холбоотой."
+
+#: ../src/cut-n-paste/gdmcomm.c:497
+msgid "Trying to change to an invalid virtual terminal number."
+msgstr "Ажиллах боломжгүй теминалуудыг өөрчлөхийг оролдож байна."
+
+#: ../src/cut-n-paste/gdmcomm.c:501
+msgid ""
+"You do not seem to have authentication needed be for this operation.  "
+"Perhaps your .Xauthority file is not set up correctly."
+msgstr ""
+"Танд энэ үйл ажиллагааг эхлэхэд хэрэгтэй баталгаа байхгүй байна. Магадгүй "
+"таны Xauthority файл буруу суулгагдсан."
+
+#: ../src/cut-n-paste/gdmcomm.c:505
+msgid "Too many messages were sent to gdm and it hung upon us."
+msgstr "GDM рүү маш олон мессэжүүдийг илгээсэн байна."
+
+#: ../src/cut-n-paste/gdmcomm.c:508
+msgid "Unknown error occurred."
+msgstr "Үл мэдэгдэх алдаа гарлаа."
+
+#: ../src/file-transfer-dialog.c:94
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Файлыг хуулж байна:%u, %u"
+
+#: ../src/file-transfer-dialog.c:122
+#, c-format
+msgid "Copying '%s'"
+msgstr "'%s'-ийг хуулж байна"
+
+#: ../src/file-transfer-dialog.c:193
+msgid "From URI"
+msgstr "URI-aaс"
+
+#: ../src/file-transfer-dialog.c:194
+msgid "URI currently transferring from"
+msgstr "URI зөөгдөж байна."
+
+#: ../src/file-transfer-dialog.c:201
+msgid "To URI"
+msgstr "URI руу"
+
+#: ../src/file-transfer-dialog.c:202
+msgid "URI currently transferring to"
+msgstr "URI зөөгдөж байна."
+
+#: ../src/file-transfer-dialog.c:209
+msgid "Fraction completed"
+msgstr "Хэсгүүд бүрдсэн."
+
+#: ../src/file-transfer-dialog.c:210
+msgid "Fraction of transfer currently completed"
+msgstr "Зөөврийн хэсгүүд бүрдлээ."
+
+#: ../src/file-transfer-dialog.c:217
+msgid "Current URI index"
+msgstr "Одоогийн URl индекс"
+
+#: ../src/file-transfer-dialog.c:218
+msgid "Current URI index - starts from 1"
+msgstr "Одоогийн URl индекс - 1-ээс эхлэнэ"
+
+#: ../src/file-transfer-dialog.c:225
+msgid "Total URIs"
+msgstr "Нийт URL-ууд"
+
+#: ../src/file-transfer-dialog.c:226
+msgid "Total number of URIs"
+msgstr "URI-уудын нийт тоо"
+
+#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+msgid "Copying files"
+msgstr "Файлуудыг хуулж байна"
+
+#: ../src/file-transfer-dialog.c:345
+msgid "From:"
+msgstr "Хэнээс:"
+
+#: ../src/file-transfer-dialog.c:349
+msgid "To:"
+msgstr "Хэнд:"
+
+#: ../src/file-transfer-dialog.c:448
+msgid "Connecting..."
+msgstr "Холбогдож байна..."
+
+#: ../src/gnome-screensaver-command.c:61
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Скринсэвэрийг хаах шалтгаан"
+
+#: ../src/gnome-screensaver-command.c:63
+msgid "Query the state of the screensaver"
+msgstr "Дэлгэц гамнагчийн байдлыг асууна уу"
+
+#: ../src/gnome-screensaver-command.c:65
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "Ажиллаж байгаа скринсевер дэлгэцийг хурдан түгжихийг сануулж байна."
+
+#: ../src/gnome-screensaver-command.c:67
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "Хэрвээ скринсевер идэвхитэй бол өөр график демо-д холбох."
+
+#: ../src/gnome-screensaver-command.c:69
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "сринсеверийг асаах (хар дэлгэц)"
+
+#: ../src/gnome-screensaver-command.c:71
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr ""
+"Хэрвээ скринсевер идэвхитэй бол түүнийг идэвхигүйжүүлэх (дэлгэцийг "
+"харлуулахгүй)"
+
+#: ../src/gnome-screensaver-command.c:73
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "Хэрэглэгчийн үйл ажиллагааг ажилллаж байгаа скринсеверээр идэхижүүл."
+
+#: ../src/gnome-screensaver-command.c:75
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:77
+msgid "The calling application that is inhibiting the screensaver"
+msgstr "Дэпгэц гамнагч барих програм дуудалт"
+
+#: ../src/gnome-screensaver-command.c:79
+msgid "The reason for inhibiting the screensaver"
+msgstr "Дэлгэц гамнагчийн барих шалтгаан"
+
+#: ../src/gnome-screensaver-command.c:81 ../src/gnome-screensaver-dialog.c:54
+#: ../src/gnome-screensaver.c:56
+msgid "Version of this application"
+msgstr "Энэ програмын хувилбар"
+
+#: ../src/gnome-screensaver-command.c:246
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "Дэлгэц гамнагч %s байна\n"
+
+#: ../src/gnome-screensaver-command.c:246
+msgid "active"
+msgstr "идэвхтэй"
+
+#: ../src/gnome-screensaver-command.c:246
+msgid "inactive"
+msgstr "идэвхгүй"
+
+#: ../src/gnome-screensaver-dialog.c:52
+msgid "Show debugging output"
+msgstr "Шалгах гарцыг харуулах"
+
+#: ../src/gnome-screensaver-dialog.c:56
+msgid "Show the logout button"
+msgstr "Гарах товчлуурыг харуулах"
+
+#: ../src/gnome-screensaver-dialog.c:58
+msgid "Command to invoke from the logout button"
+msgstr "Гарах товчлуурыг дуудах комманд"
+
+#: ../src/gnome-screensaver-dialog.c:60
+msgid "Show the switch user button"
+msgstr "Хэрэглэгч шилжүүлэгч товчлуурыг харуулах"
+
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:169 ../src/gnome-screensaver-dialog.c:170
+#: ../src/gnome-screensaver-dialog.c:171 ../src/gs-auth-pam.c:380
+msgid "Username:"
+msgstr "Хэрэглэгч:"
+
+#: ../src/gnome-screensaver-dialog.c:174
+msgid "You are required to change your password immediately (password aged)"
+msgstr "Та нууц үгээ дариу солих шаардлагатай (нууц үг хуучирсан)"
+
+#: ../src/gnome-screensaver-dialog.c:175
+msgid "You are required to change your password immediately (root enforced)"
+msgstr "Та нууц үгээ дариу солих шаардлагатай (root шаардсан)"
+
+#: ../src/gnome-screensaver-dialog.c:176
+msgid "Your account has expired; please contact your system administrator"
+msgstr "Таны дансны хугацаа дууссан; Системийн админ руу хандана уу"
+
+#: ../src/gnome-screensaver-dialog.c:177
+msgid "No password supplied"
+msgstr "Нууц үг нийлүүлэгдсэнгүй"
+
+#: ../src/gnome-screensaver-dialog.c:178
+msgid "Password unchanged"
+msgstr "Нууц үг өөрчилөгдсөнгүй"
+
+#: ../src/gnome-screensaver-dialog.c:179
+msgid "Can not get username"
+msgstr "Хэрэглэгчийн нэрийг авах боломжгүй"
+
+#: ../src/gnome-screensaver-dialog.c:180
+msgid "Retype new UNIX password:"
+msgstr "Шинэ UNIX нууц үгээ давтана уу:"
+
+#: ../src/gnome-screensaver-dialog.c:181
+msgid "Enter new UNIX password:"
+msgstr "Шинэ UNIX нууц үг оруул:"
+
+#: ../src/gnome-screensaver-dialog.c:182
+msgid "(current) UNIX password:"
+msgstr "(идэвхтэй) UNIX нууц үг:"
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "Error while changing NIS password."
+msgstr "NIS нууц үг сольж байхад алдаа."
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "You must choose a longer password"
+msgstr "Та илүү урт нууц үг сонгох ёстой"
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "Password has been already used. Choose another."
+msgstr "Нууц үг хэдийнэ хэрэглэгдсэн. Өөрийг сонгоно уу."
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "You must wait longer to change your password"
+msgstr "Та нууц үгээ солихдоо удаан хүлээх ёстой"
+
+#: ../src/gnome-screensaver-dialog.c:187
+msgid "Sorry, passwords do not match"
+msgstr "Уучилаарай, нууц үг таарахгүй байна"
+
+#: ../src/gnome-screensaver-dialog.c:250
+msgid "Checking..."
+msgstr "Шалгаж байна..."
+
+#: ../src/gnome-screensaver-dialog.c:289 ../src/gs-auth-pam.c:320
+msgid "Authentication failed."
+msgstr "Баталгаажуулалт амжилтгүй."
+
+#: ../src/gnome-screensaver-preferences.c:439
+msgid "Blank screen"
+msgstr "Хар  дэлгэц"
+
+#: ../src/gnome-screensaver-preferences.c:445
+msgid "Random"
+msgstr "Тохиолдлын"
+
+#: ../src/gnome-screensaver-preferences.c:805
+msgid "Invalid screensaver theme"
+msgstr "Дэлгэц гамнагчийн загвар нээгдэхгүй байна"
+
+#: ../src/gnome-screensaver-preferences.c:808
+msgid "This file does not appear to be a valid screensaver theme."
+msgstr "Энэ файл хүчинтэй скринсеверийн загвар болж чадахгүй."
+
+#: ../src/gnome-screensaver-preferences.c:935
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d цаг"
+msgstr[1] "%d цаг"
+
+#: ../src/gnome-screensaver-preferences.c:938
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d минут"
+msgstr[1] "%d минут"
+
+#: ../src/gnome-screensaver-preferences.c:941
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d секунд"
+msgstr[1] "%d секунд"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:947
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:950
+#: ../src/gnome-screensaver-preferences.c:958
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:953
+#: ../src/gnome-screensaver-preferences.c:961
+#: ../src/gnome-screensaver-preferences.c:965
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: ../src/gnome-screensaver-preferences.c:980
+msgid "Never"
+msgstr "Хэзээ ч үгүй"
+
+#: ../src/gnome-screensaver-preferences.c:1365
+msgid "Could not load the main interface"
+msgstr "Гол интерфейс ачаалагдсангүй."
+
+#: ../src/gnome-screensaver-preferences.c:1367
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "Дэлгэц гамнагч зөв суусан эсэхийг шалгана уу."
+
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "Сервер программ болохгүй байна."
+
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr "Шалгах код идэвхижүүлэх."
+
+#: ../src/gs-auth-pam.c:262
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr "Сервис %s үүсгэх боломжгүй: %s\n"
+
+#: ../src/gs-auth-pam.c:288
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr "PAM_TTY=%s оноож чадахгүй байна"
+
+#: ../src/gs-auth-pam.c:318
+msgid "Incorrect password."
+msgstr "Буруу нууц үг..."
+
+#: ../src/gs-auth-pam.c:334
+msgid "Not permitted to gain access at this time."
+msgstr "Энэ хугацаанд хандах эрх олгогдоогүй."
+
+#: ../src/gs-auth-pam.c:340
+msgid "No longer permitted to access the system."
+msgstr "Систем рүү хандах эрх олгогдохгүй."
+
+#: ../src/gs-listener-dbus.c:1631
+msgid "failed to register with the message bus"
+msgstr "Мэдээллийн сувгийг танихгүй байна."
+
+#: ../src/gs-listener-dbus.c:1641
+msgid "not connected to the message bus"
+msgstr "Мессэжид холбогдсонгүй"
+
+#: ../src/gs-listener-dbus.c:1650
+msgid "screensaver already running in this session"
+msgstr "Дэлгэц гамнагч ажиллаж байна"
+
+#: ../src/gs-lock-plug.c:336
+msgid "Time has expired."
+msgstr "Хугацаа дууссан байна."
+
+#: ../src/gs-lock-plug.c:366
+msgid "You have the Caps Lock key on."
+msgstr "Таны Caps Lock түлхүүр асаалттай байна."
+
+#: ../src/gs-lock-plug.c:1414 ../src/gs-lock-plug.c:1451
+msgid "S_witch User..."
+msgstr "Хэрэглэгч _шилжүүлэх..."
+
+#: ../src/gs-lock-plug.c:1422
+msgid "Log _Out"
+msgstr "_Гарах"
+
+#: ../src/gs-lock-plug.c:1613
+msgid "%U on %h"
+msgstr "%U %h дээр"
+
+#: ../src/gs-lock-plug.c:1627
+msgid "_Password:"
+msgstr "_Нууц үг:"
+
