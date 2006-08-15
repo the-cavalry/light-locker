@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-16 08:17+0200\n"
-"PO-Revision-Date: 2006-07-16 11:28+0300\n"
+"POT-Creation-Date: 2006-08-15 09:55+0200\n"
+"PO-Revision-Date: 2006-08-15 12:52+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "Ekraanisäästja eelistuste seadmine"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
 msgid "<b>Screensaver preview</b>"
-msgstr "<b>Screensaver preview</b>"
+msgstr "<b>Ekraanisäästja eelvaade</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:2
 msgid "<b>Warning: the screen will not be locked for the root user.</b>"
@@ -59,14 +59,14 @@ msgstr "Ekraani _lukustamine kui ekraanisäästja on aktiivne"
 
 #: ../data/gnome-screensaver-preferences.glade.h:8
 msgid "_Preview"
-msgstr "_Eelvaade"
+msgstr "Eel_vaade"
 
 #: ../data/gnome-screensaver-preferences.glade.h:9
 msgid "_Screensaver theme:"
 msgstr "_Ekraanisäästja teema:"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver themes"
 msgstr "Ekraanisäästja teemad"
 
@@ -79,36 +79,51 @@ msgid "Activate when idle"
 msgstr "Aktiveerimine jõudeolekul"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow embedding a keyboard into the window"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow logout"
 msgstr "Väljalogimine lubatud"
 
-#: ../data/gnome-screensaver.schemas.in.h:3
+#: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
 msgstr "Kasutaja vahetamine lubatud"
 
-#: ../data/gnome-screensaver.schemas.in.h:4
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Embedded keyboard command"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Lock on activation"
 msgstr "Lukustamine aktiveerimisel"
 
-#: ../data/gnome-screensaver.schemas.in.h:5
+#: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Logout command"
 msgstr "Väljalogimise käsk"
 
-#: ../data/gnome-screensaver.schemas.in.h:6
+#: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Screensaver theme selection mode"
 msgstr "Ekraanisäästja teemavalimise režiim"
 
-#: ../data/gnome-screensaver.schemas.in.h:8
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr ""
 "Märgi see valik kui ekraanisäästja tuleb seansi jõudeoleku korral käivitada."
 
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr ""
 "Märgi see valik kui ekraanisäästja peab aktiveerumisel ekraani lukustama."
 
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -116,41 +131,49 @@ msgstr ""
 "Selle valiku märkimine lisab lahtilukustamise dialoogi valiku teisele "
 "kasutajakontole ümberlülitumiseks."
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr "Ekraanisäästja tööminutite arv peale mida ekraan lukustatakse."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr "Jõudeoleku minutite arv enne kui seanss hinnatakse jõude olevaks."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "Tööminutite arv enne ekraanisäästja teema vahetamist."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
@@ -159,15 +182,15 @@ msgid ""
 "activation."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:18
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid "Theme for lock dialog"
 msgstr "Lukustusdialoogi teema"
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid "Theme to use for the lock dialog."
 msgstr "Teema mida kasutatakse lukustusdialoogi jaoks"
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -175,19 +198,19 @@ msgid ""
 "\" is \"random\"."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Time before activation"
 msgstr "Aeg enne aktiveerimist"
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before locking"
 msgstr "Aeg enne lukustamist"
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before logout option"
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before theme change"
 msgstr "Aeg enne teemavahetust"
 
@@ -199,14 +222,14 @@ msgstr ""
 #: ../data/lock-dialog-default.glade.h:4
 #, no-c-format
 msgid "<span size=\"x-large\">%R</span>"
-msgstr ""
+msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:171
-#: ../src/gnome-screensaver-dialog.c:172
+#: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:172
+#: ../src/gnome-screensaver-dialog.c:173
 msgid "Password:"
 msgstr "Parool:"
 
-#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1696
+#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1703
 msgid "S_witch to user:"
 msgstr "Vaheta _kasutajat:"
 
@@ -220,13 +243,13 @@ msgstr "Logi _välja"
 
 #: ../data/lock-dialog-default.glade.h:9
 msgid "_Switch User..."
-msgstr "_Vaheta kasutajat..."
+msgstr "Vaheta _kasutajat..."
 
 #: ../data/lock-dialog-default.glade.h:10
 msgid "_Switch user..."
-msgstr "_Vaheta kasutajat..."
+msgstr "Vaheta _kasutajat..."
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1425
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1432
 msgid "_Unlock"
 msgstr "_Võta lukust lahti"
 
@@ -262,34 +285,34 @@ msgstr ""
 msgid "Pop art squares"
 msgstr "Popkunstist inspireeritud ruudud"
 
-#: ../savers/floaters.c:1165
+#: ../savers/floaters.c:1166
 msgid "show paths that images follow"
 msgstr ""
 
-#: ../savers/floaters.c:1172
+#: ../savers/floaters.c:1173
 msgid "occasionally rotate images as they move"
 msgstr ""
 
-#: ../savers/floaters.c:1179
+#: ../savers/floaters.c:1180
 msgid "print out frame rate and other statistics"
 msgstr ""
 
-#: ../savers/floaters.c:1187
+#: ../savers/floaters.c:1188
 msgid "the maximum number of images to keep on screen"
 msgstr "suurim ekraanil hoitavate piltide arv"
 
 #. translators: this should be translated to be symbolic of a generic
 #. * number.  e.g, "the screen saver should keep N images on the screen"
 #.
-#: ../savers/floaters.c:1191
+#: ../savers/floaters.c:1192
 msgid "N"
 msgstr "N"
 
-#: ../savers/floaters.c:1198
+#: ../savers/floaters.c:1199
 msgid "the source image to use"
 msgstr "lähtepilt"
 
-#: ../savers/floaters.c:1205
+#: ../savers/floaters.c:1206
 msgid "the initial size and position of window"
 msgstr "lähtesuurus ja -asukoht ekraanil"
 
@@ -297,23 +320,23 @@ msgstr "lähtesuurus ja -asukoht ekraanil"
 #. * can be translated, but the 'x' area indicator and '+' offset indicators
 #. * need to be untranslated and can't be rearranged.
 #.
-#: ../savers/floaters.c:1210
+#: ../savers/floaters.c:1211
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "LAIUSxKÕRGUS+X+Y"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1228
+#: ../savers/floaters.c:1229
 msgid "image - floats images around the screen"
 msgstr "pilt - hõljub ekraanil ringi"
 
-#: ../savers/floaters.c:1238
+#: ../savers/floaters.c:1239
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Lähema teabe saamiseks kasuta --help võtit.\n"
 
-#: ../savers/floaters.c:1247
+#: ../savers/floaters.c:1248
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
 "Sa pead määrama ühe pilti.  Lähema teabe saamiseks kasuta --help võtit.\n"
@@ -443,19 +466,19 @@ msgstr "Ikooninile määratav suurus."
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:178
 msgid "Indicator Size"
-msgstr "Indikaatori suurus"
+msgstr "Näidiku suurus"
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:179
 msgid "Size of check indicator"
-msgstr ""
+msgstr "Kontrollnäidiku suurus"
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:184
 msgid "Indicator Spacing"
-msgstr ""
+msgstr "Näidiku vahe"
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:185
 msgid "Space between the username and the indicator"
-msgstr ""
+msgstr "Vahe näidiku ja kasutajanime vahel"
 
 #: ../src/cut-n-paste/fusa-user.c:151
 msgid "The user manager object this user is controlled by."
@@ -693,102 +716,106 @@ msgid "Show the switch user button"
 msgstr "Kasutajate vahel lülitumise nupu näitamine"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:168 ../src/gnome-screensaver-dialog.c:169
-#: ../src/gnome-screensaver-dialog.c:170 ../src/gs-auth-pam.c:380
+#: ../src/gnome-screensaver-dialog.c:169 ../src/gnome-screensaver-dialog.c:170
+#: ../src/gnome-screensaver-dialog.c:171 ../src/gs-auth-pam.c:380
 msgid "Username:"
 msgstr "Kasutajanimi:"
 
-#: ../src/gnome-screensaver-dialog.c:173
+#: ../src/gnome-screensaver-dialog.c:174
 msgid "You are required to change your password immediately (password aged)"
 msgstr "Sa pead oma parooli koheselt ära vahetama (parool on aegunud)"
 
-#: ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:175
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "Sa pead oma parooli koheselt ära vahetama (administraatori nõue)"
 
-#: ../src/gnome-screensaver-dialog.c:175
+#: ../src/gnome-screensaver-dialog.c:176
 msgid "Your account has expired; please contact your system administrator"
 msgstr "Sinu konto on aegunud, palun võta ühendust oma süsteemiülemaga"
 
-#: ../src/gnome-screensaver-dialog.c:176
-msgid "No password supplied"
-msgstr ""
-
 #: ../src/gnome-screensaver-dialog.c:177
-msgid "Password unchanged"
-msgstr ""
+msgid "No password supplied"
+msgstr "Parooli pole antud"
 
 #: ../src/gnome-screensaver-dialog.c:178
-msgid "Can not get username"
-msgstr ""
+msgid "Password unchanged"
+msgstr "Parool on muutmata"
 
 #: ../src/gnome-screensaver-dialog.c:179
+msgid "Can not get username"
+msgstr "Kasutajanime pole võimalik hankida"
+
+#: ../src/gnome-screensaver-dialog.c:180
 msgid "Retype new UNIX password:"
 msgstr "Sisesta UNIX-i parool uuesti:"
 
-#: ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:181
 msgid "Enter new UNIX password:"
 msgstr "Sisesta UNIX-i parool:"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:182
 msgid "(current) UNIX password:"
 msgstr "(praegune) UNIX-i parool:"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:183
 msgid "Error while changing NIS password."
 msgstr "Viga NIS-parooli muutmisel."
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "You must choose a longer password"
 msgstr "Sa pead valima pikema parooli"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "Password has been already used. Choose another."
 msgstr "Parool on juba kasutusel. Vali mõni muu parool."
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "You must wait longer to change your password"
 msgstr ""
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:187
 msgid "Sorry, passwords do not match"
 msgstr "Vabandust, paroolid ei klapi omavahel"
 
-#: ../src/gnome-screensaver-dialog.c:280 ../src/gs-auth-pam.c:320
-msgid "Authentication failed."
-msgstr "Autentimine ebaõnnestus."
+#: ../src/gnome-screensaver-dialog.c:250
+msgid "Checking..."
+msgstr "Kontrollimine..."
 
-#: ../src/gnome-screensaver-preferences.c:436
+#: ../src/gnome-screensaver-dialog.c:289 ../src/gs-auth-pam.c:320
+msgid "Authentication failed."
+msgstr "Tõrge autentimisel."
+
+#: ../src/gnome-screensaver-preferences.c:439
 msgid "Blank screen"
 msgstr "Ekraani puhastamine"
 
-#: ../src/gnome-screensaver-preferences.c:442
+#: ../src/gnome-screensaver-preferences.c:445
 msgid "Random"
 msgstr "Juhuslik"
 
-#: ../src/gnome-screensaver-preferences.c:790
+#: ../src/gnome-screensaver-preferences.c:805
 msgid "Invalid screensaver theme"
 msgstr "Vigane ekraanisäästja teema"
 
-#: ../src/gnome-screensaver-preferences.c:793
+#: ../src/gnome-screensaver-preferences.c:808
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Fail ei paista olevate korrektne ekraanisäästja teema."
 
-#: ../src/gnome-screensaver-preferences.c:910
+#: ../src/gnome-screensaver-preferences.c:935
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d tund"
 msgstr[1] "%d tundi"
 
-#: ../src/gnome-screensaver-preferences.c:913
+#: ../src/gnome-screensaver-preferences.c:938
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minut"
 msgstr[1] "%d minutit"
 
-#: ../src/gnome-screensaver-preferences.c:916
+#: ../src/gnome-screensaver-preferences.c:941
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -796,15 +823,15 @@ msgstr[0] "%d sekund"
 msgstr[1] "%d sekundit"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:922
+#: ../src/gnome-screensaver-preferences.c:947
 #, c-format
 msgid "%s %s %s"
 msgstr "%s:%s:%s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:925
-#: ../src/gnome-screensaver-preferences.c:933
+#: ../src/gnome-screensaver-preferences.c:950
+#: ../src/gnome-screensaver-preferences.c:958
 #, c-format
 msgid "%s %s"
 msgstr "%s:%s"
@@ -812,22 +839,22 @@ msgstr "%s:%s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:928
-#: ../src/gnome-screensaver-preferences.c:936
-#: ../src/gnome-screensaver-preferences.c:940
+#: ../src/gnome-screensaver-preferences.c:953
+#: ../src/gnome-screensaver-preferences.c:961
+#: ../src/gnome-screensaver-preferences.c:965
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:955
+#: ../src/gnome-screensaver-preferences.c:980
 msgid "Never"
 msgstr "Mitte kunagi"
 
-#: ../src/gnome-screensaver-preferences.c:1330
+#: ../src/gnome-screensaver-preferences.c:1365
 msgid "Could not load the main interface"
 msgstr "Peamist liidest pole võimalik laadida"
 
-#: ../src/gnome-screensaver-preferences.c:1332
+#: ../src/gnome-screensaver-preferences.c:1367
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Palun veendu, et ekraanisäästja on korrektselt paigaldatud"
 
@@ -861,39 +888,39 @@ msgstr ""
 msgid "No longer permitted to access the system."
 msgstr ""
 
-#: ../src/gs-listener-dbus.c:1548
+#: ../src/gs-listener-dbus.c:1631
 msgid "failed to register with the message bus"
 msgstr "tõrge sõnumisiinile registreerumisel"
 
-#: ../src/gs-listener-dbus.c:1558
+#: ../src/gs-listener-dbus.c:1641
 msgid "not connected to the message bus"
 msgstr "sõnumisiiniga pole ühendust"
 
-#: ../src/gs-listener-dbus.c:1567
+#: ../src/gs-listener-dbus.c:1650
 msgid "screensaver already running in this session"
 msgstr "ekraanisäästja töötab juba selle seansi raames"
 
-#: ../src/gs-lock-plug.c:334
+#: ../src/gs-lock-plug.c:336
 msgid "Time has expired."
 msgstr "Ajapiirang ületati."
 
-#: ../src/gs-lock-plug.c:364
+#: ../src/gs-lock-plug.c:366
 msgid "You have the Caps Lock key on."
 msgstr "Sul on Caps Lock klahv sisse lülitatud"
 
-#: ../src/gs-lock-plug.c:1407 ../src/gs-lock-plug.c:1444
+#: ../src/gs-lock-plug.c:1414 ../src/gs-lock-plug.c:1451
 msgid "S_witch User..."
 msgstr "_Vaheta kasutajat..."
 
-#: ../src/gs-lock-plug.c:1415
+#: ../src/gs-lock-plug.c:1422
 msgid "Log _Out"
 msgstr "Logi _välja"
 
-#: ../src/gs-lock-plug.c:1606
+#: ../src/gs-lock-plug.c:1613
 msgid "%U on %h"
 msgstr ""
 
-#: ../src/gs-lock-plug.c:1620
+#: ../src/gs-lock-plug.c:1627
 msgid "_Password:"
 msgstr "_Parool:"
 
