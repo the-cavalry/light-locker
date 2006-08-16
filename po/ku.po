@@ -4,131 +4,190 @@
 # This file is distributed under the same license as the gnome-screensaver package.
 # <>, 2006.
 # , 2006.
-#
-#
-#
+# 
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: ku\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-13 10:41+0100\n"
-"PO-Revision-Date: 2006-03-13 10:51+0100\n"
-"Last-Translator: \n"
-"Language-Team:  <en@li.org>\n"
+"POT-Creation-Date: 2006-08-16 21:07+0200\n"
+"PO-Revision-Date: 2006-08-16 21:07+0200\n"
+"Last-Translator: rizoye-xerzi <rizoxerzi@gmail.com>\n"
+"Language-Team: Kurdish <<ku@li.org>>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural= n != 1;"
-"X-Generator: KBabel 1.10.2\n"
+"Plural-Forms: nplurals=2; plural= n != 1;X-Generator: KBabel 1.10.2\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
 msgid "Screensaver"
-msgstr ""
+msgstr "Dîmenderparêz"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:2
 msgid "Set your screensaver preferences"
-msgstr ""
+msgstr "Vebijêrkên dîmenderparezê mîheng bike"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
-msgid "Screensaver Preferences"
-msgstr ""
+msgid "<b>Screensaver preview</b>"
+msgstr "<b>Dirbên dîmenderparêzê</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:2
-msgid "Set session as _idle after:"
+msgid "<b>Warning: the screen will not be locked for the root user.</b>"
 msgstr ""
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
-msgid "_Activate screensaver when session is idle"
-msgstr ""
+msgid "Regard the computer as _idle after:"
+msgstr "Piştî vê wextê_ weke di moda rawestîne de mîheng bike:"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
-msgid "_Lock screen when screensaver is active"
-msgstr ""
+msgid "Screensaver Preferences"
+msgstr "Vebijêrkên Dîmenderparêzê"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
-msgid "_Screensaver"
-msgstr ""
+msgid "Screensaver Preview"
+msgstr "Vebijêrkên Dîmenderparêzê"
+
+#: ../data/gnome-screensaver-preferences.glade.h:6
+msgid "_Activate screensaver when computer is idle"
+msgstr "Dema danişîn di moda rawestînê de be dîmenderparêzê bi_xebitîne"
+
+#: ../data/gnome-screensaver-preferences.glade.h:7
+msgid "_Lock screen when screensaver is active"
+msgstr "Dema dîmenderparêz dixebite dîmenê _kilît bike"
+
+#: ../data/gnome-screensaver-preferences.glade.h:8
+msgid "_Preview"
+msgstr "_Pêşdîtin"
+
+#: ../data/gnome-screensaver-preferences.glade.h:9
+msgid "_Screensaver theme:"
+msgstr "Dirba _dîmenderparêzê:"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver themes"
-msgstr ""
+msgstr "Dirbên dîmenderparêzê"
 
 #: ../data/gnome-screensaver.directory.in.h:2
 msgid "Screensavers"
-msgstr ""
+msgstr "Parêzvanên ekranê"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
 msgid "Activate when idle"
-msgstr ""
+msgstr "Dema rawestiyayî be bixebitîne"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
-msgid "Allow logout"
+msgid "Allow embedding a keyboard into the window"
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow user switching"
-msgstr ""
+msgid "Allow logout"
+msgstr "Destûra derketinê bide"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
-msgid "Lock on activation"
-msgstr ""
+msgid "Allow user switching"
+msgstr "Destûrê bide guhertina bikarhêneran"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
-msgid "Logout command"
+msgid "Embedded keyboard command"
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Screensaver theme selection mode"
-msgstr ""
+msgid "Lock on activation"
+msgstr "Dema xebitî kilît bike"
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Logout command"
+msgstr "Fermana derketinê"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:9
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr ""
+msgid "Screensaver theme selection mode"
+msgstr "moda hilbijartina dirbên dîmenderparêzê"
 
 #: ../data/gnome-screensaver.schemas.in.h:10
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr ""
+"Dema rawestînê de be ji bo xebitandina dîmenderparêzê weke VEKIRÎ mîheng "
+"bike."
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr ""
+"Dema dîmenderparêz xebitî ji bo kilîtkirina dîmenê weke VEKIRÎ mîheng bike"
+
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr ""
+"Ji bo destûra guherandina bikarhêneran ya di paceya kîltvekirinê de vê "
+"bijartekê weke VEKIRÎ mîheng bike"
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
 msgstr ""
+"Piştî derbasbûna wextekê ji bo girtina danişînê, ji bo ku ru karibe li "
+"diyaloga vekirina kilîtê re bijartekekê zêde bike, vêya weke TRUE (RAST) "
+"biguherîne. Derengmayîn di mifteya \"derketina_dereng\" de hatiye diyarkirin."
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
+"Fermana wê bixebite dema ku li bişkoka danişînê bigire were tikandin. Ev "
+"ferman bi hêsanî,  dibe ku dema tu çalakiya bikarhêner tunebe girtina "
+"danişînê be. Ev mifte tenê dema nirxa \"derketina_dereng\" weke TRUE (RAST) "
+"hatibe mîhengkirin bandoreke wê heye."
 
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid "The number of minutes after screensaver activation before locking the screen."
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
 msgstr ""
+"Hejmara xulekan ya ji çalakirina dîmenderparêzê û heta kilîtbûna dîmenê"
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
+"Piştî ku dîmenderparêz çalak bû, di diyaloga kilîtvekirinê de berî ku "
+"bijarteka danişînê bigire xuyanî bibe, hejmara xulekên ku wê derbas bibe. Ev "
+"mifte tenê dema ku nirxa \"derketina_temînkirî\" weke TRUE (RAST) hatibe "
+"mîhengkirin xwedîbandor e."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
-msgid "The number of minutes of inactivity before the session is considered idle."
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
 msgstr ""
+"Berî ku danişîn têkeve rolantiyê, hejmara xulekan yên tu tevger tunebû."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr ""
+"Berî ku dirbê dîmenderparêzê were guhertin hejmara xulekan yên wê derbas "
+"bibin."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
@@ -136,133 +195,191 @@ msgid ""
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
 msgstr ""
+"Moda hilbijartinê ya ji aliyê dîmenderparêzê ve tê bikaranîn. Dema ku "
+"dîmenderparêz xebitî ji bo ku tu dirb neyê bikaranîn \"vala, (ya di mifteya "
+"\"dirban\" de hatiye diyarkirin) tenê ji bo bikaranîna dirbekî \"tek\" û ji "
+"bo bikaranîna dirbekî jî çawalêhato \"rasthatî\" dibe."
 
-#: ../data/gnome-screensaver.schemas.in.h:18
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid "Theme for lock dialog"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "Theme to use for the lock dialog."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
 msgstr ""
+"Ev mifte lîsteya dirbên ku wê ji aliyê dîmenderparêzê ve were bikaranîn "
+"diyar dike. Heke mifteya modê \"vala\" be ser guh re tê avêtin, \"tek\" be "
+"navê dirbekî tê pêkanîn, \"rasthatî\" be lîsteyeke dirban tê pêkanîn."
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Time before activation"
-msgstr ""
+msgstr "Maweya Çalakbûnê"
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before locking"
-msgstr ""
+msgstr "Maweya kilîtbûnê"
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before logout option"
+msgstr "Dema berî bijarteka danişînê bigire"
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before theme change"
+msgstr "Dema berî guherîna dirban"
+
+#: ../data/lock-dialog-default.glade.h:2
+#, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:22
-msgid "Time before theme change"
+#: ../data/lock-dialog-default.glade.h:4
+#, no-c-format
+msgid "<span size=\"x-large\">%R</span>"
 msgstr ""
+
+#: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:172
+#: ../src/gnome-screensaver-dialog.c:173
+msgid "Password:"
+msgstr "Şîfre:"
+
+#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1703
+msgid "S_witch to user:"
+msgstr "_Bixebitîne bo Bikarhinêr:"
+
+#: ../data/lock-dialog-default.glade.h:7
+msgid "_Cancel"
+msgstr "_Betal"
+
+#: ../data/lock-dialog-default.glade.h:8
+msgid "_Log Out"
+msgstr "_Derkeve"
+
+#: ../data/lock-dialog-default.glade.h:9
+msgid "_Switch User..."
+msgstr "_Bikarhinêr bixebitîne..."
+
+#: ../data/lock-dialog-default.glade.h:10
+msgid "_Switch user..."
+msgstr "_Bikarhinêr biguherîne..."
+
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1432
+msgid "_Unlock"
+msgstr "_Veke"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:1
 msgid "Bubbles the GNOME foot logo around the screen"
-msgstr ""
+msgstr "Peqikên logoya binî a GNOME ya di dîmenderê de ye"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:2
 msgid "Floating Feet"
-msgstr ""
+msgstr "Lingên Dişemite"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
-msgstr ""
+msgstr "Gerdûn"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:2
 msgid "Display a slideshow of pictures of the cosmos"
-msgstr ""
+msgstr "Pêşaneke slaytê ya ji wêneyê gerdûnê pêk hatiye pêşkeş dike"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
 msgstr ""
+"Pêşaneke slaytan ya ji wêneyên ku ji peldanka wêneyên wê pêk hatiye pêşkêş "
+"dike"
 
 #: ../savers/personal-slideshow.desktop.in.h:2
 msgid "Pictures folder"
-msgstr ""
+msgstr "Peldanka Wêneyan"
 
 #: ../savers/popsquares.desktop.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
-msgstr ""
+msgstr "Pop-hunera-ish a tora lêxistina rengan"
 
 #: ../savers/popsquares.desktop.in.h:2
 msgid "Pop art squares"
-msgstr ""
+msgstr "Qada hunera Pop"
 
-#: ../savers/floaters.c:1165
+#: ../savers/floaters.c:1166
 msgid "show paths that images follow"
-msgstr ""
+msgstr "riya ku wêne dişopîne nîşan bide"
 
-#: ../savers/floaters.c:1172
+#: ../savers/floaters.c:1173
 msgid "occasionally rotate images as they move"
-msgstr ""
+msgstr "carna dema ku wêne hereket dike wêne bizivirîne"
 
-#: ../savers/floaters.c:1179
+#: ../savers/floaters.c:1180
 msgid "print out frame rate and other statistics"
-msgstr ""
+msgstr "hejmara kareyan û îstatîskên din li ekranê bieciqîne"
 
-#: ../savers/floaters.c:1187
+#: ../savers/floaters.c:1188
 msgid "the maximum number of images to keep on screen"
-msgstr ""
+msgstr "Pirtirîn têhilatina wêneyên ku dikarin di dîmenderê de bên hiştin"
 
 #. translators: this should be translated to be symbolic of a generic
 #. * number.  e.g, "the screen saver should keep N images on the screen"
 #.
-#: ../savers/floaters.c:1191
+#: ../savers/floaters.c:1192
 msgid "N"
-msgstr ""
+msgstr "N"
 
-#: ../savers/floaters.c:1198
+#: ../savers/floaters.c:1199
 msgid "the source image to use"
-msgstr ""
+msgstr "wêneyê çavkanî yê wê were bikaranîn"
 
-#: ../savers/floaters.c:1205
+#: ../savers/floaters.c:1206
 msgid "the initial size and position of window"
-msgstr ""
+msgstr "mezinahiya pêşîn û rewşa paceyê"
 
 #. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
 #. * can be translated, but the 'x' area indicator and '+' offset indicators
 #. * need to be untranslated and can't be rearranged.
 #.
-#: ../savers/floaters.c:1210
+#: ../savers/floaters.c:1211
 msgid "WIDTHxHEIGHT+X+Y"
-msgstr ""
+msgstr "FİREHÎxbİLİNDAHÎ+X+Y"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1228
+#: ../savers/floaters.c:1229
 msgid "image - floats images around the screen"
-msgstr ""
+msgstr "wêne - di dîmenderê de wêneyan digerîne"
 
-#: ../savers/floaters.c:1238
+#: ../savers/floaters.c:1239
 #, c-format
 msgid "%s. See --help for usage information.\n"
-msgstr ""
+msgstr "%s. alîkarî bibîne ji bo bikaranîna agahiyan.\n"
 
-#: ../savers/floaters.c:1247
+#: ../savers/floaters.c:1248
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
+"Divê tu wêneyekî diyar bike. -- alîkariyê (helpê) ji bo agahiya bikaranînê "
+"bikar bîne.\n"
 
 #: ../savers/slideshow.c:47
 msgid "Location to get images from"
-msgstr ""
+msgstr "Cihê ku wê wêne were stendin"
 
 #: ../savers/slideshow.c:47
 msgid "PATH"
-msgstr ""
+msgstr "RÊ"
 
 #: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
 msgid "Manager"
-msgstr ""
+msgstr "Rêveber"
 
 #: ../src/cut-n-paste/fusa-display.c:120
 msgid "The manager which owns this object."
-msgstr ""
+msgstr "Rêveberê ku xwediyê vê bireserê ye."
 
 #: ../src/cut-n-paste/fusa-display.c:127
 msgid "Name"
@@ -270,464 +387,592 @@ msgstr "Nav"
 
 #: ../src/cut-n-paste/fusa-display.c:128
 msgid "The name of the X11 display this object refers to."
-msgstr ""
+msgstr "navê X11"
 
 #: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:164
+#: ../src/cut-n-paste/fusa-user-menu-item.c:163
 msgid "User"
-msgstr ""
+msgstr "Bikarhêner"
 
 #: ../src/cut-n-paste/fusa-display.c:135
 msgid "The user currently logged in on this virtual terminal."
-msgstr ""
+msgstr "Bikarhinêr ji berêve têketiye termînala rast."
 
 #: ../src/cut-n-paste/fusa-display.c:141
 msgid "Console"
-msgstr ""
+msgstr "konsol"
 
 #: ../src/cut-n-paste/fusa-display.c:142
 msgid "The number of the virtual console this display can be found on, or %-1."
 msgstr ""
+"Hejmara kosolên rast , ev xebitandin dikare li vir were dîtin, an li %-1."
 
 #: ../src/cut-n-paste/fusa-display.c:148
 msgid "Nested"
-msgstr ""
+msgstr "Hêlînkirin"
 
 #: ../src/cut-n-paste/fusa-display.c:149
 msgid "Whether or not this display is a windowed (Xnest) display."
-msgstr ""
+msgstr "Gelo ev xebitandin wekî (Xnest) a pacekirî ye an na."
 
-#: ../src/cut-n-paste/fusa-manager.c:1263
+#: ../src/cut-n-paste/fusa-manager.c:1453
 msgid "The display manager could not be contacted for unknown reasons."
-msgstr ""
+msgstr "Gerînendeyê çalak ji ber sedemên nenas nikare têkiliyê saz bike"
 
-#: ../src/cut-n-paste/fusa-manager.c:1270
+#: ../src/cut-n-paste/fusa-manager.c:1460
 msgid "The display manager is not running or too old."
-msgstr ""
+msgstr "Rêveberê daxuyaniyê yan naxebiya yan jî pir kevn e."
 
-#: ../src/cut-n-paste/fusa-manager.c:1273
+#: ../src/cut-n-paste/fusa-manager.c:1463
 msgid "The configured limit of flexible servers has been reached."
-msgstr ""
+msgstr "Sererastkirina pêşkêşkerên vezelokî gihaye asta xwe"
 
-#: ../src/cut-n-paste/fusa-manager.c:1276
+#: ../src/cut-n-paste/fusa-manager.c:1466
 msgid "There was an unknown error starting X."
-msgstr ""
+msgstr "Çewtiyeke nenas X da destpêkirin."
 
-#: ../src/cut-n-paste/fusa-manager.c:1279
+#: ../src/cut-n-paste/fusa-manager.c:1469
 msgid "The X server failed to finish starting."
-msgstr ""
+msgstr "Pêşkêşkera Xê nehate destpêkirin."
 
-#: ../src/cut-n-paste/fusa-manager.c:1282
+#: ../src/cut-n-paste/fusa-manager.c:1472
 msgid "There are too many X sessions running."
-msgstr ""
+msgstr "Gelek danişînên Xê niha dixebite."
 
-#: ../src/cut-n-paste/fusa-manager.c:1285
+#: ../src/cut-n-paste/fusa-manager.c:1475
 msgid "The nested X server (Xnest) cannot connect to your current X server."
 msgstr ""
+"Hêlîkiriyê pêşkêşkerê X (Xnest) nikare têkiliyê bi X pêşkêşkera te ya heyî "
+"re ava bike."
 
-#: ../src/cut-n-paste/fusa-manager.c:1288
+#: ../src/cut-n-paste/fusa-manager.c:1478
 msgid "The X server in the GDM configuration could not be found."
-msgstr ""
+msgstr "Pêşkêşkera Xê ya di mîhengên GDMyê de ye nehate dîtin."
 
-#: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
+#: ../src/cut-n-paste/fusa-manager.c:1481 ../src/cut-n-paste/gdmcomm.c:492
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
 msgstr ""
+"Karekî derketinê yekî/e nenas tê mîhengkirin, an jî karekî derketinê yê "
+"tuneye tê mîhengkirin."
 
-#: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
+#: ../src/cut-n-paste/fusa-manager.c:1484 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
-msgstr ""
+msgstr "Termînalên nîgaşî nayê destekirin."
 
-#: ../src/cut-n-paste/fusa-manager.c:1297
+#: ../src/cut-n-paste/fusa-manager.c:1487
 msgid "Invalid virtual terminal number."
-msgstr ""
+msgstr "Nimreya yekeya serî ya nîgaşî ya nederbasdar"
 
-#: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
+#: ../src/cut-n-paste/fusa-manager.c:1490 ../src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
-msgstr ""
+msgstr "Mifteyeke mîhengan ya nayê destekirin tê xwestin ku were rojanekirin."
 
-#: ../src/cut-n-paste/fusa-manager.c:1303
+#: ../src/cut-n-paste/fusa-manager.c:1493
 msgid "~/.Xauthority file badly configured or missing."
-msgstr ""
+msgstr "~/.Dosya hêza X nebaş hatiye sererastkirin an windabûye."
 
-#: ../src/cut-n-paste/fusa-manager.c:1306
+#: ../src/cut-n-paste/fusa-manager.c:1496
 msgid "Too many messages were sent to the display manager, and it hung up."
-msgstr ""
+msgstr "Gelek peyam hatine ji gerînende re û ew peyam hatine hilanîn."
 
-#: ../src/cut-n-paste/fusa-manager.c:1310
+#: ../src/cut-n-paste/fusa-manager.c:1500
 msgid "The display manager sent an unknown error message."
-msgstr ""
+msgstr "Gerînende peyameke nenas a çewtiyê şandiye."
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:165
+#: ../src/cut-n-paste/fusa-user-menu-item.c:164
 msgid "The user this menu item represents."
-msgstr ""
+msgstr "Bikarhiner erka vê pêşekê bikartîne."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:171
+msgid "Icon Size"
+msgstr "Mezinahiya Sembolê"
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:172
-msgid "Icon Size"
+msgid "The size of the icon to use."
+msgstr "Mezinahiya sembolê ya tê xwestin ku were bikaranîn."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:178
+#, fuzzy
+msgid "Indicator Size"
+msgstr "Mezinahiya Sembolê"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:179
+msgid "Size of check indicator"
 msgstr ""
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:173
-msgid "The size of the icon to use."
+#: ../src/cut-n-paste/fusa-user-menu-item.c:184
+msgid "Indicator Spacing"
+msgstr ""
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:185
+msgid "Space between the username and the indicator"
 msgstr ""
 
 #: ../src/cut-n-paste/fusa-user.c:151
 msgid "The user manager object this user is controlled by."
-msgstr ""
+msgstr "Gerînendeyê bikarhiner, ev bikarhiner tê kontrolkirin ji alî."
 
 #: ../src/cut-n-paste/fusa-utils.c:80
 msgid "Show Details"
-msgstr ""
+msgstr "Kîtekîtan nîşan bide"
 
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:413
 msgid "GDM (The GNOME Display Manager) is not running."
-msgstr ""
+msgstr "GMD (Rêveberê Dîmenan yê GNOME) naxebite."
 
 #: ../src/cut-n-paste/gdmcomm.c:416
 msgid ""
 "You might in fact be using a different display manager, such as KDM (KDE "
 "Display Manager) or xdm."
 msgstr ""
+"Dibe ku tu rêverberên dîmenan yekî din bikar tîne, KDM (KDE Rêverê Dîmenan) "
+"an jî weke xdm."
 
 #: ../src/cut-n-paste/gdmcomm.c:419
 msgid ""
 "If you still wish to use this feature, either start GDM yourself or ask your "
 "system administrator to start GDM."
 msgstr ""
+"Heke tu hîna jî dixwazî vê taybetmendiyê bikar bîne, ya tu bi xwe GDMê bide "
+"destpêkirin an jî ji rêverê xwe yê pergalê bixwaze bila ew GDMê bide "
+"destpêkirin."
 
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:441
 msgid "Cannot communicate with GDM (The GNOME Display Manager)"
-msgstr ""
+msgstr "Bi GDM (Rêveberê Dîmenan ya GNOME) re têkilî nehate danîn."
 
 #: ../src/cut-n-paste/gdmcomm.c:444
 msgid "Perhaps you have an old version of GDM running."
-msgstr ""
+msgstr "Dibe ku tu guhertoyeke kev ya GDM dide xebitandin."
 
 #: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
 msgid "Cannot communicate with gdm, perhaps you have an old version running."
 msgstr ""
+"Bi gdmê re têkilî nehate danîn, dibe ku tu guhertoyeke kevn ya GDM dide "
+"xebitandin."
 
 #: ../src/cut-n-paste/gdmcomm.c:469
 msgid "The allowed limit of flexible X servers reached."
-msgstr ""
+msgstr "Xwe gihand hejmara pêşkêşkerên X yên dikarin zêde vezelin."
 
 #: ../src/cut-n-paste/gdmcomm.c:471
 msgid "There were errors trying to start the X server."
-msgstr ""
+msgstr "Dema pêşkêşkera Xê dihate destpêkirin çewtî çêbû."
 
 #: ../src/cut-n-paste/gdmcomm.c:473
 msgid "The X server failed.  Perhaps it is not configured well."
-msgstr ""
+msgstr "Di pêşkêşkera Xê de çewtî. Dibe ku sererast nehatibe veavakirin."
 
 #: ../src/cut-n-paste/gdmcomm.c:476
 msgid "Too many X sessions running."
-msgstr ""
+msgstr "Pir zêde danişînên Xê dixebite."
 
 #: ../src/cut-n-paste/gdmcomm.c:478
 msgid ""
 "The nested X server (Xnest) cannot connect to your current X server.  You "
 "may be missing an X authorization file."
 msgstr ""
+"Pêşkêşkera Xê ya di hundirê hev de (Xnest) bi pêşkêşkera Xê ya dixebite re "
+"girêdanê nikare çêbike. Belkî dosyeya we ya rastkirina nasnameyan kêm e."
 
 #: ../src/cut-n-paste/gdmcomm.c:483
 msgid ""
 "The nested X server (Xnest) is not available, or gdm is badly configured.\n"
 "Please install the Xnest package in order to use the nested login."
 msgstr ""
+"Pêşkêşkera X ya di hundirê hev de  (Xnest) nayê bikaranîn, an jî gdm şaş "
+"hatiye mîhengkirin. Ji kerema xwe ji bo ku tu karibe têketina di hundirê hev "
+"de bikar bîne pakêta Xnest bar bike."
 
 #: ../src/cut-n-paste/gdmcomm.c:488
-msgid "The X server is not available, it is likely that gdm is badly configured."
-msgstr ""
+msgid ""
+"The X server is not available, it is likely that gdm is badly configured."
+msgstr "Pêşkêşkera Xê nayê bikaranîn, dibe ku gdm şaş hatibe veavakirin."
 
 #: ../src/cut-n-paste/gdmcomm.c:497
 msgid "Trying to change to an invalid virtual terminal number."
 msgstr ""
+"Tê xwestin ku bi nimreyeke termînal ya nîgaşî ya nederbasdar re biguhere."
 
 #: ../src/cut-n-paste/gdmcomm.c:501
 msgid ""
 "You do not seem to have authentication needed be for this operation.  "
 "Perhaps your .Xauthority file is not set up correctly."
 msgstr ""
+"Ji bo vê kirarê têra xwe tu ne rayadar î. Belkî jî dosyeya te ya .Xauthority "
+"sererast nehatibe mîhengkirin."
 
 #: ../src/cut-n-paste/gdmcomm.c:505
 msgid "Too many messages were sent to gdm and it hung upon us."
-msgstr ""
+msgstr "pir zêde peyam ji gdmê re hate şandin ji ber vê jî aliqî ma."
 
 #: ../src/cut-n-paste/gdmcomm.c:508
-msgid "Unknown error occured."
-msgstr ""
+msgid "Unknown error occurred."
+msgstr "Çewtiyeke nenas çêbû."
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
 msgid "Copying file: %u of %u"
-msgstr ""
+msgstr "Jibergirtina dosya : %u ji %u"
 
 #: ../src/file-transfer-dialog.c:122
 #, c-format
 msgid "Copying '%s'"
-msgstr ""
+msgstr "'%s' nayê jibergirtin."
 
 #: ../src/file-transfer-dialog.c:193
 msgid "From URI"
-msgstr ""
+msgstr "URIya çavkanî"
 
 #: ../src/file-transfer-dialog.c:194
 msgid "URI currently transferring from"
-msgstr ""
+msgstr "URI ji vir tê guheztin"
 
 #: ../src/file-transfer-dialog.c:201
 msgid "To URI"
-msgstr ""
+msgstr "URIya Hedef"
 
 #: ../src/file-transfer-dialog.c:202
 msgid "URI currently transferring to"
-msgstr ""
+msgstr "URI hîna jî vediguhezîne vir"
 
 #: ../src/file-transfer-dialog.c:209
 msgid "Fraction completed"
-msgstr ""
+msgstr "Kirar nehate temamkirin"
 
 #: ../src/file-transfer-dialog.c:210
 msgid "Fraction of transfer currently completed"
-msgstr ""
+msgstr "Karê transferê niha xelas bû"
 
 #: ../src/file-transfer-dialog.c:217
 msgid "Current URI index"
-msgstr ""
+msgstr "Pêrista URI ya rojane"
 
 #: ../src/file-transfer-dialog.c:218
 msgid "Current URI index - starts from 1"
-msgstr ""
+msgstr "Pêrista URI ya rojane- ji 1ê dest pê dike."
 
 #: ../src/file-transfer-dialog.c:225
 msgid "Total URIs"
-msgstr ""
+msgstr "Bi gişî URI"
 
 #: ../src/file-transfer-dialog.c:226
 msgid "Total number of URIs"
-msgstr ""
+msgstr "Bi gişî hejmara URIyan"
 
 #: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
 msgid "Copying files"
-msgstr ""
+msgstr "Dosye tê jibergirtin"
 
 #: ../src/file-transfer-dialog.c:345
 msgid "From:"
-msgstr ""
+msgstr "Ji kê hatiye:"
 
 #: ../src/file-transfer-dialog.c:349
 msgid "To:"
-msgstr ""
+msgstr "Dişîne ji kê:"
 
 #: ../src/file-transfer-dialog.c:448
 msgid "Connecting..."
-msgstr ""
-
-#: ../src/gnome-screensaver-command.c:59
-msgid "Causes the screensaver to exit gracefully"
-msgstr ""
+msgstr "Tê girêdan..."
 
 #: ../src/gnome-screensaver-command.c:61
-msgid "Query the state of the screensaver"
-msgstr ""
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Hişt ku dîmenderparêz bi nazikî derkeve"
 
 #: ../src/gnome-screensaver-command.c:63
-msgid "Tells the running screensaver process to lock the screen immediately"
-msgstr ""
+msgid "Query the state of the screensaver"
+msgstr "Lêkolîna dîmenderparêz bike"
 
 #: ../src/gnome-screensaver-command.c:65
-msgid "If the screensaver is active then switch to another graphics demo"
-msgstr ""
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "Ji dîmenderparêzê xebatkar bixwaze ku bi carekê re dîmender bigire."
 
 #: ../src/gnome-screensaver-command.c:67
-msgid "Turn the screensaver on (blank the screen)"
-msgstr ""
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "Heke dîmenderparêz çalak be here demo ya girafîkeke din"
 
 #: ../src/gnome-screensaver-command.c:69
-msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "Dîmenderparêz çalak bike"
 
 #: ../src/gnome-screensaver-command.c:71
-msgid "Disable running graphical themes while blanked"
-msgstr ""
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "Heke dîmenderparêz çalak be wî ne çalak bike"
 
 #: ../src/gnome-screensaver-command.c:73
-msgid "Enable running graphical themes while blanked (if applicable)"
-msgstr ""
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "Dîmenparêza herikandî bizivrîne da tu bikî wek çalakiya bikarhinêr"
 
 #: ../src/gnome-screensaver-command.c:75
-msgid "Poke the running screensaver to simulate user activity"
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
 msgstr ""
 
-#: ../src/gnome-screensaver-command.c:77 ../src/gnome-screensaver-dialog.c:110
+#: ../src/gnome-screensaver-command.c:77
+msgid "The calling application that is inhibiting the screensaver"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:79
+msgid "The reason for inhibiting the screensaver"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:81 ../src/gnome-screensaver-dialog.c:54
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
-msgstr ""
+msgstr "Guhertoya vê sepanê"
 
-#: ../src/gnome-screensaver-command.c:202
+#: ../src/gnome-screensaver-command.c:246
 #, c-format
 msgid "The screensaver is %s\n"
-msgstr ""
+msgstr "Dîmenparêz eve %s\n"
 
-#: ../src/gnome-screensaver-command.c:202
+#: ../src/gnome-screensaver-command.c:246
 msgid "active"
-msgstr ""
+msgstr "çalak"
 
-#: ../src/gnome-screensaver-command.c:202
+#: ../src/gnome-screensaver-command.c:246
 msgid "inactive"
-msgstr ""
+msgstr "ne çalak e"
 
-#: ../src/gnome-screensaver-dialog.c:108
+#: ../src/gnome-screensaver-dialog.c:52
 msgid "Show debugging output"
-msgstr ""
+msgstr "Çewtiya derketanê nîşan bide"
 
-#: ../src/gnome-screensaver-dialog.c:112
+#: ../src/gnome-screensaver-dialog.c:56
 msgid "Show the logout button"
-msgstr ""
+msgstr "Bişkoka derketinê nîşan bide"
 
-#: ../src/gnome-screensaver-dialog.c:114
+#: ../src/gnome-screensaver-dialog.c:58
 msgid "Command to invoke from the logout button"
-msgstr ""
+msgstr "Ji vexwendina ji bişkoka derketinê ferman bide"
 
-#: ../src/gnome-screensaver-dialog.c:116
+#: ../src/gnome-screensaver-dialog.c:60
 msgid "Show the switch user button"
+msgstr "Bişkoka çalakirina bikarhiner nîşan bide"
+
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:169 ../src/gnome-screensaver-dialog.c:170
+#: ../src/gnome-screensaver-dialog.c:171 ../src/gs-auth-pam.c:380
+msgid "Username:"
+msgstr "Navê bikarhêner:"
+
+#: ../src/gnome-screensaver-dialog.c:174
+msgid "You are required to change your password immediately (password aged)"
 msgstr ""
 
-#: ../src/gnome-screensaver-preferences.c:427
+#: ../src/gnome-screensaver-dialog.c:175
+msgid "You are required to change your password immediately (root enforced)"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:176
+msgid "Your account has expired; please contact your system administrator"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:177
+msgid "No password supplied"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:178
+msgid "Password unchanged"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:179
+msgid "Can not get username"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:180
+msgid "Retype new UNIX password:"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:181
+msgid "Enter new UNIX password:"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:182
+msgid "(current) UNIX password:"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "Error while changing NIS password."
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "You must choose a longer password"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "Password has been already used. Choose another."
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "You must wait longer to change your password"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:187
+msgid "Sorry, passwords do not match"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:250
+msgid "Checking..."
+msgstr "Tê kontrolkirin..."
+
+#: ../src/gnome-screensaver-dialog.c:289 ../src/gs-auth-pam.c:320
+msgid "Authentication failed."
+msgstr ""
+
+#: ../src/gnome-screensaver-preferences.c:439
 msgid "Blank screen"
-msgstr ""
+msgstr "Dîmenê reş bike"
 
-#: ../src/gnome-screensaver-preferences.c:433
+#: ../src/gnome-screensaver-preferences.c:445
 msgid "Random"
-msgstr ""
+msgstr "Çawalêhato"
 
-#: ../src/gnome-screensaver-preferences.c:723
+#: ../src/gnome-screensaver-preferences.c:805
 msgid "Invalid screensaver theme"
-msgstr ""
+msgstr "Dirbê dîmenderparêzê yê nederbasdar"
 
-#: ../src/gnome-screensaver-preferences.c:726
+#: ../src/gnome-screensaver-preferences.c:808
 msgid "This file does not appear to be a valid screensaver theme."
-msgstr ""
+msgstr "Ev dosya ne wekî mijara çewt a dîmenderparêz tê xuyakirin"
 
-#: ../src/gnome-screensaver-preferences.c:843
+#: ../src/gnome-screensaver-preferences.c:935
 #, c-format
 msgid "%d hour"
-msgstr ""
+msgid_plural "%d hours"
+msgstr[0] "%d saet"
+msgstr[1] "%d saet"
 
-#: ../src/gnome-screensaver-preferences.c:846
+#: ../src/gnome-screensaver-preferences.c:938
 #, c-format
 msgid "%d minute"
-msgstr ""
+msgid_plural "%d minutes"
+msgstr[0] "%d xulek"
+msgstr[1] "%d xulek"
 
-#: ../src/gnome-screensaver-preferences.c:849
+#: ../src/gnome-screensaver-preferences.c:941
 #, c-format
 msgid "%d second"
-msgstr ""
+msgid_plural "%d seconds"
+msgstr[0] "% de çirke"
+msgstr[1] "% de çirke"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:855
+#: ../src/gnome-screensaver-preferences.c:947
 #, c-format
 msgid "%s %s %s"
-msgstr ""
+msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:858
-#: ../src/gnome-screensaver-preferences.c:866
+#: ../src/gnome-screensaver-preferences.c:950
+#: ../src/gnome-screensaver-preferences.c:958
 #, c-format
 msgid "%s %s"
-msgstr ""
+msgstr "%s %s"
 
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:861
-#: ../src/gnome-screensaver-preferences.c:869
-#: ../src/gnome-screensaver-preferences.c:873
+#: ../src/gnome-screensaver-preferences.c:953
+#: ../src/gnome-screensaver-preferences.c:961
+#: ../src/gnome-screensaver-preferences.c:965
 #, c-format
 msgid "%s"
-msgstr ""
+msgstr "%s"
 
-#. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:876
-msgid "0 seconds"
-msgstr ""
-
-#: ../src/gnome-screensaver-preferences.c:891
+#: ../src/gnome-screensaver-preferences.c:980
 msgid "Never"
-msgstr ""
+msgstr "Tu car"
 
-#: ../src/gnome-screensaver-preferences.c:1047
+#: ../src/gnome-screensaver-preferences.c:1365
 msgid "Could not load the main interface"
-msgstr ""
+msgstr "Dirûvê navberê yê mak nehate barkirin."
 
-#: ../src/gnome-screensaver-preferences.c:1049
+#: ../src/gnome-screensaver-preferences.c:1367
 msgid "Please make sure that the screensaver is properly installed"
-msgstr ""
+msgstr "Ji kerema xwe re teqez bike ku dîmenderparêz hatiye daxistin"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
-msgstr ""
+msgstr "Nebe zordest"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
-msgstr ""
+msgstr "Koda neqandina çewtiyan çalak bike"
 
-#: ../src/gs-listener-dbus.c:1219
-msgid "failed to register with the message bus"
-msgstr ""
-
-#: ../src/gs-listener-dbus.c:1229
-msgid "not connected to the message bus"
-msgstr ""
-
-#: ../src/gs-listener-dbus.c:1238
-msgid "screensaver already running in this session"
-msgstr ""
-
-#: ../src/gs-lock-plug.c:351
-msgid "Checking password..."
-msgstr ""
-
-#: ../src/gs-lock-plug.c:394
-msgid "Time has expired."
-msgstr ""
-
-#: ../src/gs-lock-plug.c:420
-msgid "You have the Caps Lock key on."
-msgstr ""
-
-#: ../src/gs-lock-plug.c:707
-msgid "That password was incorrect."
-msgstr ""
-
-#: ../src/gs-lock-plug.c:733 ../src/gs-lock-plug.c:766
-msgid "_Unlock"
-msgstr ""
-
-#: ../src/gs-lock-plug.c:736 ../src/gs-lock-plug.c:763
-msgid "_Switch User..."
-msgstr ""
-
-#. Translators: this is "username on hostname".  You
-#. can translate this to "%s@%s" if it is otherwise tricky
-#. for your language.
-#: ../src/gs-lock-plug.c:1366
+#: ../src/gs-auth-pam.c:262
 #, c-format
-msgid "%s on %s"
+msgid "Unable to establish service %s: %s\n"
 msgstr ""
 
-#: ../src/gs-lock-plug.c:1517
+#: ../src/gs-auth-pam.c:288
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr ""
+
+#: ../src/gs-auth-pam.c:318
+msgid "Incorrect password."
+msgstr "Şifre şas e."
+
+#: ../src/gs-auth-pam.c:334
+msgid "Not permitted to gain access at this time."
+msgstr ""
+
+#: ../src/gs-auth-pam.c:340
+msgid "No longer permitted to access the system."
+msgstr ""
+
+#: ../src/gs-listener-dbus.c:1631
+msgid "failed to register with the message bus"
+msgstr "Tomarkirina di otobusa peyaman de biserneket"
+
+#: ../src/gs-listener-dbus.c:1641
+msgid "not connected to the message bus"
+msgstr "Têkilî bi otobusa peyaman re pêknehat"
+
+#: ../src/gs-listener-dbus.c:1650
+msgid "screensaver already running in this session"
+msgstr "Dîmenparêz ji berê ve di vê danişînê de heye"
+
+#: ../src/gs-lock-plug.c:336
+msgid "Time has expired."
+msgstr "Dem xelas bû."
+
+#: ../src/gs-lock-plug.c:366
+msgid "You have the Caps Lock key on."
+msgstr "Caps Lock vekiriye"
+
+#: ../src/gs-lock-plug.c:1414 ../src/gs-lock-plug.c:1451
+msgid "S_witch User..."
+msgstr "_Bikarhênêr biguherîne..."
+
+#: ../src/gs-lock-plug.c:1422
+msgid "Log _Out"
+msgstr "Derkeve"
+
+#: ../src/gs-lock-plug.c:1613
+msgid "%U on %h"
+msgstr "%U di %h de"
+
+#: ../src/gs-lock-plug.c:1627
 msgid "_Password:"
 msgstr "_Şîfre:"
 
-#: ../src/gs-lock-plug.c:1590
-msgid "S_witch to user:"
-msgstr ""
+#~ msgid "_Screensaver"
+#~ msgstr "_Dîmenderparêz"
 
-#: ../src/gs-lock-plug.c:1637
-msgid "Log _Out"
-msgstr ""
+#~ msgid "Disable running graphical themes while blanked"
+#~ msgstr "Herikîna mijarên bingehîn ên grafîkan çalak bike"
 
+#~ msgid "Enable running graphical themes while blanked (if applicable)"
+#~ msgstr "Herikîna mijarên bingehîn ên grafîkan çalak bike (heke li gorê be)"
+
+#~ msgid "That password was incorrect."
+#~ msgstr "Şifre çewte"
