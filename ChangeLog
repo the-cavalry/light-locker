@@ -1,3 +1,9 @@
+==== 2.15.7 ====
+
+2006-08-21  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 2.15.7 release.
+
 2006-08-21  William Jon McCann  <mccann@jhu.edu>
 
 	* data/lock-dialog-default.glade:
