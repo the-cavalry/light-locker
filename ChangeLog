@@ -1,3 +1,9 @@
+2006-08-21  William Jon McCann  <mccann@jhu.edu>
+
+	* data/lock-dialog-default.glade:
+	Set labelled by atk relation for entry.
+	Part of #350716.
+
 2006-08-07  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.

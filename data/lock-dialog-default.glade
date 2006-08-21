@@ -182,6 +182,9 @@
 			      <property name="has_frame">True</property>
 			      <property name="invisible_char">*</property>
 			      <property name="activates_default">True</property>
+			      <accessibility>
+				<atkrelation target="auth-prompt-label" type="labelled-by"/>
+			      </accessibility>
 			    </widget>
 			    <packing>
 			      <property name="padding">0</property>
