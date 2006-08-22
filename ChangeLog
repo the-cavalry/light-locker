@@ -1,3 +1,10 @@
+2006-08-22  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-manager.c: (manager_select_theme_for_job),
+	(gs_manager_init), (gs_manager_finalize):
+	Until we fix #349695 we should minimize creating
+	and destroying the GSThemeManager objects.
+
 2006-08-21  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump.

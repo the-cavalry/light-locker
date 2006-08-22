@@ -46,6 +46,8 @@ struct GSManagerPrivate
         GSList      *windows;
         GHashTable  *jobs;
 
+        GSThemeManager *theme_manager;
+
         /* Policy */
         glong        lock_timeout;
         glong        cycle_timeout;
@@ -218,18 +220,15 @@ manager_select_theme_for_job (GSManager *manager,
         theme = select_theme (manager);
 
         if (theme != NULL) {
-                GSThemeManager *theme_manager;
                 GSThemeInfo    *info;
                 const char     *command;
 
-                theme_manager = gs_theme_manager_new ();
-                info = gs_theme_manager_lookup_theme_info (theme_manager, theme);
+                info = gs_theme_manager_lookup_theme_info (manager->priv->theme_manager, theme);
                 command = gs_theme_info_get_exec (info);
 
                 gs_job_set_command (job, command);
 
                 gs_theme_info_unref (info);
-                g_object_unref (theme_manager);
         } else {
                 gs_job_set_command (job, NULL);
         }
@@ -904,6 +903,7 @@ gs_manager_init (GSManager *manager)
 
         manager->priv->fade = gs_fade_new ();
         manager->priv->grab = gs_grab_new ();
+        manager->priv->theme_manager = gs_theme_manager_new ();
 }
 
 static void
@@ -958,6 +958,7 @@ gs_manager_finalize (GObject *object)
 
         g_object_unref (manager->priv->fade);
         g_object_unref (manager->priv->grab);
+        g_object_unref (manager->priv->theme_manager);
 
         G_OBJECT_CLASS (gs_manager_parent_class)->finalize (object);
 }
