@@ -1,3 +1,8 @@
+2006-08-24  Inaki Larranaga  <dooteo@euskalgnu.org>
+
+	* eu.po: Added Basque translation.
+	* LINGUAS: Added "eu" (Basque) entry.
+
 2006-08-22  Matic Žgur  <mr.zgur@gmail.com>
 
 	* sl.po: Updated Slovenian translation.

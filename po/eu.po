@@ -1,0 +1,955 @@
+# translation of eu.po to Basque
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: eu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-08-23 17:41+0000\n"
+"PO-Revision-Date: 2006-08-24 12:47+0000\n"
+"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
+"Language-Team: Basque <itzulpena@euskalgnu.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "Pantaila-babeslea"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "Ezarri pantaila-babeslearen hobespenak"
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "<b>Screensaver preview</b>"
+msgstr "<b>Pantaila-babeslearen aurrebista</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+msgstr "<b>Abisua: pantaila ezin da 'root' erabiltzailearentzako blokeatu.</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Regard the computer as _idle after:"
+msgstr "Jarri ordenagailua _inaktibo honen ondoren:"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "Screensaver Preferences"
+msgstr "Panatila-babeslearen hobespenak"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "Screensaver Preview"
+msgstr "Pantaila-babeslearen aurrebista"
+
+#: ../data/gnome-screensaver-preferences.glade.h:6
+msgid "_Activate screensaver when computer is idle"
+msgstr "_Aktibatu pantaila-babeslea ordenagailua inaktibo dagoenean"
+
+#: ../data/gnome-screensaver-preferences.glade.h:7
+msgid "_Lock screen when screensaver is active"
+msgstr "_Blokeatu pantaila pantaila-babeslea aktibatzean"
+
+#: ../data/gnome-screensaver-preferences.glade.h:8
+msgid "_Preview"
+msgstr "_Aurrebista"
+
+#: ../data/gnome-screensaver-preferences.glade.h:9
+msgid "_Screensaver theme:"
+msgstr "_Pantaila-babeslearen gaia:"
+
+#: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Screensaver themes"
+msgstr "Panataila-babeslearen gaiak"
+
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "Pantaila-babeslea"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Activate when idle"
+msgstr "Aktibatu inaktibo dagoenean"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow embedding a keyboard into the window"
+msgstr "Baimendu teklatua leihoan kapsulatzea"
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "Allow logout"
+msgstr "Baimendu saio-amaiera"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow user switching"
+msgstr "Baimendu erabiltzaile-aldaketa"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Embedded keyboard command"
+msgstr "Kapsulatutako teklatu komandoa"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "Lock on activation"
+msgstr "Blokeatu aktibatzean"
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Logout command"
+msgstr "Saio-amaierako komandoa"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Screensaver theme selection mode"
+msgstr "Pantaila-babeslearen gaiaren hautatze modua"
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr "Ezarri EGIA gisa pantaila-babeslea aktibatzeko saioa inaktibo dagoenean."
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr ""
+"Ezarri AGIA gisa teklatua leiho batean desblokeatzen saiatzean "
+"kapsulatzea baimentzeko. \"keyboard_command\" gakoa komando egokiarekin "
+"ezarrita egon behar du."
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr "Ezarri EGIA gisa pantaila blokeatzeko pantaila-babeslea aktibatzera doanean."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr ""
+"Ezarri EGIA gisa desblokeatzeko elkarrizketa-koadroan aukera bat eskaintzeko, "
+"beste erabiltzaile batera aldatzeko."
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr ""
+"Ezarri EGIA gisa desblokeatzeko elkarrizketa-koadroan saioa amaitzeko aukera "
+"eskaintzeko, atzerapen baten ondoren. Atzerapena \"logout_delay\" gakoan zehaztuta "
+"dago."
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr ""
+"Exekutatu egingo den komandoa, \"embedded_keyboard_enable\" gakoa EGIA gisa "
+"ezartzen bada, teklatuko trepeta bat leihoan kapsulatzeko. Komando honek "
+"XEMBED interfaze-osagaia garatuta eduki beharko luke, eta irteera estandarrean XID leihoa marraztu."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr ""
+"Komandoa, saioa amaitzeko botoian klik egitean erabiliko dena. Komando honek beste "
+"interakziorik gabe saioa amaitu beharko luke. Gako honek \"logout_enable\" EGIA gisa "
+"ezartzen bada bakarrik izango du eragina."
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid "The number of minutes after screensaver activation before locking the screen."
+msgstr "Minutu kopurua, pantaila-babeslea aktibatu eta pantaila blokeatu bitartekoa."
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr ""
+"Minutu kopurua, pantaila-babeslea aktibatu eta saioa amaitzeko aukera desblokeatzeko "
+"elkarrizketa-koadroan agertu bitartean. Gako honek \"logout_enable\" gakoa "
+"EGIA gisa ezartzen bada bakarrik izango du eragina."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid "The number of minutes of inactivity before the session is considered idle."
+msgstr "Inaktibitateko minutu kopurua, saioa inaktibotzat hartu arte."
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr "Minutu kopurua pantaila-babesleko gaia aldatu aurretik exekutatzeko."
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid ""
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
+msgstr ""
+"Pantaila-babesleak erabiltzen duen hautapen modua. \"blank-only\"  izan daiteke "
+"pantaila-babeslea aktibatzean gairik ez erabiltzeko, \"single\" gai bakarra erabiltzeko "
+"pantaila-babeslea aktibatzean (\"themes\" gakoan zehaztutakoa), edo \"random\" gaiak "
+"aldatzen joan dadin pantaila-babeslea aktibatzean."
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid "Theme for lock dialog"
+msgstr "Blokeatze-leihoaren gaia"
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "Theme to use for the lock dialog."
+msgstr "Gaia blokeatze-leihoan erabiltzeko."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
+msgstr ""
+"Gako honek gaien zerrenda zehazten du pantaila-babesleak erabiltzeko. Ez ikusi egingo "
+"zaio \"mode\" gakoa \"blank-only\" balioarekin ezarrita egotean. Gaiaren izena eman "
+"behar da \"mode\" gakoa \"single\" denean, eta gaien zerrenda eman behar da \"random\" "
+"denean."
+
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Time before activation"
+msgstr "Denbora aktibatu aurretik"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Time before locking"
+msgstr "Denbora blokeatu aurretik"
+
+#: ../data/gnome-screensaver.schemas.in.h:27
+msgid "Time before logout option"
+msgstr "Denbora saioa amaitzeko aukeraren aurretik"
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before theme change"
+msgstr "Denbora gaia aldatu aurretik"
+
+#: ../data/lock-dialog-default.glade.h:2
+#, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
+msgstr "<span size=\"small\">%U :: %h</span>"
+
+#: ../data/lock-dialog-default.glade.h:4
+#, no-c-format
+msgid "<span size=\"x-large\">%R</span>"
+msgstr "<span size=\"x-large\">%R</span>"
+
+#: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:172
+#: ../src/gnome-screensaver-dialog.c:173
+msgid "Password:"
+msgstr "Pasahitza:"
+
+#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1703
+msgid "S_witch to user:"
+msgstr "A_ldatu erabiltzailera:"
+
+#: ../data/lock-dialog-default.glade.h:7
+msgid "_Cancel"
+msgstr "_Utzi"
+
+#: ../data/lock-dialog-default.glade.h:8
+msgid "_Log Out"
+msgstr "_Irten saiotik"
+
+#: ../data/lock-dialog-default.glade.h:9
+msgid "_Switch User..."
+msgstr "_Aldatu erabiltzailez..."
+
+#: ../data/lock-dialog-default.glade.h:10
+msgid "_Switch user..."
+msgstr "_Aldatu erabiltzailez..."
+
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1432
+msgid "_Unlock"
+msgstr "_Desblokeatu"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Egin burbuilak GNOMEren oina logotipoarekin pantailan zehar"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Oin mugikorra"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr "Kosmos"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "Bistaratu diapositibak argazki astronomikoekin"
+
+#: ../savers/personal-slideshow.desktop.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr "Bistaratu diapositibak Irudien karpetatik"
+
+#: ../savers/personal-slideshow.desktop.in.h:2
+msgid "Pictures folder"
+msgstr "Irudiak karpeta"
+
+#: ../savers/popsquares.desktop.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr "Pop-art-dun sareta kolore pilpilekin"
+
+#: ../savers/popsquares.desktop.in.h:2
+msgid "Pop art squares"
+msgstr "Pop arteko karratuak"
+
+#: ../savers/floaters.c:1166
+msgid "show paths that images follow"
+msgstr "erakutsi bidea irudiek jarraitzeko"
+
+#: ../savers/floaters.c:1173
+msgid "occasionally rotate images as they move"
+msgstr "batzuetan biratu irudiak hauek mugitzean"
+
+#: ../savers/floaters.c:1180
+msgid "print out frame rate and other statistics"
+msgstr "bistaratu marko-tasa eta beste estatistikak"
+
+#: ../savers/floaters.c:1188
+msgid "the maximum number of images to keep on screen"
+msgstr "gehienezko irudi kopurua pantailan mantentzeko"
+
+#. translators: this should be translated to be symbolic of a generic
+#. * number.  e.g, "the screen saver should keep N images on the screen"
+#.
+#: ../savers/floaters.c:1192
+msgid "N"
+msgstr "N"
+
+#: ../savers/floaters.c:1199
+msgid "the source image to use"
+msgstr "irudiaren iturburua erabitzeko"
+
+#: ../savers/floaters.c:1206
+msgid "the initial size and position of window"
+msgstr "leihoaren haserako tamaina eta posizioa"
+
+#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
+#. * can be translated, but the 'x' area indicator and '+' offset indicators
+#. * need to be untranslated and can't be rearranged.
+#.
+#: ../savers/floaters.c:1211
+msgid "WIDTHxHEIGHT+X+Y"
+msgstr "ZABALERAxALTUERA+X+Y"
+
+#. translators: the word "image" here
+#. * represents a command line argument
+#.
+#: ../savers/floaters.c:1229
+msgid "image - floats images around the screen"
+msgstr "image - mugitu irudiak pantailan zehar"
+
+#: ../savers/floaters.c:1239
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s. --help erabileraren xehetasunak ikusteko.\n"
+
+#: ../savers/floaters.c:1248
+msgid "You must specify one image.  See --help for usage information.\n"
+msgstr "Irudi bat zehaztu behar duzu. --help erabileraren xehetasunak ikusteko.\n"
+
+#: ../savers/slideshow.c:47
+msgid "Location to get images from"
+msgstr "Helbidea irudiak lortzeko"
+
+#: ../savers/slideshow.c:47
+msgid "PATH"
+msgstr "BIDE-IZENA"
+
+#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
+msgid "Manager"
+msgstr "Kudeatzailea"
+
+#: ../src/cut-n-paste/fusa-display.c:120
+msgid "The manager which owns this object."
+msgstr "Objektu honen kudeatzailea."
+
+#: ../src/cut-n-paste/fusa-display.c:127
+msgid "Name"
+msgstr "Izena"
+
+#: ../src/cut-n-paste/fusa-display.c:128
+msgid "The name of the X11 display this object refers to."
+msgstr "X11 pantailaren izena (objektu honek erreferentziatzen duena)."
+
+#: ../src/cut-n-paste/fusa-display.c:134
+#: ../src/cut-n-paste/fusa-user-menu-item.c:163
+msgid "User"
+msgstr "Erabiltzailea"
+
+#: ../src/cut-n-paste/fusa-display.c:135
+msgid "The user currently logged in on this virtual terminal."
+msgstr "Unean terminal birtualean saioa hasita duen erabiltzailea."
+
+#: ../src/cut-n-paste/fusa-display.c:141
+msgid "Console"
+msgstr "Kontsola"
+
+#: ../src/cut-n-paste/fusa-display.c:142
+msgid "The number of the virtual console this display can be found on, or %-1."
+msgstr "Pantaila honetan aurki daitekeen kontsola birtualen kopurua, edo %-1."
+
+#: ../src/cut-n-paste/fusa-display.c:148
+msgid "Nested"
+msgstr "Habiaratuta"
+
+#: ../src/cut-n-paste/fusa-display.c:149
+msgid "Whether or not this display is a windowed (Xnest) display."
+msgstr "Pantaila hau leihoan (habiaratuta) dagoen edo ez."
+
+#: ../src/cut-n-paste/fusa-manager.c:1453
+msgid "The display manager could not be contacted for unknown reasons."
+msgstr "Ezin izan da pantaila-kudeatzailearekin kontaktatu arrazoi ezezagunak direla eta."
+
+#: ../src/cut-n-paste/fusa-manager.c:1460
+msgid "The display manager is not running or too old."
+msgstr "Pantaila-kudeatzailea ez da exekutatzen ari edo zaharregia da."
+
+#: ../src/cut-n-paste/fusa-manager.c:1463
+msgid "The configured limit of flexible servers has been reached."
+msgstr "Zerbitzari malguen konfiguratutako muga gainditu da."
+
+#: ../src/cut-n-paste/fusa-manager.c:1466
+msgid "There was an unknown error starting X."
+msgstr "Errore ezezaguna gertatu da X abiaraztean."
+
+#: ../src/cut-n-paste/fusa-manager.c:1469
+msgid "The X server failed to finish starting."
+msgstr "X zerbitzariak huts egin du abioa amaitzean."
+
+#: ../src/cut-n-paste/fusa-manager.c:1472
+msgid "There are too many X sessions running."
+msgstr "X saio gehiegi daude exekutatzen."
+
+#: ../src/cut-n-paste/fusa-manager.c:1475
+msgid "The nested X server (Xnest) cannot connect to your current X server."
+msgstr "Habiaratutako (Xnest) X zerbitzariak ezin du uneko zure X zerbitzariarekin konektatu."
+
+#: ../src/cut-n-paste/fusa-manager.c:1478
+msgid "The X server in the GDM configuration could not be found."
+msgstr "Ezin izan da X zerbitzaria aurkitu GDM konfigurazioan."
+
+#: ../src/cut-n-paste/fusa-manager.c:1481 ../src/cut-n-paste/gdmcomm.c:492
+msgid ""
+"Trying to set an unknown logout action, or trying to set a logout action "
+"which is not available."
+msgstr ""
+"Saioa amaitzeko ekintza ezezaguna ezartzen ari zara, edo erabilgarria ez den "
+"saioa amaitzeko ekintza ezartzen ari zara."
+
+#: ../src/cut-n-paste/fusa-manager.c:1484 ../src/cut-n-paste/gdmcomm.c:495
+msgid "Virtual terminals not supported."
+msgstr "Terminal birtualak ez dira onartzen."
+
+#: ../src/cut-n-paste/fusa-manager.c:1487
+msgid "Invalid virtual terminal number."
+msgstr "Terminal birtualen baliogabeko kopurua."
+
+#: ../src/cut-n-paste/fusa-manager.c:1490 ../src/cut-n-paste/gdmcomm.c:499
+msgid "Trying to update an unsupported configuration key."
+msgstr "Onartzen ez den konfigurazio-gakoa eguneratu nahian zabiltza."
+
+#: ../src/cut-n-paste/fusa-manager.c:1493
+msgid "~/.Xauthority file badly configured or missing."
+msgstr "~/.Xauthority fitxategia oker konfiguratuta dago edo falta da."
+
+#: ../src/cut-n-paste/fusa-manager.c:1496
+msgid "Too many messages were sent to the display manager, and it hung up."
+msgstr "Mezu gehiegi bidali zaizkio pantaila-kudeatzaileari, eta eseki egin da."
+
+#: ../src/cut-n-paste/fusa-manager.c:1500
+msgid "The display manager sent an unknown error message."
+msgstr "Pantaila-kudeatzaileak errore-mezu ezezaguna bidali du."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:164
+msgid "The user this menu item represents."
+msgstr "Erabiltzailea, menuko elementuak adierazten duena."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:171
+msgid "Icon Size"
+msgstr "Ikonoaren tamaina"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:172
+msgid "The size of the icon to use."
+msgstr "Ikonoaren tamaina erabiltzeko."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:178
+msgid "Indicator Size"
+msgstr "Adierazlearen tamaina"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:179
+msgid "Size of check indicator"
+msgstr "Egiaztatze-adierazlearen tamaina"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:184
+msgid "Indicator Spacing"
+msgstr "Adierazlearen tartea"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:185
+msgid "Space between the username and the indicator"
+msgstr "Erabiltzaile-izenaren eta adierazlearen arteko tartea"
+
+#: ../src/cut-n-paste/fusa-user.c:151
+msgid "The user manager object this user is controlled by."
+msgstr "Erabiltzaile-kudeatzailearen objektua, erabiltzaile hau kontrolatzen duena."
+
+#: ../src/cut-n-paste/fusa-utils.c:80
+msgid "Show Details"
+msgstr "Erakutsi xehetasunak"
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:413
+msgid "GDM (The GNOME Display Manager) is not running."
+msgstr "GDM (GNOMEren pantaila-kudeatzailea) ez da exekutatzen ari."
+
+#: ../src/cut-n-paste/gdmcomm.c:416
+msgid ""
+"You might in fact be using a different display manager, such as KDM (KDE "
+"Display Manager) or xdm."
+msgstr ""
+"Agian beste pantaila-kudeatzaile bat erabiltzen ari zara, adibidez KDM (KDE "
+"pantaila-kudeatzailea) edo xdm."
+
+#: ../src/cut-n-paste/gdmcomm.c:419
+msgid ""
+"If you still wish to use this feature, either start GDM yourself or ask your "
+"system administrator to start GDM."
+msgstr ""
+"Oraindik ezaugarri hori erabili nahi baduzu, zeuk abiarazi GDM edo eskatu "
+"sistemako administratzaileari abiarazteko."
+
+#. markup
+#: ../src/cut-n-paste/gdmcomm.c:441
+msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+msgstr "Ezin da GDMrekin komunikatu (GNOME pantaila-kudeatzailea)"
+
+#: ../src/cut-n-paste/gdmcomm.c:444
+msgid "Perhaps you have an old version of GDM running."
+msgstr "Baliteke GDMren bertsio zaharra exekutatzen ari izatea."
+
+#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
+msgid "Cannot communicate with gdm, perhaps you have an old version running."
+msgstr ""
+"Ezin da gdm-rekin komunikatu, baliteke bertsio zaharra exekutatzen ari "
+"izatea."
+
+#: ../src/cut-n-paste/gdmcomm.c:469
+msgid "The allowed limit of flexible X servers reached."
+msgstr "X zerbitzari malguen baimendutako mugara iritsi da."
+
+#: ../src/cut-n-paste/gdmcomm.c:471
+msgid "There were errors trying to start the X server."
+msgstr "Erroreak gertatu dira X zerbitzaria abiaraztean."
+
+#: ../src/cut-n-paste/gdmcomm.c:473
+msgid "The X server failed.  Perhaps it is not configured well."
+msgstr "X zerbitzariak huts egin du. Baliteke ongi konfiguratuta ez egotea."
+
+#: ../src/cut-n-paste/gdmcomm.c:476
+msgid "Too many X sessions running."
+msgstr "X saio gehiegi ari dira exekutatzen."
+
+#: ../src/cut-n-paste/gdmcomm.c:478
+msgid ""
+"The nested X server (Xnest) cannot connect to your current X server.  You "
+"may be missing an X authorization file."
+msgstr ""
+"X zerbitzari habiaratua (Xnest) ezin da zure uneko X zerbitzariarekin "
+"konektatu. Beharbada X baimen-fitxategia falta zaizu."
+
+#: ../src/cut-n-paste/gdmcomm.c:483
+msgid ""
+"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
+"Please install the Xnest package in order to use the nested login."
+msgstr ""
+"X zerbitzari habiaratua (Xnest) ez dago erabilgarri, edo gdm gaizki "
+"konfiguratuta dago.\n"
+"Instalatu Xnest paketea saio-hasiera habiaratua hasteko."
+
+#: ../src/cut-n-paste/gdmcomm.c:488
+msgid "The X server is not available, it is likely that gdm is badly configured."
+msgstr "X zerbitzaria ez dago erabilgarri, agian gdm gaizki konfiguratuta egongo da."
+
+#: ../src/cut-n-paste/gdmcomm.c:497
+msgid "Trying to change to an invalid virtual terminal number."
+msgstr "Terminal birtualaren baliogabeko  zenbakira aldatzen saiatzen."
+
+#: ../src/cut-n-paste/gdmcomm.c:501
+msgid ""
+"You do not seem to have authentication needed be for this operation.  "
+"Perhaps your .Xauthority file is not set up correctly."
+msgstr ""
+"Badirudi eragiketa honetarako behar den autentifikazioa ez duzula.  "
+"Beharbada .Xauthority fitxategia ez da ondo konfiguratuta egongo."
+
+#: ../src/cut-n-paste/gdmcomm.c:505
+msgid "Too many messages were sent to gdm and it hung upon us."
+msgstr "Mezu gehiegi bidali dira gdm-ra eta eseki egin digu."
+
+#: ../src/cut-n-paste/gdmcomm.c:508
+msgid "Unknown error occurred."
+msgstr "Errore ezezaguna gertatu da."
+
+#: ../src/file-transfer-dialog.c:94
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Fitxategiak kopiatzen: %u / %u"
+
+#: ../src/file-transfer-dialog.c:122
+#, c-format
+msgid "Copying '%s'"
+msgstr "'%s' kopiatzen"
+
+#: ../src/file-transfer-dialog.c:193
+msgid "From URI"
+msgstr "URItik"
+
+#: ../src/file-transfer-dialog.c:194
+msgid "URI currently transferring from"
+msgstr "Unean URI honetatik transferitzen:"
+
+#: ../src/file-transfer-dialog.c:201
+msgid "To URI"
+msgstr "URIra"
+
+#: ../src/file-transfer-dialog.c:202
+msgid "URI currently transferring to"
+msgstr "Unean URI honetara transferitzen"
+
+#: ../src/file-transfer-dialog.c:209
+msgid "Fraction completed"
+msgstr "Frakzioa bukatuta"
+
+#: ../src/file-transfer-dialog.c:210
+msgid "Fraction of transfer currently completed"
+msgstr "Transferentzia-frakzioa unean bukatuta"
+
+#: ../src/file-transfer-dialog.c:217
+msgid "Current URI index"
+msgstr "Uneko URIaren indizea"
+
+#: ../src/file-transfer-dialog.c:218
+msgid "Current URI index - starts from 1"
+msgstr "Uneko URIaren indizea - 1etik hasten da"
+
+#: ../src/file-transfer-dialog.c:225
+msgid "Total URIs"
+msgstr "URIak guztira"
+
+#: ../src/file-transfer-dialog.c:226
+msgid "Total number of URIs"
+msgstr "URIen kopurua guztira"
+
+#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+msgid "Copying files"
+msgstr "Fitxategiak kopiatzen"
+
+#: ../src/file-transfer-dialog.c:345
+msgid "From:"
+msgstr "Nondik:"
+
+#: ../src/file-transfer-dialog.c:349
+msgid "To:"
+msgstr "Nora:"
+
+#: ../src/file-transfer-dialog.c:448
+msgid "Connecting..."
+msgstr "Konektatzen..."
+
+#: ../src/gnome-screensaver-command.c:61
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Pantaila-babeslea ongi amaitzea eragiten du"
+
+#: ../src/gnome-screensaver-command.c:63
+msgid "Query the state of the screensaver"
+msgstr "Pantaila-babeslearen egoeraren kontsulta"
+
+#: ../src/gnome-screensaver-command.c:65
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr ""
+"Exekutatzen ari den pantaila-babeslearen prozesuari pantaila berehala "
+"blokeatzeko esaten dio."
+
+#: ../src/gnome-screensaver-command.c:67
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "Pantaila-babeslea aktibo egonez gero, aldatu beste demo grafikora"
+
+#: ../src/gnome-screensaver-command.c:69
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "Aktibatu pantaila-babeslea (belztu pantaila)"
+
+#: ../src/gnome-screensaver-command.c:71
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "Pantaila-babeslea aktibo egonez gero, desaktibatu (kendu pantaila beltza)"
+
+#: ../src/gnome-screensaver-command.c:73
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "Eskatu pantaila-babesleari erabiltzailearen aktibitatea simulatzeko"
+
+#: ../src/gnome-screensaver-command.c:75
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr "Geldiarazi pantaila-babeslea aktibatzea. Komandoa blokeatu egiten da geldiaraztea aktibo dagoen heinean."
+
+#: ../src/gnome-screensaver-command.c:77
+msgid "The calling application that is inhibiting the screensaver"
+msgstr "Pantaila-babeslea geldiarazten duen aplikazioaren deia"
+
+#: ../src/gnome-screensaver-command.c:79
+msgid "The reason for inhibiting the screensaver"
+msgstr "Pantaila-babeslea geldiarazteko arrazoia"
+
+#: ../src/gnome-screensaver-command.c:81 ../src/gnome-screensaver-dialog.c:54
+#: ../src/gnome-screensaver.c:56
+msgid "Version of this application"
+msgstr "Aplikazio honen bertsioa"
+
+#: ../src/gnome-screensaver-command.c:246
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "Pantaila-babeslea %s da\n"
+
+#: ../src/gnome-screensaver-command.c:246
+msgid "active"
+msgstr "aktibo"
+
+#: ../src/gnome-screensaver-command.c:246
+msgid "inactive"
+msgstr "inaktibo"
+
+#: ../src/gnome-screensaver-dialog.c:52
+msgid "Show debugging output"
+msgstr "Erakutsi arazteko irteera"
+
+#: ../src/gnome-screensaver-dialog.c:56
+msgid "Show the logout button"
+msgstr "Erakutsi saioa amaitzeko botoia"
+
+#: ../src/gnome-screensaver-dialog.c:58
+msgid "Command to invoke from the logout button"
+msgstr "Komandoa, saioa amaitzeko botoiari deitzeko"
+
+#: ../src/gnome-screensaver-dialog.c:60
+msgid "Show the switch user button"
+msgstr "Erakutsi erabiltzailez aldatzeko botoia"
+
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:169 ../src/gnome-screensaver-dialog.c:170
+#: ../src/gnome-screensaver-dialog.c:171 ../src/gs-auth-pam.c:380
+msgid "Username:"
+msgstr "Erabiltzaile-izena:"
+
+#: ../src/gnome-screensaver-dialog.c:174
+msgid "You are required to change your password immediately (password aged)"
+msgstr "Pasahitza berehala aldatu behar duzu (pasahitza zaharkituta)"
+
+#: ../src/gnome-screensaver-dialog.c:175
+msgid "You are required to change your password immediately (root enforced)"
+msgstr "Pasahitza berehala aldatu behar duzu (erroak behartuta)"
+
+#: ../src/gnome-screensaver-dialog.c:176
+msgid "Your account has expired; please contact your system administrator"
+msgstr ""
+"Zure kontua iraungi egin da; jarri harremanetan sistemako "
+"administratzailearekin"
+
+#: ../src/gnome-screensaver-dialog.c:177
+msgid "No password supplied"
+msgstr "Ez da pasahitzik eman"
+
+#: ../src/gnome-screensaver-dialog.c:178
+msgid "Password unchanged"
+msgstr "Pasahitza ez da aldatu"
+
+#: ../src/gnome-screensaver-dialog.c:179
+msgid "Can not get username"
+msgstr "Ezin da erabiltzaile-izena lortu"
+
+#: ../src/gnome-screensaver-dialog.c:180
+msgid "Retype new UNIX password:"
+msgstr "Idatzi berriro UNIXeko pasahitz berria:"
+
+#: ../src/gnome-screensaver-dialog.c:181
+msgid "Enter new UNIX password:"
+msgstr "Idatzi UNIXeko pasahitz berria:"
+
+#: ../src/gnome-screensaver-dialog.c:182
+msgid "(current) UNIX password:"
+msgstr "(uneko) UNIXeko pasahitza:"
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "Error while changing NIS password."
+msgstr "Errorea gertatu da NIS pasahitza aldatzean."
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "You must choose a longer password"
+msgstr "Pasahitz luzeagoa aukeratu behar duzu"
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "Password has been already used. Choose another."
+msgstr "Pasahitz hori erabilita dago. Aukeratu beste bat."
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "You must wait longer to change your password"
+msgstr "Gehiago itxaron behar duzu pasahitza aldatzeko"
+
+#: ../src/gnome-screensaver-dialog.c:187
+msgid "Sorry, passwords do not match"
+msgstr "Pasahitzak ez datoz bat"
+
+#: ../src/gnome-screensaver-dialog.c:250
+msgid "Checking..."
+msgstr "Egiaztatzen..."
+
+#: ../src/gnome-screensaver-dialog.c:289 ../src/gs-auth-pam.c:320
+msgid "Authentication failed."
+msgstr "Autentifikazioak huts egin du."
+
+#: ../src/gnome-screensaver-preferences.c:439
+msgid "Blank screen"
+msgstr "Pantaila beltza"
+
+#: ../src/gnome-screensaver-preferences.c:445
+msgid "Random"
+msgstr "Ausazkoa"
+
+#: ../src/gnome-screensaver-preferences.c:805
+msgid "Invalid screensaver theme"
+msgstr "Pantaila-babeslearen baliogabeko gaia"
+
+#: ../src/gnome-screensaver-preferences.c:808
+msgid "This file does not appear to be a valid screensaver theme."
+msgstr "Fitxategi hau badirudi ez dela pantaila-babeslearen baliozko gaia."
+
+#: ../src/gnome-screensaver-preferences.c:935
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "ordu %d"
+msgstr[1] "%d ordu"
+
+#: ../src/gnome-screensaver-preferences.c:938
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "minutu %d"
+msgstr[1] "%d minutu"
+
+#: ../src/gnome-screensaver-preferences.c:941
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "segundo %d"
+msgstr[1] "%d segundo"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:947
+#, c-format
+msgid "%s %s %s"
+msgstr "%s:%s:%s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:950
+#: ../src/gnome-screensaver-preferences.c:958
+#, c-format
+msgid "%s %s"
+msgstr "%s:%s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:953
+#: ../src/gnome-screensaver-preferences.c:961
+#: ../src/gnome-screensaver-preferences.c:965
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: ../src/gnome-screensaver-preferences.c:980
+msgid "Never"
+msgstr "Inoiz ere ez"
+
+#: ../src/gnome-screensaver-preferences.c:1365
+msgid "Could not load the main interface"
+msgstr "Ezin izan da interfaze nagusia kargatu"
+
+#: ../src/gnome-screensaver-preferences.c:1367
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "Ziurtatu pantaila-babeslea ongi instalatuta dagoela"
+
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "Ez izan daemon bat"
+
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr "Gaitu kode arazketa"
+
+#: ../src/gs-auth-pam.c:262
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr "Ezin izan da %s zerbitzua ezarri: %s\n"
+
+#: ../src/gs-auth-pam.c:288
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr "Ezin da PAM_TTY=%s konfiguratu"
+
+#: ../src/gs-auth-pam.c:318
+msgid "Incorrect password."
+msgstr "Okerreko pasahitza."
+
+#: ../src/gs-auth-pam.c:334
+msgid "Not permitted to gain access at this time."
+msgstr "Ez duzu sarbidetzeko baimenik une honetan."
+
+#: ../src/gs-auth-pam.c:340
+msgid "No longer permitted to access the system."
+msgstr "Ez duzu baimenik aurrerantzean sistemara sarbidetzeko."
+
+#: ../src/gs-listener-dbus.c:1631
+msgid "failed to register with the message bus"
+msgstr "huts egin du mezuaren deia erregistratzean"
+
+#: ../src/gs-listener-dbus.c:1641
+msgid "not connected to the message bus"
+msgstr "ez da mezuaren deira konektatu"
+
+#: ../src/gs-listener-dbus.c:1650
+msgid "screensaver already running in this session"
+msgstr "pantaila-babeslea jadanik exekutatzen dago saio honetan"
+
+#: ../src/gs-lock-plug.c:336
+msgid "Time has expired."
+msgstr "Denbora iraungitu egin da."
+
+#: ../src/gs-lock-plug.c:366
+msgid "You have the Caps Lock key on."
+msgstr "Blok.maius. aktibatuta dago"
+
+#: ../src/gs-lock-plug.c:1414 ../src/gs-lock-plug.c:1451
+msgid "S_witch User..."
+msgstr "_Aldatu erabiltzailez..."
+
+#: ../src/gs-lock-plug.c:1422
+msgid "Log _Out"
+msgstr "_Amaitu saioa..."
+
+#: ../src/gs-lock-plug.c:1613
+msgid "%U on %h"
+msgstr "%U :: %s"
+
+#: ../src/gs-lock-plug.c:1627
+msgid "_Password:"
+msgstr "_Pasahitza:"
+
