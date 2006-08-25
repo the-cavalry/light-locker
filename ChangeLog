@@ -1,3 +1,8 @@
+2006-08-25  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-manager.c: (window_dialog_down_cb):
+	Add debug spew.
+
 2006-08-22  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-manager.c: (manager_select_theme_for_job),

@@ -1033,6 +1033,8 @@ window_dialog_down_cb (GSWindow  *window,
         g_return_if_fail (manager != NULL);
         g_return_if_fail (GS_IS_MANAGER (manager));
 
+        gs_debug ("Handling dialog down");
+
         /* Regrab the mouse */
         gs_grab_move_to_window (manager->priv->grab,
                                 gs_window_get_gdk_window (window),
