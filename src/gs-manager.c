@@ -69,10 +69,10 @@ struct GSManagerPrivate
         guint        fading : 1;
         guint        dialog_up : 1;
 
+        time_t       activate_time;
+
         guint        lock_timeout_id;
         guint        cycle_timeout_id;
-
-        time_t       activate_time;
 
         GSList      *themes;
         GSSaverMode  saver_mode;
@@ -1489,9 +1489,12 @@ gs_manager_deactivate (GSManager *manager)
         g_slist_free (manager->priv->windows);
         manager->priv->windows = NULL;
 
+        /* reset state */
         manager->priv->active = FALSE;
         manager->priv->activate_time = 0;
         manager->priv->lock_active = FALSE;
+        manager->priv->dialog_up = FALSE;
+        manager->priv->fading = FALSE;
 
         return TRUE;
 }

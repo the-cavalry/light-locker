@@ -1,5 +1,11 @@
 2006-08-25  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-manager.c: (gs_manager_deactivate):
+	Reset dialog_up and fading state.
+	May help fix #352818
+
+2006-08-25  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c: (window_dialog_down_cb):
 	Add debug spew.
 
