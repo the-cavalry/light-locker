@@ -662,6 +662,10 @@ gs_lock_plug_set_switch_enabled (GSLockPlug *plug,
         plug->priv->switch_enabled = switch_enabled;
         g_object_notify (G_OBJECT (plug), "switch-enabled");
 
+        if (plug->priv->auth_switch_button == NULL) {
+                return;
+        }
+
         if (switch_enabled) {
                 gtk_widget_show (plug->priv->auth_switch_button);
         } else {
@@ -1903,13 +1907,16 @@ gs_lock_plug_init (GSLockPlug *plug)
                 expand_string_for_label (plug->priv->auth_realname_label);
         }
 
-        if (! plug->priv->logout_enabled
-            || ! plug->priv->logout_command) {
-                gtk_widget_hide (plug->priv->auth_logout_button);
+        if (! plug->priv->logout_enabled || ! plug->priv->logout_command) {
+                if (plug->priv->auth_logout_button != NULL) {
+                        gtk_widget_hide (plug->priv->auth_logout_button);
+                }
         }
 
         if (! plug->priv->switch_enabled) {
-                gtk_widget_hide (plug->priv->auth_switch_button);
+                if (plug->priv->auth_switch_button != NULL) {
+                        gtk_widget_hide (plug->priv->auth_switch_button);
+                }
         }
 
         plug->priv->timeout = DIALOG_TIMEOUT_MSEC;

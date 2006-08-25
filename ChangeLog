@@ -1,5 +1,14 @@
 2006-08-25  William Jon McCann  <mccann@jhu.edu>
 
+	* data/lock-dialog-default.glade:
+	Don't set invisible char.
+
+	* src/gs-lock-plug.c: (gs_lock_plug_set_switch_enabled),
+	(gs_lock_plug_init):
+	Don't try to hide NULL widgets.  Fixes #352812
+
+2006-08-25  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c: (gs_manager_deactivate):
 	Reset dialog_up and fading state.
 	May help fix #352818
