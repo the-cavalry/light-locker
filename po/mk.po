@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.mk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-02 18:39+0200\n"
-"PO-Revision-Date: 2006-08-02 22:51+0200\n"
+"POT-Creation-Date: 2006-08-26 17:12+0200\n"
+"PO-Revision-Date: 2006-08-26 23:29+0200\n"
 "Last-Translator: Jovan Naumovski <jovan@lugola.net>\n"
 "Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "Постави ја сесијата како _неактивна по:"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "Screensaver Preferences"
-msgstr "Затишје перференци"
+msgstr "Преференци за затишје"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "Screensaver Preview"
@@ -66,7 +66,7 @@ msgstr "Тема за _затишје:"
 #: ../data/gnome-screensaver.directory.in.h:1
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver themes"
-msgstr "Тени за затишје"
+msgstr "Теми за затишје"
 
 #: ../data/gnome-screensaver.directory.in.h:2
 msgid "Screensavers"
@@ -114,9 +114,9 @@ msgid ""
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
 msgstr ""
-"Поставете го ова како TRUE за да дозволите вградена тастатура во прозорецот кога се "
-"обидувате да отклучете. \"keyboard_command\" клучот мора да биде поставен со "
-"соодветната команда."
+"Поставете го ова како TRUE за да дозволите вградена тастатура во прозорецот "
+"кога се обидувате да отклучете. \"keyboard_command\" клучот мора да биде "
+"поставен со соодветната команда."
 
 #: ../data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
@@ -146,9 +146,9 @@ msgid ""
 "output."
 msgstr ""
 "Оваа команда ќе биде извршена ако \"embedded_keyboard_enabled\" клучот е "
-"поставен како TRUE за да вгради графичка контрола за тастатура во прозорецот. Оваа "
-"команда треба да имплементира XEMBED приклучен интерфејс и да извади XID прозорец "
-"на стандардниот излезен уред."
+"поставен како TRUE за да вгради графичка контрола за тастатура во "
+"прозорецот. Оваа команда треба да имплементира XEMBED приклучен интерфејс и "
+"да извади XID прозорец на стандардниот излезен уред."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
@@ -246,7 +246,7 @@ msgstr "<span size=\"x-large\">%R</span>"
 msgid "Password:"
 msgstr "Лозинка:"
 
-#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1700
+#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1707
 msgid "S_witch to user:"
 msgstr "Пр_омени до корисник:"
 
@@ -266,7 +266,7 @@ msgstr "_Промени корисник..."
 msgid "_Switch user..."
 msgstr "_Промени корисник..."
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1429
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1436
 msgid "_Unlock"
 msgstr "_Отклучи"
 
@@ -308,7 +308,7 @@ msgstr "Прикажи патеки кои следат слики"
 
 #: ../savers/floaters.c:1173
 msgid "occasionally rotate images as they move"
-msgstr "повремено ротирај ги сликите како што тие с движат"
+msgstr "повремено ротирај ги сликите како што се движат"
 
 #: ../savers/floaters.c:1180
 msgid "print out frame rate and other statistics"
@@ -316,7 +316,7 @@ msgstr "печати стапка на опкружување и други ст
 
 #: ../savers/floaters.c:1188
 msgid "the maximum number of images to keep on screen"
-msgstr "максималниот број на опкружување на слики да се задржи на екранот"
+msgstr "максималниот број на слики кои ќе се задржат на екранот"
 
 #. translators: this should be translated to be symbolic of a generic
 #. * number.  e.g, "the screen saver should keep N images on the screen"
@@ -351,12 +351,12 @@ msgstr "слика - подвижни слики околу екранот"
 #: ../savers/floaters.c:1239
 #, c-format
 msgid "%s. See --help for usage information.\n"
-msgstr "%s. Види --помож за употрбливи информации.\n"
+msgstr "%s. Види --help за употрбливи информации.\n"
 
 #: ../savers/floaters.c:1248
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
-"Морате да специфицирате една слика. Видете --помош за употребливи "
+"Морате да специфицирате една слика. Видете --help за употребливи "
 "информации.\n"
 
 #: ../savers/slideshow.c:47
@@ -418,7 +418,7 @@ msgstr "Менаџерот за приказ не работи или е мно�
 
 #: ../src/cut-n-paste/fusa-manager.c:1463
 msgid "The configured limit of flexible servers has been reached."
-msgstr "Конфигурираната граница на флексибилни сервери беше збогатена."
+msgstr "Конфигурираната граница на флексибилни сервери беше достигната."
 
 #: ../src/cut-n-paste/fusa-manager.c:1466
 msgid "There was an unknown error starting X."
@@ -426,7 +426,7 @@ msgstr "Се случи непозната грешка сстартува X."
 
 #: ../src/cut-n-paste/fusa-manager.c:1469
 msgid "The X server failed to finish starting."
-msgstr "X серверот не успешно го заврши стартувањето."
+msgstr "X серверот не успеа да го заврши стартувањето."
 
 #: ../src/cut-n-paste/fusa-manager.c:1472
 msgid "There are too many X sessions running."
@@ -434,7 +434,7 @@ msgstr "Премногу X сесии работат."
 
 #: ../src/cut-n-paste/fusa-manager.c:1475
 msgid "The nested X server (Xnest) cannot connect to your current X server."
-msgstr "Вгнездениот X сервер (Xnest) не може да се поврзе со твојот X сервер."
+msgstr "Вгнездениот X сервер (Xnest) не може да се поврзе со Вашиот X сервер."
 
 #: ../src/cut-n-paste/fusa-manager.c:1478
 msgid "The X server in the GDM configuration could not be found."
@@ -511,7 +511,7 @@ msgstr "Прикажи детали"
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:413
 msgid "GDM (The GNOME Display Manager) is not running."
-msgstr "GDM (Фном менаџер за приказ) не работи."
+msgstr "GDM (Менаџер за приказ на GNOME) не работи."
 
 #: ../src/cut-n-paste/gdmcomm.c:416
 msgid ""
@@ -544,7 +544,7 @@ msgstr "Не можам да комуницирам со gdm, можеби ра�
 
 #: ../src/cut-n-paste/gdmcomm.c:469
 msgid "The allowed limit of flexible X servers reached."
-msgstr "Дозволената граница на флексибилен X сервер е проширена."
+msgstr "Дозволената граница на флексибилни X сервери е достигната."
 
 #: ../src/cut-n-paste/gdmcomm.c:471
 msgid "There were errors trying to start the X server."
@@ -564,7 +564,7 @@ msgid ""
 "may be missing an X authorization file."
 msgstr ""
 "Вгнездениот X сервер (Xnest) не може да се поврзе со вашиот тековен X "
-"сервер. Можеби недостасува некој X авторизирана датотека."
+"сервер. Можеби недостасува датотека за авторизација на X."
 
 #: ../src/cut-n-paste/gdmcomm.c:483
 msgid ""
@@ -588,7 +588,7 @@ msgid ""
 "You do not seem to have authentication needed be for this operation.  "
 "Perhaps your .Xauthority file is not set up correctly."
 msgstr ""
-"Се чини дека не ви е потребна автентикација за оваа операција Можеби вашата "
+"Се чини дека не ви е потребна проверка на автентичност за оваа операција. Можеби вашата "
 "Xauthority датотека не е поставена правилно."
 
 #: ../src/cut-n-paste/gdmcomm.c:505
@@ -815,23 +815,23 @@ msgstr "Проверувам..."
 msgid "Authentication failed."
 msgstr "Проверката на автентичност не успеа."
 
-#: ../src/gnome-screensaver-preferences.c:436
+#: ../src/gnome-screensaver-preferences.c:439
 msgid "Blank screen"
 msgstr "Црн екран"
 
-#: ../src/gnome-screensaver-preferences.c:442
+#: ../src/gnome-screensaver-preferences.c:445
 msgid "Random"
 msgstr "Рандом"
 
-#: ../src/gnome-screensaver-preferences.c:802
+#: ../src/gnome-screensaver-preferences.c:805
 msgid "Invalid screensaver theme"
 msgstr "Невалидна тема за затишје"
 
-#: ../src/gnome-screensaver-preferences.c:805
+#: ../src/gnome-screensaver-preferences.c:808
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Оваа датотека не појавува да е валидна тема за затишје."
 
-#: ../src/gnome-screensaver-preferences.c:932
+#: ../src/gnome-screensaver-preferences.c:935
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -839,7 +839,7 @@ msgstr[0] "%d час"
 msgstr[1] "%d часови"
 msgstr[2] "%d часови"
 
-#: ../src/gnome-screensaver-preferences.c:935
+#: ../src/gnome-screensaver-preferences.c:938
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -847,7 +847,7 @@ msgstr[0] "%d минута"
 msgstr[1] "%d минути"
 msgstr[2] "%d минути"
 
-#: ../src/gnome-screensaver-preferences.c:938
+#: ../src/gnome-screensaver-preferences.c:941
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -856,15 +856,15 @@ msgstr[1] "%d  секунди"
 msgstr[2] "%d секунди"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:944
+#: ../src/gnome-screensaver-preferences.c:947
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:947
-#: ../src/gnome-screensaver-preferences.c:955
+#: ../src/gnome-screensaver-preferences.c:950
+#: ../src/gnome-screensaver-preferences.c:958
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -872,28 +872,28 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:950
-#: ../src/gnome-screensaver-preferences.c:958
-#: ../src/gnome-screensaver-preferences.c:962
+#: ../src/gnome-screensaver-preferences.c:953
+#: ../src/gnome-screensaver-preferences.c:961
+#: ../src/gnome-screensaver-preferences.c:965
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:977
+#: ../src/gnome-screensaver-preferences.c:980
 msgid "Never"
 msgstr "Никогаш"
 
-#: ../src/gnome-screensaver-preferences.c:1367
+#: ../src/gnome-screensaver-preferences.c:1365
 msgid "Could not load the main interface"
 msgstr "Не можам да го вчитам главниот интерфејс"
 
-#: ../src/gnome-screensaver-preferences.c:1369
+#: ../src/gnome-screensaver-preferences.c:1367
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Ве молам осигурајте се дека затишјето е правилно инсталирано"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
-msgstr "Не постанувај Демон"
+msgstr "Не станувај Демон"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
@@ -941,19 +941,19 @@ msgstr "Времето истече."
 msgid "You have the Caps Lock key on."
 msgstr "Имате притиснати Caps Lock."
 
-#: ../src/gs-lock-plug.c:1411 ../src/gs-lock-plug.c:1448
+#: ../src/gs-lock-plug.c:1418 ../src/gs-lock-plug.c:1455
 msgid "S_witch User..."
 msgstr "П_ромени корисник..."
 
-#: ../src/gs-lock-plug.c:1419
+#: ../src/gs-lock-plug.c:1426
 msgid "Log _Out"
 msgstr "_Одјава"
 
-#: ../src/gs-lock-plug.c:1610
+#: ../src/gs-lock-plug.c:1617
 msgid "%U on %h"
 msgstr "%U на %h"
 
-#: ../src/gs-lock-plug.c:1624
+#: ../src/gs-lock-plug.c:1631
 msgid "_Password:"
 msgstr "_Лозинка"
 
