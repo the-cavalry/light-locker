@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 0.0.21\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-01 10:30+0700\n"
-"PO-Revision-Date: 2006-08-01 11:32+0700\n"
+"POT-Creation-Date: 2006-08-27 16:05+0700\n"
+"PO-Revision-Date: 2006-08-27 16:26+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <l10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=0;"
+"Plural-Forms: nplurals=1; plural=0;"
 
 #: data/gnome-screensaver-preferences.desktop.in.h:1
 msgid "Screensaver"
@@ -239,7 +239,7 @@ msgstr "<span size=\"x-large\">%R</span>"
 msgid "Password:"
 msgstr "รหัสผ่าน:"
 
-#: data/lock-dialog-default.glade.h:6 src/gs-lock-plug.c:1700
+#: data/lock-dialog-default.glade.h:6 src/gs-lock-plug.c:1707
 msgid "S_witch to user:"
 msgstr "ส_ลับไปเป็นผู้ใช้:"
 
@@ -259,7 +259,7 @@ msgstr "_สลับผู้ใช้..."
 msgid "_Switch user..."
 msgstr "_สลับผู้ใช้..."
 
-#: data/lock-dialog-default.glade.h:11 src/gs-lock-plug.c:1429
+#: data/lock-dialog-default.glade.h:11 src/gs-lock-plug.c:1436
 msgid "_Unlock"
 msgstr "_ปลดล็อค"
 
@@ -798,53 +798,50 @@ msgstr "กำลังตรวจสอบ..."
 msgid "Authentication failed."
 msgstr "การยืนยันตัวบุคคลไม่ผ่าน"
 
-#: src/gnome-screensaver-preferences.c:436
+#: src/gnome-screensaver-preferences.c:439
 msgid "Blank screen"
 msgstr "จอเปล่า"
 
-#: src/gnome-screensaver-preferences.c:442
+#: src/gnome-screensaver-preferences.c:445
 msgid "Random"
 msgstr "สุ่ม"
 
-#: src/gnome-screensaver-preferences.c:802
+#: src/gnome-screensaver-preferences.c:805
 msgid "Invalid screensaver theme"
 msgstr "ชุดโปรแกรมรักษาหน้าจอใช้ไม่ได้"
 
-#: src/gnome-screensaver-preferences.c:805
+#: src/gnome-screensaver-preferences.c:808
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "แฟ้มนี้ดูไม่เหมือนชุดโปรแกรมรักษาหน้าจอที่ใช้ได้"
 
-#: src/gnome-screensaver-preferences.c:932
+#: src/gnome-screensaver-preferences.c:935
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d ชั่วโมง"
-msgstr[1] "%d ชั่วโมง"
 
-#: src/gnome-screensaver-preferences.c:935
+#: src/gnome-screensaver-preferences.c:938
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d นาที"
-msgstr[1] "%d นาที"
 
-#: src/gnome-screensaver-preferences.c:938
+#: src/gnome-screensaver-preferences.c:941
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d วินาที"
-msgstr[1] "%d วินาที"
 
 #. hour:minutes:seconds
-#: src/gnome-screensaver-preferences.c:944
+#: src/gnome-screensaver-preferences.c:947
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: src/gnome-screensaver-preferences.c:947
-#: src/gnome-screensaver-preferences.c:955
+#: src/gnome-screensaver-preferences.c:950
+#: src/gnome-screensaver-preferences.c:958
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -852,22 +849,22 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: src/gnome-screensaver-preferences.c:950
-#: src/gnome-screensaver-preferences.c:958
-#: src/gnome-screensaver-preferences.c:962
+#: src/gnome-screensaver-preferences.c:953
+#: src/gnome-screensaver-preferences.c:961
+#: src/gnome-screensaver-preferences.c:965
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: src/gnome-screensaver-preferences.c:977
+#: src/gnome-screensaver-preferences.c:980
 msgid "Never"
 msgstr "ไม่ทำงาน"
 
-#: src/gnome-screensaver-preferences.c:1367
+#: src/gnome-screensaver-preferences.c:1365
 msgid "Could not load the main interface"
 msgstr "ไม่สามารถโหลดส่วนติดต่อผู้ใช้หลักได้"
 
-#: src/gnome-screensaver-preferences.c:1369
+#: src/gnome-screensaver-preferences.c:1367
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "กรุณาตรวจสอบการติดตั้งโปรแกรมรักษาหน้าจอว่าครบถ้วนหรือไม่"
 
@@ -921,19 +918,19 @@ msgstr "หมดเวลา"
 msgid "You have the Caps Lock key on."
 msgstr "ปุ่ม Caps Lock ถูกกดอยู่"
 
-#: src/gs-lock-plug.c:1411 src/gs-lock-plug.c:1448
+#: src/gs-lock-plug.c:1418 src/gs-lock-plug.c:1455
 msgid "S_witch User..."
 msgstr "_สลับผู้ใช้..."
 
-#: src/gs-lock-plug.c:1419
+#: src/gs-lock-plug.c:1426
 msgid "Log _Out"
 msgstr "_ออกจากระบบ"
 
-#: src/gs-lock-plug.c:1610
+#: src/gs-lock-plug.c:1617
 msgid "%U on %h"
 msgstr "%s ที่เครื่อง %s"
 
-#: src/gs-lock-plug.c:1624
+#: src/gs-lock-plug.c:1631
 msgid "_Password:"
 msgstr "_รหัสผ่าน:"
 
