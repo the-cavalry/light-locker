@@ -352,10 +352,18 @@ job_set_theme (GSJob      *job,
         GSThemeInfo *info;
         const char  *command;
 
+        command = NULL;
+
         info = gs_theme_manager_lookup_theme_info (theme_manager, theme);
-        command = gs_theme_info_get_exec (info);
+        if (info != NULL) {
+                command = gs_theme_info_get_exec (info);
+        }
+
         gs_job_set_command (job, command);
-        gs_theme_info_unref (info);
+
+        if (info != NULL) {
+                gs_theme_info_unref (info);
+        }
 }
 
 static void

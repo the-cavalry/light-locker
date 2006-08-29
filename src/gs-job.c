@@ -190,10 +190,7 @@ gs_job_set_command  (GSJob      *job,
         g_return_val_if_fail (GS_IS_JOB (job), FALSE);
 
         g_free (job->priv->command);
-
-        if (command != NULL) {
-                job->priv->command = g_strdup (command);
-        }
+        job->priv->command = g_strdup (command);
 
         return TRUE;
 }
@@ -304,7 +301,7 @@ spawn_on_widget (GtkWidget  *widget,
         int         id;
         int         i;
 
-        if (! command) {
+        if (command == NULL) {
                 return FALSE;
         }
 

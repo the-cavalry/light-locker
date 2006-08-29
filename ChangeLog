@@ -1,3 +1,10 @@
+2006-08-29  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gnome-screensaver-preferences.c: (job_set_theme):
+	* src/gs-job.c: (gs_job_set_command), (spawn_on_widget):
+	* src/gs-manager.c: (manager_select_theme_for_job):
+	Check for NULL theme info.  Fixes #353421.
+
 2006-08-25  William Jon McCann  <mccann@jhu.edu>
 
 	* data/lock-dialog-default.glade:
