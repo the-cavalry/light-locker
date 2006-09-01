@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.mk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-26 17:12+0200\n"
-"PO-Revision-Date: 2006-08-26 23:29+0200\n"
+"POT-Creation-Date: 2006-09-01 00:40+0200\n"
+"PO-Revision-Date: 2006-09-01 01:16+0200\n"
 "Last-Translator: Jovan Naumovski <jovan@lugola.net>\n"
 "Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr "Затишје"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:2
 msgid "Set your screensaver preferences"
-msgstr "Поставете ги преференците за затишјето"
+msgstr "Поставете ги преференциите за затишјето"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
 msgid "<b>Screensaver preview</b>"
@@ -41,7 +41,7 @@ msgstr "Постави ја сесијата како _неактивна по:"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "Screensaver Preferences"
-msgstr "Преференци за затишје"
+msgstr "Преференции за затишје"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "Screensaver Preview"
@@ -588,8 +588,8 @@ msgid ""
 "You do not seem to have authentication needed be for this operation.  "
 "Perhaps your .Xauthority file is not set up correctly."
 msgstr ""
-"Се чини дека не ви е потребна проверка на автентичност за оваа операција. Можеби вашата "
-"Xauthority датотека не е поставена правилно."
+"Се чини дека не ви е потребна проверка на автентичност за оваа операција. "
+"Можеби вашата Xauthority датотека не е поставена правилно."
 
 #: ../src/cut-n-paste/gdmcomm.c:505
 msgid "Too many messages were sent to gdm and it hung upon us."
@@ -815,23 +815,23 @@ msgstr "Проверувам..."
 msgid "Authentication failed."
 msgstr "Проверката на автентичност не успеа."
 
-#: ../src/gnome-screensaver-preferences.c:439
+#: ../src/gnome-screensaver-preferences.c:447
 msgid "Blank screen"
 msgstr "Црн екран"
 
-#: ../src/gnome-screensaver-preferences.c:445
+#: ../src/gnome-screensaver-preferences.c:453
 msgid "Random"
 msgstr "Рандом"
 
-#: ../src/gnome-screensaver-preferences.c:805
+#: ../src/gnome-screensaver-preferences.c:813
 msgid "Invalid screensaver theme"
 msgstr "Невалидна тема за затишје"
 
-#: ../src/gnome-screensaver-preferences.c:808
+#: ../src/gnome-screensaver-preferences.c:816
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Оваа датотека не појавува да е валидна тема за затишје."
 
-#: ../src/gnome-screensaver-preferences.c:935
+#: ../src/gnome-screensaver-preferences.c:943
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -839,7 +839,7 @@ msgstr[0] "%d час"
 msgstr[1] "%d часови"
 msgstr[2] "%d часови"
 
-#: ../src/gnome-screensaver-preferences.c:938
+#: ../src/gnome-screensaver-preferences.c:946
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -847,7 +847,7 @@ msgstr[0] "%d минута"
 msgstr[1] "%d минути"
 msgstr[2] "%d минути"
 
-#: ../src/gnome-screensaver-preferences.c:941
+#: ../src/gnome-screensaver-preferences.c:949
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -856,15 +856,15 @@ msgstr[1] "%d  секунди"
 msgstr[2] "%d секунди"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:947
+#: ../src/gnome-screensaver-preferences.c:955
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:950
 #: ../src/gnome-screensaver-preferences.c:958
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -872,22 +872,22 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:953
 #: ../src/gnome-screensaver-preferences.c:961
-#: ../src/gnome-screensaver-preferences.c:965
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:973
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:988
 msgid "Never"
 msgstr "Никогаш"
 
-#: ../src/gnome-screensaver-preferences.c:1365
+#: ../src/gnome-screensaver-preferences.c:1373
 msgid "Could not load the main interface"
 msgstr "Не можам да го вчитам главниот интерфејс"
 
-#: ../src/gnome-screensaver-preferences.c:1367
+#: ../src/gnome-screensaver-preferences.c:1375
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Ве молам осигурајте се дека затишјето е правилно инсталирано"
 
