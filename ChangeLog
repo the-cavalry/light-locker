@@ -1,3 +1,9 @@
+==== 2.16.0 ====
+
+2006-09-04  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 2.16.0 release
+
 2006-08-29  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-preferences.c: (job_set_theme):
