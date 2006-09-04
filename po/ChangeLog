@@ -1,3 +1,8 @@
+2006-09-04  Baris Cicek <baris@teamforce.name.tr>
+
+	* tr.po: Added Turkish Translation from Deniz Kocak
+	* LINGUAS: Added entry for "tr" (turkish);
+
 2006-09-04  Roozbeh Pournader  <roozbeh@farsiweb.info>
 
 	* fa.po: Added Persian translation by Elnaz Sarbar and Meelad
