@@ -1,3 +1,9 @@
+2006-09-04  Roozbeh Pournader  <roozbeh@farsiweb.info>
+
+	* fa.po: Added Persian translation by Elnaz Sarbar and Meelad
+	  Zakaria.
+	* LINGUAS: Added entry for "fa" (Persian).
+
 2006-09-04  Abel Cheung  <abel@oaka.org>
 
 	* zh_HK.po: Updated Chinese (Hong Kong) translation from
