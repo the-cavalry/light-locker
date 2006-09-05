@@ -76,10 +76,6 @@ struct GSWatcherPrivate
         guint           timeout;
         guint           pointer_timeout;
 
-        guint           use_xidle_extension : 1;
-        guint           use_sgi_saver_extension : 1;
-        guint           use_mit_saver_extension : 1;
-
         guint           notice_timeout;
 
         /* state */
@@ -97,19 +93,12 @@ struct GSWatcherPrivate
         guint           check_pointer_timer_id;
         guint           watchdog_timer_id;
 
-        guint           using_xidle_extension : 1;
-        guint           using_sgi_saver_extension : 1;
         guint           using_mit_saver_extension : 1;
 
 # ifdef HAVE_MIT_SAVER_EXTENSION
         int             mit_saver_ext_event_number;
         int             mit_saver_ext_error_number;
 # endif
-# ifdef HAVE_SGI_SAVER_EXTENSION
-        int            sgi_saver_ext_event_number;
-        int            sgi_saver_ext_error_number;
-# endif
-
 };
 
 enum {
@@ -417,7 +406,7 @@ static void
 reset_timers (GSWatcher *watcher)
 {
 
-        if (watcher->priv->using_mit_saver_extension || watcher->priv->using_sgi_saver_extension) {
+        if (watcher->priv->using_mit_saver_extension) {
                 return;
         }
 
@@ -845,116 +834,20 @@ init_mit_saver_extension (void)
 #endif /* HAVE_MIT_SAVER_EXTENSION */
 
 
-/* SGI SCREEN_SAVER server extension hackery.
- */
-
-#ifdef HAVE_SGI_SAVER_EXTENSION
-
-# include <X11/extensions/XScreenSaver.h>
-
-gboolean
-query_sgi_saver_extension (int *event_number,
-                           int *error_number)
-{
-        return XScreenSaverQueryExtension (GDK_DISPLAY (),
-                                           event_number,
-                                           error_number);
-}
-
-static gboolean
-init_sgi_saver_extension (gboolean is_blank_active)
-{
-        int         i;
-        GdkDisplay *display   = gdk_display_get_default ();
-        int         n_screens = gdk_display_get_n_screens (display);
-
-        if (is_blank_active)
-                /* If you mess with this while the server thinks it's active,
-                   the server crashes. */
-                return FALSE;
-
-        for (i = 0; i < n_screens; i++) {
-                GdkScreen *screen = gdk_display_get_screen (display, i);
-
-                XScreenSaverDisable (GDK_DISPLAY (), XScreenNumberOfScreen (GDK_SCREEN_XSCREEN (screen)));
-                if (! XScreenSaverEnable (GDK_DISPLAY (), XScreenNumberOfScreen (GDK_SCREEN_XSCREEN (screen)))) {
-
-                        g_warning ("%SGI SCREEN_SAVER extension exists, but can't be initialized;\n"
-                                   "perhaps some other screensaver program is already running?");
-
-                        return FALSE;
-                }
-        }
-
-        return TRUE;
-}
-
-#endif /* HAVE_SGI_SAVER_EXTENSION */
-
-
-/* XIDLE server extension hackery.
- */
-
-#ifdef HAVE_XIDLE_EXTENSION
-
-# include <X11/extensions/xidle.h>
-
-gboolean
-query_xidle_extension (void)
-{
-        int event_number;
-        int error_number;
-
-        return XidleQueryExtension (GDK_DISPLAY (), &event_number, &error_number);
-}
-
-#endif /* HAVE_XIDLE_EXTENSION */
-
 /* If any server extensions have been requested, try and initialize them.
    Issue warnings if requests can't be honored.
 */
 static void
 initialize_server_extensions (GSWatcher *watcher)
 {
-        gboolean server_has_xidle_extension     = FALSE;
-        gboolean server_has_sgi_saver_extension = FALSE;
         gboolean server_has_mit_saver_extension = FALSE;
 
-        watcher->priv->using_xidle_extension     = watcher->priv->use_xidle_extension;
-        watcher->priv->using_sgi_saver_extension = watcher->priv->use_sgi_saver_extension;
-        watcher->priv->using_mit_saver_extension = watcher->priv->use_mit_saver_extension;
+        watcher->priv->using_mit_saver_extension = FALSE;
 
-#ifdef HAVE_XIDLE_EXTENSION
-        server_has_xidle_extension     = query_xidle_extension ();
-#endif
-#ifdef HAVE_SGI_SAVER_EXTENSION
-        server_has_sgi_saver_extension = query_sgi_saver_extension (&watcher->priv->sgi_saver_ext_event_number,
-                                                                    &watcher->priv->sgi_saver_ext_error_number);
-#endif
 #ifdef HAVE_MIT_SAVER_EXTENSION
         server_has_mit_saver_extension = query_mit_saver_extension (&watcher->priv->mit_saver_ext_event_number,
                                                                     &watcher->priv->mit_saver_ext_error_number);
 #endif
-
-        if (! server_has_xidle_extension) {
-                watcher->priv->using_xidle_extension = FALSE;
-        } else {
-                if (watcher->priv->using_xidle_extension) {
-                        gs_debug ("Using XIDLE extension.");
-                } else {
-                        gs_debug ("Not using server's XIDLE extension.");
-                }
-        }
-
-        if (! server_has_sgi_saver_extension) {
-                watcher->priv->using_sgi_saver_extension = FALSE;
-        } else {
-                if (watcher->priv->using_sgi_saver_extension) {
-                        gs_debug ("Using SGI SCREEN_SAVER extension.");
-                } else {
-                        gs_debug ("Not using server's SGI SCREEN_SAVER extension.");
-                }
-        }
 
         if (! server_has_mit_saver_extension) {
                 watcher->priv->using_mit_saver_extension = FALSE;
@@ -991,17 +884,6 @@ disable_builtin_screensaver (GSWatcher *watcher,
         desired_prefer_blank    = current_prefer_blank;
         desired_allow_exp       = current_allow_exp;
 
-        /* On SGIs, if interval is non-zero, it is the number of seconds after
-           screen saving starts at which the monitor should be powered down.
-           Obviously I don't want that, so set it to 0 (meaning "never".)
-
-           Power saving is disabled if DontPreferBlanking, but in that case,
-           we don't get extension events either.  So we can't turn it off that way.
-
-           Note: if you're running Irix 6.3 (O2), you may find that your monitor is
-           powering down anyway, regardless of the xset settings.  This is fixed by
-           installing SGI patches 2447 and 2537.
-        */
         desired_server_interval = 0;
 
         /* I suspect (but am not sure) that DontAllowExposures might have
@@ -1009,16 +891,11 @@ disable_builtin_screensaver (GSWatcher *watcher,
            on some systems that don't support XDPMS?  Who know... */
         desired_allow_exp = AllowExposures;
 
-        if (watcher->priv->using_mit_saver_extension || watcher->priv->using_sgi_saver_extension) {
+        if (watcher->priv->using_mit_saver_extension) {
 
                 desired_server_timeout = (watcher->priv->timeout / 1000);
 
-                /* The SGI extension won't give us events unless blanking is on.
-                   I think (unsure right now) that the MIT extension is the opposite. */
-                if (watcher->priv->using_sgi_saver_extension)
-                        desired_prefer_blank = PreferBlanking;
-                else
-                        desired_prefer_blank = DontPreferBlanking;
+                desired_prefer_blank = DontPreferBlanking;
         } else {
                 /* When we're not using an extension, set the server-side timeout to 0,
                    so that the server never gets involved with screen blanking, and we
@@ -1052,7 +929,7 @@ disable_builtin_screensaver (GSWatcher *watcher,
         }
 
 
-#if defined(HAVE_MIT_SAVER_EXTENSION) || defined(HAVE_SGI_SAVER_EXTENSION)
+#if defined(HAVE_MIT_SAVER_EXTENSION)
         {
                 static gboolean extension_initted = FALSE;
 
@@ -1061,24 +938,19 @@ disable_builtin_screensaver (GSWatcher *watcher,
                         extension_initted = TRUE;
 
 # ifdef HAVE_MIT_SAVER_EXTENSION
-                        if (watcher->priv->using_mit_saver_extension)
+                        if (watcher->priv->using_mit_saver_extension) {
                                 init_mit_saver_extension ();
-# endif
-
-# ifdef HAVE_SGI_SAVER_EXTENSION
-                        if (watcher->priv->using_sgi_saver_extension) {
-                                gboolean blank_active = FALSE;
-                                watcher->priv->using_sgi_saver_extension = init_sgi_saver_extension (blank_active);
                         }
 # endif
 
                 }
         }
-#endif /* HAVE_MIT_SAVER_EXTENSION || HAVE_SGI_SAVER_EXTENSION */
+#endif /* HAVE_MIT_SAVER_EXTENSION */
 
-        if (unblank_screen)
+        if (unblank_screen) {
                 /* Turn off the server builtin saver if it is now running. */
                 XForceScreenSaver (GDK_DISPLAY (), ScreenSaverReset);
+        }
 }
 
 static void

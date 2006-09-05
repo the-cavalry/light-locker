@@ -382,40 +382,6 @@ AC_DEFUN(HANDLE_X_PATH_ARG, [
   ])
 
 dnl ---------------------------------------------------------------------------
-dnl - Check for the SGI SCREEN_SAVER server extension.
-dnl ---------------------------------------------------------------------------
-
-have_sgi=no
-with_sgi_req=unspecified
-AC_ARG_WITH(sgi-ext,
-[Except where noted, all of the --with options below can also take a
-directory argument.
-
-By default, support for each of these options will be built in, if the
-relevant library routines exist.  At run time, they will then be used
-only if the X server being used supports them.  Each --with option has
-a corresponding --without option, to override building support for them
-at all.
-
-Screen blanking and idle-detection options:
-
-  --with-sgi-ext          Include support for the SGI SCREEN_SAVER extension.],
-  [with_sgi="$withval"; with_sgi_req="$withval"],[with_sgi=yes])
-
-HANDLE_X_PATH_ARG(with_sgi, --with-sgi-ext, SGI SCREEN_SAVER)
-
-if test "$with_sgi" = yes; then
-        AC_CHECK_HEADER(X11/extensions/XScreenSaver.h,
-                        [have_sgi=yes
-                         AC_DEFINE(HAVE_SGI_SAVER_EXTENSION, 1, [Define if the SGI screensaver extension is available])],,
-                        [#include <X11/Xlib.h>])
-
-elif test "$with_sgi" != no; then
-  echo "error: must be yes or no: --with-sgi-ext=$with_sgi"
-  exit 1
-fi
-
-dnl ---------------------------------------------------------------------------
 dnl - Check for the MIT-SCREEN-SAVER server extension.
 dnl ---------------------------------------------------------------------------
 
@@ -461,28 +427,6 @@ if test "$with_mit" = yes; then
 
 elif test "$with_mit" != no; then
   echo "error: must be yes or no: --with-mit-ext=$with_mit"
-  exit 1
-fi
-
-dnl ---------------------------------------------------------------------------
-dnl - Check for the XIDLE server extension.
-dnl ---------------------------------------------------------------------------
-
-have_xidle=no
-with_xidle_req=unspecified
-AC_ARG_WITH(xidle-ext,
-[  --with-xidle-ext        Include support for the XIDLE extension.],
-  [with_xidle="$withval"; with_xidle_req="$withval"],[with_xidle=yes])
-
-HANDLE_X_PATH_ARG(with_xidle, --with-xidle-ext, XIDLE)
-
-if test "$with_xidle" = yes; then
-  AC_CHECK_X_HEADER(X11/extensions/xidle.h,
-                    [have_xidle=yes
-                     AC_DEFINE(HAVE_XIDLE_EXTENSION, 1, [Define if the XIDLE extension is available])],,
-                    [#include <X11/Xlib.h>])
-elif test "$with_xidle" != no; then
-  echo "error: must be yes or no: --with-xidle-ext=$with_xidle"
   exit 1
 fi
 

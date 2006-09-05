@@ -1,5 +1,12 @@
 2006-09-05  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac:
+	* src/gs-watcher-x11.c: (reset_timers),
+	(initialize_server_extensions), (disable_builtin_screensaver):
+	Rip out the SGI saver and xidle stuff since we we're using it.
+
+2006-09-05  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-grab-x11.c: (gs_grab_get_keyboard), (gs_grab_move_mouse),
 	(gs_grab_move_keyboard), (gs_grab_grab_window):
 	* src/gs-job.c: (wait_on_child), (nice_process), (spawn_on_widget),
