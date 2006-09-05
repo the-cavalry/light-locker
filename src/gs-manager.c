@@ -1430,7 +1430,7 @@ gs_manager_activate (GSManager *manager)
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
         if (manager->priv->active) {
-                g_warning ("Trying to activate manager when already active");
+                gs_debug ("Trying to activate manager when already active");
                 return FALSE;
         }
 
@@ -1479,7 +1479,7 @@ gs_manager_deactivate (GSManager *manager)
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
         if (! manager->priv->active) {
-                g_warning ("Trying to deactivate a screensaver that is not active");
+                gs_debug ("Trying to deactivate a screensaver that is not active");
                 return FALSE;
         }
 

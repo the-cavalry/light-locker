@@ -171,7 +171,7 @@ gs_grab_get_keyboard (GSGrab    *grab,
         }
 
         if (status != GDK_GRAB_SUCCESS) {
-                g_warning ("Couldn't grab keyboard!  (%s)", grab_string (status));
+                gs_debug ("Couldn't grab keyboard!  (%s)", grab_string (status));
         }
 
         return status;
@@ -300,7 +300,7 @@ gs_grab_move_mouse (GSGrab    *grab,
         }
 
         if ((result != GDK_GRAB_SUCCESS) && old_window) {
-                g_warning ("Could not grab mouse for new window.  Resuming previous grab.");
+                gs_debug ("Could not grab mouse for new window.  Resuming previous grab.");
                 gs_grab_get_mouse (grab, old_window, old_screen, old_hide_cursor);
         }
 
@@ -354,7 +354,7 @@ gs_grab_move_keyboard (GSGrab    *grab,
         }
 
         if ((result != GDK_GRAB_SUCCESS) && old_window) {
-                g_warning ("Could not grab keyboard for new window.  Resuming previous grab.");
+                gs_debug ("Could not grab keyboard for new window.  Resuming previous grab.");
                 gs_grab_get_keyboard (grab, old_window, old_screen);
         }
 
@@ -440,8 +440,8 @@ gs_grab_grab_window (GSGrab    *grab,
         }
 
         if (mstatus != GDK_GRAB_SUCCESS) {
-                g_warning ("Couldn't grab pointer!  (%s)",
-                           grab_string (mstatus));
+                gs_debug ("Couldn't grab pointer!  (%s)",
+                          grab_string (mstatus));
         }
 
 #if 0

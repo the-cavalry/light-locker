@@ -112,7 +112,7 @@ wait_on_child (int pid)
                 } else if (errno == ECHILD) {
                         ; /* do nothing, child already reaped */
                 } else {
-                        g_warning ("waitpid () should not fail in 'GSJob'");
+                        gs_debug ("waitpid () should not fail in 'GSJob'");
                 }
         }
 
@@ -230,11 +230,11 @@ nice_process (int pid,
 #if defined(HAVE_SETPRIORITY) && defined(PRIO_PROCESS)
         gs_debug ("Setting child process priority to: %d", nice_level);
         if (setpriority (PRIO_PROCESS, pid, nice_level) != 0) {
-                g_warning ("setpriority(PRIO_PROCESS, %lu, %d) failed",
-                           (unsigned long) pid, nice_level);
+                gs_debug ("setpriority(PRIO_PROCESS, %lu, %d) failed",
+                          (unsigned long) pid, nice_level);
         }
 #else
-        g_warning ("don't know how to change process priority on this system.");
+        gs_debug ("don't know how to change process priority on this system.");
 #endif
 }
 
@@ -306,7 +306,7 @@ spawn_on_widget (GtkWidget  *widget,
         }
 
         if (! g_shell_parse_argv (command, NULL, &argv, &error)) {
-                g_warning ("Could not parse command: %s", error->message);
+                gs_debug ("Could not parse command: %s", error->message);
                 g_error_free (error);
                 return FALSE;
         }
@@ -332,7 +332,7 @@ spawn_on_widget (GtkWidget  *widget,
         g_ptr_array_free (env, TRUE);
 
         if (! result) {
-                g_warning ("Could not start command '%s': %s", command, error->message);
+                gs_debug ("Could not start command '%s': %s", command, error->message);
                 g_error_free (error);
                 g_strfreev (argv);
                 return FALSE;
@@ -427,12 +427,12 @@ gs_job_start (GSJob *job)
         gs_debug ("starting job");
 
         if (job->priv->pid != 0) {
-                g_warning ("Cannot restart active job.");
+                gs_debug ("Cannot restart active job.");
                 return FALSE;
         }
 
         if (job->priv->widget == NULL) {
-                g_warning ("Could not start job: screensaver window is not set.");
+                gs_debug ("Could not start job: screensaver window is not set.");
                 return FALSE;
         }
 

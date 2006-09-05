@@ -1,3 +1,20 @@
+2006-09-05  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-grab-x11.c: (gs_grab_get_keyboard), (gs_grab_move_mouse),
+	(gs_grab_move_keyboard), (gs_grab_grab_window):
+	* src/gs-job.c: (wait_on_child), (nice_process), (spawn_on_widget),
+	(gs_job_start):
+	* src/gs-listener-dbus.c: (send_dbus_message),
+	(send_dbus_void_signal), (gs_listener_send_signal_active_changed),
+	(gs_listener_send_signal_session_idle_changed), (raise_error),
+	(raise_property_type_error), (listener_set_property),
+	(listener_get_property), (listener_get_active_time),
+	(listener_get_session_idle_time), (gs_listener_dbus_init):
+	* src/gs-manager.c: (gs_manager_activate), (gs_manager_deactivate):
+	* src/gs-window-x11.c: (get_env_vars):
+	Use gs_debug instead of g_warning so the messages get into the log.
+	Also add more environment variables to the whitelist.
+
 2006-09-04  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump

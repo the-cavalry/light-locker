@@ -159,13 +159,13 @@ send_dbus_message (DBusConnection *connection,
         g_return_val_if_fail (message != NULL, FALSE);
 
         if (! connection) {
-                g_warning ("There is no valid connection to the message bus");
+                gs_debug ("There is no valid connection to the message bus");
                 return FALSE;
         }
 
         is_connected = dbus_connection_get_is_connected (connection);
         if (! is_connected) {
-                g_warning ("Not connected to the message bus");
+                gs_debug ("Not connected to the message bus");
                 return FALSE;
         }
 
@@ -187,7 +187,7 @@ send_dbus_void_signal (GSListener *listener,
                                            name);
 
         if (! send_dbus_message (listener->priv->connection, message)) {
-                g_warning ("Could not send %s signal", name);
+                gs_debug ("Could not send %s signal", name);
         }
 
         dbus_message_unref (message);
@@ -230,7 +230,7 @@ gs_listener_send_signal_active_changed (GSListener *listener)
         dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &active);
 
         if (! send_dbus_message (listener->priv->connection, message)) {
-                g_warning ("Could not send ActiveChanged signal");
+                gs_debug ("Could not send ActiveChanged signal");
         }
 
         dbus_message_unref (message);
@@ -254,7 +254,7 @@ gs_listener_send_signal_session_idle_changed (GSListener *listener)
         dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &idle);
 
         if (! send_dbus_message (listener->priv->connection, message)) {
-                g_warning ("Could not send SessionIdleChanged signal");
+                gs_debug ("Could not send SessionIdleChanged signal");
         }
 
         dbus_message_unref (message);
@@ -577,7 +577,7 @@ raise_error (DBusConnection *connection,
         vsnprintf (buf, sizeof (buf), format, args);
         va_end (args);
 
-        g_warning (buf);
+        gs_debug (buf);
         reply = dbus_message_new_error (in_reply_to, error_name, buf);
         if (reply == NULL) {
                 g_error ("No memory");
@@ -880,7 +880,7 @@ raise_property_type_error (DBusConnection *connection,
         snprintf (buf, 511,
                   "Type mismatch setting property with id %s",
                   device_id);
-        g_warning (buf);
+        gs_debug (buf);
 
         reply = dbus_message_new_error (in_reply_to,
                                         TYPE_MISMATCH_ERROR,
@@ -922,7 +922,7 @@ listener_set_property (GSListener     *listener,
                         break;
                 }
         default:
-                g_warning ("Unsupported property type %d", type);
+                gs_debug ("Unsupported property type %d", type);
                 break;
         }
 
@@ -978,7 +978,7 @@ listener_get_property (GSListener     *listener,
                 }
                 break;
         default:
-                g_warning ("Unsupported property id %u", prop_id);
+                gs_debug ("Unsupported property id %u", prop_id);
                 break;
         }
 
@@ -1013,11 +1013,11 @@ listener_get_active_time (GSListener     *listener,
 
                 if (now < listener->priv->active_start) {
                         /* shouldn't happen */
-                        g_warning ("Active start time is in the future");
+                        gs_debug ("Active start time is in the future");
                         secs = 0;
                 } else if (listener->priv->active_start <= 0) {
                         /* shouldn't happen */
-                        g_warning ("Active start time was not set");
+                        gs_debug ("Active start time was not set");
                         secs = 0;
                 } else {
                         secs = now - listener->priv->active_start;
@@ -1060,11 +1060,11 @@ listener_get_session_idle_time (GSListener     *listener,
 
                 if (now < listener->priv->session_idle_start) {
                         /* shouldn't happen */
-                        g_warning ("Session idle start time is in the future");
+                        gs_debug ("Session idle start time is in the future");
                         secs = 0;
                 } else if (listener->priv->session_idle_start <= 0) {
                         /* shouldn't happen */
-                        g_warning ("Session idle start time was not set");
+                        gs_debug ("Session idle start time was not set");
                         secs = 0;
                 } else {
                         secs = now - listener->priv->session_idle_start;
@@ -1339,8 +1339,8 @@ gs_listener_dbus_init (GSListener *listener)
                 listener->priv->connection = dbus_bus_get (DBUS_BUS_SESSION, &error);
                 if (listener->priv->connection == NULL) {
                         if (dbus_error_is_set (&error)) {
-                                g_warning ("couldn't connect to session bus: %s",
-                                           error.message);
+                                gs_debug ("couldn't connect to session bus: %s",
+                                          error.message);
                                 dbus_error_free (&error);
                         }
                         return FALSE;
@@ -1354,8 +1354,8 @@ gs_listener_dbus_init (GSListener *listener)
                 listener->priv->system_connection = dbus_bus_get (DBUS_BUS_SYSTEM, &error);
                 if (listener->priv->system_connection == NULL) {
                         if (dbus_error_is_set (&error)) {
-                                g_warning ("couldn't connect to system bus: %s",
-                                           error.message);
+                                gs_debug ("couldn't connect to system bus: %s",
+                                          error.message);
                                 dbus_error_free (&error);
                         }
                         return FALSE;
