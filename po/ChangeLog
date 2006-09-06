@@ -1,3 +1,9 @@
+2006-09-05  Lucas Rocha  <lucasr@gnome.org>
+
+	* pt_BR.po: Updated Brazilian Portuguese translation
+	by Leonardo Ferreira Fontenelle <leo.fontenelle@gmail.com> and
+	Henrique Grolli Bassotto <henrique.grolli@gmail.com>
+
 2006-09-04  Baris Cicek <baris@teamforce.name.tr>
 
 	* tr.po: Added Turkish Translation from Deniz Kocak
@@ -30,7 +36,7 @@
 
 2006-08-31  Rajesh Ranjan <rajeshkajha@yahoo.com>
 
-        * hi.po: Updated Hindi Translation.
+	* hi.po: Updated Hindi Translation.
 
 2006-08-31  Gabor Kelemen  <kelemeng@gnome.hu>
 
