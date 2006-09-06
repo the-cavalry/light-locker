@@ -1337,6 +1337,8 @@ gs_manager_create_window (GSManager *manager,
 
         n_monitors = gdk_screen_get_n_monitors (screen);
 
+        gs_debug ("Creating %d windows for screen %d", n_monitors, gdk_screen_get_number (screen));
+
         for (i = 0; i < n_monitors; i++) {
                 window = gs_window_new (screen, i, manager->priv->lock_active);
 

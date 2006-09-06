@@ -1,3 +1,8 @@
+2006-09-06  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-manager.c: (gs_manager_create_window):
+	Add debug spew for number of monitors per screen.
+
 2006-09-05  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac:
