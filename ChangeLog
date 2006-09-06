@@ -8,7 +8,7 @@
 	* configure.ac:
 	* src/gs-watcher-x11.c: (reset_timers),
 	(initialize_server_extensions), (disable_builtin_screensaver):
-	Rip out the SGI saver and xidle stuff since we we're using it.
+	Rip out the SGI saver and xidle stuff since we are not using it.
 
 2006-09-05  William Jon McCann  <mccann@jhu.edu>
 
