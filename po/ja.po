@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-09 10:19+0900\n"
-"PO-Revision-Date: 2006-08-09 20:30+0900\n"
+"POT-Creation-Date: 2006-09-15 01:33+0900\n"
+"PO-Revision-Date: 2006-09-15 01:34+0900\n"
 "Last-Translator: Satoru SATOH <ss@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -112,9 +112,9 @@ msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
-msgstr "TRUE にするとロックを解除する際にキーボードをウィンドウ内に"
-"組み込めるます。\"keyboard_command\" キーを適切なコマンドに設定"
-"しておく必要があります。"
+msgstr ""
+"TRUE にするとロックを解除する際にキーボードをウィンドウ内に組み込めるます。"
+"\"keyboard_command\" キーを適切なコマンドに設定しておく必要があります。"
 
 #: ../data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
@@ -142,10 +142,11 @@ msgid ""
 "set to TRUE, to embed a keyboard widget into the window. This command should "
 "implement an XEMBED plug interface and output a window XID on the standard "
 "output."
-msgstr "キーボードウィジェットをウィンドウに組み込むために "
-"\"embedded_keyboard_enabled\" キーが TRUE に設定している場合に"
-"実行されるコマンド。このコマンドは XEMBED プラグインターフェースを実装し、"
-"ウィンドウの XID を標準出力に出力すべきです。"
+msgstr ""
+"キーボードウィジェットをウィンドウに組み込むために "
+"\"embedded_keyboard_enabled\" キーが TRUE に設定している場合に実行されるコマ"
+"ンド。このコマンドは XEMBED プラグインターフェースを実装し、ウィンドウの XID "
+"を標準出力に出力すべきです。"
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
@@ -249,7 +250,7 @@ msgstr "<span size=\"x-large\">%R</span>"
 msgid "Password:"
 msgstr "パスワード:"
 
-#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1703
+#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1707
 msgid "S_witch to user:"
 msgstr "切り替えるユーザの一覧(_W):"
 
@@ -269,7 +270,7 @@ msgstr "ユーザの切り替え(_S)..."
 msgid "_Switch user..."
 msgstr "ユーザの切り替え(_S)..."
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1432
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1436
 msgid "_Unlock"
 msgstr "ロック解除(_U)"
 
@@ -708,8 +709,9 @@ msgstr ""
 msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
-msgstr "スクリーンセーバーの起動を抑制する。抑制している間に"
-"コマンドブロックをアクティブにします。"
+msgstr ""
+"スクリーンセーバーの起動を抑制する。抑制している間にコマンドブロックをアク"
+"ティブにします。"
 
 #: ../src/gnome-screensaver-command.c:77
 msgid "The calling application that is inhibiting the screensaver"
@@ -769,7 +771,8 @@ msgstr "パスワードをすぐに変えなければいけません(root が強
 
 #: ../src/gnome-screensaver-dialog.c:176
 msgid "Your account has expired; please contact your system administrator"
-msgstr "あなたのアカウントは失効しています。システム管理者に連絡を取ってください。"
+msgstr ""
+"あなたのアカウントは失効しています。システム管理者に連絡を取ってください。"
 
 #: ../src/gnome-screensaver-dialog.c:177
 msgid "No password supplied"
@@ -823,53 +826,51 @@ msgstr "検証中..."
 msgid "Authentication failed."
 msgstr "認証に失敗しました。"
 
-#: ../src/gnome-screensaver-preferences.c:439
+#: ../src/gnome-screensaver-preferences.c:447
 msgid "Blank screen"
 msgstr "ブランク・スクリーン"
 
-#: ../src/gnome-screensaver-preferences.c:445
+#: ../src/gnome-screensaver-preferences.c:453
 msgid "Random"
 msgstr "ランダム"
 
-#: ../src/gnome-screensaver-preferences.c:805
+#: ../src/gnome-screensaver-preferences.c:813
 msgid "Invalid screensaver theme"
 msgstr "スクリーンセーバーのテーマが間違っています"
 
-#: ../src/gnome-screensaver-preferences.c:808
+#: ../src/gnome-screensaver-preferences.c:816
 msgid "This file does not appear to be a valid screensaver theme."
-msgstr "このファイルはスクリーンセーバーのテーマとして適切なものではないようです。"
+msgstr ""
+"このファイルはスクリーンセーバーのテーマとして適切なものではないようです。"
 
-#: ../src/gnome-screensaver-preferences.c:935
+#: ../src/gnome-screensaver-preferences.c:943
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d 時間"
-msgstr[1] "%d 時間"
 
-#: ../src/gnome-screensaver-preferences.c:938
+#: ../src/gnome-screensaver-preferences.c:946
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d 分"
-msgstr[1] "%d 分"
 
-#: ../src/gnome-screensaver-preferences.c:941
+#: ../src/gnome-screensaver-preferences.c:949
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d 秒"
-msgstr[1] "%d 秒"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:947
+#: ../src/gnome-screensaver-preferences.c:955
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:950
 #: ../src/gnome-screensaver-preferences.c:958
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -877,22 +878,22 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:953
 #: ../src/gnome-screensaver-preferences.c:961
-#: ../src/gnome-screensaver-preferences.c:965
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:973
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:988
 msgid "Never"
 msgstr "しない"
 
-#: ../src/gnome-screensaver-preferences.c:1365
+#: ../src/gnome-screensaver-preferences.c:1373
 msgid "Could not load the main interface"
 msgstr "Glade インタフェースを読み込めませんでした"
 
-#: ../src/gnome-screensaver-preferences.c:1367
+#: ../src/gnome-screensaver-preferences.c:1375
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "gnome-screensaver が正しくインストールされているか確認して下さい。"
 
@@ -946,19 +947,19 @@ msgstr "タイムアウトしました"
 msgid "You have the Caps Lock key on."
 msgstr "[Caps Lock] キーが押されています"
 
-#: ../src/gs-lock-plug.c:1414 ../src/gs-lock-plug.c:1451
+#: ../src/gs-lock-plug.c:1418 ../src/gs-lock-plug.c:1455
 msgid "S_witch User..."
 msgstr "ユーザの切り替え(_W)..."
 
-#: ../src/gs-lock-plug.c:1422
+#: ../src/gs-lock-plug.c:1426
 msgid "Log _Out"
 msgstr "ログアウト(_O)"
 
-#: ../src/gs-lock-plug.c:1613
+#: ../src/gs-lock-plug.c:1617
 msgid "%U on %h"
 msgstr "%U @ %h"
 
-#: ../src/gs-lock-plug.c:1627
+#: ../src/gs-lock-plug.c:1631
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
