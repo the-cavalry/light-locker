@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-15 09:55+0200\n"
-"PO-Revision-Date: 2006-08-15 12:52+0300\n"
+"PO-Revision-Date: 2006-09-25 22:40+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -438,7 +438,7 @@ msgstr "Vigane virtuaalterminali number."
 
 #: ../src/cut-n-paste/fusa-manager.c:1490 ../src/cut-n-paste/gdmcomm.c:499
 msgid "Trying to update an unsupported configuration key."
-msgstr ""
+msgstr "Proovitakse uuendada toetamata seadistusvõtit."
 
 #: ../src/cut-n-paste/fusa-manager.c:1493
 msgid "~/.Xauthority file badly configured or missing."
@@ -512,12 +512,12 @@ msgstr "GNOME kuvahalduriga (GDM) pole võimalik suhelda"
 
 #: ../src/cut-n-paste/gdmcomm.c:444
 msgid "Perhaps you have an old version of GDM running."
-msgstr "Võib-olla on sul liiga vana GDM-i versioon."
+msgstr "Võibolla on sul liiga vana GDM-i versioon."
 
 #: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
 msgid "Cannot communicate with gdm, perhaps you have an old version running."
 msgstr ""
-"GDM-iga pole võimalik suhelda, võib-olla on sellel liiga vana versioon."
+"GDM-ga pole võimalik suhelda, ilmselt on kasutusel GDM-I liiga vana versioon."
 
 #: ../src/cut-n-paste/gdmcomm.c:469
 msgid "The allowed limit of flexible X servers reached."
@@ -533,7 +533,7 @@ msgstr "X-serveri tõrge.  Arvatavasti on see vigasel seadistatud."
 
 #: ../src/cut-n-paste/gdmcomm.c:476
 msgid "Too many X sessions running."
-msgstr "Liiga palju X'i seansse käimas."
+msgstr "Liiga palju käimasolevaid X-seansse."
 
 #: ../src/cut-n-paste/gdmcomm.c:478
 msgid ""
@@ -551,10 +551,11 @@ msgstr ""
 msgid ""
 "The X server is not available, it is likely that gdm is badly configured."
 msgstr ""
+"X-server pole saadaval või on halvasti seadistatud."
 
 #: ../src/cut-n-paste/gdmcomm.c:497
 msgid "Trying to change to an invalid virtual terminal number."
-msgstr ""
+msgstr "Proovitakse lülituda vigase numbriga terminalile."
 
 #: ../src/cut-n-paste/gdmcomm.c:501
 msgid ""
@@ -568,7 +569,7 @@ msgstr ""
 
 #: ../src/cut-n-paste/gdmcomm.c:508
 msgid "Unknown error occurred."
-msgstr "Esines tundmatu viga."
+msgstr "Leidis aset tundmatu viga."
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -923,31 +924,3 @@ msgstr ""
 #: ../src/gs-lock-plug.c:1627
 msgid "_Password:"
 msgstr "_Parool:"
-
-#~ msgid "_Screensaver"
-#~ msgstr "_Ekraanisäästja"
-
-#~ msgid "Disable running graphical themes while blanked"
-#~ msgstr "Ekraani puhastamisel graafiliste teemade käivitamise keelamine"
-
-#~ msgid "Enable running graphical themes while blanked (if applicable)"
-#~ msgstr "Ekraani puhastamisel graafiliste teemade käivitamise lubamine"
-
-#~ msgid "0 seconds"
-#~ msgstr "0 sekundit"
-
-#~ msgid "That password was incorrect."
-#~ msgstr "Parool ei klapi."
-
-#~ msgid "Set this to TRUE to allow the screensaver to power down the monitor."
-#~ msgstr ""
-#~ "Märgi see valik kui ekraanisäästja peab monitori voolu välja lülitama."
-
-#~ msgid ""
-#~ "The number of minutes after the screensaver activation until the monitor "
-#~ "powers off."
-#~ msgstr ""
-#~ "Ekraanisäästja tööminutite arv peale mida monitor välja lülitatakse."
-
-#~ msgid "Time before power off"
-#~ msgstr "Aeg enne voolu väljalülitamist"
