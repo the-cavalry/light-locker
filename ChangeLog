@@ -1,3 +1,10 @@
+2006-09-29  William Jon McCann  <mccann@jhu.edu>
+
+	* data/gnome-screensaver-preferences.glade:
+	Don't explicitly set icon sizes in preview bar.
+	Fixes #353518
+	Patch from Dimitur Kirov <dkirov@gmail.com>
+
 2006-09-06  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-manager.c: (gs_manager_create_window):

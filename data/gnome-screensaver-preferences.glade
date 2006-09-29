@@ -209,7 +209,6 @@
 					    <widget class="GtkImage" id="image3">
 					      <property name="visible">True</property>
 					      <property name="stock">gtk-fullscreen</property>
-					      <property name="icon_size">4</property>
 					      <property name="xalign">0.5</property>
 					      <property name="yalign">0.5</property>
 					      <property name="xpad">0</property>
@@ -530,7 +529,6 @@
 	    <widget class="GtkImage" id="image2">
 	      <property name="visible">True</property>
 	      <property name="stock">gtk-dialog-warning</property>
-	      <property name="icon_size">6</property>
 	      <property name="xalign">0.5</property>
 	      <property name="yalign">0.5</property>
 	      <property name="xpad">10</property>
@@ -604,7 +602,6 @@
 		<widget class="GtkImage" id="image5">
 		  <property name="visible">True</property>
 		  <property name="stock">gtk-go-back</property>
-		  <property name="icon_size">4</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
@@ -630,7 +627,6 @@
 		<widget class="GtkImage" id="image4">
 		  <property name="visible">True</property>
 		  <property name="stock">gtk-go-forward</property>
-		  <property name="icon_size">4</property>
 		  <property name="xalign">0.5</property>
 		  <property name="yalign">0.5</property>
 		  <property name="xpad">0</property>
