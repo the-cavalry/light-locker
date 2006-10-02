@@ -345,8 +345,84 @@ gs_window_real_unrealize (GtkWidget *widget)
         }
 }
 
+/* copied from gdk */
+extern char **environ;
+
+static gchar **
+spawn_make_environment_for_screen (GdkScreen  *screen,
+                                   gchar     **envp)
+{
+        gchar **retval = NULL;
+        gchar  *display_name;
+        gint    display_index = -1;
+        gint    i, env_len;
+
+        g_return_val_if_fail (GDK_IS_SCREEN (screen), NULL);
+
+        if (envp == NULL)
+                envp = environ;
+
+        for (env_len = 0; envp[env_len]; env_len++)
+                if (strncmp (envp[env_len], "DISPLAY", strlen ("DISPLAY")) == 0)
+                        display_index = env_len;
+
+        retval = g_new (char *, env_len + 1);
+        retval[env_len] = NULL;
+
+        display_name = gdk_screen_make_display_name (screen);
+
+        for (i = 0; i < env_len; i++)
+                if (i == display_index)
+                        retval[i] = g_strconcat ("DISPLAY=", display_name, NULL);
+                else
+                        retval[i] = g_strdup (envp[i]);
+
+        g_assert (i == env_len);
+
+        g_free (display_name);
+
+        return retval;
+}
+
+static gboolean
+spawn_command_line_on_screen_sync (GdkScreen    *screen,
+                                   const gchar  *command_line,
+                                   char        **standard_output,
+                                   char        **standard_error,
+                                   int          *exit_status,
+                                   GError      **error)
+{
+        char     **argv = NULL;
+        char     **envp = NULL;
+        gboolean   retval;
+
+        g_return_val_if_fail (command_line != NULL, FALSE);
+
+        if (! g_shell_parse_argv (command_line, NULL, &argv, error)) {
+                return FALSE;
+        }
+
+        envp = spawn_make_environment_for_screen (screen, NULL);
+
+        retval = g_spawn_sync (NULL,
+                               argv,
+                               envp,
+                               G_SPAWN_SEARCH_PATH,
+                               NULL,
+                               NULL,
+                               standard_output,
+                               standard_error,
+                               exit_status,
+                               error);
+
+        g_strfreev (argv);
+        g_strfreev (envp);
+
+        return retval;
+}
+
 static GdkVisual *
-get_best_visual (void)
+get_best_visual_for_screen (GdkScreen *screen)
 {
         char         *command;
         char         *std_output;
@@ -363,11 +439,12 @@ get_best_visual (void)
 
         error = NULL;
         std_output = NULL;
-        res = g_spawn_command_line_sync (command,
-                                         &std_output,
-                                         NULL,
-                                         &exit_status,
-                                         &error);
+        res = spawn_command_line_on_screen_sync (screen,
+                                                 command,
+                                                 &std_output,
+                                                 NULL,
+                                                 &exit_status,
+                                                 &error);
         if (! res) {
                 gs_debug ("Could not run command '%s': %s", command, error->message);
                 g_error_free (error);
@@ -381,7 +458,8 @@ get_best_visual (void)
                         visual_id = (VisualID) v;
                         visual = gdkx_visual_get (visual_id);
 
-                        gs_debug ("Found best visual for GL: 0x%x",
+                        gs_debug ("Found best GL visual for screen %d: 0x%x",
+                                  gdk_screen_get_number (screen),
                                   (unsigned int) visual_id);
                 }
         }
@@ -400,7 +478,7 @@ get_best_colormap_for_screen (GdkScreen *screen)
 
         g_return_val_if_fail (screen != NULL, NULL);
 
-        visual = get_best_visual ();
+        visual = get_best_visual_for_screen (screen);
 
         colormap = NULL;
         if (visual != NULL) {

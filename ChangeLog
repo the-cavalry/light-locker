@@ -1,5 +1,13 @@
 2006-10-02  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c: (spawn_make_environment_for_screen),
+	(spawn_command_line_on_screen_sync), (get_best_visual_for_screen),
+	(get_best_colormap_for_screen):
+	Set the correct value of DISPLAY for the gl helper.
+	Fixes #358963
+
+2006-10-02  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (queue_key_event):
 	Don't queue keys that may cause focus navigation in the dialog.
 
