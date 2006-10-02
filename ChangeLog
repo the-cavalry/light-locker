@@ -1,5 +1,10 @@
 2006-10-02  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/gs-theme-window.c (force_no_pixmap_background):
+	Use #000000 color notation.  Add SELECTED state.
+
+2006-10-02  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c: (spawn_make_environment_for_screen),
 	(spawn_command_line_on_screen_sync), (get_best_visual_for_screen),
 	(get_best_colormap_for_screen):
