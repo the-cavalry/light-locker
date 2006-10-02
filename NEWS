@@ -1,4 +1,26 @@
 ===============
+Version 2.16.1
+===============
+
+  gnome-screensaver
+
+        * Set the correct value of DISPLAY for the gl helper
+        * Don't queue keys that may cause focus navigation (Bruno Boaventura)
+
+  gnome-screensaver-preferences
+
+        * Don't explicitly set icon sizes in preview bar (Dimitur Kirov)
+
+  Translators
+
+        * David Lodge (en_GB)
+        * Ivar Smolin (et)
+        * Rajesh Ranjan (hi)
+        * Luca Ferretti (it)
+        * Satoru SATOH (ja)
+        * Leonardo Ferreira Fontenelle (pt_BR)
+
+===============
 Version 2.16.0
 ===============
 

@@ -1,3 +1,9 @@
+==== 2.16.1 ====
+
+2006-10-02  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 2.16.1 release.
+
 2006-10-02  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/gs-theme-window.c (force_no_pixmap_background):
