@@ -340,7 +340,7 @@ notice_events (Window   window,
 
         notice_events_inner (window, enable, top);
 
-        gdk_flush ();
+        gdk_display_sync (gdk_display_get_default ());
         gdk_error_trap_pop ();
 }
 
@@ -816,7 +816,8 @@ init_mit_saver_extension (void)
                         gdk_error_trap_push ();
 
                         XKillClient (GDK_DISPLAY (), kill_id);
-                        gdk_flush ();
+
+                        gdk_display_sync (gdk_display_get_default ());
                         gdk_error_trap_pop ();
                 }
 

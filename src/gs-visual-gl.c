@@ -100,7 +100,7 @@ gs_visual_gl_get_best_for_screen (GdkScreen *screen)
                 }
         }
 
-        gdk_flush ();
+        gdk_display_sync (display);
         gdk_error_trap_pop ();
 
 #else

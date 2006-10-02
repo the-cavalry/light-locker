@@ -1,5 +1,16 @@
 2006-10-02  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-grab-x11.c: (xorg_lock_smasher_set_active),
+	(gs_grab_nuke_focus):
+	* src/gs-visual-gl.c: (gs_visual_gl_get_best_for_screen):
+	* src/gs-watcher-x11.c: (notice_events),
+	(init_mit_saver_extension):
+	* src/gs-window-x11.c: (clear_all_children), (select_popup_events):
+	Sync X11 display before removing error handlers.
+	Hopefully fixes #358963
+
+2006-10-02  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-command.c (main):
 	Don't close a shared bus connection.
 

@@ -130,6 +130,7 @@ xorg_lock_smasher_set_active (GSGrab  *grab,
 
         status = XF86MiscSetGrabKeysState (GDK_DISPLAY (), active);
 
+        gdk_display_sync (gdk_display_get_default ());
         gdk_error_trap_pop ();
 
         if (active && status == MiscExtGrabStateAlready) {
@@ -379,6 +380,7 @@ gs_grab_nuke_focus (void)
 
         XSetInputFocus (GDK_DISPLAY (), None, RevertToNone, CurrentTime);
 
+        gdk_display_sync (gdk_display_get_default ());
         gdk_error_trap_pop ();
 }
 
