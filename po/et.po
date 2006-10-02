@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-15 09:55+0200\n"
-"PO-Revision-Date: 2006-09-27 08:14+0300\n"
+"PO-Revision-Date: 2006-10-02 00:07+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgstr "Aktiveerimine jõudeolekul"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
 msgid "Allow embedding a keyboard into the window"
-msgstr ""
+msgstr "Klaviatuuri aknasse põimimise lubamine"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow logout"
@@ -92,7 +92,7 @@ msgstr "Kasutaja vahetamine lubatud"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
 msgid "Embedded keyboard command"
-msgstr ""
+msgstr "Põimitud klaviatuuri käsk"
 
 #: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Lock on activation"
@@ -117,6 +117,8 @@ msgid ""
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
 msgstr ""
+"Kui märgitud, siis on ekraani lukust lahtivõtmise aknas põimitud klaviatuur. "
+"Klaviatuuri käsklus on määratud võtmes \"keyboard_command\"."
 
 #: ../data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
@@ -779,7 +781,7 @@ msgstr "Parool on juba kasutusel. Vali mõni muu parool."
 
 #: ../src/gnome-screensaver-dialog.c:186
 msgid "You must wait longer to change your password"
-msgstr ""
+msgstr "Parooli muutmiseks pead sa kauem ootama"
 
 #: ../src/gnome-screensaver-dialog.c:187
 msgid "Sorry, passwords do not match"
@@ -890,11 +892,11 @@ msgstr "Vigane parool."
 
 #: ../src/gs-auth-pam.c:334
 msgid "Not permitted to gain access at this time."
-msgstr ""
+msgstr "Puudvad õigused ligipääsuks praegusel kellaajal"
 
 #: ../src/gs-auth-pam.c:340
 msgid "No longer permitted to access the system."
-msgstr ""
+msgstr "Süsteemile ligipääsuks pole enam õiguseid."
 
 #: ../src/gs-listener-dbus.c:1631
 msgid "failed to register with the message bus"
