@@ -1,5 +1,13 @@
 2006-10-02  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (queue_key_event):
+	Don't queue keys that may cause focus navigation in the dialog.
+
+	Patch from Bruno Boaventura <brunoboaventura@gmail.com>
+	Fixes #354975
+
+2006-10-02  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-grab-x11.c: (xorg_lock_smasher_set_active),
 	(gs_grab_nuke_focus):
 	* src/gs-visual-gl.c: (gs_visual_gl_get_best_for_screen):
