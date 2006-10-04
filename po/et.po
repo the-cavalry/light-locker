@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-15 09:55+0200\n"
-"PO-Revision-Date: 2006-10-02 00:07+0300\n"
+"PO-Revision-Date: 2006-10-04 12:15+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -138,6 +138,8 @@ msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
 msgstr ""
+"Selle märkimine lisab lukust lahtivõtmise dialoogile võimaluse peale "
+"viivitust välja logida. Viivituse kestus määratakse võtmega \"logout_delay\"."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
@@ -219,7 +221,7 @@ msgstr "Aeg enne teemavahetust"
 #: ../data/lock-dialog-default.glade.h:2
 #, no-c-format
 msgid "<span size=\"small\">%U on %h</span>"
-msgstr ""
+msgstr "<span size=\"small\">%U hostil %h</span>"
 
 #: ../data/lock-dialog-default.glade.h:4
 #, no-c-format
@@ -297,7 +299,7 @@ msgstr ""
 
 #: ../savers/floaters.c:1180
 msgid "print out frame rate and other statistics"
-msgstr ""
+msgstr "kaadrisageduse ja muu statistika väljastamine"
 
 #: ../savers/floaters.c:1188
 msgid "the maximum number of images to keep on screen"
@@ -928,7 +930,7 @@ msgstr "Logi _välja"
 
 #: ../src/gs-lock-plug.c:1613
 msgid "%U on %h"
-msgstr ""
+msgstr "%U hostil %h"
 
 #: ../src/gs-lock-plug.c:1627
 msgid "_Password:"
