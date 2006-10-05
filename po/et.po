@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-15 09:55+0200\n"
-"PO-Revision-Date: 2006-10-04 12:15+0300\n"
+"PO-Revision-Date: 2006-10-05 10:58+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -155,6 +155,9 @@ msgid ""
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
+"Käsk, mis käivitatakse väljaligimise nupule klõpsamise korral. Käsk peaks "
+"kasutaja ilma igasuguste interaktsioonideta välja logima. See võti mõjub "
+"ainult juhul, kui \"logout_enable\" võti on märgitud."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
@@ -167,6 +170,9 @@ msgid ""
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
+"Ekraanisäästja aktiveerimisest mööduv aeg (mitutites), peale mida ilmub "
+"väljalogimise valik lukust lahtivõtmise dialoogi. See võti mõjub ainult "
+"juhul, kui \"logout_enable\" võti on märgitud."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
@@ -212,7 +218,7 @@ msgstr "Aeg enne lukustamist"
 
 #: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before logout option"
-msgstr ""
+msgstr "Aega enne väljalogimise valiku ilmumist"
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before theme change"
