@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-15 09:55+0200\n"
-"PO-Revision-Date: 2006-10-05 10:58+0300\n"
+"PO-Revision-Date: 2006-10-06 07:43+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -155,7 +155,7 @@ msgid ""
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
-"Käsk, mis käivitatakse väljaligimise nupule klõpsamise korral. Käsk peaks "
+"Käsk, mis käivitatakse väljaligomise nupule klõpsamise korral. Käsk peaks "
 "kasutaja ilma igasuguste interaktsioonideta välja logima. See võti mõjub "
 "ainult juhul, kui \"logout_enable\" võti on märgitud."
 
@@ -207,6 +207,10 @@ msgid ""
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
 msgstr ""
+"Selle võtmega määratakse ekraanisäästja poolt kasutatavate teemade loetelu. "
+"Kui võtme \"mode\" väärtus on \"blank-only\", siis seda eiratakse, kui "
+"\"mode\" väärtus on \"single\", siis peab siin olema teema nimi ja kui "
+"\"mode\" väärtus on \"random\", siis aga teemade loetelu."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Time before activation"
@@ -509,12 +513,16 @@ msgid ""
 "You might in fact be using a different display manager, such as KDM (KDE "
 "Display Manager) or xdm."
 msgstr ""
+"Sa võid kasutada teist kuvahaldurit, näiteks KDM-i (KDE kuvahaldur) või "
+"XDM-i."
 
 #: ../src/cut-n-paste/gdmcomm.c:419
 msgid ""
 "If you still wish to use this feature, either start GDM yourself or ask your "
 "system administrator to start GDM."
 msgstr ""
+"Kui sa ikkagi soovid seda võimalust kasutada, siis peaksid GDM-i ise "
+"käivitama või paluma oma süsteemihaldurit GDM käivitada."
 
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:441
@@ -727,7 +735,7 @@ msgstr "Väljalogimisnupu näitamine"
 
 #: ../src/gnome-screensaver-dialog.c:58
 msgid "Command to invoke from the logout button"
-msgstr ""
+msgstr "Väljalogimise nupule klõpsamise korral käivitatav käsk"
 
 #: ../src/gnome-screensaver-dialog.c:60
 msgid "Show the switch user button"
@@ -887,7 +895,7 @@ msgstr "Silumise lubamine"
 #: ../src/gs-auth-pam.c:262
 #, c-format
 msgid "Unable to establish service %s: %s\n"
-msgstr ""
+msgstr "Teenust %s pole võimalik luua: %s\n"
 
 #: ../src/gs-auth-pam.c:288
 #, c-format
