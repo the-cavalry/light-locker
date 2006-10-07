@@ -779,7 +779,8 @@ get_env_vars (GtkWidget *widget)
                 "XDG_DATA_HOME",
                 "MB_KBD_CONFIG",
                 "MB_KBD_VARIANT",
-                "MB_KBD_LANG"
+                "MB_KBD_LANG",
+                "DBUS_SESSION_BUS_ADDRESS"
         };
 
         env = g_ptr_array_new ();
