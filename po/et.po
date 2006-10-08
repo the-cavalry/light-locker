@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-15 09:55+0200\n"
-"PO-Revision-Date: 2006-10-06 07:43+0300\n"
+"PO-Revision-Date: 2006-10-07 23:13+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -155,7 +155,7 @@ msgid ""
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
-"Käsk, mis käivitatakse väljaligomise nupule klõpsamise korral. Käsk peaks "
+"Käsk, mis käivitatakse väljalogimise nupule klõpsamise korral. Käsk peaks "
 "kasutaja ilma igasuguste interaktsioonideta välja logima. See võti mõjub "
 "ainult juhul, kui \"logout_enable\" võti on märgitud."
 
@@ -293,7 +293,7 @@ msgstr "Pildikataloog"
 
 #: ../savers/popsquares.desktop.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
-msgstr ""
+msgstr "Popkunstilik pulseerivate värvidega ruudustik."
 
 #: ../savers/popsquares.desktop.in.h:2
 msgid "Pop art squares"
@@ -301,11 +301,11 @@ msgstr "Popkunstist inspireeritud ruudud"
 
 #: ../savers/floaters.c:1166
 msgid "show paths that images follow"
-msgstr ""
+msgstr "piltide liikumisteede näitamine"
 
 #: ../savers/floaters.c:1173
 msgid "occasionally rotate images as they move"
-msgstr ""
+msgstr "piltide pööramine liikumisel"
 
 #: ../savers/floaters.c:1180
 msgid "print out frame rate and other statistics"
@@ -435,13 +435,14 @@ msgstr ""
 
 #: ../src/cut-n-paste/fusa-manager.c:1478
 msgid "The X server in the GDM configuration could not be found."
-msgstr ""
+msgstr "GDM-i seadistustest ei leitud X-serverit."
 
 #: ../src/cut-n-paste/fusa-manager.c:1481 ../src/cut-n-paste/gdmcomm.c:492
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
 msgstr ""
+"Prooviti määrata väljalogimise toimingut, mis on tundmatu või pole saadaval."
 
 #: ../src/cut-n-paste/fusa-manager.c:1484 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
@@ -677,7 +678,7 @@ msgstr ""
 
 #: ../src/gnome-screensaver-command.c:67
 msgid "If the screensaver is active then switch to another graphics demo"
-msgstr "Kui ekraanisäästja töötab, siis vahetada graafilist demo"
+msgstr "Kui ekraanisäästja on aktiivne, siis graafilise demo vahetamine"
 
 #: ../src/gnome-screensaver-command.c:69
 msgid "Turn the screensaver on (blank the screen)"
@@ -698,14 +699,16 @@ msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
 msgstr ""
+"Ekraanisäästja aktiveerimise keelamine. Käsk blokeerub kui aktiveerimine on "
+"juba keelatud."
 
 #: ../src/gnome-screensaver-command.c:77
 msgid "The calling application that is inhibiting the screensaver"
-msgstr ""
+msgstr "Ekraanisäästja aktiveerimist keelava rakenduse nimi"
 
 #: ../src/gnome-screensaver-command.c:79
 msgid "The reason for inhibiting the screensaver"
-msgstr "Ekraanisäästja piirangu selgitus"
+msgstr "Ekraanisäästja aktiveerimise keelamise selgitus"
 
 #: ../src/gnome-screensaver-command.c:81 ../src/gnome-screensaver-dialog.c:54
 #: ../src/gnome-screensaver.c:56
