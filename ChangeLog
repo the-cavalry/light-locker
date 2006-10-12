@@ -1,3 +1,12 @@
+2006-10-12  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gnome-screensaver-preferences.c: (populate_model),
+	(compare_theme_names), (setup_treeview):
+	Don't show expander column since we don't really use
+	a tree at this point (gtk+ 2.10 only).
+	Use g_utf8_collate to get the correct sort order.
+	Fixes #359846.
+
 2006-10-06  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c (get_env_vars): Pass bus address.

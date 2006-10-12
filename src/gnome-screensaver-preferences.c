@@ -60,7 +60,7 @@
 #define KEY_THEMES          KEY_DIR "/themes"
 
 enum {
-        NAME_COLUMN,
+        NAME_COLUMN = 0,
         ID_COLUMN,
         N_COLUMNS
 };
@@ -467,15 +467,21 @@ populate_model (GtkTreeStore *store)
         }
 
         for (l = themes; l; l = l->next) {
+                const char  *name;
+                const char  *id;
                 GSThemeInfo *info = l->data;
 
-                if (! info)
+                if (info == NULL) {
                         continue;
+                }
+
+                name = gs_theme_info_get_name (info);
+                id = gs_theme_info_get_id (info);
 
                 gtk_tree_store_append (store, &iter, NULL);
                 gtk_tree_store_set (store, &iter,
-                                    NAME_COLUMN, gs_theme_info_get_name (info),
-                                    ID_COLUMN, gs_theme_info_get_id (info),
+                                    NAME_COLUMN, name,
+                                    ID_COLUMN, id,
                                     -1);
 
                 gs_theme_info_unref (info);
@@ -561,9 +567,9 @@ compare_theme_names (char *name_a,
                      char *id_b)
 {
 
-        if (! id_a) {
+        if (id_a == NULL) {
                 return 1;
-        } else if (! id_b) {
+        } else if (id_b == NULL) {
                 return -1;
         }
 
@@ -581,13 +587,13 @@ compare_theme_names (char *name_a,
                 return 1;
         }
 
-        if (! name_a) {
+        if (name_a == NULL) {
                 return 1;
-        } else if (! name_b) {
+        } else if (name_b == NULL) {
                 return -1;
         }
 
-        return strcmp (name_a, name_b);
+        return g_utf8_collate (name_a, name_b);
 }
 
 static int
@@ -655,19 +661,23 @@ setup_treeview (GtkWidget *tree,
 
         g_object_unref (store);
 
+#if GTK_CHECK_VERSION(2,10,0)
+        g_object_set (tree, "show-expanders", FALSE, NULL);
+#endif
+
         renderer = gtk_cell_renderer_text_new ();
         column = gtk_tree_view_column_new_with_attributes ("Name", renderer,
                                                            "text", NAME_COLUMN,
                                                            NULL);
         gtk_tree_view_append_column (GTK_TREE_VIEW (tree), column);
 
-        gtk_tree_view_column_set_sort_column_id (column, 0);
+        gtk_tree_view_column_set_sort_column_id (column, NAME_COLUMN);
         gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (store),
-                                         0,
+                                         NAME_COLUMN,
                                          compare_theme,
                                          NULL, NULL);
         gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store),
-                                              0,
+                                              NAME_COLUMN,
                                               GTK_SORT_ASCENDING);
 
         gtk_tree_view_set_row_separator_func (GTK_TREE_VIEW (tree),
