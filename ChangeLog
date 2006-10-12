@@ -1,5 +1,17 @@
 2006-10-12  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c: (remove_cancel_timeout),
+	(gs_lock_plug_response), (dialog_timed_out),
+	(restart_cancel_timeout), (gs_lock_plug_show), (switch_page),
+	(gs_lock_plug_show_prompt), (entry_key_press),
+	(gs_lock_plug_finalize):
+	Don't poll timers to determine when the dialog has timed
+	out.  Just rely on when a timeout source gets triggered.
+	The polling was a remnant of when we used to have a progress
+	bar in the dialog.  May fix #359605
+
+2006-10-12  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-preferences.c: (populate_model),
 	(compare_theme_names), (setup_treeview):
 	Don't show expander column since we don't really use

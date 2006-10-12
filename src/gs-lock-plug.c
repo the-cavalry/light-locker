@@ -97,11 +97,9 @@ struct GSLockPlugPrivate
 
         guint        timeout;
 
-        guint        idle_id;
+        guint        cancel_timeout_id;
         guint        auth_check_idle_id;
         guint        response_idle_id;
-
-        GTimeVal     start_time;
 };
 
 typedef struct _ResponseData ResponseData;
@@ -248,11 +246,11 @@ gs_lock_plug_set_sensitive (GSLockPlug *plug,
 }
 
 static void
-remove_monitor_idle (GSLockPlug *plug)
+remove_cancel_timeout (GSLockPlug *plug)
 {
-        if (plug->priv->idle_id > 0) {
-                g_source_remove (plug->priv->idle_id);
-                plug->priv->idle_id = 0;
+        if (plug->priv->cancel_timeout_id > 0) {
+                g_source_remove (plug->priv->cancel_timeout_id);
+                plug->priv->cancel_timeout_id = 0;
         }
 }
 
@@ -281,7 +279,7 @@ gs_lock_plug_response (GSLockPlug *plug,
                 return;
         }
 
-        remove_monitor_idle (plug);
+        remove_cancel_timeout (plug);
         remove_response_idle (plug);
 
         if (response_id == GS_LOCK_PLUG_RESPONSE_CANCEL) {
@@ -319,34 +317,21 @@ response_cancel_idle_cb (GSLockPlug *plug)
 }
 
 static gboolean
-monitor_progress (GSLockPlug *plug)
+dialog_timed_out (GSLockPlug *plug)
 {
-        GTimeVal now;
-        glong    elapsed;
-        glong    remaining;
+        gs_lock_plug_set_sensitive (plug, FALSE);
+        set_status_text (plug, _("Time has expired."));
 
-        g_get_current_time (&now);
-
-        elapsed = (now.tv_sec - plug->priv->start_time.tv_sec) * 1000
-                + (now.tv_usec - plug->priv->start_time.tv_usec) / 1000;
-        remaining = plug->priv->timeout - elapsed;
-
-        if ((remaining <= 0) || (remaining > plug->priv->timeout)) {
-                gs_lock_plug_set_sensitive (plug, FALSE);
-                set_status_text (plug, _("Time has expired."));
-
-                if (plug->priv->response_idle_id != 0) {
-                        g_warning ("Response idle ID already set but shouldn't be");
-                }
-
-                remove_response_idle (plug);
-
-                plug->priv->response_idle_id = g_timeout_add (2000,
-                                                              (GSourceFunc)response_cancel_idle_cb,
-                                                              plug);
-                return FALSE;
+        if (plug->priv->response_idle_id != 0) {
+                g_warning ("Response idle ID already set but shouldn't be");
         }
-        return TRUE;
+
+        remove_response_idle (plug);
+
+        plug->priv->response_idle_id = g_timeout_add (2000,
+                                                      (GSourceFunc)response_cancel_idle_cb,
+                                                      plug);
+        return FALSE;
 }
 
 
@@ -387,14 +372,13 @@ is_capslock_on (void)
 }
 
 static void
-restart_monitor_progress (GSLockPlug *plug)
+restart_cancel_timeout (GSLockPlug *plug)
 {
-        remove_monitor_idle (plug);
+        remove_cancel_timeout (plug);
 
-        g_get_current_time (&plug->priv->start_time);
-        plug->priv->idle_id = g_timeout_add (50,
-                                             (GSourceFunc)monitor_progress,
-                                             plug);
+        plug->priv->cancel_timeout_id = g_timeout_add (plug->priv->timeout,
+                                                       (GSourceFunc)dialog_timed_out,
+                                                       plug);
 }
 
 void
@@ -568,7 +552,7 @@ gs_lock_plug_show (GtkWidget *widget)
 
         capslock_update (plug, is_capslock_on ());
 
-        restart_monitor_progress (plug);
+        restart_cancel_timeout (plug);
 
         gs_profile_end (NULL);
 }
@@ -820,7 +804,7 @@ switch_page (GSLockPlug *plug,
         gtk_notebook_set_current_page (GTK_NOTEBOOK (plug->priv->notebook), next_page);
 
         /* this counts as activity so restart the timer */
-        restart_monitor_progress (plug);
+        restart_cancel_timeout (plug);
 }
 
 static void
@@ -876,7 +860,7 @@ gs_lock_plug_show_prompt (GSLockPlug *plug,
                 gtk_widget_grab_focus (plug->priv->auth_prompt_entry);
         }
 
-        restart_monitor_progress (plug);
+        restart_cancel_timeout (plug);
 }
 
 void
@@ -907,7 +891,7 @@ entry_key_press (GtkWidget   *widget,
 {
         gboolean capslock_on;
 
-        restart_monitor_progress (plug);
+        restart_cancel_timeout (plug);
 
         capslock_on = is_capslock_on ();
 
@@ -1991,7 +1975,7 @@ gs_lock_plug_finalize (GObject *object)
         }
 
         remove_response_idle (plug);
-        remove_monitor_idle (plug);
+        remove_cancel_timeout (plug);
 
         G_OBJECT_CLASS (gs_lock_plug_parent_class)->finalize (object);
 }
