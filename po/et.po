@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-15 09:55+0200\n"
-"PO-Revision-Date: 2006-10-07 23:13+0300\n"
+"PO-Revision-Date: 2006-10-12 23:25+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -148,6 +148,9 @@ msgid ""
 "implement an XEMBED plug interface and output a window XID on the standard "
 "output."
 msgstr ""
+"Aknasse klaviatuurividina põimimise käsk, mis käivitatakse kui võti "
+"\"embedded_keyboard_enabled\" on märgitud. See käsk peaks teostama XEMBED "
+"ühendusliidese ja väljastama standardväljundisse akna XID-i."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
@@ -191,6 +194,10 @@ msgid ""
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
 msgstr ""
+"Teemavalimise režiim ekraanisäästja aktiveerimisel. Võimalikud valikud on "
+"\"blank-only\" ekraanisäästja teemade keelamiseks, \"single\" ühe teema "
+"kasutamiseks (määratakse võtmega \"themes\") ja \"random\" juhusliku teema "
+"kasutamiseks."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid "Theme for lock dialog"
@@ -198,7 +205,7 @@ msgstr "Lukustusdialoogi teema"
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid "Theme to use for the lock dialog."
-msgstr "Teema mida kasutatakse lukustusdialoogi jaoks"
+msgstr "Lukustusdialoogi jaoks kasutatav teema."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
