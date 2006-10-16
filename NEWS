@@ -1,4 +1,23 @@
 ===============
+Version 2.17.1
+===============
+
+  gnome-screensaver
+
+        * Don't poll in dialog
+
+  gnome-screensaver-preferences
+
+        * Don't show expander column
+
+  Translators
+
+        * Gil Forcada (ca)
+        * Jakub Friedl (cs)
+        * Ivar Smolin (et)
+        * Ignacio Casal Quinteiro (gl)
+
+===============
 Version 2.16.1
 ===============
 

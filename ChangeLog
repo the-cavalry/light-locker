@@ -1,5 +1,9 @@
 2006-10-16  William Jon McCann  <mccann@jhu.edu>
 
+	* NEWS: Update for 2.17.1 release.
+
+2006-10-16  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Bump version to 2.17.1 after branching.
 
 2006-10-12  William Jon McCann  <mccann@jhu.edu>
