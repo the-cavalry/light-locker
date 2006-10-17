@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 2.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-02 13:18+0200\n"
-"PO-Revision-Date: 2006-08-02 13:22+0200\n"
+"POT-Creation-Date: 2006-10-17 14:33+0200\n"
+"PO-Revision-Date: 2006-10-17 14:49+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -111,7 +111,7 @@ msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
-msgstr ""
+msgstr "Sett denne til TRUE for å gjøre det mulig å innlemme et tastatur i vinduet ved man skal låse opp skjermen. Nøkkelen «keyboard_command» må være satt med riktig kommando."
 
 #: ../data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
@@ -140,7 +140,7 @@ msgid ""
 "set to TRUE, to embed a keyboard widget into the window. This command should "
 "implement an XEMBED plug interface and output a window XID on the standard "
 "output."
-msgstr ""
+msgstr "Kommando som skal kjøres hvis nøkkelen «embedded_keyboard_enabled» er satt til TRUE. Denne kommandoen må implementere et grensesnitt basert på XEMBED og skrive ut en XID for vinduet på standard utdatakanal."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
@@ -184,7 +184,7 @@ msgid ""
 "screensaver using only one theme on activation (specified in \"themes\" "
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
-msgstr ""
+msgstr "Utvalgsmodus som brukes av skjermspareren. Kan være «blank-only» for å aktivere skjermspareren uten å bruke et tema, «single» for å aktivere skjermspareren med kun et tema (oppgitt i nøkkelen «themes»), og «random» for å aktivere skjermspareren med et tilfeldig tema."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid "Theme for lock dialog"
@@ -200,7 +200,7 @@ msgid ""
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
-msgstr ""
+msgstr "Denne nøkkelen spesifiserer listen med tema som skal brukes av skjermspareren. Den ignoreres når «mode»-nøkkslen er «blank-only», gir temanavnet når «mode» er «single» og gir en liste med tema når «mode» er «random»."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Time before activation"
@@ -233,7 +233,7 @@ msgstr "<span size=\"x-large\">%R</span>"
 msgid "Password:"
 msgstr "Passord:"
 
-#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1700
+#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1691
 msgid "S_witch to user:"
 msgstr "B_ytt til bruker:"
 
@@ -253,7 +253,7 @@ msgstr "_Bytt bruker..."
 msgid "_Switch user..."
 msgstr "_Bytt bruker..."
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1429
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1420
 msgid "_Unlock"
 msgstr "Lå_s opp"
 
@@ -502,13 +502,17 @@ msgstr "GDM (GNOME skjermhåndterer) kjører ikke."
 msgid ""
 "You might in fact be using a different display manager, such as KDM (KDE "
 "Display Manager) or xdm."
-msgstr "Du bruker kanskje en annen skjermhåndterer slik som KDM (KDE skjermhåndterer) eller xdm."
+msgstr ""
+"Du bruker kanskje en annen skjermhåndterer slik som KDM (KDE "
+"skjermhåndterer) eller xdm."
 
 #: ../src/cut-n-paste/gdmcomm.c:419
 msgid ""
 "If you still wish to use this feature, either start GDM yourself or ask your "
 "system administrator to start GDM."
-msgstr "Hvis du fremdeles ønsker å bruke denne funksjonen må du enten starte GDM selv eller spørre din systemadministrator om å starte GDM."
+msgstr ""
+"Hvis du fremdeles ønsker å bruke denne funksjonen må du enten starte GDM "
+"selv eller spørre din systemadministrator om å starte GDM."
 
 #. markup
 #: ../src/cut-n-paste/gdmcomm.c:441
@@ -544,13 +548,15 @@ msgstr "For mange X-sesjoner kjører."
 msgid ""
 "The nested X server (Xnest) cannot connect to your current X server.  You "
 "may be missing an X authorization file."
-msgstr ""
+msgstr "Nøstet X-tjener (Xnest) kan ikke koble til din X-tjener. Du mangler kanskje en autorisasjonsfil for X."
 
 #: ../src/cut-n-paste/gdmcomm.c:483
 msgid ""
 "The nested X server (Xnest) is not available, or gdm is badly configured.\n"
 "Please install the Xnest package in order to use the nested login."
 msgstr ""
+"Nøstet X-tjener (Xnest) er ikke tilgjengelig, eller gdm er feilkonfigurert.\n"
+"Vennligst installer Xnest-pakken for å bruke nøstet påloggin."
 
 #: ../src/cut-n-paste/gdmcomm.c:488
 msgid ""
@@ -566,7 +572,9 @@ msgstr "Prøver å bytte til en ugyldig virtuell terminal."
 msgid ""
 "You do not seem to have authentication needed be for this operation.  "
 "Perhaps your .Xauthority file is not set up correctly."
-msgstr "Du har ikke nødvendig autentisering for denne operasjonen. Kanskje din .Xauthority-fil ikke er satt opp korrekt."
+msgstr ""
+"Du har ikke nødvendig autentisering for denne operasjonen. Kanskje din ."
+"Xauthority-fil ikke er satt opp korrekt."
 
 #: ../src/cut-n-paste/gdmcomm.c:505
 msgid "Too many messages were sent to gdm and it hung upon us."
@@ -674,7 +682,9 @@ msgstr "Kommuniser med kjørende skjermsparer for å simulere brukeraktivitet"
 msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
-msgstr "Hindre skjermspareren fra å aktiveres. Kommandoen blokkerer så lenge hindringen er aktiv."
+msgstr ""
+"Hindre skjermspareren fra å aktiveres. Kommandoen blokkerer så lenge "
+"hindringen er aktiv."
 
 #: ../src/gnome-screensaver-command.c:77
 msgid "The calling application that is inhibiting the screensaver"
@@ -788,37 +798,37 @@ msgstr "Sjekker..."
 msgid "Authentication failed."
 msgstr "Autentisering feilet."
 
-#: ../src/gnome-screensaver-preferences.c:436
+#: ../src/gnome-screensaver-preferences.c:447
 msgid "Blank screen"
 msgstr "Blank skjerm"
 
-#: ../src/gnome-screensaver-preferences.c:442
+#: ../src/gnome-screensaver-preferences.c:453
 msgid "Random"
 msgstr "Tilfeldig"
 
-#: ../src/gnome-screensaver-preferences.c:802
+#: ../src/gnome-screensaver-preferences.c:823
 msgid "Invalid screensaver theme"
 msgstr "Ugyldig tema for skjermsparer"
 
-#: ../src/gnome-screensaver-preferences.c:805
+#: ../src/gnome-screensaver-preferences.c:826
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Denne filen ser ikke ut til å være et gyldig tema for skjermsparer."
 
-#: ../src/gnome-screensaver-preferences.c:932
+#: ../src/gnome-screensaver-preferences.c:953
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d time"
 msgstr[1] "%d timer"
 
-#: ../src/gnome-screensaver-preferences.c:935
+#: ../src/gnome-screensaver-preferences.c:956
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minutt"
 msgstr[1] "%d minutter"
 
-#: ../src/gnome-screensaver-preferences.c:938
+#: ../src/gnome-screensaver-preferences.c:959
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -826,15 +836,15 @@ msgstr[0] "%d sekund"
 msgstr[1] "%d sekunder"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:944
+#: ../src/gnome-screensaver-preferences.c:965
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:947
-#: ../src/gnome-screensaver-preferences.c:955
+#: ../src/gnome-screensaver-preferences.c:968
+#: ../src/gnome-screensaver-preferences.c:976
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -842,22 +852,22 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:950
-#: ../src/gnome-screensaver-preferences.c:958
-#: ../src/gnome-screensaver-preferences.c:962
+#: ../src/gnome-screensaver-preferences.c:971
+#: ../src/gnome-screensaver-preferences.c:979
+#: ../src/gnome-screensaver-preferences.c:983
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:977
+#: ../src/gnome-screensaver-preferences.c:998
 msgid "Never"
 msgstr "Aldri"
 
-#: ../src/gnome-screensaver-preferences.c:1367
+#: ../src/gnome-screensaver-preferences.c:1383
 msgid "Could not load the main interface"
 msgstr "Kunne ikke laste hovedbrukergrensesnittet"
 
-#: ../src/gnome-screensaver-preferences.c:1369
+#: ../src/gnome-screensaver-preferences.c:1385
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Vennligst se til at skjermspareren er skikkelig installert"
 
@@ -903,26 +913,26 @@ msgstr "ikke koblet til meldingsbussen"
 msgid "screensaver already running in this session"
 msgstr "skjermsparer kjører allerede i denne sesjonen"
 
-#: ../src/gs-lock-plug.c:336
+#: ../src/gs-lock-plug.c:323
 msgid "Time has expired."
 msgstr "Tiden har løpt ut."
 
-#: ../src/gs-lock-plug.c:366
+#: ../src/gs-lock-plug.c:351
 msgid "You have the Caps Lock key on."
 msgstr "Caps-Lock tasten er aktivert."
 
-#: ../src/gs-lock-plug.c:1411 ../src/gs-lock-plug.c:1448
+#: ../src/gs-lock-plug.c:1402 ../src/gs-lock-plug.c:1439
 msgid "S_witch User..."
 msgstr "_Bytt bruker..."
 
-#: ../src/gs-lock-plug.c:1419
+#: ../src/gs-lock-plug.c:1410
 msgid "Log _Out"
 msgstr "Logg _ut"
 
-#: ../src/gs-lock-plug.c:1610
+#: ../src/gs-lock-plug.c:1601
 msgid "%U on %h"
 msgstr "%U på %h"
 
-#: ../src/gs-lock-plug.c:1624
+#: ../src/gs-lock-plug.c:1615
 msgid "_Password:"
 msgstr "_Passord:"
