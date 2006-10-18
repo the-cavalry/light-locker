@@ -75,10 +75,26 @@
       <type>int</type>
       <default>10</default>
       <locale name="C">
-        <short>Time before activation</short>
+        <short>Time before session is considered idle</short>
         <long>
           The number of minutes of inactivity before the
           session is considered idle.
+        </long>
+      </locale>
+     </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-screensaver/power_management_delay</key>
+      <applyto>/apps/gnome-screensaver/power_management_delay</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>int</type>
+      <default>30</default>
+      <locale name="C">
+        <short>Time before power-management baseline</short>
+        <long>
+          The number of seconds of inactivity before signalling
+          to power-management.  This key is set and maintained
+          by the session power-management agent.
         </long>
       </locale>
      </schema>

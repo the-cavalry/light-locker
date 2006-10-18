@@ -1,3 +1,27 @@
+2006-10-18  William Jon McCann  <mccann@jhu.edu>
+
+	* data/gnome-screensaver.schemas.in:
+	* src/gs-listener-dbus.c: (send_dbus_boolean_signal),
+	(gs_listener_emit_power_notice),
+	(gs_listener_send_signal_active_changed),
+	(gs_listener_send_signal_session_idle_changed), (do_introspect):
+	* src/gs-listener-dbus.h:
+	* src/gs-monitor.c: (watcher_power_notice_cb),
+	(_gs_monitor_update_from_prefs), (disconnect_watcher_signals),
+	(connect_watcher_signals):
+	* src/gs-prefs.c: (_gs_prefs_set_power_timeout),
+	(gs_prefs_load_from_gconf), (key_changed_cb), (gs_prefs_init):
+	* src/gs-prefs.h:
+	* src/gs-watcher-x11.c: (gs_watcher_set_power_timeout),
+	(gs_watcher_set_property), (gs_watcher_get_property),
+	(gs_watcher_class_init), (remove_power_timer), (add_power_timer),
+	(reset_timers), (_gs_watcher_set_session_power_notice),
+	(_gs_watcher_notice_activity), (power_timer), (idle_timer),
+	(schedule_power_wakeup_event):
+	* src/gs-watcher.h:
+	Add SessionPowerManagementIdleChanged signal for power-management
+	baseline.  Fixes #350293
+
 2006-10-16  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump

@@ -55,8 +55,11 @@ static void     initialize_server_extensions (GSWatcher *watcher);
 static gboolean check_pointer_timer          (GSWatcher      *watcher);
 static void     schedule_wakeup_event        (GSWatcher      *watcher,
                                               int             when);
+static void     schedule_power_wakeup_event  (GSWatcher      *watcher,
+                                              int             when);
 static gboolean watchdog_timer               (GSWatcher      *watcher);
 static gboolean idle_timer                   (GSWatcher      *watcher);
+static gboolean power_timer                  (GSWatcher      *watcher);
 
 #define GS_WATCHER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_WATCHER, GSWatcherPrivate))
 
@@ -74,6 +77,7 @@ struct GSWatcherPrivate
         /* settings */
         guint           enabled : 1;
         guint           timeout;
+        guint           power_timeout;
         guint           pointer_timeout;
 
         guint           notice_timeout;
@@ -82,6 +86,7 @@ struct GSWatcherPrivate
         guint            active : 1;
         guint            idle : 1;
         guint            idle_notice : 1;
+        guint            power_notice : 1;
 
         PointerPosition *poll_position;
 
@@ -90,6 +95,7 @@ struct GSWatcherPrivate
         guint           emergency_lock : 1;
 
         guint           timer_id;
+        guint           power_timer_id;
         guint           check_pointer_timer_id;
         guint           watchdog_timer_id;
 
@@ -104,12 +110,14 @@ struct GSWatcherPrivate
 enum {
         IDLE_CHANGED,
         IDLE_NOTICE_CHANGED,
+        POWER_NOTICE_CHANGED,
         LAST_SIGNAL
 };
 
 enum {
         PROP_0,
-        PROP_TIMEOUT
+        PROP_TIMEOUT,
+        PROP_POWER_TIMEOUT
 };
 
 static guint         signals [LAST_SIGNAL] = { 0, };
@@ -147,6 +155,20 @@ gs_watcher_set_timeout (GSWatcher  *watcher,
         }
 }
 
+void
+gs_watcher_set_power_timeout (GSWatcher  *watcher,
+                              guint       timeout)
+{
+        g_return_if_fail (GS_IS_WATCHER (watcher));
+
+        if (watcher->priv->power_timeout != timeout) {
+                watcher->priv->power_timeout = timeout;
+
+                /* restart the timers if necessary */
+                gs_watcher_reset (watcher);
+        }
+}
+
 static void
 gs_watcher_set_property (GObject            *object,
                          guint               prop_id,
@@ -160,6 +182,9 @@ gs_watcher_set_property (GObject            *object,
         switch (prop_id) {
         case PROP_TIMEOUT:
                 gs_watcher_set_timeout (self, g_value_get_uint (value));
+                break;
+        case PROP_POWER_TIMEOUT:
+                gs_watcher_set_power_timeout (self, g_value_get_uint (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -180,6 +205,9 @@ gs_watcher_get_property (GObject            *object,
         switch (prop_id) {
         case PROP_TIMEOUT:
                 g_value_set_uint (value, self->priv->timeout);
+                break;
+        case PROP_POWER_TIMEOUT:
+                g_value_set_uint (value, self->priv->power_timeout);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -216,6 +244,16 @@ gs_watcher_class_init (GSWatcherClass *klass)
                               gs_marshal_BOOLEAN__BOOLEAN,
                               G_TYPE_BOOLEAN,
                               1, G_TYPE_BOOLEAN);
+        signals [POWER_NOTICE_CHANGED] =
+                g_signal_new ("power_notice_changed",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSWatcherClass, power_notice_changed),
+                              NULL,
+                              NULL,
+                              gs_marshal_BOOLEAN__BOOLEAN,
+                              G_TYPE_BOOLEAN,
+                              1, G_TYPE_BOOLEAN);
 
         g_object_class_install_property (object_class,
                                          PROP_TIMEOUT,
@@ -225,6 +263,15 @@ gs_watcher_class_init (GSWatcherClass *klass)
                                                             10000,
                                                             G_MAXUINT,
                                                             600000,
+                                                            G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_TIMEOUT,
+                                         g_param_spec_uint ("power-timeout",
+                                                            NULL,
+                                                            NULL,
+                                                            10000,
+                                                            G_MAXUINT,
+                                                            60000,
                                                             G_PARAM_READWRITE));
 
         g_type_class_add_private (klass, sizeof (GSWatcherPrivate));
@@ -361,6 +408,28 @@ start_notice_events (GSWatcher *watcher,
 }
 
 static void
+remove_power_timer (GSWatcher *watcher)
+{
+        if (watcher->priv->power_timer_id != 0) {
+                gs_debug ("killing power_timer  (%u, %u)",
+                          watcher->priv->power_timeout,
+                          watcher->priv->power_timer_id);
+
+                g_source_remove (watcher->priv->power_timer_id);
+                watcher->priv->power_timer_id = 0;
+        }
+}
+
+static void
+add_power_timer (GSWatcher *watcher,
+                 glong      timeout)
+{
+        watcher->priv->power_timer_id = g_timeout_add (timeout, (GSourceFunc)power_timer, watcher);
+
+        gs_debug ("starting power_timer (%ld, %u)", timeout, watcher->priv->power_timer_id);
+}
+
+static void
 remove_idle_timer (GSWatcher *watcher)
 {
         if (watcher->priv->timer_id != 0) {
@@ -410,11 +479,36 @@ reset_timers (GSWatcher *watcher)
                 return;
         }
 
+        remove_power_timer (watcher);
         remove_idle_timer (watcher);
 
         schedule_wakeup_event (watcher, watcher->priv->timeout);
+        schedule_power_wakeup_event (watcher, watcher->priv->power_timeout);
 
         g_timer_start (watcher->priv->idle_timer);
+}
+
+static gboolean
+_gs_watcher_set_session_power_notice (GSWatcher *watcher,
+                                      gboolean   in_effect)
+{
+        gboolean res;
+
+        res = FALSE;
+
+        if (in_effect != watcher->priv->power_notice) {
+
+                g_signal_emit (watcher, signals [POWER_NOTICE_CHANGED], 0, in_effect, &res);
+                if (res) {
+                        gs_debug ("Changing power notice state: %d", in_effect);
+
+                        watcher->priv->power_notice = in_effect;
+                } else {
+                        gs_debug ("Power notice signal not handled: %d", in_effect);
+                }
+        }
+
+        return res;
 }
 
 static gboolean
@@ -472,6 +566,12 @@ _gs_watcher_notice_activity (GSWatcher *watcher)
         }
 
         gs_debug ("Activity detected: resetting timers");
+
+        /* if a power notice was sent, cancel it */
+        if (watcher->priv->power_notice) {
+                gboolean in_effect = FALSE;
+                _gs_watcher_set_session_power_notice (watcher, in_effect);
+        }
 
         /* if an idle notice was sent, cancel it */
         if (watcher->priv->idle_notice) {
@@ -1028,6 +1128,43 @@ maybe_send_signal (GSWatcher *watcher)
 }
 
 static gboolean
+power_timer (GSWatcher *watcher)
+{
+        gint64   elapsed;
+
+        gs_debug ("in power timer");
+
+        /* try one last time */
+        check_pointer_timer (watcher);
+
+        watcher->priv->power_timer_id = 0;
+
+        if (! watcher->priv->active) {
+                gs_debug ("Checking for idleness but watcher is inactive");
+                return FALSE;
+        }
+
+        if (watcher->priv->idle) {
+                /* already idle, do nothing */
+                return FALSE;
+        }
+
+        elapsed = 1000 * g_timer_elapsed (watcher->priv->idle_timer, NULL);
+
+        if (elapsed >= watcher->priv->power_timeout) {
+                gboolean in_effect = TRUE;
+                _gs_watcher_set_session_power_notice (watcher, in_effect);
+        } else {
+                guint time_left;
+
+                time_left = watcher->priv->power_timeout - elapsed;
+                schedule_power_wakeup_event (watcher, time_left);
+        }
+
+        return FALSE;
+}
+
+static gboolean
 idle_timer (GSWatcher *watcher)
 {
         gs_debug ("in idle timer");
@@ -1040,6 +1177,22 @@ idle_timer (GSWatcher *watcher)
         maybe_send_signal (watcher);
 
         return FALSE;
+}
+
+static void
+schedule_power_wakeup_event (GSWatcher *watcher,
+                             int        when)
+{
+        guint timeout;
+
+        if (watcher->priv->power_timer_id) {
+                gs_debug ("power_timer already running");
+                return;
+        }
+
+        timeout = when;
+
+        add_power_timer (watcher, timeout);
 }
 
 static void

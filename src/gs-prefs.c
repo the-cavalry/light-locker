@@ -39,6 +39,7 @@ static void gs_prefs_finalize   (GObject      *object);
 #define KEY_LOCK_ENABLED   KEY_DIR "/lock_enabled"
 #define KEY_MODE           KEY_DIR "/mode"
 #define KEY_ACTIVATE_DELAY KEY_DIR "/idle_delay"
+#define KEY_POWER_DELAY    KEY_DIR "/power_management_delay"
 #define KEY_LOCK_DELAY     KEY_DIR "/lock_delay"
 #define KEY_CYCLE_DELAY    KEY_DIR "/cycle_delay"
 #define KEY_THEMES         KEY_DIR "/themes"
@@ -140,6 +141,22 @@ _gs_prefs_set_timeout (GSPrefs *prefs,
                 value = 480;
 
         prefs->timeout = value * 60000;
+}
+
+static void
+_gs_prefs_set_power_timeout (GSPrefs *prefs,
+                             int      value)
+{
+        if (value < 1)
+                value = 60;
+
+        /* pick a reasonable large number for the
+           upper bound */
+        if (value > 480)
+                value = 480;
+
+        /* this value is in seconds - others are in minutes */
+        prefs->power_timeout = value * 1000;
 }
 
 static void
@@ -316,6 +333,13 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 key_error_and_free (KEY_ACTIVATE_DELAY, error);
         }
 
+        value = gconf_client_get_int (prefs->priv->gconf_client, KEY_POWER_DELAY, &error);
+        if (! error) {
+                _gs_prefs_set_power_timeout (prefs, value);
+        } else {
+                key_error_and_free (KEY_POWER_DELAY, error);
+        }
+
         value = gconf_client_get_int (prefs->priv->gconf_client, KEY_LOCK_DELAY, &error);
         if (! error) {
                 _gs_prefs_set_lock_timeout (prefs, value);
@@ -481,6 +505,19 @@ key_changed_cb (GConfClient *client,
                         invalid_type_warning (key);
                 }
 
+        } else if (strcmp (key, KEY_POWER_DELAY) == 0) {
+
+                if (value->type == GCONF_VALUE_INT) {
+                        int delay;
+
+                        delay = gconf_value_get_int (value);
+                        _gs_prefs_set_power_timeout (prefs, delay);
+
+                        changed = TRUE;
+                } else {
+                        invalid_type_warning (key);
+                }
+
         } else if (strcmp (key, KEY_LOCK_DELAY) == 0) {
 
                 if (value->type == GCONF_VALUE_INT) {
@@ -633,6 +670,7 @@ gs_prefs_init (GSPrefs *prefs)
         prefs->user_switch_enabled     = FALSE;
 
         prefs->timeout                 = 600000;
+        prefs->power_timeout           = 60000;
         prefs->lock_timeout            = 0;
         prefs->logout_timeout          = 14400000;
         prefs->cycle                   = 600000;

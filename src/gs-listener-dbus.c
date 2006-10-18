@@ -175,6 +175,30 @@ send_dbus_message (DBusConnection *connection,
 }
 
 static void
+send_dbus_boolean_signal (GSListener *listener,
+                          const char *name,
+                          gboolean    value)
+{
+        DBusMessage    *message;
+        DBusMessageIter iter;
+
+        g_return_if_fail (listener != NULL);
+
+        message = dbus_message_new_signal (GS_LISTENER_PATH,
+                                           GS_LISTENER_SERVICE,
+                                           name);
+
+        dbus_message_iter_init_append (message, &iter);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &value);
+
+        if (! send_dbus_message (listener->priv->connection, message)) {
+                gs_debug ("Could not send %s signal", name);
+        }
+
+        dbus_message_unref (message);
+}
+
+static void
 send_dbus_void_signal (GSListener *listener,
                        const char *name)
 {
@@ -191,6 +215,15 @@ send_dbus_void_signal (GSListener *listener,
         }
 
         dbus_message_unref (message);
+}
+
+void
+gs_listener_emit_power_notice (GSListener *listener,
+                               gboolean    in_effect)
+{
+        g_return_if_fail (listener != NULL);
+
+        send_dbus_boolean_signal (listener, "SessionPowerManagementIdleChanged", in_effect);
 }
 
 void
@@ -212,52 +245,20 @@ gs_listener_emit_auth_request_end (GSListener *listener)
 static void
 gs_listener_send_signal_active_changed (GSListener *listener)
 {
-        DBusMessage    *message;
-        DBusMessageIter iter;
-        dbus_bool_t     active;
-
         g_return_if_fail (listener != NULL);
 
         gs_debug ("Sending the ActiveChanged(%s) signal on the session bus",
                   listener->priv->active ? "TRUE" : "FALSE");
 
-        message = dbus_message_new_signal (GS_LISTENER_PATH,
-                                           GS_LISTENER_SERVICE,
-                                           "ActiveChanged");
-
-        active = listener->priv->active;
-        dbus_message_iter_init_append (message, &iter);
-        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &active);
-
-        if (! send_dbus_message (listener->priv->connection, message)) {
-                gs_debug ("Could not send ActiveChanged signal");
-        }
-
-        dbus_message_unref (message);
+        send_dbus_boolean_signal (listener, "ActiveChanged", listener->priv->active);
 }
 
 static void
 gs_listener_send_signal_session_idle_changed (GSListener *listener)
 {
-        DBusMessage    *message;
-        DBusMessageIter iter;
-        dbus_bool_t     idle;
-
         g_return_if_fail (listener != NULL);
 
-        message = dbus_message_new_signal (GS_LISTENER_PATH,
-                                           GS_LISTENER_SERVICE,
-                                           "SessionIdleChanged");
-
-        idle = listener->priv->session_idle;
-        dbus_message_iter_init_append (message, &iter);
-        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &idle);
-
-        if (! send_dbus_message (listener->priv->connection, message)) {
-                gs_debug ("Could not send SessionIdleChanged signal");
-        }
-
-        dbus_message_unref (message);
+        send_dbus_boolean_signal (listener, "SessionIdleChanged", listener->priv->session_idle);
 }
 
 static const char *
@@ -1148,6 +1149,9 @@ do_introspect (DBusConnection *connection,
                                "      <arg name=\"new_value\" type=\"b\"/>\n"
                                "    </signal>\n"
                                "    <signal name=\"SessionIdleChanged\">\n"
+                               "      <arg name=\"new_value\" type=\"b\"/>\n"
+                               "    </signal>\n"
+                               "    <signal name=\"SessionPowerManagementIdleChanged\">\n"
                                "      <arg name=\"new_value\" type=\"b\"/>\n"
                                "    </signal>\n"
                                "    <signal name=\"AuthenticationRequestBegin\">\n"
