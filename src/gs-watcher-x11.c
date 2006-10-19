@@ -463,11 +463,6 @@ add_watchdog_timer (GSWatcher *watcher,
 static void
 reset_timers (GSWatcher *watcher)
 {
-
-        if (watcher->priv->using_mit_saver_extension) {
-                return;
-        }
-
         remove_power_timer (watcher);
         remove_idle_timer (watcher);
 
@@ -670,10 +665,10 @@ start_idle_watcher (GSWatcher *watcher)
         g_return_val_if_fail (watcher != NULL, FALSE);
         g_return_val_if_fail (GS_IS_WATCHER (watcher), FALSE);
 
-        g_timer_start (watcher->priv->idle_timer);
-
         gdk_window_add_filter (NULL, (GdkFilterFunc)xevent_filter, watcher);
         start_notice_events (watcher, DefaultRootWindow (GDK_DISPLAY ()));
+
+        reset_timers (watcher);
 
         watchdog_timer (watcher);
 
@@ -689,6 +684,7 @@ stop_idle_watcher (GSWatcher *watcher)
         g_timer_stop (watcher->priv->idle_timer);
 
         remove_idle_timer (watcher);
+        remove_power_timer (watcher);
 
         stop_notice_events (watcher, DefaultRootWindow (GDK_DISPLAY ()));
         gdk_window_remove_filter (NULL, (GdkFilterFunc)xevent_filter, watcher);
@@ -708,10 +704,21 @@ gs_watcher_get_active (GSWatcher *watcher)
         return active;
 }
 
+static void
+_gs_watcher_reset_state (GSWatcher *watcher)
+{
+        watcher->priv->idle = FALSE;
+        watcher->priv->idle_notice = FALSE;
+        watcher->priv->power_notice = FALSE;
+}
+
 static gboolean
 _gs_watcher_set_active_internal (GSWatcher *watcher,
                                  gboolean   active)
 {
+        /* reset state */
+        _gs_watcher_reset_state (watcher);
+
         if (! active) {
                 watcher->priv->active = FALSE;
                 stop_idle_watcher (watcher);
@@ -1017,6 +1024,7 @@ maybe_send_signal (GSWatcher *watcher)
 
         if (watcher->priv->idle) {
                 /* already idle, do nothing */
+                gs_debug ("Checking for idleness but already idle");
                 return;
         }
 
@@ -1085,12 +1093,12 @@ power_timer (GSWatcher *watcher)
         watcher->priv->power_timer_id = 0;
 
         if (! watcher->priv->active) {
-                gs_debug ("Checking for idleness but watcher is inactive");
+                gs_debug ("Checking for power idleness but watcher is inactive");
                 return FALSE;
         }
 
-        if (watcher->priv->idle) {
-                /* already idle, do nothing */
+        if (watcher->priv->power_notice) {
+                gs_debug ("Power notice already sent");
                 return FALSE;
         }
 
@@ -1098,11 +1106,14 @@ power_timer (GSWatcher *watcher)
 
         if (elapsed >= watcher->priv->power_timeout) {
                 gboolean in_effect = TRUE;
+                gs_debug ("Setting power notice elapsed: %ld", (long int)elapsed);
+
                 _gs_watcher_set_session_power_notice (watcher, in_effect);
         } else {
                 guint time_left;
 
                 time_left = watcher->priv->power_timeout - elapsed;
+                gs_debug ("Scheduling power notice in: %u", time_left);
                 schedule_power_wakeup_event (watcher, time_left);
         }
 

@@ -1,5 +1,13 @@
 2006-10-19  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c: (reset_timers), (start_idle_watcher),
+	(stop_idle_watcher), (_gs_watcher_reset_state),
+	(_gs_watcher_set_active_internal), (maybe_send_signal),
+	(power_timer):
+	Reset the timers and state correctly.
+
+2006-10-19  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c (query_pointer_timeout):
 	Trap and ignore errors if the window goes away.
 
