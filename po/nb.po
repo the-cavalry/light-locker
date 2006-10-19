@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver 2.13.x\n"
+"Project-Id-Version: gnome-screensaver 2.16.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-17 14:33+0200\n"
-"PO-Revision-Date: 2006-10-17 14:49+0200\n"
+"POT-Creation-Date: 2006-10-19 10:27+0200\n"
+"PO-Revision-Date: 2006-10-19 10:28+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -111,7 +111,10 @@ msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
-msgstr "Sett denne til TRUE for å gjøre det mulig å innlemme et tastatur i vinduet ved man skal låse opp skjermen. Nøkkelen «keyboard_command» må være satt med riktig kommando."
+msgstr ""
+"Sett denne til TRUE for å gjøre det mulig å innlemme et tastatur i vinduet "
+"ved man skal låse opp skjermen. Nøkkelen «keyboard_command» må være satt med "
+"riktig kommando."
 
 #: ../data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
@@ -140,7 +143,10 @@ msgid ""
 "set to TRUE, to embed a keyboard widget into the window. This command should "
 "implement an XEMBED plug interface and output a window XID on the standard "
 "output."
-msgstr "Kommando som skal kjøres hvis nøkkelen «embedded_keyboard_enabled» er satt til TRUE. Denne kommandoen må implementere et grensesnitt basert på XEMBED og skrive ut en XID for vinduet på standard utdatakanal."
+msgstr ""
+"Kommando som skal kjøres hvis nøkkelen «embedded_keyboard_enabled» er satt "
+"til TRUE. Denne kommandoen må implementere et grensesnitt basert på XEMBED "
+"og skrive ut en XID for vinduet på standard utdatakanal."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
@@ -179,32 +185,42 @@ msgstr "Antall minutter før endring av skjermsparertema."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid ""
+"The number of seconds of inactivity before signalling to power-management. "
+"This key is set and maintained by the session power-management agent."
+msgstr "Antall sekunder med inaktivitet før strømstyring får beskjed. Denne nøkkelen er satt og vedlikeholdt av sesjonens strømstyringsagent."
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
 "screensaver using only one theme on activation (specified in \"themes\" "
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
-msgstr "Utvalgsmodus som brukes av skjermspareren. Kan være «blank-only» for å aktivere skjermspareren uten å bruke et tema, «single» for å aktivere skjermspareren med kun et tema (oppgitt i nøkkelen «themes»), og «random» for å aktivere skjermspareren med et tilfeldig tema."
+msgstr ""
+"Utvalgsmodus som brukes av skjermspareren. Kan være «blank-only» for å "
+"aktivere skjermspareren uten å bruke et tema, «single» for å aktivere "
+"skjermspareren med kun et tema (oppgitt i nøkkelen «themes»), og «random» "
+"for å aktivere skjermspareren med et tilfeldig tema."
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid "Theme for lock dialog"
 msgstr "Tema for dialog for låsing av skjerm"
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid "Theme to use for the lock dialog."
 msgstr "Tema som skal brukes for dialog for låsing av skjerm."
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
-msgstr "Denne nøkkelen spesifiserer listen med tema som skal brukes av skjermspareren. Den ignoreres når «mode»-nøkkslen er «blank-only», gir temanavnet når «mode» er «single» og gir en liste med tema når «mode» er «random»."
-
-#: ../data/gnome-screensaver.schemas.in.h:25
-msgid "Time before activation"
-msgstr "Tid før aktivering"
+msgstr ""
+"Denne nøkkelen spesifiserer listen med tema som skal brukes av "
+"skjermspareren. Den ignoreres når «mode»-nøkkslen er «blank-only», gir "
+"temanavnet når «mode» er «single» og gir en liste med tema når «mode» er "
+"«random»."
 
 #: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before locking"
@@ -215,6 +231,14 @@ msgid "Time before logout option"
 msgstr "Tid før utloggingsmulighet"
 
 #: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before power-management baseline"
+msgstr "Tid før grunnlinje for strømstyring er nådd"
+
+#: ../data/gnome-screensaver.schemas.in.h:29
+msgid "Time before session is considered idle"
+msgstr "Tid før sesjonen betraktes som ubrukt"
+
+#: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before theme change"
 msgstr "Tid før endring av tema"
 
@@ -548,7 +572,9 @@ msgstr "For mange X-sesjoner kjører."
 msgid ""
 "The nested X server (Xnest) cannot connect to your current X server.  You "
 "may be missing an X authorization file."
-msgstr "Nøstet X-tjener (Xnest) kan ikke koble til din X-tjener. Du mangler kanskje en autorisasjonsfil for X."
+msgstr ""
+"Nøstet X-tjener (Xnest) kan ikke koble til din X-tjener. Du mangler kanskje "
+"en autorisasjonsfil for X."
 
 #: ../src/cut-n-paste/gdmcomm.c:483
 msgid ""
@@ -901,15 +927,15 @@ msgstr "Ingen tillatelse til å aksessere ressursen nå."
 msgid "No longer permitted to access the system."
 msgstr "Tilgang til å aksessere systemet er fjernet."
 
-#: ../src/gs-listener-dbus.c:1631
+#: ../src/gs-listener-dbus.c:1635
 msgid "failed to register with the message bus"
 msgstr "klarte ikke å registrere hos meldingsbussen"
 
-#: ../src/gs-listener-dbus.c:1641
+#: ../src/gs-listener-dbus.c:1645
 msgid "not connected to the message bus"
 msgstr "ikke koblet til meldingsbussen"
 
-#: ../src/gs-listener-dbus.c:1650
+#: ../src/gs-listener-dbus.c:1654
 msgid "screensaver already running in this session"
 msgstr "skjermsparer kjører allerede i denne sesjonen"
 
