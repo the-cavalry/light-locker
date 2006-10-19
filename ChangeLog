@@ -1,5 +1,10 @@
 2006-10-19  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c (query_pointer_timeout):
+	Trap and ignore errors if the window goes away.
+
+2006-10-19  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c: (notice_events_inner),
 	(query_pointer_timeout), (gs_watcher_xevent), (start_idle_watcher),
 	(stop_idle_watcher), (gs_watcher_init), (gs_watcher_finalize),

@@ -597,9 +597,13 @@ query_pointer_timeout (Window window)
         int          win_y;
         unsigned int mask;
 
+        gdk_error_trap_push ();
         XQueryPointer (GDK_DISPLAY (),
                        window,
                        &root, &child, &root_x, &root_y, &win_x, &win_y, &mask);
+        gdk_display_sync (gdk_display_get_default ());
+        gdk_error_trap_pop ();
+
         return FALSE;
 }
 
