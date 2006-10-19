@@ -1,3 +1,12 @@
+2006-10-19  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-watcher-x11.c: (notice_events_inner),
+	(query_pointer_timeout), (gs_watcher_xevent), (start_idle_watcher),
+	(stop_idle_watcher), (gs_watcher_init), (gs_watcher_finalize),
+	(power_timer), (idle_timer), (schedule_wakeup_event):
+	Remove the pointer polling and try to select motion events.
+	Fixes #363436.
+
 2006-10-18  William Jon McCann  <mccann@jhu.edu>
 
 	* data/gnome-screensaver.schemas.in:

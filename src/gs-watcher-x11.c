@@ -52,7 +52,6 @@ static void     gs_watcher_finalize   (GObject        *object);
 
 static void     initialize_server_extensions (GSWatcher *watcher);
 
-static gboolean check_pointer_timer          (GSWatcher      *watcher);
 static void     schedule_wakeup_event        (GSWatcher      *watcher,
                                               int             when);
 static void     schedule_power_wakeup_event  (GSWatcher      *watcher,
@@ -63,22 +62,12 @@ static gboolean power_timer                  (GSWatcher      *watcher);
 
 #define GS_WATCHER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_WATCHER, GSWatcherPrivate))
 
-typedef struct _PointerPosition PointerPosition;
-struct _PointerPosition
-{
-        GdkScreen      *screen;
-        int             x;
-        int             y;
-        GdkModifierType mask;
-};
-
 struct GSWatcherPrivate
 {
         /* settings */
         guint           enabled : 1;
         guint           timeout;
         guint           power_timeout;
-        guint           pointer_timeout;
 
         guint           notice_timeout;
 
@@ -88,15 +77,11 @@ struct GSWatcherPrivate
         guint            idle_notice : 1;
         guint            power_notice : 1;
 
-        PointerPosition *poll_position;
-
         GTimer         *idle_timer;
-        GTimer         *jump_timer;
         guint           emergency_lock : 1;
 
         guint           timer_id;
         guint           power_timer_id;
-        guint           check_pointer_timer_id;
         guint           watchdog_timer_id;
 
         guint           using_mit_saver_extension : 1;
@@ -292,7 +277,8 @@ notice_events_inner (Window   window,
         GdkWindow        *gwindow;
 
         gwindow = gdk_window_lookup (window);
-        if (gwindow && (window != GDK_ROOT_WINDOW ())) {
+        if (gwindow != NULL
+            && (window != GDK_ROOT_WINDOW ())) {
                 /* If it's one of ours, don't mess up its event mask. */
                 return;
         }
@@ -301,14 +287,15 @@ notice_events_inner (Window   window,
         status = XQueryTree (GDK_DISPLAY (), window, &root, &parent, &kids, &nkids);
 
         if (status == 0) {
-                if (kids) {
+                if (kids != NULL) {
                         XFree (kids);
                 }
                 return;
         }
 
-        if (window == root)
+        if (window == root) {
                 top = FALSE;
+        }
 
         XGetWindowAttributes (GDK_DISPLAY (), window, &attrs);
 
@@ -326,6 +313,8 @@ notice_events_inner (Window   window,
 
                 /* Select for PropertyNotify events to get user time changes */
                 events = PropertyChangeMask | events;
+
+                events = PointerMotionMask | PointerMotionHintMask | events;
         } else {
                 /* We want to disable all events */
 
@@ -369,8 +358,8 @@ notice_events_inner (Window   window,
                 }
         }
 
-        if (kids) {
-                while (nkids) {
+        if (kids != NULL) {
+                while (nkids > 0) {
                         notice_events_inner (kids [--nkids], enable, top);
                 }
 
@@ -597,6 +586,23 @@ _gs_watcher_notice_window_created (GSWatcher *watcher,
         start_notice_events (watcher, window);
 }
 
+static gboolean
+query_pointer_timeout (Window window)
+{
+        Window       root;
+        Window       child;
+        int          root_x;
+        int          root_y;
+        int          win_x;
+        int          win_y;
+        unsigned int mask;
+
+        XQueryPointer (GDK_DISPLAY (),
+                       window,
+                       &root, &child, &root_x, &root_y, &win_x, &win_y, &mask);
+        return FALSE;
+}
+
 static void
 gs_watcher_xevent (GSWatcher *watcher,
                    GdkXEvent *xevent)
@@ -629,6 +635,15 @@ gs_watcher_xevent (GSWatcher *watcher,
                                                            window);
                 }
                 break;
+        case MotionNotify:
+                if (ev->xmotion.is_hint) {
+                        /* need to respond to hints so we continue to get events */
+                        g_timeout_add (1000, (GSourceFunc)query_pointer_timeout, GINT_TO_POINTER (ev->xmotion.window));
+                }
+
+                _gs_watcher_notice_activity (watcher);
+
+                break;
         default:
                 break;
         }
@@ -645,75 +660,13 @@ xevent_filter (GdkXEvent *xevent,
         return GDK_FILTER_CONTINUE;
 }
 
-static void
-remove_check_pointer_timer (GSWatcher *watcher)
-{
-        if (watcher->priv->check_pointer_timer_id != 0) {
-                g_source_remove (watcher->priv->check_pointer_timer_id);
-                watcher->priv->check_pointer_timer_id = 0;
-        }
-}
-
-static void
-add_check_pointer_timer (GSWatcher *watcher,
-                         glong      timeout)
-{
-        watcher->priv->check_pointer_timer_id = g_timeout_add (timeout,
-                                                               (GSourceFunc)check_pointer_timer, watcher);
-
-}
-
-static void
-start_pointer_poll (GSWatcher *watcher)
-{
-        /* run once to set baseline */
-        check_pointer_timer (watcher);
-
-        remove_check_pointer_timer (watcher);
-
-        add_check_pointer_timer (watcher, watcher->priv->pointer_timeout);
-}
-
-static void
-_gs_watcher_pointer_position_free (PointerPosition *pos)
-{
-        if (pos == NULL) {
-                return;
-        }
-
-        g_free (pos);
-        pos = NULL;
-}
-
-static void
-_gs_watcher_set_pointer_position (GSWatcher       *watcher,
-                                  PointerPosition *pos)
-{
-        if (watcher->priv->poll_position != NULL) {
-                _gs_watcher_pointer_position_free (watcher->priv->poll_position);
-        }
-
-        watcher->priv->poll_position = pos;
-}
-
-static void
-stop_pointer_poll (GSWatcher *watcher)
-{
-        remove_check_pointer_timer (watcher);
-
-        _gs_watcher_set_pointer_position (watcher, NULL);
-}
-
 static gboolean
 start_idle_watcher (GSWatcher *watcher)
 {
         g_return_val_if_fail (watcher != NULL, FALSE);
         g_return_val_if_fail (GS_IS_WATCHER (watcher), FALSE);
 
-        g_timer_start (watcher->priv->jump_timer);
         g_timer_start (watcher->priv->idle_timer);
-
-        start_pointer_poll (watcher);
 
         gdk_window_add_filter (NULL, (GdkFilterFunc)xevent_filter, watcher);
         start_notice_events (watcher, DefaultRootWindow (GDK_DISPLAY ()));
@@ -729,12 +682,9 @@ stop_idle_watcher (GSWatcher *watcher)
         g_return_val_if_fail (watcher != NULL, FALSE);
         g_return_val_if_fail (GS_IS_WATCHER (watcher), FALSE);
 
-        g_timer_stop (watcher->priv->jump_timer);
         g_timer_stop (watcher->priv->idle_timer);
 
         remove_idle_timer (watcher);
-
-        stop_pointer_poll (watcher);
 
         stop_notice_events (watcher, DefaultRootWindow (GDK_DISPLAY ()));
         gdk_window_remove_filter (NULL, (GdkFilterFunc)xevent_filter, watcher);
@@ -835,13 +785,11 @@ gs_watcher_init (GSWatcher *watcher)
         watcher->priv->enabled = TRUE;
         watcher->priv->active = FALSE;
         watcher->priv->timeout = 600000;
-        watcher->priv->pointer_timeout = 1000;
 
         /* time before idle signal to send notice signal */
         watcher->priv->notice_timeout = 10000;
 
         watcher->priv->idle_timer = g_timer_new ();
-        watcher->priv->jump_timer = g_timer_new ();
 
         initialize_server_extensions (watcher);
 
@@ -865,12 +813,8 @@ gs_watcher_finalize (GObject *object)
         watcher->priv->active = FALSE;
         stop_idle_watcher (watcher);
 
-        _gs_watcher_pointer_position_free (watcher->priv->poll_position);
-
         g_timer_destroy (watcher->priv->idle_timer);
         watcher->priv->idle_timer = NULL;
-        g_timer_destroy (watcher->priv->jump_timer);
-        watcher->priv->jump_timer = NULL;
 
         G_OBJECT_CLASS (gs_watcher_parent_class)->finalize (object);
 }
@@ -1134,9 +1078,6 @@ power_timer (GSWatcher *watcher)
 
         gs_debug ("in power timer");
 
-        /* try one last time */
-        check_pointer_timer (watcher);
-
         watcher->priv->power_timer_id = 0;
 
         if (! watcher->priv->active) {
@@ -1168,9 +1109,6 @@ static gboolean
 idle_timer (GSWatcher *watcher)
 {
         gs_debug ("in idle timer");
-
-        /* try one last time */
-        check_pointer_timer (watcher);
 
         watcher->priv->timer_id = 0;
 
@@ -1215,138 +1153,6 @@ schedule_wakeup_event (GSWatcher *watcher,
 
         /* Wake up periodically to ask the server if we are idle. */
         add_idle_timer (watcher, timeout);
-}
-
-/* An unfortunate situation is this: the saver is not active, because the
-   user has been typing.  The machine is a laptop.  The user closes the lid
-   and suspends it.  The CPU halts.  Some hours later, the user opens the
-   lid.  At this point, Xt's timers will fire, and the screensaver will blank
-   the screen.
-
-   So far so good -- well, not really, but it's the best that we can do,
-   since the OS doesn't send us a signal *before* shutdown -- but if the
-   user had delayed locking (lockTimeout > 0) then we should start off
-   in the locked state, rather than only locking N minutes from when the
-   lid was opened.  Also, eschewing fading is probably a good idea, to
-   clamp down as soon as possible.
-
-   We only do this when we'd be polling the mouse position anyway.
-   This amounts to an assumption that machines with APM support also
-   have /proc/interrupts.
-*/
-static void
-check_for_clock_skew (GSWatcher *watcher)
-{
-        time_t now;
-        gint64 shift;
-        gint64 i;
-        gint64 i_h;
-        gint64 i_m;
-        gint64 i_s;
-
-        now   = time (NULL);
-        shift = g_timer_elapsed (watcher->priv->jump_timer, NULL);
-        i     = shift;
-
-        i_h = i / (60 * 60);
-        i_m = (i / 60) % 60;
-        i_s = i % 60;
-        gs_debug ("checking wall clock for hibernation, changed: %" G_GINT64_FORMAT ":%02" G_GINT64_FORMAT ":%02" G_GINT64_FORMAT,
-                  i_h, i_m, i_s);
-
-        if (shift > (watcher->priv->timeout / 1000)) {
-                gint64 s_h;
-                gint64 s_m;
-                gint64 s_s;
-
-                s_h = shift / (60 * 60);
-                s_m = (shift / 60) % 60;
-                s_s = shift % 60;
-
-                gs_debug ("wall clock has jumped by %" G_GINT64_FORMAT ":%02" G_GINT64_FORMAT ":%02" G_GINT64_FORMAT,
-                          s_h, s_m, s_s);
-
-                watcher->priv->emergency_lock = TRUE;
-                maybe_send_signal (watcher);
-                watcher->priv->emergency_lock = FALSE;
-        }
-
-        g_timer_start (watcher->priv->jump_timer);
-}
-
-static PointerPosition *
-_gs_watcher_pointer_position_read (GSWatcher *watcher)
-{
-        GdkDisplay      *display;
-        PointerPosition *pos;
-
-        pos = g_new0 (PointerPosition, 1);
-
-        display = gdk_display_get_default ();
-
-        gdk_display_get_pointer (display,
-                                 &pos->screen,
-                                 &pos->x,
-                                 &pos->y,
-                                 &pos->mask);
-        return pos;
-}
-
-static gboolean
-_gs_watcher_pointer_position_compare (PointerPosition *pos1,
-                                      PointerPosition *pos2)
-{
-        gboolean changed;
-
-        if (! pos1)
-                return TRUE;
-
-        if (! pos2)
-                return TRUE;
-
-        changed = (pos1->x != pos2->x
-                   || pos1->y != pos2->y
-                   || pos1->screen != pos2->screen
-                   || pos1->mask   != pos2->mask);
-
-        return changed;
-}
-
-static void
-_gs_watcher_check_pointer_position (GSWatcher *watcher)
-{
-        PointerPosition *pos;
-        gboolean         changed;
-        gint64           elapsed;
-
-        pos = _gs_watcher_pointer_position_read (watcher);
-
-        changed = _gs_watcher_pointer_position_compare (watcher->priv->poll_position,
-                                                        pos);
-
-        if (changed) {
-                _gs_watcher_set_pointer_position (watcher, pos);
-                _gs_watcher_notice_activity (watcher);
-        } else {
-                _gs_watcher_pointer_position_free (pos);
-        }
-
-        elapsed = g_timer_elapsed (watcher->priv->idle_timer, NULL);
-        gs_debug ("Idle %" G_GINT64_FORMAT " seconds", elapsed);
-
-        check_for_clock_skew (watcher);
-}
-
-/* When we aren't using a server extension, this timer is used to periodically
-   wake up and poll the mouse position, which is possibly more reliable than
-   selecting motion events on every window.
-*/
-static gboolean
-check_pointer_timer (GSWatcher *watcher)
-{
-        _gs_watcher_check_pointer_position (watcher);
-
-        return TRUE;
 }
 
 /* This timer goes off every few minutes, whether the user is idle or not,
