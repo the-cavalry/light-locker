@@ -1,3 +1,15 @@
+2006-10-23  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-listener-dbus.c: (listener_dbus_handle_system_message),
+	(gs_listener_acquire), (query_session_id), (init_session_id),
+	(gs_listener_init), (gs_listener_finalize):
+	Add ConsoleKit Unlock/Lock functionality.
+
+	* src/gs-watcher-x11.c: (remove_power_timer), (add_power_timer),
+	(remove_idle_timer), (add_idle_timer),
+	(_gs_watcher_notice_activity):
+	Don't spew so much debug.
+
 2006-10-19  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-watcher-x11.c: (reset_timers), (start_idle_watcher),

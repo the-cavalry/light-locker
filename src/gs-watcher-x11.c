@@ -400,10 +400,6 @@ static void
 remove_power_timer (GSWatcher *watcher)
 {
         if (watcher->priv->power_timer_id != 0) {
-                gs_debug ("killing power_timer  (%u, %u)",
-                          watcher->priv->power_timeout,
-                          watcher->priv->power_timer_id);
-
                 g_source_remove (watcher->priv->power_timer_id);
                 watcher->priv->power_timer_id = 0;
         }
@@ -414,18 +410,12 @@ add_power_timer (GSWatcher *watcher,
                  glong      timeout)
 {
         watcher->priv->power_timer_id = g_timeout_add (timeout, (GSourceFunc)power_timer, watcher);
-
-        gs_debug ("starting power_timer (%ld, %u)", timeout, watcher->priv->power_timer_id);
 }
 
 static void
 remove_idle_timer (GSWatcher *watcher)
 {
         if (watcher->priv->timer_id != 0) {
-                gs_debug ("killing idle_timer  (%u, %u)",
-                          watcher->priv->timeout,
-                          watcher->priv->timer_id);
-
                 g_source_remove (watcher->priv->timer_id);
                 watcher->priv->timer_id = 0;
         }
@@ -436,8 +426,6 @@ add_idle_timer (GSWatcher *watcher,
                 glong      timeout)
 {
         watcher->priv->timer_id = g_timeout_add (timeout, (GSourceFunc)idle_timer, watcher);
-
-        gs_debug ("starting idle_timer (%ld, %u)", timeout, watcher->priv->timer_id);
 }
 
 static void
@@ -548,8 +536,6 @@ _gs_watcher_notice_activity (GSWatcher *watcher)
                 gs_debug ("Noticed activity but watcher is inactive");
                 return;
         }
-
-        gs_debug ("Activity detected: resetting timers");
 
         /* if a power notice was sent, cancel it */
         if (watcher->priv->power_notice) {

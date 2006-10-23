@@ -58,7 +58,12 @@ static DBusHandlerResult gs_listener_message_handler    (DBusConnection  *connec
 #define GS_LISTENER_PATH      "/org/gnome/ScreenSaver"
 #define GS_LISTENER_INTERFACE "org.gnome.ScreenSaver"
 
-#define DBUS_INTERFACE_HAL "org.freedesktop.Hal.Device"
+#define HAL_DEVICE_INTERFACE "org.freedesktop.Hal.Device"
+
+#define CK_NAME              "org.freedesktop.ConsoleKit"
+#define CK_MANAGER_PATH      "/org/freedesktop/ConsoleKit/Manager"
+#define CK_MANAGER_INTERFACE "org.freedesktop.ConsoleKit.Manager"
+#define CK_SESSION_INTERFACE "org.freedesktop.ConsoleKit.Session"
 
 #define TYPE_MISMATCH_ERROR GS_LISTENER_INTERFACE ".TypeMismatch"
 
@@ -77,6 +82,7 @@ struct GSListenerPrivate
         GHashTable     *throttlers;
         time_t          active_start;
         time_t          session_idle_start;
+        char           *session_id;
 };
 
 typedef struct
@@ -1264,7 +1270,15 @@ listener_dbus_handle_system_message (DBusConnection *connection,
         g_return_val_if_fail (connection != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
         g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
 
-        if (dbus_message_is_signal (message, DBUS_INTERFACE_HAL, "Condition")) {
+#if 1
+        gs_debug ("obj_path=%s interface=%s method=%s destination=%s",
+                  dbus_message_get_path (message),
+                  dbus_message_get_interface (message),
+                  dbus_message_get_member (message),
+                  dbus_message_get_destination (message));
+#endif
+
+        if (dbus_message_is_signal (message, HAL_DEVICE_INTERFACE, "Condition")) {
                 DBusError   error;
                 const char *event;
                 const char *keyname;
@@ -1282,6 +1296,30 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                 }
                 if (dbus_error_is_set (&error)) {
                         dbus_error_free (&error);
+                }
+
+                return DBUS_HANDLER_RESULT_HANDLED;
+        } else if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "Unlock")) {
+                const char *ssid;
+
+                ssid = dbus_message_get_path (message);
+                if (ssid != NULL
+                    && listener->priv->session_id != NULL
+                    && strcmp (ssid, listener->priv->session_id) == 0) {
+                        gs_debug ("Console kit requested session unlock");
+                        gs_listener_set_active (listener, FALSE);
+                }
+
+                return DBUS_HANDLER_RESULT_HANDLED;
+        } else if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "Lock")) {
+                const char *ssid;
+
+                ssid = dbus_message_get_path (message);
+                if (ssid != NULL
+                    && listener->priv->session_id != NULL
+                    && strcmp (ssid, listener->priv->session_id) == 0) {
+                        gs_debug ("ConsoleKit requested session lock");
+                        gs_listener_set_active (listener, TRUE);
                 }
 
                 return DBUS_HANDLER_RESULT_HANDLED;
@@ -1691,11 +1729,68 @@ gs_listener_acquire (GSListener *listener,
 
         dbus_bus_add_match (listener->priv->system_connection,
                             "type='signal'"
-                            ",interface='"DBUS_INTERFACE_HAL"'"
+                            ",interface='"HAL_DEVICE_INTERFACE"'"
                             ",member='Condition'",
+                            NULL);
+        dbus_bus_add_match (listener->priv->system_connection,
+                            "type='signal'"
+                            ",interface='"CK_SESSION_INTERFACE"'"
+                            ",member='Unlock'",
+                            NULL);
+        dbus_bus_add_match (listener->priv->system_connection,
+                            "type='signal'"
+                            ",interface='"CK_SESSION_INTERFACE"'"
+                            ",member='Lock'",
                             NULL);
 
         return acquired;
+}
+
+static char *
+query_session_id (GSListener *listener)
+{
+        DBusMessage    *message;
+        DBusMessage    *reply;
+        DBusError       error;
+	DBusMessageIter reply_iter;
+        char           *ssid;
+
+        ssid = NULL;
+
+        dbus_error_init (&error);
+
+        message = dbus_message_new_method_call (CK_NAME, CK_MANAGER_PATH, CK_MANAGER_INTERFACE, "GetCurrentSession");
+        if (message == NULL) {
+                gs_debug ("Couldn't allocate the dbus message");
+                return NULL;
+        }
+
+        /* FIXME: use async? */
+        reply = dbus_connection_send_with_reply_and_block (listener->priv->system_connection,
+                                                           message,
+                                                           -1, &error);
+        dbus_message_unref (message);
+
+        if (dbus_error_is_set (&error)) {
+                gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
+                dbus_error_free (&error);
+                return NULL;
+        }
+
+        dbus_message_iter_init (reply, &reply_iter);
+        dbus_message_iter_get_basic (&reply_iter, &ssid);
+
+        dbus_message_unref (reply);
+
+        return g_strdup (ssid);
+}
+
+static void
+init_session_id (GSListener *listener)
+{
+        g_free (listener->priv->session_id);
+        listener->priv->session_id = query_session_id (listener);
+        gs_debug ("Got session-id: %s", listener->priv->session_id);
 }
 
 static void
@@ -1704,6 +1799,8 @@ gs_listener_init (GSListener *listener)
         listener->priv = GS_LISTENER_GET_PRIVATE (listener);
 
         gs_listener_dbus_init (listener);
+
+        init_session_id (listener);
 
         listener->priv->inhibitors = g_hash_table_new_full (g_int_hash,
                                                             g_int_equal,
@@ -1734,6 +1831,8 @@ gs_listener_finalize (GObject *object)
         if (listener->priv->throttlers) {
                 g_hash_table_destroy (listener->priv->throttlers);
         }
+
+        g_free (listener->priv->session_id);
 
         G_OBJECT_CLASS (gs_listener_parent_class)->finalize (object);
 }
