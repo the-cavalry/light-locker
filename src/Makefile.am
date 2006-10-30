@@ -36,6 +36,7 @@ INCLUDES =							\
 	$(DEBUG_CFLAGS)						\
 	$(DBUS_CFLAGS)						\
 	$(FAST_USER_SWITCH_CFLAGS)				\
+	$(LIBGNOMEKBD_CFLAGS)					\
 	$(NULL)
 
 bin_PROGRAMS = \
@@ -153,6 +154,7 @@ gnome_screensaver_dialog_LDADD =	\
 	$(SAVER_LIBS)			\
 	$(FAST_USER_SWITCH_LIBS)	\
 	$(AUTH_LIBS)			\
+	$(LIBGNOMEKBD_LIBS)		\
 	$(NULL)
 
 BUILT_SOURCES = 		\

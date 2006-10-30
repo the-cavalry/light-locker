@@ -1,3 +1,15 @@
+2006-10-29  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac:
+	* data/lock-dialog-default.glade:
+	* src/Makefile.am:
+	* src/gs-lock-plug.c: (load_theme), (gs_lock_plug_init):
+	Add a keyboard layout indicator to the unlock dialog when
+	there are at least two layout groups available.
+
+	Patch from Sergey V. Udaltsov <svu@gnome.org>
+	Fixes #327056
+
 2006-10-23  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-listener-dbus.c: (listener_dbus_handle_system_message),

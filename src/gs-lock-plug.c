@@ -43,6 +43,8 @@
 /* for fast user switching */
 #include <libgnomevfs/gnome-vfs-init.h>
 
+#include <libgnomekbd/gkbd-indicator.h>
+
 #include "gs-lock-plug.h"
 
 #include "gs-debug.h"
@@ -87,6 +89,8 @@ struct GSLockPlugPrivate
         GtkWidget   *auth_logout_button;
         GtkWidget   *switch_cancel_button;
         GtkWidget   *switch_switch_button;
+
+        GtkWidget   *auth_prompt_kbd_layout_indicator;
 
         FusaManager *fusa_manager;
 
@@ -1826,6 +1830,9 @@ load_theme (GSLockPlug *plug)
         plug->priv->switch_cancel_button = glade_xml_get_widget (xml, "switch-cancel-button");
         plug->priv->switch_switch_button = glade_xml_get_widget (xml, "switch-switch-button");
 
+        /* Placeholder for the keyboard indicator */
+        plug->priv->auth_prompt_kbd_layout_indicator = glade_xml_get_widget (xml, "auth-prompt-kbd-layout-indicator");
+
         return TRUE;
 }
 
@@ -1849,6 +1856,8 @@ static void
 gs_lock_plug_init (GSLockPlug *plug)
 {
         gunichar              invisible_char;
+        GtkWidget            *layout_indicator;
+        XklEngine            *engine;
 
         gs_profile_start (NULL);
 
@@ -1880,6 +1889,19 @@ gs_lock_plug_init (GSLockPlug *plug)
 
                 gtk_widget_show_all (plug->priv->vbox);
         }
+
+	/* Layout indicator */
+        engine = xkl_engine_get_instance (GDK_DISPLAY ());
+        if (xkl_engine_get_num_groups (engine) > 1
+            && plug->priv->auth_prompt_kbd_layout_indicator != NULL) {
+                layout_indicator = gkbd_indicator_new ();
+                gkbd_indicator_set_parent_tooltips (GKBD_INDICATOR (layout_indicator), TRUE);
+                gtk_misc_set_alignment (GTK_MISC (layout_indicator), 1, 0.5);
+                gtk_box_pack_start (GTK_BOX (plug->priv->auth_prompt_kbd_layout_indicator),
+                                    layout_indicator, FALSE, FALSE, 6);
+                gtk_widget_show_all (layout_indicator);
+	}
+	g_object_unref (G_OBJECT (engine));
 
         gtk_widget_grab_default (plug->priv->auth_unlock_button);
 
