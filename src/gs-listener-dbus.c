@@ -92,6 +92,7 @@ typedef struct
         char    *reason;
         char    *connection;
         guint32  cookie;
+        GTimeVal since;
 } GSListenerRefEntry;
 
 enum {
@@ -700,6 +701,91 @@ listener_remove_ref_entry (GSListener *listener,
         return removed;
 }
 
+#if GLIB_CHECK_VERSION(2,12,0)
+#define _g_time_val_to_iso8601(t) g_time_val_to_iso8601(t)
+#else
+/* copied from GLib */
+static gchar *
+_g_time_val_to_iso8601 (GTimeVal *time_)
+{
+  gchar *retval;
+
+  g_return_val_if_fail (time_->tv_usec >= 0 && time_->tv_usec < G_USEC_PER_SEC, NULL);
+
+#define ISO_8601_LEN 	21
+#define ISO_8601_FORMAT "%Y-%m-%dT%H:%M:%SZ"
+  retval = g_new0 (gchar, ISO_8601_LEN + 1);
+
+  strftime (retval, ISO_8601_LEN,
+	    ISO_8601_FORMAT,
+	    gmtime (&(time_->tv_sec)));
+
+  return retval;
+}
+#endif
+
+static void
+accumulate_ref_entry (gpointer            key,
+                      GSListenerRefEntry *entry,
+                      DBusMessageIter    *iter)
+{
+        char *description;
+        char *time;
+
+        time = _g_time_val_to_iso8601 (&entry->since);
+
+        description = g_strdup_printf ("Application=\"%s\"; Since=\"%s\"; Reason=\"%s\";",
+                                       entry->application,
+                                       time,
+                                       entry->reason);
+
+	dbus_message_iter_append_basic (iter, DBUS_TYPE_STRING, &description);
+
+        g_free (description);
+        g_free (time);
+}
+
+static DBusHandlerResult
+listener_dbus_get_ref_entries (GSListener     *listener,
+                               int             entry_type,
+                               DBusConnection *connection,
+                               DBusMessage    *message)
+{
+        DBusMessage        *reply;
+        GHashTable         *hash;
+        DBusMessageIter     iter;
+	DBusMessageIter     iter_array;
+
+        hash = get_hash_for_entry_type (listener, entry_type);
+
+        reply = dbus_message_new_method_return (message);
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        dbus_message_iter_init_append (reply, &iter);
+	dbus_message_iter_open_container (&iter,
+					  DBUS_TYPE_ARRAY,
+					  DBUS_TYPE_STRING_AS_STRING,
+					  &iter_array);
+
+        if (hash != NULL) {
+                g_hash_table_foreach (hash,
+                                      (GHFunc)accumulate_ref_entry,
+                                      &iter_array);
+        }
+
+	dbus_message_iter_close_container (&iter, &iter_array);
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
 static DBusHandlerResult
 listener_dbus_add_ref_entry (GSListener     *listener,
                              int             entry_type,
@@ -740,6 +826,7 @@ listener_dbus_add_ref_entry (GSListener     *listener,
         entry->cookie = listener_generate_unique_key (listener, entry_type);
         entry->application = g_strdup (application);
         entry->reason = g_strdup (reason);
+        g_get_current_time (&entry->since);
 
         listener_add_ref_entry (listener, entry_type, entry);
 
@@ -1128,6 +1215,9 @@ do_introspect (DBusConnection *connection,
                                "    <method name=\"UnInhibit\">\n"
                                "      <arg name=\"cookie\" direction=\"in\" type=\"u\"/>\n"
                                "    </method>\n"
+                               "    <method name=\"GetInhibitors\">\n"
+                               "      <arg name=\"list\" direction=\"out\" type=\"as\"/>\n"
+                               "    </method>\n"
                                "    <method name=\"Throttle\">\n"
                                "      <arg name=\"application_name\" direction=\"in\" type=\"s\"/>\n"
                                "      <arg name=\"reason\" direction=\"in\" type=\"s\"/>\n"
@@ -1226,6 +1316,9 @@ listener_dbus_handle_session_message (DBusConnection *connection,
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "UnInhibit")) {
                 return listener_dbus_remove_ref_entry (listener, REF_ENTRY_TYPE_INHIBIT, connection, message);
+        }
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "GetInhibitors")) {
+                return listener_dbus_get_ref_entries (listener, REF_ENTRY_TYPE_INHIBIT, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Throttle")) {
                 return listener_dbus_add_ref_entry (listener, REF_ENTRY_TYPE_THROTTLE, connection, message);

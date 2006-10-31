@@ -1,3 +1,11 @@
+2006-10-31  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-listener-dbus.c: (_g_time_val_to_iso8601),
+	(accumulate_ref_entry), (listener_dbus_get_ref_entries),
+	(listener_dbus_add_ref_entry), (do_introspect),
+	(listener_dbus_handle_session_message):
+	Add GetInhibitors() to dbus interface.
+
 2006-10-29  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac:
