@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-20 07:27+0200\n"
-"PO-Revision-Date: 2006-10-21 00:34+0300\n"
+"PO-Revision-Date: 2006-10-29 22:07+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "<b>Hoiatus: ekraanilukustus ei toimi root kasutaja jaoks.</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "Regard the computer as _idle after:"
-msgstr "Seansi _jõudeoleku määramine peale:"
+msgstr "Seanss määratakse _jõude olevaks pärast ajavahemikku:"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "Screensaver Preferences"
@@ -51,11 +51,11 @@ msgstr "Ekraanisäästja eelvaade"
 
 #: ../data/gnome-screensaver-preferences.glade.h:6
 msgid "_Activate screensaver when computer is idle"
-msgstr "E_kraanisäästja aktiveerimine kui arvuti on jõude"
+msgstr "Kui arvuti on jõude, siis aktiveeritakse e_kraanisäästja"
 
 #: ../data/gnome-screensaver-preferences.glade.h:7
 msgid "_Lock screen when screensaver is active"
-msgstr "Ekraani _lukustamine kui ekraanisäästja on aktiivne"
+msgstr "Ekraanisäästja aktiveerimisel ekraan _lukustatakse"
 
 #: ../data/gnome-screensaver-preferences.glade.h:8
 msgid "_Preview"
@@ -191,6 +191,8 @@ msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
 msgstr ""
+"Jõudeoleku kestus (sekundites) enne vooluhaldusele (power-management) "
+"signaali saatmist. Seda võtit haldab seansi vooluhalduse agent."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
@@ -698,7 +700,7 @@ msgstr "Kui ekraanisäästja on aktiivne, siis graafilise demo vahetamine"
 
 #: ../src/gnome-screensaver-command.c:69
 msgid "Turn the screensaver on (blank the screen)"
-msgstr "Ekraanisäästja sisselülitamine (ekraani puhastamine)"
+msgstr "Ekraanisäästja sisselülitamine (ekraani tühjendamine)"
 
 #: ../src/gnome-screensaver-command.c:71
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
@@ -832,7 +834,7 @@ msgstr "Tõrge autentimisel."
 
 #: ../src/gnome-screensaver-preferences.c:447
 msgid "Blank screen"
-msgstr "Ekraani puhastamine"
+msgstr "Tühi ekraan"
 
 #: ../src/gnome-screensaver-preferences.c:453
 msgid "Random"
