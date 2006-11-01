@@ -1855,9 +1855,7 @@ delete_handler (GSLockPlug  *plug,
 static void
 gs_lock_plug_init (GSLockPlug *plug)
 {
-        gunichar              invisible_char;
-        GtkWidget            *layout_indicator;
-        XklEngine            *engine;
+        gunichar invisible_char;
 
         gs_profile_start (NULL);
 
@@ -1891,17 +1889,27 @@ gs_lock_plug_init (GSLockPlug *plug)
         }
 
 	/* Layout indicator */
-        engine = xkl_engine_get_instance (GDK_DISPLAY ());
-        if (xkl_engine_get_num_groups (engine) > 1
-            && plug->priv->auth_prompt_kbd_layout_indicator != NULL) {
-                layout_indicator = gkbd_indicator_new ();
-                gkbd_indicator_set_parent_tooltips (GKBD_INDICATOR (layout_indicator), TRUE);
-                gtk_misc_set_alignment (GTK_MISC (layout_indicator), 1, 0.5);
-                gtk_box_pack_start (GTK_BOX (plug->priv->auth_prompt_kbd_layout_indicator),
-                                    layout_indicator, FALSE, FALSE, 6);
-                gtk_widget_show_all (layout_indicator);
+        if (plug->priv->auth_prompt_kbd_layout_indicator != NULL) {
+                XklEngine *engine;
+
+                engine = xkl_engine_get_instance (GDK_DISPLAY ());
+                if (xkl_engine_get_num_groups (engine) > 1) {
+                        GtkWidget *layout_indicator;
+
+                        layout_indicator = gkbd_indicator_new ();
+                        gkbd_indicator_set_parent_tooltips (GKBD_INDICATOR (layout_indicator), TRUE);
+                        gtk_misc_set_alignment (GTK_MISC (layout_indicator), 1, 0.5);
+                        gtk_box_pack_start (GTK_BOX (plug->priv->auth_prompt_kbd_layout_indicator),
+                                            layout_indicator, FALSE, FALSE, 6);
+
+                        gtk_widget_show_all (layout_indicator);
+                        gtk_widget_show (plug->priv->auth_prompt_kbd_layout_indicator);
+                } else {
+                        gtk_widget_hide (plug->priv->auth_prompt_kbd_layout_indicator);
+                }
+
+                g_object_unref (engine);
 	}
-	g_object_unref (G_OBJECT (engine));
 
         gtk_widget_grab_default (plug->priv->auth_unlock_button);
 

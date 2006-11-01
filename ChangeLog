@@ -1,3 +1,10 @@
+2006-11-01  William Jon McCann  <mccann@jhu.edu>
+
+	* data/lock-dialog-default.glade:
+	* src/gs-lock-plug.c: (gs_lock_plug_init):
+	Don't set the kbd indicator box to expand and hide
+	it if it is empty.
+
 2006-10-31  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-listener-dbus.c: (_g_time_val_to_iso8601),
