@@ -52,6 +52,7 @@ static gboolean do_poke       = FALSE;
 static gboolean do_inhibit    = FALSE;
 
 static gboolean do_query      = FALSE;
+static gboolean do_time       = FALSE;
 
 static char    *inhibit_reason      = NULL;
 static char    *inhibit_application = NULL;
@@ -61,6 +62,8 @@ static GOptionEntry entries [] = {
           N_("Causes the screensaver to exit gracefully"), NULL },
         { "query", 'q', 0, G_OPTION_ARG_NONE, &do_query,
           N_("Query the state of the screensaver"), NULL },
+        { "time", 't', 0, G_OPTION_ARG_NONE, &do_time,
+          N_("Query the length of time the screensaver has been active"), NULL },
         { "lock", 'l', 0, G_OPTION_ARG_NONE, &do_lock,
           N_("Tells the running screensaver process to lock the screen immediately"), NULL },
         { "cycle", 'c', 0, G_OPTION_ARG_NONE, &do_cycle,
@@ -246,6 +249,34 @@ do_command (DBusConnection *connection)
                 g_print (_("The screensaver is %s\n"), v ? _("active") : _("inactive"));
 
                 dbus_message_unref (reply);
+        }
+
+        if (do_time) {
+                DBusMessageIter iter;
+                dbus_bool_t     v;
+                dbus_int32_t    t;
+
+                reply = screensaver_send_message_void (connection, "GetActive", TRUE);
+                if (! reply) {
+                        g_message ("Did not receive a reply from the screensaver.");
+                        goto done;
+                }
+
+                dbus_message_iter_init (reply, &iter);
+                dbus_message_iter_get_basic (&iter, &v);
+                dbus_message_unref (reply);
+
+		if (v) {
+
+	                reply = screensaver_send_message_void (connection, "GetActiveTime", TRUE);
+        	        dbus_message_iter_init (reply, &iter);
+                	dbus_message_iter_get_basic (&iter, &t);
+	                g_print (_("The screensaver has been active for %d seconds.\n"), t);
+
+        	        dbus_message_unref (reply);
+		} else {
+			g_print ("The screensaver is not currently active.\n");
+		}
         }
 
         if (do_lock) {

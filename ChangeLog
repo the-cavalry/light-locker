@@ -1,5 +1,13 @@
 2006-11-06  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-command.c: (do_command):
+	Add option to show how long screensaver was active.
+
+	Patch from Patrick McLean <chutzpah@gentoo.org>
+	Fixes #367932
+
+2006-11-06  William Jon McCann  <mccann@jhu.edu>
+
 	* data/gnome-screensaver-preferences.glade:
 	* src/gnome-screensaver-preferences.c: (response_cb):
 	Add a button to get to the power management preferences.
