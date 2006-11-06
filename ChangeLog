@@ -1,5 +1,13 @@
 2006-11-06  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c: (gs_window_real_motion_notify_event):
+	Only notice mouse motion of 10% of screen width instead of 50px.
+
+	Patch from Thomas Andersen <phomes@gmail.com>
+	Fixes #359589
+
+2006-11-06  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-command.c: (do_command):
 	Add option to show how long screensaver was active.
 
