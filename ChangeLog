@@ -1,3 +1,9 @@
+==== 2.17.2 ====
+
+2006-11-06  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 2.17.2 release
+
 2006-11-06  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-window-x11.c: (gs_window_real_motion_notify_event):

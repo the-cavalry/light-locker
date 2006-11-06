@@ -1,4 +1,33 @@
 ===============
+Version 2.17.2
+===============
+
+  gnome-screensaver
+
+        * Remove the pointer polling
+        * Add a keyboard layout indicator (Sergey Udaltsov)
+        * Only notice mouse motion of 10% of screen width (Thomas Andersen)
+        * Add SessionPowerManagementIdleChanged D-Bus signal
+        * Add GetInhibitors D-Bus method
+
+  gnome-screensaver-preferences
+
+        * Add a button to launch the power management preferences
+
+  gnome-screensaver-command
+
+        * Add option to how long screensaver was active (Patrick McLean)
+
+  Translators
+
+        * Francisco Javier F. Serrador (es)
+        * Ivar Smolin (et)
+        * Ilkka Tuohela (fi)
+        * Ankit Patel (gu)
+        * Jovan Naumovski (mk)
+        * Kjartan Maraas (nb)
+
+===============
 Version 2.17.1
 ===============
 
