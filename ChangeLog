@@ -1,3 +1,9 @@
+2006-11-06  William Jon McCann  <mccann@jhu.edu>
+
+	* data/gnome-screensaver-preferences.glade:
+	* src/gnome-screensaver-preferences.c: (response_cb):
+	Add a button to get to the power management preferences.
+
 2006-11-01  William Jon McCann  <mccann@jhu.edu>
 
 	* data/lock-dialog-default.glade:

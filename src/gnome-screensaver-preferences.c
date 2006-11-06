@@ -422,11 +422,23 @@ response_cb (GtkWidget *widget,
                         g_error_free (error);
                 }
 
-                return;
-        }
+        } else if (response_id == GTK_RESPONSE_REJECT) {
+                GError  *error;
+                gboolean res;
 
-        gtk_widget_destroy (widget);
-        gtk_main_quit ();
+                error = NULL;
+
+                res = gdk_spawn_command_line_on_screen (gdk_screen_get_default (),
+                                                        "gnome-power-preferences",
+                                                        &error);
+                if (! res) {
+                        g_warning ("Unable to start power management preferences: %s", error->message);
+                        g_error_free (error);
+                }
+        } else {
+                gtk_widget_destroy (widget);
+                gtk_main_quit ();
+        }
 }
 
 static GSList *
