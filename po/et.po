@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-20 07:27+0200\n"
-"PO-Revision-Date: 2006-10-29 22:07+0200\n"
+"PO-Revision-Date: 2006-11-08 20:33+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -489,7 +489,7 @@ msgstr "Kuvahaldur saatis tundmatu veateate."
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:164
 msgid "The user this menu item represents."
-msgstr ""
+msgstr "Kasutaja, kelle kohta see menüükirje on."
 
 #: ../src/cut-n-paste/fusa-user-menu-item.c:171
 msgid "Icon Size"
@@ -609,7 +609,7 @@ msgstr ""
 
 #: ../src/cut-n-paste/gdmcomm.c:505
 msgid "Too many messages were sent to gdm and it hung upon us."
-msgstr ""
+msgstr "GDM-ile saadeti liiga palju sõnumeid ja see katkestats suhtluse."
 
 #: ../src/cut-n-paste/gdmcomm.c:508
 msgid "Unknown error occurred."
