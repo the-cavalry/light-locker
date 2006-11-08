@@ -1,3 +1,8 @@
+2006-11-08  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gnome-screensaver-dialog.c: (auth_message_handler):
+	Add missing g_locale_to_utf8.  Fixes #372707
+
 2006-11-06  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump
