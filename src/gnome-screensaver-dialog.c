@@ -207,19 +207,16 @@ auth_message_handler (GSAuthMessageStyle style,
 {
         gboolean    ret;
         GSLockPlug *plug;
-        char       *utf8_msg;
         const char *message;
 
         plug = GS_LOCK_PLUG (data);
 
         gs_profile_start (NULL);
-        utf8_msg = g_locale_to_utf8 (msg, -1, NULL, NULL, NULL);
-
-        gs_debug ("Got message style %d: '%s'", style, utf8_msg);
+        gs_debug ("Got message style %d: '%s'", style, msg);
 
         ret = TRUE;
         *response = NULL;
-        message = maybe_translate_message (utf8_msg);
+        message = maybe_translate_message (msg);
 
         switch (style) {
         case GS_AUTH_MESSAGE_PROMPT_ECHO_ON:
@@ -258,8 +255,6 @@ auth_message_handler (GSAuthMessageStyle style,
         while (gtk_events_pending ()) {
                 gtk_main_iteration ();
         }
-
-        g_free (utf8_msg);
 
         gs_profile_end (NULL);
 

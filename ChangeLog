@@ -1,3 +1,11 @@
+2006-11-09  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gnome-screensaver-dialog.c: (auth_message_handler):
+	* src/gs-auth-pam.c: (auth_message_handler), (pam_conversation):
+	Revert the last patch and use one from Ray instead.  It
+	makes way more sense to do the conversion in gs-auth.
+	Fixes #372707
+
 2006-11-08  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-dialog.c: (auth_message_handler):

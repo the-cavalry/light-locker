@@ -147,7 +147,7 @@ auth_message_handler (GSAuthMessageStyle style,
         case GS_AUTH_MESSAGE_PROMPT_ECHO_ON:
                 break;
         case GS_AUTH_MESSAGE_PROMPT_ECHO_OFF:
-                if (msg != NULL && g_str_has_prefix (msg, "Password:")) {
+                if (msg != NULL && g_str_has_prefix (msg, _("Password:"))) {
                         did_we_ask_for_password = TRUE;
                 }
                 break;
@@ -185,18 +185,40 @@ pam_conversation (int                        nmsgs,
 
         for (replies = 0; replies < nmsgs; replies++) {
                 GSAuthMessageStyle style;
+                char              *utf8_msg;
 
                 style = pam_style_to_gs_style (msg [replies]->msg_style);
 
+                utf8_msg = g_locale_to_utf8 (msg [replies]->msg,
+                                             -1,
+                                             NULL,
+                                             NULL,
+                                             NULL);
+
+                /* if we couldn't convert text from locale then
+                 * assume utf-8 and hope for the best */
+                if (utf8_msg == NULL) {
+                        char *p;
+                        char *q;
+
+                        utf8_msg = g_strdup (msg [replies]->msg);
+
+                        p = utf8_msg;
+                        while (*p != '\0' && !g_utf8_validate ((const char *)p, -1, (const char **)&q)) {
+                                *q = '?';
+                                p = q + 1;
+                        }
+                }
+
                 /* handle message locally first */
                 auth_message_handler (style,
-                                      msg [replies]->msg,
+                                      utf8_msg,
                                       &reply [replies].resp,
                                       NULL);
 
                 if (c->cb_func != NULL) {
                         res = c->cb_func (style,
-                                          msg [replies]->msg,
+                                          utf8_msg,
                                           &reply [replies].resp,
                                           c->cb_data);
 
@@ -207,6 +229,8 @@ pam_conversation (int                        nmsgs,
                                 reply [replies].resp_retcode = PAM_INCOMPLETE;
                         }
                 }
+
+                g_free (utf8_msg);
         }
 
         *resp = reply;
