@@ -333,6 +333,13 @@ auth_check_idle (GSLockPlug *plug)
         return !res;
 }
 
+static void
+show_cb (GtkWidget *widget,
+         gpointer   data)
+{
+        print_id (widget);
+}
+
 static gboolean
 popup_dialog_idle (void)
 {
@@ -355,10 +362,9 @@ popup_dialog_idle (void)
         }
 
         g_signal_connect (GS_LOCK_PLUG (widget), "response", G_CALLBACK (response_cb), NULL);
+        g_signal_connect (widget, "show", G_CALLBACK (show_cb), NULL);
 
         gtk_widget_realize (widget);
-
-        print_id (widget);
 
         g_idle_add ((GSourceFunc)auth_check_idle, widget);
 

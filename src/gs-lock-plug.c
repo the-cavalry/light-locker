@@ -586,7 +586,7 @@ static void
 forward_key_events (GSLockPlug *plug)
 {
         plug->priv->key_events = g_list_reverse (plug->priv->key_events);
-        while (plug->priv->key_events) {
+        while (plug->priv->key_events != NULL) {
                 GdkEventKey *event = plug->priv->key_events->data;
 
                 gtk_window_propagate_key_event (GTK_WINDOW (plug), event);

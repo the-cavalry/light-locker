@@ -1,5 +1,13 @@
 2006-11-13  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-dialog.c: (show_cb), (popup_dialog_idle):
+	* src/gs-lock-plug.c: (forward_key_events):
+	* src/gs-window-x11.c: (forward_key_events):
+	Don't create the plug until it is shown so that key forwarding
+	works correctly.
+
+2006-11-13  William Jon McCann  <mccann@jhu.edu>
+
 	* data/lock-dialog-default.glade:
 	* src/gnome-screensaver-dialog.c: (request_response),
 	(auth_message_handler), (do_auth_check), (response_cb),
