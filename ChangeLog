@@ -1,3 +1,28 @@
+2006-11-13  William Jon McCann  <mccann@jhu.edu>
+
+	* data/lock-dialog-default.glade:
+	* src/gnome-screensaver-dialog.c: (request_response),
+	(auth_message_handler), (do_auth_check), (response_cb),
+	(popup_dialog_idle):
+	* src/gs-auth-pam.c: (gs_auth_queued_message_handler),
+	(gs_auth_run_message_handler), (pam_conversation),
+	(close_pam_handle), (create_pam_handle), (gs_auth_thread_func),
+	(gs_auth_loop_quit), (gs_auth_identify_user),
+	(gs_auth_verify_user):
+	* src/gs-lock-plug.c: (queue_key_event), (forward_key_events),
+	(gs_lock_plug_set_busy), (gs_lock_plug_set_ready),
+	(gs_lock_plug_enable_prompt), (gs_lock_plug_disable_prompt),
+	(entry_key_press):
+	* src/gs-lock-plug.h:
+	* src/gs-manager.c: (gs_manager_cancel_unlock_request):
+	* src/gs-manager.h:
+	* src/gs-window-x11.c: (gs_window_cancel_unlock_request):
+	* src/gs-window.h:
+	Make PAM auth more async so it can be cancelled.
+
+	Patch from Ray Strode <rstrode@redhat.com>
+	Fixes #373556
+
 2006-11-09  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-dialog.c: (auth_message_handler):

@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
  * Copyright (C) 2006 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2006 Ray Strode <rstrode@redhat.com>
  * Copyright (C) 2003 Bill Nottingham <notting@redhat.com>
  * Copyright (c) 1993-2003 Jamie Zawinski <jwz@jwz.org>
  *
@@ -28,6 +29,7 @@
 # include <unistd.h>
 #endif
 
+#include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/types.h>
@@ -40,6 +42,7 @@
 #include <glib.h>
 #include <glib/gstdio.h>
 #include <glib/gi18n.h>
+#include <gtk/gtk.h>
 
 #include "gs-auth.h"
 
@@ -73,15 +76,28 @@
 # define PAM_STRERROR(pamh, status) pam_strerror((status))
 #endif /* !PAM_STRERROR_TWO_ARGS */
 
-static gboolean verbose_enabled = FALSE;
+static gboolean      verbose_enabled = FALSE;
 static pam_handle_t *pam_handle = NULL;
-static gboolean did_we_ask_for_password = FALSE;
+static gboolean      did_we_ask_for_password = FALSE;
 
 struct pam_closure {
         const char       *username;
         GSAuthMessageFunc cb_func;
         gpointer          cb_data;
+        int               signal_fd;
+        int               result;
 };
+
+typedef struct {
+        struct pam_closure *closure;
+        GSAuthMessageStyle style;
+        const char        *msg;
+        char             **resp;
+        gboolean           should_interrupt_stack;
+} GsAuthMessageHandlerData;
+
+static GCond  *message_handled_condition;
+static GMutex *message_handler_mutex;
 
 GQuark
 gs_auth_error_quark (void)
@@ -162,6 +178,48 @@ auth_message_handler (GSAuthMessageStyle style,
         return ret;
 }
 
+static gboolean
+gs_auth_queued_message_handler (GsAuthMessageHandlerData *data)
+{
+        g_mutex_lock (message_handler_mutex);
+        data->should_interrupt_stack = data->closure->cb_func (data->style,
+                                                               data->msg,
+                                                               data->resp,
+                                                               data->closure->cb_data) == FALSE;
+        g_cond_signal (message_handled_condition);
+        g_mutex_unlock (message_handler_mutex);
+        return FALSE;
+}
+
+static gboolean
+gs_auth_run_message_handler (struct pam_closure *c,
+                             GSAuthMessageStyle  style,
+                             const char         *msg,
+                             char              **resp)
+{
+        GsAuthMessageHandlerData data;
+
+        data.closure = c;
+        data.style = style;
+        data.msg = msg;
+        data.resp = resp;
+        data.should_interrupt_stack = TRUE;
+
+        g_mutex_lock (message_handler_mutex);
+
+        /* Queue the callback in the gui (the main) thread
+         */
+        g_idle_add ((GSourceFunc) gs_auth_queued_message_handler, &data);
+
+        /* Wait for the response
+         */
+        g_cond_wait (message_handled_condition,
+                     message_handler_mutex);
+        g_mutex_unlock (message_handler_mutex);
+
+        return data.should_interrupt_stack == FALSE;
+}
+
 static int
 pam_conversation (int                        nmsgs,
                   const struct pam_message **msg,
@@ -217,10 +275,12 @@ pam_conversation (int                        nmsgs,
                                       NULL);
 
                 if (c->cb_func != NULL) {
-                        res = c->cb_func (style,
-                                          utf8_msg,
-                                          &reply [replies].resp,
-                                          c->cb_data);
+ 			/* blocks until the gui responds
+  			 */
+  			res = gs_auth_run_message_handler (c,
+                                                           style,
+  							   utf8_msg,
+  							   &reply [replies].resp);
 
                         /* If the handler returns FALSE - interrupt the PAM stack */
                         if (res) {
@@ -253,6 +313,16 @@ close_pam_handle (int status)
                                    status2,
                                    (status2 == PAM_SUCCESS ? "Success" : "Failure"));
                 }
+        }
+
+        if (message_handled_condition != NULL) {
+                g_cond_free (message_handled_condition);
+                message_handled_condition = NULL;
+        }
+
+        if (message_handler_mutex != NULL) {
+                g_mutex_free (message_handler_mutex);
+                message_handler_mutex = NULL;
         }
 
         return TRUE;
@@ -320,6 +390,8 @@ create_pam_handle (const char      *username,
 	}
 
         ret = TRUE;
+	message_handled_condition = g_cond_new ();
+	message_handler_mutex = g_mutex_new ();
 
  out:
         if (status_code != NULL) {
@@ -366,6 +438,118 @@ set_pam_error (GError **error,
 
 }
 
+static int
+gs_auth_thread_func (int auth_operation_fd)
+{
+        static const int flags = 0;
+        int              status;
+
+        status = pam_authenticate (pam_handle, flags);
+
+        /* we're done, close the fd and wake up the main
+         * loop
+         */
+        close (auth_operation_fd);
+
+        return status;
+}
+
+static gboolean
+gs_auth_loop_quit (GIOChannel  *source,
+		   GIOCondition condition,
+		   gboolean    *thread_done)
+{
+        *thread_done = TRUE;
+        gtk_main_quit ();
+        return FALSE;
+}
+
+static gboolean
+gs_auth_identify_user (pam_handle_t *handle,
+		       int          *status)
+{
+        GThread    *auth_thread;
+        GIOChannel *channel;
+        guint       watch_id;
+        int         auth_operation_fds[2];
+        int         auth_status;
+        gboolean    thread_done;
+
+        channel = NULL;
+        watch_id = 0;
+        auth_status = PAM_INCOMPLETE;
+
+        /* This pipe gives us a set of fds we can hook into
+         * the event loop to be notified when our helper thread 
+         * is ready to be reaped.
+         */
+        if (pipe (auth_operation_fds) < 0) {
+                goto out;
+        }
+
+        if (fcntl (auth_operation_fds[0], F_SETFD, FD_CLOEXEC) < 0) {
+                close (auth_operation_fds[0]);
+                close (auth_operation_fds[1]);
+                goto out;
+        }
+
+        if (fcntl (auth_operation_fds[1], F_SETFD, FD_CLOEXEC) < 0) {
+                close (auth_operation_fds[0]);
+                close (auth_operation_fds[1]);
+                goto out;
+        }
+
+        channel = g_io_channel_unix_new (auth_operation_fds[0]);
+
+        /* we use a recursive main loop to process ui events
+         * while we wait on a thread to handle the blocking parts
+         * of pam authentication.
+         */
+        thread_done = FALSE;
+        watch_id = g_io_add_watch (channel, G_IO_ERR | G_IO_HUP,
+                                   (GIOFunc) gs_auth_loop_quit, &thread_done);
+
+        auth_thread = g_thread_create ((GThreadFunc) gs_auth_thread_func,
+                                       GINT_TO_POINTER (auth_operation_fds[1]),
+                                       TRUE, NULL);
+
+        if (auth_thread == NULL) {
+                goto out;
+        }
+
+        gtk_main ();
+
+        /* if the event loop was quit before the thread is done then we can't
+         * reap the thread without blocking on it finishing.  The
+         * thread may not ever finish though if the pam module is blocking.
+         *
+         * The only time the event loop is going to stop when the thread isn't
+         * done, however, is if the dialog quits early (from, e.g., "cancel"),
+         * so we can just exit.  An alternative option would be to switch to
+         * using pthreads directly and calling pthread_cancel.
+         */
+        if (!thread_done) {
+                raise (SIGTERM);
+        }
+
+        auth_status = GPOINTER_TO_INT (g_thread_join (auth_thread));
+
+ out:
+        if (watch_id != 0) {
+                g_source_remove (watch_id);
+        }
+
+        if (channel != NULL) {
+                g_io_channel_unref (channel);
+        }
+
+        if (status) {
+                *status = auth_status;
+        }
+
+        return auth_status == PAM_SUCCESS;
+}
+
 gboolean
 gs_auth_verify_user (const char       *username,
                      const char       *display,
@@ -380,7 +564,6 @@ gs_auth_verify_user (const char       *username,
         sigset_t           set;
         struct timespec    timeout;
         struct passwd     *pwent;
-        int                null_tok = 0;
         const void        *p;
 
         pwent = getpwnam (username);
@@ -410,8 +593,6 @@ gs_auth_verify_user (const char       *username,
         set = block_sigchld ();
 
         did_we_ask_for_password = FALSE;
-        status = pam_authenticate (pam_handle, null_tok);
-
         sigtimedwait (&set, NULL, &timeout);
         unblock_sigchld ();
 
@@ -421,7 +602,7 @@ gs_auth_verify_user (const char       *username,
                            PAM_STRERROR (pam_handle, status));
         }
 
-        if (status != PAM_SUCCESS) {
+        if (!gs_auth_identify_user (pam_handle, &status)) {
                 goto DONE;
         }
 
@@ -436,7 +617,7 @@ gs_auth_verify_user (const char       *username,
          * but we need to run them anyway because certain pam modules
          * depend on side effects of the account modules getting run.
          */
-        status2 = pam_acct_mgmt (pam_handle, null_tok);
+        status2 = pam_acct_mgmt (pam_handle, 0);
 
         if (gs_auth_get_verbose ()) {
                 g_message ("pam_acct_mgmt (...) ==> %d (%s)\n",

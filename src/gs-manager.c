@@ -1566,3 +1566,12 @@ gs_manager_request_unlock (GSManager *manager)
 
         return TRUE;
 }
+
+void
+gs_manager_cancel_unlock_request (GSManager *manager)
+{
+        GSList *l;
+        for (l = manager->priv->windows; l; l = l->next) {
+                gs_window_cancel_unlock_request (l->data);
+        }
+}

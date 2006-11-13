@@ -81,6 +81,7 @@ void        gs_window_set_logout_command (GSWindow   *window,
                                           const char *command);
 
 void        gs_window_request_unlock     (GSWindow  *window);
+void        gs_window_cancel_unlock_request (GSWindow  *window);
 
 GSWindow  * gs_window_new                (GdkScreen *screen,
                                           int        monitor,

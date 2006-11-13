@@ -104,6 +104,8 @@ struct GSLockPlugPrivate
         guint        cancel_timeout_id;
         guint        auth_check_idle_id;
         guint        response_idle_id;
+
+        GList       *key_events;
 };
 
 typedef struct _ResponseData ResponseData;
@@ -569,6 +571,32 @@ gs_lock_plug_hide (GtkWidget *widget)
         }
 }
 
+static void
+queue_key_event (GSLockPlug  *plug,
+                 GdkEventKey *event)
+{
+        GdkEvent *saved_event;
+
+        saved_event = gdk_event_copy ((GdkEvent *)event);
+        plug->priv->key_events = g_list_prepend (plug->priv->key_events,
+                                                 saved_event);
+}
+
+static void
+forward_key_events (GSLockPlug *plug)
+{
+        plug->priv->key_events = g_list_reverse (plug->priv->key_events);
+        while (plug->priv->key_events) {
+                GdkEventKey *event = plug->priv->key_events->data;
+
+                gtk_window_propagate_key_event (GTK_WINDOW (plug), event);
+
+                gdk_event_free ((GdkEvent *)event);
+
+                plug->priv->key_events = g_list_delete_link (plug->priv->key_events,
+                                                             plug->priv->key_events);
+        }
+}
 
 static void
 gs_lock_plug_size_request (GtkWidget      *widget,
@@ -849,22 +877,71 @@ logout_button_clicked (GtkButton  *button,
 }
 
 void
-gs_lock_plug_show_prompt (GSLockPlug *plug,
-                          const char *message,
-                          gboolean    visible)
+gs_lock_plug_set_busy (GSLockPlug *plug)
+{
+        GdkCursor *cursor;
+        GtkWidget *top_level;
+
+        top_level = gtk_widget_get_toplevel (GTK_WIDGET (plug));
+
+        cursor = gdk_cursor_new (GDK_WATCH);
+        gdk_window_set_cursor (top_level->window, cursor);
+        gdk_cursor_unref (cursor);
+}
+
+void
+gs_lock_plug_set_ready (GSLockPlug *plug)
+{
+        GdkCursor *cursor;
+        GtkWidget *top_level;
+
+        top_level = gtk_widget_get_toplevel (GTK_WIDGET (plug));
+
+        cursor = gdk_cursor_new (GDK_LEFT_PTR);
+        gdk_window_set_cursor (top_level->window, cursor);
+        gdk_cursor_unref (cursor);
+}
+
+void
+gs_lock_plug_enable_prompt (GSLockPlug *plug,
+                            const char *message,
+                            gboolean    visible)
 {
         g_return_if_fail (GS_IS_LOCK_PLUG (plug));
 
         gs_debug ("Setting prompt to: %s", message);
 
+        gtk_widget_set_sensitive (plug->priv->auth_unlock_button, TRUE);
+        gtk_widget_show (plug->priv->auth_unlock_button);
+        gtk_widget_grab_default (plug->priv->auth_unlock_button);
         gtk_label_set_text (GTK_LABEL (plug->priv->auth_prompt_label), message);
+        gtk_widget_show (plug->priv->auth_prompt_label);
         gtk_entry_set_visibility (GTK_ENTRY (plug->priv->auth_prompt_entry), visible);
+        gtk_widget_show (plug->priv->auth_prompt_entry);
 
         if (! GTK_WIDGET_HAS_FOCUS (plug->priv->auth_prompt_entry)) {
                 gtk_widget_grab_focus (plug->priv->auth_prompt_entry);
         }
 
+        /* were there any key events sent to the plug while the
+         * entry wasnt ready? If so, forward them along
+         */
+        forward_key_events (plug);
+
         restart_cancel_timeout (plug);
+}
+
+void
+gs_lock_plug_disable_prompt (GSLockPlug *plug)
+{
+        g_return_if_fail (GS_IS_LOCK_PLUG (plug));
+
+        /* gtk_widget_hide (plug->priv->auth_prompt_entry); */
+        /* gtk_widget_hide (plug->priv->auth_prompt_label); */
+        gtk_widget_set_sensitive (plug->priv->auth_unlock_button, FALSE);
+        /* gtk_widget_hide (plug->priv->auth_unlock_button); */
+
+        gtk_widget_grab_default (plug->priv->auth_cancel_button);
 }
 
 void
@@ -903,7 +980,21 @@ entry_key_press (GtkWidget   *widget,
                 capslock_update (plug, capslock_on);
         }
 
-        return FALSE;
+        /* if the input widget is visible and ready for input
+         * then just carry on as usual
+         */
+        if (GTK_WIDGET_VISIBLE (plug->priv->auth_prompt_entry) &&
+            GTK_WIDGET_IS_SENSITIVE (plug->priv->auth_prompt_entry)) {
+                return FALSE;
+        }
+
+	if (strcmp (event->string, "") == 0) {
+		return FALSE;
+        }
+
+	queue_key_event (plug, event);
+
+	return TRUE;
 }
 
 /* adapted from gtk_dialog_add_button */

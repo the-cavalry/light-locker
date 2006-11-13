@@ -138,7 +138,7 @@ request_response (GSLockPlug *plug,
         char *text;
 
         gs_lock_plug_set_sensitive (plug, TRUE);
-        gs_lock_plug_show_prompt (plug, prompt, visible);
+        gs_lock_plug_enable_prompt (plug, prompt, visible);
         response = gs_lock_plug_run (plug);
 
         gs_debug ("got response: %d", response);
@@ -147,6 +147,7 @@ request_response (GSLockPlug *plug,
         if (response == GS_LOCK_PLUG_RESPONSE_OK) {
                 gs_lock_plug_get_text (plug, &text);
         }
+        gs_lock_plug_disable_prompt (plug);
 
         return text;
 }
@@ -214,6 +215,9 @@ auth_message_handler (GSAuthMessageStyle style,
         gs_profile_start (NULL);
         gs_debug ("Got message style %d: '%s'", style, msg);
 
+        gtk_widget_show (GTK_WIDGET (plug));
+        gs_lock_plug_set_ready (plug);
+
         ret = TRUE;
         *response = NULL;
         message = maybe_translate_message (msg);
@@ -256,6 +260,7 @@ auth_message_handler (GSAuthMessageStyle style,
                 gtk_main_iteration ();
         }
 
+        gs_lock_plug_set_busy (plug);
         gs_profile_end (NULL);
 
         return ret;
@@ -278,6 +283,8 @@ do_auth_check (GSLockPlug *plug)
 
         error = NULL;
 
+        gs_lock_plug_disable_prompt (plug);
+        gs_lock_plug_set_busy (plug);
         res = gs_auth_verify_user (g_get_user_name (), g_getenv ("DISPLAY"), auth_message_handler, plug, &error);
 
         gs_debug ("Verify user returned: %s", res ? "TRUE" : "FALSE");
@@ -306,7 +313,8 @@ static void
 response_cb (GSLockPlug *plug,
              gint        response_id)
 {
-        if (response_id == GS_LOCK_PLUG_RESPONSE_CANCEL) {
+        if ((response_id == GS_LOCK_PLUG_RESPONSE_CANCEL) ||
+	    (response_id == GTK_RESPONSE_DELETE_EVENT)) {
                 quit_response_cancel ();
         }
 }
@@ -348,7 +356,7 @@ popup_dialog_idle (void)
 
         g_signal_connect (GS_LOCK_PLUG (widget), "response", G_CALLBACK (response_cb), NULL);
 
-        gtk_widget_show (widget);
+        gtk_widget_realize (widget);
 
         print_id (widget);
 
