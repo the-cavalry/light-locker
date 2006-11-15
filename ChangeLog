@@ -1,3 +1,12 @@
+2006-11-15  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac:
+	* src/Makefile.am:
+	* src/gs-lock-plug.c: (gs_lock_plug_init):
+	Make the layout indicator optional.
+
+	Patch from Sergey V. Udaltsov <svu@gnome.org>
+
 2006-11-13  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-dialog.c: (show_cb), (popup_dialog_idle):

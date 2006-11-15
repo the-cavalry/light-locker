@@ -43,7 +43,9 @@
 /* for fast user switching */
 #include <libgnomevfs/gnome-vfs-init.h>
 
+#ifdef WITH_KBD_LAYOUT_INDICATOR
 #include <libgnomekbd/gkbd-indicator.h>
+#endif
 
 #include "gs-lock-plug.h"
 
@@ -1980,6 +1982,7 @@ gs_lock_plug_init (GSLockPlug *plug)
         }
 
 	/* Layout indicator */
+#ifdef WITH_KBD_LAYOUT_INDICATOR
         if (plug->priv->auth_prompt_kbd_layout_indicator != NULL) {
                 XklEngine *engine;
 
@@ -2001,6 +2004,7 @@ gs_lock_plug_init (GSLockPlug *plug)
 
                 g_object_unref (engine);
 	}
+#endif
 
         gtk_widget_grab_default (plug->priv->auth_unlock_button);
 

@@ -63,8 +63,7 @@ AC_SUBST(GNOME_SCREENSAVER_LIBS)
 
 PKG_CHECK_MODULES(GNOME_SCREENSAVER_DIALOG,
         libglade-2.0 >= $GLADE_REQUIRED_VERSION
-        gtk+-2.0 >= $GTK_REQUIRED_VERSION
-        libgnomekbdui >= $LIBGNOMEKBDUI_REQUIRED_VERSION)
+        gtk+-2.0 >= $GTK_REQUIRED_VERSION)
 AC_SUBST(GNOME_SCREENSAVER_DIALOG_CFLAGS)
 AC_SUBST(GNOME_SCREENSAVER_DIALOG_LIBS)
 
@@ -939,6 +938,22 @@ fi
 
 AC_SUBST(AUTH_SCHEME)
 
+dnl
+dnl libgnomekbd
+dnl
+
+have_libgnomekbdui=no
+AC_ARG_WITH(kbd-layout-indicator,[  --without-kbd-layout-indicator         disable keyboard layout indicator],
+            [with_kbd_layout_indicator="$withval"],[with_kbd_layout_indicator=yes])
+if test x$with_kbd_layout_indicator != xno; then
+  PKG_CHECK_MODULES(LIBGNOMEKBDUI, libgnomekbdui >= $LIBGNOMEKBDUI_REQUIRED_VERSION, have_libgnomekbdui=yes, have_libgnomekbdui=no)
+fi
+if test "x$have_libgnomekbdui" = "xyes"; then
+  AC_SUBST(LIBGNOMEKBDUI_CFLAGS)
+  AC_SUBST(LIBGNOMEKBDUI_LIBS)
+  AC_DEFINE(WITH_KBD_LAYOUT_INDICATOR, 1, [Define if keyboard layout indicator should be built])
+fi
+
 dnl ---------------------------------------------------------------------------
 dnl Finish
 dnl ---------------------------------------------------------------------------
@@ -1122,6 +1137,7 @@ echo "
 
         Screen locking enabled:   ${enable_locking}
         User switching enabled:   ${enable_user_switching}
+        Show keyboard indicator:  ${with_kbd_layout_indicator}
         PAM support:              ${have_pam}
         Have shadow passwords:    ${have_shadow}
         Have adjunct shadow:      ${have_shadow_adjunct}
