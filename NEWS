@@ -1,4 +1,18 @@
 ===============
+Version 2.17.3
+===============
+
+  gnome-screensaver
+
+        * Convert PAM messages to UTF-8 (Ray Strode)
+        * Make PAM authentication async (Ray Strode)
+
+  Translators
+
+        * Ivar Smolin (et)
+        * Daniel Nylander (sv)
+
+===============
 Version 2.17.2
 ===============
 
