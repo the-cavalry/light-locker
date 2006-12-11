@@ -1,5 +1,12 @@
 2006-12-11  William Jon McCann  <mccann@jhu.edu>
 
+	* src/Makefile.am:
+	* src/debug-screensaver.sh:
+	Added script to help run gdb from outside
+	the GNOME session.
+
+2006-12-11  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/gste-slideshow.c (get_pixbuf_from_local_dir):
 	Check for an empty file list.  Fixes #382757
 

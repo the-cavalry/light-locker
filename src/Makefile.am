@@ -236,6 +236,7 @@ gnome_screensaver_preferences_LDADD =	\
 	$(NULL)
 
 EXTRA_DIST =				\
+	debug-screensaver.sh		\
 	gs-marshal.list			\
 	$(NULL)
 
