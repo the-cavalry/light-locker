@@ -710,6 +710,10 @@ get_pixbuf_from_local_dir (GSTESlideshow *show,
                 show->priv->filename_list = build_filename_list_local_dir (location);
         }
 
+        if (show->priv->filename_list == NULL) {
+                return NULL;
+        }
+
         /* get a random filename */
         i = g_random_int_range (0, g_slist_length (show->priv->filename_list));
         l = g_slist_nth (show->priv->filename_list, i);
