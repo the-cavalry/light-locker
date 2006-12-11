@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 2.16.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-19 10:27+0200\n"
-"PO-Revision-Date: 2006-10-19 10:28+0200\n"
+"POT-Creation-Date: 2006-12-11 01:42+0100\n"
+"PO-Revision-Date: 2006-12-11 01:43+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -33,30 +33,34 @@ msgid "<b>Warning: the screen will not be locked for the root user.</b>"
 msgstr "<b>Advarsel: skjermen vil ikke bli låst for root.</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Power _Management"
+msgstr "Strø_mstyring"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "Regard the computer as _idle after:"
 msgstr "Se på datamaskinen som _inaktiv etter:"
 
-#: ../data/gnome-screensaver-preferences.glade.h:4
+#: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "Screensaver Preferences"
 msgstr "Brukervalg for skjermsparer"
 
-#: ../data/gnome-screensaver-preferences.glade.h:5
+#: ../data/gnome-screensaver-preferences.glade.h:6
 msgid "Screensaver Preview"
 msgstr "Forhåndsvisning av skjermsparer"
 
-#: ../data/gnome-screensaver-preferences.glade.h:6
+#: ../data/gnome-screensaver-preferences.glade.h:7
 msgid "_Activate screensaver when computer is idle"
 msgstr "_Aktiver skjermsparer når datamaskinen er inaktiv"
 
-#: ../data/gnome-screensaver-preferences.glade.h:7
+#: ../data/gnome-screensaver-preferences.glade.h:8
 msgid "_Lock screen when screensaver is active"
 msgstr "_Lås skjermen når aktiv"
 
-#: ../data/gnome-screensaver-preferences.glade.h:8
+#: ../data/gnome-screensaver-preferences.glade.h:9
 msgid "_Preview"
 msgstr "_Forhåndsvis"
 
-#: ../data/gnome-screensaver-preferences.glade.h:9
+#: ../data/gnome-screensaver-preferences.glade.h:10
 msgid "_Screensaver theme:"
 msgstr "Tema for _skjermsparer:"
 
@@ -187,7 +191,9 @@ msgstr "Antall minutter før endring av skjermsparertema."
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
-msgstr "Antall sekunder med inaktivitet før strømstyring får beskjed. Denne nøkkelen er satt og vedlikeholdt av sesjonens strømstyringsagent."
+msgstr ""
+"Antall sekunder med inaktivitet før strømstyring får beskjed. Denne nøkkelen "
+"er satt og vedlikeholdt av sesjonens strømstyringsagent."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
@@ -252,32 +258,27 @@ msgstr "<span size=\"small\">%U på %h</span>"
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:172
-#: ../src/gnome-screensaver-dialog.c:173
-msgid "Password:"
-msgstr "Passord:"
-
-#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1691
+#: ../data/lock-dialog-default.glade.h:5 ../src/gs-lock-plug.c:1788
 msgid "S_witch to user:"
 msgstr "B_ytt til bruker:"
 
-#: ../data/lock-dialog-default.glade.h:7
+#: ../data/lock-dialog-default.glade.h:6
 msgid "_Cancel"
 msgstr "A_vbryt"
 
-#: ../data/lock-dialog-default.glade.h:8
+#: ../data/lock-dialog-default.glade.h:7
 msgid "_Log Out"
 msgstr "_Logg ut"
 
-#: ../data/lock-dialog-default.glade.h:9
+#: ../data/lock-dialog-default.glade.h:8
 msgid "_Switch User..."
 msgstr "_Bytt bruker..."
 
-#: ../data/lock-dialog-default.glade.h:10
+#: ../data/lock-dialog-default.glade.h:9
 msgid "_Switch user..."
 msgstr "_Bytt bruker..."
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1420
+#: ../data/lock-dialog-default.glade.h:10 ../src/gs-lock-plug.c:1517
 msgid "_Unlock"
 msgstr "Lå_s opp"
 
@@ -676,35 +677,39 @@ msgstr "Til:"
 msgid "Connecting..."
 msgstr "Kobler til..."
 
-#: ../src/gnome-screensaver-command.c:61
+#: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
 msgstr "Sørger for sikker avslutning av skjermspareren"
 
-#: ../src/gnome-screensaver-command.c:63
+#: ../src/gnome-screensaver-command.c:64
 msgid "Query the state of the screensaver"
-msgstr "Spørr etter skjermsparerstatus"
+msgstr "Spør etter skjermsparerstatus"
 
-#: ../src/gnome-screensaver-command.c:65
+#: ../src/gnome-screensaver-command.c:66
+msgid "Query the length of time the screensaver has been active"
+msgstr "Spør hvor lenge skjermspareren har vært aktiv"
+
+#: ../src/gnome-screensaver-command.c:68
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "Tvinger kjørende spermsparer til å låse skjermen omgående"
 
-#: ../src/gnome-screensaver-command.c:67
+#: ../src/gnome-screensaver-command.c:70
 msgid "If the screensaver is active then switch to another graphics demo"
 msgstr "Skift til et annet tema om skjermspareren er aktiv"
 
-#: ../src/gnome-screensaver-command.c:69
+#: ../src/gnome-screensaver-command.c:72
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "Slå på skjermspareren (blank ut skjermen)"
 
-#: ../src/gnome-screensaver-command.c:71
+#: ../src/gnome-screensaver-command.c:74
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr "Deaktiver skjermspareren om den er aktiv"
 
-#: ../src/gnome-screensaver-command.c:73
+#: ../src/gnome-screensaver-command.c:76
 msgid "Poke the running screensaver to simulate user activity"
 msgstr "Kommuniser med kjørende skjermsparer for å simulere brukeraktivitet"
 
-#: ../src/gnome-screensaver-command.c:75
+#: ../src/gnome-screensaver-command.c:78
 msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
@@ -712,31 +717,36 @@ msgstr ""
 "Hindre skjermspareren fra å aktiveres. Kommandoen blokkerer så lenge "
 "hindringen er aktiv."
 
-#: ../src/gnome-screensaver-command.c:77
+#: ../src/gnome-screensaver-command.c:80
 msgid "The calling application that is inhibiting the screensaver"
 msgstr "Programmet som hindrer skjermspareren"
 
-#: ../src/gnome-screensaver-command.c:79
+#: ../src/gnome-screensaver-command.c:82
 msgid "The reason for inhibiting the screensaver"
 msgstr "Årsak for hinding av skjermsparer."
 
-#: ../src/gnome-screensaver-command.c:81 ../src/gnome-screensaver-dialog.c:54
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:54
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Skjermsparerversjon"
 
-#: ../src/gnome-screensaver-command.c:246
+#: ../src/gnome-screensaver-command.c:249
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "Skjermsparer er %s\n"
 
-#: ../src/gnome-screensaver-command.c:246
+#: ../src/gnome-screensaver-command.c:249
 msgid "active"
 msgstr "aktiv"
 
-#: ../src/gnome-screensaver-command.c:246
+#: ../src/gnome-screensaver-command.c:249
 msgid "inactive"
 msgstr "inaktiv"
+
+#: ../src/gnome-screensaver-command.c:274
+#, c-format
+msgid "The screensaver has been active for %d seconds.\n"
+msgstr "Skjermspareren har vært aktiv i %d sekunder.\n"
 
 #: ../src/gnome-screensaver-dialog.c:52
 msgid "Show debugging output"
@@ -755,106 +765,111 @@ msgid "Show the switch user button"
 msgstr "Vis knapp for å bytte bruker"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:169 ../src/gnome-screensaver-dialog.c:170
-#: ../src/gnome-screensaver-dialog.c:171 ../src/gs-auth-pam.c:380
+#: ../src/gnome-screensaver-dialog.c:170 ../src/gnome-screensaver-dialog.c:171
+#: ../src/gnome-screensaver-dialog.c:172 ../src/gs-auth-pam.c:587
 msgid "Username:"
 msgstr "Brukernavn:"
 
-#: ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "Passord:"
+
+#: ../src/gnome-screensaver-dialog.c:175
 msgid "You are required to change your password immediately (password aged)"
 msgstr "Du må endre ditt passord nå (passordet er utløpt)"
 
-#: ../src/gnome-screensaver-dialog.c:175
+#: ../src/gnome-screensaver-dialog.c:176
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "Du må endre ditt passord nå (bestemt av administrator)"
 
-#: ../src/gnome-screensaver-dialog.c:176
+#: ../src/gnome-screensaver-dialog.c:177
 msgid "Your account has expired; please contact your system administrator"
 msgstr "Din konto har utgått; vennligst kontakt systemadministrator"
 
-#: ../src/gnome-screensaver-dialog.c:177
+#: ../src/gnome-screensaver-dialog.c:178
 msgid "No password supplied"
 msgstr "Ingen passord oppgitt"
 
-#: ../src/gnome-screensaver-dialog.c:178
+#: ../src/gnome-screensaver-dialog.c:179
 msgid "Password unchanged"
 msgstr "Passordet er ikke endret"
 
-#: ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:180
 msgid "Can not get username"
 msgstr "Kan ikke finne brukernavn"
 
-#: ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:181
 msgid "Retype new UNIX password:"
 msgstr "Skriv inn nytt UNIX-passord på nytt:"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:182
 msgid "Enter new UNIX password:"
 msgstr "Oppgi nytt UNIX-passord:"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:183
 msgid "(current) UNIX password:"
 msgstr "(aktivt) UNIX-passord:"
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "Error while changing NIS password."
 msgstr "Feil under endring av NIS-passord."
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "You must choose a longer password"
 msgstr "Du må velge et lenger passord"
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "Password has been already used. Choose another."
 msgstr "Passordet er allerede brukt. Velg et annet."
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:187
 msgid "You must wait longer to change your password"
 msgstr "Du må vente lenger før du endrer ditt passord"
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "Sorry, passwords do not match"
 msgstr "Beklager, passordene er ikke like"
 
-#: ../src/gnome-screensaver-dialog.c:250
+#: ../src/gnome-screensaver-dialog.c:254
 msgid "Checking..."
 msgstr "Sjekker..."
 
-#: ../src/gnome-screensaver-dialog.c:289 ../src/gs-auth-pam.c:320
+#: ../src/gnome-screensaver-dialog.c:296 ../src/gs-auth-pam.c:416
 msgid "Authentication failed."
 msgstr "Autentisering feilet."
 
-#: ../src/gnome-screensaver-preferences.c:447
+#: ../src/gnome-screensaver-preferences.c:459
 msgid "Blank screen"
 msgstr "Blank skjerm"
 
-#: ../src/gnome-screensaver-preferences.c:453
+#: ../src/gnome-screensaver-preferences.c:465
 msgid "Random"
 msgstr "Tilfeldig"
 
-#: ../src/gnome-screensaver-preferences.c:823
+#: ../src/gnome-screensaver-preferences.c:835
 msgid "Invalid screensaver theme"
 msgstr "Ugyldig tema for skjermsparer"
 
-#: ../src/gnome-screensaver-preferences.c:826
+#: ../src/gnome-screensaver-preferences.c:838
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Denne filen ser ikke ut til å være et gyldig tema for skjermsparer."
 
-#: ../src/gnome-screensaver-preferences.c:953
+#: ../src/gnome-screensaver-preferences.c:965
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d time"
 msgstr[1] "%d timer"
 
-#: ../src/gnome-screensaver-preferences.c:956
+#: ../src/gnome-screensaver-preferences.c:968
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minutt"
 msgstr[1] "%d minutter"
 
-#: ../src/gnome-screensaver-preferences.c:959
+#: ../src/gnome-screensaver-preferences.c:971
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -862,15 +877,15 @@ msgstr[0] "%d sekund"
 msgstr[1] "%d sekunder"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:965
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:968
-#: ../src/gnome-screensaver-preferences.c:976
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:988
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -878,22 +893,22 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:971
-#: ../src/gnome-screensaver-preferences.c:979
 #: ../src/gnome-screensaver-preferences.c:983
+#: ../src/gnome-screensaver-preferences.c:991
+#: ../src/gnome-screensaver-preferences.c:995
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:998
+#: ../src/gnome-screensaver-preferences.c:1010
 msgid "Never"
 msgstr "Aldri"
 
-#: ../src/gnome-screensaver-preferences.c:1383
+#: ../src/gnome-screensaver-preferences.c:1395
 msgid "Could not load the main interface"
 msgstr "Kunne ikke laste hovedbrukergrensesnittet"
 
-#: ../src/gnome-screensaver-preferences.c:1385
+#: ../src/gnome-screensaver-preferences.c:1397
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Vennligst se til at skjermspareren er skikkelig installert"
 
@@ -905,60 +920,60 @@ msgstr "Ikke kjør som tjeneste"
 msgid "Enable debugging code"
 msgstr "Aktiver avlusingskode"
 
-#: ../src/gs-auth-pam.c:262
+#: ../src/gs-auth-pam.c:356
 #, c-format
 msgid "Unable to establish service %s: %s\n"
 msgstr "Kan ikke etablere tjeneste %s: %s\n"
 
-#: ../src/gs-auth-pam.c:288
+#: ../src/gs-auth-pam.c:382
 #, c-format
 msgid "Can't set PAM_TTY=%s"
 msgstr "Kan ikke sette PAM_TTY=%s"
 
-#: ../src/gs-auth-pam.c:318
+#: ../src/gs-auth-pam.c:414
 msgid "Incorrect password."
 msgstr "Ugyldig passord."
 
-#: ../src/gs-auth-pam.c:334
+#: ../src/gs-auth-pam.c:430
 msgid "Not permitted to gain access at this time."
 msgstr "Ingen tillatelse til å aksessere ressursen nå."
 
-#: ../src/gs-auth-pam.c:340
+#: ../src/gs-auth-pam.c:436
 msgid "No longer permitted to access the system."
 msgstr "Tilgang til å aksessere systemet er fjernet."
 
-#: ../src/gs-listener-dbus.c:1635
+#: ../src/gs-listener-dbus.c:1766
 msgid "failed to register with the message bus"
 msgstr "klarte ikke å registrere hos meldingsbussen"
 
-#: ../src/gs-listener-dbus.c:1645
+#: ../src/gs-listener-dbus.c:1776
 msgid "not connected to the message bus"
 msgstr "ikke koblet til meldingsbussen"
 
-#: ../src/gs-listener-dbus.c:1654
+#: ../src/gs-listener-dbus.c:1785
 msgid "screensaver already running in this session"
 msgstr "skjermsparer kjører allerede i denne sesjonen"
 
-#: ../src/gs-lock-plug.c:323
+#: ../src/gs-lock-plug.c:331
 msgid "Time has expired."
 msgstr "Tiden har løpt ut."
 
-#: ../src/gs-lock-plug.c:351
+#: ../src/gs-lock-plug.c:359
 msgid "You have the Caps Lock key on."
 msgstr "Caps-Lock tasten er aktivert."
 
-#: ../src/gs-lock-plug.c:1402 ../src/gs-lock-plug.c:1439
+#: ../src/gs-lock-plug.c:1499 ../src/gs-lock-plug.c:1536
 msgid "S_witch User..."
 msgstr "_Bytt bruker..."
 
-#: ../src/gs-lock-plug.c:1410
+#: ../src/gs-lock-plug.c:1507
 msgid "Log _Out"
 msgstr "Logg _ut"
 
-#: ../src/gs-lock-plug.c:1601
+#: ../src/gs-lock-plug.c:1698
 msgid "%U on %h"
 msgstr "%U på %h"
 
-#: ../src/gs-lock-plug.c:1615
+#: ../src/gs-lock-plug.c:1712
 msgid "_Password:"
 msgstr "_Passord:"
