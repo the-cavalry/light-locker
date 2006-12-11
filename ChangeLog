@@ -1,5 +1,12 @@
 2006-12-11  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-fade.c: (xf86_whack_gamma), (gamma_info_init),
+	(gs_fade_init):
+	Make sure XF86_MIN_GAMMA is defined.  Add some debug.
+	May fix #373702
+
+2006-12-11  William Jon McCann  <mccann@jhu.edu>
+
 	* src/Makefile.am:
 	* src/debug-screensaver.sh:
 	Added script to help run gdb from outside

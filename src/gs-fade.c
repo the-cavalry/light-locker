@@ -46,6 +46,8 @@
 
 #include <X11/extensions/xf86vmode.h>
 
+#define XF86_MIN_GAMMA  0.1
+
 typedef struct {
         XF86VidModeGamma vmg;
         int              size;
@@ -168,7 +170,6 @@ xf86_whack_gamma (int              screen,
                 g2.green = info->vmg.green * ratio;
                 g2.blue  = info->vmg.blue  * ratio;
 
-# ifdef XF86_MIN_GAMMA
                 if (g2.red < XF86_MIN_GAMMA) {
                         g2.red = XF86_MIN_GAMMA;
                 }
@@ -178,7 +179,6 @@ xf86_whack_gamma (int              screen,
                 if (g2.blue < XF86_MIN_GAMMA) {
                         g2.blue = XF86_MIN_GAMMA;
                 }
-# endif
 
                 status = XF86VidModeSetGamma (GDK_DISPLAY (), screen, &g2);
         } else {
@@ -311,7 +311,11 @@ gamma_info_init (GSFade *fade)
                         if (! res) {
                                 goto FAIL;
                         }
-                        gs_debug ("Initialized gamma fade");
+                        gs_debug ("Initialized gamma fade for screen %d: %f %f %f",
+                                  screen,
+                                  info [screen].vmg.red,
+                                  info [screen].vmg.green,
+                                  info [screen].vmg.blue);
                 }
 
 # ifdef HAVE_XF86VMODE_GAMMA_RAMP
@@ -388,8 +392,6 @@ gamma_info_free (GSFade *fade)
 
 #endif /* HAVE_XF86VMODE_GAMMA */
 }
-
-#define XF86_MIN_GAMMA  0.1
 
 static gboolean
 gs_fade_set_alpha_gamma (GSFade *fade,
@@ -672,6 +674,8 @@ gs_fade_init (GSFade *fade)
         fade->priv->current_alpha = 1.0;
 
         fade->priv->fade_type = check_gamma_extension ();
+
+        gs_debug ("Fade type: %d", fade->priv->fade_type);
 
         display = gdk_display_get_default ();
         fade->priv->num_screens = gdk_display_get_n_screens (display);
