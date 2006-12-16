@@ -1095,11 +1095,6 @@ populate_model (GSLockPlug   *plug,
 
         gs_profile_start ("FUSA list users");
         if (! plug->priv->fusa_manager) {
-                if (! g_thread_supported ()) {
-                        gs_profile_start ("g_thread_init");
-                        g_thread_init (NULL);
-                        gs_profile_end ("g_thread_init");
-                }
                 gs_profile_start ("gnome_vfs_init");
                 gnome_vfs_init ();
                 gs_profile_end ("gnome_vfs_init");

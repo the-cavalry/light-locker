@@ -525,6 +525,10 @@ main (int    argc,
 
         gs_profile_start (NULL);
 
+        if (! g_thread_supported ()) {
+                g_thread_init (NULL);
+        }
+
         if (! privileged_initialization (&argc, argv, verbose)) {
                 response_lock_init_failed ();
                 exit (1);

@@ -1,3 +1,11 @@
+2006-12-16  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gnome-screensaver-dialog.c: (main):
+	* src/gs-lock-plug.c: (populate_model):
+	* src/test-passwd.c: (main):
+	Make sure to initialize threading now that
+	auth uses it.
+
 2006-12-11  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-fade.c: (xf86_whack_gamma), (gamma_info_init),

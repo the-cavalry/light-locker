@@ -223,9 +223,8 @@ main (int    argc,
         textdomain (GETTEXT_PACKAGE);
 #endif
 
-        if (error) {
-                fprintf (stderr, "%s\n", error->message);
-                exit (1);
+        if (! g_thread_supported ()) {
+                g_thread_init (NULL);
         }
 
         gs_auth_set_verbose (verbose);
