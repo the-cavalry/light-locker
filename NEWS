@@ -1,4 +1,25 @@
 ===============
+Version 2.17.4
+===============
+
+  gnome-screensaver
+
+        * Fix non-ramp gamma fading
+        * Add script to help debugging
+        * Be sure to initialize threading
+
+  Themes
+
+        * (slideshow) Check for empty file list
+
+  Translators
+
+        * Khaled Hosny (ar)
+        * Francisco Javier F. Serrador (es)
+        * Kjartan Maraas (nb)
+        * Theppitak Karoonboonyanan (th)
+
+===============
 Version 2.17.3
 ===============
 
