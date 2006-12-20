@@ -26,7 +26,6 @@ INCLUDES =							\
 	-DDATADIR=\""$(datadir)"\"				\
 	-DSYSCONFDIR=\""$(sysconfdir)"\" 			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"		\
-	-DG_LOG_DOMAIN=\"gnome-screensaver\"			\
 	-DSAVERDIR=\""$(saverdir)"\"				\
 	-DTHEMESDIR=\""$(themesdir)"\"				\
 	-DGLADEDIR=\"$(pkgdatadir)\"				\

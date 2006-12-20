@@ -1,3 +1,14 @@
+2006-12-20  William Jon McCann  <mccann@jhu.edu>
+
+	* src/Makefile.am:
+	Removed definition of log domain.
+
+	* src/gs-auth-pam.c: (gs_auth_queued_message_handler),
+	(gs_auth_run_message_handler), (pam_conversation),
+	(gs_auth_thread_func), (gs_auth_verify_user):
+	Add some verbosity.  Move the blocking of sigchild
+	back around pam_authenticate.
+
 2006-12-18  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump

@@ -181,13 +181,32 @@ auth_message_handler (GSAuthMessageStyle style,
 static gboolean
 gs_auth_queued_message_handler (GsAuthMessageHandlerData *data)
 {
+        gboolean res;
+
+        if (gs_auth_get_verbose ()) {
+                g_message ("Waiting for lock");
+        }
+
         g_mutex_lock (message_handler_mutex);
-        data->should_interrupt_stack = data->closure->cb_func (data->style,
-                                                               data->msg,
-                                                               data->resp,
-                                                               data->closure->cb_data) == FALSE;
+
+        if (gs_auth_get_verbose ()) {
+                g_message ("Waiting for response");
+        }
+
+        res = data->closure->cb_func (data->style,
+                                      data->msg,
+                                      data->resp,
+                                      data->closure->cb_data);
+
+        data->should_interrupt_stack = res == FALSE;
+
         g_cond_signal (message_handled_condition);
         g_mutex_unlock (message_handler_mutex);
+
+        if (gs_auth_get_verbose ()) {
+                g_message ("Got response");
+        }
+
         return FALSE;
 }
 
@@ -211,11 +230,19 @@ gs_auth_run_message_handler (struct pam_closure *c,
          */
         g_idle_add ((GSourceFunc) gs_auth_queued_message_handler, &data);
 
+        if (gs_auth_get_verbose ()) {
+                g_message ("Waiting for respose to message style %d: '%s'", style, msg);
+        }
+
         /* Wait for the response
          */
         g_cond_wait (message_handled_condition,
                      message_handler_mutex);
         g_mutex_unlock (message_handler_mutex);
+
+        if (gs_auth_get_verbose ()) {
+                g_message ("Got respose to message style %d: interrupt:%d", style, data.should_interrupt_stack);
+        }
 
         return data.should_interrupt_stack == FALSE;
 }
@@ -275,12 +302,20 @@ pam_conversation (int                        nmsgs,
                                       NULL);
 
                 if (c->cb_func != NULL) {
+                        if (gs_auth_get_verbose ()) {
+                                g_message ("Handling message style %d: '%s'", style, utf8_msg);
+                        }
+
  			/* blocks until the gui responds
   			 */
   			res = gs_auth_run_message_handler (c,
                                                            style,
   							   utf8_msg,
   							   &reply [replies].resp);
+
+                        if (gs_auth_get_verbose ()) {
+                                g_message ("Msg handler returned %d", res);
+                        }
 
                         /* If the handler returns FALSE - interrupt the PAM stack */
                         if (res) {
@@ -443,8 +478,25 @@ gs_auth_thread_func (int auth_operation_fd)
 {
         static const int flags = 0;
         int              status;
+        struct timespec  timeout;
+        sigset_t         set;
+
+        timeout.tv_sec = 0;
+        timeout.tv_nsec = 1;
+
+        set = block_sigchld ();
 
         status = pam_authenticate (pam_handle, flags);
+
+        sigtimedwait (&set, NULL, &timeout);
+        unblock_sigchld ();
+
+        if (gs_auth_get_verbose ()) {
+                g_print ("\n");
+                g_message ("   pam_authenticate (...) ==> %d (%s)",
+                           status,
+                           PAM_STRERROR (pam_handle, status));
+        }
 
         /* we're done, close the fd and wake up the main
          * loop
@@ -561,8 +613,6 @@ gs_auth_verify_user (const char       *username,
         int                status2;
         struct pam_conv    conv;
         struct pam_closure c;
-        sigset_t           set;
-        struct timespec    timeout;
         struct passwd     *pwent;
         const void        *p;
 
@@ -588,21 +638,8 @@ gs_auth_verify_user (const char       *username,
 
         PAM_NO_DELAY(pam_handle);
 
-        timeout.tv_sec = 0;
-        timeout.tv_nsec = 1;
-        set = block_sigchld ();
-
         did_we_ask_for_password = FALSE;
-        sigtimedwait (&set, NULL, &timeout);
-        unblock_sigchld ();
-
-        if (gs_auth_get_verbose ()) {
-                g_message ("   pam_authenticate (...) ==> %d (%s)",
-                           status,
-                           PAM_STRERROR (pam_handle, status));
-        }
-
-        if (!gs_auth_identify_user (pam_handle, &status)) {
+        if (! gs_auth_identify_user (pam_handle, &status)) {
                 goto DONE;
         }
 
