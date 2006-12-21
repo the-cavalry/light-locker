@@ -1,3 +1,9 @@
+2006-12-21  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-auth-pam.c: (gs_auth_thread_func),
+	(gs_auth_pam_verify_user), (gs_auth_verify_user):
+	Only make PAM calls in the auth thread.  Fixes #387572
+
 2006-12-20  William Jon McCann  <mccann@jhu.edu>
 
 	* src/Makefile.am:

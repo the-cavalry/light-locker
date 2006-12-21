@@ -478,8 +478,10 @@ gs_auth_thread_func (int auth_operation_fd)
 {
         static const int flags = 0;
         int              status;
+        int              status2;
         struct timespec  timeout;
         sigset_t         set;
+        const void      *p;
 
         timeout.tv_sec = 0;
         timeout.tv_nsec = 1;
@@ -492,12 +494,67 @@ gs_auth_thread_func (int auth_operation_fd)
         unblock_sigchld ();
 
         if (gs_auth_get_verbose ()) {
-                g_print ("\n");
                 g_message ("   pam_authenticate (...) ==> %d (%s)",
                            status,
                            PAM_STRERROR (pam_handle, status));
         }
 
+        if (status != PAM_SUCCESS) {
+                goto done;
+        }
+
+        if ((status = pam_get_item (pam_handle, PAM_USER, &p)) != PAM_SUCCESS) {
+                /* is not really an auth problem, but it will
+                   pretty much look as such, it shouldn't really
+                   happen */
+                goto done;
+        }
+
+        /* We don't actually care if the account modules fail or succeed,
+         * but we need to run them anyway because certain pam modules
+         * depend on side effects of the account modules getting run.
+         */
+        status2 = pam_acct_mgmt (pam_handle, 0);
+
+        if (gs_auth_get_verbose ()) {
+                g_message ("pam_acct_mgmt (...) ==> %d (%s)\n",
+                           status2,
+                           PAM_STRERROR (pam_handle, status2));
+        }
+
+        /* FIXME: should we handle these? */
+        switch (status2) {
+        case PAM_SUCCESS:
+                break;
+        case PAM_NEW_AUTHTOK_REQD:
+                break;
+        case PAM_AUTHINFO_UNAVAIL:
+                break;
+        case PAM_ACCT_EXPIRED:
+                break;
+        case PAM_PERM_DENIED:
+                break;
+        default :
+                break;
+        }
+
+        /* Each time we successfully authenticate, refresh credentials,
+           for Kerberos/AFS/DCE/etc.  If this fails, just ignore that
+           failure and blunder along; it shouldn't matter.
+
+           Note: this used to be PAM_REFRESH_CRED instead of
+           PAM_REINITIALIZE_CRED, but Jason Heiss <jheiss@ee.washington.edu>
+           says that the Linux PAM library ignores that one, and only refreshes
+           credentials when using PAM_REINITIALIZE_CRED.
+        */
+        status2 = pam_setcred (pam_handle, PAM_REINITIALIZE_CRED);
+        if (gs_auth_get_verbose ()) {
+                g_message ("   pam_setcred (...) ==> %d (%s)",
+                           status2,
+                           PAM_STRERROR (pam_handle, status2));
+        }
+
+ done:
         /* we're done, close the fd and wake up the main
          * loop
          */
@@ -517,8 +574,8 @@ gs_auth_loop_quit (GIOChannel  *source,
 }
 
 static gboolean
-gs_auth_identify_user (pam_handle_t *handle,
-		       int          *status)
+gs_auth_pam_verify_user (pam_handle_t *handle,
+                         int          *status)
 {
         GThread    *auth_thread;
         GIOChannel *channel;
@@ -610,11 +667,9 @@ gs_auth_verify_user (const char       *username,
                      GError          **error)
 {
         int                status = -1;
-        int                status2;
         struct pam_conv    conv;
         struct pam_closure c;
         struct passwd     *pwent;
-        const void        *p;
 
         pwent = getpwnam (username);
         if (pwent == NULL) {
@@ -631,7 +686,7 @@ gs_auth_verify_user (const char       *username,
         /* Initialize PAM. */
         create_pam_handle (username, display, &conv, &status);
         if (status != PAM_SUCCESS) {
-                goto DONE;
+                goto done;
         }
 
         pam_set_item (pam_handle, PAM_USER_PROMPT, _("Username:"));
@@ -639,62 +694,11 @@ gs_auth_verify_user (const char       *username,
         PAM_NO_DELAY(pam_handle);
 
         did_we_ask_for_password = FALSE;
-        if (! gs_auth_identify_user (pam_handle, &status)) {
-                goto DONE;
+        if (! gs_auth_pam_verify_user (pam_handle, &status)) {
+                goto done;
         }
 
-        if ((status = pam_get_item (pam_handle, PAM_USER, &p)) != PAM_SUCCESS) {
-                /* is not really an auth problem, but it will
-                   pretty much look as such, it shouldn't really
-                   happen */
-                goto DONE;
-        }
-
-        /* We don't actually care if the account modules fail or succeed,
-         * but we need to run them anyway because certain pam modules
-         * depend on side effects of the account modules getting run.
-         */
-        status2 = pam_acct_mgmt (pam_handle, 0);
-
-        if (gs_auth_get_verbose ()) {
-                g_message ("pam_acct_mgmt (...) ==> %d (%s)\n",
-                           status2,
-                           PAM_STRERROR (pam_handle, status2));
-        }
-
-        /* FIXME: should we handle these? */
-        switch (status2) {
-        case PAM_SUCCESS:
-                break;
-        case PAM_NEW_AUTHTOK_REQD:
-                break;
-        case PAM_AUTHINFO_UNAVAIL:
-                break;
-        case PAM_ACCT_EXPIRED:
-                break;
-        case PAM_PERM_DENIED:
-                break;
-        default :
-                break;
-        }
-
-        /* Each time we successfully authenticate, refresh credentials,
-           for Kerberos/AFS/DCE/etc.  If this fails, just ignore that
-           failure and blunder along; it shouldn't matter.
-
-           Note: this used to be PAM_REFRESH_CRED instead of
-           PAM_REINITIALIZE_CRED, but Jason Heiss <jheiss@ee.washington.edu>
-           says that the Linux PAM library ignores that one, and only refreshes
-           credentials when using PAM_REINITIALIZE_CRED.
-        */
-        status2 = pam_setcred (pam_handle, PAM_REINITIALIZE_CRED);
-        if (gs_auth_get_verbose ()) {
-                g_message ("   pam_setcred (...) ==> %d (%s)",
-                           status2,
-                           PAM_STRERROR (pam_handle, status2));
-        }
-
- DONE:
+ done:
         if (status != PAM_SUCCESS) {
                 set_pam_error (error, status);
         }
