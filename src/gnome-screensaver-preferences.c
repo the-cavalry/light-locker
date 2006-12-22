@@ -1196,11 +1196,12 @@ fullscreen_preview_start_cb (GtkWidget *widget,
         gtk_widget_hide (dialog);
 
         fullscreen_preview_window = glade_xml_get_widget (xml, "fullscreen_preview_window");
-        gtk_widget_show (fullscreen_preview_window);
-        gtk_widget_grab_focus (fullscreen_preview_window);
 
         gtk_window_fullscreen (GTK_WINDOW (fullscreen_preview_window));
         gtk_window_set_keep_above (GTK_WINDOW (fullscreen_preview_window), TRUE);
+
+        gtk_widget_show (fullscreen_preview_window);
+        gtk_widget_grab_focus (fullscreen_preview_window);
 
         fullscreen_preview_area = glade_xml_get_widget (xml, "fullscreen_preview_area");
         gs_job_set_widget (job, fullscreen_preview_area);

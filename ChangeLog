@@ -1,3 +1,9 @@
+2006-12-22  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gnome-screensaver-preferences.c (fullscreen_preview_start_cb):
+	Set fullscreen before showing.  Seems to workaround a bug
+	in some window managers and is better this way anyway.
+
 2006-12-21  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-auth-pam.c: (gs_auth_thread_func),
