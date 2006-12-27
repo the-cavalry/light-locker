@@ -1,21 +1,20 @@
-# translation of gnome-screensaver.gnome-2-16.ar.po to Arabic
+# translation of gnome-screensaver.HEAD.ar.po to Arabic
 #
 #
 # Djihed Afifi <djihed@gmail.com>, 2006.
 # Khaled Hosny <khaledhosny@eglug.org>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver.gnome-2-16.ar\n"
+"Project-Id-Version: gnome-screensaver.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-24 21:00+0000\n"
-"PO-Revision-Date: 2006-11-24 20:52+0200\n"
+"POT-Creation-Date: 2006-12-27 16:32+0000\n"
+"PO-Revision-Date: 2006-12-27 20:36+0200\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && "
-"n<=10 ? 2 : 3\n"
+"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n"
 "\n"
 "\n"
 "X-Generator: KBabel 1.11.4\n"
@@ -38,7 +37,7 @@ msgstr "<b>تنبيه: لا يتم قفل الشاشة للجذر.</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "Power _Management"
-msgstr ""
+msgstr "إ_دارة الطاقة"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "Regard the computer as _idle after:"
@@ -161,8 +160,7 @@ msgstr ""
 "الزر  \"logout_enable\" محددا إلى TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The number of minutes after screensaver activation before locking the screen."
+msgid "The number of minutes after screensaver activation before locking the screen."
 msgstr "عدد الدقائق بعد تفعيل حافظة الشاشة قبل قفل الشاشة."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
@@ -175,8 +173,7 @@ msgstr ""
 "فقط عندما يكون الزر  \"logout_enable\" محددا إلى TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
+msgid "The number of minutes of inactivity before the session is considered idle."
 msgstr "عدد الدقائق من السكون قبل اعتبار الجلسة ساكنة."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
@@ -187,7 +184,7 @@ msgstr "عدد الدقائق قبل تغيير سِمة حافظة الشاشة
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
-msgstr ""
+msgstr "عدد الثواني من الخمول قبل إرسال إشارة إلى إدارة الطاقة. يُضبط ويدار هذا المفتاح بواسطة عميل إدارة الطاقة."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
@@ -229,14 +226,12 @@ msgid "Time before logout option"
 msgstr "مدة الإنتظار قبل الخروج"
 
 #: ../data/gnome-screensaver.schemas.in.h:28
-#, fuzzy
 msgid "Time before power-management baseline"
-msgstr "مدة الإنتظار قبل استعمال السِّمة"
+msgstr "مدة الإنتظار قبل "
 
 #: ../data/gnome-screensaver.schemas.in.h:29
-#, fuzzy
 msgid "Time before session is considered idle"
-msgstr "عدد الدقائق من السكون قبل اعتبار الجلسة ساكنة."
+msgstr "مدة الإنتظار قبل اعتبار الجلسة ساكنة"
 
 #: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before theme change"
@@ -448,8 +443,7 @@ msgstr "خادم X الموجود في إعداد GDM غير موجود."
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
-msgstr ""
-"محاولة ضبط عملية تسجيل خروج مجهول، أو محاولة ضبط عملية تسجيل خروج غير متوفّرة."
+msgstr "محاولة ضبط عملية تسجيل خروج مجهول، أو محاولة ضبط عملية تسجيل خروج غير متوفّرة."
 
 #: ../src/cut-n-paste/fusa-manager.c:1484 ../src/cut-n-paste/gdmcomm.c:495
 msgid "Virtual terminals not supported."
@@ -574,8 +568,7 @@ msgstr ""
 "رجاء ثبّت حزمة Xnest لتستعمل التسجيل المعشش."
 
 #: ../src/cut-n-paste/gdmcomm.c:488
-msgid ""
-"The X server is not available, it is likely that gdm is badly configured."
+msgid "The X server is not available, it is likely that gdm is badly configured."
 msgstr "خادم X غير متاح، ربما لم يُعَدّ gdm بصحة."
 
 #: ../src/cut-n-paste/gdmcomm.c:497
@@ -673,9 +666,8 @@ msgid "Query the state of the screensaver"
 msgstr "أظهر حالة حافظة الشاشة"
 
 #: ../src/gnome-screensaver-command.c:66
-#, fuzzy
 msgid "Query the length of time the screensaver has been active"
-msgstr "أظهر حالة حافظة الشاشة"
+msgstr "استعلم عن مدّة الزمن التي كانت فيها حافظة الشاشة نشطة"
 
 #: ../src/gnome-screensaver-command.c:68
 msgid "Tells the running screensaver process to lock the screen immediately"
@@ -730,9 +722,9 @@ msgid "inactive"
 msgstr "غير نشط"
 
 #: ../src/gnome-screensaver-command.c:274
-#, fuzzy, c-format
+#, c-format
 msgid "The screensaver has been active for %d seconds.\n"
-msgstr "حافظة الشاشة هي %s\n"
+msgstr "حافظة الشاشة نشِطة منذ %d ثواني.\n"
 
 #: ../src/gnome-screensaver-dialog.c:52
 msgid "Show debugging output"
@@ -970,5 +962,3 @@ msgstr "%U على %h"
 msgid "_Password:"
 msgstr "_كلمة السر:"
 
-#~ msgid "Time before activation"
-#~ msgstr "مدة الإنتظار قبل التفعيل"
