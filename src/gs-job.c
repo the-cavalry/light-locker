@@ -250,7 +250,8 @@ get_env_vars (GtkWidget *widget)
                 "XAUTHORITY",
                 "XAUTHLOCALHOSTNAME",
                 "LANG",
-                "LANGUAGE"
+                "LANGUAGE",
+                "DBUS_SESSION_BUS_ADDRESS"
         };
 
         env = g_ptr_array_new ();

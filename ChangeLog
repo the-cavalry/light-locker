@@ -1,3 +1,9 @@
+2007-01-05  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-job.c (get_env_vars):
+	Pass DBUS_SESSION_BUS_ADDRESS to jobs.
+	Fixes #392780
+
 2006-12-22  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-preferences.c (fullscreen_preview_start_cb):
