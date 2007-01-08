@@ -1,3 +1,23 @@
+
+===============
+Version 2.17.5
+===============
+
+  gnome-screensaver
+
+        * Fix some PAM threading issues
+        * Fixed #387572, auth hangs when password is expired
+        * Fixed #392780, Pass DBUS_SESSION_BUS_ADDRESS into hack environment
+
+  Translators
+
+        * Updated lv: Raivis Dejus
+        * Updated et: Priit Laes
+        * Updated ar: Djihed Afifi <djihed@gmail.com>
+        * Updated en_GB: British
+        * Updated vi: Clytie Siddall
+
+
 ===============
 Version 2.17.4
 ===============

@@ -247,6 +247,9 @@ main (int    argc,
                 exit (1);
         }
 
+ again:
+        error = NULL;
+
         if (gs_auth_verify_user (g_get_user_name (), g_getenv ("DISPLAY"), auth_message_handler, NULL, &error)) {
                 printf ("Correct!\n");
         } else {
@@ -255,6 +258,7 @@ main (int    argc,
                         g_error_free (error);
                 }
                 printf ("Incorrect\n");
+                goto again;
         }
 
 	return 0;
