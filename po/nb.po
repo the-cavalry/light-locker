@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 2.16.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-11 01:42+0100\n"
-"PO-Revision-Date: 2006-12-11 01:43+0100\n"
+"POT-Creation-Date: 2007-01-12 00:13+0100\n"
+"PO-Revision-Date: 2007-01-12 00:14+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -258,7 +258,7 @@ msgstr "<span size=\"small\">%U på %h</span>"
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5 ../src/gs-lock-plug.c:1788
+#: ../data/lock-dialog-default.glade.h:5 ../src/gs-lock-plug.c:1783
 msgid "S_witch to user:"
 msgstr "B_ytt til bruker:"
 
@@ -278,7 +278,7 @@ msgstr "_Bytt bruker..."
 msgid "_Switch user..."
 msgstr "_Bytt bruker..."
 
-#: ../data/lock-dialog-default.glade.h:10 ../src/gs-lock-plug.c:1517
+#: ../data/lock-dialog-default.glade.h:10 ../src/gs-lock-plug.c:1512
 msgid "_Unlock"
 msgstr "Lå_s opp"
 
@@ -691,7 +691,7 @@ msgstr "Spør hvor lenge skjermspareren har vært aktiv"
 
 #: ../src/gnome-screensaver-command.c:68
 msgid "Tells the running screensaver process to lock the screen immediately"
-msgstr "Tvinger kjørende spermsparer til å låse skjermen omgående"
+msgstr "Tvinger kjørende skjermsparer til å låse skjermen omgående"
 
 #: ../src/gnome-screensaver-command.c:70
 msgid "If the screensaver is active then switch to another graphics demo"
@@ -766,7 +766,7 @@ msgstr "Vis knapp for å bytte bruker"
 
 #. login: is whacked always translate to Username:
 #: ../src/gnome-screensaver-dialog.c:170 ../src/gnome-screensaver-dialog.c:171
-#: ../src/gnome-screensaver-dialog.c:172 ../src/gs-auth-pam.c:587
+#: ../src/gnome-screensaver-dialog.c:172 ../src/gs-auth-pam.c:692
 msgid "Username:"
 msgstr "Brukernavn:"
 
@@ -835,7 +835,7 @@ msgstr "Beklager, passordene er ikke like"
 msgid "Checking..."
 msgstr "Sjekker..."
 
-#: ../src/gnome-screensaver-dialog.c:296 ../src/gs-auth-pam.c:416
+#: ../src/gnome-screensaver-dialog.c:296 ../src/gs-auth-pam.c:451
 msgid "Authentication failed."
 msgstr "Autentisering feilet."
 
@@ -904,11 +904,11 @@ msgstr "%s"
 msgid "Never"
 msgstr "Aldri"
 
-#: ../src/gnome-screensaver-preferences.c:1395
+#: ../src/gnome-screensaver-preferences.c:1396
 msgid "Could not load the main interface"
 msgstr "Kunne ikke laste hovedbrukergrensesnittet"
 
-#: ../src/gnome-screensaver-preferences.c:1397
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Vennligst se til at skjermspareren er skikkelig installert"
 
@@ -920,25 +920,25 @@ msgstr "Ikke kjør som tjeneste"
 msgid "Enable debugging code"
 msgstr "Aktiver avlusingskode"
 
-#: ../src/gs-auth-pam.c:356
+#: ../src/gs-auth-pam.c:391
 #, c-format
 msgid "Unable to establish service %s: %s\n"
 msgstr "Kan ikke etablere tjeneste %s: %s\n"
 
-#: ../src/gs-auth-pam.c:382
+#: ../src/gs-auth-pam.c:417
 #, c-format
 msgid "Can't set PAM_TTY=%s"
 msgstr "Kan ikke sette PAM_TTY=%s"
 
-#: ../src/gs-auth-pam.c:414
+#: ../src/gs-auth-pam.c:449
 msgid "Incorrect password."
 msgstr "Ugyldig passord."
 
-#: ../src/gs-auth-pam.c:430
+#: ../src/gs-auth-pam.c:465
 msgid "Not permitted to gain access at this time."
 msgstr "Ingen tillatelse til å aksessere ressursen nå."
 
-#: ../src/gs-auth-pam.c:436
+#: ../src/gs-auth-pam.c:471
 msgid "No longer permitted to access the system."
 msgstr "Tilgang til å aksessere systemet er fjernet."
 
@@ -962,18 +962,18 @@ msgstr "Tiden har løpt ut."
 msgid "You have the Caps Lock key on."
 msgstr "Caps-Lock tasten er aktivert."
 
-#: ../src/gs-lock-plug.c:1499 ../src/gs-lock-plug.c:1536
+#: ../src/gs-lock-plug.c:1494 ../src/gs-lock-plug.c:1531
 msgid "S_witch User..."
 msgstr "_Bytt bruker..."
 
-#: ../src/gs-lock-plug.c:1507
+#: ../src/gs-lock-plug.c:1502
 msgid "Log _Out"
 msgstr "Logg _ut"
 
-#: ../src/gs-lock-plug.c:1698
+#: ../src/gs-lock-plug.c:1693
 msgid "%U on %h"
 msgstr "%U på %h"
 
-#: ../src/gs-lock-plug.c:1712
+#: ../src/gs-lock-plug.c:1707
 msgid "_Password:"
 msgstr "_Passord:"
