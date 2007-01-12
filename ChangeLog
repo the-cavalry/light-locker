@@ -1,3 +1,11 @@
+2007-01-12  Thomas Wood  <thos@gnome.org>
+
+	Patch by: Denis Washington <dwashington@gmx.net>
+
+	* data/gnome-screensaver-preferences.desktop.in: Categorize
+	gnome-screensaver-preferences for the control center shell. Fixes bug
+	395503.
+
 2007-01-10  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac (set_more_warnings): Update from CVS to .svn
