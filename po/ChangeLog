@@ -1,3 +1,7 @@
+2007-01-30  William Jon McCann  <mccann@jhu.edu>
+
+	* POTFILES.in: Removed deleted file
+
 2007-01-26  Josep Puigdemont i Casamajó  <josep.puigdemont@gmail.com>
 
 	* ca.po: Updated Catalan translation.
