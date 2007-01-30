@@ -119,6 +119,12 @@ void         fusa_manager_new_xnest             (FusaManager                *man
 /* Errors */
 GQuark       fusa_manager_dm_error_get_quark    (void) G_GNUC_CONST;
 
+/* Class methods */
+void
+fusa_manager_request_update_displays (FusaManager *manager,
+    FusaManagerDisplayCallback callback,
+    gpointer *data);
+
 G_END_DECLS
 
 #endif /* !__FUSA_MANAGER_H__ */

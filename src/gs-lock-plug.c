@@ -218,14 +218,28 @@ switch_user_response (GSLockPlug *plug)
                                          &model,
                                          &iter);
         gtk_tree_model_get (model, &iter, USER_NAME_COLUMN, &name, -1);
-        if (name
+
+        gs_debug ("Switch user response user:'%s'", name);
+
+        if (name != NULL
             && strcmp (name, "__new_user") != 0
             && strcmp (name, "__separator") != 0) {
                 user = fusa_manager_get_user (plug->priv->fusa_manager, name);
                 displays = fusa_user_get_displays (user);
-                if (displays) {
+
+                if (displays != NULL) {
+                        GSList *l;
+
                         /* FIXME: just pick the first one for now */
                         display = displays->data;
+
+                        l = displays;
+                        while (l != NULL) {
+                                gs_debug ("Display console %d", fusa_display_get_console (l->data));
+                                l = l->next;
+                        }
+
+                        g_slist_free (displays);
                 }
         }
 
@@ -1074,24 +1088,77 @@ user_displays_changed_cb (FusaUser           *user,
 }
 
 static void
-populate_model (GSLockPlug   *plug,
-                GtkListStore *store)
+plug_add_user (GSLockPlug *plug,
+               FusaUser   *user)
 {
-        GtkTreeIter   iter;
-        GSList       *users;
-        GdkPixbuf    *pixbuf;
-        int           icon_size = FACE_ICON_SIZE;
-        GtkIconTheme *theme;
+        gboolean            is_active;
+        guint               n_displays;
+        DisplayChangedData *ddata;
+        char               *label;
+        GtkTreeIter         iter;
+        GtkTreeModel       *filter_model;
+        GtkTreeModel       *model;
+        GdkPixbuf          *pixbuf;
+        int                 icon_size = FACE_ICON_SIZE;
 
-        gs_profile_start (NULL);
+        filter_model = gtk_tree_view_get_model (GTK_TREE_VIEW (plug->priv->switch_user_treeview));
+        model = gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (filter_model));
 
-        if (gtk_widget_has_screen (plug->priv->switch_user_treeview)) {
-                theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (plug->priv->switch_user_treeview));
-        } else {
-                theme = gtk_icon_theme_get_default ();
+        /* skip the current user */
+        if (fusa_user_get_uid (user) == getuid ()) {
+                return;
         }
 
-        pixbuf = gtk_icon_theme_load_icon (theme, "gdm", icon_size, 0, NULL);
+        n_displays = fusa_user_get_n_displays (user);
+        is_active = n_displays > 0;
+
+        pixbuf = fusa_user_render_icon (user, plug->priv->switch_user_treeview, icon_size);
+
+        label = get_user_display_label (user);
+
+        gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+        gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                            USER_NAME_COLUMN, fusa_user_get_user_name (user),
+                            REAL_NAME_COLUMN, fusa_user_get_display_name (user),
+                            DISPLAY_LABEL_COLUMN, label,
+                            ACTIVE_COLUMN, is_active,
+                            PIXBUF_COLUMN, pixbuf,
+                            -1);
+
+        g_free (label);
+
+        ddata = g_new0 (DisplayChangedData, 1);
+        ddata->iter = iter;
+        ddata->tree = plug->priv->switch_user_treeview;
+
+        g_signal_connect_data (user, "displays-changed",
+                               G_CALLBACK (user_displays_changed_cb), ddata,
+                               (GClosureNotify) g_free, 0);
+}
+
+static void
+user_added_cb (FusaManager *manager,
+	       FusaUser    *user,
+               GSLockPlug  *plug)
+{
+        gs_debug ("User added: %d", fusa_user_get_uid (user));
+        plug_add_user (plug, user);
+}
+
+static void
+user_removed_cb (FusaManager *manager,
+                 FusaUser    *user,
+                 GSLockPlug  *plug)
+{
+        gs_debug ("User removed: %d", fusa_user_get_uid (user));
+}
+
+static void
+populate_model (GSLockPlug *plug)
+{
+        GSList *users;
+
+        gs_profile_start (NULL);
 
         gs_profile_start ("FUSA list users");
         if (! plug->priv->fusa_manager) {
@@ -1104,52 +1171,27 @@ populate_model (GSLockPlug   *plug,
                 gs_profile_end ("fusa_manager_ref_default");
         }
 
+        fusa_manager_request_update_displays (plug->priv->fusa_manager, NULL, NULL);
+
         users = fusa_manager_list_users (plug->priv->fusa_manager);
         gs_profile_end ("FUSA list users");
 
-        while (users) {
-                FusaUser           *user;
-                gboolean            is_active;
-                guint               n_displays;
-                DisplayChangedData *ddata;
-                char               *label;
+        while (users != NULL) {
+                FusaUser *user;
 
                 user = users->data;
 
-                /* skip the current user */
-                if (fusa_user_get_uid (user) == getuid ()) {
-                        users = g_slist_delete_link (users, users);
-                        continue;
-                }
+                gs_debug ("Found user: %d", fusa_user_get_uid (user));
 
-                n_displays = fusa_user_get_n_displays (user);
-                is_active = n_displays > 0;
-
-                pixbuf = fusa_user_render_icon (user, plug->priv->switch_user_treeview, icon_size);
-
-                label = get_user_display_label (user);
-
-                gtk_list_store_append (store, &iter);
-                gtk_list_store_set (store, &iter,
-                                    USER_NAME_COLUMN, fusa_user_get_user_name (user),
-                                    REAL_NAME_COLUMN, fusa_user_get_display_name (user),
-                                    DISPLAY_LABEL_COLUMN, label,
-                                    ACTIVE_COLUMN, is_active,
-                                    PIXBUF_COLUMN, pixbuf,
-                                    -1);
-
-                g_free (label);
-
-                ddata = g_new0 (DisplayChangedData, 1);
-                ddata->iter = iter;
-                ddata->tree = plug->priv->switch_user_treeview;
-
-                g_signal_connect_data (user, "displays-changed",
-                                       G_CALLBACK (user_displays_changed_cb), ddata,
-                                       (GClosureNotify) g_free, 0);
+                plug_add_user (plug, user);
 
                 users = g_slist_delete_link (users, users);
         }
+
+        g_signal_connect (plug->priv->fusa_manager, "user-added",
+                          G_CALLBACK (user_added_cb), plug);
+        g_signal_connect (plug->priv->fusa_manager, "user-removed",
+                          G_CALLBACK (user_removed_cb), plug);
 
         gs_profile_end (NULL);
 }
@@ -1308,7 +1350,6 @@ setup_treeview (GSLockPlug *plug)
                                     G_TYPE_STRING,
                                     G_TYPE_BOOLEAN,
                                     GDK_TYPE_PIXBUF);
-        populate_model (plug, store);
 
         filter = gtk_tree_model_filter_new (GTK_TREE_MODEL (store), NULL);
 
@@ -1352,6 +1393,8 @@ setup_treeview (GSLockPlug *plug)
         g_signal_connect (GTK_TREE_VIEW (plug->priv->switch_user_treeview),
                           "row-activated",
                           G_CALLBACK (row_activated_cb), plug);
+
+        populate_model (plug);
 
         gs_profile_end (NULL);
 }

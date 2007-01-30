@@ -32,7 +32,9 @@
 
 #include <X11/Xauth.h>
 #include <X11/Xlib.h>
+#ifdef WITH_XNEST
 #include <X11/Xmu/WinUtil.h>
+#endif
 
 #include <gdk/gdkx.h>
 
@@ -42,14 +44,13 @@
 
 #include <libgnomevfs/gnome-vfs-ops.h>
 
-#include "gdmcomm.h"
+#include "gdm-queue.h"
 #include "fusa-utils.h"
 #include "fusa-display-private.h"
 #include "fusa-user-private.h"
 
 #include "fusa-manager-private.h"
 
-#define DISABLE_XNEST 1
 
 /* **************** *
  *  Private Macros  *
@@ -106,25 +107,6 @@ enum
   LAST_SIGNAL
 };
 
-typedef enum
-{
-  OP_UPDATE_DISPLAYS,
-  OP_NEW_CONSOLE,
-  OP_NEW_XNEST,
-  OP_ACTIVATE_DISPLAY
-}
-OpType;
-
-typedef enum
-{
-  OP_RESULT_DISPLAY_UPDATES,
-  OP_RESULT_DISPLAY_ACTIVATED,
-  OP_RESULT_NEW_DISPLAY,
-  OP_RESULT_ERROR
-}
-OpResultType;
-
-
 /* ******************** *
  *  Private Structures  *
  * ******************** */
@@ -144,7 +126,6 @@ struct _FusaManager
   GnomeVFSMonitorHandle *gdmconfig_monitor;
   GnomeVFSMonitorHandle *passwd_monitor;
   GnomeVFSMonitorHandle *shells_monitor;
-  GAsyncQueue *results_q;
   guint results_pull_id;
   guint update_displays_id;
 
@@ -158,6 +139,10 @@ struct _FusaManager
   guint8 allow_root  : 1;
   guint8 relax_group : 1;
   guint8 relax_other : 1;
+
+  /* Dirty flags */
+  guint8 users_dirty : 1;
+  guint8 icons_dirty : 1;
 };
 
 typedef struct _FusaManagerClass
@@ -185,62 +170,22 @@ typedef struct _DisplayUpdate
 }
 DisplayUpdate;
 
-typedef struct _DisplayClosure
-{
-  FusaManagerDisplayCallback func;
-  gpointer data;
-  GDestroyNotify notify;
-}
-DisplayClosure;
-
-typedef struct _Op
-{
-  FusaManager *manager;
-  FusaDisplay *display;
-  GdkScreen *screen;
-  gint console;
-  DisplayClosure *closure;
-
-  OpType type:3;
-}
-Op;
-
-typedef union _OpResult
-{
-  OpResultType type;
-
-  struct {
-    OpResultType type;
-    DisplayUpdate *items;
-    guint n_items;
-  } updates;
-
-  struct {
-    OpResultType type;
-    DisplayClosure *closure;
-    gchar *name;
-  } new;
-
-  struct {
-    OpResultType type;
-    DisplayClosure *closure;
-    FusaDisplay *display;
-  } activate;
-
-  struct {
-    OpResultType type;
-    DisplayClosure *closure;
-    GError *error;
-  } error;
-}
-OpResult;
-
 typedef struct _CleanDisplaysData
 {
   FusaManager *manager;
   GSList *displays;
 }
 CleanDisplaysData;
+
+typedef struct _FusaManagerWithCallback
+{
+  FusaManager *manager;
+  FusaManagerDisplayCallback callback;
+  FusaDisplay *display_for_callback;
+  gchar *name_of_display;
+  gpointer data_for_callback;
+}
+FusaManagerWithCallback;
 
 
 /* ********************* *
@@ -279,38 +224,19 @@ static void            emit_user_icon_changed_signals (gpointer      key,
 static inline gboolean strv_equals_string_table       (gchar       **strv,
 						       GHashTable   *table);
 static void            reload_gdm_config              (FusaManager  *manager,
-						       gboolean     *users_dirty,
-						       gboolean     *icons_dirty);
+                                                       gboolean      force_reload);
 static void            reload_shells                  (FusaManager  *manager);
 static void            reload_passwd                  (FusaManager  *manager);
 
-/* Displays - Main Thread Functions */
-static void        op_result_free            (OpResult                   *result);
-static inline void process_display_updates   (FusaManager                *manager,
-					      OpResult                   *result);
-static gboolean    results_pull_func         (gpointer                    data);
-static gboolean    push_update_displays_func (gpointer                    data);
-static void        push_dm_op                (FusaManager                *manager,
-					      OpType                      type,
-					      GdkScreen                  *screen,
-					      FusaDisplay                *display,
-					      FusaManagerDisplayCallback  func,
-					      gpointer                    data,
-					      GDestroyNotify              notify);
+static FusaManagerWithCallback* new_fusa_manager_with_callback(FusaManager *manager,
+    FusaManagerDisplayCallback callback,
+    FusaDisplay *display_for_callback,
+    gpointer data_for_callback);
 
-/* Displays - IO Thread Functions */
-static void        push_new_result       (FusaManager *manager,
-					  Op          *op,
-					  const gchar *name);
-static void        push_error_result     (FusaManager *manager,
-					  Op          *op,
-					  const gchar *result);
-static gboolean    dm_op_update_displays (FusaManager *manager);
-static inline void dm_op_new_console     (FusaManager *manager,
-					  Op          *op);
-static inline void dm_op_new_xnest       (FusaManager *manager,
-					  Op          *op);
-static gpointer    dm_op_threadfunc      (gpointer     data);
+/* Displays - Main Thread Functions */
+static inline void process_display_updates   (FusaManager                *manager,
+                                              DisplayUpdate              *items,
+                                              guint                      n_items);
 
 /* Utility Functions */
 static void         listify_hash_values_hfunc (gpointer      key,
@@ -322,14 +248,16 @@ static gboolean     clear_hash_table_hrfunc   (gpointer      key,
 static FusaDisplay *real_get_display          (FusaManager  *manager,
 					       const gchar  *name);
 
+static void
+gdm_callback_update_displays (GdmResultState is_ok,
+			      const gchar *answer, gpointer manager);
+
 /* ****************** *
  *  Global Variables  *
  * ****************** */
 
 static guint          signals[LAST_SIGNAL] = { 0 };
 static gpointer       default_manager = NULL;
-static GThread       *dm_op_thread = NULL;
-static GAsyncQueue   *op_q = NULL;
 static gchar         *default_config_file = NULL;
 
 
@@ -343,13 +271,27 @@ G_DEFINE_TYPE (FusaManager, fusa_manager, G_TYPE_OBJECT);
 /* ********************** *
  *  GType Initialization  *
  * ********************** */
+static void gdm_callback_config_file(GdmResultState is_ok,
+    const gchar *answer, gpointer dummy)
+{
+  if (is_ok == GDM_RESULT_OK &&
+      (!default_config_file ||
+       strcmp (answer, default_config_file) != 0))
+    {
+    if (default_config_file)
+      g_free (default_config_file);
+
+    default_config_file = g_strdup (answer);
+    }
+}
 
 static void
 fusa_manager_class_init (FusaManagerClass *class)
 {
   GObjectClass *gobject_class;
-  GError *err;
+#if 0
   gchar *config_result;
+#endif
 
   gobject_class = G_OBJECT_CLASS (class);
 
@@ -388,38 +330,7 @@ fusa_manager_class_init (FusaManagerClass *class)
 		  g_cclosure_marshal_VOID__OBJECT,
 		  G_TYPE_NONE, 1, FUSA_TYPE_DISPLAY);
 
-  /* Classwide Variables */
-  op_q = g_async_queue_new ();
-  /*sleep (1);*/
-  err = NULL;
-  dm_op_thread = g_thread_create (dm_op_threadfunc, NULL, FALSE, &err);
-  if (!dm_op_thread)
-    {
-      g_error ("Could not create a thread to contact the display manager: %s",
-	       err->message);
-      exit (-1);
-    }
-
-  config_result = gdmcomm_call_gdm (GDM_SUP_GET_CONFIG_FILE, NULL, MINIMAL_GDM_VERSION, 1);
-
-  if (config_result)
-    {
-      if (strncmp (config_result, "OK ", 3) == 0)
-        {
-	  config_result = g_strstrip (config_result);
-	  
-	  if (!default_config_file ||
-	      strcmp (config_result + 3, default_config_file) != 0)
-	    {
-              if (default_config_file)
-                g_free (default_config_file);
-
-              default_config_file = g_strdup (config_result + 3);
-	    }
-	}
-
-      g_free (config_result);
-    }
+  ask_gdm(gdm_callback_config_file, NULL, GDM_CMD_GET_CONFIG_FILE);
 }
 
 static void
@@ -432,7 +343,7 @@ fusa_manager_init (FusaManager *manager)
   /* GDM config file */
   manager->exclusions = g_hash_table_new_full (g_str_hash, g_str_equal,
 					       g_free, NULL);
-  reload_gdm_config (manager, NULL, NULL);
+  reload_gdm_config (manager, FALSE);
   error = NULL;
   uri = g_filename_to_uri (GDMCONFIGFILE, NULL, &error);
   if (!uri)
@@ -482,7 +393,6 @@ fusa_manager_init (FusaManager *manager)
     g_hash_table_new_full (g_str_hash, g_str_equal,
 			   g_free, (GDestroyNotify) g_object_run_dispose);
   manager->users_by_uid = g_hash_table_new (NULL, NULL);
-  reload_passwd (manager);
   error = NULL;
   uri = g_filename_to_uri ("/etc/passwd", NULL, &error);
   if (!uri)
@@ -509,13 +419,20 @@ fusa_manager_init (FusaManager *manager)
     g_hash_table_new_full (g_str_hash, g_str_equal,
 			   g_free, (GDestroyNotify) g_object_run_dispose);
   manager->displays_by_console = g_hash_table_new (NULL, NULL);
-  manager->results_q = g_async_queue_new ();
-  push_update_displays_func (manager);
-  manager->update_displays_id =
-    g_timeout_add_full (G_PRIORITY_LOW, 5000, push_update_displays_func,
-			manager, NULL);
+
+  manager->users_dirty = FALSE;
+  manager->icons_dirty = FALSE;
 }
 
+void
+fusa_manager_request_update_displays (FusaManager *manager,
+				      FusaManagerDisplayCallback callback,
+				      gpointer *data)
+{
+  ask_gdm (gdm_callback_update_displays,
+	   new_fusa_manager_with_callback (manager, callback, NULL, data),
+	   GDM_CMD_CONSOLE_SERVERS);
+}
 
 /* ******************* *
  *  GObject Functions  *
@@ -525,7 +442,6 @@ static void
 fusa_manager_finalize (GObject *object)
 {
   FusaManager *manager;
-  OpResult *result;
 
   manager = FUSA_MANAGER (object);
 
@@ -534,14 +450,6 @@ fusa_manager_finalize (GObject *object)
 
   if (manager->results_pull_id)
     g_source_remove (manager->results_pull_id);
-
-  result = g_async_queue_try_pop (manager->results_q);
-  while (result)
-    {
-      op_result_free (result);
-      result = g_async_queue_try_pop (manager->results_q);
-    }
-  g_async_queue_unref (manager->results_q);
 
   g_hash_table_destroy (manager->displays);
   g_hash_table_destroy (manager->displays_by_console);
@@ -573,21 +481,16 @@ gdmconfig_monitor_cb (GnomeVFSMonitorHandle    *handle,
 		      GnomeVFSMonitorEventType  event_type,
 		      gpointer                  data)
 {
-  gboolean users_dirty, icons_dirty;
+  FusaManager *manager = data;
 
-  if (event_type != GNOME_VFS_MONITOR_EVENT_CHANGED)
+  if (event_type != GNOME_VFS_MONITOR_EVENT_CHANGED &&
+      event_type != GNOME_VFS_MONITOR_EVENT_CREATED)
     return;
+  
+  manager->users_dirty = FALSE;
+  manager->icons_dirty = FALSE;
 
-  users_dirty = FALSE;
-  icons_dirty = FALSE;
-  reload_gdm_config (data, &users_dirty, &icons_dirty);
-
-  if (users_dirty)
-    reload_passwd (data);
-
-  if (icons_dirty)
-    g_hash_table_foreach (FUSA_MANAGER (data)->users,
-			  emit_user_icon_changed_signals, NULL);
+  reload_gdm_config (data, TRUE);
 }
 
 static void
@@ -597,7 +500,8 @@ shells_monitor_cb (GnomeVFSMonitorHandle    *handle,
 		   GnomeVFSMonitorEventType  event_type,
 		   gpointer                  data)
 {
-  if (event_type != GNOME_VFS_MONITOR_EVENT_CHANGED)
+  if (event_type != GNOME_VFS_MONITOR_EVENT_CHANGED &&
+      event_type != GNOME_VFS_MONITOR_EVENT_CREATED)
     return;
 
   reload_shells (data);
@@ -611,12 +515,30 @@ passwd_monitor_cb (GnomeVFSMonitorHandle    *handle,
 		   GnomeVFSMonitorEventType  event_type,
 		   gpointer                  user_data)
 {
-  if (event_type != GNOME_VFS_MONITOR_EVENT_CHANGED)
+  if (event_type != GNOME_VFS_MONITOR_EVENT_CHANGED &&
+      event_type != GNOME_VFS_MONITOR_EVENT_CREATED)
     return;
 
   reload_passwd (user_data);
 }
 
+static FusaManagerWithCallback*
+new_fusa_manager_with_callback(
+  FusaManager *manager,
+  FusaManagerDisplayCallback callback,
+  FusaDisplay *display_for_callback,
+  gpointer data_for_callback)
+{
+  FusaManagerWithCallback *result = g_new0(FusaManagerWithCallback, 1);
+
+  result->manager = manager;
+  result->callback = callback;
+  result->display_for_callback = display_for_callback;
+  result->name_of_display = NULL;
+  result->data_for_callback = data_for_callback;
+
+  return result;
+}
 
 /* ************************ *
  *  User Updates Functions  *
@@ -692,42 +614,6 @@ check_user_file (const gchar *filename,
   return TRUE;
 }
 
-/* Returns TRUE if found/valid */
-static gboolean
-get_gdm_minimal_uid (FusaManager *manager,
-		     GKeyFile    *key_file,
-		     gboolean    *users_dirty)
-{
-  gboolean retval;
-  gchar *tmp;
-
-  if (!key_file)
-    return FALSE;
-
-  retval = FALSE;
-  tmp = g_key_file_get_value (key_file, "greeter", "MinimalUID", NULL);
-  if (tmp)
-    {
-      uid_t tmp_uid;
-
-      tmp_uid = strtoul (tmp, NULL, 10);
-      g_free (tmp);
-
-      if (tmp_uid != ULONG_MAX)
-	{
-	  if (tmp_uid != manager->minimal_uid)
-	    {
-	      manager->minimal_uid = tmp_uid;
-	      if (users_dirty)
-		*users_dirty = TRUE;
-	    }
-
-	  retval = TRUE;
-	}
-    }
-
-  return retval;
-}
 
 /* Returns TRUE if changed */
 static gboolean
@@ -761,256 +647,140 @@ merge_gdm_exclusions (FusaManager  *manager,
   return TRUE;
 }
 
-/* Returns TRUE if found */
-static gboolean
-get_gdm_exclude (FusaManager *manager,
-		 GKeyFile    *key_file,
-		 const gchar *exclude_default[],
-		 gboolean    *users_dirty)
+static void resolve_dirty_flags(GdmResultState dummy1, const gchar *dummy2, gpointer data)
 {
-  gchar **excludev;
+  FusaManager *manager = data;
 
-  if (!key_file)
-    return FALSE;
+  if (manager->users_dirty)
+    reload_passwd (data);
 
-  excludev = g_key_file_get_string_list (key_file, "greeter", "Exclude",
-					 NULL, NULL);
-  if (!excludev)
-    return FALSE;
+  if (manager->icons_dirty)
+    g_hash_table_foreach (FUSA_MANAGER (data)->users,
+			  emit_user_icon_changed_signals, NULL);
 
-  if (merge_gdm_exclusions (manager, excludev, exclude_default) && users_dirty)
-    *users_dirty = TRUE;
-
-  g_strfreev (excludev);
-
-  return TRUE;
+  manager->users_dirty = FALSE;
+  manager->icons_dirty = FALSE;
 }
 
-static gboolean
-get_gdm_global_face_dir (FusaManager *manager,
-			 GKeyFile    *key_file,
-			 gboolean    *icons_dirty)
+/* We need to pull in settings from the gdm daemon. When we ask it
+ * about something, it sends us back a string. So we need a set of
+ * functions which can parse these strings and do useful things with
+ * the information...
+ */
+
+static void handler_MinimalUID(GdmResultState is_ok, const gchar *value, gpointer data)
 {
-  gchar *tmp;
+  FusaManager *manager = data;
+  uid_t tmp_minimal_uid = strtoul (value, NULL, 10);
 
-  if (!key_file)
-    return FALSE;
+  if (tmp_minimal_uid != ULONG_MAX) {
+    manager->minimal_uid = tmp_minimal_uid;
+    manager->users_dirty = TRUE;
+  }
+}
 
-  tmp = g_key_file_get_string (key_file, "greeter", "GlobalFaceDir", NULL);
-  if (!tmp)
-    return FALSE;
+static void handler_Exclude(GdmResultState is_ok, const gchar *value, gpointer data)
+{
+  FusaManager *manager = data;
+  const gchar *exclude_default[] = DEFAULT_EXCLUDE;
+  gchar** excludev = g_strsplit (value, ",", G_MAXINT);
+  
+  if (merge_gdm_exclusions (manager, excludev, exclude_default))
+    manager->users_dirty = TRUE;
+}
 
+static void handler_GlobalFaceDir(GdmResultState is_ok, const gchar *value, gpointer data)
+{
+  FusaManager *manager = data;
   if (!manager->global_face_dir ||
-      strcmp (tmp, manager->global_face_dir) != 0)
+      strcmp (value, manager->global_face_dir) != 0)
     {
       g_free (manager->global_face_dir);
-      manager->global_face_dir = g_strdup (tmp);
-      if (icons_dirty)
-	*icons_dirty = TRUE;
+      manager->global_face_dir = g_strdup (value);
+      manager->icons_dirty = TRUE;
     }
-  
-  g_free (tmp);
-
-  return TRUE;
 }
 
-static gboolean
-get_gdm_user_max_file (FusaManager *manager,
-		       GKeyFile    *key_file,
-		       gboolean    *icons_dirty)
+static void handler_UserMaxFile(GdmResultState is_ok, const gchar *value, gpointer data)
 {
-  gchar *tmp;
-  gsize tmp_user_max_file;
+  FusaManager *manager = data;
+  gsize tmp_user_max_file = strtol (value, NULL, 10);
 
-  if (!key_file)
-    return FALSE;
-
-  tmp = g_key_file_get_value (key_file, "security", "UserMaxFile", NULL);
-  if (!tmp)
-    return FALSE;
-
-  tmp_user_max_file = strtol (tmp, NULL, 10);
-  g_free (tmp);
-
-  if (tmp_user_max_file == ULONG_MAX)
-    return FALSE;
-
-  if (tmp_user_max_file != manager->user_max_file)
+  if (tmp_user_max_file != ULONG_MAX && tmp_user_max_file != manager->user_max_file)
     {
       manager->user_max_file = tmp_user_max_file;
-      if (icons_dirty)
-	*icons_dirty = TRUE;
+      manager->icons_dirty = TRUE;
     }
-
-  return TRUE;
 }
 
-static gboolean
-get_gdm_allow_root (FusaManager *manager,
-		    GKeyFile    *key_file,
-		    gboolean    *users_dirty)
+static void handler_AllowRoot(GdmResultState is_ok, const gchar *value, gpointer data)
 {
-  gboolean tmp;
-  GError *error;
-
-  if (!key_file)
-    return FALSE;
-
-  error = NULL;
-  tmp = g_key_file_get_boolean (key_file, "security", "AllowRoot", &error);
-  if (error)
+  FusaManager *manager = data;
+  gboolean tmp_allow_root = strcasecmp(value, "false") != 0;
+  
+  if (tmp_allow_root != manager->allow_root)
     {
-      g_error_free (error);
-      return FALSE;
+      manager->allow_root = tmp_allow_root;
+      manager->users_dirty = TRUE;
     }
-
-  if ((tmp && !manager->allow_root) || (!tmp && manager->allow_root))
-    {
-      manager->allow_root = (tmp != FALSE);
-      
-      if (users_dirty)
-	*users_dirty = TRUE;
-    }
-
-  return TRUE;
 }
 
-static gboolean
-get_gdm_max_icon_size (FusaManager *manager,
-		       GKeyFile    *key_file,
-		       gboolean    *icons_dirty)
+static void handler_MaxIconSize(GdmResultState is_ok, const gchar *value, gpointer data)
 {
-  gint max_width, max_height, max_icon_size;
+  FusaManager *manager = data;
+  gint tmp_max_icon_size = strtol (value, NULL, 10);
 
-  if (!key_file)
-    return FALSE;
-  
-  max_width = g_key_file_get_integer (key_file, "gui", "MaxIconWidth", NULL);
-  if (max_width < 1)
-    return FALSE;
-  
-  max_height = g_key_file_get_integer (key_file, "gui", "MaxIconHeight", NULL);
-  if (max_height < 1)
-    return FALSE;
-
-  max_icon_size = MAX (max_width, max_height);
-  if (max_icon_size != manager->max_icon_size)
+  if (tmp_max_icon_size > manager->max_icon_size)
     {
-      manager->max_icon_size = max_icon_size;
-      if (icons_dirty)
-	*icons_dirty = TRUE;
+      manager->max_icon_size = tmp_max_icon_size;
+      manager->icons_dirty = TRUE;
     }
-
-  return TRUE;
 }
 
+/* ...and we need a table mapping the strings which identify settings to
+ * these functions.
+ */
+struct SettingsHandler {
+        gchar *key;
+        GdmMessageCallback *handler;
+} settings_handlers[] = {
+  { "greeter/MinimalUID", handler_MinimalUID },
+  { "greeter/Exclude", handler_Exclude },
+  { "greeter/GlobalFaceDir", handler_GlobalFaceDir },
+  { "security/UserMaxFile", handler_UserMaxFile },
+  { "security/AllowRoot", handler_AllowRoot },
+  { "gui/MaxIconWidth", handler_MaxIconSize },
+  { "gui/MaxIconHeight", handler_MaxIconSize },
+  { 0, 0 },
+};
+
+/* Now we just walk through the table, asking the daemon about each
+ * entry and calling the handler when we hear an answer.
+ */
 static void
 reload_gdm_config (FusaManager *manager,
-		   gboolean    *users_dirty,
-		   gboolean    *icons_dirty)
+                   gboolean    force_reload)
 {
-  GKeyFile *key_file, *default_key_file;
-  GError *error;
-  const gchar *exclude_default[] = DEFAULT_EXCLUDE;
+  struct SettingsHandler *handler;
 
-  error = NULL;
-  key_file = g_key_file_new ();
+  for (handler=settings_handlers; handler->key != NULL; handler++) {
 
-  if (default_config_file)
-    default_key_file = g_key_file_new ();
-  else
-    default_key_file = NULL;
+    /* If we're here because the file has been updated, then *we* know the
+     * value might have changed (because gnome-vfs told us), but gdm is most
+     * probably still unaware. Therefore, we must tell it to go and look.
+     * Unfortunately, there's no way of telling gdm over the socket to go
+     * and reload the file in toto, but we can tell it to reload those
+     * fields we're checking, and that's probably good enough.
+     */
 
-  if (!g_key_file_load_from_file (key_file, GDMCONFIGFILE, G_KEY_FILE_NONE,
-				  &error))
-    {
-      if (error)
-        {
-	  g_message ("Could not parse GDM configuration file `%s': %s",
-		     GDMCONFIGFILE, error->message);
-	  g_error_free (error);
-	  error = NULL;
-	}
-
-      g_key_file_free (key_file);
-      key_file = NULL;
+    if (force_reload) {
+      ask_gdm (NULL, NULL, GDM_CMD_UPDATE_CONFIG, handler->key);
     }
 
-  if (default_config_file &&
-      !g_key_file_load_from_file (default_key_file, default_config_file,
-				  G_KEY_FILE_NONE, &error))
-    {
-      if (error)
-        {
-	  g_message ("Could not parse default GDM configuration file `%s': %s",
-		     default_config_file, error->message);
-	  g_error_free (error);
-	  error = NULL;
-	}
+    ask_gdm (handler->handler, manager, GDM_CMD_GET_CONFIG, handler->key);
+  }
 
-      g_key_file_free (default_key_file);
-      default_key_file = NULL;
-    }
-
-
-  if (!get_gdm_minimal_uid (manager, key_file, users_dirty) &&
-      !get_gdm_minimal_uid (manager, default_key_file, users_dirty) &&
-      manager->minimal_uid != DEFAULT_MINIMAL_UID)
-    {
-      manager->minimal_uid = DEFAULT_MINIMAL_UID;
-      if (users_dirty)
-	*users_dirty = TRUE;
-    }
-
-  if (!get_gdm_exclude (manager, key_file, exclude_default, users_dirty) &&
-      !get_gdm_exclude (manager, default_key_file, exclude_default, users_dirty) &&
-      merge_gdm_exclusions (manager, NULL, exclude_default) && users_dirty)
-    *users_dirty = TRUE;
-
-  if (!get_gdm_global_face_dir (manager, key_file, icons_dirty) &&
-      !get_gdm_global_face_dir (manager, default_key_file, icons_dirty) &&
-      (!manager->global_face_dir ||
-       strcmp (manager->global_face_dir, DEFAULT_GLOBAL_FACE_DIR) != 0))
-    {
-      g_free (manager->global_face_dir);
-      manager->global_face_dir = g_strdup (DEFAULT_GLOBAL_FACE_DIR);
-
-      if (icons_dirty)
-	*icons_dirty = TRUE;
-    }
-
-  if (!get_gdm_user_max_file (manager, key_file, icons_dirty) &&
-      !get_gdm_user_max_file (manager, default_key_file, icons_dirty) &&
-      manager->user_max_file != DEFAULT_USER_MAX_FILE)
-    {
-      manager->user_max_file = DEFAULT_USER_MAX_FILE;
-      if (icons_dirty)
-	*icons_dirty = TRUE;
-    }
-
-  if (!get_gdm_allow_root (manager, key_file, users_dirty) &&
-      !get_gdm_allow_root (manager, default_key_file, users_dirty) &&
-      manager->allow_root)
-    {
-      manager->allow_root = FALSE;
-      if (users_dirty)
-	*users_dirty = TRUE;
-    }
-
-  if (!get_gdm_max_icon_size (manager, key_file, icons_dirty) &&
-      !get_gdm_max_icon_size (manager, default_key_file, icons_dirty) &&
-      manager->max_icon_size != DEFAULT_MAX_ICON_SIZE)
-    {
-      manager->max_icon_size = DEFAULT_MAX_ICON_SIZE;
-      if (icons_dirty)
-	*icons_dirty = TRUE;
-    }
-
-  if (default_key_file)
-    g_key_file_free (default_key_file);
-
-  if (key_file)
-    g_key_file_free (key_file);
+  ask_gdm (resolve_dirty_flags, manager, NULL);
 }
 
 static void
@@ -1121,6 +891,7 @@ reload_passwd (FusaManager *manager)
 			       GINT_TO_POINTER (fusa_user_get_uid (list->data)));
 	  g_hash_table_remove (manager->users,
 			       fusa_user_get_user_name (list->data));
+          /* FIXME: signals[USER_REMOVED]??? Why not? */
 	}
     }
 
@@ -1166,9 +937,10 @@ clean_displays_table (gpointer key,
   return FALSE;
 }
 
-static inline void
+static void
 process_display_updates (FusaManager *manager,
-			 OpResult    *result)
+                         DisplayUpdate *items,
+                         guint n_items)
 {
   CleanDisplaysData clean_data;
   FusaDisplay *display;
@@ -1178,17 +950,17 @@ process_display_updates (FusaManager *manager,
   clean_data.manager = manager;
   clean_data.displays = NULL;
 
-  for (i = 0; i < result->updates.n_items; i++)
+  for (i = 0; i < n_items; i++)
     {
-      if (result->updates.items[i].username != NULL)
+      if (items[i].username != NULL)
 	{
 	  user = fusa_manager_get_user (manager,
-					result->updates.items[i].username);
+					items[i].username);
 	}
       else
 	user = NULL;
 
-      display = real_get_display (manager, result->updates.items[i].name);
+      display = real_get_display (manager, items[i].name);
 
       if (display)
 	{
@@ -1201,7 +973,7 @@ process_display_updates (FusaManager *manager,
 	  gboolean nested;
 
 	  console = -1;
-	  nested = (result->updates.items[i].location[0] == ':');
+	  nested = (items[i].location[0] == ':');
 
 	  /* Xnest: We don't need to loop to get around Xnest-in-Xnest insanity
 	   * becase all existing FusaDisplays will have a console set from their
@@ -1212,30 +984,30 @@ process_display_updates (FusaManager *manager,
 	      gchar *ptr;
 
 	      /* Strip the ".0" */
-	      ptr = strchr (result->updates.items[i].location, '.');
+	      ptr = strchr (items[i].location, '.');
 	      if (ptr)
 		*ptr = '\0';
 
 	      display = real_get_display (manager,
-					  result->updates.items[i].location);
+					  items[i].location);
 
 	      if (display)
 		console = fusa_display_get_console (display);
 	    }
 	  /* Console */
-	  else if (sscanf (result->updates.items[i].location, "%d",
+	  else if (sscanf (items[i].location, "%d",
 			   &console) != 1)
 	    {
 	      g_critical ("Invalid display location returned from GDM: `%s'.",
-			  result->updates.items[i].location);
+			  items[i].location);
 	    }
 
 	  display = _fusa_display_new (manager,
-				       result->updates.items[i].name, user,
+				       items[i].name, user,
 				       console, nested);
 
 	  g_hash_table_insert (manager->displays,
-			       g_strdup (result->updates.items[i].name),
+			       g_strdup (items[i].name),
 			       g_object_ref (display));
 	  g_hash_table_insert (manager->displays_by_console,
 			       GINT_TO_POINTER (console), display);
@@ -1250,204 +1022,16 @@ process_display_updates (FusaManager *manager,
 			       &clean_data);
 }
 
-static void
-display_closure_free (DisplayClosure *closure)
+static GError*
+g_error_from_gdm_answer (GdmResultState is_ok,
+    const gchar *answer)
 {
-  if (!closure)
-    return;
-
-  if (closure->data && closure->notify)
-    (*closure->notify) (closure->data);
-
-  g_free (closure);
-}
-
-static void
-op_result_free (OpResult *result)
-{
-  if (!result)
-    return;
-
-  switch (result->type)
-    {
-    case OP_RESULT_DISPLAY_UPDATES:
-      {
-	guint i;
-
-	for (i = 0; i < result->updates.n_items; i++)
-	  {
-	    g_free (result->updates.items[i].name);
-	    g_free (result->updates.items[i].username);
-	    g_free (result->updates.items[i].location);
-	  }
-
-	g_free (result->updates.items);
-      }
-      break;
-    case OP_RESULT_NEW_DISPLAY:
-      display_closure_free (result->new.closure);
-      g_free (result->new.name);
-      break;
-    case OP_RESULT_DISPLAY_ACTIVATED:
-      g_object_unref (result->activate.display);
-      display_closure_free (result->activate.closure);
-      break;
-
-    case OP_RESULT_ERROR:
-      g_error_free (result->error.error);
-      display_closure_free (result->error.closure);
-      break;
-    }
-
-  g_free (result);
-}
-
-static gboolean
-results_pull_func (gpointer data)
-{
-  FusaManager *manager;
-  OpResult *result;
-
-  GDK_THREADS_ENTER ();
-
-  manager = data;
-  g_async_queue_lock (manager->results_q);
-
-  result = g_async_queue_try_pop_unlocked (manager->results_q);
-  g_assert (result);
-
-  while (result)
-    {
-      switch (result->type)
-	{
-	case OP_RESULT_DISPLAY_UPDATES:
-	  process_display_updates (manager, result);
-	  break;
-
-	case OP_RESULT_DISPLAY_ACTIVATED:
-	  if (result->activate.closure->func)
-	    (*result->activate.closure->func) (manager,
-					       result->activate.display, NULL,
-					       result->activate.closure->data);
-	  break;
-
-	case OP_RESULT_NEW_DISPLAY:
-	  if (result->activate.closure->func)
-	    {
-	      FusaDisplay *display;
-
-	      display = real_get_display (manager, result->new.name);
-	      (*result->activate.closure->func) (manager, display, NULL,
-						 result->new.closure->data);
-	    }
-	  break;
-
-	case OP_RESULT_ERROR:
-	  if (result->error.closure->func)
-	    (*result->error.closure->func) (manager, NULL, NULL,
-					    result->error.closure->data);
-	  break;
-	}
-
-      op_result_free (result);
-
-      result = g_async_queue_try_pop_unlocked (manager->results_q);
-    }
-
-  manager->results_pull_id = 0;
-
-  g_async_queue_unlock (manager->results_q);
-
-  GDK_THREADS_LEAVE ();
-
-  return FALSE;
-}
-
-static void
-push_dm_op (FusaManager                *manager,
-	    OpType                      type,
-	    GdkScreen                  *screen,
-	    FusaDisplay                *display,
-	    FusaManagerDisplayCallback  func,
-	    gpointer                    data,
-	    GDestroyNotify              notify)
-{
-  Op *op;
-
-  op = g_new (Op, 1);
-
-  op->type = type;
-  op->manager = g_object_ref (manager);
-  op->screen = (screen ? g_object_ref (screen) : NULL);
-  if (display)
-    {
-      op->display = g_object_ref (display);
-      op->console = fusa_display_get_console (display);
-    }
-  else
-    {
-      op->display = NULL;
-      op->console = -1;
-    }
-  op->closure = g_new (DisplayClosure, 1);
-  op->closure->func = func;
-  op->closure->data = data;
-  op->closure->notify = notify;
-
-  g_async_queue_push (op_q, op);
-}
-
-static gboolean
-push_update_displays_func (gpointer data)
-{
-  push_dm_op (data, OP_UPDATE_DISPLAYS, NULL, NULL, NULL, NULL, NULL);
-
-  return TRUE;
-}
-
-
-/* ******************************** *
- *  Displays - IO Thread Functions  *
- * ******************************** */
-
-static void
-push_new_result (FusaManager *manager,
-		 Op          *op,
-		 const gchar *name)
-{
-  OpResult *op_result;
-    
-  op_result = g_new0 (OpResult, 1);
-  op_result->new.type = OP_RESULT_NEW_DISPLAY;
-  op_result->new.closure = op->closure;
-  op->closure = NULL;
-  op_result->new.name = g_strdup (name);
-
-  GDK_THREADS_ENTER ();
-  g_async_queue_lock (manager->results_q);
-  g_async_queue_push_unlocked (manager->results_q, op_result);
-  if (!manager->results_pull_id)
-    manager->results_pull_id = g_idle_add_full (G_PRIORITY_HIGH_IDLE,
-						results_pull_func,
-						manager, NULL);
-
-  g_async_queue_unlock (manager->results_q);
-  GDK_THREADS_LEAVE ();
-}
-
-static void
-push_error_result (FusaManager *manager,
-		   Op          *op,
-		   const gchar *result)
-{
-  OpResult *op_result;
   gint code;
   const gchar *message;
-    
-  op_result = g_new0 (OpResult, 1);
-  op_result->type = OP_RESULT_ERROR;
-
-  if (result == NULL || sscanf (result, "ERROR %d", &code) != 1)
+ 
+  g_assert (is_ok != GDM_RESULT_OK);
+  
+  if (is_ok == GDM_RESULT_BIZARRE || answer == NULL || sscanf (answer, "%d", &code) != 1)
     {
       code = FUSA_MANAGER_DM_ERROR_UNKNOWN;
       message = _("The display manager could not be contacted for unknown reasons.");
@@ -1501,260 +1085,144 @@ push_error_result (FusaManager *manager,
 	  break;
 	}
     }
-
-  op_result->error.error = g_error_new (FUSA_MANAGER_DM_ERROR, code,
-					"%s\n%s", message, result);
-  op_result->error.closure = op->closure;
-  op->closure = NULL;
-
-  GDK_THREADS_ENTER ();
-  g_async_queue_lock (manager->results_q);
-  g_async_queue_push_unlocked (manager->results_q, op_result);
-  if (!manager->results_pull_id)
-    manager->results_pull_id = g_idle_add_full (G_PRIORITY_HIGH_IDLE,
-						results_pull_func,
-						manager, NULL);
-
-  g_async_queue_unlock (manager->results_q);
-  GDK_THREADS_LEAVE ();
+  return g_error_new (FUSA_MANAGER_DM_ERROR, code,
+	"%s\n%s", message, answer);
+ 
 }
 
-static gboolean
-dm_op_update_displays (FusaManager *manager)
+static void
+gdm_callback_update_displays (GdmResultState is_ok,
+    const gchar *answer, gpointer data)
 {
-  gchar *result;
-  gboolean retval;
+  FusaManagerWithCallback *manager_with_callback = (FusaManagerWithCallback *) data;
+  gchar **displays;
+  DisplayUpdate *items;
+  guint n_items;  
 
-  result = gdmcomm_call_gdm (GDM_SUP_CONSOLE_SERVERS, NULL,
-			     MINIMAL_GDM_VERSION, 5);
-  retval = (result && strncmp (result, "OK ", 3) == 0);
+  if (is_ok == GDM_RESULT_OK) {
+    displays = g_strsplit (answer, ";", -1);
 
-  /* Success */
-  if (retval)
-    {
-      gchar **displays;
+    if (displays)
+      {
+      guint i;
 
-      displays = g_strsplit (result + 3, ";", -1);
-      if (displays)
-	{
-	  guint i;
-		
-	  i = g_strv_length (displays);
-	  if (i)
-	    {
-	      OpResult *op_result;
+      i = g_strv_length (displays);
+      if (i)
+        {
+        items = g_new0 (DisplayUpdate, i);
+        n_items = i;
 
-	      op_result = g_new0 (OpResult, 1);
+        while (i > 0)
+          {
+          gchar **args;
 
-	      op_result->type = OP_RESULT_DISPLAY_UPDATES;
-	      op_result->updates.items = g_new0 (DisplayUpdate, i);
-	      op_result->updates.n_items = i;
+          i--;
 
-	      while (i > 0)
-		{
-		  gchar **args;
+          args = g_strsplit (displays[i], ",", 3);
 
-		  i--;
+          /* Display name (e.g. :0) */
+          items[i].name = args[0];
 
-		  args = g_strsplit (displays[i], ",", 3);
+          /* Username */
+          if (args[1] != NULL && args[1][0] != '\0')
+            items[i].username = args[1];
+          else
+            {
+            items[i].username = NULL;
+            g_free (args[1]);
+            }
 
-		  /* Display name (e.g. :0) */
-		  op_result->updates.items[i].name = args[0];
+          /* VT or display name Location (e.g "7" or ":0.0") */
+          items[i].location = args[2];
 
-		  /* Username */
-		  if (args[1] != NULL && args[1][0] != '\0')
-		    op_result->updates.items[i].username = args[1];
-		  else
-		    {
-		      op_result->updates.items[i].username = NULL;
-		      g_free (args[1]);
-		    }
+          g_free (args);
 
-		  /* VT or display name Location (e.g "7" or ":0.0") */
-		  op_result->updates.items[i].location = args[2];
+          }
 
-		  g_free (args);
-		}
+        /* FIXME: This is the only place p_d_u is called. Merge it in here. */
+        process_display_updates (manager_with_callback->manager,
+            items,
+            n_items);
+        }
 
-	      GDK_THREADS_ENTER ();
-	      g_async_queue_lock (manager->results_q);
-	      g_async_queue_push_unlocked (manager->results_q, op_result);
-	      if (!manager->results_pull_id)
-		manager->results_pull_id = g_idle_add_full (G_PRIORITY_HIGH_IDLE,
-							    results_pull_func,
-							    manager, NULL);
-	      g_async_queue_unlock (manager->results_q);
-	      GDK_THREADS_LEAVE ();
-	    }
+      g_strfreev (displays);
+      }
 
-	  g_strfreev (displays);
-	}
+    /* Now that we know which displays have what names, we can look up to see
+     * whether we stashed away the name of a display earlier before we could
+     * look it up.
+     */
+
+    if (manager_with_callback->name_of_display != NULL &&
+        manager_with_callback->display_for_callback == NULL) {
+
+      manager_with_callback->display_for_callback =
+        real_get_display (manager_with_callback->manager,
+            manager_with_callback->name_of_display);
+
+      g_free (manager_with_callback->name_of_display);
+ 
     }
 
-  g_free (result);
+    if (manager_with_callback->callback)
+    manager_with_callback->callback(
+        manager_with_callback->manager,
+        manager_with_callback->display_for_callback,
+        NULL,
+        manager_with_callback->data_for_callback
+        );
+  } else if (manager_with_callback->callback) {
+    GError *error = g_error_from_gdm_answer (is_ok, answer);
+    manager_with_callback->callback(
+        manager_with_callback->manager,
+        manager_with_callback->display_for_callback,
+        error,
+        manager_with_callback->data_for_callback
+        );
+    g_error_free (error);
+  }
 
-  return retval;
+  g_free (manager_with_callback);
 }
 
-static inline void
-dm_op_activate_display (FusaManager *manager,
-		        Op          *op)
+static void
+gdm_callback_activate_display (GdmResultState is_ok,
+    const gchar *answer, gpointer data)
 {
-  gchar *auth_cookie, *command, *result;
+  FusaManagerWithCallback *manager_with_callback = (FusaManagerWithCallback *) data;
 
-  GDK_THREADS_ENTER ();
-  auth_cookie = g_strdup (gdmcomm_get_auth_cookie (op->screen));
-  GDK_THREADS_LEAVE ();
+  g_assert (manager_with_callback != NULL);
 
-  command = g_strdup_printf (GDM_SUP_SET_VT " %d", op->console);
-  result = gdmcomm_call_gdm (command, auth_cookie, MINIMAL_GDM_VERSION, 5);
-  g_free (command);
-  g_free (auth_cookie);
+  if (is_ok == GDM_RESULT_OK) {
 
-  /* Success, refresh the displays cache */
-  if (result && strncmp (result, "OK", 2) == 0)
-    {
-      OpResult *op_result;
+    /* Yay, we updated the display. We need to make a note of
+     * where the new display is.
+     */
+
+    if (manager_with_callback->name_of_display == NULL) {
+      manager_with_callback->name_of_display = g_strdup (answer);
+    }
     
-      op_result = g_new0 (OpResult, 1);
-      op_result->activate.type = OP_RESULT_DISPLAY_ACTIVATED;
-      op_result->activate.display = g_object_ref (op->display);
-      op_result->activate.closure = op->closure;
-      op->closure = NULL;
+    /* Better re-check the display list. */
+    ask_gdm (gdm_callback_update_displays,
+        manager_with_callback, 
+        GDM_CMD_CONSOLE_SERVERS);
 
-      GDK_THREADS_ENTER ();
-      g_async_queue_lock (manager->results_q);
-      g_async_queue_push_unlocked (manager->results_q, op_result);
-      if (!manager->results_pull_id)
-	manager->results_pull_id = g_idle_add_full (G_PRIORITY_HIGH_IDLE,
-						    results_pull_func,
-						    manager, NULL);
+    /* But... do not free manager_with_callback because we're passing it
+     * straight through to gdm_callback_update_displays.
+     */
 
-      g_async_queue_unlock (manager->results_q);
-      GDK_THREADS_LEAVE ();
-
-      dm_op_update_displays (manager);
-    }
-  /* Error */
-  else
-    push_error_result (manager, op, result);
-  
-  g_free (result);
+  } else if (manager_with_callback->callback) {
+    GError *error = g_error_from_gdm_answer (is_ok, answer);
+    manager_with_callback->callback(
+        manager_with_callback->manager,
+        manager_with_callback->display_for_callback,
+        error,
+        manager_with_callback->data_for_callback
+        );
+    g_free (manager_with_callback);
+  }
 }
-
-static inline void
-dm_op_new_console (FusaManager *manager,
-		   Op          *op)
-{
-  gchar *auth_cookie, *result;
-
-  GDK_THREADS_ENTER ();
-  auth_cookie = g_strdup (gdmcomm_get_auth_cookie (op->screen));
-  GDK_THREADS_LEAVE ();
-
-  result = gdmcomm_call_gdm (GDM_SUP_FLEXI_XSERVER, auth_cookie,
-			     MINIMAL_GDM_VERSION, 5);
-  g_free (auth_cookie);
-
-  /* Success, refresh the displays cache */
-  if (result && strncmp (result, "OK", 2) == 0)
-    {
-      dm_op_update_displays (manager);
-      push_new_result (manager, op, result + 3);
-    }
-  /* Error */
-  else
-    push_error_result (manager, op, result);
-
-  g_free (result);
-}
-
-static inline void
-dm_op_new_xnest (FusaManager *manager,
-		 Op          *op)
-{
-  gchar *auth_cookie, *mit_cookie, *command, *result;
-
-  GDK_THREADS_ENTER ();
-  auth_cookie = g_strdup (gdmcomm_get_auth_cookie (op->screen));
-  mit_cookie = gdmcomm_get_a_cookie (op->screen, FALSE);
-  command = g_strdup_printf (GDM_SUP_FLEXI_XNEST " %s %d %s %s",
-			     gdk_display_get_name (gdk_screen_get_display (op->screen)),
-			     (int) getuid (),
-			     mit_cookie,
-			     XauFileName ());
-  GDK_THREADS_LEAVE ();
-  g_free (mit_cookie);
-
-  result = gdmcomm_call_gdm (command, auth_cookie, MINIMAL_GDM_VERSION, 5);
-  g_free (command);
-  g_free (auth_cookie);
-
-  if (result && strncmp (result, "OK ", 3) == 0)
-    {
-      dm_op_update_displays (manager);
-      push_new_result (manager, op, result + 3);
-    }
-  /* Error */
-  else
-    push_error_result (manager, op, result);
-
-  g_free (result);
-}
-
-static gpointer
-dm_op_threadfunc (gpointer data)
-{
-  Op *op;
-
-  if (op_q)
-    op = g_async_queue_pop (op_q);
-  else
-    op = NULL;
-
-  while (op)
-    {
-      switch (op->type)
-	{
-	case OP_UPDATE_DISPLAYS:
-	  dm_op_update_displays (op->manager);
-	  break;
-
-	case OP_ACTIVATE_DISPLAY:
-	  dm_op_activate_display (op->manager, op);
-	  break;
-
-	case OP_NEW_CONSOLE:
-	  dm_op_new_console (op->manager, op);
-	  break;
-
-	case OP_NEW_XNEST:
-	  dm_op_new_xnest (op->manager, op);
-	  break;
-	}
-
-      GDK_THREADS_ENTER ();
-      if (op->screen)
-	g_object_unref (op->screen);
-
-      if (op->display)
-	g_object_unref (op->display);
-
-      if (op->manager)
-	g_object_unref (op->manager);
-
-      if (op->closure)
-        display_closure_free (op->closure);
-      GDK_THREADS_LEAVE ();
-
-      g_free (op);
-
-      op = g_async_queue_pop (op_q);
-    }
-  
-  return NULL;
-}
-
 
 /* ******************* *
  *  Utility Functions  *
@@ -2105,12 +1573,19 @@ fusa_manager_activate_display (FusaManager                *manager,
     return;
 
   console = fusa_display_get_console (display);
+
   if (console != fusa_display_get_console (this_display))
-    push_dm_op (manager, OP_ACTIVATE_DISPLAY, screen, display, func, data, notify);
-  /* Xnest on this console, find & activate it. */
+    {
+    /* Switch to another console. Easy. */
+    queue_authentication (screen);
+    ask_gdm (gdm_callback_activate_display,
+        new_fusa_manager_with_callback(manager, func, display, data),
+        GDM_CMD_SET_VT, console);
+    }
   else 
     {
-#ifndef DISABLE_XNEST
+#ifdef WITH_XNEST
+    /* Xnest on this console, find & activate it. */
       Display *xdisplay;
       Screen *xscreen;
       Window xrootwin, dummy, client;
@@ -2200,7 +1675,7 @@ fusa_manager_activate_display (FusaManager                *manager,
 	  if (data && notify)
 	    (*notify) (data);
 	}
-#endif /* DISABLE_XNEST */
+#endif /* WITH_XNEST */
     }
 }
 
@@ -2221,7 +1696,11 @@ fusa_manager_new_console (FusaManager                *manager,
 {
   g_return_if_fail (FUSA_IS_MANAGER (manager));
 
-  push_dm_op (manager, OP_NEW_CONSOLE, screen, NULL, func, data, notify);
+  queue_authentication (screen);
+
+  ask_gdm (gdm_callback_activate_display,
+      new_fusa_manager_with_callback (manager, func, NULL, data),
+      GDM_CMD_FLEXI_XSERVER);
 }
 
 /**
@@ -2239,9 +1718,24 @@ fusa_manager_new_xnest (FusaManager                *manager,
 			gpointer                    data,
 			GDestroyNotify              notify)
 {
+  gchar *mit_cookie;
+
   g_return_if_fail (FUSA_IS_MANAGER (manager));
 
-  push_dm_op (manager, OP_NEW_XNEST, screen, NULL, func, data, notify);
+  mit_cookie = get_mit_magic_cookie (screen, FALSE);
+  
+  queue_authentication (screen);
+
+  ask_gdm (gdm_callback_update_displays,
+      new_fusa_manager_with_callback (manager, func, NULL, data),
+      GDM_CMD_FLEXI_XNEST,
+      gdk_display_get_name (gdk_screen_get_display (screen)),
+      (int) getuid (),
+      mit_cookie,
+      XauFileName ());
+
+  g_free (mit_cookie);
+
 }
 
 /**

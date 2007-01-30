@@ -1,3 +1,36 @@
+2007-01-30  William Jon McCann  <mccann@jhu.edu>
+
+	* src/cut-n-paste/Makefile.am:
+	* src/cut-n-paste/fusa-manager.c: (gdm_callback_config_file),
+	(fusa_manager_class_init), (fusa_manager_init),
+	(fusa_manager_request_update_displays), (fusa_manager_finalize),
+	(gdmconfig_monitor_cb), (shells_monitor_cb), (passwd_monitor_cb),
+	(new_fusa_manager_with_callback), (resolve_dirty_flags),
+	(handler_MinimalUID), (handler_Exclude), (handler_GlobalFaceDir),
+	(handler_UserMaxFile), (handler_AllowRoot), (handler_MaxIconSize),
+	(reload_gdm_config), (reload_passwd), (process_display_updates),
+	(g_error_from_gdm_answer), (gdm_callback_update_displays),
+	(gdm_callback_activate_display), (fusa_manager_activate_display),
+	(fusa_manager_new_console), (fusa_manager_new_xnest):
+	* src/cut-n-paste/fusa-manager.h:
+	* src/cut-n-paste/fusa-user-menu-item.c:
+	(fusa_user_menu_item_expose_event), (reset_label):
+	* src/cut-n-paste/gdm-queue.c: (ask_gdm), (gdm_request_free),
+	(version_ok_p), (close_gdm_socket), (gdm_run_queue),
+	(gdm_send_next_command), (gdm_send_command), (get_dispnum),
+	(chop_all_auths_off_gdm_queue),
+	(gdm_callback_perhaps_set_official_cookie), (queue_authentication),
+	(get_mit_magic_cookie):
+	* src/cut-n-paste/gdm-queue.h:
+	* src/cut-n-paste/gdmcomm.c:
+	* src/cut-n-paste/gdmcomm.h:
+	Sync with trunk fast-user-switch-applet.
+
+	* src/gs-lock-plug.c: (switch_user_response), (plug_add_user),
+	(user_added_cb), (user_removed_cb), (populate_model),
+	(setup_treeview):
+	Update for FUSA API changes.
+
 2007-01-22  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump

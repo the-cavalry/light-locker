@@ -15,7 +15,7 @@ noinst_LIBRARIES =			\
 libfast_user_switch_a_CPPFLAGS =				\
 	-DDATADIR=\""$(datadir)"\"				\
 	-DG_LOG_DOMAIN=\""Screensaver-Fast-User-Switch"\"	\
-	$(FAST_USER_SWITCH_CFLAGS) 
+	$(FAST_USER_SWITCH_CFLAGS)
 
 libfast_user_switch_a_SOURCES =		\
         fusa-user.h                     \
@@ -31,5 +31,5 @@ libfast_user_switch_a_SOURCES =		\
 	fusa-user-menu-item.c		\
         fusa-utils.h                    \
 	fusa-utils.c			\
-        gdmcomm.h			\
-	gdmcomm.c
+        gdm-queue.h			\
+	gdm-queue.c

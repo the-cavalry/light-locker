@@ -350,9 +350,9 @@ fusa_user_menu_item_expose_event (GtkWidget      *widget,
       y = widget->allocation.y + (widget->allocation.height - indicator_size) / 2;
 
       if (fusa_user_get_n_displays (FUSA_USER_MENU_ITEM (widget)->user) > 0)
-        shadow_type = GTK_SHADOW_IN;
+        shadow_type = GTK_SHADOW_IN; /* they have displays, so mark it checked */
       else
-        shadow_type = GTK_SHADOW_OUT;
+        shadow_type = GTK_SHADOW_OUT; /* they haave no displays, so no check */
 
       gtk_paint_check (widget->style, widget->window, GTK_WIDGET_STATE (widget),
 		       shadow_type, &(event->area), widget, "check",
@@ -454,13 +454,16 @@ label_style_set_cb (GtkWidget *widget,
 static void
 reset_label (FusaUserMenuItem *item)
 {
+#if 0
   gchar *text;
   PangoLayout *layout;
   gint height;
+#endif
 
   if (!item->user)
     return;
 
+#if 0
   text = g_strconcat ("<b>",
 		      fusa_user_get_display_name (item->user),
 		      "</b>\n",
@@ -472,10 +475,13 @@ reset_label (FusaUserMenuItem *item)
   gtk_label_set_markup (GTK_LABEL (item->label), text);
   g_free (text);
 
+  /* This next bit accounts for 20% of the memorytime.
+   * I have therefore commented out this whole part for now. */
   layout = gtk_label_get_layout (GTK_LABEL (item->label));
   pango_layout_get_pixel_size (layout, NULL, &height);
 
   if (height > (item->icon_size + CLOSE_ENOUGH_SIZE))
+#endif
     gtk_label_set_markup (GTK_LABEL (item->label),
 			  fusa_user_get_display_name (item->user));
 }
