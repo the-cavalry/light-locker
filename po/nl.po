@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-30 21:07+0100\n"
-"PO-Revision-Date: 2007-01-30 21:07+0100 \n"
+"POT-Creation-Date: 2007-02-02 00:33+0100\n"
+"PO-Revision-Date: 2007-02-02 00:33+0100 \n"
 "Last-Translator: Wouter Bolsterlee <uws+gnome@xs4all.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -289,7 +289,7 @@ msgstr "<span size=\"small\">%U op %h</span>"
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5 ../src/gs-lock-plug.c:1783
+#: ../data/lock-dialog-default.glade.h:5 ../src/gs-lock-plug.c:1826
 msgid "S_witch to user:"
 msgstr "Wisselen naar _gebruiker:"
 
@@ -311,7 +311,7 @@ msgstr "_Gebruiker wisselen..."
 msgid "_Switch user..."
 msgstr "_Gebruiker wisselen…"
 
-#: ../data/lock-dialog-default.glade.h:10 ../src/gs-lock-plug.c:1512
+#: ../data/lock-dialog-default.glade.h:10 ../src/gs-lock-plug.c:1555
 msgid "_Unlock"
 msgstr "_Deblokkeren"
 
@@ -456,44 +456,44 @@ msgstr "Ingebed"
 msgid "Whether or not this display is a windowed (Xnest) display."
 msgstr "Of deze display een display in een venster is (Xnest)."
 
-#: ../src/cut-n-paste/fusa-manager.c:1453
+#: ../src/cut-n-paste/fusa-manager.c:1037
 msgid "The display manager could not be contacted for unknown reasons."
 msgstr ""
 "Om onbekende redenen kon er geen contact worden gemaakt met de display-"
 "beheerder."
 
-#: ../src/cut-n-paste/fusa-manager.c:1460
+#: ../src/cut-n-paste/fusa-manager.c:1044
 msgid "The display manager is not running or too old."
 msgstr "De display-manager is niet actief of te oud."
 
-#: ../src/cut-n-paste/fusa-manager.c:1463
+#: ../src/cut-n-paste/fusa-manager.c:1047
 msgid "The configured limit of flexible servers has been reached."
 msgstr "De ingestelde limiet van het aantal flexibele servers is bereikt."
 
-#: ../src/cut-n-paste/fusa-manager.c:1466
+#: ../src/cut-n-paste/fusa-manager.c:1050
 msgid "There was an unknown error starting X."
 msgstr "Er was een onbekende fout bij het starten van X."
 
-#: ../src/cut-n-paste/fusa-manager.c:1469
+#: ../src/cut-n-paste/fusa-manager.c:1053
 msgid "The X server failed to finish starting."
 msgstr "De X-server kon niet volledig worden gestart."
 
-#: ../src/cut-n-paste/fusa-manager.c:1472
+#: ../src/cut-n-paste/fusa-manager.c:1056
 msgid "There are too many X sessions running."
 msgstr "Er zijn te veel actieve X-sessies."
 
-#: ../src/cut-n-paste/fusa-manager.c:1475
+#: ../src/cut-n-paste/fusa-manager.c:1059
 msgid "The nested X server (Xnest) cannot connect to your current X server."
 msgstr ""
 "De ingebedde X-server (Xnest) kon geen verbinding maken met uw huidige X-"
 "server."
 
 # kon niet worden/werd
-#: ../src/cut-n-paste/fusa-manager.c:1478
+#: ../src/cut-n-paste/fusa-manager.c:1062
 msgid "The X server in the GDM configuration could not be found."
 msgstr "De X-server in de GDM-configuratie werd niet gevonden."
 
-#: ../src/cut-n-paste/fusa-manager.c:1481 ../src/cut-n-paste/gdmcomm.c:492
+#: ../src/cut-n-paste/fusa-manager.c:1065
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
@@ -502,30 +502,30 @@ msgstr ""
 "beschikbaar is, in te stellen."
 
 # zijn/worden niet ondersteunden
-#: ../src/cut-n-paste/fusa-manager.c:1484 ../src/cut-n-paste/gdmcomm.c:495
+#: ../src/cut-n-paste/fusa-manager.c:1068
 msgid "Virtual terminals not supported."
 msgstr "Virtuele terminals niet ondersteund."
 
-#: ../src/cut-n-paste/fusa-manager.c:1487
+#: ../src/cut-n-paste/fusa-manager.c:1071
 msgid "Invalid virtual terminal number."
 msgstr "Ongeldig getal voor virtuele terminal."
 
-#: ../src/cut-n-paste/fusa-manager.c:1490 ../src/cut-n-paste/gdmcomm.c:499
+#: ../src/cut-n-paste/fusa-manager.c:1074
 msgid "Trying to update an unsupported configuration key."
 msgstr "Trachten een niet-ondersteunde configuratiesleutel bij te werken."
 
-#: ../src/cut-n-paste/fusa-manager.c:1493
+#: ../src/cut-n-paste/fusa-manager.c:1077
 msgid "~/.Xauthority file badly configured or missing."
 msgstr "Bestand ~/.Xauthority foutief geconfigureerd of ontbrekend."
 
-#: ../src/cut-n-paste/fusa-manager.c:1496
+#: ../src/cut-n-paste/fusa-manager.c:1080
 msgid "Too many messages were sent to the display manager, and it hung up."
 msgstr ""
 "Er werden te veel berichten naar de display-manager verstuurd welke vervolgs "
 "heeft opgehanden."
 
 # gestuurd/verstuurd
-#: ../src/cut-n-paste/fusa-manager.c:1500
+#: ../src/cut-n-paste/fusa-manager.c:1084
 msgid "The display manager sent an unknown error message."
 msgstr "De display-manager heeft een onbekende foutmelding gestuurd."
 
@@ -565,103 +565,6 @@ msgstr "Het gebruiksbeheerderobject door welke deze gebruiker wordt beheerd."
 #: ../src/cut-n-paste/fusa-utils.c:80
 msgid "Show Details"
 msgstr "Details tonen"
-
-#. markup
-#: ../src/cut-n-paste/gdmcomm.c:413
-msgid "GDM (The GNOME Display Manager) is not running."
-msgstr "GDM (de display-manager van GNOME) is niet actief."
-
-#: ../src/cut-n-paste/gdmcomm.c:416
-msgid ""
-"You might in fact be using a different display manager, such as KDM (KDE "
-"Display Manager) or xdm."
-msgstr ""
-"Mogelijkerwijs gebruikt u een andere display-manager zoals KDM (de display-"
-"manager van KDE) of xdm."
-
-#: ../src/cut-n-paste/gdmcomm.c:419
-msgid ""
-"If you still wish to use this feature, either start GDM yourself or ask your "
-"system administrator to start GDM."
-msgstr ""
-"Indien u toch deze applet wilt gebruiken, moet u zelf GDM opstarten of uw "
-"systeembeheerder vragen deze op te starten."
-
-#. markup
-#: ../src/cut-n-paste/gdmcomm.c:441
-msgid "Cannot communicate with GDM (The GNOME Display Manager)"
-msgstr "Kan niet communiceren met GDM (de display-manager van GNOME)"
-
-#: ../src/cut-n-paste/gdmcomm.c:444
-msgid "Perhaps you have an old version of GDM running."
-msgstr "Misschien is er momenteel een oude versie van GDM actief."
-
-#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
-msgid "Cannot communicate with gdm, perhaps you have an old version running."
-msgstr "Kan niet communiceren met gdm, misschien is er een oude versie actief."
-
-#: ../src/cut-n-paste/gdmcomm.c:469
-msgid "The allowed limit of flexible X servers reached."
-msgstr "Het maximum toegestane aantal flexibele X-servers is bereikt."
-
-#: ../src/cut-n-paste/gdmcomm.c:471
-msgid "There were errors trying to start the X server."
-msgstr "Er waren fouten bij het opstarten van de X-server."
-
-#: ../src/cut-n-paste/gdmcomm.c:473
-msgid "The X server failed.  Perhaps it is not configured well."
-msgstr "De X-server is mislukt.  Mogelijk is deze niet goed geconfigureerd."
-
-#: ../src/cut-n-paste/gdmcomm.c:476
-msgid "Too many X sessions running."
-msgstr "Te veel X-sessies actief."
-
-#: ../src/cut-n-paste/gdmcomm.c:478
-msgid ""
-"The nested X server (Xnest) cannot connect to your current X server.  You "
-"may be missing an X authorization file."
-msgstr ""
-"De ingebedde X-server (Xnest) kan geen verbinding maken met uw huidige X-"
-"server.  Mogelijk bezit u geen X-authorisatie-bestand."
-
-#: ../src/cut-n-paste/gdmcomm.c:483
-msgid ""
-"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
-"Please install the Xnest package in order to use the nested login."
-msgstr ""
-"De ingebedde X-server (Xnest) is niet beschikbaar, of gdm is foutief "
-"geconfigureerd.\n"
-"Installeer het pakket Xnest om ingebed aan te kunnen melden."
-
-#: ../src/cut-n-paste/gdmcomm.c:488
-msgid ""
-"The X server is not available, it is likely that gdm is badly configured."
-msgstr ""
-"De X-server is niet beschikbaar, waarschijnlijk is gdm foutief "
-"geconfigureerd."
-
-#: ../src/cut-n-paste/gdmcomm.c:497
-msgid "Trying to change to an invalid virtual terminal number."
-msgstr ""
-"Trachten te schakelen naar een ongeldig nummer voor een virtuele terminal."
-
-#: ../src/cut-n-paste/gdmcomm.c:501
-msgid ""
-"You do not seem to have authentication needed be for this operation.  "
-"Perhaps your .Xauthority file is not set up correctly."
-msgstr ""
-"Er is schijnbaar geen aanmeldcontrole nodig voor deze bewerking.  "
-"Mogelijkerwijs is uw .Xauthority-bestand foutief ingesteld."
-
-#: ../src/cut-n-paste/gdmcomm.c:505
-msgid "Too many messages were sent to gdm and it hung upon us."
-msgstr ""
-"Er zijn te veel berichten gestuurd naar gdm welke vervolgens heeft "
-"opgehangen."
-
-#: ../src/cut-n-paste/gdmcomm.c:508
-msgid "Unknown error occurred."
-msgstr "Er is een onbekende fout opgetreden."
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -1023,29 +926,110 @@ msgstr "kon verbonden met de berichtenbus"
 msgid "screensaver already running in this session"
 msgstr "schermbeveiliging al actief in deze sessie"
 
-#: ../src/gs-lock-plug.c:331
+#: ../src/gs-lock-plug.c:345
 msgid "Time has expired."
-msgstr "Tijd is verlopten."
+msgstr "Tijd is verlopen."
 
-#: ../src/gs-lock-plug.c:359
+#: ../src/gs-lock-plug.c:373
 msgid "You have the Caps Lock key on."
 msgstr "De Caps Lock staat aan."
 
-#: ../src/gs-lock-plug.c:1494 ../src/gs-lock-plug.c:1531
+#: ../src/gs-lock-plug.c:1537 ../src/gs-lock-plug.c:1574
 msgid "S_witch User..."
 msgstr "Gebruiker _wisselen…"
 
-#: ../src/gs-lock-plug.c:1502
+#: ../src/gs-lock-plug.c:1545
 msgid "Log _Out"
 msgstr "_Afmelden"
 
-#: ../src/gs-lock-plug.c:1693
+#: ../src/gs-lock-plug.c:1736
 msgid "%U on %h"
 msgstr "%U op %h"
 
-#: ../src/gs-lock-plug.c:1707
+#: ../src/gs-lock-plug.c:1750
 msgid "_Password:"
 msgstr "_Wachtwoord:"
+
+#~ msgid "GDM (The GNOME Display Manager) is not running."
+#~ msgstr "GDM (de display-manager van GNOME) is niet actief."
+
+#~ msgid ""
+#~ "You might in fact be using a different display manager, such as KDM (KDE "
+#~ "Display Manager) or xdm."
+#~ msgstr ""
+#~ "Mogelijkerwijs gebruikt u een andere display-manager zoals KDM (de "
+#~ "display-manager van KDE) of xdm."
+
+#~ msgid ""
+#~ "If you still wish to use this feature, either start GDM yourself or ask "
+#~ "your system administrator to start GDM."
+#~ msgstr ""
+#~ "Indien u toch deze applet wilt gebruiken, moet u zelf GDM opstarten of uw "
+#~ "systeembeheerder vragen deze op te starten."
+
+#~ msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+#~ msgstr "Kan niet communiceren met GDM (de display-manager van GNOME)"
+
+#~ msgid "Perhaps you have an old version of GDM running."
+#~ msgstr "Misschien is er momenteel een oude versie van GDM actief."
+
+#~ msgid ""
+#~ "Cannot communicate with gdm, perhaps you have an old version running."
+#~ msgstr ""
+#~ "Kan niet communiceren met gdm, misschien is er een oude versie actief."
+
+#~ msgid "The allowed limit of flexible X servers reached."
+#~ msgstr "Het maximum toegestane aantal flexibele X-servers is bereikt."
+
+#~ msgid "There were errors trying to start the X server."
+#~ msgstr "Er waren fouten bij het opstarten van de X-server."
+
+#~ msgid "The X server failed.  Perhaps it is not configured well."
+#~ msgstr "De X-server is mislukt.  Mogelijk is deze niet goed geconfigureerd."
+
+#~ msgid "Too many X sessions running."
+#~ msgstr "Te veel X-sessies actief."
+
+#~ msgid ""
+#~ "The nested X server (Xnest) cannot connect to your current X server.  You "
+#~ "may be missing an X authorization file."
+#~ msgstr ""
+#~ "De ingebedde X-server (Xnest) kan geen verbinding maken met uw huidige X-"
+#~ "server.  Mogelijk bezit u geen X-authorisatie-bestand."
+
+#~ msgid ""
+#~ "The nested X server (Xnest) is not available, or gdm is badly "
+#~ "configured.\n"
+#~ "Please install the Xnest package in order to use the nested login."
+#~ msgstr ""
+#~ "De ingebedde X-server (Xnest) is niet beschikbaar, of gdm is foutief "
+#~ "geconfigureerd.\n"
+#~ "Installeer het pakket Xnest om ingebed aan te kunnen melden."
+
+#~ msgid ""
+#~ "The X server is not available, it is likely that gdm is badly configured."
+#~ msgstr ""
+#~ "De X-server is niet beschikbaar, waarschijnlijk is gdm foutief "
+#~ "geconfigureerd."
+
+#~ msgid "Trying to change to an invalid virtual terminal number."
+#~ msgstr ""
+#~ "Trachten te schakelen naar een ongeldig nummer voor een virtuele terminal."
+
+#~ msgid ""
+#~ "You do not seem to have authentication needed be for this operation.  "
+#~ "Perhaps your .Xauthority file is not set up correctly."
+#~ msgstr ""
+#~ "Er is schijnbaar geen aanmeldcontrole nodig voor deze bewerking.  "
+#~ "Mogelijkerwijs is uw .Xauthority-bestand foutief ingesteld."
+
+#~ msgid "Too many messages were sent to gdm and it hung upon us."
+#~ msgstr ""
+#~ "Er zijn te veel berichten gestuurd naar gdm welke vervolgens heeft "
+#~ "opgehangen."
+
+#~ msgid "Unknown error occurred."
+#~ msgstr "Er is een onbekende fout opgetreden."
 
 #~ msgid "Time before activation"
 #~ msgstr "Tijd voor activering"
