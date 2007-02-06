@@ -1,3 +1,11 @@
+2007-02-06  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac:
+	* src/gs-window-x11.c (unshape_window, gs_window_xevent)
+	(window_select_shape_events, gs_window_real_show):
+	Watch for ShapeNotify events and unshape the window.
+	Fixes #403936
+
 2007-01-30  William Jon McCann  <mccann@jhu.edu>
 
 	* src/cut-n-paste/Makefile.am:
