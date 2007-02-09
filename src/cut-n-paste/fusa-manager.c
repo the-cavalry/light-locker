@@ -1690,6 +1690,7 @@ fusa_manager_activate_display (FusaManager                *manager,
 void
 fusa_manager_new_console (FusaManager                *manager,
 			  GdkScreen                  *screen,
+			  FusaUser                   *user,
 			  FusaManagerDisplayCallback  func,
 			  gpointer                    data,
 			  GDestroyNotify              notify)
@@ -1698,9 +1699,14 @@ fusa_manager_new_console (FusaManager                *manager,
 
   queue_authentication (screen);
 
-  ask_gdm (gdm_callback_activate_display,
-      new_fusa_manager_with_callback (manager, func, NULL, data),
-      GDM_CMD_FLEXI_XSERVER);
+  if (user)
+    ask_gdm (gdm_callback_activate_display,
+        new_fusa_manager_with_callback (manager, func, NULL, data),
+        GDM_CMD_FLEXI_XSERVER_USER, fusa_user_get_user_name (user));
+  else
+    ask_gdm (gdm_callback_activate_display,
+        new_fusa_manager_with_callback (manager, func, NULL, data),
+        GDM_CMD_FLEXI_XSERVER);
 }
 
 /**
@@ -1714,6 +1720,7 @@ fusa_manager_new_console (FusaManager                *manager,
 void
 fusa_manager_new_xnest (FusaManager                *manager,
 			GdkScreen                  *screen,
+			FusaUser                   *user,
 			FusaManagerDisplayCallback  func,
 			gpointer                    data,
 			GDestroyNotify              notify)
@@ -1726,13 +1733,23 @@ fusa_manager_new_xnest (FusaManager                *manager,
   
   queue_authentication (screen);
 
-  ask_gdm (gdm_callback_update_displays,
-      new_fusa_manager_with_callback (manager, func, NULL, data),
-      GDM_CMD_FLEXI_XNEST,
-      gdk_display_get_name (gdk_screen_get_display (screen)),
-      (int) getuid (),
-      mit_cookie,
-      XauFileName ());
+  if (user)
+    ask_gdm (gdm_callback_update_displays,
+        new_fusa_manager_with_callback (manager, func, NULL, data),
+        GDM_CMD_FLEXI_XNEST_USER,
+	fusa_user_get_user_name (user),
+        gdk_display_get_name (gdk_screen_get_display (screen)),
+        (int) getuid (),
+        mit_cookie,
+        XauFileName ());
+  else
+    ask_gdm (gdm_callback_update_displays,
+        new_fusa_manager_with_callback (manager, func, NULL, data),
+        GDM_CMD_FLEXI_XNEST,
+        gdk_display_get_name (gdk_screen_get_display (screen)),
+        (int) getuid (),
+        mit_cookie,
+        XauFileName ());
 
   g_free (mit_cookie);
 

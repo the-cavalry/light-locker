@@ -173,7 +173,8 @@ manager_new_console_cb (FusaManager  *manager,
 
 static void
 do_user_switch (GSLockPlug  *plug,
-                FusaDisplay *display)
+                FusaDisplay *display,
+                FusaUser    *user)
 {
         GdkScreen *screen;
 
@@ -184,13 +185,21 @@ do_user_switch (GSLockPlug  *plug,
         }
 
         if (display) {
-                fusa_manager_activate_display (plug->priv->fusa_manager, display, screen,
-                                               manager_new_console_cb, plug, NULL);
+                fusa_manager_activate_display (plug->priv->fusa_manager,
+                                               display,
+                                               screen,
+                                               manager_new_console_cb,
+                                               plug,
+                                               NULL);
                 return;
         }
 
-        fusa_manager_new_console (plug->priv->fusa_manager, screen,
-                                  manager_new_console_cb, plug, NULL);
+        fusa_manager_new_console (plug->priv->fusa_manager,
+                                  screen,
+                                  user,
+                                  manager_new_console_cb,
+                                  plug,
+                                  NULL);
 }
 
 enum {
@@ -206,7 +215,7 @@ static void
 switch_user_response (GSLockPlug *plug)
 {
         FusaDisplay      *display = NULL;
-        FusaUser         *user;
+        FusaUser         *user = NULL;
         GtkTreeSelection *selection;
         GtkTreeModel     *model;
         GtkTreeIter       iter;
@@ -245,7 +254,7 @@ switch_user_response (GSLockPlug *plug)
 
         g_free (name);
 
-        do_user_switch (plug, display);
+        do_user_switch (plug, display, user);
 }
 
 static void

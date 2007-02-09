@@ -1,3 +1,14 @@
+2007-02-08  William Jon McCann  <mccann@jhu.edu>
+
+	* src/cut-n-paste/fusa-manager.c: (fusa_manager_new_console),
+	(fusa_manager_new_xnest):
+	* src/cut-n-paste/fusa-manager.h:
+	* src/cut-n-paste/gdm-queue.h:
+	* src/gs-lock-plug.c: (do_user_switch), (switch_user_response):
+	Use gdm socket command to start a login procedure when available.
+	Patch from Matthias Clasen <mclasen@redhat.com>
+	Fixes #402183
+
 2007-02-06  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac:

@@ -107,11 +107,13 @@ void         fusa_manager_activate_display      (FusaManager                *man
 						 GDestroyNotify              notify);
 void         fusa_manager_new_console           (FusaManager                *manager,
 						 GdkScreen                  *screen,
+						 FusaUser                   *user,
 						 FusaManagerDisplayCallback  func,
 						 gpointer                    data,
 						 GDestroyNotify              notify);
 void         fusa_manager_new_xnest             (FusaManager                *manager,
 						 GdkScreen                  *screen,
+						 FusaUser                   *user,
 						 FusaManagerDisplayCallback  func,
 						 gpointer                    data,
 						 GDestroyNotify              notify);
