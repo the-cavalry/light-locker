@@ -383,6 +383,17 @@ AC_DEFUN(HANDLE_X_PATH_ARG, [
   ])
 
 dnl ---------------------------------------------------------------------------
+dnl - Check for shaped window extension
+dnl ---------------------------------------------------------------------------
+
+have_shape=no
+AC_CHECK_X_HEADER(X11/extensions/shape.h, [have_shape=yes],,
+                    [#include <X11/Xlib.h>])
+if test "$have_shape" = yes; then
+  AC_DEFINE(HAVE_SHAPE_EXT, 1, [Define if shape extension is available])
+fi
+
+dnl ---------------------------------------------------------------------------
 dnl - Check for the MIT-SCREEN-SAVER server extension.
 dnl ---------------------------------------------------------------------------
 
