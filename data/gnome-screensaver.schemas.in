@@ -215,7 +215,7 @@
       <applyto>/apps/gnome-screensaver/user_switch_enabled</applyto>
       <owner>gnome-screensaver</owner>
       <type>bool</type>
-      <default>FALSE</default>
+      <default>TRUE</default>
       <locale name="C">
         <short>Allow user switching</short>
         <long>
