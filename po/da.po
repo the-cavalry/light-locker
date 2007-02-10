@@ -2,14 +2,15 @@
 # Copyright (C) 2006
 # This file is distributed under the same license as the gnome-screensaver package.
 # David Nielsen <david@lovesunix.net>, 2006.
+# Kenneth Nielsen <k.nielsen@gmail.com>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-08 22:02+0100\n"
-"PO-Revision-Date: 2006-03-08 16:20+0100\n"
-"Last-Translator: David Nielsen <david@lovesunix.net>\n"
+"POT-Creation-Date: 2007-02-10 23:32+0100\n"
+"PO-Revision-Date: 2007-02-10 22:48+0100\n"
+"Last-Translator: Kenneth Nielsen <k.nielsen81@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -25,27 +26,47 @@ msgid "Set your screensaver preferences"
 msgstr "Sæt dine indstillinger for pauseskærm"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "<b>Screensaver preview</b>"
+msgstr "<b>Forhåndsvisning af pauseskærm</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+msgstr "<b>Advarsel: skærmen vil ikke være låst for administratoren.</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Power _Management"
+msgstr "Strø_mstyring"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "Regard the computer as _idle after:"
+msgstr "Betragt computeren som værende _i tomgang efter:"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "Screensaver Preferences"
 msgstr "Indstillinger for pauseskærm"
 
-#: ../data/gnome-screensaver-preferences.glade.h:2
-msgid "Set session as _idle after:"
-msgstr "Sæt session i _tomgang efter:"
+#: ../data/gnome-screensaver-preferences.glade.h:6
+msgid "Screensaver Preview"
+msgstr "Pauseskærms-forhåndsvisning"
 
-#: ../data/gnome-screensaver-preferences.glade.h:3
-msgid "_Activate screensaver when session is idle"
-msgstr "_Aktivér pauseskærm når sessionen er i tomgang"
+#: ../data/gnome-screensaver-preferences.glade.h:7
+msgid "_Activate screensaver when computer is idle"
+msgstr "_Aktivér pauseskærm når computeren er i tomgang"
 
-#: ../data/gnome-screensaver-preferences.glade.h:4
+#: ../data/gnome-screensaver-preferences.glade.h:8
 msgid "_Lock screen when screensaver is active"
 msgstr "_Lås skærm mens pauseskærmen er aktiv"
 
-#: ../data/gnome-screensaver-preferences.glade.h:5
-msgid "_Screensaver"
-msgstr "_Pauseskærm"
+#: ../data/gnome-screensaver-preferences.glade.h:9
+msgid "_Preview"
+msgstr "_Forhåndsvisning"
+
+#: ../data/gnome-screensaver-preferences.glade.h:10
+msgid "_Screensaver theme:"
+msgstr "Tema for pause_skærm:"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:8
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver themes"
 msgstr "Pauseskærm temaer"
 
@@ -58,51 +79,61 @@ msgid "Activate when idle"
 msgstr "Aktivér i tomgang"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
-msgid "Allow logout"
-msgstr "Tillad at logge ud"
+msgid "Allow embedding a keyboard into the window"
+msgstr "Tillad at indlejre et tastatur i vinduet"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow monitor power management"
-msgstr "Tillad strømstyringshåndtering for skærm"
+msgid "Allow logout"
+msgstr "Tillad at logge ud"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
 msgstr "Tillad brugerskift"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Embedded keyboard command"
+msgstr "Indlejret tastatur-kommando"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Lock on activation"
 msgstr "Lås ved aktivering"
 
-#: ../data/gnome-screensaver.schemas.in.h:6
+#: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Logout command"
 msgstr "Log ud-kommando"
 
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Screensaver theme selection mode"
 msgstr "Temavalgstilstand for pauseskærm"
 
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr ""
 "Sæt denne til SAND for at aktivere pauseskærmen når sessionen er i tomgang."
 
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Set this to TRUE to allow the screensaver to power down the monitor."
-msgstr "Sæt denne til SAND for at tillade pauseskærmen at slukke skærmen."
-
 #: ../data/gnome-screensaver.schemas.in.h:11
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr "Sæt denne til SAND for at låse skærmen når pauseskærmen bliver aktiv."
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr ""
+"Sæt denne til TRUE for at muliggøre indlejringen af et tastatur i vinduet "
+"når man prøver at låse skærmen op. Nøglen \"keyboard_command\" skal være sat "
+"til en passende kommando."
 
 #: ../data/gnome-screensaver.schemas.in.h:12
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr "Sæt denne til TRUE for at låse skærmen når pauseskærmen bliver aktiv."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr ""
-"Sæt denne til SAND for at tilbyde mulighed for at skifte bruger i "
+"Sæt denne til TRUE for at tilbyde mulighed for at skifte bruger i "
 "oplåsningsdialogen."
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -110,7 +141,19 @@ msgstr ""
 "Sæt denne til SAND for at tilbyde mulighed for at logge ud efter et tidsrum. "
 "Tidsrummet er specificeret i \"logout_delay\"-nøglen."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr ""
+"Kommandoen der skal køres for at indlejre et tastatur i vinduet til at låse "
+"skærmen op med, forudsat at \"embedded_keyboard_enabled\"-nøglen er sat til "
+"TRUE. Kommandoen bør implementere en \"XEMBED plug\"-grænseflade og lave et "
+"XID vindue på stadard-ud."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -120,12 +163,12 @@ msgstr ""
 "bør logge brugeren af uden interaktion. Denne nøgle har kun effekt hvis "
 "\"logout_enable\"-nøglen er sat til SAND."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr "Antallet af minutter efter aktivering af pauseskærm før skærmen låses."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -135,37 +178,23 @@ msgstr ""
 "udlogningsmulighed vises i oplåsningsdialogen. Denne nøgle har kun effekt "
 "hvis \"logout_enable\"-nøglen er sat til SAND."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"goes into standby power mode."
-msgstr ""
-"Antallet af minutter efter aktivering af pauseskærm til skærmen sættes i "
-"dvale tilstand."
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"goes into suspend power mode."
-msgstr ""
-"Antallet af minutter efter pauseskærm aktivering til skærmen sættes i "
-"frakoblet tilstand."
-
 #: ../data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"powers off."
-msgstr "Antallet af minutter efter pauseskærm aktivering til skærmen slukkes."
-
-#: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr ""
 "Antallet af minutters inaktivitet før sessionen anses for værende i tomgang."
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "Antallet af minutter der skal køres før der skiftes pauseskærm tema."
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid ""
+"The number of seconds of inactivity before signalling to power-management. "
+"This key is set and maintained by the session power-management agent."
+msgstr ""
+"Antallet af sekunders inaktivitet før der sendes signal til strømstyringen. "
+"Denne nøgle bliver sat og vedligeholdt af sessions strømstyrings-agent."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
@@ -182,6 +211,14 @@ msgstr ""
 "tilfældigt tema ved aktivering."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
+msgid "Theme for lock dialog"
+msgstr "Tema for låsnings-dialog"
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid "Theme to use for the lock dialog."
+msgstr "Tema der skal bruger til låsnings-dialogen."
+
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -193,49 +230,59 @@ msgstr ""
 "når \"mode\" er \"single\" og bør give en liste af temaer når \"mode\" er "
 "\"random\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:24
-msgid "Time before activation"
-msgstr "Tid før aktivering"
-
-#: ../data/gnome-screensaver.schemas.in.h:25
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before locking"
 msgstr "Tid før låsning"
 
-#: ../data/gnome-screensaver.schemas.in.h:26
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before logout option"
 msgstr "Tid før udlogningsmulighed"
 
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid "Time before power off"
-msgstr "Time før maskinen slukkes"
-
 #: ../data/gnome-screensaver.schemas.in.h:28
-msgid "Time before standby"
-msgstr "Tid før maskinen sættes i dvale"
+msgid "Time before power-management baseline"
+msgstr "Tid før grundlinje for strømstyring"
 
 #: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before suspend"
-msgstr "Tid før maskinen sættes frakoblet tilstand"
+msgid "Time before session is considered idle"
+msgstr "Tid før sessionen anses for at være i tomgang"
 
 #: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before theme change"
 msgstr "Tid før temaskift"
 
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "Bobler GNOME-fodlogoet omkring på skærmen"
+#: ../data/lock-dialog-default.glade.h:2
+#, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
+msgstr "<span size=\"small\">%U på %h</span>"
 
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "Flydende fødder"
+#: ../data/lock-dialog-default.glade.h:4
+#, no-c-format
+msgid "<span size=\"x-large\">%R</span>"
+msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../savers/cosmos-slideshow.desktop.in.in.h:1
-msgid "Cosmos"
-msgstr "Kosmos"
+#: ../data/lock-dialog-default.glade.h:5 ../src/gs-lock-plug.c:1835
+msgid "S_witch to user:"
+msgstr "S_kift til bruger:"
 
-#: ../savers/cosmos-slideshow.desktop.in.in.h:2
-msgid "Display a slideshow of pictures of the cosmos"
-msgstr "Viser et billedeshow af billeder af kosmos"
+#: ../data/lock-dialog-default.glade.h:6
+msgid "_Cancel"
+msgstr "_Afbryd"
+
+#: ../data/lock-dialog-default.glade.h:7
+msgid "_Log Out"
+msgstr "Log _ud"
+
+#: ../data/lock-dialog-default.glade.h:8
+msgid "_Switch User..."
+msgstr "_Skift bruger..."
+
+#: ../data/lock-dialog-default.glade.h:9
+msgid "_Switch user..."
+msgstr "_Skift bruger..."
+
+#: ../data/lock-dialog-default.glade.h:10 ../src/gs-lock-plug.c:1564
+msgid "_Unlock"
+msgstr "_Lås op"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
@@ -253,34 +300,34 @@ msgstr "Et popkunstagtigt net af pulserende farver."
 msgid "Pop art squares"
 msgstr "Firkantet popkunst"
 
-#: ../savers/floaters.c:1165
+#: ../savers/floaters.c:1166
 msgid "show paths that images follow"
 msgstr "vis stier som billeder følger"
 
-#: ../savers/floaters.c:1172
+#: ../savers/floaters.c:1173
 msgid "occasionally rotate images as they move"
 msgstr "Rotér billede i ny og næ mens de flyttes"
 
-#: ../savers/floaters.c:1179
+#: ../savers/floaters.c:1180
 msgid "print out frame rate and other statistics"
 msgstr "Udskriv billedraten og andre statistikker"
 
-#: ../savers/floaters.c:1187
+#: ../savers/floaters.c:1188
 msgid "the maximum number of images to keep on screen"
 msgstr "det maksimale antal billeder der skal holdes på skærmen"
 
 #. translators: this should be translated to be symbolic of a generic
 #. * number.  e.g, "the screen saver should keep N images on the screen"
 #.
-#: ../savers/floaters.c:1191
+#: ../savers/floaters.c:1192
 msgid "N"
 msgstr "X"
 
-#: ../savers/floaters.c:1198
+#: ../savers/floaters.c:1199
 msgid "the source image to use"
 msgstr "det kildebillede der skal bruges"
 
-#: ../savers/floaters.c:1205
+#: ../savers/floaters.c:1206
 msgid "the initial size and position of window"
 msgstr "startstørrelsen og position af vindue"
 
@@ -288,23 +335,23 @@ msgstr "startstørrelsen og position af vindue"
 #. * can be translated, but the 'x' area indicator and '+' offset indicators
 #. * need to be untranslated and can't be rearranged.
 #.
-#: ../savers/floaters.c:1210
+#: ../savers/floaters.c:1211
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "BREDDExHØJDE+X+Y"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1228
+#: ../savers/floaters.c:1229
 msgid "image - floats images around the screen"
 msgstr "billede - flyder billeder rundt på skærmen"
 
-#: ../savers/floaters.c:1238
+#: ../savers/floaters.c:1239
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Se --help fori hjælp til benyttelse.\n"
 
-#: ../savers/floaters.c:1247
+#: ../savers/floaters.c:1248
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "Du skal specificere et billede. Se --help for hjælp til benyttelse.\n"
 
@@ -333,7 +380,7 @@ msgid "The name of the X11 display this object refers to."
 msgstr "Navnet på den X11-skærm dette objekt henviser til."
 
 #: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:164
+#: ../src/cut-n-paste/fusa-user-menu-item.c:163
 msgid "User"
 msgstr "Bruger"
 
@@ -357,41 +404,41 @@ msgstr "Indlejret"
 msgid "Whether or not this display is a windowed (Xnest) display."
 msgstr "Om denne skærm er en indlejret (Xnest) visning."
 
-#: ../src/cut-n-paste/fusa-manager.c:1263
+#: ../src/cut-n-paste/fusa-manager.c:1037
 msgid "The display manager could not be contacted for unknown reasons."
 msgstr "Skærmhåndteringen kunne ikke kontaktes af ukendte årsager."
 
-#: ../src/cut-n-paste/fusa-manager.c:1270
+#: ../src/cut-n-paste/fusa-manager.c:1044
 msgid "The display manager is not running or too old."
 msgstr "Skærmhåndteringen kører ikke eller er for gammel."
 
-#: ../src/cut-n-paste/fusa-manager.c:1273
+#: ../src/cut-n-paste/fusa-manager.c:1047
 msgid "The configured limit of flexible servers has been reached."
 msgstr "Den prækonfigurerede grænse af fleksible servere er nået"
 
-#: ../src/cut-n-paste/fusa-manager.c:1276
+#: ../src/cut-n-paste/fusa-manager.c:1050
 msgid "There was an unknown error starting X."
 msgstr "Der opstod en ukendt fejl ved opstart af X."
 
-#: ../src/cut-n-paste/fusa-manager.c:1279
+#: ../src/cut-n-paste/fusa-manager.c:1053
 msgid "The X server failed to finish starting."
 msgstr "X-serveren kunne ikke færdiggøre opstarting."
 
-#: ../src/cut-n-paste/fusa-manager.c:1282
+#: ../src/cut-n-paste/fusa-manager.c:1056
 msgid "There are too many X sessions running."
 msgstr "Der er for mange X-sessioner kørende."
 
-#: ../src/cut-n-paste/fusa-manager.c:1285
+#: ../src/cut-n-paste/fusa-manager.c:1059
 msgid "The nested X server (Xnest) cannot connect to your current X server."
 msgstr ""
 "Den indlejrede X-server (Xnest) kunne ikke forbinde til din nuværende X "
 "server."
 
-#: ../src/cut-n-paste/fusa-manager.c:1288
+#: ../src/cut-n-paste/fusa-manager.c:1062
 msgid "The X server in the GDM configuration could not be found."
 msgstr "X-serveren i GDM konfigurationen kunne ikke findes."
 
-#: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
+#: ../src/cut-n-paste/fusa-manager.c:1065
 msgid ""
 "Trying to set an unknown logout action, or trying to set a logout action "
 "which is not available."
@@ -399,41 +446,57 @@ msgstr ""
 "Prøver at sætte en ukendt udlogningshandling, eller forsøger at sætte en "
 "udlogningshandling som ikke er tilgængelig."
 
-#: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
+#: ../src/cut-n-paste/fusa-manager.c:1068
 msgid "Virtual terminals not supported."
 msgstr "Virtuelle terminaler er ikke understøttet."
 
-#: ../src/cut-n-paste/fusa-manager.c:1297
+#: ../src/cut-n-paste/fusa-manager.c:1071
 msgid "Invalid virtual terminal number."
 msgstr "Ugyldigt nummer på virtual terminal."
 
-#: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
+#: ../src/cut-n-paste/fusa-manager.c:1074
 msgid "Trying to update an unsupported configuration key."
 msgstr "Prøver at opdatere en ikke-understøttet konfigurationsnøgle."
 
-#: ../src/cut-n-paste/fusa-manager.c:1303
+#: ../src/cut-n-paste/fusa-manager.c:1077
 msgid "~/.Xauthority file badly configured or missing."
 msgstr "~/.Xauthority fil forkert konfigureret eller mangler."
 
-#: ../src/cut-n-paste/fusa-manager.c:1306
+#: ../src/cut-n-paste/fusa-manager.c:1080
 msgid "Too many messages were sent to the display manager, and it hung up."
 msgstr "For mange beskeder blev sendt til skærmhåndteringen og den lagde på."
 
-#: ../src/cut-n-paste/fusa-manager.c:1310
+#: ../src/cut-n-paste/fusa-manager.c:1084
 msgid "The display manager sent an unknown error message."
 msgstr "Skærmhåndteringen sendte en ukendt fejlbesked."
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:165
+#: ../src/cut-n-paste/fusa-user-menu-item.c:164
 msgid "The user this menu item represents."
 msgstr "Den bruger dette menupunkt repræsenterer."
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:172
+#: ../src/cut-n-paste/fusa-user-menu-item.c:171
 msgid "Icon Size"
 msgstr "Ikonstørrelse"
 
-#: ../src/cut-n-paste/fusa-user-menu-item.c:173
+#: ../src/cut-n-paste/fusa-user-menu-item.c:172
 msgid "The size of the icon to use."
 msgstr "Den størrelse ikon der skal bruges."
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:178
+msgid "Indicator Size"
+msgstr "Indikatorstørrelse"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:179
+msgid "Size of check indicator"
+msgstr "Størrelse af kontrol-indikator"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:184
+msgid "Indicator Spacing"
+msgstr "Indikator mellemrum"
+
+#: ../src/cut-n-paste/fusa-user-menu-item.c:185
+msgid "Space between the username and the indicator"
+msgstr "Afstand mellem brugernavnet og indikatoren"
 
 #: ../src/cut-n-paste/fusa-user.c:151
 msgid "The user manager object this user is controlled by."
@@ -442,100 +505,6 @@ msgstr "Det brugerhåndteringsobjekt denne bruger er kontrolleret af."
 #: ../src/cut-n-paste/fusa-utils.c:80
 msgid "Show Details"
 msgstr "Vis detajler"
-
-#. markup
-#: ../src/cut-n-paste/gdmcomm.c:413
-msgid "GDM (The GNOME Display Manager) is not running."
-msgstr "GDM (GNOMEs skærmhåndteringien) kører ikke."
-
-#: ../src/cut-n-paste/gdmcomm.c:416
-msgid ""
-"You might in fact be using a different display manager, such as KDM (KDE "
-"Display Manager) or xdm."
-msgstr ""
-"Du bruger måske en anden skærmhåndtering, såsom KDM (KDE skærmhåndtering) "
-"eller xdm."
-
-#: ../src/cut-n-paste/gdmcomm.c:419
-msgid ""
-"If you still wish to use this feature, either start GDM yourself or ask your "
-"system administrator to start GDM."
-msgstr ""
-"Hvis du stadig ønsker at bruge denne facilitet, skal du selv starte GDM "
-"eller bede din systemadministrator om det."
-
-#. markup
-#: ../src/cut-n-paste/gdmcomm.c:441
-msgid "Cannot communicate with GDM (The GNOME Display Manager)"
-msgstr "Kan ikke kommunikere med GDM (GNOME skærmhåndteringien)"
-
-#: ../src/cut-n-paste/gdmcomm.c:444
-msgid "Perhaps you have an old version of GDM running."
-msgstr "Måske har du en gammel version af GDM kørende."
-
-#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
-msgid "Cannot communicate with gdm, perhaps you have an old version running."
-msgstr "Kan ikke kommunikere med GDM, måske har du en gammel version kørende."
-
-#: ../src/cut-n-paste/gdmcomm.c:469
-msgid "The allowed limit of flexible X servers reached."
-msgstr "Det tilladte antal af fleksible X-servere blev nået."
-
-#: ../src/cut-n-paste/gdmcomm.c:471
-msgid "There were errors trying to start the X server."
-msgstr "Der opstod en fejl ved forsøg på at starte X-serveren."
-
-#: ../src/cut-n-paste/gdmcomm.c:473
-msgid "The X server failed.  Perhaps it is not configured well."
-msgstr "X-serveren fejlede. Måske er den ikke konfiguret korrekt."
-
-#: ../src/cut-n-paste/gdmcomm.c:476
-msgid "Too many X sessions running."
-msgstr "For many X-sessioner kørende."
-
-#: ../src/cut-n-paste/gdmcomm.c:478
-msgid ""
-"The nested X server (Xnest) cannot connect to your current X server.  You "
-"may be missing an X authorization file."
-msgstr ""
-"Den indlejrede X-server (Xnest) kan ikke forbinde til din nuværende X-"
-"server. Du mangler måske en X-godkendelsesfil."
-
-#: ../src/cut-n-paste/gdmcomm.c:483
-msgid ""
-"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
-"Please install the Xnest package in order to use the nested login."
-msgstr ""
-"Den indlejrede X-server (Xnest) er ikke tilgængelig eller GDM er forkert "
-"konfigureret.\n"
-"Installér venligst Xnest-pakken for at kunne benyttet det indlejrede log ind."
-
-#: ../src/cut-n-paste/gdmcomm.c:488
-msgid ""
-"The X server is not available, it is likely that gdm is badly configured."
-msgstr ""
-"X-serveren er ikke tilgængelig, det er sandsynligt at GDM er konfiguret "
-"forkert"
-
-#: ../src/cut-n-paste/gdmcomm.c:497
-msgid "Trying to change to an invalid virtual terminal number."
-msgstr "Forsøger at skifte et ugyldigt virtuel terminal nummer."
-
-#: ../src/cut-n-paste/gdmcomm.c:501
-msgid ""
-"You do not seem to have authentication needed be for this operation.  "
-"Perhaps your .Xauthority file is not set up correctly."
-msgstr ""
-"Du lader ikke til at have den nødvendige godkendelse til denne handling. "
-"Måske er din .Xauthority-fil ikke sat korrekt op."
-
-#: ../src/cut-n-paste/gdmcomm.c:505
-msgid "Too many messages were sent to gdm and it hung upon us."
-msgstr "For mange beskeder blev sendt til GDM og den lagde på."
-
-#: ../src/cut-n-paste/gdmcomm.c:508
-msgid "Unknown error occured."
-msgstr "En ukendt fejl opstod."
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -603,108 +572,203 @@ msgstr "Til:"
 msgid "Connecting..."
 msgstr "Tilslutter..."
 
-#: ../src/gnome-screensaver-command.c:59
+#: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
 msgstr "For pauseskærmen til at afslutte med ynde"
 
-#: ../src/gnome-screensaver-command.c:61
+#: ../src/gnome-screensaver-command.c:64
 msgid "Query the state of the screensaver"
 msgstr "Forespørg pauseskærmens tilstand"
 
-#: ../src/gnome-screensaver-command.c:63
+#: ../src/gnome-screensaver-command.c:66
+msgid "Query the length of time the screensaver has been active"
+msgstr "Forespørg til hvor lang tid pauseskærmen har været aktiv"
+
+#: ../src/gnome-screensaver-command.c:68
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "Beordre den kørende pauseskærmproces at låse skærmen øjeblikkeligt"
 
-#: ../src/gnome-screensaver-command.c:65
+#: ../src/gnome-screensaver-command.c:70
 msgid "If the screensaver is active then switch to another graphics demo"
 msgstr "Hvis pauseskærmen er aktiv, skift da til en anden grafik demonstration"
 
-#: ../src/gnome-screensaver-command.c:67
+#: ../src/gnome-screensaver-command.c:72
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "Slå pauseskærmen til (sorten skærmen)"
 
-#: ../src/gnome-screensaver-command.c:69
+#: ../src/gnome-screensaver-command.c:74
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr "Hvis pauseskærmen er aktiv, deaktivér den (genopret skærmen)"
 
-#: ../src/gnome-screensaver-command.c:71
-msgid "Disable running graphical themes while blanked"
-msgstr "Deaktivér kørsel af grafiske temaer, når skærmen er sortnet"
-
-#: ../src/gnome-screensaver-command.c:73
-msgid "Enable running graphical themes while blanked (if applicable)"
-msgstr ""
-"Aktivér kørsel af grafiske temaer, når skærmen er sortnet (hvis relevant)"
-
-#: ../src/gnome-screensaver-command.c:75
+#: ../src/gnome-screensaver-command.c:76
 msgid "Poke the running screensaver to simulate user activity"
 msgstr "Prik den kørende pauseskærm for at simulere brugeraktivitet"
 
-#: ../src/gnome-screensaver-command.c:77 ../src/gnome-screensaver-dialog.c:110
+#: ../src/gnome-screensaver-command.c:78
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr ""
+"Forhindrer pauseskærmen i at aktiveres. Kommandoen blokerer så længe "
+"hindringen er aktiv."
+
+#: ../src/gnome-screensaver-command.c:80
+msgid "The calling application that is inhibiting the screensaver"
+msgstr "Programmet der undertrykker pauseskærmen"
+
+#: ../src/gnome-screensaver-command.c:82
+msgid "The reason for inhibiting the screensaver"
+msgstr "Grunden til at pauseskærmen undertrykkes"
+
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:54
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Version af dette programmel"
 
-#: ../src/gnome-screensaver-command.c:202
+#: ../src/gnome-screensaver-command.c:249
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "Denne pauseskærm er %s\n"
 
-#: ../src/gnome-screensaver-command.c:202
+#: ../src/gnome-screensaver-command.c:249
 msgid "active"
 msgstr "aktiv"
 
-#: ../src/gnome-screensaver-command.c:202
+#: ../src/gnome-screensaver-command.c:249
 msgid "inactive"
 msgstr "inaktiv"
 
-#: ../src/gnome-screensaver-dialog.c:108
+#: ../src/gnome-screensaver-command.c:274
+#, c-format
+msgid "The screensaver has been active for %d seconds.\n"
+msgstr "Pauseskærmen har været aktiv i %d sekunder.\n"
+
+#: ../src/gnome-screensaver-dialog.c:52
 msgid "Show debugging output"
 msgstr "Vis fejlfindingsuddata"
 
-#: ../src/gnome-screensaver-dialog.c:112
+#: ../src/gnome-screensaver-dialog.c:56
 msgid "Show the logout button"
 msgstr "Vis log ud-knappen"
 
-#: ../src/gnome-screensaver-dialog.c:114
+#: ../src/gnome-screensaver-dialog.c:58
 msgid "Command to invoke from the logout button"
 msgstr "Kommando er skal køres fra log ud-knappen"
 
-#: ../src/gnome-screensaver-dialog.c:116
+#: ../src/gnome-screensaver-dialog.c:60
 msgid "Show the switch user button"
 msgstr "Vis skift bruger-knappen"
 
-#: ../src/gnome-screensaver-preferences.c:427
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:170 ../src/gnome-screensaver-dialog.c:171
+#: ../src/gnome-screensaver-dialog.c:172 ../src/gs-auth-pam.c:692
+msgid "Username:"
+msgstr "Brugernavn:"
+
+#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "Adgangskode:"
+
+#: ../src/gnome-screensaver-dialog.c:175
+msgid "You are required to change your password immediately (password aged)"
+msgstr ""
+"Det er påkrævet at du ændrer din adgangskode med det samme (adgangskode er "
+"for gammelt)"
+
+#: ../src/gnome-screensaver-dialog.c:176
+msgid "You are required to change your password immediately (root enforced)"
+msgstr ""
+"Det er påkrævet at du ændrer din adgangskode med det samme (påtvunget af "
+"administrator)"
+
+#: ../src/gnome-screensaver-dialog.c:177
+msgid "Your account has expired; please contact your system administrator"
+msgstr "Din konto er udløbet; kontakt venligst din system-administrator"
+
+#: ../src/gnome-screensaver-dialog.c:178
+msgid "No password supplied"
+msgstr "Ingen adgangskode udleveret"
+
+#: ../src/gnome-screensaver-dialog.c:179
+msgid "Password unchanged"
+msgstr "Adgangskode er uændret"
+
+#: ../src/gnome-screensaver-dialog.c:180
+msgid "Can not get username"
+msgstr "Kan ikke hente brugernavn"
+
+#: ../src/gnome-screensaver-dialog.c:181
+msgid "Retype new UNIX password:"
+msgstr "Skriv ny UNIX-adgangskode igen:"
+
+#: ../src/gnome-screensaver-dialog.c:182
+msgid "Enter new UNIX password:"
+msgstr "Skriv ny UNIX-adgangskode:"
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "(current) UNIX password:"
+msgstr "(nuværende) UNIX-adgangskode:"
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "Error while changing NIS password."
+msgstr "Fejl under ændring af NIS adgangskode."
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "You must choose a longer password"
+msgstr "Du skal vælge en længere adgangskode"
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "Password has been already used. Choose another."
+msgstr "Adgangskoden har allerede været brugt. Vælg en anden."
+
+#: ../src/gnome-screensaver-dialog.c:187
+msgid "You must wait longer to change your password"
+msgstr "Du skal vente længere før du kan ændre din adgangskode"
+
+#: ../src/gnome-screensaver-dialog.c:188
+msgid "Sorry, passwords do not match"
+msgstr "Beklager, adgangskoderne passer ikke sammen"
+
+#: ../src/gnome-screensaver-dialog.c:254
+msgid "Checking..."
+msgstr "Kontrollerer..."
+
+#: ../src/gnome-screensaver-dialog.c:296 ../src/gs-auth-pam.c:451
+msgid "Authentication failed."
+msgstr "Godkendelse fejlede."
+
+#: ../src/gnome-screensaver-preferences.c:459
 msgid "Blank screen"
 msgstr "Sort skærm"
 
-#: ../src/gnome-screensaver-preferences.c:433
+#: ../src/gnome-screensaver-preferences.c:465
 msgid "Random"
 msgstr "Tilfældig"
 
-#: ../src/gnome-screensaver-preferences.c:723
+#: ../src/gnome-screensaver-preferences.c:835
 msgid "Invalid screensaver theme"
 msgstr "Ugyldigt pauseskærmtema"
 
-#: ../src/gnome-screensaver-preferences.c:726
+#: ../src/gnome-screensaver-preferences.c:838
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Denne fil lader ikke til at være et gyldigt pauseskærmtema"
 
-#: ../src/gnome-screensaver-preferences.c:843
+#: ../src/gnome-screensaver-preferences.c:965
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d time"
 msgstr[1] "%d timer"
 
-#: ../src/gnome-screensaver-preferences.c:846
+#: ../src/gnome-screensaver-preferences.c:968
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minut"
 msgstr[1] "%d minutter"
 
-#: ../src/gnome-screensaver-preferences.c:849
+#: ../src/gnome-screensaver-preferences.c:971
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -712,15 +776,15 @@ msgstr[0] "%d sekund"
 msgstr[1] "%d sekunder"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:855
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:858
-#: ../src/gnome-screensaver-preferences.c:866
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:988
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -728,27 +792,22 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:861
-#: ../src/gnome-screensaver-preferences.c:869
-#: ../src/gnome-screensaver-preferences.c:873
+#: ../src/gnome-screensaver-preferences.c:983
+#: ../src/gnome-screensaver-preferences.c:991
+#: ../src/gnome-screensaver-preferences.c:995
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:876
-msgid "0 seconds"
-msgstr "0 sekunder"
-
-#: ../src/gnome-screensaver-preferences.c:891
+#: ../src/gnome-screensaver-preferences.c:1010
 msgid "Never"
 msgstr "Aldrig"
 
-#: ../src/gnome-screensaver-preferences.c:1047
+#: ../src/gnome-screensaver-preferences.c:1396
 msgid "Could not load the main interface"
 msgstr "Kunne ikke indlæse hovedgrænsefladen."
 
-#: ../src/gnome-screensaver-preferences.c:1049
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Kontrollér venligst at pauseskærmen er installeret korrekt"
 
@@ -760,58 +819,205 @@ msgstr "Kør ikke som tjeneste"
 msgid "Enable debugging code"
 msgstr "Slå fejlfindingskode til"
 
-#: ../src/gs-listener-dbus.c:1219
+#: ../src/gs-auth-pam.c:391
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr "Er ikke i stand til at etablere service %s: %s\n"
+
+#: ../src/gs-auth-pam.c:417
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr "Kan ikke sætte PAM_TTY=%s"
+
+#: ../src/gs-auth-pam.c:449
+msgid "Incorrect password."
+msgstr "Forkert adgangskode."
+
+#: ../src/gs-auth-pam.c:465
+msgid "Not permitted to gain access at this time."
+msgstr "Adgang er ikke tilladt på dette tidspunkt."
+
+#: ../src/gs-auth-pam.c:471
+msgid "No longer permitted to access the system."
+msgstr "Adgang til systemet er ikke længere tilladt."
+
+#: ../src/gs-listener-dbus.c:1766
 msgid "failed to register with the message bus"
 msgstr "kunne ikke registere med kommunikationsbussen"
 
-#: ../src/gs-listener-dbus.c:1229
+#: ../src/gs-listener-dbus.c:1776
 msgid "not connected to the message bus"
 msgstr "ikke tilsluttet kommunikationsbussen"
 
-#: ../src/gs-listener-dbus.c:1238
+#: ../src/gs-listener-dbus.c:1785
 msgid "screensaver already running in this session"
 msgstr "pauseskærm kører allerede i denne session"
 
-#: ../src/gs-lock-plug.c:351
-msgid "Checking password..."
-msgstr "Kontrollerer adgangskode..."
-
-#: ../src/gs-lock-plug.c:394
+#: ../src/gs-lock-plug.c:354
 msgid "Time has expired."
 msgstr "Tiden er udløbet."
 
-#: ../src/gs-lock-plug.c:420
+#: ../src/gs-lock-plug.c:382
 msgid "You have the Caps Lock key on."
 msgstr "Du har aktiveret Caps Lock-tasten."
 
-#: ../src/gs-lock-plug.c:707
-msgid "That password was incorrect."
-msgstr "Adgangskoden var ikke korrekt."
-
-#: ../src/gs-lock-plug.c:733 ../src/gs-lock-plug.c:766
-msgid "_Unlock"
-msgstr "_Lås op"
-
-#: ../src/gs-lock-plug.c:736 ../src/gs-lock-plug.c:763
-msgid "_Switch User..."
+#: ../src/gs-lock-plug.c:1546 ../src/gs-lock-plug.c:1583
+msgid "S_witch User..."
 msgstr "_Skift bruger..."
 
-#. Translators: this is "username on hostname".  You
-#. can translate this to "%s@%s" if it is otherwise tricky
-#. for your language.
-#: ../src/gs-lock-plug.c:1366
-#, c-format
-msgid "%s on %s"
-msgstr "%s på %s"
+#: ../src/gs-lock-plug.c:1554
+msgid "Log _Out"
+msgstr "Log _ud"
 
-#: ../src/gs-lock-plug.c:1517
+#: ../src/gs-lock-plug.c:1745
+msgid "%U on %h"
+msgstr "%U på %h"
+
+#: ../src/gs-lock-plug.c:1759
 msgid "_Password:"
 msgstr "_Adgangskode:"
 
-#: ../src/gs-lock-plug.c:1590
-msgid "S_witch to user:"
-msgstr "S_kift til bruger:"
+#~ msgid "Bubbles the GNOME foot logo around the screen"
+#~ msgstr "Bobler GNOME-fodlogoet omkring på skærmen"
 
-#: ../src/gs-lock-plug.c:1637
-msgid "Log _Out"
-msgstr "Log _ud"
+#~ msgid "Floating Feet"
+#~ msgstr "Flydende fødder"
+
+#~ msgid "Cosmos"
+#~ msgstr "Kosmos"
+
+#~ msgid "Display a slideshow of pictures of the cosmos"
+#~ msgstr "Viser et billedeshow af billeder af kosmos"
+
+#~ msgid "GDM (The GNOME Display Manager) is not running."
+#~ msgstr "GDM (GNOMEs skærmhåndteringien) kører ikke."
+
+#~ msgid ""
+#~ "You might in fact be using a different display manager, such as KDM (KDE "
+#~ "Display Manager) or xdm."
+#~ msgstr ""
+#~ "Du bruger måske en anden skærmhåndtering, såsom KDM (KDE skærmhåndtering) "
+#~ "eller xdm."
+
+#~ msgid ""
+#~ "If you still wish to use this feature, either start GDM yourself or ask "
+#~ "your system administrator to start GDM."
+#~ msgstr ""
+#~ "Hvis du stadig ønsker at bruge denne facilitet, skal du selv starte GDM "
+#~ "eller bede din systemadministrator om det."
+
+#~ msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+#~ msgstr "Kan ikke kommunikere med GDM (GNOME skærmhåndteringien)"
+
+#~ msgid "Perhaps you have an old version of GDM running."
+#~ msgstr "Måske har du en gammel version af GDM kørende."
+
+#~ msgid ""
+#~ "Cannot communicate with gdm, perhaps you have an old version running."
+#~ msgstr ""
+#~ "Kan ikke kommunikere med GDM, måske har du en gammel version kørende."
+
+#~ msgid "The allowed limit of flexible X servers reached."
+#~ msgstr "Det tilladte antal af fleksible X-servere blev nået."
+
+#~ msgid "There were errors trying to start the X server."
+#~ msgstr "Der opstod en fejl ved forsøg på at starte X-serveren."
+
+#~ msgid "The X server failed.  Perhaps it is not configured well."
+#~ msgstr "X-serveren fejlede. Måske er den ikke konfiguret korrekt."
+
+#~ msgid "Too many X sessions running."
+#~ msgstr "For many X-sessioner kørende."
+
+#~ msgid ""
+#~ "The nested X server (Xnest) cannot connect to your current X server.  You "
+#~ "may be missing an X authorization file."
+#~ msgstr ""
+#~ "Den indlejrede X-server (Xnest) kan ikke forbinde til din nuværende X-"
+#~ "server. Du mangler måske en X-godkendelsesfil."
+
+#~ msgid ""
+#~ "The nested X server (Xnest) is not available, or gdm is badly "
+#~ "configured.\n"
+#~ "Please install the Xnest package in order to use the nested login."
+#~ msgstr ""
+#~ "Den indlejrede X-server (Xnest) er ikke tilgængelig eller GDM er forkert "
+#~ "konfigureret.\n"
+#~ "Installér venligst Xnest-pakken for at kunne benyttet det indlejrede log "
+#~ "ind."
+
+#~ msgid ""
+#~ "The X server is not available, it is likely that gdm is badly configured."
+#~ msgstr ""
+#~ "X-serveren er ikke tilgængelig, det er sandsynligt at GDM er konfiguret "
+#~ "forkert"
+
+#~ msgid "Trying to change to an invalid virtual terminal number."
+#~ msgstr "Forsøger at skifte et ugyldigt virtuel terminal nummer."
+
+#~ msgid ""
+#~ "You do not seem to have authentication needed be for this operation.  "
+#~ "Perhaps your .Xauthority file is not set up correctly."
+#~ msgstr ""
+#~ "Du lader ikke til at have den nødvendige godkendelse til denne handling. "
+#~ "Måske er din .Xauthority-fil ikke sat korrekt op."
+
+#~ msgid "Too many messages were sent to gdm and it hung upon us."
+#~ msgstr "For mange beskeder blev sendt til GDM og den lagde på."
+
+#~ msgid "Unknown error occurred."
+#~ msgstr "En ukendt fejl opstod."
+
+#~ msgid "_Screensaver"
+#~ msgstr "_Pauseskærm"
+
+#~ msgid "Allow monitor power management"
+#~ msgstr "Tillad strømstyringshåndtering for skærm"
+
+#~ msgid "Set this to TRUE to allow the screensaver to power down the monitor."
+#~ msgstr "Sæt denne til SAND for at tillade pauseskærmen at slukke skærmen."
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation until the monitor "
+#~ "goes into standby power mode."
+#~ msgstr ""
+#~ "Antallet af minutter efter aktivering af pauseskærm til skærmen sættes i "
+#~ "dvale tilstand."
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation until the monitor "
+#~ "goes into suspend power mode."
+#~ msgstr ""
+#~ "Antallet af minutter efter pauseskærm aktivering til skærmen sættes i "
+#~ "frakoblet tilstand."
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation until the monitor "
+#~ "powers off."
+#~ msgstr ""
+#~ "Antallet af minutter efter pauseskærm aktivering til skærmen slukkes."
+
+#~ msgid "Time before activation"
+#~ msgstr "Tid før aktivering"
+
+#~ msgid "Time before power off"
+#~ msgstr "Time før maskinen slukkes"
+
+#~ msgid "Time before standby"
+#~ msgstr "Tid før maskinen sættes i dvale"
+
+#~ msgid "Time before suspend"
+#~ msgstr "Tid før maskinen sættes frakoblet tilstand"
+
+#~ msgid "Disable running graphical themes while blanked"
+#~ msgstr "Deaktivér kørsel af grafiske temaer, når skærmen er sortnet"
+
+#~ msgid "Enable running graphical themes while blanked (if applicable)"
+#~ msgstr ""
+#~ "Aktivér kørsel af grafiske temaer, når skærmen er sortnet (hvis relevant)"
+
+#~ msgid "0 seconds"
+#~ msgstr "0 sekunder"
+
+#~ msgid "That password was incorrect."
+#~ msgstr "Adgangskoden var ikke korrekt."
