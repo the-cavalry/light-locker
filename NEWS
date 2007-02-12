@@ -1,3 +1,23 @@
+
+===============
+Version 2.17.7
+===============
+
+  gnome-screensaver
+
+        * #402183, use gdm socket command to start a login procedure when available (Matthias Clasen)
+        * #403936, Specifically block shaping the window (William Jon McCann)
+        * Sync FUSA code with upstream
+
+  Translators
+
+        * Updated fr: Stéphane Raimbault
+        * Updated nl: Wouter Bolsterlee
+        * Updated ca: Josep Puigdemont i Casamajó
+        * Updated pt_BR: Leonardo Ferreira Fontenelle
+        * Updated da: Lasse Bang Mikkelsen
+
+
 ===============
 Version 2.17.6
 ===============
