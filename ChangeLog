@@ -1,3 +1,10 @@
+2007-02-13  William Jon McCann  <mccann@jhu.edu>
+
+	* src/cut-n-paste/gdm-queue.c: (gdm_send_command):
+	Add command to warning output.
+
+	* src/debug-screensaver.sh: Add x-session-manager support.
+
 2007-02-12  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump

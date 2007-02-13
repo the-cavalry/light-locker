@@ -407,7 +407,7 @@ static int gdm_send_command (const gchar *command)
   g_free (command_with_newline);
 
   if (ret == -1)
-    g_warning ("Bad result in gdm_send_command");
+    g_warning ("Bad result in gdm_send_command: %s", command);
 
   return ret;
 }
