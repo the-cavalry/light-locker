@@ -7,11 +7,14 @@ if [ -z "${DBUS_SESSION_BUS_ADDRESS}" ]; then
     if [ "x$pid" != "x" ]; then
         env_address=`(cat /proc/$pid/environ; echo) | tr "\000" "\n" | grep '^DBUS_SESSION_BUS_ADDRESS='`
         env_display=`(cat /proc/$pid/environ; echo) | tr "\000" "\n" | grep '^DISPLAY='`
+        env_path=`(cat /proc/$pid/environ; echo) | tr "\000" "\n" | grep '^PATH='`
         if [ "x$env_address" != "x" ]; then
             echo "Setting $env_address"
             echo "Setting $env_display"
+            echo "Setting $env_path"
             eval "export $env_address"
             eval "export $env_display"
+            eval "export $env_path"
         fi
     fi
 fi
@@ -26,3 +29,6 @@ gnome-screensaver-command --exit
 
 # run the daemon in the debugger
 gdb --args gnome-screensaver --no-daemon --debug --sync
+
+# or if that isn't helpful just get the debug output
+#gnome-screensaver --no-daemon --debug > /tmp/gs-debug-log.txt 2>&1
