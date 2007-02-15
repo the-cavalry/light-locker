@@ -1,5 +1,13 @@
 2007-02-15  William Jon McCann  <mccann@jhu.edu>
 
+	* src/debug-screensaver.sh: Add XDG_SESSION_COOKIE var.
+
+	* src/gs-listener-dbus.c: (gs_listener_update_console_kit_idle),
+	(listener_set_session_idle_internal):
+	Update the ConsoleKit idle state if possible.
+
+2007-02-15  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac:
 	* src/Makefile.am:
 	* src/cut-n-paste/.cvsignore:

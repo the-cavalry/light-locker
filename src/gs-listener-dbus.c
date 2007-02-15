@@ -268,6 +268,55 @@ gs_listener_send_signal_session_idle_changed (GSListener *listener)
         send_dbus_boolean_signal (listener, "SessionIdleChanged", listener->priv->session_idle);
 }
 
+static void
+gs_listener_update_console_kit_idle (GSListener *listener)
+{
+        DBusMessage    *message;
+        DBusMessage    *reply;
+        DBusError       error;
+        DBusMessageIter iter;
+        gboolean        idle;
+
+        g_return_if_fail (listener != NULL);
+
+        if (listener->priv->session_id == NULL) {
+                /* we don't have ConsoleKit running booo! */
+                return;
+        }
+
+        idle = listener->priv->session_idle;
+
+	gs_debug ("Updating ConsoleKit idle status: %d", idle);
+	message = dbus_message_new_method_call (CK_NAME,
+						listener->priv->session_id,
+						CK_SESSION_INTERFACE,
+						"SetIdle");
+	if (message == NULL) {
+		gs_debug ("Couldn't allocate the D-Bus message");
+		return;
+	}
+
+        dbus_message_iter_init_append (message, &iter);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &idle);
+
+        /* FIXME: use async? */
+        dbus_error_init (&error);
+        reply = dbus_connection_send_with_reply_and_block (listener->priv->system_connection,
+                                                           message,
+                                                           -1, &error);
+        dbus_message_unref (message);
+
+	if (reply != NULL) {
+                dbus_message_unref (reply);
+	}
+
+        if (dbus_error_is_set (&error)) {
+                gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
+                dbus_error_free (&error);
+                return;
+        }
+}
+
 static const char *
 get_name_for_entry_type (int entry_type)
 {
@@ -419,6 +468,8 @@ listener_set_session_idle_internal (GSListener *listener,
         }
 
         gs_listener_send_signal_session_idle_changed (listener);
+
+        gs_listener_update_console_kit_idle (listener);
 
         return TRUE;
 }
