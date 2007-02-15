@@ -1134,9 +1134,30 @@ wait_on_child (int pid)
 }
 
 static void
+kill_keyboard_command (GSWindow *window)
+{
+        if (window->priv->keyboard_pid > 0) {
+                signal_pid (window->priv->keyboard_pid, SIGTERM);
+        }
+}
+
+static void
+kill_dialog_command (GSWindow *window)
+{
+        /* If a dialog is up we need to signal it
+           and wait on it */
+        if (window->priv->lock_pid > 0) {
+                signal_pid (window->priv->lock_pid, SIGTERM);
+        }
+}
+
+static void
 keyboard_command_finish (GSWindow *window)
 {
         g_return_if_fail (GS_IS_WINDOW (window));
+
+        /* send a signal just in case */
+        kill_keyboard_command (window);
 
         gs_debug ("Keyboard finished");
 
@@ -1148,15 +1169,6 @@ keyboard_command_finish (GSWindow *window)
                 g_spawn_close_pid (window->priv->keyboard_pid);
                 window->priv->keyboard_pid = 0;
         }
-}
-
-static void
-kill_keyboard_command (GSWindow *window)
-{
-        if (window->priv->keyboard_pid > 0) {
-                signal_pid (window->priv->keyboard_pid, SIGTERM);
-        }
-        keyboard_command_finish (window);
 }
 
 static gboolean
@@ -1272,7 +1284,12 @@ gs_window_dialog_finish (GSWindow *window)
         g_return_if_fail (GS_IS_WINDOW (window));
 
         gs_debug ("Dialog finished");
-        kill_keyboard_command (window);
+
+        /* make sure we finish the keyboard thing too */
+        keyboard_command_finish (window);
+
+        /* send a signal just in case */
+        kill_dialog_command (window);
 
         if (window->priv->lock_pid > 0) {
                 int exit_status;
@@ -1285,18 +1302,6 @@ gs_window_dialog_finish (GSWindow *window)
 
         /* remove events for the case were we failed to show socket */
         remove_key_events (window);
-}
-
-static void
-kill_dialog_command (GSWindow *window)
-{
-        /* If a dialog is up we need to signal it
-           and wait on it */
-        if (window->priv->lock_pid > 0) {
-                signal_pid (window->priv->lock_pid, SIGTERM);
-        }
-
-        gs_window_dialog_finish (window);
 }
 
 /* very rudimentary animation for indicating an auth failure */
@@ -2173,8 +2178,7 @@ gs_window_finalize (GObject *object)
 
         remove_command_watches (window);
 
-        kill_keyboard_command (window);
-        kill_dialog_command (window);
+        gs_window_dialog_finish (window);
 
         G_OBJECT_CLASS (gs_window_parent_class)->finalize (object);
 }

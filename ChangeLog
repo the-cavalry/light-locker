@@ -1,5 +1,13 @@
 2007-02-15  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c: (kill_keyboard_command),
+	(kill_dialog_command), (keyboard_command_finish),
+	(gs_window_dialog_finish), (gs_window_finalize):
+	Always send a signal to the subprocess even if
+	we expect it already died.  Part of #407524
+
+2007-02-15  William Jon McCann  <mccann@jhu.edu>
+
 	* src/cut-n-paste/gdm-queue.c: (gdm_run_queue):
 	Don't go into a loop when we can't open the GDM socket.
 	Fixes #407524
