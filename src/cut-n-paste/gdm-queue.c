@@ -235,13 +235,14 @@ gboolean gdm_run_queue (void *dummy)
         addr.sun_family = AF_UNIX;
 
         if (fcntl (gdm_socket, F_SETFL, O_NONBLOCK) < 0) {
-          close_gdm_socket ();
-          return TRUE;
+          VE_IGNORE_EINTR (close (gdm_socket));
+          return FALSE;
         }
 
         if (connect (gdm_socket, (struct sockaddr *)&addr, sizeof (addr)) < 0) {
-          close_gdm_socket ();
-          return TRUE;
+          g_warning ("Unable to connect to GDM socket: %s", GDM_SOCKET_FILENAME);
+          VE_IGNORE_EINTR (close (gdm_socket));
+          return FALSE;
         }
 
         gdm_send_command("VERSION");

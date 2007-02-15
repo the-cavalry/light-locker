@@ -1,3 +1,9 @@
+2007-02-15  William Jon McCann  <mccann@jhu.edu>
+
+	* src/cut-n-paste/gdm-queue.c: (gdm_run_queue):
+	Don't go into a loop when we can't open the GDM socket.
+	Fixes #407524
+
 2007-02-13  William Jon McCann  <mccann@jhu.edu>
 
 	* src/debug-screensaver.sh:
