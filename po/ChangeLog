@@ -1,3 +1,7 @@
+2007-02-15  William Jon McCann  <mccann@jhu.edu>
+
+	* POTFILES.in: Remove FUSA.
+
 2007-02-14  Duarte Loreto <happyguy_pt@hotmail.com>
 
 	* pt.po: Updated Portuguese translation.

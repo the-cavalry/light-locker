@@ -170,15 +170,6 @@ fi
 PAM_PREFIX=`eval echo $PAM_PREFIX_UNEXPANDED`
 AC_SUBST(PAM_PREFIX)
 
-# Fast User Switching
-
-PKG_CHECK_MODULES(FAST_USER_SWITCH,
-        gtk+-2.0 >= $GTK_REQUIRED_VERSION
-        gnome-vfs-2.0 >= $GNOME_VFS_REQUIRED_VERSION)
-
-AC_SUBST(FAST_USER_SWITCH_CFLAGS)
-AC_SUBST(FAST_USER_SWITCH_LIBS)
-
 # Desktop entry handling
 
 PKG_CHECK_MODULES(LIB_GNOME_MENU,
@@ -1112,7 +1103,6 @@ AC_OUTPUT([
 Makefile
 po/Makefile.in
 src/Makefile
-src/cut-n-paste/Makefile
 data/Makefile
 data/gnome-screensavers.menu
 data/gnome-screensaver.pc

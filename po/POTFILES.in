@@ -11,11 +11,6 @@ savers/personal-slideshow.desktop.in
 savers/popsquares.desktop.in
 savers/floaters.c
 savers/slideshow.c
-src/cut-n-paste/fusa-display.c
-src/cut-n-paste/fusa-manager.c
-src/cut-n-paste/fusa-user-menu-item.c
-src/cut-n-paste/fusa-user.c
-src/cut-n-paste/fusa-utils.c
 src/file-transfer-dialog.c
 src/gnome-screensaver-command.c
 src/gnome-screensaver-dialog.c

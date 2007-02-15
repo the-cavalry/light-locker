@@ -1,5 +1,33 @@
 2007-02-15  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac:
+	* src/Makefile.am:
+	* src/cut-n-paste/.cvsignore:
+	* src/cut-n-paste/Makefile.am:
+	* src/cut-n-paste/fusa-display-private.h:
+	* src/cut-n-paste/fusa-display.c:
+	* src/cut-n-paste/fusa-display.h:
+	* src/cut-n-paste/fusa-manager-private.h:
+	* src/cut-n-paste/fusa-manager.c:
+	* src/cut-n-paste/fusa-manager.h:
+	* src/cut-n-paste/fusa-user-menu-item.c:
+	* src/cut-n-paste/fusa-user-menu-item.h:
+	* src/cut-n-paste/fusa-user-private.h:
+	* src/cut-n-paste/fusa-user.c:
+	* src/cut-n-paste/fusa-user.h:
+	* src/cut-n-paste/fusa-utils.c:
+	* src/cut-n-paste/fusa-utils.h:
+	* src/cut-n-paste/gdm-queue.c:
+	* src/cut-n-paste/gdm-queue.h:
+	* src/gs-lock-plug.c: (do_user_switch), (gs_lock_plug_response),
+	(is_program_in_path), (gs_lock_plug_set_switch_enabled),
+	(create_page_one_buttons), (switch_user_button_clicked),
+	(load_theme), (gs_lock_plug_init), (gs_lock_plug_finalize):
+	Remove FUSA.  Go directly to GDM when the user switch button
+	is pressed.  Fixes #407964
+
+2007-02-15  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c: (kill_keyboard_command),
 	(kill_dialog_command), (keyboard_command_finish),
 	(gs_window_dialog_finish), (gs_window_finalize):

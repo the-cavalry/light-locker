@@ -40,9 +40,6 @@
 #include <glade/glade-xml.h>
 #include <gconf/gconf-client.h>
 
-/* for fast user switching */
-#include <libgnomevfs/gnome-vfs-init.h>
-
 #ifdef WITH_KBD_LAYOUT_INDICATOR
 #include <libgnomekbd/gkbd-indicator.h>
 #endif
@@ -51,14 +48,11 @@
 
 #include "gs-debug.h"
 
-#include "fusa-manager.h"
-
 #define KEY_LOCK_DIALOG_THEME "/apps/gnome-screensaver/lock_dialog_theme"
-#define KEY_TRY_AUTH_FIRST    "/apps/gnome-screensaver/try_auth_first"
+#define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
 
 enum {
         AUTH_PAGE = 0,
-        SWITCH_PAGE
 };
 
 #define FACE_ICON_SIZE 48
@@ -72,7 +66,6 @@ struct GSLockPlugPrivate
 {
         GtkWidget   *vbox;
         GtkWidget   *auth_action_area;
-        GtkWidget   *switch_action_area;
 
         GtkWidget   *notebook;
         GtkWidget   *auth_face_image;
@@ -89,12 +82,8 @@ struct GSLockPlugPrivate
         GtkWidget   *auth_switch_button;
         GtkWidget   *auth_cancel_button;
         GtkWidget   *auth_logout_button;
-        GtkWidget   *switch_cancel_button;
-        GtkWidget   *switch_switch_button;
 
         GtkWidget   *auth_prompt_kbd_layout_indicator;
-
-        FusaManager *fusa_manager;
 
         gboolean     caps_lock_on;
         gboolean     switch_enabled;
@@ -159,102 +148,20 @@ gs_lock_plug_style_set (GtkWidget *widget,
 }
 
 static void
-manager_new_console_cb (FusaManager  *manager,
-			FusaDisplay  *display,
-			const GError *error,
-			gpointer      data)
+do_user_switch (GSLockPlug *plug)
 {
-        GSLockPlug *plug = data;
-        g_signal_emit (plug,
-                       lock_plug_signals [RESPONSE],
-                       0,
-                       GS_LOCK_PLUG_RESPONSE_CANCEL);
-}
+        GError  *error;
+        gboolean res;
 
-static void
-do_user_switch (GSLockPlug  *plug,
-                FusaDisplay *display,
-                FusaUser    *user)
-{
-        GdkScreen *screen;
+        error = NULL;
 
-        if (gtk_widget_has_screen (plug->priv->switch_user_treeview)) {
-                screen = gtk_widget_get_screen (plug->priv->switch_user_treeview);
-        } else {
-                screen = gdk_screen_get_default ();
+        res = gdk_spawn_command_line_on_screen (gdk_screen_get_default (),
+                                                GDM_FLEXISERVER_COMMAND,
+                                                &error);
+        if (! res) {
+                gs_debug ("Unable to start GDM greeter: %s", error->message);
+                g_error_free (error);
         }
-
-        if (display) {
-                fusa_manager_activate_display (plug->priv->fusa_manager,
-                                               display,
-                                               screen,
-                                               manager_new_console_cb,
-                                               plug,
-                                               NULL);
-                return;
-        }
-
-        fusa_manager_new_console (plug->priv->fusa_manager,
-                                  screen,
-                                  user,
-                                  manager_new_console_cb,
-                                  plug,
-                                  NULL);
-}
-
-enum {
-        REAL_NAME_COLUMN,
-        USER_NAME_COLUMN,
-        DISPLAY_LABEL_COLUMN,
-        ACTIVE_COLUMN,
-        PIXBUF_COLUMN,
-        N_COLUMNS
-};
-
-static void
-switch_user_response (GSLockPlug *plug)
-{
-        FusaDisplay      *display = NULL;
-        FusaUser         *user = NULL;
-        GtkTreeSelection *selection;
-        GtkTreeModel     *model;
-        GtkTreeIter       iter;
-        GSList           *displays;
-        char             *name;
-
-        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (plug->priv->switch_user_treeview));
-        gtk_tree_selection_get_selected (selection,
-                                         &model,
-                                         &iter);
-        gtk_tree_model_get (model, &iter, USER_NAME_COLUMN, &name, -1);
-
-        gs_debug ("Switch user response user:'%s'", name);
-
-        if (name != NULL
-            && strcmp (name, "__new_user") != 0
-            && strcmp (name, "__separator") != 0) {
-                user = fusa_manager_get_user (plug->priv->fusa_manager, name);
-                displays = fusa_user_get_displays (user);
-
-                if (displays != NULL) {
-                        GSList *l;
-
-                        /* FIXME: just pick the first one for now */
-                        display = displays->data;
-
-                        l = displays;
-                        while (l != NULL) {
-                                gs_debug ("Display console %d", fusa_display_get_console (l->data));
-                                l = l->next;
-                        }
-
-                        g_slist_free (displays);
-                }
-        }
-
-        g_free (name);
-
-        do_user_switch (plug, display, user);
 }
 
 static void
@@ -315,20 +222,6 @@ gs_lock_plug_response (GSLockPlug *plug,
 
         if (response_id == GS_LOCK_PLUG_RESPONSE_CANCEL) {
                 gtk_entry_set_text (GTK_ENTRY (plug->priv->auth_prompt_entry), "");
-        }
-
-        if (response_id == GS_LOCK_PLUG_RESPONSE_OK) {
-                gint current_page = AUTH_PAGE;
-
-                if (plug->priv->notebook != NULL) {
-                        current_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (plug->priv->notebook));
-                }
-
-                if (current_page != AUTH_PAGE) {
-                        /* switch user */
-                        switch_user_response (plug);
-                        return;
-                }
         }
 
         g_signal_emit (plug,
@@ -690,6 +583,18 @@ gs_lock_plug_set_logout_command (GSLockPlug *plug,
         }
 }
 
+static gboolean
+is_program_in_path (const char *program)
+{
+        char *tmp = g_find_program_in_path (program);
+        if (tmp != NULL) {
+                g_free (tmp);
+                return TRUE;
+        } else {
+                return FALSE;
+        }
+}
+
 static void
 gs_lock_plug_set_switch_enabled (GSLockPlug *plug,
                                  gboolean    switch_enabled)
@@ -708,7 +613,14 @@ gs_lock_plug_set_switch_enabled (GSLockPlug *plug,
         }
 
         if (switch_enabled) {
-                gtk_widget_show (plug->priv->auth_switch_button);
+                gboolean found;
+                found = is_program_in_path (GDM_FLEXISERVER_COMMAND);
+                if (found) {
+                        gtk_widget_show (plug->priv->auth_switch_button);
+                } else {
+                        gs_debug ("Waring: GDM flexiserver command not found: %s", GDM_FLEXISERVER_COMMAND);
+                        gtk_widget_hide (plug->priv->auth_switch_button);
+                }
         } else {
                 gtk_widget_hide (plug->priv->auth_switch_button);
         }
@@ -844,24 +756,6 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
 
         gtk_binding_entry_add_signal (binding_set, GDK_Escape, 0,
                                       "close", 0);
-}
-
-static void
-switch_page (GSLockPlug *plug,
-             GtkButton  *button)
-{
-        gint       current_page;
-        gint       next_page;
-
-        g_return_if_fail (plug != NULL);
-
-        current_page = gtk_notebook_get_current_page (GTK_NOTEBOOK (plug->priv->notebook));
-        next_page = (current_page == AUTH_PAGE) ? SWITCH_PAGE : AUTH_PAGE;
-
-        gtk_notebook_set_current_page (GTK_NOTEBOOK (plug->priv->notebook), next_page);
-
-        /* this counts as activity so restart the timer */
-        restart_cancel_timeout (plug);
 }
 
 static void
@@ -1046,376 +940,6 @@ gs_lock_plug_add_button (GSLockPlug  *plug,
         return button;
 }
 
-typedef struct
-{
-        GtkTreeIter iter;
-        GtkWidget  *tree;
-} DisplayChangedData;
-
-static char *
-get_user_display_label (FusaUser *user)
-{
-        char *label;
-
-        label = g_strdup_printf ("<big>%s</big>\n<small>%s</small>",
-                                 fusa_user_get_display_name (user),
-                                 fusa_user_get_user_name (user));
-
-        return label;
-}
-
-static void
-user_displays_changed_cb (FusaUser           *user,
-                          DisplayChangedData *data)
-{
-        const char   *name;
-        gboolean      is_active;
-        int           n_displays;
-        GdkPixbuf    *pixbuf;
-        int           icon_size = FACE_ICON_SIZE;
-        GtkTreeModel *filter_model;
-        GtkTreeModel *model;
-        char         *label;
-
-        name = fusa_user_get_user_name (user);
-        n_displays = fusa_user_get_n_displays (user);
-        is_active = n_displays > 0;
-        pixbuf = fusa_user_render_icon (user, data->tree, icon_size);
-        label = get_user_display_label (user);
-
-        filter_model = gtk_tree_view_get_model (GTK_TREE_VIEW (data->tree));
-        model = gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (filter_model));
-
-        gtk_list_store_set (GTK_LIST_STORE (model), &data->iter,
-                            USER_NAME_COLUMN, name,
-                            REAL_NAME_COLUMN, fusa_user_get_display_name (user),
-                            DISPLAY_LABEL_COLUMN, label,
-                            ACTIVE_COLUMN, is_active,
-                            PIXBUF_COLUMN, pixbuf,
-                            -1);
-        g_free (label);
-}
-
-static void
-plug_add_user (GSLockPlug *plug,
-               FusaUser   *user)
-{
-        gboolean            is_active;
-        guint               n_displays;
-        DisplayChangedData *ddata;
-        char               *label;
-        GtkTreeIter         iter;
-        GtkTreeModel       *filter_model;
-        GtkTreeModel       *model;
-        GdkPixbuf          *pixbuf;
-        int                 icon_size = FACE_ICON_SIZE;
-
-        filter_model = gtk_tree_view_get_model (GTK_TREE_VIEW (plug->priv->switch_user_treeview));
-        model = gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (filter_model));
-
-        /* skip the current user */
-        if (fusa_user_get_uid (user) == getuid ()) {
-                return;
-        }
-
-        n_displays = fusa_user_get_n_displays (user);
-        is_active = n_displays > 0;
-
-        pixbuf = fusa_user_render_icon (user, plug->priv->switch_user_treeview, icon_size);
-
-        label = get_user_display_label (user);
-
-        gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-        gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                            USER_NAME_COLUMN, fusa_user_get_user_name (user),
-                            REAL_NAME_COLUMN, fusa_user_get_display_name (user),
-                            DISPLAY_LABEL_COLUMN, label,
-                            ACTIVE_COLUMN, is_active,
-                            PIXBUF_COLUMN, pixbuf,
-                            -1);
-
-        g_free (label);
-
-        ddata = g_new0 (DisplayChangedData, 1);
-        ddata->iter = iter;
-        ddata->tree = plug->priv->switch_user_treeview;
-
-        g_signal_connect_data (user, "displays-changed",
-                               G_CALLBACK (user_displays_changed_cb), ddata,
-                               (GClosureNotify) g_free, 0);
-}
-
-static void
-user_added_cb (FusaManager *manager,
-	       FusaUser    *user,
-               GSLockPlug  *plug)
-{
-        gs_debug ("User added: %d", fusa_user_get_uid (user));
-        plug_add_user (plug, user);
-}
-
-static void
-user_removed_cb (FusaManager *manager,
-                 FusaUser    *user,
-                 GSLockPlug  *plug)
-{
-        gs_debug ("User removed: %d", fusa_user_get_uid (user));
-}
-
-static void
-populate_model (GSLockPlug *plug)
-{
-        GSList *users;
-
-        gs_profile_start (NULL);
-
-        gs_profile_start ("FUSA list users");
-        if (! plug->priv->fusa_manager) {
-                gs_profile_start ("gnome_vfs_init");
-                gnome_vfs_init ();
-                gs_profile_end ("gnome_vfs_init");
-
-                gs_profile_start ("fusa_manager_ref_default");
-                plug->priv->fusa_manager = fusa_manager_ref_default ();
-                gs_profile_end ("fusa_manager_ref_default");
-        }
-
-        fusa_manager_request_update_displays (plug->priv->fusa_manager, NULL, NULL);
-
-        users = fusa_manager_list_users (plug->priv->fusa_manager);
-        gs_profile_end ("FUSA list users");
-
-        while (users != NULL) {
-                FusaUser *user;
-
-                user = users->data;
-
-                gs_debug ("Found user: %d", fusa_user_get_uid (user));
-
-                plug_add_user (plug, user);
-
-                users = g_slist_delete_link (users, users);
-        }
-
-        g_signal_connect (plug->priv->fusa_manager, "user-added",
-                          G_CALLBACK (user_added_cb), plug);
-        g_signal_connect (plug->priv->fusa_manager, "user-removed",
-                          G_CALLBACK (user_removed_cb), plug);
-
-        gs_profile_end (NULL);
-}
-
-static int
-compare_users (GtkTreeModel *model,
-               GtkTreeIter  *a,
-               GtkTreeIter  *b,
-               gpointer      user_data)
-{
-        char *name_a;
-        char *name_b;
-        char *label_a;
-        char *label_b;
-        int   result;
-
-        gtk_tree_model_get (model, a, USER_NAME_COLUMN, &name_a, -1);
-        gtk_tree_model_get (model, b, USER_NAME_COLUMN, &name_b, -1);
-        gtk_tree_model_get (model, a, REAL_NAME_COLUMN, &label_a, -1);
-        gtk_tree_model_get (model, b, REAL_NAME_COLUMN, &label_b, -1);
-
-        if (! name_a) {
-                return 1;
-        } else if (! name_b) {
-                return -1;
-        }
-
-        if (strcmp (name_a, "__new_user") == 0) {
-                return -1;
-        } else if (strcmp (name_b, "__new_user") == 0) {
-                return 1;
-        } else if (strcmp (name_a, "__separator") == 0) {
-                return -1;
-        } else if (strcmp (name_b, "__separator") == 0) {
-                return 1;
-        }
-
-        if (! label_a) {
-                return 1;
-        } else if (! label_b) {
-                return -1;
-        }
-
-        result = strcmp (label_a, label_b);
-
-        g_free (label_a);
-        g_free (label_b);
-        g_free (name_a);
-        g_free (name_b);
-
-        return result;
-}
-
-static gboolean
-separator_func (GtkTreeModel *model,
-                GtkTreeIter  *iter,
-                gpointer      data)
-{
-        int      column = GPOINTER_TO_INT (data);
-        char    *text;
-        gboolean is_separator;
-
-        gtk_tree_model_get (model, iter, column, &text, -1);
-
-        if (text && strcmp (text, "__separator") == 0) {
-                is_separator = TRUE;
-        } else {
-                is_separator = FALSE;
-        }
-
-        g_free (text);
-
-        return is_separator;
-}
-
-static gboolean
-filter_out_users (GtkTreeModel *model,
-                  GtkTreeIter  *iter,
-                  GSLockPlug   *plug)
-{
-        gboolean is_active;
-        gboolean visible;
-        char    *name;
-
-        gtk_tree_model_get (model, iter,
-                            USER_NAME_COLUMN, &name,
-                            ACTIVE_COLUMN, &is_active,
-                            -1);
-
-        if (name == NULL) {
-                return FALSE;
-        }
-
-        if (strcmp (name, "__new_user") == 0
-            || strcmp (name, "__separator") == 0) {
-                visible = TRUE;
-        } else {
-                /* FIXME: do we show all users or only active ones? */
-                visible = TRUE;
-                /*visible = is_active;*/
-        }
-
-        g_free (name);
-
-        return visible;
-}
-
-static gboolean
-row_activated_cb (GtkTreeView       *view,
-                  GtkTreePath       *path,
-                  GtkTreeViewColumn *column,
-                  GSLockPlug        *plug)
-{
-        GtkTreeModel *filter_model;
-        GtkTreeModel *model;
-        GtkTreeIter   iter;
-        GtkTreePath  *child_path;
-        char         *username;
-
-        filter_model = gtk_tree_view_get_model (view);
-        model = gtk_tree_model_filter_get_model (GTK_TREE_MODEL_FILTER (filter_model));
-
-        child_path = gtk_tree_model_filter_convert_path_to_child_path (GTK_TREE_MODEL_FILTER (filter_model), path);
-
-        gtk_tree_model_get_iter (model, &iter, child_path);
-        gtk_tree_model_get (model, &iter, USER_NAME_COLUMN, &username, -1);
-
-        /* FIXME: do something with username? */
-
-        switch_user_response (plug);
-
-        g_free (username);
-        gtk_tree_path_free (child_path);
-
-        return TRUE;
-}
-
-static void
-setup_treeview (GSLockPlug *plug)
-{
-        GtkListStore      *store;
-        GtkTreeViewColumn *column;
-        GtkCellRenderer   *renderer;
-        GtkTreeModel      *filter;
-
-        /* if user switching is not enabled then do nothing */
-        if (! plug->priv->switch_enabled) {
-                return;
-        }
-
-        gs_profile_start (NULL);
-
-        store = gtk_list_store_new (N_COLUMNS,
-                                    G_TYPE_STRING,
-                                    G_TYPE_STRING,
-                                    G_TYPE_STRING,
-                                    G_TYPE_BOOLEAN,
-                                    GDK_TYPE_PIXBUF);
-
-        filter = gtk_tree_model_filter_new (GTK_TREE_MODEL (store), NULL);
-
-        gtk_tree_model_filter_set_visible_func (GTK_TREE_MODEL_FILTER (filter),
-                                                (GtkTreeModelFilterVisibleFunc) filter_out_users,
-                                                plug,
-                                                NULL);
-
-        gtk_tree_view_set_model (GTK_TREE_VIEW (plug->priv->switch_user_treeview),
-                                 filter);
-
-        g_object_unref (store);
-        g_object_unref (filter);
-
-        renderer = gtk_cell_renderer_pixbuf_new ();
-        column = gtk_tree_view_column_new_with_attributes ("Image", renderer,
-                                                           "pixbuf", PIXBUF_COLUMN,
-                                                           NULL);
-        gtk_tree_view_append_column (GTK_TREE_VIEW (plug->priv->switch_user_treeview), column);
-
-        renderer = gtk_cell_renderer_text_new ();
-        column = gtk_tree_view_column_new_with_attributes ("Name", renderer,
-                                                           "markup", DISPLAY_LABEL_COLUMN,
-                                                           NULL);
-        gtk_tree_view_append_column (GTK_TREE_VIEW (plug->priv->switch_user_treeview), column);
-
-        gtk_tree_view_set_row_separator_func (GTK_TREE_VIEW (plug->priv->switch_user_treeview),
-                                              separator_func,
-                                              GINT_TO_POINTER (USER_NAME_COLUMN),
-                                              NULL);
-
-        gtk_tree_view_column_set_sort_column_id (column, 0);
-        gtk_tree_sortable_set_sort_func (GTK_TREE_SORTABLE (store),
-                                         0,
-                                         compare_users,
-                                         NULL, NULL);
-        gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store),
-                                              0,
-                                              GTK_SORT_ASCENDING);
-
-        g_signal_connect (GTK_TREE_VIEW (plug->priv->switch_user_treeview),
-                          "row-activated",
-                          G_CALLBACK (row_activated_cb), plug);
-
-        populate_model (plug);
-
-        gs_profile_end (NULL);
-}
-
-static gboolean
-setup_treeview_idle (GSLockPlug *plug)
-{
-        setup_treeview (plug);
-
-        return FALSE;
-}
-
 static char *
 get_user_display_name (void)
 {
@@ -1548,11 +1072,13 @@ create_page_one_buttons (GSLockPlug *plug)
                                             plug->priv->auth_switch_button,
                                             TRUE);
         gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->auth_switch_button), FALSE);
+        gtk_widget_set_no_show_all (plug->priv->auth_switch_button, TRUE);
 
         plug->priv->auth_logout_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
-                                                              plug->priv->auth_action_area,
-                                                              _("Log _Out"));
+                                                                   plug->priv->auth_action_area,
+                                                                   _("Log _Out"));
         gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->auth_logout_button), FALSE);
+        gtk_widget_set_no_show_all (plug->priv->auth_logout_button, TRUE);
 
         plug->priv->auth_cancel_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
                                                                    plug->priv->auth_action_area,
@@ -1567,22 +1093,6 @@ create_page_one_buttons (GSLockPlug *plug)
         gtk_window_set_default (GTK_WINDOW (plug), plug->priv->auth_unlock_button);
 
         gs_profile_end ("page one buttons");
-}
-
-static void
-create_page_two_buttons (GSLockPlug *plug)
-{
-        gs_profile_start ("page two buttons");
-        plug->priv->switch_cancel_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
-                                                                     plug->priv->switch_action_area,
-                                                                     GTK_STOCK_CANCEL);
-        gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->switch_cancel_button), FALSE);
-
-        plug->priv->switch_switch_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
-                                                                     plug->priv->switch_action_area,
-                                                                     _("S_witch User..."));
-
-        gs_profile_end ("page two buttons");
 }
 
 /* adapted from GDM */
@@ -1791,83 +1301,6 @@ create_page_one (GSLockPlug *plug)
 }
 
 static void
-constrain_list_size (GtkWidget      *widget,
-                     GtkRequisition *requisition,
-                     GSLockPlug     *plug)
-{
-        GtkRequisition req;
-        int            max_height;
-        int            page;
-
-        /* don't do anything if we are on the auth page */
-        page = gtk_notebook_get_current_page (GTK_NOTEBOOK (plug->priv->notebook));
-        if (page == AUTH_PAGE) {
-                return;
-        }
-
-        /* constrain height to be the tree height up to a max */
-        max_height = (gdk_screen_get_height (gtk_widget_get_screen (widget))) / 4;
-        gtk_widget_size_request (plug->priv->switch_user_treeview, &req);
-
-        requisition->height = MIN (req.height, max_height);
-}
-
-static void
-setup_list_size_constraint (GtkWidget  *widget,
-                            GSLockPlug *plug)
-{
-        g_signal_connect (widget, "size-request",
-                          G_CALLBACK (constrain_list_size), plug);
-}
-
-static void
-create_page_two (GSLockPlug *plug)
-{
-        GtkWidget            *header_label;
-        GtkWidget            *userlist_scroller;
-        GtkWidget            *vbox;
-
-        gs_profile_start ("page two");
-
-        vbox = gtk_vbox_new (FALSE, 6);
-        gtk_notebook_append_page (GTK_NOTEBOOK (plug->priv->notebook), vbox, NULL);
-
-        header_label = gtk_label_new_with_mnemonic (_("S_witch to user:"));
-        gtk_misc_set_alignment (GTK_MISC (header_label), 0, 0.5);
-        gtk_box_pack_start (GTK_BOX (vbox), header_label, FALSE, FALSE, 0);
-
-        userlist_scroller = gtk_scrolled_window_new (NULL, NULL);
-        gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (userlist_scroller),
-                                             GTK_SHADOW_IN);
-        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (userlist_scroller),
-                                        GTK_POLICY_NEVER,
-                                        GTK_POLICY_AUTOMATIC);
-        gtk_box_pack_start (GTK_BOX (vbox), userlist_scroller, TRUE, TRUE, 0);
-
-        setup_list_size_constraint (userlist_scroller, plug);
-
-        plug->priv->switch_user_treeview = gtk_tree_view_new ();
-        gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (plug->priv->switch_user_treeview), FALSE);
-        gtk_container_add (GTK_CONTAINER (userlist_scroller), plug->priv->switch_user_treeview);
-
-        gtk_label_set_mnemonic_widget (GTK_LABEL (header_label), plug->priv->switch_user_treeview);
-
-        /* Buttons */
-        plug->priv->switch_action_area = gtk_hbutton_box_new ();
-
-        gtk_button_box_set_layout (GTK_BUTTON_BOX (plug->priv->switch_action_area),
-                                   GTK_BUTTONBOX_END);
-
-        gtk_box_pack_end (GTK_BOX (vbox), plug->priv->switch_action_area,
-                          FALSE, TRUE, 0);
-        gtk_widget_show (plug->priv->switch_action_area);
-
-        create_page_two_buttons (plug);
-
-        gs_profile_end ("page two");
-}
-
-static void
 unlock_button_clicked (GtkButton  *button,
                        GSLockPlug *plug)
 {
@@ -1885,7 +1318,15 @@ static void
 switch_user_button_clicked (GtkButton  *button,
                             GSLockPlug *plug)
 {
-        gs_lock_plug_response (plug, GS_LOCK_PLUG_RESPONSE_OK);
+
+        remove_response_idle (plug);
+
+        plug->priv->response_idle_id = g_timeout_add (2000,
+                                                      (GSourceFunc)response_cancel_idle_cb,
+                                                      plug);
+
+        gs_lock_plug_set_busy (plug);
+        do_user_switch (plug);
 }
 
 static char *
@@ -1946,7 +1387,6 @@ load_theme (GSLockPlug *plug)
 
         lock_dialog = glade_xml_get_widget (xml, "lock-dialog");
         gtk_container_add (GTK_CONTAINER (plug), lock_dialog);
-        gtk_widget_show_all (lock_dialog);
 
         plug->priv->vbox = NULL;
         plug->priv->notebook = glade_xml_get_widget (xml, "notebook");
@@ -1965,13 +1405,16 @@ load_theme (GSLockPlug *plug)
         plug->priv->auth_logout_button = glade_xml_get_widget (xml, "auth-logout-button");
         plug->priv->auth_switch_button = glade_xml_get_widget (xml, "auth-switch-button");
 
-        plug->priv->switch_action_area = glade_xml_get_widget (xml, "switch-action-area");
-        plug->priv->switch_user_treeview = glade_xml_get_widget (xml, "switch-user-treeview");
-        plug->priv->switch_cancel_button = glade_xml_get_widget (xml, "switch-cancel-button");
-        plug->priv->switch_switch_button = glade_xml_get_widget (xml, "switch-switch-button");
-
         /* Placeholder for the keyboard indicator */
         plug->priv->auth_prompt_kbd_layout_indicator = glade_xml_get_widget (xml, "auth-prompt-kbd-layout-indicator");
+        if (plug->priv->auth_logout_button != NULL) {
+                gtk_widget_set_no_show_all (plug->priv->auth_logout_button, TRUE);
+        }
+        if (plug->priv->auth_switch_button != NULL) {
+                gtk_widget_set_no_show_all (plug->priv->auth_switch_button, TRUE);
+        }
+
+        gtk_widget_show_all (lock_dialog);
 
         return TRUE;
 }
@@ -2001,8 +1444,6 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         plug->priv = GS_LOCK_PLUG_GET_PRIVATE (plug);
 
-        plug->priv->fusa_manager = NULL;
-
         if (! load_theme (plug)) {
                 gs_debug ("Unable to load theme!");
 
@@ -2020,10 +1461,6 @@ gs_lock_plug_init (GSLockPlug *plug)
                 /* Page 1 */
 
                 create_page_one (plug);
-
-                /* Page 2 */
-
-                create_page_two (plug);
 
                 gtk_widget_show_all (plug->priv->vbox);
         }
@@ -2069,12 +1506,6 @@ gs_lock_plug_init (GSLockPlug *plug)
                 }
         }
 
-        if (! plug->priv->switch_enabled) {
-                if (plug->priv->auth_switch_button != NULL) {
-                        gtk_widget_hide (plug->priv->auth_switch_button);
-                }
-        }
-
         plug->priv->timeout = DIALOG_TIMEOUT_MSEC;
 
         g_signal_connect (plug, "key_press_event",
@@ -2099,8 +1530,8 @@ gs_lock_plug_init (GSLockPlug *plug)
                           G_CALLBACK (cancel_button_clicked), plug);
 
         if (plug->priv->auth_switch_button != NULL) {
-                g_signal_connect_swapped (plug->priv->auth_switch_button, "clicked",
-                                          G_CALLBACK (switch_page), plug);
+                g_signal_connect (plug->priv->auth_switch_button, "clicked",
+                                  G_CALLBACK (switch_user_button_clicked), plug);
         }
 
         if (plug->priv->auth_logout_button != NULL) {
@@ -2108,22 +1539,11 @@ gs_lock_plug_init (GSLockPlug *plug)
                                   G_CALLBACK (logout_button_clicked), plug);
         }
 
-        if (plug->priv->switch_cancel_button != NULL) {
-                g_signal_connect (plug->priv->switch_cancel_button, "clicked",
-                                  G_CALLBACK (cancel_button_clicked), plug);
-        }
-        if (plug->priv->switch_switch_button != NULL) {
-                g_signal_connect (plug->priv->switch_switch_button, "clicked",
-                                  G_CALLBACK (switch_user_button_clicked), plug);
-        }
-
         if (plug->priv->auth_face_image) {
                 set_face_image (plug);
         }
 
         g_signal_connect (plug, "delete_event", G_CALLBACK (delete_handler), NULL);
-
-        g_idle_add ((GSourceFunc)setup_treeview_idle, plug);
 
         gs_profile_end (NULL);
 }
@@ -2141,10 +1561,6 @@ gs_lock_plug_finalize (GObject *object)
         g_return_if_fail (plug->priv != NULL);
 
         g_free (plug->priv->logout_command);
-
-        if (plug->priv->fusa_manager) {
-                g_object_unref (plug->priv->fusa_manager);
-        }
 
         remove_response_idle (plug);
         remove_cancel_timeout (plug);

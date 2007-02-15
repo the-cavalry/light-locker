@@ -3,17 +3,12 @@ AUTOMAKE_OPTIONS = 1.7
 
 NULL =
 
-SUBDIRS = \
-	cut-n-paste	\
-	$(NULL)
-
 saverdir = $(libexecdir)/gnome-screensaver
 themesdir = $(pkgdatadir)/themes
 
 INCLUDES =							\
 	-I.							\
 	-I$(srcdir)						\
-	-I$(top_srcdir)/src/cut-n-paste				\
 	-DGMENU_I_KNOW_THIS_IS_UNSTABLE				\
 	$(GNOME_SCREENSAVER_CFLAGS)				\
 	$(GNOME_SCREENSAVER_DIALOG_CFLAGS)			\
@@ -34,7 +29,6 @@ INCLUDES =							\
 	$(AUTH_CFLAGS)						\
 	$(DEBUG_CFLAGS)						\
 	$(DBUS_CFLAGS)						\
-	$(FAST_USER_SWITCH_CFLAGS)				\
 	$(LIBGNOMEKBDUI_CFLAGS)					\
 	$(NULL)
 
@@ -148,10 +142,8 @@ EXTRA_gnome_screensaver_dialog_SOURCES = \
 	$(NULL)
 
 gnome_screensaver_dialog_LDADD =	\
-	$(top_builddir)/src/cut-n-paste/libfast-user-switch.a \
 	$(GNOME_SCREENSAVER_DIALOG_LIBS)\
 	$(SAVER_LIBS)			\
-	$(FAST_USER_SWITCH_LIBS)	\
 	$(AUTH_LIBS)			\
 	$(LIBGNOMEKBDUI_LIBS)		\
 	$(NULL)
