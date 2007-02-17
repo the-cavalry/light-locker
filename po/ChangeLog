@@ -1,3 +1,7 @@
+2007-02-17  David Lodge <dave@cirt.net>
+
+	* POTFILES.in: Changed a couple of the savers to use .in.in instead of .in so that the pot file would generate
+
 2007-02-15  William Jon McCann  <mccann@jhu.edu>
 
 	* POTFILES.in: Remove FUSA.
