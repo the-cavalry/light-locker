@@ -50,6 +50,7 @@
 
 #define KEY_LOCK_DIALOG_THEME "/apps/gnome-screensaver/lock_dialog_theme"
 #define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
+#define GDM_FLEXISERVER_ARGS    "--startnew"
 
 enum {
         AUTH_PAGE = 0,
@@ -152,12 +153,19 @@ do_user_switch (GSLockPlug *plug)
 {
         GError  *error;
         gboolean res;
+        char    *command;
+
+        command = g_strdup_printf ("%s %s",
+                                   GDM_FLEXISERVER_COMMAND,
+                                   GDM_FLEXISERVER_ARGS);
 
         error = NULL;
-
         res = gdk_spawn_command_line_on_screen (gdk_screen_get_default (),
-                                                GDM_FLEXISERVER_COMMAND,
+                                                command,
                                                 &error);
+
+        g_free (command);
+
         if (! res) {
                 gs_debug ("Unable to start GDM greeter: %s", error->message);
                 g_error_free (error);

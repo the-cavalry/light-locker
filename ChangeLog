@@ -1,3 +1,9 @@
+2007-02-18  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c: (do_user_switch):
+	Add the --startnew switch to gdmflexiserver command so that
+	we always start a new greeter and not pop up a dialog.
+
 2007-02-15  William Jon McCann  <mccann@jhu.edu>
 
 	* src/debug-screensaver.sh: Add XDG_SESSION_COOKIE var.
