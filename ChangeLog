@@ -1,3 +1,8 @@
+2007-02-20  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-listener-dbus.c: (gs_listener_update_console_kit_idle):
+	Use new CK method name SetIdleHint().
+
 2007-02-18  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c: (do_user_switch):

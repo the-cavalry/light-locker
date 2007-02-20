@@ -290,7 +290,7 @@ gs_listener_update_console_kit_idle (GSListener *listener)
 	message = dbus_message_new_method_call (CK_NAME,
 						listener->priv->session_id,
 						CK_SESSION_INTERFACE,
-						"SetIdle");
+						"SetIdleHint");
 	if (message == NULL) {
 		gs_debug ("Couldn't allocate the D-Bus message");
 		return;
