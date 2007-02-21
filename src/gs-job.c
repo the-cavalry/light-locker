@@ -189,6 +189,9 @@ gs_job_set_command  (GSJob      *job,
 {
         g_return_val_if_fail (GS_IS_JOB (job), FALSE);
 
+        gs_debug ("Setting command for job: '%s'",
+                  command != NULL ? command : "NULL");
+
         g_free (job->priv->command);
         job->priv->command = g_strdup (command);
 
@@ -440,6 +443,7 @@ gs_job_start (GSJob *job)
         if (job->priv->command == NULL) {
                 /* no warning here because a NULL command is interpreted
                    as a no-op job */
+                gs_debug ("No command set for job.");
                 return FALSE;
         }
 

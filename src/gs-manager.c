@@ -228,6 +228,9 @@ manager_select_theme_for_job (GSManager *manager,
                 info = gs_theme_manager_lookup_theme_info (manager->priv->theme_manager, theme);
                 if (info != NULL) {
                         command = gs_theme_info_get_exec (info);
+                } else {
+                        gs_debug ("Could not find information for theme: %s",
+                                  theme);
                 }
 
                 gs_job_set_command (job, command);
