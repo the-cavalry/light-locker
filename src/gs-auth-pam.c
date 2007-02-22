@@ -268,7 +268,7 @@ pam_conversation (int                        nmsgs,
         res = TRUE;
         ret = PAM_SUCCESS;
 
-        for (replies = 0; replies < nmsgs; replies++) {
+        for (replies = 0; replies < nmsgs && ret == PAM_SUCCESS; replies++) {
                 GSAuthMessageStyle style;
                 char              *utf8_msg;
 
@@ -321,7 +321,13 @@ pam_conversation (int                        nmsgs,
                         if (res) {
                                 reply [replies].resp_retcode = PAM_SUCCESS;
                         } else {
-                                reply [replies].resp_retcode = PAM_INCOMPLETE;
+                                int i;
+                                for (i = 0; i <= replies; i++) {
+                                        free (reply [i].resp);
+                                }
+                                free (reply);
+                                reply = NULL;
+                                ret = PAM_CONV_ERR;
                         }
                 }
 
@@ -586,7 +592,7 @@ gs_auth_pam_verify_user (pam_handle_t *handle,
 
         channel = NULL;
         watch_id = 0;
-        auth_status = PAM_INCOMPLETE;
+        auth_status = PAM_AUTH_ERR;
 
         /* This pipe gives us a set of fds we can hook into
          * the event loop to be notified when our helper thread 
