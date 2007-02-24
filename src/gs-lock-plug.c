@@ -1329,6 +1329,8 @@ switch_user_button_clicked (GtkButton  *button,
 
         remove_response_idle (plug);
 
+        gs_lock_plug_set_sensitive (plug, FALSE);
+
         plug->priv->response_idle_id = g_timeout_add (2000,
                                                       (GSourceFunc)response_cancel_idle_cb,
                                                       plug);
