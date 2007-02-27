@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-22 18:06+0200\n"
+"POT-Creation-Date: 2007-02-27 15:48+0200\n"
 "PO-Revision-Date: 2007-02-22 18:06+0200\n"
 "Last-Translator: Gintautas Miliauskas <gintas@akl.lt>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
@@ -389,7 +389,7 @@ msgstr "KELIAS"
 #: ../src/file-transfer-dialog.c:94
 #, c-format
 msgid "Copying file: %u of %u"
-msgstr "Kopijuojama rinkmena: %u iš %u"
+msgstr "Kopijuojamas failas: %u iš %u"
 
 #: ../src/file-transfer-dialog.c:122
 #, c-format
@@ -438,7 +438,7 @@ msgstr "Bendras URI skaičius"
 
 #: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
 msgid "Copying files"
-msgstr "Kopijuojamos rinkmenos"
+msgstr "Kopijuojamos failo"
 
 #: ../src/file-transfer-dialog.c:345
 msgid "From:"
@@ -630,7 +630,7 @@ msgstr "Netinkama ekrano užsklandos tema"
 
 #: ../src/gnome-screensaver-preferences.c:838
 msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Panašu, kad ši rinkmena nėra tinkama ekrano užsklandos tema."
+msgstr "Panašu, kad šis failas nėra tinkama ekrano užsklandos tema."
 
 #: ../src/gnome-screensaver-preferences.c:965
 #, c-format
