@@ -1,5 +1,9 @@
 2007-02-27  Abel Cheung  <abelcheung@gmail.com>
 
+	* POTFILES.in: Some desktop files have been renamed.
+
+2007-02-27  Abel Cheung  <abelcheung@gmail.com>
+
 	* zh_HK.po, zh_TW.po: Updated traditional Chinese translation by
 	Woodman Tuen <wmtuen@gmail.com>.
 
