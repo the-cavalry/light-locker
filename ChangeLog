@@ -1,5 +1,10 @@
 2007-02-28  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac (LIBGNOMEKBDUI_REQUIRED_VERSION):
+	Add gconf dep to dialog.  Fixes #412492
+
+2007-02-28  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c: (notice_events_inner):
 	Don't watch for mouse motion events from windows
 	that haven't registered for such events
