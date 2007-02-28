@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-20 22:39+0100\n"
-"PO-Revision-Date: 2006-11-21 11:30+0000\n"
-"Last-Translator: Andrzej Polatyński <andrzej@datatel.net.pl>\n"
+"POT-Creation-Date: 2007-02-28 20:58+0100\n"
+"PO-Revision-Date: 2007-02-27 01:17+0100\n"
+"Last-Translator: wadim dziedzic <nikdo@aviary.pl>\n"
 "Language-Team: Polish <translators@gnomepl.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +42,7 @@ msgstr "<b>Uwaga: ekran nie będzie blokowany dla użytkownika root.</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "Power _Management"
-msgstr ""
+msgstr "Zarządzanie _energią"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "Regard the computer as _idle after:"
@@ -206,6 +206,9 @@ msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
 msgstr ""
+"Ilość sekund nieatywności po, której wysłany zostanie sygnał do zarządzania "
+"energią. Klucz ten jest tworzony i ustawiany przez agent sesji zarządzania "
+"energią."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
@@ -250,16 +253,12 @@ msgid "Time before logout option"
 msgstr "Odstęp czasu przed uaktywnieniem opcji wylogowania"
 
 #: ../data/gnome-screensaver.schemas.in.h:28
-#, fuzzy
 msgid "Time before power-management baseline"
-msgstr "Odstęp czasu pomiędzy zmianami motywów"
+msgstr "Odstęp czasu przed uaktywnieniem zarządzania energią"
 
 #: ../data/gnome-screensaver.schemas.in.h:29
-#, fuzzy
 msgid "Time before session is considered idle"
-msgstr ""
-"Liczba minut bezaktywności, po upływie której następuje przejście do stanu "
-"bezczynności."
+msgstr "Czas po którym sesja zostanie uznana za bezczynną"
 
 #: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before theme change"
@@ -276,26 +275,18 @@ msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
 #: ../data/lock-dialog-default.glade.h:5
-msgid "S_witch to user:"
-msgstr "Przełączenie na _użytkownika:"
-
-#: ../data/lock-dialog-default.glade.h:6
 msgid "_Cancel"
 msgstr "_Anuluj"
 
-#: ../data/lock-dialog-default.glade.h:7
+#: ../data/lock-dialog-default.glade.h:6
 msgid "_Log Out"
 msgstr "_Wyloguj"
 
-#: ../data/lock-dialog-default.glade.h:8
-msgid "_Switch User..."
-msgstr "_Przełącz użytkownika..."
-
-#: ../data/lock-dialog-default.glade.h:9
+#: ../data/lock-dialog-default.glade.h:7
 msgid "_Switch user..."
 msgstr "_Przełącz użytkownika..."
 
-#: ../data/lock-dialog-default.glade.h:10 ../src/gs-lock-plug.c:1098
+#: ../data/lock-dialog-default.glade.h:8 ../src/gs-lock-plug.c:1098
 msgid "_Unlock"
 msgstr "_Odblokuj"
 
@@ -471,9 +462,8 @@ msgid "Query the state of the screensaver"
 msgstr "Wypisuje stan wygaszacza ekranu"
 
 #: ../src/gnome-screensaver-command.c:66
-#, fuzzy
 msgid "Query the length of time the screensaver has been active"
-msgstr "Wypisuje stan wygaszacza ekranu"
+msgstr "Wypisuje czas aktywności wygaszacza ekranu"
 
 #: ../src/gnome-screensaver-command.c:68
 msgid "Tells the running screensaver process to lock the screen immediately"
@@ -532,9 +522,9 @@ msgid "inactive"
 msgstr "nieaktywny"
 
 #: ../src/gnome-screensaver-command.c:274
-#, fuzzy, c-format
+#, c-format
 msgid "The screensaver has been active for %d seconds.\n"
-msgstr "Wygaszaczem ekranu jest %s\n"
+msgstr "Wygaszacz ekranu jest aktywny od %d sekund.\n"
 
 #: ../src/gnome-screensaver-dialog.c:52
 msgid "Show debugging output"
@@ -554,7 +544,7 @@ msgstr "Wyświetlanie przycisku przełączania użytkowników"
 
 #. login: is whacked always translate to Username:
 #: ../src/gnome-screensaver-dialog.c:170 ../src/gnome-screensaver-dialog.c:171
-#: ../src/gnome-screensaver-dialog.c:172 ../src/gs-auth-pam.c:692
+#: ../src/gnome-screensaver-dialog.c:172 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Użytkownik"
 
@@ -626,7 +616,7 @@ msgstr "Hasła nie są zgodne"
 msgid "Checking..."
 msgstr "Sprawdzanie..."
 
-#: ../src/gnome-screensaver-dialog.c:296 ../src/gs-auth-pam.c:451
+#: ../src/gnome-screensaver-dialog.c:296 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "Uwierzytelnianie nie powiodło się"
 
@@ -714,25 +704,25 @@ msgstr "Uruchamia program bez przełączania do pracy w tle"
 msgid "Enable debugging code"
 msgstr "Uaktywnia kod debugowania"
 
-#: ../src/gs-auth-pam.c:391
+#: ../src/gs-auth-pam.c:397
 #, c-format
 msgid "Unable to establish service %s: %s\n"
 msgstr "Nie można ustanowić usługi %s: %s\n"
 
-#: ../src/gs-auth-pam.c:417
+#: ../src/gs-auth-pam.c:423
 #, c-format
 msgid "Can't set PAM_TTY=%s"
 msgstr "Nie można ustawić PAM_TTY=%s"
 
-#: ../src/gs-auth-pam.c:449
+#: ../src/gs-auth-pam.c:455
 msgid "Incorrect password."
 msgstr "Hasło nieprawidłowe."
 
-#: ../src/gs-auth-pam.c:465
+#: ../src/gs-auth-pam.c:471
 msgid "Not permitted to gain access at this time."
 msgstr "Brak zezwolenia na dostęp w tej chwili."
 
-#: ../src/gs-auth-pam.c:471
+#: ../src/gs-auth-pam.c:477
 msgid "No longer permitted to access the system."
 msgstr "Zezwolenie na dostęp do systemu odwołane."
 
@@ -771,6 +761,12 @@ msgstr "%U na %h"
 #: ../src/gs-lock-plug.c:1277
 msgid "_Password:"
 msgstr "_Hasło:"
+
+#~ msgid "S_witch to user:"
+#~ msgstr "Przełączenie na _użytkownika:"
+
+#~ msgid "_Switch User..."
+#~ msgstr "_Przełącz użytkownika..."
 
 #~ msgid "Time before activation"
 #~ msgstr "Odstęp czasu przed aktywacją"
