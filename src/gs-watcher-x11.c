@@ -306,15 +306,17 @@ notice_events_inner (Window   window,
                 /* Keep already selected events.  This is important when the
                    window == GDK_ROOT_WINDOW () since the mask will contain
                    StructureNotifyMask that is essential for RANDR support */
-                events = attrs.your_event_mask | events;
+                events |= attrs.your_event_mask;
 
                 /* Select for SubstructureNotify on all windows */
-                events = SubstructureNotifyMask | events;
+                events |= SubstructureNotifyMask;
 
                 /* Select for PropertyNotify events to get user time changes */
-                events = PropertyChangeMask | events;
+                events |= PropertyChangeMask;
 
-                events = PointerMotionMask | PointerMotionHintMask | events;
+                /* As with keypress events, only select mouse motion events
+                   for windows which already have them selected. */
+                events |= ((attrs.all_event_masks | attrs.do_not_propagate_mask) & (PointerMotionMask | PointerMotionHintMask));
         } else {
                 /* We want to disable all events */
 
