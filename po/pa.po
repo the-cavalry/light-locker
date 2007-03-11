@@ -4,14 +4,15 @@
 #
 # Amanpreet Singh Alam <amanpreetalam@yahoo.com>, 2005, 2006.
 # A S Alam <apbrar@gmail.com>, 2006.
+# A S Alam <aalam@users.sf.net>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-09-03 01:20+0200\n"
-"PO-Revision-Date: 2006-09-03 11:16+0530\n"
-"Last-Translator: A S Alam <apbrar@gmail.com>\n"
-"Language-Team: Punjabi <fedora-trans-pa@redhat.com>\n"
+"POT-Creation-Date: 2007-02-24 03:40+0000\n"
+"PO-Revision-Date: 2007-03-11 08:27+0530\n"
+"Last-Translator: A S Alam <aalam@users.sf.net>\n"
+"Language-Team: Punjabi <punjabi-l10n@lists.sf.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,30 +36,34 @@ msgid "<b>Warning: the screen will not be locked for the root user.</b>"
 msgstr "<b>ਚੇਤਾਵਨੀ: ਸਕਰੀਨ root ਉਪਭੋਗੀ ਲਈ ਤਾਲਾਬੰਦ ਨਹੀਂ ਹੋਵੇਗੀ।</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
-msgid "Regard the computer as _idle after:"
-msgstr "ਕੰਪਿਊਟਰ ਨੂੰ ਇੰਨੇ ਵਕਤ ਬਾਅਦ ਵੇਹਲਾ ਮੰਨੋ(_i):"
+msgid "Power _Management"
+msgstr "ਊਰਜਾ ਪਰਬੰਧ(_M)"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "Regard the computer as _idle after:"
+msgstr "ਕੰਪਿਊਟਰ ਨੂੰ ਇੰਨੇ ਸਮੇਂ ਬਾਅਦ ਵੇਹਲਾ ਮੰਨੋ(_i):"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "Screensaver Preferences"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਪਸੰਦ"
 
-#: ../data/gnome-screensaver-preferences.glade.h:5
+#: ../data/gnome-screensaver-preferences.glade.h:6
 msgid "Screensaver Preview"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਝਲਕ"
 
-#: ../data/gnome-screensaver-preferences.glade.h:6
-msgid "_Activate screensaver when computer is idle"
-msgstr "ਜਦੋਂ ਕੰਪਿਊਟਰ ਵੇਹਲਾ ਹੋਵੇ ਤਾਂ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ(_A)"
-
 #: ../data/gnome-screensaver-preferences.glade.h:7
-msgid "_Lock screen when screensaver is active"
-msgstr "ਜਦੋਂ ਸਕਰੀਨ-ਸੇਵਾਰ ਸਰਗਰਮ ਹੋਵੇ ਤਾਂ ਪਰਦਾ ਤਾਲਾਬੰਦ(_L)"
+msgid "_Activate screensaver when computer is idle"
+msgstr "ਜਦੋਂ ਕੰਪਿਊਟਰ ਵੇਹਲਾ ਹੋਵੇ ਤਾਂ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਕਰੋ(_A)"
 
 #: ../data/gnome-screensaver-preferences.glade.h:8
+msgid "_Lock screen when screensaver is active"
+msgstr "ਜਦੋਂ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਵੇ ਤਾਂ ਪਰਦਾ ਤਾਲਾਬੰਦ ਕਰੋ(_L)"
+
+#: ../data/gnome-screensaver-preferences.glade.h:9
 msgid "_Preview"
 msgstr "ਝਲਕ(_P)"
 
-#: ../data/gnome-screensaver-preferences.glade.h:9
+#: ../data/gnome-screensaver-preferences.glade.h:10
 msgid "_Screensaver theme:"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਸਰੂਪ(_S):"
 
@@ -69,7 +74,7 @@ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਸਰੂਪ"
 
 #: ../data/gnome-screensaver.directory.in.h:2
 msgid "Screensavers"
-msgstr "ਵੇਹਲੇ ਪਰਦੇ (ਸਕਰੀਨ-ਸੇਵਰ)"
+msgstr "ਸਕਰੀਨ-ਸੇਵਰ"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
 msgid "Activate when idle"
@@ -77,27 +82,27 @@ msgstr "ਜਦੋਂ ਵੇਹਲਾ ਹੋਵੇ ਤਾਂ ਸਰਗਰਮ"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
 msgid "Allow embedding a keyboard into the window"
-msgstr "ਇੱਕ ਕੀ-ਬੋਰਡ ਨੂੰ ਝਰੋਖੇ ਵਿੱਚ ਮਨਜ਼ੂਰ"
+msgstr "ਇੱਕ ਕੀ-ਬੋਰਡ ਨੂੰ ਝਰੋਖੇ ਵਿੱਚ ਸ਼ਾਮਲ ਰੱਖਣਾ ਮਨਜ਼ੂਰ"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow logout"
-msgstr "ਬਾਹਰੀ ਦਰ ਸੰਭਵੇ"
+msgstr "ਲਾਗਆਉਟ ਮਨਜ਼ੂਰ"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
-msgstr "ਉਪਭੋਗੀ ਬਦਲਣਾ ਸੰਭਵ"
+msgstr "ਉਪਭੋਗੀ ਬਦਲਣਾ ਮਨਜ਼ੂਰ"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
 msgid "Embedded keyboard command"
-msgstr "ਸ਼ਾਮਿਲ ਕੀ-ਬੋਰਡ ਕਮਾਂਡ ਦਿਓ"
+msgstr "ਸ਼ਾਮਿਲ ਕੀ-ਬੋਰਡ ਕਮਾਂਡ"
 
 #: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Lock on activation"
-msgstr "ਸਰਗਰਮ ਤਾਲਾਬੰਦ"
+msgstr "ਸਰਗਰਮੀ ਸਮੇਂ ਤਾਲਾਬੰਦ"
 
 #: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Logout command"
-msgstr "ਬਾਹਰੀ ਦਰ ਕਮਾਂਡ"
+msgstr "ਲਾਗਆਉਟ ਕਮਾਂਡ"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Screensaver theme selection mode"
@@ -105,7 +110,7 @@ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਸਰੂਪ ਚੋਣ ਢੰਗ"
 
 #: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr "ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਅਜਲਾਸ ਵੇਹਲਾ ਹੋਣ ਸਮੇਂ ਪਰਦੇ (ਸਕਰੀਨ) ਨੂੰ ਤਾਲਾਬੰਦ ਕਰਨਾ ਹੈ"
+msgstr "ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਸ਼ੈਸ਼ਨ ਵੇਹਲਾ ਹੋਣ ਸਮੇਂ ਸਕਰੀਨ ਨੂੰ ਤਾਲਾਬੰਦ ਕਰਨਾ ਹੈ"
 
 #: ../data/gnome-screensaver.schemas.in.h:11
 msgid ""
@@ -119,23 +124,23 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr "ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਣ ਸਮੇਂ ਪਰਦੇ (ਸਕਰੀਨ) ਨੂੰ ਤਾਲਾਬੰਦ ਕਰਨਾ ਹੈ"
+msgstr "ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਣ ਸਮੇਂ ਸਕਰੀਨ ਨੂੰ ਤਾਲਾਬੰਦ ਕਰਨਾ ਹੈ"
 
 #: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr ""
-"ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਤਾਲਾ ਖੋਲ੍ਹਣ ਵਾਰਤਾਲਾਪ ਵਿੱਚ ਇੱਕ ਚੋਣ ਦਿੱਤੀ ਜਾਵੇ, ਜਿਸ ਨਾਲ ਵੱਖਰੇ ਉਪਭੋਗੀ ਖਾਤੇ "
-"ਲਈ ਤਬਦੀਲ ਕੀਤਾ ਜਾ ਸਕੇ।"
+"ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਤਾਲਾ ਖੋਲ੍ਹਣ ਵਾਰਤਾਲਾਪ ਵਿੱਚ ਇੱਕ ਚੋਣ ਦਿੱਤੀ ਜਾਵੇ, ਜਿਸ ਨਾਲ ਵੱਖਰੇ "
+"ਉਪਭੋਗੀ ਖਾਤੇ ਲਈ ਬਦਲਿਆ ਜਾ ਸਕੇ।"
 
 #: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
 msgstr ""
-"ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਤਾਲਾ-ਖੋਲ੍ਹਣ ਵਾਰਤਾਲਾਪ ਵਿੱਚ ਇੱਕ ਚੋਣ ਰੱਖਣੀ ਹੈ ਕਿ ਅੰਤਰਾਲ ਦੇ ਬਾਅਦ ਲਾਗਆਉਣ ਹੋ "
-"ਜਾਵੇ। ਅੰਤਰਾਲ ਨੂੰ \"logout_delay\" ਕੁੰਜੀ ਵਿੱਚ ਦਿਓ।"
+"ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਤਾਲਾ-ਖੋਲ੍ਹਣ ਵਾਰਤਾਲਾਪ ਵਿੱਚ ਇੱਕ ਚੋਣ ਰੱਖਣੀ ਹੈ ਕਿ ਅੰਤਰਾਲ ਦੇ ਬਾਅਦ "
+"ਲਾਗ-ਆਉਣ ਹੋ ਜਾਵੇ। ਅੰਤਰਾਲ ਨੂੰ \"logout_delay\" ਕੁੰਜੀ ਵਿੱਚ ਦਿਓ।"
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
@@ -144,9 +149,9 @@ msgid ""
 "implement an XEMBED plug interface and output a window XID on the standard "
 "output."
 msgstr ""
-"ਕਮਾਂਡ, ਜੋ ਚੱਲੇਗੀ, ਜਦੋਂ \"embedded_keyboard_enabled\" ਕੁੰਜੀ ਨੂੰ ਸੈੱਟ ਕੀਤਾ ਗਿਆ ਹੋਵੇ, ਤਾਂ ਕਿ "
-"ਕੀ-ਬੋਰਡ ਨੂੰ ਝਰੋਖੇ ਵਿੱਚ ਸ਼ਾਮਿਲ ਕੀਤਾ ਗਿਆ ਹੋਵੇ। ਇਹ ਕਮਾਂਡ ਨੂੰ XEMBED ਪਲੱਗ ਇੰਟਰਫੇਸ ਰਾਹੀਂ "
-"ਬਣਾਇਆ ਗਿਆ ਹੈ ਅਤੇ ਮਿਆਰੀ ਆਉਟਪੁੱਟ ਉੱਤੇ ਇੱਕ ਝਰੋਖਾ XID ਆਉਟਪੁੱਟ ਹੈ।"
+"ਕਮਾਂਡ, ਜੋ ਚੱਲੇਗੀ, ਜਦੋਂ \"embedded_keyboard_enabled\" ਕੁੰਜੀ ਨੂੰ ਸੈੱਟ ਕੀਤਾ ਗਿਆ "
+"ਹੋਵੇ, ਤਾਂ ਕਿ ਕੀ-ਬੋਰਡ ਨੂੰ ਝਰੋਖੇ ਵਿੱਚ ਸ਼ਾਮਿਲ ਕੀਤਾ ਗਿਆ ਹੋਵੇ। ਇਹ ਕਮਾਂਡ ਨੂੰ XEMBED "
+"ਪਲੱਗ ਇੰਟਰਫੇਸ ਰਾਹੀਂ ਬਣਾਇਆ ਗਿਆ ਹੈ ਅਤੇ ਸਟੈਂਡਰਡ ਆਉਟਪੁੱਟ ਉੱਤੇ ਇੱਕ ਝਰੋਖਾ XID ਆਉਟਪੁੱਟ ਹੈ।"
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
@@ -154,14 +159,14 @@ msgid ""
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
-"ਬਾਹਰੀ-ਦਰ (logout) ਬਟਨ ਨੂੰ ਦਬਾਉਣ ਸਮੇਂ ਵਰਤੀ ਜਾਣ ਵਾਲੀ ਕਮਾਂਡ ਹੈ। ਇਹ ਕਮਾਂਡ ਬਿਨਾਂ ਕਿਸੇ "
-"ਉਪਭੋਗੀ ਦਖ਼ਲ ਦੇ ਲਾਗ ਆਉਟ ਕਰ ਦੇਣ ਵਾਲੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ। ਇਹ ਕੁੰਜੀ ਤਾਂ ਹੀ ਪਰਭਾਵੀ ਹੈ, ਜੇਕਰ "
+"ਲਾਗਆਉਟ (logout) ਬਟਨ ਨੂੰ ਦਬਾਉਣ ਸਮੇਂ ਵਰਤੀ ਜਾਣ ਵਾਲੀ ਕਮਾਂਡ ਹੈ। ਇਹ ਕਮਾਂਡ ਬਿਨਾਂ ਕਿਸੇ "
+"ਉਪਭੋਗੀ ਦਖਲ ਦੇ ਲਾਗ ਆਉਟ ਕਰ ਦੇਣ ਵਾਲੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ। ਇਹ ਕੁੰਜੀ ਤਾਂ ਹੀ ਪਰਭਾਵੀ ਹੈ, ਜੇਕਰ "
 "\"logout_enable\" ਕੁੰਜੀ ਨੂੰ ਸੱਚ ਕੀਤਾ ਹੋਵੇਗਾ।"
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid "The number of minutes after screensaver activation before locking the screen."
 msgstr ""
-"ਪਰਦੇ (ਸਕਰੀਨ) ਨੂੰ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਣ ਦੇ ਬਾਅਦ ਤਾਲਾਬੰਦ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸਮਾਂ (ਅੰਤਰਾਲ) ਮਿੰਟਾਂ "
+"ਸਕਰੀਨ ਨੂੰ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਣ ਦੇ ਬਾਅਦ ਤਾਲਾਬੰਦ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸਮਾਂ (ਅੰਤਰਾਲ) ਮਿੰਟਾਂ "
 "ਵਿੱਚ ਹੈ।"
 
 #: ../data/gnome-screensaver.schemas.in.h:18
@@ -170,19 +175,27 @@ msgid ""
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
-"ਸਕਰੀਨ-ਸੇਵਰ ਦੇ ਸਰਗਰਮ ਹੋਣ ਬਾਅਦ ਤਾਲਾ-ਖੋਲ੍ਹਣ ਵਾਰਤਾਲਾਪ ਵਿੱਚ ਲਾਗਆਉਟ ਚੋਣ ਉਪਲੱਬਧ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ "
+"ਸਕਰੀਨ-ਸੇਵਰ ਦੇ ਸਰਗਰਮ ਹੋਣ ਬਾਅਦ ਤਾਲਾ-ਖੋਲ੍ਹਣ ਵਾਰਤਾਲਾਪ ਵਿੱਚ ਲਾਗ-ਆਉਟ ਚੋਣ ਉਪਲੱਬਧ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ "
 "ਦਾ ਸਮਾਂ (ਅੰਤਰਾਲ) ਮਿੰਟਾਂ ਵਿੱਚ ਹੈ। ਇਹ ਕੁੰਜੀ ਤਾਂ ਹੀ ਪਰਭਾਵੀ ਹੈ, ਜੇਕਰ \"logout_enable\" ਕੁੰਜੀ "
 "ਸੱਚ ਕੀਤੀ ਗਈ ਹੈ।"
 
 #: ../data/gnome-screensaver.schemas.in.h:19
 msgid "The number of minutes of inactivity before the session is considered idle."
-msgstr "ਅਜਲਾਸ ਨੂੰ ਵੇਹਲਾ ਮੰਨਣ ਤੋਂ ਪਹਿਲਾਂ ਕੋਈ ਸਰਗਰਮੀ ਤੋਂ ਬਿਨਾਂ ਸਮਾਂ-ਮਿੰਟਾਂ ਵਿੱਚ ਹੈ।"
+msgstr "ਸ਼ੈਸ਼ਨ ਨੂੰ ਵੇਹਲਾ (idle) ਮੰਨਣ ਤੋਂ ਪਹਿਲਾਂ ਕੋਈ ਸਰਗਰਮੀ ਤੋਂ ਬਿਨਾਂ ਸਮਾਂ-ਮਿੰਟਾਂ ਵਿੱਚ ਹੈ।"
 
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਸਰੂਪ ਬਦਲਣ ਤੋਂ ਪਹਿਲਾਂ ਉਸ ਨੂੰ ਚਲਾਉਣ ਦਾ ਸਮਾਂ ਮਿੰਟਾਂ ਵਿੱਚ ਹੈ।"
 
 #: ../data/gnome-screensaver.schemas.in.h:21
+msgid ""
+"The number of seconds of inactivity before signalling to power-management. "
+"This key is set and maintained by the session power-management agent."
+msgstr ""
+"ਊਰਜਾ-ਪਰਬੰਧ ਨੂੰ ਸੰਕੇਤ ਭੇਜਣ ਤੋਂ ਪਹਿਲਾਂ ਨਾ-ਸਰਗਰਮੀ ਦੇ ਸਕਿੰਟ ਦੀ ਗਿਣਤੀ ਹੈ। "
+"ਇਹ ਕੁੰਜੀ ਨੂੰ ਸ਼ੈਸ਼ਨ ਊਰਜਾ-ਪਰਬੰਧ ਏਜੰਟ ਵਲੋਂ ਸੈੱਟ ਅਤੇ ਪਰਬੰਧ ਅਧੀਨ ਰੱਖਿਆ ਜਾਂਦਾ ਹੈ।"
+
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
@@ -195,29 +208,25 @@ msgstr ""
 "ਇੱਕ ਹੀ ਸਰੂਪ ਵਰਤਣ ਲਈ ਦਿਓ, (\"ਸਰੂਪ (themes)\" ਕੁੰਜੀ ਦੱਸਣੀ ਲਾਜ਼ਮੀ ਹੈ) ਅਤੇ \"ਰਲਵਾਂ (random)"
 "\" ਨੂੰ ਸਰਗਰਮ ਹੋਣ ਦੀ ਹਾਲਤ ਵਿੱਚ ਰਲਵੇਂ ਸਰੂਪ ਵਰਤਣ ਲਈ ਯੋਗ ਕਰਦਾ ਹੈ।"
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid "Theme for lock dialog"
 msgstr "ਤਾਲਾਬੰਦ ਵਾਰਤਾਲਾਪ ਲਈ ਸਰੂਪ"
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid "Theme to use for the lock dialog."
 msgstr "ਤਾਲਾਬੰਦ ਵਾਰਤਾਲਾਪ ਵਾਸਤੇ ਵਰਤਣ ਲਈ ਸਰੂਪ ਹੈ।"
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
 msgstr ""
-"ਇਹ ਕੁੰਜੀ ਸਕਰੀਨ-ਸੇਵਰ ਵਲੋਂ ਵਰਤੇ ਜਾਣ ਵਾਲੇ ਸਰੂਪ ਦੀ ਸੂਚੀ ਦੱਸਦੀ ਹੈ। ਇਹ ਨੂੰ ਅਣਡਿੱਠਾ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, "
+"ਇਹ ਕੁੰਜੀ ਸਕਰੀਨ-ਸੇਵਰ ਵਲੋਂ ਵਰਤੇ ਜਾਣ ਵਾਲੇ ਸਰੂਪ ਦੀ ਲਿਸਟ ਦੱਸਦੀ ਹੈ। ਇਹ ਨੂੰ ਅਣਡਿੱਠਾ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, "
 "ਜਦੋਂ \"mode\" ਕੁੰਜੀ ਨੂੰ \"blank-only\" ਰੱਖਿਆ ਜਾਂਦਾ ਹੈ, ਸਰੂਪ ਨਾਂ ਦੇਣਾ ਲਾਜ਼ਮੀ ਹੈ, ਜਦੋਂ \"mode"
 "\" ਨੂੰ \"single\" ਮੁੱਲ ਦਿੱਤਾ ਹੋਵੇ ਅਤੇ \"mode\" ਨੂੰ \"random\" ਮੁੱਲ ਹੋਣ ਦੀ ਹਾਲਤ ਵਿੱਚ ਸਰੂਪਾਂ "
-"ਦੀ ਸੂਚੀ ਦੇਣਾ ਲਾਜ਼ਮੀ ਹੈ।"
-
-#: ../data/gnome-screensaver.schemas.in.h:25
-msgid "Time before activation"
-msgstr "ਸਰਗਰਮ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸਮਾਂ"
+"ਦੀ ਲਿਸਟ ਦੇਣਾ ਲਾਜ਼ਮੀ ਹੈ।"
 
 #: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before locking"
@@ -228,6 +237,14 @@ msgid "Time before logout option"
 msgstr "ਲਾਗਆਉਟ ਚੋਣ ਤੋਂ ਪਹਿਲਾਂ ਸਮਾਂ"
 
 #: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before power-management baseline"
+msgstr "ਊਰਜਾ-ਪਰਬੰਧ ਬੇਸ-ਲਾਇਨ ਤੋਂ ਪਹਿਲਾਂ ਸਮਾਂ"
+
+#: ../data/gnome-screensaver.schemas.in.h:29
+msgid "Time before session is considered idle"
+msgstr "ਸ਼ੈਸ਼ਨ ਨੂੰ ਵੇਹਲਾ (idle) ਮੰਨਣ ਤੋਂ ਪਹਿਲਾਂ ਸਮਾਂ"
+
+#: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before theme change"
 msgstr "ਸਰੂਪ ਬਦਲਣ ਤੋਂ ਪਹਿਲਾਂ ਸਮਾਂ"
 
@@ -241,32 +258,19 @@ msgstr "<span size=\"small\">%h ਉੱਤੇ %U</span>"
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:172
-#: ../src/gnome-screensaver-dialog.c:173
-msgid "Password:"
-msgstr "ਗੁਪਤ-ਕੋਡ:"
-
-#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1707
-msgid "S_witch to user:"
-msgstr "ਤਬਦੀਲ ਕਰਨ ਲਈ ਉਪਭੋਗੀ(_w):"
-
-#: ../data/lock-dialog-default.glade.h:7
+#: ../data/lock-dialog-default.glade.h:5
 msgid "_Cancel"
 msgstr "ਰੱਦ ਕਰੋ(_C)"
 
-#: ../data/lock-dialog-default.glade.h:8
+#: ../data/lock-dialog-default.glade.h:6
 msgid "_Log Out"
-msgstr "ਬਾਹਰੀ ਦਰ(_L)"
+msgstr "ਲਾਗਆਉਟ(_L)"
 
-#: ../data/lock-dialog-default.glade.h:9
-msgid "_Switch User..."
-msgstr "ਉਪਭੋਗੀ ਤਬਦੀਲ(_S)..."
-
-#: ../data/lock-dialog-default.glade.h:10
+#: ../data/lock-dialog-default.glade.h:7
 msgid "_Switch user..."
-msgstr "ਉਪਭੋਗੀ ਤਬਦੀਲ(_S)..."
+msgstr "ਉਪਭੋਗੀ ਬਦਲੋ(_S)..."
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1436
+#: ../data/lock-dialog-default.glade.h:8 ../src/gs-lock-plug.c:1098
 msgid "_Unlock"
 msgstr "ਤਾਲਾ ਖੋਲ੍ਹੋ(_U)"
 
@@ -316,7 +320,7 @@ msgstr "ਫਰੇਮ ਦਰ ਅਤੇ ਹੋਰ ਅੰਕੜੇ ਵੀ ਛਾਪ
 
 #: ../savers/floaters.c:1188
 msgid "the maximum number of images to keep on screen"
-msgstr "ਪਰਦੇ ਉੱਤੇ ਵੇਖਾਉਣ ਵਾਲੇ ਚਿੱਤਰਾਂ ਦੀ ਵੱਧ ਤੋਂ ਵੱਧ ਗਿਣਤੀ"
+msgstr "ਸਕਰੀਨ ਉੱਤੇ ਵੇਖਾਉਣ ਵਾਲੇ ਚਿੱਤਰਾਂ ਦੀ ਵੱਧ ਤੋਂ ਵੱਧ ਗਿਣਤੀ"
 
 #. translators: this should be translated to be symbolic of a generic
 #. * number.  e.g, "the screen saver should keep N images on the screen"
@@ -346,7 +350,7 @@ msgstr "WIDTHxHEIGHT+X+Y"
 #.
 #: ../savers/floaters.c:1229
 msgid "image - floats images around the screen"
-msgstr "ਚਿੱਤਰ - ਪਰਦੇ ਉੱਤੇ ਤਰਦੇ ਚਿੱਤਰ"
+msgstr "ਚਿੱਤਰ - ਸਕਰੀਨ ਉੱਤੇ ਤਰਦੇ ਚਿੱਤਰ"
 
 #: ../savers/floaters.c:1239
 #, c-format
@@ -365,241 +369,10 @@ msgstr "ਚਿੱਤਰ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਟਿਕਾਣਾ"
 msgid "PATH"
 msgstr "ਮਾਰਗ"
 
-#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
-msgid "Manager"
-msgstr "ਮੈਨੇਜਰ"
-
-#: ../src/cut-n-paste/fusa-display.c:120
-msgid "The manager which owns this object."
-msgstr "ਮੈਨੇਜਰ, ਜੋ ਕਿ ਇਹ ਇਕਾਈ ਰੱਖਦਾ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-display.c:127
-msgid "Name"
-msgstr "ਨਾਂ"
-
-#: ../src/cut-n-paste/fusa-display.c:128
-msgid "The name of the X11 display this object refers to."
-msgstr "ਇਹ ਇਕਾਈ ਦਾ ਹਵਾਲਾ ਦੇਣ ਵਾਲਾ X11 ਝਲਕ ਦਾ ਨਾਂ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:163
-msgid "User"
-msgstr "ਉਪਭੋਗੀ"
-
-#: ../src/cut-n-paste/fusa-display.c:135
-msgid "The user currently logged in on this virtual terminal."
-msgstr "ਉਪਭੋਗੀ ਇਸ ਸਮੇਂ ਇਸ ਦੇ ਵੁਰਚੁਅਲ ਟਰਮੀਨਲ ਵਿੱਚ ਦਾਖਲ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-display.c:141
-msgid "Console"
-msgstr "ਕੰਨਸੋਲ"
-
-#: ../src/cut-n-paste/fusa-display.c:142
-msgid "The number of the virtual console this display can be found on, or %-1."
-msgstr "ਵੁਰਚੁਅਲ ਕਨਸੋਂਲ ਦੀ ਗਿਣਤੀ, ਜਿਸ ਉੱਤੇ ਝਲਕ ਵੇਖੀ ਜਾ ਸਕਦੀ ਹੈ, ਜਾਂ %-1।"
-
-#: ../src/cut-n-paste/fusa-display.c:148
-msgid "Nested"
-msgstr "ਅੰਦਰੂਨੀ"
-
-#: ../src/cut-n-paste/fusa-display.c:149
-msgid "Whether or not this display is a windowed (Xnest) display."
-msgstr "ਕੀ ਇਹ ਝਲਕ ਨੂੰ ਝਰੋਖਿਆਂ ਦੇ ਰੂਪ ਵਿੱਚ (Xnest) ਦੇ ਰੂਪ ਵਿੱਚ ਵੇਖਾਇਆ ਜਾਵੇ।"
-
-#: ../src/cut-n-paste/fusa-manager.c:1453
-msgid "The display manager could not be contacted for unknown reasons."
-msgstr "ਇਹ ਝਲਕ ਮੈਨੇਜਰ ਨੂੰ ਅਣਜਾਣੇ ਕਾਰਨਾਂ ਕਰਕੇ ਸੰਪਰਕ ਵਿੱਚ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-manager.c:1460
-msgid "The display manager is not running or too old."
-msgstr "ਝਲਕ ਮੈਨੇਜਰ ਚੱਲ ਨਹੀਂ ਰਿਹਾ ਹੈ ਜਾਂ ਬਹੁਤ ਹੀ ਪੁਰਾਣਾ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-manager.c:1463
-msgid "The configured limit of flexible servers has been reached."
-msgstr "ਫੀਲੈਸੀਬਲ ਸਰਵਰ ਦੀ ਸੰਰਚਿਤ ਸੀਮਾ ਖਤਮ ਹੋ ਗਈ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-manager.c:1466
-msgid "There was an unknown error starting X."
-msgstr "X ਨੂੰ ਸ਼ੁਰੂ ਕਰਨ ਦੌਰਾਨ ਅਣਜਾਣੀ ਗਲਤੀ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-manager.c:1469
-msgid "The X server failed to finish starting."
-msgstr "X ਸਰਵਰ ਸ਼ੁਰੂ ਕਰਨ ਨੂੰ ਖਤਮ ਕਰਨ ਲਈ ਅਸਫ਼ਲ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-manager.c:1472
-msgid "There are too many X sessions running."
-msgstr "ਬਹੁਤ ਸਾਰੇ X ਅਜਲਾਸ ਚੱਲ ਰਹੇ ਹਨ।"
-
-#: ../src/cut-n-paste/fusa-manager.c:1475
-msgid "The nested X server (Xnest) cannot connect to your current X server."
-msgstr "ਅੰਦਰੂਨੀ X ਸਰਵਰ (Xnest) ਤੁਹਾਡੇ ਮੌਜਦਾ X ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਨਹੀਂ ਕਰ ਸਕਦਾ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-manager.c:1478
-msgid "The X server in the GDM configuration could not be found."
-msgstr "GDM ਸੰਰਚਨਾ ਵਿੱਚ X ਸਰਵਰ ਨਹੀਂ ਲੱਭਿਆ ਜਾ ਸਕਿਆ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-manager.c:1481 ../src/cut-n-paste/gdmcomm.c:492
-msgid ""
-"Trying to set an unknown logout action, or trying to set a logout action "
-"which is not available."
-msgstr ""
-"ਇੱਕ ਅਣਜਾਣ ਲਾਗਆਉਟ ਕਾਰਵਾਈ ਨੂੰ ਸੈੱਟ ਕਰਨ ਦੀ ਕੋਸ਼ਸ਼ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ ਜਾਂ ਉਦੋਂ ਲਾਗਆਉਟ ਕਾਰਵਾਈ ਸੈੱਟ "
-"ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ, ਜਦੋਂ ਕਿ ਉਹ ਉਪਲੱਬਧ ਹੀ ਨਹੀਂ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-manager.c:1484 ../src/cut-n-paste/gdmcomm.c:495
-msgid "Virtual terminals not supported."
-msgstr "ਵੁਰਚੁਅਲ ਟਰਮੀਨਲ ਸਹਾਇਕ ਨਹੀਂ ਹਨ।"
-
-#: ../src/cut-n-paste/fusa-manager.c:1487
-msgid "Invalid virtual terminal number."
-msgstr "ਗਲਤ ਵੁਰਚੁਅਲ ਟਰਮੀਨਲ ਨੰਬਰ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-manager.c:1490 ../src/cut-n-paste/gdmcomm.c:499
-msgid "Trying to update an unsupported configuration key."
-msgstr "ਇੱਕ ਨਾ-ਸਹਾਇਕ ਸੰਰਚਨਾ ਫਾਇਲ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਜਾਰੀ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-manager.c:1493
-msgid "~/.Xauthority file badly configured or missing."
-msgstr "~/.Xauthority ਫਾਇਲ ਦੀ ਸੰਰਚਨਾ ਗਲਤ ਹੈ ਜਾਂ ਫਾਇਲ ਹੈ ਹੀ ਨਹੀਂ।"
-
-#: ../src/cut-n-paste/fusa-manager.c:1496
-msgid "Too many messages were sent to the display manager, and it hung up."
-msgstr "ਝਲਕ ਮੈਨੇਜਰ ਨੂੰ ਬਹੁਤ ਜ਼ਿਆਦਾ ਸੁਨੇਹੇ ਭੇਜੇ ਗਏ ਸਨ ਅਤੇ ਇਹ ਹੁਣ ਅਟਕ ਗਿਆ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-manager.c:1500
-msgid "The display manager sent an unknown error message."
-msgstr "ਝਲਕ ਮੈਨੇਜਰ ਨੂੰ ਇੱਕ ਅਣਜਾਣ ਗਲਤੀ ਸੁਨੇਹਾ ਭੇਜਿਆ ਗਿਆ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:164
-msgid "The user this menu item represents."
-msgstr "ਉਪਭੋਗੀ ਇਹ ਮੇਨੂ ਇਕਾਈ ਵੇਖਾਈ ਜਾਂਦੀ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:171
-msgid "Icon Size"
-msgstr "ਆਈਕਾਨ ਅਕਾਰ"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:172
-msgid "The size of the icon to use."
-msgstr "ਵਰਤਣ ਲਈ ਆਈਕਾਨ ਦਾ ਅਕਾਰ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:178
-msgid "Indicator Size"
-msgstr "ਇੰਡੀਕੇਟਰ ਆਕਾਰ"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:179
-msgid "Size of check indicator"
-msgstr "ਇੰਡੀਕੇਟਰ ਜਾਂਚ ਲਈ ਆਕਾਰ"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:184
-msgid "Indicator Spacing"
-msgstr "ਇੰਡੀਕੇਟਰ ਖਾਲੀ ਥਾਂ"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:185
-msgid "Space between the username and the indicator"
-msgstr "ਉਪਭੋਗੀ ਨਾਂ ਅਤੇ ਇੰਡੀਕੇਟਰ ਵਿੱਚ ਖਾਲੀ ਥਾਂ"
-
-#: ../src/cut-n-paste/fusa-user.c:151
-msgid "The user manager object this user is controlled by."
-msgstr "ਉਪਭੋਗੀ ਮੈਨੇਜਰ ਇਕਾਈ ਇਹ ਉਪਭੋਗੀ ਵਲੋਂ ਕੰਟਰੋਲ ਕੀਤੀ ਜਾਂਦੀ ਹੈ।"
-
-#: ../src/cut-n-paste/fusa-utils.c:80
-msgid "Show Details"
-msgstr "ਵੇਰਵਾ ਵੇਖਾਓ"
-
-#. markup
-#: ../src/cut-n-paste/gdmcomm.c:413
-msgid "GDM (The GNOME Display Manager) is not running."
-msgstr "GDM (ਗਨੋਮ ਡਿਸਪਲੇਅ ਮੈਨੇਜਰ) ਚੱਲ ਨਹੀਂ ਰਿਹਾ ਹੈ।"
-
-#: ../src/cut-n-paste/gdmcomm.c:416
-msgid ""
-"You might in fact be using a different display manager, such as KDM (KDE "
-"Display Manager) or xdm."
-msgstr ""
-"ਤੁਸੀਂ ਯਕੀਨੀ ਤੌਰ ਉੱਤੇ ਇੱਕ ਵੱਖਰਾ ਝਲਕ ਮੈਨੇਜਰ ਵਰਤਦੇ ਹੋ, ਜਿਵੇਂ ਕਿ KDM (KDE ਡਿਸਪਲੇਅ ਮੈਨੇਜਰ) ਜਾਂ xdm "
-"ਆਦਿ।"
-
-#: ../src/cut-n-paste/gdmcomm.c:419
-msgid ""
-"If you still wish to use this feature, either start GDM yourself or ask your "
-"system administrator to start GDM."
-msgstr ""
-"ਜੇਕਰ ਤੁਸੀਂ ਹਾਲ਼ੇ ਵੀ ਇਹ ਫੀਚਰ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਜਾਂ ਆਪਣੇ ਆਪ GDM ਨੂੰ ਸ਼ੁਰੂ ਕਰੋ ਜਾਂ GDM ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਆਪਣੇ "
-"ਸਿਸਟਮ ਪਰਸ਼ਾਸਕ ਨਾਲ ਸੰਪਰਕ ਕਰੋ।"
-
-#. markup
-#: ../src/cut-n-paste/gdmcomm.c:441
-msgid "Cannot communicate with GDM (The GNOME Display Manager)"
-msgstr "GDM (ਗਨੋਮ ਡਿਸਪਲੇਅ ਮੈਨੇਜਰ) ਨਾਲ ਸੰਚਾਰ ਨਹੀਂ ਹੋ ਸਕਿਆ ਹੈ"
-
-#: ../src/cut-n-paste/gdmcomm.c:444
-msgid "Perhaps you have an old version of GDM running."
-msgstr "ਸ਼ਾਇਦ ਤੁਸੀਂ GDM ਦਾ ਪੁਰਾਣਾ ਵਰਜਨ ਵਰਤ ਰਹੇ ਹੋ"
-
-#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
-msgid "Cannot communicate with gdm, perhaps you have an old version running."
-msgstr "GDM ਰਾਹੀਂ ਸੰਚਾਰ ਨਹੀਂ ਹੋ ਸਕਿਆ ਹੈ, ਸ਼ਾਇਦ ਤੁਸੀਂ ਪੁਰਾਣਾ ਵਰਜਨ ਚਲਾ ਰਹੇ ਹੋ।"
-
-#: ../src/cut-n-paste/gdmcomm.c:469
-msgid "The allowed limit of flexible X servers reached."
-msgstr "ਫੀਲੈਸੀਬਲ X ਸਰਵਰ ਦੀ ਮਨਜ਼ੂਰਸ਼ੁਦਾ ਸੀਮਾ ਖਤਮ ਹੋ ਗਈ ਹੈ।"
-
-#: ../src/cut-n-paste/gdmcomm.c:471
-msgid "There were errors trying to start the X server."
-msgstr "X ਸਰਵਰ ਸ਼ੁਰੂ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀਆਂ ਆਈਆਂ ਹਨ।"
-
-#: ../src/cut-n-paste/gdmcomm.c:473
-msgid "The X server failed.  Perhaps it is not configured well."
-msgstr "X ਸਰਵਰ ਅਸਫ਼ਲ ਹੋ ਗਿਆ ਹੈ।  ਸ਼ਾਇਦ ਇਹ ਠੀਕ ਤਰ੍ਹਾਂ ਸੰਰਚਿਤ ਨਹੀਂ ਹੈ।"
-
-#: ../src/cut-n-paste/gdmcomm.c:476
-msgid "Too many X sessions running."
-msgstr "ਬਹੁਤ ਸਾਰੇ X ਅਜਲਾਸ ਚੱਲ ਰਹੇ ਹਨ।"
-
-#: ../src/cut-n-paste/gdmcomm.c:478
-msgid ""
-"The nested X server (Xnest) cannot connect to your current X server.  You "
-"may be missing an X authorization file."
-msgstr ""
-"ਅੰਦਰੂਨੀ X ਸਰਵਰ (Xnest) ਤੁਹਾਡੇ ਮੌਜੂਦਾ X ਸਰਵਰ ਨਾਲ ਜੁੜ ਨਹੀਂ ਸਕਿਆ ਹੈ।  ਤੁਹਾਡੇ ਕੋਲ X "
-"ਪਰਮਾਣਕਿਤਾ ਫਾਇਲ ਨਾ-ਮੌਜੂਦ ਹੋ ਸਕਦੀ ਹੈ।"
-
-#: ../src/cut-n-paste/gdmcomm.c:483
-msgid ""
-"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
-"Please install the Xnest package in order to use the nested login."
-msgstr ""
-"ਅੰਦਰੂਨੀ X ਸਰਵਰ (Xnest) ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ ਜਾਂ gdm ਗਲਤ ਢੰਗ ਨਾਲ ਸੰਰਚਿਤ ਹੈ।\n"
-"ਕਿਰਪਾ ਕਰਕੇ Xnest ਪੈਕੇਜ ਇੰਸਟਾਲ ਕਰੋ ਤਾਂ ਕਿ ਅੰਦਰੂਨੀ ਲਾਗਿੰਨ ਵਰਤਿਆ ਜਾ ਸਕੇ।"
-
-#: ../src/cut-n-paste/gdmcomm.c:488
-msgid "The X server is not available, it is likely that gdm is badly configured."
-msgstr "X ਸਰਵਰ ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ, ਇਹ ਜਾਪਦਾ ਹੈ ਕਿ gdm ਗਲਤ ਢੰਗ ਨਾਲ ਸੰਚਰਿਤ ਹੈ।"
-
-#: ../src/cut-n-paste/gdmcomm.c:497
-msgid "Trying to change to an invalid virtual terminal number."
-msgstr "ਇੱਕ ਗਲਤ ਵੁਰਚੁਅਲ ਟਰਮੀਨਲ ਨੰਬਰ ਬਦਲਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕੀਤੀ ਗਈ ਹੈ।"
-
-#: ../src/cut-n-paste/gdmcomm.c:501
-msgid ""
-"You do not seem to have authentication needed be for this operation.  "
-"Perhaps your .Xauthority file is not set up correctly."
-msgstr ""
-"ਤੁਹਾਨੂੰ ਇਹ ਕਾਰਵਾਈ ਲਈ ਅਧਿਕਾਰ ਨਹੀਂ ਜਾਪਦੇ ਹਨ। ਸ਼ਾਇਦ ਤੁਹਾਡੀ .Xauthority ਫਾਇਲ ਠੀਕ ਤਰ੍ਹਾਂ "
-"ਸੰਰਚਿਤ ਨਹੀਂ ਹੈ।"
-
-#: ../src/cut-n-paste/gdmcomm.c:505
-msgid "Too many messages were sent to gdm and it hung upon us."
-msgstr "gdm ਨੂੰ ਬਹੁਤ ਜ਼ਿਆਦਾ ਸੁਨੇਹੇ ਭੇਜੇ ਗਏ ਹਨ ਅਤੇ ਇਹ ਅਟਕ ਗਿਆ ਹੈ।"
-
-#: ../src/cut-n-paste/gdmcomm.c:508
-msgid "Unknown error occurred."
-msgstr "ਅਣਜਾਣੀ ਗਲਤੀ ਆਈ ਹੈ।"
-
 #: ../src/file-transfer-dialog.c:94
 #, c-format
 msgid "Copying file: %u of %u"
-msgstr "ਸੰਰਚਨਾ ਫਾਇਲ %2$u ਵਿੱਚੋਂ %1$u"
+msgstr "ਫਾਇਲ ਨਕਲ ਜਾਰੀ: %2$u ਵਿੱਚੋਂ %1$u"
 
 #: ../src/file-transfer-dialog.c:122
 #, c-format
@@ -662,65 +435,74 @@ msgstr "ਵੱਲ"
 msgid "Connecting..."
 msgstr "ਜੁੜ ਰਿਹਾ ਹੈ..."
 
-#: ../src/gnome-screensaver-command.c:61
+#: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਨੂੰ ਮਾਣ ਨਾਲ ਬੰਦ ਕਰਨ ਦਾ ਕਾਰਨ ਬਣਦਾ ਹੈ"
 
-#: ../src/gnome-screensaver-command.c:63
+#: ../src/gnome-screensaver-command.c:64
 msgid "Query the state of the screensaver"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਦੀ ਹਾਲਤ ਬਾਰੇ ਸਵਾਲ"
 
-#: ../src/gnome-screensaver-command.c:65
+#: ../src/gnome-screensaver-command.c:66
+msgid "Query the length of time the screensaver has been active"
+msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਣ ਦੇ ਸਮੇਂ ਦੀ ਲੰਬਾਈ ਬਾਰੇ ਸਵਾਲ"
+
+#: ../src/gnome-screensaver-command.c:68
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "ਚੱਲਦੇ ਸਕਰੀਨ-ਸੇਵਰ ਕਾਰਵਾਈ ਨੂੰ ਪਰਦੇ ਨੂੰ ਤੁਰੰਤ ਤਾਲਾਬੰਦ ਕਰਨ ਦਾ ਸੰਕੇਤ ਦਿਓ"
 
-#: ../src/gnome-screensaver-command.c:67
+#: ../src/gnome-screensaver-command.c:70
 msgid "If the screensaver is active then switch to another graphics demo"
-msgstr "ਜੇਕਰ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਵੇ ਤਾਂ ਹੋਰ ਗਰਾਫਿਕਸ ਝਲਕ ਲਈ ਤਬਦੀਲ ਕਰੋ"
+msgstr "ਜੇਕਰ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਵੇ ਤਾਂ ਹੋਰ ਗਰਾਫਿਕਸ ਡੈਮੋ ਲਈ ਤਬਦੀਲ ਕਰੋ"
 
-#: ../src/gnome-screensaver-command.c:69
+#: ../src/gnome-screensaver-command.c:72
 msgid "Turn the screensaver on (blank the screen)"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਚਾਲੂ ਕਰੋ (ਖਾਲੀ ਪਰਦਾ ਹੀ)"
+msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਚਾਲੂ ਕਰੋ (ਖਾਲੀ ਸਕਰੀਨ ਹੀ)"
 
-#: ../src/gnome-screensaver-command.c:71
+#: ../src/gnome-screensaver-command.c:74
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr "ਜੇਕਰ ਸਕਰੀਨ-ਸੇਅਰ ਸਰਗਰਮ ਹੋਵੇ ਤਾਂ ਉਸ ਨੂੰ ਨਾ-ਸਰਗਰਮ ਕਰੋ (ਨਾ-ਖਾਲੀ ਪਰਦਾ)"
+msgstr "ਜੇਕਰ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਵੇ ਤਾਂ ਉਸ ਨੂੰ ਨਾ-ਸਰਗਰਮ ਕਰੋ (ਨਾ-ਖਾਲੀ ਸਕਰੀਨ)"
 
-#: ../src/gnome-screensaver-command.c:73
+#: ../src/gnome-screensaver-command.c:76
 msgid "Poke the running screensaver to simulate user activity"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਨੂੰ ਉਪਭੋਗੀ ਕਾਰਵਾਈਆਂ ਮੁਤਾਬਕ ਨਕਲ ਕਰਨ ਲਈ ਤਿਆਰ ਕਰੋ"
 
-#: ../src/gnome-screensaver-command.c:75
+#: ../src/gnome-screensaver-command.c:78
 msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਨੂੰ ਸਰਗਰਮ ਹੋਣ ਤੋਂ ਰੋਕਿਆ ਗਿਆ।  ਕਮਾਂਡਾਂ ਉੱਤੇ ਰੋਕ ਹੈ, ਜਦੋਂ ਕਿ ਰੋਕਣਾ ਸਰਗਰਮ ਹੈ।"
 
-#: ../src/gnome-screensaver-command.c:77
+#: ../src/gnome-screensaver-command.c:80
 msgid "The calling application that is inhibiting the screensaver"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਨੂੰ ਰੋਕਣ ਵਾਲੇ ਕਾਰਜ ਬਾਰੇ ਜਾਣਕਾਰੀ ਲਈ ਜਾ ਰਹੀ ਹੈ"
 
-#: ../src/gnome-screensaver-command.c:79
+#: ../src/gnome-screensaver-command.c:82
 msgid "The reason for inhibiting the screensaver"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਰੋਕਣ ਲਈ ਕਾਰਨ"
 
-#: ../src/gnome-screensaver-command.c:81 ../src/gnome-screensaver-dialog.c:54
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:54
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "ਇਹ ਕਾਰਜ ਦਾ ਵਰਜਨ"
 
-#: ../src/gnome-screensaver-command.c:246
+#: ../src/gnome-screensaver-command.c:249
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ %s ਹੈ।\n"
 
-#: ../src/gnome-screensaver-command.c:246
+#: ../src/gnome-screensaver-command.c:249
 msgid "active"
 msgstr "ਸਰਗਰਮ"
 
-#: ../src/gnome-screensaver-command.c:246
+#: ../src/gnome-screensaver-command.c:249
 msgid "inactive"
 msgstr "ਨਾ-ਸਰਗਰਮ"
+
+#: ../src/gnome-screensaver-command.c:274
+#, c-format
+msgid "The screensaver has been active for %d seconds.\n"
+msgstr "ਸਕਰੀਨ-ਸੇਵਰ %d ਸਕਿੰਟਾਂ ਤੋਂ ਸਰਗਰਮ ਹੈ।\n"
 
 #: ../src/gnome-screensaver-dialog.c:52
 msgid "Show debugging output"
@@ -739,106 +521,111 @@ msgid "Show the switch user button"
 msgstr "ਉਪਭੋਗੀ ਬਦਲਣ ਵਾਲਾ ਬਟਨ ਵੇਖਾਓ"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:169 ../src/gnome-screensaver-dialog.c:170
-#: ../src/gnome-screensaver-dialog.c:171 ../src/gs-auth-pam.c:380
+#: ../src/gnome-screensaver-dialog.c:170 ../src/gnome-screensaver-dialog.c:171
+#: ../src/gnome-screensaver-dialog.c:172 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "ਉਪਭੋਗੀ-ਨਾਂ:"
 
-#: ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "ਗੁਪਤ-ਕੋਡ:"
+
+#: ../src/gnome-screensaver-dialog.c:175
 msgid "You are required to change your password immediately (password aged)"
 msgstr "ਤੁਹਾਨੂੰ ਆਪਣਾ ਗੁਪਤ-ਕੋਡ ਹੁਣੇ ਬਦਲਣਾ ਪਵੇਗਾ (ਗੁਪਤ-ਕੋਡ ਦੀ ਮਿਆਦ ਪੁੱਗੀ)"
 
-#: ../src/gnome-screensaver-dialog.c:175
+#: ../src/gnome-screensaver-dialog.c:176
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "ਤੁਹਾਨੂੰ ਆਪਣਾ ਗੁਪਤ-ਕੋਡ ਹੁਣੇ ਬਦਲਣਾ ਪਵੇਗਾ (root ਵਲੋਂ ਮਜਬੂਰ ਕੀਤਾ ਗਿਆ ਹੈ)"
 
-#: ../src/gnome-screensaver-dialog.c:176
-msgid "Your account has expired; please contact your system administrator"
-msgstr "ਤੁਹਾਡੇ ਖਾਤੇ ਦੀ ਮਿਆਦ ਖਤਮ ਹੋ ਗਈ ਹੈ; ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਸਿਸਟਮ ਪਰਸ਼ਾਸ਼ਕ ਨਾਲ ਸੰਪਰਕ ਕਰੋ"
-
 #: ../src/gnome-screensaver-dialog.c:177
+msgid "Your account has expired; please contact your system administrator"
+msgstr "ਤੁਹਾਡੇ ਖਾਤੇ ਦੀ ਮਿਆਦ ਖਤਮ ਹੋ ਗਈ ਹੈ; ਆਪਣੇ ਸਿਸਟਮ ਪਰਸ਼ਾਸ਼ਕ ਨਾਲ ਸੰਪਰਕ ਕਰੋ ਜੀ।"
+
+#: ../src/gnome-screensaver-dialog.c:178
 msgid "No password supplied"
 msgstr "ਕੋਈ ਗੁਪਤ-ਕੋਡ ਨਹੀਂ ਦਿੱਤਾ ਗਿਆ"
 
-#: ../src/gnome-screensaver-dialog.c:178
-msgid "Password unchanged"
-msgstr "ਗੁਪਤ-ਕੋਡ ਤਬਦੀਲ ਹੋ ਗਿਆ"
-
 #: ../src/gnome-screensaver-dialog.c:179
-msgid "Can not get username"
-msgstr "ਉਪਭੋਗੀ ਨਾਂ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ"
+msgid "Password unchanged"
+msgstr "ਗੁਪਤ-ਕੋਡ ਬਦਲਿਆ ਗਿਆ"
 
 #: ../src/gnome-screensaver-dialog.c:180
+msgid "Can not get username"
+msgstr "ਉਪਭੋਗੀ ਨਾਂ ਲਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ"
+
+#: ../src/gnome-screensaver-dialog.c:181
 msgid "Retype new UNIX password:"
 msgstr "ਨਵਾਂ UNIX ਗੁਪਤ-ਕੋਡ ਮੁੜ-ਲਿਖੋ:"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:182
 msgid "Enter new UNIX password:"
 msgstr "ਨਵਾਂ UNIX ਗੁਪਤ-ਕੋਡ ਦਿਓ:"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:183
 msgid "(current) UNIX password:"
 msgstr "(ਮੌਜੂਦਾ) UNIX ਗੁਪਤ-ਕੋਡ:"
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "Error while changing NIS password."
 msgstr "NIS ਗੁਪਤ-ਕੋਡ ਬਦਲਣ ਦੌਰਾਨ ਗਲਤੀ ਆਈ ਹੈ।"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "You must choose a longer password"
 msgstr "ਤੁਹਾਨੂੰ ਇੱਕ ਲੰਮਾ ਗੁਪਤ-ਕੋਡ ਚੁਣਨਾ ਚਾਹੀਦਾ ਹੈ"
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "Password has been already used. Choose another."
 msgstr "ਗੁਪਤ-ਕੋਡ ਪਹਿਲਾਂ ਹੀ ਬਦਲਿਆ ਗਿਆ ਹੈ। ਹੋਰ ਚੁਣੋ ਜੀ।"
 
-#: ../src/gnome-screensaver-dialog.c:186
-msgid "You must wait longer to change your password"
-msgstr "ਤੁਹਾਨੂੰ ਆਪਣਾ ਗੁਪਤ-ਕੋਡ ਬਦਲਣ ਲਈ ਉਡੀਕ ਕਰਨੀ ਪਵੇਗੀ।"
-
 #: ../src/gnome-screensaver-dialog.c:187
+msgid "You must wait longer to change your password"
+msgstr "ਤੁਹਾਨੂੰ ਆਪਣਾ ਗੁਪਤ-ਕੋਡ ਬਦਲਣ ਲਈ ਹੋਰ ਵੱਧ ਉਡੀਕ ਕਰਨੀ ਪਵੇਗੀ।"
+
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "Sorry, passwords do not match"
 msgstr "ਅਫ਼ਸੋਸ ਹੈ ਕਿ ਗੁਪਤ-ਕੋਡ ਮਿਲਦਾ ਨਹੀਂ ਹੈ"
 
-#: ../src/gnome-screensaver-dialog.c:250
+#: ../src/gnome-screensaver-dialog.c:254
 msgid "Checking..."
 msgstr "ਜਾਂਚ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ..."
 
-#: ../src/gnome-screensaver-dialog.c:289 ../src/gs-auth-pam.c:320
+#: ../src/gnome-screensaver-dialog.c:296 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "ਪਰਮਾਣਕਿਤਾ ਫ਼ੇਲ੍ਹ ਹੋ ਗਈ ਹੈ।"
 
-#: ../src/gnome-screensaver-preferences.c:447
+#: ../src/gnome-screensaver-preferences.c:459
 msgid "Blank screen"
-msgstr "ਖਾਲੀ ਪਰਦਾ"
+msgstr "ਖਾਲੀ ਸਕਰੀਨ"
 
-#: ../src/gnome-screensaver-preferences.c:453
+#: ../src/gnome-screensaver-preferences.c:465
 msgid "Random"
 msgstr "ਰਲਵੇਂ"
 
-#: ../src/gnome-screensaver-preferences.c:813
+#: ../src/gnome-screensaver-preferences.c:835
 msgid "Invalid screensaver theme"
 msgstr "ਗਲਤ ਸਕਰੀਨ-ਸੇਵਰ ਸਰੂਪ"
 
-#: ../src/gnome-screensaver-preferences.c:816
+#: ../src/gnome-screensaver-preferences.c:838
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "ਇਹ ਫਾਇਲ ਇੱਕ ਠੀਕ ਸਕਰੀਨ-ਸੇਵਰ ਸਰੂਪ ਨਹੀਂ ਜਾਪਦੀ ਹੈ।"
 
-#: ../src/gnome-screensaver-preferences.c:943
+#: ../src/gnome-screensaver-preferences.c:965
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d ਘੰਟਾ"
 msgstr[1] "%d ਘੰਟੇ"
 
-#: ../src/gnome-screensaver-preferences.c:946
+#: ../src/gnome-screensaver-preferences.c:968
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d ਮਿੰਟ"
 msgstr[1] "%d ਮਿੰਟ"
 
-#: ../src/gnome-screensaver-preferences.c:949
+#: ../src/gnome-screensaver-preferences.c:971
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -846,15 +633,15 @@ msgstr[0] "%d ਸਕਿੰਟ"
 msgstr[1] "%d ਸਕਿੰਟ"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:955
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:958
-#: ../src/gnome-screensaver-preferences.c:966
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:988
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -862,88 +649,88 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:961
-#: ../src/gnome-screensaver-preferences.c:969
-#: ../src/gnome-screensaver-preferences.c:973
+#: ../src/gnome-screensaver-preferences.c:983
+#: ../src/gnome-screensaver-preferences.c:991
+#: ../src/gnome-screensaver-preferences.c:995
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:988
+#: ../src/gnome-screensaver-preferences.c:1010
 msgid "Never"
 msgstr "ਕਦੇ ਨਹੀਂ"
 
-#: ../src/gnome-screensaver-preferences.c:1373
+#: ../src/gnome-screensaver-preferences.c:1396
 msgid "Could not load the main interface"
 msgstr "ਮੁੱਖ ਇੰਟਰਫੇਸ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕਿਆ ਹੈ।"
 
-#: ../src/gnome-screensaver-preferences.c:1375
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Please make sure that the screensaver is properly installed"
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਪੁਸ਼ਟੀ ਕਰੋ ਕਿ ਸਕਰੀਨ-ਸੇਵਰ ਠੀਕ ਤਰ੍ਹਾਂ ਇੰਸਟਾਲ ਨਹੀਂ ਹੈ"
+msgstr "ਜਾਂਚ ਕਰੋ ਕਿ ਸਕਰੀਨ-ਸੇਵਰ ਠੀਕ ਤਰ੍ਹਾਂ ਇੰਸਟਾਲ ਹੈ ਜੀ"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
-msgstr "ਇੱਕ ਡੈਮਨ ਨਾ ਬਣੋ"
+msgstr "ਇੱਕ ਡੈਮਨ ਨਾ ਬਣਾਓ"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
 msgstr "ਡੀਬੱਗ ਕੋਡ ਨੂੰ ਯੋਗ"
 
-#: ../src/gs-auth-pam.c:262
+#: ../src/gs-auth-pam.c:397
 #, c-format
 msgid "Unable to establish service %s: %s\n"
 msgstr "ਸੇਵਾ %s ਬਣਾਉਣ ਲਈ ਅਸਫ਼ਲ ਹੈ: %s।\n"
 
-#: ../src/gs-auth-pam.c:288
+#: ../src/gs-auth-pam.c:423
 #, c-format
 msgid "Can't set PAM_TTY=%s"
-msgstr "PAM_TTY=%s ਸੈੱਟ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ"
+msgstr "PAM_TTY=%s ਸੈੱਟ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ"
 
-#: ../src/gs-auth-pam.c:318
+#: ../src/gs-auth-pam.c:455
 msgid "Incorrect password."
 msgstr "ਗੁਪਤ-ਕੋਡ ਗਲਤ ਹੈ ਜੀ।"
 
-#: ../src/gs-auth-pam.c:334
+#: ../src/gs-auth-pam.c:471
 msgid "Not permitted to gain access at this time."
 msgstr "ਇਸ ਸਮੇਂ ਵਰਤੋਂ ਲਈ ਆਗਿਆ ਨਹੀਂ ਹੈ।"
 
-#: ../src/gs-auth-pam.c:340
+#: ../src/gs-auth-pam.c:477
 msgid "No longer permitted to access the system."
 msgstr "ਹੁਣ ਸਿਸਟਮ ਦੀ ਵਰਤੋਂ ਲਈ ਆਗਿਆ ਨਹੀਂ ਹੈ।"
 
-#: ../src/gs-listener-dbus.c:1631
+#: ../src/gs-listener-dbus.c:1817
 msgid "failed to register with the message bus"
 msgstr "ਸੁਨੇਹਾ ਬਸ ਨਾਲ ਰਜਿਸਟਰ ਹੋਣ ਲਈ ਅਸਫ਼ਲ"
 
-#: ../src/gs-listener-dbus.c:1641
+#: ../src/gs-listener-dbus.c:1827
 msgid "not connected to the message bus"
-msgstr "ਸੁਨੇਹਾ ਬਸ ਨਾਲ ਜੁੜਨ ਲਈ ਅਸਫ਼ਲ"
+msgstr "ਸੁਨੇਹਾ ਬਸ ਨਾਲ ਜੁੜਿਆ ਨਹੀਂ ਹੈ"
 
-#: ../src/gs-listener-dbus.c:1650
+#: ../src/gs-listener-dbus.c:1836
 msgid "screensaver already running in this session"
-msgstr "ਇਹ ਅਜਲਾਸ ਵਿੱਚ ਪਹਿਲਾਂ ਹੀ ਸਕਰੀਨ-ਸੇਵਰ ਚੱਲ ਰਿਹਾ ਹੈ"
+msgstr "ਇਹ ਸ਼ੈਸ਼ਨ ਵਿੱਚ ਪਹਿਲਾਂ ਹੀ ਸਕਰੀਨ-ਸੇਵਰ ਚੱਲ ਰਿਹਾ ਹੈ"
 
-#: ../src/gs-lock-plug.c:336
+#: ../src/gs-lock-plug.c:255
 msgid "Time has expired."
 msgstr "ਸਮਾਂ ਖਤਮ ਹੋ ਗਿਆ ਹੈ।"
 
-#: ../src/gs-lock-plug.c:366
+#: ../src/gs-lock-plug.c:283
 msgid "You have the Caps Lock key on."
 msgstr "ਤੁਹਾਡਾ ਕੈਪਸ (Cap) ਬਟਨ ਦੱਬਿਆ ਹੈ।"
 
-#: ../src/gs-lock-plug.c:1418 ../src/gs-lock-plug.c:1455
+#: ../src/gs-lock-plug.c:1078
 msgid "S_witch User..."
-msgstr "ਉਪਭੋਗੀ ਤਬਦੀਲ(_w)..."
+msgstr "ਉਪਭੋਗੀ ਬਦਲੋ(_w)..."
 
-#: ../src/gs-lock-plug.c:1426
+#: ../src/gs-lock-plug.c:1087
 msgid "Log _Out"
-msgstr "ਬਾਹਰੀ ਦਰ(_O)"
+msgstr "ਲਾਗ-ਆਉਟ(_O)"
 
-#: ../src/gs-lock-plug.c:1617
+#: ../src/gs-lock-plug.c:1263
 msgid "%U on %h"
 msgstr "%h ਉੱਤੇ %U"
 
-#: ../src/gs-lock-plug.c:1631
+#: ../src/gs-lock-plug.c:1277
 msgid "_Password:"
-msgstr "ਗੁਪਤ-ਕੋਡ (_P):"
+msgstr "ਗੁਪਤ-ਕੋਡ(_P):"
 
