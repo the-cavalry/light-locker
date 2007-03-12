@@ -1,5 +1,12 @@
 2007-03-12  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/popsquares.desktop.in (Categories):
+	* savers/personal-slideshow.desktop.in (Categories):
+	Revert the unapproved and incorrect changes.
+	Fixes #417538
+
+2007-03-12  William Jon McCann  <mccann@jhu.edu>
+
 	* src/Makefile.am: Fix the order of libs.
 	Patch from: Elijah Newren <newren@gmail.com>
 	Fixes #417323

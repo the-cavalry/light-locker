@@ -7,4 +7,4 @@ TryExec=slideshow
 StartupNotify=false
 Terminal=false
 Type=Application
-Categories=GNOME;ScreenSaver;
+Categories=GNOME;Screensaver;
