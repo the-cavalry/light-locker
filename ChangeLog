@@ -1,5 +1,11 @@
 2007-03-12  William Jon McCann  <mccann@jhu.edu>
 
+	* doc/dbus-interface.xml:
+	* doc/gnome-screensaver.xml.in:
+	Remove the obsolete cvs id comment.
+
+2007-03-12  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/popsquares.desktop.in (Categories):
 	* savers/personal-slideshow.desktop.in (Categories):
 	Revert the unapproved and incorrect changes.
