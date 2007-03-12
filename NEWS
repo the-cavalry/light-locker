@@ -1,3 +1,29 @@
+===============
+Version 2.18.0
+===============
+
+  gnome-screensaver
+
+        * Fixed #412486, gnome-screensaver doesn't work with xnest (William Lachance)
+        * Fixed #412492, gnome-screensaver won't build
+        * Fixed #417323, build from trunk fails; undefined reference to pango symbols (Elijah Newren)
+        * Fixed #417538, unapproved change broke theme management (William Jon McCann)
+
+  Translators
+
+        * Updated ru: Nickolay V. Shmyrev
+        * Updated gu: Ankit Patel
+        * Updated zh_HK.po, zh_TW: Abel Cheung
+        * Updated it: Luca Ferretti
+        * Updated mk: Jovan Naumovski  <jovan@lugola.net>
++
+        * Updated lt: Gintautas Miliauskas
+        * Updated ar: Djihed Afifi <djihed@gmail.com>
+        * Updated dz: Pema Geyleg
+        * Updated pl: Artur Flinta
+        * Updated he: Yair Hershkovitz
+
+
 
 ===============
 Version 2.17.8
