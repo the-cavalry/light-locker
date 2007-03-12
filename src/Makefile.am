@@ -202,8 +202,8 @@ gnome_screensaver_gl_helper_SOURCES =	\
 	$(NULL)
 
 gnome_screensaver_LDADD =		\
-	$(SAVER_LIBS)			\
 	$(GNOME_SCREENSAVER_LIBS)	\
+	$(SAVER_LIBS)			\
 	$(NULL)
 
 gnome_screensaver_LDFLAGS = -export-dynamic

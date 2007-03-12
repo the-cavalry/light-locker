@@ -1,3 +1,9 @@
+2007-03-12  William Jon McCann  <mccann@jhu.edu>
+
+	* src/Makefile.am: Fix the order of libs.
+	Patch from: Elijah Newren <newren@gmail.com>
+	Fixes #417323
+
 2007-03-11  Christian Kirbach  <Christian.Kirbach@googlemail.com>
 
         * data/gnome-screensaver-preferences.desktop.in:
