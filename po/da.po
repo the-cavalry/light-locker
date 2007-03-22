@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-10 23:32+0100\n"
-"PO-Revision-Date: 2007-02-10 22:48+0100\n"
+"POT-Creation-Date: 2007-02-24 03:40+0000\n"
+"PO-Revision-Date: 2007-03-22 16:56+0100\n"
 "Last-Translator: Kenneth Nielsen <k.nielsen81@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -260,29 +260,37 @@ msgstr "<span size=\"small\">%U på %h</span>"
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5 ../src/gs-lock-plug.c:1835
-msgid "S_witch to user:"
-msgstr "S_kift til bruger:"
-
-#: ../data/lock-dialog-default.glade.h:6
+#: ../data/lock-dialog-default.glade.h:5
 msgid "_Cancel"
 msgstr "_Afbryd"
 
-#: ../data/lock-dialog-default.glade.h:7
+#: ../data/lock-dialog-default.glade.h:6
 msgid "_Log Out"
 msgstr "Log _ud"
 
-#: ../data/lock-dialog-default.glade.h:8
-msgid "_Switch User..."
-msgstr "_Skift bruger..."
-
-#: ../data/lock-dialog-default.glade.h:9
+#: ../data/lock-dialog-default.glade.h:7
 msgid "_Switch user..."
 msgstr "_Skift bruger..."
 
-#: ../data/lock-dialog-default.glade.h:10 ../src/gs-lock-plug.c:1564
+#: ../data/lock-dialog-default.glade.h:8 ../src/gs-lock-plug.c:1098
 msgid "_Unlock"
 msgstr "_Lås op"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Bobler GNOME-fodlogoet omkring på skærmen"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Flydende fødder"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr "Kosmos"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "Viser et billedeshow af billeder af kosmos"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
@@ -306,11 +314,11 @@ msgstr "vis stier som billeder følger"
 
 #: ../savers/floaters.c:1173
 msgid "occasionally rotate images as they move"
-msgstr "Rotér billede i ny og næ mens de flyttes"
+msgstr "rotér billede i ny og næ mens de flyttes"
 
 #: ../savers/floaters.c:1180
 msgid "print out frame rate and other statistics"
-msgstr "Udskriv billedraten og andre statistikker"
+msgstr "udskriv billedraten og andre statistikker"
 
 #: ../savers/floaters.c:1188
 msgid "the maximum number of images to keep on screen"
@@ -362,149 +370,6 @@ msgstr "Sted hvor billeder skal hentes fra"
 #: ../savers/slideshow.c:47
 msgid "PATH"
 msgstr "STI"
-
-#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
-msgid "Manager"
-msgstr "Agent"
-
-#: ../src/cut-n-paste/fusa-display.c:120
-msgid "The manager which owns this object."
-msgstr "Agenten som ejer dette objekt."
-
-#: ../src/cut-n-paste/fusa-display.c:127
-msgid "Name"
-msgstr "Navn"
-
-#: ../src/cut-n-paste/fusa-display.c:128
-msgid "The name of the X11 display this object refers to."
-msgstr "Navnet på den X11-skærm dette objekt henviser til."
-
-#: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:163
-msgid "User"
-msgstr "Bruger"
-
-#: ../src/cut-n-paste/fusa-display.c:135
-msgid "The user currently logged in on this virtual terminal."
-msgstr "Den bruger som er logget ind på denne virtuelle terminal."
-
-#: ../src/cut-n-paste/fusa-display.c:141
-msgid "Console"
-msgstr "Konsol"
-
-#: ../src/cut-n-paste/fusa-display.c:142
-msgid "The number of the virtual console this display can be found on, or %-1."
-msgstr "Antallet af virtuelle konsoller denne skærm kan findes på, eller %-1."
-
-#: ../src/cut-n-paste/fusa-display.c:148
-msgid "Nested"
-msgstr "Indlejret"
-
-#: ../src/cut-n-paste/fusa-display.c:149
-msgid "Whether or not this display is a windowed (Xnest) display."
-msgstr "Om denne skærm er en indlejret (Xnest) visning."
-
-#: ../src/cut-n-paste/fusa-manager.c:1037
-msgid "The display manager could not be contacted for unknown reasons."
-msgstr "Skærmhåndteringen kunne ikke kontaktes af ukendte årsager."
-
-#: ../src/cut-n-paste/fusa-manager.c:1044
-msgid "The display manager is not running or too old."
-msgstr "Skærmhåndteringen kører ikke eller er for gammel."
-
-#: ../src/cut-n-paste/fusa-manager.c:1047
-msgid "The configured limit of flexible servers has been reached."
-msgstr "Den prækonfigurerede grænse af fleksible servere er nået"
-
-#: ../src/cut-n-paste/fusa-manager.c:1050
-msgid "There was an unknown error starting X."
-msgstr "Der opstod en ukendt fejl ved opstart af X."
-
-#: ../src/cut-n-paste/fusa-manager.c:1053
-msgid "The X server failed to finish starting."
-msgstr "X-serveren kunne ikke færdiggøre opstarting."
-
-#: ../src/cut-n-paste/fusa-manager.c:1056
-msgid "There are too many X sessions running."
-msgstr "Der er for mange X-sessioner kørende."
-
-#: ../src/cut-n-paste/fusa-manager.c:1059
-msgid "The nested X server (Xnest) cannot connect to your current X server."
-msgstr ""
-"Den indlejrede X-server (Xnest) kunne ikke forbinde til din nuværende X "
-"server."
-
-#: ../src/cut-n-paste/fusa-manager.c:1062
-msgid "The X server in the GDM configuration could not be found."
-msgstr "X-serveren i GDM konfigurationen kunne ikke findes."
-
-#: ../src/cut-n-paste/fusa-manager.c:1065
-msgid ""
-"Trying to set an unknown logout action, or trying to set a logout action "
-"which is not available."
-msgstr ""
-"Prøver at sætte en ukendt udlogningshandling, eller forsøger at sætte en "
-"udlogningshandling som ikke er tilgængelig."
-
-#: ../src/cut-n-paste/fusa-manager.c:1068
-msgid "Virtual terminals not supported."
-msgstr "Virtuelle terminaler er ikke understøttet."
-
-#: ../src/cut-n-paste/fusa-manager.c:1071
-msgid "Invalid virtual terminal number."
-msgstr "Ugyldigt nummer på virtual terminal."
-
-#: ../src/cut-n-paste/fusa-manager.c:1074
-msgid "Trying to update an unsupported configuration key."
-msgstr "Prøver at opdatere en ikke-understøttet konfigurationsnøgle."
-
-#: ../src/cut-n-paste/fusa-manager.c:1077
-msgid "~/.Xauthority file badly configured or missing."
-msgstr "~/.Xauthority fil forkert konfigureret eller mangler."
-
-#: ../src/cut-n-paste/fusa-manager.c:1080
-msgid "Too many messages were sent to the display manager, and it hung up."
-msgstr "For mange beskeder blev sendt til skærmhåndteringen og den lagde på."
-
-#: ../src/cut-n-paste/fusa-manager.c:1084
-msgid "The display manager sent an unknown error message."
-msgstr "Skærmhåndteringen sendte en ukendt fejlbesked."
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:164
-msgid "The user this menu item represents."
-msgstr "Den bruger dette menupunkt repræsenterer."
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:171
-msgid "Icon Size"
-msgstr "Ikonstørrelse"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:172
-msgid "The size of the icon to use."
-msgstr "Den størrelse ikon der skal bruges."
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:178
-msgid "Indicator Size"
-msgstr "Indikatorstørrelse"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:179
-msgid "Size of check indicator"
-msgstr "Størrelse af kontrol-indikator"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:184
-msgid "Indicator Spacing"
-msgstr "Indikator mellemrum"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:185
-msgid "Space between the username and the indicator"
-msgstr "Afstand mellem brugernavnet og indikatoren"
-
-#: ../src/cut-n-paste/fusa-user.c:151
-msgid "The user manager object this user is controlled by."
-msgstr "Det brugerhåndteringsobjekt denne bruger er kontrolleret af."
-
-#: ../src/cut-n-paste/fusa-utils.c:80
-msgid "Show Details"
-msgstr "Vis detajler"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -661,7 +526,7 @@ msgstr "Vis skift bruger-knappen"
 
 #. login: is whacked always translate to Username:
 #: ../src/gnome-screensaver-dialog.c:170 ../src/gnome-screensaver-dialog.c:171
-#: ../src/gnome-screensaver-dialog.c:172 ../src/gs-auth-pam.c:692
+#: ../src/gnome-screensaver-dialog.c:172 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Brugernavn:"
 
@@ -734,7 +599,7 @@ msgstr "Beklager, adgangskoderne passer ikke sammen"
 msgid "Checking..."
 msgstr "Kontrollerer..."
 
-#: ../src/gnome-screensaver-dialog.c:296 ../src/gs-auth-pam.c:451
+#: ../src/gnome-screensaver-dialog.c:296 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "Godkendelse fejlede."
 
@@ -819,75 +684,180 @@ msgstr "Kør ikke som tjeneste"
 msgid "Enable debugging code"
 msgstr "Slå fejlfindingskode til"
 
-#: ../src/gs-auth-pam.c:391
+#: ../src/gs-auth-pam.c:397
 #, c-format
 msgid "Unable to establish service %s: %s\n"
 msgstr "Er ikke i stand til at etablere service %s: %s\n"
 
-#: ../src/gs-auth-pam.c:417
+#: ../src/gs-auth-pam.c:423
 #, c-format
 msgid "Can't set PAM_TTY=%s"
 msgstr "Kan ikke sætte PAM_TTY=%s"
 
-#: ../src/gs-auth-pam.c:449
+#: ../src/gs-auth-pam.c:455
 msgid "Incorrect password."
 msgstr "Forkert adgangskode."
 
-#: ../src/gs-auth-pam.c:465
+#: ../src/gs-auth-pam.c:471
 msgid "Not permitted to gain access at this time."
 msgstr "Adgang er ikke tilladt på dette tidspunkt."
 
-#: ../src/gs-auth-pam.c:471
+#: ../src/gs-auth-pam.c:477
 msgid "No longer permitted to access the system."
 msgstr "Adgang til systemet er ikke længere tilladt."
 
-#: ../src/gs-listener-dbus.c:1766
+#: ../src/gs-listener-dbus.c:1817
 msgid "failed to register with the message bus"
 msgstr "kunne ikke registere med kommunikationsbussen"
 
-#: ../src/gs-listener-dbus.c:1776
+#: ../src/gs-listener-dbus.c:1827
 msgid "not connected to the message bus"
 msgstr "ikke tilsluttet kommunikationsbussen"
 
-#: ../src/gs-listener-dbus.c:1785
+#: ../src/gs-listener-dbus.c:1836
 msgid "screensaver already running in this session"
 msgstr "pauseskærm kører allerede i denne session"
 
-#: ../src/gs-lock-plug.c:354
+#: ../src/gs-lock-plug.c:255
 msgid "Time has expired."
 msgstr "Tiden er udløbet."
 
-#: ../src/gs-lock-plug.c:382
+#: ../src/gs-lock-plug.c:283
 msgid "You have the Caps Lock key on."
 msgstr "Du har aktiveret Caps Lock-tasten."
 
-#: ../src/gs-lock-plug.c:1546 ../src/gs-lock-plug.c:1583
+#: ../src/gs-lock-plug.c:1078
 msgid "S_witch User..."
 msgstr "_Skift bruger..."
 
-#: ../src/gs-lock-plug.c:1554
+#: ../src/gs-lock-plug.c:1087
 msgid "Log _Out"
 msgstr "Log _ud"
 
-#: ../src/gs-lock-plug.c:1745
+#: ../src/gs-lock-plug.c:1263
 msgid "%U on %h"
 msgstr "%U på %h"
 
-#: ../src/gs-lock-plug.c:1759
+#: ../src/gs-lock-plug.c:1277
 msgid "_Password:"
 msgstr "_Adgangskode:"
 
-#~ msgid "Bubbles the GNOME foot logo around the screen"
-#~ msgstr "Bobler GNOME-fodlogoet omkring på skærmen"
+#~ msgid "S_witch to user:"
+#~ msgstr "S_kift til bruger:"
 
-#~ msgid "Floating Feet"
-#~ msgstr "Flydende fødder"
+#~ msgid "_Switch User..."
+#~ msgstr "_Skift bruger..."
 
-#~ msgid "Cosmos"
-#~ msgstr "Kosmos"
+#~ msgid "Manager"
+#~ msgstr "Agent"
 
-#~ msgid "Display a slideshow of pictures of the cosmos"
-#~ msgstr "Viser et billedeshow af billeder af kosmos"
+#~ msgid "The manager which owns this object."
+#~ msgstr "Agenten som ejer dette objekt."
+
+#~ msgid "Name"
+#~ msgstr "Navn"
+
+#~ msgid "The name of the X11 display this object refers to."
+#~ msgstr "Navnet på den X11-skærm dette objekt henviser til."
+
+#~ msgid "User"
+#~ msgstr "Bruger"
+
+#~ msgid "The user currently logged in on this virtual terminal."
+#~ msgstr "Den bruger som er logget ind på denne virtuelle terminal."
+
+#~ msgid "Console"
+#~ msgstr "Konsol"
+
+#~ msgid ""
+#~ "The number of the virtual console this display can be found on, or %-1."
+#~ msgstr ""
+#~ "Antallet af virtuelle konsoller denne skærm kan findes på, eller %-1."
+
+#~ msgid "Nested"
+#~ msgstr "Indlejret"
+
+#~ msgid "Whether or not this display is a windowed (Xnest) display."
+#~ msgstr "Om denne skærm er en indlejret (Xnest) visning."
+
+#~ msgid "The display manager could not be contacted for unknown reasons."
+#~ msgstr "Skærmhåndteringen kunne ikke kontaktes af ukendte årsager."
+
+#~ msgid "The display manager is not running or too old."
+#~ msgstr "Skærmhåndteringen kører ikke eller er for gammel."
+
+#~ msgid "The configured limit of flexible servers has been reached."
+#~ msgstr "Den prækonfigurerede grænse af fleksible servere er nået"
+
+#~ msgid "There was an unknown error starting X."
+#~ msgstr "Der opstod en ukendt fejl ved opstart af X."
+
+#~ msgid "The X server failed to finish starting."
+#~ msgstr "X-serveren kunne ikke færdiggøre opstarting."
+
+#~ msgid "There are too many X sessions running."
+#~ msgstr "Der er for mange X-sessioner kørende."
+
+#~ msgid "The nested X server (Xnest) cannot connect to your current X server."
+#~ msgstr ""
+#~ "Den indlejrede X-server (Xnest) kunne ikke forbinde til din nuværende X "
+#~ "server."
+
+#~ msgid "The X server in the GDM configuration could not be found."
+#~ msgstr "X-serveren i GDM konfigurationen kunne ikke findes."
+
+#~ msgid ""
+#~ "Trying to set an unknown logout action, or trying to set a logout action "
+#~ "which is not available."
+#~ msgstr ""
+#~ "Prøver at sætte en ukendt udlogningshandling, eller forsøger at sætte en "
+#~ "udlogningshandling som ikke er tilgængelig."
+
+#~ msgid "Virtual terminals not supported."
+#~ msgstr "Virtuelle terminaler er ikke understøttet."
+
+#~ msgid "Invalid virtual terminal number."
+#~ msgstr "Ugyldigt nummer på virtual terminal."
+
+#~ msgid "Trying to update an unsupported configuration key."
+#~ msgstr "Prøver at opdatere en ikke-understøttet konfigurationsnøgle."
+
+#~ msgid "~/.Xauthority file badly configured or missing."
+#~ msgstr "~/.Xauthority fil forkert konfigureret eller mangler."
+
+#~ msgid "Too many messages were sent to the display manager, and it hung up."
+#~ msgstr ""
+#~ "For mange beskeder blev sendt til skærmhåndteringen og den lagde på."
+
+#~ msgid "The display manager sent an unknown error message."
+#~ msgstr "Skærmhåndteringen sendte en ukendt fejlbesked."
+
+#~ msgid "The user this menu item represents."
+#~ msgstr "Den bruger dette menupunkt repræsenterer."
+
+#~ msgid "Icon Size"
+#~ msgstr "Ikonstørrelse"
+
+#~ msgid "The size of the icon to use."
+#~ msgstr "Den størrelse ikon der skal bruges."
+
+#~ msgid "Indicator Size"
+#~ msgstr "Indikatorstørrelse"
+
+#~ msgid "Size of check indicator"
+#~ msgstr "Størrelse af kontrol-indikator"
+
+#~ msgid "Indicator Spacing"
+#~ msgstr "Indikator mellemrum"
+
+#~ msgid "Space between the username and the indicator"
+#~ msgstr "Afstand mellem brugernavnet og indikatoren"
+
+#~ msgid "The user manager object this user is controlled by."
+#~ msgstr "Det brugerhåndteringsobjekt denne bruger er kontrolleret af."
+
+#~ msgid "Show Details"
+#~ msgstr "Vis detajler"
 
 #~ msgid "GDM (The GNOME Display Manager) is not running."
 #~ msgstr "GDM (GNOMEs skærmhåndteringien) kører ikke."
