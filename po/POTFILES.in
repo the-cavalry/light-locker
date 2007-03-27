@@ -5,8 +5,8 @@ data/gnome-screensaver-preferences.glade
 data/gnome-screensaver.directory.in
 data/gnome-screensaver.schemas.in
 data/lock-dialog-default.glade
-savers/footlogo-floaters.desktop.in
-savers/cosmos-slideshow.desktop.in
+savers/cosmos-slideshow.desktop.in.in
+savers/footlogo-floaters.desktop.in.in
 savers/personal-slideshow.desktop.in
 savers/popsquares.desktop.in
 savers/floaters.c
