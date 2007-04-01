@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-26 00:59+0100\n"
-"PO-Revision-Date: 2007-01-26 00:58+0100\n"
+"POT-Creation-Date: 2007-04-02 01:02+0200\n"
+"PO-Revision-Date: 2007-04-02 01:03+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.net>\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr "_Bloca la pantalla quan l'estalvi de pantalla estigui actiu"
 
 #: ../data/gnome-screensaver-preferences.glade.h:9
 msgid "_Preview"
-msgstr "_Previsualtizació"
+msgstr "_Previsualització"
 
 #: ../data/gnome-screensaver-preferences.glade.h:10
 msgid "_Screensaver theme:"
@@ -75,7 +75,7 @@ msgstr "Temes de l'estalvi de pantalla"
 
 #: ../data/gnome-screensaver.directory.in.h:2
 msgid "Screensavers"
-msgstr "Estalviadors de pantalla"
+msgstr "Estalvis de pantalla"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
 msgid "Activate when idle"
@@ -273,29 +273,37 @@ msgstr "<span size=\"small\">%U a %h</span>"
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5 ../src/gs-lock-plug.c:1783
-msgid "S_witch to user:"
-msgstr "Ca_nvia a l'usuari:"
-
-#: ../data/lock-dialog-default.glade.h:6
+#: ../data/lock-dialog-default.glade.h:5
 msgid "_Cancel"
 msgstr "_Cancel·la"
 
-#: ../data/lock-dialog-default.glade.h:7
+#: ../data/lock-dialog-default.glade.h:6
 msgid "_Log Out"
 msgstr "_Surt"
 
-#: ../data/lock-dialog-default.glade.h:8
-msgid "_Switch User..."
-msgstr "Canvia d'_usuari..."
-
-#: ../data/lock-dialog-default.glade.h:9
+#: ../data/lock-dialog-default.glade.h:7
 msgid "_Switch user..."
 msgstr "Canvia d'_usuari..."
 
-#: ../data/lock-dialog-default.glade.h:10 ../src/gs-lock-plug.c:1512
+#: ../data/lock-dialog-default.glade.h:8 ../src/gs-lock-plug.c:1098
 msgid "_Unlock"
 msgstr "_Desbloca"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr "Cosmos"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "Mostra una projecció amb diapositives d'imatges del cosmos"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Bombolles amb el logotip del peu del GNOME per tota la pantalla"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Peu flotant"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
@@ -367,7 +375,7 @@ msgstr "%s. Vegeu --help per a informació quant a l'ús.\n"
 #: ../savers/floaters.c:1248
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
-"Heu d'indicar una imatge. Vegeu --Ajuda per a informació quant a l'ús.\n"
+"Heu d'indicar una imatge. Vegeu --help per a informació quant a l'ús.\n"
 
 #: ../savers/slideshow.c:47
 msgid "Location to get images from"
@@ -377,248 +385,6 @@ msgstr "Ubicació d'on obtenir les imatges"
 msgid "PATH"
 msgstr "CAMÍ"
 
-#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
-msgid "Manager"
-msgstr "Gestor"
-
-#: ../src/cut-n-paste/fusa-display.c:120
-msgid "The manager which owns this object."
-msgstr "El gestor al que pertany aquest objecte."
-
-#: ../src/cut-n-paste/fusa-display.c:127
-msgid "Name"
-msgstr "Nom"
-
-#: ../src/cut-n-paste/fusa-display.c:128
-msgid "The name of the X11 display this object refers to."
-msgstr "El nom de la pantalla X11 a la que aquest objecte fa referència."
-
-#: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:163
-msgid "User"
-msgstr "Usuari"
-
-#: ../src/cut-n-paste/fusa-display.c:135
-msgid "The user currently logged in on this virtual terminal."
-msgstr "L'usuari identificat actualment en aquest terminal virtual."
-
-#: ../src/cut-n-paste/fusa-display.c:141
-msgid "Console"
-msgstr "Consola"
-
-#: ../src/cut-n-paste/fusa-display.c:142
-msgid "The number of the virtual console this display can be found on, or %-1."
-msgstr ""
-"El nombre de consoles virtuals on s'hi pot trobar aquesta pantalla, o %-1."
-
-#: ../src/cut-n-paste/fusa-display.c:148
-msgid "Nested"
-msgstr "Imbricada"
-
-#: ../src/cut-n-paste/fusa-display.c:149
-msgid "Whether or not this display is a windowed (Xnest) display."
-msgstr "Si aquesta pantalla és una pantalla en una finestra (Xnest)."
-
-#: ../src/cut-n-paste/fusa-manager.c:1453
-msgid "The display manager could not be contacted for unknown reasons."
-msgstr ""
-"Per raons desconegudes no s'ha pogut contactar amb el gestor de pantalla."
-
-#: ../src/cut-n-paste/fusa-manager.c:1460
-msgid "The display manager is not running or too old."
-msgstr "No s'està executant el gestor de pantalla, o bé és massa antic."
-
-#: ../src/cut-n-paste/fusa-manager.c:1463
-msgid "The configured limit of flexible servers has been reached."
-msgstr "S'ha arribat al límit configurat de servidors flexibles."
-
-#: ../src/cut-n-paste/fusa-manager.c:1466
-msgid "There was an unknown error starting X."
-msgstr "S'ha produït un error desconegut en iniciar X."
-
-#: ../src/cut-n-paste/fusa-manager.c:1469
-msgid "The X server failed to finish starting."
-msgstr "El servidor de les X ha fallat en acabar l'iniciació."
-
-#: ../src/cut-n-paste/fusa-manager.c:1472
-msgid "There are too many X sessions running."
-msgstr "Hi ha massa sessions X executant-se."
-
-#: ../src/cut-n-paste/fusa-manager.c:1475
-msgid "The nested X server (Xnest) cannot connect to your current X server."
-msgstr ""
-"El servidor de les X imbricat (Xnest) no s'ha pogut connectar al servidor de "
-"les X actual."
-
-#: ../src/cut-n-paste/fusa-manager.c:1478
-msgid "The X server in the GDM configuration could not be found."
-msgstr "No s'ha pogut trobar el servidor de les X de la configuració del GDM."
-
-#: ../src/cut-n-paste/fusa-manager.c:1481 ../src/cut-n-paste/gdmcomm.c:492
-msgid ""
-"Trying to set an unknown logout action, or trying to set a logout action "
-"which is not available."
-msgstr ""
-"S'està intentant establir una acció de sortida desconeguda, o que no està "
-"disponible."
-
-#: ../src/cut-n-paste/fusa-manager.c:1484 ../src/cut-n-paste/gdmcomm.c:495
-msgid "Virtual terminals not supported."
-msgstr "No estan suportats els terminals virtuals."
-
-#: ../src/cut-n-paste/fusa-manager.c:1487
-msgid "Invalid virtual terminal number."
-msgstr "El número de terminal virtual no és vàlid."
-
-#: ../src/cut-n-paste/fusa-manager.c:1490 ../src/cut-n-paste/gdmcomm.c:499
-msgid "Trying to update an unsupported configuration key."
-msgstr "S'està intentant actualitzar una clau de configuració no suportada."
-
-#: ../src/cut-n-paste/fusa-manager.c:1493
-msgid "~/.Xauthority file badly configured or missing."
-msgstr "El fitxer ~/.Xauthority no existeix o està mal configurat."
-
-#: ../src/cut-n-paste/fusa-manager.c:1496
-msgid "Too many messages were sent to the display manager, and it hung up."
-msgstr "S'ha enviat massa missatges al gestor de pantalla, i s'ha penjat."
-
-#: ../src/cut-n-paste/fusa-manager.c:1500
-msgid "The display manager sent an unknown error message."
-msgstr "El gestor de pantalla ha enviat un missatge d'error desconegut."
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:164
-msgid "The user this menu item represents."
-msgstr "L'usuari a qui representa aquesta entrada del menú."
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:171
-msgid "Icon Size"
-msgstr "Mida de la icona"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:172
-msgid "The size of the icon to use."
-msgstr "La mida de la icona a utilitzar."
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:178
-msgid "Indicator Size"
-msgstr "Mida de l'indicador"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:179
-msgid "Size of check indicator"
-msgstr "Mida de l'indicador de comprovació"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:184
-msgid "Indicator Spacing"
-msgstr "Espai de l'indicador"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:185
-msgid "Space between the username and the indicator"
-msgstr "Espai entre el nom d'usuari i l'indicador"
-
-#: ../src/cut-n-paste/fusa-user.c:151
-msgid "The user manager object this user is controlled by."
-msgstr "L'objecte gestor d'usuaris que controla a aquest usuari."
-
-#: ../src/cut-n-paste/fusa-utils.c:80
-msgid "Show Details"
-msgstr "Mostra els detalls"
-
-#. markup
-#: ../src/cut-n-paste/gdmcomm.c:413
-msgid "GDM (The GNOME Display Manager) is not running."
-msgstr "El GDM (el gestor de pantalla del GNOME) no s'està executant."
-
-#: ../src/cut-n-paste/gdmcomm.c:416
-msgid ""
-"You might in fact be using a different display manager, such as KDM (KDE "
-"Display Manager) or xdm."
-msgstr ""
-"Deveu estar fent servir un gestor de pantalla diferent, com el KDM (gestor "
-"de pantalla del KDE) o el xdm."
-
-#: ../src/cut-n-paste/gdmcomm.c:419
-msgid ""
-"If you still wish to use this feature, either start GDM yourself or ask your "
-"system administrator to start GDM."
-msgstr ""
-"Si encara desitgeu utilitzar aquesta característica, engegueu el GDM o "
-"demaneu al vostre administrador del sistema que l'engegui."
-
-#. markup
-#: ../src/cut-n-paste/gdmcomm.c:441
-msgid "Cannot communicate with GDM (The GNOME Display Manager)"
-msgstr "No s'ha pogut comunicar amb el GDM (El gestor de pantalla del GNOME)"
-
-#: ../src/cut-n-paste/gdmcomm.c:444
-msgid "Perhaps you have an old version of GDM running."
-msgstr "Potser teniu una versió vella del GDM funcionant."
-
-#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
-msgid "Cannot communicate with gdm, perhaps you have an old version running."
-msgstr ""
-"No es pot comunicar amb el GDM, potser s'està executant teniu una versió "
-"vella."
-
-#: ../src/cut-n-paste/gdmcomm.c:469
-msgid "The allowed limit of flexible X servers reached."
-msgstr "S'ha arribat al límit de servidors flexibles de les X permesos."
-
-#: ../src/cut-n-paste/gdmcomm.c:471
-msgid "There were errors trying to start the X server."
-msgstr "S'ha produït errors en intentar iniciar el servidor de les X."
-
-#: ../src/cut-n-paste/gdmcomm.c:473
-msgid "The X server failed.  Perhaps it is not configured well."
-msgstr ""
-"S'ha produït un error en el servidor de les X. Potser no està ben configurat."
-
-#: ../src/cut-n-paste/gdmcomm.c:476
-msgid "Too many X sessions running."
-msgstr "Hi ha massa sessions X executant-se."
-
-#: ../src/cut-n-paste/gdmcomm.c:478
-msgid ""
-"The nested X server (Xnest) cannot connect to your current X server.  You "
-"may be missing an X authorization file."
-msgstr ""
-"El servidor imbricat X (Xnest) no es pot comunicar amb el vostre servidor "
-"actual d'X. Potser li falta un fitxer d'autorització d'X."
-
-#: ../src/cut-n-paste/gdmcomm.c:483
-msgid ""
-"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
-"Please install the Xnest package in order to use the nested login."
-msgstr ""
-"No està disponible el servidor imbricat d'X (Xnest), o el GDM està mal "
-"configurat.\n"
-"Instal·leu el paquet Xnest per poder utilitzar l'entrada imbricada."
-
-#: ../src/cut-n-paste/gdmcomm.c:488
-msgid ""
-"The X server is not available, it is likely that gdm is badly configured."
-msgstr ""
-"No està disponible el servidor de les X, sembla que el GDM està mal "
-"configurat."
-
-#: ../src/cut-n-paste/gdmcomm.c:497
-msgid "Trying to change to an invalid virtual terminal number."
-msgstr "Intentant canviar a un nombre de terminal virtual invàlid."
-
-#: ../src/cut-n-paste/gdmcomm.c:501
-msgid ""
-"You do not seem to have authentication needed be for this operation.  "
-"Perhaps your .Xauthority file is not set up correctly."
-msgstr ""
-"Sembla que no teniu l'autorització necessària per a aquesta operació. Potser "
-"el vostre fitxer .Xauthority no està correctament establert."
-
-#: ../src/cut-n-paste/gdmcomm.c:505
-msgid "Too many messages were sent to gdm and it hung upon us."
-msgstr "S'ha enviat massa missatges al GDM i aquest s'ha penjat."
-
-#: ../src/cut-n-paste/gdmcomm.c:508
-msgid "Unknown error occurred."
-msgstr "S'ha produït un error desconegut."
-
 #: ../src/file-transfer-dialog.c:94
 #, c-format
 msgid "Copying file: %u of %u"
@@ -627,7 +393,7 @@ msgstr "S'està copiant el fitxer: %u de %u"
 #: ../src/file-transfer-dialog.c:122
 #, c-format
 msgid "Copying '%s'"
-msgstr "S'està copiant '%s'"
+msgstr "S'està copiant «%s»"
 
 #: ../src/file-transfer-dialog.c:193
 msgid "From URI"
@@ -780,7 +546,7 @@ msgstr "Mostra el botó de canvi d'usuari"
 
 #. login: is whacked always translate to Username:
 #: ../src/gnome-screensaver-dialog.c:170 ../src/gnome-screensaver-dialog.c:171
-#: ../src/gnome-screensaver-dialog.c:172 ../src/gs-auth-pam.c:692
+#: ../src/gnome-screensaver-dialog.c:172 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Nom d'usuari:"
 
@@ -852,7 +618,7 @@ msgstr "Disculpeu, les contrasenyes no coincideixen"
 msgid "Checking..."
 msgstr "S'està comprovant..."
 
-#: ../src/gnome-screensaver-dialog.c:296 ../src/gs-auth-pam.c:451
+#: ../src/gnome-screensaver-dialog.c:296 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "Ha fallat l'autenticació."
 
@@ -937,75 +703,263 @@ msgstr "No esdevinguis un dimoni"
 msgid "Enable debugging code"
 msgstr "Habilita el codi de depuració"
 
-#: ../src/gs-auth-pam.c:391
+#: ../src/gs-auth-pam.c:397
 #, c-format
 msgid "Unable to establish service %s: %s\n"
 msgstr "No s'ha pogut establir el servei %s: %s\n"
 
-#: ../src/gs-auth-pam.c:417
+#: ../src/gs-auth-pam.c:423
 #, c-format
 msgid "Can't set PAM_TTY=%s"
 msgstr "No s'ha pogut establir PAM_TTY=%s"
 
-#: ../src/gs-auth-pam.c:449
+#: ../src/gs-auth-pam.c:455
 msgid "Incorrect password."
 msgstr "Contrasenya incorrecta."
 
-#: ../src/gs-auth-pam.c:465
+#: ../src/gs-auth-pam.c:471
 msgid "Not permitted to gain access at this time."
 msgstr "No se us permet accedir en aquest moment."
 
-#: ../src/gs-auth-pam.c:471
+#: ../src/gs-auth-pam.c:477
 msgid "No longer permitted to access the system."
 msgstr "Ja no se us permet accedir al sistema."
 
-#: ../src/gs-listener-dbus.c:1766
+#: ../src/gs-listener-dbus.c:1817
 msgid "failed to register with the message bus"
 msgstr "no s'ha pogut registrar en el bus de missatges"
 
-#: ../src/gs-listener-dbus.c:1776
+#: ../src/gs-listener-dbus.c:1827
 msgid "not connected to the message bus"
 msgstr "no s'ha pogut connectar al bus de missatges"
 
-#: ../src/gs-listener-dbus.c:1785
+#: ../src/gs-listener-dbus.c:1836
 msgid "screensaver already running in this session"
 msgstr "l'estalvi de pantalla ja està funcionant en aquesta sessió"
 
-#: ../src/gs-lock-plug.c:331
+#: ../src/gs-lock-plug.c:255
 msgid "Time has expired."
 msgstr "S'ha excedit el temps."
 
-#: ../src/gs-lock-plug.c:359
+#: ../src/gs-lock-plug.c:283
 msgid "You have the Caps Lock key on."
 msgstr "Teniu la tecla de fixació de majúscules activada."
 
-#: ../src/gs-lock-plug.c:1494 ../src/gs-lock-plug.c:1531
+#: ../src/gs-lock-plug.c:1078
 msgid "S_witch User..."
 msgstr "Canvia d'_usuari..."
 
-#: ../src/gs-lock-plug.c:1502
+#: ../src/gs-lock-plug.c:1087
 msgid "Log _Out"
 msgstr "_Surt"
 
-#: ../src/gs-lock-plug.c:1693
+#: ../src/gs-lock-plug.c:1263
 msgid "%U on %h"
 msgstr "%U a %h"
 
-#: ../src/gs-lock-plug.c:1707
+#: ../src/gs-lock-plug.c:1277
 msgid "_Password:"
 msgstr "_Contrasenya:"
 
-#~ msgid "Bubbles the GNOME foot logo around the screen"
-#~ msgstr "Bombolles amb el logotip del peu del GNOME per tota la pantalla"
+#~ msgid "S_witch to user:"
+#~ msgstr "Ca_nvia a l'usuari:"
 
-#~ msgid "Floating Feet"
-#~ msgstr "Peu flotant"
+#~ msgid "_Switch User..."
+#~ msgstr "Canvia d'_usuari..."
 
-#~ msgid "Cosmos"
-#~ msgstr "Cosmos"
+#~ msgid "Manager"
+#~ msgstr "Gestor"
 
-#~ msgid "Display a slideshow of pictures of the cosmos"
-#~ msgstr "Mostra una projecció amb diapositives d'imatges del cosmos"
+#~ msgid "The manager which owns this object."
+#~ msgstr "El gestor al que pertany aquest objecte."
+
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgid "The name of the X11 display this object refers to."
+#~ msgstr "El nom de la pantalla X11 a la que aquest objecte fa referència."
+
+#~ msgid "User"
+#~ msgstr "Usuari"
+
+#~ msgid "The user currently logged in on this virtual terminal."
+#~ msgstr "L'usuari identificat actualment en aquest terminal virtual."
+
+#~ msgid "Console"
+#~ msgstr "Consola"
+
+#~ msgid ""
+#~ "The number of the virtual console this display can be found on, or %-1."
+#~ msgstr ""
+#~ "El nombre de consoles virtuals on s'hi pot trobar aquesta pantalla, o %-1."
+
+#~ msgid "Nested"
+#~ msgstr "Imbricada"
+
+#~ msgid "Whether or not this display is a windowed (Xnest) display."
+#~ msgstr "Si aquesta pantalla és una pantalla en una finestra (Xnest)."
+
+#~ msgid "The display manager could not be contacted for unknown reasons."
+#~ msgstr ""
+#~ "Per raons desconegudes no s'ha pogut contactar amb el gestor de pantalla."
+
+#~ msgid "The display manager is not running or too old."
+#~ msgstr "No s'està executant el gestor de pantalla, o bé és massa antic."
+
+#~ msgid "The configured limit of flexible servers has been reached."
+#~ msgstr "S'ha arribat al límit configurat de servidors flexibles."
+
+#~ msgid "There was an unknown error starting X."
+#~ msgstr "S'ha produït un error desconegut en iniciar X."
+
+#~ msgid "The X server failed to finish starting."
+#~ msgstr "El servidor de les X ha fallat en acabar l'iniciació."
+
+#~ msgid "There are too many X sessions running."
+#~ msgstr "Hi ha massa sessions X executant-se."
+
+#~ msgid "The nested X server (Xnest) cannot connect to your current X server."
+#~ msgstr ""
+#~ "El servidor de les X imbricat (Xnest) no s'ha pogut connectar al servidor "
+#~ "de les X actual."
+
+#~ msgid "The X server in the GDM configuration could not be found."
+#~ msgstr ""
+#~ "No s'ha pogut trobar el servidor de les X de la configuració del GDM."
+
+#~ msgid ""
+#~ "Trying to set an unknown logout action, or trying to set a logout action "
+#~ "which is not available."
+#~ msgstr ""
+#~ "S'està intentant establir una acció de sortida desconeguda, o que no està "
+#~ "disponible."
+
+#~ msgid "Virtual terminals not supported."
+#~ msgstr "No estan suportats els terminals virtuals."
+
+#~ msgid "Invalid virtual terminal number."
+#~ msgstr "El número de terminal virtual no és vàlid."
+
+#~ msgid "Trying to update an unsupported configuration key."
+#~ msgstr "S'està intentant actualitzar una clau de configuració no suportada."
+
+#~ msgid "~/.Xauthority file badly configured or missing."
+#~ msgstr "El fitxer ~/.Xauthority no existeix o està mal configurat."
+
+#~ msgid "Too many messages were sent to the display manager, and it hung up."
+#~ msgstr "S'ha enviat massa missatges al gestor de pantalla, i s'ha penjat."
+
+#~ msgid "The display manager sent an unknown error message."
+#~ msgstr "El gestor de pantalla ha enviat un missatge d'error desconegut."
+
+#~ msgid "The user this menu item represents."
+#~ msgstr "L'usuari a qui representa aquesta entrada del menú."
+
+#~ msgid "Icon Size"
+#~ msgstr "Mida de la icona"
+
+#~ msgid "The size of the icon to use."
+#~ msgstr "La mida de la icona a utilitzar."
+
+#~ msgid "Indicator Size"
+#~ msgstr "Mida de l'indicador"
+
+#~ msgid "Size of check indicator"
+#~ msgstr "Mida de l'indicador de comprovació"
+
+#~ msgid "Indicator Spacing"
+#~ msgstr "Espai de l'indicador"
+
+#~ msgid "Space between the username and the indicator"
+#~ msgstr "Espai entre el nom d'usuari i l'indicador"
+
+#~ msgid "The user manager object this user is controlled by."
+#~ msgstr "L'objecte gestor d'usuaris que controla a aquest usuari."
+
+#~ msgid "Show Details"
+#~ msgstr "Mostra els detalls"
+
+#~ msgid "GDM (The GNOME Display Manager) is not running."
+#~ msgstr "El GDM (el gestor de pantalla del GNOME) no s'està executant."
+
+#~ msgid ""
+#~ "You might in fact be using a different display manager, such as KDM (KDE "
+#~ "Display Manager) or xdm."
+#~ msgstr ""
+#~ "Deveu estar fent servir un gestor de pantalla diferent, com el KDM "
+#~ "(gestor de pantalla del KDE) o el xdm."
+
+#~ msgid ""
+#~ "If you still wish to use this feature, either start GDM yourself or ask "
+#~ "your system administrator to start GDM."
+#~ msgstr ""
+#~ "Si encara desitgeu utilitzar aquesta característica, engegueu el GDM o "
+#~ "demaneu al vostre administrador del sistema que l'engegui."
+
+#~ msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+#~ msgstr ""
+#~ "No s'ha pogut comunicar amb el GDM (El gestor de pantalla del GNOME)"
+
+#~ msgid "Perhaps you have an old version of GDM running."
+#~ msgstr "Potser teniu una versió vella del GDM funcionant."
+
+#~ msgid ""
+#~ "Cannot communicate with gdm, perhaps you have an old version running."
+#~ msgstr ""
+#~ "No es pot comunicar amb el GDM, potser s'està executant teniu una versió "
+#~ "vella."
+
+#~ msgid "The allowed limit of flexible X servers reached."
+#~ msgstr "S'ha arribat al límit de servidors flexibles de les X permesos."
+
+#~ msgid "There were errors trying to start the X server."
+#~ msgstr "S'ha produït errors en intentar iniciar el servidor de les X."
+
+#~ msgid "The X server failed.  Perhaps it is not configured well."
+#~ msgstr ""
+#~ "S'ha produït un error en el servidor de les X. Potser no està ben "
+#~ "configurat."
+
+#~ msgid "Too many X sessions running."
+#~ msgstr "Hi ha massa sessions X executant-se."
+
+#~ msgid ""
+#~ "The nested X server (Xnest) cannot connect to your current X server.  You "
+#~ "may be missing an X authorization file."
+#~ msgstr ""
+#~ "El servidor imbricat X (Xnest) no es pot comunicar amb el vostre servidor "
+#~ "actual d'X. Potser li falta un fitxer d'autorització d'X."
+
+#~ msgid ""
+#~ "The nested X server (Xnest) is not available, or gdm is badly "
+#~ "configured.\n"
+#~ "Please install the Xnest package in order to use the nested login."
+#~ msgstr ""
+#~ "No està disponible el servidor imbricat d'X (Xnest), o el GDM està mal "
+#~ "configurat.\n"
+#~ "Instal·leu el paquet Xnest per poder utilitzar l'entrada imbricada."
+
+#~ msgid ""
+#~ "The X server is not available, it is likely that gdm is badly configured."
+#~ msgstr ""
+#~ "No està disponible el servidor de les X, sembla que el GDM està mal "
+#~ "configurat."
+
+#~ msgid "Trying to change to an invalid virtual terminal number."
+#~ msgstr "Intentant canviar a un nombre de terminal virtual invàlid."
+
+#~ msgid ""
+#~ "You do not seem to have authentication needed be for this operation.  "
+#~ "Perhaps your .Xauthority file is not set up correctly."
+#~ msgstr ""
+#~ "Sembla que no teniu l'autorització necessària per a aquesta operació. "
+#~ "Potser el vostre fitxer .Xauthority no està correctament establert."
+
+#~ msgid "Too many messages were sent to gdm and it hung upon us."
+#~ msgstr "S'ha enviat massa missatges al GDM i aquest s'ha penjat."
+
+#~ msgid "Unknown error occurred."
+#~ msgstr "S'ha produït un error desconegut."
 
 #~ msgid "Time before activation"
 #~ msgstr "Temps abans d'activar-se"
