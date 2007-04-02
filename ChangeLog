@@ -1,5 +1,10 @@
 2007-04-02  William Jon McCann  <mccann@jhu.edu>
 
+	* src/test-window.c (main): Exit
+	after 30 sec in case we lock up grabs.
+
+2007-04-02  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Fix up deps.
 
 2007-03-12  William Jon McCann  <mccann@jhu.edu>

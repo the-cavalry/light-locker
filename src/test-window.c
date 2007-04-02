@@ -166,6 +166,9 @@ main (int    argc,
 
         test_window ();
 
+        /* safety valve in case we can't authenticate */
+        g_timeout_add (30000, (GSourceFunc)gtk_main_quit, NULL);
+
         gtk_main ();
 
         g_object_unref (grab);
