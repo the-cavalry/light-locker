@@ -1,5 +1,12 @@
 2007-04-02  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-preferences.c: (response_cb),
+	(is_program_in_path), (init_capplet):
+	Don't show the gpm button if command isn't found.
+	Fixes #424165
+
+2007-04-02  William Jon McCann  <mccann@jhu.edu>
+
 	* src/test-window.c (main): Exit
 	after 30 sec in case we lock up grabs.
 

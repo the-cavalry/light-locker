@@ -59,6 +59,8 @@
 #define KEY_CYCLE_DELAY     KEY_DIR "/cycle_delay"
 #define KEY_THEMES          KEY_DIR "/themes"
 
+#define GPM_COMMAND "gnome-power-preferences"
+
 enum {
         NAME_COLUMN = 0,
         ID_COLUMN,
@@ -429,7 +431,7 @@ response_cb (GtkWidget *widget,
                 error = NULL;
 
                 res = gdk_spawn_command_line_on_screen (gdk_screen_get_default (),
-                                                        "gnome-power-preferences",
+                                                        GPM_COMMAND,
                                                         &error);
                 if (! res) {
                         g_warning ("Unable to start power management preferences: %s", error->message);
@@ -1358,6 +1360,18 @@ setup_treeview_idle (gpointer data)
         return FALSE;
 }
 
+static gboolean
+is_program_in_path (const char *program)
+{
+        char *tmp = g_find_program_in_path (program);
+        if (tmp != NULL) {
+                g_free (tmp);
+                return TRUE;
+        } else {
+                return FALSE;
+        }
+}
+
 static void
 init_capplet (void)
 {
@@ -1372,6 +1386,7 @@ init_capplet (void)
         GtkWidget *lock_checkbox;
         GtkWidget *root_warning_label;
         GtkWidget *preview_button;
+        GtkWidget *gpm_button;
         GtkWidget *fullscreen_preview_window;
         GtkWidget *fullscreen_preview_previous;
         GtkWidget *fullscreen_preview_next;
@@ -1414,6 +1429,7 @@ init_capplet (void)
         lock_checkbox      = glade_xml_get_widget (xml, "lock_checkbox");
         root_warning_label = glade_xml_get_widget (xml, "root_warning_label");
         preview_button     = glade_xml_get_widget (xml, "preview_button");
+        gpm_button         = glade_xml_get_widget (xml, "gpm_button");
         fullscreen_preview_window = glade_xml_get_widget (xml, "fullscreen_preview_window");
         fullscreen_preview_area = glade_xml_get_widget (xml, "fullscreen_preview_area");
         fullscreen_preview_close = glade_xml_get_widget (xml, "fullscreen_preview_close");
@@ -1427,6 +1443,11 @@ init_capplet (void)
 
         gtk_widget_set_no_show_all (root_warning_label, TRUE);
         widget_set_best_colormap (preview);
+
+        if (! is_program_in_path (GPM_COMMAND)) {
+                gtk_widget_set_no_show_all (gpm_button, TRUE);
+                gtk_widget_hide (gpm_button);
+        }
 
         activate_delay = config_get_activate_delay (&is_writable);
         ui_set_delay (activate_delay);
