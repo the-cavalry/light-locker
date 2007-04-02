@@ -452,18 +452,18 @@ gs_grab_grab_window (GSGrab    *grab,
 #endif
 
         /* When should we allow blanking to proceed?  The current theory
-           is that a keyboard grab is manditory; a mouse grab is optional.
+           is that both a keyboard grab and a mouse grab are mandatory
 
            - If we don't have a keyboard grab, then we won't be able to
            read a password to unlock, so the kbd grab is manditory.
 
            - If we don't have a mouse grab, then we might not see mouse
-           clicks as a signal to unblank -- but we will still see kbd
-           activity, so that's not a disaster.
+           clicks as a signal to unblank, on-screen widgets won't work ideally,
+           and gs_grab_move_to_window() will spin forever when it gets called.
         */
 
-        if (kstatus != GDK_GRAB_SUCCESS) {
-                /* Do not blank without a kbd grab.   */
+        if (kstatus != GDK_GRAB_SUCCESS || mstatus != GDK_GRAB_SUCCESS) {
+                /* Do not blank without a keyboard and mouse grabs. */
                 return FALSE;
         }
 
