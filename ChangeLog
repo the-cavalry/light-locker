@@ -1,3 +1,9 @@
+==== 2.18.1 ====
+
+2007-04-09  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: update for release
+
 2007-03-02  Ray Strode  <rstrode@redhat.com>
 
 	* src/gs-grab-x11.c: (gs_grab_grab_window): Require

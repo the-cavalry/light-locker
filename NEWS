@@ -1,4 +1,24 @@
 ===============
+Version 2.18.1
+===============
+
+  gnome-screensaver
+
+        * Fixed #424165, power management button should reflect g-p-m status (William Jon McCann)
+        * Fixed #425550, gnome-screensaver should probably require mouse grab to lock (Ray Strode)
+
+  Translators
+
+        * Updated zh_CN: Funda Wang
+        * Updated ca: Josep Puigdemont i Casamajó
+        * Updated da: Peter Bach
+        * Updated lv: Raivis Dejus
+        * Updated sl: Matic Zgur
+        * Updated eu: Inaki Larranaga Murgoitio
+        * Updated gl: Ignacio Casal Quinteiro
+
+
+===============
 Version 2.18.0
 ===============
 
