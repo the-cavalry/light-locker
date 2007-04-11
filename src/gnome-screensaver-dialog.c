@@ -314,7 +314,7 @@ response_cb (GSLockPlug *plug,
              gint        response_id)
 {
         if ((response_id == GS_LOCK_PLUG_RESPONSE_CANCEL) ||
-	    (response_id == GTK_RESPONSE_DELETE_EVENT)) {
+            (response_id == GTK_RESPONSE_DELETE_EVENT)) {
                 quit_response_cancel ();
         }
 }
@@ -515,6 +515,10 @@ main (int    argc,
         textdomain (GETTEXT_PACKAGE);
 #endif
 
+        if (! g_thread_supported ()) {
+                g_thread_init (NULL);
+        }
+
         g_type_init ();
 
         if (error) {
@@ -524,10 +528,6 @@ main (int    argc,
         }
 
         gs_profile_start (NULL);
-
-        if (! g_thread_supported ()) {
-                g_thread_init (NULL);
-        }
 
         if (! privileged_initialization (&argc, argv, verbose)) {
                 response_lock_init_failed ();

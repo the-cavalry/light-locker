@@ -915,8 +915,8 @@ entry_key_press (GtkWidget   *widget,
                 return FALSE;
         }
 
-	if (strcmp (event->string, "") == 0) {
-		return FALSE;
+        if (strcmp (event->string, "") == 0) {
+                return FALSE;
         }
 
 	queue_key_event (plug, event);

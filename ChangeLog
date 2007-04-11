@@ -1,3 +1,8 @@
+2007-04-11  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gnome-screensaver-dialog.c: (main):
+	Init threads earlier.
+
 2007-04-09  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump
