@@ -1158,7 +1158,7 @@ static void
 add_unfade_idle (GSManager *manager)
 {
         remove_unfade_idle (manager);
-        manager->priv->unfade_idle_id = g_idle_add ((GSourceFunc)unfade_idle, manager);
+        manager->priv->unfade_idle_id = g_timeout_add (500, (GSourceFunc)unfade_idle, manager);
 }
 
 static gboolean

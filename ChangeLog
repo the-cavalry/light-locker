@@ -1,3 +1,10 @@
+2007-04-19  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-manager.c (add_unfade_idle):
+	Unfade in a timeout instead of an idle func
+	to help avoid flicker/race that only seems
+	to happen with compiz.
+
 2007-04-11  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver-dialog.c: (main):
