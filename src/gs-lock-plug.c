@@ -80,6 +80,7 @@ struct GSLockPlugPrivate
         GtkWidget   *auth_capslock_label;
         GtkWidget   *auth_message_label;
         GtkWidget   *switch_user_treeview;
+        GtkWidget   *away_message_label;
 
         GtkWidget   *auth_unlock_button;
         GtkWidget   *auth_switch_button;
@@ -98,6 +99,7 @@ struct GSLockPlugPrivate
         gboolean     switch_enabled;
         gboolean     logout_enabled;
         char        *logout_command;
+        char        *away_message;
 
         guint        timeout;
 
@@ -126,7 +128,8 @@ enum {
         PROP_0,
         PROP_LOGOUT_ENABLED,
         PROP_LOGOUT_COMMAND,
-        PROP_SWITCH_ENABLED
+        PROP_SWITCH_ENABLED,
+        PROP_AWAY_MESSAGE
 };
 
 static guint lock_plug_signals [LAST_SIGNAL];
@@ -612,6 +615,56 @@ is_program_in_path (const char *program)
 }
 
 static void
+gs_lock_plug_set_away_message (GSLockPlug *plug,
+                               const char *away_message)
+{
+        g_return_if_fail (GS_LOCK_PLUG (plug));
+
+        g_free (plug->priv->away_message);
+        plug->priv->away_message = g_strdup (away_message);
+
+        if (plug->priv->away_message_label) {
+		if (plug->priv->away_message) {
+			gtk_label_set_text (GTK_LABEL (plug->priv->away_message_label),
+					    plug->priv->away_message);
+			gtk_widget_show (plug->priv->away_message_label);
+		}
+		else {
+			gtk_widget_hide (plug->priv->away_message_label);
+		}
+	}
+}
+
+static void
+gs_lock_plug_get_property (GObject    *object,
+                           guint       prop_id,
+                           GValue     *value,
+                           GParamSpec *pspec)
+{
+        GSLockPlug *self;
+
+        self = GS_LOCK_PLUG (object);
+
+        switch (prop_id) {
+        case PROP_LOGOUT_ENABLED:
+                g_value_set_boolean (value, self->priv->logout_enabled);
+                break;
+        case PROP_LOGOUT_COMMAND:
+                g_value_set_string (value, self->priv->logout_command);
+                break;
+        case PROP_SWITCH_ENABLED:
+                g_value_set_boolean (value, self->priv->switch_enabled);
+		break;
+	case PROP_AWAY_MESSAGE:
+                g_value_set_string (value, self->priv->away_message);
+		break;
+	default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+	}
+}
+
+static void
 gs_lock_plug_set_switch_enabled (GSLockPlug *plug,
                                  gboolean    switch_enabled)
 {
@@ -659,34 +712,11 @@ gs_lock_plug_set_property (GObject            *object,
         case PROP_LOGOUT_COMMAND:
                 gs_lock_plug_set_logout_command (self, g_value_get_string (value));
                 break;
+        case PROP_AWAY_MESSAGE:
+                gs_lock_plug_set_away_message (self, g_value_get_string (value));
+                break;
         case PROP_SWITCH_ENABLED:
                 gs_lock_plug_set_switch_enabled (self, g_value_get_boolean (value));
-                break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
-        }
-}
-
-static void
-gs_lock_plug_get_property (GObject    *object,
-                           guint       prop_id,
-                           GValue     *value,
-                           GParamSpec *pspec)
-{
-        GSLockPlug *self;
-
-        self = GS_LOCK_PLUG (object);
-
-        switch (prop_id) {
-        case PROP_LOGOUT_ENABLED:
-                g_value_set_boolean (value, self->priv->logout_enabled);
-                break;
-        case PROP_LOGOUT_COMMAND:
-                g_value_set_string (value, self->priv->logout_command);
-                break;
-        case PROP_SWITCH_ENABLED:
-                g_value_set_boolean (value, self->priv->switch_enabled);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -756,6 +786,13 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
         g_object_class_install_property (object_class,
                                          PROP_LOGOUT_COMMAND,
                                          g_param_spec_string ("logout-command",
+                                                               NULL,
+                                                               NULL,
+                                                               NULL,
+                                                               G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_AWAY_MESSAGE,
+                                         g_param_spec_string ("away-message",
                                                                NULL,
                                                                NULL,
                                                                NULL,
@@ -1499,6 +1536,8 @@ load_theme (GSLockPlug *plug)
 
         gtk_widget_show_all (lock_dialog);
 
+        plug->priv->away_message_label = glade_xml_get_widget (xml, "away-message-label");
+
         return TRUE;
 }
 
@@ -1611,6 +1650,16 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         g_signal_connect (plug->priv->auth_cancel_button, "clicked",
                           G_CALLBACK (cancel_button_clicked), plug);
+
+        if (plug->priv->away_message_label) {
+              if (plug->priv->away_message) {
+                      gtk_label_set_text (GTK_LABEL (plug->priv->away_message_label),
+                                          plug->priv->away_message);
+              }
+              else {
+                      gtk_widget_hide (plug->priv->away_message_label);
+              }
+        }
 
         if (plug->priv->auth_switch_button != NULL) {
                 g_signal_connect (plug->priv->auth_switch_button, "clicked",

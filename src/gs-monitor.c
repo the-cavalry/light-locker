@@ -326,6 +326,7 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
         gs_manager_set_logout_timeout (monitor->priv->manager, monitor->priv->prefs->logout_timeout);
         gs_manager_set_logout_command (monitor->priv->manager, monitor->priv->prefs->logout_command);
         gs_manager_set_keyboard_command (monitor->priv->manager, monitor->priv->prefs->keyboard_command);
+        gs_manager_set_away_message (monitor->priv->manager, monitor->priv->prefs->away_message);
         gs_manager_set_cycle_timeout (monitor->priv->manager, monitor->priv->prefs->cycle);
         gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
         gs_manager_set_themes (monitor->priv->manager, monitor->priv->prefs->themes);

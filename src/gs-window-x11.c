@@ -70,6 +70,7 @@ struct GSWindowPrivate
         guint64    logout_timeout;
         char      *logout_command;
         char      *keyboard_command;
+        char      *away_message;
 
         GtkWidget *vbox;
         GtkWidget *lock_box;
@@ -120,7 +121,8 @@ enum {
         PROP_KEYBOARD_COMMAND,
         PROP_LOGOUT_COMMAND,
         PROP_LOGOUT_TIMEOUT,
-        PROP_MONITOR
+        PROP_MONITOR,
+        PROP_AWAY_MESSAGE
 };
 
 static guint           signals [LAST_SIGNAL] = { 0, };
@@ -1464,6 +1466,14 @@ popup_dialog_idle (GSWindow *window)
                 g_string_append_printf (command, " --logout-command='%s'", window->priv->logout_command);
         }
 
+	if (window->priv->away_message) {
+		gchar *quoted;
+		
+		quoted = g_shell_quote (window->priv->away_message);
+		g_string_append_printf (command, " --away-message=%s", quoted);
+		g_free (quoted);
+	}
+
         if (is_user_switch_enabled (window)) {
                 command = g_string_append (command, " --enable-switch");
         }
@@ -1643,6 +1653,16 @@ gs_window_set_logout_command (GSWindow   *window,
 }
 
 void
+gs_window_set_away_message (GSWindow   *window,
+                            const char *away_message)
+{
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        g_free (window->priv->away_message);
+        window->priv->away_message = g_strdup (away_message);
+}
+
+void
 gs_window_set_monitor (GSWindow *window,
                        int       monitor)
 {
@@ -1693,6 +1713,9 @@ gs_window_set_property (GObject            *object,
         case PROP_LOGOUT_COMMAND:
                 gs_window_set_logout_command (self, g_value_get_string (value));
                 break;
+        case PROP_AWAY_MESSAGE:
+                gs_window_set_away_message (self, g_value_get_string (value));
+                break;
         case PROP_LOGOUT_TIMEOUT:
                 gs_window_set_logout_timeout (self, g_value_get_long (value));
                 break;
@@ -1731,6 +1754,9 @@ gs_window_get_property (GObject    *object,
         case PROP_LOGOUT_COMMAND:
                 g_value_set_string (value, self->priv->logout_command);
                 break;
+	case PROP_AWAY_MESSAGE: 
+		g_value_set_string (value, self->priv->away_message);
+		break;
         case PROP_LOGOUT_TIMEOUT:
                 g_value_set_long (value, self->priv->logout_timeout);
                 break;
@@ -2068,6 +2094,13 @@ gs_window_class_init (GSWindowClass *klass)
         g_object_class_install_property (object_class,
                                          PROP_LOGOUT_COMMAND,
                                          g_param_spec_string ("logout-command",
+                                                              NULL,
+                                                              NULL,
+                                                              NULL,
+                                                              G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_AWAY_MESSAGE,
+                                         g_param_spec_string ("away-message",
                                                               NULL,
                                                               NULL,
                                                               NULL,

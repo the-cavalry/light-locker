@@ -1,5 +1,28 @@
 2007-04-23  William Jon McCann  <mccann@jhu.edu>
 
+	* data/lock-dialog-default.glade:
+	* src/gnome-screensaver-dialog.c: (popup_dialog_idle):
+	* src/gs-lock-plug.c: (gs_lock_plug_set_away_message),
+	(gs_lock_plug_get_property), (gs_lock_plug_set_property),
+	(gs_lock_plug_class_init), (load_theme), (gs_lock_plug_init):
+	* src/gs-manager.c: (gs_manager_set_away_message),
+	(gs_manager_set_property), (gs_manager_get_property),
+	(gs_manager_finalize), (gs_manager_create_window):
+	* src/gs-manager.h:
+	* src/gs-monitor.c: (_gs_monitor_update_from_prefs):
+	* src/gs-prefs.c: (_gs_prefs_set_away_message),
+	(gs_prefs_load_from_gconf), (key_changed_cb), (gs_prefs_finalize):
+	* src/gs-prefs.h:
+	* src/gs-window-x11.c: (popup_dialog_idle),
+	(gs_window_set_away_message), (gs_window_set_property),
+	(gs_window_get_property), (gs_window_class_init):
+	* src/gs-window.h:
+	Add mechanism to display an away message.
+	Patch from Matthias Clasen <mclasen@redhat.com>
+	Fixes #384534
+
+2007-04-23  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac:
 	* data/lock-dialog-default.glade:
 	* src/gs-lock-plug.c: (take_note), (submit_note), (cancel_note),

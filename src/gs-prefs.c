@@ -49,6 +49,7 @@ static void gs_prefs_finalize   (GObject      *object);
 #define KEY_LOGOUT_COMMAND KEY_DIR "/logout_command"
 #define KEY_KEYBOARD_ENABLED KEY_DIR "/embedded_keyboard_enabled"
 #define KEY_KEYBOARD_COMMAND KEY_DIR "/embedded_keyboard_command"
+#define KEY_AWAY_MESSAGE   KEY_DIR "/away_message"
 
 #define GS_PREFS_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_PREFS, GSPrefsPrivate))
 
@@ -250,6 +251,14 @@ _gs_prefs_set_keyboard_command (GSPrefs    *prefs,
 }
 
 static void
+_gs_prefs_set_away_message (GSPrefs    *prefs,
+                            const char *value)
+{
+        g_free (prefs->away_message);
+        prefs->away_message = g_strdup (value);
+}
+
+static void
 _gs_prefs_set_logout_enabled (GSPrefs *prefs,
                               gboolean value)
 {
@@ -384,6 +393,14 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 _gs_prefs_set_keyboard_command (prefs, string);
         } else {
                 key_error_and_free (KEY_KEYBOARD_COMMAND, error);
+        }
+        g_free (string);
+
+        string = gconf_client_get_string (prefs->priv->gconf_client, KEY_AWAY_MESSAGE, &error);
+        if (! error) {
+                _gs_prefs_set_away_message (prefs, string);
+        } else {
+                key_error_and_free (KEY_AWAY_MESSAGE, error);
         }
         g_free (string);
 
@@ -596,6 +613,19 @@ key_changed_cb (GConfClient *client,
                         invalid_type_warning (key);
                 }
 
+        } else if (strcmp (key, KEY_AWAY_MESSAGE) == 0) {
+
+                if (value->type == GCONF_VALUE_STRING) {
+                        const char *away_message;
+
+                        away_message = gconf_value_get_string (value);
+                        _gs_prefs_set_away_message (prefs, away_message);
+
+                        changed = TRUE;
+                } else {
+                        invalid_type_warning (key);
+                }
+
         } else if (strcmp (key, KEY_LOGOUT_ENABLED) == 0) {
 
                 if (value->type == GCONF_VALUE_BOOL) {
@@ -715,6 +745,7 @@ gs_prefs_finalize (GObject *object)
 
         g_free (prefs->logout_command);
         g_free (prefs->keyboard_command);
+        g_free (prefs->away_message);
 
         G_OBJECT_CLASS (gs_prefs_parent_class)->finalize (object);
 }

@@ -60,6 +60,7 @@ typedef struct
 
         char            *logout_command;        /* command to use to logout */
         char            *keyboard_command;      /* command to use to embed a keyboard */
+        char            *away_message;
 
         GSList          *themes;       		/* the screensaver themes to run */
         GSSaverMode      mode;			/* theme selection mode */
