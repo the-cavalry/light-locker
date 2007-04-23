@@ -1,5 +1,10 @@
 2007-04-23  William Jon McCann  <mccann@jhu.edu>
 
+	* data/gnome-screensaver.schemas.in:
+	Add away_message key.
+
+2007-04-23  William Jon McCann  <mccann@jhu.edu>
+
 	* data/lock-dialog-default.glade:
 	* src/gnome-screensaver-dialog.c: (popup_dialog_idle):
 	* src/gs-lock-plug.c: (gs_lock_plug_set_away_message),

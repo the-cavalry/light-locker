@@ -238,5 +238,20 @@
         </long>
       </locale>
     </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-screensaver/away_message</key>
+      <applyto>/apps/gnome-screensaver/away_message</applyto>
+      <owner>gnome-screensaver</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Reason for being away</short>
+        <long>
+          The reason for being away from the computer.
+        </long>
+      </locale>
+    </schema>
+
   </schemalist>
 </gconfschemafile>
