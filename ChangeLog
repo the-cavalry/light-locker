@@ -1,5 +1,9 @@
 2007-04-23  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac: Post branch version bump.
+
+2007-04-23  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c:
 	Specify the xserver profile name in gdmflexiserver
 	command to prevent asking the user.
