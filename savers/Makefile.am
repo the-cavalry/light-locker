@@ -82,6 +82,7 @@ popsquares_LDADD =			\
 slideshow_SOURCES =   \
 	gste-slideshow.c	\
 	gste-slideshow.h	\
+	xdg-user-dir-lookup.c	\
 	slideshow.c		\
 	$(NULL)
 

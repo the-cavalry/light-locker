@@ -34,6 +34,8 @@
 #include "gs-theme-engine.h"
 #include "gste-slideshow.h"
 
+#include "xdg-user-dir-lookup.h"
+
 int
 main (int argc, char **argv)
 {
@@ -79,6 +81,17 @@ main (int argc, char **argv)
                           G_CALLBACK (gtk_main_quit), NULL);
 
         engine = g_object_new (GSTE_TYPE_SLIDESHOW, NULL);
+
+        if (location == NULL) {
+                location = xdg_user_dir_lookup ("PICTURES");
+                if (location == NULL ||
+                    strcmp (location, "/tmp") == 0 ||
+                    strcmp (location, g_get_home_dir ()) == 0) {
+                        free (location);
+                        location = g_build_filename (g_get_home_dir (), "Pictures", NULL);
+                }
+        }
+
         if (location != NULL) {
                 g_object_set (engine, "images-location", location, NULL);
         }

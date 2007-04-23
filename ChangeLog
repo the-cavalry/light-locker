@@ -1,5 +1,23 @@
 2007-04-23  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/Makefile.am:
+	* savers/personal-slideshow.desktop.in:
+	* savers/slideshow.c: (main):
+	* savers/xdg-user-dir-lookup.c: (xdg_user_dir_lookup), (main):
+	* savers/xdg-user-dir-lookup.h:
+	Use XDG user dirs to find pictures directory.
+	Patch from Matthias Clasen <mclasen@redhat.com>
+	Fixes #411252
+
+2007-04-23  William Jon McCann  <mccann@jhu.edu>
+
+	reviewed by: <delete if not using a buddy>
+
+	* savers/personal-slideshow.desktop.in:
+	* savers/slideshow.c: (main):
+
+2007-04-23  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: Post branch version bump.
 
 2007-04-23  William Jon McCann  <mccann@jhu.edu>
