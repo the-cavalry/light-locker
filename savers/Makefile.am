@@ -83,6 +83,7 @@ slideshow_SOURCES =   \
 	gste-slideshow.c	\
 	gste-slideshow.h	\
 	xdg-user-dir-lookup.c	\
+	xdg-user-dir-lookup.h	\
 	slideshow.c		\
 	$(NULL)
 

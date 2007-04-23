@@ -1,5 +1,9 @@
 2007-04-23  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/Makefile.am: Add .h file.
+
+2007-04-23  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/Makefile.am:
 	* savers/personal-slideshow.desktop.in:
 	* savers/slideshow.c: (main):
