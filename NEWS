@@ -1,4 +1,15 @@
 ===============
+Version 2.19.1
+===============
+
+  gnome-screensaver
+
+        * Fixed #384509, gnome-screensaver could allow users to leave notes when screen is locked (William Jon McCann)
+        * Fixed #411252, Use xdg-user-dirs to find pictures directory (William Jon McCann)
+        * Fixed #428199, Make fast-user-switching work with gdm configurations involving multiple X servers (William Jon McCann)
+
+
+===============
 Version 2.18.1
 ===============
 

@@ -1,3 +1,9 @@
+==== 2.19.1 ====
+
+2007-04-23  William Jon McCann  <mccann@jhu.edu>
+
+	* NEWS: Update for 2.19.1 release
+
 2007-04-23  William Jon McCann  <mccann@jhu.edu>
 
 	* data/gnome-screensaver.schemas.in:

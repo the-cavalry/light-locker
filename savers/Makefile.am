@@ -14,12 +14,17 @@ INCLUDES =							\
 	$(WARN_CFLAGS)						\
 	$(NULL)
 
-@INTLTOOL_DESKTOP_RULE@
+DESKTOP_IN_IN_FILES = 			\
+	cosmos-slideshow.desktop.in.in 	\
+	footlogo-floaters.desktop.in.in	\
+	$(NULL)
 
 cosmos-slideshow.desktop.in: cosmos-slideshow.desktop.in.in Makefile
 	$(edit) $< >$@
 footlogo-floaters.desktop.in: footlogo-floaters.desktop.in.in Makefile
 	$(edit) $< >$@
+
+@INTLTOOL_DESKTOP_RULE@
 
 edit = sed \
 	-e 's|@SLIDESHOW_COSMOS_DIR[@]|$(SLIDESHOW_COSMOS_DIR)|g' \
@@ -103,11 +108,14 @@ slideshow_LDADD =     \
 
 EXTRA_DIST =				\
 	gs-theme-engine-marshal.list	\
+	$(DESKTOP_IN_IN_FILES)		\
 	$(themes_in_files)		\
 	$(NULL)
 
 CLEANFILES = 				\
 	$(BUILT_SOURCES)		\
+	cosmos-slideshow.desktop.in	\
+	footlogo-floaters.desktop.in	\
 	$(NULL)
 
 DISTCLEANFILES = 			\
