@@ -44,6 +44,8 @@
 #include <libgnomekbd/gkbd-indicator.h>
 #endif
 
+#include <libnotify/notify.h>
+
 #include "gs-lock-plug.h"
 
 #include "gs-debug.h"
@@ -83,6 +85,12 @@ struct GSLockPlugPrivate
         GtkWidget   *auth_switch_button;
         GtkWidget   *auth_cancel_button;
         GtkWidget   *auth_logout_button;
+        GtkWidget   *auth_note_button;
+        GtkWidget   *note_tab;
+        GtkWidget   *note_tab_label;
+        GtkWidget   *note_text_view;
+        GtkWidget   *note_ok_button;
+        GtkWidget   *note_cancel_button;
 
         GtkWidget   *auth_prompt_kbd_layout_indicator;
 
@@ -767,6 +775,65 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
 }
 
 static void
+take_note (GtkButton  *button,
+           GSLockPlug *plug)
+{
+        int page;
+
+        page = gtk_notebook_page_num (GTK_NOTEBOOK (plug->priv->notebook), plug->priv->note_tab);
+        gtk_notebook_set_current_page (GTK_NOTEBOOK (plug->priv->notebook), page);
+        /* this counts as activity so restart the timer */
+        restart_cancel_timeout (plug);
+}
+
+static void
+submit_note (GtkButton  *button,
+             GSLockPlug *plug)
+{
+        char               *text;
+        char                summary[128];
+        GtkTextBuffer      *buffer;
+        GtkTextIter         start, end;
+        time_t              t;
+        struct tm          *tmp;
+        NotifyNotification *note;
+
+        gtk_notebook_set_current_page (GTK_NOTEBOOK (plug->priv->notebook), AUTH_PAGE);
+        buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (plug->priv->note_text_view));
+        gtk_text_buffer_get_bounds (buffer, &start, &end);
+        text = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
+        gtk_text_buffer_set_text (buffer, "", 0);
+
+        t = time (NULL);
+        tmp = localtime (&t);
+        strftime (summary, 128, "%X", tmp);
+
+        notify_init ("gnome-screensaver-dialog");
+        note = notify_notification_new (summary, text, NULL, NULL);
+        notify_notification_set_timeout (note, NOTIFY_EXPIRES_NEVER);
+        notify_notification_show (note, NULL);
+        g_object_unref (note);
+
+        g_free (text);
+
+        gs_lock_plug_response (plug, GS_LOCK_PLUG_RESPONSE_CANCEL);
+}
+
+static void
+cancel_note (GtkButton  *button,
+             GSLockPlug *plug)
+{
+        GtkTextBuffer *buffer;
+
+        gtk_notebook_set_current_page (GTK_NOTEBOOK (plug->priv->notebook), AUTH_PAGE);
+        buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (plug->priv->note_text_view));
+        gtk_text_buffer_set_text (buffer, "", 0);
+
+        /* this counts as activity so restart the timer */
+        restart_cancel_timeout (plug);
+}
+
+static void
 logout_button_clicked (GtkButton  *button,
                        GSLockPlug *plug)
 {
@@ -1414,6 +1481,12 @@ load_theme (GSLockPlug *plug)
         plug->priv->auth_cancel_button = glade_xml_get_widget (xml, "auth-cancel-button");
         plug->priv->auth_logout_button = glade_xml_get_widget (xml, "auth-logout-button");
         plug->priv->auth_switch_button = glade_xml_get_widget (xml, "auth-switch-button");
+        plug->priv->auth_note_button = glade_xml_get_widget (xml, "auth-note-button");
+        plug->priv->note_tab = glade_xml_get_widget (xml, "note-tab");
+        plug->priv->note_tab_label = glade_xml_get_widget (xml, "note-tab-label");
+        plug->priv->note_ok_button = glade_xml_get_widget (xml, "note-ok-button");
+        plug->priv->note_text_view = glade_xml_get_widget (xml, "note-text-view");
+        plug->priv->note_cancel_button = glade_xml_get_widget (xml, "note-cancel-button");
 
         /* Placeholder for the keyboard indicator */
         plug->priv->auth_prompt_kbd_layout_indicator = glade_xml_get_widget (xml, "auth-prompt-kbd-layout-indicator");
@@ -1543,6 +1616,19 @@ gs_lock_plug_init (GSLockPlug *plug)
                 g_signal_connect (plug->priv->auth_switch_button, "clicked",
                                   G_CALLBACK (switch_user_button_clicked), plug);
         }
+
+        if (plug->priv->auth_note_button != NULL) {
+                g_signal_connect (plug->priv->auth_note_button, "clicked",
+                                  G_CALLBACK (take_note), plug);
+                g_signal_connect (plug->priv->note_ok_button, "clicked",
+                                  G_CALLBACK (submit_note), plug);
+                g_signal_connect (plug->priv->note_cancel_button, "clicked",
+                                  G_CALLBACK (cancel_note), plug);
+        }
+
+	if (plug->priv->note_tab_label != NULL) {
+                expand_string_for_label (plug->priv->note_tab_label);
+	}
 
         if (plug->priv->auth_logout_button != NULL) {
                 g_signal_connect (plug->priv->auth_logout_button, "clicked",

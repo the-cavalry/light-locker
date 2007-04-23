@@ -1,6 +1,16 @@
 2007-04-23  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac:
+	* data/lock-dialog-default.glade:
+	* src/gs-lock-plug.c: (take_note), (submit_note), (cancel_note),
+	(load_theme), (gs_lock_plug_init):
+	Add ability to leave messages at the locked screen.
+	Based on patch from Matthias Clasen <mclasen@redhat.com>
+	Fixes #384509
+
+2007-04-23  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac:
 	* savers/Makefile.am:
 	Fix the expansion of the cosmos and floaters locations.
 
