@@ -1111,8 +1111,6 @@ data/gnome-screensaver.pc
 data/images/Makefile
 data/images/cosmos/Makefile
 savers/Makefile
-savers/cosmos-slideshow.desktop.in
-savers/footlogo-floaters.desktop.in
 doc/Makefile
 doc/gnome-screensaver.xml
 ])

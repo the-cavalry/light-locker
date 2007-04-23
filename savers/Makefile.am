@@ -16,6 +16,15 @@ INCLUDES =							\
 
 @INTLTOOL_DESKTOP_RULE@
 
+cosmos-slideshow.desktop.in: cosmos-slideshow.desktop.in.in Makefile
+	$(edit) $< >$@
+footlogo-floaters.desktop.in: footlogo-floaters.desktop.in.in Makefile
+	$(edit) $< >$@
+
+edit = sed \
+	-e 's|@SLIDESHOW_COSMOS_DIR[@]|$(SLIDESHOW_COSMOS_DIR)|g' \
+	-e 's|@FLOATERS_FOOT_LOGO_IMAGE[@]|$(FLOATERS_FOOT_LOGO_IMAGE)|g'
+
 themesdir = $(datadir)/applications/screensavers
 themes_in_files = 			\
 	cosmos-slideshow.desktop.in	\

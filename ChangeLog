@@ -1,5 +1,11 @@
 2007-04-23  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac:
+	* savers/Makefile.am:
+	Fix the expansion of the cosmos and floaters locations.
+
+2007-04-23  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/Makefile.am: Add .h file.
 
 2007-04-23  William Jon McCann  <mccann@jhu.edu>
