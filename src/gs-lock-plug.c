@@ -50,7 +50,7 @@
 
 #define KEY_LOCK_DIALOG_THEME "/apps/gnome-screensaver/lock_dialog_theme"
 #define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
-#define GDM_FLEXISERVER_ARGS    "--startnew"
+#define GDM_FLEXISERVER_ARGS    "--startnew Standard"
 
 enum {
         AUTH_PAGE = 0,

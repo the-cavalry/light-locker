@@ -1,3 +1,11 @@
+2007-04-23  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c:
+	Specify the xserver profile name in gdmflexiserver
+	command to prevent asking the user.
+	Patch from Matthias Clasen <mclasen@redhat.com>
+	Fixes #428199
+
 2007-04-19  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-manager.c (add_unfade_idle):
