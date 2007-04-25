@@ -1,3 +1,12 @@
+2007-04-25  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac:
+	* src/Makefile.am:
+	* src/gs-lock-plug.c: (submit_note), (load_theme),
+	(gs_lock_plug_init):
+	Make note feature and libnotify optional.  Apparently
+	libnotify isn't an approved dependency.
+
 2007-04-23  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump

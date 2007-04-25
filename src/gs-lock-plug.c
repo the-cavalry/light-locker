@@ -44,7 +44,9 @@
 #include <libgnomekbd/gkbd-indicator.h>
 #endif
 
+#ifdef WITH_LIBNOTIFY
 #include <libnotify/notify.h>
+#endif
 
 #include "gs-lock-plug.h"
 
@@ -97,6 +99,7 @@ struct GSLockPlugPrivate
 
         gboolean     caps_lock_on;
         gboolean     switch_enabled;
+        gboolean     leave_note_enabled;
         gboolean     logout_enabled;
         char        *logout_command;
         char        *away_message;
@@ -827,6 +830,7 @@ static void
 submit_note (GtkButton  *button,
              GSLockPlug *plug)
 {
+#ifdef WITH_LIBNOTIFY
         char               *text;
         char                summary[128];
         GtkTextBuffer      *buffer;
@@ -854,6 +858,7 @@ submit_note (GtkButton  *button,
         g_free (text);
 
         gs_lock_plug_response (plug, GS_LOCK_PLUG_RESPONSE_CANCEL);
+#endif /* WITH_LIBNOTIFY */
 }
 
 static void
@@ -1533,6 +1538,9 @@ load_theme (GSLockPlug *plug)
         if (plug->priv->auth_switch_button != NULL) {
                 gtk_widget_set_no_show_all (plug->priv->auth_switch_button, TRUE);
         }
+        if (plug->priv->auth_note_button != NULL) {
+                gtk_widget_set_no_show_all (plug->priv->auth_note_button, TRUE);
+        }
 
         gtk_widget_show_all (lock_dialog);
 
@@ -1565,6 +1573,12 @@ gs_lock_plug_init (GSLockPlug *plug)
         gs_profile_start (NULL);
 
         plug->priv = GS_LOCK_PLUG_GET_PRIVATE (plug);
+
+#ifdef WITH_LIBNOTIFY
+        plug->priv->leave_note_enabled = TRUE;
+#else
+        plug->priv->leave_note_enabled = FALSE;
+#endif
 
         if (! load_theme (plug)) {
                 gs_debug ("Unable to load theme!");
@@ -1611,6 +1625,14 @@ gs_lock_plug_init (GSLockPlug *plug)
                 g_object_unref (engine);
 	}
 #endif
+
+        if (plug->priv->auth_note_button != NULL) {
+                if (plug->priv->leave_note_enabled) {
+                        gtk_widget_show_all (plug->priv->auth_note_button);
+                } else {
+                        gtk_widget_hide (plug->priv->auth_note_button);
+                }
+        }
 
         gtk_widget_grab_default (plug->priv->auth_unlock_button);
 

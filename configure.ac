@@ -66,8 +66,7 @@ PKG_CHECK_MODULES(GNOME_SCREENSAVER_DIALOG,
         libglade-2.0 >= $GLADE_REQUIRED_VERSION
         gconf-2.0 >= $GCONF_REQUIRED_VERSION
         gthread-2.0
-        gtk+-2.0 >= $GTK_REQUIRED_VERSION
-	libnotify)
+        gtk+-2.0 >= $GTK_REQUIRED_VERSION)
 AC_SUBST(GNOME_SCREENSAVER_DIALOG_CFLAGS)
 AC_SUBST(GNOME_SCREENSAVER_DIALOG_LIBS)
 
@@ -944,9 +943,9 @@ fi
 
 AC_SUBST(AUTH_SCHEME)
 
-dnl
+dnl ---------------------------------------------------------------------------
 dnl libgnomekbd
-dnl
+dnl ---------------------------------------------------------------------------
 
 have_libgnomekbdui=no
 AC_ARG_WITH(kbd-layout-indicator,[  --without-kbd-layout-indicator         disable keyboard layout indicator],
@@ -958,6 +957,21 @@ if test "x$have_libgnomekbdui" = "xyes"; then
   AC_SUBST(LIBGNOMEKBDUI_CFLAGS)
   AC_SUBST(LIBGNOMEKBDUI_LIBS)
   AC_DEFINE(WITH_KBD_LAYOUT_INDICATOR, 1, [Define if keyboard layout indicator should be built])
+fi
+
+dnl ---------------------------------------------------------------------------
+dnl libnotify
+dnl ---------------------------------------------------------------------------
+
+have_libnotify=no
+AC_ARG_WITH(libnotify,[  --without-libnotify         disable libnotify support])
+if test x$with_libnotify != xno; then
+	PKG_CHECK_MODULES(LIBNOTIFY, libnotify, have_libnotify=yes, have_libnotify=no)
+fi
+if test "x$have_libnotify" = "xyes"; then
+  AC_SUBST(LIBNOTIFY_CFLAGS)
+  AC_SUBST(LIBNOTIFY_LIBS)
+  AC_DEFINE(WITH_LIBNOTIFY, 1, [Define for libnotify support])
 fi
 
 dnl ---------------------------------------------------------------------------
@@ -1141,6 +1155,7 @@ echo "
         Screen locking enabled:   ${enable_locking}
         User switching enabled:   ${enable_user_switching}
         Show keyboard indicator:  ${with_kbd_layout_indicator}
+        Have libnotify support:   ${have_libnotify}
         PAM support:              ${have_pam}
         Have shadow passwords:    ${have_shadow}
         Have adjunct shadow:      ${have_shadow_adjunct}
