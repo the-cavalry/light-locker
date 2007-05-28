@@ -532,7 +532,7 @@ gste_popsquares_init (GSTEPopsquares *pop)
         pop->priv = GSTE_POPSQUARES_GET_PRIVATE (pop);
 
         pop->priv->ncolors = 128;
-        pop->priv->subdivision = 5;;
+        pop->priv->subdivision = 5;
 
         delay = 25;
         pop->priv->timeout_id = g_timeout_add (delay, (GSourceFunc)draw_iter, pop);

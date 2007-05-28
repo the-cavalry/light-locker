@@ -1,3 +1,11 @@
+2007-04-24  Christian Kirbach  <Christian.Kirbach@googlemail.com>
+
+	* src/gs-fade.c: (gamma_info_init):
+	Make sure function has a return statement.
+
+	* savers/slideshow.c: (main):
+	#include <string.h> was missing.
+
 2007-04-25  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump

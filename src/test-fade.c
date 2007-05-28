@@ -76,7 +76,7 @@ main (int    argc,
       char **argv)
 {
         GError *error = NULL;
-        int     op, event, err, major, minor;
+        int     op, event, err;
 
 #ifdef ENABLE_NLS
         bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
@@ -101,10 +101,14 @@ main (int    argc,
                 g_message ("no " XF86_VIDMODE_NAME " extension");
         } else {
 # ifdef HAVE_XF86VMODE_GAMMA
-                if (! XF86VidModeQueryVersion (GDK_DISPLAY (), &major, &minor))
+                int major;
+                int minor;
+
+                if (! XF86VidModeQueryVersion (GDK_DISPLAY (), &major, &minor)) {
                         g_message ("unable to get " XF86_VIDMODE_NAME " version");
-                else
+                } else {
                         g_message (XF86_VIDMODE_NAME " version %d.%d", major, minor);
+                }
 # else /* !HAVE_XF86VMODE_GAMMA */
                 g_message ("no support for display's " XF86_VIDMODE_NAME " extension");
 # endif /* !HAVE_XF86VMODE_GAMMA */
