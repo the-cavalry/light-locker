@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-04-24 03:50+0100\n"
-"PO-Revision-Date: 2007-05-29 20:27+0200\n"
+"PO-Revision-Date: 2007-05-31 12:30+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -426,11 +426,11 @@ msgstr "URI kuhu hetkel üle kantakse"
 
 #: ../src/file-transfer-dialog.c:209
 msgid "Fraction completed"
-msgstr ""
+msgstr "Alamhulk on kohal"
 
 #: ../src/file-transfer-dialog.c:210
 msgid "Fraction of transfer currently completed"
-msgstr ""
+msgstr "Ülekande alamhulk on kohale toimetatud"
 
 #: ../src/file-transfer-dialog.c:217
 msgid "Current URI index"
