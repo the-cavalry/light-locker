@@ -7,7 +7,7 @@ msgid ""
 msgstr "Project-Id-Version: gnome-screensaver Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-04-24 03:50+0100\n"
-"PO-Revision-Date: 2007-06-27 16:03+0930\n"
+"PO-Revision-Date: 2007-07-01 11:40-0400\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -193,7 +193,7 @@ msgstr "Số giây nghỉ trước khi gửi tín hiệu cho chức năng quản
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid "The reason for being away from the computer."
-msgstr "Lý do không ở máy tính."
+msgstr "Lý do vắng mặt."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
@@ -253,7 +253,7 @@ msgstr "Thời gian trước khi thay đổi sắc thái"
 #: ../data/lock-dialog-default.glade.h:2
 #, no-c-format
 msgid "<b>Leave a message for %R:</b>"
-msgstr "<b>Dặn gì cho %R:</b>"
+msgstr "<b>Lời nhắn cho %R:</b>"
 
 #: ../data/lock-dialog-default.glade.h:4
 #, no-c-format
@@ -279,7 +279,7 @@ msgstr "Th_ôi"
 
 #: ../data/lock-dialog-default.glade.h:10
 msgid "_Leave Message"
-msgstr "_Dặn gì"
+msgstr "Để lại _lời nhắn"
 
 #: ../data/lock-dialog-default.glade.h:11
 msgid "_Log Out"
