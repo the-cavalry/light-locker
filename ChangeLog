@@ -1,5 +1,13 @@
 2007-07-05  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver-preferences.c: (help_display),
+	(response_cb):
+	Replace gnome_help_display().
+	Patch from Jani Monoses <jani@ubuntu.com>
+	Fixes #436818
+
+2007-07-05  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c: (get_outside_region), (update_geometry):
 	Fix cloned displays.
 	Patch from Ray Strode <rstrode@redhat.com>

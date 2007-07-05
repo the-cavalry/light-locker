@@ -37,7 +37,6 @@
 #include <gconf/gconf-client.h>
 
 #include <libgnomeui/gnome-ui-init.h>
-#include <libgnomeui/gnome-help.h> /* for gnome_help_display */
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
@@ -407,23 +406,64 @@ preview_set_theme (GtkWidget  *widget,
 }
 
 static void
+help_display (void)
+{
+	GError     *error = NULL;
+	char       *command;
+	const char *lang;
+	char       *uri = NULL;
+	GdkScreen  *gscreen;
+	int         i;
+
+	const char * const * langs = g_get_language_names ();
+
+	for (i = 0; langs[i] != NULL; i++) {
+		lang = langs[i];
+		if (strchr (lang, '.')) {
+			continue;
+		}
+
+		uri = g_build_filename (DATADIR,
+                                        "/gnome/help/user-guide/",
+					lang,
+                                        "/user-guide.xml",
+					NULL);
+
+		if (g_file_test (uri, G_FILE_TEST_EXISTS)) {
+                    break;
+		}
+	}
+
+	command = g_strconcat ("gnome-open ghelp://",
+                               uri,
+                               "?prefs-screensaver",
+                               NULL);
+	gscreen = gdk_screen_get_default ();
+	gdk_spawn_command_line_on_screen (gscreen, command, &error);
+
+	if (error != NULL) {
+		GtkWidget *d;
+
+		d = gtk_message_dialog_new (NULL,
+                                            GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                            GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
+                                            "%s", error->message);
+		gtk_dialog_run (GTK_DIALOG (d));
+		gtk_widget_destroy (d);
+		g_error_free (error);
+	}
+
+	g_free (command);
+	g_free (uri);
+}
+
+static void
 response_cb (GtkWidget *widget,
              int        response_id)
 {
 
         if (response_id == GTK_RESPONSE_HELP) {
-                GError *error;
-                error = NULL;
-                gnome_help_display_desktop (NULL,
-                                            "user-guide",
-                                            "user-guide.xml",
-                                            "prefs-screensaver",
-                                            &error);
-                if (error != NULL) {
-                        g_warning ("%s", error->message);
-                        g_error_free (error);
-                }
-
+                help_display ();
         } else if (response_id == GTK_RESPONSE_REJECT) {
                 GError  *error;
                 gboolean res;
