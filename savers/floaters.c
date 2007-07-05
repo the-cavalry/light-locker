@@ -24,11 +24,14 @@
  *                         Søren Sandmann <sandmann@redhat.com>
  */
 
+#include "config.h"
+
 #include <math.h>
 #include <stdlib.h>
 #include <sysexits.h>
 #include <time.h>
 
+#include <glib.h>
 #include <glib/gi18n.h>
 
 #include <gdk/gdkwindow.h>
@@ -68,6 +71,36 @@
 #ifndef GAMMA
 #define GAMMA 2.2
 #endif
+
+static gboolean should_show_paths = FALSE;
+static gboolean should_do_rotations = FALSE;
+static gboolean should_print_stats = FALSE;
+static gint max_floater_count = FLOATER_DEFAULT_COUNT;
+static gchar *geometry = NULL;
+static gchar **filenames = NULL;
+
+static GOptionEntry options[] = {
+       {"show-paths", 'p', 0, G_OPTION_ARG_NONE, &should_show_paths,
+            N_("Show paths that images follow"), NULL},
+
+       {"do-rotations", 'r', 0, G_OPTION_ARG_NONE, &should_do_rotations,
+            N_("Occasionally rotate images as they move"), NULL},
+
+       {"print-stats", 's', 0, G_OPTION_ARG_NONE, &should_print_stats,
+            N_("Print out frame rate and other statistics"), NULL},
+
+       {"number-of-images", 'n', 0, G_OPTION_ARG_INT, &max_floater_count,
+             N_("The maximum number of images to keep on screen"), N_("MAX_IMAGES")},
+
+       {"geometry", NULL, 0, G_OPTION_ARG_STRING, &geometry, 
+             N_("The initial size and position of window"), N_("WIDTHxHEIGHT+X+Y")},
+
+       {G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &filenames, 
+            N_("The source image to use"), NULL},
+
+       {NULL}
+};
+
 
 typedef struct _Point Point;
 typedef struct _Path Path;
@@ -1148,78 +1181,10 @@ main (int   argc,
 
   GError *error;
 
-  static gboolean should_show_paths = FALSE;
-  static gboolean should_do_rotations = FALSE;
-  static gboolean should_print_stats = FALSE;
-  static gint max_floater_count = FLOATER_DEFAULT_COUNT;
-
-  static gchar *geometry = NULL;
-  static gchar **filenames = NULL;
-
-  static GOptionEntry options[] =
-    {
-      {
-        .long_name = "show-paths",
-        .short_name = 'p',
-        .arg = G_OPTION_ARG_NONE,
-        .arg_data = &should_show_paths,
-        .description = N_("show paths that images follow")
-      },
-      {
-        .long_name = "do-rotations",
-        .short_name = 'r',
-        .arg = G_OPTION_ARG_NONE,
-        .arg_data = &should_do_rotations,
-        .description = N_("occasionally rotate images as they move")
-      },
-      {
-        .long_name = "print-stats",
-        .short_name = 's',
-        .arg = G_OPTION_ARG_NONE,
-        .arg_data = &should_print_stats,
-        .description = N_("print out frame rate and other statistics")
-      },
-      {
-        .long_name = "number-of-images",
-        .short_name = 'n',
-        .flags = 0,
-        .arg = G_OPTION_ARG_INT,
-        .arg_data = &max_floater_count,
-        .description = N_("the maximum number of images to keep on screen"),
-        /* translators: this should be translated to be symbolic of a generic
-         * number.  e.g, "the screen saver should keep N images on the screen"
-         */
-        .arg_description = N_("N")
-      },
-      {
-        .long_name = G_OPTION_REMAINING,
-        .short_name = '\0',
-        .arg = G_OPTION_ARG_FILENAME_ARRAY,
-        .arg_data = &filenames,
-        .description = N_("the source image to use")
-      },
-      {
-        .long_name = "geometry",
-        .flags = 0,
-        .arg = G_OPTION_ARG_STRING,
-        .arg_data = &geometry,
-        .description = N_("the initial size and position of window"),
-        /* translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
-         * can be translated, but the 'x' area indicator and '+' offset indicators
-         * need to be untranslated and can't be rearranged.
-         */
-        .arg_description = N_("WIDTHxHEIGHT+X+Y")
-      },
-      { NULL }
-    };
-
   error = NULL;
 
-#ifdef ENABLE_NLS
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
-#ifdef HAVE_BIND_TEXTDOMAIN_CODESET
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-#endif
   textdomain (GETTEXT_PACKAGE);
 
   gtk_init_with_args (&argc, &argv,
@@ -1228,11 +1193,7 @@ main (int   argc,
                        */
                       _("image - floats images around the screen"),
                       options, GETTEXT_PACKAGE, &error);
-#else
-  gtk_init_with_args (&argc, &argv,
-                      "image - floats images around the screen",
-                      options, NULL, &error);
-#endif
+
 
   if (error != NULL)
     {
