@@ -1,3 +1,9 @@
+2007-07-05  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-manager.c: (gs_manager_deactivate):
+	Always reset the fade when deactivating.
+	Fixes #445443.
+
 2007-04-24  Christian Kirbach  <Christian.Kirbach@googlemail.com>
 
 	* src/gs-fade.c: (gamma_info_init):

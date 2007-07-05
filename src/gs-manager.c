@@ -1517,6 +1517,7 @@ gs_manager_deactivate (GSManager *manager)
         }
 
         remove_unfade_idle (manager);
+        gs_fade_reset (manager->priv->fade);
         remove_timers (manager);
 
         gs_grab_release (manager->priv->grab);
