@@ -1,5 +1,12 @@
 2007-07-05  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-listener-dbus.c: (gs_listener_update_console_kit_idle),
+	(query_session_id):
+	Check the system connection isn't null.
+	Fixes #434712
+
+2007-07-05  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-preferences.c: (help_display),
 	(response_cb):
 	Replace gnome_help_display().

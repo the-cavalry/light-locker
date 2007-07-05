@@ -284,6 +284,11 @@ gs_listener_update_console_kit_idle (GSListener *listener)
                 return;
         }
 
+        if (listener->priv->system_connection == NULL) {
+                gs_debug ("No connection to the system bus");
+                return;
+        }
+
         idle = listener->priv->session_idle;
 
 	gs_debug ("Updating ConsoleKit idle status: %d", idle);
@@ -1898,6 +1903,11 @@ query_session_id (GSListener *listener)
         DBusError       error;
 	DBusMessageIter reply_iter;
         char           *ssid;
+
+        if (listener->priv->system_connection == NULL) {
+                gs_debug ("No connection to the system bus");
+                return NULL;
+        }
 
         ssid = NULL;
 
