@@ -1,5 +1,12 @@
 2007-07-05  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c: (get_outside_region), (update_geometry):
+	Fix cloned displays.
+	Patch from Ray Strode <rstrode@redhat.com>
+	Fixes #354663
+
+2007-07-05  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-manager.c: (gs_manager_deactivate):
 	Always reset the fade when deactivating.
 	Fixes #445443.

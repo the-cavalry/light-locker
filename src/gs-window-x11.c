@@ -292,14 +292,41 @@ gs_window_clear (GSWindow *window)
         gdk_flush ();
 }
 
+static GdkRegion *
+get_outside_region (GSWindow *window)
+{
+        int i;
+        GdkRegion *region;
+
+        region = gdk_region_new ();
+        for (i = 0; i < window->priv->monitor; i++) {
+                GdkRectangle geometry;
+
+                gdk_screen_get_monitor_geometry (GTK_WINDOW (window)->screen,
+                                                   i, &geometry);
+                gdk_region_union_with_rect (region, &geometry);
+        }
+
+        return region;
+}
+
 static void
 update_geometry (GSWindow *window)
 {
         GdkRectangle geometry;
+        GdkRegion *outside_region, *monitor_region;
+
+        outside_region = get_outside_region (window);
 
         gdk_screen_get_monitor_geometry (GTK_WINDOW (window)->screen,
                                          window->priv->monitor,
                                          &geometry);
+        monitor_region = gdk_region_rectangle (&geometry);
+        gdk_region_subtract (monitor_region, outside_region);
+        gdk_region_destroy (outside_region); 
+
+        gdk_region_get_clipbox (monitor_region, &geometry);
+        gdk_region_destroy (monitor_region); 
 
         window->priv->geometry.x = geometry.x;
         window->priv->geometry.y = geometry.y;
