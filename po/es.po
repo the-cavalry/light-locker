@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-24 03:50+0100\n"
-"PO-Revision-Date: 2007-05-04 11:01+0200\n"
+"POT-Creation-Date: 2007-07-06 04:03+0100\n"
+"PO-Revision-Date: 2007-07-06 15:44+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -305,7 +305,7 @@ msgstr "_Salir"
 msgid "_Switch User"
 msgstr "_Cambiar usuario"
 
-#: ../data/lock-dialog-default.glade.h:13 ../src/gs-lock-plug.c:1202
+#: ../data/lock-dialog-default.glade.h:13 ../src/gs-lock-plug.c:1207
 msgid "_Unlock"
 msgstr "_Desbloquear"
 
@@ -341,66 +341,59 @@ msgstr "Esto dibuja una rejilla de cuadros pop-art de colores pulsantes. "
 msgid "Pop art squares"
 msgstr "Cuadrados pop art"
 
-#: ../savers/floaters.c:1166
-msgid "show paths that images follow"
-msgstr "mostrar las rutas que siguen las imágenes"
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr "Mostrar las rutas que siguen las imágenes"
 
-#: ../savers/floaters.c:1173
-msgid "occasionally rotate images as they move"
-msgstr "ocasionalmente rotar las imágenes mientras se mueven"
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "Ocasionalmente rotar las imágenes mientras se mueven"
 
-#: ../savers/floaters.c:1180
-msgid "print out frame rate and other statistics"
-msgstr "imprimir la tasa de fotogramas y otras estadísticas"
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "Imprimir la tasa de fotogramas y otras estadísticas"
 
-#: ../savers/floaters.c:1188
-msgid "the maximum number of images to keep on screen"
-msgstr "el número máximo de imágenes que mantener en la pantalla"
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "El número máximo de imágenes que mantener en la pantalla"
 
-#. translators: this should be translated to be symbolic of a generic
-#. * number.  e.g, "the screen saver should keep N images on the screen"
-#.
-#: ../savers/floaters.c:1192
-msgid "N"
-msgstr "N"
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "MÁX_IMÁGENES"
 
-#: ../savers/floaters.c:1199
-msgid "the source image to use"
-msgstr "La imagen de fuente a usar"
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "El tamaño inicial y la posición de la ventana"
 
-#: ../savers/floaters.c:1206
-msgid "the initial size and position of window"
-msgstr "el tamaño inicial y la posición de la ventana"
-
-#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
-#. * can be translated, but the 'x' area indicator and '+' offset indicators
-#. * need to be untranslated and can't be rearranged.
-#.
-#: ../savers/floaters.c:1211
+#: ../savers/floaters.c:96
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "ANCHURAxALTURA+X+Y"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "La imagen de origen a usar"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1229
+#: ../savers/floaters.c:1194
 msgid "image - floats images around the screen"
 msgstr "imagen - las imágenes flotan alrededor de la pantalla"
 
-#: ../savers/floaters.c:1239
+#: ../savers/floaters.c:1200
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Vea --help para la información de uso.\n"
 
-#: ../savers/floaters.c:1248
+#: ../savers/floaters.c:1209
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "Debe especificar una imagen. Vea --help para la información de uso.\n"
 
-#: ../savers/slideshow.c:49
+#: ../savers/slideshow.c:50
 msgid "Location to get images from"
 msgstr "Lugar del que obtener las imágenes"
 
-#: ../savers/slideshow.c:49
+#: ../savers/slideshow.c:50
 msgid "PATH"
 msgstr "RUTA"
 
@@ -646,37 +639,37 @@ msgstr "Comprobando…"
 msgid "Authentication failed."
 msgstr "La autenticación ha fallado."
 
-#: ../src/gnome-screensaver-preferences.c:461
+#: ../src/gnome-screensaver-preferences.c:501
 msgid "Blank screen"
 msgstr "Oscurecer pantalla"
 
-#: ../src/gnome-screensaver-preferences.c:467
+#: ../src/gnome-screensaver-preferences.c:507
 msgid "Random"
 msgstr "Aleatorio"
 
-#: ../src/gnome-screensaver-preferences.c:837
+#: ../src/gnome-screensaver-preferences.c:877
 msgid "Invalid screensaver theme"
 msgstr "Tema del salvapantallas inválido"
 
-#: ../src/gnome-screensaver-preferences.c:840
+#: ../src/gnome-screensaver-preferences.c:880
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Este archivo no parece ser un tema válido del salvapantallas."
 
-#: ../src/gnome-screensaver-preferences.c:967
+#: ../src/gnome-screensaver-preferences.c:1007
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d hora"
 msgstr[1] "%d horas"
 
-#: ../src/gnome-screensaver-preferences.c:970
+#: ../src/gnome-screensaver-preferences.c:1010
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minuto"
 msgstr[1] "%d minutos"
 
-#: ../src/gnome-screensaver-preferences.c:973
+#: ../src/gnome-screensaver-preferences.c:1013
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -684,15 +677,15 @@ msgstr[0] "%d segundo"
 msgstr[1] "%d segundos"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:979
+#: ../src/gnome-screensaver-preferences.c:1019
 #, c-format
 msgid "%s %s %s"
 msgstr "%s:%s:%s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:982
-#: ../src/gnome-screensaver-preferences.c:990
+#: ../src/gnome-screensaver-preferences.c:1022
+#: ../src/gnome-screensaver-preferences.c:1030
 #, c-format
 msgid "%s %s"
 msgstr "%s:%s"
@@ -700,22 +693,22 @@ msgstr "%s:%s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:985
-#: ../src/gnome-screensaver-preferences.c:993
-#: ../src/gnome-screensaver-preferences.c:997
+#: ../src/gnome-screensaver-preferences.c:1025
+#: ../src/gnome-screensaver-preferences.c:1033
+#: ../src/gnome-screensaver-preferences.c:1037
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1012
+#: ../src/gnome-screensaver-preferences.c:1052
 msgid "Never"
 msgstr "Nunca"
 
-#: ../src/gnome-screensaver-preferences.c:1411
+#: ../src/gnome-screensaver-preferences.c:1451
 msgid "Could not load the main interface"
 msgstr "No se pudo cargar el interfaz principal"
 
-#: ../src/gnome-screensaver-preferences.c:1413
+#: ../src/gnome-screensaver-preferences.c:1453
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Asegúrese de que el salvapantallas está instalado apropiadamente"
 
@@ -749,39 +742,39 @@ msgstr "No le está permitido ganar acceso en este instante."
 msgid "No longer permitted to access the system."
 msgstr "Ya no se le permite acceder en adelante a este sistema."
 
-#: ../src/gs-listener-dbus.c:1817
+#: ../src/gs-listener-dbus.c:1822
 msgid "failed to register with the message bus"
 msgstr "falló al registrarse con el bus del mensaje"
 
-#: ../src/gs-listener-dbus.c:1827
+#: ../src/gs-listener-dbus.c:1832
 msgid "not connected to the message bus"
 msgstr "no conectado al bus de mensajes"
 
-#: ../src/gs-listener-dbus.c:1836
+#: ../src/gs-listener-dbus.c:1841
 msgid "screensaver already running in this session"
 msgstr "ya se está ejecutando el salvapantallas en esta sesión"
 
-#: ../src/gs-lock-plug.c:266
+#: ../src/gs-lock-plug.c:269
 msgid "Time has expired."
 msgstr "Tiempo agotado."
 
-#: ../src/gs-lock-plug.c:294
+#: ../src/gs-lock-plug.c:297
 msgid "You have the Caps Lock key on."
 msgstr "Tiene la tecla «Bloq. Mayúsculas» pulsada."
 
-#: ../src/gs-lock-plug.c:1182
+#: ../src/gs-lock-plug.c:1187
 msgid "S_witch User..."
 msgstr "_Cambiar usuario..."
 
-#: ../src/gs-lock-plug.c:1191
+#: ../src/gs-lock-plug.c:1196
 msgid "Log _Out"
 msgstr "Cerrar _sesión"
 
-#: ../src/gs-lock-plug.c:1367
+#: ../src/gs-lock-plug.c:1372
 msgid "%U on %h"
 msgstr "%U en %h"
 
-#: ../src/gs-lock-plug.c:1381
+#: ../src/gs-lock-plug.c:1386
 msgid "_Password:"
 msgstr "_Contraseña:"
 
