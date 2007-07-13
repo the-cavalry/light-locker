@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-24 03:50+0100\n"
-"PO-Revision-Date: 2007-05-31 12:30+0300\n"
+"POT-Creation-Date: 2007-07-06 04:03+0100\n"
+"PO-Revision-Date: 2007-07-06 08:25+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -298,7 +298,7 @@ msgstr "Logi _välja"
 msgid "_Switch User"
 msgstr "Vaheta _kasutajat"
 
-#: ../data/lock-dialog-default.glade.h:13 ../src/gs-lock-plug.c:1202
+#: ../data/lock-dialog-default.glade.h:13 ../src/gs-lock-plug.c:1207
 msgid "_Unlock"
 msgstr "_Võta lukust lahti"
 
@@ -334,67 +334,60 @@ msgstr "Popkunstilik pulseerivate värvidega ruudustik."
 msgid "Pop art squares"
 msgstr "Popkunstist inspireeritud ruudud"
 
-#: ../savers/floaters.c:1166
-msgid "show paths that images follow"
-msgstr "piltide liikumisteede näitamine"
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr "Piltide liikumisteede näitamine"
 
-#: ../savers/floaters.c:1173
-msgid "occasionally rotate images as they move"
-msgstr "piltide pööramine liikumisel"
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "Piltide juhuslik pööramine liikumisel"
 
-#: ../savers/floaters.c:1180
-msgid "print out frame rate and other statistics"
-msgstr "kaadrisageduse ja muu statistika väljastamine"
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "Kaadrisageduse ja muu statistika väljastamine"
 
-#: ../savers/floaters.c:1188
-msgid "the maximum number of images to keep on screen"
-msgstr "suurim ekraanil hoitavate piltide arv"
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "Suurim ekraanil hoitavate piltide arv"
 
-#. translators: this should be translated to be symbolic of a generic
-#. * number.  e.g, "the screen saver should keep N images on the screen"
-#.
-#: ../savers/floaters.c:1192
-msgid "N"
-msgstr "N"
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr ""
 
-#: ../savers/floaters.c:1199
-msgid "the source image to use"
-msgstr "lähtepilt"
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "Akna lähtesuurus ja -asukoht"
 
-#: ../savers/floaters.c:1206
-msgid "the initial size and position of window"
-msgstr "lähtesuurus ja -asukoht ekraanil"
-
-#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
-#. * can be translated, but the 'x' area indicator and '+' offset indicators
-#. * need to be untranslated and can't be rearranged.
-#.
-#: ../savers/floaters.c:1211
+#: ../savers/floaters.c:96
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "LAIUSxKÕRGUS+X+Y"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "Kasutatav lähtepilt"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1229
+#: ../savers/floaters.c:1194
 msgid "image - floats images around the screen"
 msgstr "pilt - hõljub ekraanil ringi"
 
-#: ../savers/floaters.c:1239
+#: ../savers/floaters.c:1200
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Lähema teabe saamiseks kasuta --help võtit.\n"
 
-#: ../savers/floaters.c:1248
+#: ../savers/floaters.c:1209
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
 "Sa pead määrama ühe pilti.  Lähema teabe saamiseks kasuta --help võtit.\n"
 
-#: ../savers/slideshow.c:49
+#: ../savers/slideshow.c:50
 msgid "Location to get images from"
 msgstr "Piltide hankimise lähtekoht"
 
-#: ../savers/slideshow.c:49
+#: ../savers/slideshow.c:50
 msgid "PATH"
 msgstr "RADA"
 
@@ -637,37 +630,37 @@ msgstr "Kontrollimine..."
 msgid "Authentication failed."
 msgstr "Tõrge autentimisel."
 
-#: ../src/gnome-screensaver-preferences.c:461
+#: ../src/gnome-screensaver-preferences.c:501
 msgid "Blank screen"
 msgstr "Tühi ekraan"
 
-#: ../src/gnome-screensaver-preferences.c:467
+#: ../src/gnome-screensaver-preferences.c:507
 msgid "Random"
 msgstr "Juhuslik"
 
-#: ../src/gnome-screensaver-preferences.c:837
+#: ../src/gnome-screensaver-preferences.c:877
 msgid "Invalid screensaver theme"
 msgstr "Vigane ekraanisäästja teema"
 
-#: ../src/gnome-screensaver-preferences.c:840
+#: ../src/gnome-screensaver-preferences.c:880
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Fail ei paista olevate korrektne ekraanisäästja teema."
 
-#: ../src/gnome-screensaver-preferences.c:967
+#: ../src/gnome-screensaver-preferences.c:1007
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d tund"
 msgstr[1] "%d tundi"
 
-#: ../src/gnome-screensaver-preferences.c:970
+#: ../src/gnome-screensaver-preferences.c:1010
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minut"
 msgstr[1] "%d minutit"
 
-#: ../src/gnome-screensaver-preferences.c:973
+#: ../src/gnome-screensaver-preferences.c:1013
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -675,15 +668,15 @@ msgstr[0] "%d sekund"
 msgstr[1] "%d sekundit"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:979
+#: ../src/gnome-screensaver-preferences.c:1019
 #, c-format
 msgid "%s %s %s"
 msgstr "%s:%s:%s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:982
-#: ../src/gnome-screensaver-preferences.c:990
+#: ../src/gnome-screensaver-preferences.c:1022
+#: ../src/gnome-screensaver-preferences.c:1030
 #, c-format
 msgid "%s %s"
 msgstr "%s:%s"
@@ -691,22 +684,22 @@ msgstr "%s:%s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:985
-#: ../src/gnome-screensaver-preferences.c:993
-#: ../src/gnome-screensaver-preferences.c:997
+#: ../src/gnome-screensaver-preferences.c:1025
+#: ../src/gnome-screensaver-preferences.c:1033
+#: ../src/gnome-screensaver-preferences.c:1037
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1012
+#: ../src/gnome-screensaver-preferences.c:1052
 msgid "Never"
 msgstr "Mitte kunagi"
 
-#: ../src/gnome-screensaver-preferences.c:1411
+#: ../src/gnome-screensaver-preferences.c:1451
 msgid "Could not load the main interface"
 msgstr "Peamist liidest pole võimalik laadida"
 
-#: ../src/gnome-screensaver-preferences.c:1413
+#: ../src/gnome-screensaver-preferences.c:1453
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Palun veendu, et ekraanisäästja on korrektselt paigaldatud"
 
@@ -740,41 +733,44 @@ msgstr "Puudvad õigused ligipääsuks praegusel kellaajal"
 msgid "No longer permitted to access the system."
 msgstr "Süsteemile ligipääsuks pole enam õiguseid."
 
-#: ../src/gs-listener-dbus.c:1817
+#: ../src/gs-listener-dbus.c:1822
 msgid "failed to register with the message bus"
 msgstr "tõrge sõnumisiinile registreerumisel"
 
-#: ../src/gs-listener-dbus.c:1827
+#: ../src/gs-listener-dbus.c:1832
 msgid "not connected to the message bus"
 msgstr "sõnumisiiniga pole ühendust"
 
-#: ../src/gs-listener-dbus.c:1836
+#: ../src/gs-listener-dbus.c:1841
 msgid "screensaver already running in this session"
 msgstr "ekraanisäästja töötab juba selle seansi raames"
 
-#: ../src/gs-lock-plug.c:266
+#: ../src/gs-lock-plug.c:269
 msgid "Time has expired."
 msgstr "Ajapiirang ületati."
 
-#: ../src/gs-lock-plug.c:294
+#: ../src/gs-lock-plug.c:297
 msgid "You have the Caps Lock key on."
 msgstr "Sul on Caps Lock klahv sisse lülitatud"
 
-#: ../src/gs-lock-plug.c:1182
+#: ../src/gs-lock-plug.c:1187
 msgid "S_witch User..."
 msgstr "_Vaheta kasutajat..."
 
-#: ../src/gs-lock-plug.c:1191
+#: ../src/gs-lock-plug.c:1196
 msgid "Log _Out"
 msgstr "Logi _välja"
 
-#: ../src/gs-lock-plug.c:1367
+#: ../src/gs-lock-plug.c:1372
 msgid "%U on %h"
 msgstr "%U hostil %h"
 
-#: ../src/gs-lock-plug.c:1381
+#: ../src/gs-lock-plug.c:1386
 msgid "_Password:"
 msgstr "_Parool:"
+
+#~ msgid "N"
+#~ msgstr "N"
 
 #~ msgid "S_witch to user:"
 #~ msgstr "Vaheta _kasutajat:"
