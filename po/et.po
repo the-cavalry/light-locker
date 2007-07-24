@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-07-06 04:03+0100\n"
-"PO-Revision-Date: 2007-07-06 08:25+0300\n"
+"PO-Revision-Date: 2007-07-17 19:42+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -352,7 +352,7 @@ msgstr "Suurim ekraanil hoitavate piltide arv"
 
 #: ../savers/floaters.c:93
 msgid "MAX_IMAGES"
-msgstr ""
+msgstr "MAKS_PILTE"
 
 #: ../savers/floaters.c:96
 msgid "The initial size and position of window"
@@ -769,43 +769,6 @@ msgstr "%U hostil %h"
 msgid "_Password:"
 msgstr "_Parool:"
 
-#~ msgid "N"
-#~ msgstr "N"
-
-#~ msgid "S_witch to user:"
-#~ msgstr "Vaheta _kasutajat:"
-
-#~ msgid "_Switch user..."
-#~ msgstr "Vaheta _kasutajat..."
-
-#~ msgid "Manager"
-#~ msgstr "Haldur"
-
-#~ msgid "The manager which owns this object."
-#~ msgstr "Selle objekti omanikuks olev haldur."
-
-#~ msgid "Name"
-#~ msgstr "Nimi"
-
-#~ msgid "The name of the X11 display this object refers to."
-#~ msgstr "X11 kuva nimi, millele objekt viitab."
-
-#~ msgid "User"
-#~ msgstr "Kasutaja"
-
-#~ msgid "The user currently logged in on this virtual terminal."
-#~ msgstr "Hetkel sellelt virtuaalterminalilt sisselogitud kasutaja."
-
-#~ msgid "Console"
-#~ msgstr "Konsool"
-
-#~ msgid ""
-#~ "The number of the virtual console this display can be found on, or %-1."
-#~ msgstr "Virtuaalkonsooli number, kust seda kuva leida võib, või %-1."
-
-#~ msgid "Nested"
-#~ msgstr "Pesastatud"
-
 #~ msgid "Whether or not this display is a windowed (Xnest) display."
 #~ msgstr "Kas see kuva on aknas (Xnest) või mitte."
 
@@ -861,21 +824,6 @@ msgstr "_Parool:"
 
 #~ msgid "The user this menu item represents."
 #~ msgstr "Kasutaja, kelle kohta see menüükirje on."
-
-#~ msgid "Icon Size"
-#~ msgstr "Ikooni suurus"
-
-#~ msgid "The size of the icon to use."
-#~ msgstr "Ikoonile määratav suurus."
-
-#~ msgid "Indicator Size"
-#~ msgstr "Näidiku suurus"
-
-#~ msgid "Size of check indicator"
-#~ msgstr "Kontrollnäidiku suurus"
-
-#~ msgid "Indicator Spacing"
-#~ msgstr "Näidiku polsterdus"
 
 #~ msgid "Space between the username and the indicator"
 #~ msgstr "Ruum kasutajanime ja näidiku vahel"
@@ -959,6 +907,3 @@ msgstr "_Parool:"
 
 #~ msgid "Too many messages were sent to gdm and it hung upon us."
 #~ msgstr "GDM-ile saadeti liiga palju sõnumeid ja see katkestats suhtluse."
-
-#~ msgid "Unknown error occurred."
-#~ msgstr "Leidis aset tundmatu viga."
