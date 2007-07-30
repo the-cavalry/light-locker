@@ -45,12 +45,15 @@ main (int argc, char **argv)
         GError        *error;
         gboolean       ret;
         char          *location = NULL;
+        char          *background_color = NULL;
         gboolean       sort_images = FALSE;
         GOptionEntry  entries [] = {
                 { "location", 0, 0, G_OPTION_ARG_STRING, &location,
                   N_("Location to get images from"), N_("PATH") },
+                { "background-color", 0, 0, G_OPTION_ARG_STRING, &background_color,
+                  N_("Color to use for images background"), N_("#abcdef") },
                 { "sort-images", 0, 0, G_OPTION_ARG_NONE, &sort_images,
-                  "Do not randomize pictures from location", NULL },
+                  N_("Do not randomize pictures from location"), NULL },
                 { NULL }
         };
 
@@ -98,6 +101,10 @@ main (int argc, char **argv)
 
         if (sort_images) {
                 g_object_set (engine, "sort-images", sort_images, NULL);
+        }
+
+        if (background_color != NULL) {
+                g_object_set (engine, "background-color", background_color, NULL);
         }
 
         gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (engine));

@@ -67,9 +67,10 @@ struct GSTESlideshowPrivate
 
         GSList         *filename_list;
         char           *images_location;
+        gboolean	sort_images;
         int             window_width;
         int             window_height;
-        gboolean	sort_images;
+        PangoColor     *background_color;
 
         guint           timeout_id;
 
@@ -80,7 +81,8 @@ struct GSTESlideshowPrivate
 enum {
         PROP_0,
         PROP_IMAGES_LOCATION,
-        PROP_SORT_IMAGES
+        PROP_SORT_IMAGES,
+        PROP_SOLID_BACKGROUND
 };
 
 #define GSTE_SLIDESHOW_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSTE_TYPE_SLIDESHOW, GSTESlideshowPrivate))
@@ -164,6 +166,24 @@ start_fade (GSTESlideshow *show,
         x = (window_width - pw) / 2;
         y = (window_height - ph) / 2;
 
+        if (gdk_pixbuf_get_has_alpha (pixbuf) && show->priv->background_color) {
+                GdkPixbuf *colored;
+                guint32 color;
+                GdkPixmap *pixmap;
+
+                color = (show->priv->background_color->red << 16) 
+                        + (show->priv->background_color->green / 256 << 8)
+                        + show->priv->background_color->blue / 256;
+                colored = gdk_pixbuf_composite_color_simple (pixbuf, pw, ph,GDK_INTERP_BILINEAR,255,256,color,color);
+                pixmap = gdk_pixmap_new (NULL, ph, pw,  gdk_visual_get_system ()->depth );
+
+                gdk_draw_pixbuf (pixmap, NULL, colored, 0, 0, 0, 0, -1, -1, GDK_RGB_DITHER_MAX, 0, 0);
+                gdk_pixbuf_get_from_drawable (pixbuf, pixmap, NULL, 0, 0, 0, 0, -1, -1);
+
+                g_object_unref (pixmap);
+
+                g_object_unref(colored);
+	}
         cr = cairo_create (show->priv->surf);
 
         /* XXX Handle out of memory? */
@@ -218,25 +238,49 @@ update_display (GSTESlideshow *show)
                 /* fade out areas not covered by the new image */
                 /* top */
                 cairo_rectangle (cr, 0, 0, window_width, show->priv->pat2top);
-                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
+                if (show->priv->background_color) {
+                        cairo_set_source_rgba (cr, show->priv->background_color->red/65535.0,
+                               show->priv->background_color->green/65535.0,
+                               show->priv->background_color->blue/65535.0, show->priv->alpha2);
+                } else {
+	                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
+		}
                 cairo_fill (cr);
                 /* left (excluding what's covered by top and bottom) */
                 cairo_rectangle (cr, 0, show->priv->pat2top,
                                  show->priv->pat2left,
                                  show->priv->pat2bottom - show->priv->pat2top);
-                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
+                if (show->priv->background_color) {
+                        cairo_set_source_rgba (cr, show->priv->background_color->red/65535.0,
+                               show->priv->background_color->green/65535.0,
+                               show->priv->background_color->blue/65535.0, show->priv->alpha2);
+                } else {
+	                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
+		}
                 cairo_fill (cr);
                 /* bottom */
                 cairo_rectangle (cr, 0, show->priv->pat2bottom, window_width,
                                  window_height - show->priv->pat2bottom);
-                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
+                if (show->priv->background_color) {
+                        cairo_set_source_rgba (cr, show->priv->background_color->red/65535.0,
+                               show->priv->background_color->green/65535.0,
+                               show->priv->background_color->blue/65535.0, show->priv->alpha2);
+                } else {
+	                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
+		}
                 cairo_fill (cr);
                 /* right (excluding what's covered by top and bottom) */
                 cairo_rectangle (cr, show->priv->pat2right,
                                  show->priv->pat2top,
                                  window_width - show->priv->pat2right,
                                  show->priv->pat2bottom - show->priv->pat2top);
-                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
+                if (show->priv->background_color)  {
+                        cairo_set_source_rgba (cr, show->priv->background_color->red/65535.0,
+                               show->priv->background_color->green/65535.0,
+                               show->priv->background_color->blue/65535.0, show->priv->alpha2);
+                } else {
+	                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
+		}
                 cairo_fill (cr);
 
                 gs_theme_engine_profile_start ("paint pattern to surface");
@@ -623,13 +667,33 @@ gste_slideshow_set_images_location (GSTESlideshow *show,
 
 void
 gste_slideshow_set_sort_images (GSTESlideshow *show,
-                            gboolean sort_images)
+                                gboolean       sort_images)
 {
         g_return_if_fail (GSTE_IS_SLIDESHOW (show));
 
         show->priv->sort_images = sort_images;
 }
 
+void
+gste_slideshow_set_background_color (GSTESlideshow *show,
+                                     const char    *background_color)
+{
+        g_return_if_fail (GSTE_IS_SLIDESHOW (show));
+
+        if (show->priv->background_color != NULL) {
+                g_slice_free (PangoColor, show->priv->background_color);
+                show->priv->background_color = NULL;
+        }
+
+        if (background_color != NULL) {
+               show->priv->background_color = g_slice_new (PangoColor);
+
+               if (pango_color_parse (show->priv->background_color, background_color) == FALSE) {
+                       g_slice_free (PangoColor, show->priv->background_color);
+                       show->priv->background_color = NULL;
+               }
+        }
+}
 
 static void
 gste_slideshow_set_property (GObject            *object,
@@ -647,6 +711,9 @@ gste_slideshow_set_property (GObject            *object,
                 break;
         case PROP_SORT_IMAGES:
                 gste_slideshow_set_sort_images (self, g_value_get_boolean (value));
+                break;
+        case PROP_SOLID_BACKGROUND:
+                gste_slideshow_set_background_color (self, g_value_get_string (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -671,6 +738,14 @@ gste_slideshow_get_property (GObject            *object,
 	case PROP_SORT_IMAGES:
 		g_value_set_boolean (value, self->priv->sort_images);
 		break;
+        case PROP_SOLID_BACKGROUND:
+                {
+                        char *color = NULL;
+                        color = pango_color_to_string (self->priv->background_color);
+                        g_value_set_string (value, color);
+                        g_free (color);
+                        break;
+                }
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -777,7 +852,6 @@ gste_slideshow_class_init (GSTESlideshowClass *klass)
                                                               NULL,
                                                               NULL,
                                                               G_PARAM_READWRITE));
-
         g_object_class_install_property (object_class,
                                          PROP_SORT_IMAGES,
                                          g_param_spec_boolean ("sort-images",
@@ -785,7 +859,13 @@ gste_slideshow_class_init (GSTESlideshowClass *klass)
                                                                NULL,
                                                                FALSE,
                                                                G_PARAM_READWRITE));
-
+        g_object_class_install_property (object_class,
+                                         PROP_SOLID_BACKGROUND,
+                                         g_param_spec_string ("background-color",
+                                                              NULL,
+                                                              NULL,
+                                                              NULL,
+                                                              G_PARAM_READWRITE));
 }
 
 static void
@@ -864,6 +944,11 @@ gste_slideshow_finalize (GObject *object)
 
         g_free (show->priv->images_location);
         show->priv->images_location = NULL;
+
+	if (show->priv->background_color) {
+		g_slice_free (PangoColor, show->priv->background_color);
+		show->priv->background_color = NULL;
+	}
 
         if (show->priv->timer != NULL) {
                 g_timer_destroy (show->priv->timer);

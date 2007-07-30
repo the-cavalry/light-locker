@@ -1,5 +1,17 @@
 2007-07-30  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/gste-slideshow.c: (start_fade), (update_display),
+	(gste_slideshow_set_background_color),
+	(gste_slideshow_set_property), (gste_slideshow_get_property),
+	(gste_slideshow_class_init), (gste_slideshow_finalize):
+	* savers/gste-slideshow.h:
+	* savers/slideshow.c: (main):
+	Add an option to set the background color for the slideshow.
+	Patch from Frederic Crozat <fcrozat@mandriva.com>
+	Fixes #461814
+
+2007-07-30  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/gste-slideshow.c: (gste_strcmp_compare_func),
 	(get_pixbuf_from_local_dir), (gste_slideshow_set_sort_images),
 	(gste_slideshow_set_property), (gste_slideshow_get_property),
