@@ -904,11 +904,6 @@ spawn_on_window (GSWindow *window,
                                                  &standard_error,
                                                  &error);
 
-        for (i = 0; i < env->len; i++) {
-                g_free (g_ptr_array_index (env, i));
-        }
-        g_ptr_array_free (env, TRUE);
-
         if (! result) {
                 gs_debug ("Could not start command '%s': %s", command, error->message);
                 g_error_free (error);
