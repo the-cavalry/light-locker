@@ -1,5 +1,11 @@
 2007-07-30  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c: (spawn_on_window), (popup_dialog_idle):
+	Don't try to filter environment for dialog any more.
+	Fixes #327602
+
+2007-07-30  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-preferences.c (get_best_visual):
 	Use g_debug for debug message instead of g_message.
 	Patch from Bill Nottingham  <notting@redhat.com>

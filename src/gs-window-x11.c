@@ -821,72 +821,6 @@ gs_window_get_gdk_window (GSWindow *window)
         return GTK_WIDGET (window)->window;
 }
 
-static GPtrArray *
-get_env_vars (GtkWidget *widget)
-{
-        GPtrArray *env;
-        char      *str;
-        int        i;
-        static const char *allowed_env_vars [] = {
-                "PATH",
-                "LD_LIBRARY_PATH",
-                "SESSION_MANAGER",
-                "XAUTHORITY",
-                "XAUTHLOCALHOSTNAME",
-                "KRB5CCNAME",
-                "KRBTKFILE",
-                "LANG",
-                "LANGUAGE",
-                "LC_ALL",
-                "LC_CTYPE",
-                "LC_MESSAGES",
-                "LOGNAME",
-                "RUNNING_UNDER_GDM",
-                "GTK_DATA_PREFIX",
-                "GTK_EXE_PREFIX",
-                "GTK_IM_MODULE",
-                "GTK_IM_MODULE_FILE",
-                "GTK_MODULES",
-                "GTK_PATH",
-                "GTK2_RC_FILES",
-                "XDG_CONFIG_DIRS",
-                "XDG_DATA_DIRS",
-                "XDG_CACHE_HOME",
-                "XDG_CONFIG_HOME",
-                "XDG_DATA_HOME",
-                "MB_KBD_CONFIG",
-                "MB_KBD_VARIANT",
-                "MB_KBD_LANG",
-                "DBUS_SESSION_BUS_ADDRESS"
-        };
-
-        env = g_ptr_array_new ();
-
-        str = gdk_screen_make_display_name (gtk_widget_get_screen (widget));
-        g_ptr_array_add (env, g_strdup_printf ("DISPLAY=%s", str));
-        g_free (str);
-
-        g_ptr_array_add (env, g_strdup_printf ("HOME=%s",
-                                               g_get_home_dir ()));
-
-        for (i = 0; i < G_N_ELEMENTS (allowed_env_vars); i++) {
-                const char *var;
-                const char *val;
-                var = allowed_env_vars [i];
-                val = g_getenv (var);
-                if (val != NULL) {
-                        char *str;
-                        str = g_strdup_printf ("%s=%s", var, val);
-                        g_ptr_array_add (env, str);
-                        gs_debug ("adding environment: %s", str);
-                }
-        }
-
-        g_ptr_array_add (env, NULL);
-
-        return env;
-}
-
 /* just for debugging */
 static gboolean
 error_watch (GIOChannel   *source,
@@ -940,7 +874,6 @@ spawn_on_window (GSWindow *window,
 {
         int         argc;
         char      **argv;
-        GPtrArray  *env;
         GError     *error;
         gboolean    result;
         GIOChannel *channel;
@@ -957,13 +890,11 @@ spawn_on_window (GSWindow *window,
                 return FALSE;
         }
 
-        env = get_env_vars (GTK_WIDGET (window));
-
         error = NULL;
         result = gdk_spawn_on_screen_with_pipes (GTK_WINDOW (window)->screen,
                                                  NULL,
                                                  argv,
-                                                 (char **)env->pdata,
+                                                 NULL,
                                                  G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
                                                  NULL,
                                                  NULL,
@@ -1494,8 +1425,8 @@ popup_dialog_idle (GSWindow *window)
         }
 
 	if (window->priv->away_message) {
-		gchar *quoted;
-		
+		char *quoted;
+
 		quoted = g_shell_quote (window->priv->away_message);
 		g_string_append_printf (command, " --away-message=%s", quoted);
 		g_free (quoted);
