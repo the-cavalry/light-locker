@@ -1,5 +1,10 @@
 2007-07-30  William Jon McCann  <mccann@jhu.edu>
 
+	* data/lock-dialog-default.glade:
+	Remove string marked for translation.
+
+2007-07-30  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-listener-dbus.c: (listener_add_ck_ref_entry),
 	(listener_remove_ck_ref_entry),
 	(_listener_message_path_is_our_session),
