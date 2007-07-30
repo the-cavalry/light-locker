@@ -83,6 +83,8 @@ struct GSListenerPrivate
         time_t          active_start;
         time_t          session_idle_start;
         char           *session_id;
+
+        guint32         ck_throttle_cookie;
 };
 
 typedef struct
@@ -842,6 +844,39 @@ listener_dbus_get_ref_entries (GSListener     *listener,
         return DBUS_HANDLER_RESULT_HANDLED;
 }
 
+static void
+listener_add_ck_ref_entry (GSListener     *listener,
+                           int             entry_type,
+                           DBusConnection *connection,
+                           DBusMessage    *message,
+                           guint32        *cookiep)
+{
+        GSListenerRefEntry *entry;
+
+        entry = g_new0 (GSListenerRefEntry, 1);
+        entry->entry_type = entry_type;
+        entry->connection = g_strdup (dbus_message_get_sender (message));
+        entry->cookie = listener_generate_unique_key (listener, entry_type);
+        entry->application = g_strdup ("ConsoleKit");
+        entry->reason = g_strdup ("Session is not active");
+        g_get_current_time (&entry->since);
+
+        /* takes ownership of entry */
+        listener_add_ref_entry (listener, entry_type, entry);
+
+        if (cookiep != NULL) {
+                *cookiep = entry->cookie;
+        }
+}
+
+static void
+listener_remove_ck_ref_entry (GSListener *listener,
+                              int         entry_type,
+                              guint32     cookie)
+{
+        listener_remove_ref_entry (listener, entry_type, cookie);
+}
+
 static DBusHandlerResult
 listener_dbus_add_ref_entry (GSListener     *listener,
                              int             entry_type,
@@ -1408,6 +1443,25 @@ listener_dbus_handle_session_message (DBusConnection *connection,
         return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
 }
 
+static gboolean
+_listener_message_path_is_our_session (GSListener  *listener,
+                                       DBusMessage *message)
+{
+        const char *ssid;
+        gboolean    ours;
+
+        ours = FALSE;
+
+        ssid = dbus_message_get_path (message);
+        if (ssid != NULL
+            && listener->priv->session_id != NULL
+            && strcmp (ssid, listener->priv->session_id) == 0) {
+                ours = TRUE;
+        }
+
+        return ours;
+}
+
 static DBusHandlerResult
 listener_dbus_handle_system_message (DBusConnection *connection,
                                      DBusMessage    *message,
@@ -1443,32 +1497,76 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                                 g_signal_emit (listener, signals [LOCK], 0);
                         }
                 }
+
                 if (dbus_error_is_set (&error)) {
                         dbus_error_free (&error);
                 }
 
                 return DBUS_HANDLER_RESULT_HANDLED;
         } else if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "Unlock")) {
-                const char *ssid;
-
-                ssid = dbus_message_get_path (message);
-                if (ssid != NULL
-                    && listener->priv->session_id != NULL
-                    && strcmp (ssid, listener->priv->session_id) == 0) {
+                if (_listener_message_path_is_our_session (listener, message)) {
                         gs_debug ("Console kit requested session unlock");
                         gs_listener_set_active (listener, FALSE);
                 }
 
                 return DBUS_HANDLER_RESULT_HANDLED;
         } else if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "Lock")) {
-                const char *ssid;
-
-                ssid = dbus_message_get_path (message);
-                if (ssid != NULL
-                    && listener->priv->session_id != NULL
-                    && strcmp (ssid, listener->priv->session_id) == 0) {
+                if (_listener_message_path_is_our_session (listener, message)) {
                         gs_debug ("ConsoleKit requested session lock");
                         gs_listener_set_active (listener, TRUE);
+                }
+
+                return DBUS_HANDLER_RESULT_HANDLED;
+        } else if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "ActiveChanged")) {
+		/* NB that `ActiveChanged' refers to the active
+		 * session in ConsoleKit terminology - ie which
+		 * session is currently displayed on the screen.
+		 * gnome-screensaver uses `active' to mean `is the
+		 * screensaver active' (ie, is the screen locked) but
+		 * that's not what we're referring to here.
+		 */
+
+                if (_listener_message_path_is_our_session (listener, message)) {
+			DBusError   error;
+			dbus_bool_t new_active;
+
+			dbus_error_init (&error);
+			if (dbus_message_get_args (message, &error,
+						   DBUS_TYPE_BOOLEAN, &new_active,
+						   DBUS_TYPE_INVALID)) {
+				gs_debug ("ConsoleKit notified ActiveChanged %d", new_active);
+
+                                /* when we aren't active add an implicit throttle from CK
+                                 * when we become active remove the throttle and poke the lock */
+				if (new_active) {
+                                        if (listener->priv->ck_throttle_cookie != 0) {
+                                                listener_remove_ck_ref_entry (listener,
+                                                                              REF_ENTRY_TYPE_THROTTLE,
+                                                                              listener->priv->ck_throttle_cookie);
+                                                listener->priv->ck_throttle_cookie = 0;
+                                        }
+
+					g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
+				} else {
+                                        if (listener->priv->ck_throttle_cookie != 0) {
+                                                g_warning ("ConsoleKit throttle already set");
+                                                listener_remove_ck_ref_entry (listener,
+                                                                              REF_ENTRY_TYPE_THROTTLE,
+                                                                              listener->priv->ck_throttle_cookie);
+                                                listener->priv->ck_throttle_cookie = 0;
+                                        }
+
+                                        listener_add_ck_ref_entry (listener,
+                                                                   REF_ENTRY_TYPE_THROTTLE,
+                                                                   connection,
+                                                                   message,
+                                                                   &listener->priv->ck_throttle_cookie);
+                                }
+			}
+
+			if (dbus_error_is_set (&error)) {
+				dbus_error_free (&error);
+			}
                 }
 
                 return DBUS_HANDLER_RESULT_HANDLED;
@@ -1608,8 +1706,9 @@ listener_dbus_filter_function (DBusConnection *connection,
                                            DBUS_INTERFACE_DBUS,
                                            "NameOwnerChanged")) {
 
-                if (listener->priv->inhibitors != NULL)
+                if (listener->priv->inhibitors != NULL) {
                         listener_service_deleted (listener, message);
+                }
         } else {
                 return listener_dbus_handle_session_message (connection, message, user_data, FALSE);
         }
@@ -1890,6 +1989,11 @@ gs_listener_acquire (GSListener *listener,
                             "type='signal'"
                             ",interface='"CK_SESSION_INTERFACE"'"
                             ",member='Lock'",
+                            NULL);
+        dbus_bus_add_match (listener->priv->system_connection,
+                            "type='signal'"
+                            ",interface='"CK_SESSION_INTERFACE"'"
+                            ",member='ActiveChanged'",
                             NULL);
 
         return acquired;

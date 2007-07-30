@@ -1,5 +1,16 @@
 2007-07-30  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-listener-dbus.c: (listener_add_ck_ref_entry),
+	(listener_remove_ck_ref_entry),
+	(_listener_message_path_is_our_session),
+	(listener_dbus_handle_system_message),
+	(listener_dbus_filter_function), (gs_listener_acquire):
+	Respond to ConsoleKit ActiveChanged signals.
+	Based on a patch from Ian Jackson <iwj@ubuntu.com>
+	Fixes #461028
+
+2007-07-30  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/gste-slideshow.c: (start_fade), (update_display):
 	Fix up some style issues.
 
