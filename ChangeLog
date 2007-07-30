@@ -1,5 +1,9 @@
 2007-07-30  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c (create_page_one): Add translator comment.
+
+2007-07-30  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c: (spawn_on_window), (popup_dialog_idle):
 	Don't try to filter environment for dialog any more.
 	Fixes #327602

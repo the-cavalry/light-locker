@@ -92,10 +92,10 @@ static GOptionEntry options[] = {
        {"number-of-images", 'n', 0, G_OPTION_ARG_INT, &max_floater_count,
              N_("The maximum number of images to keep on screen"), N_("MAX_IMAGES")},
 
-       {"geometry", NULL, 0, G_OPTION_ARG_STRING, &geometry, 
+       {"geometry", NULL, 0, G_OPTION_ARG_STRING, &geometry,
              N_("The initial size and position of window"), N_("WIDTHxHEIGHT+X+Y")},
 
-       {G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &filenames, 
+       {G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &filenames,
             N_("The source image to use"), NULL},
 
        {NULL}

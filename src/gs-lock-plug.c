@@ -1369,6 +1369,7 @@ create_page_one (GSLockPlug *plug)
         gtk_label_set_use_markup (GTK_LABEL (plug->priv->auth_realname_label), TRUE);
         gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->auth_realname_label, FALSE, FALSE, 0);
 
+        /* To translators: This expands to USERNAME on HOSTNAME */
         str = g_strdup_printf ("<span size=\"small\">%s</span>", _("%U on %h"));
         plug->priv->auth_username_label = gtk_label_new (str);
         g_free (str);
