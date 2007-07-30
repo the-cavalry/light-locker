@@ -1343,8 +1343,8 @@ get_best_visual (void)
                         visual_id = (VisualID) v;
                         visual = gdkx_visual_get (visual_id);
 
-                        g_message ("Found best visual for GL: 0x%x",
-                                   (unsigned int) visual_id);
+                        g_debug ("Found best visual for GL: 0x%x",
+                                 (unsigned int) visual_id);
                 }
         }
 

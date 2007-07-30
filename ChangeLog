@@ -1,3 +1,10 @@
+2007-07-30  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gnome-screensaver-preferences.c (get_best_visual):
+	Use g_debug for debug message instead of g_message.
+	Patch from Bill Nottingham  <notting@redhat.com>
+	Fixes #456705
+
 ==== 2.19.5 ====
 
 2007-07-09  William Jon McCann  <mccann@jhu.edu>
