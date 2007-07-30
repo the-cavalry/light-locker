@@ -1,5 +1,43 @@
 
 ===============
+Version 2.19.6
+===============
+
+  gnome-screensaver
+
+        * Fixed #327602, gnome-screensaver never propagates the environment to its helper dialog (William Jon McCann)
+        * Fixed #456705, useless message on stdout (Bill Nottingham)
+        * Fixed #461028, console-kit ActiveChanged (VC switch) does not trigger unlock request (Ian Jackson)
+        * Fixed #461722, Add support to disable slideshow randomization (Frederic Crozat)
+        * Fixed #461814, Allow to specify background color for image slideshow (Frederic Crozat)
+        * Fixed #461824, remove libexif dependency (Frederic Crozat)
+
+  Translators
+
+        * Updated mn: Djihed Afifi <djihed@gmail.com>
+        * Updated nl: Wouter Bolsterlee
+        * Updated be@latin: Ihar Hrachyshka
+        * Updated vi: Nguyễn Thái Ngọc Duy, Clytie Siddall
+        * Updated nb: Kjartan Maraas
+        * Updated de: Andre Klapper
+        * Updated sv: Daniel Nylander
+        * Updated mk: Daniel Nylander
+        * Updated hu: Gabor Kelemen
+        * Updated lv: Daniel Nylander, Djihed Afifi <djihed@gmail.com>
+        * Updated si: I. Felix, si
+        * Updated en_GB: David Lodge
+        * Updated dz: Pema Geyleg
+        * Updated pl: Artur Flinta
+        * Updated th: Theppitak Karoonboonyanan
+        * Updated fi: Ilkka Tuohela
+        * Updated et: Priit Laes
+        * Updated ja: Takeshi AIHANA
+        * Updated es: Jorge Gonzalez
+        * Updated ta: I. Felix, I Felix
+
+
+
+===============
 Version 2.19.5
 ===============
 
