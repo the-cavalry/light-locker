@@ -69,6 +69,7 @@ struct GSTESlideshowPrivate
         char           *images_location;
         int             window_width;
         int             window_height;
+        gboolean	sort_images;
 
         guint           timeout_id;
 
@@ -78,7 +79,8 @@ struct GSTESlideshowPrivate
 
 enum {
         PROP_0,
-        PROP_IMAGES_LOCATION
+        PROP_IMAGES_LOCATION,
+        PROP_SORT_IMAGES
 };
 
 #define GSTE_SLIDESHOW_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSTE_TYPE_SLIDESHOW, GSTESlideshowPrivate))
@@ -461,6 +463,14 @@ build_filename_list_local_dir (const char *base)
         return list;
 }
 
+static int
+gste_strcmp_compare_func (gconstpointer string_a, gconstpointer string_b)
+{
+        return strcmp (string_a == NULL ? "" : string_a,
+                       string_b == NULL ? "" : string_b);
+}
+
+
 static GdkPixbuf *
 get_pixbuf_from_local_dir (GSTESlideshow *show,
                            const char    *location)
@@ -476,12 +486,19 @@ get_pixbuf_from_local_dir (GSTESlideshow *show,
         }
 
         if (show->priv->filename_list == NULL) {
+                if (show->priv->sort_images) {
+                        show->priv->filename_list = g_slist_sort (show->priv->filename_list, gste_strcmp_compare_func);
+                }
                 return NULL;
         }
 
-        /* get a random filename */
-        i = g_random_int_range (0, g_slist_length (show->priv->filename_list));
-        l = g_slist_nth (show->priv->filename_list, i);
+        /* get a random filename if needed */
+        if (! show->priv->sort_images) {
+                i = g_random_int_range (0, g_slist_length (show->priv->filename_list));
+                l = g_slist_nth (show->priv->filename_list, i);
+        } else {
+                l = show->priv->filename_list;
+        }
         filename = l->data;
 
         pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
@@ -603,6 +620,17 @@ gste_slideshow_set_images_location (GSTESlideshow *show,
         show->priv->images_location = g_strdup (location);
 }
 
+
+void
+gste_slideshow_set_sort_images (GSTESlideshow *show,
+                            gboolean sort_images)
+{
+        g_return_if_fail (GSTE_IS_SLIDESHOW (show));
+
+        show->priv->sort_images = sort_images;
+}
+
+
 static void
 gste_slideshow_set_property (GObject            *object,
                              guint               prop_id,
@@ -616,6 +644,9 @@ gste_slideshow_set_property (GObject            *object,
         switch (prop_id) {
         case PROP_IMAGES_LOCATION:
                 gste_slideshow_set_images_location (self, g_value_get_string (value));
+                break;
+        case PROP_SORT_IMAGES:
+                gste_slideshow_set_sort_images (self, g_value_get_boolean (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -637,6 +668,9 @@ gste_slideshow_get_property (GObject            *object,
         case PROP_IMAGES_LOCATION:
                 g_value_set_string (value, self->priv->images_location);
                 break;
+	case PROP_SORT_IMAGES:
+		g_value_set_boolean (value, self->priv->sort_images);
+		break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -743,6 +777,14 @@ gste_slideshow_class_init (GSTESlideshowClass *klass)
                                                               NULL,
                                                               NULL,
                                                               G_PARAM_READWRITE));
+
+        g_object_class_install_property (object_class,
+                                         PROP_SORT_IMAGES,
+                                         g_param_spec_boolean ("sort-images",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE));
 
 }
 

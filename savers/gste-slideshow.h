@@ -55,6 +55,9 @@ GSThemeEngine  *gste_slideshow_new              (void);
 void            gste_slideshow_set_images_location (GSTESlideshow *show,
                                                     const char    *location);
 
+void            gste_slideshow_set_sort_images     (GSTESlideshow *show,
+                                                    gboolean       sort_image);
+
 G_END_DECLS
 
 #endif /* __GSTE_SLIDESHOW_H */
