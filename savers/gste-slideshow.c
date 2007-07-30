@@ -30,16 +30,6 @@
 #include <glib/gthread.h>
 #include <gtk/gtk.h>
 
-#if HAVE_EXIF
-#include <libexif/exif-data.h>
-#include <libexif/exif-ifd.h>
-#include <libexif/exif-content.h>
-#include <libexif/exif-tag.h>
-#include <libexif/exif-byte-order.h>
-#include <libexif/exif-format.h>
-#include <libexif/exif-utils.h>
-#endif /* HAVE_EXIF */
-
 #include "gs-theme-engine.h"
 #include "gste-slideshow.h"
 
@@ -112,231 +102,6 @@ typedef struct _OpResult
 {
         GdkPixbuf *pixbuf;
 } OpResult;
-
-#if HAVE_EXIF
-
-enum _ExifRotation {
-        NORMAL = 1,
-        HFLIP,
-        ROTATE180,
-        VFLIP,
-        ROTATE90_HFLIP,
-        ROTATE90,
-        ROTATE90_VFLIP,
-        ROTATE270
-};
-typedef enum _ExifRotation ExifRotation;
-
-static ExifRotation
-get_exif_orientation (const char *filename)
-{
-        ExifData     *edata;
-        ExifEntry    *entry;
-        ExifByteOrder o;
-        ExifRotation  s;
-        unsigned int  i;
-
-        edata = exif_data_new_from_file (filename);
-
-        if (edata == NULL) {
-                return 0;
-        }
-
-        o = exif_data_get_byte_order (edata);
-
-        for (i = 0; i < EXIF_IFD_COUNT; i++) {
-                entry = exif_content_get_entry (edata->ifd [i],
-                                                EXIF_TAG_ORIENTATION);
-                if (entry != NULL) {
-                        s = (ExifRotation)exif_get_short (entry->data, o);
-                        exif_data_unref (edata);
-
-                        return s;
-                }
-        }
-
-        exif_data_unref (edata);
-
-        return 0;
-}
-
-/* Routines for rotating a GdkPixbuf.
- * Borrowed from f-spot.
- * For copyright information see libfspot/f-pixbuf-utils.c in the f-spot
- * package.
- */
-
-/* Returns a copy of pixbuf src rotated 90 degrees clockwise or 90
-   counterclockwise.  */
-static GdkPixbuf *
-pixbuf_copy_rotate_90 (GdkPixbuf *src,
-                       gboolean   counter_clockwise)
-{
-        GdkPixbuf *dest;
-        int        has_alpha;
-        int        sw, sh, srs;
-        int        dw, dh, drs;
-        guchar    *s_pix;
-        guchar    *d_pix;
-        guchar    *sp;
-        guchar    *dp;
-        int        i, j;
-        int        a;
-
-        if (src == NULL) {
-                return NULL;
-        }
-
-        sw = gdk_pixbuf_get_width (src);
-        sh = gdk_pixbuf_get_height (src);
-        has_alpha = gdk_pixbuf_get_has_alpha (src);
-        srs = gdk_pixbuf_get_rowstride (src);
-        s_pix = gdk_pixbuf_get_pixels (src);
-
-        dw = sh;
-        dh = sw;
-        dest = gdk_pixbuf_new (GDK_COLORSPACE_RGB, has_alpha, 8, dw, dh);
-        drs = gdk_pixbuf_get_rowstride (dest);
-        d_pix = gdk_pixbuf_get_pixels (dest);
-
-        a = (has_alpha ? 4 : 3);
-
-        for (i = 0; i < sh; i++) {
-                sp = s_pix + (i * srs);
-                for (j = 0; j < sw; j++) {
-                        if (counter_clockwise) {
-                                dp = d_pix + ((dh - j - 1) * drs) + (i * a);
-                        } else {
-                                dp = d_pix + (j * drs) + ((dw - i - 1) * a);
-                        }
-
-                        *(dp++) = *(sp++);	/* r */
-                        *(dp++) = *(sp++);	/* g */
-                        *(dp++) = *(sp++);	/* b */
-                        if (has_alpha) {
-                                *(dp) = *(sp++);	/* a */
-                        }
-                }
-        }
-
-        return dest;
-}
-
-/* Returns a copy of pixbuf mirrored and or flipped.  TO do a 180 degree
-   rotations set both mirror and flipped TRUE if mirror and flip are FALSE,
-   result is a simple copy.  */
-static GdkPixbuf *
-pixbuf_copy_mirror (GdkPixbuf *src,
-                    gboolean   mirror,
-                    gboolean   flip)
-{
-        GdkPixbuf *dest;
-        int        has_alpha;
-        int        w, h, srs;
-        int        drs;
-        guchar    *s_pix;
-        guchar    *d_pix;
-        guchar    *sp;
-        guchar    *dp;
-        int        i, j;
-        int        a;
-
-        if (src == NULL) {
-                return NULL;
-        }
-
-        w = gdk_pixbuf_get_width (src);
-        h = gdk_pixbuf_get_height (src);
-        has_alpha = gdk_pixbuf_get_has_alpha (src);
-        srs = gdk_pixbuf_get_rowstride (src);
-        s_pix = gdk_pixbuf_get_pixels (src);
-
-        dest = gdk_pixbuf_new (GDK_COLORSPACE_RGB, has_alpha, 8, w, h);
-        drs = gdk_pixbuf_get_rowstride (dest);
-        d_pix = gdk_pixbuf_get_pixels (dest);
-
-        a = has_alpha ? 4 : 3;
-
-        for (i = 0; i < h; i++)	{
-                sp = s_pix + (i * srs);
-                if (flip) {
-                        dp = d_pix + ((h - i - 1) * drs);
-                } else {
-                        dp = d_pix + (i * drs);
-                }
-
-                if (mirror) {
-                        dp += (w - 1) * a;
-                        for (j = 0; j < w; j++) {
-                                *(dp++) = *(sp++);	/* r */
-                                *(dp++) = *(sp++);	/* g */
-                                *(dp++) = *(sp++);	/* b */
-                                if (has_alpha) {
-                                        *(dp) = *(sp++);	/* a */
-                                }
-                                dp -= (a + 3);
-                        }
-                } else {
-                        for (j = 0; j < w; j++) {
-                                *(dp++) = *(sp++);	/* r */
-                                *(dp++) = *(sp++);	/* g */
-                                *(dp++) = *(sp++);	/* b */
-                                if (has_alpha) {
-                                        *(dp++) = *(sp++);	/* a */
-                                }
-                        }
-                }
-        }
-
-        return dest;
-}
-
-static GdkPixbuf *
-update_from_exif_data (char      *filename,
-                       GdkPixbuf *pixbuf)
-{
-        GdkPixbuf *newpixbuf = NULL;
-        GdkPixbuf *tmppixbuf = NULL;
-
-        if (pixbuf == NULL) {
-                return NULL;
-        }
-
-        switch (get_exif_orientation (filename)) {
-        case NORMAL:
-                break;
-        case HFLIP:
-                newpixbuf = pixbuf_copy_mirror (pixbuf, TRUE, FALSE);
-                break;
-        case ROTATE180:
-                newpixbuf = pixbuf_copy_mirror (pixbuf, TRUE, TRUE);
-                break;
-        case VFLIP:
-                newpixbuf = pixbuf_copy_mirror (pixbuf, FALSE, TRUE);
-                break;
-        case ROTATE90_HFLIP:
-                tmppixbuf = pixbuf_copy_mirror (pixbuf, FALSE, TRUE);
-                newpixbuf = pixbuf_copy_rotate_90 (tmppixbuf, FALSE);
-                g_object_unref (tmppixbuf);
-                break;
-        case ROTATE90:
-                newpixbuf = pixbuf_copy_rotate_90 (pixbuf, FALSE);
-                break;
-        case ROTATE90_VFLIP:
-                tmppixbuf = pixbuf_copy_mirror (pixbuf, TRUE, FALSE);
-                newpixbuf = pixbuf_copy_rotate_90 (tmppixbuf, FALSE);
-                g_object_unref (tmppixbuf);
-                break;
-        case ROTATE270:
-                newpixbuf = pixbuf_copy_rotate_90 (pixbuf, TRUE);
-                break;
-        default:
-                break;
-        }
-
-        return newpixbuf;
-}
-#endif /* HAVE_EXIF */
 
 static gboolean
 push_load_image_func (GSTESlideshow *show)
@@ -700,7 +465,7 @@ static GdkPixbuf *
 get_pixbuf_from_local_dir (GSTESlideshow *show,
                            const char    *location)
 {
-        GdkPixbuf *pixbuf;
+        GdkPixbuf *pixbuf, *transformed_pixbuf;
         char      *filename;
         int        i;
         GSList    *l;
@@ -721,23 +486,14 @@ get_pixbuf_from_local_dir (GSTESlideshow *show,
 
         pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
 
-#if HAVE_EXIF
-        /* try to get exif data and rotate the image if necessary */
-        if (pixbuf != NULL) {
-                GdkPixbuf *rotated;
+        transformed_pixbuf = gdk_pixbuf_apply_embedded_orientation (pixbuf);
 
-                rotated = update_from_exif_data (filename, pixbuf);
-                if (rotated) {
-                        g_object_unref (pixbuf);
-                        pixbuf = rotated;
-                }
-        }
-#endif /* HAVE_EXIF */
+        g_object_unref (pixbuf);
 
         g_free (filename);
         show->priv->filename_list = g_slist_delete_link (show->priv->filename_list, l);
 
-        return pixbuf;
+        return transformed_pixbuf;
 }
 
 static GdkPixbuf *

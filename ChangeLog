@@ -1,5 +1,13 @@
 2007-07-30  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac:
+	* savers/gste-slideshow.c: (get_pixbuf_from_local_dir):
+	Remove exif dependency.
+	Patch from Frederic Crozat <fcrozat@mandriva.com>
+	Fixes #461824
+
+2007-07-30  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (create_page_one): Add translator comment.
 
 2007-07-30  William Jon McCann  <mccann@jhu.edu>
