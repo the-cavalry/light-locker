@@ -1,5 +1,10 @@
 2007-07-30  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/gste-slideshow.c: (start_fade), (update_display):
+	Fix up some style issues.
+
+2007-07-30  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/gste-slideshow.c: (start_fade), (update_display),
 	(gste_slideshow_set_background_color),
 	(gste_slideshow_set_property), (gste_slideshow_get_property),
