@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-06 04:03+0100\n"
-"PO-Revision-Date: 2007-07-06 15:44+0200\n"
+"POT-Creation-Date: 2007-07-31 04:05+0100\n"
+"PO-Revision-Date: 2007-07-31 21:20+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -282,30 +282,22 @@ msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
 #: ../data/lock-dialog-default.glade.h:7
-msgid "Authentication"
-msgstr "Autenticación"
-
-#: ../data/lock-dialog-default.glade.h:8
-msgid "Note"
-msgstr "Nota"
-
-#: ../data/lock-dialog-default.glade.h:9
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: ../data/lock-dialog-default.glade.h:10
+#: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
 msgstr "_Dejar mensaje"
 
-#: ../data/lock-dialog-default.glade.h:11
+#: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
 msgstr "_Salir"
 
-#: ../data/lock-dialog-default.glade.h:12
+#: ../data/lock-dialog-default.glade.h:10
 msgid "_Switch User"
 msgstr "_Cambiar usuario"
 
-#: ../data/lock-dialog-default.glade.h:13 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
 msgid "_Unlock"
 msgstr "_Desbloquear"
 
@@ -389,13 +381,25 @@ msgstr "%s. Vea --help para la información de uso.\n"
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "Debe especificar una imagen. Vea --help para la información de uso.\n"
 
-#: ../savers/slideshow.c:50
+#: ../savers/slideshow.c:52
 msgid "Location to get images from"
 msgstr "Lugar del que obtener las imágenes"
 
-#: ../savers/slideshow.c:50
+#: ../savers/slideshow.c:52
 msgid "PATH"
 msgstr "RUTA"
+
+#: ../savers/slideshow.c:54
+msgid "Color to use for images background"
+msgstr "Color a usar para el fondo de las imágenes"
+
+#: ../savers/slideshow.c:54
+msgid "#abcdef"
+msgstr "#abcdef"
+
+#: ../savers/slideshow.c:56
+msgid "Do not randomize pictures from location"
+msgstr "No usar aleatoriamente imágenes de una ubicación"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -742,15 +746,15 @@ msgstr "No le está permitido ganar acceso en este instante."
 msgid "No longer permitted to access the system."
 msgstr "Ya no se le permite acceder en adelante a este sistema."
 
-#: ../src/gs-listener-dbus.c:1822
+#: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
 msgstr "falló al registrarse con el bus del mensaje"
 
-#: ../src/gs-listener-dbus.c:1832
+#: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
 msgstr "no conectado al bus de mensajes"
 
-#: ../src/gs-listener-dbus.c:1841
+#: ../src/gs-listener-dbus.c:1940
 msgid "screensaver already running in this session"
 msgstr "ya se está ejecutando el salvapantallas en esta sesión"
 
@@ -770,11 +774,12 @@ msgstr "_Cambiar usuario..."
 msgid "Log _Out"
 msgstr "Cerrar _sesión"
 
-#: ../src/gs-lock-plug.c:1372
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1373
 msgid "%U on %h"
 msgstr "%U en %h"
 
-#: ../src/gs-lock-plug.c:1386
+#: ../src/gs-lock-plug.c:1387
 msgid "_Password:"
 msgstr "_Contraseña:"
 
