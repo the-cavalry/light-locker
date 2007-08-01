@@ -3,14 +3,12 @@
 # Daniel Nylander <po@danielnylander.se>, 2006, 2007.
 # Christian Rose <menthos@menthos.com>, 2005.
 #
-# $Id: sv.po,v 1.8 2006/11/19 19:31:10 dnylande Exp $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-17 17:51+0200\n"
-"PO-Revision-Date: 2007-07-17 15:36+0100\n"
+"POT-Creation-Date: 2007-08-01 20:08+0200\n"
+"PO-Revision-Date: 2007-08-01 20:08+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -113,116 +111,59 @@ msgstr "Läge för val av skärmsläckartema"
 
 #: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr ""
-"Ställ in den här till TRUE för att aktivera skärmsläckaren när sessionen är "
-"inaktiv."
+msgstr "Ställ in den här till TRUE för att aktivera skärmsläckaren när sessionen är inaktiv."
 
 #: ../data/gnome-screensaver.schemas.in.h:12
-msgid ""
-"Set this to TRUE to allow embedding a keyboard into the window when trying "
-"to unlock. The \"keyboard_command\" key must be set with the appropriate "
-"command."
-msgstr ""
-"Ställ in detta till TRUE för att tillåta inbäddning av ett tangentbord i "
-"fönstret vid försök att låsa upp. Nyckeln \"keyboard_command\" måste ställas "
-"in med lämpligt kommando."
+msgid "Set this to TRUE to allow embedding a keyboard into the window when trying to unlock. The \"keyboard_command\" key must be set with the appropriate command."
+msgstr "Ställ in detta till TRUE för att tillåta inbäddning av ett tangentbord i fönstret vid försök att låsa upp. Nyckeln \"keyboard_command\" måste ställas in med lämpligt kommando."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr ""
-"Ställ in den här till TRUE för att låsa skärmen när skärmsläckaren blir "
-"aktiverad."
+msgstr "Ställ in den här till TRUE för att låsa skärmen när skärmsläckaren blir aktiverad."
 
 #: ../data/gnome-screensaver.schemas.in.h:14
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to switch to a "
-"different user account."
-msgstr ""
-"Ställ in den här till TRUE för att erbjuda ett alternativ i "
-"upplåsningsdialogen om att byta till ett annat användarkonto."
+msgid "Set this to TRUE to offer an option in the unlock dialog to switch to a different user account."
+msgstr "Ställ in den här till TRUE för att erbjuda ett alternativ i upplåsningsdialogen om att byta till ett annat användarkonto."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
-msgid ""
-"Set this to TRUE to offer an option in unlock dialog to logging out after a "
-"delay. The Delay is specified in the \"logout_delay\" key."
-msgstr ""
-"Ställ in den här till TRUE för att erbjuda ett alternativ i "
-"upplåsningsdialogen om att logga ut efter en viss fördröjning. Fördröjningen "
-"anges i nyckeln \"logout_delay\"."
+msgid "Set this to TRUE to offer an option in unlock dialog to logging out after a delay. The Delay is specified in the \"logout_delay\" key."
+msgstr "Ställ in den här till TRUE för att erbjuda ett alternativ i upplåsningsdialogen om att logga ut efter en viss fördröjning. Fördröjningen anges i nyckeln \"logout_delay\"."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
-msgid ""
-"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
-"set to TRUE, to embed a keyboard widget into the window. This command should "
-"implement an XEMBED plug interface and output a window XID on the standard "
-"output."
-msgstr ""
-"Kommandot som kommer att köras, om nyckeln \"embedded_keyboard_enabled\" är "
-"inställd till TRUE, för att inbädda en tangentbordswidget i fönstret. Detta "
-"kommando bör implementera en XEMBED-insticksgränssnitt och skriva ut ett "
-"fönster-xid på standard ut."
+msgid "The command that will be run, if the \"embedded_keyboard_enabled\" key is set to TRUE, to embed a keyboard widget into the window. This command should implement an XEMBED plug interface and output a window XID on the standard output."
+msgstr "Kommandot som kommer att köras, om nyckeln \"embedded_keyboard_enabled\" är inställd till TRUE, för att inbädda en tangentbordswidget i fönstret. Detta kommando bör implementera en XEMBED-insticksgränssnitt och skriva ut ett fönster-xid på standard ut."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The command to invoke when the logout button is clicked. This command should "
-"simply log the user out without any interaction. This key has effect only if "
-"the \"logout_enable\" key is set to TRUE."
-msgstr ""
-"Kommandot att starta när utloggningsknappen klickas på. Det här kommandot "
-"ska helt enkelt logga ut användaren utan någon interaktion. Den här nyckeln "
-"har endast effekt om nyckeln \"logout_enable\" är inställd till TRUE."
+msgid "The command to invoke when the logout button is clicked. This command should simply log the user out without any interaction. This key has effect only if the \"logout_enable\" key is set to TRUE."
+msgstr "Kommandot att starta när utloggningsknappen klickas på. Det här kommandot ska helt enkelt logga ut användaren utan någon interaktion. Den här nyckeln har endast effekt om nyckeln \"logout_enable\" är inställd till TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The number of minutes after screensaver activation before locking the screen."
+msgid "The number of minutes after screensaver activation before locking the screen."
 msgstr "Antal minuter efter att skärmsläckaren aktiverats innan skärmen låses."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes after the screensaver activation before a logout "
-"option will appear in unlock dialog. This key has effect only if the "
-"\"logout_enable\" key is set to TRUE."
-msgstr ""
-"Antal minuter efter att skärmsläckaren aktiverats innan ett "
-"utloggningsalternativ visas i upplåsningsdialogen.  Den här nyckeln har "
-"endast effekt om nyckeln \"logout_enable\" är inställd till TRUE."
+msgid "The number of minutes after the screensaver activation before a logout option will appear in unlock dialog. This key has effect only if the \"logout_enable\" key is set to TRUE."
+msgstr "Antal minuter efter att skärmsläckaren aktiverats innan ett utloggningsalternativ visas i upplåsningsdialogen.  Den här nyckeln har endast effekt om nyckeln \"logout_enable\" är inställd till TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr ""
-"Antal minuter efter att skärmsläckaren aktiverats innan sessionen anses som "
-"inaktiv."
+msgid "The number of minutes of inactivity before the session is considered idle."
+msgstr "Antal minuter efter att skärmsläckaren aktiverats innan sessionen anses som inaktiv."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "Antal minuter att köra innan skärmsläckartemat byts."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
-msgid ""
-"The number of seconds of inactivity before signalling to power-management. "
-"This key is set and maintained by the session power-management agent."
-msgstr ""
-"Antalet sekunders inaktivitet innan signalering om strömhantering. Den här "
-"nyckeln är inställd och hanteras av sessionsagenten för strömhantering."
+msgid "The number of seconds of inactivity before signalling to power-management. This key is set and maintained by the session power-management agent."
+msgstr "Antalet sekunders inaktivitet innan signalering om strömhantering. Den här nyckeln är inställd och hanteras av sessionsagenten för strömhantering."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid "The reason for being away from the computer."
 msgstr "Anledningen till frånvaro från datorn."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
-msgid ""
-"The selection mode used by screensaver. May be \"blank-only\" to enable the "
-"screensaver without using any theme on activation, \"single\" to enable "
-"screensaver using only one theme on activation (specified in \"themes\" "
-"key), and \"random\" to enable the screensaver using a random theme on "
-"activation."
-msgstr ""
-"Valläget som används av skärmsläckaren. Kan vara \"blank-only\" för att "
-"aktivera skärmsläckaren utan att använda något tema vid aktivering, \"single"
-"\" för att aktivera skärmsläckaren med endast ett tema vid aktivering (anges "
-"i nyckeln \"themes\" och \"random\" för att aktivera skärmsläckaren med ett "
-"slumpmässigt tema vid aktivering."
+msgid "The selection mode used by screensaver. May be \"blank-only\" to enable the screensaver without using any theme on activation, \"single\" to enable screensaver using only one theme on activation (specified in \"themes\" key), and \"random\" to enable the screensaver using a random theme on activation."
+msgstr "Valläget som används av skärmsläckaren. Kan vara \"blank-only\" för att aktivera skärmsläckaren utan att använda något tema vid aktivering, \"single\" för att aktivera skärmsläckaren med endast ett tema vid aktivering (anges i nyckeln \"themes\" och \"random\" för att aktivera skärmsläckaren med ett slumpmässigt tema vid aktivering."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
@@ -233,15 +174,8 @@ msgid "Theme to use for the lock dialog."
 msgstr "Tema att använda för låsningsdialogen."
 
 #: ../data/gnome-screensaver.schemas.in.h:27
-msgid ""
-"This key specifies the list of themes to be used by the screensaver. It's "
-"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
-"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
-"\" is \"random\"."
-msgstr ""
-"Den här nyckeln anger temalistan som ska användas av skärmsläckaren. Den "
-"ignoreras när \"mode\"-nyckeln är \"blank-only\", ska ge temanamnet när "
-"\"mode\" är \"single\" och ska ge en temalista när \"mode\" är \"random\"."
+msgid "This key specifies the list of themes to be used by the screensaver. It's ignored when \"mode\" key is \"blank-only\", should provide the theme name when \"mode\" is \"single\", and should provide a list of themes when \"mode\" is \"random\"."
+msgstr "Den här nyckeln anger temalistan som ska användas av skärmsläckaren. Den ignoreras när \"mode\"-nyckeln är \"blank-only\", ska ge temanamnet när \"mode\" är \"single\" och ska ge en temalista när \"mode\" är \"random\"."
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
@@ -279,30 +213,23 @@ msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
 #: ../data/lock-dialog-default.glade.h:7
-msgid "Authentication"
-msgstr "Autentisering"
-
-#: ../data/lock-dialog-default.glade.h:8
-msgid "Note"
-msgstr "Anteckning"
-
-#: ../data/lock-dialog-default.glade.h:9
 msgid "_Cancel"
 msgstr "_Avbryt"
 
-#: ../data/lock-dialog-default.glade.h:10
+#: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
 msgstr "_Lämna meddelande"
 
-#: ../data/lock-dialog-default.glade.h:11
+#: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
 msgstr "_Logga ut"
 
-#: ../data/lock-dialog-default.glade.h:12
+#: ../data/lock-dialog-default.glade.h:10
 msgid "_Switch User"
 msgstr "_Byt användare"
 
-#: ../data/lock-dialog-default.glade.h:13 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11
+#: ../src/gs-lock-plug.c:1207
 msgid "_Unlock"
 msgstr "Lås _upp"
 
@@ -386,13 +313,25 @@ msgstr "%s. Se --help för information om användning.\n"
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "Du måste ange en bild.  Se --help för information om användning.\n"
 
-#: ../savers/slideshow.c:50
+#: ../savers/slideshow.c:52
 msgid "Location to get images from"
 msgstr "Plats att hämta bilder från"
 
-#: ../savers/slideshow.c:50
+#: ../savers/slideshow.c:52
 msgid "PATH"
 msgstr "SÖKVÄG"
+
+#: ../savers/slideshow.c:54
+msgid "Color to use for images background"
+msgstr "Färg att använda för bildbakgrund"
+
+#: ../savers/slideshow.c:54
+msgid "#abcdef"
+msgstr "#abcdef"
+
+#: ../savers/slideshow.c:56
+msgid "Do not randomize pictures from location"
+msgstr "Slumpa inte bilder från platsen"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -444,7 +383,8 @@ msgstr "Totala URI:er"
 msgid "Total number of URIs"
 msgstr "Totalt antal URI:er"
 
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+#: ../src/file-transfer-dialog.c:327
+#: ../src/file-transfer-dialog.c:369
 msgid "Copying files"
 msgstr "Kopierar filer"
 
@@ -474,9 +414,7 @@ msgstr "Fråga om tidsperioden som skärmsläckaren har varit aktiv"
 
 #: ../src/gnome-screensaver-command.c:68
 msgid "Tells the running screensaver process to lock the screen immediately"
-msgstr ""
-"Berättar för den körande skärmsläckarprocessen att skärmen ska låsas "
-"omedelbart"
+msgstr "Berättar för den körande skärmsläckarprocessen att skärmen ska låsas omedelbart"
 
 #: ../src/gnome-screensaver-command.c:70
 msgid "If the screensaver is active then switch to another graphics demo"
@@ -495,12 +433,8 @@ msgid "Poke the running screensaver to simulate user activity"
 msgstr "Peta på den körande skärmsläckaren för att simulera användaraktivitet"
 
 #: ../src/gnome-screensaver-command.c:78
-msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
-msgstr ""
-"Hindra skärmsläckaren från att aktiveras.  Kommandot blockeras när "
-"hindringen är aktiv."
+msgid "Inhibit the screensaver from activating.  Command blocks while inhibit is active."
+msgstr "Hindra skärmsläckaren från att aktiveras.  Kommandot blockeras när hindringen är aktiv."
 
 #: ../src/gnome-screensaver-command.c:80
 msgid "The calling application that is inhibiting the screensaver"
@@ -510,7 +444,8 @@ msgstr "Det anropande programmet som hindrar skärmsläckaren"
 msgid "The reason for inhibiting the screensaver"
 msgstr "Anledning för hindring av skärmsläckaren"
 
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver-command.c:84
+#: ../src/gnome-screensaver-dialog.c:55
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Detta programs versionsnummer"
@@ -558,12 +493,15 @@ msgid "MESSAGE"
 msgstr "MEDDELANDE"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
-#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:173
+#: ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:175
+#: ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Användarnamn:"
 
-#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
+#: ../src/gnome-screensaver-dialog.c:176
+#: ../src/gnome-screensaver-dialog.c:177
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "Lösenord:"
@@ -628,7 +566,8 @@ msgstr "Tyvärr, lösenorden stämmer inte överens"
 msgid "Checking..."
 msgstr "Kontrollerar..."
 
-#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:299
+#: ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "Autentisering misslyckades."
 
@@ -735,15 +674,15 @@ msgstr "Inte tillåten att få åtkomst vid denna tidpunkt."
 msgid "No longer permitted to access the system."
 msgstr "Tillåts inte längre att komma åt systemet."
 
-#: ../src/gs-listener-dbus.c:1822
+#: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
 msgstr "misslyckades att registrera med meddelandebussen"
 
-#: ../src/gs-listener-dbus.c:1832
+#: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
 msgstr "inte ansluten till meddelandebussen"
 
-#: ../src/gs-listener-dbus.c:1841
+#: ../src/gs-listener-dbus.c:1940
 msgid "screensaver already running in this session"
 msgstr "skärmsläckaren kör redan i denna session"
 
@@ -763,183 +702,140 @@ msgstr "B_yt användare..."
 msgid "Log _Out"
 msgstr "Logga _ut"
 
-#: ../src/gs-lock-plug.c:1372
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1373
 msgid "%U on %h"
 msgstr "%U på %h"
 
-#: ../src/gs-lock-plug.c:1386
+#: ../src/gs-lock-plug.c:1387
 msgid "_Password:"
 msgstr "_Lösenord:"
 
+#~ msgid "Authentication"
+#~ msgstr "Autentisering"
+#~ msgid "Note"
+#~ msgstr "Anteckning"
 #~ msgid "N"
 #~ msgstr "n"
-
 #~ msgid "S_witch to user:"
 #~ msgstr "Byt &till användare:"
-
 #~ msgid "_Switch user..."
 #~ msgstr "_Byt användare..."
-
 #~ msgid "Manager"
 #~ msgstr "Hanterare"
-
 #~ msgid "The manager which owns this object."
 #~ msgstr "Hanteraren som äger detta objekt."
-
 #~ msgid "Name"
 #~ msgstr "Namn"
-
 #~ msgid "The name of the X11 display this object refers to."
 #~ msgstr "Namnet på den X11-display som den här objektet refererar till."
-
 #~ msgid "User"
 #~ msgstr "Användare"
-
 #~ msgid "The user currently logged in on this virtual terminal."
 #~ msgstr ""
 #~ "Användaren som för närvarande är inloggad på den här virtuella terminalen."
-
 #~ msgid "Console"
 #~ msgstr "Konsoll"
-
 #~ msgid ""
 #~ "The number of the virtual console this display can be found on, or %-1."
 #~ msgstr ""
 #~ "Antalet virtuella konsoller som den här displayen kan hittas på, eller %-"
 #~ "1."
-
 #~ msgid "Nested"
 #~ msgstr "Nästlad"
-
 #~ msgid "Whether or not this display is a windowed (Xnest) display."
 #~ msgstr "Huruvida det här displayen är en fönsterdisplay (Xnest)."
-
 #~ msgid "The display manager could not be contacted for unknown reasons."
 #~ msgstr "Displayhanteraren kunde inte kontaktas av okända anledningar."
-
 #~ msgid "The display manager is not running or too old."
 #~ msgstr "Displayhanteraren kör inte eller är för gammal."
-
 #~ msgid "The configured limit of flexible servers has been reached."
 #~ msgstr "Det största tillåtna antalet flexibla servrar är uppnått."
-
 #~ msgid "There was an unknown error starting X."
 #~ msgstr "Det inträffade ett okänt fel när X startades."
-
 #~ msgid "The X server failed to finish starting."
 #~ msgstr "X-servern misslyckades att starta upp korrekt."
-
 #~ msgid "There are too many X sessions running."
 #~ msgstr "För många X-sessioner kör."
-
 #~ msgid "The nested X server (Xnest) cannot connect to your current X server."
 #~ msgstr ""
 #~ "Den nästlade X-servern (Xnest) kan inte ansluta till din nuvarande X-"
 #~ "server."
-
 #~ msgid "The X server in the GDM configuration could not be found."
 #~ msgstr "X-servern i GDM-konfigurationen kunde inte hittas."
-
 #~ msgid ""
 #~ "Trying to set an unknown logout action, or trying to set a logout action "
 #~ "which is not available."
 #~ msgstr ""
 #~ "Försöker ställa in en okänd utloggningsåtgärd, eller försöker ställa in "
 #~ "en utloggningsåtgärd som inte är tillgänglig."
-
 #~ msgid "Virtual terminals not supported."
 #~ msgstr "Virtuella terminaler stöds inte."
-
 #~ msgid "Invalid virtual terminal number."
 #~ msgstr "Ogiltigt nummer på virtuell terminal."
-
 #~ msgid "Trying to update an unsupported configuration key."
 #~ msgstr "Försöker att uppdatera en konfigurationsnyckel som inte stöds."
-
 #~ msgid "~/.Xauthority file badly configured or missing."
 #~ msgstr "Filen ~/.Xauthority är felaktigt konfigurerad eller saknas."
-
 #~ msgid "Too many messages were sent to the display manager, and it hung up."
 #~ msgstr ""
 #~ "För många meddelanden skickades till displayhanteraren och det hängde oss."
-
 #~ msgid "The display manager sent an unknown error message."
 #~ msgstr "Displayhanteraren skickade ett okänt felmeddelande."
-
 #~ msgid "The user this menu item represents."
 #~ msgstr "Den användare som denna menypost representerar."
-
 #~ msgid "Icon Size"
 #~ msgstr "Ikonstorlek"
-
 #~ msgid "The size of the icon to use."
 #~ msgstr "Storleken på ikonen att använda."
-
 #~ msgid "Indicator Size"
 #~ msgstr "Indikatorstorlek"
-
 #~ msgid "Size of check indicator"
 #~ msgstr "Storlek på kontrollindikator"
-
 #~ msgid "Indicator Spacing"
 #~ msgstr "Indikatormellanrum"
-
 #~ msgid "Space between the username and the indicator"
 #~ msgstr "Mellanrum mellan användarnamnet och indikatorn"
-
 #~ msgid "The user manager object this user is controlled by."
 #~ msgstr "Användarhanterarobjektet som den här användaren kontrolleras av."
-
 #~ msgid "Show Details"
 #~ msgstr "Visa detaljer"
-
 #~ msgid "GDM (The GNOME Display Manager) is not running."
 #~ msgstr "GDM (GNOME:s displayhanterare) kör inte."
-
 #~ msgid ""
 #~ "You might in fact be using a different display manager, such as KDM (KDE "
 #~ "Display Manager) or xdm."
 #~ msgstr ""
 #~ "Du kanske i själva verket använder en annan displayhanterare som till "
 #~ "exempel KDM (KDE:s displayhanterare) eller xdm."
-
 #~ msgid ""
 #~ "If you still wish to use this feature, either start GDM yourself or ask "
 #~ "your system administrator to start GDM."
 #~ msgstr ""
 #~ "Om du fortfarande vill använda denna funktion bör du antingen själv "
 #~ "starta GDM eller be din systemadministratör att starta GDM."
-
 #~ msgid "Cannot communicate with GDM (The GNOME Display Manager)"
 #~ msgstr "Kan inte kommunicera med GDM (GNOME:s displayhanterare)"
-
 #~ msgid "Perhaps you have an old version of GDM running."
 #~ msgstr "Du kanske har en gammal version körandes."
-
 #~ msgid ""
 #~ "Cannot communicate with gdm, perhaps you have an old version running."
 #~ msgstr ""
 #~ "Kan inte kommunicera med gdm, du kanske har en gammal version körandes."
-
 #~ msgid "The allowed limit of flexible X servers reached."
 #~ msgstr "Det största tillåtna antalet flexibla X-servrar är uppnått."
-
 #~ msgid "There were errors trying to start the X server."
 #~ msgstr "Det inträffade fel vid försök att starta X-servern."
-
 #~ msgid "The X server failed.  Perhaps it is not configured well."
 #~ msgstr "X-servern misslyckades. Den är kanske inte korrekt konfigurerad."
-
 #~ msgid "Too many X sessions running."
 #~ msgstr "För många X-sessioner kör."
-
 #~ msgid ""
 #~ "The nested X server (Xnest) cannot connect to your current X server.  You "
 #~ "may be missing an X authorization file."
 #~ msgstr ""
 #~ "Den nästlade X-servern (Xnest) kan inte ansluta till din nuvarande X-"
 #~ "server. Du kanske saknar en X-auktoriseringsfil."
-
 #~ msgid ""
 #~ "The nested X server (Xnest) is not available, or gdm is badly "
 #~ "configured.\n"
@@ -948,34 +844,27 @@ msgstr "_Lösenord:"
 #~ "Den nästlade X-servern (Xnest) är inte tillgänglig, eller så är gdm "
 #~ "felaktigt konfigurerad.\n"
 #~ "Installera paketet Xnest för att använda den nästlade inloggingen."
-
 #~ msgid ""
 #~ "The X server is not available, it is likely that gdm is badly configured."
 #~ msgstr ""
 #~ "X-servern är inte tillgänglig, det är troligt att gdm är felaktigt "
 #~ "konfigurerad."
-
 #~ msgid "Trying to change to an invalid virtual terminal number."
 #~ msgstr "Försöker ändra till ett ogiltigt tal för en virtuell terminal."
-
 #~ msgid ""
 #~ "You do not seem to have authentication needed be for this operation.  "
 #~ "Perhaps your .Xauthority file is not set up correctly."
 #~ msgstr ""
 #~ "Du verkar inte ha den autentisering som behövs för denna åtgärd. Din ."
 #~ "Xauthority-fil är kanske inte korrekt konfigurerad."
-
 #~ msgid "Too many messages were sent to gdm and it hung upon us."
 #~ msgstr "För många meddelanden skickades till gdm och det hängde oss."
-
 #~ msgid "Unknown error occurred."
 #~ msgstr "Ett okänt fel inträffade."
-
 #~ msgid "Time before activation"
 #~ msgstr "Tid före aktivering"
-
 #~ msgid "_Screensaver"
 #~ msgstr "_Skärmsläckare"
-
 #~ msgid "Allow monitor power management"
 #~ msgstr "Tillåt strömhantering för skärmen"
+
