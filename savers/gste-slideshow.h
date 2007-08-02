@@ -61,6 +61,9 @@ void            gste_slideshow_set_sort_images      (GSTESlideshow *show,
 void            gste_slideshow_set_background_color (GSTESlideshow *show,
                                                      const char    *background_color);
 
+void            gste_slideshow_set_no_stretch_hint  (GSTESlideshow *show,
+                                                     gboolean       no_stretch_hint);
+
 G_END_DECLS
 
 #endif /* __GSTE_SLIDESHOW_H */

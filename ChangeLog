@@ -1,5 +1,15 @@
 2007-08-02  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/gste-slideshow.c: (scale_pixbuf), (get_pixbuf),
+	(gste_slideshow_set_no_stretch_hint),
+	(gste_slideshow_set_property), (gste_slideshow_get_property),
+	(gste_slideshow_class_init):
+	* savers/gste-slideshow.h:
+	* savers/slideshow.c: (main):
+	Add --no-stretch option to slideshow engine.
+
+2007-08-02  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/gste-slideshow.c: (get_pixbuf_from_local_dir):
 	* savers/slideshow.c: (main):
 	Misc fixes.

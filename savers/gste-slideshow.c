@@ -71,6 +71,7 @@ struct GSTESlideshowPrivate
         int             window_width;
         int             window_height;
         PangoColor     *background_color;
+        gboolean        no_stretch_hint;
 
         guint           timeout_id;
 
@@ -82,7 +83,8 @@ enum {
         PROP_0,
         PROP_IMAGES_LOCATION,
         PROP_SORT_IMAGES,
-        PROP_SOLID_BACKGROUND
+        PROP_SOLID_BACKGROUND,
+        PROP_NO_STRETCH_HINT
 };
 
 #define GSTE_SLIDESHOW_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSTE_TYPE_SLIDESHOW, GSTESlideshowPrivate))
@@ -436,14 +438,14 @@ results_pull_func (GSTESlideshow *show)
 static GdkPixbuf *
 scale_pixbuf (GdkPixbuf *pixbuf,
               int        max_width,
-              int        max_height)
+              int        max_height,
+              gboolean   no_stretch_hint)
 {
         int        pw;
         int        ph;
         float      scale_factor_x = 1.0;
         float      scale_factor_y = 1.0;
         float      scale_factor = 1.0;
-        GdkPixbuf *scaled = NULL;
 
         pw = gdk_pixbuf_get_width (pixbuf);
         ph = gdk_pixbuf_get_height (pixbuf);
@@ -464,17 +466,18 @@ scale_pixbuf (GdkPixbuf *pixbuf,
                 scale_factor = scale_factor_x;
         }
 
-        if (1) {
+        /* always scale down, allow to disable scaling up */
+        if (scale_factor < 1.0 || !no_stretch_hint) {
                 int scale_x = (int) (pw * scale_factor);
                 int scale_y = (int) (ph * scale_factor);
 
-                scaled = gdk_pixbuf_scale_simple (pixbuf,
-                                                  scale_x,
-                                                  scale_y,
-                                                  GDK_INTERP_BILINEAR);
+                return gdk_pixbuf_scale_simple (pixbuf,
+                                                scale_x,
+                                                scale_y,
+                                                GDK_INTERP_BILINEAR);
+        } else {
+                return g_object_ref (pixbuf);
         }
-
-        return scaled;
 }
 
 static void
@@ -604,7 +607,7 @@ get_pixbuf (GSTESlideshow *show,
         pixbuf = get_pixbuf_from_location (show, location);
 
         if (pixbuf != NULL) {
-                scaled = scale_pixbuf (pixbuf, width, height);
+                scaled = scale_pixbuf (pixbuf, width, height, show->priv->no_stretch_hint);
                 g_object_unref (pixbuf);
         }
 
@@ -686,6 +689,15 @@ gste_slideshow_set_sort_images (GSTESlideshow *show,
 }
 
 void
+gste_slideshow_set_no_stretch_hint (GSTESlideshow *show,
+                                     gboolean       no_stretch_hint)
+{
+        g_return_if_fail (GSTE_IS_SLIDESHOW (show));
+
+        show->priv->no_stretch_hint = no_stretch_hint;
+}
+
+void
 gste_slideshow_set_background_color (GSTESlideshow *show,
                                      const char    *background_color)
 {
@@ -726,6 +738,9 @@ gste_slideshow_set_property (GObject            *object,
         case PROP_SOLID_BACKGROUND:
                 gste_slideshow_set_background_color (self, g_value_get_string (value));
                 break;
+	case PROP_NO_STRETCH_HINT:
+		gste_slideshow_set_no_stretch_hint (self, g_value_get_boolean (value));
+		break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -757,6 +772,9 @@ gste_slideshow_get_property (GObject            *object,
                         g_free (color);
                         break;
                 }
+	case PROP_NO_STRETCH_HINT:
+		g_value_set_boolean (value, self->priv->no_stretch_hint);
+		break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -877,6 +895,13 @@ gste_slideshow_class_init (GSTESlideshowClass *klass)
                                                               NULL,
                                                               NULL,
                                                               G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_NO_STRETCH_HINT,
+                                         g_param_spec_boolean ("no-stretch",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE));
 }
 
 static void

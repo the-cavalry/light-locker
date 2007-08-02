@@ -47,6 +47,7 @@ main (int argc, char **argv)
         char          *location = NULL;
         char          *background_color = NULL;
         gboolean       sort_images = FALSE;
+        gboolean       no_stretch = FALSE;
         GOptionEntry  entries [] = {
                 { "location", 0, 0, G_OPTION_ARG_STRING, &location,
                   N_("Location to get images from"), N_("PATH") },
@@ -54,6 +55,8 @@ main (int argc, char **argv)
                   N_("Color to use for images background"), N_("\"#rrggbb\"") },
                 { "sort-images", 0, 0, G_OPTION_ARG_NONE, &sort_images,
                   N_("Do not randomize pictures from location"), NULL },
+                { "no-stretch", 0, 0, G_OPTION_ARG_NONE, &no_stretch,
+                  N_("Do not try to stretch images on screen"), NULL },
                 { NULL }
         };
 
@@ -105,6 +108,10 @@ main (int argc, char **argv)
 
         if (background_color != NULL) {
                 g_object_set (engine, "background-color", background_color, NULL);
+        }
+
+        if (no_stretch) {
+                g_object_set (engine, "no-stretch", no_stretch, NULL);
         }
 
         gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (engine));
