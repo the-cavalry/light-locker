@@ -559,11 +559,10 @@ get_pixbuf_from_local_dir (GSTESlideshow *show,
 
         if (pixbuf != NULL) {
                 transformed_pixbuf = gdk_pixbuf_apply_embedded_orientation (pixbuf);
+                g_object_unref (pixbuf);
         } else {
                 transformed_pixbuf = NULL;
         }
-
-        g_object_unref (pixbuf);
 
         g_free (filename);
         show->priv->filename_list = g_slist_delete_link (show->priv->filename_list, l);

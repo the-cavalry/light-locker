@@ -1,5 +1,11 @@
 2007-08-02  William Jon McCann  <mccann@jhu.edu>
 
+	* savers/gste-slideshow.c: Prevent critical errors with null
+	pixbuf.
+	Patch from Frederic Crozat <fcrozat@mandriva.com>
+
+2007-08-02  William Jon McCann  <mccann@jhu.edu>
+
 	* savers/gste-slideshow.c: (scale_pixbuf), (get_pixbuf),
 	(gste_slideshow_set_no_stretch_hint),
 	(gste_slideshow_set_property), (gste_slideshow_get_property),
@@ -7,6 +13,7 @@
 	* savers/gste-slideshow.h:
 	* savers/slideshow.c: (main):
 	Add --no-stretch option to slideshow engine.
+	Patch from Frederic Crozat <fcrozat@mandriva.com>
 
 2007-08-02  William Jon McCann  <mccann@jhu.edu>
 
