@@ -51,7 +51,7 @@ main (int argc, char **argv)
                 { "location", 0, 0, G_OPTION_ARG_STRING, &location,
                   N_("Location to get images from"), N_("PATH") },
                 { "background-color", 0, 0, G_OPTION_ARG_STRING, &background_color,
-                  N_("Color to use for images background"), N_("#abcdef") },
+                  N_("Color to use for images background"), N_("\"#rrggbb\"") },
                 { "sort-images", 0, 0, G_OPTION_ARG_NONE, &sort_images,
                   N_("Do not randomize pictures from location"), NULL },
                 { NULL }

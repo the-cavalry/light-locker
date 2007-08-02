@@ -554,7 +554,11 @@ get_pixbuf_from_local_dir (GSTESlideshow *show,
 
         pixbuf = gdk_pixbuf_new_from_file (filename, NULL);
 
-        transformed_pixbuf = gdk_pixbuf_apply_embedded_orientation (pixbuf);
+        if (pixbuf != NULL) {
+                transformed_pixbuf = gdk_pixbuf_apply_embedded_orientation (pixbuf);
+        } else {
+                transformed_pixbuf = NULL;
+        }
 
         g_object_unref (pixbuf);
 
