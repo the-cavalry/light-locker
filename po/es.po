@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-31 04:05+0100\n"
-"PO-Revision-Date: 2007-07-31 21:20+0200\n"
+"POT-Creation-Date: 2007-08-03 03:57+0100\n"
+"PO-Revision-Date: 2007-08-03 20:36+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -381,25 +381,29 @@ msgstr "%s. Vea --help para la información de uso.\n"
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "Debe especificar una imagen. Vea --help para la información de uso.\n"
 
-#: ../savers/slideshow.c:52
+#: ../savers/slideshow.c:53
 msgid "Location to get images from"
 msgstr "Lugar del que obtener las imágenes"
 
-#: ../savers/slideshow.c:52
+#: ../savers/slideshow.c:53
 msgid "PATH"
 msgstr "RUTA"
 
-#: ../savers/slideshow.c:54
+#: ../savers/slideshow.c:55
 msgid "Color to use for images background"
 msgstr "Color a usar para el fondo de las imágenes"
 
-#: ../savers/slideshow.c:54
-msgid "#abcdef"
-msgstr "#abcdef"
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "«#rrggbb»"
 
-#: ../savers/slideshow.c:56
+#: ../savers/slideshow.c:57
 msgid "Do not randomize pictures from location"
 msgstr "No usar aleatoriamente imágenes de una ubicación"
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "No intentar estirar las imágenes en la pantalla"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
