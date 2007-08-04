@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2006, 2007.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-03-31 17:17+0200\n"
-"PO-Revision-Date: 2007-03-31 17:23+0200\n"
-"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
-"Language-Team: Basque <itzulpena@euskalgnu.org>\n"
+"POT-Creation-Date: 2007-08-04 16:20+0200\n"
+"PO-Revision-Date: 2007-08-04 16:25+0200\n"
+"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
+"Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,7 +67,7 @@ msgid "_Screensaver theme:"
 msgstr "_Pantaila-babeslearen gaia:"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Screensaver themes"
 msgstr "Panataila-babeslearen gaiak"
 
@@ -103,14 +104,18 @@ msgid "Logout command"
 msgstr "Saio-amaierako komandoa"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Reason for being away"
+msgstr "Kanpoan egoteko arrazoia"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver theme selection mode"
 msgstr "Pantaila-babeslearen gaiaren hautatze modua"
 
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr "Ezarri EGIA gisa pantaila-babeslea aktibatzeko saioa inaktibo dagoenean."
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
@@ -120,11 +125,11 @@ msgstr ""
 "baimentzeko. \"keyboard_command\" gakoa komando egokiarekin ezarrita egon "
 "behar du."
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr "Ezarri EGIA gisa pantaila blokeatzeko pantaila-babeslea aktibatzera doanean."
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -132,7 +137,7 @@ msgstr ""
 "Ezarri EGIA gisa desblokeatzeko elkarrizketa-koadroan aukera bat "
 "eskaintzeko, beste erabiltzaile batera aldatzeko."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -141,7 +146,7 @@ msgstr ""
 "eskaintzeko, atzerapen baten ondoren. Atzerapena \"logout_delay\" gakoan "
 "zehaztuta dago."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
 "set to TRUE, to embed a keyboard widget into the window. This command should "
@@ -153,7 +158,7 @@ msgstr ""
 "XEMBED interfaze-osagaia garatuta eduki beharko luke, eta irteera "
 "estandarrean XID leihoa marraztu."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -163,11 +168,11 @@ msgstr ""
 "beste interakziorik gabe saioa amaitu beharko luke. Gako honek "
 "\"logout_enable\" EGIA gisa ezartzen bada bakarrik izango du eragina."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid "The number of minutes after screensaver activation before locking the screen."
 msgstr "Minutu kopurua, pantaila-babeslea aktibatu eta pantaila blokeatu bitartekoa."
 
-#: ../data/gnome-screensaver.schemas.in.h:18
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -177,15 +182,15 @@ msgstr ""
 "desblokeatzeko elkarrizketa-koadroan agertu bitartean. Gako honek "
 "\"logout_enable\" gakoa EGIA gisa ezartzen bada bakarrik izango du eragina."
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid "The number of minutes of inactivity before the session is considered idle."
 msgstr "Inaktibitateko minutu kopurua, saioa inaktibotzat hartu arte."
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "Minutu kopurua pantaila-babesleko gaia aldatu aurretik exekutatzeko."
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
@@ -193,7 +198,11 @@ msgstr ""
 "Inaktibitateko segundo kopurua, energia kudeatzaileari seinalea bidali arte. "
 "Gako hau saioko energia kudeatzailearen agenteak ezarri eta kudeatzen du."
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "The reason for being away from the computer."
+msgstr "Ordenagailutik kanpo egoteko arrazoia."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
@@ -207,15 +216,15 @@ msgstr ""
 "zehaztutakoa), edo \"random\" gaiak aldatzen joan dadin pantaila-babeslea "
 "aktibatzean."
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
 msgstr "Blokeatze-leihoaren gaia"
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Theme to use for the lock dialog."
 msgstr "Gaia blokeatze-leihoan erabiltzeko."
 
-#: ../data/gnome-screensaver.schemas.in.h:25
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -227,49 +236,58 @@ msgstr ""
 "egotean. Gaiaren izena eman behar da \"mode\" gakoa \"single\" denean, eta "
 "gaien zerrenda eman behar da \"random\" denean."
 
-#: ../data/gnome-screensaver.schemas.in.h:26
+#: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
 msgstr "Denbora blokeatu aurretik"
 
-#: ../data/gnome-screensaver.schemas.in.h:27
+#: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before logout option"
 msgstr "Denbora saioa amaitzeko aukeraren aurretik"
 
-#: ../data/gnome-screensaver.schemas.in.h:28
+#: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before power-management baseline"
 msgstr "Denbora energia kudeatzailearen oinarri-lerrora heldu arte"
 
-#: ../data/gnome-screensaver.schemas.in.h:29
+#: ../data/gnome-screensaver.schemas.in.h:31
 msgid "Time before session is considered idle"
 msgstr "Denbora saioa inaktibotzat hartu arte"
 
-#: ../data/gnome-screensaver.schemas.in.h:30
+#: ../data/gnome-screensaver.schemas.in.h:32
 msgid "Time before theme change"
 msgstr "Denbora gaia aldatu aurretik"
 
 #: ../data/lock-dialog-default.glade.h:2
 #, no-c-format
+msgid "<b>Leave a message for %R:</b>"
+msgstr "<b>Utzi mezua %R(e)ri:</b>"
+
+#: ../data/lock-dialog-default.glade.h:4
+#, no-c-format
 msgid "<span size=\"small\">%U on %h</span>"
 msgstr "<span size=\"small\">%U :: %h</span>"
 
-#: ../data/lock-dialog-default.glade.h:4
+#: ../data/lock-dialog-default.glade.h:6
 #, no-c-format
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5
+#: ../data/lock-dialog-default.glade.h:7
 msgid "_Cancel"
 msgstr "_Utzi"
 
-#: ../data/lock-dialog-default.glade.h:6
+#: ../data/lock-dialog-default.glade.h:8
+msgid "_Leave Message"
+msgstr "_Utzi mezua"
+
+#: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
 msgstr "_Irten saiotik"
 
-#: ../data/lock-dialog-default.glade.h:7
-msgid "_Switch user..."
-msgstr "_Aldatu erabiltzailez..."
+#: ../data/lock-dialog-default.glade.h:10
+msgid "_Switch User"
+msgstr "_Aldatu erabiltzailez"
 
-#: ../data/lock-dialog-default.glade.h:8 ../src/gs-lock-plug.c:1098
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
 msgid "_Unlock"
 msgstr "_Desblokeatu"
 
@@ -305,68 +323,77 @@ msgstr "Pop-art-dun sareta kolore pilpilekin"
 msgid "Pop art squares"
 msgstr "Pop arteko karratuak"
 
-#: ../savers/floaters.c:1166
-msgid "show paths that images follow"
-msgstr "erakutsi bidea irudiek jarraitzeko"
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr "Erakutsi bideak irudiek jarraitzeko"
 
-#: ../savers/floaters.c:1173
-msgid "occasionally rotate images as they move"
-msgstr "batzuetan biratu irudiak hauek mugitzean"
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "Batzuetan biratu irudiak hauek mugitzean"
 
-#: ../savers/floaters.c:1180
-msgid "print out frame rate and other statistics"
-msgstr "bistaratu marko-tasa eta beste estatistikak"
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "Bistaratu marko-tasa eta beste estatistikak"
 
-#: ../savers/floaters.c:1188
-msgid "the maximum number of images to keep on screen"
-msgstr "gehienezko irudi kopurua pantailan mantentzeko"
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "Gehienezko irudi kopurua pantailan mantentzeko"
 
-#. translators: this should be translated to be symbolic of a generic
-#. * number.  e.g, "the screen saver should keep N images on the screen"
-#.
-#: ../savers/floaters.c:1192
-msgid "N"
-msgstr "N"
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "GEH._IRUDIAK"
 
-#: ../savers/floaters.c:1199
-msgid "the source image to use"
-msgstr "irudiaren iturburua erabitzeko"
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "Leihoaren haserako tamaina eta posizioa"
 
-#: ../savers/floaters.c:1206
-msgid "the initial size and position of window"
-msgstr "leihoaren haserako tamaina eta posizioa"
-
-#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
-#. * can be translated, but the 'x' area indicator and '+' offset indicators
-#. * need to be untranslated and can't be rearranged.
-#.
-#: ../savers/floaters.c:1211
+#: ../savers/floaters.c:96
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "ZABALERAxALTUERA+X+Y"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "Irudiaren iturburua erabitzeko"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1229
+#: ../savers/floaters.c:1194
 msgid "image - floats images around the screen"
 msgstr "image - mugitu irudiak pantailan zehar"
 
-#: ../savers/floaters.c:1239
+#: ../savers/floaters.c:1200
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. --help erabileraren xehetasunak ikusteko.\n"
 
-#: ../savers/floaters.c:1248
+#: ../savers/floaters.c:1209
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "Irudi bat zehaztu behar duzu. --help erabileraren xehetasunak ikusteko.\n"
 
-#: ../savers/slideshow.c:47
+#: ../savers/slideshow.c:53
 msgid "Location to get images from"
 msgstr "Helbidea irudiak lortzeko"
 
-#: ../savers/slideshow.c:47
+#: ../savers/slideshow.c:53
 msgid "PATH"
 msgstr "BIDE-IZENA"
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "Kolorea atzeko planoko irudiek erabiltzeko"
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "\"#ggbbuu\""
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr "Ez ausaz nahastu irudiak kokalekutik"
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Ez saiatu irudiak pantailara luzatzen"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -484,7 +511,7 @@ msgstr "Pantaila-babeslea geldiarazten duen aplikazioaren deia"
 msgid "The reason for inhibiting the screensaver"
 msgstr "Pantaila-babeslea geldiarazteko arrazoia"
 
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:54
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Aplikazio honen bertsioa"
@@ -507,130 +534,138 @@ msgstr "inaktibo"
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "Pantaila-babeslea %d segundo egon da aktibo.\n"
 
-#: ../src/gnome-screensaver-dialog.c:52
+#: ../src/gnome-screensaver-dialog.c:53
 msgid "Show debugging output"
 msgstr "Erakutsi arazteko irteera"
 
-#: ../src/gnome-screensaver-dialog.c:56
+#: ../src/gnome-screensaver-dialog.c:57
 msgid "Show the logout button"
 msgstr "Erakutsi saioa amaitzeko botoia"
 
-#: ../src/gnome-screensaver-dialog.c:58
+#: ../src/gnome-screensaver-dialog.c:59
 msgid "Command to invoke from the logout button"
 msgstr "Komandoa, saioa amaitzeko botoiari deitzeko"
 
-#: ../src/gnome-screensaver-dialog.c:60
+#: ../src/gnome-screensaver-dialog.c:61
 msgid "Show the switch user button"
 msgstr "Erakutsi erabiltzailez aldatzeko botoia"
 
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "Message to show in the dialog"
+msgstr "Mezua elkarrizketa-koadroan erakusteko"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "MESSAGE"
+msgstr "MEZUA"
+
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:170 ../src/gnome-screensaver-dialog.c:171
-#: ../src/gnome-screensaver-dialog.c:172 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Erabiltzaile-izena:"
 
-#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "Pasahitza:"
 
-#: ../src/gnome-screensaver-dialog.c:175
+#: ../src/gnome-screensaver-dialog.c:178
 msgid "You are required to change your password immediately (password aged)"
 msgstr "Pasahitza berehala aldatu behar duzu (pasahitza zaharkituta)"
 
-#: ../src/gnome-screensaver-dialog.c:176
+#: ../src/gnome-screensaver-dialog.c:179
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "Pasahitza berehala aldatu behar duzu (erroak behartuta)"
 
-#: ../src/gnome-screensaver-dialog.c:177
+#: ../src/gnome-screensaver-dialog.c:180
 msgid "Your account has expired; please contact your system administrator"
 msgstr ""
 "Zure kontua iraungi egin da; jarri harremanetan sistemako "
 "administratzailearekin"
 
-#: ../src/gnome-screensaver-dialog.c:178
+#: ../src/gnome-screensaver-dialog.c:181
 msgid "No password supplied"
 msgstr "Ez da pasahitzik eman"
 
-#: ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:182
 msgid "Password unchanged"
 msgstr "Pasahitza ez da aldatu"
 
-#: ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:183
 msgid "Can not get username"
 msgstr "Ezin da erabiltzaile-izena lortu"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "Retype new UNIX password:"
 msgstr "Idatzi berriro UNIXeko pasahitz berria:"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "Enter new UNIX password:"
 msgstr "Idatzi UNIXeko pasahitz berria:"
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "(current) UNIX password:"
 msgstr "(uneko) UNIXeko pasahitza:"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:187
 msgid "Error while changing NIS password."
 msgstr "Errorea gertatu da NIS pasahitza aldatzean."
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "You must choose a longer password"
 msgstr "Pasahitz luzeagoa aukeratu behar duzu"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "Password has been already used. Choose another."
 msgstr "Pasahitz hori erabilita dago. Aukeratu beste bat."
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:190
 msgid "You must wait longer to change your password"
 msgstr "Gehiago itxaron behar duzu pasahitza aldatzeko"
 
-#: ../src/gnome-screensaver-dialog.c:188
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "Sorry, passwords do not match"
 msgstr "Pasahitzak ez datoz bat"
 
-#: ../src/gnome-screensaver-dialog.c:254
+#: ../src/gnome-screensaver-dialog.c:257
 msgid "Checking..."
 msgstr "Egiaztatzen..."
 
-#: ../src/gnome-screensaver-dialog.c:296 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "Autentifikazioak huts egin du."
 
-#: ../src/gnome-screensaver-preferences.c:459
+#: ../src/gnome-screensaver-preferences.c:501
 msgid "Blank screen"
 msgstr "Pantaila beltza"
 
-#: ../src/gnome-screensaver-preferences.c:465
+#: ../src/gnome-screensaver-preferences.c:507
 msgid "Random"
 msgstr "Ausazkoa"
 
-#: ../src/gnome-screensaver-preferences.c:835
+#: ../src/gnome-screensaver-preferences.c:877
 msgid "Invalid screensaver theme"
 msgstr "Pantaila-babeslearen baliogabeko gaia"
 
-#: ../src/gnome-screensaver-preferences.c:838
+#: ../src/gnome-screensaver-preferences.c:880
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Fitxategi hau badirudi ez dela pantaila-babeslearen baliozko gaia."
 
-#: ../src/gnome-screensaver-preferences.c:965
+#: ../src/gnome-screensaver-preferences.c:1007
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "ordu %d"
 msgstr[1] "%d ordu"
 
-#: ../src/gnome-screensaver-preferences.c:968
+#: ../src/gnome-screensaver-preferences.c:1010
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "minutu %d"
 msgstr[1] "%d minutu"
 
-#: ../src/gnome-screensaver-preferences.c:971
+#: ../src/gnome-screensaver-preferences.c:1013
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -638,15 +673,15 @@ msgstr[0] "segundo %d"
 msgstr[1] "%d segundo"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:977
+#: ../src/gnome-screensaver-preferences.c:1019
 #, c-format
 msgid "%s %s %s"
 msgstr "%s:%s:%s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:980
-#: ../src/gnome-screensaver-preferences.c:988
+#: ../src/gnome-screensaver-preferences.c:1022
+#: ../src/gnome-screensaver-preferences.c:1030
 #, c-format
 msgid "%s %s"
 msgstr "%s:%s"
@@ -654,22 +689,22 @@ msgstr "%s:%s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:983
-#: ../src/gnome-screensaver-preferences.c:991
-#: ../src/gnome-screensaver-preferences.c:995
+#: ../src/gnome-screensaver-preferences.c:1025
+#: ../src/gnome-screensaver-preferences.c:1033
+#: ../src/gnome-screensaver-preferences.c:1037
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1010
+#: ../src/gnome-screensaver-preferences.c:1052
 msgid "Never"
 msgstr "Inoiz ere ez"
 
-#: ../src/gnome-screensaver-preferences.c:1396
+#: ../src/gnome-screensaver-preferences.c:1451
 msgid "Could not load the main interface"
 msgstr "Ezin izan da interfaze nagusia kargatu"
 
-#: ../src/gnome-screensaver-preferences.c:1398
+#: ../src/gnome-screensaver-preferences.c:1453
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Ziurtatu pantaila-babeslea ongi instalatuta dagoela"
 
@@ -703,39 +738,40 @@ msgstr "Ez duzu sarbidetzeko baimenik une honetan."
 msgid "No longer permitted to access the system."
 msgstr "Ez duzu baimenik aurrerantzean sistemara sarbidetzeko."
 
-#: ../src/gs-listener-dbus.c:1817
+#: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
 msgstr "huts egin du mezuaren deia erregistratzean"
 
-#: ../src/gs-listener-dbus.c:1827
+#: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
 msgstr "ez da mezuaren deira konektatu"
 
-#: ../src/gs-listener-dbus.c:1836
+#: ../src/gs-listener-dbus.c:1940
 msgid "screensaver already running in this session"
 msgstr "pantaila-babeslea jadanik exekutatzen dago saio honetan"
 
-#: ../src/gs-lock-plug.c:255
+#: ../src/gs-lock-plug.c:269
 msgid "Time has expired."
 msgstr "Denbora iraungitu egin da."
 
-#: ../src/gs-lock-plug.c:283
+#: ../src/gs-lock-plug.c:297
 msgid "You have the Caps Lock key on."
 msgstr "Blok.maius. aktibatuta dago"
 
-#: ../src/gs-lock-plug.c:1078
+#: ../src/gs-lock-plug.c:1187
 msgid "S_witch User..."
 msgstr "_Aldatu erabiltzailez..."
 
-#: ../src/gs-lock-plug.c:1087
+#: ../src/gs-lock-plug.c:1196
 msgid "Log _Out"
 msgstr "_Amaitu saioa..."
 
-#: ../src/gs-lock-plug.c:1263
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1373
 msgid "%U on %h"
 msgstr "%U :: %s"
 
-#: ../src/gs-lock-plug.c:1277
+#: ../src/gs-lock-plug.c:1387
 msgid "_Password:"
 msgstr "_Pasahitza:"
 
