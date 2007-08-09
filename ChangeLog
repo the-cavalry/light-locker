@@ -1,3 +1,10 @@
+2007-08-09  William Jon McCann  <mccann@jhu.edu>
+
+	* MAINTAINERS: Add userid.
+
+	* configure.ac (SAVER_LIBS): Add Xext explicitly to ALL_X_LIBS.
+	May fix #437225
+
 2007-08-02  William Jon McCann  <mccann@jhu.edu>
 
 	* savers/gste-slideshow.c: Prevent critical errors with null
