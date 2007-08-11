@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-01 20:08+0200\n"
-"PO-Revision-Date: 2007-08-01 20:08+0100\n"
+"POT-Creation-Date: 2007-08-11 12:49+0200\n"
+"PO-Revision-Date: 2007-08-11 12:49+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -310,28 +310,33 @@ msgid "%s. See --help for usage information.\n"
 msgstr "%s. Se --help för information om användning.\n"
 
 #: ../savers/floaters.c:1209
+#, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "Du måste ange en bild.  Se --help för information om användning.\n"
 
-#: ../savers/slideshow.c:52
+#: ../savers/slideshow.c:53
 msgid "Location to get images from"
 msgstr "Plats att hämta bilder från"
 
-#: ../savers/slideshow.c:52
+#: ../savers/slideshow.c:53
 msgid "PATH"
 msgstr "SÖKVÄG"
 
-#: ../savers/slideshow.c:54
+#: ../savers/slideshow.c:55
 msgid "Color to use for images background"
 msgstr "Färg att använda för bildbakgrund"
 
-#: ../savers/slideshow.c:54
-msgid "#abcdef"
-msgstr "#abcdef"
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "\"#rrggbb\""
 
-#: ../savers/slideshow.c:56
+#: ../savers/slideshow.c:57
 msgid "Do not randomize pictures from location"
 msgstr "Slumpa inte bilder från platsen"
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Försök inte att sträcka ut bilder på skärmen"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -633,6 +638,7 @@ msgid "%s"
 msgstr "%s"
 
 #: ../src/gnome-screensaver-preferences.c:1052
+#, c-format
 msgid "Never"
 msgstr "Aldrig"
 
@@ -711,6 +717,8 @@ msgstr "%U på %h"
 msgid "_Password:"
 msgstr "_Lösenord:"
 
+#~ msgid "#abcdef"
+#~ msgstr "#abcdef"
 #~ msgid "Authentication"
 #~ msgstr "Autentisering"
 #~ msgid "Note"
