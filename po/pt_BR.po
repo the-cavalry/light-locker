@@ -5,14 +5,15 @@
 # Henrique Grolli Bassotto <henrique.grolli@gmail.com>, 2006.
 # Leonardo Ferreira Fontenelle <leo.fontenelle@gmail.com>, 2006.
 # Og Maciel <ogmaciel@ubuntu.com>, 2007.
+# Vladimir Melo <vladimirmelo@foresightlinux.org>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-06 03:47-0200\n"
-"PO-Revision-Date: 2007-02-06 03:55-0200\n"
-"Last-Translator: Og Maciel <ogmaciel@ubuntu.com>\n"
+"POT-Creation-Date: 2007-08-11 22:10-0300\n"
+"PO-Revision-Date: 2007-08-11 22:21-0300\n"
+"Last-Translator: Vladimir Melo <vladimirmelo@foresightlinux.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +30,7 @@ msgstr "Defina suas preferências de proteção de tela"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
 msgid "<b>Screensaver preview</b>"
-msgstr "<b>Visualização de Proteção de Tela</b>"
+msgstr "<b>Visualização da proteção de tela</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:2
 msgid "<b>Warning: the screen will not be locked for the root user.</b>"
@@ -69,7 +70,7 @@ msgid "_Screensaver theme:"
 msgstr "_Tema de proteção de tela:"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Screensaver themes"
 msgstr "Temas de proteção de tela"
 
@@ -106,31 +107,35 @@ msgid "Logout command"
 msgstr "Comando de logout"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Reason for being away"
+msgstr "Motivo para estar ausente"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver theme selection mode"
 msgstr "Modo de seleção do tema da proteção de tela"
 
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr ""
 "Defina como TRUE para ativar a proteção de tela quando a sessão estiver "
 "ociosa."
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
 msgstr ""
-"Defina isso para TRUE para permitir que o teclado seja embutido na "
-"janela ao tentar destravar. A chave \"keyboard_command\" precisar ser "
-"definida com o comando adequado."
+"Defina isso para TRUE para permitir que o teclado seja embutido na janela ao "
+"tentar destravar. A chave \"keyboard_command\" precisar ser definida com o "
+"comando adequado."
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr ""
 "Defina como TRUE para travar a tela quando a proteção de tela ficar ativa."
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -138,7 +143,7 @@ msgstr ""
 "Defina como TRUE para oferecer uma opção na caixa de diálogo de "
 "destravamento para trocar de usuário."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -147,7 +152,7 @@ msgstr ""
 "destravamento para deslogar após um tempo. O tempo é especificado na chave "
 "\"logout_delay\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
 "set to TRUE, to embed a keyboard widget into the window. This command should "
@@ -155,11 +160,11 @@ msgid ""
 "output."
 msgstr ""
 "O comando que será executado para incorporar um controle de teclado na "
-"janela, caso a chave \"embedded_keyboard_enabled\" seja definida como "
-"TRUE. Esse comando deve implementar uma interface XEMBED e enviar um "
-"XID da janela para a saída padrão."
+"janela, caso a chave \"embedded_keyboard_enabled\" seja definida como TRUE. "
+"Esse comando deve implementar uma interface XEMBED e enviar um XID da janela "
+"para a saída padrão."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -169,14 +174,14 @@ msgstr ""
 "deve apenas encerrar a sessão do usuário sem qualquer interação. Essa chave "
 "tem efeito apenas se a chave \"logout_enable\" estiver definida como TRUE."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr ""
 "O número de minutos após a ativação da proteção de tela antes de travar a "
 "tela."
 
-#: ../data/gnome-screensaver.schemas.in.h:18
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -186,18 +191,18 @@ msgstr ""
 "de logout apareça na caixa de diálogo destravar. Essa chave tem efeito "
 "apenas se a chave \"logout_enable\" estiver definida como TRUE."
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr ""
 "O número de minutos de inatividade antes que a sessão seja considerada "
 "ociosa."
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "O número de minutos até mudar o tema da proteção de tela."
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
@@ -206,7 +211,11 @@ msgstr ""
 "Esta chave é definida e mantida pelo agente da sessão do gerenciador de "
 "energia."
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "The reason for being away from the computer."
+msgstr "O motivo para se ausentar do computador."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
@@ -219,15 +228,15 @@ msgstr ""
 "a proteção de tela usando apenas um tema (especificado na chave \"themes\") "
 "e \"random\" para habilitar a proteção de tela usando um tema aleatório."
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
 msgstr "Tema para diálogo de travamento"
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Theme to use for the lock dialog."
 msgstr "Tema a ser usado na janela de diálogo do travamento de tela."
 
-#: ../data/gnome-screensaver.schemas.in.h:25
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -239,75 +248,76 @@ msgstr ""
 "nome do tema quando \"mode\" for \"single\" e deve uma lista de temas quando "
 "\"mode\" for \"random\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:26
+#: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
 msgstr "Tempo antes de travar"
 
-#: ../data/gnome-screensaver.schemas.in.h:27
+#: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before logout option"
 msgstr "Tempo antes da opção sair"
 
-#: ../data/gnome-screensaver.schemas.in.h:28
+#: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before power-management baseline"
 msgstr "Tempo antes da linha de base do gerenciador de energia"
 
-#: ../data/gnome-screensaver.schemas.in.h:29
+#: ../data/gnome-screensaver.schemas.in.h:31
 msgid "Time before session is considered idle"
 msgstr "Tempo antes da sessão ser considerada ociosa"
 
-#: ../data/gnome-screensaver.schemas.in.h:30
+#: ../data/gnome-screensaver.schemas.in.h:32
 msgid "Time before theme change"
 msgstr "Tempo antes de alterar o tema"
 
 #: ../data/lock-dialog-default.glade.h:2
 #, no-c-format
+msgid "<b>Leave a message for %R:</b>"
+msgstr "<b>Deixe uma mensagem para %R:</b>"
+
+#: ../data/lock-dialog-default.glade.h:4
+#, no-c-format
 msgid "<span size=\"small\">%U on %h</span>"
 msgstr "<span size=\"small\">%U em %h</span>"
 
-#: ../data/lock-dialog-default.glade.h:4
+#: ../data/lock-dialog-default.glade.h:6
 #, no-c-format
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5 ../src/gs-lock-plug.c:1826
-msgid "S_witch to user:"
-msgstr "Trocar para _usuário:"
-
-#: ../data/lock-dialog-default.glade.h:6
+#: ../data/lock-dialog-default.glade.h:7
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: ../data/lock-dialog-default.glade.h:7
+#: ../data/lock-dialog-default.glade.h:8
+msgid "_Leave Message"
+msgstr "D_eixar Mensagem"
+
+#: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
 msgstr "_Sair da Sessão"
 
-#: ../data/lock-dialog-default.glade.h:8
-msgid "_Switch User..."
-msgstr "_Trocar usuário..."
+#: ../data/lock-dialog-default.glade.h:10
+msgid "_Switch User"
+msgstr "_Trocar Usuário"
 
-#: ../data/lock-dialog-default.glade.h:9
-msgid "_Switch user..."
-msgstr "_Trocar Usuário..."
-
-#: ../data/lock-dialog-default.glade.h:10 ../src/gs-lock-plug.c:1555
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
 msgid "_Unlock"
 msgstr "_Destravar"
 
-#: ../savers/footlogo-floaters.desktop.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "Borbulha o logotipo do pé do GNOME em torno da tela"
-
-#: ../savers/footlogo-floaters.desktop.in.h:2
-msgid "Floating Feet"
-msgstr "Pés Flutuantes"
-
-#: ../savers/cosmos-slideshow.desktop.in.h:1
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
 msgstr "Cosmos"
 
-#: ../savers/cosmos-slideshow.desktop.in.h:2
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
 msgid "Display a slideshow of pictures of the cosmos"
 msgstr "Mostra uma apresentação de slides de fotos do cosmo"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Borbulha o logotipo do pé do GNOME em torno da tela"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Pés Flutuantes"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
@@ -326,213 +336,78 @@ msgstr "Uma grade de arte pop de cores pulsantes."
 msgid "Pop art squares"
 msgstr "Quadrados pop"
 
-#: ../savers/floaters.c:1166
-msgid "show paths that images follow"
-msgstr "mostrar caminhos que as imagens seguem"
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr "Mostrar os caminhos que as imagens seguem"
 
-#: ../savers/floaters.c:1173
-msgid "occasionally rotate images as they move"
-msgstr "rotacionar imagens ocasionalmente enquanto elas se movem"
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "Ocasionalmente rotacionar imagens enquanto elas se movem"
 
-#: ../savers/floaters.c:1180
-msgid "print out frame rate and other statistics"
-msgstr "mostrar taxa de quadros e outras estatísticas"
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "Imprimir taxa de quadros e outras estatísticas"
 
-#: ../savers/floaters.c:1188
-msgid "the maximum number of images to keep on screen"
-msgstr "o número máximo de imagens para manter na tela"
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "O número máximo de imagens para manter na tela"
 
-#. translators: this should be translated to be symbolic of a generic
-#. * number.  e.g, "the screen saver should keep N images on the screen"
-#.
-#: ../savers/floaters.c:1192
-msgid "N"
-msgstr "N"
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "MÁX_IMAGENS"
 
-#: ../savers/floaters.c:1199
-msgid "the source image to use"
-msgstr "a imagem fonte a usar"
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "A posição e o tamanho inicial de janela"
 
-#: ../savers/floaters.c:1206
-msgid "the initial size and position of window"
-msgstr "o tamanho inicial e posição da janela"
-
-#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
-#. * can be translated, but the 'x' area indicator and '+' offset indicators
-#. * need to be untranslated and can't be rearranged.
-#.
-#: ../savers/floaters.c:1211
+#: ../savers/floaters.c:96
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "LARGURAxALTURA+X+Y"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "A imagem de origem a ser usada"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1229
+#: ../savers/floaters.c:1194
 msgid "image - floats images around the screen"
 msgstr "image - faz imagens flutuar em torno da tela"
 
-#: ../savers/floaters.c:1239
+#: ../savers/floaters.c:1200
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Veja --help para informações de uso.\n"
 
-#: ../savers/floaters.c:1248
+#: ../savers/floaters.c:1209
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
 "Você deve especificar uma imagem. Veja --help para informações de uso.\n"
 
-#: ../savers/slideshow.c:47
+#: ../savers/slideshow.c:53
 msgid "Location to get images from"
 msgstr "Local de onde obter as imagens"
 
-#: ../savers/slideshow.c:47
+#: ../savers/slideshow.c:53
 msgid "PATH"
 msgstr "CAMINHO"
 
-#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
-msgid "Manager"
-msgstr "Gerenciador"
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "Cor a ser usada plano de fundo das imagens"
 
-#: ../src/cut-n-paste/fusa-display.c:120
-msgid "The manager which owns this object."
-msgstr "O gerenciador dono deste objeto."
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "\"#rrggbb\""
 
-#: ../src/cut-n-paste/fusa-display.c:127
-msgid "Name"
-msgstr "Nome"
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr "Não randomizar fotos da localização"
 
-#: ../src/cut-n-paste/fusa-display.c:128
-msgid "The name of the X11 display this object refers to."
-msgstr "O nome da sessão X11 a que esse objeto se refere."
-
-#: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:163
-msgid "User"
-msgstr "Usuário"
-
-#: ../src/cut-n-paste/fusa-display.c:135
-msgid "The user currently logged in on this virtual terminal."
-msgstr "O usuário logado atualmente neste terminal virtual."
-
-#: ../src/cut-n-paste/fusa-display.c:141
-msgid "Console"
-msgstr "Console"
-
-#: ../src/cut-n-paste/fusa-display.c:142
-msgid "The number of the virtual console this display can be found on, or %-1."
-msgstr ""
-"O número do console virtual em que essa tela pode ser encontrada, ou %-1."
-
-#: ../src/cut-n-paste/fusa-display.c:148
-msgid "Nested"
-msgstr "Aninhado"
-
-#: ../src/cut-n-paste/fusa-display.c:149
-msgid "Whether or not this display is a windowed (Xnest) display."
-msgstr "Exibir ou não dentro de uma janela (com Xnest)."
-
-#: ../src/cut-n-paste/fusa-manager.c:1037
-msgid "The display manager could not be contacted for unknown reasons."
-msgstr ""
-"O gerenciador de sessões não pôde ser contatado por razões desconhecidas."
-
-#: ../src/cut-n-paste/fusa-manager.c:1044
-msgid "The display manager is not running or too old."
-msgstr "O gerenciador de sessões não está sendo executado ou é muito antigo."
-
-#: ../src/cut-n-paste/fusa-manager.c:1047
-msgid "The configured limit of flexible servers has been reached."
-msgstr "O limite configurado de servidores flexíveis foi alcançado."
-
-#: ../src/cut-n-paste/fusa-manager.c:1050
-msgid "There was an unknown error starting X."
-msgstr "Houve um erro desconhecido ao iniciar o X."
-
-#: ../src/cut-n-paste/fusa-manager.c:1053
-msgid "The X server failed to finish starting."
-msgstr "O servidor X falhou em iniciar."
-
-#: ../src/cut-n-paste/fusa-manager.c:1056
-msgid "There are too many X sessions running."
-msgstr "Há sessões do X demais sendo executadas."
-
-#: ../src/cut-n-paste/fusa-manager.c:1059
-msgid "The nested X server (Xnest) cannot connect to your current X server."
-msgstr "O servidor X aninhado (Xnest) não pode se conectar ao seu servidor X."
-
-#: ../src/cut-n-paste/fusa-manager.c:1062
-msgid "The X server in the GDM configuration could not be found."
-msgstr "O servidor X na configuração do GDM não pôde ser encontrado."
-
-#: ../src/cut-n-paste/fusa-manager.c:1065
-msgid ""
-"Trying to set an unknown logout action, or trying to set a logout action "
-"which is not available."
-msgstr ""
-"Tentando definir uma ação de logout desconhecida ou que não está disponível."
-
-#: ../src/cut-n-paste/fusa-manager.c:1068
-msgid "Virtual terminals not supported."
-msgstr "Terminais virtuais não suportados."
-
-#: ../src/cut-n-paste/fusa-manager.c:1071
-msgid "Invalid virtual terminal number."
-msgstr "Número do terminal virtual inválido."
-
-#: ../src/cut-n-paste/fusa-manager.c:1074
-msgid "Trying to update an unsupported configuration key."
-msgstr "Tentando atualizar uma chave de configuração não suportada."
-
-#: ../src/cut-n-paste/fusa-manager.c:1077
-msgid "~/.Xauthority file badly configured or missing."
-msgstr "O arquivo ~/.Xauthority está configurado incorretamente ou faltando."
-
-#: ../src/cut-n-paste/fusa-manager.c:1080
-msgid "Too many messages were sent to the display manager, and it hung up."
-msgstr ""
-"Foram enviadas mensagens demais para o gerenciador de sessões e ele não "
-"suportou."
-
-#: ../src/cut-n-paste/fusa-manager.c:1084
-msgid "The display manager sent an unknown error message."
-msgstr "O gerenciador de telas enviou uma mensagem de erro desconhecida."
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:164
-msgid "The user this menu item represents."
-msgstr "O usuário que este item de menu representa."
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:171
-msgid "Icon Size"
-msgstr "Tamanho do Ícone"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:172
-msgid "The size of the icon to use."
-msgstr "O tamanho de ícone que deve ser usado."
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:178
-msgid "Indicator Size"
-msgstr "Tamanho do Indicador"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:179
-msgid "Size of check indicator"
-msgstr "Tamanho do indicador de verificação ou seleção"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:184
-msgid "Indicator Spacing"
-msgstr "Espaçamento do Indicador"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:185
-msgid "Space between the username and the indicator"
-msgstr "Espaço entre o nome de usuário e o indicador"
-
-#: ../src/cut-n-paste/fusa-user.c:151
-msgid "The user manager object this user is controlled by."
-msgstr "O objeto gerenciador de usuários pelo qual o usuário é controlado."
-
-#: ../src/cut-n-paste/fusa-utils.c:80
-msgid "Show Details"
-msgstr "Exibir Detalhes"
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Não tentar alongar imagens na tela"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -650,7 +525,7 @@ msgstr "A aplicação que está inibindo a proteção de tela"
 msgid "The reason for inhibiting the screensaver"
 msgstr "O motivo para inibir a proteção de tela"
 
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:54
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Versão dessa aplicação"
@@ -673,128 +548,136 @@ msgstr "inativa"
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "A proteção de tela está ativa por %d segundos.\n"
 
-#: ../src/gnome-screensaver-dialog.c:52
+#: ../src/gnome-screensaver-dialog.c:53
 msgid "Show debugging output"
 msgstr "Mostrar saída de depuração"
 
-#: ../src/gnome-screensaver-dialog.c:56
+#: ../src/gnome-screensaver-dialog.c:57
 msgid "Show the logout button"
 msgstr "Mostrar o botão Sair"
 
-#: ../src/gnome-screensaver-dialog.c:58
+#: ../src/gnome-screensaver-dialog.c:59
 msgid "Command to invoke from the logout button"
 msgstr "Comando invocado pelo botão Sair"
 
-#: ../src/gnome-screensaver-dialog.c:60
+#: ../src/gnome-screensaver-dialog.c:61
 msgid "Show the switch user button"
 msgstr "Mostrar o botão Trocar usuário"
 
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "Message to show in the dialog"
+msgstr "Mensagem a ser mostrada no diálogo"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "MESSAGE"
+msgstr "MENSAGEM"
+
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:170 ../src/gnome-screensaver-dialog.c:171
-#: ../src/gnome-screensaver-dialog.c:172 ../src/gs-auth-pam.c:692
+#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Nome do Usuário:"
 
-#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "Senha:"
 
-#: ../src/gnome-screensaver-dialog.c:175
+#: ../src/gnome-screensaver-dialog.c:178
 msgid "You are required to change your password immediately (password aged)"
 msgstr "Você precisa alterar sua senha imediatamente (a senha expirou)"
 
-#: ../src/gnome-screensaver-dialog.c:176
+#: ../src/gnome-screensaver-dialog.c:179
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "Você precisa alterar sua senha imediatamente (determinação do root)"
 
-#: ../src/gnome-screensaver-dialog.c:177
+#: ../src/gnome-screensaver-dialog.c:180
 msgid "Your account has expired; please contact your system administrator"
 msgstr "Sua conta expirou; por favor contate o administrador do sistema"
 
-#: ../src/gnome-screensaver-dialog.c:178
+#: ../src/gnome-screensaver-dialog.c:181
 msgid "No password supplied"
 msgstr "Senha não fornecida"
 
-#: ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:182
 msgid "Password unchanged"
 msgstr "Senha não alterada"
 
-#: ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:183
 msgid "Can not get username"
 msgstr "Não foi possível obter o nome de usuário"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "Retype new UNIX password:"
 msgstr "Redigite a nova senha UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "Enter new UNIX password:"
 msgstr "Digite a nova senha UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "(current) UNIX password:"
 msgstr "Senha UNIX (atual):"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:187
 msgid "Error while changing NIS password."
 msgstr "Erro ao alterar a senha NIS."
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "You must choose a longer password"
 msgstr "Você precisa escolher uma senha maior"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "Password has been already used. Choose another."
 msgstr "Senha já em uso. Escolha outra."
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:190
 msgid "You must wait longer to change your password"
 msgstr "Você precisa aguardar um pouco mais para alterar a sua senha"
 
-#: ../src/gnome-screensaver-dialog.c:188
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "Sorry, passwords do not match"
 msgstr "Desculpe, suas senhas não conferem"
 
-#: ../src/gnome-screensaver-dialog.c:254
+#: ../src/gnome-screensaver-dialog.c:257
 msgid "Checking..."
 msgstr "Verificando..."
 
-#: ../src/gnome-screensaver-dialog.c:296 ../src/gs-auth-pam.c:451
+#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "Falha na autenticação."
 
-#: ../src/gnome-screensaver-preferences.c:459
+#: ../src/gnome-screensaver-preferences.c:501
 msgid "Blank screen"
 msgstr "Tela vazia"
 
-#: ../src/gnome-screensaver-preferences.c:465
+#: ../src/gnome-screensaver-preferences.c:507
 msgid "Random"
 msgstr "Aleatória"
 
-#: ../src/gnome-screensaver-preferences.c:835
+#: ../src/gnome-screensaver-preferences.c:877
 msgid "Invalid screensaver theme"
 msgstr "Tema de proteção de tela inválido"
 
-#: ../src/gnome-screensaver-preferences.c:838
+#: ../src/gnome-screensaver-preferences.c:880
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Esse arquivo não parece ser um tema de proteção de tema válido."
 
-#: ../src/gnome-screensaver-preferences.c:965
+#: ../src/gnome-screensaver-preferences.c:1007
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d hora"
 msgstr[1] "%d horas"
 
-#: ../src/gnome-screensaver-preferences.c:968
+#: ../src/gnome-screensaver-preferences.c:1010
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minuto"
 msgstr[1] "%d minutos"
 
-#: ../src/gnome-screensaver-preferences.c:971
+#: ../src/gnome-screensaver-preferences.c:1013
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -802,15 +685,15 @@ msgstr[0] "%d segundo"
 msgstr[1] "%d segundos"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:977
+#: ../src/gnome-screensaver-preferences.c:1019
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:980
-#: ../src/gnome-screensaver-preferences.c:988
+#: ../src/gnome-screensaver-preferences.c:1022
+#: ../src/gnome-screensaver-preferences.c:1030
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -818,22 +701,22 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:983
-#: ../src/gnome-screensaver-preferences.c:991
-#: ../src/gnome-screensaver-preferences.c:995
+#: ../src/gnome-screensaver-preferences.c:1025
+#: ../src/gnome-screensaver-preferences.c:1033
+#: ../src/gnome-screensaver-preferences.c:1037
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1010
+#: ../src/gnome-screensaver-preferences.c:1052
 msgid "Never"
 msgstr "Nunca"
 
-#: ../src/gnome-screensaver-preferences.c:1396
+#: ../src/gnome-screensaver-preferences.c:1451
 msgid "Could not load the main interface"
 msgstr "Não foi possível carregar a interface principal"
 
-#: ../src/gnome-screensaver-preferences.c:1398
+#: ../src/gnome-screensaver-preferences.c:1453
 msgid "Please make sure that the screensaver is properly installed"
 msgstr ""
 "Por favor, certifique-se que a proteção de tela está instalada corretamente"
@@ -846,63 +729,187 @@ msgstr "Não se tornar um daemon"
 msgid "Enable debugging code"
 msgstr "Habilitar depuração de código"
 
-#: ../src/gs-auth-pam.c:391
+#: ../src/gs-auth-pam.c:397
 #, c-format
 msgid "Unable to establish service %s: %s\n"
 msgstr "Não foi possível estabelecer o serviço %s: %s\n"
 
-#: ../src/gs-auth-pam.c:417
+#: ../src/gs-auth-pam.c:423
 #, c-format
 msgid "Can't set PAM_TTY=%s"
 msgstr "Não foi possível definir PAM_TTY=%s"
 
-#: ../src/gs-auth-pam.c:449
+#: ../src/gs-auth-pam.c:455
 msgid "Incorrect password."
 msgstr "Senha incorreta."
 
-#: ../src/gs-auth-pam.c:465
+#: ../src/gs-auth-pam.c:471
 msgid "Not permitted to gain access at this time."
 msgstr "Dessa vez o acesso não é permitido."
 
-#: ../src/gs-auth-pam.c:471
+#: ../src/gs-auth-pam.c:477
 msgid "No longer permitted to access the system."
 msgstr "Não é mais permitido ter acesso ao sistema."
 
-#: ../src/gs-listener-dbus.c:1766
+#: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
 msgstr "falha ao registrar no barramento de mensagens"
 
-#: ../src/gs-listener-dbus.c:1776
+#: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
 msgstr "não conectado ao barramento de mensagens"
 
-#: ../src/gs-listener-dbus.c:1785
+#: ../src/gs-listener-dbus.c:1940
 msgid "screensaver already running in this session"
 msgstr "proteção de tela já ativa nesta sessão"
 
-#: ../src/gs-lock-plug.c:345
+#: ../src/gs-lock-plug.c:269
 msgid "Time has expired."
 msgstr "Tempo expirado."
 
-#: ../src/gs-lock-plug.c:373
+#: ../src/gs-lock-plug.c:297
 msgid "You have the Caps Lock key on."
 msgstr "A tecla Caps Lock está ativada."
 
-#: ../src/gs-lock-plug.c:1537 ../src/gs-lock-plug.c:1574
+#: ../src/gs-lock-plug.c:1187
 msgid "S_witch User..."
 msgstr "_Trocar usuário..."
 
-#: ../src/gs-lock-plug.c:1545
+#: ../src/gs-lock-plug.c:1196
 msgid "Log _Out"
 msgstr "Sai_r"
 
-#: ../src/gs-lock-plug.c:1736
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1373
 msgid "%U on %h"
 msgstr "%U em %h"
 
-#: ../src/gs-lock-plug.c:1750
+#: ../src/gs-lock-plug.c:1387
 msgid "_Password:"
 msgstr "_Senha:"
+
+#~ msgid "S_witch to user:"
+#~ msgstr "Trocar para _usuário:"
+
+#~ msgid "_Switch user..."
+#~ msgstr "_Trocar Usuário..."
+
+#~ msgid "N"
+#~ msgstr "N"
+
+#~ msgid "Manager"
+#~ msgstr "Gerenciador"
+
+#~ msgid "The manager which owns this object."
+#~ msgstr "O gerenciador dono deste objeto."
+
+#~ msgid "Name"
+#~ msgstr "Nome"
+
+#~ msgid "The name of the X11 display this object refers to."
+#~ msgstr "O nome da sessão X11 a que esse objeto se refere."
+
+#~ msgid "User"
+#~ msgstr "Usuário"
+
+#~ msgid "The user currently logged in on this virtual terminal."
+#~ msgstr "O usuário logado atualmente neste terminal virtual."
+
+#~ msgid "Console"
+#~ msgstr "Console"
+
+#~ msgid ""
+#~ "The number of the virtual console this display can be found on, or %-1."
+#~ msgstr ""
+#~ "O número do console virtual em que essa tela pode ser encontrada, ou %-1."
+
+#~ msgid "Nested"
+#~ msgstr "Aninhado"
+
+#~ msgid "Whether or not this display is a windowed (Xnest) display."
+#~ msgstr "Exibir ou não dentro de uma janela (com Xnest)."
+
+#~ msgid "The display manager could not be contacted for unknown reasons."
+#~ msgstr ""
+#~ "O gerenciador de sessões não pôde ser contatado por razões desconhecidas."
+
+#~ msgid "The display manager is not running or too old."
+#~ msgstr ""
+#~ "O gerenciador de sessões não está sendo executado ou é muito antigo."
+
+#~ msgid "The configured limit of flexible servers has been reached."
+#~ msgstr "O limite configurado de servidores flexíveis foi alcançado."
+
+#~ msgid "There was an unknown error starting X."
+#~ msgstr "Houve um erro desconhecido ao iniciar o X."
+
+#~ msgid "The X server failed to finish starting."
+#~ msgstr "O servidor X falhou em iniciar."
+
+#~ msgid "There are too many X sessions running."
+#~ msgstr "Há sessões do X demais sendo executadas."
+
+#~ msgid "The nested X server (Xnest) cannot connect to your current X server."
+#~ msgstr ""
+#~ "O servidor X aninhado (Xnest) não pode se conectar ao seu servidor X."
+
+#~ msgid "The X server in the GDM configuration could not be found."
+#~ msgstr "O servidor X na configuração do GDM não pôde ser encontrado."
+
+#~ msgid ""
+#~ "Trying to set an unknown logout action, or trying to set a logout action "
+#~ "which is not available."
+#~ msgstr ""
+#~ "Tentando definir uma ação de logout desconhecida ou que não está "
+#~ "disponível."
+
+#~ msgid "Virtual terminals not supported."
+#~ msgstr "Terminais virtuais não suportados."
+
+#~ msgid "Invalid virtual terminal number."
+#~ msgstr "Número do terminal virtual inválido."
+
+#~ msgid "Trying to update an unsupported configuration key."
+#~ msgstr "Tentando atualizar uma chave de configuração não suportada."
+
+#~ msgid "~/.Xauthority file badly configured or missing."
+#~ msgstr ""
+#~ "O arquivo ~/.Xauthority está configurado incorretamente ou faltando."
+
+#~ msgid "Too many messages were sent to the display manager, and it hung up."
+#~ msgstr ""
+#~ "Foram enviadas mensagens demais para o gerenciador de sessões e ele não "
+#~ "suportou."
+
+#~ msgid "The display manager sent an unknown error message."
+#~ msgstr "O gerenciador de telas enviou uma mensagem de erro desconhecida."
+
+#~ msgid "The user this menu item represents."
+#~ msgstr "O usuário que este item de menu representa."
+
+#~ msgid "Icon Size"
+#~ msgstr "Tamanho do Ícone"
+
+#~ msgid "The size of the icon to use."
+#~ msgstr "O tamanho de ícone que deve ser usado."
+
+#~ msgid "Indicator Size"
+#~ msgstr "Tamanho do Indicador"
+
+#~ msgid "Size of check indicator"
+#~ msgstr "Tamanho do indicador de verificação ou seleção"
+
+#~ msgid "Indicator Spacing"
+#~ msgstr "Espaçamento do Indicador"
+
+#~ msgid "Space between the username and the indicator"
+#~ msgstr "Espaço entre o nome de usuário e o indicador"
+
+#~ msgid "The user manager object this user is controlled by."
+#~ msgstr "O objeto gerenciador de usuários pelo qual o usuário é controlado."
+
+#~ msgid "Show Details"
+#~ msgstr "Exibir Detalhes"
 
 #~ msgid "GDM (The GNOME Display Manager) is not running."
 #~ msgstr "O GDM (O Gerenciador de Sessões do GNOME) não está sendo executado."
@@ -1013,8 +1020,7 @@ msgstr "_Senha:"
 
 #~ msgid "Set this to TRUE to allow the screensaver to power down the monitor."
 #~ msgstr ""
-#~ "Defina como TRUE para permitir que a proteção de tela desligue o "
-#~ "monitor."
+#~ "Defina como TRUE para permitir que a proteção de tela desligue o monitor."
 
 #~ msgid ""
 #~ "The number of minutes after the screensaver activation until the monitor "
