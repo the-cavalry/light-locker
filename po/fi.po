@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-15 20:41+0100\n"
+"POT-Creation-Date: 2007-08-13 19:52+0300\n"
 "PO-Revision-Date: 2007-05-12 11:49+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -276,30 +276,22 @@ msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
 #: ../data/lock-dialog-default.glade.h:7
-msgid "Authentication"
-msgstr "Tunnistautuminen"
-
-#: ../data/lock-dialog-default.glade.h:8
-msgid "Note"
-msgstr "Huomautus"
-
-#: ../data/lock-dialog-default.glade.h:9
 msgid "_Cancel"
 msgstr "_Peru"
 
-#: ../data/lock-dialog-default.glade.h:10
+#: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
 msgstr "_Jätä viesti"
 
-#: ../data/lock-dialog-default.glade.h:11
+#: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
 msgstr "Kirjaudu _ulos"
 
-#: ../data/lock-dialog-default.glade.h:12
+#: ../data/lock-dialog-default.glade.h:10
 msgid "_Switch User"
 msgstr "_Vaihda käyttäjää"
 
-#: ../data/lock-dialog-default.glade.h:13 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
 msgid "_Unlock"
 msgstr "_Avaa lukitus"
 
@@ -380,16 +372,33 @@ msgid "%s. See --help for usage information.\n"
 msgstr "%s. Katso --help jos haluat lisätietoja.\n"
 
 #: ../savers/floaters.c:1209
+#, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "Yksi kuva täytyy antaa. Katso käyttöohje valitsimella --help.\n"
 
-#: ../savers/slideshow.c:50
+#: ../savers/slideshow.c:53
 msgid "Location to get images from"
 msgstr "Sijainti, josta kuvat haetaan"
 
-#: ../savers/slideshow.c:50
+#: ../savers/slideshow.c:53
 msgid "PATH"
 msgstr "POLKU"
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "Kuvien taustalla käytettävä väri"
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "\"#rrggbb\""
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr "Älä sekoita kuvia kuvalähteestä"
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Älä yritä venyttää kuvia näytöllä"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -689,6 +698,7 @@ msgid "%s"
 msgstr "%s"
 
 #: ../src/gnome-screensaver-preferences.c:1052
+#, c-format
 msgid "Never"
 msgstr "Ei koskaan"
 
@@ -730,15 +740,15 @@ msgstr "Pääsy ei ole sallittu tällä hetkellä."
 msgid "No longer permitted to access the system."
 msgstr "Pääsy ei ole enää sallittu järjestelmään."
 
-#: ../src/gs-listener-dbus.c:1822
+#: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
 msgstr "viestiväylään rekisteröityminen epäonnistui"
 
-#: ../src/gs-listener-dbus.c:1832
+#: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
 msgstr "viestiväylään ei ole yhteyttä"
 
-#: ../src/gs-listener-dbus.c:1841
+#: ../src/gs-listener-dbus.c:1940
 msgid "screensaver already running in this session"
 msgstr "näytönsäästäjä on jo käynnissä tässä istunnossa"
 
@@ -758,13 +768,20 @@ msgstr "_Vaihda käyttäjää..."
 msgid "Log _Out"
 msgstr "Kirjaudu _ulos"
 
-#: ../src/gs-lock-plug.c:1372
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1373
 msgid "%U on %h"
 msgstr "%s@%s"
 
-#: ../src/gs-lock-plug.c:1386
+#: ../src/gs-lock-plug.c:1387
 msgid "_Password:"
 msgstr "_Salasana:"
+
+#~ msgid "Authentication"
+#~ msgstr "Tunnistautuminen"
+
+#~ msgid "Note"
+#~ msgstr "Huomautus"
 
 #~ msgid "S_witch to user:"
 #~ msgstr "Vaihda käyttäjäksi:"
