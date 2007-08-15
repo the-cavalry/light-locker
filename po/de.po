@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the gnome-screensaver
 # package.
 # Frank Arnold <frank@scirocco-5v-turbo.de>, 2005.
-# Hendrik Richter <hendrikr@gnome.org>, 2005, 2006.
+# Hendrik Richter <hendrikr@gnome.org>, 2005, 2006, 2007.
 # Hendrik Brandt  <heb@gnome-de.org>, 2006.
 # Andre Klapper <ak-47@gmx.net>, 2007.
 #
@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-25 04:35+0200\n"
-"PO-Revision-Date: 2007-07-25 04:53+0200\n"
-"Last-Translator: Andre Klapper <ak-47@gmx.net>\n"
+"POT-Creation-Date: 2007-08-15 12:38+0200\n"
+"PO-Revision-Date: 2007-08-15 12:39+0200\n"
+"Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -293,30 +293,22 @@ msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
 #: ../data/lock-dialog-default.glade.h:7
-msgid "Authentication"
-msgstr "Authentifizierung"
-
-#: ../data/lock-dialog-default.glade.h:8
-msgid "Note"
-msgstr "Hinweis"
-
-#: ../data/lock-dialog-default.glade.h:9
 msgid "_Cancel"
 msgstr "A_bbrechen"
 
-#: ../data/lock-dialog-default.glade.h:10
+#: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
 msgstr "_Nachricht hinterlassen"
 
-#: ../data/lock-dialog-default.glade.h:11
+#: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
 msgstr "A_bmelden"
 
-#: ../data/lock-dialog-default.glade.h:12
+#: ../data/lock-dialog-default.glade.h:10
 msgid "_Switch User"
 msgstr "Benutzer _wechseln"
 
-#: ../data/lock-dialog-default.glade.h:13 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
 msgid "_Unlock"
 msgstr "Sperrung auf_heben"
 
@@ -402,13 +394,29 @@ msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
 "Sie müssen ein Bild angeben. Benutzen Sie --help für weitere Informationen.\n"
 
-#: ../savers/slideshow.c:50
+#: ../savers/slideshow.c:53
 msgid "Location to get images from"
 msgstr "Der Speicherort von dem Bilder geholt werden"
 
-#: ../savers/slideshow.c:50
+#: ../savers/slideshow.c:53
 msgid "PATH"
 msgstr "PFAD"
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "Hintergrundfarbe für Bilder"
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "\"#rrggbb\""
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr "Bilder nicht zufällig anzeigen"
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Bilder nicht auf Bildschirmgröße anpassen"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -759,15 +767,15 @@ msgstr "Ein Zugriff ist derzeit nicht gestattet."
 msgid "No longer permitted to access the system."
 msgstr "Es ist nicht länger gestattet, auf das System zuzugreifen."
 
-#: ../src/gs-listener-dbus.c:1822
+#: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
 msgstr "Registrierung am Benachrichtigungssystem fehlgeschlagen"
 
-#: ../src/gs-listener-dbus.c:1832
+#: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
 msgstr "Keine Verbindung zum Benachrichtigungssystem"
 
-#: ../src/gs-listener-dbus.c:1841
+#: ../src/gs-listener-dbus.c:1940
 msgid "screensaver already running in this session"
 msgstr "Der Bildschirmschoner ist in dieser Sitzung bereits aktiv"
 
@@ -787,10 +795,17 @@ msgstr "Benutzer _wechseln …"
 msgid "Log _Out"
 msgstr "A_bmelden"
 
-#: ../src/gs-lock-plug.c:1372
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1373
 msgid "%U on %h"
 msgstr "%U auf %h"
 
-#: ../src/gs-lock-plug.c:1386
+#: ../src/gs-lock-plug.c:1387
 msgid "_Password:"
 msgstr "_Passwort:"
+
+#~ msgid "Authentication"
+#~ msgstr "Authentifizierung"
+
+#~ msgid "Note"
+#~ msgstr "Hinweis"
