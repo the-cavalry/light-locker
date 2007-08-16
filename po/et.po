@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-31 04:05+0100\n"
-"PO-Revision-Date: 2007-08-15 12:03+0300\n"
+"POT-Creation-Date: 2007-08-16 10:59+0100\n"
+"PO-Revision-Date: 2007-08-16 16:25+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -375,25 +375,29 @@ msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
 "Sa pead määrama ühe pilti.  Lähema teabe saamiseks kasuta --help võtit.\n"
 
-#: ../savers/slideshow.c:52
+#: ../savers/slideshow.c:53
 msgid "Location to get images from"
 msgstr "Piltide hankimise lähtekoht"
 
-#: ../savers/slideshow.c:52
+#: ../savers/slideshow.c:53
 msgid "PATH"
 msgstr "RADA"
 
-#: ../savers/slideshow.c:54
+#: ../savers/slideshow.c:55
 msgid "Color to use for images background"
 msgstr "Piltide taustaks kasutatav värvus"
 
-#: ../savers/slideshow.c:54
-msgid "#abcdef"
-msgstr "#abcdef"
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "\"#rrggbb\""
 
-#: ../savers/slideshow.c:56
+#: ../savers/slideshow.c:57
 msgid "Do not randomize pictures from location"
-msgstr ""
+msgstr "Asukohast ei valita pilte juhuslikus järjekorras"
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Pilte ei proovita üle ekraani venitada"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -773,142 +777,3 @@ msgstr "%U hostil %h"
 #: ../src/gs-lock-plug.c:1387
 msgid "_Password:"
 msgstr "_Parool:"
-
-#~ msgid "Whether or not this display is a windowed (Xnest) display."
-#~ msgstr "Kas see kuva on aknas (Xnest) või mitte."
-
-#~ msgid "The display manager could not be contacted for unknown reasons."
-#~ msgstr "Kuvahalduriga pole teadmata põhjusel võimalik ühenduda."
-
-#~ msgid "The display manager is not running or too old."
-#~ msgstr "Kuvahaldur ei tööta või on liiga vana."
-
-#~ msgid "The configured limit of flexible servers has been reached."
-#~ msgstr "Paindlike serverite suurim määratud hulk on saavutatud."
-
-#~ msgid "There was an unknown error starting X."
-#~ msgstr "X'i käivitamisel tekkis tundmatu viga."
-
-#~ msgid "The X server failed to finish starting."
-#~ msgstr "Tõrge X-serveri käivitamise lõpuleviimisel."
-
-#~ msgid "There are too many X sessions running."
-#~ msgstr "Liiga palju käimasolevaid X-seansse."
-
-#~ msgid "The nested X server (Xnest) cannot connect to your current X server."
-#~ msgstr ""
-#~ "Pesastatud X-server (Xnest) ei suuda käesoleva X-serveriga ühendust võtta."
-
-#~ msgid "The X server in the GDM configuration could not be found."
-#~ msgstr "GDM-i seadistustest ei leitud X-serverit."
-
-#~ msgid ""
-#~ "Trying to set an unknown logout action, or trying to set a logout action "
-#~ "which is not available."
-#~ msgstr ""
-#~ "Prooviti määrata väljalogimise toimingut, mis on tundmatu või pole "
-#~ "saadaval."
-
-#~ msgid "Virtual terminals not supported."
-#~ msgstr "Virtuaalterminalid pole toetatud."
-
-#~ msgid "Invalid virtual terminal number."
-#~ msgstr "Vigane virtuaalterminali number."
-
-#~ msgid "Trying to update an unsupported configuration key."
-#~ msgstr "Proovitakse uuendada toetamata seadistusvõtit."
-
-#~ msgid "~/.Xauthority file badly configured or missing."
-#~ msgstr "~/.Xauthority fail on puudu või vigaselt seadistatud."
-
-#~ msgid "Too many messages were sent to the display manager, and it hung up."
-#~ msgstr "Kuvahaldurile saadeti liiga palju sõnumeid ja see andis alla."
-
-#~ msgid "The display manager sent an unknown error message."
-#~ msgstr "Kuvahaldur saatis tundmatu veateate."
-
-#~ msgid "The user this menu item represents."
-#~ msgstr "Kasutaja, kelle kohta see menüükirje on."
-
-#~ msgid "Space between the username and the indicator"
-#~ msgstr "Ruum kasutajanime ja näidiku vahel"
-
-#~ msgid "The user manager object this user is controlled by."
-#~ msgstr "Selle kasutaja poolt juhitud kasutajahalduri objekt."
-
-#~ msgid "Show Details"
-#~ msgstr "Üksikasjade kuvamine"
-
-#~ msgid "GDM (The GNOME Display Manager) is not running."
-#~ msgstr "GNOME kuvahaldur (GDM) ei tööta."
-
-#~ msgid ""
-#~ "You might in fact be using a different display manager, such as KDM (KDE "
-#~ "Display Manager) or xdm."
-#~ msgstr ""
-#~ "Sa võid kasutada teist kuvahaldurit, näiteks KDM-i (KDE kuvahaldur) või "
-#~ "XDM-i."
-
-#~ msgid ""
-#~ "If you still wish to use this feature, either start GDM yourself or ask "
-#~ "your system administrator to start GDM."
-#~ msgstr ""
-#~ "Kui sa ikkagi soovid seda võimalust kasutada, siis peaksid GDM-i ise "
-#~ "käivitama või paluma oma süsteemihaldurit GDM käivitada."
-
-#~ msgid "Cannot communicate with GDM (The GNOME Display Manager)"
-#~ msgstr "GNOME kuvahalduriga (GDM) pole võimalik suhelda"
-
-#~ msgid "Perhaps you have an old version of GDM running."
-#~ msgstr "Arvatavasti on su GDM-i versioon liiga vana."
-
-#~ msgid ""
-#~ "Cannot communicate with gdm, perhaps you have an old version running."
-#~ msgstr ""
-#~ "GDM-ga pole võimalik suhelda, ilmselt on kasutusel GDM-I liiga vana "
-#~ "versioon."
-
-#~ msgid "The allowed limit of flexible X servers reached."
-#~ msgstr "Paindlike serverite suurim lubatud hulk on saavutatud."
-
-#~ msgid "There were errors trying to start the X server."
-#~ msgstr "X-serveri käivitamisel ilmnesid vead."
-
-#~ msgid "The X server failed.  Perhaps it is not configured well."
-#~ msgstr "X-serveri tõrge.  Arvatavasti on see vigasel seadistatud."
-
-#~ msgid "Too many X sessions running."
-#~ msgstr "Liiga palju käimasolevaid X-seansse."
-
-#~ msgid ""
-#~ "The nested X server (Xnest) cannot connect to your current X server.  You "
-#~ "may be missing an X authorization file."
-#~ msgstr ""
-#~ "Pesastatud X-server (Xnest) ei suuda käesoleva X-serveriga ühendust "
-#~ "võtta. Võibolla on sul X'i autoriseerimisfail puudu."
-
-#~ msgid ""
-#~ "The nested X server (Xnest) is not available, or gdm is badly "
-#~ "configured.\n"
-#~ "Please install the Xnest package in order to use the nested login."
-#~ msgstr ""
-#~ "Pesastatud X-server (Xnest) pole saadaval või on GDM halvasti "
-#~ "seadistatud.\n"
-#~ "Palun paigalda pesastatud sisselogimiste kasutamiseks Xnest'i pakk."
-
-#~ msgid ""
-#~ "The X server is not available, it is likely that gdm is badly configured."
-#~ msgstr "X-server pole saadaval või on halvasti seadistatud."
-
-#~ msgid "Trying to change to an invalid virtual terminal number."
-#~ msgstr "Proovitakse lülituda vigase numbriga terminalile."
-
-#~ msgid ""
-#~ "You do not seem to have authentication needed be for this operation.  "
-#~ "Perhaps your .Xauthority file is not set up correctly."
-#~ msgstr ""
-#~ "Sa ei paista olevat selle toimingu teostamiseks autenditud.  Arvatavasti "
-#~ "pole Su .Xauthority fail korralikult paigaldatud."
-
-#~ msgid "Too many messages were sent to gdm and it hung upon us."
-#~ msgstr "GDM-ile saadeti liiga palju sõnumeid ja see katkestats suhtluse."
