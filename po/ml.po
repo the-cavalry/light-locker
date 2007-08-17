@@ -1,295 +1,324 @@
 # translation of gnome-screensaver.HEAD.ml.po to Malayalam
-# This file is distributed under the same license as the PACKAGE package.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
-# Ani Peter <apeter@redhat.com>, 2006.
+# This file is distributed under the same license as the gnome-screensaver package.
+# Copyright (C) 2007 gnome-screensaver'S COPYRIGHT HOLDER.
 #
+# Ani Peter <apeter@redhat.com>, 2006, 2007.
+# Praveen|പ്രവീണ്‍ A|എ <pravi.a@gmail.com>, 2007‌.
+# Santhosh Thottingal <santhosh00@gmail.com>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.ml\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-07 16:17+0200\n"
-"PO-Revision-Date: 2006-08-08 01:35+0530\n"
+"POT-Creation-Date: 2007-04-24 03:50+0100\n"
+"PO-Revision-Date: 2007-08-17 16:57+0530\n"
 "Last-Translator: Ani Peter <apeter@redhat.com>\n"
-"Language-Team: Malayalam\n"
+"Language-Team: Malayalam <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
-"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
 msgid "Screensaver"
-msgstr "സ്ക്രീന്‍ സേവര്‍"
+msgstr "സ്ക്രീന്‍സേവര്‍"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:2
 msgid "Set your screensaver preferences"
-msgstr "നിങ്ങളുടെ സ്ക്രീന്‍ സേവറിന്‍റെ മുന്‍ഗണനകള്‍ ക്രമീകരിക്കുക"
+msgstr "നിങ്ങളുടെ സ്ക്രീന്‍സേവറിന്റെ മുന്‍ഗണനകള്‍ സജ്ജീകരിയ്ക്കുക"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
 msgid "<b>Screensaver preview</b>"
-msgstr "<b>സ്ക്രീന്‍ സേവര്‍ സെറ്റ് ചെയ്യുന്നതിന് മുന്പ് കാണുക</b>"
+msgstr "<b>സ്ക്രീന്‍സേവര്‍ കണ്ടു നോക്കുക</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:2
 msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgstr "<b>മുന്നറിയിപ്പ്: root ഉപയോക്താവിന് സ്ക്രീന്‍ പൂട്ടുവാന്‍ സാധിക്കില്ല.</b>"
+msgstr "<b>മുന്നറിയിപ്പ്: റൂട്ട് ഉപയോക്താവിന് സ്ക്രീന്‍ പൂട്ടുവാന്‍ സാധിക്കില്ല.</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
-msgid "Regard the computer as _idle after:"
-msgstr "കംപ്യൂട്ടര്‍ നിര്‍ജ്ജീവമെന്ന് കരുതണ്ടത് എത്ര സമയത്തിന് ശേഷം: (_i)"
+msgid "Power _Management"
+msgstr "വൈദ്യുതി മേല്‍നോട്ടം (_M)"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
-msgid "Screensaver Preferences"
-msgstr "സ്ക്രീന്‍ സേവറിന്‍റെ മുന്‍ഗണനകള്‍"
+msgid "Regard the computer as _idle after:"
+msgstr "കംപ്യൂട്ടറ്‍ ആലസ്യത്തിലാണെന്ന് കരുതണ്ടത് എത്ര സമയത്തിന് ശേഷം: (_i)"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
-msgid "Screensaver Preview"
-msgstr "സ്ക്രീന്‍ സേവര്‍ സെറ്റ് ചെയ്യുന്നതിന് മുന്പ് കാണുക"
+msgid "Screensaver Preferences"
+msgstr "സ്ക്രീന്‍സേവറിന്‍റെ മുന്‍ഗണനകള്‍"
 
 #: ../data/gnome-screensaver-preferences.glade.h:6
-msgid "_Activate screensaver when computer is idle"
-msgstr "കംപ്യൂട്ടര്‍ നിര്‍ജ്ജീവമാകുന്പോള്‍ സ്ക്രീന്‍ സേവര്‍ പ്രവര്‍ത്തിപ്പിക്കുക (_A)"
+msgid "Screensaver Preview"
+msgstr "സ്ക്രീന്‍സേവര്‍ കണ്ടു നോക്കുക"
 
 #: ../data/gnome-screensaver-preferences.glade.h:7
-msgid "_Lock screen when screensaver is active"
-msgstr "സ്ക്രീന്‍ സേവര്‍ പ്രവര്‍ത്തനത്തില്‍ ആകുന്പോള്‍ സ്ക്രീന്‍ പൂട്ടുക (_L)"
+msgid "_Activate screensaver when computer is idle"
+msgstr "കംപ്യൂട്ടറ്‍ ആലസ്യത്തിലാകുമ്പോള്‍ സ്ക്രീന്‍സേവര്‍ പ്രവര്‍ത്തിപ്പിക്കുക (_A)"
 
 #: ../data/gnome-screensaver-preferences.glade.h:8
-msgid "_Preview"
-msgstr "സെറ്റ് ചെയ്യുന്നതിന് മുന്പായി സ്ക്രീനില്‍ കാണുക (_P)"
+msgid "_Lock screen when screensaver is active"
+msgstr "സ്ക്രീന്‍സേവര്‍ പ്രവര്‍ത്തനത്തിലാകുമ്പോള്‍ സ്ക്രീന്‍ പൂട്ടുക (_L)"
 
 #: ../data/gnome-screensaver-preferences.glade.h:9
+msgid "_Preview"
+msgstr "കണ്ടു നോക്കുക (_P)"
+
+#: ../data/gnome-screensaver-preferences.glade.h:10
 msgid "_Screensaver theme:"
-msgstr "സ്ക്രീന്‍ സേവര്‍ ഥീം: (_S)"
+msgstr "സ്ക്രീന്‍സേവറിന്‍റെ രംഗവിധാനം: (_S)"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Screensaver themes"
-msgstr "സ്ക്രീന്‍ സേവര്‍ ഥീംസ്"
+msgstr "സ്ക്രീന്‍സേവറിന്‍റെ രംഗവിധാനങ്ങള്‍"
 
 #: ../data/gnome-screensaver.directory.in.h:2
 msgid "Screensavers"
-msgstr "സ്ക്രീന്‍ സേവര്‍സ്"
+msgstr "സ്ക്രീന്‍സേവറുകള്‍"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
 msgid "Activate when idle"
-msgstr "നിര്‍ജ്ജീവമാകുന്പോള്‍ പ്രവര്‍ത്തിപ്പിക്കുക"
+msgstr "ആലസ്യത്തിലാകുമ്പോള്‍ പ്രവര്‍ത്തിപ്പിക്കുക"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
 msgid "Allow embedding a keyboard into the window"
-msgstr ""
+msgstr "ജാലകത്തില്‍ കീബോര്‍ഡ് കൂട്ടിച്ചേര്‍ക്കുന്നത് അനുവദിയ്ക്കുക"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow logout"
-msgstr "ലോഗൌട്ട് അനുവദിക്കുക"
+msgstr "പുറത്തിറങ്ങാന്‍ അനുവദിയ്ക്കുക"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
-msgstr "മറ്റൊരു ഉപയോക്താവാകുന്നത് അനുവദിക്കുക"
+msgstr "മറ്റൊരു ഉപയോക്താവാകുന്നത് അനുവദിയ്ക്കുക"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
 msgid "Embedded keyboard command"
-msgstr ""
+msgstr "കൂട്ടിച്ചേര്‍ത്ത കീബോര്‍ഡിനുള്ള ആജ്ഞ"
 
 #: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Lock on activation"
-msgstr "പ്രവര്‍ത്തനത്തിലാകുന്പോള്‍ പൂട്ടുക"
+msgstr "പ്രവര്‍ത്തനത്തിലാകുമ്പോള്‍ പൂട്ടുക"
 
 #: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Logout command"
-msgstr "ലോഗൌട്ട് ചെയ്യുന്നതിനുളള നിര്‍ദ്ദേശം"
+msgstr "പുറത്തിറങ്ങുന്നതിനുളള ആജ്ഞ"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Screensaver theme selection mode"
-msgstr ""
+msgid "Reason for being away"
+msgstr "ദൂരെയാകാന്‍ കാരണം"
 
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr "സെഷന്‍ നിര്‍ജ്ജീവമാകുന്പോള്‍ സ്ക്രീന്‍ സേവര്‍ പ്രവര്‍ത്തിപ്പിക്കുന്നതിനായി ഇത് TRUE ആയി സെറ്റ് ചെയ്യുക."
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Screensaver theme selection mode"
+msgstr "സ്ക്രീന്‍സേവറിന്‍റെ രംഗവിധാനം തിരഞ്ഞെടുക്കുന്നതിനുള്ള രീതി"
 
 #: ../data/gnome-screensaver.schemas.in.h:11
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr "ആലസ്യാവസ്ഥയില്‍ സ്ക്രീന്‍സേവര്‍ പ്രവര്‍ത്തിപ്പിയ്ക്കാന്‍ ഇത് ശരിയെന്ന് സജ്ജീകരിയ്ക്കുക. "
+
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:12
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr "സ്ക്രീന്‍ സേവര്‍ പ്രവര്‍ത്തിപ്പിക്കുന്പോള്‍ സ്ക്രീന്‍ പൂട്ടുന്നതിനായി ഇത് TRUE ആയി സെറ്റ് ചെയ്യുക."
+msgstr "ജാലകത്തില്‍ കീബോര്‍ഡ് കൂട്ടിച്ചേര്‍ക്കുന്നത് അനുവദിയ്ക്കാന്‍ ഇത് ശരിയെന്ന് സജ്ജീകരിയ്ക്കുക. \"keyboard_command\" എന്ന കീ യോജിച്ച ആജ്ഞയായി സജ്ജീകരിച്ചിരിയ്ക്കണം."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to switch to a "
-"different user account."
-msgstr ""
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr "സ്ക്രീന്‍സേവര്‍ സജീവമാകുമ്പോള്‍ സ്ക്രീന്‍ പൂട്ടുന്നതിനായി ഇത് ശരിയെന്ന് സജ്ജീകരിയ്ക്കുക."
 
 #: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
-"Set this to TRUE to offer an option in unlock dialog to logging out after a "
-"delay. The Delay is specified in the \"logout_delay\" key."
-msgstr ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr "മറ്റൊരു ഉപയോക്താവിന്റെ അക്കൌണ്ടിലേയ്ക്ക് മാറുന്നതിനുള്ള ഐച്ഛികം തുറക്കുന്നതിനായുള്ള ഡയലോഗില്‍ ലഭ്യമാക്കാന്‍ ഇത് ശരിയെന്ന് സജ്ജീകരിയ്ക്കുക."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr "ഒരിടവേളയ്ക്ക് ശേഷം പുറത്തിറങ്ങാനുള്ള ഐച്ഛികം തുറക്കുന്നതിനായുള്ള ഡയലോഗില്‍ ലഭ്യമാക്കാന്‍ ഇത് ശരിയെന്ന് സജ്ജീകരിയ്ക്കുക. \"logout_delay\" എന്ന കീയിലാണ് ഇടവേള വ്യക്തമാക്കിയിരിയ്ക്കുന്നത്."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
 "set to TRUE, to embed a keyboard widget into the window. This command should "
 "implement an XEMBED plug interface and output a window XID on the standard "
 "output."
-msgstr ""
+msgstr "\"embedded_keyboard_enabled\" എന്ന കീ ശരിയെന്ന് സജ്ജീകരിച്ചിട്ടുണ്ടെങ്കില്‍ ഒരു കീബോര്‍ഡ് വിഡ്ജറ്റ് ജാലകത്തിലേയ്ക്ക് കൂട്ടിചേര്‍ക്കാനായി പ്രവര്‍ത്തിപ്പിയ്ക്കേണ്ട ആജ്ഞ. ഈ ആജ്ഞ ഒരു  XEMBED സംയോജക വിനിമയതലം നടപ്പിയാക്കിയിരിയ്ക്കുകയും ഒരു ജാലക എക്സ്ഐഡി സ്റ്റാന്‍ഡേര്‍ഡ് ഔട്ട്പുട്ടില്‍ കാണിയ്ക്കുകയും വേണം."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid "The number of minutes after screensaver activation before locking the screen."
-msgstr "സ്ക്രീന്‍ സേവര്‍ പ്രവര്‍ത്തിച്ച ശേഷം സ്ക്രീന്‍ പൂട്ടുന്നതിന് മുന്പുളള നിമിഷങ്ങള്‍."
+msgstr "പുറത്തിറങ്ങാനുള്ള ബട്ടണ്‍ അമര്‍ത്തിയാല്‍ വിളിയ്ക്കേണ്ട ആജ്ഞ. ഈ ആജ്ഞ മറ്റൊരിടപെടലുമില്ലാതെ ഉപയോക്താവിനെ നേരെയങ്ങ് പുറത്തിറക്കണം.  \"logout_enable\" കീ ശരിയെന്ന് സജ്ജീകരിച്ചിട്ടുണ്ടെങ്കില്‍ മാത്രമേ ഈ കീയ്ക്ക് പ്രഭാവമുള്ളൂ."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
+msgid "The number of minutes after screensaver activation before locking the screen."
+msgstr "സ്ക്രീന്‍സേവര്‍ സജീവമായതിന് ശേഷം സ്ക്രീന്‍ പൂട്ടുന്നതിന് എത്ര മിനിറ്റുകള്‍."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid "The number of minutes of inactivity before the session is considered idle."
-msgstr ""
+msgstr "സ്ക്രീന്‍സേവര്‍ സജീവമായതിന് ശേഷം തുറക്കുന്നതിനുള്ള ഡയലോഗില്‍ പുറത്തിറങ്ങാനുള്ളൊരു ഐച്ഛികം വരുന്നതിന് എത്ര മിനിറ്റുകള്‍. \"logout_enable\" കീ ശരിയെന്ന് സജ്ജീകരിച്ചിട്ടുണ്ടെങ്കില്‍ മാത്രമേ ഈ കീയ്ക്ക് പ്രഭാവമുള്ളൂ."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
-msgid "The number of minutes to run before changing the screensaver theme."
-msgstr ""
+msgid "The number of minutes of inactivity before the session is considered idle."
+msgstr "ആലസ്യാവസ്ഥയിലാണെന്ന് കണക്കാക്കാനായി എത്ര മിനിറ്റുകള്‍ നിഷ്ക്രിയമാകണം."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr "സ്ക്രീന്‍സേവറിന്റെ രംഗവിധാനം മാറ്റുന്നതിനായി എത്ര മിനിറ്റുകള്‍ പ്രവര്‍ത്തിയ്ക്കണം."
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid ""
+"The number of seconds of inactivity before signalling to power-management. "
+"This key is set and maintained by the session power-management agent."
+msgstr "വൈദ്യുതി-നടത്തിപ്പിന് അടയാളം കാണിയ്ക്കുന്നതിനായി എത്ര മിനിറ്റുകള്‍ നിഷ്ക്രിയമാകണം. അവസ്ഥയിലെ വൈദ്യുതി-നടത്തിപ്പ് കക്ഷിയാണ് ഈ കീ സജ്ജീകരിയ്ക്കുന്നതും നോക്കിനടത്തുന്നതും."
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "The reason for being away from the computer."
+msgstr "കംപ്യൂട്ടറില്‍ നിന്നും ദൂരെയാകാനുള്ള കാരണം."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
 "screensaver using only one theme on activation (specified in \"themes\" "
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
-msgstr ""
+msgstr "സ്ക്രീന്‍സേവറുപയോഗിയ്ക്കുന്ന തിരഞ്ഞെടുക്കല്‍ രീതി. സജീവമാകുമ്പോള്‍ രംഗവിധാനമൊന്നുമുയോഗിയ്ക്കാതെ സ്ക്രീന്‍സേവര്‍ പ്രാവര്‍ത്തികമാക്കാന്‍ \"ശൂന്യമാക്കിയല്‍ മതി (blank-only)\" എന്നോ സജീവമാകുമ്പോള്‍ (\"രംഗവിധാനങ്ങള്‍ (themes)\" എന്ന കീയില്‍ വ്യക്തമാക്കിയ) ഒരേഒരു രംഗവിധാനമുപയോഗിച്ച് സ്ക്രീന്‍സേവര്‍ പ്രാവര്‍ത്തികമാക്കാന്‍ \"ഒരെണ്ണം (single)\" എന്നോ ഏതെങ്കിലമൊരു രംഗവിധാനമുപയോഗിച്ച് സ്ക്രീന്‍സേവര്‍ പ്രാവര്‍ത്തികമാക്കാന്‍ \"ഏതെങ്കിലും (random)\" എന്നോ ഇതാകാം."
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
-msgstr ""
+msgstr "പൂട്ടിയ ഡയലോഗിന്റെ രംഗവിധാനം"
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Theme to use for the lock dialog."
-msgstr ""
+msgstr "പൂട്ടിയ ഡയലോഗിനുപയോഗിയ്ക്കേണ്ട രംഗവിധാനം"
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:25
-msgid "Time before activation"
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Time before locking"
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid "Time before logout option"
-msgstr ""
+msgstr "ഈ കീ സ്ക്രീന്‍സേവര്‍ ഉപയോഗിയ്ക്കുന്ന രംഗവിധാനങ്ങളുടെ നാമാവലി വ്യക്തമാക്കുന്നു. \"രീതിയുടെ (mode)\" കീ \"ശൂന്യമാക്കിയല്‍ മതി (blank-only)\" എന്നാണെങ്കില്‍ ഇത് അവഗണിയ്ക്കപ്പെടുകയും \"രീതി (mode)\" \"ഒരെണ്ണം (single)\" എന്നാണെങ്കില്‍ രംഗവിധാനത്തിന്റെ പേരും \"രീതി (mode)\" \"ഏതെങ്കിലും (random)\" എന്നാണെങ്കില്‍ രംഗവിധാനങ്ങളുടെ ഒരു നാമാവലിയും നല്‍കണം."
 
 #: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before locking"
+msgstr "പൂട്ടുന്നതിനെടുക്കുന്ന സമയം"
+
+#: ../data/gnome-screensaver.schemas.in.h:29
+msgid "Time before logout option"
+msgstr "പുറത്തിറങ്ങാനുള്ള ഐച്ഛികത്തിനെടുക്കുന്ന സമയം"
+
+#: ../data/gnome-screensaver.schemas.in.h:30
+msgid "Time before power-management baseline"
+msgstr "വൈദ്യുതി-നടത്തിപ്പിന്റെ അടിവരയിലെത്താനെടുക്കുന്ന സമയം"
+
+#: ../data/gnome-screensaver.schemas.in.h:31
+msgid "Time before session is considered idle"
+msgstr "ആലസ്യാവസ്ഥയിലാണെന്ന് കണക്കാക്കാനെടുക്കുന്ന സമയം"
+
+#: ../data/gnome-screensaver.schemas.in.h:32
 msgid "Time before theme change"
-msgstr ""
+msgstr "രംഗനിധാനം മാറ്റുന്നതിനെടുക്കുന്ന സമയം"
 
 #: ../data/lock-dialog-default.glade.h:2
+#, no-c-format
+msgid "<b>Leave a message for %R:</b>"
+msgstr "<b>%R നായി ഒരു സന്ദേശം വയ്ക്കുക:</b>"
+
+#: ../data/lock-dialog-default.glade.h:4
 #, no-c-format
 msgid "<span size=\"small\">%U on %h</span>"
 msgstr "<span size=\"small\">%U on %h</span>"
 
-#: ../data/lock-dialog-default.glade.h:4
+#: ../data/lock-dialog-default.glade.h:6
 #, no-c-format
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:172
-#: ../src/gnome-screensaver-dialog.c:173
-msgid "Password:"
-msgstr "പാസ്‍വേര്‍ഡ്:"
-
-#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1703
-msgid "S_witch to user:"
-msgstr "മാറേണ്ട ഉപയോക്താവ്: (_w)"
-
 #: ../data/lock-dialog-default.glade.h:7
+msgid "Authentication"
+msgstr "തിരിച്ചറിയല്‍"
+
+#: ../data/lock-dialog-default.glade.h:8
+msgid "Note"
+msgstr "കുറിപ്പ്"
+
+#: ../data/lock-dialog-default.glade.h:9
 msgid "_Cancel"
 msgstr "റദ്ദാക്കുക (_C)"
 
-#: ../data/lock-dialog-default.glade.h:8
-msgid "_Log Out"
-msgstr "പുറത്ത് കടക്കുക (_L)"
-
-#: ../data/lock-dialog-default.glade.h:9
-msgid "_Switch User..."
-msgstr "മറ്റൊരു ഉപയോക്താവാകുക... (_S)"
-
 #: ../data/lock-dialog-default.glade.h:10
-msgid "_Switch user..."
-msgstr "മറ്റൊരു ഉപയോക്താവാകുക... (_S)"
+msgid "_Leave Message"
+msgstr "ഒരു സന്ദേശം വയ്ക്കുക(_L)"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1432
+#: ../data/lock-dialog-default.glade.h:11
+msgid "_Log Out"
+msgstr "പുറത്തിറങ്ങുക (_L)"
+
+#: ../data/lock-dialog-default.glade.h:12
+msgid "_Switch User"
+msgstr "മറ്റൊരുപയോക്താവാകുക (_S)"
+
+#: ../data/lock-dialog-default.glade.h:13 ../src/gs-lock-plug.c:1202
 msgid "_Unlock"
 msgstr "പൂട്ട് തുറക്കുക (_U)"
 
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr ""
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr ""
-
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
-msgstr "കോസ്മോസ്"
+msgstr "പ്രപഞ്ചം"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:2
 msgid "Display a slideshow of pictures of the cosmos"
-msgstr ""
+msgstr "പ്രപഞ്ചത്തിന്റെ ചിത്രങ്ങളൊന്നൊന്നായി പ്രദര്‍ശിപ്പിയ്ക്കുക"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "ഗ്നോമിന്റെ കാല്‍പ്പാദമുദ്ര സ്ക്രീനിന് ചുറ്റും കുമിളകളാക്കുക"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "പാറിനടക്കുന്ന കാല്‍പ്പാദം"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
-msgstr ""
+msgstr "നിങ്ങളുടെ ചിത്രങ്ങളുള്ള കൂടയില്‍ നിന്നും ഒന്നൊന്നായി പ്രദര്‍ശിപ്പിയ്ക്കുക"
 
 #: ../savers/personal-slideshow.desktop.in.h:2
 msgid "Pictures folder"
-msgstr ""
+msgstr "ചിത്രങ്ങളുള്ള കൂട"
 
 #: ../savers/popsquares.desktop.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
-msgstr ""
+msgstr "ഒരു പോപ് കലാപരമായ സ്പന്ദിയ്ക്കുന്ന നിറങ്ങളുടെ ഗ്രിഡ്"
 
 #: ../savers/popsquares.desktop.in.h:2
 msgid "Pop art squares"
-msgstr ""
+msgstr "പോപ് കലാ ചതുരങ്ങള്‍"
 
 #: ../savers/floaters.c:1166
 msgid "show paths that images follow"
-msgstr ""
+msgstr "ചിത്രങ്ങള്‍ നീങ്ങുന്ന വഴി കാണിയ്ക്കുക"
 
 #: ../savers/floaters.c:1173
 msgid "occasionally rotate images as they move"
-msgstr ""
+msgstr "ചിലപ്പോഴൊക്കെ നിങ്ങുമ്പോള്‍ ചിത്രങ്ങള്‍ തിരിയ്ക്കുക"
 
 #: ../savers/floaters.c:1180
 msgid "print out frame rate and other statistics"
-msgstr ""
+msgstr "ഫ്രെയിമിന്റെ നിരക്കും മറ്റ് സ്ഥിതിവിവരക്കണക്കുകളും അച്ചടിയ്ക്കുക"
 
 #: ../savers/floaters.c:1188
 msgid "the maximum number of images to keep on screen"
-msgstr ""
+msgstr "സ്ക്രീനില്‍ സൂക്ഷിയ്ക്കേണ്ട ഏറ്റവും കൂടിയ എണ്ണം ചിത്രങ്ങള്‍"
 
 #. translators: this should be translated to be symbolic of a generic
 #. * number.  e.g, "the screen saver should keep N images on the screen"
@@ -300,11 +329,11 @@ msgstr "N"
 
 #: ../savers/floaters.c:1199
 msgid "the source image to use"
-msgstr ""
+msgstr "ഉപയോഗിയ്ക്കേണ്ട ചിത്രം"
 
 #: ../savers/floaters.c:1206
 msgid "the initial size and position of window"
-msgstr ""
+msgstr "ജലകത്തിന്റെ തുടക്കത്തിലെ സ്ഥാനവും വലിപ്പവും"
 
 #. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
 #. * can be translated, but the 'x' area indicator and '+' offset indicators
@@ -312,255 +341,36 @@ msgstr ""
 #.
 #: ../savers/floaters.c:1211
 msgid "WIDTHxHEIGHT+X+Y"
-msgstr "WIDTHxHEIGHT+X+Y"
+msgstr "വീതിxഉയരം+X+Y"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
 #: ../savers/floaters.c:1229
 msgid "image - floats images around the screen"
-msgstr ""
+msgstr "ചിത്രം - ചിത്രങ്ങള്‍ സ്ക്രീനിന് ചുറ്റും പാറിക്കിടക്കും"
 
 #: ../savers/floaters.c:1239
 #, c-format
 msgid "%s. See --help for usage information.\n"
-msgstr ""
+msgstr "%s. ഉപയോഗിയ്ക്കുന്നതിനെക്കുറിച്ചുള്ള വിവരത്തിനായി --help കാണുക.\n"
 
 #: ../savers/floaters.c:1248
 msgid "You must specify one image.  See --help for usage information.\n"
-msgstr ""
+msgstr "നിങ്ങള്‍ ഒരു ചിത്രം വ്യക്തമാക്കണം. ഉപയോഗിയ്ക്കുന്നതിനെക്കുറിച്ചുള്ള വിവരത്തിനായി --help കാണുക.\n"
 
-#: ../savers/slideshow.c:47
+#: ../savers/slideshow.c:49
 msgid "Location to get images from"
-msgstr ""
+msgstr "ചിത്രങ്ങളെടുക്കേണ്ട സ്ഥലം"
 
-#: ../savers/slideshow.c:47
+#: ../savers/slideshow.c:49
 msgid "PATH"
 msgstr "PATH"
-
-#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
-msgid "Manager"
-msgstr "മാനേജര്‍"
-
-#: ../src/cut-n-paste/fusa-display.c:120
-msgid "The manager which owns this object."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-display.c:127
-msgid "Name"
-msgstr "പേര്"
-
-#: ../src/cut-n-paste/fusa-display.c:128
-msgid "The name of the X11 display this object refers to."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:163
-msgid "User"
-msgstr "ഉപയോക്താവ്"
-
-#: ../src/cut-n-paste/fusa-display.c:135
-msgid "The user currently logged in on this virtual terminal."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-display.c:141
-msgid "Console"
-msgstr "കണ്‍സോള്‍"
-
-#: ../src/cut-n-paste/fusa-display.c:142
-msgid "The number of the virtual console this display can be found on, or %-1."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-display.c:148
-msgid "Nested"
-msgstr "നെസ്റ്റ്ഡ്"
-
-#: ../src/cut-n-paste/fusa-display.c:149
-msgid "Whether or not this display is a windowed (Xnest) display."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-manager.c:1453
-msgid "The display manager could not be contacted for unknown reasons."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-manager.c:1460
-msgid "The display manager is not running or too old."
-msgstr "ഡിസ്പ്ളെ മാനേജര്‍ പ്രവര്‍ത്തിക്കുന്നില്ല."
-
-#: ../src/cut-n-paste/fusa-manager.c:1463
-msgid "The configured limit of flexible servers has been reached."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-manager.c:1466
-msgid "There was an unknown error starting X."
-msgstr "X ആരംഭിക്കുന്നതില്‍ അപരിചിതമായ ഒരു പിശക്."
-
-#: ../src/cut-n-paste/fusa-manager.c:1469
-msgid "The X server failed to finish starting."
-msgstr "X സര്‍വര്‍ ആരംഭിക്കുന്നത് അവസാനിച്ചിരിക്കുന്നു."
-
-#: ../src/cut-n-paste/fusa-manager.c:1472
-msgid "There are too many X sessions running."
-msgstr "അനവധി X സെഷനുകള്‍ പ്രവര്‍ത്തനത്തില്‍."
-
-#: ../src/cut-n-paste/fusa-manager.c:1475
-msgid "The nested X server (Xnest) cannot connect to your current X server."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-manager.c:1478
-msgid "The X server in the GDM configuration could not be found."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-manager.c:1481 ../src/cut-n-paste/gdmcomm.c:492
-msgid ""
-"Trying to set an unknown logout action, or trying to set a logout action "
-"which is not available."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-manager.c:1484 ../src/cut-n-paste/gdmcomm.c:495
-msgid "Virtual terminals not supported."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-manager.c:1487
-msgid "Invalid virtual terminal number."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-manager.c:1490 ../src/cut-n-paste/gdmcomm.c:499
-msgid "Trying to update an unsupported configuration key."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-manager.c:1493
-msgid "~/.Xauthority file badly configured or missing."
-msgstr "~/.Xauthority ഫയല്‍ കാണ്‍മാനില്ല അല്ലെങ്കില്‍ തെറ്റായി ക്രമീകരിച്ചിരിക്കുന്നു."
-
-#: ../src/cut-n-paste/fusa-manager.c:1496
-msgid "Too many messages were sent to the display manager, and it hung up."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-manager.c:1500
-msgid "The display manager sent an unknown error message."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:164
-msgid "The user this menu item represents."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:171
-msgid "Icon Size"
-msgstr "പ്രതിരൂപത്തിന്‍റെ വലുപ്പം"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:172
-msgid "The size of the icon to use."
-msgstr "ഉപയോഗിക്കുവാനുളള പ്രതിരൂപത്തിന്‍റെ വലുപ്പം."
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:178
-msgid "Indicator Size"
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:179
-msgid "Size of check indicator"
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:184
-msgid "Indicator Spacing"
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:185
-msgid "Space between the username and the indicator"
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-user.c:151
-msgid "The user manager object this user is controlled by."
-msgstr ""
-
-#: ../src/cut-n-paste/fusa-utils.c:80
-msgid "Show Details"
-msgstr "വിശദവിവരങ്ങള്‍ കാണിക്കുക"
-
-#. markup
-#: ../src/cut-n-paste/gdmcomm.c:413
-msgid "GDM (The GNOME Display Manager) is not running."
-msgstr "GDM (GNOME ഡിസ്പ്ളേ മാനേജര്‍) പ്രവര്‍ത്തിക്കുന്നില്ല."
-
-#: ../src/cut-n-paste/gdmcomm.c:416
-msgid ""
-"You might in fact be using a different display manager, such as KDM (KDE "
-"Display Manager) or xdm."
-msgstr ""
-
-#: ../src/cut-n-paste/gdmcomm.c:419
-msgid ""
-"If you still wish to use this feature, either start GDM yourself or ask your "
-"system administrator to start GDM."
-msgstr ""
-
-#. markup
-#: ../src/cut-n-paste/gdmcomm.c:441
-msgid "Cannot communicate with GDM (The GNOME Display Manager)"
-msgstr "GDM-ഉം ആയി ബന്ധപ്പെടുവാന്‍ സാധ്യമല്ല (GNOME ഡിസ്പ്ളേ മാനേജര്‍)"
-
-#: ../src/cut-n-paste/gdmcomm.c:444
-msgid "Perhaps you have an old version of GDM running."
-msgstr "ചിലപ്പോള്‍ നിങ്ങള്‍ ഉപയോഗിക്കുന്നത് GDM-ന്‍റെ പഴയ വേന്‍ഷന്‍ ആവാം."
-
-#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
-msgid "Cannot communicate with gdm, perhaps you have an old version running."
-msgstr "gdm-ഉം ആയി ബന്ധപ്പെടുവാന്‍ സാധ്യമല്ല, നിങ്ങള്‍ ഉപയോഗിക്കുന്നത് പഴയ വേന്‍ഷന്‍ ആവാം."
-
-#: ../src/cut-n-paste/gdmcomm.c:469
-msgid "The allowed limit of flexible X servers reached."
-msgstr ""
-
-#: ../src/cut-n-paste/gdmcomm.c:471
-msgid "There were errors trying to start the X server."
-msgstr "X സര്‍വര്‍ ആരംഭിക്കുവാനുളള ശ്രമത്തില്‍ പിശകുകള്‍."
-
-#: ../src/cut-n-paste/gdmcomm.c:473
-msgid "The X server failed.  Perhaps it is not configured well."
-msgstr "X സര്‍വര്‍ പരാജയപ്പെട്ടു.  കോണ്‍ഫിഗറേഷനില്‍ തകരാറ്."
-
-#: ../src/cut-n-paste/gdmcomm.c:476
-msgid "Too many X sessions running."
-msgstr "അനവധി X സര്‍വറുകള്‍ പ്രവര്‍ത്തനത്തില്‍."
-
-#: ../src/cut-n-paste/gdmcomm.c:478
-msgid ""
-"The nested X server (Xnest) cannot connect to your current X server.  You "
-"may be missing an X authorization file."
-msgstr ""
-
-#: ../src/cut-n-paste/gdmcomm.c:483
-msgid ""
-"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
-"Please install the Xnest package in order to use the nested login."
-msgstr ""
-
-#: ../src/cut-n-paste/gdmcomm.c:488
-msgid "The X server is not available, it is likely that gdm is badly configured."
-msgstr "X സര്‍വര്‍ ലഭ്യമല്ല, gdm ശരിയായി ഇന്‍സ്റ്റോള്‍ ചെയ്യപ്പെട്ടിട്ടില്ല."
-
-#: ../src/cut-n-paste/gdmcomm.c:497
-msgid "Trying to change to an invalid virtual terminal number."
-msgstr ""
-
-#: ../src/cut-n-paste/gdmcomm.c:501
-msgid ""
-"You do not seem to have authentication needed be for this operation.  "
-"Perhaps your .Xauthority file is not set up correctly."
-msgstr ""
-
-#: ../src/cut-n-paste/gdmcomm.c:505
-msgid "Too many messages were sent to gdm and it hung upon us."
-msgstr ""
-
-#: ../src/cut-n-paste/gdmcomm.c:508
-msgid "Unknown error occurred."
-msgstr "അപരിചിതമായ പിശക് സംഭവിച്ചിരിക്കുന്നു."
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
 msgid "Copying file: %u of %u"
-msgstr "ഫയല്‍ പകര്‍ത്തുന്നു: %u-യുടെ %u"
+msgstr "%2$uയിലെ %1$u: ഫയല്‍ പകര്‍ത്തുന്നു"
 
 #: ../src/file-transfer-dialog.c:122
 #, c-format
@@ -569,43 +379,43 @@ msgstr "'%s' പകര്‍ത്തുന്നു"
 
 #: ../src/file-transfer-dialog.c:193
 msgid "From URI"
-msgstr "URI-ല്‍ നിന്നും"
+msgstr "യുആര്‍ഐയില്‍ നിന്നും"
 
 #: ../src/file-transfer-dialog.c:194
 msgid "URI currently transferring from"
-msgstr "URI നിലവില്‍ മാറ്റപ്പെടുന്നത്"
+msgstr "നിലവില്‍ മാറ്റപ്പെടുന്ന യുആര്‍ഐ"
 
 #: ../src/file-transfer-dialog.c:201
 msgid "To URI"
-msgstr "URI-ലോട്ട്"
+msgstr "യുആര്‍ഐലേയ്ക്ക്"
 
 #: ../src/file-transfer-dialog.c:202
 msgid "URI currently transferring to"
-msgstr "നിലവില്‍ URI-യെ മാറ്റുന്നത്"
+msgstr "നിലവില്‍ മാറ്റുന്ന യുആര്‍ഐ"
 
 #: ../src/file-transfer-dialog.c:209
 msgid "Fraction completed"
-msgstr ""
+msgstr "പൂര്‍ത്തിയാക്കിയ ഭാഗം"
 
 #: ../src/file-transfer-dialog.c:210
 msgid "Fraction of transfer currently completed"
-msgstr ""
+msgstr "ഇതുവരെ പൂര്‍ത്തിയാക്കിയ മാറ്റലിന്റെ ഭാഗം"
 
 #: ../src/file-transfer-dialog.c:217
 msgid "Current URI index"
-msgstr "നിലവിലുളള URI സൂചിക"
+msgstr "നിലവിലുളള യുആര്‍ഐ സൂചിക"
 
 #: ../src/file-transfer-dialog.c:218
 msgid "Current URI index - starts from 1"
-msgstr "നിലവിലുളള URI സൂചിക - 1-ല്‍ നിന്നും ആരംഭിക്കുന്നു"
+msgstr "നിലവിലുളള യുആര്‍ഐ സൂചിക - 1 ല്‍ നിന്നും ആരംഭിക്കുന്നു"
 
 #: ../src/file-transfer-dialog.c:225
 msgid "Total URIs"
-msgstr "മൊത്തമുളള URI"
+msgstr "മൊത്തമുളള യുആര്‍ഐകള്‍"
 
 #: ../src/file-transfer-dialog.c:226
 msgid "Total number of URIs"
-msgstr "മൊത്തം URI എണ്ണം"
+msgstr "മൊത്തം യുആര്‍ഐകളുടെ എണ്ണം"
 
 #: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
 msgid "Copying files"
@@ -613,193 +423,217 @@ msgstr "ഫയലുകള്‍ പകര്‍ത്തുന്നു"
 
 #: ../src/file-transfer-dialog.c:345
 msgid "From:"
-msgstr "എവിടെ നിന്നും:"
+msgstr "ഇവിടെ നിന്നും:"
 
 #: ../src/file-transfer-dialog.c:349
 msgid "To:"
-msgstr "എങ്ങോട്ട്:"
+msgstr "ഇവിടെ വരെ:"
 
 #: ../src/file-transfer-dialog.c:448
 msgid "Connecting..."
-msgstr "കണക്ട് ചെയ്യുന്നു..."
+msgstr "ബന്ധപ്പെടുന്നു..."
 
-#: ../src/gnome-screensaver-command.c:61
+#: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
-msgstr "സ്ക്രീന്‍ സേവറില്‍ നിന്നും സുരക്ഷിതമായി പുറത്ത് കടക്കുന്നുതിനായി അനുവദിക്കുന്നു"
+msgstr "സ്ക്രീന്‍സേവറില്‍ നിന്നും നല്ലനിലയില്‍ പുറത്ത് കടക്കുന്നുതിനു കാരണമാകുന്നു"
 
-#: ../src/gnome-screensaver-command.c:63
+#: ../src/gnome-screensaver-command.c:64
 msgid "Query the state of the screensaver"
-msgstr "സ്ക്രീന്‍ സേവറിന്‍റെ അവസ്ഥയെ സംബന്ധിച്ചുളള ചോദ്യം"
+msgstr "സ്ക്രീന്‍സേവറിന്റെ അവസ്ഥ അന്വേഷിയ്ക്കുക"
 
-#: ../src/gnome-screensaver-command.c:65
+#: ../src/gnome-screensaver-command.c:66
+msgid "Query the length of time the screensaver has been active"
+msgstr "സ്ക്രീന്‍സേവര്‍ എത്ര സമയമായി സജീവമാണെന്ന് അന്വേഷിയ്ക്കുക"
+
+#: ../src/gnome-screensaver-command.c:68
 msgid "Tells the running screensaver process to lock the screen immediately"
-msgstr "ഉടന്‍ തന്നെ സ്ക്രീന്‍ പൂട്ടുന്നതിനായി പ്രവര്‍ത്തിച്ചുകൊണ്ടിരിക്കുന്ന സ്ക്രീന്‍ സേവര്‍ പ്രക്രിയയോട് പറയുന്നു"
+msgstr "ഉടന്‍ തന്നെ സ്ക്രീന്‍ പൂട്ടുന്നതിനായി പ്രവര്‍ത്തിച്ചുകൊണ്ടിരിക്കുന്ന സ്ക്രീന്‍സേവര്‍ പ്രക്രിയയോട് പറയുന്നു"
 
-#: ../src/gnome-screensaver-command.c:67
+#: ../src/gnome-screensaver-command.c:70
 msgid "If the screensaver is active then switch to another graphics demo"
-msgstr ""
+msgstr "സ്ക്രീന്‍സേവര്‍ സജീവമാണെങ്കില്‍ മറ്റൊരു ഗ്രാഫിക്സ് പ്രവര്‍ത്തനമാതൃകയിലേയ്ക്ക് മാറ്റുക"
 
-#: ../src/gnome-screensaver-command.c:69
+#: ../src/gnome-screensaver-command.c:72
 msgid "Turn the screensaver on (blank the screen)"
-msgstr "സ്ക്രീന്‍ സേവര്‍ ഓണ്‍ ചെയ്യുക "
+msgstr "സ്ക്രീന്‍സേവര്‍ ഓണ്‍ ചെയ്യുക (സ്ക്രീന്‍ ശൂന്യമാക്കുക)"
 
-#: ../src/gnome-screensaver-command.c:71
+#: ../src/gnome-screensaver-command.c:74
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
+msgstr "സ്ക്രീന്‍സേവര്‍ സജീവമാണെങ്കില്‍ അതിനെ നിഷ്ക്രിയമാക്കുക (സ്ക്രീന്‍ ശൂന്യമല്ലാതാക്കുക)"
 
-#: ../src/gnome-screensaver-command.c:73
+#: ../src/gnome-screensaver-command.c:76
 msgid "Poke the running screensaver to simulate user activity"
-msgstr ""
+msgstr "ഉപയോക്താക്കളുടെ പ്രവര്‍ത്തനം അനുകരിയ്ക്കാനായി പ്രവര്‍ത്തിച്ചുകൊണ്ടിരിയ്ക്കുന്ന സ്ക്രീന്‍സേവറിനെ തോണ്ടുക"
 
-#: ../src/gnome-screensaver-command.c:75
+#: ../src/gnome-screensaver-command.c:78
 msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
-msgstr ""
+msgstr "സ്ക്രീന്‍സേവര്‍ സജീവമാകുന്നത് തടയുക. തടയല്‍ സജീവമാകുമ്പോള്‍ ആജ്ഞ തടസ്സപ്പെടുന്നു."
 
-#: ../src/gnome-screensaver-command.c:77
+#: ../src/gnome-screensaver-command.c:80
 msgid "The calling application that is inhibiting the screensaver"
-msgstr ""
+msgstr "സ്ക്രീന്‍സേവറിനെ തടയാന്‍ വിളിയ്ക്കുന്ന പ്രയോഗം"
 
-#: ../src/gnome-screensaver-command.c:79
+#: ../src/gnome-screensaver-command.c:82
 msgid "The reason for inhibiting the screensaver"
-msgstr ""
+msgstr "സ്ക്രീന്‍സേവറിനെ തടയുന്നതിനുള്ള കാരണം"
 
-#: ../src/gnome-screensaver-command.c:81 ../src/gnome-screensaver-dialog.c:54
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
-msgstr "ഈ പ്രയോഗത്തിന്‍റെ വേര്‍ഷന്‍"
+msgstr "ഈ പ്രയോഗത്തിന്റെ ലക്കം"
 
-#: ../src/gnome-screensaver-command.c:246
+#: ../src/gnome-screensaver-command.c:249
 #, c-format
 msgid "The screensaver is %s\n"
-msgstr "സ്ക്രീന്‍ സേവര്‍ %s അതാണ്\n"
+msgstr "%s എന്നതാണ് സ്ക്രീന്‍സേവര്‍\n"
 
-#: ../src/gnome-screensaver-command.c:246
+#: ../src/gnome-screensaver-command.c:249
 msgid "active"
-msgstr "സജ്ജീവമാകുക"
+msgstr "സജീവമാകുക"
 
-#: ../src/gnome-screensaver-command.c:246
+#: ../src/gnome-screensaver-command.c:249
 msgid "inactive"
 msgstr "നിഷ്ക്രിയമാകുക"
 
-#: ../src/gnome-screensaver-dialog.c:52
+#: ../src/gnome-screensaver-command.c:274
+#, c-format
+msgid "The screensaver has been active for %d seconds.\n"
+msgstr "സ്ക്രീന്‍സേവര്‍ %d സെക്കന്റുകള്‍ സജീവമായിരുന്നു.\n"
+
+#: ../src/gnome-screensaver-dialog.c:53
 msgid "Show debugging output"
-msgstr "ഔട്ട് പുട്ട് ഡീബഗ്ഗ് ചെയ്യുന്നത് കാണിക്കുക"
+msgstr "പിഴവ് തിരുത്തുന്നതിന് സഹായകമായ ഔട്ട്പുട്ട് കാണിയ്ക്കുക"
 
-#: ../src/gnome-screensaver-dialog.c:56
+#: ../src/gnome-screensaver-dialog.c:57
 msgid "Show the logout button"
-msgstr "ലോഗൌട്ട് ബട്ടണ്‍ കാണിക്കുക"
+msgstr "പുറത്തിറങ്ങുന്നതിനുള്ള ബട്ടണ്‍ കാണിയ്ക്കുക"
 
-#: ../src/gnome-screensaver-dialog.c:58
+#: ../src/gnome-screensaver-dialog.c:59
 msgid "Command to invoke from the logout button"
-msgstr "ലോഗൌട്ട് ബട്ടണില്‍ നിന്നും പ്രവര്‍ത്തിപ്പിക്കുന്നതിനായുളള നിര്‍ദ്ദേശം"
+msgstr "പുറത്തിറങ്ങുന്നതിനുള്ള ബട്ടണില്‍ നിന്നും പ്രവര്‍ത്തിപ്പിയ്ക്കുന്നതിനായുളള ആജ്ഞ"
 
-#: ../src/gnome-screensaver-dialog.c:60
+#: ../src/gnome-screensaver-dialog.c:61
 msgid "Show the switch user button"
-msgstr "മറ്റൊരു ഉപയോക്താവായി മാറുന്നതിനുളള ബട്ടണ്‍ കാണിക്കുക"
+msgstr "മറ്റൊരു ഉപയോക്താവായി മാറുന്നതിനുളള ബട്ടണ്‍ കാണിയ്ക്കുക"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "Message to show in the dialog"
+msgstr "ഡയലോഗില്‍ കാണിയ്ക്കേണ്ട സന്ദേശം"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "MESSAGE"
+msgstr "സന്ദേശം"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:169 ../src/gnome-screensaver-dialog.c:170
-#: ../src/gnome-screensaver-dialog.c:171 ../src/gs-auth-pam.c:380
+#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
 msgid "Username:"
-msgstr "ഉപയോക്തൃനാമം:"
+msgstr "ഉപയോക്താവിന്റെ പേര്:"
 
-#: ../src/gnome-screensaver-dialog.c:174
-msgid "You are required to change your password immediately (password aged)"
-msgstr "നിങ്ങളുടെ പാസ്‍വേര്‍ഡ് ഉടന്‍ തന്നെ മാറ്റേണ്ടതാകുന്നു (പാസ്‍വേര്‍ഡ് പഴയതായിരിക്കുന്നു)"
-
-#: ../src/gnome-screensaver-dialog.c:175
-msgid "You are required to change your password immediately (root enforced)"
-msgstr "നിങ്ങളുടെ പാസ്‍വേര്‍ഡ് ഉടന്‍ തന്നെ മാറ്റേണ്ടതാകുന്നു (root നിര്‍ബന്ധിക്കുന്നു)"
-
-#: ../src/gnome-screensaver-dialog.c:176
-msgid "Your account has expired; please contact your system administrator"
-msgstr "നിങ്ങളുടെ അക്കൌണ്ടിന്‍റെ കാലാവധി കഴിഞ്ഞിരിക്കുന്നു; ദയവായി സിസ്റ്റം അഡ്മിനിസ്ട്രേറ്ററുമായി ബന്ധപ്പെടുക"
-
-#: ../src/gnome-screensaver-dialog.c:177
-msgid "No password supplied"
-msgstr "പാസ്‍വേര്‍ഡ് കൊടുത്തിട്ടില്ല"
+#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "അടയാളവാക്ക്:"
 
 #: ../src/gnome-screensaver-dialog.c:178
-msgid "Password unchanged"
-msgstr "പാസ്‍വേര്‍ഡ് മാറിയിട്ടില്ല"
+msgid "You are required to change your password immediately (password aged)"
+msgstr "നിങ്ങളുടെ അടയാളവാക്ക് ഉടന്‍ തന്നെ മാറ്റേണ്ടതാകുന്നു (അടയാളവാക്ക് പഴയതായിരിക്കുന്നു)"
 
 #: ../src/gnome-screensaver-dialog.c:179
-msgid "Can not get username"
-msgstr "ഉപയോക്തൃനാമം ലഭ്യമല്ല"
+msgid "You are required to change your password immediately (root enforced)"
+msgstr "നിങ്ങളുടെ അടയാളവാക്ക് ഉടന്‍ തന്നെ മാറ്റേണ്ടതാകുന്നു (റൂട്ട് നിര്‍ബന്ധിതമാക്കിയത്)"
 
 #: ../src/gnome-screensaver-dialog.c:180
-msgid "Retype new UNIX password:"
-msgstr "പുതിയ UNIX പാസ്‍വേര്‍ഡ് വീണ്ടും നല്‍കുക:"
+msgid "Your account has expired; please contact your system administrator"
+msgstr ""
+"നിങ്ങളുടെ അക്കൌണ്ടിന്റെ കാലാവധി കഴിഞ്ഞിരിക്കുന്നു; ദയവായി നിങ്ങളുടെ സിസ്റ്റം നടത്തിപ്പുകാരനുമായി "
+"ബന്ധപ്പെടുക"
 
 #: ../src/gnome-screensaver-dialog.c:181
-msgid "Enter new UNIX password:"
-msgstr "പുതിയ UNIX പാസ്‍വേര്‍ഡ് നല്‍കുക:"
+msgid "No password supplied"
+msgstr "അടയാളവാക്കൊന്നും നല്‍കിയിട്ടില്ല"
 
 #: ../src/gnome-screensaver-dialog.c:182
-msgid "(current) UNIX password:"
-msgstr "(നിലവിലുളള) UNIX പാസ്‍വേര്‍ഡ്:"
+msgid "Password unchanged"
+msgstr "അടയാളവാക്ക് മാറിയിട്ടില്ല"
 
 #: ../src/gnome-screensaver-dialog.c:183
-msgid "Error while changing NIS password."
-msgstr "NIS പാസ്‍വേര്‍ഡ് മാറ്റം ചെയ്യുന്നതില്‍ പിശക്."
+msgid "Can not get username"
+msgstr "ഉപയോക്താവിന്റെ പേര് ലഭിച്ചില്ല"
 
 #: ../src/gnome-screensaver-dialog.c:184
-msgid "You must choose a longer password"
-msgstr "ഇതിലും വലിയ പാസ്‍വേര്‍ഡ് തിരഞ്ഞെടുക്കേണ്ടതാണ്"
+msgid "Retype new UNIX password:"
+msgstr "പുതിയ യുണിക്സ് അടയാളവാക്ക് വീണ്ടും നല്‍കുക:"
 
 #: ../src/gnome-screensaver-dialog.c:185
-msgid "Password has been already used. Choose another."
-msgstr "പാസ്‍വേര്‍ഡ് നിലവില്‍ ഉപയോഗത്തിലാണ്. മറ്റൊന്ന് തിരഞ്ഞെടുക്കുക."
+msgid "Enter new UNIX password:"
+msgstr "പുതിയ യുണിക്സ് അടയാളവാക്ക് നല്‍കുക:"
 
 #: ../src/gnome-screensaver-dialog.c:186
-msgid "You must wait longer to change your password"
-msgstr "നിങ്ങളുടെ പാസ്‍വേര്‍ഡ് മാറ്റുന്നതിനായി ഇനിയും കാത്തിരിക്കേണ്ടതാണ്"
+msgid "(current) UNIX password:"
+msgstr "(നിലവിലുളള) യുണിക്സ് അടയാളവാക്ക്:"
 
 #: ../src/gnome-screensaver-dialog.c:187
-msgid "Sorry, passwords do not match"
-msgstr "ക്ഷമിക്കണം, പാസ്‍വേര്‍ഡുകള്‍ തമ്മില്‍ പൊരുത്തക്കേട്"
+msgid "Error while changing NIS password."
+msgstr "എന്‍ഐഎസ് അടയാളവാക്ക് മാറ്റുന്നതിനിടയില്‍ തെറ്റ്."
 
-#: ../src/gnome-screensaver-dialog.c:250
+#: ../src/gnome-screensaver-dialog.c:188
+msgid "You must choose a longer password"
+msgstr "ഇതിലും വലിയൊരു അടയാളവാക്ക് തിരഞ്ഞെടുക്കേണ്ടതാണ്"
+
+#: ../src/gnome-screensaver-dialog.c:189
+msgid "Password has been already used. Choose another."
+msgstr "അടയാളവാക്ക് നേരത്തെ ഉപയോഗിച്ചതാണ്. മറ്റൊന്ന് തിരഞ്ഞെടുക്കുക."
+
+#: ../src/gnome-screensaver-dialog.c:190
+msgid "You must wait longer to change your password"
+msgstr "നിങ്ങളുടെ അടയാളവാക്ക് മാറ്റുന്നതിനായി ഇനിയും കാത്തിരിയ്ക്കേണ്ടതാണ്"
+
+#: ../src/gnome-screensaver-dialog.c:191
+msgid "Sorry, passwords do not match"
+msgstr "ക്ഷമിക്കണം, അടയാളവാക്കുകള്‍ തമ്മില്‍ പൊരുത്തമില്ല"
+
+#: ../src/gnome-screensaver-dialog.c:257
 msgid "Checking..."
 msgstr "പരിശോധനയില്‍..."
 
-#: ../src/gnome-screensaver-dialog.c:289 ../src/gs-auth-pam.c:320
+#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
-msgstr "ഒഥന്‍റിക്കേഷന്‍ പരാജയപ്പെട്ടു."
+msgstr "തിരിച്ചറിയല്‍ പരാജയപ്പെട്ടു."
 
-#: ../src/gnome-screensaver-preferences.c:439
+#: ../src/gnome-screensaver-preferences.c:461
 msgid "Blank screen"
 msgstr "ശൂന്യമായ സ്ക്രീന്‍"
 
-#: ../src/gnome-screensaver-preferences.c:445
+#: ../src/gnome-screensaver-preferences.c:467
 msgid "Random"
-msgstr "പെട്ടെന്നുളളത്"
+msgstr "ഏതെങ്കിലുമൊന്ന്"
 
-#: ../src/gnome-screensaver-preferences.c:805
+#: ../src/gnome-screensaver-preferences.c:837
 msgid "Invalid screensaver theme"
-msgstr "അസാധുവായ സ്ക്രീന്‍ സേവര്‍ ഥീം"
+msgstr "അസാധുവായ സ്ക്രീന്‍സേവര്‍ രംഗവിധാനം"
 
-#: ../src/gnome-screensaver-preferences.c:808
+#: ../src/gnome-screensaver-preferences.c:840
 msgid "This file does not appear to be a valid screensaver theme."
-msgstr "ഫയല്‍ ക്രമത്തിലുളള ഒരു സ്ക്രീന്‍ സേവര്‍ ഥീം അല്ല."
+msgstr "ഈ ഫയല്‍ സാധുവായ ഒരു സ്ക്രീന്‍സേവര്‍ രംഗവിധാനമാണെന്നു തോന്നുന്നില്ല."
 
-#: ../src/gnome-screensaver-preferences.c:935
+#: ../src/gnome-screensaver-preferences.c:967
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d മണിക്കൂര്‍"
 msgstr[1] "%d മണിക്കൂറുകള്‍"
 
-#: ../src/gnome-screensaver-preferences.c:938
+#: ../src/gnome-screensaver-preferences.c:970
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d നിമിഷം"
 msgstr[1] "%d നിമിഷങ്ങള്‍"
 
-#: ../src/gnome-screensaver-preferences.c:941
+#: ../src/gnome-screensaver-preferences.c:973
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -807,15 +641,15 @@ msgstr[0] "%d സെക്കന്‍ഡ്"
 msgstr[1] "%d സെക്കന്‍ഡുകള്‍"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:947
+#: ../src/gnome-screensaver-preferences.c:979
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:950
-#: ../src/gnome-screensaver-preferences.c:958
+#: ../src/gnome-screensaver-preferences.c:982
+#: ../src/gnome-screensaver-preferences.c:990
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -823,88 +657,88 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:953
-#: ../src/gnome-screensaver-preferences.c:961
-#: ../src/gnome-screensaver-preferences.c:965
+#: ../src/gnome-screensaver-preferences.c:985
+#: ../src/gnome-screensaver-preferences.c:993
+#: ../src/gnome-screensaver-preferences.c:997
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:1012
 msgid "Never"
-msgstr "ഒരിക്കലും ഇല്ല"
+msgstr "ഒരിക്കലുമില്ല"
 
-#: ../src/gnome-screensaver-preferences.c:1365
+#: ../src/gnome-screensaver-preferences.c:1411
 msgid "Could not load the main interface"
-msgstr "പ്രധാന സംയോജകഘടകം ലോഡ് ചെയ്യുവാന്‍ സാധിച്ചില്ല"
+msgstr "പ്രധാന വിനിമയതലം ചേര്‍ക്കുവാന്‍ സാധിച്ചില്ല"
 
-#: ../src/gnome-screensaver-preferences.c:1367
+#: ../src/gnome-screensaver-preferences.c:1413
 msgid "Please make sure that the screensaver is properly installed"
-msgstr "സ്ക്രീന്‍ സേവര്‍ ശരിയായിട്ടാണ് ഇന്‍സ്റ്റോള്‍ ചെയ്തിട്ടുളളത് എന്നുറപ്പ് വരുത്തുക"
+msgstr "സ്ക്രീന്‍സേവര്‍ ശരിയായിട്ടാണ് ഇന്‍സ്റ്റാള്‍ ചെയ്തിട്ടുളളത് എന്നുറപ്പ് വരുത്തുക"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
-msgstr "ഒരു ഡെമണ്‍ ആകേണ്ടതില്ല"
+msgstr "ഒരു നിരന്തരപ്രക്രിയയാകേണ്ടതില്ല"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
-msgstr "കോഡ് ഡീബഗ്ഗ ചെയ്യുന്നത് പ്രവര്‍ത്തന സജ്ജമാക്കുക"
+msgstr "പിഴവ് തിരുത്തുന്നതിന് സഹായകമായ കോഡ് പ്രവര്‍ത്തികമാക്കുക"
 
-#: ../src/gs-auth-pam.c:262
+#: ../src/gs-auth-pam.c:397
 #, c-format
 msgid "Unable to establish service %s: %s\n"
-msgstr "%s എന്ന സേവനം സ്ഥാപിക്കുവാന്‍ സാധ്യമായില്ല: %s\n"
+msgstr "%2$s :%1$s എന്ന സേവനം സ്ഥാപിയ്ക്കുവാന്‍ സാധ്യമായില്ല\n"
 
-#: ../src/gs-auth-pam.c:288
+#: ../src/gs-auth-pam.c:423
 #, c-format
 msgid "Can't set PAM_TTY=%s"
-msgstr "PAM_TTY=%s എന്ന് സെറ്റ് ചെയ്യുവാന്‍ സാധ്യമല്ല"
+msgstr "PAM_TTY=%s എന്ന് സജ്ജീകരിയ്ക്കുവാന്‍ സാധ്യമല്ല"
 
-#: ../src/gs-auth-pam.c:318
+#: ../src/gs-auth-pam.c:455
 msgid "Incorrect password."
-msgstr "പാസ്‍വേര്‍ഡ് തെറ്റാണ്."
+msgstr "അടയാളവാക്ക് തെറ്റാണ്."
 
-#: ../src/gs-auth-pam.c:334
+#: ../src/gs-auth-pam.c:471
 msgid "Not permitted to gain access at this time."
-msgstr "ഈ സമയത്ത് ഇനി പ്രവേശനത്തിനുളള അനുമതിയില്ല."
+msgstr "ഈ സമയത്ത് പ്രവേശനത്തിനുളള അനുമതിയില്ല."
 
-#: ../src/gs-auth-pam.c:340
+#: ../src/gs-auth-pam.c:477
 msgid "No longer permitted to access the system."
-msgstr "സിസ്റ്റത്തിലേക്ക് ഇനി പ്രവേശിക്കുന്നതിനുളള അനുമദിയില്ല."
+msgstr "സിസ്റ്റത്തിലേക്ക് ഇനി പ്രവേശിക്കുന്നതിനുളള അനുമതിയില്ല."
 
-#: ../src/gs-listener-dbus.c:1631
+#: ../src/gs-listener-dbus.c:1817
 msgid "failed to register with the message bus"
-msgstr "മെസ്സേജ് ബസ്സുമായി രജിസ്ടര്‍ ചെയ്യുന്നതില്‍ പരാജയം"
+msgstr "മെസ്സേജ് ബസ്സുമായി രജിസ്ടര്‍ ചെയ്യുന്നതില്‍ പരാജയപ്പെട്ടു"
 
-#: ../src/gs-listener-dbus.c:1641
+#: ../src/gs-listener-dbus.c:1827
 msgid "not connected to the message bus"
-msgstr "മെസ്സേജ് ബസ്സുമായി കണക്ട് ചെയ്തിട്ടില്ല"
+msgstr "മെസ്സേജ് ബസ്സുമായി ബന്ധിപ്പിച്ചിട്ടില്ല"
 
-#: ../src/gs-listener-dbus.c:1650
+#: ../src/gs-listener-dbus.c:1836
 msgid "screensaver already running in this session"
-msgstr "ഈ സെഷനില്‍ സ്ക്രീന്‍ സേവര്‍ പ്രവര്‍ത്തനത്തിലാണ്"
+msgstr "ഈ സെഷനില്‍ സ്ക്രീന്‍സേവര്‍ പ്രവര്‍ത്തനത്തിലാണ്"
 
-#: ../src/gs-lock-plug.c:336
+#: ../src/gs-lock-plug.c:266
 msgid "Time has expired."
 msgstr "സമയം കഴിഞ്ഞിരിക്കുന്നു."
 
-#: ../src/gs-lock-plug.c:366
+#: ../src/gs-lock-plug.c:294
 msgid "You have the Caps Lock key on."
-msgstr "നിങ്ങളുടെ Caps Lock കീ ഓണ്‍ ആണ്."
+msgstr "നിങ്ങളുടെ കാപ്സ് ലോക്ക് കീ ഓണ്‍ ആണ്."
 
-#: ../src/gs-lock-plug.c:1414 ../src/gs-lock-plug.c:1451
+#: ../src/gs-lock-plug.c:1182
 msgid "S_witch User..."
 msgstr "മറ്റൊരു ഉപയോക്താവാകുക... (_w)"
 
-#: ../src/gs-lock-plug.c:1422
+#: ../src/gs-lock-plug.c:1191
 msgid "Log _Out"
-msgstr "പുറത്ത് കടക്കുക (_U)"
+msgstr "പുറത്തിറങ്ങുക (_U)"
 
-#: ../src/gs-lock-plug.c:1613
+#: ../src/gs-lock-plug.c:1367
 msgid "%U on %h"
-msgstr "%h-ല്‍ %U"
+msgstr "%h ല്‍ %U"
 
-#: ../src/gs-lock-plug.c:1627
+#: ../src/gs-lock-plug.c:1381
 msgid "_Password:"
-msgstr "പാസ്‍വേര്‍ഡ്: (_P)"
+msgstr "അടയാളവാക്ക്: (_P)"
 
