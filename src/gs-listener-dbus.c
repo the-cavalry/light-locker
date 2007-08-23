@@ -1513,7 +1513,7 @@ listener_dbus_handle_system_message (DBusConnection *connection,
         } else if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "Lock")) {
                 if (_listener_message_path_is_our_session (listener, message)) {
                         gs_debug ("ConsoleKit requested session lock");
-                        gs_listener_set_active (listener, TRUE);
+                        g_signal_emit (listener, signals [LOCK], 0);
                 }
 
                 return DBUS_HANDLER_RESULT_HANDLED;

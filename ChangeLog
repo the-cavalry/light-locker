@@ -1,3 +1,8 @@
+2007-08-23  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-listener-dbus.c: (listener_dbus_handle_system_message):
+	On CK Lock emit lock signal instead of setting active directly.
+
 2007-08-09  William Jon McCann  <mccann@jhu.edu>
 
 	* MAINTAINERS: Add userid.
