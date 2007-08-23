@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-29 22:52+0200\n"
-"PO-Revision-Date: 2007-06-29 19:37+0100\n"
+"POT-Creation-Date: 2007-08-23 18:44+0200\n"
+"PO-Revision-Date: 2007-08-22 16:19+0100\n"
 "Last-Translator: Tomasz Dominikowski <dominikowski@gmail.com>\n"
 "Language-Team: Polish <translators@gnomepl.org>\n"
 "MIME-Version: 1.0\n"
@@ -288,30 +288,22 @@ msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
 #: ../data/lock-dialog-default.glade.h:7
-msgid "Authentication"
-msgstr "Uwierzytelnianie"
-
-#: ../data/lock-dialog-default.glade.h:8
-msgid "Note"
-msgstr "Notatka"
-
-#: ../data/lock-dialog-default.glade.h:9
 msgid "_Cancel"
 msgstr "_Anuluj"
 
-#: ../data/lock-dialog-default.glade.h:10
+#: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
 msgstr "_Zostaw wiadomość"
 
-#: ../data/lock-dialog-default.glade.h:11
+#: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
 msgstr "_Wyloguj"
 
-#: ../data/lock-dialog-default.glade.h:12
+#: ../data/lock-dialog-default.glade.h:10
 msgid "_Switch User"
 msgstr "_Przełącz użytkownika"
 
-#: ../data/lock-dialog-default.glade.h:13 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
 msgid "_Unlock"
 msgstr "_Odblokuj"
 
@@ -347,70 +339,80 @@ msgstr "Wyświetla siatkę kwadratów o pulsujących kolorach."
 msgid "Pop art squares"
 msgstr "Kolorowe kwadraty"
 
-#: ../savers/floaters.c:1166
-msgid "show paths that images follow"
-msgstr "wyświetla ścieżki po których poruszają się obrazy"
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr "Wyświetlanie ścieżek po których poruszają się obrazy"
 
-#: ../savers/floaters.c:1173
-msgid "occasionally rotate images as they move"
-msgstr "obraca obrazy w trakcie ich poruszania"
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "Obracanie obrazów w trakcie ich poruszania"
 
-#: ../savers/floaters.c:1180
-msgid "print out frame rate and other statistics"
-msgstr "wyświetla ilość klatek na sekundę i inne statystyki"
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "Wyświetlanie ilości klatek na sekundę i innych statystyk"
 
-#: ../savers/floaters.c:1188
-msgid "the maximum number of images to keep on screen"
-msgstr "maksymalna liczba obrazów wyświetlana na ekranie"
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "Maksymalna liczba obrazów wyświetlana na ekranie"
 
-#. translators: this should be translated to be symbolic of a generic
-#. * number.  e.g, "the screen saver should keep N images on the screen"
-#.
-#: ../savers/floaters.c:1192
-msgid "N"
-msgstr "N"
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "MAX_IMAGES"
 
-#: ../savers/floaters.c:1199
-msgid "the source image to use"
-msgstr "obraz źródłowy"
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "Początkowe położenie i rozmiar okna"
 
-#: ../savers/floaters.c:1206
-msgid "the initial size and position of window"
-msgstr "początkowe położenie i rozmiar okna"
-
-#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
-#. * can be translated, but the 'x' area indicator and '+' offset indicators
-#. * need to be untranslated and can't be rearranged.
-#.
-#: ../savers/floaters.c:1211
+#: ../savers/floaters.c:96
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "SZEROKOŚĆxWYSOKOŚĆ+X+Y"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "Obraz źródłowy"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1229
+#: ../savers/floaters.c:1194
 msgid "image - floats images around the screen"
 msgstr "image - wyświetla na ekranie latające obrazy"
 
-#: ../savers/floaters.c:1239
+#: ../savers/floaters.c:1200
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Użyj parametru --help aby zobaczyć instrukcję użycia.\n"
 
-#: ../savers/floaters.c:1248
+#: ../savers/floaters.c:1209
+#, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
 "Trzeba wybrać jeden obraz.  Użyj parametru --help aby zobaczyć instrukcję "
 "użycia.\n"
 
-#: ../savers/slideshow.c:50
+#: ../savers/slideshow.c:53
 msgid "Location to get images from"
 msgstr "Położenie skąd pobierane będą obrazy"
 
-#: ../savers/slideshow.c:50
+#: ../savers/slideshow.c:53
 msgid "PATH"
 msgstr "ŚCIEŻKA"
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "Kolor tła obrazów"
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "\"#rrggbb\""
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr "Wyłączenie kolejności losowej obrazów z położenia"
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Brak rozciągania obrazów na ekranie"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -653,23 +655,23 @@ msgstr "Sprawdzanie..."
 msgid "Authentication failed."
 msgstr "Uwierzytelnianie nie powiodło się"
 
-#: ../src/gnome-screensaver-preferences.c:461
+#: ../src/gnome-screensaver-preferences.c:501
 msgid "Blank screen"
 msgstr "Wygaszenie ekranu"
 
-#: ../src/gnome-screensaver-preferences.c:467
+#: ../src/gnome-screensaver-preferences.c:507
 msgid "Random"
 msgstr "Losowo"
 
-#: ../src/gnome-screensaver-preferences.c:837
+#: ../src/gnome-screensaver-preferences.c:877
 msgid "Invalid screensaver theme"
 msgstr "Nieprawidłowy motyw wygaszacza ekranu"
 
-#: ../src/gnome-screensaver-preferences.c:840
+#: ../src/gnome-screensaver-preferences.c:880
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Ten plik nie jest prawidłowym motywem wygaszacza ekranu."
 
-#: ../src/gnome-screensaver-preferences.c:967
+#: ../src/gnome-screensaver-preferences.c:1007
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -677,7 +679,7 @@ msgstr[0] "%d godzinie"
 msgstr[1] "%d godzinach"
 msgstr[2] "%d godzinach"
 
-#: ../src/gnome-screensaver-preferences.c:970
+#: ../src/gnome-screensaver-preferences.c:1010
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -685,7 +687,7 @@ msgstr[0] "%d minucie"
 msgstr[1] "%d minutach"
 msgstr[2] "%d minutach"
 
-#: ../src/gnome-screensaver-preferences.c:973
+#: ../src/gnome-screensaver-preferences.c:1013
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -694,15 +696,15 @@ msgstr[1] "%d sekundach"
 msgstr[2] "%d sekundach"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:979
+#: ../src/gnome-screensaver-preferences.c:1019
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:982
-#: ../src/gnome-screensaver-preferences.c:990
+#: ../src/gnome-screensaver-preferences.c:1022
+#: ../src/gnome-screensaver-preferences.c:1030
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -710,22 +712,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:985
-#: ../src/gnome-screensaver-preferences.c:993
-#: ../src/gnome-screensaver-preferences.c:997
+#: ../src/gnome-screensaver-preferences.c:1025
+#: ../src/gnome-screensaver-preferences.c:1033
+#: ../src/gnome-screensaver-preferences.c:1037
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1012
+#: ../src/gnome-screensaver-preferences.c:1052
+#, c-format
 msgid "Never"
 msgstr "Nigdy"
 
-#: ../src/gnome-screensaver-preferences.c:1411
+#: ../src/gnome-screensaver-preferences.c:1451
 msgid "Could not load the main interface"
 msgstr "Nie można wczytać głównego interfejsu"
 
-#: ../src/gnome-screensaver-preferences.c:1413
+#: ../src/gnome-screensaver-preferences.c:1453
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Należy upewnić się, czy wygaszacz ekranu jest prawidłowo zainstalowany"
 
@@ -759,15 +762,15 @@ msgstr "Brak zezwolenia na dostęp w tej chwili."
 msgid "No longer permitted to access the system."
 msgstr "Zezwolenie na dostęp do systemu odwołane."
 
-#: ../src/gs-listener-dbus.c:1817
+#: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
 msgstr "nie można zarejestrować się w szynie komunikatów"
 
-#: ../src/gs-listener-dbus.c:1827
+#: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
 msgstr "brak podłączenia do szyny komunikatów"
 
-#: ../src/gs-listener-dbus.c:1836
+#: ../src/gs-listener-dbus.c:1940
 msgid "screensaver already running in this session"
 msgstr "wygaszacz ekranu jest już uruchomiony w tej sesji"
 
@@ -787,13 +790,23 @@ msgstr "_Przełącz użytkownika..."
 msgid "Log _Out"
 msgstr "_Wyloguj"
 
-#: ../src/gs-lock-plug.c:1372
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1373
 msgid "%U on %h"
 msgstr "%U na %h"
 
-#: ../src/gs-lock-plug.c:1386
+#: ../src/gs-lock-plug.c:1387
 msgid "_Password:"
 msgstr "_Hasło:"
+
+#~ msgid "Authentication"
+#~ msgstr "Uwierzytelnianie"
+
+#~ msgid "Note"
+#~ msgstr "Notatka"
+
+#~ msgid "N"
+#~ msgstr "N"
 
 #~ msgid "_Switch user..."
 #~ msgstr "_Przełącz użytkownika..."
