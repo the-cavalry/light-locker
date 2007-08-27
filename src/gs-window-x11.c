@@ -1314,20 +1314,22 @@ lock_command_watch (GIOChannel   *source,
                 case G_IO_STATUS_NORMAL:
                         gs_debug ("command output: %s", line);
 
-                        if (strstr (line, "WINDOW ID=")) {
+                        if (strstr (line, "WINDOW ID=") != NULL) {
                                 guint32 id;
                                 char    c;
                                 if (1 == sscanf (line, " WINDOW ID= %" G_GUINT32_FORMAT " %c", &id, &c)) {
                                         create_lock_socket (window, id);
                                 }
-                        } else if (strstr (line, "NOTICE=")) {
-                                if (strstr (line, "NOTICE=AUTH FAILED")) {
+                        } else if (strstr (line, "NOTICE=") != NULL) {
+                                if (strstr (line, "NOTICE=AUTH FAILED") != NULL) {
                                         shake_dialog (window);
                                 }
-                        } else if (strstr (line, "RESPONSE=")) {
-                                if (strstr (line, "RESPONSE=OK")) {
+                        } else if (strstr (line, "RESPONSE=") != NULL) {
+                                if (strstr (line, "RESPONSE=OK") != NULL) {
+                                        gs_debug ("Got OK response");
                                         window->priv->dialog_response = DIALOG_RESPONSE_OK;
                                 } else {
+                                        gs_debug ("Got CANCEL response");
                                         window->priv->dialog_response = DIALOG_RESPONSE_CANCEL;
                                 }
                                 finished = TRUE;

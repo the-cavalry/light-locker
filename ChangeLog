@@ -1,5 +1,10 @@
 2007-08-27  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-window-x11.c (lock_command_watch): Compare strstr with NULL.
+	Add some more debug in dialog response handling.
+
+2007-08-27  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c (gs_lock_plug_init): keyboard indicator
 	is not a GtkMisc.  Noticed in bug #258221
 
