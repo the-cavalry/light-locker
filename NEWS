@@ -1,5 +1,36 @@
 
 ===============
+Version 2.19.7
+===============
+
+  gnome-screensaver
+
+        * Fixed #437225, Solaris needs additional libs linked with to build (William Jon McCann)
+        * Fixed #463754, remove last dep on libgnome (Jani Monoses)
+        * Initialize XWindowAttributes (Rodrigo Moya)
+        * Improvements to slideshow (Frederic Crozat)
+
+  Translators
+
+        * Updated gu: Ankit Patel
+        * Updated be@latin: Ihar Hrachyshka
+        * Updated pt_BR: Leonardo Ferreira Fontenelle
+        * Updated ml: Ani Peter
+        * Updated de: Hendrik Richter
+        * Updated ko: Changwoo Ryu
+        * Updated sv: Daniel Nylander
+        * Updated es: Jorge Gonzalez
+        * Updated th: Theppitak Karoonboonyanan
+        * Updated fi: Ilkka Tuohela
+        * Updated eu: Inaki Larranaga Murgoitio
+        * Updated et: Priit Laes
+        * Updated te: Sunil Mohan Adapa
+        * Updated ja: Takeshi AIHANA
+        * Updated pl: Artur Flinta
+
+
+
+===============
 Version 2.19.6
 ===============
 
