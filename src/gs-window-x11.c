@@ -726,6 +726,7 @@ select_popup_events (void)
 
         gdk_error_trap_push ();
 
+        memset (&attr, 0, sizeof (attr));
         XGetWindowAttributes (GDK_DISPLAY (), GDK_ROOT_WINDOW (), &attr);
 
         events = SubstructureNotifyMask | attr.your_event_mask;

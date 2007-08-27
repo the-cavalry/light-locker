@@ -1,5 +1,12 @@
 2007-08-27  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-watcher-x11.c: (notice_events_inner):
+	* src/gs-window-x11.c: (select_popup_events):
+	Initialize XWindowAttributes before calling XGetWindowAttributes.
+	Based on patch from Rodrigo Moya <rodrigo@novell.com>
+
+2007-08-27  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-window-x11.c (lock_command_watch): Compare strstr with NULL.
 	Add some more debug in dialog response handling.
 

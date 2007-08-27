@@ -297,6 +297,7 @@ notice_events_inner (Window   window,
                 top = FALSE;
         }
 
+        memset (&attrs, 0, sizeof (attrs));
         XGetWindowAttributes (GDK_DISPLAY (), window, &attrs);
 
         if (enable) {
