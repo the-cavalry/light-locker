@@ -1,5 +1,13 @@
 2007-08-27  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac:
+	* src/gnome-screensaver-preferences.c: (main):
+	Remove last bits of libgnomeui.
+	Based on patch from Jani Monoses <jani@ubuntu.com>
+	Fixes #463754.
+
+2007-08-27  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-watcher-x11.c: (notice_events_inner):
 	* src/gs-window-x11.c: (select_popup_events):
 	Initialize XWindowAttributes before calling XGetWindowAttributes.

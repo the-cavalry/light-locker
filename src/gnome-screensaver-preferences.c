@@ -36,7 +36,6 @@
 #include <glade/glade.h>
 #include <gconf/gconf-client.h>
 
-#include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs-async-ops.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
@@ -1599,11 +1598,7 @@ main (int    argc,
         textdomain (GETTEXT_PACKAGE);
 #endif
 
-        gnome_program_init (PACKAGE, VERSION,
-                            LIBGNOMEUI_MODULE,
-                            argc, argv,
-                            GNOME_PROGRAM_STANDARD_PROPERTIES,
-                            NULL);
+        gtk_init (&argc, &argv);
 
         job = gs_job_new ();
         theme_manager = gs_theme_manager_new ();
