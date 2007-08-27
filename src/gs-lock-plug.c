@@ -1613,9 +1613,11 @@ gs_lock_plug_init (GSLockPlug *plug)
 
                         layout_indicator = gkbd_indicator_new ();
                         gkbd_indicator_set_parent_tooltips (GKBD_INDICATOR (layout_indicator), TRUE);
-                        gtk_misc_set_alignment (GTK_MISC (layout_indicator), 1, 0.5);
                         gtk_box_pack_start (GTK_BOX (plug->priv->auth_prompt_kbd_layout_indicator),
-                                            layout_indicator, FALSE, FALSE, 6);
+                                            layout_indicator,
+                                            FALSE,
+                                            FALSE,
+                                            6);
 
                         gtk_widget_show_all (layout_indicator);
                         gtk_widget_show (plug->priv->auth_prompt_kbd_layout_indicator);
