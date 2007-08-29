@@ -169,9 +169,7 @@ gs_grab_get_keyboard (GSGrab    *grab,
         if (status == GDK_GRAB_SUCCESS) {
                 grab->priv->keyboard_grab_window = window;
                 grab->priv->keyboard_grab_screen = screen;
-        }
-
-        if (status != GDK_GRAB_SUCCESS) {
+        } else {
                 gs_debug ("Couldn't grab keyboard!  (%s)", grab_string (status));
         }
 
