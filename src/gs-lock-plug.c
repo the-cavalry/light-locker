@@ -1636,6 +1636,13 @@ gs_lock_plug_init (GSLockPlug *plug)
                         gtk_widget_hide (plug->priv->auth_note_button);
                 }
         }
+        if (plug->priv->auth_switch_button != NULL) {
+                if (plug->priv->switch_enabled) {
+                        gtk_widget_show_all (plug->priv->auth_switch_button);
+                } else {
+                        gtk_widget_hide (plug->priv->auth_switch_button);
+                }
+        }
 
         gtk_widget_grab_default (plug->priv->auth_unlock_button);
 

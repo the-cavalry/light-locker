@@ -1,5 +1,10 @@
 2007-08-30  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c: (gs_lock_plug_init):
+	Hide switch button if not enabled.  Fixes #442853
+
+2007-08-30  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c: untabify
 
 2007-08-29  Rodrigo Moya <rodrigo@gnome-db.org>
