@@ -1,3 +1,7 @@
+2007-08-30  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c: untabify
+
 2007-08-29  Rodrigo Moya <rodrigo@gnome-db.org>
 
 	* src/gs-grab-x11.c (gs_grab_get_keyboard): removed extra 'if'

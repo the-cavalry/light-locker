@@ -627,15 +627,15 @@ gs_lock_plug_set_away_message (GSLockPlug *plug,
         plug->priv->away_message = g_strdup (away_message);
 
         if (plug->priv->away_message_label) {
-		if (plug->priv->away_message) {
-			gtk_label_set_text (GTK_LABEL (plug->priv->away_message_label),
-					    plug->priv->away_message);
-			gtk_widget_show (plug->priv->away_message_label);
-		}
-		else {
-			gtk_widget_hide (plug->priv->away_message_label);
-		}
-	}
+                if (plug->priv->away_message) {
+                        gtk_label_set_text (GTK_LABEL (plug->priv->away_message_label),
+                                            plug->priv->away_message);
+                        gtk_widget_show (plug->priv->away_message_label);
+                }
+                else {
+                        gtk_widget_hide (plug->priv->away_message_label);
+                }
+        }
 }
 
 static void
@@ -657,14 +657,14 @@ gs_lock_plug_get_property (GObject    *object,
                 break;
         case PROP_SWITCH_ENABLED:
                 g_value_set_boolean (value, self->priv->switch_enabled);
-		break;
-	case PROP_AWAY_MESSAGE:
+                break;
+        case PROP_AWAY_MESSAGE:
                 g_value_set_string (value, self->priv->away_message);
-		break;
-	default:
+                break;
+        default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
-	}
+        }
 }
 
 static void
@@ -1028,9 +1028,9 @@ entry_key_press (GtkWidget   *widget,
                 return FALSE;
         }
 
-	queue_key_event (plug, event);
+        queue_key_event (plug, event);
 
-	return TRUE;
+        return TRUE;
 }
 
 /* adapted from gtk_dialog_add_button */
@@ -1096,10 +1096,10 @@ get_user_name (void)
 
 static gboolean
 check_user_file (const gchar *filename,
-		 uid_t        user,
-		 gssize       max_file_size,
-		 gboolean     relax_group,
-		 gboolean     relax_other)
+                 uid_t        user,
+                 gssize       max_file_size,
+                 gboolean     relax_group,
+                 gboolean     relax_other)
 {
         struct stat fileinfo;
 
@@ -1602,7 +1602,7 @@ gs_lock_plug_init (GSLockPlug *plug)
                 gtk_widget_show_all (plug->priv->vbox);
         }
 
-	/* Layout indicator */
+        /* Layout indicator */
 #ifdef WITH_KBD_LAYOUT_INDICATOR
         if (plug->priv->auth_prompt_kbd_layout_indicator != NULL) {
                 XklEngine *engine;
@@ -1626,7 +1626,7 @@ gs_lock_plug_init (GSLockPlug *plug)
                 }
 
                 g_object_unref (engine);
-	}
+        }
 #endif
 
         if (plug->priv->auth_note_button != NULL) {
@@ -1700,9 +1700,9 @@ gs_lock_plug_init (GSLockPlug *plug)
                                   G_CALLBACK (cancel_note), plug);
         }
 
-	if (plug->priv->note_tab_label != NULL) {
+        if (plug->priv->note_tab_label != NULL) {
                 expand_string_for_label (plug->priv->note_tab_label);
-	}
+        }
 
         if (plug->priv->auth_logout_button != NULL) {
                 g_signal_connect (plug->priv->auth_logout_button, "clicked",

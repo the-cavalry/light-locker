@@ -175,5 +175,5 @@ main (int    argc,
 
         gs_debug_shutdown ();
 
-	return 0;
+        return 0;
 }
