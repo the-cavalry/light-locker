@@ -3,18 +3,18 @@
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2007.
 # 
 msgid ""
-""
-msgstr "Project-Id-Version: gnome-screensaver Gnome HEAD\n"
+msgstr ""
+"Project-Id-Version: gnome-screensaver Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-24 03:50+0100\n"
-"PO-Revision-Date: 2007-07-01 11:40-0400\n"
+"POT-Creation-Date: 2007-08-03 03:57+0100\n"
+"PO-Revision-Date: 2007-09-03 17:42+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: LocFactoryEditor 1.6.4a5\n"
+"X-Generator: LocFactoryEditor 1.7b1\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
 msgid "Screensaver"
@@ -111,7 +111,8 @@ msgstr "Chế độ lựa chọn sắc thái bảo vệ màn hình"
 
 #: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr "Đặt giá trị này là TRUE (đúng) để hoạt hoá bộ bảo vệ màn hình khi phiên chạy "
+msgstr ""
+"Đặt giá trị này là TRUE (đúng) để hoạt hoá bộ bảo vệ màn hình khi phiên chạy "
 "nghỉ."
 
 #: ../data/gnome-screensaver.schemas.in.h:12
@@ -119,26 +120,30 @@ msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
-msgstr "Đặt là ĐÚNG (true) để cho phép nhúng bàn phím trong cửa sổ khi thử mở khoá. "
+msgstr ""
+"Đặt là ĐÚNG (true) để cho phép nhúng bàn phím trong cửa sổ khi thử mở khoá. "
 "Khoá « keyboard_command » phải được đặt bằng lệnh thích hợp."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr "Đặt giá trị này là TRUE (đúng) để khoá màn hình khi bộ bảo vệ màn hình mới "
+msgstr ""
+"Đặt giá trị này là TRUE (đúng) để khoá màn hình khi bộ bảo vệ màn hình mới "
 "hoạt động."
 
 #: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
-msgstr "Đặt giá trị này là TRUE (đúng) để cung cấp trong hộp thoại bỏ khoá tùy chọn "
+msgstr ""
+"Đặt giá trị này là TRUE (đúng) để cung cấp trong hộp thoại bỏ khoá tùy chọn "
 "chuyển đổi sang tài khoản người dùng khác."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
-msgstr "Đặt giá trị này là TRUE (đúng) để cung cấp trong hộp thoại bỏ khoá tùy chọn "
+msgstr ""
+"Đặt giá trị này là TRUE (đúng) để cung cấp trong hộp thoại bỏ khoá tùy chọn "
 "đăng xuất sau khi trễ. Sự trễ được ghi rõ trong khoá « logout_delay » (sự "
 "trễ đăng xuất)."
 
@@ -148,7 +153,8 @@ msgid ""
 "set to TRUE, to embed a keyboard widget into the window. This command should "
 "implement an XEMBED plug interface and output a window XID on the standard "
 "output."
-msgstr "Lệnh sẽ được chạy, nếu khoá « embedded_keyboard_enabled » được đặt là ĐÚNG "
+msgstr ""
+"Lệnh sẽ được chạy, nếu khoá « embedded_keyboard_enabled » được đặt là ĐÚNG "
 "(true), để nhúng ô điều khiển bàn phím trong cửa sổ. Lệnh này nên thực hiện "
 "một giao diện nút XEMBED và xuất một XID cửa sổ ra thiết bị xuất chuẩn."
 
@@ -157,21 +163,24 @@ msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
-msgstr "Lệnh cần chạy khi cái nút đăng xuất được bấm. Lệnh này nên đơn giản đăng "
+msgstr ""
+"Lệnh cần chạy khi cái nút đăng xuất được bấm. Lệnh này nên đơn giản đăng "
 "xuất người dùng, không tương tác gì. Khoá này có tác động chỉ nếu khoá « "
 "logout_enable » được đặt là ĐÚNG (true)."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
-msgstr "Số phút sau khi bộ bảo vệ màn hình mới hoạt động, trước khi khoá màn hình."
+msgstr ""
+"Số phút sau khi bộ bảo vệ màn hình mới hoạt động, trước khi khoá màn hình."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
-msgstr "Số phút sau khi bộ bảo vệ màn hình mới hoạt động, trước khi tùy chọn đăng "
+msgstr ""
+"Số phút sau khi bộ bảo vệ màn hình mới hoạt động, trước khi tùy chọn đăng "
 "xuất được hiển thị trong hộp thoại bỏ khoá. Khoá này có tác động chỉ nếu "
 "khoá « logout_enable » (bật đăng xuất) được đặt là TRUE (đúng)."
 
@@ -182,13 +191,15 @@ msgstr "Số phút không dùng trước khi phiên chạy được xem là ngh�
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
-msgstr "Bao nhiêu phút cần chạy trước khi thay đổi sắc thái ảnh bảo vệ màn hình."
+msgstr ""
+"Bao nhiêu phút cần chạy trước khi thay đổi sắc thái ảnh bảo vệ màn hình."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
-msgstr "Số giây nghỉ trước khi gửi tín hiệu cho chức năng quản lý điện năng. Khoá "
+msgstr ""
+"Số giây nghỉ trước khi gửi tín hiệu cho chức năng quản lý điện năng. Khoá "
 "này được đặt và bảo tồn bởi tác nhân quản lý điện năng của phiên chạy đó."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
@@ -202,7 +213,8 @@ msgid ""
 "screensaver using only one theme on activation (specified in \"themes\" "
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
-msgstr "Chế độ lựa chọn được dùng bởi bộ bảo vệ màn hình. Chế độ có thể:\n"
+msgstr ""
+"Chế độ lựa chọn được dùng bởi bộ bảo vệ màn hình. Chế độ có thể:\n"
 " • blank-only (chỉ trắng) để bật chạy bộ bảo vệ màn hình mà không dùng sắc "
 "thái nào khi mới hoạt động\n"
 " • single (đơn) để bật chạy bộ bảo vệ màn hình mà dùng chỉ một sắc thái khi "
@@ -224,7 +236,8 @@ msgid ""
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
-msgstr "Khoá này ghi rõ danh sách các sắc thái cho bộ bảo vệ màn hình dùng. Nó\n"
+msgstr ""
+"Khoá này ghi rõ danh sách các sắc thái cho bộ bảo vệ màn hình dùng. Nó\n"
 " • bị bỏ qua khi khoá « mode » (chế độ) chỉ trắng (« blank only »)\n"
 " • nên cung cấp tên sắc thái khi « mode » (chế độ) là đơn (« single »)\n"
 " • nên cung cấp danh sách các sắc thái khi « mode » (chế độ) là ngẫu nhiên "
@@ -266,31 +279,23 @@ msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
 #: ../data/lock-dialog-default.glade.h:7
-msgid "Authentication"
-msgstr "Xác thực"
-
-#: ../data/lock-dialog-default.glade.h:8
-msgid "Note"
-msgstr "Ghi chú"
-
-#: ../data/lock-dialog-default.glade.h:9
 msgid "_Cancel"
 msgstr "Th_ôi"
 
-#: ../data/lock-dialog-default.glade.h:10
+#: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
 msgstr "Để lại _lời nhắn"
 
-#: ../data/lock-dialog-default.glade.h:11
+#: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
 msgstr "Đăng _xuất"
 
-#: ../data/lock-dialog-default.glade.h:12
+#: ../data/lock-dialog-default.glade.h:10
 msgid "_Switch User"
 msgstr "_Chuyển đổi người dùng"
 
-#: ../data/lock-dialog-default.glade.h:13
-#: ../src/gs-lock-plug.c:1202
+#: ../data/lock-dialog-default.glade.h:11
+#: ../src/gs-lock-plug.c:1207
 msgid "_Unlock"
 msgstr "_Bỏ khoá"
 
@@ -327,69 +332,80 @@ msgstr "Vẽ lưới các màu đập kiểu dáng nghệ thuật phổ biến."
 msgid "Pop art squares"
 msgstr "Vuông nghệ thuật phổ biến"
 
-#: ../savers/floaters.c:1166
-msgid "show paths that images follow"
-msgstr "hiển thị các đường dẫn mà ảnh theo"
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr "Hiển thị các đường dẫn mà ảnh theo"
 
-#: ../savers/floaters.c:1173
-msgid "occasionally rotate images as they move"
-msgstr "thỉnh thoảng quay ảnh trong khi di chuyển"
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "Thỉnh thoảng quay ảnh trong khi di chuyển"
 
-#: ../savers/floaters.c:1180
-msgid "print out frame rate and other statistics"
-msgstr "in ra tốc độ khung (frame rate) và thống kê khác"
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "In ra tỷ lệ khung và thống kê khác"
 
-#: ../savers/floaters.c:1188
-msgid "the maximum number of images to keep on screen"
-msgstr "số ảnh tối đa cần giữ trên màn hình"
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "Số ảnh tối đa cần giữ trên màn hình"
 
-#: ../savers/floaters.c:1192
-#. translators: this should be translated to be symbolic of a generic
-#. * number.  e.g, "the screen saver should keep N images on the screen"
-#.
-msgid "N"
-msgstr "N"
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "MAX_IMAGES"
 
-#: ../savers/floaters.c:1199
-msgid "the source image to use"
-msgstr "ảnh nguồn cần dùng"
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "Kích cỡ và vị trí đầu tiên của cửa sổ"
 
-#: ../savers/floaters.c:1206
-msgid "the initial size and position of window"
-msgstr "kích cỡ và vị trí ban đầu của cửa sổ"
-
-#: ../savers/floaters.c:1211
-#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
-#. * can be translated, but the 'x' area indicator and '+' offset indicators
-#. * need to be untranslated and can't be rearranged.
-#.
+#: ../savers/floaters.c:96
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "RỘNGxCAO+X+Y"
 
-#: ../savers/floaters.c:1229
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "Ảnh nguồn cần dùng"
+
+#: ../savers/floaters.c:1194
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
 msgid "image - floats images around the screen"
 msgstr "image - làm nổi ảnh ở chung quanh màn hình"
 
-#: ../savers/floaters.c:1239
+#: ../savers/floaters.c:1200
 #, c-format
 msgid "%s. See --help for usage information.\n"
-msgstr "%s: Hãy chạy lệnh « --help » (trợ giúp) để xem thông tin về cách sử dụng.\n"
+msgstr ""
+"%s: Hãy chạy lệnh « --help » (trợ giúp) để xem thông tin về cách sử dụng.\n"
 
-#: ../savers/floaters.c:1248
+#: ../savers/floaters.c:1209
 msgid "You must specify one image.  See --help for usage information.\n"
-msgstr "Bạn phải ghi rõ một ảnh. Hãy chạy lệnh « --help » (trợ giúp) để xem thông "
+msgstr ""
+"Bạn phải ghi rõ một ảnh. Hãy chạy lệnh « --help » (trợ giúp) để xem thông "
 "tin về cách sử dụng.\n"
 
-#: ../savers/slideshow.c:49
+#: ../savers/slideshow.c:53
 msgid "Location to get images from"
 msgstr "Địa điểm nơi cần lấy ảnh"
 
-#: ../savers/slideshow.c:49
+#: ../savers/slideshow.c:53
 msgid "PATH"
 msgstr "ĐƯỜNG DẪN"
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "Màu cần dùng để đặt nền của ảnh"
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "\"#rrggbb\""
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr "Đừng ngẫu nhiên hoá các ảnh từ địa điểm"
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Đừng thử kéo giãn ảnh trên màn hình"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -476,7 +492,8 @@ msgstr "Báo tiến trình bảo vệ màn hình đang chạy phải khoá ngay 
 
 #: ../src/gnome-screensaver-command.c:70
 msgid "If the screensaver is active then switch to another graphics demo"
-msgstr "Nếu bộ bảo vệ màn hình có hoạt động thì chuyển đổi sang một chứng minh đồ "
+msgstr ""
+"Nếu bộ bảo vệ màn hình có hoạt động thì chuyển đổi sang một chứng minh đồ "
 "họa khác"
 
 #: ../src/gnome-screensaver-command.c:72
@@ -489,13 +506,15 @@ msgstr "Nếu bộ bảo vệ màn hình có hoạt động thì tắt nó (bỏ
 
 #: ../src/gnome-screensaver-command.c:76
 msgid "Poke the running screensaver to simulate user activity"
-msgstr "Thức bộ bảo vệ màn hình đang chạy, để mô phỏng hoạt động của người dùng"
+msgstr ""
+"Thức bộ bảo vệ màn hình đang chạy, để mô phỏng hoạt động của người dùng"
 
 #: ../src/gnome-screensaver-command.c:78
 msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
-msgstr "Ngăn chặn bộ bảo vệ màn hình kích hoạt. Lệnh chặn trong khi khả năng ngăn "
+msgstr ""
+"Ngăn chặn bộ bảo vệ màn hình kích hoạt. Lệnh chặn trong khi khả năng ngăn "
 "chặn còn hoạt động."
 
 #: ../src/gnome-screensaver-command.c:80
@@ -578,7 +597,8 @@ msgstr "Bạn phải thay đổi ngay mật khẩu (người chủ ép buộc)"
 
 #: ../src/gnome-screensaver-dialog.c:180
 msgid "Your account has expired; please contact your system administrator"
-msgstr "Tài khoản của bạn đã hết hạn dùng: hãy liên lạc với nhà quản trị hệ thống"
+msgstr ""
+"Tài khoản của bạn đã hết hạn dùng: hãy liên lạc với nhà quản trị hệ thống"
 
 #: ../src/gnome-screensaver-dialog.c:181
 msgid "No password supplied"
@@ -633,58 +653,58 @@ msgstr "Đang kiểm tra..."
 msgid "Authentication failed."
 msgstr "Lỗi xác thực."
 
-#: ../src/gnome-screensaver-preferences.c:461
+#: ../src/gnome-screensaver-preferences.c:501
 msgid "Blank screen"
 msgstr "Màn hình trắng"
 
-#: ../src/gnome-screensaver-preferences.c:467
+#: ../src/gnome-screensaver-preferences.c:507
 msgid "Random"
 msgstr "Ngẫu nhiên"
 
-#: ../src/gnome-screensaver-preferences.c:837
+#: ../src/gnome-screensaver-preferences.c:877
 msgid "Invalid screensaver theme"
 msgstr "Sắc thái bảo vệ màn hình không hợp lệ"
 
-#: ../src/gnome-screensaver-preferences.c:840
+#: ../src/gnome-screensaver-preferences.c:880
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Hình như tập tin này không phải là sắc thái bảo vệ màn hình hợp lệ."
 
-#: ../src/gnome-screensaver-preferences.c:967
+#: ../src/gnome-screensaver-preferences.c:1007
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d giờ"
 
-#: ../src/gnome-screensaver-preferences.c:970
+#: ../src/gnome-screensaver-preferences.c:1010
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d phút"
 
-#: ../src/gnome-screensaver-preferences.c:973
+#: ../src/gnome-screensaver-preferences.c:1013
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d giây"
 
 # Variable: don't translate / Biến: đừng dịch
-#: ../src/gnome-screensaver-preferences.c:979
+#: ../src/gnome-screensaver-preferences.c:1019
 #, c-format
 #. hour:minutes:seconds
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
-#: ../src/gnome-screensaver-preferences.c:982
-#: ../src/gnome-screensaver-preferences.c:990
+#: ../src/gnome-screensaver-preferences.c:1022
+#: ../src/gnome-screensaver-preferences.c:1030
 #, c-format
 #. hour:minutes
 #. minutes:seconds
 msgid "%s %s"
 msgstr "%s %s"
 
-#: ../src/gnome-screensaver-preferences.c:985
-#: ../src/gnome-screensaver-preferences.c:993
-#: ../src/gnome-screensaver-preferences.c:997
+#: ../src/gnome-screensaver-preferences.c:1025
+#: ../src/gnome-screensaver-preferences.c:1033
+#: ../src/gnome-screensaver-preferences.c:1037
 #, c-format
 #. hour
 #. minutes
@@ -692,15 +712,15 @@ msgstr "%s %s"
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1012
+#: ../src/gnome-screensaver-preferences.c:1052
 msgid "Never"
 msgstr "Không bao giờ"
 
-#: ../src/gnome-screensaver-preferences.c:1411
+#: ../src/gnome-screensaver-preferences.c:1451
 msgid "Could not load the main interface"
 msgstr "Không thể tải giao diện chính"
 
-#: ../src/gnome-screensaver-preferences.c:1413
+#: ../src/gnome-screensaver-preferences.c:1453
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Hãy chắc là bộ bảo vệ màn hình được cài đặt đúng"
 
@@ -734,41 +754,51 @@ msgstr "Không cho phép truy cập vào lúc này."
 msgid "No longer permitted to access the system."
 msgstr "Không còn có quyền truy cập lại hệ thống."
 
-#: ../src/gs-listener-dbus.c:1817
+#: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
 msgstr "việc đăng ký với mạch nối thông điệp bị lỗi"
 
-#: ../src/gs-listener-dbus.c:1827
+#: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
 msgstr "chưa kết nối đến mạch nối thông điệp"
 
-#: ../src/gs-listener-dbus.c:1836
+#: ../src/gs-listener-dbus.c:1940
 msgid "screensaver already running in this session"
 msgstr "bộ bảo vệ màn hình đang chạy trong phiên làm việc này"
 
-#: ../src/gs-lock-plug.c:266
+#: ../src/gs-lock-plug.c:269
 msgid "Time has expired."
 msgstr "Quá giờ."
 
-#: ../src/gs-lock-plug.c:294
+#: ../src/gs-lock-plug.c:297
 msgid "You have the Caps Lock key on."
 msgstr "Bạn đã bật phím Khoá Chữ Hoa (CapsLock)."
 
-#: ../src/gs-lock-plug.c:1182
+#: ../src/gs-lock-plug.c:1187
 msgid "S_witch User..."
 msgstr "_Chuyển đổi người dùng..."
 
-#: ../src/gs-lock-plug.c:1191
+#: ../src/gs-lock-plug.c:1196
 msgid "Log _Out"
 msgstr "Đăng _xuất"
 
-#: ../src/gs-lock-plug.c:1367
+#: ../src/gs-lock-plug.c:1373
+#. To translators: This expands to USERNAME on HOSTNAME
 msgid "%U on %h"
 msgstr "%U trên %h"
 
-#: ../src/gs-lock-plug.c:1381
+#: ../src/gs-lock-plug.c:1387
 msgid "_Password:"
 msgstr "_Mật khẩu :"
+
+#~ msgid "Authentication"
+#~ msgstr "Xác thực"
+
+#~ msgid "Note"
+#~ msgstr "Ghi chú"
+
+#~ msgid "N"
+#~ msgstr "N"
 
 #~ msgid "S_witch to user:"
 #~ msgstr "C_huyển đổi sang người dùng:"
@@ -799,14 +829,16 @@ msgstr "_Mật khẩu :"
 
 #~ msgid ""
 #~ "The number of the virtual console this display can be found on, or %-1."
-#~ msgstr "Số hiệu của bàn giao tiếp ảo trên đó bộ trình bày có thể được tìm, hoặc %-"
+#~ msgstr ""
+#~ "Số hiệu của bàn giao tiếp ảo trên đó bộ trình bày có thể được tìm, hoặc %-"
 #~ "1."
 
 #~ msgid "Nested"
 #~ msgstr "Lồng nhau"
 
 #~ msgid "Whether or not this display is a windowed (Xnest) display."
-#~ msgstr "Có nên bộ trình bày này là bộ trình bày có cửa sổ (Xnest) hay không."
+#~ msgstr ""
+#~ "Có nên bộ trình bày này là bộ trình bày có cửa sổ (Xnest) hay không."
 
 #~ msgid "The display manager could not be contacted for unknown reasons."
 #~ msgstr "Không thể liên lạc với bộ quản lý trình bày, không biết sao."
@@ -827,7 +859,8 @@ msgstr "_Mật khẩu :"
 #~ msgstr "Có quá nhiều phiên đang chạy X."
 
 #~ msgid "The nested X server (Xnest) cannot connect to your current X server."
-#~ msgstr "Trình phục vụ X lồng nhau (Xnest) không thể kết nối đến trình phục vụ X "
+#~ msgstr ""
+#~ "Trình phục vụ X lồng nhau (Xnest) không thể kết nối đến trình phục vụ X "
 #~ "hiện thời của bạn."
 
 #~ msgid "The X server in the GDM configuration could not be found."
@@ -836,7 +869,8 @@ msgstr "_Mật khẩu :"
 #~ msgid ""
 #~ "Trying to set an unknown logout action, or trying to set a logout action "
 #~ "which is not available."
-#~ msgstr "Đang cố đặt hành động đăng xuất lạ, hoặc một hành động đăng xuất không "
+#~ msgstr ""
+#~ "Đang cố đặt hành động đăng xuất lạ, hoặc một hành động đăng xuất không "
 #~ "sẵn sàng."
 
 #~ msgid "Virtual terminals not supported."
@@ -852,7 +886,8 @@ msgstr "_Mật khẩu :"
 #~ msgstr "Tập tin « ~/.Xauthority » có cấu hình sai, hoặc còn thiếu nó."
 
 #~ msgid "Too many messages were sent to the display manager, and it hung up."
-#~ msgstr "Quá nhiều thông điệp đã được gởi cho bộ quản lý trình bày nên nó ngắt kết "
+#~ msgstr ""
+#~ "Quá nhiều thông điệp đã được gởi cho bộ quản lý trình bày nên nó ngắt kết "
 #~ "nối."
 
 #~ msgid "The display manager sent an unknown error message."
@@ -891,13 +926,15 @@ msgstr "_Mật khẩu :"
 #~ msgid ""
 #~ "You might in fact be using a different display manager, such as KDM (KDE "
 #~ "Display Manager) or xdm."
-#~ msgstr "Có lẽ bạn thật sự có sử dụng một bộ quản lý trình bày khác, như KDM (Bộ "
+#~ msgstr ""
+#~ "Có lẽ bạn thật sự có sử dụng một bộ quản lý trình bày khác, như KDM (Bộ "
 #~ "quản lý trình bày KDE) hoặc xdm."
 
 #~ msgid ""
 #~ "If you still wish to use this feature, either start GDM yourself or ask "
 #~ "your system administrator to start GDM."
-#~ msgstr "Nếu bạn vẫn còn muốn sử dụng tính năng này, hãy hoặc tự khởi chạy GDM, "
+#~ msgstr ""
+#~ "Nếu bạn vẫn còn muốn sử dụng tính năng này, hãy hoặc tự khởi chạy GDM, "
 #~ "hoặc xin quản trị hệ thống làm như thế."
 
 #~ msgid "Cannot communicate with GDM (The GNOME Display Manager)"
@@ -908,7 +945,8 @@ msgstr "_Mật khẩu :"
 
 #~ msgid ""
 #~ "Cannot communicate with gdm, perhaps you have an old version running."
-#~ msgstr "Không thể liên lạc với GDM, có lẽ bạn đang chạy một phiên bản GDM cũ."
+#~ msgstr ""
+#~ "Không thể liên lạc với GDM, có lẽ bạn đang chạy một phiên bản GDM cũ."
 
 #~ msgid "The allowed limit of flexible X servers reached."
 #~ msgstr "Mới tới giới hạn số trình phục vụ X dẻo được phép."
@@ -925,20 +963,23 @@ msgstr "_Mật khẩu :"
 #~ msgid ""
 #~ "The nested X server (Xnest) cannot connect to your current X server.  You "
 #~ "may be missing an X authorization file."
-#~ msgstr "Trình phục vụ X lồng nhau (Xnest) không thể kết nối đến trình phục vụ X "
+#~ msgstr ""
+#~ "Trình phục vụ X lồng nhau (Xnest) không thể kết nối đến trình phục vụ X "
 #~ "hiện thời của bạn. Có lẽ bạn thiếu một tập tin cấp quyền X."
 
 #~ msgid ""
 #~ "The nested X server (Xnest) is not available, or gdm is badly "
 #~ "configured.\n"
 #~ "Please install the Xnest package in order to use the nested login."
-#~ msgstr "Trình phục vụ X lồng nhau (Xnest) không sẵn sàng, hoặc GDM có cấu hình "
+#~ msgstr ""
+#~ "Trình phục vụ X lồng nhau (Xnest) không sẵn sàng, hoặc GDM có cấu hình "
 #~ "sai.\n"
 #~ "Bạn hãy cài đặt gói Xnest, để sử dụng khả năng đăng nhập lồng nhau."
 
 #~ msgid ""
 #~ "The X server is not available, it is likely that gdm is badly configured."
-#~ msgstr "Trình phục vụ X lồng nhau (Xnest) không sẵn sàng, hoặc rất có thể là GDM "
+#~ msgstr ""
+#~ "Trình phục vụ X lồng nhau (Xnest) không sẵn sàng, hoặc rất có thể là GDM "
 #~ "có cấu hình sai."
 
 #~ msgid "Trying to change to an invalid virtual terminal number."
@@ -947,11 +988,13 @@ msgstr "_Mật khẩu :"
 #~ msgid ""
 #~ "You do not seem to have authentication needed be for this operation.  "
 #~ "Perhaps your .Xauthority file is not set up correctly."
-#~ msgstr "Hình như bạn không có cách xác thực cần thiết cho thao tác này. Có lẽ tập "
+#~ msgstr ""
+#~ "Hình như bạn không có cách xác thực cần thiết cho thao tác này. Có lẽ tập "
 #~ "tin « .Xauthority  » của bạn chưa được thiết lập cho đúng."
 
 #~ msgid "Too many messages were sent to gdm and it hung upon us."
-#~ msgstr "Quá nhiều thông điệp đã được gởi cho GDM nên nó ngắt kết nối đến chúng ta."
+#~ msgstr ""
+#~ "Quá nhiều thông điệp đã được gởi cho GDM nên nó ngắt kết nối đến chúng ta."
 
 #~ msgid "Unknown error occurred."
 #~ msgstr "Gặp lỗi không xác định."
