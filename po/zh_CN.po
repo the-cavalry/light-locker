@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-17 15:11+0100\n"
-"PO-Revision-Date: 2007-09-04 20:55+0800\n"
+"PO-Revision-Date: 2007-09-04 21:35+0800\n"
 "Last-Translator: Yang Zhang <zyangmath@gmail.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -248,7 +248,7 @@ msgstr "主题改变前等待时间"
 #: ../data/lock-dialog-default.glade.h:2
 #, no-c-format
 msgid "<b>Leave a message for %R:</b>"
-msgstr "<b>为 %R 留下消息：</b>"
+msgstr "<b>为 %R 留言：</b>"
 
 #: ../data/lock-dialog-default.glade.h:4
 #, no-c-format
@@ -266,7 +266,7 @@ msgstr "取消(_C)"
 
 #: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
-msgstr "留消息(_L)"
+msgstr "留言(_L)"
 
 #: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
