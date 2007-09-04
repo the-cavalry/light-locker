@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-17 12:29+0100\n"
-"PO-Revision-Date: 2007-08-17 22:10+0700\n"
+"POT-Creation-Date: 2007-08-17 15:11+0100\n"
+"PO-Revision-Date: 2007-09-04 20:55+0800\n"
 "Last-Translator: Yang Zhang <zyangmath@gmail.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -114,39 +114,69 @@ msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr "将此值设定为 TRUE 以在会话空闲时激活屏幕保护程序。"
 
 #: ../data/gnome-screensaver.schemas.in.h:12
-msgid "Set this to TRUE to allow embedding a keyboard into the window when trying to unlock. The \"keyboard_command\" key must be set with the appropriate command."
-msgstr "将此值设定为 TRUE 将在用户解除锁定时的窗口中嵌入键盘。“keyboard_command”键必须设定为适当的命令。"
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr ""
+"将此值设定为 TRUE 将在用户解除锁定时的窗口中嵌入键盘。“keyboard_command”键必"
+"须设定为适当的命令。"
 
 #: ../data/gnome-screensaver.schemas.in.h:13
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr "将此值设定为 TRUE 可在屏幕保护程序激活时锁定屏幕。"
 
 #: ../data/gnome-screensaver.schemas.in.h:14
-msgid "Set this to TRUE to offer an option in the unlock dialog to switch to a different user account."
-msgstr "将此值设定为 TRUE 将在解除锁定对话框中提供一个选项来切换到不同的用户帐户。"
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr ""
+"将此值设定为 TRUE 将在解除锁定对话框中提供一个选项来切换到不同的用户帐户。"
 
 #: ../data/gnome-screensaver.schemas.in.h:15
-msgid "Set this to TRUE to offer an option in unlock dialog to logging out after a delay. The Delay is specified in the \"logout_delay\" key."
-msgstr "将此值设定为 TRUE 可在解除锁定对话框中提供一个选项来在一定延时后注销。该延时由“logout_delay”键指定。"
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr ""
+"将此值设定为 TRUE 可在解除锁定对话框中提供一个选项来在一定延时后注销。该延时"
+"由“logout_delay”键指定。"
 
 #: ../data/gnome-screensaver.schemas.in.h:16
-msgid "The command that will be run, if the \"embedded_keyboard_enabled\" key is set to TRUE, to embed a keyboard widget into the window. This command should implement an XEMBED plug interface and output a window XID on the standard output."
-msgstr "用以在窗口中嵌入键盘部件的命令，当“embedded_keyboard_enabled”键被设定为 TRUE 时有效。该命令应当实现一个 XEMBED 插件接口并输出窗口 XID 到标准输出。"
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr ""
+"用以在窗口中嵌入键盘部件的命令，当“embedded_keyboard_enabled”键被设定为 TRUE "
+"时有效。该命令应当实现一个 XEMBED 插件接口并输出窗口 XID 到标准输出。"
 
 #: ../data/gnome-screensaver.schemas.in.h:17
-msgid "The command to invoke when the logout button is clicked. This command should simply log the user out without any interaction. This key has effect only if the \"logout_enable\" key is set to TRUE."
-msgstr "单击注销按钮调用的命令。该命令应当简单地将用户注销而不需要用户参与。本键仅当“logout_enable”键被设定为 TRUE 时有效。"
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr ""
+"单击注销按钮调用的命令。该命令应当简单地将用户注销而不需要用户参与。本键仅"
+"当“logout_enable”键被设定为 TRUE 时有效。"
 
 #: ../data/gnome-screensaver.schemas.in.h:18
-msgid "The number of minutes after screensaver activation before locking the screen."
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
 msgstr "屏幕保护程序激活后锁定屏幕之前等待的时间。"
 
 #: ../data/gnome-screensaver.schemas.in.h:19
-msgid "The number of minutes after the screensaver activation before a logout option will appear in unlock dialog. This key has effect only if the \"logout_enable\" key is set to TRUE."
-msgstr "屏幕保护程序激活后注销选项出现在解除锁定对话框之前等待的时间。本键仅当 “logout_enable”键被设定为 TRUE 时有效。"
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr ""
+"屏幕保护程序激活后注销选项出现在解除锁定对话框之前等待的时间。本键仅当 "
+"“logout_enable”键被设定为 TRUE 时有效。"
 
 #: ../data/gnome-screensaver.schemas.in.h:20
-msgid "The number of minutes of inactivity before the session is considered idle."
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
 msgstr "会话在被视为空闲之前的非活动分钟数。"
 
 #: ../data/gnome-screensaver.schemas.in.h:21
@@ -154,16 +184,27 @@ msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "改变屏幕保护程序主题之前运行的分钟数。"
 
 #: ../data/gnome-screensaver.schemas.in.h:22
-msgid "The number of seconds of inactivity before signalling to power-management. This key is set and maintained by the session power-management agent."
-msgstr "向电源管理程序发送信号前非活动的秒钟数。本键由会话的电源管理代理设定并维护。"
+msgid ""
+"The number of seconds of inactivity before signalling to power-management. "
+"This key is set and maintained by the session power-management agent."
+msgstr ""
+"向电源管理程序发送信号前非活动的秒钟数。本键由会话的电源管理代理设定并维护。"
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid "The reason for being away from the computer."
 msgstr "离开计算机的原因。"
 
 #: ../data/gnome-screensaver.schemas.in.h:24
-msgid "The selection mode used by screensaver. May be \"blank-only\" to enable the screensaver without using any theme on activation, \"single\" to enable screensaver using only one theme on activation (specified in \"themes\" key), and \"random\" to enable the screensaver using a random theme on activation."
-msgstr "屏幕保护程序选择主题的方式。可供选择的值有：“blank-only”，代表启用屏幕保护程序且激活后不使用任何主题；“single”，代表启用屏幕保护程序且激活后只使用一个主题(由“themes”键指定)；“random”，代表启用屏幕保护程序且激活后使用随机主题。"
+msgid ""
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
+msgstr ""
+"屏幕保护程序选择主题的方式。可供选择的值有：“blank-only”，代表启用屏幕保护程"
+"序且激活后不使用任何主题；“single”，代表启用屏幕保护程序且激活后只使用一个主"
+"题(由“themes”键指定)；“random”，代表启用屏幕保护程序且激活后使用随机主题。"
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
@@ -174,8 +215,15 @@ msgid "Theme to use for the lock dialog."
 msgstr "锁定对话框使用的主题。"
 
 #: ../data/gnome-screensaver.schemas.in.h:27
-msgid "This key specifies the list of themes to be used by the screensaver. It's ignored when \"mode\" key is \"blank-only\", should provide the theme name when \"mode\" is \"single\", and should provide a list of themes when \"mode\" is \"random\"."
-msgstr "本键指定屏幕保护程序使用的主题列表。它在“mode”键值为“blank-only”时将被忽略；在“mode”键值为“single”时应当提供一个主题名；在“mode”键值为“random”时应当提供一个主题列表。"
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
+msgstr ""
+"本键指定屏幕保护程序使用的主题列表。它在“mode”键值为“blank-only”时将被忽略；"
+"在“mode”键值为“single”时应当提供一个主题名；在“mode”键值为“random”时应当提供"
+"一个主题列表。"
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
@@ -228,8 +276,7 @@ msgstr "注销(_L)"
 msgid "_Switch User"
 msgstr "切换用户(_S)"
 
-#: ../data/lock-dialog-default.glade.h:11
-#: ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
 msgid "_Unlock"
 msgstr "解锁(_U)"
 
@@ -331,10 +378,9 @@ msgstr "\"#rrggbb\""
 
 #: ../savers/slideshow.c:57
 msgid "Do not randomize pictures from location"
-msgstr ""
+msgstr "不随机放置图片"
 
 #: ../savers/slideshow.c:59
-#, fuzzy
 msgid "Do not try to stretch images on screen"
 msgstr "不在屏幕上伸展图片"
 
@@ -388,8 +434,7 @@ msgstr "总计 URI"
 msgid "Total number of URIs"
 msgstr "URI 总数"
 
-#: ../src/file-transfer-dialog.c:327
-#: ../src/file-transfer-dialog.c:369
+#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
 msgid "Copying files"
 msgstr "正在复制文件"
 
@@ -438,7 +483,9 @@ msgid "Poke the running screensaver to simulate user activity"
 msgstr "发送信息到正在运行的屏幕保护程序以模拟用户活动"
 
 #: ../src/gnome-screensaver-command.c:78
-msgid "Inhibit the screensaver from activating.  Command blocks while inhibit is active."
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
 msgstr "禁止屏幕保护程序激活。启动后其它命令将被阻塞。"
 
 #: ../src/gnome-screensaver-command.c:80
@@ -449,8 +496,7 @@ msgstr "正在禁用屏幕保护程序的应用程序"
 msgid "The reason for inhibiting the screensaver"
 msgstr "禁用屏幕保护程序的原因"
 
-#: ../src/gnome-screensaver-command.c:84
-#: ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "此应用程序的版本"
@@ -498,15 +544,12 @@ msgid "MESSAGE"
 msgstr "MESSAGE"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:173
-#: ../src/gnome-screensaver-dialog.c:174
-#: ../src/gnome-screensaver-dialog.c:175
-#: ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "用户名："
 
-#: ../src/gnome-screensaver-dialog.c:176
-#: ../src/gnome-screensaver-dialog.c:177
+#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "密码："
@@ -571,8 +614,7 @@ msgstr "对不起，密码不匹配"
 msgid "Checking..."
 msgstr "正在检查..."
 
-#: ../src/gnome-screensaver-dialog.c:299
-#: ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "验证失败。"
 
@@ -715,4 +757,3 @@ msgstr "密码(_P)："
 
 #~ msgid "N"
 #~ msgstr "N"
-
