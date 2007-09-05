@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 2.16.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-08 21:26+0200\n"
-"PO-Revision-Date: 2007-05-08 21:34+0200\n"
+"POT-Creation-Date: 2007-09-05 14:48+0200\n"
+"PO-Revision-Date: 2007-09-05 14:46+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -272,30 +272,22 @@ msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
 #: ../data/lock-dialog-default.glade.h:7
-msgid "Authentication"
-msgstr "Autentisering"
-
-#: ../data/lock-dialog-default.glade.h:8
-msgid "Note"
-msgstr "Merk"
-
-#: ../data/lock-dialog-default.glade.h:9
 msgid "_Cancel"
 msgstr "A_vbryt"
 
-#: ../data/lock-dialog-default.glade.h:10
+#: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
 msgstr "_Legg igjen beskjed"
 
-#: ../data/lock-dialog-default.glade.h:11
+#: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
 msgstr "_Logg ut"
 
-#: ../data/lock-dialog-default.glade.h:12
+#: ../data/lock-dialog-default.glade.h:10
 msgid "_Switch User"
 msgstr "_Bytt bruker"
 
-#: ../data/lock-dialog-default.glade.h:13 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
 msgid "_Unlock"
 msgstr "Lå_s opp"
 
@@ -331,68 +323,78 @@ msgstr "Et popkunst-aktig rutenett med pulserende farger."
 msgid "Pop art squares"
 msgstr "Popkunstfirkanter"
 
-#: ../savers/floaters.c:1166
-msgid "show paths that images follow"
-msgstr "vis stiene bildene følger"
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr "Vis stiene bildene følger"
 
-#: ../savers/floaters.c:1173
-msgid "occasionally rotate images as they move"
-msgstr "roter bildene noen ganger mens de beveger seg"
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "Roter bildene noen ganger mens de beveger seg"
 
-#: ../savers/floaters.c:1180
-msgid "print out frame rate and other statistics"
-msgstr "vis bildehastighet og annen statistikk"
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "Vis bildehastighet og annen statistikk"
 
-#: ../savers/floaters.c:1188
-msgid "the maximum number of images to keep on screen"
-msgstr "maksimalt antall bilder som skal beholdes på skjermen"
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "Maksimalt antall bilder som skal beholdes på skjermen"
 
-#. translators: this should be translated to be symbolic of a generic
-#. * number.  e.g, "the screen saver should keep N images on the screen"
-#.
-#: ../savers/floaters.c:1192
-msgid "N"
-msgstr "X"
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "MAKS_BILDER"
 
-#: ../savers/floaters.c:1199
-msgid "the source image to use"
-msgstr "bilde som skal brukes"
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "Initiell størrelse og posisjon for vinduet"
 
-#: ../savers/floaters.c:1206
-msgid "the initial size and position of window"
-msgstr "utgangsstørrelse og posisjon for vinduet"
-
-#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
-#. * can be translated, but the 'x' area indicator and '+' offset indicators
-#. * need to be untranslated and can't be rearranged.
-#.
-#: ../savers/floaters.c:1211
+#: ../savers/floaters.c:96
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "BREDDExHØYDE+X+Y"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "Bilde som skal brukes"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1229
+#: ../savers/floaters.c:1194
 msgid "image - floats images around the screen"
 msgstr "bilde - lar bilder flyte rundt på skjermen"
 
-#: ../savers/floaters.c:1239
+#: ../savers/floaters.c:1200
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Se --help for hjelp til bruk.\n"
 
-#: ../savers/floaters.c:1248
+#: ../savers/floaters.c:1209
+#, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "Du må oppgi ett bilde. Se --help for bruksinformasjon.\n"
 
-#: ../savers/slideshow.c:49
+#: ../savers/slideshow.c:53
 msgid "Location to get images from"
 msgstr "Lokasjon bilder skal hentes fra"
 
-#: ../savers/slideshow.c:49
+#: ../savers/slideshow.c:53
 msgid "PATH"
 msgstr "STI"
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "Farge som skal brukes for bildebakgrunn"
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "«#rrggbb»"
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr "Ikke hent bilder i tilfeldig rekkefølge fra lokasjon"
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Ikke strekk bildene på skjermen"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -630,37 +632,37 @@ msgstr "Sjekker..."
 msgid "Authentication failed."
 msgstr "Autentisering feilet."
 
-#: ../src/gnome-screensaver-preferences.c:461
+#: ../src/gnome-screensaver-preferences.c:500
 msgid "Blank screen"
 msgstr "Blank skjerm"
 
-#: ../src/gnome-screensaver-preferences.c:467
+#: ../src/gnome-screensaver-preferences.c:506
 msgid "Random"
 msgstr "Tilfeldig"
 
-#: ../src/gnome-screensaver-preferences.c:837
+#: ../src/gnome-screensaver-preferences.c:876
 msgid "Invalid screensaver theme"
 msgstr "Ugyldig tema for skjermsparer"
 
-#: ../src/gnome-screensaver-preferences.c:840
+#: ../src/gnome-screensaver-preferences.c:879
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Denne filen ser ikke ut til å være et gyldig tema for skjermsparer."
 
-#: ../src/gnome-screensaver-preferences.c:967
+#: ../src/gnome-screensaver-preferences.c:1006
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d time"
 msgstr[1] "%d timer"
 
-#: ../src/gnome-screensaver-preferences.c:970
+#: ../src/gnome-screensaver-preferences.c:1009
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minutt"
 msgstr[1] "%d minutter"
 
-#: ../src/gnome-screensaver-preferences.c:973
+#: ../src/gnome-screensaver-preferences.c:1012
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -668,15 +670,15 @@ msgstr[0] "%d sekund"
 msgstr[1] "%d sekunder"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:979
+#: ../src/gnome-screensaver-preferences.c:1018
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:982
-#: ../src/gnome-screensaver-preferences.c:990
+#: ../src/gnome-screensaver-preferences.c:1021
+#: ../src/gnome-screensaver-preferences.c:1029
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -684,22 +686,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:985
-#: ../src/gnome-screensaver-preferences.c:993
-#: ../src/gnome-screensaver-preferences.c:997
+#: ../src/gnome-screensaver-preferences.c:1024
+#: ../src/gnome-screensaver-preferences.c:1032
+#: ../src/gnome-screensaver-preferences.c:1036
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1012
+#: ../src/gnome-screensaver-preferences.c:1051
+#, c-format
 msgid "Never"
 msgstr "Aldri"
 
-#: ../src/gnome-screensaver-preferences.c:1411
+#: ../src/gnome-screensaver-preferences.c:1450
 msgid "Could not load the main interface"
 msgstr "Kunne ikke laste hovedbrukergrensesnittet"
 
-#: ../src/gnome-screensaver-preferences.c:1413
+#: ../src/gnome-screensaver-preferences.c:1452
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Vennligst se til at skjermspareren er skikkelig installert"
 
@@ -733,15 +736,15 @@ msgstr "Ingen tillatelse til å aksessere ressursen nå."
 msgid "No longer permitted to access the system."
 msgstr "Tilgang til å aksessere systemet er fjernet."
 
-#: ../src/gs-listener-dbus.c:1817
+#: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
 msgstr "klarte ikke å registrere hos meldingsbussen"
 
-#: ../src/gs-listener-dbus.c:1827
+#: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
 msgstr "ikke koblet til meldingsbussen"
 
-#: ../src/gs-listener-dbus.c:1836
+#: ../src/gs-listener-dbus.c:1940
 msgid "screensaver already running in this session"
 msgstr "skjermsparer kjører allerede i denne sesjonen"
 
@@ -761,13 +764,23 @@ msgstr "_Bytt bruker..."
 msgid "Log _Out"
 msgstr "Logg _ut"
 
-#: ../src/gs-lock-plug.c:1372
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1373
 msgid "%U on %h"
 msgstr "%U på %h"
 
-#: ../src/gs-lock-plug.c:1386
+#: ../src/gs-lock-plug.c:1387
 msgid "_Password:"
 msgstr "_Passord:"
+
+#~ msgid "Authentication"
+#~ msgstr "Autentisering"
+
+#~ msgid "Note"
+#~ msgstr "Merk"
+
+#~ msgid "N"
+#~ msgstr "X"
 
 #~ msgid "The manager which owns this object."
 #~ msgstr "Håndterer som eier dette objektet."
