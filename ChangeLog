@@ -1,3 +1,7 @@
+2007-09-11  William Jon McCann  <mccann@jhu.edu>
+
+	* configure.ac: Add AM_PROG_CC_C_O
+
 2007-08-30  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gs-lock-plug.c: (gs_lock_plug_init):

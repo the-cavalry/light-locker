@@ -15,6 +15,7 @@ AM_MAINTAINER_MODE
 IT_PROG_INTLTOOL([0.35.0])
 AC_ISC_POSIX
 AC_PROG_CC
+AM_PROG_CC_C_O
 AC_STDC_HEADERS
 AC_PROG_LIBTOOL
 AC_CANONICAL_HOST
@@ -1136,6 +1137,7 @@ echo "
         Base libs:                ${GNOME_SCREENSAVER_LIBS}
         Extension libs:           ${SAVER_LIBS}
         Maintainer mode:          ${USE_MAINTAINER_MODE}
+        Docs enabled:             ${enable_docbook_docs}
 
 	GL:                       ${have_libgl}
 

@@ -145,11 +145,11 @@ gs_listener_error_quark (void)
 static void
 gs_listener_ref_entry_free (GSListenerRefEntry *entry)
 {
-	g_free (entry->connection);
-	g_free (entry->application);
-	g_free (entry->reason);
-	g_free (entry);
-	entry = NULL;
+        g_free (entry->connection);
+        g_free (entry->application);
+        g_free (entry->reason);
+        g_free (entry);
+        entry = NULL;
 }
 
 static void
@@ -293,15 +293,15 @@ gs_listener_update_console_kit_idle (GSListener *listener)
 
         idle = listener->priv->session_idle;
 
-	gs_debug ("Updating ConsoleKit idle status: %d", idle);
-	message = dbus_message_new_method_call (CK_NAME,
-						listener->priv->session_id,
-						CK_SESSION_INTERFACE,
-						"SetIdleHint");
-	if (message == NULL) {
-		gs_debug ("Couldn't allocate the D-Bus message");
-		return;
-	}
+        gs_debug ("Updating ConsoleKit idle status: %d", idle);
+        message = dbus_message_new_method_call (CK_NAME,
+                                                listener->priv->session_id,
+                                                CK_SESSION_INTERFACE,
+                                                "SetIdleHint");
+        if (message == NULL) {
+                gs_debug ("Couldn't allocate the D-Bus message");
+                return;
+        }
 
         dbus_message_iter_init_append (message, &iter);
         dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &idle);
@@ -313,9 +313,9 @@ gs_listener_update_console_kit_idle (GSListener *listener)
                                                            -1, &error);
         dbus_message_unref (message);
 
-	if (reply != NULL) {
+        if (reply != NULL) {
                 dbus_message_unref (reply);
-	}
+        }
 
         if (dbus_error_is_set (&error)) {
                 gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
@@ -770,13 +770,13 @@ _g_time_val_to_iso8601 (GTimeVal *time_)
 
   g_return_val_if_fail (time_->tv_usec >= 0 && time_->tv_usec < G_USEC_PER_SEC, NULL);
 
-#define ISO_8601_LEN 	21
+#define ISO_8601_LEN    21
 #define ISO_8601_FORMAT "%Y-%m-%dT%H:%M:%SZ"
   retval = g_new0 (gchar, ISO_8601_LEN + 1);
 
   strftime (retval, ISO_8601_LEN,
-	    ISO_8601_FORMAT,
-	    gmtime (&(time_->tv_sec)));
+            ISO_8601_FORMAT,
+            gmtime (&(time_->tv_sec)));
 
   return retval;
 }
@@ -797,7 +797,7 @@ accumulate_ref_entry (gpointer            key,
                                        time,
                                        entry->reason);
 
-	dbus_message_iter_append_basic (iter, DBUS_TYPE_STRING, &description);
+        dbus_message_iter_append_basic (iter, DBUS_TYPE_STRING, &description);
 
         g_free (description);
         g_free (time);
@@ -812,7 +812,7 @@ listener_dbus_get_ref_entries (GSListener     *listener,
         DBusMessage        *reply;
         GHashTable         *hash;
         DBusMessageIter     iter;
-	DBusMessageIter     iter_array;
+        DBusMessageIter     iter_array;
 
         hash = get_hash_for_entry_type (listener, entry_type);
 
@@ -822,10 +822,10 @@ listener_dbus_get_ref_entries (GSListener     *listener,
         }
 
         dbus_message_iter_init_append (reply, &iter);
-	dbus_message_iter_open_container (&iter,
-					  DBUS_TYPE_ARRAY,
-					  DBUS_TYPE_STRING_AS_STRING,
-					  &iter_array);
+        dbus_message_iter_open_container (&iter,
+                                          DBUS_TYPE_ARRAY,
+                                          DBUS_TYPE_STRING_AS_STRING,
+                                          &iter_array);
 
         if (hash != NULL) {
                 g_hash_table_foreach (hash,
@@ -833,7 +833,7 @@ listener_dbus_get_ref_entries (GSListener     *listener,
                                       &iter_array);
         }
 
-	dbus_message_iter_close_container (&iter, &iter_array);
+        dbus_message_iter_close_container (&iter, &iter_array);
 
         if (! dbus_connection_send (connection, reply, NULL)) {
                 g_error ("No memory");
@@ -1436,8 +1436,8 @@ listener_dbus_handle_session_message (DBusConnection *connection,
                 g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
-	if (dbus_message_is_method_call (message, "org.freedesktop.DBus.Introspectable", "Introspect")) {
-		return do_introspect (connection, message, local_interface);
+        if (dbus_message_is_method_call (message, "org.freedesktop.DBus.Introspectable", "Introspect")) {
+                return do_introspect (connection, message, local_interface);
         }
 
         return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
@@ -1518,27 +1518,27 @@ listener_dbus_handle_system_message (DBusConnection *connection,
 
                 return DBUS_HANDLER_RESULT_HANDLED;
         } else if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "ActiveChanged")) {
-		/* NB that `ActiveChanged' refers to the active
-		 * session in ConsoleKit terminology - ie which
-		 * session is currently displayed on the screen.
-		 * gnome-screensaver uses `active' to mean `is the
-		 * screensaver active' (ie, is the screen locked) but
-		 * that's not what we're referring to here.
-		 */
+                /* NB that `ActiveChanged' refers to the active
+                 * session in ConsoleKit terminology - ie which
+                 * session is currently displayed on the screen.
+                 * gnome-screensaver uses `active' to mean `is the
+                 * screensaver active' (ie, is the screen locked) but
+                 * that's not what we're referring to here.
+                 */
 
                 if (_listener_message_path_is_our_session (listener, message)) {
-			DBusError   error;
-			dbus_bool_t new_active;
+                        DBusError   error;
+                        dbus_bool_t new_active;
 
-			dbus_error_init (&error);
-			if (dbus_message_get_args (message, &error,
-						   DBUS_TYPE_BOOLEAN, &new_active,
-						   DBUS_TYPE_INVALID)) {
-				gs_debug ("ConsoleKit notified ActiveChanged %d", new_active);
+                        dbus_error_init (&error);
+                        if (dbus_message_get_args (message, &error,
+                                                   DBUS_TYPE_BOOLEAN, &new_active,
+                                                   DBUS_TYPE_INVALID)) {
+                                gs_debug ("ConsoleKit notified ActiveChanged %d", new_active);
 
                                 /* when we aren't active add an implicit throttle from CK
                                  * when we become active remove the throttle and poke the lock */
-				if (new_active) {
+                                if (new_active) {
                                         if (listener->priv->ck_throttle_cookie != 0) {
                                                 listener_remove_ck_ref_entry (listener,
                                                                               REF_ENTRY_TYPE_THROTTLE,
@@ -1546,8 +1546,8 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                                                 listener->priv->ck_throttle_cookie = 0;
                                         }
 
-					g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
-				} else {
+                                        g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
+                                } else {
                                         if (listener->priv->ck_throttle_cookie != 0) {
                                                 g_warning ("ConsoleKit throttle already set");
                                                 listener_remove_ck_ref_entry (listener,
@@ -1562,11 +1562,11 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                                                                    message,
                                                                    &listener->priv->ck_throttle_cookie);
                                 }
-			}
+                        }
 
-			if (dbus_error_is_set (&error)) {
-				dbus_error_free (&error);
-			}
+                        if (dbus_error_is_set (&error)) {
+                                dbus_error_free (&error);
+                        }
                 }
 
                 return DBUS_HANDLER_RESULT_HANDLED;
@@ -2005,7 +2005,7 @@ query_session_id (GSListener *listener)
         DBusMessage    *message;
         DBusMessage    *reply;
         DBusError       error;
-	DBusMessageIter reply_iter;
+        DBusMessageIter reply_iter;
         char           *ssid;
 
         if (listener->priv->system_connection == NULL) {

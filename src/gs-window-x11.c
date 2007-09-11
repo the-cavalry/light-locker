@@ -323,10 +323,10 @@ update_geometry (GSWindow *window)
                                          &geometry);
         monitor_region = gdk_region_rectangle (&geometry);
         gdk_region_subtract (monitor_region, outside_region);
-        gdk_region_destroy (outside_region); 
+        gdk_region_destroy (outside_region);
 
         gdk_region_get_clipbox (monitor_region, &geometry);
-        gdk_region_destroy (monitor_region); 
+        gdk_region_destroy (monitor_region);
 
         window->priv->geometry.x = geometry.x;
         window->priv->geometry.y = geometry.y;
@@ -1401,7 +1401,7 @@ is_logout_enabled (GSWindow *window)
 static gboolean
 is_user_switch_enabled (GSWindow *window)
 {
-  	return window->priv->user_switch_enabled;
+        return window->priv->user_switch_enabled;
 }
 
 static gboolean
@@ -1422,13 +1422,13 @@ popup_dialog_idle (GSWindow *window)
                 g_string_append_printf (command, " --logout-command='%s'", window->priv->logout_command);
         }
 
-	if (window->priv->away_message) {
-		char *quoted;
+        if (window->priv->away_message) {
+                char *quoted;
 
-		quoted = g_shell_quote (window->priv->away_message);
-		g_string_append_printf (command, " --away-message=%s", quoted);
-		g_free (quoted);
-	}
+                quoted = g_shell_quote (window->priv->away_message);
+                g_string_append_printf (command, " --away-message=%s", quoted);
+                g_free (quoted);
+        }
 
         if (is_user_switch_enabled (window)) {
                 command = g_string_append (command, " --enable-switch");
@@ -1496,12 +1496,12 @@ gs_window_cancel_unlock_request (GSWindow  *window)
 	 */
         g_return_if_fail (GS_IS_WINDOW (window));
 
-	if (window->priv->lock_socket == NULL) {
-		return;
+        if (window->priv->lock_socket == NULL) {
+                return;
         }
 
-	if (window->priv->lock_pid > 0) {
-		kill (window->priv->lock_pid, SIGTERM);
+        if (window->priv->lock_pid > 0) {
+                kill (window->priv->lock_pid, SIGTERM);
         }
 }
 
@@ -1710,9 +1710,9 @@ gs_window_get_property (GObject    *object,
         case PROP_LOGOUT_COMMAND:
                 g_value_set_string (value, self->priv->logout_command);
                 break;
-	case PROP_AWAY_MESSAGE: 
-		g_value_set_string (value, self->priv->away_message);
-		break;
+        case PROP_AWAY_MESSAGE:
+                g_value_set_string (value, self->priv->away_message);
+                break;
         case PROP_LOGOUT_TIMEOUT:
                 g_value_set_long (value, self->priv->logout_timeout);
                 break;
@@ -1859,7 +1859,7 @@ gs_window_real_size_request (GtkWidget      *widget,
 {
         GSWindow      *window;
         GtkBin        *bin;
-	GdkRectangle   old_geometry;
+        GdkRectangle   old_geometry;
         int            position_changed = FALSE;
         int            size_changed = FALSE;
 
@@ -1870,7 +1870,7 @@ gs_window_real_size_request (GtkWidget      *widget,
                 gtk_widget_size_request (bin->child, requisition);
         }
 
-	old_geometry = window->priv->geometry;
+        old_geometry = window->priv->geometry;
 
         update_geometry (window);
 
