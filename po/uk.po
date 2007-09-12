@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-21 14:46+0200\n"
-"PO-Revision-Date: 2007-02-21 23:05+0300\n"
+"POT-Creation-Date: 2007-09-12 22:26+0300\n"
+"PO-Revision-Date: 2007-09-12 23:05+0300\n"
 "Last-Translator: Maxim V. Dziumanenko <dziumanenko@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgid "_Screensaver theme:"
 msgstr "_Тема збереження екрану:"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Screensaver themes"
 msgstr "Теми збереження екрану"
 
@@ -105,16 +105,20 @@ msgid "Logout command"
 msgstr "Команда виходу з сеансу"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Reason for being away"
+msgstr "Причина перерви у роботі з комп'ютером"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver theme selection mode"
 msgstr "Режим вибору заставки екрану"
 
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr ""
 "Якщо має значення TRUE, збереження екрану буде блокувати екран коли сеанс "
 "простоює."
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
@@ -123,11 +127,11 @@ msgstr ""
 "Встановіть значення TRUE, щоб дозволити вбудовування клавіатури у вікно при "
 "робзблокуванні. Відповідна команда вказується ключем \"keyboard_command\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr "Якщо має значення TRUE, збереження екрану буде блокувати екран."
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -135,7 +139,7 @@ msgstr ""
 "Якщо встановлено значення TRUE, діалог розблокування екрану надасть "
 "можливість  увійти в систему під іншою назвою."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -144,7 +148,7 @@ msgstr ""
 "можливість виходу з системи через визначений інтервал. Інтервал виходу з "
 "системи визначається ключем \"logout_delay\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
 "set to TRUE, to embed a keyboard widget into the window. This command should "
@@ -156,7 +160,7 @@ msgstr ""
 "реалізовувати інтерфейс модулів XEMBED та виводити XID вікна на стандартний "
 "вивід."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -167,14 +171,14 @@ msgstr ""
 "взаємодії. Ключ має сенс лише у випадку, якщо встановлено значення TRUE "
 "ключа \"logout_enable\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr ""
 "Кількість хвилин після активації збереження екрану, по закінченню яких екран "
 "буде заблоковано."
 
-#: ../data/gnome-screensaver.schemas.in.h:18
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -184,24 +188,28 @@ msgstr ""
 "виходу з сеансу в діалозі розблокування. Цей ключ має дію лише у випадку, "
 "якщо встановлено значення TRUE ключа \"logout_enable\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr "Інтервал часу, по закінченню якого сеанс вважається простоєм."
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "Інтервал між змінами тем збереження екрану."
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
 msgstr ""
-"Період неактивності перед передачі сигналу менеджеру живленням. "
-"Цей ключ встановлюється та змінюється агентом менеджера живлення."
+"Період неактивності перед передачі сигналу менеджеру живленням. Цей ключ "
+"встановлюється та змінюється агентом менеджера живлення."
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "The reason for being away from the computer."
+msgstr "Причина для паузи у роботі за комп'ютером."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
@@ -214,15 +222,15 @@ msgstr ""
 "використовувати одну тему, що вказана у ключі \"themes\", \"random\" - "
 "використовувати довільну тему при активації."
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
 msgstr "Тема для діалогового вікна блокування"
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Theme to use for the lock dialog."
 msgstr "Тема, що використовується для діалогового вікна блокування екрану."
 
-#: ../data/gnome-screensaver.schemas.in.h:25
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -234,67 +242,60 @@ msgstr ""
 "\", повинен представляти назву однієї теми, якщо ключ \"mode\" встановлено у "
 "\"single\", або список тем, якщо ключ \"mode\" встановлено у \"random\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:26
+#: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
 msgstr "Інтервал блокування"
 
-#: ../data/gnome-screensaver.schemas.in.h:27
+#: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before logout option"
 msgstr "Інтервал параметру виходу з системи"
 
-#: ../data/gnome-screensaver.schemas.in.h:28
+#: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before power-management baseline"
 msgstr "Інтервал до базису керування живленням"
 
-#: ../data/gnome-screensaver.schemas.in.h:29
+#: ../data/gnome-screensaver.schemas.in.h:31
 msgid "Time before session is considered idle"
 msgstr "Інтервал часу, після якого сеанс вважається неактивним."
 
-#: ../data/gnome-screensaver.schemas.in.h:30
+#: ../data/gnome-screensaver.schemas.in.h:32
 msgid "Time before theme change"
 msgstr "Інтервал зміни теми"
 
 #: ../data/lock-dialog-default.glade.h:2
 #, no-c-format
+msgid "<b>Leave a message for %R:</b>"
+msgstr "<b>Повідомлення при перерві для %R:</b>"
+
+#: ../data/lock-dialog-default.glade.h:4
+#, no-c-format
 msgid "<span size=\"small\">%U on %h</span>"
 msgstr "<span size=\"small\">%U на %h</span>"
 
-#: ../data/lock-dialog-default.glade.h:4
+#: ../data/lock-dialog-default.glade.h:6
 #, no-c-format
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:5
-msgid "S_witch to user:"
-msgstr "Пере_микнути на користувача:"
-
-#: ../data/lock-dialog-default.glade.h:6
+#: ../data/lock-dialog-default.glade.h:7
 msgid "_Cancel"
 msgstr "_Скасувати"
 
-#: ../data/lock-dialog-default.glade.h:7
+#: ../data/lock-dialog-default.glade.h:8
+msgid "_Leave Message"
+msgstr "_Повідомлення при перерві"
+
+#: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
 msgstr "_Завершити сеанс"
 
-#: ../data/lock-dialog-default.glade.h:8
-msgid "_Switch User..."
-msgstr "_Змінити користувача..."
+#: ../data/lock-dialog-default.glade.h:10
+msgid "_Switch User"
+msgstr "_Змінити користувача"
 
-#: ../data/lock-dialog-default.glade.h:9
-msgid "_Switch user..."
-msgstr "_Змінити користувача..."
-
-#: ../data/lock-dialog-default.glade.h:10 ../src/gs-lock-plug.c:1098
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
 msgid "_Unlock"
 msgstr "_Розблокувати"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "Ступні, що спливають по усьому екрану"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "Плаваючі ступні"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
@@ -303,6 +304,14 @@ msgstr "Космос"
 #: ../savers/cosmos-slideshow.desktop.in.in.h:2
 msgid "Display a slideshow of pictures of the cosmos"
 msgstr "Показує слайд-шоу космічних рисунків"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Ступні, що спливають по усьому екрану"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Плаваючі ступні"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
@@ -320,69 +329,78 @@ msgstr "Мережа з пульсуючих кольорових комірок
 msgid "Pop art squares"
 msgstr "Пульсуючі комірки"
 
-#: ../savers/floaters.c:1166
-msgid "show paths that images follow"
-msgstr "показувати шляхи, якими слідують зображення"
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr "Показувати шляхи, за якими слідують зображення"
 
-#: ../savers/floaters.c:1173
-msgid "occasionally rotate images as they move"
-msgstr "періодично обертати зображення при їх переміщенні"
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "Періодично обертати зображення при їх переміщенні"
 
-#: ../savers/floaters.c:1180
-msgid "print out frame rate and other statistics"
-msgstr "виводити частоту кадрів та іншу статистику"
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "Виводити частоту кадрів та іншу статистику"
 
-#: ../savers/floaters.c:1188
-msgid "the maximum number of images to keep on screen"
-msgstr "максимальна кількість зображень на екрані"
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "Максимальна кількість зображень на екрані"
 
-#. translators: this should be translated to be symbolic of a generic
-#. * number.  e.g, "the screen saver should keep N images on the screen"
-#.
-#: ../savers/floaters.c:1192
-msgid "N"
-msgstr "N"
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "MAX_IMAGES"
 
-#: ../savers/floaters.c:1199
-msgid "the source image to use"
-msgstr "зображення, що використовується"
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "Початковий розмір та положення вікна"
 
-#: ../savers/floaters.c:1206
-msgid "the initial size and position of window"
-msgstr "початковий розмір та положення вікна"
-
-#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
-#. * can be translated, but the 'x' area indicator and '+' offset indicators
-#. * need to be untranslated and can't be rearranged.
-#.
-#: ../savers/floaters.c:1211
+#: ../savers/floaters.c:96
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "ШИРИНАxВИСОТА+X+Y"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "Зображення, що використовується"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1229
+#: ../savers/floaters.c:1194
 msgid "image - floats images around the screen"
 msgstr "image - зображення, що плавають по екрану"
 
-#: ../savers/floaters.c:1239
+#: ../savers/floaters.c:1200
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Для докладнішої інформації вкажіть --help.\n"
 
-#: ../savers/floaters.c:1248
+#: ../savers/floaters.c:1209
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
 "Слід вказати один рисунок. Для докладнішої інформації вкажіть --help.\n"
 
-#: ../savers/slideshow.c:47
+#: ../savers/slideshow.c:53
 msgid "Location to get images from"
 msgstr "Місце, де знаходяться зображення"
 
-#: ../savers/slideshow.c:47
+#: ../savers/slideshow.c:53
 msgid "PATH"
 msgstr "ШЛЯХ"
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "Колір, що використовується для тла"
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "\"#rrggbb\""
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr "Не змінювати розташування зображень на випадкове"
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Не намагатись розтягувати зображення на екрані"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -499,7 +517,7 @@ msgstr "Виклик програми, яка затримує збережен�
 msgid "The reason for inhibiting the screensaver"
 msgstr "Причина для затримки збереження екрану"
 
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:54
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Версія програми"
@@ -522,114 +540,122 @@ msgstr "неактивне"
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "Збереження екрану було активне протягом %d секунд.\n"
 
-#: ../src/gnome-screensaver-dialog.c:52
+#: ../src/gnome-screensaver-dialog.c:53
 msgid "Show debugging output"
 msgstr "Показувати вивід налагодження"
 
-#: ../src/gnome-screensaver-dialog.c:56
+#: ../src/gnome-screensaver-dialog.c:57
 msgid "Show the logout button"
 msgstr "Показати кнопку виходу"
 
-#: ../src/gnome-screensaver-dialog.c:58
+#: ../src/gnome-screensaver-dialog.c:59
 msgid "Command to invoke from the logout button"
 msgstr "Команда, що виконується при натисканні кнопки виходу"
 
-#: ../src/gnome-screensaver-dialog.c:60
+#: ../src/gnome-screensaver-dialog.c:61
 msgid "Show the switch user button"
 msgstr "Відображати кнопку зміни користувача"
 
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "Message to show in the dialog"
+msgstr "Повідомлення, що виводиться у діалоговому вікні"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "MESSAGE"
+msgstr "ПОВІДОМЛЕННЯ"
+
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:170 ../src/gnome-screensaver-dialog.c:171
-#: ../src/gnome-screensaver-dialog.c:172 ../src/gs-auth-pam.c:692
+#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Користувач:"
 
-#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "Пароль:"
 
-#: ../src/gnome-screensaver-dialog.c:175
+#: ../src/gnome-screensaver-dialog.c:178
 msgid "You are required to change your password immediately (password aged)"
 msgstr "Слід негайно змінити ваш пароль (пароль старий)"
 
-#: ../src/gnome-screensaver-dialog.c:176
+#: ../src/gnome-screensaver-dialog.c:179
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "Слід негайно змінити ваш пароль (за вимогою адміністратора)"
 
-#: ../src/gnome-screensaver-dialog.c:177
+#: ../src/gnome-screensaver-dialog.c:180
 msgid "Your account has expired; please contact your system administrator"
 msgstr "Ваш обліковий запис застарів, зв'яжіться з системним адміністратором"
 
-#: ../src/gnome-screensaver-dialog.c:178
+#: ../src/gnome-screensaver-dialog.c:181
 msgid "No password supplied"
 msgstr "Не вказано пароль"
 
-#: ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:182
 msgid "Password unchanged"
 msgstr "Пароль не змінено"
 
-#: ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:183
 msgid "Can not get username"
 msgstr "Не вдається отримати ім'я користувача"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "Retype new UNIX password:"
 msgstr "Повторіть новий пароль UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "Enter new UNIX password:"
 msgstr "Введіть новий пароль UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "(current) UNIX password:"
 msgstr "(поточний) пароль UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:187
 msgid "Error while changing NIS password."
 msgstr "Помилка при зміні паролю NIS."
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "You must choose a longer password"
 msgstr "Слід вибрати більш довгий пароль"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "Password has been already used. Choose another."
 msgstr "Пароль вже використовувався. Виберіть інший пароль."
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:190
 msgid "You must wait longer to change your password"
 msgstr "Слід довше почекати щоб змінити ваш пароль"
 
-#: ../src/gnome-screensaver-dialog.c:188
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "Sorry, passwords do not match"
 msgstr "Паролі не збігаються"
 
-#: ../src/gnome-screensaver-dialog.c:254
+#: ../src/gnome-screensaver-dialog.c:257
 msgid "Checking..."
 msgstr "Перевірка..."
 
-#: ../src/gnome-screensaver-dialog.c:296 ../src/gs-auth-pam.c:451
+#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "Помилка аутентифікації."
 
-#: ../src/gnome-screensaver-preferences.c:459
+#: ../src/gnome-screensaver-preferences.c:500
 msgid "Blank screen"
 msgstr "Порожній екран"
 
-#: ../src/gnome-screensaver-preferences.c:465
+#: ../src/gnome-screensaver-preferences.c:506
 msgid "Random"
 msgstr "Випадкова"
 
-#: ../src/gnome-screensaver-preferences.c:835
+#: ../src/gnome-screensaver-preferences.c:876
 msgid "Invalid screensaver theme"
 msgstr "Неправильна тема програми збереження екрану"
 
-#: ../src/gnome-screensaver-preferences.c:838
+#: ../src/gnome-screensaver-preferences.c:879
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Цей файл не схожий на файл теми збереження екрану."
 
-#: ../src/gnome-screensaver-preferences.c:965
+#: ../src/gnome-screensaver-preferences.c:1006
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -637,7 +663,7 @@ msgstr[0] "%d година"
 msgstr[1] "%d години"
 msgstr[2] "%d годин"
 
-#: ../src/gnome-screensaver-preferences.c:968
+#: ../src/gnome-screensaver-preferences.c:1009
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -645,7 +671,7 @@ msgstr[0] "%d хвилина"
 msgstr[1] "%d хвилини"
 msgstr[2] "%d хвилин"
 
-#: ../src/gnome-screensaver-preferences.c:971
+#: ../src/gnome-screensaver-preferences.c:1012
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -654,15 +680,15 @@ msgstr[1] "%d секунди"
 msgstr[2] "%d секунд"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:977
+#: ../src/gnome-screensaver-preferences.c:1018
 #, c-format
 msgid "%s %s %s"
 msgstr "%s·%s·%s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:980
-#: ../src/gnome-screensaver-preferences.c:988
+#: ../src/gnome-screensaver-preferences.c:1021
+#: ../src/gnome-screensaver-preferences.c:1029
 #, c-format
 msgid "%s %s"
 msgstr "%s·%s"
@@ -670,22 +696,22 @@ msgstr "%s·%s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:983
-#: ../src/gnome-screensaver-preferences.c:991
-#: ../src/gnome-screensaver-preferences.c:995
+#: ../src/gnome-screensaver-preferences.c:1024
+#: ../src/gnome-screensaver-preferences.c:1032
+#: ../src/gnome-screensaver-preferences.c:1036
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1010
+#: ../src/gnome-screensaver-preferences.c:1051
 msgid "Never"
 msgstr "Ніколи"
 
-#: ../src/gnome-screensaver-preferences.c:1396
+#: ../src/gnome-screensaver-preferences.c:1450
 msgid "Could not load the main interface"
 msgstr "Не вдається завантажити головний інтерфейс"
 
-#: ../src/gnome-screensaver-preferences.c:1398
+#: ../src/gnome-screensaver-preferences.c:1452
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Переконайтесь, що програму збереження екрану правильно встановлено"
 
@@ -697,61 +723,70 @@ msgstr "Не становитись службою"
 msgid "Enable debugging code"
 msgstr "Увімкнути режим налагодження"
 
-#: ../src/gs-auth-pam.c:391
+#: ../src/gs-auth-pam.c:397
 #, c-format
 msgid "Unable to establish service %s: %s\n"
 msgstr "Не вдається встановити службу %s: %s\n"
 
-#: ../src/gs-auth-pam.c:417
+#: ../src/gs-auth-pam.c:423
 #, c-format
 msgid "Can't set PAM_TTY=%s"
 msgstr "Не вдається встановити PAM_TTY=%s"
 
-#: ../src/gs-auth-pam.c:449
+#: ../src/gs-auth-pam.c:455
 msgid "Incorrect password."
 msgstr "Некоректний пароль."
 
-#: ../src/gs-auth-pam.c:465
+#: ../src/gs-auth-pam.c:471
 msgid "Not permitted to gain access at this time."
 msgstr "Отримання доступу у цей час заборонено."
 
-#: ../src/gs-auth-pam.c:471
+#: ../src/gs-auth-pam.c:477
 msgid "No longer permitted to access the system."
 msgstr "Більше немає дозволу на доступ до системи."
 
-#: ../src/gs-listener-dbus.c:1817
+#: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
 msgstr "не вдається зареєструватись через шину повідомлень"
 
-#: ../src/gs-listener-dbus.c:1827
+#: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
 msgstr "не вдається зареєструватись на шині повідомлень"
 
-#: ../src/gs-listener-dbus.c:1836
+#: ../src/gs-listener-dbus.c:1940
 msgid "screensaver already running in this session"
 msgstr "у цьому сеансі вже запущено збереження екрану"
 
-#: ../src/gs-lock-plug.c:255
+#: ../src/gs-lock-plug.c:269
 msgid "Time has expired."
 msgstr "Час вийшов."
 
-#: ../src/gs-lock-plug.c:283
+#: ../src/gs-lock-plug.c:297
 msgid "You have the Caps Lock key on."
 msgstr "Натиснута клавіша Caps Lock."
 
-#: ../src/gs-lock-plug.c:1078
+#: ../src/gs-lock-plug.c:1187
 msgid "S_witch User..."
 msgstr "_Змінити користувача..."
 
-#: ../src/gs-lock-plug.c:1087
+#: ../src/gs-lock-plug.c:1196
 msgid "Log _Out"
 msgstr "_Завершити сеанс"
 
-#: ../src/gs-lock-plug.c:1263
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1373
 msgid "%U on %h"
 msgstr "%U на %h"
 
-#: ../src/gs-lock-plug.c:1277
+#: ../src/gs-lock-plug.c:1387
 msgid "_Password:"
 msgstr "_Пароль:"
 
+#~ msgid "S_witch to user:"
+#~ msgstr "Пере_микнути на користувача:"
+
+#~ msgid "_Switch user..."
+#~ msgstr "_Змінити користувача..."
+
+#~ msgid "N"
+#~ msgstr "N"
