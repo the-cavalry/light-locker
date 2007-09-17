@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-12 13:18+0900\n"
-"PO-Revision-Date: 2007-08-12 13:16+0900\n"
+"PO-Revision-Date: 2007-09-17 23:23+0900\n"
 "Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgstr "ログアウトのコマンド"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Reason for being away"
-msgstr "離席状態の理由"
+msgstr "離席する理由"
 
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver theme selection mode"
@@ -265,7 +265,7 @@ msgstr "テーマを変更する際の遅延時間"
 #: ../data/lock-dialog-default.glade.h:2
 #, no-c-format
 msgid "<b>Leave a message for %R:</b>"
-msgstr "<b>%R さんの離席中のメッセージ:</b>"
+msgstr "<b>%R さんへメッセージがあります:</b>"
 
 #: ../data/lock-dialog-default.glade.h:4
 #, no-c-format
@@ -283,7 +283,7 @@ msgstr "キャンセル(_C)"
 
 #: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
-msgstr "離席中のメッセージ(_L)"
+msgstr "メッセージを残す(_L)"
 
 #: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
