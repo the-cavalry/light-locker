@@ -1,14 +1,14 @@
-# translation of gnome-screensaver.si.po to Sinhala
+# translation of si.po to Sinhala
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Danishka Navin <snavin@redhat.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver.si\n"
+"Project-Id-Version: si\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-05-07 03:39+0100\n"
-"PO-Revision-Date: 2007-05-30 12:01+0530\n"
+"PO-Revision-Date: 2007-09-17 12:27+0530\n"
 "Last-Translator: Danishka Navin <snavin@redhat.com>\n"
 "Language-Team: Sinhala <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -97,7 +97,7 @@ msgstr "කාවැදුනු යතුරු පුවරු විධාන
 
 #: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Lock on activation"
-msgstr "සක්‍රිය විටදි අගුලු ලන්න"
+msgstr "සක්‍රිය විටදි අගුලු දමන්න"
 
 #: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Logout command"
@@ -221,7 +221,7 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
-msgstr "අගුලුලෑමට පෙර කාළය"
+msgstr "අගුලුලෑමට පෙර කාලය"
 
 #: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before logout option"
@@ -266,7 +266,7 @@ msgstr "සටහන"
 
 #: ../data/lock-dialog-default.glade.h:9
 msgid "_Cancel"
-msgstr "අවලංගු (_C)"
+msgstr "අවලංගු කරන්න (_C)"
 
 #: ../data/lock-dialog-default.glade.h:10
 msgid "_Leave Message"
