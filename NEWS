@@ -1,5 +1,42 @@
 
 ===============
+Version 2.20.0
+===============
+
+  gnome-screensaver
+
+        * Fixed #442853, Unlock dialog shows Switch User button when /apps/gnome-screensaver/user_switch_enabled is false (William Jon McCann)
+
+  Translators
+
+        * Updated el: Nikos Charonitakis
+        * Updated vi: Clytie Siddall
+        * Updated ca: Gil Forcada
+        * Updated it: Luca Ferretti
+        * Updated ar: Djihed Afifi <djihed@gmail.com>
+        * Updated et: Priit Laes
+        * Updated ru: Nickolay V. Shmyrev
+        * Updated nl: Wouter Bolsterlee
+        * Updated pt: Duarte Loreto
+        * Updated nb: Kjartan Maraas
+        * Updated tr: Baris Cicek
+        * Updated lt: Gintautas Miliauskas
+        * Updated ro: Mugurel Tudor
+        * Updated ta: I. Felix
+        * Updated fr: Stéphane Raimbault
+        * Updated da: Kenneth Nielsen
+        * Updated hu: Gabor Kelemen
+        * Updated ja: Takeshi AIHANA
+        * Updated ml: Ani Peter
+        * Updated mk: Jovan Naumovski  <jovan@lugola.net>
++
+        * Updated sk: Andre Klapper
+        * Updated si: Danishka Navin
+        * Updated uk: Maxim Dziumanenko
+
+
+
+===============
 Version 2.19.7
 ===============
 

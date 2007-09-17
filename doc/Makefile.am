@@ -16,7 +16,6 @@ gnome-screensaver.html : dbus-interface.xml
 endif # DOCBOOK_DOCS_ENABLED
 
 EXTRA_DIST =				\
-	gnome-screensaver.html		\
 	gnome-screensaver.xml.in	\
 	config.xsl			\
 	docbook.css			\
