@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-21 01:14+0100\n"
+"POT-Creation-Date: 2007-09-18 19:26+0200\n"
 "PO-Revision-Date: 2006-02-19 21:41+0100\n"
 "Last-Translator: Слободан Д. Средојевић <ssl@uns.ns.ac.yu>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
@@ -28,27 +28,47 @@ msgid "Set your screensaver preferences"
 msgstr "Сопствене поставке чувара екрана"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "<b>Screensaver preview</b>"
+msgstr "<b>Преглед чувара екрана</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+msgstr "<b>Упозорење: чувар екрана неће бити закључан за администратора.</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Power _Management"
+msgstr "_Управник потрошње"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "Regard the computer as _idle after:"
+msgstr "Посматрај рачунар као неактиван након:"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "Screensaver Preferences"
 msgstr "Поставке чувара екрана"
 
-#: ../data/gnome-screensaver-preferences.glade.h:2
-msgid "Set session as _idle after:"
-msgstr "Сесија се сматра неактивном након:"
+#: ../data/gnome-screensaver-preferences.glade.h:6
+msgid "Screensaver Preview"
+msgstr "Преглед чувара екрана"
 
-#: ../data/gnome-screensaver-preferences.glade.h:3
-msgid "_Activate screensaver when session is idle"
-msgstr "Покрени чувара екрана када се ништа не _ради"
+#: ../data/gnome-screensaver-preferences.glade.h:7
+msgid "_Activate screensaver when computer is idle"
+msgstr "_Покрени чувара екрана када се ништа не ради"
 
-#: ../data/gnome-screensaver-preferences.glade.h:4
+#: ../data/gnome-screensaver-preferences.glade.h:8
 msgid "_Lock screen when screensaver is active"
 msgstr "_Закључај екран када чувар екрана ради"
 
-#: ../data/gnome-screensaver-preferences.glade.h:5
-msgid "_Screensaver"
-msgstr "Чува_р екрана"
+#: ../data/gnome-screensaver-preferences.glade.h:9
+msgid "_Preview"
+msgstr "_Преглед"
+
+#: ../data/gnome-screensaver-preferences.glade.h:10
+msgid "_Screensaver theme:"
+msgstr "_Теме чувара екрана:"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:8
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Screensaver themes"
 msgstr "Теме чувара екрана"
 
@@ -61,48 +81,61 @@ msgid "Activate when idle"
 msgstr "Покрени када се ништа не ради"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
-msgid "Allow logout"
-msgstr "Дозволи одјављивање"
+msgid "Allow embedding a keyboard into the window"
+msgstr "Дозволи уграђивање тастатуре у прозор"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow monitor power management"
-msgstr "Дозволи праћење потрошње струје"
+msgid "Allow logout"
+msgstr "Дозволи одјављивање"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
 msgstr "Дозволи промену корисника"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Embedded keyboard command"
+msgstr "Команде уграђене тастатуре"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Lock on activation"
 msgstr "Закључај при покретању"
 
-#: ../data/gnome-screensaver.schemas.in.h:6
+#: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Logout command"
 msgstr "Наредба за одјаву"
 
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Reason for being away"
+msgstr "Разлог одсуства"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver theme selection mode"
 msgstr "Режим избора теме чувара екрана"
 
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr ""
-"Поставите ово на вредност „Тачно“ да покренете чувара екрана када се ништа "
-"не ради."
+"Поставите ову вредност на „Тачно“ за покренете чувара екрана када сеништа не "
+"ради."
 
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Set this to TRUE to allow the screensaver to power down the monitor."
+#: ../data/gnome-screensaver.schemas.in.h:12
+#, fuzzy
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
 msgstr ""
-"Поставите ово на вредност „Тачно“ како би дозволили чувару екрана да угаси "
-"монитор."
+"Поставите ову вредност на „Тачно“ за уградњу тастатуре у прозор која "
+"гаоткључава куцањем. „keyboard_command“ кључ мора бити унесен "
+"одговарајућомкомандом."
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr ""
 "Поставите ово на вредност „Тачно“ да би закључали екран када се покрене "
 "чувар екрана."
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -110,7 +143,7 @@ msgstr ""
 "Поставите ово на вредност „Тачно“ да би у прозорчету за откључавање понудили "
 "могућност преласка на други кориснички налог"
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -119,7 +152,19 @@ msgstr ""
 "могућност одјаве након неког временског интервала. Интервал се задаје помоћу "
 "„logout_delay“ кључа.“"
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:16
+#, fuzzy
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr ""
+"Komanda која ће бити покренута уколико је „embedded_keyboard_enabled“ "
+"постављен на „Тачно“, за уграђену тастатуру у прозору. Команда би треба да "
+"обухвата XEMBED прикључно окружење и излазни XID прозор на стандардномизлазу."
+
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -130,13 +175,13 @@ msgstr ""
 "Овај кључ има дејство једино ако је кључ „logout_enable“ постављен на "
 "вредност „Тачно“."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr ""
 "Број минута након покретања чувара екрана након којих се екран закључава."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -145,28 +190,6 @@ msgstr ""
 "Број минута након покретања чувара екрана пре него што се у прозорчету за "
 "откључавање појави могућност одјаве. Овај кључ делује једино уколико је кључ "
 "„logout_enable“ постављен на вредност „Тачно“."
-
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"goes into standby power mode."
-msgstr ""
-"Број минута након покретања чувара екрана пре него што монитор одлази у "
-"„приправан“ режим потрошње."
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"goes into suspend power mode."
-msgstr ""
-"Број минута након покретања чувара екрана пре него што монитор одлази у "
-"„привремено заустављен“ режим потрошње."
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes after the screensaver activation until the monitor "
-"powers off."
-msgstr "Број минута након покретања чувара екрана након којих се гаси монитор."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
@@ -178,6 +201,19 @@ msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "Време рада (у минутима) пре промене теме чувара екрана."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
+#, fuzzy
+msgid ""
+"The number of seconds of inactivity before signalling to power-management. "
+"This key is set and maintained by the session power-management agent."
+msgstr ""
+"Број секунди неактивности пре обавештавања управника потрошњом. Овај кључје "
+"поставила и одржава га сесија управника потрошње."
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "The reason for being away from the computer."
+msgstr "Разлог одласка са рачунара."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
@@ -191,7 +227,15 @@ msgstr ""
 "„теме“) и „случајан“ који омогућава рад чувара екрана уз коришћење једне "
 "случајне теме."
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Theme for lock dialog"
+msgstr "Тема прозорчета за закључавање"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Theme to use for the lock dialog."
+msgstr "Тека која се користи у прозорчету за закључавање."
+
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -203,42 +247,61 @@ msgstr ""
 "обезбеди име теме када је вредност „режима“ — „један“, и треба да обезбеди "
 "списак тема када је вредност кључа „режим“ — „случајан“."
 
-# note(slobo): може и „време до лансирања“ пошто је Гном свемирски софтвер ;)
-#: ../data/gnome-screensaver.schemas.in.h:24
-msgid "Time before activation"
-msgstr "Време до покретања"
-
-#: ../data/gnome-screensaver.schemas.in.h:25
+#: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
 msgstr "Време до закључавања"
 
-#: ../data/gnome-screensaver.schemas.in.h:26
+#: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before logout option"
 msgstr "Време до омогућавања одјаве"
 
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid "Time before power off"
-msgstr "Време до гашења"
-
-#: ../data/gnome-screensaver.schemas.in.h:28
-msgid "Time before standby"
-msgstr "Време до стања приправности"
-
-#: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before suspend"
-msgstr "Време до привременог заустављања"
-
 #: ../data/gnome-screensaver.schemas.in.h:30
+#, fuzzy
+msgid "Time before power-management baseline"
+msgstr "Време пре него управник потрошње преузме"
+
+#: ../data/gnome-screensaver.schemas.in.h:31
+msgid "Time before session is considered idle"
+msgstr "Време након кога сесија постаје неактивна"
+
+#: ../data/gnome-screensaver.schemas.in.h:32
 msgid "Time before theme change"
 msgstr "Време до промене теме"
 
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "Мрешкање Гномовог препознатљивог стопало на екрану"
+#: ../data/lock-dialog-default.glade.h:2
+#, no-c-format
+msgid "<b>Leave a message for %R:</b>"
+msgstr "<b>Оставите поруку за %R:</b>"
 
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "Плутајуће стопало"
+#: ../data/lock-dialog-default.glade.h:4
+#, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
+msgstr "<span size=\"small\">%U на %h</span>"
+
+#: ../data/lock-dialog-default.glade.h:6
+#, no-c-format
+msgid "<span size=\"x-large\">%R</span>"
+msgstr "<span size=\"x-large\">%R</span>"
+
+#: ../data/lock-dialog-default.glade.h:7
+msgid "_Cancel"
+msgstr "_Откажи"
+
+#: ../data/lock-dialog-default.glade.h:8
+msgid "_Leave Message"
+msgstr "О_стави поруку"
+
+#: ../data/lock-dialog-default.glade.h:9
+msgid "_Log Out"
+msgstr "О_дјава"
+
+#: ../data/lock-dialog-default.glade.h:10
+msgid "_Switch User"
+msgstr "Промени _корисника"
+
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+msgid "_Unlock"
+msgstr "От_кључај"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
@@ -247,6 +310,14 @@ msgstr "Свемир"
 #: ../savers/cosmos-slideshow.desktop.in.in.h:2
 msgid "Display a slideshow of pictures of the cosmos"
 msgstr "Прикажи слике свемира у низу"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Мрешкање Гномовог препознатљивог стопало на екрану"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Плутајуће стопало"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
@@ -264,295 +335,77 @@ msgstr "Поп арт мрежа светлећих боја"
 msgid "Pop art squares"
 msgstr "Поп арт квадрати"
 
-#: ../savers/floaters.c:1165
-msgid "show paths that images follow"
-msgstr "прикажи путање које слике прате"
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr "Прикажи путање које слике прате"
 
-#: ../savers/floaters.c:1172
-msgid "occasionally rotate images as they move"
-msgstr "повремено ротирај слике како се крећу"
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "Повремено ротирај слике како се крећу"
 
-#: ../savers/floaters.c:1179
-msgid "print out frame rate and other statistics"
-msgstr "одштампај и број оквира и осталу статистику"
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "Одштампај и број оквира и осталу статистику"
 
-#: ../savers/floaters.c:1187
-msgid "the maximum number of images to keep on screen"
-msgstr "максималан број слика које треба држати на екрану"
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "Максималан број слика које треба држати на екрану"
 
-#. translators: this should be translated to be symbolic of a generic
-#. * number.  e.g, "the screen saver should keep N images on the screen"
-#.
-#: ../savers/floaters.c:1191
-msgid "N"
-msgstr "N"
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "МАХ_СЛИКА"
 
-#: ../savers/floaters.c:1198
-msgid "the source image to use"
-msgstr "полазна слика која се користи"
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "Почетна величина и позиција прозора"
 
-#: ../savers/floaters.c:1205
-msgid "the initial size and position of window"
-msgstr "почетна величина и позиција прозора"
-
-#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
-#. * can be translated, but the 'x' area indicator and '+' offset indicators
-#. * need to be untranslated and can't be rearranged.
-#.
-#: ../savers/floaters.c:1210
+#: ../savers/floaters.c:96
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "ШИРИНАxВИСИНА+X+Y"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "Полазна слика која се користи"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1228
+#: ../savers/floaters.c:1194
 msgid "image - floats images around the screen"
 msgstr "слика — разбацај слике по екрану"
 
-#: ../savers/floaters.c:1238
+#: ../savers/floaters.c:1200
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Погледајте --help за информације о употреби.\n"
 
-#: ../savers/floaters.c:1247
+#: ../savers/floaters.c:1209
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "Морате задати слику. Погледајте --help за информације о употреби.\n"
 
-#: ../savers/slideshow.c:47
+#: ../savers/slideshow.c:53
 msgid "Location to get images from"
 msgstr "Место одакле се прикупљају слике"
 
-#: ../savers/slideshow.c:47
+#: ../savers/slideshow.c:53
 msgid "PATH"
 msgstr "ПУТАЊА"
 
-#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
-msgid "Manager"
-msgstr "Управник"
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "Боја за позадине слика"
 
-#: ../src/cut-n-paste/fusa-display.c:120
-msgid "The manager which owns this object."
-msgstr "Управник који поседује овај објекат."
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "„#rrggbb“"
 
-#: ../src/cut-n-paste/fusa-display.c:127
-msgid "Name"
-msgstr "Име"
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr "Немој пуштати насумично слике из путање"
 
-#: ../src/cut-n-paste/fusa-display.c:128
-msgid "The name of the X11 display this object refers to."
-msgstr "Име Икс екрана коме се обраћа овај објекат."
-
-#: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:164
-msgid "User"
-msgstr "Корисник"
-
-#: ../src/cut-n-paste/fusa-display.c:135
-msgid "The user currently logged in on this virtual terminal."
-msgstr "Корисник тренутно пријављен на овом виртуалном терминалу."
-
-#: ../src/cut-n-paste/fusa-display.c:141
-msgid "Console"
-msgstr "Конзола"
-
-#: ../src/cut-n-paste/fusa-display.c:142
-msgid "The number of the virtual console this display can be found on, or %-1."
-msgstr "Број виртуалне конзоле на којој може да се нађе овај екран, или %-1"
-
-#: ../src/cut-n-paste/fusa-display.c:148
-msgid "Nested"
-msgstr "Угнежђен"
-
-#: ../src/cut-n-paste/fusa-display.c:149
-msgid "Whether or not this display is a windowed (Xnest) display."
-msgstr "Да ли је овај екран угнежђен у оквиру прозора"
-
-#: ../src/cut-n-paste/fusa-manager.c:1263
-msgid "The display manager could not be contacted for unknown reasons."
-msgstr ""
-"Из непознатих разлога се не може ступити у контакт са управником пријаве."
-
-# note(slobo): Алан Форд терминологија
-#: ../src/cut-n-paste/fusa-manager.c:1270
-msgid "The display manager is not running or too old."
-msgstr "Управник пријаве није покренут или је одвећ стар."
-
-#: ../src/cut-n-paste/fusa-manager.c:1273
-msgid "The configured limit of flexible servers has been reached."
-msgstr "Подешено ограничење флексибилних сервера је достигнуто."
-
-#: ../src/cut-n-paste/fusa-manager.c:1276
-msgid "There was an unknown error starting X."
-msgstr "Догодила се грешка приликом покретања Икса."
-
-#: ../src/cut-n-paste/fusa-manager.c:1279
-msgid "The X server failed to finish starting."
-msgstr "Икс сервер није успео да оконча покретање."
-
-#: ../src/cut-n-paste/fusa-manager.c:1282
-msgid "There are too many X sessions running."
-msgstr "Превише је покренутих Икс сесија."
-
-#: ../src/cut-n-paste/fusa-manager.c:1285
-msgid "The nested X server (Xnest) cannot connect to your current X server."
-msgstr "Угнежђени Икс сервер не може да се повеже на ваш текући Икс сервер."
-
-#: ../src/cut-n-paste/fusa-manager.c:1288
-msgid "The X server in the GDM configuration could not be found."
-msgstr ""
-"Не могу наћи Икс сервер задан у подешавањима Гномовог управника пријаве."
-
-#: ../src/cut-n-paste/fusa-manager.c:1291 ../src/cut-n-paste/gdmcomm.c:492
-msgid ""
-"Trying to set an unknown logout action, or trying to set a logout action "
-"which is not available."
-msgstr ""
-"Покушај постављања једне непознате радње при одјављивању, или покушај "
-"постављања радње при одјављивању која није доступна."
-
-#: ../src/cut-n-paste/fusa-manager.c:1294 ../src/cut-n-paste/gdmcomm.c:495
-msgid "Virtual terminals not supported."
-msgstr "Виртуални терминали нису подржани."
-
-#: ../src/cut-n-paste/fusa-manager.c:1297
-msgid "Invalid virtual terminal number."
-msgstr "Неисправан број виртуалног терминала."
-
-#: ../src/cut-n-paste/fusa-manager.c:1300 ../src/cut-n-paste/gdmcomm.c:499
-msgid "Trying to update an unsupported configuration key."
-msgstr "Покушај надоградње неподржаног кључа у подешавањима."
-
-#: ../src/cut-n-paste/fusa-manager.c:1303
-msgid "~/.Xauthority file badly configured or missing."
-msgstr "Датотека ~/.Xauthority је лоше попуњена или недостаје."
-
-#: ../src/cut-n-paste/fusa-manager.c:1306
-msgid "Too many messages were sent to the display manager, and it hung up."
-msgstr "Превише порука је послато управнику пријаве и он је престао да ради."
-
-#: ../src/cut-n-paste/fusa-manager.c:1310
-msgid "The display manager sent an unknown error message."
-msgstr "Управник пријаве је послао непознату грешку."
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:165
-msgid "The user this menu item represents."
-msgstr "Корисник кога представља ова ставка менија."
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:172
-msgid "Icon Size"
-msgstr "Величина иконе"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:173
-msgid "The size of the icon to use."
-msgstr "Коју величину иконе треба користити."
-
-#: ../src/cut-n-paste/fusa-user.c:151
-msgid "The user manager object this user is controlled by."
-msgstr "Објекат управника корисника који контролише овог корисника."
-
-#: ../src/cut-n-paste/fusa-utils.c:80
-msgid "Show Details"
-msgstr "Прикажи детаље"
-
-#. markup
-#: ../src/cut-n-paste/gdmcomm.c:413
-msgid "GDM (The GNOME Display Manager) is not running."
-msgstr "Гномов управник пријаве (GDM) није покренут."
-
-#: ../src/cut-n-paste/gdmcomm.c:416
-msgid ""
-"You might in fact be using a different display manager, such as KDM (KDE "
-"Display Manager) or xdm."
-msgstr ""
-"Заправо, можда ви користите неки други управник пријаве, какав је kdm (КДЕ "
-"управник пријаве) или xdm."
-
-# note(slobo): не треба преводити: ...ако још увек желите... :)
-#: ../src/cut-n-paste/gdmcomm.c:419
-msgid ""
-"If you still wish to use this feature, either start GDM yourself or ask your "
-"system administrator to start GDM."
-msgstr ""
-"Ако и даље желите да користите ову особину, или сами покрените услугу "
-"Гномовог управника пријаве или замолите вашег систем администратора да то "
-"учини."
-
-#. markup
-#: ../src/cut-n-paste/gdmcomm.c:441
-msgid "Cannot communicate with GDM (The GNOME Display Manager)"
-msgstr "Не могу да успоставим комуникацију са Гномовим управником пријаве"
-
-#: ../src/cut-n-paste/gdmcomm.c:444
-msgid "Perhaps you have an old version of GDM running."
-msgstr "Вероватно користите неку старију верзију Гномовог управника пријаве."
-
-#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
-msgid "Cannot communicate with gdm, perhaps you have an old version running."
-msgstr ""
-"Не могу да успоставим комуникацију са Гномовим управником пријаве, вероватно "
-"користите неку старију верзију Гномовог управника пријаве."
-
-#: ../src/cut-n-paste/gdmcomm.c:469
-msgid "The allowed limit of flexible X servers reached."
-msgstr "Достигнуто је ограничење у броју дозвољених флексибилних Икс сервера."
-
-#: ../src/cut-n-paste/gdmcomm.c:471
-msgid "There were errors trying to start the X server."
-msgstr "Грешке при покретању Икс сервера."
-
-#: ../src/cut-n-paste/gdmcomm.c:473
-msgid "The X server failed.  Perhaps it is not configured well."
-msgstr "Грешка при покретању Икс сервера. Вероватно није добро подешен."
-
-#: ../src/cut-n-paste/gdmcomm.c:476
-msgid "Too many X sessions running."
-msgstr "Превише је покренутих Икс сесија"
-
-#: ../src/cut-n-paste/gdmcomm.c:478
-msgid ""
-"The nested X server (Xnest) cannot connect to your current X server.  You "
-"may be missing an X authorization file."
-msgstr ""
-"Угнежђени Икс сервер не може да се повеже на ваш текући Икс сервер. "
-"Вероватно вам недостаје Икс датотека са bug(slobo)"
-
-#: ../src/cut-n-paste/gdmcomm.c:483
-msgid ""
-"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
-"Please install the Xnest package in order to use the nested login."
-msgstr ""
-"Угнежђени Икс сервер није доступан или је Гномов управник пријаве лоше "
-"подешен.\n"
-"Молим инсталирајте пакет Xnest како би могли користити угнежђену пријаву."
-
-#: ../src/cut-n-paste/gdmcomm.c:488
-msgid ""
-"The X server is not available, it is likely that gdm is badly configured."
-msgstr ""
-"Икс сервер није доступан, највероватније је Гномов управник пријаве лоше "
-"подешен."
-
-#: ../src/cut-n-paste/gdmcomm.c:497
-msgid "Trying to change to an invalid virtual terminal number."
-msgstr "Покушавај пребацивања на неисправан број виртуалног терминала."
-
-#: ../src/cut-n-paste/gdmcomm.c:501
-msgid ""
-"You do not seem to have authentication needed be for this operation.  "
-"Perhaps your .Xauthority file is not set up correctly."
-msgstr ""
-"Изгледа да немате потребна овлашћења за ову радњу. Можда ваша .Xauthority "
-"датотека није добро постављена."
-
-#: ../src/cut-n-paste/gdmcomm.c:505
-msgid "Too many messages were sent to gdm and it hung upon us."
-msgstr ""
-"Гномовом управнику пријаве је послато превише порука и он је престао да ради."
-
-#: ../src/cut-n-paste/gdmcomm.c:508
-msgid "Unknown error occured."
-msgstr "Догодила се грешка."
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Не развлачи слике преко целог екрана"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -620,94 +473,195 @@ msgstr "На:"
 msgid "Connecting..."
 msgstr "Повезивање је у току..."
 
-#: ../src/gnome-screensaver-command.c:59
+#: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
 msgstr "Чини да чувар екрана буде заустављен природно"
 
-#: ../src/gnome-screensaver-command.c:61
+#: ../src/gnome-screensaver-command.c:64
 msgid "Query the state of the screensaver"
 msgstr "Испитај стање чувара екрана"
 
-#: ../src/gnome-screensaver-command.c:63
+#: ../src/gnome-screensaver-command.c:66
+msgid "Query the length of time the screensaver has been active"
+msgstr "Испитуј време за које је чувар екрана био активан"
+
+#: ../src/gnome-screensaver-command.c:68
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "Говори покренутом процесу чувара екрана да одмах закључа екран"
 
-#: ../src/gnome-screensaver-command.c:65
+#: ../src/gnome-screensaver-command.c:70
 msgid "If the screensaver is active then switch to another graphics demo"
 msgstr "Ако је чувар екрана покренут тада пређи на други графички демо"
 
-#: ../src/gnome-screensaver-command.c:67
+#: ../src/gnome-screensaver-command.c:72
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "Укључи чувара екрана (очисти екран)"
 
-#: ../src/gnome-screensaver-command.c:69
+#: ../src/gnome-screensaver-command.c:74
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr ""
 "Ако је чувар екрана присутан, прекини га (врати пређашњу слику на екрану)"
 
-#: ../src/gnome-screensaver-command.c:71
-msgid "Disable running graphical themes while blanked"
-msgstr "Онемогући покретање графичких тема док је екран очишћен"
-
-#: ../src/gnome-screensaver-command.c:73
-msgid "Enable running graphical themes while blanked (if applicable)"
-msgstr "Омогући покретање графичких тема док је екран чист (ако је примењиво)"
-
-#: ../src/gnome-screensaver-command.c:75
+#: ../src/gnome-screensaver-command.c:76
 msgid "Poke the running screensaver to simulate user activity"
 msgstr "Позови покренути чувар екрана ради испробавања активности корисника"
 
-#: ../src/gnome-screensaver-command.c:77 ../src/gnome-screensaver-dialog.c:110
+#: ../src/gnome-screensaver-command.c:78
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr ""
+"Забрани покретање чувара екрана. Команда блокира чувар екрана док год "
+"јеактивна."
+
+#: ../src/gnome-screensaver-command.c:80
+msgid "The calling application that is inhibiting the screensaver"
+msgstr "Програм који забрањује чувар екрана"
+
+#: ../src/gnome-screensaver-command.c:82
+msgid "The reason for inhibiting the screensaver"
+msgstr "Разлог забране чувара екрана"
+
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Верзија овог програма"
 
-#: ../src/gnome-screensaver-command.c:202
+#: ../src/gnome-screensaver-command.c:249
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "Чувар екрана је %s\n"
 
-#: ../src/gnome-screensaver-command.c:202
+#: ../src/gnome-screensaver-command.c:249
 msgid "active"
 msgstr "присутан"
 
-#: ../src/gnome-screensaver-command.c:202
+#: ../src/gnome-screensaver-command.c:249
 msgid "inactive"
 msgstr "угашен"
 
-#: ../src/gnome-screensaver-dialog.c:108
+#: ../src/gnome-screensaver-command.c:274
+#, c-format
+msgid "The screensaver has been active for %d seconds.\n"
+msgstr "Чувар екрана је активан %d секунди.\n"
+
+#: ../src/gnome-screensaver-dialog.c:53
 msgid "Show debugging output"
 msgstr "Прикажи испис за тражење грешака"
 
-#: ../src/gnome-screensaver-dialog.c:112
+#: ../src/gnome-screensaver-dialog.c:57
 msgid "Show the logout button"
 msgstr "Прикажи дугме за одјаву"
 
-#: ../src/gnome-screensaver-dialog.c:114
+#: ../src/gnome-screensaver-dialog.c:59
 msgid "Command to invoke from the logout button"
 msgstr "Наредба која се позива притиском на дугме за одјаву"
 
-#: ../src/gnome-screensaver-dialog.c:116
+#: ../src/gnome-screensaver-dialog.c:61
 msgid "Show the switch user button"
 msgstr "Прикажи дугме за промену корисника"
 
-#: ../src/gnome-screensaver-preferences.c:431
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "Message to show in the dialog"
+msgstr "Порука за приказ у прозорчету"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "MESSAGE"
+msgstr "ПОРУКА"
+
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
+msgid "Username:"
+msgstr "Корисничко име:"
+
+#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "Лозинка:"
+
+#: ../src/gnome-screensaver-dialog.c:178
+msgid "You are required to change your password immediately (password aged)"
+msgstr "Потребно је да одмах промените Вашу лозинку (лозинка је стара)"
+
+#: ../src/gnome-screensaver-dialog.c:179
+msgid "You are required to change your password immediately (root enforced)"
+msgstr ""
+"Потребно је да одмах промените Вашу лозинку (приморан је администратор)"
+
+#: ../src/gnome-screensaver-dialog.c:180
+msgid "Your account has expired; please contact your system administrator"
+msgstr "Ваш налог је истекао; потражите Вашег администратора система"
+
+#: ../src/gnome-screensaver-dialog.c:181
+msgid "No password supplied"
+msgstr "Није достављена шифра"
+
+#: ../src/gnome-screensaver-dialog.c:182
+msgid "Password unchanged"
+msgstr "Шифра је непромењена"
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "Can not get username"
+msgstr "Не могу да добијем корисничко име"
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "Retype new UNIX password:"
+msgstr "Поново унеси нову Јуникс лозинку:"
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "Enter new UNIX password:"
+msgstr "Унеси нову Јуникс лозинку:"
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "(current) UNIX password:"
+msgstr "(тренутна) Јуникс лозинка:"
+
+#: ../src/gnome-screensaver-dialog.c:187
+msgid "Error while changing NIS password."
+msgstr "Грешка при промени НИС лозинке."
+
+#: ../src/gnome-screensaver-dialog.c:188
+msgid "You must choose a longer password"
+msgstr "Морате са одаберете дужу лозинку"
+
+#: ../src/gnome-screensaver-dialog.c:189
+msgid "Password has been already used. Choose another."
+msgstr "Лозинка је већ у употреби. Изаберите другу."
+
+#: ../src/gnome-screensaver-dialog.c:190
+msgid "You must wait longer to change your password"
+msgstr "Морате да чекате дуже за промену Ваше шифре"
+
+#: ../src/gnome-screensaver-dialog.c:191
+msgid "Sorry, passwords do not match"
+msgstr "Лозинке се не поклапају"
+
+#: ../src/gnome-screensaver-dialog.c:257
+msgid "Checking..."
+msgstr "Провера..."
+
+#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
+msgid "Authentication failed."
+msgstr "Идентификација неуспела."
+
+#: ../src/gnome-screensaver-preferences.c:500
 msgid "Blank screen"
 msgstr "Очисти екран"
 
-#: ../src/gnome-screensaver-preferences.c:437
+#: ../src/gnome-screensaver-preferences.c:506
 msgid "Random"
 msgstr "Случајан"
 
-#: ../src/gnome-screensaver-preferences.c:726
+#: ../src/gnome-screensaver-preferences.c:876
 msgid "Invalid screensaver theme"
 msgstr "Неисправна тема чувара екрана"
 
-#: ../src/gnome-screensaver-preferences.c:729
+#: ../src/gnome-screensaver-preferences.c:879
 msgid "This file does not appear to be a valid screensaver theme."
 msgstr "Чини се да ова датотека није исправна тема"
 
-#: ../src/gnome-screensaver-preferences.c:846
+#: ../src/gnome-screensaver-preferences.c:1006
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -715,7 +669,7 @@ msgstr[0] "%d сат"
 msgstr[1] "%d сата"
 msgstr[2] "%d сати"
 
-#: ../src/gnome-screensaver-preferences.c:849
+#: ../src/gnome-screensaver-preferences.c:1009
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -723,7 +677,7 @@ msgstr[0] "%d минут"
 msgstr[1] "%d минута"
 msgstr[2] "%d минута"
 
-#: ../src/gnome-screensaver-preferences.c:852
+#: ../src/gnome-screensaver-preferences.c:1012
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -732,15 +686,15 @@ msgstr[1] "%d секунде"
 msgstr[2] "%d секунди"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:858
+#: ../src/gnome-screensaver-preferences.c:1018
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:861
-#: ../src/gnome-screensaver-preferences.c:869
+#: ../src/gnome-screensaver-preferences.c:1021
+#: ../src/gnome-screensaver-preferences.c:1029
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -748,27 +702,22 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:864
-#: ../src/gnome-screensaver-preferences.c:872
-#: ../src/gnome-screensaver-preferences.c:876
+#: ../src/gnome-screensaver-preferences.c:1024
+#: ../src/gnome-screensaver-preferences.c:1032
+#: ../src/gnome-screensaver-preferences.c:1036
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#. 0 seconds
-#: ../src/gnome-screensaver-preferences.c:879
-msgid "0 seconds"
-msgstr "0 секунди"
-
-#: ../src/gnome-screensaver-preferences.c:894
+#: ../src/gnome-screensaver-preferences.c:1051
 msgid "Never"
 msgstr "Никада"
 
-#: ../src/gnome-screensaver-preferences.c:1040
+#: ../src/gnome-screensaver-preferences.c:1450
 msgid "Could not load the main interface"
 msgstr "Не могу да учитам главно сучеље"
 
-#: ../src/gnome-screensaver-preferences.c:1042
+#: ../src/gnome-screensaver-preferences.c:1452
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Молим проверите да ли је чувар екрана правилно инсталиран"
 
@@ -780,67 +729,311 @@ msgstr "Немој бити позадински процес"
 msgid "Enable debugging code"
 msgstr "Омогући испис за тражење грешака"
 
-#: ../src/gs-listener-dbus.c:1218
+#: ../src/gs-auth-pam.c:397
+#, fuzzy, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr "Не могу да успоставим сервис %s: %s\n"
+
+#: ../src/gs-auth-pam.c:423
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr "Не могу да поставим PAM_TTY=%s"
+
+#: ../src/gs-auth-pam.c:455
+msgid "Incorrect password."
+msgstr "Неисиправна лозинка"
+
+#: ../src/gs-auth-pam.c:471
+msgid "Not permitted to gain access at this time."
+msgstr "Приступ у ово време није дозвољен."
+
+#: ../src/gs-auth-pam.c:477
+msgid "No longer permitted to access the system."
+msgstr "Више немате дозволу за приступ систему."
+
+#: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
 msgstr "неуспела пријава на магистралу порука"
 
-#: ../src/gs-listener-dbus.c:1228
+#: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
 msgstr "није повезан на магистралу порука"
 
-#: ../src/gs-listener-dbus.c:1237
+#: ../src/gs-listener-dbus.c:1940
 msgid "screensaver already running in this session"
 msgstr "чувар екрана је већ покренут у овој сесији"
 
-#: ../src/gs-lock-plug.c:351
-msgid "Checking password..."
-msgstr "Провера лозинке је у току..."
-
-#: ../src/gs-lock-plug.c:394
+#: ../src/gs-lock-plug.c:269
 msgid "Time has expired."
 msgstr "Време је истекло."
 
-#: ../src/gs-lock-plug.c:420
+#: ../src/gs-lock-plug.c:297
 msgid "You have the Caps Lock key on."
 msgstr "Притиснули сте тастер за сва велика слова."
 
-#: ../src/gs-lock-plug.c:707
-msgid "That password was incorrect."
-msgstr "Та лозинка је нетачна."
-
-#: ../src/gs-lock-plug.c:733 ../src/gs-lock-plug.c:766
-msgid "_Unlock"
-msgstr "От_кључај"
-
-#: ../src/gs-lock-plug.c:736 ../src/gs-lock-plug.c:763
-msgid "_Switch User..."
+#: ../src/gs-lock-plug.c:1187
+msgid "S_witch User..."
 msgstr "Промени _корисника..."
 
-#. Translators: this is "username on hostname".  You
-#. can translate this to "%s@%s" if it is otherwise tricky
-#. for your language.
-#: ../src/gs-lock-plug.c:1366
-#, c-format
-msgid "%s on %s"
-msgstr "корисник %s на систему %s"
-
-#: ../src/gs-lock-plug.c:1510
-msgid "_Password:"
-msgstr "_Лозинка:"
-
-#: ../src/gs-lock-plug.c:1577
-msgid "S_witch to user:"
-msgstr "Промени на кори_сника:"
-
-#: ../src/gs-lock-plug.c:1624
+#: ../src/gs-lock-plug.c:1196
 msgid "Log _Out"
 msgstr "Одја_ва"
 
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1373
+msgid "%U on %h"
+msgstr "%U на %h"
+
+#: ../src/gs-lock-plug.c:1387
+msgid "_Password:"
+msgstr "_Лозинка:"
+
+#~ msgid "_Screensaver"
+#~ msgstr "Чува_р екрана"
+
+#~ msgid "Allow monitor power management"
+#~ msgstr "Дозволи праћење потрошње струје"
+
+#~ msgid "Set this to TRUE to allow the screensaver to power down the monitor."
+#~ msgstr ""
+#~ "Поставите ово на вредност „Тачно“ како би дозволили чувару екрана да "
+#~ "угаси монитор."
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation until the monitor "
+#~ "goes into standby power mode."
+#~ msgstr ""
+#~ "Број минута након покретања чувара екрана пре него што монитор одлази у "
+#~ "„приправан“ режим потрошње."
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation until the monitor "
+#~ "goes into suspend power mode."
+#~ msgstr ""
+#~ "Број минута након покретања чувара екрана пре него што монитор одлази у "
+#~ "„привремено заустављен“ режим потрошње."
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation until the monitor "
+#~ "powers off."
+#~ msgstr ""
+#~ "Број минута након покретања чувара екрана након којих се гаси монитор."
+
+# note(slobo): може и „време до лансирања“ пошто је Гном свемирски софтвер ;)
+#~ msgid "Time before activation"
+#~ msgstr "Време до покретања"
+
+#~ msgid "Time before power off"
+#~ msgstr "Време до гашења"
+
+#~ msgid "Time before standby"
+#~ msgstr "Време до стања приправности"
+
+#~ msgid "Time before suspend"
+#~ msgstr "Време до привременог заустављања"
+
+#~ msgid "N"
+#~ msgstr "N"
+
+#~ msgid "Manager"
+#~ msgstr "Управник"
+
+#~ msgid "The manager which owns this object."
+#~ msgstr "Управник који поседује овај објекат."
+
+#~ msgid "Name"
+#~ msgstr "Име"
+
+#~ msgid "The name of the X11 display this object refers to."
+#~ msgstr "Име Икс екрана коме се обраћа овај објекат."
+
+#~ msgid "The user currently logged in on this virtual terminal."
+#~ msgstr "Корисник тренутно пријављен на овом виртуалном терминалу."
+
+#~ msgid "Console"
+#~ msgstr "Конзола"
+
+#~ msgid ""
+#~ "The number of the virtual console this display can be found on, or %-1."
+#~ msgstr "Број виртуалне конзоле на којој може да се нађе овај екран, или %-1"
+
+#~ msgid "Nested"
+#~ msgstr "Угнежђен"
+
+#~ msgid "Whether or not this display is a windowed (Xnest) display."
+#~ msgstr "Да ли је овај екран угнежђен у оквиру прозора"
+
+#~ msgid "The display manager could not be contacted for unknown reasons."
+#~ msgstr ""
+#~ "Из непознатих разлога се не може ступити у контакт са управником пријаве."
+
+# note(slobo): Алан Форд терминологија
+#~ msgid "The display manager is not running or too old."
+#~ msgstr "Управник пријаве није покренут или је одвећ стар."
+
+#~ msgid "The configured limit of flexible servers has been reached."
+#~ msgstr "Подешено ограничење флексибилних сервера је достигнуто."
+
+#~ msgid "There was an unknown error starting X."
+#~ msgstr "Догодила се грешка приликом покретања Икса."
+
+#~ msgid "The X server failed to finish starting."
+#~ msgstr "Икс сервер није успео да оконча покретање."
+
+#~ msgid "There are too many X sessions running."
+#~ msgstr "Превише је покренутих Икс сесија."
+
+#~ msgid "The nested X server (Xnest) cannot connect to your current X server."
+#~ msgstr "Угнежђени Икс сервер не може да се повеже на ваш текући Икс сервер."
+
+#~ msgid "The X server in the GDM configuration could not be found."
+#~ msgstr ""
+#~ "Не могу наћи Икс сервер задан у подешавањима Гномовог управника пријаве."
+
+#~ msgid ""
+#~ "Trying to set an unknown logout action, or trying to set a logout action "
+#~ "which is not available."
+#~ msgstr ""
+#~ "Покушај постављања једне непознате радње при одјављивању, или покушај "
+#~ "постављања радње при одјављивању која није доступна."
+
+#~ msgid "Virtual terminals not supported."
+#~ msgstr "Виртуални терминали нису подржани."
+
+#~ msgid "Invalid virtual terminal number."
+#~ msgstr "Неисправан број виртуалног терминала."
+
+#~ msgid "Trying to update an unsupported configuration key."
+#~ msgstr "Покушај надоградње неподржаног кључа у подешавањима."
+
+#~ msgid "~/.Xauthority file badly configured or missing."
+#~ msgstr "Датотека ~/.Xauthority је лоше попуњена или недостаје."
+
+#~ msgid "Too many messages were sent to the display manager, and it hung up."
+#~ msgstr ""
+#~ "Превише порука је послато управнику пријаве и он је престао да ради."
+
+#~ msgid "The display manager sent an unknown error message."
+#~ msgstr "Управник пријаве је послао непознату грешку."
+
+#~ msgid "The user this menu item represents."
+#~ msgstr "Корисник кога представља ова ставка менија."
+
+#~ msgid "Icon Size"
+#~ msgstr "Величина иконе"
+
+#~ msgid "The size of the icon to use."
+#~ msgstr "Коју величину иконе треба користити."
+
+#~ msgid "The user manager object this user is controlled by."
+#~ msgstr "Објекат управника корисника који контролише овог корисника."
+
+#~ msgid "Show Details"
+#~ msgstr "Прикажи детаље"
+
+#~ msgid "GDM (The GNOME Display Manager) is not running."
+#~ msgstr "Гномов управник пријаве (GDM) није покренут."
+
+#~ msgid ""
+#~ "You might in fact be using a different display manager, such as KDM (KDE "
+#~ "Display Manager) or xdm."
+#~ msgstr ""
+#~ "Заправо, можда ви користите неки други управник пријаве, какав је kdm "
+#~ "(КДЕ управник пријаве) или xdm."
+
+# note(slobo): не треба преводити: ...ако још увек желите... :)
+#~ msgid ""
+#~ "If you still wish to use this feature, either start GDM yourself or ask "
+#~ "your system administrator to start GDM."
+#~ msgstr ""
+#~ "Ако и даље желите да користите ову особину, или сами покрените услугу "
+#~ "Гномовог управника пријаве или замолите вашег систем администратора да то "
+#~ "учини."
+
+#~ msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+#~ msgstr "Не могу да успоставим комуникацију са Гномовим управником пријаве"
+
+#~ msgid "Perhaps you have an old version of GDM running."
+#~ msgstr ""
+#~ "Вероватно користите неку старију верзију Гномовог управника пријаве."
+
+#~ msgid ""
+#~ "Cannot communicate with gdm, perhaps you have an old version running."
+#~ msgstr ""
+#~ "Не могу да успоставим комуникацију са Гномовим управником пријаве, "
+#~ "вероватно користите неку старију верзију Гномовог управника пријаве."
+
+#~ msgid "The allowed limit of flexible X servers reached."
+#~ msgstr ""
+#~ "Достигнуто је ограничење у броју дозвољених флексибилних Икс сервера."
+
+#~ msgid "There were errors trying to start the X server."
+#~ msgstr "Грешке при покретању Икс сервера."
+
+#~ msgid "The X server failed.  Perhaps it is not configured well."
+#~ msgstr "Грешка при покретању Икс сервера. Вероватно није добро подешен."
+
+#~ msgid "Too many X sessions running."
+#~ msgstr "Превише је покренутих Икс сесија"
+
+#~ msgid ""
+#~ "The nested X server (Xnest) cannot connect to your current X server.  You "
+#~ "may be missing an X authorization file."
+#~ msgstr ""
+#~ "Угнежђени Икс сервер не може да се повеже на ваш текући Икс сервер. "
+#~ "Вероватно вам недостаје Икс датотека са bug(slobo)"
+
+#~ msgid ""
+#~ "The nested X server (Xnest) is not available, or gdm is badly "
+#~ "configured.\n"
+#~ "Please install the Xnest package in order to use the nested login."
+#~ msgstr ""
+#~ "Угнежђени Икс сервер није доступан или је Гномов управник пријаве лоше "
+#~ "подешен.\n"
+#~ "Молим инсталирајте пакет Xnest како би могли користити угнежђену пријаву."
+
+#~ msgid ""
+#~ "The X server is not available, it is likely that gdm is badly configured."
+#~ msgstr ""
+#~ "Икс сервер није доступан, највероватније је Гномов управник пријаве лоше "
+#~ "подешен."
+
+#~ msgid "Trying to change to an invalid virtual terminal number."
+#~ msgstr "Покушавај пребацивања на неисправан број виртуалног терминала."
+
+#~ msgid ""
+#~ "You do not seem to have authentication needed be for this operation.  "
+#~ "Perhaps your .Xauthority file is not set up correctly."
+#~ msgstr ""
+#~ "Изгледа да немате потребна овлашћења за ову радњу. Можда ваша .Xauthority "
+#~ "датотека није добро постављена."
+
+#~ msgid "Too many messages were sent to gdm and it hung upon us."
+#~ msgstr ""
+#~ "Гномовом управнику пријаве је послато превише порука и он је престао да "
+#~ "ради."
+
+#~ msgid "Unknown error occured."
+#~ msgstr "Догодила се грешка."
+
+#~ msgid "Disable running graphical themes while blanked"
+#~ msgstr "Онемогући покретање графичких тема док је екран очишћен"
+
+#~ msgid "Enable running graphical themes while blanked (if applicable)"
+#~ msgstr ""
+#~ "Омогући покретање графичких тема док је екран чист (ако је примењиво)"
+
+#~ msgid "0 seconds"
+#~ msgstr "0 секунди"
+
+#~ msgid "That password was incorrect."
+#~ msgstr "Та лозинка је нетачна."
+
+#~ msgid "S_witch to user:"
+#~ msgstr "Промени на кори_сника:"
+
 #~ msgid "    "
 #~ msgstr "    "
-
-#~ msgid "<b>_Screensaver</b>"
-#~ msgstr "<b>Ч_увар екрана</b>"
 
 #~ msgid "_Activate after:"
 #~ msgstr "По_крени након:"
