@@ -906,7 +906,7 @@ gs_manager_class_init (GSManagerClass *klass)
                                                             0,
                                                             G_PARAM_READWRITE));
         g_object_class_install_property (object_class,
-                                         PROP_LOGOUT_TIMEOUT,
+                                         PROP_LOGOUT_COMMAND,
                                          g_param_spec_string ("logout-command",
                                                               NULL,
                                                               NULL,

@@ -1,3 +1,8 @@
+2007-09-28  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-manager.c: (gs_manager_class_init): Fix
+	typo in property name.
+
 2007-09-17  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post release version bump
