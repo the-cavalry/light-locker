@@ -740,24 +740,3 @@ msgstr "%U sus %h"
 #: ../src/gs-lock-plug.c:1387
 msgid "_Password:"
 msgstr "Mot de _pas :"
-
-#~ msgid "_Switch user..."
-#~ msgstr "Cambiar d'utilizaire..."
-
-#~ msgid "N"
-#~ msgstr "N"
-
-#~ msgid "Name"
-#~ msgstr "Nom"
-
-#~ msgid "User"
-#~ msgstr "Usuari"
-
-#~ msgid "Icon Size"
-#~ msgstr "Talhas de las icònas"
-
-#~ msgid "Show Details"
-#~ msgstr "Visualizar los detalhs"
-
-#~ msgid "Unknown error occurred."
-#~ msgstr "I a agut una error desconeguda."
