@@ -159,47 +159,47 @@ request_response (GSLockPlug *plug,
 static const char *
 maybe_translate_message (const char *msg)
 {
-	char              *s;
-	const char        *ret;
-	static GHashTable *hash = NULL;
+        char              *s;
+        const char        *ret;
+        static GHashTable *hash = NULL;
 
-	if (hash == NULL) {
-		/* Here we come with some fairly standard messages so that
-		   we have as much as possible translated.  Should really be
-		   translated in pam I suppose.  This way we can "change"
-		   some of these messages to be more sane. */
-		hash = g_hash_table_new (g_str_hash, g_str_equal);
-		/* login: is whacked always translate to Username: */
-		g_hash_table_insert (hash, "login:", _("Username:"));
-		g_hash_table_insert (hash, "Username:", _("Username:"));
-		g_hash_table_insert (hash, "username:", _("Username:"));
-		g_hash_table_insert (hash, "Password:", _("Password:"));
-		g_hash_table_insert (hash, "password:", _("Password:"));
-		g_hash_table_insert (hash, "You are required to change your password immediately (password aged)", _("You are required to change your password immediately (password aged)"));
-		g_hash_table_insert (hash, "You are required to change your password immediately (root enforced)", _("You are required to change your password immediately (root enforced)"));
-		g_hash_table_insert (hash, "Your account has expired; please contact your system administrator", _("Your account has expired; please contact your system administrator"));
-		g_hash_table_insert (hash, "No password supplied", _("No password supplied"));
-		g_hash_table_insert (hash, "Password unchanged", _("Password unchanged"));
-		g_hash_table_insert (hash, "Can not get username", _("Can not get username"));
-		g_hash_table_insert (hash, "Retype new UNIX password:", _("Retype new UNIX password:"));
-		g_hash_table_insert (hash, "Enter new UNIX password:", _("Enter new UNIX password:"));
-		g_hash_table_insert (hash, "(current) UNIX password:", _("(current) UNIX password:"));
-		g_hash_table_insert (hash, "Error while changing NIS password.", _("Error while changing NIS password."));
-		g_hash_table_insert (hash, "You must choose a longer password", _("You must choose a longer password"));
-		g_hash_table_insert (hash, "Password has been already used. Choose another.", _("Password has been already used. Choose another."));
-		g_hash_table_insert (hash, "You must wait longer to change your password", _("You must wait longer to change your password"));
-		g_hash_table_insert (hash, "Sorry, passwords do not match", _("Sorry, passwords do not match"));
-		/* FIXME: what about messages which have some variables in them, perhaps try to do those as well */
-	}
+        if (hash == NULL) {
+                /* Here we come with some fairly standard messages so that
+                   we have as much as possible translated.  Should really be
+                   translated in pam I suppose.  This way we can "change"
+                   some of these messages to be more sane. */
+                hash = g_hash_table_new (g_str_hash, g_str_equal);
+                /* login: is whacked always translate to Username: */
+                g_hash_table_insert (hash, "login:", _("Username:"));
+                g_hash_table_insert (hash, "Username:", _("Username:"));
+                g_hash_table_insert (hash, "username:", _("Username:"));
+                g_hash_table_insert (hash, "Password:", _("Password:"));
+                g_hash_table_insert (hash, "password:", _("Password:"));
+                g_hash_table_insert (hash, "You are required to change your password immediately (password aged)", _("You are required to change your password immediately (password aged)"));
+                g_hash_table_insert (hash, "You are required to change your password immediately (root enforced)", _("You are required to change your password immediately (root enforced)"));
+                g_hash_table_insert (hash, "Your account has expired; please contact your system administrator", _("Your account has expired; please contact your system administrator"));
+                g_hash_table_insert (hash, "No password supplied", _("No password supplied"));
+                g_hash_table_insert (hash, "Password unchanged", _("Password unchanged"));
+                g_hash_table_insert (hash, "Can not get username", _("Can not get username"));
+                g_hash_table_insert (hash, "Retype new UNIX password:", _("Retype new UNIX password:"));
+                g_hash_table_insert (hash, "Enter new UNIX password:", _("Enter new UNIX password:"));
+                g_hash_table_insert (hash, "(current) UNIX password:", _("(current) UNIX password:"));
+                g_hash_table_insert (hash, "Error while changing NIS password.", _("Error while changing NIS password."));
+                g_hash_table_insert (hash, "You must choose a longer password", _("You must choose a longer password"));
+                g_hash_table_insert (hash, "Password has been already used. Choose another.", _("Password has been already used. Choose another."));
+                g_hash_table_insert (hash, "You must wait longer to change your password", _("You must wait longer to change your password"));
+                g_hash_table_insert (hash, "Sorry, passwords do not match", _("Sorry, passwords do not match"));
+                /* FIXME: what about messages which have some variables in them, perhaps try to do those as well */
+        }
 
-	s = g_strstrip (g_strdup (msg));
-	ret = g_hash_table_lookup (hash, s);
-	g_free (s);
+        s = g_strstrip (g_strdup (msg));
+        ret = g_hash_table_lookup (hash, s);
+        g_free (s);
 
-	if (ret != NULL) {
-		return ret;
+        if (ret != NULL) {
+                return ret;
         } else {
-		return msg;
+                return msg;
         }
 }
 
@@ -411,7 +411,7 @@ privileged_initialization (int     *argc,
                         &uid_message);
 
         if (nolock_reason) {
-                g_warning ("Locking disabled: %s", nolock_reason);
+                g_debug ("Locking disabled: %s", nolock_reason);
         }
 
         if (uid_message && verbose) {
@@ -440,14 +440,12 @@ lock_initialization (int     *argc,
                      char   **nolock_reason,
                      gboolean verbose)
 {
-        gs_profile_start (NULL);
-
-        if (nolock_reason) {
+        if (nolock_reason != NULL) {
                 *nolock_reason = NULL;
         }
 
 #ifdef NO_LOCKING
-        if (nolock_reason) {
+        if (nolock_reason != NULL) {
                 *nolock_reason = g_strdup ("not compiled with locking support");
         }
 
@@ -456,7 +454,7 @@ lock_initialization (int     *argc,
 
         /* Finish initializing locking, now that we're out of privileged code. */
         if (! gs_auth_init ()) {
-                if (nolock_reason) {
+                if (nolock_reason != NULL) {
                         *nolock_reason = g_strdup ("error getting password");
                 }
 
@@ -468,7 +466,7 @@ lock_initialization (int     *argc,
            locking just in case.
         */
         if (getenv ("RUNNING_UNDER_GDM")) {
-                if (nolock_reason) {
+                if (nolock_reason != NULL) {
                         *nolock_reason = g_strdup ("running under GDM");
                 }
 
@@ -492,7 +490,7 @@ lock_initialization (int     *argc,
 #endif
 
                 if (macos) {
-                        if (nolock_reason) {
+                        if (nolock_reason != NULL) {
                                 *nolock_reason = g_strdup ("Cannot lock securely on MacOS X");
                         }
 
@@ -501,8 +499,6 @@ lock_initialization (int     *argc,
         }
 
 #endif /* NO_LOCKING */
-
-        gs_profile_end (NULL);
 
         return TRUE;
 }
@@ -528,12 +524,6 @@ main (int    argc,
 
         g_type_init ();
 
-        if (error) {
-                fprintf (stderr, "%s\n", error->message);
-                response_lock_init_failed ();
-                exit (1);
-        }
-
         gs_profile_start (NULL);
 
         if (! privileged_initialization (&argc, argv, verbose)) {
@@ -556,8 +546,8 @@ main (int    argc,
         }
 
         if (! lock_initialization (&argc, argv, &nolock_reason, verbose)) {
-                if (nolock_reason) {
-                        g_warning ("Screen locking disabled: %s", nolock_reason);
+                if (nolock_reason != NULL) {
+                        g_debug ("Screen locking disabled: %s", nolock_reason);
                         g_free (nolock_reason);
                 }
                 response_lock_init_failed ();
@@ -573,5 +563,5 @@ main (int    argc,
         gs_profile_end (NULL);
         gs_debug_shutdown ();
 
-	return 0;
+        return 0;
 }
