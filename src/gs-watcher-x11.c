@@ -1051,14 +1051,14 @@ maybe_send_signal (GSWatcher *watcher)
         }
 
         if (do_notice_signal && ! watcher->priv->idle_notice) {
-		gboolean res = FALSE;
+                gboolean res = FALSE;
                 gboolean in_effect = TRUE;
 
                 res = _gs_watcher_set_session_idle_notice (watcher, in_effect);
         }
 
         if (do_idle_signal) {
-		gboolean res = FALSE;
+                gboolean res = FALSE;
                 gboolean is_idle = TRUE;
 
                 res = _gs_watcher_set_session_idle (watcher, is_idle);

@@ -1,5 +1,10 @@
 2007-10-25  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver.c: (main):
+	Kill tabs.
+
+2007-10-25  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver-dialog.c:
 	Convert a few warnings to debugs.
 
