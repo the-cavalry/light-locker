@@ -1,5 +1,10 @@
 2007-10-25  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gnome-screensaver.c (main):
+	Debug flag change snuck in - revert it.
+
+2007-10-25  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gnome-screensaver.c: (main):
 	Kill tabs.
 

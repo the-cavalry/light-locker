@@ -51,7 +51,7 @@ main (int    argc,
         GError             *error = NULL;
         static gboolean     show_version = FALSE;
         static gboolean     no_daemon    = FALSE;
-        static gboolean     debug        = TRUE;
+        static gboolean     debug        = FALSE;
         static GOptionEntry entries []   = {
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
                 { "no-daemon", 0, 0, G_OPTION_ARG_NONE, &no_daemon, N_("Don't become a daemon"), NULL },
