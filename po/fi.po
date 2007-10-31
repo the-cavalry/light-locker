@@ -124,7 +124,7 @@ msgid ""
 "command."
 msgstr ""
 "Aseta arvoksi TRUE, jos haluat sallia näppäimistön upottamisen ikkunaan "
-"yritettäessä avata lukitusta. Avaimen \"keyboard_command\" avaimen tulee "
+"yritettäessä avata lukitusta. Avaimen \"keyboard_command\" arvon tulee "
 "olla asetettu sisältämään haluttu komento."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
