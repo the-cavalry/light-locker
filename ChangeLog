@@ -1,3 +1,9 @@
+2007-11-09  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c: (submit_note):
+	Escape markup before sending to libnotify.
+	Patch from: Basilio Kublik <sourcerito@gmail.com>
+
 2007-10-25  William Jon McCann  <mccann@jhu.edu>
 
 	* src/gnome-screensaver.c (main):

@@ -833,6 +833,7 @@ submit_note (GtkButton  *button,
 #ifdef WITH_LIBNOTIFY
         char               *text;
         char                summary[128];
+        char               *escaped_text;
         GtkTextBuffer      *buffer;
         GtkTextIter         start, end;
         time_t              t;
@@ -844,18 +845,20 @@ submit_note (GtkButton  *button,
         gtk_text_buffer_get_bounds (buffer, &start, &end);
         text = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
         gtk_text_buffer_set_text (buffer, "", 0);
+        escaped_text = g_markup_escape_text (text, -1);
 
         t = time (NULL);
         tmp = localtime (&t);
         strftime (summary, 128, "%X", tmp);
 
         notify_init ("gnome-screensaver-dialog");
-        note = notify_notification_new (summary, text, NULL, NULL);
+        note = notify_notification_new (summary, escaped_text, NULL, NULL);
         notify_notification_set_timeout (note, NOTIFY_EXPIRES_NEVER);
         notify_notification_show (note, NULL);
         g_object_unref (note);
 
         g_free (text);
+        g_free (escaped_text);
 
         gs_lock_plug_response (plug, GS_LOCK_PLUG_RESPONSE_CANCEL);
 #endif /* WITH_LIBNOTIFY */
