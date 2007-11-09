@@ -1,5 +1,16 @@
 2007-11-09  William Jon McCann  <mccann@jhu.edu>
 
+	* data/xscreensaver-config.xsl:
+	* savers/cosmos-slideshow.desktop.in.in:
+	* savers/footlogo-floaters.desktop.in.in:
+	* savers/personal-slideshow.desktop.in:
+	* savers/popsquares.desktop.in:
+	Patch to bring desktop files into FDO compliance.
+	Patch from JP Rosevear <jpr@novell.com>
+	Fixes #488041
+
+2007-11-09  William Jon McCann  <mccann@jhu.edu>
+
 	* data/lock-dialog-default.glade: Wrap message text.
 	Patch from Diego Escalante Urrelo <diegoe@gnome.org>
 	Fixes #479679

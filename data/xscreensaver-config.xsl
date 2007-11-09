@@ -20,7 +20,8 @@ Exec=<xsl:value-of select="normalize-space(@name)" /><xsl:text> </xsl:text><xsl:
 StartupNotify=false
 Terminal=false
 Type=Application
-Categories=Screensaver
+Categories=Screensaver;
+OnlyShowIn=GNOME;
 </xsl:template>
 
 </xsl:stylesheet>
