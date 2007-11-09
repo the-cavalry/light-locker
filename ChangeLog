@@ -1,5 +1,11 @@
 2007-11-09  William Jon McCann  <mccann@jhu.edu>
 
+	* data/lock-dialog-default.glade: Wrap message text.
+	Patch from Diego Escalante Urrelo <diegoe@gnome.org>
+	Fixes #479679
+
+2007-11-09  William Jon McCann  <mccann@jhu.edu>
+
 	* data/lock-dialog-default.glade:
 	Remove invisible char.  Fix button spacing.
 	Fixes #480944.
