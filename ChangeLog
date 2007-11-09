@@ -3,6 +3,7 @@
 	* src/gs-lock-plug.c: (submit_note):
 	Escape markup before sending to libnotify.
 	Patch from: Basilio Kublik <sourcerito@gmail.com>
+	Fixes #494598
 
 2007-10-25  William Jon McCann  <mccann@jhu.edu>
 
