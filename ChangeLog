@@ -1,5 +1,12 @@
 2007-11-09  William Jon McCann  <mccann@jhu.edu>
 
+	* data/lock-dialog-default.glade:
+	Remove invisible char.  Fix button spacing.
+	Fixes #480944.
+	Patch from: Christian Persch <chpe@gnome.org>
+
+2007-11-09  William Jon McCann  <mccann@jhu.edu>
+
 	* configure.ac: bump ac req to 2.60.
 	Fixes #486429
 
