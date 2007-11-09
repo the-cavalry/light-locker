@@ -1,5 +1,10 @@
 2007-11-09  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac: bump ac req to 2.60.
+	Fixes #486429
+
+2007-11-09  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c: (submit_note):
 	Escape markup before sending to libnotify.
 	Patch from: Basilio Kublik <sourcerito@gmail.com>
