@@ -1,5 +1,10 @@
 2007-11-15  Frederic Crozat  <fcrozat@mandriva.com>
 
+	* src/gs-debug.h: Disable profiling by default.
+	Fixes #496806
+
+2007-11-15  Frederic Crozat  <fcrozat@mandriva.com>
+
 	* savers/gste-slideshow.c:
 	Fix sort-image slideshow feature to really work.
 	Fixes #496805

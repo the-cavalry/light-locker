@@ -45,7 +45,6 @@ void gs_debug_real             (const char *func,
                                 int         line,
                                 const char *format, ...);
 
-#define ENABLE_PROFILING 1
 #ifdef ENABLE_PROFILING
 #ifdef G_HAVE_ISO_VARARGS
 #define gs_profile_start(...) _gs_profile_log (G_STRFUNC, "start", __VA_ARGS__)
