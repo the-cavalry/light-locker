@@ -540,10 +540,11 @@ get_pixbuf_from_local_dir (GSTESlideshow *show,
         }
 
         if (show->priv->filename_list == NULL) {
+                return NULL;
+        } else {
                 if (show->priv->sort_images) {
                         show->priv->filename_list = g_slist_sort (show->priv->filename_list, gste_strcmp_compare_func);
                 }
-                return NULL;
         }
 
         /* get a random filename if needed */
