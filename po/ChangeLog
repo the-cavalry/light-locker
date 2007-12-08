@@ -1,11 +1,15 @@
+2007-12-08  Jakub Friedl  <jfriedl@suse.cz>
+
+	* cs.po: Czech Translation updated by Petr Kovar.
+
 2007-12-01  Ignacio Casal Quinteiro   <nacho.resa@gmail.com>
 
 	* gl.po: Updated Galician Translation.
 
 2007-11-25  Nickolay V. Shmyrev  <nshmyrev@yandex.ru>
 
-        * ru.po: Updated Russian translation
-        by Vasiliy Faronov <qvvx@yandex.ru>
+	* ru.po: Updated Russian translation
+	by Vasiliy Faronov <qvvx@yandex.ru>
 
 2007-11-14  Matej Urbančič  <mateju@svn.gnome.org>
 

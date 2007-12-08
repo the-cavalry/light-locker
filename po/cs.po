@@ -1,28 +1,26 @@
-# translation of cs.po to Czech
-# translation of cs.po to
-# Czech translation of gnome-2.14.
-# Copyright (C) 2005 Miloslav Trmac <mitr@volny.cz>
-# Copyright (C) 2006 Lukas Novotny <lukasnov@cvs.gnome.org>
+# Czech translation of gnome-screensaver.
+# Copyright (C) 2005 Free Software Foundation Inc.
+# Copyright (C) 2005 Miloslav Trmac <mitr@volny.cz>.
+# Copyright (C) 2006 Lukas Novotny <lukasnov@cvs.gnome.org>.
 # This file is distributed under the same license as the gnome-screensaver package.
 # Miloslav Trmac <mitr@volny.cz>, 2005.
 # Lukas Novotny <lukasnov@cvs.gnome.org>, 2006.
 # Petr Tomeš <ptomes@gmail.com>, 2006.
 # Jakub Friedl <jfriedl@suse.cz>, 2006.
-#
+# Petr Kovar <pknbe@volny.cz>, 2007.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cs\n"
+"Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-03 12:30+0200\n"
-"PO-Revision-Date: 2006-10-03 12:30+0200\n"
-"Last-Translator: Jakub Friedl <jfriedl@suse.cz>\n"
+"POT-Creation-Date: 2007-12-08 10:14+0100\n"
+"PO-Revision-Date: 2007-11-09 20:07+0100\n"
+"Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms:  nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: KBabel 1.10.2\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
 msgid "Screensaver"
@@ -30,7 +28,7 @@ msgstr "Šetřič obrazovky"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:2
 msgid "Set your screensaver preferences"
-msgstr "Nastavit váš šetřič obrazovky"
+msgstr "Nastaví šetřič obrazovky"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
 msgid "<b>Screensaver preview</b>"
@@ -38,38 +36,42 @@ msgstr "<b>Náhled šetřiče obrazovky</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:2
 msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgstr "<b>Varování: obrazovka uživatele root uzamčena nebude.</b>"
+msgstr "<b>Varování: obrazovka nebude uzamčena pro superuživatele.</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
-msgid "Regard the computer as _idle after:"
-msgstr "Považovat počítač za neč_inný po:"
+msgid "Power _Management"
+msgstr "Správa napá_jení"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "Regard the computer as _idle after:"
+msgstr "Doba, po které považovat počítač za neč_inný:"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "Screensaver Preferences"
 msgstr "Nastavení šetřiče obrazovky"
 
-#: ../data/gnome-screensaver-preferences.glade.h:5
+#: ../data/gnome-screensaver-preferences.glade.h:6
 msgid "Screensaver Preview"
 msgstr "Náhled šetřiče obrazovky"
 
-#: ../data/gnome-screensaver-preferences.glade.h:6
-msgid "_Activate screensaver when computer is idle"
-msgstr "Spustit spořič obr_azovky při nečinnosti"
-
 #: ../data/gnome-screensaver-preferences.glade.h:7
-msgid "_Lock screen when screensaver is active"
-msgstr "_Zamknout obrazovku po spuštění spořiče"
+msgid "_Activate screensaver when computer is idle"
+msgstr "Spouštět šetřič obr_azovky při nečinnosti"
 
 #: ../data/gnome-screensaver-preferences.glade.h:8
-msgid "_Preview"
-msgstr "_Náhled"
+msgid "_Lock screen when screensaver is active"
+msgstr "Zamykat o_brazovku po spuštění šetřiče"
 
 #: ../data/gnome-screensaver-preferences.glade.h:9
+msgid "_Preview"
+msgstr "Ná_hled"
+
+#: ../data/gnome-screensaver-preferences.glade.h:10
 msgid "_Screensaver theme:"
 msgstr "_Motiv šetřiče obrazovky"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Screensaver themes"
 msgstr "Motivy šetřiče obrazovky"
 
@@ -106,93 +108,111 @@ msgid "Logout command"
 msgstr "Příkaz odhlášení"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Reason for being away"
+msgstr "Důvod nepřítomnosti"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver theme selection mode"
 msgstr "Režim výběru motivu šetřiče obrazovky"
 
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr ""
-"Nastavte na hodnotu TRUE pro spuštění šetřiče obrazovky, když je sezení "
-"nečinné."
+"Nastavte na hodnotu \"TRUE\", chcete-li spustit šetřič obrazovky při "
+"nečinném sezení."
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
 msgstr ""
-"Nastavte na TRUE pro povolení vložení klávesnice do okna při pokusu o "
-"odemknutí. Klíč \"keyboard_command\" musí obsahovat vhodný příkaz."
-
-#: ../data/gnome-screensaver.schemas.in.h:12
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr ""
-"Nastavte na hodnotu TRUE pro zamknutí obrazovky, když je aktivován šetřič "
-"obrazovky."
+"Nastavte na hodnotu \"TRUE\", chcete-li povolit vložení klávesnice do okna "
+"při pokusu o odemknutí. Klíč \"keyboard_command\" musí obsahovat vhodný "
+"příkaz."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr ""
+"Nastavte na hodnotu \"TRUE\", chcete-li zamknout obrazovku při aktivaci "
+"šetřiče obrazovky."
+
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr ""
-"Nastavte na hodnotu TRUE pro možnost·přepnutí·na různé·uživatelské·účty ze "
-"spořiče obrazovky."
+"Nastavte na hodnotu \"TRUE\", chcete-li mít z šetřiče obrazovky možnost "
+"přepínat na různé uživatelské účty."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
 msgstr ""
-"Nastavení na hodnotu TRUE spustí odemknutá dialogová okna s možností "
-"odhlásit se a poté již nespustí spořič obrazovky. Toto zobrazení je "
-"specifikováno v klíči \"logout_delay\"."
+"Nastavení na hodnotu \"TRUE\" poskytne v dialogu zamčení obrazovky možnost "
+"odhlásit se po uplynutí určité doby. Tato doba je zadána klíčem "
+"\"logout_delay\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
 "set to TRUE, to embed a keyboard widget into the window. This command should "
 "implement an XEMBED plug interface and output a window XID on the standard "
 "output."
 msgstr ""
-"Příkaz pro vložení prvku rozhraní klávesnice, který bude spuštěn, je-li klíč "
-"\"embedded_keyboard_enabled\" nastaven na TRUE. Tento příkaz by měl "
-"implementovat rozhraní XEMBED plug a na standardní výstup posílat XID okna."
+"Příkaz k vložení prvku rozhraní klávesnice, který bude spuštěn, je-li klíč "
+"\"embedded_keyboard_enabled\" nastaven na hodnotu \"TRUE\". Tento příkaz by "
+"měl implementovat zásuvné rozhraní XEMBED a na standardní výstup posílat XID "
+"okna."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
-"Použití příkazu po klepnutí na tlačítko Odhlásit se. Tento příkaz může "
-"jednoduše odhlašovat uživatele s doplňujícím procesem. Tento·klíč·je·účinný,"
-"·jestliže·klíč·\"logout_enable\"·je·nastaven·na·hodnotu·TRUE."
-
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The number of minutes after screensaver activation before locking the screen."
-msgstr "Počet minut od spuštění spořiče obrazovky po jeho uzamčení."
+"Příkaz, který má být spuštěn po kliknutí na tlačítko odhlášení. Tento příkaz "
+"by měl jednoduše odhlásit uživatele bez dalšího dotazování se. Účinné jen v "
+"případě, pokud je klíč \"logout_enable\" nastaven na hodnotu \"TRUE\"."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
+msgstr "Počet minut od spuštění šetřiče obrazovky po zamčení obrazovky."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
-"Počet·minut·od·spuštění·spořiče·obrazovky po zobrazení odhlašovacího okna v "
-"nezamknutém stavu. Tento klíč je účinný, jestliže klíč \"logout_enable\" je "
-"nastaven na hodnotu TRUE."
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr "Počet minut, od kdy se považuje sezení za nečinné."
+"Počet minut od spuštění šetřiče obrazovky po zobrazení možnosti odhlášení v "
+"dialogu odemčení. Tento klíč je účinný, jestliže je klíč \"logout_enable\" "
+"nastaven na hodnotu \"TRUE\"."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
-msgid "The number of minutes to run before changing the screensaver theme."
-msgstr "Počet minut do změny dalšího motivu spořiče obrazovky."
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
+msgstr "Doba nečinnosti v minutách, po které považovat sezení za nečinné."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr "Počet minut do změny na další motiv šetřiče obrazovky."
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid ""
+"The number of seconds of inactivity before signalling to power-management. "
+"This key is set and maintained by the session power-management agent."
+msgstr ""
+"Doba v sekundách před signalizací správě napájení. Klíč je nastaven a "
+"spravován agentem správy napájení."
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "The reason for being away from the computer."
+msgstr "Důvod nepřítomnosti u počítače."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
 "screensaver without using any theme on activation, \"single\" to enable "
@@ -200,93 +220,85 @@ msgid ""
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
 msgstr ""
-"Vyberte mód používaný pro spořič obrazovky. Spořič·obrazovky·při·použití·módu"
-"\"Prázdná obrazovka\" nespustí žádný motiv, při·použití·módu \"jedno·téma\" "
-"spustí pouze jeden motiv (označený v poli \"motivy\") a při·použití·módu·"
-"\"náhodný\" bude spouštět témata v náhodném pořadí."
+"Režim výběru používaný šetřičem obrazovky. Šetřič obrazovky v režimu \"blank-"
+"only\" nespustí žádný motiv, při použití režimu \"single\" spustí pouze "
+"jeden motiv (zadaný v klíči \"themes\"), při použití režimu \"random\" bude "
+"spouštět motivy v náhodném pořadí."
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
-msgstr "Téma odemykacího dialogu"
+msgstr "Motiv odemykacího dialogu"
 
-#: ../data/gnome-screensaver.schemas.in.h:23
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Theme to use for the lock dialog."
-msgstr "Téma použité v odemykacím dialogu"
+msgstr "Motiv použitý v odemykacím dialogu"
 
-#: ../data/gnome-screensaver.schemas.in.h:24
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
 msgstr ""
-"Toto pole specifikuje seznam motivů pro šetřič obrazovky. Seznam je "
-"ignorován když \"mód\"·je označen jako \"Prázdná obrazovka\",·poskytuje "
-"pouze jeden motiv když v ·\"módu\"·je·označen jen \"jeden motiv\","
-"·a·poskytuje celý seznam motivů když·\"mód\"·je označen jako·\"náhodný\"."
+"Tento klíč specifikuje seznam motivů pro šetřič obrazovky. Seznam je "
+"ignorován, pokud je klíč \"mode\" s hodnotou \"blank-only\", název motivu "
+"poskytne v případě, že \"mode\" má hodnotu \"single\", celý seznam motivů "
+"poskytne, pokud má \"mode\" hodnotu \"random\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:25
-msgid "Time before activation"
-msgstr "Čas do spuštění"
-
-#: ../data/gnome-screensaver.schemas.in.h:26
+#: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
 msgstr "Čas do uzamčení"
 
-#: ../data/gnome-screensaver.schemas.in.h:27
+#: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before logout option"
 msgstr "Čas do odhlášení ze systému"
 
-#: ../data/gnome-screensaver.schemas.in.h:28
+#: ../data/gnome-screensaver.schemas.in.h:30
+msgid "Time before power-management baseline"
+msgstr "Doba, po které informovat správu napájení"
+
+#: ../data/gnome-screensaver.schemas.in.h:31
+msgid "Time before session is considered idle"
+msgstr "Doba, po které se sezení považuje za nečinné"
+
+#: ../data/gnome-screensaver.schemas.in.h:32
 msgid "Time before theme change"
 msgstr "Čas do změny motivu"
 
 #: ../data/lock-dialog-default.glade.h:2
 #, no-c-format
-msgid "<span size=\"small\">%U on %h</span>"
-msgstr "<span size=\"small\">%U na %h</span>"
+msgid "<b>Leave a message for %R:</b>"
+msgstr "<b>Zanechat zprávu pro %R:</b>"
 
 #: ../data/lock-dialog-default.glade.h:4
 #, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
+msgstr "<span size=\"small\">%U na %h</span>"
+
+#: ../data/lock-dialog-default.glade.h:6
+#, no-c-format
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
-
-#: ../data/lock-dialog-default.glade.h:5 ../src/gnome-screensaver-dialog.c:172
-#: ../src/gnome-screensaver-dialog.c:173
-msgid "Password:"
-msgstr "Heslo:"
-
-#: ../data/lock-dialog-default.glade.h:6 ../src/gs-lock-plug.c:1707
-msgid "S_witch to user:"
-msgstr "_Přepnout na uživatele:"
 
 #: ../data/lock-dialog-default.glade.h:7
 msgid "_Cancel"
 msgstr "_Zrušit"
 
 #: ../data/lock-dialog-default.glade.h:8
-msgid "_Log Out"
-msgstr "_Odhlásit se"
+msgid "_Leave Message"
+msgstr "Zane_chat zprávu"
 
 #: ../data/lock-dialog-default.glade.h:9
-msgid "_Switch User..."
-msgstr "_Přepnout uživatele..."
+msgid "_Log Out"
+msgstr "O_dhlásit se"
 
 #: ../data/lock-dialog-default.glade.h:10
-msgid "_Switch user..."
-msgstr "_Přepnout uživatele..."
+msgid "_Switch User"
+msgstr "_Přepnout uživatele"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1436
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1210
 msgid "_Unlock"
 msgstr "_Odemknout"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "Zobrazí bubliny s logem 'GNOME·foot'"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "Plovoucí chodidla"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
@@ -294,7 +306,15 @@ msgstr "Kosmos"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:2
 msgid "Display a slideshow of pictures of the cosmos"
-msgstr "Zobrazovat obrázky kosmu"
+msgstr "Zobrazovat obrázky z kosmu jako prezentaci"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Zobrazí bubliny s logem \"GNOME foot\""
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Plovoucí chodidla"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
@@ -312,311 +332,88 @@ msgstr "Pop-artová mřížka pulzujících barev."
 msgid "Pop art squares"
 msgstr "Pop-artové čtverce"
 
-#: ../savers/floaters.c:1166
-msgid "show paths that images follow"
-msgstr "zobrazit umístění obrázků"
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr "Zobrazit cesty sledované obrázky"
 
-#: ../savers/floaters.c:1173
-msgid "occasionally rotate images as they move"
-msgstr "občas otočit obrázek při jeho pohybu"
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "Občas otočit obrázky během pohybu"
 
-#: ../savers/floaters.c:1180
-msgid "print out frame rate and other statistics"
-msgstr "zobrazit frekvenci snímků a další statistiky"
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "Vypsat frekvenci snímků a další statistiky"
 
-#: ../savers/floaters.c:1188
-msgid "the maximum number of images to keep on screen"
-msgstr "maximální počet obrázků pro zobrazení na obrazovce"
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "Maximální počet obrázků, který zobrazovat na obrazovce"
 
-#. translators: this should be translated to be symbolic of a generic
-#. * number.  e.g, "the screen saver should keep N images on the screen"
-#.
-#: ../savers/floaters.c:1192
-msgid "N"
-msgstr "N"
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "MAX_IMAGES"
 
-#: ../savers/floaters.c:1199
-msgid "the source image to use"
-msgstr "zdrojový obrázek pro použití"
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "Výchozí velikost a umístění okna"
 
-#: ../savers/floaters.c:1206
-msgid "the initial size and position of window"
-msgstr "výchozí velikost a umístění okna"
-
-#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
-#. * can be translated, but the 'x' area indicator and '+' offset indicators
-#. * need to be untranslated and can't be rearranged.
-#.
-#: ../savers/floaters.c:1211
+#: ../savers/floaters.c:96
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "ŠÍŘKAxVÝŠKA+X+Y"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "Zdrojový obrázek, který použít"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1229
+#: ../savers/floaters.c:1194
 msgid "image - floats images around the screen"
-msgstr "obrázek - přesouvání obrázků přes obrazovku"
+msgstr "image - přesouvá obrázky přes obrazovku"
 
-#: ../savers/floaters.c:1239
+#: ../savers/floaters.c:1200
 #, c-format
 msgid "%s. See --help for usage information.\n"
-msgstr "%s.·Viz.·--help·pro více informací.\n"
+msgstr "%s. Informace o použití viz --help.\n"
 
-#: ../savers/floaters.c:1248
+#: ../savers/floaters.c:1209
 msgid "You must specify one image.  See --help for usage information.\n"
-msgstr "Uveďte alespoň jeden obrázek.··Viz.·--help·pro více informací.\n"
+msgstr ""
+"Je nutné zadat alespoň jeden obrázek. Informace o použití viz --help.\n"
 
-#: ../savers/slideshow.c:47
+#: ../savers/slideshow.c:53
 msgid "Location to get images from"
 msgstr "Umístění, odkud získávat obrázky"
 
-#: ../savers/slideshow.c:47
+#: ../savers/slideshow.c:53
 msgid "PATH"
 msgstr "CESTA"
 
-#: ../src/cut-n-paste/fusa-display.c:119 ../src/cut-n-paste/fusa-user.c:150
-msgid "Manager"
-msgstr "Správce"
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "Barvu, kterou použít na pozadí obrázků"
 
-#: ../src/cut-n-paste/fusa-display.c:120
-msgid "The manager which owns this object."
-msgstr "Správce, který vlastní tento objekt."
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "\"#rrggbb\""
 
-#: ../src/cut-n-paste/fusa-display.c:127
-msgid "Name"
-msgstr "Název"
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr "Nevolit obrázky z umístění náhodně"
 
-#: ../src/cut-n-paste/fusa-display.c:128
-msgid "The name of the X11 display this object refers to."
-msgstr "Název displeje X11, na který se tento objekt odkazuje."
-
-#: ../src/cut-n-paste/fusa-display.c:134
-#: ../src/cut-n-paste/fusa-user-menu-item.c:163
-msgid "User"
-msgstr "Uživatel"
-
-#: ../src/cut-n-paste/fusa-display.c:135
-msgid "The user currently logged in on this virtual terminal."
-msgstr "Uživatel přihlášený na tomto virtuálním terminálu."
-
-#: ../src/cut-n-paste/fusa-display.c:141
-msgid "Console"
-msgstr "Konzola"
-
-#: ../src/cut-n-paste/fusa-display.c:142
-msgid "The number of the virtual console this display can be found on, or %-1."
-msgstr "Číslo virtuální konzoly, na kterém lze najít tento displej, nebo %-1."
-
-#: ../src/cut-n-paste/fusa-display.c:148
-msgid "Nested"
-msgstr "Vnořený"
-
-#: ../src/cut-n-paste/fusa-display.c:149
-msgid "Whether or not this display is a windowed (Xnest) display."
-msgstr "Jestli je tento displej v okně (Xnest)."
-
-#: ../src/cut-n-paste/fusa-manager.c:1453
-msgid "The display manager could not be contacted for unknown reasons."
-msgstr "Správce displeje nebylo možné kontaktovat z neznámých důvodů."
-
-#: ../src/cut-n-paste/fusa-manager.c:1460
-msgid "The display manager is not running or too old."
-msgstr "Správce displeje neběží nebo je příliš starý."
-
-#: ../src/cut-n-paste/fusa-manager.c:1463
-msgid "The configured limit of flexible servers has been reached."
-msgstr "Byl dosažen nastavený limit flexibilních serverů."
-
-#: ../src/cut-n-paste/fusa-manager.c:1466
-msgid "There was an unknown error starting X."
-msgstr "Při spouštění X došlo k neznámé chybě."
-
-#: ../src/cut-n-paste/fusa-manager.c:1469
-msgid "The X server failed to finish starting."
-msgstr "X server nedokončil spouštění."
-
-#: ../src/cut-n-paste/fusa-manager.c:1472
-msgid "There are too many X sessions running."
-msgstr "Běží příliš mnoho sezení X."
-
-#: ../src/cut-n-paste/fusa-manager.c:1475
-msgid "The nested X server (Xnest) cannot connect to your current X server."
-msgstr ""
-"Vnořený X server (Xnest) se nemůže připojit k vašemu aktuálnímu X serveru."
-
-#: ../src/cut-n-paste/fusa-manager.c:1478
-msgid "The X server in the GDM configuration could not be found."
-msgstr "X server v nastavení GDM nelze najít."
-
-#: ../src/cut-n-paste/fusa-manager.c:1481 ../src/cut-n-paste/gdmcomm.c:492
-msgid ""
-"Trying to set an unknown logout action, or trying to set a logout action "
-"which is not available."
-msgstr ""
-"Pokus nastavit neznámou akci odhlášení nebo akci odhlášení, která není k "
-"dispozici."
-
-#: ../src/cut-n-paste/fusa-manager.c:1484 ../src/cut-n-paste/gdmcomm.c:495
-msgid "Virtual terminals not supported."
-msgstr "Virtuální terminály nejsou podporovány."
-
-#: ../src/cut-n-paste/fusa-manager.c:1487
-msgid "Invalid virtual terminal number."
-msgstr "Neplatné číslo virtuálního terminálu."
-
-#: ../src/cut-n-paste/fusa-manager.c:1490 ../src/cut-n-paste/gdmcomm.c:499
-msgid "Trying to update an unsupported configuration key."
-msgstr "Zkouším aktualizovat nepodporovaný klíč nastavení."
-
-#: ../src/cut-n-paste/fusa-manager.c:1493
-msgid "~/.Xauthority file badly configured or missing."
-msgstr "Soubor ~/.Xauthority je špatně nastavený nebo chybí."
-
-#: ../src/cut-n-paste/fusa-manager.c:1496
-msgid "Too many messages were sent to the display manager, and it hung up."
-msgstr "Správci displeje bylo odesláno příliš mnoho zpráv, a on se odpojil."
-
-#: ../src/cut-n-paste/fusa-manager.c:1500
-msgid "The display manager sent an unknown error message."
-msgstr "Správce displeje poslal neznámou zprávu o chybě."
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:164
-msgid "The user this menu item represents."
-msgstr "Uživatel, kterého reprezentuje tato položka nabídky."
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:171
-msgid "Icon Size"
-msgstr "Velikost ikony"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:172
-msgid "The size of the icon to use."
-msgstr "Velikost ikony, kterou používat."
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:178
-msgid "Indicator Size"
-msgstr "Velikost indikátoru"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:179
-msgid "Size of check indicator"
-msgstr "Velikost kontrolního indikátoru"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:184
-msgid "Indicator Spacing"
-msgstr "Rozestup indikátoru"
-
-#: ../src/cut-n-paste/fusa-user-menu-item.c:185
-msgid "Space between the username and the indicator"
-msgstr "Mezera mezi uživatelským jménem a indikátorem"
-
-#: ../src/cut-n-paste/fusa-user.c:151
-msgid "The user manager object this user is controlled by."
-msgstr "Objekt správce uživatelů, kterým je řízen tento uživatel."
-
-#: ../src/cut-n-paste/fusa-utils.c:80
-msgid "Show Details"
-msgstr "Zobrazit podrobnosti"
-
-#. markup
-#: ../src/cut-n-paste/gdmcomm.c:413
-msgid "GDM (The GNOME Display Manager) is not running."
-msgstr "GDM (GNOME Display Manager) neběží."
-
-#: ../src/cut-n-paste/gdmcomm.c:416
-msgid ""
-"You might in fact be using a different display manager, such as KDM (KDE "
-"Display Manager) or xdm."
-msgstr ""
-"Možná ve skutečnosti používáte jiného správce displeje, například KDM (KDE "
-"Display Manager) nebo xdm."
-
-#: ../src/cut-n-paste/gdmcomm.c:419
-msgid ""
-"If you still wish to use this feature, either start GDM yourself or ask your "
-"system administrator to start GDM."
-msgstr ""
-"Pokud ještě chcete používat tuto funkci, buď spusťte GDM sami, nebo "
-"požádejte vašeho správce systému, aby spustil GDM."
-
-#. markup
-#: ../src/cut-n-paste/gdmcomm.c:441
-msgid "Cannot communicate with GDM (The GNOME Display Manager)"
-msgstr "Nemohu komunikovat s GDM (GNOME Display Manager)"
-
-#: ../src/cut-n-paste/gdmcomm.c:444
-msgid "Perhaps you have an old version of GDM running."
-msgstr "Možná máte spuštěnu starou verzi GDM."
-
-#: ../src/cut-n-paste/gdmcomm.c:463 ../src/cut-n-paste/gdmcomm.c:466
-msgid "Cannot communicate with gdm, perhaps you have an old version running."
-msgstr "Nemohu komunikovat s gdm, možná máte spuštěnu starou verzi."
-
-#: ../src/cut-n-paste/gdmcomm.c:469
-msgid "The allowed limit of flexible X servers reached."
-msgstr "Limit povolených flexibilních X serverů byl dosažen."
-
-#: ../src/cut-n-paste/gdmcomm.c:471
-msgid "There were errors trying to start the X server."
-msgstr "Při pokusu spustit X server došlo k chybám."
-
-#: ../src/cut-n-paste/gdmcomm.c:473
-msgid "The X server failed.  Perhaps it is not configured well."
-msgstr "X server selhal. Možná není nastaven správně."
-
-#: ../src/cut-n-paste/gdmcomm.c:476
-msgid "Too many X sessions running."
-msgstr "Běží příliš mnoho sezení X."
-
-#: ../src/cut-n-paste/gdmcomm.c:478
-msgid ""
-"The nested X server (Xnest) cannot connect to your current X server.  You "
-"may be missing an X authorization file."
-msgstr ""
-"Vnořený X server (Xnest) se nemůže připojit k vašemu aktuálnímu X serveru. "
-"Možná vám chybí soubor autorizace X."
-
-#: ../src/cut-n-paste/gdmcomm.c:483
-msgid ""
-"The nested X server (Xnest) is not available, or gdm is badly configured.\n"
-"Please install the Xnest package in order to use the nested login."
-msgstr ""
-"Vnořený X server (Xnest) se není k dispozici, nebo je špatně nastaven gdm.\n"
-"Pro používání vnořeného přihlašování prosím nainstalujte balíček Xnest."
-
-#: ../src/cut-n-paste/gdmcomm.c:488
-msgid ""
-"The X server is not available, it is likely that gdm is badly configured."
-msgstr "X server není k dispozici, gdm je pravděpodobně špatně nastaven."
-
-#: ../src/cut-n-paste/gdmcomm.c:497
-msgid "Trying to change to an invalid virtual terminal number."
-msgstr "Pokus přepnout na neplatné číslo virtuálního terminálu."
-
-#: ../src/cut-n-paste/gdmcomm.c:501
-msgid ""
-"You do not seem to have authentication needed be for this operation.  "
-"Perhaps your .Xauthority file is not set up correctly."
-msgstr ""
-"Zřejmě nemáte autentizaci potřebnou pro tuto operaci. Možná není správně "
-"nastaven váš soubor .Xauthority."
-
-#: ../src/cut-n-paste/gdmcomm.c:505
-msgid "Too many messages were sent to gdm and it hung upon us."
-msgstr "gdm bylo odesláno příliš mnoho zpráv a on se od nás odpojil."
-
-#: ../src/cut-n-paste/gdmcomm.c:508
-msgid "Unknown error occurred."
-msgstr "Došlo k neznámé chybě."
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Nepokoušet se na obrazovce roztahovat obrázky"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
 msgid "Copying file: %u of %u"
-msgstr "Kopíruji soubor: %u z %u"
+msgstr "Kopírování souboru: %u z %u"
 
 #: ../src/file-transfer-dialog.c:122
 #, c-format
 msgid "Copying '%s'"
-msgstr "Kopíruji '%s'"
+msgstr "Kopírování \"%s\""
 
 #: ../src/file-transfer-dialog.c:193
 msgid "From URI"
@@ -624,15 +421,15 @@ msgstr "Z URI"
 
 #: ../src/file-transfer-dialog.c:194
 msgid "URI currently transferring from"
-msgstr "URI, odkud se momentálně přenáší"
+msgstr "URI, odkud probíhá přenos"
 
 #: ../src/file-transfer-dialog.c:201
 msgid "To URI"
-msgstr "Do URI"
+msgstr "Na URI"
 
 #: ../src/file-transfer-dialog.c:202
 msgid "URI currently transferring to"
-msgstr "URI, kam se momentálně přenáší"
+msgstr "URI, kam probíhá přenos"
 
 #: ../src/file-transfer-dialog.c:209
 msgid "Fraction completed"
@@ -644,11 +441,11 @@ msgstr "Momentálně dokončená část přenosu"
 
 #: ../src/file-transfer-dialog.c:217
 msgid "Current URI index"
-msgstr "Index momentálního URI"
+msgstr "Index aktuálního URI"
 
 #: ../src/file-transfer-dialog.c:218
 msgid "Current URI index - starts from 1"
-msgstr "Index momentálního URI - začíná od 1"
+msgstr "Index aktuálního URI - začíná od 1"
 
 #: ../src/file-transfer-dialog.c:225
 msgid "Total URIs"
@@ -660,7 +457,7 @@ msgstr "Celkový počet URI"
 
 #: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
 msgid "Copying files"
-msgstr "Kopíruji soubory"
+msgstr "Kopírování souborů"
 
 #: ../src/file-transfer-dialog.c:345
 msgid "From:"
@@ -672,174 +469,197 @@ msgstr "Do:"
 
 #: ../src/file-transfer-dialog.c:448
 msgid "Connecting..."
-msgstr "Připojuji se..."
+msgstr "Připojování..."
 
-#: ../src/gnome-screensaver-command.c:61
+#: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
-msgstr "Způsobí, že šetřič obrazovky normálně skončí"
+msgstr "Způsobí běžné ukončení šetřiče obrazovky"
 
-#: ../src/gnome-screensaver-command.c:63
+#: ../src/gnome-screensaver-command.c:64
 msgid "Query the state of the screensaver"
-msgstr "Zeptat se na stav šetřiče obrazovky"
+msgstr "Dotáže se na stav šetřiče obrazovky"
 
-#: ../src/gnome-screensaver-command.c:65
+#: ../src/gnome-screensaver-command.c:66
+msgid "Query the length of time the screensaver has been active"
+msgstr "Dotáže se na dobu, po kterou byl šetřič obrazovky aktivní"
+
+#: ../src/gnome-screensaver-command.c:68
 msgid "Tells the running screensaver process to lock the screen immediately"
-msgstr "Řekne běžícímu procesu šetřiče obrazovky, aby okamžitě zamkl obrazovku"
+msgstr ""
+"Oznámí běžícímu procesu šetřiče obrazovky, že má okamžitě uzamknout obrazovku"
 
-#: ../src/gnome-screensaver-command.c:67
+#: ../src/gnome-screensaver-command.c:70
 msgid "If the screensaver is active then switch to another graphics demo"
 msgstr "Jestliže je šetřič obrazovky aktivní, přepnout na jiné grafické demo"
 
-#: ../src/gnome-screensaver-command.c:69
+#: ../src/gnome-screensaver-command.c:72
 msgid "Turn the screensaver on (blank the screen)"
-msgstr "Zapnout šetřič obrazovky (ztmavit obrazovku)"
+msgstr "Zapne šetřič obrazovky (ztmaví obrazovku)"
 
-#: ../src/gnome-screensaver-command.c:71
+#: ../src/gnome-screensaver-command.c:74
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr ""
-"Jestliže je šetřič obrazovky aktivní, deaktivovat jej (odtmavit obrazovku)"
+"Jestliže je šetřič obrazovky aktivní, deaktivuje jej (zruší ztmavení "
+"obrazovky)"
 
-#: ../src/gnome-screensaver-command.c:73
+#: ../src/gnome-screensaver-command.c:76
 msgid "Poke the running screensaver to simulate user activity"
-msgstr "Šťouchnout běžící šetřič obrazovky pro simulaci aktivity uživatele"
+msgstr "Šťouchne běžící šetřič obrazovky jako simulaci aktivity uživatele"
 
-#: ../src/gnome-screensaver-command.c:75
+#: ../src/gnome-screensaver-command.c:78
 msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
 msgstr ""
-"Potlačit aktivaci šetřiče obrazovky. Blokování příkazu během aktivity "
-"potlačení."
+"Potlačí aktivaci šetřiče obrazovky. Příkaz blokuje během aktivity potlačení."
 
-#: ../src/gnome-screensaver-command.c:77
+#: ../src/gnome-screensaver-command.c:80
 msgid "The calling application that is inhibiting the screensaver"
 msgstr "Volající aplikace, která potlačuje šetřič obrazovky"
 
-#: ../src/gnome-screensaver-command.c:79
+#: ../src/gnome-screensaver-command.c:82
 msgid "The reason for inhibiting the screensaver"
 msgstr "Důvod potlačení šetřiče obrazovky"
 
-#: ../src/gnome-screensaver-command.c:81 ../src/gnome-screensaver-dialog.c:54
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Verze této aplikace"
 
-#: ../src/gnome-screensaver-command.c:246
+#: ../src/gnome-screensaver-command.c:249
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "Šetřič obrazovky je %s\n"
 
-#: ../src/gnome-screensaver-command.c:246
+#: ../src/gnome-screensaver-command.c:249
 msgid "active"
 msgstr "aktivní"
 
-#: ../src/gnome-screensaver-command.c:246
+#: ../src/gnome-screensaver-command.c:249
 msgid "inactive"
 msgstr "neaktivní"
 
-#: ../src/gnome-screensaver-dialog.c:52
+#: ../src/gnome-screensaver-command.c:274
+#, c-format
+msgid "The screensaver has been active for %d seconds.\n"
+msgstr "Šetřič obrazovky byl aktivní po dobu %d sekund.\n"
+
+#: ../src/gnome-screensaver-dialog.c:53
 msgid "Show debugging output"
 msgstr "Zobrazovat ladicí výstup"
 
-#: ../src/gnome-screensaver-dialog.c:56
+#: ../src/gnome-screensaver-dialog.c:57
 msgid "Show the logout button"
 msgstr "Zobrazovat tlačítko odhlášení"
 
-#: ../src/gnome-screensaver-dialog.c:58
+#: ../src/gnome-screensaver-dialog.c:59
 msgid "Command to invoke from the logout button"
 msgstr "Příkaz, který spustit tlačítkem odhlášení"
 
-#: ../src/gnome-screensaver-dialog.c:60
+#: ../src/gnome-screensaver-dialog.c:61
 msgid "Show the switch user button"
 msgstr "Zobrazovat tlačítko přepnutí uživatele"
 
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "Message to show in the dialog"
+msgstr "Zpráva, kterou zobrazit v dialogovém okně"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "MESSAGE"
+msgstr "ZPRÁVA"
+
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:169 ../src/gnome-screensaver-dialog.c:170
-#: ../src/gnome-screensaver-dialog.c:171 ../src/gs-auth-pam.c:380
+#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Uživatelské jméno:"
 
-#: ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "Heslo:"
+
+#: ../src/gnome-screensaver-dialog.c:178
 msgid "You are required to change your password immediately (password aged)"
-msgstr "Musíte si okamžitě změnit heslo (heslo je staré)"
+msgstr "Je nutné si okamžitě změnit heslo (heslo je staré)"
 
-#: ../src/gnome-screensaver-dialog.c:175
+#: ../src/gnome-screensaver-dialog.c:179
 msgid "You are required to change your password immediately (root enforced)"
-msgstr "Musíte si okamžitě změnit heslo (vyžadováno rootem)"
+msgstr "Je nutné si okamžitě změnit heslo (vyžadováno superuživatelem)"
 
-#: ../src/gnome-screensaver-dialog.c:176
+#: ../src/gnome-screensaver-dialog.c:180
 msgid "Your account has expired; please contact your system administrator"
-msgstr "Váš účet vypršel; kontaktujte prosím administrátora systému."
+msgstr "Váš účet vypršel; kontaktujte prosím správce systému."
 
-#: ../src/gnome-screensaver-dialog.c:177
+#: ../src/gnome-screensaver-dialog.c:181
 msgid "No password supplied"
 msgstr "Nebylo zadáno žádné heslo"
 
-#: ../src/gnome-screensaver-dialog.c:178
+#: ../src/gnome-screensaver-dialog.c:182
 msgid "Password unchanged"
 msgstr "Heslo nezměněno"
 
-#: ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:183
 msgid "Can not get username"
 msgstr "Nelze získat uživatelské jméno"
 
-#: ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "Retype new UNIX password:"
 msgstr "Zadejte znovu nové unixové heslo:"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "Enter new UNIX password:"
 msgstr "Zadejte nové unixové heslo:"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "(current) UNIX password:"
 msgstr "(aktuální) unixové heslo:"
 
-#: ../src/gnome-screensaver-dialog.c:183
-msgid "Error while changing NIS password."
-msgstr "Chyba při změně NIS hesla."
-
-#: ../src/gnome-screensaver-dialog.c:184
-msgid "You must choose a longer password"
-msgstr "Musíte zvolit delší heslo."
-
-#: ../src/gnome-screensaver-dialog.c:185
-msgid "Password has been already used. Choose another."
-msgstr "Heslo bylo již použito. Zvolte jiné."
-
-#: ../src/gnome-screensaver-dialog.c:186
-msgid "You must wait longer to change your password"
-msgstr "Pro změnu vašeho hesla musíte vyčkat déle"
-
 #: ../src/gnome-screensaver-dialog.c:187
+msgid "Error while changing NIS password."
+msgstr "Chyba při změně hesla NIS."
+
+#: ../src/gnome-screensaver-dialog.c:188
+msgid "You must choose a longer password"
+msgstr "Je nutné zvolit si delší heslo."
+
+#: ../src/gnome-screensaver-dialog.c:189
+msgid "Password has been already used. Choose another."
+msgstr "Heslo již bylo použito. Zvolte prosím jiné."
+
+#: ../src/gnome-screensaver-dialog.c:190
+msgid "You must wait longer to change your password"
+msgstr "Ke změně hesla je nutné vyčkat déle"
+
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "Sorry, passwords do not match"
 msgstr "Hesla bohužel nesouhlasí"
 
-#: ../src/gnome-screensaver-dialog.c:250
+#: ../src/gnome-screensaver-dialog.c:257
 msgid "Checking..."
 msgstr "Probíhá kontrola..."
 
-#: ../src/gnome-screensaver-dialog.c:289 ../src/gs-auth-pam.c:320
+#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
-msgstr "Autentizace selhala."
+msgstr "Ověření selhalo."
 
-#: ../src/gnome-screensaver-preferences.c:447
+#: ../src/gnome-screensaver-preferences.c:500
 msgid "Blank screen"
 msgstr "Prázdná obrazovka"
 
-#: ../src/gnome-screensaver-preferences.c:453
+#: ../src/gnome-screensaver-preferences.c:506
 msgid "Random"
 msgstr "Náhodný"
 
-#: ../src/gnome-screensaver-preferences.c:813
+#: ../src/gnome-screensaver-preferences.c:876
 msgid "Invalid screensaver theme"
 msgstr "Neplatný motiv šetřiče obrazovky"
 
-#: ../src/gnome-screensaver-preferences.c:816
+#: ../src/gnome-screensaver-preferences.c:879
 msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Tento soubor zřejmě není platný motiv šetřiče obrazovky."
+msgstr "Tento soubor zřejmě není platným motivem šetřiče obrazovky."
 
-#: ../src/gnome-screensaver-preferences.c:943
+#: ../src/gnome-screensaver-preferences.c:1006
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -847,7 +667,7 @@ msgstr[0] "%d hodina"
 msgstr[1] "%d hodiny"
 msgstr[2] "%d hodin"
 
-#: ../src/gnome-screensaver-preferences.c:946
+#: ../src/gnome-screensaver-preferences.c:1009
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -855,7 +675,7 @@ msgstr[0] "%d minuta"
 msgstr[1] "%d minuty"
 msgstr[2] "%d minut"
 
-#: ../src/gnome-screensaver-preferences.c:949
+#: ../src/gnome-screensaver-preferences.c:1012
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -864,103 +684,104 @@ msgstr[1] "%d sekundy"
 msgstr[2] "%d sekund"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:955
+#: ../src/gnome-screensaver-preferences.c:1018
 #, c-format
 msgid "%s %s %s"
-msgstr "%s %s %s"
+msgstr "%s:%s:%s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:958
-#: ../src/gnome-screensaver-preferences.c:966
+#: ../src/gnome-screensaver-preferences.c:1021
+#: ../src/gnome-screensaver-preferences.c:1029
 #, c-format
 msgid "%s %s"
-msgstr "%s %s"
+msgstr "%s:%s"
 
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:961
-#: ../src/gnome-screensaver-preferences.c:969
-#: ../src/gnome-screensaver-preferences.c:973
+#: ../src/gnome-screensaver-preferences.c:1024
+#: ../src/gnome-screensaver-preferences.c:1032
+#: ../src/gnome-screensaver-preferences.c:1036
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:988
+#: ../src/gnome-screensaver-preferences.c:1051
 msgid "Never"
 msgstr "Nikdy"
 
-#: ../src/gnome-screensaver-preferences.c:1373
+#: ../src/gnome-screensaver-preferences.c:1450
 msgid "Could not load the main interface"
-msgstr "Nemohu načíst hlavní rozhraní"
+msgstr "Nelze načíst hlavní rozhraní"
 
-#: ../src/gnome-screensaver-preferences.c:1375
+#: ../src/gnome-screensaver-preferences.c:1452
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Přesvědčte se prosím, že šetřič obrazovky je správně nainstalován"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
-msgstr "Nestát se démonem"
+msgstr "Nestane se démonem"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
-msgstr "Povolit kód pro odstranění chyb"
+msgstr "Povolí ladící kód"
 
-#: ../src/gs-auth-pam.c:262
+#: ../src/gs-auth-pam.c:397
 #, c-format
 msgid "Unable to establish service %s: %s\n"
 msgstr "Nelze zavést službu %s: %s\n"
 
-#: ../src/gs-auth-pam.c:288
+#: ../src/gs-auth-pam.c:423
 #, c-format
 msgid "Can't set PAM_TTY=%s"
 msgstr "Nelze nastavit PAM_TTY=%s"
 
-#: ../src/gs-auth-pam.c:318
+#: ../src/gs-auth-pam.c:455
 msgid "Incorrect password."
-msgstr "Nesprávné heslo"
+msgstr "Nesprávné heslo."
 
-#: ../src/gs-auth-pam.c:334
+#: ../src/gs-auth-pam.c:471
 msgid "Not permitted to gain access at this time."
 msgstr "V tento okamžik není povoleno získat přístup."
 
-#: ../src/gs-auth-pam.c:340
+#: ../src/gs-auth-pam.c:477
 msgid "No longer permitted to access the system."
-msgstr "Není dále dovoleno přistupovat k tomuto systému."
+msgstr "K tomuto systému již nadále není dovoleno přistupovat."
 
-#: ../src/gs-listener-dbus.c:1631
+#: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
-msgstr "nemohu se zaregistrovat u sběrnice zpráv"
+msgstr "nelze se zaregistrovat u sběrnice zpráv"
 
-#: ../src/gs-listener-dbus.c:1641
+#: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
 msgstr "nepřipojen ke sběrnici zpráv"
 
-#: ../src/gs-listener-dbus.c:1650
+#: ../src/gs-listener-dbus.c:1940
 msgid "screensaver already running in this session"
 msgstr "šetřič obrazovky již v tomto sezení běží"
 
-#: ../src/gs-lock-plug.c:336
+#: ../src/gs-lock-plug.c:269
 msgid "Time has expired."
 msgstr "Čas vypršel."
 
-#: ../src/gs-lock-plug.c:366
+#: ../src/gs-lock-plug.c:297
 msgid "You have the Caps Lock key on."
-msgstr "Máte zapnut Caps Lock."
+msgstr "Je zapnut \"Caps Lock\"."
 
-#: ../src/gs-lock-plug.c:1418 ../src/gs-lock-plug.c:1455
+#: ../src/gs-lock-plug.c:1190
 msgid "S_witch User..."
 msgstr "_Přepnout uživatele..."
 
-#: ../src/gs-lock-plug.c:1426
+#: ../src/gs-lock-plug.c:1199
 msgid "Log _Out"
 msgstr "_Odhlásit"
 
-#: ../src/gs-lock-plug.c:1617
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1376
 msgid "%U on %h"
 msgstr "%U na %h"
 
-#: ../src/gs-lock-plug.c:1631
+#: ../src/gs-lock-plug.c:1390
 msgid "_Password:"
 msgstr "_Heslo:"
