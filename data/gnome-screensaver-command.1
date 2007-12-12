@@ -1,0 +1,70 @@
+.\" Copyright (C) 2007 Sven Arvidsson <sa@whiz.se>
+.\"
+.\" This is free software; you may redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2,
+.\" or (at your option) any later version.
+.\"
+.\" This is distributed in the hope that it will be useful, but
+.\" WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\"You should have received a copy of the GNU General Public License along
+.\"with this program; if not, write to the Free Software Foundation, Inc.,
+.\"51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+.TH gnome-screensaver-command 1 "2007\-09\-27" "GNOME"
+.SH NAME
+gnome-screensaver-command \- controls GNOME screensaver
+.SH SYNOPSIS
+.B gnome-screensaver-command
+.RI [ OPTION... ]
+.SH DESCRIPTION
+gnome-screensaver-command is a tool for controlling an already
+running instance of gnome-screensaver.
+.SH OPTIONS
+.TP
+.B \-\-exit
+Causes the screensaver to exit gracefully
+.TP
+.B \-q, \-\-query
+Query the state of the screensaver
+.TP
+.B \-t, \-\-time
+Query the length of time the screensaver has been active
+.TP
+.B \-l, \-\-lock
+Tells the running screensaver process to lock the screen immediately
+.TP
+.B \-c, \-\-cycle
+If the screensaver is active then switch to another graphics demo
+.TP
+.B \-a, \-\-activate
+Turn the screensaver on (blank the screen)
+.TP
+.B \-d, \-\-deactivate
+If the screensaver is active then deactivate it (un-blank the screen)
+.TP
+.B \-p, \-\-poke
+Poke the running screensaver to simulate user activity
+.TP
+.B \-i, \-\-inhibit
+Inhibit the screensaver from activating. Command blocks while inhibit
+is active.
+.TP
+.B \-n, \-\-application-name
+The calling application that is inhibiting the screensaver
+.TP
+.B \-r, \-\-reason
+The reason for inhibiting the screensaver
+.TP
+.B \-V, \-\-version
+Version of this application
+.SH AUTHORS
+.B gnome-screensaver-command
+is written by William Jon McCann <mccann@jhu.edu>.
+.P
+This manual page was written by Sven Arvidsson <sa@whiz.se>.
+.SH SEE ALSO
+.BR "gnome-screensaver" (1)
+

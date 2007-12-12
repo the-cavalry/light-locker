@@ -1,3 +1,13 @@
+2007-12-11  William Jon McCann  <mccann@jhu.edu>
+
+	* data/Makefile.am:
+	* data/gnome-screensaver-command.1:
+	* data/gnome-screensaver-preferences.1:
+	* data/gnome-screensaver.1:
+	Add manpages.
+	Patch from: Sven Arvidsson <sa@whiz.se>
+	Fixes #503154
+
 2007-11-15  Frederic Crozat  <fcrozat@mandriva.com>
 
 	* src/gs-debug.h: Disable profiling by default.

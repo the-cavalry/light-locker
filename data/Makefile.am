@@ -3,6 +3,12 @@ SUBDIRS =			\
 
 NULL =
 
+man_MANS = 				\
+	gnome-screensaver.1		\
+	gnome-screensaver-command.1	\
+	gnome-screensaver-preferences.1	\
+	$(NULL)
+
 @INTLTOOL_SCHEMAS_RULE@
 
 schemasdir   = @GCONF_SCHEMA_FILE_DIR@
@@ -42,6 +48,7 @@ EXTRA_DIST = 				\
 	$(desktop_in_files)		\
 	$(directory_in_files)		\
 	$(glade_DATA)			\
+	$(man_MANS)			\
 	gnome-screensaver		\
 	gnome-screensaver.pc.in		\
 	xscreensaver-config.xsl		\
