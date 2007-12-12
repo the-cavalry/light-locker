@@ -1,3 +1,9 @@
+2007-12-12  William Jon McCann  <mccann@jhu.edu>
+
+	* src/gs-lock-plug.c: (clear_clipboards), (gs_lock_plug_init):
+	Clear clipboards before showing the unlock dialog.
+	Fixes #482159
+
 2007-12-11  William Jon McCann  <mccann@jhu.edu>
 
 	* data/Makefile.am:

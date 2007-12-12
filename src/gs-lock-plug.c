@@ -1563,6 +1563,19 @@ delete_handler (GSLockPlug  *plug,
         return TRUE; /* Do not destroy */
 }
 
+static void
+clear_clipboards (GSLockPlug *plug)
+{
+        GtkClipboard *clipboard;
+
+        clipboard = gtk_widget_get_clipboard (GTK_WIDGET (plug), GDK_SELECTION_PRIMARY);
+        gtk_clipboard_clear (clipboard);
+        gtk_clipboard_set_text (clipboard, "", -1);
+        clipboard = gtk_widget_get_clipboard (GTK_WIDGET (plug), GDK_SELECTION_CLIPBOARD);
+        gtk_clipboard_clear (clipboard);
+        gtk_clipboard_set_text (clipboard, "", -1);
+}
+
 #define INVISIBLE_CHAR_DEFAULT       '*'
 #define INVISIBLE_CHAR_BLACK_CIRCLE  0x25cf
 #define INVISIBLE_CHAR_WHITE_BULLET  0x25e6
@@ -1577,6 +1590,8 @@ gs_lock_plug_init (GSLockPlug *plug)
         gs_profile_start (NULL);
 
         plug->priv = GS_LOCK_PLUG_GET_PRIVATE (plug);
+
+        clear_clipboards (plug);
 
 #ifdef WITH_LIBNOTIFY
         plug->priv->leave_note_enabled = TRUE;
