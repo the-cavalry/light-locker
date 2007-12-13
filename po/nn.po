@@ -1,0 +1,899 @@
+# Norwegian nynorsk translation of gnome-screensaver.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Kjartan Maraas  <kmaraas@gnome.org>, 2005-2006.
+# Eskild Hustvedt <i18n@zerodogg.org>, 2007
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver 2.16.x\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-09-05 13:49+0100\n"
+"PO-Revision-Date: 2007-12-08 22:28+0100\n"
+"Last-Translator: Eskild Hustvedt <i18n@zerodogg.org>\n"
+"Language-Team: Norwegian nynorsk <i18n-nn@lister.ping.uio.no>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "Skjermsparar"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "Set brukarval for skjermspararen"
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "<b>Screensaver preview</b>"
+msgstr "<b>Førehandsvising av skjermsparar</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+msgstr "<b>Advarsel: skjermen vil ikkje verta låst for root.</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Power _Management"
+msgstr "Strø_mstyring"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "Regard the computer as _idle after:"
+msgstr "Sjå på datamaskinen som _inaktiv etter:"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "Screensaver Preferences"
+msgstr "Brukarval for skjermsparar"
+
+#: ../data/gnome-screensaver-preferences.glade.h:6
+msgid "Screensaver Preview"
+msgstr "Førehandsvising av skjermsparar"
+
+#: ../data/gnome-screensaver-preferences.glade.h:7
+msgid "_Activate screensaver when computer is idle"
+msgstr "_Aktiver skjermsparar når datamaskinen er inaktiv"
+
+#: ../data/gnome-screensaver-preferences.glade.h:8
+msgid "_Lock screen when screensaver is active"
+msgstr "_Lås skjermen når aktiv"
+
+#: ../data/gnome-screensaver-preferences.glade.h:9
+msgid "_Preview"
+msgstr "_Førehandsvis"
+
+#: ../data/gnome-screensaver-preferences.glade.h:10
+msgid "_Screensaver theme:"
+msgstr "Tema for _skjermsparar:"
+
+#: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "Screensaver themes"
+msgstr "Tema for skjermsparar"
+
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "Skjermsparare"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Activate when idle"
+msgstr "Aktiver når inaktiv"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow embedding a keyboard into the window"
+msgstr "Tillat å byggja inn eit tastatur i vindauget"
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "Allow logout"
+msgstr "Tillat å logge ut"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow user switching"
+msgstr "Tillat byte av brukar"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Embedded keyboard command"
+msgstr "Kommando for innebygget tastatur"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "Lock on activation"
+msgstr "Lås ved aktivering"
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Logout command"
+msgstr "Kommando for å logge ut"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Reason for being away"
+msgstr "Årsak til fravær"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Screensaver theme selection mode"
+msgstr "Modus for val av tema"
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr "Set denne til TRUE for å aktivere skjermspararen når sesjonen er ubrukt."
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid "Set this to TRUE to allow embedding a keyboard into the window when trying to unlock. The \"keyboard_command\" key must be set with the appropriate command."
+msgstr "Set denne til TRUE for å gjera det mogleg å innlemme eit tastatur i vindauget ved ein skal låse opp skjermen. Nøkkelen «keyboard_command» må vera sett med rett kommando."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr "Set denne til TRUE for å låse skjermen når skjermspararen aktiverast."
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid "Set this to TRUE to offer an option in the unlock dialog to switch to a different user account."
+msgstr "Set denne til TRUE for å gje eit val for å byte til ein annan brukarkonto i dialogen for å låse opp skjermen."
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid "Set this to TRUE to offer an option in unlock dialog to logging out after a delay. The Delay is specified in the \"logout_delay\" key."
+msgstr "Set denne til TRUE for å gje eit val for å logge ut etter eit tidsavbrudd i dialogen for å låse opp skjermen. Tidsavbruddet spesifiserast i nøkkelen «logout_delay»."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid "The command that will be run, if the \"embedded_keyboard_enabled\" key is set to TRUE, to embed a keyboard widget into the window. This command should implement an XEMBED plug interface and output a window XID on the standard output."
+msgstr "Kommando som skal køyrast viss nøkkelen «embedded_keyboard_enabled» er sett til TRUE. Denne kommandoen må implementere eit grensesnitt basert på XEMBED og skriva ut ein XID for vindauget på standard utdatakanal."
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid "The command to invoke when the logout button is clicked. This command should simply log the user out without any interaction. This key has effect only if the \"logout_enable\" key is set to TRUE."
+msgstr "Kommando som skal køyrast når utloggingsknappen vert klikkat på. Denne kommandoen bør enkelt og greit logge ut brukaren utan noko krav om handling frå brukarens side. Denne nøkkelen har inga effekt viss ikkje \"logout_enable\"-nøkkelen er sett til TRUE."
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid "The number of minutes after screensaver activation before locking the screen."
+msgstr "Tal på minutt før skjermen låses etter aktivering av skjermsparar."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid "The number of minutes after the screensaver activation before a logout option will appear in unlock dialog. This key has effect only if the \"logout_enable\" key is set to TRUE."
+msgstr "Tal på minutt før val for utlogging vert viste i dialogen for å låse opp skjermen. Denne nøkkelen vil berre fungere viss nøkkelen «logout_enable» er sett til TRUE."
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid "The number of minutes of inactivity before the session is considered idle."
+msgstr "Tal på minutt med inaktivitet før sesjonen betraktes som ubrukt."
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr "Tal på minutt før endring av skjermsparartema."
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid "The number of seconds of inactivity before signalling to power-management. This key is set and maintained by the session power-management agent."
+msgstr "Tal på sekund med inaktivitet før strømstyring får beskjed. Denne nøkkelen er sett og vedlikeholdt av sesjonens strømstyringsagent."
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "The reason for being away from the computer."
+msgstr "Årsak til fravær frå datamaskinen."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid "The selection mode used by screensaver. May be \"blank-only\" to enable the screensaver without using any theme on activation, \"single\" to enable screensaver using only one theme on activation (specified in \"themes\" key), and \"random\" to enable the screensaver using a random theme on activation."
+msgstr "Utvalsmodus som brukast av skjermspararen. Kan vera «blank-only» for å aktivere skjermspararen utan å bruka eit tema, «single» for å aktivere skjermspararen med berre eit tema (oppgjeven i nøkkelen «themes»), og «random» for å aktivere skjermspararen med eit tilfeldig tema."
+
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Theme for lock dialog"
+msgstr "Tema for dialog for låsing av skjerm"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Theme to use for the lock dialog."
+msgstr "Tema som skal brukast for dialog for låsing av skjerm."
+
+#: ../data/gnome-screensaver.schemas.in.h:27
+msgid "This key specifies the list of themes to be used by the screensaver. It's ignored when \"mode\" key is \"blank-only\", should provide the theme name when \"mode\" is \"single\", and should provide a list of themes when \"mode\" is \"random\"."
+msgstr "Denne nøkkelen spesifiserer listen med tema som skal brukast av skjermspararen. Den ignorerast når «mode»-nøkkslen er «blank-only», gjev temanamnet når «mode» er «single» og gjev ein lista med tema når «mode» er «random»."
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before locking"
+msgstr "Tid før låsing av skjerm"
+
+#: ../data/gnome-screensaver.schemas.in.h:29
+msgid "Time before logout option"
+msgstr "Tid før utloggingsmulighet"
+
+#: ../data/gnome-screensaver.schemas.in.h:30
+msgid "Time before power-management baseline"
+msgstr "Tid før grunnlinje for strømstyring er nådd"
+
+#: ../data/gnome-screensaver.schemas.in.h:31
+msgid "Time before session is considered idle"
+msgstr "Tid før sesjonen betraktes som ubrukt"
+
+#: ../data/gnome-screensaver.schemas.in.h:32
+msgid "Time before theme change"
+msgstr "Tid før endring av tema"
+
+#: ../data/lock-dialog-default.glade.h:2
+#, no-c-format
+msgid "<b>Leave a message for %R:</b>"
+msgstr "<b>Legg att ein beskjed til %R:</b>"
+
+#: ../data/lock-dialog-default.glade.h:4
+#, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
+msgstr "<span size=\"small\">%U på %h</span>"
+
+#: ../data/lock-dialog-default.glade.h:6
+#, no-c-format
+msgid "<span size=\"x-large\">%R</span>"
+msgstr "<span size=\"x-large\">%R</span>"
+
+#: ../data/lock-dialog-default.glade.h:7
+msgid "_Cancel"
+msgstr "A_vbryt"
+
+#: ../data/lock-dialog-default.glade.h:8
+msgid "_Leave Message"
+msgstr "_Legg att beskjed"
+
+#: ../data/lock-dialog-default.glade.h:9
+msgid "_Log Out"
+msgstr "_Logg ut"
+
+#: ../data/lock-dialog-default.glade.h:10
+msgid "_Switch User"
+msgstr "_Byt brukar"
+
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+msgid "_Unlock"
+msgstr "Lå_s opp"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr "Kosmos"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "Lysbiletvising med bileta frå verdensrommet"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "GNOME logoen flytande rundt som bobler på skjermen"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Glidande føtter"
+
+#: ../savers/personal-slideshow.desktop.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr "Vis ein lysbiletfremvising frå din biletmappe"
+
+#: ../savers/personal-slideshow.desktop.in.h:2
+msgid "Pictures folder"
+msgstr "Biletmappe"
+
+#: ../savers/popsquares.desktop.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr "Eit popkunst-aktig rutenett med pulserande fargar."
+
+#: ../savers/popsquares.desktop.in.h:2
+msgid "Pop art squares"
+msgstr "Popkunstfirkantar"
+
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr "Vis stigane bileta følger"
+
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "Roter bileta nokre gonger medan dei beveg seg"
+
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "Vis bilethastighet og annan statistikk"
+
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "Maksimalt tal på bileta som skal behaldast på skjermen"
+
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "MAKS_BILDER"
+
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "Initiell storleik og posisjon for vindauget"
+
+#: ../savers/floaters.c:96
+msgid "WIDTHxHEIGHT+X+Y"
+msgstr "BREDDExHØYDE+X+Y"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "Bilete som skal brukast"
+
+#. translators: the word "image" here
+#. * represents a command line argument
+#.
+#: ../savers/floaters.c:1194
+msgid "image - floats images around the screen"
+msgstr "bilete - lèt bileta flyte rundt på skjermen"
+
+#: ../savers/floaters.c:1200
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s. Sjå --help for hjelp til bruk.\n"
+
+#: ../savers/floaters.c:1209
+msgid "You must specify one image.  See --help for usage information.\n"
+msgstr "Du må oppgje eitt bilete. Sjå --help for bruksinformasjon.\n"
+
+#: ../savers/slideshow.c:53
+msgid "Location to get images from"
+msgstr "Stad bileta skal hentes frå"
+
+#: ../savers/slideshow.c:53
+msgid "PATH"
+msgstr "STIGE"
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "Farge som skal brukast for biletbakgrunn"
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "«#rrggbb»"
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr "Ikkje hent bileta i tilfeldig rekkjefølgja frå stad"
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Ikkje strekk bileta på skjermen"
+
+#: ../src/file-transfer-dialog.c:94
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Kopierer fil: %u av %u"
+
+#: ../src/file-transfer-dialog.c:122
+#, c-format
+msgid "Copying '%s'"
+msgstr "Kopierer «%s»"
+
+#: ../src/file-transfer-dialog.c:193
+msgid "From URI"
+msgstr "Frå URI"
+
+#: ../src/file-transfer-dialog.c:194
+msgid "URI currently transferring from"
+msgstr "URI overførast frå"
+
+#: ../src/file-transfer-dialog.c:201
+msgid "To URI"
+msgstr "Til URI"
+
+#: ../src/file-transfer-dialog.c:202
+msgid "URI currently transferring to"
+msgstr "URI overførast til"
+
+#: ../src/file-transfer-dialog.c:209
+msgid "Fraction completed"
+msgstr "Del ferdigstilt"
+
+#: ../src/file-transfer-dialog.c:210
+msgid "Fraction of transfer currently completed"
+msgstr "Andel av overføring som er fullført"
+
+#: ../src/file-transfer-dialog.c:217
+msgid "Current URI index"
+msgstr "Aktiv URI-indeks"
+
+#: ../src/file-transfer-dialog.c:218
+msgid "Current URI index - starts from 1"
+msgstr "Aktiv URI-indeks - starta frå 1"
+
+#: ../src/file-transfer-dialog.c:225
+msgid "Total URIs"
+msgstr "Totalt tal på URI'er"
+
+#: ../src/file-transfer-dialog.c:226
+msgid "Total number of URIs"
+msgstr "Totalt tal på URI'er"
+
+#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+msgid "Copying files"
+msgstr "Kopierer filer"
+
+#: ../src/file-transfer-dialog.c:345
+msgid "From:"
+msgstr "Frå:"
+
+#: ../src/file-transfer-dialog.c:349
+msgid "To:"
+msgstr "Til:"
+
+#: ../src/file-transfer-dialog.c:448
+msgid "Connecting..."
+msgstr "Koplar til..."
+
+#: ../src/gnome-screensaver-command.c:62
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Sørger for sikker avslutning av skjermspararen"
+
+#: ../src/gnome-screensaver-command.c:64
+msgid "Query the state of the screensaver"
+msgstr "Spør etter skjermspararstatus"
+
+#: ../src/gnome-screensaver-command.c:66
+msgid "Query the length of time the screensaver has been active"
+msgstr "Spør kor lenge skjermspararen har vore aktiv"
+
+#: ../src/gnome-screensaver-command.c:68
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "Tvingar køyrande skjermsparar til å låse skjermen omgåande"
+
+#: ../src/gnome-screensaver-command.c:70
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "Skift til eit anna tema om skjermspararen er aktiv"
+
+#: ../src/gnome-screensaver-command.c:72
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "Slå på skjermspararen (blank ut skjermen)"
+
+#: ../src/gnome-screensaver-command.c:74
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "Deaktiver skjermspararen om den er aktiv"
+
+#: ../src/gnome-screensaver-command.c:76
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "Kommuniser med køyrande skjermsparar for å simulere brukaraktivitet"
+
+#: ../src/gnome-screensaver-command.c:78
+msgid "Inhibit the screensaver from activating.  Command blocks while inhibit is active."
+msgstr "Hindre skjermspararen frå å aktiverast. Kommandoen blokkerer så lenge hindringa er aktiv."
+
+#: ../src/gnome-screensaver-command.c:80
+msgid "The calling application that is inhibiting the screensaver"
+msgstr "Programmet som hindrar skjermspararen"
+
+#: ../src/gnome-screensaver-command.c:82
+msgid "The reason for inhibiting the screensaver"
+msgstr "Årsak for hinding av skjermsparar."
+
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver.c:56
+msgid "Version of this application"
+msgstr "Skjermspararversjon"
+
+#: ../src/gnome-screensaver-command.c:249
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "Skjermsparar er %s\n"
+
+#: ../src/gnome-screensaver-command.c:249
+msgid "active"
+msgstr "aktiv"
+
+#: ../src/gnome-screensaver-command.c:249
+msgid "inactive"
+msgstr "inaktiv"
+
+#: ../src/gnome-screensaver-command.c:274
+#, c-format
+msgid "The screensaver has been active for %d seconds.\n"
+msgstr "Skjermspararen har vore aktiv i %d sekund.\n"
+
+#: ../src/gnome-screensaver-dialog.c:53
+msgid "Show debugging output"
+msgstr "Vis avlusingsinformasjon"
+
+#: ../src/gnome-screensaver-dialog.c:57
+msgid "Show the logout button"
+msgstr "Vis knapp for å logge ut"
+
+#: ../src/gnome-screensaver-dialog.c:59
+msgid "Command to invoke from the logout button"
+msgstr "Kommando som skal køyrast ved klikk på utloggingsknappen"
+
+#: ../src/gnome-screensaver-dialog.c:61
+msgid "Show the switch user button"
+msgstr "Vis knapp for å byte brukar"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "Message to show in the dialog"
+msgstr "Melding som skal vert viste i dialogen"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "MESSAGE"
+msgstr "MELDING"
+
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
+msgid "Username:"
+msgstr "Brukarnamn:"
+
+#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "Passord:"
+
+#: ../src/gnome-screensaver-dialog.c:178
+msgid "You are required to change your password immediately (password aged)"
+msgstr "Du må endra ditt passord no (passordet er utløpt)"
+
+#: ../src/gnome-screensaver-dialog.c:179
+msgid "You are required to change your password immediately (root enforced)"
+msgstr "Du må endra ditt passord no (bestemt av administrator)"
+
+#: ../src/gnome-screensaver-dialog.c:180
+msgid "Your account has expired; please contact your system administrator"
+msgstr "Din konto har utgått; vennligst kontakt systemadministrator"
+
+#: ../src/gnome-screensaver-dialog.c:181
+msgid "No password supplied"
+msgstr "Inga passord oppgjeven"
+
+#: ../src/gnome-screensaver-dialog.c:182
+msgid "Password unchanged"
+msgstr "Passordet er ikkje endra"
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "Can not get username"
+msgstr "Kan ikkje finna brukarnamn"
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "Retype new UNIX password:"
+msgstr "Skriv inn nytt UNIX-passord på nytt:"
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "Enter new UNIX password:"
+msgstr "Oppgje nytt UNIX-passord:"
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "(current) UNIX password:"
+msgstr "(aktivt) UNIX-passord:"
+
+#: ../src/gnome-screensaver-dialog.c:187
+msgid "Error while changing NIS password."
+msgstr "Feil under endring av NIS-passord."
+
+#: ../src/gnome-screensaver-dialog.c:188
+msgid "You must choose a longer password"
+msgstr "Du må velja eit lenger passord"
+
+#: ../src/gnome-screensaver-dialog.c:189
+msgid "Password has been already used. Choose another."
+msgstr "Passordet er allereie brukt. Vel eit anna."
+
+#: ../src/gnome-screensaver-dialog.c:190
+msgid "You must wait longer to change your password"
+msgstr "Du må vente lenger før du endrar ditt passord"
+
+#: ../src/gnome-screensaver-dialog.c:191
+msgid "Sorry, passwords do not match"
+msgstr "Beklager, passorda er ikkje like"
+
+#: ../src/gnome-screensaver-dialog.c:257
+msgid "Checking..."
+msgstr "Sjekkar..."
+
+#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
+msgid "Authentication failed."
+msgstr "Autentisering feilet."
+
+#: ../src/gnome-screensaver-preferences.c:500
+msgid "Blank screen"
+msgstr "Blank skjerm"
+
+#: ../src/gnome-screensaver-preferences.c:506
+msgid "Random"
+msgstr "Tilfeldig"
+
+#: ../src/gnome-screensaver-preferences.c:876
+msgid "Invalid screensaver theme"
+msgstr "Ugyldig tema for skjermsparar"
+
+#: ../src/gnome-screensaver-preferences.c:879
+msgid "This file does not appear to be a valid screensaver theme."
+msgstr "Denne fila ser ikkje ut til å vera eit gyldig tema for skjermsparar."
+
+#: ../src/gnome-screensaver-preferences.c:1006
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d time"
+msgstr[1] "%d timar"
+
+#: ../src/gnome-screensaver-preferences.c:1009
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minutt"
+msgstr[1] "%d minutt"
+
+#: ../src/gnome-screensaver-preferences.c:1012
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekund"
+msgstr[1] "%d sekund"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:1018
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:1021
+#: ../src/gnome-screensaver-preferences.c:1029
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:1024
+#: ../src/gnome-screensaver-preferences.c:1032
+#: ../src/gnome-screensaver-preferences.c:1036
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: ../src/gnome-screensaver-preferences.c:1051
+msgid "Never"
+msgstr "Aldri"
+
+#: ../src/gnome-screensaver-preferences.c:1450
+msgid "Could not load the main interface"
+msgstr "Kunne ikkje lasta hovudbrukargrensesnittet"
+
+#: ../src/gnome-screensaver-preferences.c:1452
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "Vennligst sjå til at skjermspararen er skikkeleg installert"
+
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "Ikkje køyr som teneste"
+
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr "Aktiver avlusingskode"
+
+#: ../src/gs-auth-pam.c:397
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr "Kan ikkje etablere teneste %s: %s\n"
+
+#: ../src/gs-auth-pam.c:423
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr "Kan ikkje setja PAM_TTY=%s"
+
+#: ../src/gs-auth-pam.c:455
+msgid "Incorrect password."
+msgstr "Ugyldig passord."
+
+#: ../src/gs-auth-pam.c:471
+msgid "Not permitted to gain access at this time."
+msgstr "Inga tillatelse til å få tilgang no."
+
+#: ../src/gs-auth-pam.c:477
+msgid "No longer permitted to access the system."
+msgstr "Tilgangen til systemet er fjerna."
+
+#: ../src/gs-listener-dbus.c:1921
+msgid "failed to register with the message bus"
+msgstr "klarte ikkje å registrere hos meldingsbussen"
+
+#: ../src/gs-listener-dbus.c:1931
+msgid "not connected to the message bus"
+msgstr "ikkje koblet til meldingsbussen"
+
+#: ../src/gs-listener-dbus.c:1940
+msgid "screensaver already running in this session"
+msgstr "skjermsparar køyrer allereie i denne sesjonen"
+
+#: ../src/gs-lock-plug.c:269
+msgid "Time has expired."
+msgstr "Tida har løpt ut."
+
+#: ../src/gs-lock-plug.c:297
+msgid "You have the Caps Lock key on."
+msgstr "Caps-Lock tasten er aktivert."
+
+#: ../src/gs-lock-plug.c:1187
+msgid "S_witch User..."
+msgstr "_Byt brukar..."
+
+#: ../src/gs-lock-plug.c:1196
+msgid "Log _Out"
+msgstr "Logg _ut"
+
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1373
+msgid "%U on %h"
+msgstr "%U på %h"
+
+#: ../src/gs-lock-plug.c:1387
+msgid "_Password:"
+msgstr "_Passord:"
+
+#~ msgid "Authentication"
+#~ msgstr "Autentisering"
+
+#~ msgid "Note"
+#~ msgstr "Merk"
+
+#~ msgid "N"
+#~ msgstr "X"
+
+#~ msgid "The manager which owns this object."
+#~ msgstr "Håndterer som eier dette objektet."
+
+#~ msgid "Name"
+#~ msgstr "Navn"
+
+#~ msgid "The name of the X11 display this object refers to."
+#~ msgstr "Navn på skjermen dette objektet refererer til."
+
+#~ msgid "User"
+#~ msgstr "Bruker"
+
+#~ msgid "The user currently logged in on this virtual terminal."
+#~ msgstr "Bruker som er logget inn på denne virtuelle terminalen."
+
+#~ msgid "Console"
+#~ msgstr "Konsoll"
+
+#~ msgid ""
+#~ "The number of the virtual console this display can be found on, or %-1."
+#~ msgstr "Konsollnummeret denne skjermen finnes på, eller %-1."
+
+#~ msgid "Whether or not this display is a windowed (Xnest) display."
+#~ msgstr "Om denne skjemen er en skjem i et vindu (Xnest)."
+
+#~ msgid "The display manager could not be contacted for unknown reasons."
+#~ msgstr "Skjermhåndtereren kunne ikke kontaktes av ukjente årsaker."
+
+#~ msgid "The display manager is not running or too old."
+#~ msgstr "Skjermhåndtereren kjører ikke eller er for gammel."
+
+#~ msgid "The configured limit of flexible servers has been reached."
+#~ msgstr "Innstilt maksgrense for antall fleksible tjenere er nådd."
+
+#~ msgid "There was an unknown error starting X."
+#~ msgstr "En ukjent feil oppstod under oppstart av X."
+
+#~ msgid "The X server failed to finish starting."
+#~ msgstr "X-tjeneren kunne ikke fullføre oppstart."
+
+#~ msgid "There are too many X sessions running."
+#~ msgstr "For mange aktive X-sesjoner."
+
+#~ msgid "The nested X server (Xnest) cannot connect to your current X server."
+#~ msgstr ""
+#~ "Den nøstede X-tjeneren (Xnest) kan ikke koble til nåværende X-tjener."
+
+#~ msgid "The X server in the GDM configuration could not be found."
+#~ msgstr "X-tjener oppgitt i GDM-konfigurasjonen ble ikke funnet."
+
+#~ msgid ""
+#~ "Trying to set an unknown logout action, or trying to set a logout action "
+#~ "which is not available."
+#~ msgstr ""
+#~ "Prøver å sette en ukjent handling for utlogging, eller en handling som "
+#~ "ikke er tilgjengelig."
+
+#~ msgid "Virtual terminals not supported."
+#~ msgstr "Virtuelle terminaler er ikke støttet."
+
+#~ msgid "Invalid virtual terminal number."
+#~ msgstr "Ugyldig nummer for virtuell terminal."
+
+#~ msgid "Trying to update an unsupported configuration key."
+#~ msgstr "Prøver å oppdatere en ustøttet konfigurasjonsnøkkel."
+
+#~ msgid "~/.Xauthority file badly configured or missing."
+#~ msgstr "Filen ~/.Xauthority inneholder feil eller mangler."
+
+#~ msgid "Too many messages were sent to the display manager, and it hung up."
+#~ msgstr "For mange meldinger ble sendt til skjermhåndtereren og den la på."
+
+#~ msgid "The display manager sent an unknown error message."
+#~ msgstr "Skjermhåndtereren sendte en ukjent feilmelding."
+
+#~ msgid "The user this menu item represents."
+#~ msgstr "Brukeren dette menyvalget representerer"
+
+#~ msgid "Icon Size"
+#~ msgstr "Ikonstørrelse"
+
+#~ msgid "The size of the icon to use."
+#~ msgstr "Størrelse på ikonet som skal brukes."
+
+#~ msgid "Indicator Size"
+#~ msgstr "Størrelse på indikator"
+
+#~ msgid "Size of check indicator"
+#~ msgstr "Størrelse på indikator for sjekk"
+
+#~ msgid "Indicator Spacing"
+#~ msgstr "Indikatormellomrom"
+
+#~ msgid "Space between the username and the indicator"
+#~ msgstr "Mellomrom mellom brukernavn og indikator"
+
+#~ msgid "The user manager object this user is controlled by."
+#~ msgstr "Brukerhåndteringsobjekt denne brukeren kontrolleres av."
+
+#~ msgid "Show Details"
+#~ msgstr "Vis detaljer"
+
+#~ msgid "GDM (The GNOME Display Manager) is not running."
+#~ msgstr "GDM (GNOME skjermhåndterer) kjører ikke."
+
+#~ msgid ""
+#~ "You might in fact be using a different display manager, such as KDM (KDE "
+#~ "Display Manager) or xdm."
+#~ msgstr ""
+#~ "Du bruker kanskje en annen skjermhåndterer slik som KDM (KDE "
+#~ "skjermhåndterer) eller xdm."
+
+#~ msgid ""
+#~ "If you still wish to use this feature, either start GDM yourself or ask "
+#~ "your system administrator to start GDM."
+#~ msgstr ""
+#~ "Hvis du fremdeles ønsker å bruke denne funksjonen må du enten starte GDM "
+#~ "selv eller spørre din systemadministrator om å starte GDM."
+
+#~ msgid "Cannot communicate with GDM (The GNOME Display Manager)"
+#~ msgstr "Kan ikke kommunisere med GDM (GNOME Display Manager)"
+
+#~ msgid "Perhaps you have an old version of GDM running."
+#~ msgstr "Kanskje du har en gammel versjon av GDM kjørende på maskinen."
+
+#~ msgid ""
+#~ "Cannot communicate with gdm, perhaps you have an old version running."
+#~ msgstr "Kan ikke kommunisere med GDM. Har du en gammel versjon kjørende?"
+
+#~ msgid "The allowed limit of flexible X servers reached."
+#~ msgstr "Grensen for tillatte \"fleksible\" X-tjenere er nådd."
+
+#~ msgid "There were errors trying to start the X server."
+#~ msgstr "Feil oppstod under oppstart av X-tjeneren."
+
+#~ msgid "The X server failed.  Perhaps it is not configured well."
+#~ msgstr ""
+#~ "X-tjeneren endte opp med en feilmelding. Kanskje den er feilkonfigurert?"
+
+#~ msgid "Too many X sessions running."
+#~ msgstr "For mange X-sesjoner kjører."
+
+#~ msgid ""
+#~ "The nested X server (Xnest) cannot connect to your current X server.  You "
+#~ "may be missing an X authorization file."
+#~ msgstr ""
+#~ "Nøstet X-tjener (Xnest) kan ikke koble til din X-tjener. Du mangler "
+#~ "kanskje en autorisasjonsfil for X."
+
+#~ msgid ""
+#~ "The nested X server (Xnest) is not available, or gdm is badly "
+#~ "configured.\n"
+#~ "Please install the Xnest package in order to use the nested login."
+#~ msgstr ""
+#~ "Nøstet X-tjener (Xnest) er ikke tilgjengelig, eller gdm er "
+#~ "feilkonfigurert.\n"
+#~ "Vennligst installer Xnest-pakken for å bruke nøstet påloggin."
+
+#~ msgid ""
+#~ "The X server is not available, it is likely that gdm is badly configured."
+#~ msgstr ""
+#~ "X-tjeneren er ikke tilgjengelig. Det er sannsynlig at GDM er "
+#~ "feilkonfigurert."
+
+#~ msgid "Trying to change to an invalid virtual terminal number."
+#~ msgstr "Prøver å bytte til en ugyldig virtuell terminal."
+
+#~ msgid ""
+#~ "You do not seem to have authentication needed be for this operation.  "
+#~ "Perhaps your .Xauthority file is not set up correctly."
+#~ msgstr ""
+#~ "Du har ikke nødvendig autentisering for denne operasjonen. Kanskje din ."
+#~ "Xauthority-fil ikke er satt opp korrekt."
+
+#~ msgid "Too many messages were sent to gdm and it hung upon us."
+#~ msgstr "For mange meldinger ble sendt til GDM."
+
+#~ msgid "Unknown error occurred."
+#~ msgstr "Ukjent feil oppsto."
