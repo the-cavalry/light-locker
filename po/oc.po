@@ -1,11 +1,9 @@
-# translation of oc.po to Occitan
+# Translation of oc.po to Occitan
 # Occitan translation of gnome-screensaver.
 # Copyright (C) 2005-2006, 2007 The Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-screensaver package.
 #
-# Yannig MARCHEGAY (yannig@marchegay.org) - 2006-2007
-#
-# Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>, 2007.
+# Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>, 2006-2008
 msgid ""
 msgstr ""
 "Project-Id-Version: oc\n"
@@ -18,7 +16,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
 msgid "Screensaver"
@@ -432,7 +429,7 @@ msgstr "Destinatari :"
 
 #: ../src/file-transfer-dialog.c:448
 msgid "Connecting..."
-msgstr "Connection..."
+msgstr "Connexion..."
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -623,14 +620,14 @@ msgstr ""
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d ora"
-msgstr[1] "%d ora"
+msgstr[1] "%d oras"
 
 #: ../src/gnome-screensaver-preferences.c:1010
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minuta"
-msgstr[1] "%d minuta"
+msgstr[1] "%d minutas"
 
 #: ../src/gnome-screensaver-preferences.c:1013
 #, c-format
