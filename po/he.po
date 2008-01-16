@@ -5,14 +5,14 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.14\n"
+"Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-03 03:57+0100\n"
-"PO-Revision-Date: 2006-06-28 09:37+0200\n"
+"POT-Creation-Date: 2007-10-15 22:21+0100\n"
+"PO-Revision-Date: 2007-11-17 09:59+0000\n"
 "Last-Translator: Yaniv Abir <yanivabir at gmail dot com>\n"
-"Language-Team: he\n"
+"Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
@@ -30,7 +30,7 @@ msgstr "<b>תצוגה מקדימה של שומר המסך</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:2
 msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgstr "<b>אזהרה: המסך לא ינעל עבור המשתמש root.</b>"
+msgstr "<b>אזהרה: המסך לא יינעל עבור מנהל המערכת./b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "Power _Management"
@@ -103,7 +103,7 @@ msgstr "Logout command"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Reason for being away"
-msgstr ""
+msgstr "Reason for being away"
 
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver theme selection mode"
@@ -260,7 +260,7 @@ msgstr "Time before theme change"
 #: ../data/lock-dialog-default.glade.h:2
 #, no-c-format
 msgid "<b>Leave a message for %R:</b>"
-msgstr ""
+msgstr "<b>השאר הודעה עבור %R:</b>"
 
 #: ../data/lock-dialog-default.glade.h:4
 #, no-c-format
@@ -278,7 +278,7 @@ msgstr "_בטל"
 
 #: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
-msgstr ""
+msgstr "_השאר הודעה"
 
 #: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
@@ -290,7 +290,7 @@ msgstr "_החלף משתמש"
 
 #: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
 msgid "_Unlock"
-msgstr "_התנתק"
+msgstr "_התחבר"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
@@ -306,7 +306,7 @@ msgstr "מבעבע את רגל הסמל של GNOME ברחבי המסך"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:2
 msgid "Floating Feet"
-msgstr "רגל מרחפת"
+msgstr "רגליים צפות"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
@@ -318,11 +318,11 @@ msgstr "תיקיית התמונות"
 
 #: ../savers/popsquares.desktop.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
-msgstr ""
+msgstr "רשת פופ-ארטית של פעימות צבע"
 
 #: ../savers/popsquares.desktop.in.h:2
 msgid "Pop art squares"
-msgstr ""
+msgstr "ריבועי פופ-ארט"
 
 #: ../savers/floaters.c:84
 msgid "Show paths that images follow"
@@ -382,19 +382,19 @@ msgstr "PATH"
 
 #: ../savers/slideshow.c:55
 msgid "Color to use for images background"
-msgstr ""
+msgstr "הצבע שישמש רקע לתמונות"
 
 #: ../savers/slideshow.c:55
 msgid "\"#rrggbb\""
-msgstr ""
+msgstr "\"#rrggbb\""
 
 #: ../savers/slideshow.c:57
 msgid "Do not randomize pictures from location"
-msgstr ""
+msgstr "אל תציג באקראי תמונות מהמיקום"
 
 #: ../savers/slideshow.c:59
 msgid "Do not try to stretch images on screen"
-msgstr ""
+msgstr "אל תנסה למתוח תמוונת על המסך"
 
 #: ../src/file-transfer-dialog.c:94
 #, c-format
@@ -424,27 +424,27 @@ msgstr "הכתובת אליה מעבירים"
 
 #: ../src/file-transfer-dialog.c:209
 msgid "Fraction completed"
-msgstr ""
+msgstr "חלק שהסתיים"
 
 #: ../src/file-transfer-dialog.c:210
 msgid "Fraction of transfer currently completed"
-msgstr ""
+msgstr "החלק מההעברה שהסתיים כבר"
 
 #: ../src/file-transfer-dialog.c:217
 msgid "Current URI index"
-msgstr ""
+msgstr "אינדקס כתובת נוכחי"
 
 #: ../src/file-transfer-dialog.c:218
 msgid "Current URI index - starts from 1"
-msgstr ""
+msgstr "אינדקס כתובת נוכחי - מתחיל מ 1"
 
 #: ../src/file-transfer-dialog.c:225
 msgid "Total URIs"
-msgstr ""
+msgstr "סך כל הכתובות"
 
 #: ../src/file-transfer-dialog.c:226
 msgid "Total number of URIs"
-msgstr ""
+msgstr "המספר של כל הכתובות"
 
 #: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
 msgid "Copying files"
@@ -531,7 +531,7 @@ msgstr "לא פעיל"
 #: ../src/gnome-screensaver-command.c:274
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
-msgstr "שומר המסך פעיל במשך %d שניות.\n"
+msgstr "שומר המסך היה פעיל במשך %d שניות.\n"
 
 #: ../src/gnome-screensaver-dialog.c:53
 msgid "Show debugging output"
@@ -570,59 +570,59 @@ msgstr "סיסמה:"
 
 #: ../src/gnome-screensaver-dialog.c:178
 msgid "You are required to change your password immediately (password aged)"
-msgstr ""
+msgstr "הינך מחוייב לשנות את סיסמתך מיידית (הסיסמה התיישנה)"
 
 #: ../src/gnome-screensaver-dialog.c:179
 msgid "You are required to change your password immediately (root enforced)"
-msgstr ""
+msgstr "הינך מחוייב לשנות את סיסמתך מיידית (דרישת מנהל המערכת)"
 
 #: ../src/gnome-screensaver-dialog.c:180
 msgid "Your account has expired; please contact your system administrator"
-msgstr ""
+msgstr "פג תוקף חשבונך; אנא צור קשר עם מנהל המערכת שלך"
 
 #: ../src/gnome-screensaver-dialog.c:181
 msgid "No password supplied"
-msgstr ""
+msgstr "לא סופקה סיסמה"
 
 #: ../src/gnome-screensaver-dialog.c:182
 msgid "Password unchanged"
-msgstr ""
+msgstr "סיסמה לא השתנתה"
 
 #: ../src/gnome-screensaver-dialog.c:183
 msgid "Can not get username"
-msgstr ""
+msgstr "נכשל בהשגת שם משתמש"
 
 #: ../src/gnome-screensaver-dialog.c:184
 msgid "Retype new UNIX password:"
-msgstr ""
+msgstr "הקלד מחדש סיסמת UNIX חדשה:"
 
 #: ../src/gnome-screensaver-dialog.c:185
 msgid "Enter new UNIX password:"
-msgstr ""
+msgstr "הכנס סיסמת UNIX חדשה:"
 
 #: ../src/gnome-screensaver-dialog.c:186
 msgid "(current) UNIX password:"
-msgstr ""
+msgstr "סיסמת UNIX (נוכחית):"
 
 #: ../src/gnome-screensaver-dialog.c:187
 msgid "Error while changing NIS password."
-msgstr ""
+msgstr "שגיאה בזמן שינוי סיסמת NIS."
 
 #: ../src/gnome-screensaver-dialog.c:188
 msgid "You must choose a longer password"
-msgstr ""
+msgstr "אתה חייב לבחור סיסמה ארוכה יותר"
 
 #: ../src/gnome-screensaver-dialog.c:189
 msgid "Password has been already used. Choose another."
-msgstr ""
+msgstr "הסיסמה הייתה כבר בשימוש. בחר אחרת."
 
 #: ../src/gnome-screensaver-dialog.c:190
 msgid "You must wait longer to change your password"
-msgstr ""
+msgstr "אתה חייב לחכות יותר כדי לשנות את הסיסמה"
 
 #: ../src/gnome-screensaver-dialog.c:191
 msgid "Sorry, passwords do not match"
-msgstr "הסיסמאות לא מתאינות"
+msgstr "סליחה, הסיסמאות אינן מתאימות"
 
 #: ../src/gnome-screensaver-dialog.c:257
 msgid "Checking..."
@@ -699,7 +699,7 @@ msgstr "אף פעם"
 
 #: ../src/gnome-screensaver-preferences.c:1451
 msgid "Could not load the main interface"
-msgstr "נכשל בטעינת הממשק הראשי"
+msgstr "לא ניתן להעלות את המנשק הראשי"
 
 #: ../src/gnome-screensaver-preferences.c:1453
 msgid "Please make sure that the screensaver is properly installed"
@@ -729,23 +729,23 @@ msgstr "סיסמה שגויה."
 
 #: ../src/gs-auth-pam.c:471
 msgid "Not permitted to gain access at this time."
-msgstr ""
+msgstr "לא מורשה לקבל גישה בזמן זה."
 
 #: ../src/gs-auth-pam.c:477
 msgid "No longer permitted to access the system."
-msgstr ""
+msgstr "כבר לא מורשה לגשת למערכת"
 
 #: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
-msgstr ""
+msgstr "נכשל ברישום עם ה-message bus"
 
 #: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
-msgstr ""
+msgstr "לא מוחבר ל-message bus"
 
 #: ../src/gs-listener-dbus.c:1940
 msgid "screensaver already running in this session"
-msgstr ""
+msgstr "שומר המסך כבר רץ עבור התחברות זאת"
 
 #: ../src/gs-lock-plug.c:269
 msgid "Time has expired."
@@ -757,7 +757,7 @@ msgstr "מקש ה-Caps Lock לחוץ."
 
 #: ../src/gs-lock-plug.c:1187
 msgid "S_witch User..."
-msgstr "_החלף משתמש..."
+msgstr "הח_לף משתמש..."
 
 #: ../src/gs-lock-plug.c:1196
 msgid "Log _Out"
@@ -770,7 +770,7 @@ msgstr "%U ב-%h"
 
 #: ../src/gs-lock-plug.c:1387
 msgid "_Password:"
-msgstr "_סיסמא:"
+msgstr "_סיסמה:"
 
 #~ msgid "_Switch user..."
 #~ msgstr "_החלף משתמש..."
