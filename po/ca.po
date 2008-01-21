@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-01 20:08+0200\n"
-"PO-Revision-Date: 2007-08-04 19:53+0200\n"
+"POT-Creation-Date: 2008-01-21 20:54+0100\n"
+"PO-Revision-Date: 2008-01-21 20:55+0100\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.net>\n"
 "MIME-Version: 1.0\n"
@@ -292,7 +292,7 @@ msgstr "_Cancel·la"
 
 #: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
-msgstr "_Missatge d'absència"
+msgstr "Deixeu un _missatge"
 
 #: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
@@ -302,7 +302,7 @@ msgstr "_Surt"
 msgid "_Switch User"
 msgstr "Canvia d'_usuari"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1210
 msgid "_Unlock"
 msgstr "_Desbloca"
 
@@ -383,6 +383,7 @@ msgid "%s. See --help for usage information.\n"
 msgstr "%s. Vegeu --help per a la informació sobre la forma d'ús.\n"
 
 #: ../savers/floaters.c:1209
+#, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
 "Heu d'indicar una imatge. Vegeu --help per a la informació sobre la forma "
@@ -718,6 +719,7 @@ msgid "%s"
 msgstr "%s"
 
 #: ../src/gnome-screensaver-preferences.c:1051
+#, c-format
 msgid "Never"
 msgstr "Mai"
 
@@ -779,20 +781,20 @@ msgstr "S'ha excedit el temps."
 msgid "You have the Caps Lock key on."
 msgstr "Teniu la tecla de fixació de majúscules activada."
 
-#: ../src/gs-lock-plug.c:1187
+#: ../src/gs-lock-plug.c:1190
 msgid "S_witch User..."
 msgstr "Canvia d'_usuari..."
 
-#: ../src/gs-lock-plug.c:1196
+#: ../src/gs-lock-plug.c:1199
 msgid "Log _Out"
 msgstr "_Surt"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1373
+#: ../src/gs-lock-plug.c:1376
 msgid "%U on %h"
 msgstr "%U a %h"
 
-#: ../src/gs-lock-plug.c:1387
+#: ../src/gs-lock-plug.c:1390
 msgid "_Password:"
 msgstr "_Contrasenya:"
 
