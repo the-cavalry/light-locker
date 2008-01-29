@@ -1,5 +1,27 @@
 2008-01-28  William Jon McCann  <mccann@jhu.edu>
 
+	* configure.ac:
+	* src/Makefile.am:
+	* src/copy-theme-dialog.c: (copy_theme_dialog_get_type),
+	(copy_theme_dialog_class_init), (copy_theme_dialog_new),
+	(copy_theme_dialog_init), (add_file_to_dialog),
+	(single_copy_complete), (copy_theme_dialog_copy_next),
+	(copy_theme_dialog_begin), (copy_theme_dialog_cancel),
+	(copy_theme_dialog_finalize), (copy_theme_dialog_update_num_files),
+	(copy_theme_dialog_response), (eel_gtk_label_make_bold),
+	(create_titled_label):
+	* src/copy-theme-dialog.h:
+	* src/file-transfer-dialog.c:
+	* src/file-transfer-dialog.h:
+	* src/gnome-screensaver-preferences.c: (theme_copy_complete_cb),
+	(theme_installer_run), (uri_list_parse), (drag_data_received_cb):
+	Allow dragging multiple .desktop files to preferences dialog.
+	Rewrite transfer dialog and port to GIO.
+	Patch from: John Millikin <jmillikin@gmail.com>
+	Fixes #512492
+
+2008-01-28  William Jon McCann  <mccann@jhu.edu>
+
 	* src/gs-lock-plug.c: (cancel_note):
 	Set default action after cancelling note.
 

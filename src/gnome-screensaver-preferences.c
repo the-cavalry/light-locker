@@ -36,11 +36,9 @@
 #include <glade/glade.h>
 #include <gconf/gconf-client.h>
 
-#include <libgnomevfs/gnome-vfs-async-ops.h>
-#include <libgnomevfs/gnome-vfs-ops.h>
-#include <libgnomevfs/gnome-vfs-utils.h>
+#include <gio/gio.h>
 
-#include "file-transfer-dialog.h"
+#include "copy-theme-dialog.h"
 
 #include "gs-theme-manager.h"
 #include "gs-job.h"
@@ -810,123 +808,30 @@ reload_themes (void)
 }
 
 static void
-transfer_done_cb (GtkWidget *dialog,
-                  char      *path)
+theme_copy_complete_cb (GtkWidget *dialog, gpointer user_data)
 {
-
-        g_free (path);
-
-        gtk_widget_destroy (dialog);
-
         reload_themes ();
 }
 
 static void
-transfer_cancel_cb (GtkWidget *dialog,
-                    char      *path)
+theme_installer_run (GtkWidget *prefs_dialog, GList *files)
 {
-        gnome_vfs_unlink (path);
-        g_free (path);
-
-        gtk_widget_destroy (dialog);
-}
-
-static void
-theme_installer_run (GtkWidget *parent,
-                     char      *filename)
-{
-        GtkWidget    *dialog;
-        GnomeVFSURI  *src_uri;
-        GList        *src;
-        GList        *target;
-        char         *user_dir;
-        char         *short_name;
-        char         *base_name;
-        char         *target_path;
-        gboolean      is_desktop;
-
-        src_uri = gnome_vfs_uri_new (filename);
-        src = g_list_append (NULL, src_uri);
-        target = NULL;
-        target_path = NULL;
-
-        user_dir = g_build_filename (g_get_user_data_dir (), "applications", "screensavers", NULL);
-        g_mkdir_with_parents (user_dir, S_IRWXU);
-
-        short_name = gnome_vfs_uri_extract_short_name (src_uri);
-        base_name = NULL;
-
-        is_desktop = FALSE;
-        if (short_name != NULL
-            && g_str_has_suffix (short_name, ".desktop")) {
-                /* FIXME: validate key file? */
-                is_desktop = TRUE;
-                base_name = g_strndup (short_name, strlen (short_name) - 8);
-        }
-
-        while (TRUE) {
-                char *tmp;
-                gboolean exists;
-
-                if (! is_desktop) {
-                        dialog = gtk_message_dialog_new (GTK_WINDOW (parent),
-                                                         GTK_DIALOG_MODAL,
-                                                         GTK_MESSAGE_ERROR,
-                                                         GTK_BUTTONS_OK,
-                                                         _("Invalid screensaver theme"));
-                        gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-                                                                  "%s",
-                                                                  _("This file does not appear to be a valid screensaver theme."));
-                        gtk_window_set_title (GTK_WINDOW (dialog), "");
-                        gtk_window_set_icon_name (GTK_WINDOW (dialog), "screensaver");
-
-                        gtk_dialog_run (GTK_DIALOG (dialog));
-                        gtk_widget_destroy (dialog);
-                        g_free (target_path);
-                        goto out;
-                }
-
-                g_free (target_path);
-                target_path = g_build_filename (user_dir, short_name, NULL);
-
-                /* FIXME: racy, oh well */
-                exists = gnome_vfs_uri_exists (gnome_vfs_uri_new (target_path));
-                if (! exists) {
-                        target = g_list_append (NULL, gnome_vfs_uri_new (target_path));
-                        break;
-                }
-
-                /* try another name */
-                tmp = g_strdup_printf ("%s-%u.desktop",  base_name, g_random_int ());
-                g_free (short_name);
-                short_name = tmp;
-        }
-
-        dialog = file_transfer_dialog_new ();
-        gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (parent));
-        gtk_window_set_icon_name (GTK_WINDOW (dialog), "screensaver");
-
-        file_transfer_dialog_wrap_async_xfer (FILE_TRANSFER_DIALOG (dialog),
-                                              src, target,
-                                              GNOME_VFS_XFER_RECURSIVE,
-                                              GNOME_VFS_XFER_ERROR_MODE_QUERY,
-                                              GNOME_VFS_XFER_OVERWRITE_MODE_QUERY,
-                                              GNOME_VFS_PRIORITY_DEFAULT);
-
-        g_signal_connect (dialog, "cancel",
-                          G_CALLBACK (transfer_cancel_cb), target_path);
-        g_signal_connect (dialog, "done",
-                          G_CALLBACK (transfer_done_cb), target_path);
-
-        gtk_widget_show (dialog);
-
- out:
-        gnome_vfs_uri_list_unref (src);
-        gnome_vfs_uri_list_unref (target);
-
-        g_free (user_dir);
-        g_free (base_name);
-        g_free (short_name);
+        GtkWidget *copy_dialog;
+        
+        copy_dialog = copy_theme_dialog_new (files);
+        g_list_foreach (files, (GFunc) (g_object_unref), NULL);
+        g_list_free (files);
+        
+        gtk_window_set_transient_for (GTK_WINDOW (copy_dialog),
+                                        GTK_WINDOW (prefs_dialog));
+        gtk_window_set_icon_name (GTK_WINDOW (copy_dialog),
+                                        "screensaver");
+        
+        g_signal_connect (copy_dialog, "complete",
+                          G_CALLBACK (theme_copy_complete_cb), NULL);
+        
+        copy_theme_dialog_begin (COPY_THEME_DIALOG (copy_dialog));
+        gtk_widget_destroy (copy_dialog);
 }
 
 /* Callback issued during drag movements */
@@ -951,6 +856,63 @@ drag_leave_cb (GtkWidget      *widget,
         gtk_widget_queue_draw (widget);
 }
 
+/* GIO has no version of gnome_vfs_uri_list_parse(), so copy from GnomeVFS
+ * and re-work to create GFiles.
+**/
+static GList *
+uri_list_parse (const gchar *uri_list)
+{
+        const gchar *p, *q;
+        gchar *retval;
+        GFile *file;
+        GList *result = NULL;
+        
+        g_return_val_if_fail (uri_list != NULL, NULL);
+        
+        p = uri_list;
+        
+        /* We don't actually try to validate the URI according to RFC
+         * 2396, or even check for allowed characters - we just ignore
+         * comments and trim whitespace off the ends.  We also
+         * allow LF delimination as well as the specified CRLF.
+         */
+        while (p != NULL) {
+                if (*p != '#') {
+                        while (g_ascii_isspace (*p))
+                                p++;
+                        
+                        q = p;
+                        while ((*q != '\0')
+                               && (*q != '\n')
+                               && (*q != '\r'))
+                                q++;
+                        
+                        if (q > p) {
+                                q--;
+                                while (q > p
+                                       && g_ascii_isspace (*q))
+                                        q--;
+                                
+                                retval = g_malloc (q - p + 2);
+                                strncpy (retval, p, q - p + 1);
+                                retval[q - p + 1] = '\0';
+                                
+                                file = g_file_new_for_uri (retval);
+                                
+                                g_free (retval);
+                                
+                                if (file != NULL)
+                                        result = g_list_prepend (result, file);
+                        }
+                }
+                p = strchr (p, '\n');
+                if (p != NULL)
+                        p++;
+        }
+        
+        return g_list_reverse (result);
+}
+
 /* Callback issued on actual drops. Attempts to load the file dropped. */
 static void
 drag_data_received_cb (GtkWidget        *widget,
@@ -962,32 +924,18 @@ drag_data_received_cb (GtkWidget        *widget,
                        guint             time,
                        gpointer          data)
 {
-        GtkWidget *dialog;
-        GList     *uris;
-        char      *filename = NULL;
+        GList     *files;
 
         if (!(info == TARGET_URI_LIST || info == TARGET_NS_URL))
                 return;
-
-        uris = gnome_vfs_uri_list_parse ((char *) selection_data->data);
-        if (uris != NULL && uris->data != NULL) {
-                GnomeVFSURI *uri = (GnomeVFSURI *) uris->data;
-
-                if (gnome_vfs_uri_is_local (uri)) {
-                        filename = gnome_vfs_unescape_string (gnome_vfs_uri_get_path (uri),
-                                                              G_DIR_SEPARATOR_S);
-                } else {
-                        filename = gnome_vfs_unescape_string (gnome_vfs_uri_to_string (uri, GNOME_VFS_URI_HIDE_NONE),
-                                                              G_DIR_SEPARATOR_S);
-                }
-
-                gnome_vfs_uri_list_unref (uris);
+        
+        files = uri_list_parse ((char *) selection_data->data);
+        if (files != NULL) {
+                GtkWidget *prefs_dialog;
+                
+                prefs_dialog = glade_xml_get_widget (xml, "prefs_dialog");
+                theme_installer_run (prefs_dialog, files);
         }
-
-        dialog = glade_xml_get_widget (xml, "prefs_dialog");
-        theme_installer_run (dialog, filename);
-
-        g_free (filename);
 }
 
 /* Adapted from totem_time_to_string_text */
