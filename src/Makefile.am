@@ -85,7 +85,7 @@ test_passwd_SOURCES = 			\
 	$(NULL)
 
 test_passwd_LDADD =			\
-	$(GNOME_SCREENSAVER_LIBS)	\
+	$(GNOME_SCREENSAVER_DIALOG_LIBS)\
 	$(AUTH_LIBS)			\
 	$(NULL)
 

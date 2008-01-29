@@ -1,3 +1,8 @@
+2008-01-28  William Jon McCann  <mccann@jhu.edu>
+
+	* src/Makefile.am:
+	Use dialog libs for test-passwd.
+
 2007-12-12  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: Post branch version bump.
