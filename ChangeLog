@@ -1,5 +1,10 @@
 2008-01-28  William Jon McCann  <mccann@jhu.edu>
 
+	* src/gs-lock-plug.c: (cancel_note):
+	Set default action after cancelling note.
+
+2008-01-28  William Jon McCann  <mccann@jhu.edu>
+
 	* src/Makefile.am:
 	Use dialog libs for test-passwd.
 

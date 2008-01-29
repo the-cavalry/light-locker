@@ -876,6 +876,8 @@ cancel_note (GtkButton  *button,
 
         /* this counts as activity so restart the timer */
         restart_cancel_timeout (plug);
+
+        gtk_window_set_default (GTK_WINDOW (plug), plug->priv->auth_unlock_button);
 }
 
 static void
