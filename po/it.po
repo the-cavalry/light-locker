@@ -1,7 +1,7 @@
 # Italian Translation of gnome-screensaver
 # Copyright (C) 2005 Free Software Foundation Inc.
 # This file is distributed under the same license as the gnome-screensaver package.
-# Luca Ferretti <elle.uca@libero.it>, 2006,2007
+# Luca Ferretti <elle.uca@libero.it>, 2006-2008
 #
 #   idle -> inattivo/a
 #   activate --> avvia (per evitare attiva quando inattivo)
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-04 17:13+0200\n"
-"PO-Revision-Date: 2007-09-04 17:18+0200\n"
+"POT-Creation-Date: 2008-01-29 11:58+0100\n"
+"PO-Revision-Date: 2008-01-29 11:59+0100\n"
 "Last-Translator: Luca Ferretti <elle.uca@libero.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -309,7 +309,7 @@ msgstr "_Termina sessione"
 msgid "_Switch User"
 msgstr "_Cambia utente"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
 msgid "_Unlock"
 msgstr "S_blocca"
 
@@ -436,71 +436,35 @@ msgstr "Non recupera a caso le immagini dalla posizione"
 msgid "Do not try to stretch images on screen"
 msgstr "Non tenta di stirare le immagini sullo schermo"
 
-#: ../src/file-transfer-dialog.c:94
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Copia del file: %u di %u"
-
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "Copia di «%s»"
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "URI origine"
-
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "URI da cui si sta trasferendo"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "URI destinazione"
-
-#: ../src/file-transfer-dialog.c:202
-msgid "URI currently transferring to"
-msgstr "URI su cui si sta trasferendo"
-
-#: ../src/file-transfer-dialog.c:209
-msgid "Fraction completed"
-msgstr "Frazione completata"
-
-#: ../src/file-transfer-dialog.c:210
-msgid "Fraction of transfer currently completed"
-msgstr "Frazione di trasferimento al momento completato"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "Indice URI corrente"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "Indice dell'URI corrente - a partire da 1"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "Totale URI"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "Numero totale di URI"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+#: ../src/copy-theme-dialog.c:204
 msgid "Copying files"
 msgstr "Copia dei file"
 
-#: ../src/file-transfer-dialog.c:345
+#: ../src/copy-theme-dialog.c:222
 msgid "From:"
 msgstr "Da:"
 
-#: ../src/file-transfer-dialog.c:349
+#: ../src/copy-theme-dialog.c:226
 msgid "To:"
 msgstr "A:"
 
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "Connessione..."
+#: ../src/copy-theme-dialog.c:246
+msgid "Copying themes"
+msgstr "Copia dei temi"
+
+#: ../src/copy-theme-dialog.c:290
+msgid "Invalid screensaver theme"
+msgstr "Tema di salvaschermo non valido"
+
+#: ../src/copy-theme-dialog.c:293
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "Sembra che «%s» non sia un tema di salvaschermo valido."
+
+#: ../src/copy-theme-dialog.c:454
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Copia del file: %u di %u"
 
 # sarebbe, credo, non violenta... Ci debbo pensare meglio -Luca
 #: ../src/gnome-screensaver-command.c:62
@@ -686,37 +650,29 @@ msgstr "Controllo..."
 msgid "Authentication failed."
 msgstr "Autenticazione fallita."
 
-#: ../src/gnome-screensaver-preferences.c:500
+#: ../src/gnome-screensaver-preferences.c:498
 msgid "Blank screen"
 msgstr "Schermo vuoto"
 
-#: ../src/gnome-screensaver-preferences.c:506
+#: ../src/gnome-screensaver-preferences.c:504
 msgid "Random"
 msgstr "Casuale"
 
-#: ../src/gnome-screensaver-preferences.c:876
-msgid "Invalid screensaver theme"
-msgstr "Tema di salvaschermo non valido"
-
-#: ../src/gnome-screensaver-preferences.c:879
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Questo file non sembra essere un tema di salvaschermo valido."
-
-#: ../src/gnome-screensaver-preferences.c:1006
+#: ../src/gnome-screensaver-preferences.c:954
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d ora"
 msgstr[1] "%d ore"
 
-#: ../src/gnome-screensaver-preferences.c:1009
+#: ../src/gnome-screensaver-preferences.c:957
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minuto"
 msgstr[1] "%d minuti"
 
-#: ../src/gnome-screensaver-preferences.c:1012
+#: ../src/gnome-screensaver-preferences.c:960
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -724,15 +680,15 @@ msgstr[0] "%d secondo"
 msgstr[1] "%d secondi"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1018
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s %s"
 msgstr "%s, %s e %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1021
-#: ../src/gnome-screensaver-preferences.c:1029
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -740,23 +696,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:1024
-#: ../src/gnome-screensaver-preferences.c:1032
-#: ../src/gnome-screensaver-preferences.c:1036
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1051
+#: ../src/gnome-screensaver-preferences.c:999
 #, c-format
 msgid "Never"
 msgstr "Mai"
 
-#: ../src/gnome-screensaver-preferences.c:1450
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
 msgstr "Impossibile caricare l'interfaccia principale"
 
-#: ../src/gnome-screensaver-preferences.c:1452
+#: ../src/gnome-screensaver-preferences.c:1400
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Assicurarsi che il salvaschermo sia installato in modo corretto"
 
@@ -815,19 +771,19 @@ msgstr "Tempo scaduto!"
 msgid "You have the Caps Lock key on."
 msgstr "Il tasto BlocMaiusc è attivato."
 
-#: ../src/gs-lock-plug.c:1187
+#: ../src/gs-lock-plug.c:1192
 msgid "S_witch User..."
 msgstr "_Cambia utente..."
 
-#: ../src/gs-lock-plug.c:1196
+#: ../src/gs-lock-plug.c:1201
 msgid "Log _Out"
 msgstr "_Termina sessione"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1373
+#: ../src/gs-lock-plug.c:1378
 msgid "%U on %h"
 msgstr "%U su %h"
 
-#: ../src/gs-lock-plug.c:1387
+#: ../src/gs-lock-plug.c:1392
 msgid "_Password:"
 msgstr "Pass_word:"

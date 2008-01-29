@@ -1,3 +1,8 @@
+2008-01-29  Luca Ferretti  <elle.uca@libero.it>
+
+	* POTIFILES.in: added new file.
+	* it.po: Updated Italian translation.
+
 2008-01-21  Gil Forcada  <gforcada@gnome.org>
 
 	* ca.po: Small fix thanks to David Planella.
