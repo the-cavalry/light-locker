@@ -12,7 +12,6 @@ savers/popsquares.desktop.in
 savers/floaters.c
 savers/slideshow.c
 src/copy-theme-dialog.c
-src/file-transfer-dialog.c
 src/gnome-screensaver-command.c
 src/gnome-screensaver-dialog.c
 src/gnome-screensaver-preferences.c
