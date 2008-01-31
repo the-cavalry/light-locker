@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-03 03:57+0100\n"
+"POT-Creation-Date: 2008-01-31 08:08+0000\n"
 "PO-Revision-Date: 2006-12-27 20:36+0200\n"
 "Last-Translator: Anas Husseini <linux.anas@gmail.com>\n"
 "Language-Team: Arabic <support@arabeyes.org>\n"
@@ -282,7 +282,7 @@ msgstr "_سجّل خروج"
 msgid "_Switch User"
 msgstr "_بدّل المستخدم"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
 msgid "_Unlock"
 msgstr "ألغ ال_قفل"
 
@@ -363,6 +363,7 @@ msgid "%s. See --help for usage information.\n"
 msgstr "%s.انظر --help للمزيد من المعلومات.\n"
 
 #: ../savers/floaters.c:1209
+#, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "يجب إختيار صورة. انظر --help للمزيد من المعلومات.\n"
 
@@ -390,71 +391,36 @@ msgstr "لا تختر الصور عشوائياً من المكان"
 msgid "Do not try to stretch images on screen"
 msgstr "لا تقم بمطّ الصور على الشاشة"
 
-#: ../src/file-transfer-dialog.c:94
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr " نسخ:  '%u من %u"
-
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "جاري نسخ '%s'"
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "من العنوان"
-
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "االعنوان الذي ينقل منه حاليّا"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "إلى العنوان"
-
-#: ../src/file-transfer-dialog.c:202
-msgid "URI currently transferring to"
-msgstr "العنوان الذي ينقل إليه حاليّا"
-
-#: ../src/file-transfer-dialog.c:209
-msgid "Fraction completed"
-msgstr "اكتمل الجزء"
-
-#: ../src/file-transfer-dialog.c:210
-msgid "Fraction of transfer currently completed"
-msgstr "جزء الإرسال المكتمل حاليا"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "فهرس العناوين الحالي"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "فهرس العناوين الحالي - يبدأ من 1"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "عدد العناوين الإجمالي"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "عدد العناوين الاجمالي"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+#: ../src/copy-theme-dialog.c:211
 msgid "Copying files"
 msgstr "جارٍ نسخ الملفات"
 
-#: ../src/file-transfer-dialog.c:345
+#: ../src/copy-theme-dialog.c:229
 msgid "From:"
 msgstr "من:"
 
-#: ../src/file-transfer-dialog.c:349
+#: ../src/copy-theme-dialog.c:233
 msgid "To:"
 msgstr "إلى:"
 
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "جارٍ الاتصال..."
+#: ../src/copy-theme-dialog.c:253
+#, fuzzy
+msgid "Copying themes"
+msgstr "جارٍ نسخ الملفات"
+
+#: ../src/copy-theme-dialog.c:297
+msgid "Invalid screensaver theme"
+msgstr "سِمة حافظة شاشة غير سليمة"
+
+#: ../src/copy-theme-dialog.c:300
+#, fuzzy, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "يبدو أن هذا الملف لا يمثل سِمة حافظة شاشة سليمة."
+
+#: ../src/copy-theme-dialog.c:480
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr " نسخ:  '%u من %u"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -624,23 +590,15 @@ msgstr "جاري فحص..."
 msgid "Authentication failed."
 msgstr "أخفق التّوثيق."
 
-#: ../src/gnome-screensaver-preferences.c:501
+#: ../src/gnome-screensaver-preferences.c:498
 msgid "Blank screen"
 msgstr "شاشة فارغة"
 
-#: ../src/gnome-screensaver-preferences.c:507
+#: ../src/gnome-screensaver-preferences.c:504
 msgid "Random"
 msgstr "عشوائي"
 
-#: ../src/gnome-screensaver-preferences.c:877
-msgid "Invalid screensaver theme"
-msgstr "سِمة حافظة شاشة غير سليمة"
-
-#: ../src/gnome-screensaver-preferences.c:880
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "يبدو أن هذا الملف لا يمثل سِمة حافظة شاشة سليمة."
-
-#: ../src/gnome-screensaver-preferences.c:1007
+#: ../src/gnome-screensaver-preferences.c:954
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -649,7 +607,7 @@ msgstr[1] "%d ساعات"
 msgstr[2] "%d ساعات"
 msgstr[3] "%d ساعة"
 
-#: ../src/gnome-screensaver-preferences.c:1010
+#: ../src/gnome-screensaver-preferences.c:957
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -658,7 +616,7 @@ msgstr[1] "%d دقائق"
 msgstr[2] "%d دقائق"
 msgstr[3] "%d دقيقة"
 
-#: ../src/gnome-screensaver-preferences.c:1013
+#: ../src/gnome-screensaver-preferences.c:960
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -668,15 +626,15 @@ msgstr[2] "%d ثوان"
 msgstr[3] "%d ثانية"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1019
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1022
-#: ../src/gnome-screensaver-preferences.c:1030
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -684,22 +642,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:1025
-#: ../src/gnome-screensaver-preferences.c:1033
-#: ../src/gnome-screensaver-preferences.c:1037
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1052
+#: ../src/gnome-screensaver-preferences.c:999
+#, c-format
 msgid "Never"
 msgstr "أبداً"
 
-#: ../src/gnome-screensaver-preferences.c:1451
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
 msgstr "لم يمكن تحميل الواجهة الرئيسيّة"
 
-#: ../src/gnome-screensaver-preferences.c:1453
+#: ../src/gnome-screensaver-preferences.c:1400
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "الرجاء التثبت من أن حافظة الشاشة مثبتة بنجاح"
 
@@ -753,22 +712,58 @@ msgstr "انتهت المدة."
 msgid "You have the Caps Lock key on."
 msgstr "مفتاح Caps Lock مفعل"
 
-#: ../src/gs-lock-plug.c:1187
+#: ../src/gs-lock-plug.c:1192
 msgid "S_witch User..."
 msgstr "_بدّل المستخدم..."
 
-#: ../src/gs-lock-plug.c:1196
+#: ../src/gs-lock-plug.c:1201
 msgid "Log _Out"
 msgstr "سجّل _خروج"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1373
+#: ../src/gs-lock-plug.c:1378
 msgid "%U on %h"
 msgstr "%U على %h"
 
-#: ../src/gs-lock-plug.c:1387
+#: ../src/gs-lock-plug.c:1392
 msgid "_Password:"
 msgstr "_كلمة السر:"
+
+#~ msgid "Copying '%s'"
+#~ msgstr "جاري نسخ '%s'"
+
+#~ msgid "From URI"
+#~ msgstr "من العنوان"
+
+#~ msgid "URI currently transferring from"
+#~ msgstr "االعنوان الذي ينقل منه حاليّا"
+
+#~ msgid "To URI"
+#~ msgstr "إلى العنوان"
+
+#~ msgid "URI currently transferring to"
+#~ msgstr "العنوان الذي ينقل إليه حاليّا"
+
+#~ msgid "Fraction completed"
+#~ msgstr "اكتمل الجزء"
+
+#~ msgid "Fraction of transfer currently completed"
+#~ msgstr "جزء الإرسال المكتمل حاليا"
+
+#~ msgid "Current URI index"
+#~ msgstr "فهرس العناوين الحالي"
+
+#~ msgid "Current URI index - starts from 1"
+#~ msgstr "فهرس العناوين الحالي - يبدأ من 1"
+
+#~ msgid "Total URIs"
+#~ msgstr "عدد العناوين الإجمالي"
+
+#~ msgid "Total number of URIs"
+#~ msgstr "عدد العناوين الاجمالي"
+
+#~ msgid "Connecting..."
+#~ msgstr "جارٍ الاتصال..."
 
 #~ msgid "_Switch user..."
 #~ msgstr "_بدّل المستخدم..."
