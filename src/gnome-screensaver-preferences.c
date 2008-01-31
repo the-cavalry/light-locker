@@ -811,6 +811,7 @@ static void
 theme_copy_complete_cb (GtkWidget *dialog, gpointer user_data)
 {
         reload_themes ();
+        gtk_widget_destroy (dialog);
 }
 
 static void
@@ -831,7 +832,6 @@ theme_installer_run (GtkWidget *prefs_dialog, GList *files)
                           G_CALLBACK (theme_copy_complete_cb), NULL);
         
         copy_theme_dialog_begin (COPY_THEME_DIALOG (copy_dialog));
-        gtk_widget_destroy (copy_dialog);
 }
 
 /* Callback issued during drag movements */

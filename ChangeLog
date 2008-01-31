@@ -1,3 +1,14 @@
+2008-01-30  William Jon McCann  <mccann@jhu.edu>
+
+	* src/copy-theme-dialog.c: (copy_finished),
+	(copy_theme_dialog_copy_next), (timeout_display_dialog),
+	(copy_theme_dialog_begin):
+	* src/gnome-screensaver-preferences.c: (theme_copy_complete_cb),
+	(theme_installer_run):
+	Only show transfer dialog if the transfer takes more than .5 sec.
+	Patch from: John Millikin <jmillikin@gmail.com>
+	Fixes #512492
+
 2008-01-28  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac:
@@ -2292,7 +2303,7 @@
 	* configure.ac:
 	* po/LINGUAS: Use po/linguas guidelines.
 
-	Patch from Przemys�aw Grzegorczyk <pgrzegorczyk@gmail.com>
+	Patch from Przemys©aw Grzegorczyk <pgrzegorczyk@gmail.com>
 	Fixes #339165
 
 2006-04-21  William Jon McCann  <mccann@jhu.edu>
@@ -2392,7 +2403,7 @@
 	* src/gnome-screensaver-preferences.c: (time_to_string_text):
 	Remove unneeded and buggy i18n string.
 
-	Patch from Beno�t Dejean <benoit@placenet.org>
+	Patch from Benoît Dejean <benoit@placenet.org>
 	Fixes #337701
 
 2006-04-11  William Jon McCann  <mccann@jhu.edu>
@@ -3224,7 +3235,7 @@
 	Add back proper session idle capability.  Manage activation
 	enabled policy.
 
-2006-01-02  Josep Puigdemont i Casamajó  <josep.puigdemont@gmail.com>
+2006-01-02  Josep Puigdemont i CasamajÃ³  <josep.puigdemont@gmail.com>
 
 	* configure.ac: Added "ca" to ALL_LINGUAS.
 
@@ -4238,7 +4249,7 @@
 	* src/gs-monitor.c (watcher_idle_cb): 
 	* src/.cvsignore: Use a custom marshaller.
 
-2005-10-04  Žygimantas Beručka  <zygis@gnome.org>
+2005-10-04  Å½ygimantas BeruÄka  <zygis@gnome.org>
 
 	* configure.ac: Added 'lt' to ALL_LINGUAS.
 
@@ -4283,7 +4294,7 @@
 
 2005-09-30  Kjartan Maraas  <kmaraas@gnome.org>
 
-	* configure.ac: Add Norwegian bokmål to ALL_LINGUAS.
+	* configure.ac: Add Norwegian bokmÃ¥l to ALL_LINGUAS.
 
 2005-09-30  William Jon McCann  <mccann@jhu.edu>
 

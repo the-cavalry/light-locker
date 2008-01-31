@@ -166,6 +166,13 @@ copy_theme_dialog_new (GList *files)
 	return dialog;
 }
 
+static gboolean
+copy_finished (CopyThemeDialog *dialog)
+{
+	return (g_cancellable_is_cancelled (dialog->priv->cancellable) ||
+	        dialog->priv->file == NULL);
+}
+
 static void
 copy_theme_dialog_init (CopyThemeDialog *dlg)
 {
@@ -392,12 +399,10 @@ copy_theme_dialog_copy_next (CopyThemeDialog *dialog)
 	GFile *file, *destination;
 	gchar *basename, *full_basename;
 	
-	if (dialog->priv->file == NULL)
+	if (copy_finished (dialog))
 	{
-		/* Copy is complete */
 		g_signal_emit (G_OBJECT (dialog), signals[COMPLETE],
 		               0, NULL);
-		gtk_dialog_response (GTK_DIALOG (dialog), GTK_RESPONSE_NONE);
 		return;
 	}
 	
@@ -416,14 +421,35 @@ copy_theme_dialog_copy_next (CopyThemeDialog *dialog)
 	                   NULL, NULL, single_copy_complete, dialog);
 }
 
+static gboolean
+timeout_display_dialog (gpointer data)
+{
+	if (IS_COPY_THEME_DIALOG (data))
+	{
+		CopyThemeDialog *dialog = COPY_THEME_DIALOG (data);
+		if (!copy_finished (dialog))
+		{
+			gtk_widget_show (GTK_WIDGET (dialog));
+			
+			g_signal_connect (dialog, "response",
+			                  G_CALLBACK (copy_theme_dialog_response),
+			                  dialog);
+		}
+	}
+	return FALSE;
+}
+
 void
 copy_theme_dialog_begin (CopyThemeDialog *dialog)
 {
-	g_object_ref (dialog);
+	gtk_widget_hide (GTK_WIDGET (dialog));
+	
+	/* If the copy operation takes more than half a second to
+	 * complete, display the dialog.
+	**/
+	g_timeout_add (500, timeout_display_dialog, dialog);
+	
 	copy_theme_dialog_copy_next (dialog);
-	if (!g_cancellable_is_cancelled (dialog->priv->cancellable))
-		gtk_dialog_run (GTK_DIALOG (dialog));
-	g_object_unref (dialog);
 }
 
 static void
