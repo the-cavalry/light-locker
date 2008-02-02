@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-11 22:10-0300\n"
-"PO-Revision-Date: 2007-08-11 22:21-0300\n"
+"POT-Creation-Date: 2008-02-02 15:29-0200\n"
+"PO-Revision-Date: 2008-01-31 15:59-0300\n"
 "Last-Translator: Vladimir Melo <vladimirmelo@foresightlinux.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "<b>Visualização da proteção de tela</b>"
 #: ../data/gnome-screensaver-preferences.glade.h:2
 msgid "<b>Warning: the screen will not be locked for the root user.</b>"
 msgstr ""
-"<b>Atenção: a proteção de tela não será travada para o usuário root.</b>"
+"<b>Aviso: a proteção de tela não será bloqueada para o usuário root.</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "Power _Management"
@@ -59,7 +59,7 @@ msgstr "_Ativar proteção de tela quando o computador estiver ocioso"
 
 #: ../data/gnome-screensaver-preferences.glade.h:8
 msgid "_Lock screen when screensaver is active"
-msgstr "_Travar tela quando a proteção de tela estiver ativa"
+msgstr "B_loquear a tela quando a proteção de tela estiver ativa"
 
 #: ../data/gnome-screensaver-preferences.glade.h:9
 msgid "_Preview"
@@ -100,11 +100,11 @@ msgstr "Comando de teclado embutido"
 
 #: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Lock on activation"
-msgstr "Travar ao ativar"
+msgstr "Bloquear ao ativar"
 
 #: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Logout command"
-msgstr "Comando de logout"
+msgstr "Comando de sair"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Reason for being away"
@@ -127,30 +127,30 @@ msgid ""
 "command."
 msgstr ""
 "Defina isso para TRUE para permitir que o teclado seja embutido na janela ao "
-"tentar destravar. A chave \"keyboard_command\" precisar ser definida com o "
+"tentar desbloquear. A chave \"keyboard_command\" precisar ser definida com o "
 "comando adequado."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr ""
-"Defina como TRUE para travar a tela quando a proteção de tela ficar ativa."
+"Defina como TRUE para bloquear a tela quando a proteção de tela ficar ativa."
 
 #: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr ""
-"Defina como TRUE para oferecer uma opção na caixa de diálogo de "
-"destravamento para trocar de usuário."
+"Defina como TRUE para oferecer uma opção na caixa de diálogo de desbloqueio "
+"para trocar de usuário."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
 msgstr ""
-"Defina como TRUE para oferecer uma opção na caixa de diálogo de "
-"destravamento para deslogar após um tempo. O tempo é especificado na chave "
-"\"logout_delay\"."
+"Defina como TRUE para oferecer uma opção na caixa de diálogo de desbloqueio "
+"para deslogar após um tempo. O tempo é especificado na chave \"logout_delay"
+"\"."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
@@ -170,15 +170,15 @@ msgid ""
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
-"O comando para invocar quando o botão de logout for clicado. Esse comando "
-"deve apenas encerrar a sessão do usuário sem qualquer interação. Essa chave "
-"tem efeito apenas se a chave \"logout_enable\" estiver definida como TRUE."
+"O comando para invocar quando o botão de sair for clicado. Esse comando deve "
+"apenas encerrar a sessão do usuário sem qualquer interação. Essa chave tem "
+"efeito apenas se a chave \"logout_enable\" estiver definida como TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr ""
-"O número de minutos após a ativação da proteção de tela antes de travar a "
+"O número de minutos após a ativação da proteção de tela antes de bloquear a "
 "tela."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
@@ -188,7 +188,7 @@ msgid ""
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
 "O número de minutos após a ativação da proteção de tela antes que uma opção "
-"de logout apareça na caixa de diálogo destravar. Essa chave tem efeito "
+"de sair apareça na caixa de diálogo de desbloqueio. Essa chave tem efeito "
 "apenas se a chave \"logout_enable\" estiver definida como TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
@@ -230,11 +230,11 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
-msgstr "Tema para diálogo de travamento"
+msgstr "Tema para diálogo de bloqueio"
 
 #: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Theme to use for the lock dialog."
-msgstr "Tema a ser usado na janela de diálogo do travamento de tela."
+msgstr "Tema a ser usado na janela de diálogo do bloqueio de tela."
 
 #: ../data/gnome-screensaver.schemas.in.h:27
 msgid ""
@@ -250,11 +250,11 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
-msgstr "Tempo antes de travar"
+msgstr "Tempo antes de bloquear"
 
 #: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before logout option"
-msgstr "Tempo antes da opção sair"
+msgstr "Tempo antes da opção de sair"
 
 #: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before power-management baseline"
@@ -299,9 +299,9 @@ msgstr "_Sair da Sessão"
 msgid "_Switch User"
 msgstr "_Trocar Usuário"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
 msgid "_Unlock"
-msgstr "_Destravar"
+msgstr "_Desbloquear"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
@@ -409,71 +409,35 @@ msgstr "Não randomizar fotos da localização"
 msgid "Do not try to stretch images on screen"
 msgstr "Não tentar alongar imagens na tela"
 
-#: ../src/file-transfer-dialog.c:94
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Copiando arquivo: %u de %u"
-
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "Copiando '%s'"
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "Da URI"
-
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "Transferindo no momento da URI"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "Para a URI"
-
-#: ../src/file-transfer-dialog.c:202
-msgid "URI currently transferring to"
-msgstr "Transferindo no momento para a URI"
-
-#: ../src/file-transfer-dialog.c:209
-msgid "Fraction completed"
-msgstr "Fração completada"
-
-#: ../src/file-transfer-dialog.c:210
-msgid "Fraction of transfer currently completed"
-msgstr "Fração da transferências completada no momento"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "Índice da URI atual"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "Índice da URI atual - começa em 1"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "URIs totais"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "Número total de URIs"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+#: ../src/copy-theme-dialog.c:211
 msgid "Copying files"
 msgstr "Copiando arquivos"
 
-#: ../src/file-transfer-dialog.c:345
+#: ../src/copy-theme-dialog.c:229
 msgid "From:"
 msgstr "De:"
 
-#: ../src/file-transfer-dialog.c:349
+#: ../src/copy-theme-dialog.c:233
 msgid "To:"
 msgstr "Para:"
 
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "Conectando..."
+#: ../src/copy-theme-dialog.c:253
+msgid "Copying themes"
+msgstr "Copiando temas"
+
+#: ../src/copy-theme-dialog.c:297
+msgid "Invalid screensaver theme"
+msgstr "Tema de proteção de tela inválido"
+
+#: ../src/copy-theme-dialog.c:300
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "%s não parece ser um tema de proteção de tela válido."
+
+#: ../src/copy-theme-dialog.c:480
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Copiando arquivo: %u de %u"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -489,7 +453,7 @@ msgstr "Consultar quanto tempo a proteção de tela está em execução"
 
 #: ../src/gnome-screensaver-command.c:68
 msgid "Tells the running screensaver process to lock the screen immediately"
-msgstr "Faz o processo da proteção travar a tela imediatamente"
+msgstr "Faz o processo da proteção bloquear a tela imediatamente"
 
 #: ../src/gnome-screensaver-command.c:70
 msgid "If the screensaver is active then switch to another graphics demo"
@@ -554,11 +518,11 @@ msgstr "Mostrar saída de depuração"
 
 #: ../src/gnome-screensaver-dialog.c:57
 msgid "Show the logout button"
-msgstr "Mostrar o botão Sair"
+msgstr "Mostrar o botão de sair"
 
 #: ../src/gnome-screensaver-dialog.c:59
 msgid "Command to invoke from the logout button"
-msgstr "Comando invocado pelo botão Sair"
+msgstr "Comando invocado pelo botão de sair"
 
 #: ../src/gnome-screensaver-dialog.c:61
 msgid "Show the switch user button"
@@ -647,37 +611,29 @@ msgstr "Verificando..."
 msgid "Authentication failed."
 msgstr "Falha na autenticação."
 
-#: ../src/gnome-screensaver-preferences.c:501
+#: ../src/gnome-screensaver-preferences.c:498
 msgid "Blank screen"
 msgstr "Tela vazia"
 
-#: ../src/gnome-screensaver-preferences.c:507
+#: ../src/gnome-screensaver-preferences.c:504
 msgid "Random"
 msgstr "Aleatória"
 
-#: ../src/gnome-screensaver-preferences.c:877
-msgid "Invalid screensaver theme"
-msgstr "Tema de proteção de tela inválido"
-
-#: ../src/gnome-screensaver-preferences.c:880
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Esse arquivo não parece ser um tema de proteção de tema válido."
-
-#: ../src/gnome-screensaver-preferences.c:1007
+#: ../src/gnome-screensaver-preferences.c:954
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d hora"
 msgstr[1] "%d horas"
 
-#: ../src/gnome-screensaver-preferences.c:1010
+#: ../src/gnome-screensaver-preferences.c:957
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minuto"
 msgstr[1] "%d minutos"
 
-#: ../src/gnome-screensaver-preferences.c:1013
+#: ../src/gnome-screensaver-preferences.c:960
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -685,15 +641,15 @@ msgstr[0] "%d segundo"
 msgstr[1] "%d segundos"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1019
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1022
-#: ../src/gnome-screensaver-preferences.c:1030
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -701,22 +657,22 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:1025
-#: ../src/gnome-screensaver-preferences.c:1033
-#: ../src/gnome-screensaver-preferences.c:1037
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1052
+#: ../src/gnome-screensaver-preferences.c:999
 msgid "Never"
 msgstr "Nunca"
 
-#: ../src/gnome-screensaver-preferences.c:1451
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
 msgstr "Não foi possível carregar a interface principal"
 
-#: ../src/gnome-screensaver-preferences.c:1453
+#: ../src/gnome-screensaver-preferences.c:1400
 msgid "Please make sure that the screensaver is properly installed"
 msgstr ""
 "Por favor, certifique-se que a proteção de tela está instalada corretamente"
@@ -771,22 +727,58 @@ msgstr "Tempo expirado."
 msgid "You have the Caps Lock key on."
 msgstr "A tecla Caps Lock está ativada."
 
-#: ../src/gs-lock-plug.c:1187
+#: ../src/gs-lock-plug.c:1192
 msgid "S_witch User..."
 msgstr "_Trocar usuário..."
 
-#: ../src/gs-lock-plug.c:1196
+#: ../src/gs-lock-plug.c:1201
 msgid "Log _Out"
 msgstr "Sai_r"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1373
+#: ../src/gs-lock-plug.c:1378
 msgid "%U on %h"
 msgstr "%U em %h"
 
-#: ../src/gs-lock-plug.c:1387
+#: ../src/gs-lock-plug.c:1392
 msgid "_Password:"
 msgstr "_Senha:"
+
+#~ msgid "Copying '%s'"
+#~ msgstr "Copiando '%s'"
+
+#~ msgid "From URI"
+#~ msgstr "Da URI"
+
+#~ msgid "URI currently transferring from"
+#~ msgstr "Transferindo no momento da URI"
+
+#~ msgid "To URI"
+#~ msgstr "Para a URI"
+
+#~ msgid "URI currently transferring to"
+#~ msgstr "Transferindo no momento para a URI"
+
+#~ msgid "Fraction completed"
+#~ msgstr "Fração completada"
+
+#~ msgid "Fraction of transfer currently completed"
+#~ msgstr "Fração da transferências completada no momento"
+
+#~ msgid "Current URI index"
+#~ msgstr "Índice da URI atual"
+
+#~ msgid "Current URI index - starts from 1"
+#~ msgstr "Índice da URI atual - começa em 1"
+
+#~ msgid "Total URIs"
+#~ msgstr "URIs totais"
+
+#~ msgid "Total number of URIs"
+#~ msgstr "Número total de URIs"
+
+#~ msgid "Connecting..."
+#~ msgstr "Conectando..."
 
 #~ msgid "S_witch to user:"
 #~ msgstr "Trocar para _usuário:"
