@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 2.16.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-05 13:49+0100\n"
-"PO-Revision-Date: 2007-12-08 22:30+0100\n"
+"POT-Creation-Date: 2008-02-02 21:26+0100\n"
+"PO-Revision-Date: 2008-02-02 21:26+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -214,8 +214,8 @@ msgid ""
 msgstr ""
 "Utvalgsmodus som brukes av skjermspareren. Kan være «blank-only» for å "
 "aktivere skjermspareren uten å bruke et tema, «single» for å aktivere "
-"skjermspareren med kun et tema (oppgitt i nøkkelen «themes»), og «random» "
-"for å aktivere skjermspareren med et tilfeldig tema."
+"skjermspareren med kun et tema (oppgitt i nøkkelen «themes»), og «random» for "
+"å aktivere skjermspareren med et tilfeldig tema."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
@@ -288,7 +288,7 @@ msgstr "_Logg ut"
 msgid "_Switch User"
 msgstr "_Bytt bruker"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
 msgid "_Unlock"
 msgstr "Lå_s opp"
 
@@ -369,6 +369,7 @@ msgid "%s. See --help for usage information.\n"
 msgstr "%s. Se --help for hjelp til bruk.\n"
 
 #: ../savers/floaters.c:1209
+#, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "Du må oppgi ett bilde. Se --help for bruksinformasjon.\n"
 
@@ -396,71 +397,35 @@ msgstr "Ikke hent bilder i tilfeldig rekkefølge fra lokasjon"
 msgid "Do not try to stretch images on screen"
 msgstr "Ikke strekk bildene på skjermen"
 
-#: ../src/file-transfer-dialog.c:94
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Kopierer fil: %u av %u"
-
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "Kopierer «%s»"
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "Fra URI"
-
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "URI overføres fra"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "Til URI"
-
-#: ../src/file-transfer-dialog.c:202
-msgid "URI currently transferring to"
-msgstr "URI overføres til"
-
-#: ../src/file-transfer-dialog.c:209
-msgid "Fraction completed"
-msgstr "Del ferdigstilt"
-
-#: ../src/file-transfer-dialog.c:210
-msgid "Fraction of transfer currently completed"
-msgstr "Andel av overføring som er fullført"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "Aktiv URI-indeks"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "Aktiv URI-indeks - starter fra 1"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "Totalt antall URI'er"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "Totalt antall URI'er"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+#: ../src/copy-theme-dialog.c:211
 msgid "Copying files"
 msgstr "Kopierer filer"
 
-#: ../src/file-transfer-dialog.c:345
+#: ../src/copy-theme-dialog.c:229
 msgid "From:"
 msgstr "Fra:"
 
-#: ../src/file-transfer-dialog.c:349
+#: ../src/copy-theme-dialog.c:233
 msgid "To:"
 msgstr "Til:"
 
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "Kobler til..."
+#: ../src/copy-theme-dialog.c:253
+msgid "Copying themes"
+msgstr "Kopierer tema"
+
+#: ../src/copy-theme-dialog.c:297
+msgid "Invalid screensaver theme"
+msgstr "Ugyldig tema for skjermsparer"
+
+#: ../src/copy-theme-dialog.c:300
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "%s ser ikke ut til å være et gyldig tema for skjermspareren."
+
+#: ../src/copy-theme-dialog.c:480
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Kopierer fil: %u av %u"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -632,37 +597,29 @@ msgstr "Sjekker..."
 msgid "Authentication failed."
 msgstr "Autentisering feilet."
 
-#: ../src/gnome-screensaver-preferences.c:500
+#: ../src/gnome-screensaver-preferences.c:498
 msgid "Blank screen"
 msgstr "Blank skjerm"
 
-#: ../src/gnome-screensaver-preferences.c:506
+#: ../src/gnome-screensaver-preferences.c:504
 msgid "Random"
 msgstr "Tilfeldig"
 
-#: ../src/gnome-screensaver-preferences.c:876
-msgid "Invalid screensaver theme"
-msgstr "Ugyldig tema for skjermsparer"
-
-#: ../src/gnome-screensaver-preferences.c:879
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Denne filen ser ikke ut til å være et gyldig tema for skjermsparer."
-
-#: ../src/gnome-screensaver-preferences.c:1006
+#: ../src/gnome-screensaver-preferences.c:954
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d time"
 msgstr[1] "%d timer"
 
-#: ../src/gnome-screensaver-preferences.c:1009
+#: ../src/gnome-screensaver-preferences.c:957
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minutt"
 msgstr[1] "%d minutter"
 
-#: ../src/gnome-screensaver-preferences.c:1012
+#: ../src/gnome-screensaver-preferences.c:960
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -670,15 +627,15 @@ msgstr[0] "%d sekund"
 msgstr[1] "%d sekunder"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1018
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1021
-#: ../src/gnome-screensaver-preferences.c:1029
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -686,22 +643,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:1024
-#: ../src/gnome-screensaver-preferences.c:1032
-#: ../src/gnome-screensaver-preferences.c:1036
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1051
+#: ../src/gnome-screensaver-preferences.c:999
+#, c-format
 msgid "Never"
 msgstr "Aldri"
 
-#: ../src/gnome-screensaver-preferences.c:1450
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
 msgstr "Kunne ikke laste hovedbrukergrensesnittet"
 
-#: ../src/gnome-screensaver-preferences.c:1452
+#: ../src/gnome-screensaver-preferences.c:1400
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Vennligst se til at skjermspareren er skikkelig installert"
 
@@ -755,208 +713,19 @@ msgstr "Tiden har løpt ut."
 msgid "You have the Caps Lock key on."
 msgstr "Caps-Lock tasten er aktivert."
 
-#: ../src/gs-lock-plug.c:1187
+#: ../src/gs-lock-plug.c:1192
 msgid "S_witch User..."
 msgstr "_Bytt bruker..."
 
-#: ../src/gs-lock-plug.c:1196
+#: ../src/gs-lock-plug.c:1201
 msgid "Log _Out"
 msgstr "Logg _ut"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1373
+#: ../src/gs-lock-plug.c:1378
 msgid "%U on %h"
 msgstr "%U på %h"
 
-#: ../src/gs-lock-plug.c:1387
+#: ../src/gs-lock-plug.c:1392
 msgid "_Password:"
 msgstr "_Passord:"
-
-#~ msgid "Authentication"
-#~ msgstr "Autentisering"
-
-#~ msgid "Note"
-#~ msgstr "Merk"
-
-#~ msgid "N"
-#~ msgstr "X"
-
-#~ msgid "The manager which owns this object."
-#~ msgstr "Håndterer som eier dette objektet."
-
-#~ msgid "Name"
-#~ msgstr "Navn"
-
-#~ msgid "The name of the X11 display this object refers to."
-#~ msgstr "Navn på skjermen dette objektet refererer til."
-
-#~ msgid "User"
-#~ msgstr "Bruker"
-
-#~ msgid "The user currently logged in on this virtual terminal."
-#~ msgstr "Bruker som er logget inn på denne virtuelle terminalen."
-
-#~ msgid "Console"
-#~ msgstr "Konsoll"
-
-#~ msgid ""
-#~ "The number of the virtual console this display can be found on, or %-1."
-#~ msgstr "Konsollnummeret denne skjermen finnes på, eller %-1."
-
-#~ msgid "Whether or not this display is a windowed (Xnest) display."
-#~ msgstr "Om denne skjemen er en skjem i et vindu (Xnest)."
-
-#~ msgid "The display manager could not be contacted for unknown reasons."
-#~ msgstr "Skjermhåndtereren kunne ikke kontaktes av ukjente årsaker."
-
-#~ msgid "The display manager is not running or too old."
-#~ msgstr "Skjermhåndtereren kjører ikke eller er for gammel."
-
-#~ msgid "The configured limit of flexible servers has been reached."
-#~ msgstr "Innstilt maksgrense for antall fleksible tjenere er nådd."
-
-#~ msgid "There was an unknown error starting X."
-#~ msgstr "En ukjent feil oppstod under oppstart av X."
-
-#~ msgid "The X server failed to finish starting."
-#~ msgstr "X-tjeneren kunne ikke fullføre oppstart."
-
-#~ msgid "There are too many X sessions running."
-#~ msgstr "For mange aktive X-sesjoner."
-
-#~ msgid "The nested X server (Xnest) cannot connect to your current X server."
-#~ msgstr ""
-#~ "Den nøstede X-tjeneren (Xnest) kan ikke koble til nåværende X-tjener."
-
-#~ msgid "The X server in the GDM configuration could not be found."
-#~ msgstr "X-tjener oppgitt i GDM-konfigurasjonen ble ikke funnet."
-
-#~ msgid ""
-#~ "Trying to set an unknown logout action, or trying to set a logout action "
-#~ "which is not available."
-#~ msgstr ""
-#~ "Prøver å sette en ukjent handling for utlogging, eller en handling som "
-#~ "ikke er tilgjengelig."
-
-#~ msgid "Virtual terminals not supported."
-#~ msgstr "Virtuelle terminaler er ikke støttet."
-
-#~ msgid "Invalid virtual terminal number."
-#~ msgstr "Ugyldig nummer for virtuell terminal."
-
-#~ msgid "Trying to update an unsupported configuration key."
-#~ msgstr "Prøver å oppdatere en ustøttet konfigurasjonsnøkkel."
-
-#~ msgid "~/.Xauthority file badly configured or missing."
-#~ msgstr "Filen ~/.Xauthority inneholder feil eller mangler."
-
-#~ msgid "Too many messages were sent to the display manager, and it hung up."
-#~ msgstr "For mange meldinger ble sendt til skjermhåndtereren og den la på."
-
-#~ msgid "The display manager sent an unknown error message."
-#~ msgstr "Skjermhåndtereren sendte en ukjent feilmelding."
-
-#~ msgid "The user this menu item represents."
-#~ msgstr "Brukeren dette menyvalget representerer"
-
-#~ msgid "Icon Size"
-#~ msgstr "Ikonstørrelse"
-
-#~ msgid "The size of the icon to use."
-#~ msgstr "Størrelse på ikonet som skal brukes."
-
-#~ msgid "Indicator Size"
-#~ msgstr "Størrelse på indikator"
-
-#~ msgid "Size of check indicator"
-#~ msgstr "Størrelse på indikator for sjekk"
-
-#~ msgid "Indicator Spacing"
-#~ msgstr "Indikatormellomrom"
-
-#~ msgid "Space between the username and the indicator"
-#~ msgstr "Mellomrom mellom brukernavn og indikator"
-
-#~ msgid "The user manager object this user is controlled by."
-#~ msgstr "Brukerhåndteringsobjekt denne brukeren kontrolleres av."
-
-#~ msgid "Show Details"
-#~ msgstr "Vis detaljer"
-
-#~ msgid "GDM (The GNOME Display Manager) is not running."
-#~ msgstr "GDM (GNOME skjermhåndterer) kjører ikke."
-
-#~ msgid ""
-#~ "You might in fact be using a different display manager, such as KDM (KDE "
-#~ "Display Manager) or xdm."
-#~ msgstr ""
-#~ "Du bruker kanskje en annen skjermhåndterer slik som KDM (KDE "
-#~ "skjermhåndterer) eller xdm."
-
-#~ msgid ""
-#~ "If you still wish to use this feature, either start GDM yourself or ask "
-#~ "your system administrator to start GDM."
-#~ msgstr ""
-#~ "Hvis du fremdeles ønsker å bruke denne funksjonen må du enten starte GDM "
-#~ "selv eller spørre din systemadministrator om å starte GDM."
-
-#~ msgid "Cannot communicate with GDM (The GNOME Display Manager)"
-#~ msgstr "Kan ikke kommunisere med GDM (GNOME Display Manager)"
-
-#~ msgid "Perhaps you have an old version of GDM running."
-#~ msgstr "Kanskje du har en gammel versjon av GDM kjørende på maskinen."
-
-#~ msgid ""
-#~ "Cannot communicate with gdm, perhaps you have an old version running."
-#~ msgstr "Kan ikke kommunisere med GDM. Har du en gammel versjon kjørende?"
-
-#~ msgid "The allowed limit of flexible X servers reached."
-#~ msgstr "Grensen for tillatte \"fleksible\" X-tjenere er nådd."
-
-#~ msgid "There were errors trying to start the X server."
-#~ msgstr "Feil oppstod under oppstart av X-tjeneren."
-
-#~ msgid "The X server failed.  Perhaps it is not configured well."
-#~ msgstr ""
-#~ "X-tjeneren endte opp med en feilmelding. Kanskje den er feilkonfigurert?"
-
-#~ msgid "Too many X sessions running."
-#~ msgstr "For mange X-sesjoner kjører."
-
-#~ msgid ""
-#~ "The nested X server (Xnest) cannot connect to your current X server.  You "
-#~ "may be missing an X authorization file."
-#~ msgstr ""
-#~ "Nøstet X-tjener (Xnest) kan ikke koble til din X-tjener. Du mangler "
-#~ "kanskje en autorisasjonsfil for X."
-
-#~ msgid ""
-#~ "The nested X server (Xnest) is not available, or gdm is badly "
-#~ "configured.\n"
-#~ "Please install the Xnest package in order to use the nested login."
-#~ msgstr ""
-#~ "Nøstet X-tjener (Xnest) er ikke tilgjengelig, eller gdm er "
-#~ "feilkonfigurert.\n"
-#~ "Vennligst installer Xnest-pakken for å bruke nøstet påloggin."
-
-#~ msgid ""
-#~ "The X server is not available, it is likely that gdm is badly configured."
-#~ msgstr ""
-#~ "X-tjeneren er ikke tilgjengelig. Det er sannsynlig at GDM er "
-#~ "feilkonfigurert."
-
-#~ msgid "Trying to change to an invalid virtual terminal number."
-#~ msgstr "Prøver å bytte til en ugyldig virtuell terminal."
-
-#~ msgid ""
-#~ "You do not seem to have authentication needed be for this operation.  "
-#~ "Perhaps your .Xauthority file is not set up correctly."
-#~ msgstr ""
-#~ "Du har ikke nødvendig autentisering for denne operasjonen. Kanskje din ."
-#~ "Xauthority-fil ikke er satt opp korrekt."
-
-#~ msgid "Too many messages were sent to gdm and it hung upon us."
-#~ msgstr "For mange meldinger ble sendt til GDM."
-
-#~ msgid "Unknown error occurred."
-#~ msgstr "Ukjent feil oppsto."
