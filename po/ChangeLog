@@ -1,3 +1,7 @@
+2008-02-04  Wouter Bolsterlee  <wbolster@svn.gnome.org>
+
+	* nl.po: Dutch translation updated by Wouter Bolsterlee.
+
 2008-02-02  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* nb.po: Updated Norwegian bokmål translation.
@@ -28,7 +32,7 @@
 
 2008-01-29  Jorge Gonzalez  <jorgegonz@svn.gnome.org>
 
-	* es.po: Updated Spanish translation   
+	* es.po: Updated Spanish translation
 
 2008-01-29  Luca Ferretti  <elle.uca@libero.it>
 
@@ -45,7 +49,7 @@
 
 2008-01-09  Inaki Larranaga Murgoitio  <dooteo@euskalgnu.org>
 
-        * eu.po: Updated Basque translation.
+	* eu.po: Updated Basque translation.
 
 2007-12-31  Yannig Marchegay <yannig@marchegay.org>
 
@@ -70,7 +74,7 @@
 
 	* cs.po: Czech Translation updated by Petr Kovar.
 
-2007-12-01  Ignacio Casal Quinteiro   <nacho.resa@gmail.com>
+2007-12-01  Ignacio Casal Quinteiro  <nacho.resa@gmail.com>
 
 	* gl.po: Updated Galician Translation.
 
@@ -143,7 +147,7 @@
 2007-09-15  Andre Klapper  <a9016009@gmx.de>
 
 	* sk.po: Updated Slovak translation on behalf of Peter Tuharsky
-        <tuharsky@misbb.sk>.
+	<tuharsky@misbb.sk>.
 
 2007-09-15  Mugurel Tudor  <mugurelu@gnome.ro>
 
@@ -189,14 +193,14 @@
 	* it.po: Updated Italian translation.
 
 2007-09-04  Jovan Naumovski  <jovan@lugola.net>
- 
- 	 * mk.po: Updated Macedonian translation.
+
+	 * mk.po: Updated Macedonian translation.
 
 2007-09-04 Gabor Kelemen  <kelemeng@gnome.hu>
 
 	* hu.po: Translation updated.
 
-2007-09-03   Clytie Siddall <clytie@riverland.net.au>
+2007-09-03  Clytie Siddall <clytie@riverland.net.au>
 
 	* vi.po: Updated Vietnamese translation.
 
@@ -434,7 +438,7 @@
 
 2007-03-06  Jovan Naumovski  <jovan@lugola.net>
 
- 	 * mk.po: Updated Macedonian translation.
+	 * mk.po: Updated Macedonian translation.
 
 2007-03-05  Ankit Patel  <ankit644@yahoo.com>
 
@@ -1240,7 +1244,7 @@
 
 2006-03-31  Lukas Novotny  <lukasnov@cvs.gnome.org>
 
- 	* cs.po: Updated Czech translation.
+	* cs.po: Updated Czech translation.
 
 2006-03-20  Priit Laes  <amd@store20.com>
 

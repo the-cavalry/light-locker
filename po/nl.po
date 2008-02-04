@@ -1,8 +1,9 @@
 # Dutch translation of gnome-screensaver
+#
 # This file is distributed under the same license as the gnome-screensaver package.
 #
-# Tino Meinen <a.t.meinen@chello.nl>, 2005, 2006.
-# Wouter Bolsterlee <wbolster@gnome.org>, 2007
+# Tino Meinen <a.t.meinen@chello.nl>, 2005, 2006
+# Wouter Bolsterlee <wbolster@gnome.org>, 2007, 2008
 #
 # idle time         - inactiviteit
 # screensaver       - schermbeveiliging / screensaver (afhankelijk van context)
@@ -14,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Totem\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-06 22:59+0200\n"
-"PO-Revision-Date: 2007-09-06 23:01+0200\n"
+"POT-Creation-Date: 2008-02-04 13:07+0100\n"
+"PO-Revision-Date: 2008-02-04 13:09+0100\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -316,7 +317,7 @@ msgstr "_Afmelden"
 msgid "_Switch User"
 msgstr "_Gebruiker wisselen"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
 msgid "_Unlock"
 msgstr "_Deblokkeren"
 
@@ -427,73 +428,36 @@ msgstr "Afbeeldingen niet in willekeurige volgorde tonen"
 msgid "Do not try to stretch images on screen"
 msgstr "Afbeeldingen niet uitvergroten op scherm"
 
-#: ../src/file-transfer-dialog.c:94
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Bestand kopiëren: %u van %u"
-
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "kopiëren '%s'"
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "Via URI"
-
-# binnengehaald/overgedragen
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "URI waarvan wordt overgedragen"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "Naar URI"
-
-# verstuurd/overgedragen
-#: ../src/file-transfer-dialog.c:202
-msgid "URI currently transferring to"
-msgstr "URI waarnaar wordt overgedragen"
-
-#: ../src/file-transfer-dialog.c:209
-msgid "Fraction completed"
-msgstr "Voltooide deel"
-
-#: ../src/file-transfer-dialog.c:210
-msgid "Fraction of transfer currently completed"
-msgstr "Voltooide deel van de overdracht"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "Huidige URI-index"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "Huidige URI-index - begint bij 1"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "Totaal URI's"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "Totaal aantal URI's"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+#: ../src/copy-theme-dialog.c:211
 msgid "Copying files"
 msgstr "Bestanden kopiëren"
 
-#: ../src/file-transfer-dialog.c:345
+#: ../src/copy-theme-dialog.c:229
 msgid "From:"
 msgstr "Van:"
 
-#: ../src/file-transfer-dialog.c:349
+#: ../src/copy-theme-dialog.c:233
 msgid "To:"
 msgstr "Naar:"
 
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "Verbinden..."
+#: ../src/copy-theme-dialog.c:253
+msgid "Copying themes"
+msgstr "Thema's kopiëren"
+
+#: ../src/copy-theme-dialog.c:297
+msgid "Invalid screensaver theme"
+msgstr "Ongeldige screensaver"
+
+# geen geldige schermbeveiliging/screensaver
+#: ../src/copy-theme-dialog.c:300
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "‘%s’ lijkt niet op een geldig schermbeveiligingsthema."
+
+#: ../src/copy-theme-dialog.c:480
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Bestand kopiëren: %u van %u"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -677,39 +641,30 @@ msgstr "Controle…"
 msgid "Authentication failed."
 msgstr "Controle mislukt."
 
-#: ../src/gnome-screensaver-preferences.c:500
+#: ../src/gnome-screensaver-preferences.c:498
 msgid "Blank screen"
 msgstr "Zwart scherm"
 
-#: ../src/gnome-screensaver-preferences.c:506
+#: ../src/gnome-screensaver-preferences.c:504
 msgid "Random"
 msgstr "Willekeurig"
 
-#: ../src/gnome-screensaver-preferences.c:876
-msgid "Invalid screensaver theme"
-msgstr "Ongeldig sreensaver"
-
-# geen geldige schermbeveiliging/screensaver
-#: ../src/gnome-screensaver-preferences.c:879
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Dit bestand is waarschijnlijk geen geldige sreensaver."
-
 #  1 uur, 2 uur
-#: ../src/gnome-screensaver-preferences.c:1006
+#: ../src/gnome-screensaver-preferences.c:954
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d uur"
 msgstr[1] "%d uur"
 
-#: ../src/gnome-screensaver-preferences.c:1009
+#: ../src/gnome-screensaver-preferences.c:957
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minuut"
 msgstr[1] "%d minuten"
 
-#: ../src/gnome-screensaver-preferences.c:1012
+#: ../src/gnome-screensaver-preferences.c:960
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -717,15 +672,15 @@ msgstr[0] "%d seconde"
 msgstr[1] "%d seconden"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1018
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1021
-#: ../src/gnome-screensaver-preferences.c:1029
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -733,23 +688,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:1024
-#: ../src/gnome-screensaver-preferences.c:1032
-#: ../src/gnome-screensaver-preferences.c:1036
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1051
+#: ../src/gnome-screensaver-preferences.c:999
 #, c-format
 msgid "Never"
 msgstr "Nooit"
 
-#: ../src/gnome-screensaver-preferences.c:1450
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
 msgstr "Kon de hoofd-interface niet laden"
 
-#: ../src/gnome-screensaver-preferences.c:1452
+#: ../src/gnome-screensaver-preferences.c:1400
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Controleer of de schermbeveiliging correct is geïnstalleerd"
 
@@ -804,22 +759,60 @@ msgstr "Tijd is verlopen."
 msgid "You have the Caps Lock key on."
 msgstr "De Caps Lock staat aan."
 
-#: ../src/gs-lock-plug.c:1187
+#: ../src/gs-lock-plug.c:1192
 msgid "S_witch User..."
 msgstr "Gebruiker _wisselen…"
 
-#: ../src/gs-lock-plug.c:1196
+#: ../src/gs-lock-plug.c:1201
 msgid "Log _Out"
 msgstr "_Afmelden"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1373
+#: ../src/gs-lock-plug.c:1378
 msgid "%U on %h"
 msgstr "%U op %h"
 
-#: ../src/gs-lock-plug.c:1387
+#: ../src/gs-lock-plug.c:1392
 msgid "_Password:"
 msgstr "_Wachtwoord:"
+
+#~ msgid "Copying '%s'"
+#~ msgstr "kopiëren '%s'"
+
+#~ msgid "From URI"
+#~ msgstr "Via URI"
+
+# binnengehaald/overgedragen
+#~ msgid "URI currently transferring from"
+#~ msgstr "URI waarvan wordt overgedragen"
+
+#~ msgid "To URI"
+#~ msgstr "Naar URI"
+
+# verstuurd/overgedragen
+#~ msgid "URI currently transferring to"
+#~ msgstr "URI waarnaar wordt overgedragen"
+
+#~ msgid "Fraction completed"
+#~ msgstr "Voltooide deel"
+
+#~ msgid "Fraction of transfer currently completed"
+#~ msgstr "Voltooide deel van de overdracht"
+
+#~ msgid "Current URI index"
+#~ msgstr "Huidige URI-index"
+
+#~ msgid "Current URI index - starts from 1"
+#~ msgstr "Huidige URI-index - begint bij 1"
+
+#~ msgid "Total URIs"
+#~ msgstr "Totaal URI's"
+
+#~ msgid "Total number of URIs"
+#~ msgstr "Totaal aantal URI's"
+
+#~ msgid "Connecting..."
+#~ msgstr "Verbinden..."
 
 # vrij vertaald (Wouter Bolsterlee)
 #~ msgid "Authentication"
