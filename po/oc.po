@@ -23,7 +23,7 @@ msgstr "Estalviaire d'ecran"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:2
 msgid "Set your screensaver preferences"
-msgstr "Definir vòstras preferéncias pel estalviaire d'ecran"
+msgstr "Definir vòstras preferéncias per l'estalviaire d'ecran"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
 msgid "<b>Screensaver preview</b>"
