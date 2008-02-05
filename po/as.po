@@ -1,0 +1,697 @@
+# translation of as.po to Assamese
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Amitakhya Phukan <amitakhya@svn.gnome.org>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: as\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-02-04 13:36+0000\n"
+"PO-Revision-Date: 2008-02-05 16:38+0530\n"
+"Last-Translator: Amitakhya Phukan <amitakhya@svn.gnome.org>\n"
+"Language-Team: Assamese\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1)\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "স্ক্ৰীনছেভাৰ"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "আপোনাৰ স্ক্ৰীনছেভাৰেৰ পছন্দসমূহ নিৰ্ধাৰণ কৰক"
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "<b>Screensaver preview</b>"
+msgstr "<b> স্ক্ৰীনছেভাৰ</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+msgstr "<b> সতৰ্কবাণী উল্লিখিত সময় অবধি</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Power _Management"
+msgstr "Power _Management"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "Regard the computer as _idle after:"
+msgstr "পিছত:"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "Screensaver Preferences"
+msgstr "স্ক্ৰীনছেভাৰৰ পছন্দতালিকা"
+
+#: ../data/gnome-screensaver-preferences.glade.h:6
+msgid "Screensaver Preview"
+msgstr "স্ক্ৰীনছেভাৰ Preview"
+
+#: ../data/gnome-screensaver-preferences.glade.h:7
+msgid "_Activate screensaver when computer is idle"
+msgstr "_Activate screensaver when computer is idle"
+
+#: ../data/gnome-screensaver-preferences.glade.h:8
+msgid "_Lock screen when screensaver is active"
+msgstr "লক কৰা হ'ব হলো সক্ৰিয়"
+
+#: ../data/gnome-screensaver-preferences.glade.h:9
+msgid "_Preview"
+msgstr "পূৰ্বৰূপ (_P)"
+
+#: ../data/gnome-screensaver-preferences.glade.h:10
+msgid "_Screensaver theme:"
+msgstr "স্ক্ৰীনছেভাৰ:"
+
+#: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "Screensaver themes"
+msgstr "স্ক্ৰীনছেভাৰ থিম"
+
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "স্ক্ৰীনছেভাৰ"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Activate when idle"
+msgstr "যখন নিস্ক্ৰিয় থাকবে তখন সক্ৰিয় কৰো"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow embedding a keyboard into the window"
+msgstr "a"
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "Allow logout"
+msgstr "লগআউট অনুমোদন কৰক"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow user switching"
+msgstr "ব্যবহাৰকাৰীদেৰ পৰিবৰ্তন অনুমোদন কৰক"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Embedded keyboard command"
+msgstr "এমবেড কৰা"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "Lock on activation"
+msgstr "সক্ৰিয় হলে লক কৰা হ'ব"
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Logout command"
+msgstr "লগআউট কমান্ড"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Reason for being away"
+msgstr "কাৰণ উল্লিখিত সময় অবধি"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Screensaver theme selection mode"
+msgstr "স্ক্ৰীনছেভাৰ"
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr "Set সক্ৰিয় কৰক হলো."
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr "Set a."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr "Set সক্ৰিয়."
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr "Set a."
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr "Set পিছত a হলো."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr "হলো a এবং a চলি আছে."
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr "হলো ইফেক্ট হলো."
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid "The number of minutes after screensaver activation before locking the screen."
+msgstr "সংখ্যা সৰ্বমোট মিনিট পিছত পূৰ্বে."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr "সংখ্যা সৰ্বমোট মিনিট পিছত পূৰ্বে a ইফেক্ট হলো."
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid "The number of minutes of inactivity before the session is considered idle."
+msgstr "সংখ্যা সৰ্বমোট মিনিট সৰ্বমোট পূৰ্বে হলো."
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr "সংখ্যা সৰ্বমোট মিনিট পূৰ্বে."
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid ""
+"The number of seconds of inactivity before signalling to power-management. "
+"This key is set and maintained by the session power-management agent."
+msgstr "সংখ্যা সৰ্বমোট সেকেন্ড সৰ্বমোট পূৰ্বে হলো এবং."
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "The reason for being away from the computer."
+msgstr "উল্লিখিত সময় অবধি."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid ""
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
+msgstr "মে চলি আছে চলি আছে এবং a চলি আছে."
+
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Theme for lock dialog"
+msgstr "থিম উল্লিখিত সময় অবধি"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Theme to use for the lock dialog."
+msgstr "থিম উল্লিখিত সময় অবধি."
+
+#: ../data/gnome-screensaver.schemas.in.h:27
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
+msgstr "তালিকা সৰ্বমোট হলো হলো এবং a তালিকা সৰ্বমোট হলো."
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before locking"
+msgstr "সময়, লক কৰাৰ পূৰ্বে"
+
+#: ../data/gnome-screensaver.schemas.in.h:29
+msgid "Time before logout option"
+msgstr "সময়, লগ-আউট অপশন এৰ পূৰ্বে"
+
+#: ../data/gnome-screensaver.schemas.in.h:30
+msgid "Time before power-management baseline"
+msgstr "সময় পূৰ্বে"
+
+#: ../data/gnome-screensaver.schemas.in.h:31
+msgid "Time before session is considered idle"
+msgstr "সময় পূৰ্বে হলো"
+
+#: ../data/gnome-screensaver.schemas.in.h:32
+msgid "Time before theme change"
+msgstr "সময়, থিম পৰিবৰ্তনেৰ পূৰ্বে"
+
+#: ../data/lock-dialog-default.glade.h:2
+#, no-c-format
+msgid "<b>Leave a message for %R:</b>"
+msgstr "<b> Leave a বাৰ্তা উল্লিখিত সময় অবধি R</b>"
+
+#: ../data/lock-dialog-default.glade.h:4
+#, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
+msgstr "<span size=\"small\"> চলি আছে h</span>"
+
+#: ../data/lock-dialog-default.glade.h:6
+#, no-c-format
+msgid "<span size=\"x-large\">%R</span>"
+msgstr "<span size=\"x-large\"> R</span>"
+
+#: ../data/lock-dialog-default.glade.h:7
+msgid "_Cancel"
+msgstr "বাতিল (_C)"
+
+#: ../data/lock-dialog-default.glade.h:8
+msgid "_Leave Message"
+msgstr "Leave বাৰ্তা"
+
+#: ../data/lock-dialog-default.glade.h:9
+msgid "_Log Out"
+msgstr "লগ-আউট (_L)"
+
+#: ../data/lock-dialog-default.glade.h:10
+msgid "_Switch User"
+msgstr "ব্যবহাৰকাৰী পৰিবৰ্তন (_S)"
+
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
+msgid "_Unlock"
+msgstr "আনলক (_U)"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr "কসমস"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "কসমস এৰ ছবিগুলোৰ একটি স্লাইডশো প্ৰদৰ্শন কৰক"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "GNOME"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "ভাসমান পা"
+
+#: ../savers/personal-slideshow.desktop.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr "আপনাৰ ছবিৰ ফোল্ডাৰ এৰ োৰ একটি স্লাইডশো প্ৰদৰ্শন কৰক"
+
+#: ../savers/personal-slideshow.desktop.in.h:2
+msgid "Pictures folder"
+msgstr "ছবিৰ ফোল্ডাৰ"
+
+#: ../savers/popsquares.desktop.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr "A pop-art-ish grid of pulsing colors."
+
+#: ../savers/popsquares.desktop.in.h:2
+msgid "Pop art squares"
+msgstr "পপ আৰ্ট স্কোয়াৰ"
+
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr "Show paths that images follow"
+
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "Occasionally rotate images as they move"
+
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "প্ৰিন্ট কৰক এবং"
+
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "সংখ্যা সৰ্বমোট চলি আছে"
+
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "MAX_IMAGES"
+
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "এবং সৰ্বমোট"
+
+#: ../savers/floaters.c:96
+msgid "WIDTHxHEIGHT+X+Y"
+msgstr "এক্স স্থানাঙ্ক ওয়াই স্থানাঙ্ক"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "উৎস"
+
+#. translators: the word "image" here
+#. * represents a command line argument
+#.
+#: ../savers/floaters.c:1194
+msgid "image - floats images around the screen"
+msgstr "image - ভাসাবে images পৰ্দা জুড়ে"
+
+#: ../savers/floaters.c:1200
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s. দেখুন --ব্যবহাৰেৰ তথ্যেৰ জন্য.\n"
+
+#: ../savers/floaters.c:1209
+msgid "You must specify one image.  See --help for usage information.\n"
+msgstr "You must specify one image.  See --help for usage information.\n"
+
+#: ../savers/slideshow.c:53
+msgid "Location to get images from"
+msgstr "অৱস্থান"
+
+#: ../savers/slideshow.c:53
+msgid "PATH"
+msgstr "PATH"
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "উল্লিখিত সময় অবধি"
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "\"#rrggbb\""
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr "Do not randomize pictures from location"
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "চলি আছে"
+
+#: ../src/copy-theme-dialog.c:211
+msgid "Copying files"
+msgstr "ফাইল কপি কৰা হচ্ছে"
+
+#: ../src/copy-theme-dialog.c:229
+msgid "From:"
+msgstr "প্ৰেৰক:"
+
+#: ../src/copy-theme-dialog.c:233
+msgid "To:"
+msgstr "অভিমুখে:"
+
+#: ../src/copy-theme-dialog.c:253
+msgid "Copying themes"
+msgstr "Copying themes"
+
+#: ../src/copy-theme-dialog.c:297
+msgid "Invalid screensaver theme"
+msgstr "অৱৈধ"
+
+#: ../src/copy-theme-dialog.c:300
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "%s does not appear to be a valid screensaver theme."
+
+#: ../src/copy-theme-dialog.c:480
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Copying file: %u of %u"
+
+#: ../src/gnome-screensaver-command.c:62
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Causes the screensaver to exit gracefully"
+
+#: ../src/gnome-screensaver-command.c:64
+msgid "Query the state of the screensaver"
+msgstr "স্ক্ৰিনসেভাৰেৰ অবস্থা জানুন"
+
+#: ../src/gnome-screensaver-command.c:66
+msgid "Query the length of time the screensaver has been active"
+msgstr "অনুসন্ধান সৰ্বমোট সক্ৰিয়"
+
+#: ../src/gnome-screensaver-command.c:68
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "চলমান"
+
+#: ../src/gnome-screensaver-command.c:70
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "হলো সক্ৰিয় ডেমো"
+
+#: ../src/gnome-screensaver-command.c:72
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "চলি আছে"
+
+#: ../src/gnome-screensaver-command.c:74
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "হলো সক্ৰিয়"
+
+#: ../src/gnome-screensaver-command.c:76
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "চলমান"
+
+#: ../src/gnome-screensaver-command.c:78
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr "Inhibit কমান্ড হলো সক্ৰিয়."
+
+#: ../src/gnome-screensaver-command.c:80
+msgid "The calling application that is inhibiting the screensaver"
+msgstr "হলো"
+
+#: ../src/gnome-screensaver-command.c:82
+msgid "The reason for inhibiting the screensaver"
+msgstr "উল্লিখিত সময় অবধি"
+
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver.c:56
+msgid "Version of this application"
+msgstr "এই অ্যাপলিকেশনটিৰ সংস্কৰণ"
+
+#: ../src/gnome-screensaver-command.c:249
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "স্ক্ৰিনসেভাৰটি হচ্ছে %s\n"
+
+#: ../src/gnome-screensaver-command.c:249
+msgid "active"
+msgstr "সক্ৰিয়"
+
+#: ../src/gnome-screensaver-command.c:249
+msgid "inactive"
+msgstr "নিষ্ক্ৰিয়"
+
+#: ../src/gnome-screensaver-command.c:274
+#, c-format
+msgid "The screensaver has been active for %d seconds.\n"
+msgstr "The screensaver has been active for %d seconds.\n"
+
+#: ../src/gnome-screensaver-dialog.c:53
+msgid "Show debugging output"
+msgstr "ডিবাগিং আউটপুট প্ৰদৰ্শন কৰক"
+
+#: ../src/gnome-screensaver-dialog.c:57
+msgid "Show the logout button"
+msgstr "লগ আউট বাটন দেখাও"
+
+#: ../src/gnome-screensaver-dialog.c:59
+msgid "Command to invoke from the logout button"
+msgstr "কমান্ড"
+
+#: ../src/gnome-screensaver-dialog.c:61
+msgid "Show the switch user button"
+msgstr "Show the switch user button"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "Message to show in the dialog"
+msgstr "বাৰ্তা"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "MESSAGE"
+msgstr "MESSAGE"
+
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
+msgid "Username:"
+msgstr "ব্যবহাৰকাৰীৰ নাম:"
+
+#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "পাসওয়াৰ্ড:"
+
+#: ../src/gnome-screensaver-dialog.c:178
+msgid "You are required to change your password immediately (password aged)"
+msgstr "এই মুহূৰ্তে পাসওয়াৰ্ড পৰিবৰ্তন কৰা আবশ্যক (পাসওয়াৰ্ডেৰ মেয়াদ পূৰণ হতে চলেছে)"
+
+#: ../src/gnome-screensaver-dialog.c:179
+msgid "You are required to change your password immediately (root enforced)"
+msgstr "এই মুহূৰ্তে পাসওয়াৰ্ড পৰিবৰ্তন কৰা আবশ্যক (root ব্যবহাৰকাৰীৰ নিৰ্দেশানুযায়ী)"
+
+#: ../src/gnome-screensaver-dialog.c:180
+msgid "Your account has expired; please contact your system administrator"
+msgstr "আপনাৰ অ্যাকাউন্টেৰ মেয়াদ উত্তীৰ্ণ হয়েছে; অনুগ্ৰহ কৰে সিস্টেম অ্যাডমিনস্ট্ৰেটৰেৰ সাথে যোগাযোগ কৰক।"
+
+#: ../src/gnome-screensaver-dialog.c:181
+msgid "No password supplied"
+msgstr "পাসওয়াৰ্ড উল্লেখ কৰা হয়নি"
+
+#: ../src/gnome-screensaver-dialog.c:182
+msgid "Password unchanged"
+msgstr "পাসওয়াৰ্ড অপৰিবৰ্তিত ৰয়েছে"
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "Can not get username"
+msgstr "ব্যবহাৰকাৰীৰ নাম পাওয়া যায়নি"
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "Retype new UNIX password:"
+msgstr "নতুন UNIX পাসওয়াৰ্ড পুনৰায় লিখুন:"
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "Enter new UNIX password:"
+msgstr "নতুন UNIX পাসওয়াৰ্ড লিখুন:"
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "(current) UNIX password:"
+msgstr "(বৰ্তমান) UNIX পাসওয়াৰ্ড:"
+
+#: ../src/gnome-screensaver-dialog.c:187
+msgid "Error while changing NIS password."
+msgstr "NIS পাসওয়াৰ্ড পৰিবৰ্তনে সমস্যা।"
+
+#: ../src/gnome-screensaver-dialog.c:188
+msgid "You must choose a longer password"
+msgstr "অত্যাধিক লম্বা পাসওয়াৰ্ড নিৰ্বাচন কৰা আবশ্যক"
+
+#: ../src/gnome-screensaver-dialog.c:189
+msgid "Password has been already used. Choose another."
+msgstr "উল্লিখিত পাসওয়াৰ্ডে পূৰ্বে ব্যবহৃত হয়েছে। অনুগ্ৰহ কৰে একটি পৃথক পাসওয়াৰ্ড নিৰ্বাচন কৰক।"
+
+#: ../src/gnome-screensaver-dialog.c:190
+msgid "You must wait longer to change your password"
+msgstr "পাসওয়াৰ্ড পৰিবৰ্তনেৰ জন্য কিছু সময় উপেক্ষা কৰতে হ'ব"
+
+#: ../src/gnome-screensaver-dialog.c:191
+msgid "Sorry, passwords do not match"
+msgstr "দুঃক্ষিত, পাসওয়াৰ্ডে গৰমিল"
+
+#: ../src/gnome-screensaver-dialog.c:257
+msgid "Checking..."
+msgstr "Checking..."
+
+#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
+msgid "Authentication failed."
+msgstr "অনুমোদন ব্যবস্থা."
+
+#: ../src/gnome-screensaver-preferences.c:498
+msgid "Blank screen"
+msgstr "পৰ্দা ফাঁকা"
+
+#: ../src/gnome-screensaver-preferences.c:504
+msgid "Random"
+msgstr "Random"
+
+#: ../src/gnome-screensaver-preferences.c:954
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d ঘন্টা"
+msgstr[1] "%d ঘন্টা"
+
+#: ../src/gnome-screensaver-preferences.c:957
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d মিনিট"
+msgstr[1] "%d মিনিট"
+
+#: ../src/gnome-screensaver-preferences.c:960
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d সেকেন্ড"
+msgstr[1] "%d সেকেন্ড"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:966
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: ../src/gnome-screensaver-preferences.c:999
+msgid "Never"
+msgstr "কখনো নয়"
+
+#: ../src/gnome-screensaver-preferences.c:1398
+msgid "Could not load the main interface"
+msgstr "মূল ইন্টাৰফেস লোড কৰা যায় নি"
+
+#: ../src/gnome-screensaver-preferences.c:1400
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "হলো"
+
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "a"
+
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr "সক্ৰিয়"
+
+#: ../src/gs-auth-pam.c:397
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr "%s পৰিসেবা স্থাপন কৰতে ব্যৰ্থ: %s\n"
+
+#: ../src/gs-auth-pam.c:423
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr "PAM_TTY=%s নিৰ্ধাৰণ কৰতে ব্যৰ্থ"
+
+#: ../src/gs-auth-pam.c:455
+msgid "Incorrect password."
+msgstr "অশুদ্ধ গুপ্তশব্দ ।"
+
+#: ../src/gs-auth-pam.c:471
+msgid "Not permitted to gain access at this time."
+msgstr "Not."
+
+#: ../src/gs-auth-pam.c:477
+msgid "No longer permitted to access the system."
+msgstr "না."
+
+#: ../src/gs-listener-dbus.c:1921
+msgid "failed to register with the message bus"
+msgstr "বাৰ্তা"
+
+#: ../src/gs-listener-dbus.c:1931
+msgid "not connected to the message bus"
+msgstr "সংযুক্ত বাৰ্তা"
+
+#: ../src/gs-listener-dbus.c:1940
+msgid "screensaver already running in this session"
+msgstr "চলমান"
+
+#: ../src/gs-lock-plug.c:269
+msgid "Time has expired."
+msgstr "সময় অতিবাহিত হয়ে গেছে।"
+
+#: ../src/gs-lock-plug.c:297
+msgid "You have the Caps Lock key on."
+msgstr "You লক কৰা হ'ব চলি আছে."
+
+#: ../src/gs-lock-plug.c:1192
+msgid "S_witch User..."
+msgstr "এস ব্যৱহাৰকৰ্তা."
+
+#: ../src/gs-lock-plug.c:1201
+msgid "Log _Out"
+msgstr "লগ আউট (_O)"
+
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1378
+msgid "%U on %h"
+msgstr "চলি আছে h"
+
+#: ../src/gs-lock-plug.c:1392
+msgid "_Password:"
+msgstr "পাসওয়াৰ্ড: (_P)"
+

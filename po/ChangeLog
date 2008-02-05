@@ -1,3 +1,8 @@
+2008-02-05  Amitakhya Phukan <amitakhya@svn.gnome.org>
+
+	* LINGUAS: Added as.
+	* as.po: Updated assamese translations.
+
 2008-02-04  Wouter Bolsterlee  <wbolster@svn.gnome.org>
 
 	* nl.po: Dutch translation updated by Wouter Bolsterlee.
