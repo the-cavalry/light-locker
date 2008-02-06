@@ -2,21 +2,20 @@
 #
 #
 # Djihed Afifi <djihed@gmail.com>, 2006.
-# Khaled Hosny <khaledhosny@eglug.org>, 2006.
+# Khaled Hosny <khaledhosny@eglug.org>, 2006, 2008.
 # Anas Husseini <linux.anas@gmail.com>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-31 08:08+0000\n"
-"PO-Revision-Date: 2006-12-27 20:36+0200\n"
-"Last-Translator: Anas Husseini <linux.anas@gmail.com>\n"
-"Language-Team: Arabic <support@arabeyes.org>\n"
+"PO-Revision-Date: 2008-02-06 04:06+0200\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
+"Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && "
-"n<=10 ? 2 : 3\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "\n"
 "\n"
 "X-Generator: KBabel 1.11.4\n"
@@ -166,8 +165,7 @@ msgstr ""
 "الزر  \"logout_enable\" محددا إلى TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The number of minutes after screensaver activation before locking the screen."
+msgid "The number of minutes after screensaver activation before locking the screen."
 msgstr "عدد الدقائق بعد تفعيل حافظة الشاشة قبل قفل الشاشة."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
@@ -180,8 +178,7 @@ msgstr ""
 "فقط عندما يكون الزر  \"logout_enable\" محددا إلى TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
+msgid "The number of minutes of inactivity before the session is considered idle."
 msgstr "عدد الدقائق من السكون قبل اعتبار الجلسة ساكنة."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
@@ -404,18 +401,17 @@ msgid "To:"
 msgstr "إلى:"
 
 #: ../src/copy-theme-dialog.c:253
-#, fuzzy
 msgid "Copying themes"
-msgstr "جارٍ نسخ الملفات"
+msgstr "نسخ السِمات"
 
 #: ../src/copy-theme-dialog.c:297
 msgid "Invalid screensaver theme"
 msgstr "سِمة حافظة شاشة غير سليمة"
 
 #: ../src/copy-theme-dialog.c:300
-#, fuzzy, c-format
+#, c-format
 msgid "%s does not appear to be a valid screensaver theme."
-msgstr "يبدو أن هذا الملف لا يمثل سِمة حافظة شاشة سليمة."
+msgstr "يبدو أن الملف %s لا يمثل سِمة حافظة شاشة سليمة."
 
 #: ../src/copy-theme-dialog.c:480
 #, c-format
@@ -489,7 +485,7 @@ msgstr "غير نشط"
 #: ../src/gnome-screensaver-command.c:274
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
-msgstr "حافظة الشاشة نشِطة منذ %d ثواني.\n"
+msgstr "حافظة الشاشة نشِطة منذ %Id ثواني.\n"
 
 #: ../src/gnome-screensaver-dialog.c:53
 msgid "Show debugging output"
@@ -602,28 +598,34 @@ msgstr "عشوائي"
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
-msgstr[0] "%d ساعة"
-msgstr[1] "%d ساعات"
-msgstr[2] "%d ساعات"
-msgstr[3] "%d ساعة"
+msgstr[0] "أقل من ساعة"
+msgstr[1] "ساعة"
+msgstr[2] "ساعتين"
+msgstr[3] "%Id ساعات"
+msgstr[4] "%Id ساعة"
+msgstr[5] "%Id ساعة"
 
 #: ../src/gnome-screensaver-preferences.c:957
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
-msgstr[0] "%d دقيقة"
-msgstr[1] "%d دقائق"
-msgstr[2] "%d دقائق"
-msgstr[3] "%d دقيقة"
+msgstr[0] "أقل من دقيقة"
+msgstr[1] "دقيقة"
+msgstr[2] "دقيقتين"
+msgstr[3] "%Id دقائق"
+msgstr[4] "%Id دقيقة"
+msgstr[5] "%Id دقيقة"
 
 #: ../src/gnome-screensaver-preferences.c:960
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] "%d ثانية "
-msgstr[1] "%d ثوان"
-msgstr[2] "%d ثوان"
-msgstr[3] "%d ثانية"
+msgstr[0] "حالا"
+msgstr[1] "ثانية"
+msgstr[2] "ثانيتين"
+msgstr[3] "%Id ثوان"
+msgstr[4] "%Id ثانية"
+msgstr[5] "%Id ثانية"
 
 #. hour:minutes:seconds
 #: ../src/gnome-screensaver-preferences.c:966
@@ -729,224 +731,3 @@ msgstr "%U على %h"
 msgid "_Password:"
 msgstr "_كلمة السر:"
 
-#~ msgid "Copying '%s'"
-#~ msgstr "جاري نسخ '%s'"
-
-#~ msgid "From URI"
-#~ msgstr "من العنوان"
-
-#~ msgid "URI currently transferring from"
-#~ msgstr "االعنوان الذي ينقل منه حاليّا"
-
-#~ msgid "To URI"
-#~ msgstr "إلى العنوان"
-
-#~ msgid "URI currently transferring to"
-#~ msgstr "العنوان الذي ينقل إليه حاليّا"
-
-#~ msgid "Fraction completed"
-#~ msgstr "اكتمل الجزء"
-
-#~ msgid "Fraction of transfer currently completed"
-#~ msgstr "جزء الإرسال المكتمل حاليا"
-
-#~ msgid "Current URI index"
-#~ msgstr "فهرس العناوين الحالي"
-
-#~ msgid "Current URI index - starts from 1"
-#~ msgstr "فهرس العناوين الحالي - يبدأ من 1"
-
-#~ msgid "Total URIs"
-#~ msgstr "عدد العناوين الإجمالي"
-
-#~ msgid "Total number of URIs"
-#~ msgstr "عدد العناوين الاجمالي"
-
-#~ msgid "Connecting..."
-#~ msgstr "جارٍ الاتصال..."
-
-#~ msgid "_Switch user..."
-#~ msgstr "_بدّل المستخدم..."
-
-#~ msgid "N"
-#~ msgstr "ن"
-
-#~ msgid "S_witch to user:"
-#~ msgstr "_بدّل المستخدم:"
-
-#~ msgid "Manager"
-#~ msgstr "المدير"
-
-#~ msgid "The manager which owns this object."
-#~ msgstr "مدير هذا المشروع."
-
-#~ msgid "Name"
-#~ msgstr "الاسم"
-
-#~ msgid "The name of the X11 display this object refers to."
-#~ msgstr "اسم شاشة X11 لهذا الجسم."
-
-#~ msgid "User"
-#~ msgstr "مستخدم"
-
-#~ msgid "The user currently logged in on this virtual terminal."
-#~ msgstr "المستخدم الحالي لهذه الطرفية الإفتراضية."
-
-#~ msgid "Console"
-#~ msgstr "كونسول"
-
-#~ msgid ""
-#~ "The number of the virtual console this display can be found on, or %-1."
-#~ msgstr "رقم الكونسول الإفتراضي لهذه الشاشة، أو %-1."
-
-#~ msgid "Nested"
-#~ msgstr "معشش"
-
-#~ msgid "Whether or not this display is a windowed (Xnest) display."
-#~ msgstr "إن كانت هذه الشاشة داخل شاشة (Xnest)."
-
-#~ msgid "The display manager could not be contacted for unknown reasons."
-#~ msgstr "فشل الإ تصال بمدير العرض لأسباب مجهولة."
-
-#~ msgid "The display manager is not running or too old."
-#~ msgstr "مدير العرض غير مشتغل أو قديم جدا."
-
-#~ msgid "The configured limit of flexible servers has been reached."
-#~ msgstr "تم بلوغ الحد المعدّ للخوادم المرنة."
-
-#~ msgid "There was an unknown error starting X."
-#~ msgstr "حصل خطأ مجهول عند بدأ X."
-
-#~ msgid "The X server failed to finish starting."
-#~ msgstr "خادم X فشل في نهاية الإشتغال."
-
-#~ msgid "There are too many X sessions running."
-#~ msgstr "عدد كبير جدا من جلسات X مشتغلة."
-
-#~ msgid "The nested X server (Xnest) cannot connect to your current X server."
-#~ msgstr "خادم X المعشش (Xnest) لا يستطيع الإتصال بخادم X الخاص بك."
-
-#~ msgid "The X server in the GDM configuration could not be found."
-#~ msgstr "خادم X الموجود في إعداد GDM غير موجود."
-
-#~ msgid ""
-#~ "Trying to set an unknown logout action, or trying to set a logout action "
-#~ "which is not available."
-#~ msgstr ""
-#~ "محاولة ضبط عملية تسجيل خروج مجهول، أو محاولة ضبط عملية تسجيل خروج غير "
-#~ "متوفّرة."
-
-#~ msgid "Virtual terminals not supported."
-#~ msgstr "الطرفيات الإفتراضية غير مدعومة."
-
-#~ msgid "Invalid virtual terminal number."
-#~ msgstr "رقم طرفية افتراضية غير صحيح."
-
-#~ msgid "Trying to update an unsupported configuration key."
-#~ msgstr "محاولة تحديث مفتاح إعداد غير مدعوم."
-
-#~ msgid "~/.Xauthority file badly configured or missing."
-#~ msgstr "ملف ~/.Xauthority غير صحيح أو غير موجود."
-
-#~ msgid "Too many messages were sent to the display manager, and it hung up."
-#~ msgstr "ارسلت رسائل كثيرة إلى مدير العرض، أدى هذا إلى علقه."
-
-#~ msgid "The display manager sent an unknown error message."
-#~ msgstr "أرسل مدير العرض رسالة خطأ غير مفهومة."
-
-#~ msgid "The user this menu item represents."
-#~ msgstr "المستخدم الممثل بهذه القائمة."
-
-#~ msgid "Icon Size"
-#~ msgstr "حجم الأيقونة"
-
-#~ msgid "The size of the icon to use."
-#~ msgstr "حجم الأيقونة المستعملة."
-
-#~ msgid "Indicator Size"
-#~ msgstr "حجم الموضّح"
-
-#~ msgid "Size of check indicator"
-#~ msgstr "حجم مؤشر الإختيار"
-
-#~ msgid "Indicator Spacing"
-#~ msgstr "تَبَاعُد المؤشر"
-
-#~ msgid "Space between the username and the indicator"
-#~ msgstr "المساحة بين اسم المستخدم و المؤشر"
-
-#~ msgid "The user manager object this user is controlled by."
-#~ msgstr "جسم مدير المستخدم المسير بهذا المستخدم."
-
-#~ msgid "Show Details"
-#~ msgstr "اظهر التفاصيل"
-
-#~ msgid "GDM (The GNOME Display Manager) is not running."
-#~ msgstr "GDM (مدير عرض جنوم) لا يعمل."
-
-#~ msgid ""
-#~ "You might in fact be using a different display manager, such as KDM (KDE "
-#~ "Display Manager) or xdm."
-#~ msgstr "ربما كنت تستخدم مدير عرض آخر، مثل KDM (مدير عرض كدي) أو xdm."
-
-#~ msgid ""
-#~ "If you still wish to use this feature, either start GDM yourself or ask "
-#~ "your system administrator to start GDM."
-#~ msgstr "إذا كنت ما تزال تريد هذه الميزة فشغل GDM بنفسك أو إسأل مدير النظام "
-
-#~ msgid "Cannot communicate with GDM (The GNOME Display Manager)"
-#~ msgstr " لا يمكن الإتصال بGDM (مدير الشاشات لجنوم)"
-
-#~ msgid "Perhaps you have an old version of GDM running."
-#~ msgstr "ربما تعمل لديك إصدارة قديمة من GDM."
-
-#~ msgid ""
-#~ "Cannot communicate with gdm, perhaps you have an old version running."
-#~ msgstr "لا يمكن الاتصال بـ gdm، ربما تشغل اصدارة قديمة."
-
-#~ msgid "The allowed limit of flexible X servers reached."
-#~ msgstr "الحد الممكن لخوادم X المرنة المسموح به، تحقق."
-
-#~ msgid "There were errors trying to start the X server."
-#~ msgstr "كان هناك أخطاء عند محاولة تشغيل خادم X."
-
-#~ msgid "The X server failed.  Perhaps it is not configured well."
-#~ msgstr "فشل خادم X. ربما لم يُعَدّ بسلامة."
-
-#~ msgid "Too many X sessions running."
-#~ msgstr "عدد كبير جدا من جلسات X مشتغلة."
-
-#~ msgid ""
-#~ "The nested X server (Xnest) cannot connect to your current X server.  You "
-#~ "may be missing an X authorization file."
-#~ msgstr ""
-#~ "لا يمكن لخادم X المعشش (Xnest) الاتصال بخادمك X الحالي. ربما تفتقد لبعض "
-#~ "ملفات التحقق."
-
-#~ msgid ""
-#~ "The nested X server (Xnest) is not available, or gdm is badly "
-#~ "configured.\n"
-#~ "Please install the Xnest package in order to use the nested login."
-#~ msgstr ""
-#~ "خادم X المعشش (Xnest) غير موجود، أو gdm معد سيئا.\n"
-#~ "رجاء ثبّت حزمة Xnest لتستعمل التسجيل المعشش."
-
-#~ msgid ""
-#~ "The X server is not available, it is likely that gdm is badly configured."
-#~ msgstr "خادم X غير متاح، ربما لم يُعَدّ gdm بصحة."
-
-#~ msgid "Trying to change to an invalid virtual terminal number."
-#~ msgstr "محاولة التحول إلى رقم طرفيّة افتراضية غير سليمة."
-
-#~ msgid ""
-#~ "You do not seem to have authentication needed be for this operation.  "
-#~ "Perhaps your .Xauthority file is not set up correctly."
-#~ msgstr ""
-#~ "يبدو أنك لا تملك التحقق اللازم لهذه العملية. ربما لم يضبط ملف .Xauthority "
-#~ "بسلامة."
-
-#~ msgid "Too many messages were sent to gdm and it hung upon us."
-#~ msgstr "ارسلت رسائل كثيرة إلى مدير العرض، أدى هذا إلى علقه."
-
-#~ msgid "Unknown error occurred."
-#~ msgstr "حدث خطأ مجهول."
