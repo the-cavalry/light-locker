@@ -5,7 +5,7 @@
 # Frank Arnold <frank@scirocco-5v-turbo.de>, 2005.
 # Hendrik Richter <hendrikr@gnome.org>, 2005, 2006, 2007.
 # Hendrik Brandt  <heb@gnome-de.org>, 2006.
-# Andre Klapper <ak-47@gmx.net>, 2007.
+# Andre Klapper <ak-47@gmx.net>, 2007, 2008.
 #
 # Based on German gdm and fast-user-switch-applet translations.
 # Copyright on gdm and fast-user-switch-applet translations is held
@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-15 12:38+0200\n"
-"PO-Revision-Date: 2007-08-15 12:39+0200\n"
-"Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
+"POT-Creation-Date: 2008-02-09 02:39+0100\n"
+"PO-Revision-Date: 2008-02-09 02:40+0100\n"
+"Last-Translator: Andre Klapper <ak-47@gmx.net>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -308,7 +308,7 @@ msgstr "A_bmelden"
 msgid "_Switch User"
 msgstr "Benutzer _wechseln"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
 msgid "_Unlock"
 msgstr "Sperrung auf_heben"
 
@@ -418,71 +418,35 @@ msgstr "Bilder nicht zufällig anzeigen"
 msgid "Do not try to stretch images on screen"
 msgstr "Bilder nicht auf Bildschirmgröße anpassen"
 
-#: ../src/file-transfer-dialog.c:94
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Datei wird kopiert: %u von %u"
-
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "»%s« wird kopiert"
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "Von Adresse"
-
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "Die Adresse von der die Übertragung kommt"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "Nach Adresse"
-
-#: ../src/file-transfer-dialog.c:202
-msgid "URI currently transferring to"
-msgstr "Die Adresse zu der die Übertragung geht"
-
-#: ../src/file-transfer-dialog.c:209
-msgid "Fraction completed"
-msgstr "Vollständiger Anteil"
-
-#: ../src/file-transfer-dialog.c:210
-msgid "Fraction of transfer currently completed"
-msgstr "Anteil der aktuell abgeschlossenen Übertragung"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "Aktueller Adressindex"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "Aktueller Adressindex - Start bei 1"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "Adressen ingesamt"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "Gesamtmenge aller Adressen"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+#: ../src/copy-theme-dialog.c:211
 msgid "Copying files"
 msgstr "Dateien werden kopiert"
 
-#: ../src/file-transfer-dialog.c:345
+#: ../src/copy-theme-dialog.c:229
 msgid "From:"
 msgstr "Von:"
 
-#: ../src/file-transfer-dialog.c:349
+#: ../src/copy-theme-dialog.c:233
 msgid "To:"
 msgstr "Nach:"
 
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "Verbinden …"
+#: ../src/copy-theme-dialog.c:253
+msgid "Copying themes"
+msgstr "Themen werden kopiert"
+
+#: ../src/copy-theme-dialog.c:297
+msgid "Invalid screensaver theme"
+msgstr "Ungültiger Bildschirmschoner"
+
+#: ../src/copy-theme-dialog.c:300
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "%s scheint kein gültiger Bildschirmschoner zu sein."
+
+#: ../src/copy-theme-dialog.c:480
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Datei wird kopiert: %u von %u"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -663,37 +627,29 @@ msgstr "Überprüfung läuft …"
 msgid "Authentication failed."
 msgstr "Authentifizierung ist gescheitert."
 
-#: ../src/gnome-screensaver-preferences.c:501
+#: ../src/gnome-screensaver-preferences.c:498
 msgid "Blank screen"
 msgstr "Leerer Bildschirm"
 
-#: ../src/gnome-screensaver-preferences.c:507
+#: ../src/gnome-screensaver-preferences.c:504
 msgid "Random"
 msgstr "Zufällig"
 
-#: ../src/gnome-screensaver-preferences.c:877
-msgid "Invalid screensaver theme"
-msgstr "Ungültiger Bildschirmschoner"
-
-#: ../src/gnome-screensaver-preferences.c:880
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Diese Datei scheint kein gültiger Bildschirmschoner zu sein."
-
-#: ../src/gnome-screensaver-preferences.c:1007
+#: ../src/gnome-screensaver-preferences.c:954
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d Stunde"
 msgstr[1] "%d Stunden"
 
-#: ../src/gnome-screensaver-preferences.c:1010
+#: ../src/gnome-screensaver-preferences.c:957
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d Minute"
 msgstr[1] "%d Minuten"
 
-#: ../src/gnome-screensaver-preferences.c:1013
+#: ../src/gnome-screensaver-preferences.c:960
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -701,15 +657,15 @@ msgstr[0] "%d Sekunde"
 msgstr[1] "%d Sekunden"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1019
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s %s"
 msgstr "%s:%s:%s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1022
-#: ../src/gnome-screensaver-preferences.c:1030
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s"
 msgstr "%s:%s"
@@ -717,22 +673,22 @@ msgstr "%s:%s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:1025
-#: ../src/gnome-screensaver-preferences.c:1033
-#: ../src/gnome-screensaver-preferences.c:1037
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1052
+#: ../src/gnome-screensaver-preferences.c:999
 msgid "Never"
 msgstr "Nie"
 
-#: ../src/gnome-screensaver-preferences.c:1451
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
 msgstr "Die Hauptschnittstelle konnte nicht geladen werden"
 
-#: ../src/gnome-screensaver-preferences.c:1453
+#: ../src/gnome-screensaver-preferences.c:1400
 msgid "Please make sure that the screensaver is properly installed"
 msgstr ""
 "Bitte stellen Sie sicher, dass der Bildschirmschoner korrekt installiert ist"
@@ -787,22 +743,58 @@ msgstr "Die Zeit ist abgelaufen."
 msgid "You have the Caps Lock key on."
 msgstr "Die »Caps Lock«-Taste ist aktiviert."
 
-#: ../src/gs-lock-plug.c:1187
+#: ../src/gs-lock-plug.c:1192
 msgid "S_witch User..."
 msgstr "Benutzer _wechseln …"
 
-#: ../src/gs-lock-plug.c:1196
+#: ../src/gs-lock-plug.c:1201
 msgid "Log _Out"
 msgstr "A_bmelden"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1373
+#: ../src/gs-lock-plug.c:1378
 msgid "%U on %h"
 msgstr "%U auf %h"
 
-#: ../src/gs-lock-plug.c:1387
+#: ../src/gs-lock-plug.c:1392
 msgid "_Password:"
 msgstr "_Passwort:"
+
+#~ msgid "Copying '%s'"
+#~ msgstr "»%s« wird kopiert"
+
+#~ msgid "From URI"
+#~ msgstr "Von Adresse"
+
+#~ msgid "URI currently transferring from"
+#~ msgstr "Die Adresse von der die Übertragung kommt"
+
+#~ msgid "To URI"
+#~ msgstr "Nach Adresse"
+
+#~ msgid "URI currently transferring to"
+#~ msgstr "Die Adresse zu der die Übertragung geht"
+
+#~ msgid "Fraction completed"
+#~ msgstr "Vollständiger Anteil"
+
+#~ msgid "Fraction of transfer currently completed"
+#~ msgstr "Anteil der aktuell abgeschlossenen Übertragung"
+
+#~ msgid "Current URI index"
+#~ msgstr "Aktueller Adressindex"
+
+#~ msgid "Current URI index - starts from 1"
+#~ msgstr "Aktueller Adressindex - Start bei 1"
+
+#~ msgid "Total URIs"
+#~ msgstr "Adressen ingesamt"
+
+#~ msgid "Total number of URIs"
+#~ msgstr "Gesamtmenge aller Adressen"
+
+#~ msgid "Connecting..."
+#~ msgstr "Verbinden …"
 
 #~ msgid "Authentication"
 #~ msgstr "Authentifizierung"
