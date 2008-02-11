@@ -1,5 +1,5 @@
 # Czech translation of gnome-screensaver.
-# Copyright (C) 2005 Free Software Foundation Inc.
+# Copyright (C) 2005, 2007, 2008 Free Software Foundation Inc.
 # Copyright (C) 2005 Miloslav Trmac <mitr@volny.cz>.
 # Copyright (C) 2006 Lukas Novotny <lukasnov@cvs.gnome.org>.
 # This file is distributed under the same license as the gnome-screensaver package.
@@ -7,14 +7,14 @@
 # Lukas Novotny <lukasnov@cvs.gnome.org>, 2006.
 # Petr Tomeš <ptomes@gmail.com>, 2006.
 # Jakub Friedl <jfriedl@suse.cz>, 2006.
-# Petr Kovar <pknbe@volny.cz>, 2007.
+# Petr Kovar <pknbe@volny.cz>, 2007, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-08 10:14+0100\n"
-"PO-Revision-Date: 2007-11-09 20:07+0100\n"
+"POT-Creation-Date: 2008-02-11 17:50+0100\n"
+"PO-Revision-Date: 2008-02-11 17:48+0100\n"
 "Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -231,7 +231,7 @@ msgstr "Motiv odemykacího dialogu"
 
 #: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Theme to use for the lock dialog."
-msgstr "Motiv použitý v odemykacím dialogu"
+msgstr "Motiv použitý v odemykacím dialogu."
 
 #: ../data/gnome-screensaver.schemas.in.h:27
 msgid ""
@@ -296,7 +296,7 @@ msgstr "O_dhlásit se"
 msgid "_Switch User"
 msgstr "_Přepnout uživatele"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1210
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
 msgid "_Unlock"
 msgstr "_Odemknout"
 
@@ -405,71 +405,35 @@ msgstr "Nevolit obrázky z umístění náhodně"
 msgid "Do not try to stretch images on screen"
 msgstr "Nepokoušet se na obrazovce roztahovat obrázky"
 
-#: ../src/file-transfer-dialog.c:94
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Kopírování souboru: %u z %u"
-
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "Kopírování \"%s\""
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "Z URI"
-
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "URI, odkud probíhá přenos"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "Na URI"
-
-#: ../src/file-transfer-dialog.c:202
-msgid "URI currently transferring to"
-msgstr "URI, kam probíhá přenos"
-
-#: ../src/file-transfer-dialog.c:209
-msgid "Fraction completed"
-msgstr "Dokončená část"
-
-#: ../src/file-transfer-dialog.c:210
-msgid "Fraction of transfer currently completed"
-msgstr "Momentálně dokončená část přenosu"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "Index aktuálního URI"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "Index aktuálního URI - začíná od 1"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "Celkem URI"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "Celkový počet URI"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+#: ../src/copy-theme-dialog.c:211
 msgid "Copying files"
 msgstr "Kopírování souborů"
 
-#: ../src/file-transfer-dialog.c:345
+#: ../src/copy-theme-dialog.c:229
 msgid "From:"
 msgstr "Z:"
 
-#: ../src/file-transfer-dialog.c:349
+#: ../src/copy-theme-dialog.c:233
 msgid "To:"
 msgstr "Do:"
 
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "Připojování..."
+#: ../src/copy-theme-dialog.c:253
+msgid "Copying themes"
+msgstr "Kopírování motivů"
+
+#: ../src/copy-theme-dialog.c:297
+msgid "Invalid screensaver theme"
+msgstr "Neplatný motiv šetřiče obrazovky"
+
+#: ../src/copy-theme-dialog.c:300
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "%s zřejmě není platným motivem šetřiče obrazovky."
+
+#: ../src/copy-theme-dialog.c:480
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Kopírování souboru: %u z %u"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -589,7 +553,7 @@ msgstr "Je nutné si okamžitě změnit heslo (vyžadováno superuživatelem)"
 
 #: ../src/gnome-screensaver-dialog.c:180
 msgid "Your account has expired; please contact your system administrator"
-msgstr "Váš účet vypršel; kontaktujte prosím správce systému."
+msgstr "Váš účet vypršel; kontaktujte prosím správce systému"
 
 #: ../src/gnome-screensaver-dialog.c:181
 msgid "No password supplied"
@@ -621,7 +585,7 @@ msgstr "Chyba při změně hesla NIS."
 
 #: ../src/gnome-screensaver-dialog.c:188
 msgid "You must choose a longer password"
-msgstr "Je nutné zvolit si delší heslo."
+msgstr "Je nutné si zvolit delší heslo"
 
 #: ../src/gnome-screensaver-dialog.c:189
 msgid "Password has been already used. Choose another."
@@ -643,23 +607,15 @@ msgstr "Probíhá kontrola..."
 msgid "Authentication failed."
 msgstr "Ověření selhalo."
 
-#: ../src/gnome-screensaver-preferences.c:500
+#: ../src/gnome-screensaver-preferences.c:498
 msgid "Blank screen"
 msgstr "Prázdná obrazovka"
 
-#: ../src/gnome-screensaver-preferences.c:506
+#: ../src/gnome-screensaver-preferences.c:504
 msgid "Random"
 msgstr "Náhodný"
 
-#: ../src/gnome-screensaver-preferences.c:876
-msgid "Invalid screensaver theme"
-msgstr "Neplatný motiv šetřiče obrazovky"
-
-#: ../src/gnome-screensaver-preferences.c:879
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Tento soubor zřejmě není platným motivem šetřiče obrazovky."
-
-#: ../src/gnome-screensaver-preferences.c:1006
+#: ../src/gnome-screensaver-preferences.c:954
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -667,7 +623,7 @@ msgstr[0] "%d hodina"
 msgstr[1] "%d hodiny"
 msgstr[2] "%d hodin"
 
-#: ../src/gnome-screensaver-preferences.c:1009
+#: ../src/gnome-screensaver-preferences.c:957
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -675,7 +631,7 @@ msgstr[0] "%d minuta"
 msgstr[1] "%d minuty"
 msgstr[2] "%d minut"
 
-#: ../src/gnome-screensaver-preferences.c:1012
+#: ../src/gnome-screensaver-preferences.c:960
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -684,15 +640,15 @@ msgstr[1] "%d sekundy"
 msgstr[2] "%d sekund"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1018
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s %s"
 msgstr "%s:%s:%s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1021
-#: ../src/gnome-screensaver-preferences.c:1029
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s"
 msgstr "%s:%s"
@@ -700,22 +656,22 @@ msgstr "%s:%s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:1024
-#: ../src/gnome-screensaver-preferences.c:1032
-#: ../src/gnome-screensaver-preferences.c:1036
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1051
+#: ../src/gnome-screensaver-preferences.c:999
 msgid "Never"
 msgstr "Nikdy"
 
-#: ../src/gnome-screensaver-preferences.c:1450
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
 msgstr "Nelze načíst hlavní rozhraní"
 
-#: ../src/gnome-screensaver-preferences.c:1452
+#: ../src/gnome-screensaver-preferences.c:1400
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Přesvědčte se prosím, že šetřič obrazovky je správně nainstalován"
 
@@ -769,19 +725,19 @@ msgstr "Čas vypršel."
 msgid "You have the Caps Lock key on."
 msgstr "Je zapnut \"Caps Lock\"."
 
-#: ../src/gs-lock-plug.c:1190
+#: ../src/gs-lock-plug.c:1192
 msgid "S_witch User..."
 msgstr "_Přepnout uživatele..."
 
-#: ../src/gs-lock-plug.c:1199
+#: ../src/gs-lock-plug.c:1201
 msgid "Log _Out"
 msgstr "_Odhlásit"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1376
+#: ../src/gs-lock-plug.c:1378
 msgid "%U on %h"
 msgstr "%U na %h"
 
-#: ../src/gs-lock-plug.c:1390
+#: ../src/gs-lock-plug.c:1392
 msgid "_Password:"
 msgstr "_Heslo:"
