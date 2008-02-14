@@ -1,19 +1,19 @@
 # GNOME ekraanisäästja eesti keele tõlge.
 # Estonian translation of GNOME screensaver.
 #
-# Copyright (C) 2006, 2007, The GNOME Project.
+# Copyright (C) 2006-2008, The GNOME Project.
 # This file is distributed under the same license as the gnome-screensaver
 # package.
 #
-# Ivar Smolin <okul@linux.ee>, 2006, 2007.
+# Ivar Smolin <okul@linux.ee>, 2006-2008.
 # Priit Laes <amd@store20.com>, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-16 10:59+0100\n"
-"PO-Revision-Date: 2007-08-31 12:11+0300\n"
+"POT-Creation-Date: 2008-01-29 11:00+0000\n"
+"PO-Revision-Date: 2008-02-09 09:01+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -290,7 +290,7 @@ msgstr "Logi _välja"
 msgid "_Switch User"
 msgstr "Vaheta _kasutajat"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
 msgid "_Unlock"
 msgstr "_Võta lukust lahti"
 
@@ -399,71 +399,35 @@ msgstr "Asukohast ei valita pilte juhuslikus järjekorras"
 msgid "Do not try to stretch images on screen"
 msgstr "Pilte ei proovita üle ekraani venitada"
 
-#: ../src/file-transfer-dialog.c:94
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Faili kopeerimine: %u (%u'st)"
-
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "'%s' kopeerimine"
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "URI-lt"
-
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "URI millelt hetkel üle kantakse"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "URI-le"
-
-#: ../src/file-transfer-dialog.c:202
-msgid "URI currently transferring to"
-msgstr "URI kuhu hetkel üle kantakse"
-
-#: ../src/file-transfer-dialog.c:209
-msgid "Fraction completed"
-msgstr "Alamhulk on kohal"
-
-#: ../src/file-transfer-dialog.c:210
-msgid "Fraction of transfer currently completed"
-msgstr "Ülekande alamhulk on kohale toimetatud"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "Käesolev URI indeks"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "Käesolev URI indeks - alustades esimesest"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "URI-sid kokku"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "URI-de koguarv"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+#: ../src/copy-theme-dialog.c:204
 msgid "Copying files"
 msgstr "Failide kopeerimine"
 
-#: ../src/file-transfer-dialog.c:345
+#: ../src/copy-theme-dialog.c:222
 msgid "From:"
 msgstr "Lähtekoht:"
 
-#: ../src/file-transfer-dialog.c:349
+#: ../src/copy-theme-dialog.c:226
 msgid "To:"
 msgstr "Sihtkoht:"
 
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "Ühendumine..."
+#: ../src/copy-theme-dialog.c:246
+msgid "Copying themes"
+msgstr "Teemade kopeerimine"
+
+#: ../src/copy-theme-dialog.c:290
+msgid "Invalid screensaver theme"
+msgstr "Vigane ekraanisäästja teema"
+
+#: ../src/copy-theme-dialog.c:293
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "%s ei paista olevate korrektne ekraanisäästja teema."
+
+#: ../src/copy-theme-dialog.c:454
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Faili kopeerimine: %u (%u'st)"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -638,37 +602,29 @@ msgstr "Kontrollimine..."
 msgid "Authentication failed."
 msgstr "Tõrge autentimisel."
 
-#: ../src/gnome-screensaver-preferences.c:501
+#: ../src/gnome-screensaver-preferences.c:498
 msgid "Blank screen"
 msgstr "Tühi ekraan"
 
-#: ../src/gnome-screensaver-preferences.c:507
+#: ../src/gnome-screensaver-preferences.c:504
 msgid "Random"
 msgstr "Juhuslik"
 
-#: ../src/gnome-screensaver-preferences.c:877
-msgid "Invalid screensaver theme"
-msgstr "Vigane ekraanisäästja teema"
-
-#: ../src/gnome-screensaver-preferences.c:880
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Fail ei paista olevate korrektne ekraanisäästja teema."
-
-#: ../src/gnome-screensaver-preferences.c:1007
+#: ../src/gnome-screensaver-preferences.c:954
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d tund"
 msgstr[1] "%d tundi"
 
-#: ../src/gnome-screensaver-preferences.c:1010
+#: ../src/gnome-screensaver-preferences.c:957
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minut"
 msgstr[1] "%d minutit"
 
-#: ../src/gnome-screensaver-preferences.c:1013
+#: ../src/gnome-screensaver-preferences.c:960
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -676,15 +632,15 @@ msgstr[0] "%d sekund"
 msgstr[1] "%d sekundit"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1019
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s %s"
 msgstr "%s:%s:%s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1022
-#: ../src/gnome-screensaver-preferences.c:1030
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s"
 msgstr "%s:%s"
@@ -692,22 +648,22 @@ msgstr "%s:%s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:1025
-#: ../src/gnome-screensaver-preferences.c:1033
-#: ../src/gnome-screensaver-preferences.c:1037
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1052
+#: ../src/gnome-screensaver-preferences.c:999
 msgid "Never"
 msgstr "Mitte kunagi"
 
-#: ../src/gnome-screensaver-preferences.c:1451
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
 msgstr "Peamist liidest pole võimalik laadida"
 
-#: ../src/gnome-screensaver-preferences.c:1453
+#: ../src/gnome-screensaver-preferences.c:1400
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Palun veendu, et ekraanisäästja on korrektselt paigaldatud"
 
@@ -761,19 +717,19 @@ msgstr "Ajapiirang ületati."
 msgid "You have the Caps Lock key on."
 msgstr "Sul on Caps Lock klahv sisse lülitatud"
 
-#: ../src/gs-lock-plug.c:1187
+#: ../src/gs-lock-plug.c:1192
 msgid "S_witch User..."
 msgstr "_Vaheta kasutajat..."
 
-#: ../src/gs-lock-plug.c:1196
+#: ../src/gs-lock-plug.c:1201
 msgid "Log _Out"
 msgstr "Logi _välja"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1373
+#: ../src/gs-lock-plug.c:1378
 msgid "%U on %h"
 msgstr "%U hostil %h"
 
-#: ../src/gs-lock-plug.c:1387
+#: ../src/gs-lock-plug.c:1392
 msgid "_Password:"
 msgstr "_Parool:"
