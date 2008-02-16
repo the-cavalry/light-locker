@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-01 11:53+0300\n"
-"PO-Revision-Date: 2007-05-27 23:37+0300\n"
+"POT-Creation-Date: 2008-02-17 00:30+0200\n"
+"PO-Revision-Date: 2008-02-17 00:31+0200\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: i18n@mova.org <i18n@mova.org>\n"
 "MIME-Version: 1.0\n"
@@ -296,7 +296,7 @@ msgstr "_Vyjdzi"
 msgid "_Switch User"
 msgstr "_Pieraklučy karystalnika"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
 msgid "_Unlock"
 msgstr "_Adblakuj"
 
@@ -406,71 +406,35 @@ msgstr "Nie pakazvaj vypadkova vyjavy z pałažeńnia"
 msgid "Do not try to stretch images on screen"
 msgstr "Nie sprabuj raściahnuć vyjavy na ŭvieś ekran"
 
-#: ../src/file-transfer-dialog.c:94
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Kapijavańnie fajłu: %u z %u"
-
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "Kapijavańnie \"%s\""
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "Z URI"
-
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "Vytočny URI"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "Da URI"
-
-#: ../src/file-transfer-dialog.c:202
-msgid "URI currently transferring to"
-msgstr "Metavy URI"
-
-#: ../src/file-transfer-dialog.c:209
-msgid "Fraction completed"
-msgstr "Skončanaja častka"
-
-#: ../src/file-transfer-dialog.c:210
-msgid "Fraction of transfer currently completed"
-msgstr "Skončanaja častka pieradačy"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "Dziejny indeks URI"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "Dziejny indeks URI – pačynajučy ad 1"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "Usich URI"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "Kolkaść usich URI"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+#: ../src/copy-theme-dialog.c:211
 msgid "Copying files"
 msgstr "Kapijavańnie fajłaŭ"
 
-#: ../src/file-transfer-dialog.c:345
+#: ../src/copy-theme-dialog.c:229
 msgid "From:"
 msgstr "Z:"
 
-#: ../src/file-transfer-dialog.c:349
+#: ../src/copy-theme-dialog.c:233
 msgid "To:"
 msgstr "Da:"
 
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "Spałučeńnie..."
+#: ../src/copy-theme-dialog.c:253
+msgid "Copying themes"
+msgstr "Kapijavańnie matyvaŭ"
+
+#: ../src/copy-theme-dialog.c:297
+msgid "Invalid screensaver theme"
+msgstr "Niapravilny matyŭ źberahalnika ekranu"
+
+#: ../src/copy-theme-dialog.c:300
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "%s nie źjaŭlajecca pravilnym matyvam źbierahalnika ekranu."
+
+#: ../src/copy-theme-dialog.c:480
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Kapijavańnie fajłu: %u z %u"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -646,23 +610,15 @@ msgstr "Pravierka..."
 msgid "Authentication failed."
 msgstr "Aŭtaryzacyja nie ŭdałasia"
 
-#: ../src/gnome-screensaver-preferences.c:501
+#: ../src/gnome-screensaver-preferences.c:498
 msgid "Blank screen"
 msgstr "Čorny ekran"
 
-#: ../src/gnome-screensaver-preferences.c:507
+#: ../src/gnome-screensaver-preferences.c:504
 msgid "Random"
 msgstr "Vypadkova"
 
-#: ../src/gnome-screensaver-preferences.c:877
-msgid "Invalid screensaver theme"
-msgstr "Niapravilny matyŭ źberahalnika ekranu"
-
-#: ../src/gnome-screensaver-preferences.c:880
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Hety fajł nie źjaŭlajecca pravilnym matyvam źbierahalnika ekranu."
-
-#: ../src/gnome-screensaver-preferences.c:1007
+#: ../src/gnome-screensaver-preferences.c:954
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -670,7 +626,7 @@ msgstr[0] "%d hadzinu"
 msgstr[1] "%d hadziny"
 msgstr[2] "%d hadzinaŭ"
 
-#: ../src/gnome-screensaver-preferences.c:1010
+#: ../src/gnome-screensaver-preferences.c:957
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -678,7 +634,7 @@ msgstr[0] "%d chvilinu"
 msgstr[1] "%d chviliny"
 msgstr[2] "%d chvilinaŭ"
 
-#: ../src/gnome-screensaver-preferences.c:1013
+#: ../src/gnome-screensaver-preferences.c:960
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -687,15 +643,15 @@ msgstr[1] "%d sekundy"
 msgstr[2] "%d sekundaŭ"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1019
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1022
-#: ../src/gnome-screensaver-preferences.c:1030
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -703,22 +659,22 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:1025
-#: ../src/gnome-screensaver-preferences.c:1033
-#: ../src/gnome-screensaver-preferences.c:1037
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1052
+#: ../src/gnome-screensaver-preferences.c:999
 msgid "Never"
 msgstr "Nikoli"
 
-#: ../src/gnome-screensaver-preferences.c:1451
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
 msgstr "Niemahčyma zahruzić hałoŭny interfejs"
 
-#: ../src/gnome-screensaver-preferences.c:1453
+#: ../src/gnome-screensaver-preferences.c:1400
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Upeŭnisia, ci źbierahalnik ekranu pravilna zainstalavany"
 
@@ -772,22 +728,58 @@ msgstr "Limit času pierakročany."
 msgid "You have the Caps Lock key on."
 msgstr "Klaviša Caps Lock nacisnutaja."
 
-#: ../src/gs-lock-plug.c:1187
+#: ../src/gs-lock-plug.c:1192
 msgid "S_witch User..."
 msgstr "_Pieraklučy karystalnika..."
 
-#: ../src/gs-lock-plug.c:1196
+#: ../src/gs-lock-plug.c:1201
 msgid "Log _Out"
 msgstr "_Vyjście"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1373
+#: ../src/gs-lock-plug.c:1378
 msgid "%U on %h"
 msgstr "%U na %h"
 
-#: ../src/gs-lock-plug.c:1387
+#: ../src/gs-lock-plug.c:1392
 msgid "_Password:"
 msgstr "_Parol:"
+
+#~ msgid "Copying '%s'"
+#~ msgstr "Kapijavańnie \"%s\""
+
+#~ msgid "From URI"
+#~ msgstr "Z URI"
+
+#~ msgid "URI currently transferring from"
+#~ msgstr "Vytočny URI"
+
+#~ msgid "To URI"
+#~ msgstr "Da URI"
+
+#~ msgid "URI currently transferring to"
+#~ msgstr "Metavy URI"
+
+#~ msgid "Fraction completed"
+#~ msgstr "Skončanaja častka"
+
+#~ msgid "Fraction of transfer currently completed"
+#~ msgstr "Skončanaja častka pieradačy"
+
+#~ msgid "Current URI index"
+#~ msgstr "Dziejny indeks URI"
+
+#~ msgid "Current URI index - starts from 1"
+#~ msgstr "Dziejny indeks URI – pačynajučy ad 1"
+
+#~ msgid "Total URIs"
+#~ msgstr "Usich URI"
+
+#~ msgid "Total number of URIs"
+#~ msgstr "Kolkaść usich URI"
+
+#~ msgid "Connecting..."
+#~ msgstr "Spałučeńnie..."
 
 #~ msgid "Authentication"
 #~ msgstr "Aŭtaryzacyja"
