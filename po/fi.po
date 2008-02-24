@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-13 13:01+0300\n"
+"POT-Creation-Date: 2008-02-24 05:59+0300\n"
 "PO-Revision-Date: 2007-05-12 11:49+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -192,7 +192,7 @@ msgstr "Kuinka monen minuutin kuluttua istunnon katsotaan olevan jouten."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
-msgstr "Kuinka pitkän joutenolon kuluttua näytönsäästäjän teemaa vaihdetaa."
+msgstr "Kuinka pitkän joutenolon kuluttua näytönsäästäjän teemaa vaihdetaan."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
@@ -235,7 +235,7 @@ msgid ""
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
 msgstr ""
-"Tämä avain mmäärittelee näytönsäästäjän käyttämät teemat. Arvolla ei ole "
+"Tämä avain määrittelee näytönsäästäjän käyttämät teemat. Arvolla ei ole "
 "vaikutusta, jos avain \"mode\" on joko \"disabled\" tai \"blank-only\". Sen "
 "tulee sisältää teeman nimen, kun arvo on \"single\", ja sen tulee sisältää "
 "lista teemoista, kun \"mode\"-avaimen arvo on \"random\"."
@@ -448,7 +448,7 @@ msgstr "Lukitse näyttö heti käynnissä olevan näytönsäästäjäprosessin a
 
 #: ../src/gnome-screensaver-command.c:70
 msgid "If the screensaver is active then switch to another graphics demo"
-msgstr "Vaihtaa uuteen demoon, jos näytänsäästäjä on käynnissä"
+msgstr "Vaihtaa uuteen demoon, jos näytönsäästäjä on käynnissä"
 
 #: ../src/gnome-screensaver-command.c:72
 msgid "Turn the screensaver on (blank the screen)"
