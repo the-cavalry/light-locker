@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-17 15:11+0100\n"
-"PO-Revision-Date: 2007-09-04 21:35+0800\n"
+"POT-Creation-Date: 2008-01-29 11:00+0000\n"
+"PO-Revision-Date: 2008-02-25 14:57+0800\n"
 "Last-Translator: Yang Zhang <zyangmath@gmail.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -276,7 +276,7 @@ msgstr "注销(_L)"
 msgid "_Switch User"
 msgstr "切换用户(_S)"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
 msgid "_Unlock"
 msgstr "解锁(_U)"
 
@@ -384,71 +384,35 @@ msgstr "不随机放置图片"
 msgid "Do not try to stretch images on screen"
 msgstr "不在屏幕上伸展图片"
 
-#: ../src/file-transfer-dialog.c:94
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "正复制文件：第%u个，共%u个"
-
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "正复制“%s”"
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "从 URI"
-
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "当前传输的源 URI"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "到 URI"
-
-#: ../src/file-transfer-dialog.c:202
-msgid "URI currently transferring to"
-msgstr "当前传输的目的 URI"
-
-#: ../src/file-transfer-dialog.c:209
-msgid "Fraction completed"
-msgstr "完成比例"
-
-#: ../src/file-transfer-dialog.c:210
-msgid "Fraction of transfer currently completed"
-msgstr "当前完成的传输的比例"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "当前 URI 索引"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "当前 URI 索引 - 从1开始"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "总计 URI"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "URI 总数"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+#: ../src/copy-theme-dialog.c:204
 msgid "Copying files"
 msgstr "正在复制文件"
 
-#: ../src/file-transfer-dialog.c:345
+#: ../src/copy-theme-dialog.c:222
 msgid "From:"
 msgstr "从："
 
-#: ../src/file-transfer-dialog.c:349
+#: ../src/copy-theme-dialog.c:226
 msgid "To:"
 msgstr "到："
 
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "正在连接..."
+#: ../src/copy-theme-dialog.c:246
+msgid "Copying themes"
+msgstr "正在复制主题"
+
+#: ../src/copy-theme-dialog.c:290
+msgid "Invalid screensaver theme"
+msgstr "无效的屏幕保护程序主题"
+
+#: ../src/copy-theme-dialog.c:293
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "%s 似乎不是有效的屏幕保护程序主题。"
+
+#: ../src/copy-theme-dialog.c:454
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "正复制文件：第%u个，共%u个"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -618,50 +582,42 @@ msgstr "正在检查..."
 msgid "Authentication failed."
 msgstr "验证失败。"
 
-#: ../src/gnome-screensaver-preferences.c:501
+#: ../src/gnome-screensaver-preferences.c:498
 msgid "Blank screen"
 msgstr "黑屏幕"
 
-#: ../src/gnome-screensaver-preferences.c:507
+#: ../src/gnome-screensaver-preferences.c:504
 msgid "Random"
 msgstr "随机"
 
-#: ../src/gnome-screensaver-preferences.c:877
-msgid "Invalid screensaver theme"
-msgstr "无效的屏幕保护程序主题"
-
-#: ../src/gnome-screensaver-preferences.c:880
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "此文件似乎不是有效的屏幕保护程序主题。"
-
-#: ../src/gnome-screensaver-preferences.c:1007
+#: ../src/gnome-screensaver-preferences.c:954
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d 小时"
 
-#: ../src/gnome-screensaver-preferences.c:1010
+#: ../src/gnome-screensaver-preferences.c:957
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d 分钟"
 
-#: ../src/gnome-screensaver-preferences.c:1013
+#: ../src/gnome-screensaver-preferences.c:960
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d 秒"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1019
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1022
-#: ../src/gnome-screensaver-preferences.c:1030
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -669,22 +625,22 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:1025
-#: ../src/gnome-screensaver-preferences.c:1033
-#: ../src/gnome-screensaver-preferences.c:1037
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1052
+#: ../src/gnome-screensaver-preferences.c:999
 msgid "Never"
 msgstr "从不"
 
-#: ../src/gnome-screensaver-preferences.c:1451
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
 msgstr "无法装入主界面"
 
-#: ../src/gnome-screensaver-preferences.c:1453
+#: ../src/gnome-screensaver-preferences.c:1400
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "请确定屏幕保护程序已经正确安装"
 
@@ -738,22 +694,58 @@ msgstr "时间已到。"
 msgid "You have the Caps Lock key on."
 msgstr "您打开了 Caps Lock 键。"
 
-#: ../src/gs-lock-plug.c:1187
+#: ../src/gs-lock-plug.c:1192
 msgid "S_witch User..."
 msgstr "切换用户(_W)..."
 
-#: ../src/gs-lock-plug.c:1196
+#: ../src/gs-lock-plug.c:1201
 msgid "Log _Out"
 msgstr "注销(_O)"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1373
+#: ../src/gs-lock-plug.c:1378
 msgid "%U on %h"
 msgstr "%h 上的 %U"
 
-#: ../src/gs-lock-plug.c:1387
+#: ../src/gs-lock-plug.c:1392
 msgid "_Password:"
 msgstr "密码(_P)："
+
+#~ msgid "Copying '%s'"
+#~ msgstr "正复制“%s”"
+
+#~ msgid "From URI"
+#~ msgstr "从 URI"
+
+#~ msgid "URI currently transferring from"
+#~ msgstr "当前传输的源 URI"
+
+#~ msgid "To URI"
+#~ msgstr "到 URI"
+
+#~ msgid "URI currently transferring to"
+#~ msgstr "当前传输的目的 URI"
+
+#~ msgid "Fraction completed"
+#~ msgstr "完成比例"
+
+#~ msgid "Fraction of transfer currently completed"
+#~ msgstr "当前完成的传输的比例"
+
+#~ msgid "Current URI index"
+#~ msgstr "当前 URI 索引"
+
+#~ msgid "Current URI index - starts from 1"
+#~ msgstr "当前 URI 索引 - 从1开始"
+
+#~ msgid "Total URIs"
+#~ msgstr "总计 URI"
+
+#~ msgid "Total number of URIs"
+#~ msgstr "URI 总数"
+
+#~ msgid "Connecting..."
+#~ msgstr "正在连接..."
 
 #~ msgid "N"
 #~ msgstr "N"
