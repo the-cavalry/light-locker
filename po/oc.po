@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: oc\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-02-19 20:23+0100\n"
-"PO-Revision-Date: 2008-02-02 21:25+0100\n"
+"PO-Revision-Date: 2008-02-26 23:09+0100\n"
 "Last-Translator: Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>\n"
 "Language-Team: Occitan <ubuntu-l10n-oci@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
 msgid "Screensaver"
@@ -321,7 +321,7 @@ msgstr ""
 
 #: ../savers/floaters.c:96
 msgid "WIDTHxHEIGHT+X+Y"
-msgstr ""
+msgstr "LARGOR+NAUTOR+X+Y"
 
 #: ../savers/floaters.c:99
 msgid "The source image to use"
@@ -698,3 +698,4 @@ msgstr "%U sus %h"
 #: ../src/gs-lock-plug.c:1392
 msgid "_Password:"
 msgstr "Mot de _pas :"
+
