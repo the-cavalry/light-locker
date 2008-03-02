@@ -1,22 +1,23 @@
-# translation of lt.po to Lithuanian
+# translation of gnome-screensaver.HEAD.po to Lithuanian
 # Lithuanian translation for gnome-screensaver.
-# Copyright (C) 2005-2006, 2007 Free Software Foundation, Inc.
+# Copyright (C) 2005-2006, 2007, 2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-screensaver package.
 #
 # Žygimantas Beručka <zygis@gnome.org>, 2005-2006.
-# Gintautas Miliauskas <gintas@akl.lt>, 2006, 2007.
+# Gintautas Miliauskas <gintas@akl.lt>, 2006, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: lt\n"
+"Project-Id-Version: gnome-screensaver.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-16 14:07+0300\n"
-"PO-Revision-Date: 2007-09-16 14:16+0300\n"
+"POT-Creation-Date: 2008-03-02 02:54+0200\n"
+"PO-Revision-Date: 2008-03-02 02:38+0200\n"
 "Last-Translator: Gintautas Miliauskas <gintas@akl.lt>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
+"100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
@@ -172,8 +173,10 @@ msgstr ""
 "reikšmės tik tada, kai rakto „logout_enable“ reikšmė teigiama."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
-msgid "The number of minutes after screensaver activation before locking the screen."
-msgstr "Minučių skaičius nuo ekrano užsklandos aktyvavimo iki ekrano užrakinimo."
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
+msgstr ""
+"Minučių skaičius nuo ekrano užsklandos aktyvavimo iki ekrano užrakinimo."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
@@ -186,7 +189,8 @@ msgstr ""
 "„logout_enable“ reikšmė yra teigiama."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
-msgid "The number of minutes of inactivity before the session is considered idle."
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
 msgstr "Neveiklumo trukmė minutėmis iki tol, kol sesija nelaikoma neveiklia."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
@@ -290,7 +294,7 @@ msgstr "At_sijungti"
 msgid "_Switch User"
 msgstr "_Pakeisti naudotoją"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
 msgid "_Unlock"
 msgstr "_Atrakinti"
 
@@ -371,6 +375,7 @@ msgid "%s. See --help for usage information.\n"
 msgstr "%s. Norėdami daugiau informacijos, žr. --help.\n"
 
 #: ../savers/floaters.c:1209
+#, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
 "Turite nurodyti bent vieną paveikslėlį. Norėdami sužinoti kaip naudotis, žr. "
@@ -400,71 +405,35 @@ msgstr "Imti paveikslėlius iš eilės"
 msgid "Do not try to stretch images on screen"
 msgstr "Neištempti paveikslėlių ekrane"
 
-#: ../src/file-transfer-dialog.c:94
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Kopijuojamas failas: %u iš %u"
-
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "Kopijuojama „%s“"
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "Iš URI"
-
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "URI iš kurio šiuo metu perkeliama"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "Į URI"
-
-#: ../src/file-transfer-dialog.c:202
-msgid "URI currently transferring to"
-msgstr "URI į kurį dabar perkeliama"
-
-#: ../src/file-transfer-dialog.c:209
-msgid "Fraction completed"
-msgstr "Atlikta dalis"
-
-#: ../src/file-transfer-dialog.c:210
-msgid "Fraction of transfer currently completed"
-msgstr "Atlikta perduotų duomenų dalis"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "Esama URI rodyklė"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "Esama URI rodyklė - prasideda nuo 1"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "Viso URI"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "Bendras URI skaičius"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+#: ../src/copy-theme-dialog.c:211
 msgid "Copying files"
 msgstr "Kopijuojamos failo"
 
-#: ../src/file-transfer-dialog.c:345
+#: ../src/copy-theme-dialog.c:229
 msgid "From:"
 msgstr "Iš:"
 
-#: ../src/file-transfer-dialog.c:349
+#: ../src/copy-theme-dialog.c:233
 msgid "To:"
 msgstr "Į:"
 
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "Jungiamasi..."
+#: ../src/copy-theme-dialog.c:253
+msgid "Copying themes"
+msgstr "Kopijuojamos temos"
+
+#: ../src/copy-theme-dialog.c:297
+msgid "Invalid screensaver theme"
+msgstr "Netinkama ekrano užsklandos tema"
+
+#: ../src/copy-theme-dialog.c:300
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "%s nėra tinkama ekrano užsklandos tema."
+
+#: ../src/copy-theme-dialog.c:480
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Kopijuojamas failas: %u iš %u"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -492,7 +461,8 @@ msgstr "Įjungti ekrano užsklandą (užtemdyti ekraną)"
 
 #: ../src/gnome-screensaver-command.c:74
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr "Jei ekrano užsklanda aktyvi, ją deaktyvuoti (išjungti ekrano užtemdymą)"
+msgstr ""
+"Jei ekrano užsklanda aktyvi, ją deaktyvuoti (išjungti ekrano užtemdymą)"
 
 #: ../src/gnome-screensaver-command.c:76
 msgid "Poke the running screensaver to simulate user activity"
@@ -582,7 +552,8 @@ msgstr "Turite tuojau pat pasikeisti slaptažodį (root nurodymu)"
 
 #: ../src/gnome-screensaver-dialog.c:180
 msgid "Your account has expired; please contact your system administrator"
-msgstr "Jūsų slaptažodis nustojo galiojęs; susisiekite su sistemos administratoriumi"
+msgstr ""
+"Jūsų slaptažodis nustojo galiojęs; susisiekite su sistemos administratoriumi"
 
 #: ../src/gnome-screensaver-dialog.c:181
 msgid "No password supplied"
@@ -636,23 +607,15 @@ msgstr "Tikrinama..."
 msgid "Authentication failed."
 msgstr "Tapatybė nepatvirtinta."
 
-#: ../src/gnome-screensaver-preferences.c:500
+#: ../src/gnome-screensaver-preferences.c:498
 msgid "Blank screen"
 msgstr "Tuščias ekranas"
 
-#: ../src/gnome-screensaver-preferences.c:506
+#: ../src/gnome-screensaver-preferences.c:504
 msgid "Random"
 msgstr "Atsitiktinė"
 
-#: ../src/gnome-screensaver-preferences.c:876
-msgid "Invalid screensaver theme"
-msgstr "Netinkama ekrano užsklandos tema"
-
-#: ../src/gnome-screensaver-preferences.c:879
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Panašu, kad šis failas nėra tinkama ekrano užsklandos tema."
-
-#: ../src/gnome-screensaver-preferences.c:1006
+#: ../src/gnome-screensaver-preferences.c:954
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -660,7 +623,7 @@ msgstr[0] "%d valanda"
 msgstr[1] "%d valandos"
 msgstr[2] "%d valandų"
 
-#: ../src/gnome-screensaver-preferences.c:1009
+#: ../src/gnome-screensaver-preferences.c:957
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -668,7 +631,7 @@ msgstr[0] "%d minutė"
 msgstr[1] "%d minutės"
 msgstr[2] "%d minučių"
 
-#: ../src/gnome-screensaver-preferences.c:1012
+#: ../src/gnome-screensaver-preferences.c:960
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -677,15 +640,15 @@ msgstr[1] "%d sekundės"
 msgstr[2] "%d sekundžių"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1018
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1021
-#: ../src/gnome-screensaver-preferences.c:1029
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -693,22 +656,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:1024
-#: ../src/gnome-screensaver-preferences.c:1032
-#: ../src/gnome-screensaver-preferences.c:1036
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1051
+#: ../src/gnome-screensaver-preferences.c:999
+#, c-format
 msgid "Never"
 msgstr "Niekada"
 
-#: ../src/gnome-screensaver-preferences.c:1450
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
 msgstr "Nepavyko įkelti pagrindinės sąsajos"
 
-#: ../src/gnome-screensaver-preferences.c:1452
+#: ../src/gnome-screensaver-preferences.c:1400
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Įsitikinkite, kad ekrano užsklanda yra tinkamai įdiegta"
 
@@ -762,20 +726,19 @@ msgstr "Baigėsi laikas."
 msgid "You have the Caps Lock key on."
 msgstr "Įjungtas Jūsų Caps Lock klavišas."
 
-#: ../src/gs-lock-plug.c:1187
+#: ../src/gs-lock-plug.c:1192
 msgid "S_witch User..."
 msgstr "_Pakeisti naudotoją..."
 
-#: ../src/gs-lock-plug.c:1196
+#: ../src/gs-lock-plug.c:1201
 msgid "Log _Out"
 msgstr "At_sijungti"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1373
+#: ../src/gs-lock-plug.c:1378
 msgid "%U on %h"
 msgstr "%U kompiuteryje %h"
 
-#: ../src/gs-lock-plug.c:1387
+#: ../src/gs-lock-plug.c:1392
 msgid "_Password:"
 msgstr "_Slaptažodis:"
-
