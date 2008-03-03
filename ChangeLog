@@ -1,3 +1,8 @@
+2008-03-03  William Jon McCann  <jmccann@redhat.com>
+
+	* src/gnome-screensaver-preferences.c:
+	Kill tabs.
+
 2008-01-30  William Jon McCann  <mccann@jhu.edu>
 
 	* configure.ac: bump version

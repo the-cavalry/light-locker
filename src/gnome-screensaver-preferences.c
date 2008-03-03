@@ -28,7 +28,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>		/* For uid_t, gid_t */
+#include <sys/types.h>          /* For uid_t, gid_t */
 
 #include <glib/gi18n.h>
 #include <gdk/gdkx.h>
@@ -405,53 +405,53 @@ preview_set_theme (GtkWidget  *widget,
 static void
 help_display (void)
 {
-	GError     *error = NULL;
-	char       *command;
-	const char *lang;
-	char       *uri = NULL;
-	GdkScreen  *gscreen;
-	int         i;
+        GError     *error = NULL;
+        char       *command;
+        const char *lang;
+        char       *uri = NULL;
+        GdkScreen  *gscreen;
+        int         i;
 
-	const char * const * langs = g_get_language_names ();
+        const char * const * langs = g_get_language_names ();
 
-	for (i = 0; langs[i] != NULL; i++) {
-		lang = langs[i];
-		if (strchr (lang, '.')) {
-			continue;
-		}
+        for (i = 0; langs[i] != NULL; i++) {
+                lang = langs[i];
+                if (strchr (lang, '.')) {
+                        continue;
+                }
 
-		uri = g_build_filename (DATADIR,
+                uri = g_build_filename (DATADIR,
                                         "/gnome/help/user-guide/",
-					lang,
+                                        lang,
                                         "/user-guide.xml",
-					NULL);
+                                        NULL);
 
-		if (g_file_test (uri, G_FILE_TEST_EXISTS)) {
+                if (g_file_test (uri, G_FILE_TEST_EXISTS)) {
                     break;
-		}
-	}
+                }
+        }
 
-	command = g_strconcat ("gnome-open ghelp://",
+        command = g_strconcat ("gnome-open ghelp://",
                                uri,
                                "?prefs-screensaver",
                                NULL);
-	gscreen = gdk_screen_get_default ();
-	gdk_spawn_command_line_on_screen (gscreen, command, &error);
+        gscreen = gdk_screen_get_default ();
+        gdk_spawn_command_line_on_screen (gscreen, command, &error);
 
-	if (error != NULL) {
-		GtkWidget *d;
+        if (error != NULL) {
+                GtkWidget *d;
 
-		d = gtk_message_dialog_new (NULL,
+                d = gtk_message_dialog_new (NULL,
                                             GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
                                             GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
                                             "%s", error->message);
-		gtk_dialog_run (GTK_DIALOG (d));
-		gtk_widget_destroy (d);
-		g_error_free (error);
-	}
+                gtk_dialog_run (GTK_DIALOG (d));
+                gtk_widget_destroy (d);
+                g_error_free (error);
+        }
 
-	g_free (command);
-	g_free (uri);
+        g_free (command);
+        g_free (uri);
 }
 
 static void
@@ -850,7 +850,7 @@ drag_motion_cb (GtkWidget      *widget,
 static void
 drag_leave_cb (GtkWidget      *widget,
                GdkDragContext *context,
-	       guint           time,
+               guint           time,
                gpointer        data)
 {
         gtk_widget_queue_draw (widget);
@@ -1496,12 +1496,12 @@ init_capplet (void)
                 }
         }
 
-	gconf_client_add_dir (client, KEY_DIR,
-			      GCONF_CLIENT_PRELOAD_ONELEVEL,
+        gconf_client_add_dir (client, KEY_DIR,
+                              GCONF_CLIENT_PRELOAD_ONELEVEL,
                               NULL);
-	gconf_client_notify_add (client,
+        gconf_client_notify_add (client,
                                  KEY_DIR,
-				 key_changed_cb,
+                                 key_changed_cb,
                                  NULL, NULL, NULL);
 
         g_object_unref (client);
@@ -1558,5 +1558,5 @@ main (int    argc,
         g_object_unref (theme_manager);
         g_object_unref (job);
 
-	return 0;
+        return 0;
 }
