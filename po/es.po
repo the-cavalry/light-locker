@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-29 11:00+0000\n"
-"PO-Revision-Date: 2008-01-29 13:14+0100\n"
+"POT-Creation-Date: 2008-01-29 13:01+0000\n"
+"PO-Revision-Date: 2008-03-03 22:06+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -124,7 +124,7 @@ msgid ""
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
 msgstr ""
-"Estableczca esto a TRUE para permitir embeber un teclado en la ventana al "
+"Establezca esto a TRUE para permitir embeber un teclado en la ventana al "
 "intentar desbloquear. La clave \"keyboard_command\" debe estar establecida "
 "con el comando apropiado."
 
@@ -132,7 +132,7 @@ msgstr ""
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr ""
 "Ponga esto a TRUE para bloquear la pantalla cuando se activa el "
-"salvapantallas"
+"salvapantallas."
 
 #: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
@@ -308,7 +308,7 @@ msgstr "Cosmos"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:2
 msgid "Display a slideshow of pictures of the cosmos"
-msgstr "Muestra una serie de imágenes del cosmos."
+msgstr "Muestra una serie de imágenes del cosmos"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:1
 msgid "Bubbles the GNOME foot logo around the screen"
@@ -320,7 +320,7 @@ msgstr "Pie flotante"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
-msgstr "Muestra una serie de imágenes de su carpeta Imágenes."
+msgstr "Muestra una serie de imágenes de su carpeta Imágenes"
 
 #: ../savers/personal-slideshow.desktop.in.h:2
 msgid "Pictures folder"
@@ -328,7 +328,7 @@ msgstr "Carpeta de imágenes"
 
 #: ../savers/popsquares.desktop.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
-msgstr "Esto dibuja una rejilla de cuadros pop-art de colores pulsantes. "
+msgstr "Esto dibuja una rejilla de cuadros pop-art de colores pulsantes."
 
 #: ../savers/popsquares.desktop.in.h:2
 msgid "Pop art squares"
@@ -729,7 +729,7 @@ msgstr "Tiene la tecla «Bloq. Mayúsculas» pulsada."
 
 #: ../src/gs-lock-plug.c:1192
 msgid "S_witch User..."
-msgstr "_Cambiar usuario..."
+msgstr "_Cambiar usuario…"
 
 #: ../src/gs-lock-plug.c:1201
 msgid "Log _Out"
