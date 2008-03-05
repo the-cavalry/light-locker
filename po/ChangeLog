@@ -1,3 +1,8 @@
+2008-03-05  Rahul Bhalerao <b.rahul.pm@gmail.com>
+
+	* mr.po: Added Marathi Translations by Sandeep Shedmake.
+	* LINGUAS: Added an entry for Marathi (mr).
+
 2008-03-03  Jorge Gonzalez  <jorgegonz@svn.gnome.org>
 
 	* es.po: Updated Spanish translation
