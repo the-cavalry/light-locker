@@ -1,16 +1,16 @@
 # Hungarian translation for gnome-screensaver
 # Szilveszter Farkas <szilveszter.farkas@gmail.com>, 2005.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2005, 2006, 2007.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2005, 2006, 2007, 2008.
 # Copyright (c) (c) 2005 Canonical Ltd, and Rosetta Contributors 2005
 # This file is distributed under the same license as the gnome-screensaver package.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-03 03:57+0100\n"
-"PO-Revision-Date: 2007-09-04 02:29+0200\n"
+"POT-Creation-Date: 2008-01-29 11:00+0000\n"
+"PO-Revision-Date: 2008-03-09 03:24+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
-"Language-Team: Hungarian <gnome@gnome.hu>\n"
+"Language-Team: Hungarian <gnome@fsf.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -126,7 +126,7 @@ msgid ""
 "command."
 msgstr ""
 "Állítsa ezt igazra billentyűzet beágyazásához az ablakba a feloldási "
-"kísérletkor. A \"keyboard_command\" kulcsot be kell állítani a megfelelő "
+"kísérletkor. A „keyboard_command” kulcsot be kell állítani a megfelelő "
 "parancsra."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
@@ -147,8 +147,7 @@ msgid ""
 "delay. The Delay is specified in the \"logout_delay\" key."
 msgstr ""
 "Állítsa ezt igazra, ha a zárolás feloldása párbeszédablak felajánlja a "
-"kijelentkezés lehetőségét egy késleltetés után. A késleltetés a "
-"\"logout_delay\" kulcsban adható meg."
+"kijelentkezés lehetőségét egy késleltetés után. A késleltetés a „logout_delay” kulcsban adható meg."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
@@ -157,8 +156,7 @@ msgid ""
 "implement an XEMBED plug interface and output a window XID on the standard "
 "output."
 msgstr ""
-"A billentyűzet felületi elem ablakba ágyazásához futtatandó parancs, ha az "
-"\"embedded_keyboard_enabled\" kulcs be van állítva. A parancsnak meg kell "
+"A billentyűzet felületi elem ablakba ágyazásához futtatandó parancs, ha az „embedded_keyboard_enabled” kulcs be van állítva. A parancsnak meg kell "
 "valósítania egy XEMBED csatolófelületet és egy ablak XID-t kell kimenetként "
 "előállítania a szabványos kimenetre."
 
@@ -170,7 +168,7 @@ msgid ""
 msgstr ""
 "A kijelentkezés gomb megnyomásakor meghívandó parancs. Ennek a parancsnak "
 "egyszerűen, beavatkozás nélkül ki kell jelentkeztetnie a felhasználót. Ez a "
-"kulcs csak akkor hatásos, ha a \"logout_enable\" kulcs értéke igaz."
+"kulcs csak akkor hatásos, ha a „logout_enable” kulcs értéke igaz."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
 msgid "The number of minutes after screensaver activation before locking the screen."
@@ -184,7 +182,7 @@ msgid ""
 msgstr ""
 "A képernyővédő aktiválásától a kijelentkezés lehetőségének megjelenéséig "
 "eltelő percek száma a zárolás feloldása párbeszédablakban. Ez a kulcs csak "
-"akkor hatásos, ha a \"logout_enable\" kulcs értéke igaz."
+"akkor hatásos, ha a „logout_enable” kulcs értéke igaz."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid "The number of minutes of inactivity before the session is considered idle."
@@ -214,10 +212,10 @@ msgid ""
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
 msgstr ""
-"A képernyővédő által használandó kijelölési mód. Lehetséges értékek: \"blank-"
-"only\" - ne használjon témákat a képernyővédő aktiválásakor, \"single\" - "
-"csak egy (a \"themes\" kulcsban megadott) téma használata a képernyővédő "
-"aktiválásakor és \"random\" - a képernyővédő aktiválása véletlen téma "
+"A képernyővédő által használandó kijelölési mód. Lehetséges értékek: „blank-"
+"only” - ne használjon témákat a képernyővédő aktiválásakor, „single” - "
+"csak egy (a „themes” kulcsban megadott) téma használata a képernyővédő "
+"aktiválásakor és „random” - a képernyővédő aktiválása véletlen téma "
 "használatával."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
@@ -236,9 +234,9 @@ msgid ""
 "\" is \"random\"."
 msgstr ""
 "Ez a kulcs megadja a képernyővédő által használandó témák listáját. Ez "
-"figyelmen kívül marad, ha a \"mode\" kulcs értéke \"blank-only\", ha a \"mode"
-"\" értéke \"single\", akkor a téma nevét adja meg és a témák listáját adja, "
-"ha a \"mode\" értéke \"random\"."
+"figyelmen kívül marad, ha a „mode” kulcs értéke „blank-only”, ha a „mode"
+"” értéke „single”, akkor a téma nevét adja meg és a témák listáját adja, "
+"ha a „mode” értéke „random”."
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
@@ -291,7 +289,7 @@ msgstr "_Kijelentkezés"
 msgid "_Switch User"
 msgstr "Felhasználó_váltás"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
 msgid "_Unlock"
 msgstr "_Feloldás"
 
@@ -364,7 +362,7 @@ msgstr "A használandó forráskép"
 #.
 #: ../savers/floaters.c:1194
 msgid "image - floats images around the screen"
-msgstr "kép - képeket lebegtet körbe a képernyőn"
+msgstr "kép – képeket lebegtet körbe a képernyőn"
 
 #: ../savers/floaters.c:1200
 #, c-format
@@ -391,7 +389,7 @@ msgstr "Képek háttereként használandó szín"
 
 #: ../savers/slideshow.c:55
 msgid "\"#rrggbb\""
-msgstr "\"#rrggbb\""
+msgstr "„#rrggbb”"
 
 #: ../savers/slideshow.c:57
 msgid "Do not randomize pictures from location"
@@ -401,75 +399,39 @@ msgstr "Ne véletlenszerűsítse a képeket a hely alapján"
 msgid "Do not try to stretch images on screen"
 msgstr "Ne próbálja nyújtani a képeket a képernyőn"
 
-#: ../src/file-transfer-dialog.c:94
+#: ../src/copy-theme-dialog.c:204
+msgid "Copying files"
+msgstr "Fájlok másolása"
+
+#: ../src/copy-theme-dialog.c:222
+msgid "From:"
+msgstr "Forrás:"
+
+#: ../src/copy-theme-dialog.c:226
+msgid "To:"
+msgstr "Cél:"
+
+#: ../src/copy-theme-dialog.c:246
+msgid "Copying themes"
+msgstr "Témák másolása"
+
+#: ../src/copy-theme-dialog.c:290
+msgid "Invalid screensaver theme"
+msgstr "Érvénytelen képernyővédő téma"
+
+#: ../src/copy-theme-dialog.c:293
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "A fájl (%s) nem tűnik érvényes képernyővédő témának."
+
+#: ../src/copy-theme-dialog.c:454
 #, c-format
 msgid "Copying file: %u of %u"
 msgstr "Fájl másolása: %u/%u"
 
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "\"%s\" másolása"
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "Az URI címből"
-
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "Letöltés a következő URI címből"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "Az URI címbe"
-
-#: ../src/file-transfer-dialog.c:202
-msgid "URI currently transferring to"
-msgstr "Feltöltés a következő URI címre"
-
-#: ../src/file-transfer-dialog.c:209
-msgid "Fraction completed"
-msgstr "A letöltött rész"
-
-#: ../src/file-transfer-dialog.c:210
-msgid "Fraction of transfer currently completed"
-msgstr "Az átvitel kész része"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "Jelenlegi URI index"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "Jelenlegi URI index - 1-től indulva"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "Összes URI"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "Összes URI száma"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
-msgid "Copying files"
-msgstr "Fájlok másolása"
-
-#: ../src/file-transfer-dialog.c:345
-msgid "From:"
-msgstr "Forrás:"
-
-#: ../src/file-transfer-dialog.c:349
-msgid "To:"
-msgstr "Cél:"
-
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "Kapcsolódás..."
-
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
-msgstr "A képernyővédő \"elegáns\" bezárása"
+msgstr "A képernyővédő „elegáns” bezárása"
 
 #: ../src/gnome-screensaver-command.c:64
 msgid "Query the state of the screensaver"
@@ -637,37 +599,29 @@ msgstr "Ellenőrzés..."
 msgid "Authentication failed."
 msgstr "A hitelesítés meghiúsult."
 
-#: ../src/gnome-screensaver-preferences.c:501
+#: ../src/gnome-screensaver-preferences.c:498
 msgid "Blank screen"
 msgstr "Üres képernyő"
 
-#: ../src/gnome-screensaver-preferences.c:507
+#: ../src/gnome-screensaver-preferences.c:504
 msgid "Random"
 msgstr "Véletlen"
 
-#: ../src/gnome-screensaver-preferences.c:877
-msgid "Invalid screensaver theme"
-msgstr "Érvénytelen képernyővédő téma"
-
-#: ../src/gnome-screensaver-preferences.c:880
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Ez a fájl nem egy érvényes képernyővédő téma."
-
-#: ../src/gnome-screensaver-preferences.c:1007
+#: ../src/gnome-screensaver-preferences.c:954
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d óra"
 msgstr[1] "%d óra"
 
-#: ../src/gnome-screensaver-preferences.c:1010
+#: ../src/gnome-screensaver-preferences.c:957
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d perc"
 msgstr[1] "%d perc"
 
-#: ../src/gnome-screensaver-preferences.c:1013
+#: ../src/gnome-screensaver-preferences.c:960
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -675,15 +629,15 @@ msgstr[0] "%d másodperc"
 msgstr[1] "%d másodperc"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1019
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s %s"
 msgstr "%s.%s.%s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1022
-#: ../src/gnome-screensaver-preferences.c:1030
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s"
 msgstr "%s.%s"
@@ -691,22 +645,22 @@ msgstr "%s.%s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:1025
-#: ../src/gnome-screensaver-preferences.c:1033
-#: ../src/gnome-screensaver-preferences.c:1037
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1052
+#: ../src/gnome-screensaver-preferences.c:999
 msgid "Never"
 msgstr "Soha"
 
-#: ../src/gnome-screensaver-preferences.c:1451
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
 msgstr "A fő kezelőfelület nem tölthető be"
 
-#: ../src/gnome-screensaver-preferences.c:1453
+#: ../src/gnome-screensaver-preferences.c:1400
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Kérem győződjön meg arról, hogy a képernyővédő megfelelően telepítve van-e"
 
@@ -760,20 +714,20 @@ msgstr "Az idő lejárt."
 msgid "You have the Caps Lock key on."
 msgstr "A Caps Lock be van kapcsolva."
 
-#: ../src/gs-lock-plug.c:1187
+#: ../src/gs-lock-plug.c:1192
 msgid "S_witch User..."
 msgstr "Felhasználó_váltás..."
 
-#: ../src/gs-lock-plug.c:1196
+#: ../src/gs-lock-plug.c:1201
 msgid "Log _Out"
 msgstr "_Kijelentkezés"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1373
+#: ../src/gs-lock-plug.c:1378
 msgid "%U on %h"
 msgstr "%U ezen: %h"
 
-#: ../src/gs-lock-plug.c:1387
+#: ../src/gs-lock-plug.c:1392
 msgid "_Password:"
 msgstr "_Jelszó:"
 
