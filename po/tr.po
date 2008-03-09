@@ -7,17 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-17 21:18+0300\n"
+"POT-Creation-Date: 2008-03-10 00:37+0200\n"
 "PO-Revision-Date: 2007-09-15 22:26+0200\n"
 "Last-Translator: Deniz Koçak <deniz.kocak@linux.org.tr>\n"
-"Language-Team: gnome-turk <gnome-turk@gnome.org>\n"
+"Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"X-Poedit-Language: Turkish\n"
-"X-Poedit-Country: TURKEY\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
 msgid "Screensaver"
@@ -299,7 +296,7 @@ msgstr "_Çıkış"
 msgid "_Switch User"
 msgstr "_Kullanıcı Değiştir"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
 msgid "_Unlock"
 msgstr "_Kilidi aç"
 
@@ -380,6 +377,7 @@ msgid "%s. See --help for usage information.\n"
 msgstr "%s. Kullanım bilgisi için --help çıktısına bakınız.\n"
 
 #: ../savers/floaters.c:1209
+#, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
 "Bir görüntü belirtmelisiniz.  Kullanım bilgisi için --help çıktısına "
@@ -409,71 +407,35 @@ msgstr "Resimleri konumdan rastgele hale getirme"
 msgid "Do not try to stretch images on screen"
 msgstr "Ekrandaki görüntüleri esnetmeye çalışma"
 
-#: ../src/file-transfer-dialog.c:94
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Dosya kopyalanıyor: %u / %u"
-
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "'%s' kopyalanıyor"
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "URI'den"
-
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "Üzerinden aktarma yapılan URI"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "URI'ye"
-
-#: ../src/file-transfer-dialog.c:202
-msgid "URI currently transferring to"
-msgstr "Aktarma yapılan URI"
-
-#: ../src/file-transfer-dialog.c:209
-msgid "Fraction completed"
-msgstr "Bölüm tamamlandı"
-
-#: ../src/file-transfer-dialog.c:210
-msgid "Fraction of transfer currently completed"
-msgstr "Transfer bölümü şu anda tamamlandı"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "Şimdiki URI dizini"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "Şimdiki URI dizini - 1'den başlar"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "Toplan URI"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "Toplan URI sayısı"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+#: ../src/copy-theme-dialog.c:211
 msgid "Copying files"
 msgstr "Dosyalar kopyalanıyor"
 
-#: ../src/file-transfer-dialog.c:345
+#: ../src/copy-theme-dialog.c:229
 msgid "From:"
 msgstr "Kimden:"
 
-#: ../src/file-transfer-dialog.c:349
+#: ../src/copy-theme-dialog.c:233
 msgid "To:"
 msgstr "Kime:"
 
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "Bağlanıyor..."
+#: ../src/copy-theme-dialog.c:253
+msgid "Copying themes"
+msgstr "Temalar kopyalanıyor"
+
+#: ../src/copy-theme-dialog.c:297
+msgid "Invalid screensaver theme"
+msgstr "Geçersiz ekran koruyucu teması"
+
+#: ../src/copy-theme-dialog.c:300
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "%s geçerli bir ekran koruyucu teması gibi görünmüyor."
+
+#: ../src/copy-theme-dialog.c:480
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Dosya kopyalanıyor: %u / %u"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -645,50 +607,42 @@ msgstr "Kontrol ediyor..."
 msgid "Authentication failed."
 msgstr "Kimlik kontrolü başarısız."
 
-#: ../src/gnome-screensaver-preferences.c:500
+#: ../src/gnome-screensaver-preferences.c:498
 msgid "Blank screen"
 msgstr "Boş ekran"
 
-#: ../src/gnome-screensaver-preferences.c:506
+#: ../src/gnome-screensaver-preferences.c:504
 msgid "Random"
 msgstr "Rastgele"
 
-#: ../src/gnome-screensaver-preferences.c:876
-msgid "Invalid screensaver theme"
-msgstr "Geçersiz ekran koruyucu teması"
-
-#: ../src/gnome-screensaver-preferences.c:879
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Bu dosya geçerli bir ekran koruyucusu teması gibi görünmüyor."
-
-#: ../src/gnome-screensaver-preferences.c:1006
+#: ../src/gnome-screensaver-preferences.c:954
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d saat"
 
-#: ../src/gnome-screensaver-preferences.c:1009
+#: ../src/gnome-screensaver-preferences.c:957
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d dakika"
 
-#: ../src/gnome-screensaver-preferences.c:1012
+#: ../src/gnome-screensaver-preferences.c:960
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d saniye"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1018
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1021
-#: ../src/gnome-screensaver-preferences.c:1029
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -696,22 +650,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:1024
-#: ../src/gnome-screensaver-preferences.c:1032
-#: ../src/gnome-screensaver-preferences.c:1036
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1051
+#: ../src/gnome-screensaver-preferences.c:999
+#, c-format
 msgid "Never"
 msgstr "Asla"
 
-#: ../src/gnome-screensaver-preferences.c:1450
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
 msgstr "Ana arayüz yüklenemedi"
 
-#: ../src/gnome-screensaver-preferences.c:1452
+#: ../src/gnome-screensaver-preferences.c:1400
 msgid "Please make sure that the screensaver is properly installed"
 msgstr ""
 "Lütfen ekran koruyucusunun düzgün bir şekilde kurulmuş olduğundan emin olun"
@@ -766,22 +721,58 @@ msgstr "Süre doldu."
 msgid "You have the Caps Lock key on."
 msgstr "Büyük harf kilidi tuşunuz açık."
 
-#: ../src/gs-lock-plug.c:1187
+#: ../src/gs-lock-plug.c:1192
 msgid "S_witch User..."
 msgstr "K_ullanıcı Değiştir..."
 
-#: ../src/gs-lock-plug.c:1196
+#: ../src/gs-lock-plug.c:1201
 msgid "Log _Out"
 msgstr "_Oturumu Kapat"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1373
+#: ../src/gs-lock-plug.c:1378
 msgid "%U on %h"
 msgstr "%h üzerinde %U"
 
-#: ../src/gs-lock-plug.c:1387
+#: ../src/gs-lock-plug.c:1392
 msgid "_Password:"
 msgstr "_Parola:"
+
+#~ msgid "Copying '%s'"
+#~ msgstr "'%s' kopyalanıyor"
+
+#~ msgid "From URI"
+#~ msgstr "URI'den"
+
+#~ msgid "URI currently transferring from"
+#~ msgstr "Üzerinden aktarma yapılan URI"
+
+#~ msgid "To URI"
+#~ msgstr "URI'ye"
+
+#~ msgid "URI currently transferring to"
+#~ msgstr "Aktarma yapılan URI"
+
+#~ msgid "Fraction completed"
+#~ msgstr "Bölüm tamamlandı"
+
+#~ msgid "Fraction of transfer currently completed"
+#~ msgstr "Transfer bölümü şu anda tamamlandı"
+
+#~ msgid "Current URI index"
+#~ msgstr "Şimdiki URI dizini"
+
+#~ msgid "Current URI index - starts from 1"
+#~ msgstr "Şimdiki URI dizini - 1'den başlar"
+
+#~ msgid "Total URIs"
+#~ msgstr "Toplan URI"
+
+#~ msgid "Total number of URIs"
+#~ msgstr "Toplan URI sayısı"
+
+#~ msgid "Connecting..."
+#~ msgstr "Bağlanıyor..."
 
 #~ msgid "Time before activation"
 #~ msgstr "Etkinleştirmeden önceki zaman"
