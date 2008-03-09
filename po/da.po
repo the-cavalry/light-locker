@@ -1,15 +1,15 @@
 # Danish translation of gnome-screensaver.
-# Copyright (C) 2006
+# Copyright (C) 2006-2008
 # This file is distributed under the same license as the gnome-screensaver package.
 # David Nielsen <david@lovesunix.net>, 2006.
-# Kenneth Nielsen <k.nielsen@gmail.com>, 2007.
+# Kenneth Nielsen <k.nielsen@gmail.com>, 2007-08.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-09 02:46+0200\n"
-"PO-Revision-Date: 2007-09-08 17:23+0200\n"
+"POT-Creation-Date: 2008-03-09 22:59+0100\n"
+"PO-Revision-Date: 2008-03-09 02:44+0100\n"
 "Last-Translator: Kenneth Nielsen <k.nielsen81@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -289,7 +289,7 @@ msgstr "Log _ud"
 msgid "_Switch User"
 msgstr "_Skift bruger"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
 msgid "_Unlock"
 msgstr "_Lås op"
 
@@ -370,6 +370,7 @@ msgid "%s. See --help for usage information.\n"
 msgstr "%s. Se --help fori hjælp til benyttelse.\n"
 
 #: ../savers/floaters.c:1209
+#, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "Du skal specificere et billede. Se --help for hjælp til benyttelse.\n"
 
@@ -397,71 +398,35 @@ msgstr "Sammenbland ikke billeder fra placeringen"
 msgid "Do not try to stretch images on screen"
 msgstr "Forsøg ikke at strække billeder på skærmen"
 
-#: ../src/file-transfer-dialog.c:94
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Kopierer fil: %u af %u"
-
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "Kopierer \"%s\""
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "Fra URI"
-
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "URI der overføres fra i øjeblikket"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "Til URI"
-
-#: ../src/file-transfer-dialog.c:202
-msgid "URI currently transferring to"
-msgstr "URI der overføres til i øjeblikket"
-
-#: ../src/file-transfer-dialog.c:209
-msgid "Fraction completed"
-msgstr "Brøkdel færdiggjort"
-
-#: ../src/file-transfer-dialog.c:210
-msgid "Fraction of transfer currently completed"
-msgstr "Brøkdel af overførelse færdiggjort"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "Nuværende URI-indeks"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "Nuværende URI-indeks - starter fra 1"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "Total URI'er"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "Total antal af URI'er"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
+#: ../src/copy-theme-dialog.c:211
 msgid "Copying files"
 msgstr "Kopierer filer"
 
-#: ../src/file-transfer-dialog.c:345
+#: ../src/copy-theme-dialog.c:229
 msgid "From:"
 msgstr "Fra:"
 
-#: ../src/file-transfer-dialog.c:349
+#: ../src/copy-theme-dialog.c:233
 msgid "To:"
 msgstr "Til:"
 
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "Tilslutter..."
+#: ../src/copy-theme-dialog.c:253
+msgid "Copying themes"
+msgstr "Kopierer temaer"
+
+#: ../src/copy-theme-dialog.c:297
+msgid "Invalid screensaver theme"
+msgstr "Ugyldigt pauseskærmtema"
+
+#: ../src/copy-theme-dialog.c:300
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "%s lader ikke til at være et gyldigt pauseskærmstema."
+
+#: ../src/copy-theme-dialog.c:480
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Kopierer fil: %u af %u"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -637,37 +602,29 @@ msgstr "Kontrollerer..."
 msgid "Authentication failed."
 msgstr "Godkendelse fejlede."
 
-#: ../src/gnome-screensaver-preferences.c:500
+#: ../src/gnome-screensaver-preferences.c:498
 msgid "Blank screen"
 msgstr "Sort skærm"
 
-#: ../src/gnome-screensaver-preferences.c:506
+#: ../src/gnome-screensaver-preferences.c:504
 msgid "Random"
 msgstr "Tilfældig"
 
-#: ../src/gnome-screensaver-preferences.c:876
-msgid "Invalid screensaver theme"
-msgstr "Ugyldigt pauseskærmtema"
-
-#: ../src/gnome-screensaver-preferences.c:879
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "Denne fil lader ikke til at være et gyldigt pauseskærmtema"
-
-#: ../src/gnome-screensaver-preferences.c:1006
+#: ../src/gnome-screensaver-preferences.c:954
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d time"
 msgstr[1] "%d timer"
 
-#: ../src/gnome-screensaver-preferences.c:1009
+#: ../src/gnome-screensaver-preferences.c:957
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minut"
 msgstr[1] "%d minutter"
 
-#: ../src/gnome-screensaver-preferences.c:1012
+#: ../src/gnome-screensaver-preferences.c:960
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -675,15 +632,15 @@ msgstr[0] "%d sekund"
 msgstr[1] "%d sekunder"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1018
+#: ../src/gnome-screensaver-preferences.c:966
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1021
-#: ../src/gnome-screensaver-preferences.c:1029
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -691,22 +648,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:1024
-#: ../src/gnome-screensaver-preferences.c:1032
-#: ../src/gnome-screensaver-preferences.c:1036
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1051
+#: ../src/gnome-screensaver-preferences.c:999
+#, c-format
 msgid "Never"
 msgstr "Aldrig"
 
-#: ../src/gnome-screensaver-preferences.c:1450
+#: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
-msgstr "Kunne ikke indlæse hovedgrænsefladen."
+msgstr "Kunne ikke indlæse hovedgrænsefladen"
 
-#: ../src/gnome-screensaver-preferences.c:1452
+#: ../src/gnome-screensaver-preferences.c:1400
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Kontrollér venligst at pauseskærmen er installeret korrekt"
 
@@ -760,22 +718,58 @@ msgstr "Tiden er udløbet."
 msgid "You have the Caps Lock key on."
 msgstr "Du har aktiveret Caps Lock-tasten."
 
-#: ../src/gs-lock-plug.c:1187
+#: ../src/gs-lock-plug.c:1192
 msgid "S_witch User..."
 msgstr "_Skift bruger..."
 
-#: ../src/gs-lock-plug.c:1196
+#: ../src/gs-lock-plug.c:1201
 msgid "Log _Out"
 msgstr "Log _ud"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1373
+#: ../src/gs-lock-plug.c:1378
 msgid "%U on %h"
 msgstr "%U på %h"
 
-#: ../src/gs-lock-plug.c:1387
+#: ../src/gs-lock-plug.c:1392
 msgid "_Password:"
 msgstr "_Adgangskode:"
+
+#~ msgid "Copying '%s'"
+#~ msgstr "Kopierer \"%s\""
+
+#~ msgid "From URI"
+#~ msgstr "Fra URI"
+
+#~ msgid "URI currently transferring from"
+#~ msgstr "URI der overføres fra i øjeblikket"
+
+#~ msgid "To URI"
+#~ msgstr "Til URI"
+
+#~ msgid "URI currently transferring to"
+#~ msgstr "URI der overføres til i øjeblikket"
+
+#~ msgid "Fraction completed"
+#~ msgstr "Brøkdel færdiggjort"
+
+#~ msgid "Fraction of transfer currently completed"
+#~ msgstr "Brøkdel af overførelse færdiggjort"
+
+#~ msgid "Current URI index"
+#~ msgstr "Nuværende URI-indeks"
+
+#~ msgid "Current URI index - starts from 1"
+#~ msgstr "Nuværende URI-indeks - starter fra 1"
+
+#~ msgid "Total URIs"
+#~ msgstr "Total URI'er"
+
+#~ msgid "Total number of URIs"
+#~ msgstr "Total antal af URI'er"
+
+#~ msgid "Connecting..."
+#~ msgstr "Tilslutter..."
 
 #~ msgid "N"
 #~ msgstr "X"
