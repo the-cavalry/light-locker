@@ -1,3 +1,9 @@
+==== 2.22.0 ====
+
+2008-03-10  William Jon McCann  <jmccann@redhat.com>
+
+	* NEWS: update for release.
+
 2008-03-03  William Jon McCann  <jmccann@redhat.com>
 
 	* src/gnome-screensaver-preferences.c:
