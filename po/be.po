@@ -1,0 +1,742 @@
+# Belarusian translation for gnome-screensaver
+# Copyright (c) (c) 2006 Canonical Ltd, and Rosetta Contributors 2006
+# This file is distributed under the same license as the gnome-screensaver package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-03-09 22:48+0000\n"
+"PO-Revision-Date: 2008-03-10 02:19+0200\n"
+"Last-Translator: Alexander Nyakhaychyk <nyakhaychyk@gmail.com>\n"
+"Language-Team: Belarusian <i18n@mova.rg>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "Ахоўнік экрана"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "Вызначэньне пераваг ахоўніка экрана"
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "<b>Screensaver preview</b>"
+msgstr "<b>Дэманстрацыя ахоўніка</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+msgstr "<b>Увага: для карыстальніка root экран ня будзе заблякаваны.</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Power _Management"
+msgstr "Кіраваньне с_ілкаваньнем"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "Regard the computer as _idle after:"
+msgstr "Лічыць, што кампутар бязьдзейнічае, _пасьля:"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "Screensaver Preferences"
+msgstr "Перавагі ахоўніка экрана"
+
+#: ../data/gnome-screensaver-preferences.glade.h:6
+msgid "Screensaver Preview"
+msgstr "Дэманстрацыя ахоўніка"
+
+#: ../data/gnome-screensaver-preferences.glade.h:7
+msgid "_Activate screensaver when computer is idle"
+msgstr "Зад_зейнічаць ахоўнік экрана, калі кампутар бяздзейнічае"
+
+#: ../data/gnome-screensaver-preferences.glade.h:8
+msgid "_Lock screen when screensaver is active"
+msgstr "За_мкнуць экран, калі ахоўнік экрана задзейнічаны"
+
+#: ../data/gnome-screensaver-preferences.glade.h:9
+msgid "_Preview"
+msgstr "Д_эманстрацыя"
+
+#: ../data/gnome-screensaver-preferences.glade.h:10
+msgid "_Screensaver theme:"
+msgstr "_Тэма ахоўніка:"
+
+#: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "Screensaver themes"
+msgstr "Тэмы ахоўніка экрана"
+
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "Ахоўнікі экрана"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Activate when idle"
+msgstr "Задзейнічаць, калі не заняты"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow embedding a keyboard into the window"
+msgstr "Дазволіць убудаваную ў вакно клявіятуру"
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "Allow logout"
+msgstr "Дазволіць завяршэньне сэансу"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow user switching"
+msgstr "Дазволіць пераключэньне карыстальнікаў"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Embedded keyboard command"
+msgstr "Загад для ўбудаванай клявіятуры"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "Lock on activation"
+msgstr "Дазволіць замыкаць экран"
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Logout command"
+msgstr "Загад завяршэньня сэансу"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Reason for being away"
+msgstr "Прычына адсутнічаньня"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Screensaver theme selection mode"
+msgstr "Рэжым вылучэньня тэмы ахоўніка экрана"
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr ""
+"Выстаўце ў TRUE (ісьціна), каб задзейнічаць ахоўнік экрана ў час прастою "
+"сэанса."
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr ""
+"Зьмяніце на TRUE, каб дазволіць убудаваньне экраннай клявіятуры ў час спробы "
+"разблякаваньня экрану. Ключ \"keyboard_command\" мусіць вызначаць адпаведны "
+"загад."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr ""
+"Выстаўце ў TRUE (ісьціна), каб замкнуць экран калі будзе задзейнічаны "
+"ахоўнік экрана."
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr ""
+"Выстаўце ў TRUE (ісьціна), каб прапанаваць пераключэньне карыстальніка ў "
+"дыялёзе адмыканьня экрана."
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr ""
+"Выстаўце у TRUE (ісьціна), каб прапанаваць опцыю завяршэньне сэанса ў дыялёгу "
+"адмыканьня экрана паьсля пэўнай затрымкі. Затрымка задаецца ключом \"logout_delay\"."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr ""
+"Загад, які будзе выкананы, калі ісьцінны ключ \"embedded_keyboard_enabled\", "
+"каб убудаваць віджэт клявіятуры ў вакно. Гэты загад мусіць зьдзяйсьняць "
+"інтэрфэйс XEMBED і выводзіць XID вакна ў стандартны вывад."
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr ""
+"Загад, які трэба выклікаць, калі пстрыкнута кнопка завяршэньня сэансу. Гэты загад "
+"мусіць завяршаць сэанс карыстальніка без аніякага ўзаемадзеяньня зь ім. Гэты "
+"ключ дзейнічае толькі тады, калі ключ \"logout_enable\" мае значэньне TRUE (ісьціна)."
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
+msgstr ""
+"Колькасьць хвілін, пасьля задзейнічаньня ахоўніка экран, перад тым, як будзе "
+"замкнёны экран."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr ""
+"Колькасьць хвілін пасьля актывацыі ахоўніка экрана, першы чым опцыя "
+"завяршэньня сэансу зьявіцца ў дыялёзе адмыканьня. Гэты ключ дзейнічае "
+"толькі калі \"logout_enable\" выстаўлены ў ісьціну."
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
+msgstr ""
+"Колькасьць хвілін без актыўнасьці, перш чым сэанс будзе лічыцца бязьдзейсным."
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr "Колькасьць хвілін паміж зьменамі тэм ахоўніка экрану."
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid ""
+"The number of seconds of inactivity before signalling to power-management. "
+"This key is set and maintained by the session power-management agent."
+msgstr ""
+"Колькасьць сэкундаў без актыўнасьці, пер чым сыгналізаваць кіраўніку сілкаваньня. "
+"Гэты ключ падтрымліваецца сэансам агента кіраўніка сілкаваньня."
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "The reason for being away from the computer."
+msgstr "Прычына адсутнічаньня за кампутарам."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid ""
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
+msgstr ""
+"Рэжым ахоўніка экрану. Можа быць: \"blank-only\" - каб уключыць ахоўнік бяз "
+"тэмы, \"single\" - каб уключыць ахоўнік з тэмай (вызначаецца ў ключы \"themes"
+"\") і \"random\" - каб уключыць ахоўнік з выпадковай тэмай."
+
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Theme for lock dialog"
+msgstr "Тэма дыялёгу замыканьня"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Theme to use for the lock dialog."
+msgstr "Тэма для дыялёга замыканьня."
+
+#: ../data/gnome-screensaver.schemas.in.h:27
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
+msgstr ""
+"Гэты ключ задае сьпіс тэм, якія будзе выкарыстоўваць ахоўнік экрану. Ён "
+"ігнаруецца, калі ключ \"mode\" мае значэньне \"blank-only\", мусіць "
+"прадастаўляць толькі адну назву, калі \"mode\" = \"single\" і мусіць "
+"прадастаўляць сьпіс, калі \"mode\" = \"random\"."
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before locking"
+msgstr "Час да замыканьня"
+
+#: ../data/gnome-screensaver.schemas.in.h:29
+msgid "Time before logout option"
+msgstr "Час да зьяўленьня магчымасьці выхаду"
+
+#: ../data/gnome-screensaver.schemas.in.h:30
+msgid "Time before power-management baseline"
+msgstr "Час да адключэньня сілкаваньня"
+
+#: ../data/gnome-screensaver.schemas.in.h:31
+msgid "Time before session is considered idle"
+msgstr "Час, пасьля якога лічыцца, што сэанс бязьдзейнічае"
+
+#: ../data/gnome-screensaver.schemas.in.h:32
+msgid "Time before theme change"
+msgstr "Час перад зьменай тэмы"
+
+#: ../data/lock-dialog-default.glade.h:2
+#, no-c-format
+msgid "<b>Leave a message for %R:</b>"
+msgstr "<b>Пакінуць паведамленьне для %R:</b>"
+
+#: ../data/lock-dialog-default.glade.h:4
+#, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
+msgstr "<span size=\"small\">%U на %h</span>"
+
+#: ../data/lock-dialog-default.glade.h:6
+#, no-c-format
+msgid "<span size=\"x-large\">%R</span>"
+msgstr "<span size=\"x-large\">%R</span>"
+
+#: ../data/lock-dialog-default.glade.h:7
+msgid "_Cancel"
+msgstr "_Скасаваць"
+
+#: ../data/lock-dialog-default.glade.h:8
+msgid "_Leave Message"
+msgstr "Пакінуць _цэдулку"
+
+#: ../data/lock-dialog-default.glade.h:9
+msgid "_Log Out"
+msgstr "Вы_йсьце"
+
+#: ../data/lock-dialog-default.glade.h:10
+msgid "_Switch User"
+msgstr "Кары_стальнік..."
+
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
+msgid "_Unlock"
+msgstr "Ада_мкнуць"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr "Космас"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "Адлюстроўвае слайд-шоў зь відарысамі космасу"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Ступы GNOME лётаюць па экране"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Лятучыя стопы"
+
+#: ../savers/personal-slideshow.desktop.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr "Адлюстроўвае слайд-шоў з вашых відарысаў"
+
+#: ../savers/personal-slideshow.desktop.in.h:2
+msgid "Pictures folder"
+msgstr "Тэчка з відарысамі"
+
+#: ../savers/popsquares.desktop.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr "Папулярныя краты пулюсуючых колераў."
+
+#: ../savers/popsquares.desktop.in.h:2
+msgid "Pop art squares"
+msgstr "Каляровыя квадраты"
+
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr "Паказваць траэкторыі відарысаў"
+
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "Выпадкова варочваць відарысы ў час руху"
+
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "Друкаваць частату кадраў і іншыя даныя"
+
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "Найбольшая колькасьць відарысаў на экране"
+
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "MAX_IMAGES"
+
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "Пачатковы памер і пазыцыя вакна"
+
+#: ../savers/floaters.c:96
+msgid "WIDTHxHEIGHT+X+Y"
+msgstr "ШЫРЫНЯxВЫШЫНЯ+X+Y"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "Зыходны відарыс"
+
+#. translators: the word "image" here
+#. * represents a command line argument
+#.
+#: ../savers/floaters.c:1194
+msgid "image - floats images around the screen"
+msgstr "image - відарысы, якія лётаюц на экране"
+
+#: ../savers/floaters.c:1200
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s. Глядзіце --help для зьвестак аб выкарыстаньні.\n"
+
+#: ../savers/floaters.c:1209
+#, c-format
+msgid "You must specify one image.  See --help for usage information.\n"
+msgstr ""
+"Вы мусіце задаць адзін відарыс. Глядзіце --help для зьвестак аб "
+"выкарыстаньні.\n"
+
+#: ../savers/slideshow.c:53
+msgid "Location to get images from"
+msgstr "Шлях, дзе знаходзяцца відарысы"
+
+#: ../savers/slideshow.c:53
+msgid "PATH"
+msgstr "ШЛЯХ"
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "Колер для тла відарысаў"
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "\"#ччззсс\""
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr "Не перамешваць відарысы пэўнага места"
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Не спрабаваць расьцягнуць відарысы на ўвесь экран"
+
+#: ../src/copy-theme-dialog.c:211
+msgid "Copying files"
+msgstr "Капіяваньне файлаў"
+
+#: ../src/copy-theme-dialog.c:229
+msgid "From:"
+msgstr "Адкуль:"
+
+#: ../src/copy-theme-dialog.c:233
+msgid "To:"
+msgstr "Куды:"
+
+#: ../src/copy-theme-dialog.c:253
+msgid "Copying themes"
+msgstr "Капіяваньне тэмаў"
+
+#: ../src/copy-theme-dialog.c:297
+msgid "Invalid screensaver theme"
+msgstr "Нерэчаісная тэма"
+
+#: ../src/copy-theme-dialog.c:300
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "%s не зьяўляецца рэчаіснай тэмай ахоўніка экрана."
+
+#: ../src/copy-theme-dialog.c:480
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Капяваньне файла: %u з %u"
+
+#: ../src/gnome-screensaver-command.c:62
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Прымушае ахоўнік экрану зграбна завяршыць працу"
+
+#: ../src/gnome-screensaver-command.c:64
+msgid "Query the state of the screensaver"
+msgstr "Апытвае стан ахоўніка экрану"
+
+#: ../src/gnome-screensaver-command.c:66
+msgid "Query the length of time the screensaver has been active"
+msgstr "Запыт часу актыўнай працы ахоўніка экрана"
+
+#: ../src/gnome-screensaver-command.c:68
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "Паведамі бягучаму працэсу ахоўніка экрана неадкладна замкнуць экран"
+
+#: ../src/gnome-screensaver-command.c:70
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "Калі ахоўнік экрана актыўны, пераключыцца на інушю графічную дэманстрацыю"
+
+#: ../src/gnome-screensaver-command.c:72
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "Уключыць ахоўнік экрана (пусты экран)"
+
+#: ../src/gnome-screensaver-command.c:74
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "Калі ахоўнік экрана актыўны, дэактывізаваць яго (скасаваць пусты экран)"
+
+#: ../src/gnome-screensaver-command.c:76
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "Піхнуць бягучы ахоўнік экрана, каб эмітаваць актыўнасьць карыстальніка"
+
+#: ../src/gnome-screensaver-command.c:78
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr ""
+"Стрымаць ахоўнік экрана ад працы.  Загад заблякаваны, покуль актыўна "
+"стрымліваньне."
+
+#: ../src/gnome-screensaver-command.c:80
+msgid "The calling application that is inhibiting the screensaver"
+msgstr "Названае дастасаваньне стрымлівае ахоўніка экрана"
+
+#: ../src/gnome-screensaver-command.c:82
+msgid "The reason for inhibiting the screensaver"
+msgstr "Прычына стрымліваньня ахоўніка экрана"
+
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver.c:56
+msgid "Version of this application"
+msgstr "Вэрсія гэтага дастасаваньня"
+
+#: ../src/gnome-screensaver-command.c:249
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "Ахоўнік экрана %s\n"
+
+#: ../src/gnome-screensaver-command.c:249
+msgid "active"
+msgstr "актыўны"
+
+#: ../src/gnome-screensaver-command.c:249
+msgid "inactive"
+msgstr "неактыўны"
+
+#: ../src/gnome-screensaver-command.c:274
+#, c-format
+msgid "The screensaver has been active for %d seconds.\n"
+msgstr "Ахоўні экрана быў актыўны %d сэкундаў.\n"
+
+#: ../src/gnome-screensaver-dialog.c:53
+msgid "Show debugging output"
+msgstr "Паказваць вывад адладкі"
+
+#: ../src/gnome-screensaver-dialog.c:57
+msgid "Show the logout button"
+msgstr "Паказваць кнопку выхаду"
+
+#: ../src/gnome-screensaver-dialog.c:59
+msgid "Command to invoke from the logout button"
+msgstr "Загад, які выклікаецца ў час актывацыі кнопкі выхаду"
+
+#: ../src/gnome-screensaver-dialog.c:61
+msgid "Show the switch user button"
+msgstr "Пакзаваць кнопку пераключэньня карыстальнікаў"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "Message to show in the dialog"
+msgstr "Тэкст дыялёгу:"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "MESSAGE"
+msgstr "MESSAGE"
+
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
+msgid "Username:"
+msgstr "Карыстальнік:"
+
+#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "Пароль:"
+
+#: ../src/gnome-screensaver-dialog.c:178
+msgid "You are required to change your password immediately (password aged)"
+msgstr ""
+"Вам мусіце неадкладна зьмяніць ваш пароль (скончыўся час яго існаваньня)"
+
+#: ../src/gnome-screensaver-dialog.c:179
+msgid "You are required to change your password immediately (root enforced)"
+msgstr "Вам мусіце неадкладна зьмяніць ваш пароль (прымушае root)"
+
+#: ../src/gnome-screensaver-dialog.c:180
+msgid "Your account has expired; please contact your system administrator"
+msgstr ""
+"Скончыўся час існаваньня рахунка; калі ласка, зьвяжыцеся з сыстэмным "
+"адміністратарам"
+
+#: ../src/gnome-screensaver-dialog.c:181
+msgid "No password supplied"
+msgstr "Пароль не прадастаўлены"
+
+#: ../src/gnome-screensaver-dialog.c:182
+msgid "Password unchanged"
+msgstr "Пароль ня зьменены"
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "Can not get username"
+msgstr "Немагчыма вызначыць уліковае імя"
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "Retype new UNIX password:"
+msgstr "Паўтарыце новы UNIX проль:"
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "Enter new UNIX password:"
+msgstr "Увядзіце новы UNIX пароль:"
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "(current) UNIX password:"
+msgstr "(бягучы) UNIX пароль:"
+
+#: ../src/gnome-screensaver-dialog.c:187
+msgid "Error while changing NIS password."
+msgstr "Памылка ў час зьмены паролю ў NIS."
+
+#: ../src/gnome-screensaver-dialog.c:188
+msgid "You must choose a longer password"
+msgstr "Вы мусіце выбраць даўжэйшы пароль"
+
+#: ../src/gnome-screensaver-dialog.c:189
+msgid "Password has been already used. Choose another."
+msgstr "Пароль ужо выкарыстоўваўся раней. Выбярыце іншы."
+
+#: ../src/gnome-screensaver-dialog.c:190
+msgid "You must wait longer to change your password"
+msgstr "Вы мусіце чакаць крыху больш, калі зьмяняеце ваш пароль"
+
+#: ../src/gnome-screensaver-dialog.c:191
+msgid "Sorry, passwords do not match"
+msgstr "Нажаль, паролі не супадаюць"
+
+#: ../src/gnome-screensaver-dialog.c:257
+msgid "Checking..."
+msgstr "Праверка..."
+
+#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
+msgid "Authentication failed."
+msgstr "Збой аўтэнтыфікацыі."
+
+#: ../src/gnome-screensaver-preferences.c:498
+msgid "Blank screen"
+msgstr "Чорны экран"
+
+#: ../src/gnome-screensaver-preferences.c:504
+msgid "Random"
+msgstr "Выпадковая тэма"
+
+#: ../src/gnome-screensaver-preferences.c:954
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d гадзіна"
+msgstr[1] "%d гадзіны"
+msgstr[2] "%d гадзін"
+
+#: ../src/gnome-screensaver-preferences.c:957
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d хвіліна"
+msgstr[1] "%d хвіліны"
+msgstr[2] "%d хвілін"
+
+#: ../src/gnome-screensaver-preferences.c:960
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d сэкунда"
+msgstr[1] "%d сэкунды"
+msgstr[2] "%d сэкундаў"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:966
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: ../src/gnome-screensaver-preferences.c:999
+#, c-format
+msgid "Never"
+msgstr "Ніколі"
+
+#: ../src/gnome-screensaver-preferences.c:1398
+msgid "Could not load the main interface"
+msgstr "Не загружаць асноўнае спалучэньне"
+
+#: ../src/gnome-screensaver-preferences.c:1400
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "Калі ласка, упэўніцеся, што ахоўнік экрана правільна ўсталяваны"
+
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "Не працаваць як дэман"
+
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr "Задзейнічаць код адладкі"
+
+#: ../src/gs-auth-pam.c:397
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr "Немагчыма ўсталяваць службу %s: %s\n"
+
+#: ../src/gs-auth-pam.c:423
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr "Немагчыма задаць PAM_TTY=%s"
+
+#: ../src/gs-auth-pam.c:455
+msgid "Incorrect password."
+msgstr "Няслушны пароль."
+
+#: ../src/gs-auth-pam.c:471
+msgid "Not permitted to gain access at this time."
+msgstr "Доступ да сыстэмы ў гэты час забаронены."
+
+#: ../src/gs-auth-pam.c:477
+msgid "No longer permitted to access the system."
+msgstr "Доступ да сыстэмы забаронены."
+
+#: ../src/gs-listener-dbus.c:1921
+msgid "failed to register with the message bus"
+msgstr "немагчыма зарэгістравацца на шыне паведамленьняў"
+
+#: ../src/gs-listener-dbus.c:1931
+msgid "not connected to the message bus"
+msgstr "не далучаны да шыны паведамленьняў"
+
+#: ../src/gs-listener-dbus.c:1940
+msgid "screensaver already running in this session"
+msgstr "ахоўнік экрана ўжо працуе ў гэтым сэансе"
+
+#: ../src/gs-lock-plug.c:269
+msgid "Time has expired."
+msgstr "Час выйшаў."
+
+#: ../src/gs-lock-plug.c:297
+msgid "You have the Caps Lock key on."
+msgstr "У вас уключаны Caps Lock."
+
+#: ../src/gs-lock-plug.c:1192
+msgid "S_witch User..."
+msgstr "Карыстальнік..."
+
+#: ../src/gs-lock-plug.c:1201
+msgid "Log _Out"
+msgstr "Завяршыць _сэанс"
+
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1378
+msgid "%U on %h"
+msgstr "%U на %h"
+
+#: ../src/gs-lock-plug.c:1392
+msgid "_Password:"
+msgstr "_Пароль:"
