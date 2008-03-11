@@ -1,0 +1,699 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Gnome\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-03-11 13:16+0100\n"
+"PO-Revision-Date: 2008-03-09 17:59-0800\n"
+"Last-Translator: Zabeeh Khan <zabeehkhan@gmail.com>\n"
+"Language-Team: Pashto <pakhtosoft@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Pashto, Pushto\n"
+"X-Poedit-Country: AFGHANISTAN\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "پرده ساتونکی"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "د خپل پرده ساتونکي غوراوي وټاکئ"
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "<b>Screensaver preview</b>"
+msgstr "<b>د پرده ساتونکي مخليد</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+msgstr "<b>.خبرتيا: پرده به د ولي کارن لپاره نه کولپيږي</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Power _Management"
+msgstr "برېښنا سمبالښت"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "Regard the computer as _idle after:"
+msgstr ":سولګر لکه _وزګار شمېرل وروسته له"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "Screensaver Preferences"
+msgstr "د پرده ساتونکي غوراوي"
+
+#: ../data/gnome-screensaver-preferences.glade.h:6
+msgid "Screensaver Preview"
+msgstr "د پرده ساتونکي مخليد"
+
+#: ../data/gnome-screensaver-preferences.glade.h:7
+msgid "_Activate screensaver when computer is idle"
+msgstr "د سولګر د وزګارېدو پر مهال پرده ساتونکی چارندول_"
+
+#: ../data/gnome-screensaver-preferences.glade.h:8
+msgid "_Lock screen when screensaver is active"
+msgstr "د سولګر د چارندېدو پر مهال پرده کولپول_"
+
+#: ../data/gnome-screensaver-preferences.glade.h:9
+msgid "_Preview"
+msgstr "مخليد_"
+
+#: ../data/gnome-screensaver-preferences.glade.h:10
+msgid "_Screensaver theme:"
+msgstr ":د پرده ساتونکي کوندې_"
+
+#: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "Screensaver themes"
+msgstr "د پرده ساتونکي کوندې"
+
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "پرده ساتونکي"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Activate when idle"
+msgstr "د وزګارېدو پر مهال چارندول"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow embedding a keyboard into the window"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "Allow logout"
+msgstr "وتون پرېښل"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow user switching"
+msgstr "کارن ونجونه پرېښل"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Embedded keyboard command"
+msgstr "راتاوه کيليدړه بولۍ"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "Lock on activation"
+msgstr "پر چارندېدو کولپول"
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Logout command"
+msgstr "وتون بولۍ"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Reason for being away"
+msgstr "د لېرې پاتې کېدو لامل"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Screensaver theme selection mode"
+msgstr "د پرده ساتونکي کوندې ټاکنې اکر"
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid ""
+"The number of seconds of inactivity before signalling to power-management. "
+"This key is set and maintained by the session power-management agent."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "The reason for being away from the computer."
+msgstr ".د سولګر نه د لېرې پاتې کېدو لامل"
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid ""
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Theme for lock dialog"
+msgstr "د کولپ کړکۍ کونده"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Theme to use for the lock dialog."
+msgstr ".د کولپ کړکۍ لپاره د کارولو کونده"
+
+#: ../data/gnome-screensaver.schemas.in.h:27
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before locking"
+msgstr "د کولپېدو مخکښې مهال"
+
+#: ../data/gnome-screensaver.schemas.in.h:29
+msgid "Time before logout option"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:30
+msgid "Time before power-management baseline"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:31
+msgid "Time before session is considered idle"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:32
+msgid "Time before theme change"
+msgstr "د کوندې بدلېدو مخکښې مهال"
+
+#: ../data/lock-dialog-default.glade.h:2
+#, no-c-format
+msgid "<b>Leave a message for %R:</b>"
+msgstr "<b>:لپاره استوزه پرېښودل %R د</b>"
+
+#: ../data/lock-dialog-default.glade.h:4
+#, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
+msgstr "<span size=\"small\">کښې %h په %U</span>"
+
+#: ../data/lock-dialog-default.glade.h:6
+#, no-c-format
+msgid "<span size=\"x-large\">%R</span>"
+msgstr "<span size=\"x-large\">%R</span>"
+
+#: ../data/lock-dialog-default.glade.h:7
+msgid "_Cancel"
+msgstr "بندول_"
+
+#: ../data/lock-dialog-default.glade.h:8
+msgid "_Leave Message"
+msgstr "استوزه پرېښودل_"
+
+#: ../data/lock-dialog-default.glade.h:9
+msgid "_Log Out"
+msgstr "وتون_"
+
+#: ../data/lock-dialog-default.glade.h:10
+msgid "_Switch User"
+msgstr "کارن ونجول_"
+
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
+msgid "_Unlock"
+msgstr "ناکولپول_"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr ""
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr ""
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr ""
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr ""
+
+#: ../savers/personal-slideshow.desktop.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr ""
+
+#: ../savers/personal-slideshow.desktop.in.h:2
+msgid "Pictures folder"
+msgstr "انځورونه پوښۍ"
+
+#: ../savers/popsquares.desktop.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr ""
+
+#: ../savers/popsquares.desktop.in.h:2
+msgid "Pop art squares"
+msgstr ""
+
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr ""
+
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr ""
+
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr ""
+
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr ""
+
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "ټولوجګه_انځورونه"
+
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "د کړکۍ لمړنی کچ او ځای"
+
+#: ../savers/floaters.c:96
+msgid "WIDTHxHEIGHT+X+Y"
+msgstr "Y+X+اوږدوالیxپلنوالی"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "هغه سرچينه انځور چې وکارول شي"
+
+#. translators: the word "image" here
+#. * represents a command line argument
+#.
+#: ../savers/floaters.c:1194
+msgid "image - floats images around the screen"
+msgstr ""
+
+#: ../savers/floaters.c:1200
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr ""
+
+#: ../savers/floaters.c:1209
+msgid "You must specify one image.  See --help for usage information.\n"
+msgstr ""
+
+#: ../savers/slideshow.c:53
+msgid "Location to get images from"
+msgstr "هغه ځای چې انځورونه ترې واخېستل شي"
+
+#: ../savers/slideshow.c:53
+msgid "PATH"
+msgstr "يونلور"
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "هغه رنګ چې د انځورونو د شاليد په توګه وکارول شي"
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "\"#rrggbb\""
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr ""
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "په پرده د انځورونو د غځولو هڅه مه کوه"
+
+#: ../src/copy-theme-dialog.c:211
+msgid "Copying files"
+msgstr "دوتنې لمېسل کيږي"
+
+#: ../src/copy-theme-dialog.c:229
+msgid "From:"
+msgstr ":له"
+
+#: ../src/copy-theme-dialog.c:233
+msgid "To:"
+msgstr ":ته"
+
+#: ../src/copy-theme-dialog.c:253
+msgid "Copying themes"
+msgstr "کوندې لمېسل کيږي"
+
+#: ../src/copy-theme-dialog.c:297
+msgid "Invalid screensaver theme"
+msgstr "ناسمه پرده ساتونکي کونده"
+
+#: ../src/copy-theme-dialog.c:300
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr ".سم پرده ساتونکي کونده نه ښکاري %s"
+
+#: ../src/copy-theme-dialog.c:480
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "%u له %u :دوتنه لمېسل کيږي"
+
+#: ../src/gnome-screensaver-command.c:62
+msgid "Causes the screensaver to exit gracefully"
+msgstr "په سمه توګه پرده ساتونکی بندوي"
+
+#: ../src/gnome-screensaver-command.c:64
+msgid "Query the state of the screensaver"
+msgstr "د پرده ساتونکي انکړ پوښتل"
+
+#: ../src/gnome-screensaver-command.c:66
+msgid "Query the length of time the screensaver has been active"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:68
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:70
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:72
+msgid "Turn the screensaver on (blank the screen)"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:74
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:76
+msgid "Poke the running screensaver to simulate user activity"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:78
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:80
+msgid "The calling application that is inhibiting the screensaver"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:82
+msgid "The reason for inhibiting the screensaver"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver.c:56
+msgid "Version of this application"
+msgstr "د دې کاريال نسخه"
+
+#: ../src/gnome-screensaver-command.c:249
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "دی %s پرده ساتونکی\n"
+
+#: ../src/gnome-screensaver-command.c:249
+msgid "active"
+msgstr "چارنده"
+
+#: ../src/gnome-screensaver-command.c:249
+msgid "inactive"
+msgstr "ناچارنده"
+
+#: ../src/gnome-screensaver-command.c:274
+#, c-format
+msgid "The screensaver has been active for %d seconds.\n"
+msgstr ".سېکېنډو لپاره چارند وو %d پرده ساتونکی د\n"
+
+#: ../src/gnome-screensaver-dialog.c:53
+msgid "Show debugging output"
+msgstr "د کړاوتمبونې وتنی ښودل"
+
+#: ../src/gnome-screensaver-dialog.c:57
+msgid "Show the logout button"
+msgstr "وتون تڼۍ ښودل"
+
+#: ../src/gnome-screensaver-dialog.c:59
+msgid "Command to invoke from the logout button"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:61
+msgid "Show the switch user button"
+msgstr "کارن ونجول تڼۍ ښودل"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "Message to show in the dialog"
+msgstr "هغه استوزه چې په کړکۍ کښې وښودل شي"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "MESSAGE"
+msgstr "استوزه"
+
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
+msgid "Username:"
+msgstr ":کارننوم"
+
+#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "تېرنويې"
+
+#: ../src/gnome-screensaver-dialog.c:178
+msgid "You are required to change your password immediately (password aged)"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:179
+msgid "You are required to change your password immediately (root enforced)"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:180
+msgid "Your account has expired; please contact your system administrator"
+msgstr ""
+"ستاسو د ګڼون مهال بشپړ شوی؛ مهرباني وکړﺉ خپل غونډال پازوال سره اړيکه ونيسئ"
+
+#: ../src/gnome-screensaver-dialog.c:181
+msgid "No password supplied"
+msgstr "تېرنويې نه ده ټاکل شوې"
+
+#: ../src/gnome-screensaver-dialog.c:182
+msgid "Password unchanged"
+msgstr "تېرنويې نه ده بدله شوې"
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "Can not get username"
+msgstr "کارننوم نه شي اخېستلی"
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "Retype new UNIX password:"
+msgstr ":تېرنويې بيا ليکل UNIX نوې"
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "Enter new UNIX password:"
+msgstr ":تېرنويې ليکل UNIX نوې"
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "(current) UNIX password:"
+msgstr ":تېرنويې UNIX (اوسنۍ)"
+
+#: ../src/gnome-screensaver-dialog.c:187
+msgid "Error while changing NIS password."
+msgstr ".تېرنويې بدلولو پر مهال تېروتنهNISد"
+
+#: ../src/gnome-screensaver-dialog.c:188
+msgid "You must choose a longer password"
+msgstr "تاسو بايد يوه اوږده تېرنويې وټاکئ"
+
+#: ../src/gnome-screensaver-dialog.c:189
+msgid "Password has been already used. Choose another."
+msgstr ".تېرنويې له مخکښې نه کارول شوې ده. له وټاکئ"
+
+#: ../src/gnome-screensaver-dialog.c:190
+msgid "You must wait longer to change your password"
+msgstr "خپلې تېرنويې بدلولو لپاره بايد تاسو ډېره تمه وکړئ"
+
+#: ../src/gnome-screensaver-dialog.c:191
+msgid "Sorry, passwords do not match"
+msgstr "بښنه غواړو، تېرنويې سره نه لګيږي"
+
+#: ../src/gnome-screensaver-dialog.c:257
+msgid "Checking..."
+msgstr "...کتل کيږي"
+
+#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
+msgid "Authentication failed."
+msgstr ".کرونه پاتې راغله"
+
+#: ../src/gnome-screensaver-preferences.c:498
+msgid "Blank screen"
+msgstr "توره پرده"
+
+#: ../src/gnome-screensaver-preferences.c:504
+msgid "Random"
+msgstr "ناټاکلي"
+
+#: ../src/gnome-screensaver-preferences.c:954
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/gnome-screensaver-preferences.c:957
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/gnome-screensaver-preferences.c:960
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:966
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: ../src/gnome-screensaver-preferences.c:999
+msgid "Never"
+msgstr "هېڅکله"
+
+#: ../src/gnome-screensaver-preferences.c:1398
+msgid "Could not load the main interface"
+msgstr "ار برسېر نه شي لېښلی"
+
+#: ../src/gnome-screensaver-preferences.c:1400
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "مهرباني وکړﺉ ځان ډاډمن کړﺉ چې پرده ساتونکی په سمه توګه لګول شوی"
+
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "ډاېمون مه جوړېږه"
+
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr "کړاتمبونې کوډ وړول"
+
+#: ../src/gs-auth-pam.c:397
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr ""
+
+#: ../src/gs-auth-pam.c:423
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr ""
+
+#: ../src/gs-auth-pam.c:455
+msgid "Incorrect password."
+msgstr ".ناسمه تېرنويې"
+
+#: ../src/gs-auth-pam.c:471
+msgid "Not permitted to gain access at this time."
+msgstr ".دا مهال د لاس رسي پرېښلې نشته"
+
+#: ../src/gs-auth-pam.c:477
+msgid "No longer permitted to access the system."
+msgstr ".نور د غونډال لاس رسي ته پرېښلې نه لرﺉ"
+
+#: ../src/gs-listener-dbus.c:1921
+msgid "failed to register with the message bus"
+msgstr "استوزه بس سره نومکښلو کښې پاتې راغی"
+
+#: ../src/gs-listener-dbus.c:1931
+msgid "not connected to the message bus"
+msgstr "استوزه بس سره نه دی نښتی"
+
+#: ../src/gs-listener-dbus.c:1940
+msgid "screensaver already running in this session"
+msgstr "پرده ساتونکی دمخه په دې ناستې کښې ځغلي"
+
+#: ../src/gs-lock-plug.c:269
+msgid "Time has expired."
+msgstr ".مهال تېر شوی"
+
+#: ../src/gs-lock-plug.c:297
+msgid "You have the Caps Lock key on."
+msgstr ".کيلۍ مو بله ده Caps Lock"
+
+#: ../src/gs-lock-plug.c:1192
+msgid "S_witch User..."
+msgstr "...ک_ارن ونجول"
+
+#: ../src/gs-lock-plug.c:1201
+msgid "Log _Out"
+msgstr "وتو_ن"
+
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1378
+msgid "%U on %h"
+msgstr "کښې %h په %U"
+
+#: ../src/gs-lock-plug.c:1392
+msgid "_Password:"
+msgstr ":تېرنويې_"
