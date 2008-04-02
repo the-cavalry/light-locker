@@ -1,4 +1,10 @@
 ===============
+Version 2.22.1
+===============
+
+       * Fix for bug 525785 – CVE-2008-0887
+
+===============
 Version 2.22.0
 ===============
 
@@ -74,7 +80,7 @@ Version 2.20.0
         * Updated lt: Gintautas Miliauskas
         * Updated ro: Mugurel Tudor
         * Updated ta: I. Felix
-        * Updated fr: Stéphane Raimbault
+        * Updated fr: StÃ©phane Raimbault
         * Updated da: Kenneth Nielsen
         * Updated hu: Gabor Kelemen
         * Updated ja: Takeshi AIHANA
@@ -136,7 +142,7 @@ Version 2.19.6
         * Updated mn: Djihed Afifi <djihed@gmail.com>
         * Updated nl: Wouter Bolsterlee
         * Updated be@latin: Ihar Hrachyshka
-        * Updated vi: Nguyễn Thái Ngọc Duy, Clytie Siddall
+        * Updated vi: Nguyá»n ThÃ¡i Ngá»c Duy, Clytie Siddall
         * Updated nb: Kjartan Maraas
         * Updated de: Andre Klapper
         * Updated sv: Daniel Nylander
@@ -171,7 +177,7 @@ Version 2.19.5
   Translators
 
         * Updated be@latin: Ihar Hrachyshka
-        * Updated vi: Nguyễn Thái Ngọc Duy, Clytie Siddall
+        * Updated vi: Nguyá»n ThÃ¡i Ngá»c Duy, Clytie Siddall
         * Updated nb: Kjartan Maraas
         * Updated sv: Daniel Nylander
         * Updated lv: Daniel Nylander
@@ -208,7 +214,7 @@ Version 2.18.1
   Translators
 
         * Updated zh_CN: Funda Wang
-        * Updated ca: Josep Puigdemont i Casamajó
+        * Updated ca: Josep Puigdemont i CasamajÃ³
         * Updated da: Peter Bach
         * Updated lv: Raivis Dejus
         * Updated sl: Matic Zgur
@@ -281,9 +287,9 @@ Version 2.17.7
 
   Translators
 
-        * Updated fr: Stéphane Raimbault
+        * Updated fr: StÃ©phane Raimbault
         * Updated nl: Wouter Bolsterlee
-        * Updated ca: Josep Puigdemont i Casamajó
+        * Updated ca: Josep Puigdemont i CasamajÃ³
         * Updated pt_BR: Leonardo Ferreira Fontenelle
         * Updated da: Lasse Bang Mikkelsen
 
@@ -299,7 +305,7 @@ Version 2.17.6
   Translators
 
         * Updated nb: Kjartan Maraas
-        * Updated ca: Josep Puigdemont i Casamaj�
+        * Updated ca: Josep Puigdemont i Casamajó
 
 ===============
 Version 2.17.5
@@ -432,9 +438,9 @@ Version 2.16.0
   Translators
 
         * Kostas Papadimas (el)
-        * I�aki Larra�aga Murgoitio (eu)
+        * Iñaki Larrañaga Murgoitio (eu)
         * Meelad Zakaria (fa)
-        * Robert-Andr� Mauchin (fr)
+        * Robert-André Mauchin (fr)
         * Rajesh Ranjan (hi)
         * Gabor Kelemen (hu)
         * Gintautas Miliauskas (lt)
@@ -442,9 +448,9 @@ Version 2.16.0
         * Jovan Naumovski (mk)
         * Subhransu Behera (or)
         * Duarte Loreto (pt)
-        * Matic %GŽ%@gur (sl)
+        * Matic %GÅ½%@gur (sl)
         * Theppitak Karoonboonyanan (th)
-        * Deniz Ko�ak (tr)
+        * Deniz Koçak (tr)
         * Ching-Hung Lin (zh_HK)
         * Ching-Hung Lin (zh_TW)
 
@@ -493,10 +499,10 @@ Version 2.15.6
         * Christophe Merlet (RedFox) (fr)
         * Ankit Patel (gu)
         * ahmad riza h nst (id)
-        * %GŽ%@ygimantas Beru%Gč%@ka (lt)
+        * %GÅ½%@ygimantas Beru%GÄ%@ka (lt)
         * Jovan Naumovski (mk)
         * Kjartan Maraas (nb)
-        * Matic %GŽ%@gur (sl)
+        * Matic %GÅ½%@gur (sl)
         * Theppitak Karoonboonyanan (th)
 
 ===============
@@ -551,7 +557,7 @@ Version 2.15.4
         * Hendrik Richter (de)
         * Francisco Javier F. Serrador (es)
         * Ilkka Tuohela (fi)
-        * Robert-Andr� Mauchin (fr)
+        * Robert-André Mauchin (fr)
         * Ignacio Casal Quinteiro (gl)
         * Ankit Patel (gu)
         * Yaniv Abir (he)
@@ -675,9 +681,9 @@ Version 2.14.1
 
         * Lukas Novotny (cs)
         * Ivar Smolin (et)
-        * Benoît Dejean (fr)
+        * BenoÃ®t Dejean (fr)
         * Wouter Bolsterlee (nl)
-        * Andrzej Polaty�ski (pl)
+        * Andrzej PolatyÅski (pl)
         * Theppitak Karoonboonyanan (th)
         * Clytie Siddall (vi)
 
@@ -696,7 +702,7 @@ Version 2.14.0
         * Rostislav \"zbrox\" Raykov (bg)
         * Mahay Alam Khan (bn)
         * Gil Forcada (ca)
-        * Petr Tomeš (cs)
+        * Petr TomeÅ¡ (cs)
         * Rhys Jones (cy)
         * David Nielsen (da)
         * Frank Arnold (de)
@@ -739,7 +745,7 @@ Version 2.13.92
         * Satoru SATOH (ja)
         * Vladimer SIchinava (ka)
         * Hyun-Jin Moon (ko)
-        * Žygimantas Beru�ka (lt)
+        * Å½ygimantas BeruÄka (lt)
         * Kjartan Maraas (nb)
         * Tino Meinen (nl)
         * Kjartan Maraas (no)
@@ -775,8 +781,8 @@ Version 2.13.91
 
         * Gil Forcada (ca)
         * Lukas Novotny (cs)
-        * Žygimantas Beru�ka (lt)
-        * �ivind Hoel (nb)
+        * Å½ygimantas BeruÄka (lt)
+        * Ãivind Hoel (nb)
 
 ===============
 Version 2.13.90
@@ -845,14 +851,14 @@ Version 0.0.24
 
   Translators
 
-        * Josep Puigdemont i Casamajó (ca)
+        * Josep Puigdemont i CasamajÃ³ (ca)
         * Adam Weinberger (en_CA)
         * Francisco Javier F. Serrador (es)
         * Ilkka Tuohela (fi)
         * Ankit Patel (gu)
-        * Žygimantas Beru�ka (lt)
+        * Å½ygimantas BeruÄka (lt)
         * Tino Meinen (nl)
-        * Слободан �. С�едо�еви� (sr)
+        * Ð¡Ð»Ð¾Ð±Ð¾Ð´Ð°Ð½ Ð. Ð¡ÑÐµÐ´Ð¾ÑÐµÐ²Ð¸Ñ (sr)
         * Theppitak Karoonboonyanan (th)
         * Clytie Siddall (vi)
 
@@ -907,7 +913,7 @@ Version 0.0.21
 
         * Rostislav \"zbrox\" Raykov (bg)
         * Ilkka Tuohela (fi)
-        * Åygimantas BeruÄka (lt)
+        * Ãygimantas BeruÃka (lt)
         * Amanpreet Singh Alam (pa)
         * Marcel Telka (sk)
         * Theppitak Karoonboonyanan (th)
@@ -941,7 +947,7 @@ Version 0.0.19
         * Francisco Javier F. Serrador (es)
         * Davy Defaud (fr)
         * Takeshi AIHANA (ja)
-        * Åygimantas Beruka (lt)
+        * Ãygimantas Beruka (lt)
 
 ==============
 Version 0.0.18
@@ -1039,7 +1045,7 @@ Version 0.0.15
         * Rostislav \"zbrox\" Raykov (bg)
         * Miloslav Trmac (cs)
         * Adam Weinberger (en_CA)
-        * Å½ygimantas BeruÄka (lt)
+        * ÃÂ½ygimantas BeruÃka (lt)
         * Kjartan Maraas (nb)
         * Tino Meinen (nl)
         * Kjartan Maraas (no)
