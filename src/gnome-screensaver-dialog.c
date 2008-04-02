@@ -41,6 +41,8 @@
 
 #include "gs-debug.h"
 
+#define MAX_FAILURES 5
+
 static gboolean verbose        = FALSE;
 static gboolean show_version   = FALSE;
 static gboolean enable_logout  = FALSE;
@@ -299,8 +301,6 @@ do_auth_check (GSLockPlug *plug)
                         gs_lock_plug_show_message (plug, _("Authentication failed."));
                 }
 
-                g_timeout_add (3000, (GSourceFunc)reset_idle_cb, plug);
-
                 printf ("NOTICE=AUTH FAILED\n");
                 fflush (stdout);
 
@@ -325,15 +325,28 @@ response_cb (GSLockPlug *plug,
 static gboolean
 auth_check_idle (GSLockPlug *plug)
 {
-        gboolean res;
+        gboolean     res;
+        gboolean     again;
+        static guint loop_counter = 0;
 
+        again = TRUE;
         res = do_auth_check (plug);
 
         if (res) {
+                again = FALSE;
                 g_idle_add ((GSourceFunc)quit_response_ok, NULL);
+        } else {
+                loop_counter++;
+
+                if (loop_counter < MAX_FAILURES) {
+                        g_timeout_add (3000, (GSourceFunc)reset_idle_cb, plug);
+                } else {
+                        again = FALSE;
+                        gtk_main_quit ();
+                }
         }
 
-        return !res;
+        return again;
 }
 
 static void

@@ -48,7 +48,7 @@ uid_gid_string (uid_t uid,
         return buf;
 }
 
-static int
+static gboolean
 set_ids_by_number (uid_t  uid,
                    gid_t  gid,
                    char **message_ret)
@@ -96,7 +96,7 @@ set_ids_by_number (uid_t  uid,
 
                 g_free (reason);
 
-                return 0;
+                return TRUE;
         } else {
                 char *reason = NULL;
 
@@ -141,9 +141,9 @@ set_ids_by_number (uid_t  uid,
                         g_free (reason);
                         reason = NULL;
                 }
-
-                return -1;
+                return FALSE;
         }
+        return FALSE;
 }
 
 
@@ -165,12 +165,21 @@ hack_uid (char **nolock_reason,
           char **orig_uid,
           char **uid_message)
 {
-        if (nolock_reason)
+        char    *reason;
+        gboolean ret;
+
+        ret = TRUE;
+        reason = NULL;
+
+        if (nolock_reason != NULL) {
                 *nolock_reason = NULL;
-        if (orig_uid)
+        }
+        if (orig_uid != NULL) {
                 *orig_uid = NULL;
-        if (uid_message)
+        }
+        if (uid_message != NULL) {
                 *uid_message = NULL;
+        }
 
         /* Discard privileges, and set the effective user/group ids to the
            real user/group ids.  That is, give up our "chmod +s" rights.
@@ -181,12 +190,18 @@ hack_uid (char **nolock_reason,
                 uid_t uid  = getuid ();
                 gid_t gid  = getgid ();
 
-                if (orig_uid)
+                if (orig_uid != NULL) {
                         *orig_uid = uid_gid_string (euid, egid);
+                }
 
-                if (uid != euid || gid != egid)
-                        if (set_ids_by_number (uid, gid, uid_message) != 0)
-                                return FALSE;
+                if (uid != euid || gid != egid) {
+                        if (! set_ids_by_number (uid, gid, uid_message)) {
+                                reason = g_strdup ("unable to discard privileges.");
+
+                                ret = FALSE;
+                                goto out;
+                        }
+                }
         }
 
 
@@ -200,81 +215,16 @@ hack_uid (char **nolock_reason,
            and "USING XDM".
         */
         if (getuid () == (uid_t) 0) {
-                if (nolock_reason)
-                        *nolock_reason = g_strdup ("running as root");
-                return FALSE;
+                reason = g_strdup ("running as root");
+                ret = FALSE;
+                goto out;
         }
 
-        /* If we're running as root, switch to a safer user.  This is above and
-           beyond the fact that we've disabling locking, above -- the theory is
-           that running graphics demos as root is just always a stupid thing
-           to do, since they have probably never been security reviewed and are
-           more likely to be buggy than just about any other kind of program.
-           (And that assumes non-malicious code.  There are also attacks here.)
-
-           *** WARNING: DO NOT DISABLE THIS CODE!
-           If you do so, you will open a security hole.  See the sections
-           of the xscreensaver manual titled "LOCKING AND ROOT LOGINS", 
-           and "USING XDM".
-        */
-        if (getuid () == (uid_t) 0) {
-                struct passwd *p;
-
-                p = getpwnam ("nobody");
-                if (! p) p = getpwnam ("noaccess");
-                if (! p) p = getpwnam ("daemon");
-                if (! p) {
-                        g_warning ("running as root, and couldn't find a safer uid.");
-                        return FALSE;
-                }
-
-                if (set_ids_by_number (p->pw_uid, p->pw_gid, uid_message) != 0)
-                        return FALSE;
+ out:
+        if (nolock_reason != NULL) {
+                *nolock_reason = g_strdup (reason);
         }
+        g_free (reason);
 
-
-        /* If there's anything even remotely funny looking about the passwd struct,
-           or if we're running as some other user from the list below (a
-           non-comprehensive selection of users known to be privileged in some way,
-           and not normal end-users) then disable locking.  If it was possible,
-           switching to "nobody" would be the thing to do, but only root itself has
-           the privs to do that.
-
-           *** WARNING: DO NOT DISABLE THIS CODE!
-           If you do so, you will open a security hole.  See the sections
-           of the xscreensaver manual titled "LOCKING AND ROOT LOGINS",
-           and "USING XDM".
-        */
-        {
-                uid_t          uid = getuid ();		/* get it again */
-                struct passwd *p   = getpwuid (uid);	/* get it again */
-
-                if (!p ||
-                    uid == (uid_t)  0 ||
-                    uid == (uid_t) -1 ||
-                    uid == (uid_t) -2 ||
-                    p->pw_uid == (uid_t)  0 ||
-                    p->pw_uid == (uid_t) -1 ||
-                    p->pw_uid == (uid_t) -2 ||
-                    !p->pw_name ||
-                    !*p->pw_name ||
-                    !strcmp (p->pw_name, "root") ||
-                    !strcmp (p->pw_name, "nobody") ||
-                    !strcmp (p->pw_name, "noaccess") ||
-                    !strcmp (p->pw_name, "operator") ||
-                    !strcmp (p->pw_name, "daemon") ||
-                    !strcmp (p->pw_name, "bin") ||
-                    !strcmp (p->pw_name, "adm") ||
-                    !strcmp (p->pw_name, "sys") ||
-                    !strcmp (p->pw_name, "games")) {
-                        if (nolock_reason)
-                                *nolock_reason = g_strdup_printf ("running as %s",
-                                                                  (p && p->pw_name
-                                                                   && *p->pw_name
-                                                                   ? p->pw_name : "<unknown>"));
-                        return FALSE;
-                }
-        }
-
-        return TRUE;
+        return ret;
 }

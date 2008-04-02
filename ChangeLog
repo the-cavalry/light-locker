@@ -1,3 +1,11 @@
+2008-04-02  William Jon McCann  <jmccann@redhat.com>
+
+	* src/gnome-screensaver-dialog.c: (do_auth_check),
+	(auth_check_idle):
+	* src/setuid.c: (set_ids_by_number), (hack_uid):
+	Don't unlock if NIS goes away.
+	Fixes #525785.
+
 2008-03-10  William Jon McCann  <jmccann@redhat.com>
 
 	* configure.ac: Post release version bump
