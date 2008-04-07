@@ -56,7 +56,8 @@
 #define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
 #define GDM_FLEXISERVER_ARGS    "--startnew Standard"
 
-#define NOTE_BUFFER_MAX_CHARS 160 /* same as SMS ;) */
+/* same as SMS ;) */
+#define NOTE_BUFFER_MAX_CHARS 160
 
 enum {
         AUTH_PAGE = 0,
