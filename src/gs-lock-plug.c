@@ -56,6 +56,8 @@
 #define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
 #define GDM_FLEXISERVER_ARGS    "--startnew Standard"
 
+#define NOTE_BUFFER_MAX_CHARS 160 /* same as SMS ;) */
+
 enum {
         AUTH_PAGE = 0,
 };
@@ -81,7 +83,6 @@ struct GSLockPlugPrivate
         GtkWidget   *auth_prompt_box;
         GtkWidget   *auth_capslock_label;
         GtkWidget   *auth_message_label;
-        GtkWidget   *switch_user_treeview;
         GtkWidget   *away_message_label;
 
         GtkWidget   *auth_unlock_button;
@@ -1578,6 +1579,18 @@ clear_clipboards (GSLockPlug *plug)
         gtk_clipboard_set_text (clipboard, "", -1);
 }
 
+static void
+on_note_text_buffer_changed (GtkTextBuffer *buffer,
+                             GSLockPlug    *plug)
+{
+        int len;
+
+        len = gtk_text_buffer_get_char_count (buffer);
+        if (len > NOTE_BUFFER_MAX_CHARS) {
+                gtk_widget_set_sensitive (plug->priv->note_text_view, FALSE);
+        }
+}
+
 #define INVISIBLE_CHAR_DEFAULT       '*'
 #define INVISIBLE_CHAR_BLACK_CIRCLE  0x25cf
 #define INVISIBLE_CHAR_WHITE_BULLET  0x25e6
@@ -1620,6 +1633,12 @@ gs_lock_plug_init (GSLockPlug *plug)
                 create_page_one (plug);
 
                 gtk_widget_show_all (plug->priv->vbox);
+        }
+
+        if (plug->priv->note_text_view != NULL) {
+                GtkTextBuffer *buffer;
+                buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (plug->priv->note_text_view));
+                g_signal_connect (buffer, "changed", G_CALLBACK (on_note_text_buffer_changed), plug);
         }
 
         /* Layout indicator */
