@@ -1,3 +1,23 @@
+2008-04-30  William Jon McCann  <jmccann@redhat.com>
+
+	* configure.ac:
+	* src/Makefile.am:
+	* src/debug-screensaver.sh:
+	* src/gs-manager.c (gs_manager_init),
+	(apply_background_prefs_to_window), (manager_show_window):
+	* src/gs-window-x11.c (gs_window_set_background_pixmap),
+	(gs_window_clear_to_background_pixmap), (gs_window_clear),
+	(spawn_on_window), (popup_dialog_idle), (gs_window_init):
+	* src/gs-window.h:
+	Add support for showing the desktop background behind the
+	unlock dialog.  Add dep on gnome-desktop and
+	pull in libbackground as an svn:external.
+	Still to-do:
+	1. add bg_preferences_load_defaults to pull from
+	system defaults instead of user settings
+	2. process bg changes
+	3. fix clearing child windows to the pixmap
+
 2008-04-29  William Jon McCann <jmccann@redhat.com>
 
 	* configure.ac: Post branch version bump

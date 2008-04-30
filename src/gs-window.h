@@ -65,6 +65,8 @@ void        gs_window_set_monitor        (GSWindow  *window,
                                           int        monitor);
 int         gs_window_get_monitor        (GSWindow  *window);
 
+void        gs_window_set_background_pixmap (GSWindow  *window,
+                                             GdkPixmap *pixmap);
 void        gs_window_set_lock_enabled   (GSWindow  *window,
                                           gboolean   lock_enabled);
 void        gs_window_set_logout_enabled (GSWindow  *window,
@@ -92,6 +94,7 @@ void        gs_window_show               (GSWindow  *window);
 void        gs_window_destroy            (GSWindow  *window);
 GdkWindow * gs_window_get_gdk_window     (GSWindow  *window);
 void        gs_window_clear              (GSWindow  *window);
+void        gs_window_clear_to_background_pixmap (GSWindow  *window);
 
 G_END_DECLS
 

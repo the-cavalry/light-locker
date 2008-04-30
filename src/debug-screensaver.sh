@@ -27,6 +27,8 @@ if [ -z "${DBUS_SESSION_BUS_ADDRESS}" ]; then
     exit 1
 fi
 
+export G_DEBUG=fatal_criticals
+
 # kill the existing daemon
 gnome-screensaver-command --exit
 

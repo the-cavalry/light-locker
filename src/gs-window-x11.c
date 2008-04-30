@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * Copyright (C) 2004-2006 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2004-2008 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -76,6 +76,8 @@ struct GSWindowPrivate
         GtkWidget *lock_box;
         GtkWidget *lock_socket;
         GtkWidget *keyboard_socket;
+
+        GdkPixmap *background_pixmap;
 
         guint      popup_dialog_idle_id;
 
@@ -261,11 +263,79 @@ clear_all_children (GSWindow *window)
 }
 
 void
+gs_window_set_background_pixmap (GSWindow  *window,
+                                 GdkPixmap *pixmap)
+{
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        if (window->priv->background_pixmap != NULL) {
+                g_object_unref (window->priv->background_pixmap);
+        }
+
+        if (pixmap != NULL) {
+                window->priv->background_pixmap = g_object_ref (pixmap);
+                gdk_window_set_back_pixmap (GTK_WIDGET (window)->window,
+                                            pixmap,
+                                            FALSE);
+        }
+}
+
+void
+gs_window_clear_to_background_pixmap (GSWindow *window)
+{
+        GtkStateType state;
+        GtkStyle    *style;
+
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        if (! GTK_WIDGET_VISIBLE (GTK_WIDGET (window))) {
+                return;
+        }
+
+        if (window->priv->background_pixmap == NULL) {
+                /* don't allow null pixmaps */
+                return;
+        }
+
+        gs_debug ("Clearing window to background pixmap");
+
+        style = gtk_style_copy (GTK_WIDGET (window)->style);
+
+        state = (GtkStateType) 0;
+        while (state < (GtkStateType) G_N_ELEMENTS (GTK_WIDGET (window)->style->bg_pixmap)) {
+
+                if (style->bg_pixmap[state] != NULL) {
+                        g_object_unref (style->bg_pixmap[state]);
+                }
+
+                style->bg_pixmap[state] = g_object_ref (window->priv->background_pixmap);
+                state++;
+        }
+
+        gtk_widget_set_style (GTK_WIDGET (window), style);
+        g_object_unref (style);
+
+        if (window->priv->background_pixmap != NULL) {
+                gdk_window_set_back_pixmap (GTK_WIDGET (window)->window,
+                                            window->priv->background_pixmap,
+                                            FALSE);
+        }
+
+        gdk_window_clear (GTK_WIDGET (window)->window);
+
+        /* If a screensaver theme adds child windows we need to clear them too */
+        clear_all_children (window);
+
+        gdk_flush ();
+}
+
+void
 gs_window_clear (GSWindow *window)
 {
         GdkColor     color = { 0, 0x0000, 0x0000, 0x0000 };
         GdkColormap *colormap;
         GtkStateType state;
+        GtkStyle    *style;
 
         g_return_if_fail (GS_IS_WINDOW (window));
 
@@ -281,9 +351,26 @@ gs_window_clear (GSWindow *window)
                 state++;
         }
 
+        style = gtk_style_copy (GTK_WIDGET (window)->style);
+
+        state = (GtkStateType) 0;
+        while (state < (GtkStateType) G_N_ELEMENTS (GTK_WIDGET (window)->style->bg_pixmap)) {
+
+                if (style->bg_pixmap[state] != NULL) {
+                        g_object_unref (style->bg_pixmap[state]);
+                }
+
+                style->bg_pixmap[state] = NULL;
+                state++;
+        }
+
         colormap = gdk_drawable_get_colormap (GTK_WIDGET (window)->window);
         gdk_colormap_alloc_color (colormap, &color, FALSE, TRUE);
         gdk_window_set_background (GTK_WIDGET (window)->window, &color);
+
+        gtk_widget_set_style (GTK_WIDGET (window), style);
+        g_object_unref (style);
+
         gdk_window_clear (GTK_WIDGET (window)->window);
 
         /* If a screensaver theme adds child windows we need to clear them too */
@@ -882,7 +969,6 @@ spawn_on_window (GSWindow *window,
         int         standard_error;
         int         child_pid;
         int         id;
-        int         i;
 
         error = NULL;
         if (! g_shell_parse_argv (command, &argc, &argv, &error)) {
@@ -1438,7 +1524,8 @@ popup_dialog_idle (GSWindow *window)
                 command = g_string_append (command, " --verbose");
         }
 
-        gs_window_clear (window);
+        gs_window_clear_to_background_pixmap (window);
+
         set_invisible_cursor (GTK_WIDGET (window)->window, FALSE);
 
         result = spawn_on_window (window,
@@ -2121,7 +2208,7 @@ gs_window_init (GSWindow *window)
                                | GDK_VISIBILITY_NOTIFY_MASK
                                | GDK_ENTER_NOTIFY_MASK
                                | GDK_LEAVE_NOTIFY_MASK);
-        force_no_pixmap_background (GTK_WIDGET (window));
+        /*force_no_pixmap_background (GTK_WIDGET (window));*/
 
         window->priv->vbox = gtk_vbox_new (FALSE, 12);
         gtk_widget_show (window->priv->vbox);

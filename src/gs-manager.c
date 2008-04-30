@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * Copyright (C) 2004-2006 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2004-2008 William Jon McCann <mccann@jhu.edu>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,10 @@
 #include <time.h>
 #include <gdk/gdk.h>
 
+#define GNOME_DESKTOP_USE_UNSTABLE_API
+#include <libgnomeui/gnome-bg.h>
+#include "preferences.h"
+
 #include "gs-prefs.h"        /* for GSSaverMode */
 
 #include "gs-manager.h"
@@ -47,6 +51,8 @@ struct GSManagerPrivate
         GHashTable  *jobs;
 
         GSThemeManager *theme_manager;
+        BGPreferences  *prefs;
+        GnomeBG        *bg;
 
         /* Policy */
         glong        lock_timeout;
@@ -940,6 +946,19 @@ gs_manager_init (GSManager *manager)
         manager->priv->fade = gs_fade_new ();
         manager->priv->grab = gs_grab_new ();
         manager->priv->theme_manager = gs_theme_manager_new ();
+
+        manager->priv->prefs = BG_PREFERENCES (bg_preferences_new ());
+        manager->priv->bg = gnome_bg_new ();
+
+#if 0
+        g_signal_connect (manager->priv->bg,
+                          "changed",
+                          G_CALLBACK (on_bg_changed),
+                          manager);
+#endif
+
+        /* FIXME: should only load from defaults */
+        bg_preferences_load (manager->priv->prefs);
 }
 
 static void
@@ -1217,10 +1236,85 @@ window_unmap_cb (GSWindow  *window,
 }
 
 static void
+apply_background_prefs_to_window (GSManager *manager,
+                                  GSWindow  *window)
+{
+        GnomeBGPlacement placement;
+        GnomeBGColorType color;
+        const char      *uri;
+        GdkPixmap       *pixmap;
+        GdkScreen       *screen;
+        int              width;
+        int              height;
+
+        uri = manager->priv->prefs->wallpaper_filename;
+
+        placement = GNOME_BG_PLACEMENT_TILED;
+
+        switch (manager->priv->prefs->wallpaper_type) {
+        case WPTYPE_TILED:
+                placement = GNOME_BG_PLACEMENT_TILED;
+                break;
+        case WPTYPE_CENTERED:
+                placement = GNOME_BG_PLACEMENT_CENTERED;
+                break;
+        case WPTYPE_SCALED:
+                placement = GNOME_BG_PLACEMENT_SCALED;
+                break;
+        case WPTYPE_STRETCHED:
+                placement = GNOME_BG_PLACEMENT_FILL_SCREEN;
+                break;
+        case WPTYPE_ZOOM:
+                placement = GNOME_BG_PLACEMENT_ZOOMED;
+                break;
+        case WPTYPE_NONE:
+        case WPTYPE_UNSET:
+                uri = NULL;
+                break;
+        }
+
+        switch (manager->priv->prefs->orientation) {
+        case ORIENTATION_SOLID:
+                color = GNOME_BG_COLOR_SOLID;
+                break;
+        case ORIENTATION_HORIZ:
+                color = GNOME_BG_COLOR_H_GRADIENT;
+                break;
+        case ORIENTATION_VERT:
+                color = GNOME_BG_COLOR_V_GRADIENT;
+                break;
+        default:
+                color = GNOME_BG_COLOR_SOLID;
+                break;
+        }
+
+        gnome_bg_set_uri (manager->priv->bg, uri);
+        gnome_bg_set_placement (manager->priv->bg, placement);
+        gnome_bg_set_color (manager->priv->bg,
+                            color,
+                            manager->priv->prefs->color1,
+                            manager->priv->prefs->color2);
+
+        screen = gs_window_get_screen (window);
+        width = gdk_screen_get_width (screen);
+        height = gdk_screen_get_height (screen);
+        gs_debug ("Creating pixmap background w:%d h:%d", width, height);
+        pixmap = gnome_bg_create_pixmap (manager->priv->bg,
+                                         gs_window_get_gdk_window (window),
+                                         width,
+                                         height,
+                                         TRUE);
+        gs_window_set_background_pixmap (window, pixmap);
+        g_object_unref (pixmap);
+}
+
+static void
 manager_show_window (GSManager *manager,
                      GSWindow  *window)
 {
         GSJob *job;
+
+        apply_background_prefs_to_window (manager, window);
 
         job = gs_job_new_for_widget (GTK_WIDGET (window));
 
