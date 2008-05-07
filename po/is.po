@@ -1,0 +1,729 @@
+# Icelandic translation of Gnome.
+# Copyright (C) 2008 Free Software Foundation, Inc.
+# Anna Jonna Ármannsdóttir <annajonna@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-05-07 11:29+0200\n"
+"PO-Revision-Date: 2008-05-07 00:24+0000\n"
+"Last-Translator: Anna Jonna Ármannsdóttir <annajonna@gmail.com>\n"
+"Language-Team: Icelandic\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "Skjáhvíla"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "Stilltu valmöguleika fyrir skjávhvíluna"
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "<b>Screensaver preview</b>"
+msgstr "<b>Skjáhvíluforsýn</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+msgstr "<b>Varúð: Skjánum verður ekki læst fyrir rótarnotanda.</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Power _Management"
+msgstr "_Orkustjórnun"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "Regard the computer as _idle after:"
+msgstr "Líta á tölvuna sem _iðjulausa eftir:"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "Screensaver Preferences"
+msgstr "Skjáhvíluvalmöguleikar"
+
+#: ../data/gnome-screensaver-preferences.glade.h:6
+msgid "Screensaver Preview"
+msgstr "Skjáhvíluforsýn"
+
+#: ../data/gnome-screensaver-preferences.glade.h:7
+msgid "_Activate screensaver when computer is idle"
+msgstr "_Virkja skjáhvílu þegar tölva er iðjulaus"
+
+#: ../data/gnome-screensaver-preferences.glade.h:8
+msgid "_Lock screen when screensaver is active"
+msgstr "_Læsa skjá þegar skjáhvíla er í gangi"
+
+#: ../data/gnome-screensaver-preferences.glade.h:9
+msgid "_Preview"
+msgstr "_Forsýning"
+
+#: ../data/gnome-screensaver-preferences.glade.h:10
+msgid "_Screensaver theme:"
+msgstr "_Skjáhvíluásýnd"
+
+#: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "Screensaver themes"
+msgstr "Ásýnd skjáhvílu"
+
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "Skjáhvílur"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Activate when idle"
+msgstr "Virkja þegar seta er iðjulaus"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow embedding a keyboard into the window"
+msgstr "Leyfa innbyggt lyklaborð í gluggann"
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "Allow logout"
+msgstr "Leyfa að skrá sig út"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow user switching"
+msgstr "Leyfa að skipta um notenda"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Embedded keyboard command"
+msgstr "Skipun fyrir innbyggt lyklaborð"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "Lock on activation"
+msgstr "Læsa þegar hún er virk"
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Logout command"
+msgstr "Útskráningarskipun"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Reason for being away"
+msgstr "Ástæða fyrir fráveru"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Screensaver theme selection mode"
+msgstr "Val á ásýnd skjáhvílu"
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr ""
+"Stilla þetta til TRUE til að kveikja á skjáhvílu þegar seta er iðjulaus."
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr ""
+"Stilla þetta til TRUE til að leyfa innbyggt lyklaborð í gluggann þegar reynt "
+"er að aflæsa. \"keyboard_command\" lykillinn verður að vera stilltur með "
+"viðeigandi skipun."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr "Stillið þetta á TRUE til að læsa skjánum þegar skjáhvílan er virkt."
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr ""
+"Stillið þetta á TRUE til að bjóða uppá möguleikan að skipta um notenda."
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr ""
+"Stillið þetta á TRUE til að bjóða uppá möguleika í innskráningar glugganum "
+"um að afskrá þig eftir bið. Biðin er stillt í \"logout_delay\" lyklinum."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr ""
+"Skipunin sem mun vera keyrð ef \"embedded_keyboard_enabled\" lykillin er "
+"stilltur sem TRUE til þess að byggja inn lyklaborðssmáforrit í gluggann. "
+"ÞEssi skipun ætti að fullbúa XEMBED tengingarviðmót og skrifa út XID glugga "
+"á staðlað frálag."
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr ""
+"Fyrirskipunin til að nota þegar á afskráningartakkan er smellt. Þessi "
+"fyrirskipun ætti bara að afskrá notandan án þess að leyfa honum að gera "
+"neitt. Þessi lykill er bara notaður er \"logout_enable\" er stillt á TRUE."
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
+msgstr "Mínútur eftir kveikt er á skjáhvíluni áður en skjánum er læst."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr ""
+"Mínútur eftir kveikt er á skjáhvíluni áður en notandanum er leyft að afsrká "
+"sig. Þessi lykill er bara notaður ef \"logout_enable\" lykillinn er stilltur "
+"á TRUE."
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
+msgstr "Mínútur af bið þar til seta er talin iðjulaus."
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr "Mínútur á milli þess sem skipt er um ásýnd skjáhvílunnar."
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid ""
+"The number of seconds of inactivity before signalling to power-management. "
+"This key is set and maintained by the session power-management agent."
+msgstr ""
+"Sekúndur af bið þar til orku-stjórn er gert viðvart. Þessi lykill er "
+"stilltur og haldið við af orku-stjórnunargeranda setunnar."
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "The reason for being away from the computer."
+msgstr "Ástæðan fyrir fjarveru frá tölvunni."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid ""
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
+msgstr ""
+"Valningakostur sem skjáhvílan notar. Má vera \"blank-only\" til þess að nota "
+"skjáhvílu án þema, \"single\" til þess að nota skjáhvílu með bara eina þemu "
+"(valin með \"themes\" lykilinnum), eða \"random\" til þess að velja þemu af "
+"handahófi þegar skjáhvílan byrjar."
+
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Theme for lock dialog"
+msgstr "Ásýnd fyrir læsingarsvarglugga"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Theme to use for the lock dialog."
+msgstr "Ásýnd sem skal nota fyrir læsingarsvarglugga."
+
+#: ../data/gnome-screensaver.schemas.in.h:27
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
+msgstr ""
+"Þessi lykill inniheldur listann af þemum sem skjáhvílan notar. Hann er ekki "
+"notaður þegar \"mode\" lykillinn er \"blank-only\", ætti að innihalda nafnið "
+"af þemannum sem á að nota þegar \"mode\" er stillt á \"single\", og ætti að "
+"innihalda lista af þemum þegar \"mode\" er stillt á \"random\"."
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before locking"
+msgstr "Tími áður en er læst"
+
+#: ../data/gnome-screensaver.schemas.in.h:29
+msgid "Time before logout option"
+msgstr "Tími áður en möguleiki á útskráningu"
+
+#: ../data/gnome-screensaver.schemas.in.h:30
+msgid "Time before power-management baseline"
+msgstr "Tími áður en orku-stjórnunargrunnur gangsettur"
+
+#: ../data/gnome-screensaver.schemas.in.h:31
+msgid "Time before session is considered idle"
+msgstr "Tími áður en seta er talin iðjulaus"
+
+#: ../data/gnome-screensaver.schemas.in.h:32
+msgid "Time before theme change"
+msgstr "Tími áður en útliti er breytt"
+
+#: ../data/lock-dialog-default.glade.h:2
+#, no-c-format
+msgid "<b>Leave a message for %R:</b>"
+msgstr "<b>Skilja eftir skilaboð fyrir %R:</b>"
+
+#: ../data/lock-dialog-default.glade.h:4
+#, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
+msgstr "<span size=\"small\">%U á %h</span>"
+
+#: ../data/lock-dialog-default.glade.h:6
+#, no-c-format
+msgid "<span size=\"x-large\">%R</span>"
+msgstr "<span size=\"x-large\">%R</span>"
+
+#: ../data/lock-dialog-default.glade.h:7
+msgid "_Cancel"
+msgstr "_Hætta við"
+
+#: ../data/lock-dialog-default.glade.h:8
+msgid "_Leave Message"
+msgstr "_Brottfararskilaboð"
+
+#: ../data/lock-dialog-default.glade.h:9
+msgid "_Log Out"
+msgstr "_Útskrá"
+
+#: ../data/lock-dialog-default.glade.h:10
+msgid "_Switch User"
+msgstr "_Skipta um notenda"
+
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1214
+msgid "_Unlock"
+msgstr "_Aflæsa"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr "Stjörnuþokur"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "Sýna skjásýningu af myndum af stjörnuþokum"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Freyðir fót merkinu GNOME um skjáinn"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Fljótandi fætur"
+
+#: ../savers/personal-slideshow.desktop.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr "Sýna skjásýningu af mynda möppunni þinni"
+
+#: ../savers/personal-slideshow.desktop.in.h:2
+msgid "Pictures folder"
+msgstr "Mynda mappa"
+
+#: ../savers/popsquares.desktop.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr "Net af popplistarlegum flökktandi litum"
+
+#: ../savers/popsquares.desktop.in.h:2
+msgid "Pop art squares"
+msgstr "Pop listar kassar"
+
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr "Sýnir leiðir sem myndir fylgja"
+
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "Af og til snúa myndum á meðan þær hreyfast"
+
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "Skrifa út rammatíðni og aðra tölfræði"
+
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "Hámarksfjöldi mynda sem haldið er á skjánum"
+
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "MAX_IMAGES"
+
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "Upprunalega stærð og staðsetning gluggans"
+
+#: ../savers/floaters.c:96
+msgid "WIDTHxHEIGHT+X+Y"
+msgstr "BREIDDxHÆÐ+X+Y"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "Grunnmynd sem skal nota"
+
+#. translators: the word "image" here
+#. * represents a command line argument
+#.
+#: ../savers/floaters.c:1194
+msgid "image - floats images around the screen"
+msgstr "image - flýgur með mynd um skjáinn"
+
+#: ../savers/floaters.c:1200
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s. Sjá --help fyrir upplýsingar um notkun.\n"
+
+#: ../savers/floaters.c:1209
+#, c-format
+msgid "You must specify one image.  See --help for usage information.\n"
+msgstr ""
+"Þú verður að velja eina mynd. Sjá --help fyrir upplýsingar um notkun.\n"
+
+#: ../savers/slideshow.c:53
+msgid "Location to get images from"
+msgstr "Staðsettning til að nálgast myndir"
+
+#: ../savers/slideshow.c:53
+msgid "PATH"
+msgstr "SLÓÐ"
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "Litur sem notaður er fyrir myndabakgrunn"
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "\"#rrggbb\""
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr "Ekki handahófsraða myndum frá staðsetningu"
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Ekki reyna að teygja myndir á skjánum"
+
+#: ../src/copy-theme-dialog.c:211
+msgid "Copying files"
+msgstr "Afrita skrár"
+
+#: ../src/copy-theme-dialog.c:229
+msgid "From:"
+msgstr "Frá:"
+
+#: ../src/copy-theme-dialog.c:233
+msgid "To:"
+msgstr "Til:"
+
+#: ../src/copy-theme-dialog.c:253
+msgid "Copying themes"
+msgstr "Afrita þemu"
+
+#: ../src/copy-theme-dialog.c:297
+msgid "Invalid screensaver theme"
+msgstr "Ólögleg skjáhvíluásýnd"
+
+#: ../src/copy-theme-dialog.c:300
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "%s virðist ekki vera gilt skjáhvíluþema."
+
+#: ../src/copy-theme-dialog.c:480
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Afrita skrá: %u af %u"
+
+#: ../src/gnome-screensaver-command.c:62
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Veldur því að skjáhvílan hættir með sæmd"
+
+#: ../src/gnome-screensaver-command.c:64
+msgid "Query the state of the screensaver"
+msgstr "Senda fyrirspurn um stöðu skjáhvílu"
+
+#: ../src/gnome-screensaver-command.c:66
+msgid "Query the length of time the screensaver has been active"
+msgstr "Senda fyrirspurn um tíma sem skjáhvílan hefur verið virk"
+
+#: ../src/gnome-screensaver-command.c:68
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "Skipa núverandi skjáhvílu að læsa skjánum strax"
+
+#: ../src/gnome-screensaver-command.c:70
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "Ef skjáhvílan er virk skipta þá yfir í aðra grafíska sýningu"
+
+#: ../src/gnome-screensaver-command.c:72
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "Kveikja á skjáhvílu (tæma skjáinn)"
+
+#: ../src/gnome-screensaver-command.c:74
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "Ef skjáhvíla er virk, afvirkja hann þá"
+
+#: ../src/gnome-screensaver-command.c:76
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "Ýta í skjáhvíluna til að það virðist vera notenda virkni"
+
+#: ../src/gnome-screensaver-command.c:78
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr ""
+"Hindra skjáhvíluna frá því að virkjast. Skipun rofin á meðan hindrun er virk."
+
+#: ../src/gnome-screensaver-command.c:80
+msgid "The calling application that is inhibiting the screensaver"
+msgstr "Kallandi forritið sem hindrar skjáhvíluna"
+
+#: ../src/gnome-screensaver-command.c:82
+msgid "The reason for inhibiting the screensaver"
+msgstr "Ástæðan fyrir hindrun skjáhvílunar"
+
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:57
+#: ../src/gnome-screensaver.c:56
+msgid "Version of this application"
+msgstr "Útgáfa þessa forrits"
+
+#: ../src/gnome-screensaver-command.c:249
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "Skjáhvílan er %s\n"
+
+#: ../src/gnome-screensaver-command.c:249
+msgid "active"
+msgstr "í notkun"
+
+#: ../src/gnome-screensaver-command.c:249
+msgid "inactive"
+msgstr "ekki í notkun"
+
+#: ../src/gnome-screensaver-command.c:274
+#, c-format
+msgid "The screensaver has been active for %d seconds.\n"
+msgstr "Skjáhvílan hefur verið virk í %d sekúndur.\n"
+
+#: ../src/gnome-screensaver-dialog.c:55
+msgid "Show debugging output"
+msgstr "Sýna aflúsunar útgang"
+
+#: ../src/gnome-screensaver-dialog.c:59
+msgid "Show the logout button"
+msgstr "Sýna útskráningarhnapp"
+
+#: ../src/gnome-screensaver-dialog.c:61
+msgid "Command to invoke from the logout button"
+msgstr "Skipun sem á að keyra með útskráningarhnapp"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "Show the switch user button"
+msgstr "Sýna notendaskiptahnapp"
+
+#: ../src/gnome-screensaver-dialog.c:65
+msgid "Message to show in the dialog"
+msgstr "Skilaboð til að sýna í svarglugga"
+
+#: ../src/gnome-screensaver-dialog.c:65
+msgid "MESSAGE"
+msgstr "SKILABOÐ"
+
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gnome-screensaver-dialog.c:176
+#: ../src/gnome-screensaver-dialog.c:177 ../src/gs-auth-pam.c:698
+msgid "Username:"
+msgstr "Notandanafn:"
+
+#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "Lykilorð:"
+
+#: ../src/gnome-screensaver-dialog.c:180
+msgid "You are required to change your password immediately (password aged)"
+msgstr ""
+"Þú verður að breyta lykilorðinu þínu umsvifalaust (það er orðið of gamallt)"
+
+#: ../src/gnome-screensaver-dialog.c:181
+msgid "You are required to change your password immediately (root enforced)"
+msgstr "Þú verður að breyta lykilorðinu þínu umsvifalaust (rótarskipun)"
+
+#: ../src/gnome-screensaver-dialog.c:182
+msgid "Your account has expired; please contact your system administrator"
+msgstr ""
+"Aðgangur þinn er útrunninn; vinsamlegast hafðu samband við kerfisstjóra"
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "No password supplied"
+msgstr "Ekkert lykilorð gefið"
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "Password unchanged"
+msgstr "Lykilorð óbreytt"
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "Can not get username"
+msgstr "Get ekki notað notandanafn"
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "Retype new UNIX password:"
+msgstr "Sláðu aftur inn nýja UNIX lykilorðið:"
+
+#: ../src/gnome-screensaver-dialog.c:187
+msgid "Enter new UNIX password:"
+msgstr "Sláðu inn nýtt UNIX lykilorð:"
+
+#: ../src/gnome-screensaver-dialog.c:188
+msgid "(current) UNIX password:"
+msgstr "(núverandi) UNIX lykilorð:"
+
+#: ../src/gnome-screensaver-dialog.c:189
+msgid "Error while changing NIS password."
+msgstr "Villa kom upp við breytingu á NIS lykilorði."
+
+#: ../src/gnome-screensaver-dialog.c:190
+msgid "You must choose a longer password"
+msgstr "Þú verður að velja lengra lykilorð"
+
+#: ../src/gnome-screensaver-dialog.c:191
+msgid "Password has been already used. Choose another."
+msgstr "Þú hefur notað þetta lykilorð áður. Vinsamlegast veldu annað."
+
+#: ../src/gnome-screensaver-dialog.c:192
+msgid "You must wait longer to change your password"
+msgstr "Þú verður að bíða lengur til þess að breyta lykilorðinu þínu"
+
+#: ../src/gnome-screensaver-dialog.c:193
+msgid "Sorry, passwords do not match"
+msgstr "Afsakið, lykilorðin passa ekki saman"
+
+#: ../src/gnome-screensaver-dialog.c:259
+msgid "Checking..."
+msgstr "Skoða..."
+
+#: ../src/gnome-screensaver-dialog.c:301 ../src/gs-auth-pam.c:457
+msgid "Authentication failed."
+msgstr "Auðkenning tókst ekki."
+
+#: ../src/gnome-screensaver-preferences.c:498
+msgid "Blank screen"
+msgstr "Tómur skrár"
+
+#: ../src/gnome-screensaver-preferences.c:504
+msgid "Random"
+msgstr "Slembið"
+
+#: ../src/gnome-screensaver-preferences.c:954
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d klukkutími"
+msgstr[1] "%d klukkutímar"
+
+#: ../src/gnome-screensaver-preferences.c:957
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d mínúta"
+msgstr[1] "%d mínútur"
+
+#: ../src/gnome-screensaver-preferences.c:960
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekúnda"
+msgstr[1] "%d sekúndur"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:966
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:969
+#: ../src/gnome-screensaver-preferences.c:977
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:972
+#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:984
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: ../src/gnome-screensaver-preferences.c:999
+#, c-format
+msgid "Never"
+msgstr "Aldrei"
+
+#: ../src/gnome-screensaver-preferences.c:1398
+msgid "Could not load the main interface"
+msgstr "Gat ekki hlaðið aðalviðmót"
+
+#: ../src/gnome-screensaver-preferences.c:1400
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "Vinsamlegast gangið úr skugga um að skjáhvíla sé rétt uppsett"
+
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "Ekki verða að þjónustu"
+
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr "Virkja aflúsunarham"
+
+#: ../src/gs-auth-pam.c:397
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr "Gat ekki stofnað þjónustu %s: %s\n"
+
+#: ../src/gs-auth-pam.c:423
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr "Get ekki stillt PAM_TTY=%s"
+
+#: ../src/gs-auth-pam.c:455
+msgid "Incorrect password."
+msgstr "Rangt lykilorð."
+
+#: ../src/gs-auth-pam.c:471
+msgid "Not permitted to gain access at this time."
+msgstr "Þér er ekki leyfður aðgangur í þetta sinn."
+
+#: ../src/gs-auth-pam.c:477
+msgid "No longer permitted to access the system."
+msgstr "Þér verður ekki gefinn aðgangur að kerfinu."
+
+#: ../src/gs-listener-dbus.c:1921
+msgid "failed to register with the message bus"
+msgstr "mistókst að skrá sig í skilaboðarás"
+
+#: ../src/gs-listener-dbus.c:1931
+msgid "not connected to the message bus"
+msgstr "ekki tengd við skilaboðarás"
+
+#: ../src/gs-listener-dbus.c:1940
+msgid "screensaver already running in this session"
+msgstr "skjáhvíla er nú þegar keyrandi í þessari setu"
+
+#: ../src/gs-lock-plug.c:271
+msgid "Time has expired."
+msgstr "Tíminn er útrunninn."
+
+#: ../src/gs-lock-plug.c:299
+msgid "You have the Caps Lock key on."
+msgstr "Þú ert að nota HÁSTAFI."
+
+#: ../src/gs-lock-plug.c:1194
+msgid "S_witch User..."
+msgstr "S_kipta um notanda..."
+
+#: ../src/gs-lock-plug.c:1203
+msgid "Log _Out"
+msgstr "_Útskrá"
+
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1380
+msgid "%U on %h"
+msgstr "%U á %h"
+
+#: ../src/gs-lock-plug.c:1394
+msgid "_Password:"
+msgstr "_Lykilorð:"
