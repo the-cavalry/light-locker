@@ -1,3 +1,14 @@
+2008-05-12  William Jon McCann  <jmccann@redhat.com>
+
+	* configure.ac:
+	* src/Makefile.am:
+	* src/gs-manager.c (on_bg_changed), (gconf_changed_callback),
+	(watch_bg_preferences), (get_gconf_client), (gs_manager_init),
+	(gs_manager_finalize), (apply_background_to_window),
+	(manager_show_window):
+	Use new gnome-desktop API for loading BG preferences
+	instead of libbackground.
+
 2008-04-30  William Jon McCann  <jmccann@redhat.com>
 
 	* configure.ac:

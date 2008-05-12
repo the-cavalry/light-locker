@@ -27,7 +27,6 @@
 
 #define GNOME_DESKTOP_USE_UNSTABLE_API
 #include <libgnomeui/gnome-bg.h>
-#include "preferences.h"
 
 #include "gs-prefs.h"        /* for GSSaverMode */
 
@@ -51,8 +50,9 @@ struct GSManagerPrivate
         GHashTable  *jobs;
 
         GSThemeManager *theme_manager;
-        BGPreferences  *prefs;
+        GConfClient    *client;
         GnomeBG        *bg;
+        guint           bg_notify_id;
 
         /* Policy */
         glong        lock_timeout;
@@ -939,6 +939,59 @@ gs_manager_class_init (GSManagerClass *klass)
 }
 
 static void
+on_bg_changed (GnomeBG   *bg,
+               GSManager *manager)
+{
+        gs_debug ("background changed");
+}
+
+static void
+gconf_changed_callback (GConfClient *client,
+                        guint        cnxn_id,
+                        GConfEntry  *entry,
+                        GSManager   *manager)
+{
+        gnome_bg_load_from_preferences (manager->priv->bg,
+                                        manager->priv->client);
+}
+
+static void
+watch_bg_preferences (GSManager *manager)
+{
+        g_assert (manager->priv->bg_notify_id == 0);
+
+        gconf_client_add_dir (manager->priv->client,
+                              GNOME_BG_KEY_DIR,
+                              GCONF_CLIENT_PRELOAD_NONE,
+                              NULL);
+        manager->priv->bg_notify_id = gconf_client_notify_add (manager->priv->client,
+                                                               GNOME_BG_KEY_DIR,
+                                                               (GConfClientNotifyFunc)gconf_changed_callback,
+                                                               manager,
+                                                               NULL,
+                                                               NULL);
+}
+
+static GConfClient *
+get_gconf_client (void)
+{
+        GConfClient *client;
+#if 0
+        const char  *dest_address;
+        GError      *error;
+        GConfEngine *engine;
+
+        dest_address = "xml:merged:/etc/gconf/gconf.xml.mandatory";
+        error = NULL;
+        engine = gconf_engine_get_local (dest_address, &error);
+        client = gconf_client_get_for_engine (engine);
+#else
+        client = gconf_client_get_default ();
+#endif
+        return client;
+}
+
+static void
 gs_manager_init (GSManager *manager)
 {
         manager->priv = GS_MANAGER_GET_PRIVATE (manager);
@@ -947,18 +1000,18 @@ gs_manager_init (GSManager *manager)
         manager->priv->grab = gs_grab_new ();
         manager->priv->theme_manager = gs_theme_manager_new ();
 
-        manager->priv->prefs = BG_PREFERENCES (bg_preferences_new ());
+        /* FIXME: use a client that gives us system defaults */
+        manager->priv->client = get_gconf_client ();
         manager->priv->bg = gnome_bg_new ();
 
-#if 0
         g_signal_connect (manager->priv->bg,
                           "changed",
                           G_CALLBACK (on_bg_changed),
                           manager);
-#endif
+        watch_bg_preferences (manager);
 
         /* FIXME: should only load from defaults */
-        bg_preferences_load (manager->priv->prefs);
+        gnome_bg_load_from_preferences (manager->priv->bg, manager->priv->client);
 }
 
 static void
@@ -989,6 +1042,18 @@ gs_manager_finalize (GObject *object)
         manager = GS_MANAGER (object);
 
         g_return_if_fail (manager->priv != NULL);
+
+        if (manager->priv->bg_notify_id != 0) {
+                gconf_client_remove_dir (manager->priv->client,
+                                         GNOME_BG_KEY_DIR,
+                                         NULL);
+                gconf_client_notify_remove (manager->priv->client,
+                                            manager->priv->bg_notify_id);
+                manager->priv->bg_notify_id = 0;
+        }
+        if (manager->priv->client != NULL) {
+                g_object_unref (manager->priv->client);
+        }
 
         free_themes (manager);
         g_free (manager->priv->logout_command);
@@ -1236,64 +1301,13 @@ window_unmap_cb (GSWindow  *window,
 }
 
 static void
-apply_background_prefs_to_window (GSManager *manager,
-                                  GSWindow  *window)
+apply_background_to_window (GSManager *manager,
+                            GSWindow  *window)
 {
-        GnomeBGPlacement placement;
-        GnomeBGColorType color;
-        const char      *uri;
         GdkPixmap       *pixmap;
         GdkScreen       *screen;
         int              width;
         int              height;
-
-        uri = manager->priv->prefs->wallpaper_filename;
-
-        placement = GNOME_BG_PLACEMENT_TILED;
-
-        switch (manager->priv->prefs->wallpaper_type) {
-        case WPTYPE_TILED:
-                placement = GNOME_BG_PLACEMENT_TILED;
-                break;
-        case WPTYPE_CENTERED:
-                placement = GNOME_BG_PLACEMENT_CENTERED;
-                break;
-        case WPTYPE_SCALED:
-                placement = GNOME_BG_PLACEMENT_SCALED;
-                break;
-        case WPTYPE_STRETCHED:
-                placement = GNOME_BG_PLACEMENT_FILL_SCREEN;
-                break;
-        case WPTYPE_ZOOM:
-                placement = GNOME_BG_PLACEMENT_ZOOMED;
-                break;
-        case WPTYPE_NONE:
-        case WPTYPE_UNSET:
-                uri = NULL;
-                break;
-        }
-
-        switch (manager->priv->prefs->orientation) {
-        case ORIENTATION_SOLID:
-                color = GNOME_BG_COLOR_SOLID;
-                break;
-        case ORIENTATION_HORIZ:
-                color = GNOME_BG_COLOR_H_GRADIENT;
-                break;
-        case ORIENTATION_VERT:
-                color = GNOME_BG_COLOR_V_GRADIENT;
-                break;
-        default:
-                color = GNOME_BG_COLOR_SOLID;
-                break;
-        }
-
-        gnome_bg_set_uri (manager->priv->bg, uri);
-        gnome_bg_set_placement (manager->priv->bg, placement);
-        gnome_bg_set_color (manager->priv->bg,
-                            color,
-                            manager->priv->prefs->color1,
-                            manager->priv->prefs->color2);
 
         screen = gs_window_get_screen (window);
         width = gdk_screen_get_width (screen);
@@ -1314,7 +1328,7 @@ manager_show_window (GSManager *manager,
 {
         GSJob *job;
 
-        apply_background_prefs_to_window (manager, window);
+        apply_background_to_window (manager, window);
 
         job = gs_job_new_for_widget (GTK_WIDGET (window));
 

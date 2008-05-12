@@ -3,17 +3,12 @@ AUTOMAKE_OPTIONS = 1.7
 
 NULL =
 
-SUBDIRS =               \
-        libbackground   \
-        $(NULL)
-
 saverdir = $(libexecdir)/gnome-screensaver
 themesdir = $(pkgdatadir)/themes
 
 INCLUDES =							\
 	-I.							\
 	-I$(srcdir)						\
-        -I$(top_srcdir)/src/libbackground   			\
 	-DGMENU_I_KNOW_THIS_IS_UNSTABLE				\
 	$(GNOME_SCREENSAVER_CFLAGS)				\
 	$(GNOME_SCREENSAVER_DIALOG_CFLAGS)			\
@@ -213,7 +208,6 @@ gnome_screensaver_gl_helper_SOURCES =	\
 gnome_screensaver_LDADD =		\
 	$(GNOME_SCREENSAVER_LIBS)	\
 	$(SAVER_LIBS)			\
-        $(top_builddir)/src/libbackground/libbackground.la \
 	$(NULL)
 
 gnome_screensaver_LDFLAGS = -export-dynamic
