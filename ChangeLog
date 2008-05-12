@@ -1,5 +1,13 @@
 2008-05-12  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gnome-screensaver-command.c (get_string_from_iter),
+	(do_command):
+	List inhibit status in --query output.
+	Based on patch from:  Saleem Abdulrasool <compnerd@compnerd.org>
+	Fixes #516446
+
+2008-05-12  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gs-fade.c (gamma_info_init), (gs_fade_set_alpha_gamma),
 	(gs_fade_start), (gs_fade_reset), (gs_fade_init):
 	Restore the value to the one that was used before
