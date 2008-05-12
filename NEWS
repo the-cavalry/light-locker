@@ -1,4 +1,12 @@
 ===============
+Version 2.23.2
+===============
+
+        * Fix gamma lost during fade
+        * Show default desktop background behind lock dialog
+        * Add reporting of inhibitors to --query command
+
+===============
 Version 2.22.2
 ===============
 

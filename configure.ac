@@ -2,7 +2,7 @@ dnl -*- mode: m4 -*-
 
 AC_PREREQ(2.60)
 AC_INIT([gnome-screensaver],
-        [2.23.1],
+        [2.23.2],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver])
 
 AC_CONFIG_SRCDIR(src/gnome-screensaver.c)
@@ -85,8 +85,6 @@ PKG_CHECK_MODULES(GNOME_SCREENSAVER_COMMAND,
         dbus-glib-1 >= $DBUS_REQUIRED_VERSION)
 AC_SUBST(GNOME_SCREENSAVER_COMMAND_CFLAGS)
 AC_SUBST(GNOME_SCREENSAVER_COMMAND_LIBS)
-
-PKG_CHECK_MODULES(LIBBACKGROUND, glib-2.0 gobject-2.0 gdk-2.0 gconf-2.0)
 
 AC_PATH_XTRA
 
@@ -1113,7 +1111,6 @@ AC_OUTPUT([
 Makefile
 po/Makefile.in
 src/Makefile
-src/libbackground/Makefile
 data/Makefile
 data/gnome-screensavers.menu
 data/gnome-screensaver.pc
