@@ -25,6 +25,9 @@
 #include <time.h>
 #include <gdk/gdk.h>
 
+#include <gconf/gconf-engine.h>
+#include <gconf/gconf-client.h>
+
 #define GNOME_DESKTOP_USE_UNSTABLE_API
 #include <libgnomeui/gnome-bg.h>
 
@@ -975,19 +978,29 @@ watch_bg_preferences (GSManager *manager)
 static GConfClient *
 get_gconf_client (void)
 {
-        GConfClient *client;
-#if 0
-        const char  *dest_address;
-        GError      *error;
-        GConfEngine *engine;
+        GConfClient        *client;
+        GSList             *addresses;
+        GError             *error;
+        GConfEngine        *engine;
 
-        dest_address = "xml:merged:/etc/gconf/gconf.xml.mandatory";
+        client = NULL;
+        addresses = NULL;
+
+        addresses = g_slist_prepend (addresses, "xml:merged:" SYSCONFDIR "/gconf/gconf.xml.mandatory");
+        addresses = g_slist_prepend (addresses, "xml:merged:" SYSCONFDIR "/gconf/gconf.xml.system");
+        addresses = g_slist_prepend (addresses, "xml:merged:" SYSCONFDIR "/gconf/gconf.xml.defaults");
+        addresses = g_slist_reverse (addresses);
+
         error = NULL;
-        engine = gconf_engine_get_local (dest_address, &error);
-        client = gconf_client_get_for_engine (engine);
-#else
-        client = gconf_client_get_default ();
-#endif
+        engine = gconf_engine_get_for_addresses (addresses, &error);
+        if (engine == NULL) {
+                gs_debug ("Unable to get gconf engine for addresses: %s", error->message);
+        } else {
+                client = gconf_client_get_for_engine (engine);
+        }
+
+        g_slist_free (addresses);
+
         return client;
 }
 
@@ -1000,18 +1013,18 @@ gs_manager_init (GSManager *manager)
         manager->priv->grab = gs_grab_new ();
         manager->priv->theme_manager = gs_theme_manager_new ();
 
-        /* FIXME: use a client that gives us system defaults */
         manager->priv->client = get_gconf_client ();
-        manager->priv->bg = gnome_bg_new ();
+        if (manager->priv->client != NULL) {
+                manager->priv->bg = gnome_bg_new ();
 
-        g_signal_connect (manager->priv->bg,
-                          "changed",
-                          G_CALLBACK (on_bg_changed),
-                          manager);
-        watch_bg_preferences (manager);
+                g_signal_connect (manager->priv->bg,
+                                  "changed",
+                                  G_CALLBACK (on_bg_changed),
+                                  manager);
+                watch_bg_preferences (manager);
 
-        /* FIXME: should only load from defaults */
-        gnome_bg_load_from_preferences (manager->priv->bg, manager->priv->client);
+                gnome_bg_load_from_preferences (manager->priv->bg, manager->priv->client);
+        }
 }
 
 static void
@@ -1050,6 +1063,9 @@ gs_manager_finalize (GObject *object)
                 gconf_client_notify_remove (manager->priv->client,
                                             manager->priv->bg_notify_id);
                 manager->priv->bg_notify_id = 0;
+        }
+        if (manager->priv->bg != NULL) {
+                g_object_unref (manager->priv->bg);
         }
         if (manager->priv->client != NULL) {
                 g_object_unref (manager->priv->client);
@@ -1308,6 +1324,11 @@ apply_background_to_window (GSManager *manager,
         GdkScreen       *screen;
         int              width;
         int              height;
+
+        if (manager->priv->bg == NULL) {
+                gs_debug ("No background available");
+                gs_window_set_background_pixmap (window, NULL);
+        }
 
         screen = gs_window_get_screen (window);
         width = gdk_screen_get_width (screen);

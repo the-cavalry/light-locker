@@ -1,5 +1,11 @@
 2008-05-12  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gs-manager.c (get_gconf_client), (gs_manager_init),
+	(gs_manager_finalize), (apply_background_to_window):
+	Load background from defaults instead of user database.
+
+2008-05-12  William Jon McCann  <jmccann@redhat.com>
+
 	* configure.ac:
 	* src/Makefile.am:
 	* src/gs-manager.c (on_bg_changed), (gconf_changed_callback),
