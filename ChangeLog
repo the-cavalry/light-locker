@@ -1,5 +1,14 @@
 2008-05-12  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gs-fade.c (gamma_info_init), (gs_fade_set_alpha_gamma),
+	(gs_fade_start), (gs_fade_reset), (gs_fade_init):
+	Restore the value to the one that was used before
+	blanking the screen.
+	Patch from: John Bryant <bryantk@sover.net>
+	Fixes #342850
+
+2008-05-12  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gs-manager.c (get_gconf_client), (gs_manager_init),
 	(gs_manager_finalize), (apply_background_to_window):
 	Load background from defaults instead of user database.

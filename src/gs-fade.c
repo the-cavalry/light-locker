@@ -296,6 +296,10 @@ gamma_info_init (GSFade *fade)
         }
 # endif
 
+        if (fade->priv->gamma_info != NULL) {
+                return TRUE;
+        }
+
         info = g_new0 (xf86_gamma_info, fade->priv->num_screens);
         fade->priv->gamma_info = info;
 
@@ -402,8 +406,10 @@ gs_fade_set_alpha_gamma (GSFade *fade,
         int      screen;
         gboolean res;
 
-        for (screen = 0; screen < fade->priv->num_screens; screen++) {
-                res = xf86_whack_gamma (screen, &fade->priv->gamma_info [screen], alpha);
+        if (fade->priv->gamma_info != NULL) {
+                for (screen = 0; screen < fade->priv->num_screens; screen++) {
+                        res = xf86_whack_gamma (screen, &fade->priv->gamma_info [screen], alpha);
+                }
         }
 
         return TRUE;
@@ -523,6 +529,8 @@ gs_fade_start (GSFade *fade,
 
         g_return_if_fail (GS_IS_FADE (fade));
 
+        gamma_info_init (fade);
+
         if (fade->priv->timer_id > 0) {
                 gs_fade_stop (fade);
         }
@@ -641,6 +649,8 @@ gs_fade_reset (GSFade *fade)
         fade->priv->current_alpha = 1.0;
 
         gs_fade_set_alpha (fade, fade->priv->current_alpha);
+
+        gamma_info_free (fade);
 }
 
 static void
@@ -681,7 +691,9 @@ gs_fade_init (GSFade *fade)
         display = gdk_display_get_default ();
         fade->priv->num_screens = gdk_display_get_n_screens (display);
 
-        gamma_info_init (fade);
+#ifdef HAVE_XF86VMODE_GAMMA
+        fade->priv->gamma_info = NULL;
+#endif
 }
 
 static void
