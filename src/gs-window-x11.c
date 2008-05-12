@@ -73,6 +73,7 @@ struct GSWindowPrivate
         char      *away_message;
 
         GtkWidget *vbox;
+        GtkWidget *drawing_area;
         GtkWidget *lock_box;
         GtkWidget *lock_socket;
         GtkWidget *keyboard_socket;
@@ -204,12 +205,12 @@ force_no_pixmap_background (GtkWidget *widget)
                                      "      bg[ACTIVE] = { 0.0, 0.0, 0.0 }\n"
                                      "      bg[PRELIGHT] = { 0.0, 0.0, 0.0 }\n"
                                      "   }\n"
-                                     "   widget \"gs-window*\" style : highest \"gs-theme-engine-style\"\n"
+                                     "   widget \"gs-window-drawing-area*\" style : highest \"gs-theme-engine-style\"\n"
                                      "\n");
                 first_time = FALSE;
         }
 
-        gtk_widget_set_name (widget, "gs-window");
+        gtk_widget_set_name (widget, "gs-window-drawing-area");
 }
 
 static void
@@ -246,7 +247,7 @@ clear_children (Window window)
 }
 
 static void
-clear_all_children (GSWindow *window)
+widget_clear_all_children (GtkWidget *widget)
 {
         GdkWindow *w;
 
@@ -254,11 +255,11 @@ clear_all_children (GSWindow *window)
 
         gdk_error_trap_push ();
 
-        w = GTK_WIDGET (window)->window;
+        w = widget->window;
 
         clear_children (GDK_WINDOW_XID (w));
 
-        gdk_display_sync (gtk_widget_get_display (GTK_WIDGET (window)));
+        gdk_display_sync (gtk_widget_get_display (widget));
         gdk_error_trap_pop ();
 }
 
@@ -280,7 +281,7 @@ gs_window_set_background_pixmap (GSWindow  *window,
         }
 }
 
-void
+static void
 gs_window_clear_to_background_pixmap (GSWindow *window)
 {
         GtkStateType state;
@@ -323,38 +324,33 @@ gs_window_clear_to_background_pixmap (GSWindow *window)
 
         gdk_window_clear (GTK_WIDGET (window)->window);
 
-        /* If a screensaver theme adds child windows we need to clear them too */
-        clear_all_children (window);
-
         gdk_flush ();
 }
 
-void
-gs_window_clear (GSWindow *window)
+static void
+clear_widget (GtkWidget *widget)
 {
         GdkColor     color = { 0, 0x0000, 0x0000, 0x0000 };
         GdkColormap *colormap;
         GtkStateType state;
         GtkStyle    *style;
 
-        g_return_if_fail (GS_IS_WINDOW (window));
-
-        if (! GTK_WIDGET_VISIBLE (GTK_WIDGET (window))) {
+        if (! GTK_WIDGET_VISIBLE (widget)) {
                 return;
         }
 
-        gs_debug ("Clearing window");
+        gs_debug ("Clearing widget");
 
         state = (GtkStateType) 0;
-        while (state < (GtkStateType) G_N_ELEMENTS (GTK_WIDGET (window)->style->bg)) {
-                gtk_widget_modify_bg (GTK_WIDGET (window), state, &color);
+        while (state < (GtkStateType) G_N_ELEMENTS (widget->style->bg)) {
+                gtk_widget_modify_bg (widget, state, &color);
                 state++;
         }
 
-        style = gtk_style_copy (GTK_WIDGET (window)->style);
+        style = gtk_style_copy (widget->style);
 
         state = (GtkStateType) 0;
-        while (state < (GtkStateType) G_N_ELEMENTS (GTK_WIDGET (window)->style->bg_pixmap)) {
+        while (state < (GtkStateType) G_N_ELEMENTS (widget->style->bg_pixmap)) {
 
                 if (style->bg_pixmap[state] != NULL) {
                         g_object_unref (style->bg_pixmap[state]);
@@ -364,19 +360,28 @@ gs_window_clear (GSWindow *window)
                 state++;
         }
 
-        colormap = gdk_drawable_get_colormap (GTK_WIDGET (window)->window);
+        colormap = gdk_drawable_get_colormap (widget->window);
         gdk_colormap_alloc_color (colormap, &color, FALSE, TRUE);
-        gdk_window_set_background (GTK_WIDGET (window)->window, &color);
+        gdk_window_set_background (widget->window, &color);
 
-        gtk_widget_set_style (GTK_WIDGET (window), style);
+        gtk_widget_set_style (widget, style);
         g_object_unref (style);
 
-        gdk_window_clear (GTK_WIDGET (window)->window);
+        gdk_window_clear (widget->window);
 
         /* If a screensaver theme adds child windows we need to clear them too */
-        clear_all_children (window);
+        widget_clear_all_children (widget);
 
         gdk_flush ();
+}
+
+void
+gs_window_clear (GSWindow *window)
+{
+        g_return_if_fail (GS_IS_WINDOW (window));
+
+        clear_widget (GTK_WIDGET (window));
+        clear_widget (window->priv->drawing_area);
 }
 
 static GdkRegion *
@@ -907,6 +912,14 @@ gs_window_get_gdk_window (GSWindow *window)
         g_return_val_if_fail (GS_IS_WINDOW (window), NULL);
 
         return GTK_WIDGET (window)->window;
+}
+
+GtkWidget *
+gs_window_get_drawing_area (GSWindow *window)
+{
+        g_return_val_if_fail (GS_IS_WINDOW (window), NULL);
+
+        return window->priv->drawing_area;
 }
 
 /* just for debugging */
@@ -1446,6 +1459,8 @@ lock_command_watch (GIOChannel   *source,
                         add_emit_deactivated_idle (window);
                 }
 
+                gtk_widget_show (window->priv->drawing_area);
+
                 gs_window_clear (window);
                 set_invisible_cursor (GTK_WIDGET (window)->window, TRUE);
                 g_signal_emit (window, signals [DIALOG_DOWN], 0);
@@ -1523,6 +1538,8 @@ popup_dialog_idle (GSWindow *window)
         if (gs_debug_enabled ()) {
                 command = g_string_append (command, " --verbose");
         }
+
+        gtk_widget_hide (window->priv->drawing_area);
 
         gs_window_clear_to_background_pixmap (window);
 
@@ -2208,11 +2225,16 @@ gs_window_init (GSWindow *window)
                                | GDK_VISIBILITY_NOTIFY_MASK
                                | GDK_ENTER_NOTIFY_MASK
                                | GDK_LEAVE_NOTIFY_MASK);
-        /*force_no_pixmap_background (GTK_WIDGET (window));*/
 
         window->priv->vbox = gtk_vbox_new (FALSE, 12);
         gtk_widget_show (window->priv->vbox);
         gtk_container_add (GTK_CONTAINER (window), window->priv->vbox);
+
+        window->priv->drawing_area = gtk_drawing_area_new ();
+        gtk_widget_show (window->priv->drawing_area);
+        gtk_box_pack_start (GTK_BOX (window->priv->vbox), window->priv->drawing_area, TRUE, TRUE, 0);
+
+        force_no_pixmap_background (window->priv->drawing_area);
 }
 
 static void

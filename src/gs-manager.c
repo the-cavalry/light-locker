@@ -1351,7 +1351,7 @@ manager_show_window (GSManager *manager,
 
         apply_background_to_window (manager, window);
 
-        job = gs_job_new_for_widget (GTK_WIDGET (window));
+        job = gs_job_new_for_widget (gs_window_get_drawing_area (window));
 
         manager_select_theme_for_job (manager, job);
         manager_add_job_for_window (manager, window, job);

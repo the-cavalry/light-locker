@@ -1,5 +1,18 @@
 2008-05-12  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gs-manager.c (manager_show_window):
+	* src/gs-window-x11.c (force_no_pixmap_background),
+	(widget_clear_all_children),
+	(gs_window_clear_to_background_pixmap), (clear_widget),
+	(gs_window_clear), (gs_window_get_drawing_area),
+	(lock_command_watch), (popup_dialog_idle), (gs_window_init):
+	* src/gs-window.h:
+	Add a new child widget to use for savers to draw on.  We
+	hide this widget entirely when popping up the unlock dialog.
+	This avoids interference between the background styles.
+
+2008-05-12  William Jon McCann  <jmccann@redhat.com>
+
 	* configure.ac: Post release version bump
 
 ==== 2.23.2 ====
