@@ -1,3 +1,8 @@
+2008-05-14  William Jon McCann  <jmccann@redhat.com>
+
+	* configure.ac:
+	Dist .bz2 files by default.
+
 2008-05-12  William Jon McCann  <jmccann@redhat.com>
 
 	* src/gs-manager.c (manager_show_window):
