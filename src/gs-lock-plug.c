@@ -1147,6 +1147,148 @@ check_user_file (const gchar *filename,
         return TRUE;
 }
 
+static cairo_surface_t *
+surface_from_pixbuf (GdkPixbuf *pixbuf)
+{
+        cairo_surface_t *surface;
+        cairo_t         *cr;
+
+        surface = cairo_image_surface_create (gdk_pixbuf_get_has_alpha (pixbuf) ?
+                                              CAIRO_FORMAT_ARGB32 : CAIRO_FORMAT_RGB24,
+                                              gdk_pixbuf_get_width (pixbuf),
+                                              gdk_pixbuf_get_height (pixbuf));
+        cr = cairo_create (surface);
+        gdk_cairo_set_source_pixbuf (cr, pixbuf, 0, 0);
+        cairo_paint (cr);
+        cairo_destroy (cr);
+
+        return surface;
+}
+
+static void
+curved_rectangle (cairo_t *cr,
+                  double   x0,
+                  double   y0,
+                  double   width,
+                  double   height,
+                  double   radius)
+{
+        double x1;
+        double y1;
+
+        x1 = x0 + width;
+        y1 = y0 + height;
+
+        if (!width || !height) {
+                return;
+        }
+
+        if (width / 2 < radius) {
+                if (height / 2 < radius) {
+                        cairo_move_to  (cr, x0, (y0 + y1) / 2);
+                        cairo_curve_to (cr, x0 ,y0, x0, y0, (x0 + x1) / 2, y0);
+                        cairo_curve_to (cr, x1, y0, x1, y0, x1, (y0 + y1) / 2);
+                        cairo_curve_to (cr, x1, y1, x1, y1, (x1 + x0) / 2, y1);
+                        cairo_curve_to (cr, x0, y1, x0, y1, x0, (y0 + y1) / 2);
+                } else {
+                        cairo_move_to  (cr, x0, y0 + radius);
+                        cairo_curve_to (cr, x0, y0, x0, y0, (x0 + x1) / 2, y0);
+                        cairo_curve_to (cr, x1, y0, x1, y0, x1, y0 + radius);
+                        cairo_line_to (cr, x1, y1 - radius);
+                        cairo_curve_to (cr, x1, y1, x1, y1, (x1 + x0) / 2, y1);
+                        cairo_curve_to (cr, x0, y1, x0, y1, x0, y1 - radius);
+                }
+        } else {
+                if (height / 2 < radius) {
+                        cairo_move_to  (cr, x0, (y0 + y1) / 2);
+                        cairo_curve_to (cr, x0, y0, x0 , y0, x0 + radius, y0);
+                        cairo_line_to (cr, x1 - radius, y0);
+                        cairo_curve_to (cr, x1, y0, x1, y0, x1, (y0 + y1) / 2);
+                        cairo_curve_to (cr, x1, y1, x1, y1, x1 - radius, y1);
+                        cairo_line_to (cr, x0 + radius, y1);
+                        cairo_curve_to (cr, x0, y1, x0, y1, x0, (y0 + y1) / 2);
+                } else {
+                        cairo_move_to  (cr, x0, y0 + radius);
+                        cairo_curve_to (cr, x0 , y0, x0 , y0, x0 + radius, y0);
+                        cairo_line_to (cr, x1 - radius, y0);
+                        cairo_curve_to (cr, x1, y0, x1, y0, x1, y0 + radius);
+                        cairo_line_to (cr, x1, y1 - radius);
+                        cairo_curve_to (cr, x1, y1, x1, y1, x1 - radius, y1);
+                        cairo_line_to (cr, x0 + radius, y1);
+                        cairo_curve_to (cr, x0, y1, x0, y1, x0, y1 - radius);
+                }
+        }
+
+        cairo_close_path (cr);
+}
+
+static void
+image_set_from_pixbuf (GtkImage  *image,
+                       GdkPixbuf *source)
+{
+        cairo_t         *cr;
+        cairo_t         *cr_mask;
+        cairo_surface_t *surface;
+        GdkPixmap       *pixmap;
+        GdkPixmap       *bitmask;
+        int              w;
+        int              h;
+        int              depth;
+        int              frame_width;
+        double           radius;
+
+        frame_width = 5;
+
+        w = gdk_pixbuf_get_width (source) + frame_width * 2;
+        h = gdk_pixbuf_get_height (source) + frame_width * 2;
+        depth = gdk_visual_get_system ()->depth;
+
+        radius = w / 3.0;
+
+        gs_debug ("creating pixmap w:%d h:%d d:%d", w, h, depth);
+        pixmap = gdk_pixmap_new (GTK_WIDGET (image)->window, w, h, depth);
+        bitmask = gdk_pixmap_new (GTK_WIDGET (image)->window, w, h, 1);
+
+        cr = gdk_cairo_create (pixmap);
+        cr_mask = gdk_cairo_create (bitmask);
+
+        /* setup mask */
+        cairo_rectangle (cr_mask, 0, 0, w, h);
+        cairo_set_operator (cr_mask, CAIRO_OPERATOR_CLEAR);
+        cairo_fill (cr_mask);
+
+        curved_rectangle (cr_mask, 0, 0, w, h, radius);
+        cairo_set_operator (cr_mask, CAIRO_OPERATOR_OVER);
+        cairo_set_source_rgb (cr_mask, 1, 1, 1);
+        cairo_fill (cr_mask);
+
+        /* set up image */
+        cairo_rectangle (cr, 0, 0, w, h);
+        cairo_set_source_rgb (cr, 0.8, 0.8, 0.8);
+        cairo_fill (cr);
+
+        curved_rectangle (cr, frame_width, frame_width,
+                          w - frame_width * 2, h - frame_width * 2,
+                          radius);
+        cairo_set_source_rgb (cr, 0.5, 0.5, 0.5);
+        cairo_fill_preserve (cr);
+
+        surface = surface_from_pixbuf (source);
+        cairo_set_source_surface (cr, surface, frame_width, frame_width);
+        cairo_fill (cr);
+
+        gtk_image_set_from_pixmap (image, pixmap, bitmask);
+
+        cairo_surface_destroy (surface);
+
+        gdk_pixmap_unref (bitmask);
+        gdk_pixmap_unref (pixmap);
+
+        cairo_destroy (cr_mask);
+        cairo_destroy (cr);
+}
+
+
 static gboolean
 set_face_image (GSLockPlug *plug)
 {
@@ -1176,7 +1318,7 @@ set_face_image (GSLockPlug *plug)
                 return FALSE;
         }
 
-        gtk_image_set_from_pixbuf (GTK_IMAGE (plug->priv->auth_face_image), pixbuf);
+        image_set_from_pixbuf (GTK_IMAGE (plug->priv->auth_face_image), pixbuf);
 
         g_object_unref (pixbuf);
 

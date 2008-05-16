@@ -1,3 +1,9 @@
+2008-05-16  William Jon McCann  <jmccann@redhat.com>
+
+	* src/gs-lock-plug.c (surface_from_pixbuf), (curved_rectangle),
+	(image_set_from_pixbuf), (set_face_image):
+	Add a simple frame around user icon.
+
 2008-05-14  William Jon McCann  <jmccann@redhat.com>
 
 	* configure.ac:
