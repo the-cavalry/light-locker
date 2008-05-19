@@ -8,14 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-31 08:08+0000\n"
+"POT-Creation-Date: 2008-05-19 01:55+0100\n"
 "PO-Revision-Date: 2008-02-06 04:06+0200\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "\n"
 "\n"
 "X-Generator: KBabel 1.11.4\n"
@@ -165,7 +166,8 @@ msgstr ""
 "الزر  \"logout_enable\" محددا إلى TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
-msgid "The number of minutes after screensaver activation before locking the screen."
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
 msgstr "عدد الدقائق بعد تفعيل حافظة الشاشة قبل قفل الشاشة."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
@@ -178,7 +180,8 @@ msgstr ""
 "فقط عندما يكون الزر  \"logout_enable\" محددا إلى TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
-msgid "The number of minutes of inactivity before the session is considered idle."
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
 msgstr "عدد الدقائق من السكون قبل اعتبار الجلسة ساكنة."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
@@ -279,7 +282,7 @@ msgstr "_سجّل خروج"
 msgid "_Switch User"
 msgstr "_بدّل المستخدم"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1356
 msgid "_Unlock"
 msgstr "ألغ ال_قفل"
 
@@ -464,125 +467,135 @@ msgstr "التطبيق المنادي الذي يمنع حافظة الشاشة"
 msgid "The reason for inhibiting the screensaver"
 msgstr "السبب وراء توقف حافظة الشاشة"
 
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:57
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "نسخة هذا التّطبيق"
 
-#: ../src/gnome-screensaver-command.c:249
+#: ../src/gnome-screensaver-command.c:307
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "حافظة الشاشة هي %s\n"
 
-#: ../src/gnome-screensaver-command.c:249
+#: ../src/gnome-screensaver-command.c:307
 msgid "active"
 msgstr "نشط"
 
-#: ../src/gnome-screensaver-command.c:249
+#: ../src/gnome-screensaver-command.c:307
 msgid "inactive"
 msgstr "غير نشط"
 
-#: ../src/gnome-screensaver-command.c:274
+#: ../src/gnome-screensaver-command.c:321
+#, fuzzy, c-format
+msgid "The screensaver is not inhibited\n"
+msgstr "حافظة الشاشة هي %s\n"
+
+#: ../src/gnome-screensaver-command.c:327
+#, fuzzy, c-format
+msgid "The screensaver is being inhibited by:\n"
+msgstr "حافظة الشاشة هي %s\n"
+
+#: ../src/gnome-screensaver-command.c:358
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "حافظة الشاشة نشِطة منذ %Id ثواني.\n"
 
-#: ../src/gnome-screensaver-dialog.c:53
+#: ../src/gnome-screensaver-dialog.c:55
 msgid "Show debugging output"
 msgstr "أظهر خرْجَج التنقيح"
 
-#: ../src/gnome-screensaver-dialog.c:57
+#: ../src/gnome-screensaver-dialog.c:59
 msgid "Show the logout button"
 msgstr "أظهر زر تسجيل الخروج"
 
-#: ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver-dialog.c:61
 msgid "Command to invoke from the logout button"
 msgstr "الأمر عند الضغط على زر تسجيل الخروج"
 
-#: ../src/gnome-screensaver-dialog.c:61
+#: ../src/gnome-screensaver-dialog.c:63
 msgid "Show the switch user button"
 msgstr "أظهر زر تبديل المستخدم"
 
-#: ../src/gnome-screensaver-dialog.c:63
+#: ../src/gnome-screensaver-dialog.c:65
 msgid "Message to show in the dialog"
 msgstr "الرسالة التي ستظهر في نافذة الحوار"
 
-#: ../src/gnome-screensaver-dialog.c:63
+#: ../src/gnome-screensaver-dialog.c:65
 msgid "MESSAGE"
 msgstr "الرسالة"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
-#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gnome-screensaver-dialog.c:176
+#: ../src/gnome-screensaver-dialog.c:177 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "اسم المستخدم:"
 
-#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
+#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "كلمة السر:"
 
-#: ../src/gnome-screensaver-dialog.c:178
+#: ../src/gnome-screensaver-dialog.c:180
 msgid "You are required to change your password immediately (password aged)"
 msgstr "يجب أن تغير كلمة سرك حالا (كلمة السر قديمة)"
 
-#: ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:181
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "يجب أن تغير كلمة سرك حالا (فرض الجذر ذلك)"
 
-#: ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:182
 msgid "Your account has expired; please contact your system administrator"
 msgstr "أنقضى حسابك، الرجاء الإتصال بمدير النظام"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:183
 msgid "No password supplied"
 msgstr "لم تمدّ كلمة سر جديدة"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "Password unchanged"
 msgstr "لم تغير كلمة السر"
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "Can not get username"
 msgstr "لا يمكن تلقي إسم المستخدم"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "Retype new UNIX password:"
 msgstr "أعد كتابة كلمة سر يونكس الجديدة:"
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:187
 msgid "Enter new UNIX password:"
 msgstr "أدخل كلمة سر يونكس جديدة:"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "(current) UNIX password:"
 msgstr "كلمة سر يونكس (الحالية):"
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "Error while changing NIS password."
 msgstr "خطأ أثناء تغيير كلمة سر NIS."
 
-#: ../src/gnome-screensaver-dialog.c:188
+#: ../src/gnome-screensaver-dialog.c:190
 msgid "You must choose a longer password"
 msgstr "يجب أن تختار كلمة سر أطول"
 
-#: ../src/gnome-screensaver-dialog.c:189
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "Password has been already used. Choose another."
 msgstr "كلمة السر مستخدمة. الرجاء اختيار كلمة مغايرة."
 
-#: ../src/gnome-screensaver-dialog.c:190
+#: ../src/gnome-screensaver-dialog.c:192
 msgid "You must wait longer to change your password"
 msgstr "يجب أن تنتظر مدة أطول لتتمكن من تغيير كلمة سرك"
 
-#: ../src/gnome-screensaver-dialog.c:191
+#: ../src/gnome-screensaver-dialog.c:193
 msgid "Sorry, passwords do not match"
 msgstr "عفوا، كلمتا السر لا تتطابقان"
 
-#: ../src/gnome-screensaver-dialog.c:257
+#: ../src/gnome-screensaver-dialog.c:259
 msgid "Checking..."
 msgstr "جاري فحص..."
 
-#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:301 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "أخفق التّوثيق."
 
@@ -706,28 +719,27 @@ msgstr "غير متصل بمخرج الرسائل"
 msgid "screensaver already running in this session"
 msgstr "حافظة الشاشة مشتغلة مسبقا في هذه الجلسة"
 
-#: ../src/gs-lock-plug.c:269
+#: ../src/gs-lock-plug.c:271
 msgid "Time has expired."
 msgstr "انتهت المدة."
 
-#: ../src/gs-lock-plug.c:297
+#: ../src/gs-lock-plug.c:299
 msgid "You have the Caps Lock key on."
 msgstr "مفتاح Caps Lock مفعل"
 
-#: ../src/gs-lock-plug.c:1192
+#: ../src/gs-lock-plug.c:1336
 msgid "S_witch User..."
 msgstr "_بدّل المستخدم..."
 
-#: ../src/gs-lock-plug.c:1201
+#: ../src/gs-lock-plug.c:1345
 msgid "Log _Out"
 msgstr "سجّل _خروج"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1378
+#: ../src/gs-lock-plug.c:1522
 msgid "%U on %h"
 msgstr "%U على %h"
 
-#: ../src/gs-lock-plug.c:1392
+#: ../src/gs-lock-plug.c:1536
 msgid "_Password:"
 msgstr "_كلمة السر:"
-
