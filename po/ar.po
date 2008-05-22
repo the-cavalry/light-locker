@@ -545,7 +545,7 @@ msgstr "يجب أن تغير كلمة سرك حالا (فرض الجذر ذلك)
 
 #: ../src/gnome-screensaver-dialog.c:182
 msgid "Your account has expired; please contact your system administrator"
-msgstr "أنقضى حسابك، الرجاء الإتصال بمدير النظام"
+msgstr "أنقضى حسابك، الرجاء الاتصال بمدير النظام"
 
 #: ../src/gnome-screensaver-dialog.c:183
 msgid "No password supplied"
@@ -557,7 +557,7 @@ msgstr "لم تغير كلمة السر"
 
 #: ../src/gnome-screensaver-dialog.c:185
 msgid "Can not get username"
-msgstr "لا يمكن تلقي إسم المستخدم"
+msgstr "لا يمكن تلقي اسم المستخدم"
 
 #: ../src/gnome-screensaver-dialog.c:186
 msgid "Retype new UNIX password:"
@@ -679,7 +679,7 @@ msgstr "الرجاء التثبت من أن حافظة الشاشة مثبتة �
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
-msgstr "لا تصبح خادم"
+msgstr "لا تصبح خادوم"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
@@ -709,7 +709,7 @@ msgstr "لم يعد يسمح بالنفاذ إلى النظام."
 
 #: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
-msgstr "فشل الإتصال بمخرج الرسائل"
+msgstr "فشل الاتصال بمخرج الرسائل"
 
 #: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
