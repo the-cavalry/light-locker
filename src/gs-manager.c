@@ -1043,11 +1043,52 @@ remove_unfade_idle (GSManager *manager)
         }
 }
 
+
+static void
+on_screen_monitors_changed (GdkScreen *screen,
+                            GSManager *manager)
+{
+        gs_debug ("Monitors changed for screen %d: num=%d",
+                  gdk_screen_get_number (screen),
+                  gdk_screen_get_n_monitors (screen));
+}
+
+static void
+gs_manager_destroy_windows (GSManager *manager)
+{
+        GdkDisplay  *display;
+        GSList      *l;
+        int          n_screens;
+        int          i;
+
+        g_return_if_fail (manager != NULL);
+        g_return_if_fail (GS_IS_MANAGER (manager));
+
+        if (manager->priv->windows == NULL) {
+                return;
+        }
+
+        display = gdk_display_get_default ();
+
+        n_screens = gdk_display_get_n_screens (display);
+
+        for (i = 0; i < n_screens; i++) {
+                g_signal_handlers_disconnect_by_func (gdk_display_get_screen (display, i),
+                                                      on_screen_monitors_changed,
+                                                      manager);
+        }
+
+        for (l = manager->priv->windows; l; l = l->next) {
+                gs_window_destroy (l->data);
+        }
+        g_slist_free (manager->priv->windows);
+        manager->priv->windows = NULL;
+}
+
 static void
 gs_manager_finalize (GObject *object)
 {
         GSManager *manager;
-        GSList    *l;
 
         g_return_if_fail (object != NULL);
         g_return_if_fail (GS_IS_MANAGER (object));
@@ -1083,11 +1124,7 @@ gs_manager_finalize (GObject *object)
 
         manager_stop_jobs (manager);
 
-        for (l = manager->priv->windows; l; l = l->next) {
-                gs_window_destroy (l->data);
-        }
-        g_slist_free (manager->priv->windows);
-        manager->priv->windows = NULL;
+        gs_manager_destroy_windows (manager);
 
         manager->priv->active = FALSE;
         manager->priv->activate_time = 0;
@@ -1519,26 +1556,26 @@ gs_manager_create_windows_for_screen (GSManager *manager,
 }
 
 static void
-gs_manager_create (GSManager *manager)
+gs_manager_create_windows (GSManager *manager)
 {
         GdkDisplay  *display;
-        GSList      *l;
         int          n_screens;
         int          i;
 
         g_return_if_fail (manager != NULL);
         g_return_if_fail (GS_IS_MANAGER (manager));
 
-        display = gdk_display_get_default ();
+        g_assert (manager->priv->windows == NULL);
 
+        display = gdk_display_get_default ();
         n_screens = gdk_display_get_n_screens (display);
 
-        for (l = manager->priv->windows; l; l = l->next) {
-                gs_window_destroy (l->data);
-        }
-        g_slist_free (manager->priv->windows);
-
         for (i = 0; i < n_screens; i++) {
+                g_signal_connect (gdk_display_get_screen (display, i),
+                                  "monitors-changed",
+                                  G_CALLBACK (on_screen_monitors_changed),
+                                  manager);
+
                 gs_manager_create_windows_for_screen (manager, gdk_display_get_screen (display, i));
         }
 }
@@ -1603,7 +1640,7 @@ gs_manager_activate (GSManager *manager)
         }
 
         if (manager->priv->windows == NULL) {
-                gs_manager_create (GS_MANAGER (manager));
+                gs_manager_create_windows (GS_MANAGER (manager));
         }
 
         manager->priv->jobs = g_hash_table_new_full (g_direct_hash,
@@ -1636,8 +1673,6 @@ gs_manager_activate (GSManager *manager)
 static gboolean
 gs_manager_deactivate (GSManager *manager)
 {
-        GSList *l;
-
         g_return_val_if_fail (manager != NULL, FALSE);
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
@@ -1654,11 +1689,7 @@ gs_manager_deactivate (GSManager *manager)
 
         manager_stop_jobs (manager);
 
-        for (l = manager->priv->windows; l; l = l->next) {
-                gs_window_destroy (l->data);
-        }
-        g_slist_free (manager->priv->windows);
-        manager->priv->windows = NULL;
+        gs_manager_destroy_windows (manager);
 
         /* reset state */
         manager->priv->active = FALSE;

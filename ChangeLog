@@ -1,5 +1,15 @@
 2008-05-29  William Jon McCann  <jmccann@redhat.com>
 
+	* configure.ac:
+	* src/gs-manager.c (on_screen_monitors_changed),
+	(gs_manager_destroy_windows), (gs_manager_finalize),
+	(gs_manager_create_windows), (gs_manager_activate),
+	(gs_manager_deactivate):
+	Hook up to screen's monitors-changed signal and spew
+	some debug.  Not doing anything useful yet.
+
+2008-05-29  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gs-manager.c (gs_manager_create_windows_for_screen),
 	(gs_manager_create):
 	* src/gs-window-x11.c (update_geometry), (screen_size_changed),
