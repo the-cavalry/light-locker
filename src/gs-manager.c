@@ -1480,8 +1480,8 @@ connect_window_signals (GSManager *manager,
 }
 
 static void
-gs_manager_create_window (GSManager *manager,
-                          GdkScreen *screen)
+gs_manager_create_windows_for_screen (GSManager *manager,
+                                      GdkScreen *screen)
 {
         GSWindow *window;
         int       n_monitors;
@@ -1523,7 +1523,8 @@ gs_manager_create (GSManager *manager)
 {
         GdkDisplay  *display;
         GSList      *l;
-        int          n_screens, i;
+        int          n_screens;
+        int          i;
 
         g_return_if_fail (manager != NULL);
         g_return_if_fail (GS_IS_MANAGER (manager));
@@ -1538,7 +1539,7 @@ gs_manager_create (GSManager *manager)
         g_slist_free (manager->priv->windows);
 
         for (i = 0; i < n_screens; i++) {
-                gs_manager_create_window (manager, gdk_display_get_screen (display, i));
+                gs_manager_create_windows_for_screen (manager, gdk_display_get_screen (display, i));
         }
 }
 

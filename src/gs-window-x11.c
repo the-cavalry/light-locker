@@ -387,7 +387,7 @@ gs_window_clear (GSWindow *window)
 static GdkRegion *
 get_outside_region (GSWindow *window)
 {
-        int i;
+        int        i;
         GdkRegion *region;
 
         region = gdk_region_new ();
@@ -406,7 +406,8 @@ static void
 update_geometry (GSWindow *window)
 {
         GdkRectangle geometry;
-        GdkRegion *outside_region, *monitor_region;
+        GdkRegion   *outside_region;
+        GdkRegion   *monitor_region;
 
         outside_region = get_outside_region (window);
 
@@ -430,6 +431,7 @@ static void
 screen_size_changed (GdkScreen *screen,
                      GSWindow  *window)
 {
+        gs_debug ("Got screen size changed signal");
         gtk_widget_queue_resize (GTK_WIDGET (window));
 }
 
@@ -444,6 +446,13 @@ gs_window_move_resize_window (GSWindow *window,
         widget = GTK_WIDGET (window);
 
         g_assert (GTK_WIDGET_REALIZED (widget));
+
+        gs_debug ("Move and/or resize window on monitor %d: x=%d y=%d w=%d h=%d",
+                  window->priv->monitor,
+                  window->priv->geometry.x,
+                  window->priv->geometry.y,
+                  window->priv->geometry.width,
+                  window->priv->geometry.height);
 
         if (move && resize) {
                 gdk_window_move_resize (widget->window,

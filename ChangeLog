@@ -1,3 +1,11 @@
+2008-05-29  William Jon McCann  <jmccann@redhat.com>
+
+	* src/gs-manager.c (gs_manager_create_windows_for_screen),
+	(gs_manager_create):
+	* src/gs-window-x11.c (update_geometry), (screen_size_changed),
+	(gs_window_move_resize_window):
+	Add some debug spew for window geometry changes.
+
 2008-05-16  William Jon McCann  <jmccann@redhat.com>
 
 	* src/gs-lock-plug.c (surface_from_pixbuf), (curved_rectangle),
