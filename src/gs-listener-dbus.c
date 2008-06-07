@@ -1973,28 +1973,33 @@ gs_listener_acquire (GSListener *listener,
                             ",member='NameOwnerChanged'",
                             NULL);
 
-        dbus_connection_add_filter (listener->priv->system_connection, listener_dbus_system_filter_function, listener, NULL);
+        if (listener->priv->system_connection != NULL) {
+                dbus_connection_add_filter (listener->priv->system_connection,
+                                            listener_dbus_system_filter_function,
+                                            listener,
+                                            NULL);
 
-        dbus_bus_add_match (listener->priv->system_connection,
-                            "type='signal'"
-                            ",interface='"HAL_DEVICE_INTERFACE"'"
-                            ",member='Condition'",
-                            NULL);
-        dbus_bus_add_match (listener->priv->system_connection,
-                            "type='signal'"
-                            ",interface='"CK_SESSION_INTERFACE"'"
-                            ",member='Unlock'",
-                            NULL);
-        dbus_bus_add_match (listener->priv->system_connection,
-                            "type='signal'"
-                            ",interface='"CK_SESSION_INTERFACE"'"
-                            ",member='Lock'",
-                            NULL);
-        dbus_bus_add_match (listener->priv->system_connection,
-                            "type='signal'"
-                            ",interface='"CK_SESSION_INTERFACE"'"
-                            ",member='ActiveChanged'",
-                            NULL);
+                dbus_bus_add_match (listener->priv->system_connection,
+                                    "type='signal'"
+                                    ",interface='"HAL_DEVICE_INTERFACE"'"
+                                    ",member='Condition'",
+                                    NULL);
+                dbus_bus_add_match (listener->priv->system_connection,
+                                    "type='signal'"
+                                    ",interface='"CK_SESSION_INTERFACE"'"
+                                    ",member='Unlock'",
+                                    NULL);
+                dbus_bus_add_match (listener->priv->system_connection,
+                                    "type='signal'"
+                                    ",interface='"CK_SESSION_INTERFACE"'"
+                                    ",member='Lock'",
+                                    NULL);
+                dbus_bus_add_match (listener->priv->system_connection,
+                                    "type='signal'"
+                                    ",interface='"CK_SESSION_INTERFACE"'"
+                                    ",member='ActiveChanged'",
+                                    NULL);
+        }
 
         return acquired;
 }
