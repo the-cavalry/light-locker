@@ -284,7 +284,7 @@ msgstr "_بدّل المستخدم"
 
 #: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1356
 msgid "_Unlock"
-msgstr "ألغ ال_قفل"
+msgstr "ا_فتح القفل"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
