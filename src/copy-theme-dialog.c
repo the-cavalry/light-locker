@@ -21,11 +21,11 @@
 # include "config.h"
 #endif
 
-#include <sys/stat.h>
 #include <limits.h>
 #include <string.h>
 
 #include <glib.h>
+#include <glib/gstdio.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gio/gio.h>
