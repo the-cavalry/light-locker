@@ -21,12 +21,14 @@
 # include "config.h"
 #endif
 
+#include <sys/stat.h>
+#include <limits.h>
+#include <string.h>
+
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gio/gio.h>
-#include <limits.h>
-#include <string.h>
 
 #include "copy-theme-dialog.h"
 

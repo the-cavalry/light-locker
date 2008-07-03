@@ -1,3 +1,8 @@
+2008-07-03  Wouter Bolsterlee  <wbolster@svn.gnome.org>
+
+	* src/copy-theme-dialog.c:
+	Include <sys/stat.h> to fix the build.
+
 2008-06-07  William Jon McCann  <jmccann@redhat.com>
 
 	* src/gs-listener-dbus.c (gs_listener_acquire):
