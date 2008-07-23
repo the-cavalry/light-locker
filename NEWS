@@ -1,4 +1,12 @@
 ===============
+Version 2.23.3
+===============
+
+        * Fix build issue (Wouter Bolsterlee)
+        * Add a simple frame around user icon
+        * Add a new child widget to use for themes to draw on
+
+===============
 Version 2.23.2
 ===============
 
