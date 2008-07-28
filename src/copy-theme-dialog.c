@@ -303,7 +303,7 @@ add_file_to_dialog (gpointer data, gpointer user_data)
 		                                          uri);
 		g_free (uri);
 		gtk_window_set_title (GTK_WINDOW (dialog), "");
-		gtk_window_set_icon_name (GTK_WINDOW (dialog), "screensaver");
+		gtk_window_set_icon_name (GTK_WINDOW (dialog), "preferences-desktop-screensaver");
 		
 		gtk_dialog_run (GTK_DIALOG (dialog));
 		gtk_widget_destroy (dialog);

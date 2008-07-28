@@ -1,3 +1,10 @@
+2007-07-28  Matthias Clasen <mclasen@redhat.com>
+
+	Bug 545072 – use standard icon names
+
+	* src/gnome-screensaver-preferences.c:
+	* src/copy-theme-dialog.c: Use standard icon names.
+
 2008-07-23  William Jon McCann  <jmccann@redhat.com>
 
 	* configure.ac: Post release version bump

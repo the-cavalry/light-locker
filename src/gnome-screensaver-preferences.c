@@ -826,7 +826,7 @@ theme_installer_run (GtkWidget *prefs_dialog, GList *files)
         gtk_window_set_transient_for (GTK_WINDOW (copy_dialog),
                                         GTK_WINDOW (prefs_dialog));
         gtk_window_set_icon_name (GTK_WINDOW (copy_dialog),
-                                        "screensaver");
+                                        "preferences-desktop-screensaver");
         
         g_signal_connect (copy_dialog, "complete",
                           G_CALLBACK (theme_copy_complete_cb), NULL);
@@ -1461,7 +1461,7 @@ init_capplet (void)
 
         setup_list_size_constraint (list_scroller, treeview);
         gtk_widget_set_size_request (preview, 480, 300);
-        gtk_window_set_icon_name (GTK_WINDOW (dialog), "screensaver");
+        gtk_window_set_icon_name (GTK_WINDOW (dialog), "preferences-desktop-screensaver");
         gtk_window_set_icon_name (GTK_WINDOW (fullscreen_preview_window), "screensaver");
 
         gtk_drag_dest_set (dialog, GTK_DEST_DEFAULT_ALL,
