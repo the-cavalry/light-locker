@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-19 01:55+0100\n"
+"POT-Creation-Date: 2008-07-29 02:16+0100\n"
 "PO-Revision-Date: 2008-02-06 04:06+0200\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -100,7 +100,7 @@ msgstr "أمر لوحة المفاتيح المدرجة"
 
 #: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Lock on activation"
-msgstr "اقفل عند التفعيل"
+msgstr "أقفل عند التفعيل"
 
 #: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Logout command"
@@ -108,7 +108,7 @@ msgstr "أمر تسجيل الخروج"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Reason for being away"
-msgstr "سبب الذهاب بعيداً"
+msgstr "سبب الذهاب بعيدًا"
 
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver theme selection mode"
@@ -198,7 +198,7 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid "The reason for being away from the computer."
-msgstr "السبب وراء الذهاب بعيداً عن الحاسوب."
+msgstr "السبب وراء الذهاب بعيدًا عن الحاسوب."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
@@ -324,7 +324,7 @@ msgstr "أظهر مسارات تنقل الصور"
 
 #: ../savers/floaters.c:87
 msgid "Occasionally rotate images as they move"
-msgstr "دوّر الصور أحياناً عند تحركها"
+msgstr "دوّر الصور أحيانًا عند تحركها"
 
 #: ../savers/floaters.c:90
 msgid "Print out frame rate and other statistics"
@@ -385,38 +385,38 @@ msgstr "\"#rrggbb\""
 
 #: ../savers/slideshow.c:57
 msgid "Do not randomize pictures from location"
-msgstr "لا تختر الصور عشوائياً من المكان"
+msgstr "لا تختر الصور عشوائيًا من المكان"
 
 #: ../savers/slideshow.c:59
 msgid "Do not try to stretch images on screen"
 msgstr "لا تقم بمطّ الصور على الشاشة"
 
-#: ../src/copy-theme-dialog.c:211
+#: ../src/copy-theme-dialog.c:213
 msgid "Copying files"
 msgstr "جارٍ نسخ الملفات"
 
-#: ../src/copy-theme-dialog.c:229
+#: ../src/copy-theme-dialog.c:231
 msgid "From:"
 msgstr "من:"
 
-#: ../src/copy-theme-dialog.c:233
+#: ../src/copy-theme-dialog.c:235
 msgid "To:"
 msgstr "إلى:"
 
-#: ../src/copy-theme-dialog.c:253
+#: ../src/copy-theme-dialog.c:255
 msgid "Copying themes"
 msgstr "نسخ السِمات"
 
-#: ../src/copy-theme-dialog.c:297
+#: ../src/copy-theme-dialog.c:299
 msgid "Invalid screensaver theme"
 msgstr "سِمة حافظة شاشة غير سليمة"
 
-#: ../src/copy-theme-dialog.c:300
+#: ../src/copy-theme-dialog.c:302
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
 msgstr "يبدو أن الملف %s لا يمثل سِمة حافظة شاشة سليمة."
 
-#: ../src/copy-theme-dialog.c:480
+#: ../src/copy-theme-dialog.c:482
 #, c-format
 msgid "Copying file: %u of %u"
 msgstr " نسخ:  '%u من %u"
@@ -667,7 +667,7 @@ msgstr "%s"
 #: ../src/gnome-screensaver-preferences.c:999
 #, c-format
 msgid "Never"
-msgstr "أبداً"
+msgstr "أبدًا"
 
 #: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
