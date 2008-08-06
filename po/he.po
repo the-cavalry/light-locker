@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-12 22:13+0000\n"
+"POT-Creation-Date: 2008-07-01 05:47+0000\n"
 "PO-Revision-Date: 2007-11-17 09:59+0000\n"
 "Last-Translator: Yaniv Abir <yanivabir at gmail dot com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -288,7 +288,7 @@ msgstr "_התנתק"
 msgid "_Switch User"
 msgstr "_החלף משתמש"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1214
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1356
 msgid "_Unlock"
 msgstr "_התחבר"
 
@@ -494,14 +494,14 @@ msgid "inactive"
 msgstr "לא פעיל"
 
 #: ../src/gnome-screensaver-command.c:321
-#, fuzzy, c-format
+#, c-format
 msgid "The screensaver is not inhibited\n"
-msgstr "שומר המסך הוא %s\n"
+msgstr "שומר המסך אינו מנוע מלפעול\n"
 
 #: ../src/gnome-screensaver-command.c:327
-#, fuzzy, c-format
+#, c-format
 msgid "The screensaver is being inhibited by:\n"
-msgstr "שומר המסך הוא %s\n"
+msgstr "שומר המסך מנוע מלפעול על ידי:\n"
 
 #: ../src/gnome-screensaver-command.c:358
 #, c-format
@@ -723,20 +723,20 @@ msgstr "עבר הזמן."
 msgid "You have the Caps Lock key on."
 msgstr "מקש ה-Caps Lock לחוץ."
 
-#: ../src/gs-lock-plug.c:1194
+#: ../src/gs-lock-plug.c:1336
 msgid "S_witch User..."
 msgstr "הח_לף משתמש..."
 
-#: ../src/gs-lock-plug.c:1203
+#: ../src/gs-lock-plug.c:1345
 msgid "Log _Out"
 msgstr "_התנתק"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1380
+#: ../src/gs-lock-plug.c:1522
 msgid "%U on %h"
 msgstr "%U ב-%h"
 
-#: ../src/gs-lock-plug.c:1394
+#: ../src/gs-lock-plug.c:1536
 msgid "_Password:"
 msgstr "_סיסמה:"
 
