@@ -1,3 +1,10 @@
+2008-08-08  William Jon McCann  <jmccann@redhat.com>
+
+	* src/gs-lock-plug.c (surface_from_pixbuf), (curved_rectangle),
+	(image_set_from_pixbuf), (check_user_file), (set_face_image),
+	(gs_lock_plug_show), (gs_lock_plug_init):
+	Paint widget background color as face background color.
+
 2007-07-28  Matthias Clasen <mclasen@redhat.com>
 
 	Bug 545072 – use standard icon names
