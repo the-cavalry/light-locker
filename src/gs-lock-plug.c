@@ -303,20 +303,18 @@ capslock_update (GSLockPlug *plug,
         }
 }
 
-/* adapted from GDM2 */
 static gboolean
 is_capslock_on (void)
 {
-        unsigned int states;
-        Display     *dsp;
+        XkbStateRec states;
+        Display    *dsp;
 
         dsp = GDK_DISPLAY ();
-
-        if (XkbGetIndicatorState (dsp, XkbUseCoreKbd, &states) != Success) {
-                return FALSE;
+        if (XkbGetState (dsp, XkbUseCoreKbd, &states) != Success) {
+              return FALSE;
         }
 
-        return (states & ShiftMask) != 0;
+        return (states.locked_mods & LockMask) != 0;
 }
 
 static void

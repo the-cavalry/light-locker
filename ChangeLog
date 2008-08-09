@@ -1,5 +1,12 @@
 2008-08-08  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gs-lock-plug.c (is_capslock_on):
+	Check for the caps lock key and not the
+	indicator.
+	Fixes #547013.
+
+2008-08-08  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gs-lock-plug.c (surface_from_pixbuf), (curved_rectangle),
 	(image_set_from_pixbuf), (check_user_file), (set_face_image),
 	(gs_lock_plug_show), (gs_lock_plug_init):
