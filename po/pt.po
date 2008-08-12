@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.22\n"
+"Project-Id-Version: 2.24\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-09 17:32+0000\n"
-"PO-Revision-Date: 2008-02-09 17:35+0000\n"
+"POT-Creation-Date: 2008-08-12 19:28+0100\n"
+"PO-Revision-Date: 2008-08-12 19:30+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -300,7 +300,7 @@ msgstr "_Terminar a Sessão"
 msgid "_Switch User"
 msgstr "_Alternar Utilizador"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1366
 msgid "_Unlock"
 msgstr "_Destrancar"
 
@@ -383,6 +383,7 @@ msgid "%s. See --help for usage information.\n"
 msgstr "%s. Consulte --help para informações de utilização.\n"
 
 #: ../savers/floaters.c:1209
+#, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
 "Tem de especificar uma imagem.  Consulte --help para informação de "
@@ -412,32 +413,32 @@ msgstr "Não aleatoriezar as imagens da localização"
 msgid "Do not try to stretch images on screen"
 msgstr "Não tentar esticar as imagens no ecrã"
 
-#: ../src/copy-theme-dialog.c:211
+#: ../src/copy-theme-dialog.c:213
 msgid "Copying files"
 msgstr "A copiar os ficheiros"
 
-#: ../src/copy-theme-dialog.c:229
+#: ../src/copy-theme-dialog.c:231
 msgid "From:"
 msgstr "De:"
 
-#: ../src/copy-theme-dialog.c:233
+#: ../src/copy-theme-dialog.c:235
 msgid "To:"
 msgstr "Para:"
 
-#: ../src/copy-theme-dialog.c:253
+#: ../src/copy-theme-dialog.c:255
 msgid "Copying themes"
 msgstr "A copiar temas"
 
-#: ../src/copy-theme-dialog.c:297
+#: ../src/copy-theme-dialog.c:299
 msgid "Invalid screensaver theme"
 msgstr "Tema de protecção de ecrã inválido"
 
-#: ../src/copy-theme-dialog.c:300
+#: ../src/copy-theme-dialog.c:302
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
 msgstr "%s não aparenta ser um tema de protecção de ecrã válido."
 
-#: ../src/copy-theme-dialog.c:480
+#: ../src/copy-theme-dialog.c:482
 #, c-format
 msgid "Copying file: %u of %u"
 msgstr "A copiar o ficheiro: %u de %u"
@@ -498,125 +499,135 @@ msgstr "A aplicação chamadora que está a inibir a protecção de ecrã"
 msgid "The reason for inhibiting the screensaver"
 msgstr "O motivo para inibir o protector de ecrã."
 
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:57
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Versão desta aplicação"
 
-#: ../src/gnome-screensaver-command.c:249
+#: ../src/gnome-screensaver-command.c:307
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "O protector de ecrã está %s\n"
 
-#: ../src/gnome-screensaver-command.c:249
+#: ../src/gnome-screensaver-command.c:307
 msgid "active"
 msgstr "activo"
 
-#: ../src/gnome-screensaver-command.c:249
+#: ../src/gnome-screensaver-command.c:307
 msgid "inactive"
 msgstr "inactivo"
 
-#: ../src/gnome-screensaver-command.c:274
+#: ../src/gnome-screensaver-command.c:321
+#, c-format
+msgid "The screensaver is not inhibited\n"
+msgstr "O protector de ecrã não está inibido\n"
+
+#: ../src/gnome-screensaver-command.c:327
+#, c-format
+msgid "The screensaver is being inhibited by:\n"
+msgstr "O protector de ecrã está a ser inibido por:\n"
+
+#: ../src/gnome-screensaver-command.c:358
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "O protector de ecrã está activo à %d segundos.\n"
 
-#: ../src/gnome-screensaver-dialog.c:53
+#: ../src/gnome-screensaver-dialog.c:55
 msgid "Show debugging output"
 msgstr "Apresentar resultados da depuração"
 
-#: ../src/gnome-screensaver-dialog.c:57
+#: ../src/gnome-screensaver-dialog.c:59
 msgid "Show the logout button"
 msgstr "Apresentar o botão de terminar sessão"
 
-#: ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver-dialog.c:61
 msgid "Command to invoke from the logout button"
 msgstr "Comando a invocar pelo botão de terminar sessão"
 
-#: ../src/gnome-screensaver-dialog.c:61
+#: ../src/gnome-screensaver-dialog.c:63
 msgid "Show the switch user button"
 msgstr "Apresentar o botão de alternar utilizador"
 
-#: ../src/gnome-screensaver-dialog.c:63
+#: ../src/gnome-screensaver-dialog.c:65
 msgid "Message to show in the dialog"
 msgstr "Mensagem a apresentar no diálogo"
 
-#: ../src/gnome-screensaver-dialog.c:63
+#: ../src/gnome-screensaver-dialog.c:65
 msgid "MESSAGE"
 msgstr "MENSAGEM"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
-#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gnome-screensaver-dialog.c:176
+#: ../src/gnome-screensaver-dialog.c:177 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Utilizador:"
 
-#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
+#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "Senha:"
 
-#: ../src/gnome-screensaver-dialog.c:178
+#: ../src/gnome-screensaver-dialog.c:180
 msgid "You are required to change your password immediately (password aged)"
 msgstr "É obrigatório alterar a sua senha imediatamente (senha antiga)"
 
-#: ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:181
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "É obrigatório alterar a sua senha imediatamente (forçado pelo root)"
 
-#: ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:182
 msgid "Your account has expired; please contact your system administrator"
 msgstr "A sua conta expirou; contacte o administrador do seu sistema"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:183
 msgid "No password supplied"
 msgstr "Nenhuma senha especificada"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "Password unchanged"
 msgstr "Senha inalterada"
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "Can not get username"
 msgstr "Incapaz de obter o nome de utilizador"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "Retype new UNIX password:"
 msgstr "Reintroduza a nova senha UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:187
 msgid "Enter new UNIX password:"
 msgstr "Introduza a nova senha UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "(current) UNIX password:"
 msgstr "Senha UNIX (actual):"
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "Error while changing NIS password."
 msgstr "Erro ao alterar a senha NIS."
 
-#: ../src/gnome-screensaver-dialog.c:188
+#: ../src/gnome-screensaver-dialog.c:190
 msgid "You must choose a longer password"
 msgstr "Tem de escolher uma senha maior"
 
-#: ../src/gnome-screensaver-dialog.c:189
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "Password has been already used. Choose another."
 msgstr "A senha já foi utilizada anteriormente. Seleccione outra."
 
-#: ../src/gnome-screensaver-dialog.c:190
+#: ../src/gnome-screensaver-dialog.c:192
 msgid "You must wait longer to change your password"
 msgstr "Tem de aguardar mais tempo antes de poder alterar a sua senha"
 
-#: ../src/gnome-screensaver-dialog.c:191
+#: ../src/gnome-screensaver-dialog.c:193
 msgid "Sorry, passwords do not match"
 msgstr "As senhas não coincidem"
 
-#: ../src/gnome-screensaver-dialog.c:257
+#: ../src/gnome-screensaver-dialog.c:259
 msgid "Checking..."
 msgstr "A Verificar..."
 
-#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:301 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "Autenticação falhada."
 
@@ -674,6 +685,7 @@ msgid "%s"
 msgstr "%s"
 
 #: ../src/gnome-screensaver-preferences.c:999
+#, c-format
 msgid "Never"
 msgstr "Nunca"
 
@@ -727,28 +739,28 @@ msgstr "não se encontra ligado ao bus de mensagens"
 msgid "screensaver already running in this session"
 msgstr "protecção de ecrã já se encontra em execução nesta sessão"
 
-#: ../src/gs-lock-plug.c:269
+#: ../src/gs-lock-plug.c:271
 msgid "Time has expired."
 msgstr "Tempo expirou."
 
-#: ../src/gs-lock-plug.c:297
+#: ../src/gs-lock-plug.c:299
 msgid "You have the Caps Lock key on."
 msgstr "Tem a tecla Caps Lock activa."
 
-#: ../src/gs-lock-plug.c:1192
+#: ../src/gs-lock-plug.c:1346
 msgid "S_witch User..."
 msgstr "_Alternar Utilizador..."
 
-#: ../src/gs-lock-plug.c:1201
+#: ../src/gs-lock-plug.c:1355
 msgid "Log _Out"
 msgstr "_Terminar a Sessão"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1378
+#: ../src/gs-lock-plug.c:1532
 msgid "%U on %h"
 msgstr "%U na %h"
 
-#: ../src/gs-lock-plug.c:1392
+#: ../src/gs-lock-plug.c:1546
 msgid "_Password:"
 msgstr "_Senha:"
 
