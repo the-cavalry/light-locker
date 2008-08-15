@@ -33,10 +33,10 @@ export G_DEBUG=fatal_criticals
 gnome-screensaver-command --exit
 
 # run the daemon in the debugger
-gdb --args gnome-screensaver --no-daemon --debug --sync
+#gdb --args gnome-screensaver --no-daemon --debug --sync
 
 # or if that isn't helpful just get the debug output
 #gnome-screensaver --no-daemon --debug > /tmp/gs-debug-log.txt 2>&1
 
 # or just run it with debugging on
-#gnome-screensaver --no-daemon --debug
+gnome-screensaver --no-daemon --debug

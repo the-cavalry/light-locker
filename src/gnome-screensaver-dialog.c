@@ -339,8 +339,10 @@ auth_check_idle (GSLockPlug *plug)
                 loop_counter++;
 
                 if (loop_counter < MAX_FAILURES) {
+                        gs_debug ("Authentication failed, retrying (%u)", loop_counter);
                         g_timeout_add (3000, (GSourceFunc)reset_idle_cb, plug);
                 } else {
+                        gs_debug ("Authentication failed, quitting (max failures)");
                         again = FALSE;
                         gtk_main_quit ();
                 }
