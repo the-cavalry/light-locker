@@ -1044,99 +1044,6 @@ remove_unfade_idle (GSManager *manager)
 }
 
 
-static void
-on_screen_monitors_changed (GdkScreen *screen,
-                            GSManager *manager)
-{
-        gs_debug ("Monitors changed for screen %d: num=%d",
-                  gdk_screen_get_number (screen),
-                  gdk_screen_get_n_monitors (screen));
-}
-
-static void
-gs_manager_destroy_windows (GSManager *manager)
-{
-        GdkDisplay  *display;
-        GSList      *l;
-        int          n_screens;
-        int          i;
-
-        g_return_if_fail (manager != NULL);
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        if (manager->priv->windows == NULL) {
-                return;
-        }
-
-        display = gdk_display_get_default ();
-
-        n_screens = gdk_display_get_n_screens (display);
-
-        for (i = 0; i < n_screens; i++) {
-                g_signal_handlers_disconnect_by_func (gdk_display_get_screen (display, i),
-                                                      on_screen_monitors_changed,
-                                                      manager);
-        }
-
-        for (l = manager->priv->windows; l; l = l->next) {
-                gs_window_destroy (l->data);
-        }
-        g_slist_free (manager->priv->windows);
-        manager->priv->windows = NULL;
-}
-
-static void
-gs_manager_finalize (GObject *object)
-{
-        GSManager *manager;
-
-        g_return_if_fail (object != NULL);
-        g_return_if_fail (GS_IS_MANAGER (object));
-
-        manager = GS_MANAGER (object);
-
-        g_return_if_fail (manager->priv != NULL);
-
-        if (manager->priv->bg_notify_id != 0) {
-                gconf_client_remove_dir (manager->priv->client,
-                                         GNOME_BG_KEY_DIR,
-                                         NULL);
-                gconf_client_notify_remove (manager->priv->client,
-                                            manager->priv->bg_notify_id);
-                manager->priv->bg_notify_id = 0;
-        }
-        if (manager->priv->bg != NULL) {
-                g_object_unref (manager->priv->bg);
-        }
-        if (manager->priv->client != NULL) {
-                g_object_unref (manager->priv->client);
-        }
-
-        free_themes (manager);
-        g_free (manager->priv->logout_command);
-        g_free (manager->priv->keyboard_command);
-        g_free (manager->priv->away_message);
-
-        remove_unfade_idle (manager);
-        remove_timers (manager);
-
-        gs_grab_release (manager->priv->grab);
-
-        manager_stop_jobs (manager);
-
-        gs_manager_destroy_windows (manager);
-
-        manager->priv->active = FALSE;
-        manager->priv->activate_time = 0;
-        manager->priv->lock_enabled = FALSE;
-
-        g_object_unref (manager->priv->fade);
-        g_object_unref (manager->priv->grab);
-        g_object_unref (manager->priv->theme_manager);
-
-        G_OBJECT_CLASS (gs_manager_parent_class)->finalize (object);
-}
-
 static gboolean
 window_deactivated_idle (GSManager *manager)
 {
@@ -1517,10 +1424,154 @@ connect_window_signals (GSManager *manager,
 }
 
 static void
+gs_manager_create_window_for_monitor (GSManager *manager,
+                                      GdkScreen *screen,
+                                      int        monitor)
+{
+        GSWindow *window;
+
+        gs_debug ("Creating window for monitor %d", monitor);
+
+        window = gs_window_new (screen, monitor, manager->priv->lock_active);
+
+        gs_window_set_user_switch_enabled (window, manager->priv->user_switch_enabled);
+        gs_window_set_logout_enabled (window, manager->priv->logout_enabled);
+        gs_window_set_logout_timeout (window, manager->priv->logout_timeout);
+        gs_window_set_logout_command (window, manager->priv->logout_command);
+        gs_window_set_keyboard_enabled (window, manager->priv->keyboard_enabled);
+        gs_window_set_keyboard_command (window, manager->priv->keyboard_command);
+        gs_window_set_away_message (window, manager->priv->away_message);
+
+        connect_window_signals (manager, window);
+
+        manager->priv->windows = g_slist_append (manager->priv->windows, window);
+}
+
+static void
+on_screen_monitors_changed (GdkScreen *screen,
+                            GSManager *manager)
+{
+        GSList *l;
+        int     n_monitors;
+        int     n_windows;
+        int     i;
+
+        n_monitors = gdk_screen_get_n_monitors (screen);
+        n_windows = g_slist_length (manager->priv->windows);
+
+        gs_debug ("Monitors changed for screen %d: num=%d",
+                  gdk_screen_get_number (screen),
+                  n_monitors);
+
+        if (n_monitors > n_windows) {
+                /* add more windows */
+                for (i = n_windows; i < n_monitors; i++) {
+                        gs_manager_create_window_for_monitor (manager, screen, i - 1);
+                }
+        } else {
+                /* remove the extra windows */
+                for (l = manager->priv->windows; l != NULL; l = l->next) {
+                        GdkScreen *this_screen;
+                        int        this_monitor;
+
+                        this_screen = gs_window_get_screen (GS_WINDOW (l->data));
+                        this_monitor = gs_window_get_monitor (GS_WINDOW (l->data));
+                        if (this_screen == screen && this_monitor >= n_monitors) {
+                                gs_window_destroy (l->data);
+                                manager->priv->windows = g_slist_delete_link (manager->priv->windows, l);
+                        }
+                }
+        }
+}
+
+static void
+gs_manager_destroy_windows (GSManager *manager)
+{
+        GdkDisplay  *display;
+        GSList      *l;
+        int          n_screens;
+        int          i;
+
+        g_return_if_fail (manager != NULL);
+        g_return_if_fail (GS_IS_MANAGER (manager));
+
+        if (manager->priv->windows == NULL) {
+                return;
+        }
+
+        display = gdk_display_get_default ();
+
+        n_screens = gdk_display_get_n_screens (display);
+
+        for (i = 0; i < n_screens; i++) {
+                g_signal_handlers_disconnect_by_func (gdk_display_get_screen (display, i),
+                                                      on_screen_monitors_changed,
+                                                      manager);
+        }
+
+        for (l = manager->priv->windows; l; l = l->next) {
+                gs_window_destroy (l->data);
+        }
+        g_slist_free (manager->priv->windows);
+        manager->priv->windows = NULL;
+}
+
+static void
+gs_manager_finalize (GObject *object)
+{
+        GSManager *manager;
+
+        g_return_if_fail (object != NULL);
+        g_return_if_fail (GS_IS_MANAGER (object));
+
+        manager = GS_MANAGER (object);
+
+        g_return_if_fail (manager->priv != NULL);
+
+        if (manager->priv->bg_notify_id != 0) {
+                gconf_client_remove_dir (manager->priv->client,
+                                         GNOME_BG_KEY_DIR,
+                                         NULL);
+                gconf_client_notify_remove (manager->priv->client,
+                                            manager->priv->bg_notify_id);
+                manager->priv->bg_notify_id = 0;
+        }
+        if (manager->priv->bg != NULL) {
+                g_object_unref (manager->priv->bg);
+        }
+        if (manager->priv->client != NULL) {
+                g_object_unref (manager->priv->client);
+        }
+
+        free_themes (manager);
+        g_free (manager->priv->logout_command);
+        g_free (manager->priv->keyboard_command);
+        g_free (manager->priv->away_message);
+
+        remove_unfade_idle (manager);
+        remove_timers (manager);
+
+        gs_grab_release (manager->priv->grab);
+
+        manager_stop_jobs (manager);
+
+        gs_manager_destroy_windows (manager);
+
+        manager->priv->active = FALSE;
+        manager->priv->activate_time = 0;
+        manager->priv->lock_enabled = FALSE;
+
+        g_object_unref (manager->priv->fade);
+        g_object_unref (manager->priv->grab);
+        g_object_unref (manager->priv->theme_manager);
+
+        G_OBJECT_CLASS (gs_manager_parent_class)->finalize (object);
+}
+
+static void
 gs_manager_create_windows_for_screen (GSManager *manager,
                                       GdkScreen *screen)
 {
-        GSWindow *window;
         int       n_monitors;
         int       i;
 
@@ -1536,19 +1587,7 @@ gs_manager_create_windows_for_screen (GSManager *manager,
         gs_debug ("Creating %d windows for screen %d", n_monitors, gdk_screen_get_number (screen));
 
         for (i = 0; i < n_monitors; i++) {
-                window = gs_window_new (screen, i, manager->priv->lock_active);
-
-                gs_window_set_user_switch_enabled (window, manager->priv->user_switch_enabled);
-                gs_window_set_logout_enabled (window, manager->priv->logout_enabled);
-                gs_window_set_logout_timeout (window, manager->priv->logout_timeout);
-                gs_window_set_logout_command (window, manager->priv->logout_command);
-                gs_window_set_keyboard_enabled (window, manager->priv->keyboard_enabled);
-                gs_window_set_keyboard_command (window, manager->priv->keyboard_command);
-                gs_window_set_away_message (window, manager->priv->away_message);
-
-                connect_window_signals (manager, window);
-
-                manager->priv->windows = g_slist_append (manager->priv->windows, window);
+                gs_manager_create_window_for_monitor (manager, screen, i);
         }
 
         g_object_unref (screen);

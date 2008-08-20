@@ -1,3 +1,11 @@
+2008-08-20  William Jon McCann  <jmccann@redhat.com>
+
+	* src/gs-manager.c (gs_manager_create_window_for_monitor),
+	(on_screen_monitors_changed), (gs_manager_destroy_windows),
+	(gs_manager_finalize), (gs_manager_create_windows_for_screen):
+	Create or remove windows as number of monitors changes
+	due to randr 1.2 goodness.
+
 2008-08-15  William Jon McCann  <jmccann@redhat.com>
 
 	* configure.ac: Remove some obsolete gdm stuff.
