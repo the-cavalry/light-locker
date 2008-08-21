@@ -1,5 +1,15 @@
 2008-08-20  William Jon McCann  <jmccann@redhat.com>
 
+	* savers/gs-theme-window.c (gs_theme_window_real_realize):
+	* savers/gste-slideshow.c (scale_pixbuf):
+	* src/debug-screensaver.sh:
+	* src/gs-manager.c (gs_manager_create_window_for_monitor),
+	(on_screen_monitors_changed):
+	Make the saver exit if the window it is drawing on is too
+	small.  This can occur if the monitor is cloned.
+
+2008-08-20  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gs-manager.c (gs_manager_create_window_for_monitor),
 	(on_screen_monitors_changed), (gs_manager_destroy_windows),
 	(gs_manager_finalize), (gs_manager_create_windows_for_screen):

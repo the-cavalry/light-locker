@@ -1428,9 +1428,13 @@ gs_manager_create_window_for_monitor (GSManager *manager,
                                       GdkScreen *screen,
                                       int        monitor)
 {
-        GSWindow *window;
+        GSWindow    *window;
+        GdkRectangle rect;
 
-        gs_debug ("Creating window for monitor %d", monitor);
+        gdk_screen_get_monitor_geometry (screen, monitor, &rect);
+
+        gs_debug ("Creating window for monitor %d [%d,%d] (%dx%d)",
+                  monitor, rect.x, rect.y, rect.width, rect.height);
 
         window = gs_window_new (screen, monitor, manager->priv->lock_active);
 
@@ -1477,7 +1481,8 @@ on_screen_monitors_changed (GdkScreen *screen,
                         this_screen = gs_window_get_screen (GS_WINDOW (l->data));
                         this_monitor = gs_window_get_monitor (GS_WINDOW (l->data));
                         if (this_screen == screen && this_monitor >= n_monitors) {
-                                gs_window_destroy (l->data);
+                                manager_maybe_stop_job_for_window (manager, GS_WINDOW (l->data));
+                                gs_window_destroy (GS_WINDOW (l->data));
                                 manager->priv->windows = g_slist_delete_link (manager->priv->windows, l);
                         }
                 }

@@ -44,6 +44,8 @@ static GObjectClass   *parent_class = NULL;
 
 G_DEFINE_TYPE (GSThemeWindow, gs_theme_window, GTK_TYPE_WINDOW)
 
+#define MIN_SIZE 10
+
 static void
 gs_theme_window_class_init (GSThemeWindowClass *klass)
 {
@@ -178,6 +180,12 @@ gs_theme_window_real_realize (GtkWidget *widget)
         GTK_WIDGET_SET_FLAGS (widget, GTK_REALIZED);
 
         gdk_window_get_geometry (window, &x, &y, &width, &height, NULL);
+
+        if (width < MIN_SIZE || height < MIN_SIZE) {
+                g_critical ("This window is way too small to use");
+                exit (1);
+        }
+
         gtk_widget_size_request (widget, &requisition);
         allocation.x = x;
         allocation.y = y;

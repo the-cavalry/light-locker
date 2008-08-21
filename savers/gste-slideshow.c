@@ -67,7 +67,7 @@ struct GSTESlideshowPrivate
 
         GSList         *filename_list;
         char           *images_location;
-        gboolean	sort_images;
+        gboolean        sort_images;
         int             window_width;
         int             window_height;
         PangoColor     *background_color;
@@ -252,7 +252,7 @@ update_display (GSTESlideshow *show)
                                show->priv->background_color->green / 65535.0,
                                show->priv->background_color->blue / 65535.0, show->priv->alpha2);
                 } else {
-	                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
+                        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
                 }
                 cairo_fill (cr);
                 /* left (excluding what's covered by top and bottom) */
@@ -264,7 +264,7 @@ update_display (GSTESlideshow *show)
                                show->priv->background_color->green / 65535.0,
                                show->priv->background_color->blue / 65535.0, show->priv->alpha2);
                 } else {
-	                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
+                        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
                 }
                 cairo_fill (cr);
                 /* bottom */
@@ -275,7 +275,7 @@ update_display (GSTESlideshow *show)
                                show->priv->background_color->green / 65535.0,
                                show->priv->background_color->blue / 65535.0, show->priv->alpha2);
                 } else {
-	                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
+                        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
                 }
                 cairo_fill (cr);
                 /* right (excluding what's covered by top and bottom) */
@@ -288,7 +288,7 @@ update_display (GSTESlideshow *show)
                                show->priv->background_color->green / 65535.0,
                                show->priv->background_color->blue / 65535.0, show->priv->alpha2);
                 } else {
-	                cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
+                        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, show->priv->alpha2);
                 }
                 cairo_fill (cr);
 
@@ -468,9 +468,11 @@ scale_pixbuf (GdkPixbuf *pixbuf,
 
         /* always scale down, allow to disable scaling up */
         if (scale_factor < 1.0 || !no_stretch_hint) {
-                int scale_x = (int) (pw * scale_factor);
-                int scale_y = (int) (ph * scale_factor);
+                int scale_x;
+                int scale_y;
 
+                scale_x = (int) (pw * scale_factor);
+                scale_y = (int) (ph * scale_factor);
                 return gdk_pixbuf_scale_simple (pixbuf,
                                                 scale_x,
                                                 scale_y,
@@ -637,7 +639,7 @@ op_load_image (GSTESlideshow *show,
         g_async_queue_push_unlocked (show->priv->results_q, op_result);
 
         if (show->priv->results_pull_id == 0) {
-		show->priv->results_pull_id = g_idle_add_full (G_PRIORITY_HIGH_IDLE,
+                show->priv->results_pull_id = g_idle_add_full (G_PRIORITY_HIGH_IDLE,
                                                                (GSourceFunc)results_pull_func,
                                                                show, NULL);
         }
@@ -738,9 +740,9 @@ gste_slideshow_set_property (GObject            *object,
         case PROP_SOLID_BACKGROUND:
                 gste_slideshow_set_background_color (self, g_value_get_string (value));
                 break;
-	case PROP_NO_STRETCH_HINT:
-		gste_slideshow_set_no_stretch_hint (self, g_value_get_boolean (value));
-		break;
+        case PROP_NO_STRETCH_HINT:
+                gste_slideshow_set_no_stretch_hint (self, g_value_get_boolean (value));
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -761,9 +763,9 @@ gste_slideshow_get_property (GObject            *object,
         case PROP_IMAGES_LOCATION:
                 g_value_set_string (value, self->priv->images_location);
                 break;
-	case PROP_SORT_IMAGES:
-		g_value_set_boolean (value, self->priv->sort_images);
-		break;
+        case PROP_SORT_IMAGES:
+                g_value_set_boolean (value, self->priv->sort_images);
+                break;
         case PROP_SOLID_BACKGROUND:
                 {
                         char *color = NULL;
@@ -772,9 +774,9 @@ gste_slideshow_get_property (GObject            *object,
                         g_free (color);
                         break;
                 }
-	case PROP_NO_STRETCH_HINT:
-		g_value_set_boolean (value, self->priv->no_stretch_hint);
-		break;
+        case PROP_NO_STRETCH_HINT:
+                g_value_set_boolean (value, self->priv->no_stretch_hint);
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -981,10 +983,10 @@ gste_slideshow_finalize (GObject *object)
         g_free (show->priv->images_location);
         show->priv->images_location = NULL;
 
-	if (show->priv->background_color) {
-		g_slice_free (PangoColor, show->priv->background_color);
-		show->priv->background_color = NULL;
-	}
+        if (show->priv->background_color) {
+                g_slice_free (PangoColor, show->priv->background_color);
+                show->priv->background_color = NULL;
+        }
 
         if (show->priv->timer != NULL) {
                 g_timer_destroy (show->priv->timer);
