@@ -1,5 +1,18 @@
 2008-08-20  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gnome-screensaver-preferences.c (config_get_lock_disabled),
+	(ui_disable_lock), (ui_set_lock), (ui_set_enabled),
+	(key_changed_cb), (init_capplet):
+	* src/gs-monitor.c (listener_lock_cb),
+	(_gs_monitor_update_from_prefs):
+	* src/gs-prefs.c (_gs_prefs_set_lock_disabled),
+	(gs_prefs_load_from_gconf), (key_changed_cb), (gs_prefs_init):
+	* src/gs-prefs.h:
+	Patch from: <nickspoon0@gmail.com>
+	Fixes #317609
+
+2008-08-20  William Jon McCann  <jmccann@redhat.com>
+
 	* savers/gs-theme-window.c (gs_theme_window_real_realize):
 	* savers/gste-slideshow.c (scale_pixbuf):
 	* src/debug-screensaver.sh:

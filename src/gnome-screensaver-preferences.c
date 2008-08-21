@@ -46,6 +46,9 @@
 
 #define GLADE_XML_FILE "gnome-screensaver-preferences.glade"
 
+#define GNOME_LOCKDOWN_DIR  "/desktop/gnome/lockdown"
+#define KEY_LOCK_DISABLE    GNOME_LOCKDOWN_DIR "/disable_lock_screen"
+
 #define KEY_DIR             "/apps/gnome-screensaver"
 #define KEY_LOCK            KEY_DIR "/lock_enabled"
 #define KEY_IDLE_ACTIVATION_ENABLED         KEY_DIR "/idle_activation_enabled"
@@ -319,6 +322,20 @@ config_get_lock (gboolean *is_writable)
 
         g_object_unref (client);
 
+        return lock;
+}
+
+static gboolean
+config_get_lock_disabled ()
+{
+        GConfClient *client;
+        gboolean     lock;
+
+        client = gconf_client_get_default ();
+
+        lock = gconf_client_get_bool (client, KEY_LOCK_DISABLE, NULL);
+
+        g_object_unref (client);
         return lock;
 }
 
@@ -818,19 +835,19 @@ static void
 theme_installer_run (GtkWidget *prefs_dialog, GList *files)
 {
         GtkWidget *copy_dialog;
-        
+
         copy_dialog = copy_theme_dialog_new (files);
         g_list_foreach (files, (GFunc) (g_object_unref), NULL);
         g_list_free (files);
-        
+
         gtk_window_set_transient_for (GTK_WINDOW (copy_dialog),
                                         GTK_WINDOW (prefs_dialog));
         gtk_window_set_icon_name (GTK_WINDOW (copy_dialog),
                                         "preferences-desktop-screensaver");
-        
+
         g_signal_connect (copy_dialog, "complete",
                           G_CALLBACK (theme_copy_complete_cb), NULL);
-        
+
         copy_theme_dialog_begin (COPY_THEME_DIALOG (copy_dialog));
 }
 
@@ -866,11 +883,11 @@ uri_list_parse (const gchar *uri_list)
         gchar *retval;
         GFile *file;
         GList *result = NULL;
-        
+
         g_return_val_if_fail (uri_list != NULL, NULL);
-        
+
         p = uri_list;
-        
+
         /* We don't actually try to validate the URI according to RFC
          * 2396, or even check for allowed characters - we just ignore
          * comments and trim whitespace off the ends.  We also
@@ -880,27 +897,27 @@ uri_list_parse (const gchar *uri_list)
                 if (*p != '#') {
                         while (g_ascii_isspace (*p))
                                 p++;
-                        
+
                         q = p;
                         while ((*q != '\0')
                                && (*q != '\n')
                                && (*q != '\r'))
                                 q++;
-                        
+
                         if (q > p) {
                                 q--;
                                 while (q > p
                                        && g_ascii_isspace (*q))
                                         q--;
-                                
+
                                 retval = g_malloc (q - p + 2);
                                 strncpy (retval, p, q - p + 1);
                                 retval[q - p + 1] = '\0';
-                                
+
                                 file = g_file_new_for_uri (retval);
-                                
+
                                 g_free (retval);
-                                
+
                                 if (file != NULL)
                                         result = g_list_prepend (result, file);
                         }
@@ -909,7 +926,7 @@ uri_list_parse (const gchar *uri_list)
                 if (p != NULL)
                         p++;
         }
-        
+
         return g_list_reverse (result);
 }
 
@@ -928,11 +945,11 @@ drag_data_received_cb (GtkWidget        *widget,
 
         if (!(info == TARGET_URI_LIST || info == TARGET_NS_URL))
                 return;
-        
+
         files = uri_list_parse ((char *) selection_data->data);
         if (files != NULL) {
                 GtkWidget *prefs_dialog;
-                
+
                 prefs_dialog = glade_xml_get_widget (xml, "prefs_dialog");
                 theme_installer_run (prefs_dialog, files);
         }
@@ -1021,10 +1038,23 @@ invalid_type_warning (const char *type)
 }
 
 static void
+ui_disable_lock (gboolean disable)
+{
+        GtkWidget *widget;
+
+        widget = glade_xml_get_widget (xml, "lock_checkbox");
+        gtk_widget_set_sensitive (widget, !disable);
+        if (disable) {
+                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), FALSE);
+        }
+}
+
+static void
 ui_set_lock (gboolean enabled)
 {
         GtkWidget *widget;
         gboolean   active;
+        gboolean   lock_disabled;
 
         widget = glade_xml_get_widget (xml, "lock_checkbox");
 
@@ -1032,6 +1062,8 @@ ui_set_lock (gboolean enabled)
         if (active != enabled) {
                 gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), enabled);
         }
+        lock_disabled = config_get_lock_disabled ();
+        ui_disable_lock (lock_disabled);
 }
 
 static void
@@ -1040,6 +1072,7 @@ ui_set_enabled (gboolean enabled)
         GtkWidget *widget;
         gboolean   active;
         gboolean   is_writable;
+        gboolean   lock_disabled;
 
         widget = glade_xml_get_widget (xml, "enable_checkbox");
         active = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
@@ -1052,6 +1085,8 @@ ui_set_enabled (gboolean enabled)
         if (is_writable) {
                 gtk_widget_set_sensitive (widget, enabled);
         }
+        lock_disabled = config_get_lock_disabled ();
+        ui_disable_lock(lock_disabled);
 }
 
 static void
@@ -1074,7 +1109,7 @@ key_changed_cb (GConfClient *client,
 
         key = gconf_entry_get_key (entry);
 
-        if (! g_str_has_prefix (key, KEY_DIR)) {
+        if (! g_str_has_prefix (key, KEY_DIR) && ! g_str_has_prefix (key, GNOME_LOCKDOWN_DIR)) {
                 return;
         }
 
@@ -1097,6 +1132,16 @@ key_changed_cb (GConfClient *client,
                         enabled = gconf_value_get_bool (value);
 
                         ui_set_lock (enabled);
+                } else {
+                        invalid_type_warning (key);
+                }
+        } else if (strcmp (key, KEY_LOCK_DISABLE) == 0) {
+                if (value->type == GCONF_VALUE_BOOL) {
+                        gboolean disabled;
+
+                        disabled = gconf_value_get_bool (value);
+
+                        ui_disable_lock (disabled);
                 } else {
                         invalid_type_warning (key);
                 }
@@ -1501,6 +1546,13 @@ init_capplet (void)
                               NULL);
         gconf_client_notify_add (client,
                                  KEY_DIR,
+                                 key_changed_cb,
+                                 NULL, NULL, NULL);
+        gconf_client_add_dir (client, GNOME_LOCKDOWN_DIR,
+                              GCONF_CLIENT_PRELOAD_ONELEVEL,
+                              NULL);
+        gconf_client_notify_add (client,
+                                 GNOME_LOCKDOWN_DIR,
                                  key_changed_cb,
                                  NULL, NULL, NULL);
 

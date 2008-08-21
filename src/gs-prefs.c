@@ -34,6 +34,9 @@ static void gs_prefs_class_init (GSPrefsClass *klass);
 static void gs_prefs_init       (GSPrefs      *prefs);
 static void gs_prefs_finalize   (GObject      *object);
 
+#define GNOME_LOCKDOWN_DIR "/desktop/gnome/lockdown"
+#define KEY_LOCK_DISABLE   GNOME_LOCKDOWN_DIR "/disable_lock_screen"
+
 #define KEY_DIR            "/apps/gnome-screensaver"
 #define KEY_IDLE_ACTIVATION_ENABLED         KEY_DIR "/idle_activation_enabled"
 #define KEY_LOCK_ENABLED   KEY_DIR "/lock_enabled"
@@ -196,7 +199,7 @@ _gs_prefs_set_mode (GSPrefs    *prefs,
 {
         int mode;
 
-	if (value && gconf_string_to_enum (mode_enum_map, value, &mode))
+        if (value && gconf_string_to_enum (mode_enum_map, value, &mode))
                 prefs->mode = mode;
         else
                 prefs->mode = GS_MODE_BLANK_ONLY;
@@ -227,6 +230,13 @@ _gs_prefs_set_lock_enabled (GSPrefs *prefs,
                             gboolean value)
 {
         prefs->lock_enabled = value;
+}
+
+static void
+_gs_prefs_set_lock_disabled (GSPrefs *prefs,
+                             gboolean value)
+{
+        prefs->lock_disabled = value;
 }
 
 static void
@@ -333,6 +343,13 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 _gs_prefs_set_lock_enabled (prefs, bvalue);
         } else {
                 key_error_and_free (KEY_LOCK_ENABLED, error);
+        }
+
+        bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_LOCK_DISABLE, &error);
+        if (! error) {
+                _gs_prefs_set_lock_disabled (prefs, bvalue);
+        } else {
+                key_error_and_free (KEY_LOCK_DISABLE, error);
         }
 
         value = gconf_client_get_int (prefs->priv->gconf_client, KEY_ACTIVATE_DELAY, &error);
@@ -457,7 +474,7 @@ key_changed_cb (GConfClient *client,
 
         key = gconf_entry_get_key (entry);
 
-        if (! g_str_has_prefix (key, KEY_DIR))
+        if (! g_str_has_prefix (key, KEY_DIR) && ! g_str_has_prefix (key, GNOME_LOCKDOWN_DIR))
                 return;
 
         value = gconf_entry_get_value (entry);
@@ -568,6 +585,19 @@ key_changed_cb (GConfClient *client,
 
                         enabled = gconf_value_get_bool (value);
                         _gs_prefs_set_lock_enabled (prefs, enabled);
+
+                        changed = TRUE;
+                } else {
+                        invalid_type_warning (key);
+                }
+
+        } else if (strcmp (key, KEY_LOCK_DISABLE) == 0) {
+
+                if (value->type == GCONF_VALUE_BOOL) {
+                        gboolean disabled;
+
+                        disabled = gconf_value_get_bool (value);
+                        _gs_prefs_set_lock_disabled (prefs, disabled);
 
                         changed = TRUE;
                 } else {
@@ -696,6 +726,7 @@ gs_prefs_init (GSPrefs *prefs)
 
         prefs->idle_activation_enabled = TRUE;
         prefs->lock_enabled            = TRUE;
+        prefs->lock_disabled           = FALSE;
         prefs->logout_enabled          = FALSE;
         prefs->user_switch_enabled     = FALSE;
 
@@ -711,9 +742,18 @@ gs_prefs_init (GSPrefs *prefs)
         gconf_client_add_dir (prefs->priv->gconf_client,
                               KEY_DIR,
                               GCONF_CLIENT_PRELOAD_NONE, NULL);
+        gconf_client_add_dir (prefs->priv->gconf_client,
+                              GNOME_LOCKDOWN_DIR,
+                              GCONF_CLIENT_PRELOAD_NONE, NULL);
+
 
         gconf_client_notify_add (prefs->priv->gconf_client,
                                  KEY_DIR,
+                                 (GConfClientNotifyFunc)key_changed_cb,
+                                 prefs,
+                                 NULL, NULL);
+        gconf_client_notify_add (prefs->priv->gconf_client,
+                                 GNOME_LOCKDOWN_DIR,
                                  (GConfClientNotifyFunc)key_changed_cb,
                                  prefs,
                                  NULL, NULL);

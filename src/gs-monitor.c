@@ -244,7 +244,11 @@ static void
 listener_lock_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
-        gs_monitor_lock_screen (monitor);
+        if (! monitor->priv->prefs->lock_disabled) {
+                gs_monitor_lock_screen (monitor);
+        } else {
+                gs_debug ("Locking disabled by the administrator");
+        }
 
 }
 
@@ -317,8 +321,11 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
         gboolean idle_detection_active;
         gboolean activate_watch;
         gboolean manager_active;
+        gboolean lock_enabled;
 
-        gs_manager_set_lock_enabled (monitor->priv->manager, monitor->priv->prefs->lock_enabled);
+        lock_enabled = (monitor->priv->prefs->lock_enabled && !monitor->priv->prefs->lock_disabled);
+
+        gs_manager_set_lock_enabled (monitor->priv->manager, lock_enabled);
         gs_manager_set_lock_timeout (monitor->priv->manager, monitor->priv->prefs->lock_timeout);
         gs_manager_set_logout_enabled (monitor->priv->manager, monitor->priv->prefs->logout_enabled);
         gs_manager_set_user_switch_enabled (monitor->priv->manager, monitor->priv->prefs->user_switch_enabled);
