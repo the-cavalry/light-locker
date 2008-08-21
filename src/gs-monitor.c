@@ -322,13 +322,15 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
         gboolean activate_watch;
         gboolean manager_active;
         gboolean lock_enabled;
+        gboolean user_switch_enabled;
 
         lock_enabled = (monitor->priv->prefs->lock_enabled && !monitor->priv->prefs->lock_disabled);
+        user_switch_enabled = (monitor->priv->prefs->user_switch_enabled && !monitor->priv->prefs->user_switch_disabled);
 
         gs_manager_set_lock_enabled (monitor->priv->manager, lock_enabled);
         gs_manager_set_lock_timeout (monitor->priv->manager, monitor->priv->prefs->lock_timeout);
         gs_manager_set_logout_enabled (monitor->priv->manager, monitor->priv->prefs->logout_enabled);
-        gs_manager_set_user_switch_enabled (monitor->priv->manager, monitor->priv->prefs->user_switch_enabled);
+        gs_manager_set_user_switch_enabled (monitor->priv->manager, user_switch_enabled);
         gs_manager_set_keyboard_enabled (monitor->priv->manager, monitor->priv->prefs->keyboard_enabled);
         gs_manager_set_logout_timeout (monitor->priv->manager, monitor->priv->prefs->logout_timeout);
         gs_manager_set_logout_command (monitor->priv->manager, monitor->priv->prefs->logout_command);

@@ -35,7 +35,8 @@ static void gs_prefs_init       (GSPrefs      *prefs);
 static void gs_prefs_finalize   (GObject      *object);
 
 #define GNOME_LOCKDOWN_DIR "/desktop/gnome/lockdown"
-#define KEY_LOCK_DISABLE   GNOME_LOCKDOWN_DIR "/disable_lock_screen"
+#define KEY_LOCK_DISABLE          GNOME_LOCKDOWN_DIR "/disable_lock_screen"
+#define KEY_USER_SWITCH_DISABLE   GNOME_LOCKDOWN_DIR "/disable_user_switching"
 
 #define KEY_DIR            "/apps/gnome-screensaver"
 #define KEY_IDLE_ACTIVATION_ENABLED         KEY_DIR "/idle_activation_enabled"
@@ -240,6 +241,13 @@ _gs_prefs_set_lock_disabled (GSPrefs *prefs,
 }
 
 static void
+_gs_prefs_set_user_switch_disabled (GSPrefs *prefs,
+                                    gboolean value)
+{
+        prefs->user_switch_disabled = value;
+}
+
+static void
 _gs_prefs_set_keyboard_enabled (GSPrefs *prefs,
                                 gboolean value)
 {
@@ -350,6 +358,13 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 _gs_prefs_set_lock_disabled (prefs, bvalue);
         } else {
                 key_error_and_free (KEY_LOCK_DISABLE, error);
+        }
+
+        bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_USER_SWITCH_DISABLE, &error);
+        if (! error) {
+                _gs_prefs_set_user_switch_disabled (prefs, bvalue);
+        } else {
+                key_error_and_free (KEY_USER_SWITCH_DISABLE, error);
         }
 
         value = gconf_client_get_int (prefs->priv->gconf_client, KEY_ACTIVATE_DELAY, &error);
@@ -598,6 +613,19 @@ key_changed_cb (GConfClient *client,
 
                         disabled = gconf_value_get_bool (value);
                         _gs_prefs_set_lock_disabled (prefs, disabled);
+
+                        changed = TRUE;
+                } else {
+                        invalid_type_warning (key);
+                }
+
+        } else if (strcmp (key, KEY_USER_SWITCH_DISABLE) == 0) {
+
+                if (value->type == GCONF_VALUE_BOOL) {
+                        gboolean disabled;
+
+                        disabled = gconf_value_get_bool (value);
+                        _gs_prefs_set_user_switch_disabled (prefs, disabled);
 
                         changed = TRUE;
                 } else {

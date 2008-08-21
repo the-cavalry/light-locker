@@ -1,5 +1,13 @@
 2008-08-20  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gs-monitor.c (_gs_monitor_update_from_prefs):
+	* src/gs-prefs.c (_gs_prefs_set_user_switch_disabled),
+	(gs_prefs_load_from_gconf), (key_changed_cb):
+	* src/gs-prefs.h:
+	Honor the disable_user_switching lockdown key.
+
+2008-08-20  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gnome-screensaver-preferences.c (config_get_lock_disabled),
 	(ui_disable_lock), (ui_set_lock), (ui_set_enabled),
 	(key_changed_cb), (init_capplet):
