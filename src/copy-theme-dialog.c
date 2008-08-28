@@ -17,12 +17,11 @@
  * 02111-1307, USA.
 **/
 
-#ifdef HAVE_CONFIG_H
-# include "config.h"
-#endif
+#include "config.h"
 
 #include <limits.h>
 #include <string.h>
+#include <sys/stat.h>
 
 #include <glib.h>
 #include <glib/gstdio.h>
@@ -75,7 +74,7 @@ struct _CopyThemeDialogPrivate
 	GtkWidget *current;
 	GtkWidget *from;
 	GtkWidget *to;
-	
+
 	GFile *theme_dir;
 	GSList *all_files, *file;
 	GSList *all_basenames, *basename;

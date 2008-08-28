@@ -1,4 +1,31 @@
 ===============
+Version 2.23.90
+===============
+
+- use standard icon names (Matthias Clasen)
+- Paint widget background color as face background color.
+- Add/remove windows as necessary in response to RANDR 1.2 events
+- Honor the disable_user_switching lockdown key.
+- Fixed #547013, The dialog incorrectly tell that the numlock is on (William Jon McCann)
+
+Translations:
+- Updated LINGUAS, sr@latin.po, sr@Latn: Goran Rakic
+- Updated ar: Khaled Hosny
+- Updated cs: Petr Kovar
+- Updated eu: Inaki Larranaga Murgoitio, Iñaki Larrañaga Murgoitio
+- Updated fi: Ilkka Tuohela, Timo Jyrinki
+- Updated gu: Daniel Nylander, Sweta Kothari
+- Updated he: Yair Hershkovitz  <yairhr@gmail.com>, Yaniv Abir <yanivabir at gmail dot com>
+- Updated ja: Takeshi AIHANA
+- Updated lt: Gintautas Miliauskas
+- Updated pt: Duarte Loreto
+- Updated pt_BR: Vladimir Melo
+- Updated sv: Daniel Nylander
+
+Help Manual Translations:
+None
+
+===============
 Version 2.23.3
 ===============
 
