@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-30 23:39-0400\n"
-"PO-Revision-Date: 2008-08-30 23:39-0500\n"
+"POT-Creation-Date: 2008-08-30 23:45-0400\n"
+"PO-Revision-Date: 2008-08-30 23:45-0500\n"
 "Last-Translator: Seán de Búrca <leftmostcat@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "_Bainistíocht na Cumhachta"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "Regard the computer as _idle after:"
-msgstr "Sonraigh an ríomhaire mar dhíomhaoin tar éis:"
+msgstr "_Sonraigh an ríomhaire mar dhíomhaoin tar éis:"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "Screensaver Preferences"
