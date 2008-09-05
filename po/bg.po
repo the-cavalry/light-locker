@@ -2,16 +2,16 @@
 # Copyright (C) 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-screensaver package.
 # Rostislav "zbrox" Raykov <zbrox@i-space.org>, 2005, 2006.
-# Alexander Shopov <ash@contact.bg>, 2005, 2006, 2007.
+# Alexander Shopov <ash@contact.bg>, 2005, 2006, 2007, 2008.
 # Yavor Doganov <yavor@gnu.org>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-21 18:45+0300\n"
-"PO-Revision-Date: 2008-04-18 18:04+0300\n"
-"Last-Translator: Yavor Doganov <yavor@gnu.org>\n"
+"POT-Creation-Date: 2008-09-05 13:37+0300\n"
+"PO-Revision-Date: 2008-09-05 13:37+0300\n"
+"Last-Translator: Alexander Shopov <ash@contact.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -121,7 +121,7 @@ msgid ""
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
 msgstr ""
-"Задайте това да е ИСТИНА, за да се позволи вграждане на клавиатура в "
+"Задайте това да е истина, за да се позволи вграждане на клавиатура в "
 "прозореца при опит за отключване. Клавишът „keyboard_command“ трябва да "
 "съдържа подходящата команда."
 
@@ -153,9 +153,9 @@ msgid ""
 "output."
 msgstr ""
 "Командата, която ще бъде стартирана, ако ключът „embedded_keyboard_enabled“ "
-"е зададен да е ИСТИНА, за да се вгради графичен обект-клавиатура в "
+"е зададен да е истина, за да се вгради графичен обект-клавиатура в "
 "прозореца. Тази команда трябва да ползва интерфейса XEMBED и на стандартния "
-"изход да извежда идентификаторът на прозореца - XID."
+"изход да извежда идентификаторът на прозореца — XID."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
@@ -165,7 +165,7 @@ msgid ""
 msgstr ""
 "Коя команда да се изпълнява при натискането на бутона за изход. Командата "
 "трябва да доведе до изхода на потребителя без вход от потребителя. Този ключ "
-"е в сила, единствено ако ключът „logout_enable“ е ИСТИНА."
+"е в сила, единствено ако ключът „logout_enable“ е истина."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
@@ -182,7 +182,7 @@ msgid ""
 msgstr ""
 "Броят минути след задействане на екранния предпазител, преди да се появи "
 "бутон за изход в диалога за отключване. Този ключ е в сила, единствено ако "
-"ключът „logout_enable“ е ИСТИНА."
+"ключът „logout_enable“ е истина."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
@@ -291,7 +291,7 @@ msgstr "_Изход"
 msgid "_Switch User"
 msgstr "_Смяна на потребител"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1214
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1366
 msgid "_Unlock"
 msgstr "_Отключване"
 
@@ -353,7 +353,7 @@ msgstr "Първоначалният размер и местоположени�
 
 #: ../savers/floaters.c:96
 msgid "WIDTHxHEIGHT+X+Y"
-msgstr "ШИР.×ВИС.+ОТМ.поX+ОТМ.поY"
+msgstr "ШИР.xВИС.+ОТМ.поX+ОТМ.поY"
 
 #: ../savers/floaters.c:99
 msgid "The source image to use"
@@ -364,7 +364,7 @@ msgstr "Изображение, което да се ползва"
 #.
 #: ../savers/floaters.c:1194
 msgid "image - floats images around the screen"
-msgstr "image - разни изображения движат по екрана"
+msgstr "image — разни изображения движат по екрана"
 
 #: ../savers/floaters.c:1200
 #, c-format
@@ -401,32 +401,32 @@ msgstr "Изображенията от местоположението да с
 msgid "Do not try to stretch images on screen"
 msgstr "Изображенията да не се разтягат по екрана"
 
-#: ../src/copy-theme-dialog.c:211
+#: ../src/copy-theme-dialog.c:212
 msgid "Copying files"
 msgstr "Копиране на файлове"
 
-#: ../src/copy-theme-dialog.c:229
+#: ../src/copy-theme-dialog.c:230
 msgid "From:"
 msgstr "От:"
 
-#: ../src/copy-theme-dialog.c:233
+#: ../src/copy-theme-dialog.c:234
 msgid "To:"
 msgstr "До:"
 
-#: ../src/copy-theme-dialog.c:253
+#: ../src/copy-theme-dialog.c:254
 msgid "Copying themes"
 msgstr "Копиране на теми"
 
-#: ../src/copy-theme-dialog.c:297
+#: ../src/copy-theme-dialog.c:298
 msgid "Invalid screensaver theme"
 msgstr "Грешна тема за екранния предпазител"
 
-#: ../src/copy-theme-dialog.c:300
+#: ../src/copy-theme-dialog.c:301
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
 msgstr "%s не изглежда да е валидна тема за екранния предпазител."
 
-#: ../src/copy-theme-dialog.c:480
+#: ../src/copy-theme-dialog.c:481
 #, c-format
 msgid "Copying file: %u of %u"
 msgstr "Копиране на файл: %u от %u"
@@ -466,7 +466,7 @@ msgstr ""
 #: ../src/gnome-screensaver-command.c:74
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr ""
-"Ако екранният предпазител е активен - да се\n"
+"Ако екранният предпазител е активен — да се\n"
 "                             деактивира (включване на екрана)"
 
 #: ../src/gnome-screensaver-command.c:76
@@ -501,20 +501,30 @@ msgstr ""
 msgid "Version of this application"
 msgstr "Версия на програмата"
 
-#: ../src/gnome-screensaver-command.c:249
+#: ../src/gnome-screensaver-command.c:307
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "Екранният предпазител е %s\n"
 
-#: ../src/gnome-screensaver-command.c:249
+#: ../src/gnome-screensaver-command.c:307
 msgid "active"
 msgstr "активен"
 
-#: ../src/gnome-screensaver-command.c:249
+#: ../src/gnome-screensaver-command.c:307
 msgid "inactive"
 msgstr "неактивен"
 
-#: ../src/gnome-screensaver-command.c:274
+#: ../src/gnome-screensaver-command.c:321
+#, c-format
+msgid "The screensaver is not inhibited\n"
+msgstr "Стартирането на екранният предпазител не се допуска\n"
+
+#: ../src/gnome-screensaver-command.c:327
+#, c-format
+msgid "The screensaver is being inhibited by:\n"
+msgstr "Стартирането на екранният предпазител не се допуска от:\n"
+
+#: ../src/gnome-screensaver-command.c:358
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "Екранният предпазител се е задействал преди %d секунди.\n"
@@ -619,29 +629,29 @@ msgstr "Проверка…"
 msgid "Authentication failed."
 msgstr "Неуспех при удостоверяването."
 
-#: ../src/gnome-screensaver-preferences.c:498
+#: ../src/gnome-screensaver-preferences.c:515
 msgid "Blank screen"
 msgstr "Черен екран"
 
-#: ../src/gnome-screensaver-preferences.c:504
+#: ../src/gnome-screensaver-preferences.c:521
 msgid "Random"
 msgstr "Произволна"
 
-#: ../src/gnome-screensaver-preferences.c:954
+#: ../src/gnome-screensaver-preferences.c:971
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d час"
 msgstr[1] "%d часа"
 
-#: ../src/gnome-screensaver-preferences.c:957
+#: ../src/gnome-screensaver-preferences.c:974
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d минута"
 msgstr[1] "%d минути"
 
-#: ../src/gnome-screensaver-preferences.c:960
+#: ../src/gnome-screensaver-preferences.c:977
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -649,15 +659,15 @@ msgstr[0] "%d секунда"
 msgstr[1] "%d секунди"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:966
+#: ../src/gnome-screensaver-preferences.c:983
 #, c-format
 msgid "%s %s %s"
 msgstr "%s, %s и %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:969
-#: ../src/gnome-screensaver-preferences.c:977
+#: ../src/gnome-screensaver-preferences.c:986
+#: ../src/gnome-screensaver-preferences.c:994
 #, c-format
 msgid "%s %s"
 msgstr "%s и %s"
@@ -665,23 +675,23 @@ msgstr "%s и %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:972
-#: ../src/gnome-screensaver-preferences.c:980
-#: ../src/gnome-screensaver-preferences.c:984
+#: ../src/gnome-screensaver-preferences.c:989
+#: ../src/gnome-screensaver-preferences.c:997
+#: ../src/gnome-screensaver-preferences.c:1001
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:999
+#: ../src/gnome-screensaver-preferences.c:1016
 #, c-format
 msgid "Never"
 msgstr "Никога"
 
-#: ../src/gnome-screensaver-preferences.c:1398
+#: ../src/gnome-screensaver-preferences.c:1443
 msgid "Could not load the main interface"
 msgstr "Неуспех при зареждането на главния интерфейс"
 
-#: ../src/gnome-screensaver-preferences.c:1400
+#: ../src/gnome-screensaver-preferences.c:1445
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Уверете се, че предпазителя на екрана е инсталиран правилно."
 
@@ -735,19 +745,19 @@ msgstr "Времето изтече."
 msgid "You have the Caps Lock key on."
 msgstr "Клавишът „Caps Lock“ е натиснат."
 
-#: ../src/gs-lock-plug.c:1194
+#: ../src/gs-lock-plug.c:1346
 msgid "S_witch User..."
 msgstr "_Смяна на потребител…"
 
-#: ../src/gs-lock-plug.c:1203
+#: ../src/gs-lock-plug.c:1355
 msgid "Log _Out"
 msgstr "_Изход"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1380
+#: ../src/gs-lock-plug.c:1532
 msgid "%U on %h"
 msgstr "%U на %h"
 
-#: ../src/gs-lock-plug.c:1394
+#: ../src/gs-lock-plug.c:1546
 msgid "_Password:"
 msgstr "Па_рола:"
