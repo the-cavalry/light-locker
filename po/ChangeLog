@@ -1,3 +1,7 @@
+2008-09-07  Wouter Bolsterlee  <wbolster@svn.gnome.org>
+
+	* nl.po: Updated Dutch translation by Wouter Bolsterlee.
+
 2008-09-06  Philip Withnall  <philip@tecnocode.co.uk>
 
 	* en_GB.po: Updated British English translation.
@@ -21,7 +25,7 @@
 
 2008-08-29  Arangel Angov <arangel@linux.net.mk>
 
-        * mk.po: Updated Macedonian translation.
+	* mk.po: Updated Macedonian translation.
 
 2008-08-28  Petr Kovar  <pknbe@volny.cz>
 
@@ -29,7 +33,7 @@
 
 2008-08-25  Goran Rakic  <grakic@devbase.net>
 
-        * LINGUAS, sr@latin.po, sr@Latn.po: Conversion from sr@Latn to sr@latin.
+	* LINGUAS, sr@latin.po, sr@Latn.po: Conversion from sr@Latn to sr@latin.
 
 2008-08-24  Gintautas Miliauskas  <gintas@akl.lt>
 
@@ -53,7 +57,7 @@
 
 2008-08-07  Og Maciel <ogmaciel@gnome.org>
 
-    * pt_BR.po: Updated translation by Vladimir Melo.
+	* pt_BR.po: Updated translation by Vladimir Melo.
 
 2008-08-06  Yair Hershkovitz  <yairhr@gmail.com> 
 
@@ -107,7 +111,7 @@
 
 	* gl.po: Updated Galician Translation.
 
-2008-05-25   Clytie Siddall <clytie@riverland.net.au>
+2008-05-25  Clytie Siddall <clytie@riverland.net.au>
 
 	* vi.po: Updated Vietnamese translation.
 
@@ -230,7 +234,7 @@
 
 2008-02-22 Arangel Angov <arangel@linux.net.mk>
 
-        * mk.po: Updated Macedonian translation.
+	* mk.po: Updated Macedonian translation.
 
 2008-02-19  Priit Laes  <plaes at svn dot gnome dot org>
 
