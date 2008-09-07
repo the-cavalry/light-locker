@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Totem\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-07 17:21+0200\n"
+"POT-Creation-Date: 2008-09-07 22:33+0200\n"
 "PO-Revision-Date: 2008-09-07 17:19+0200\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -540,7 +540,7 @@ msgstr "De schermbeveiliging wordt niet verhinderd\n"
 #: ../src/gnome-screensaver-command.c:327
 #, c-format
 msgid "The screensaver is being inhibited by:\n"
-msgstr "De schermbeveiliging wordt verhinderd door: %s\n"
+msgstr "De schermbeveiliging wordt verhinderd door:\n"
 
 #: ../src/gnome-screensaver-command.c:358
 #, c-format
