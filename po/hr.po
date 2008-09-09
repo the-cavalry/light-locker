@@ -1,0 +1,744 @@
+# Croatian translation for gnome-screensaver
+# Copyright (c) (c) 2006 Canonical Ltd, and Rosetta Contributors 2006
+# This file is distributed under the same license as the gnome-screensaver package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-09 12:29+0200\n"
+"PO-Revision-Date: 2008-03-22 14:34+0000\n"
+"Last-Translator: Ante Karamatić <ivoks@grad.hr>\n"
+"Language-Team: Croatian <hr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Launchpad-Export-Date: 2008-05-28 00:36+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+msgid "Screensaver"
+msgstr "Čuvar zaslona"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "Podesite postavke čuvara zaslona"
+
+#: ../data/gnome-screensaver-preferences.glade.h:1
+msgid "<b>Screensaver preview</b>"
+msgstr "<b>Pregled čuvara zaslona</b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:2
+msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+msgstr "<b>Upozorenje: zaslon neće biti zaključan za root korisnika.<b>"
+
+#: ../data/gnome-screensaver-preferences.glade.h:3
+msgid "Power _Management"
+msgstr "Upravljanje _energijom"
+
+#: ../data/gnome-screensaver-preferences.glade.h:4
+msgid "Regard the computer as _idle after:"
+msgstr "Smatraj računalo _neaktivnim nakon:"
+
+#: ../data/gnome-screensaver-preferences.glade.h:5
+msgid "Screensaver Preferences"
+msgstr "Postavke čuvara zaslona"
+
+#: ../data/gnome-screensaver-preferences.glade.h:6
+msgid "Screensaver Preview"
+msgstr "Pregled čuvara zaslona"
+
+#: ../data/gnome-screensaver-preferences.glade.h:7
+msgid "_Activate screensaver when computer is idle"
+msgstr "_Pokreni čuvara zaslona kada je računalo neaktivno"
+
+#: ../data/gnome-screensaver-preferences.glade.h:8
+msgid "_Lock screen when screensaver is active"
+msgstr "_Zaključaj zaslon kada je čuvar zaslona aktivan"
+
+#: ../data/gnome-screensaver-preferences.glade.h:9
+msgid "_Preview"
+msgstr "_Pregled"
+
+#: ../data/gnome-screensaver-preferences.glade.h:10
+msgid "_Screensaver theme:"
+msgstr "_Tema čuvara:"
+
+#: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "Screensaver themes"
+msgstr "Teme čuvara zaslona"
+
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "Čuvari zaslona"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Activate when idle"
+msgstr "Pokreni dok je je korisnik neaktivan"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow embedding a keyboard into the window"
+msgstr "Dozvoli tipkovnicu u prozoru"
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "Allow logout"
+msgstr "Dozvoli odjavu"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow user switching"
+msgstr "Dozvoli prebacivanje korisnika"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Embedded keyboard command"
+msgstr "Naredba tipkovnice"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "Lock on activation"
+msgstr "Zaključaj prilikom pokretanja"
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Logout command"
+msgstr "Odjavna naredba"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Reason for being away"
+msgstr "Razlog odsutnosti"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Screensaver theme selection mode"
+msgstr "Stanje odabira teme čuvara ekrana"
+
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr "Postaviti za pokretanje čuvara zaslona prilikom neaktivne prijave."
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr ""
+"Postavite na ISTINITO da bi dozvolili umetanje tipkovnice u prozor pri "
+"pokušaju otključavanja. Tipka \"keyboard_command\" mora biti namještena "
+"odgovarajućom naredbom."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr ""
+"Postaviti za zaključavanje zaslona prilikom aktiviranja čuvara zaslona."
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr ""
+"Postaviti za ponudu opcije u dijalogu otključavanja za prebacivanje na drugi "
+"korisnički račun."
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr ""
+"Postaviti za ponudi opcije u dijalogu otključavanja za odjavljivanje nakon "
+"odgode. Vrijeme odgode je određeno u \"odjava_odgoda\" tipki."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr ""
+"Naredba koja će se pokrenuti za umetanje virtualne tipkovnice u prozor, ako "
+"je \"embedded_keyboard_enabled\" namješten na ISTINITO. Ova naredba bi "
+"trebala implementirati XEMBED utično sučelje i davati XID prozora na izlazu."
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr ""
+"Naredba koja će se pozvati prilikom klika na odjavnu tipku. Ova naredba "
+"jednostavno treba odjaviti korisnika bez ikakve interakcije. Ova tipka ima "
+"utjecaja samo ako je postavljena tipka \"odjava_omogućeno\"."
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
+msgstr ""
+"Broj minuta potreban da se zaslon zaključa nakon pokretanja čuvara zaslona."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr ""
+"Broj minuta nakon pokretanja čuvara zaslona prije nego što će se pojaviti "
+"opcija za odjavu korisnika. Ovaj ključ se koristi samo ako je ključ "
+"\"logout_enable\" postavljen na istinito."
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
+msgstr ""
+"Broj minuta neaktivnosti potrebnih prije nego se prijava proglasi neaktivnom."
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr ""
+"Broj minuta rada čuvara zaslona potrebnih prije mjenjanja njegove teme."
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid ""
+"The number of seconds of inactivity before signalling to power-management. "
+"This key is set and maintained by the session power-management agent."
+msgstr ""
+"Broj sekundi neaktivnosti prije nego što se obavijesti upravljača energijom. "
+"Ovu postavku namješta i održava agent upravljanja energijom."
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid "The reason for being away from the computer."
+msgstr "Razlog odsutnosti od računala."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid ""
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
+msgstr ""
+"Odabir stanja čuvara zaslona. Može biti \"zatamnjeno\", time čuvar zaslona "
+"radi bez tema, \"jedan\" radi samo sa jednom temom (odabranom \"tema\" "
+"tipkom), i \"nasumičan\" radi sa nasumičnim odabirom tema."
+
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Theme for lock dialog"
+msgstr "Tema za dijalog zaključavanja"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Theme to use for the lock dialog."
+msgstr "Tema koja će se koristiti za dijalog zaključavanja"
+
+#: ../data/gnome-screensaver.schemas.in.h:27
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
+msgstr ""
+"Ovaj ključ precizira listu tema čuvara zaslona. Zanemaren je kada je ključ "
+"\"mode\" \"blank-only\", no kada je \"mode\" \"single\" prikazat će ime "
+"teme, te listu tema kada je \"mode\" \"random\"."
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before locking"
+msgstr "Vrijeme potrebno prije zaključavanja"
+
+#: ../data/gnome-screensaver.schemas.in.h:29
+msgid "Time before logout option"
+msgstr "Vrijeme potrebno prije odjavne opcije"
+
+#: ../data/gnome-screensaver.schemas.in.h:30
+msgid "Time before power-management baseline"
+msgstr "Vrijeme potrebno prije nulte linije upravljanja energijom"
+
+#: ../data/gnome-screensaver.schemas.in.h:31
+msgid "Time before session is considered idle"
+msgstr "Vrijeme potrebno da se utvrdi mirovanje prijave"
+
+#: ../data/gnome-screensaver.schemas.in.h:32
+msgid "Time before theme change"
+msgstr "Vrijeme potrebno prije promjene teme"
+
+#: ../data/lock-dialog-default.glade.h:2
+#, no-c-format
+msgid "<b>Leave a message for %R:</b>"
+msgstr "<b>Ostaviti poruku za %R:</b>"
+
+#: ../data/lock-dialog-default.glade.h:4
+#, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
+msgstr "<span size=\"small\">%U na %h</span>"
+
+#: ../data/lock-dialog-default.glade.h:6
+#, no-c-format
+msgid "<span size=\"x-large\">%R</span>"
+msgstr "<span size=\"x-large\">%R</span>"
+
+#: ../data/lock-dialog-default.glade.h:7
+msgid "_Cancel"
+msgstr "_Odustani"
+
+#: ../data/lock-dialog-default.glade.h:8
+msgid "_Leave Message"
+msgstr "_Ostavi poruku"
+
+#: ../data/lock-dialog-default.glade.h:9
+msgid "_Log Out"
+msgstr "_Odjava"
+
+#: ../data/lock-dialog-default.glade.h:10
+msgid "_Switch User"
+msgstr "_Zamijeni korisnika"
+
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1366
+msgid "_Unlock"
+msgstr "_Otključaj"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr "Svemir"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "Prikaži niz slika svemira"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Prikazuje GNOME logo u mjehurićima preko zaslona"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Lebdeće noge"
+
+#: ../savers/personal-slideshow.desktop.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr "Prikaži niz slika iz mape Slike"
+
+#: ../savers/personal-slideshow.desktop.in.h:2
+msgid "Pictures folder"
+msgstr "mapa Slike"
+
+#: ../savers/popsquares.desktop.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr "Pop umjetnička mreža pulsirajućih boja."
+
+#: ../savers/popsquares.desktop.in.h:2
+msgid "Pop art squares"
+msgstr "Pop umjetnički kvadrati"
+
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr ""
+
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "Povremeno rotiranje slika dok se pomiču"
+
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "Ispis broja slika u sekundi i drugih statistika"
+
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "Najveći broj slika koje će se zadržatii na ekranu"
+
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "MAX_SLIKE"
+
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "Početna veličina i položaj prozora"
+
+#: ../savers/floaters.c:96
+msgid "WIDTHxHEIGHT+X+Y"
+msgstr "ŠIRINAxVISINA+X+Y"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "Izvorna slika"
+
+#. translators: the word "image" here
+#. * represents a command line argument
+#.
+#: ../savers/floaters.c:1194
+msgid "image - floats images around the screen"
+msgstr "image - lebdeće slike oko zaslona"
+
+#: ../savers/floaters.c:1200
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s. Vidi --help za informacije o korištenju.\n"
+
+#: ../savers/floaters.c:1209
+msgid "You must specify one image.  See --help for usage information.\n"
+msgstr "Morate navesti jednu sliku. Vidi --help za informacije o korištenju.\n"
+
+#: ../savers/slideshow.c:53
+msgid "Location to get images from"
+msgstr "Mjesto s kojeg želite slike"
+
+#: ../savers/slideshow.c:53
+msgid "PATH"
+msgstr "PATH"
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "Boja pozadine za slike"
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "\"#rrggbb\""
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr ""
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "Ne pokušavaj rastegnuti slike na ekranu"
+
+#: ../src/copy-theme-dialog.c:212
+msgid "Copying files"
+msgstr "Kopiram datoteke"
+
+#: ../src/copy-theme-dialog.c:230
+msgid "From:"
+msgstr "Od:"
+
+#: ../src/copy-theme-dialog.c:234
+msgid "To:"
+msgstr "Za:"
+
+#: ../src/copy-theme-dialog.c:254
+msgid "Copying themes"
+msgstr ""
+
+#: ../src/copy-theme-dialog.c:298
+msgid "Invalid screensaver theme"
+msgstr "Neispravna tema čuvara zaslona"
+
+#: ../src/copy-theme-dialog.c:301
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr ""
+
+#: ../src/copy-theme-dialog.c:481
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "Kopiram datoteku: %u od %u"
+
+#: ../src/gnome-screensaver-command.c:62
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Uzrokuje pravilan izlazak iz čuvara zaslona"
+
+#: ../src/gnome-screensaver-command.c:64
+msgid "Query the state of the screensaver"
+msgstr "Ispitaj stanje čuvara zaslona"
+
+#: ../src/gnome-screensaver-command.c:66
+msgid "Query the length of time the screensaver has been active"
+msgstr "Određivanje duljine trajanja čuvara zaslona"
+
+#: ../src/gnome-screensaver-command.c:68
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "Govori pokrenutom procesu čuvara zaslona da odmah zaključa zaslon"
+
+#: ../src/gnome-screensaver-command.c:70
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "Ako je čuvar zaslona aktivan prebaci na drugu animaciju"
+
+#: ../src/gnome-screensaver-command.c:72
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "Pokreni čuvar zaslona (zatamni zaslon)"
+
+#: ../src/gnome-screensaver-command.c:74
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "Ako je čuvar zaslona aktivan, deaktiviraj ga (obnovi sliku na zaslonu)"
+
+#: ../src/gnome-screensaver-command.c:76
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "Navedi čuvara zaslona da misli da je korisnik aktivan"
+
+#: ../src/gnome-screensaver-command.c:78
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr ""
+"Spriječavanje aktiviranja čuvara zaslona. Naredba blokira dok je zabrana "
+"aktivna."
+
+#: ../src/gnome-screensaver-command.c:80
+msgid "The calling application that is inhibiting the screensaver"
+msgstr "Pozivni program koji spriječava čuvara zaslona"
+
+#: ../src/gnome-screensaver-command.c:82
+msgid "The reason for inhibiting the screensaver"
+msgstr "Razlog spriječavanja čuvara zaslona"
+
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:57
+#: ../src/gnome-screensaver.c:56
+msgid "Version of this application"
+msgstr "Verzija ovog programa"
+
+#: ../src/gnome-screensaver-command.c:307
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "Čuvar zaslona je %s\n"
+
+#: ../src/gnome-screensaver-command.c:307
+msgid "active"
+msgstr "aktivan"
+
+#: ../src/gnome-screensaver-command.c:307
+msgid "inactive"
+msgstr "neaktivan"
+
+#: ../src/gnome-screensaver-command.c:321
+#, fuzzy
+msgid "The screensaver is not inhibited\n"
+msgstr "Čuvar zaslona je %s\n"
+
+#: ../src/gnome-screensaver-command.c:327
+#, fuzzy
+msgid "The screensaver is being inhibited by:\n"
+msgstr "Čuvar zaslona je %s\n"
+
+#: ../src/gnome-screensaver-command.c:358
+#, c-format
+msgid "The screensaver has been active for %d seconds.\n"
+msgstr "Čuvar zaslona je aktivan %d sekundi.\n"
+
+#: ../src/gnome-screensaver-dialog.c:55
+msgid "Show debugging output"
+msgstr "Prikaži detaljni ispis rada"
+
+#: ../src/gnome-screensaver-dialog.c:59
+msgid "Show the logout button"
+msgstr "Prikaži odjavnu tipku"
+
+#: ../src/gnome-screensaver-dialog.c:61
+msgid "Command to invoke from the logout button"
+msgstr "Naredba za pozivanje pritiskom na odjavnu tipku"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "Show the switch user button"
+msgstr "Prikaži tipku za promjenu korisnika"
+
+#: ../src/gnome-screensaver-dialog.c:65
+msgid "Message to show in the dialog"
+msgstr "Poruka koju treba prikazati u dialogu"
+
+#: ../src/gnome-screensaver-dialog.c:65
+msgid "MESSAGE"
+msgstr "PORUKA"
+
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gnome-screensaver-dialog.c:176
+#: ../src/gnome-screensaver-dialog.c:177 ../src/gs-auth-pam.c:698
+msgid "Username:"
+msgstr "Korisničko ime:"
+
+#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "Lozinka:"
+
+#: ../src/gnome-screensaver-dialog.c:180
+msgid "You are required to change your password immediately (password aged)"
+msgstr "Morate odmah promijeniti lozinku (zastarjela lozinka)"
+
+#: ../src/gnome-screensaver-dialog.c:181
+msgid "You are required to change your password immediately (root enforced)"
+msgstr "Morate odmah promijeniti lozinku (administrator je naredio)"
+
+#: ../src/gnome-screensaver-dialog.c:182
+msgid "Your account has expired; please contact your system administrator"
+msgstr ""
+"Vaš korisnički račun je istekao; molim kontaktirajte administratora sustava"
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "No password supplied"
+msgstr "Lozinka nije unešena"
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "Password unchanged"
+msgstr "Lozinka nepromijenjena"
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "Can not get username"
+msgstr "Ne mogu saznati korisničko ime"
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "Retype new UNIX password:"
+msgstr "Ponovno upišite UNIX lozinku:"
+
+#: ../src/gnome-screensaver-dialog.c:187
+msgid "Enter new UNIX password:"
+msgstr "Upišite novu UNIX lozinku:"
+
+#: ../src/gnome-screensaver-dialog.c:188
+msgid "(current) UNIX password:"
+msgstr "(trenutna) UNIX lozinka:"
+
+#: ../src/gnome-screensaver-dialog.c:189
+msgid "Error while changing NIS password."
+msgstr "Greška pri promjeni NIS lozinke."
+
+#: ../src/gnome-screensaver-dialog.c:190
+msgid "You must choose a longer password"
+msgstr "Morate odabrati dužu lozinku"
+
+#: ../src/gnome-screensaver-dialog.c:191
+msgid "Password has been already used. Choose another."
+msgstr "Lozinka je već korištena. Odaberite neku drugu."
+
+#: ../src/gnome-screensaver-dialog.c:192
+msgid "You must wait longer to change your password"
+msgstr "Morate pričekati nešto duže za promijenu lozinke"
+
+#: ../src/gnome-screensaver-dialog.c:193
+msgid "Sorry, passwords do not match"
+msgstr "Na žalost, lozinke se ne podudaraju"
+
+#: ../src/gnome-screensaver-dialog.c:259
+msgid "Checking..."
+msgstr "Provjeravanje..."
+
+#: ../src/gnome-screensaver-dialog.c:301 ../src/gs-auth-pam.c:457
+msgid "Authentication failed."
+msgstr "Autentikacija nije uspjela."
+
+#: ../src/gnome-screensaver-preferences.c:515
+msgid "Blank screen"
+msgstr "Zatamni zaslon"
+
+#: ../src/gnome-screensaver-preferences.c:521
+msgid "Random"
+msgstr "Nasumično"
+
+#: ../src/gnome-screensaver-preferences.c:971
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d sat"
+msgstr[1] "%d sata"
+msgstr[2] "%d sati"
+
+#: ../src/gnome-screensaver-preferences.c:974
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minute"
+msgstr[1] "%d minute"
+msgstr[2] "%d minuta"
+
+#: ../src/gnome-screensaver-preferences.c:977
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekunda"
+msgstr[1] "%d sekunde"
+msgstr[2] "%d sekundi"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:983
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:986
+#: ../src/gnome-screensaver-preferences.c:994
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:989
+#: ../src/gnome-screensaver-preferences.c:997
+#: ../src/gnome-screensaver-preferences.c:1001
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: ../src/gnome-screensaver-preferences.c:1016
+msgid "Never"
+msgstr "Nikad"
+
+#: ../src/gnome-screensaver-preferences.c:1443
+msgid "Could not load the main interface"
+msgstr "Ne mogu učitati glavno sučelje"
+
+#: ../src/gnome-screensaver-preferences.c:1445
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "Provjerite je li čuvar zaslona pravilno instaliran"
+
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "Nemoj radit u pozadini"
+
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr "Omogući pronalaženje grešaka u programu"
+
+#: ../src/gs-auth-pam.c:397
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr "Nije moguće ostvariti servis %s: %s\n"
+
+#: ../src/gs-auth-pam.c:423
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr "Nije moguće postaviti PAM_TTY=%s"
+
+#: ../src/gs-auth-pam.c:455
+msgid "Incorrect password."
+msgstr "Neispravna lozinka."
+
+#: ../src/gs-auth-pam.c:471
+msgid "Not permitted to gain access at this time."
+msgstr "Trenutno nemate dopuštenje ulaza."
+
+#: ../src/gs-auth-pam.c:477
+msgid "No longer permitted to access the system."
+msgstr "Nemate dopuštenje ulaza u sustav."
+
+#: ../src/gs-listener-dbus.c:1921
+msgid "failed to register with the message bus"
+msgstr "ne mogu se registrirati na sabirnicu poruka"
+
+#: ../src/gs-listener-dbus.c:1931
+msgid "not connected to the message bus"
+msgstr "nisam spojen sa sabirnicom poruka"
+
+#: ../src/gs-listener-dbus.c:1940
+msgid "screensaver already running in this session"
+msgstr "čuvar zaslona već pokrenut u ovoj prijavi"
+
+#: ../src/gs-lock-plug.c:271
+msgid "Time has expired."
+msgstr "Vrijeme je isteklo."
+
+#: ../src/gs-lock-plug.c:299
+msgid "You have the Caps Lock key on."
+msgstr "Uključena vam je Caps Lock tipka."
+
+#: ../src/gs-lock-plug.c:1346
+msgid "S_witch User..."
+msgstr "Pro_mjena korisnika..."
+
+#: ../src/gs-lock-plug.c:1355
+msgid "Log _Out"
+msgstr "_Odjava"
+
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1532
+msgid "%U on %h"
+msgstr "%U na %h"
+
+#: ../src/gs-lock-plug.c:1546
+msgid "_Password:"
+msgstr "_Lozinka:"
