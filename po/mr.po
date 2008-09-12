@@ -1,14 +1,14 @@
-# translation of gnome-screensaver.HEAD.mr.po to marathi
+# translation of mr.po to marathi
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Sandeep Shedmake <sandeep.shedmake@gmail.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver.HEAD.mr\n"
+"Project-Id-Version: mr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-01 04:10+0000\n"
-"PO-Revision-Date: 2008-03-05 12:09+0530\n"
+"POT-Creation-Date: 2008-05-12 22:13+0000\n"
+"PO-Revision-Date: 2008-09-12 12:10+0530\n"
 "Last-Translator: Sandeep Shedmake <sandeep.shedmake@gmail.com>\n"
 "Language-Team: marathi\n"
 "MIME-Version: 1.0\n"
@@ -119,7 +119,9 @@ msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
-msgstr "कुलूप उघडण्यापूर्वी चौकटीत कळफलक अंतर्भूत करण्यापूर्वी या खरे असे निश्चित करा. \"कळफलक_आदेश\" कळ योग्य आदेश द्वारे निश्चित केले पाहिजे."
+msgstr ""
+"कुलूप उघडण्यापूर्वी चौकटीत कळफलक अंतर्भूत करण्यापूर्वी या खरे असे निश्चित करा. \"कळफलक_आदेश"
+"\" कळ योग्य आदेश द्वारे निश्चित केले पाहिजे."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
@@ -129,13 +131,15 @@ msgstr "स्क्रीनसेवर सक्रीय केल्या�
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
-msgstr "कुलूप उघडा संवाद मध्ये अन्य वापरकर्ता खातेवर जायचे असल्यास व पर्याय सूचवायचे असल्यास यास खरे निश्चित करा."
+msgstr ""
+"कुलूप उघडा संवाद मध्ये अन्य वापरकर्ता खातेवर जायचे असल्यास व पर्याय सूचवायचे असल्यास यास "
+"खरे निश्चित करा."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
-msgstr "कुलूप उघडा संवाद मध्ये थोड्यावेळे नंतर दाखलन पासून बाहेर पडायचे असल्यास व पर्याय सूचवायचे असल्यास यास खरे निश्चित करा."
+msgstr "विलंब नंतर कुलूपबंद संवाद उघडणे पर्याय अंतर्गत पर्याय दर्शविण्याकरीता यास खरे असे निश्चित करा. विलंब  \"logout_delay\" कि अंतर्गत निर्देशीत केले गेले आहे."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
@@ -143,14 +147,20 @@ msgid ""
 "set to TRUE, to embed a keyboard widget into the window. This command should "
 "implement an XEMBED plug interface and output a window XID on the standard "
 "output."
-msgstr "चौकट मध्ये अंतर्भूत करण्याजोगी कळफलक नियंत्रण घटक करीता \"embedded_keyboard_enabled\" किल्ली खरे असल्यास, या आदेश कार्यरत केला जाईल. या आदेशाने XEMBED प्लग संवाद कार्यरत केले पाहिजे व मानक आउटपुटवर चौकट XID आउटपुट स्वरूपी दर्शविले पाहिजे."
+msgstr ""
+"चौकट मध्ये अंतर्भूत करण्याजोगी कळफलक नियंत्रण घटक करीता \"embedded_keyboard_enabled"
+"\" किल्ली खरे असल्यास, या आदेश कार्यरत केला जाईल. या आदेशाने XEMBED प्लग संवाद कार्यरत "
+"केले पाहिजे व मानक आउटपुटवर चौकट XID आउटपुट स्वरूपी दर्शविले पाहिजे."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
-msgstr "लॉगआउट बटण क्लीक केल्यावर प्रारंभ करायचे ते आदेश. विना कुठल्याही प्रकारच्या संवादने या आदेशाने वापरकर्त्यास लॉगआउट केले पाहिजे. \"logout_enable\" किल्ली खरे अल्यावरच या किल्लीचा प्रभाव प्रडतो."
+msgstr ""
+"लॉगआउट बटण क्लीक केल्यावर प्रारंभ करायचे ते आदेश. विना कुठल्याही प्रकारच्या संवादने या "
+"आदेशाने वापरकर्त्यास लॉगआउट केले पाहिजे. \"logout_enable\" किल्ली खरे अल्यावरच या "
+"किल्लीचा प्रभाव प्रडतो."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
 msgid "The number of minutes after screensaver activation before locking the screen."
@@ -161,7 +171,9 @@ msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
-msgstr "स्क्रीनसेवर सक्रीय झाल्यावर व कुलूप उघडा संवाद मध्ये लॉगआउट पर्याय दर्शविण्यापूर्वी, लागणारी मिनीटं . \"logout_enable\" किल्ली खरे अल्यावरच या किल्लीचा प्रभाव प्रडतो."
+msgstr ""
+"स्क्रीनसेवर सक्रीय झाल्यावर व कुलूप उघडा संवाद मध्ये लॉगआउट पर्याय दर्शविण्यापूर्वी, "
+"लागणारी मिनीटं . \"logout_enable\" किल्ली खरे अल्यावरच या किल्लीचा प्रभाव प्रडतो."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid "The number of minutes of inactivity before the session is considered idle."
@@ -175,7 +187,9 @@ msgstr "सेक्रीनसेवर सुत्रयोजना बद�
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
-msgstr "पॉवर-व्यवस्थापन करीता संकेत देण्यापूर्वी निष्क्रीयताचे सेकंद मधील वेळ. ही किल्ली सत्र पॉवर-व्यवस्थापन घटक द्वारे निश्चित व नियंत्रीत केली जाते."
+msgstr ""
+"पॉवर-व्यवस्थापन करीता संकेत देण्यापूर्वी निष्क्रीयताचे सेकंद मधील वेळ. ही किल्ली सत्र पॉवर-"
+"व्यवस्थापन घटक द्वारे निश्चित व नियंत्रीत केली जाते."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid "The reason for being away from the computer."
@@ -188,7 +202,11 @@ msgid ""
 "screensaver using only one theme on activation (specified in \"themes\" "
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
-msgstr "स्क्रीनसेवर द्वारे वापरलेली निवड पध्दती. सक्रीय केल्यावर सुत्रयोजनाचा वापर विना स्क्रीनसेवर कार्यन्वीत करीता \"फक्त-रिकामी\" वापरा, सक्रीय केल्यावर (\"सुत्रयोजना\" किल्ली) एकच सुत्रयोजनाचा वापर करीता \"एकमेव\" वापरा, व सक्रीय केल्यावर विनाक्रमीत सुत्रयोजनाचा वापर करीता \"विनाक्रम\" चा वापर करा."
+msgstr ""
+"स्क्रीनसेवर द्वारे वापरलेली निवड पध्दती. सक्रीय केल्यावर सुत्रयोजनाचा वापर विना स्क्रीनसेवर "
+"कार्यन्वीत करीता \"फक्त-रिकामी\" वापरा, सक्रीय केल्यावर (\"सुत्रयोजना\" किल्ली) एकच "
+"सुत्रयोजनाचा वापर करीता \"एकमेव\" वापरा, व सक्रीय केल्यावर विनाक्रमीत सुत्रयोजनाचा "
+"वापर करीता \"विनाक्रम\" चा वापर करा."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
@@ -204,7 +222,11 @@ msgid ""
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
-msgstr "ही किल्ली सक्रीनसेवर द्वारे वापरण्याजोगी सुत्रयोजनाची यादी निर्देशीत करते. ignored when \"पध्दती\" किल्ली \"फक्त-रिकामी\" असल्यास दुर्लक्ष केली जाते,  \"पध्दती\" \"ऐकमेव\" असल्यास सुत्रयोजनाचे नाव प्रविष्ट केले पाहिजे, व \"पध्दती\" \"विनाक्रम\" नस्लावर सुत्रयोजनाची यादी पुरविली पाहिजे."
+msgstr ""
+"ही किल्ली सक्रीनसेवर द्वारे वापरण्याजोगी सुत्रयोजनाची यादी निर्देशीत करते. ignored when "
+"\"पध्दती\" किल्ली \"फक्त-रिकामी\" असल्यास दुर्लक्ष केली जाते,  \"पध्दती\" \"ऐकमेव\" "
+"असल्यास सुत्रयोजनाचे नाव प्रविष्ट केले पाहिजे, व \"पध्दती\" \"विनाक्रम\" नस्लावर "
+"सुत्रयोजनाची यादी पुरविली पाहिजे."
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
@@ -257,7 +279,7 @@ msgstr "बाहेर पडा (_L)"
 msgid "_Switch User"
 msgstr "उपयोक्ता बदला(_S)"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1214
 msgid "_Unlock"
 msgstr "कुलूपबंद उघडा (_U)"
 
@@ -442,125 +464,135 @@ msgstr "स्क्रीनसेवर दर्शविण्यापा�
 msgid "The reason for inhibiting the screensaver"
 msgstr "स्क्रीनसेवर अकार्यान्वीत करण्यामागचे कारण"
 
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:57
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "या अनुप्रयोगाची आवृत्ती"
 
-#: ../src/gnome-screensaver-command.c:249
+#: ../src/gnome-screensaver-command.c:307
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "%s सक्रीनसेवर आहे\n"
 
-#: ../src/gnome-screensaver-command.c:249
+#: ../src/gnome-screensaver-command.c:307
 msgid "active"
 msgstr "सक्रीय"
 
-#: ../src/gnome-screensaver-command.c:249
+#: ../src/gnome-screensaver-command.c:307
 msgid "inactive"
-msgstr "असक्रीय"
+msgstr "निषक्रीय्रीय"
 
-#: ../src/gnome-screensaver-command.c:274
+#: ../src/gnome-screensaver-command.c:321
+#, c-format
+msgid "The screensaver is not inhibited\n"
+msgstr "सक्रीनसेवर प्रतिबंद नाही\n"
+
+#: ../src/gnome-screensaver-command.c:327
+#, c-format
+msgid "The screensaver is being inhibited by:\n"
+msgstr "सक्रीनसेवर यानुरूप प्रतिबंदीत केले गेले\n"
+
+#: ../src/gnome-screensaver-command.c:358
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "%d सेकंद करीता सक्रीनसेवर सक्रीय आहे.\n"
 
-#: ../src/gnome-screensaver-dialog.c:53
+#: ../src/gnome-screensaver-dialog.c:55
 msgid "Show debugging output"
 msgstr "डीबगींग आउटपुट दर्शवा"
 
-#: ../src/gnome-screensaver-dialog.c:57
+#: ../src/gnome-screensaver-dialog.c:59
 msgid "Show the logout button"
 msgstr "लॉगआउट बटण दर्शवा"
 
-#: ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver-dialog.c:61
 msgid "Command to invoke from the logout button"
 msgstr "लॉगआउट बटण पासून प्रारंभ करण्यासाठीचे आदेश"
 
-#: ../src/gnome-screensaver-dialog.c:61
+#: ../src/gnome-screensaver-dialog.c:63
 msgid "Show the switch user button"
 msgstr "वापरकर्ता बटण बदलवा दर्शवा"
 
-#: ../src/gnome-screensaver-dialog.c:63
+#: ../src/gnome-screensaver-dialog.c:65
 msgid "Message to show in the dialog"
 msgstr "संवाद मध्ये दर्शवायचे ते संदेश"
 
-#: ../src/gnome-screensaver-dialog.c:63
+#: ../src/gnome-screensaver-dialog.c:65
 msgid "MESSAGE"
 msgstr "संदेश"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
-#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gnome-screensaver-dialog.c:176
+#: ../src/gnome-screensaver-dialog.c:177 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "वापरकर्त्याचे नाव:"
 
-#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
+#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "गुप्तशब्द:"
 
-#: ../src/gnome-screensaver-dialog.c:178
+#: ../src/gnome-screensaver-dialog.c:180
 msgid "You are required to change your password immediately (password aged)"
 msgstr "तुमचा गुप्तशब्द तत्काळ बदलण्याची आवश्यकता आहे (गुप्तशब्द जुना आहे)"
 
-#: ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:181
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "तुमचा गुप्तशब्द तत्काळ बदलण्याची आवश्यकता आहे (रूट वापरा)"
 
-#: ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:182
 msgid "Your account has expired; please contact your system administrator"
 msgstr "तुमचे खाते बंद झाले आहे, कृपया तुमच्या संगणक व्यवस्थापकाकडे जा"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:183
 msgid "No password supplied"
 msgstr "गुप्तशब्द दिलेला नाही"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "Password unchanged"
 msgstr "गुप्तशब्द बदललेला नाही"
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "Can not get username"
 msgstr "वापरकर्त्याचे नाव मिळत नाही"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "Retype new UNIX password:"
 msgstr "नवा UNIX गुप्तशब्द पुन्हा टाईप करा:"
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:187
 msgid "Enter new UNIX password:"
 msgstr "नवा UNIX गुप्तशब्द प्रविष्ट करा:"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "(current) UNIX password:"
 msgstr "(सद्याचा) UNIX गुप्तशब्द:"
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "Error while changing NIS password."
 msgstr "NIS चा गुप्तशब्द बदलताना चुक झाली."
 
-#: ../src/gnome-screensaver-dialog.c:188
+#: ../src/gnome-screensaver-dialog.c:190
 msgid "You must choose a longer password"
 msgstr "तुम्ही मोठा गुप्तशब्द निवडला पाहीजे"
 
-#: ../src/gnome-screensaver-dialog.c:189
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "Password has been already used. Choose another."
 msgstr "ह्या गुप्तशब्दचा आधीच वापर झाला आहे. दुसरा निवडा."
 
-#: ../src/gnome-screensaver-dialog.c:190
+#: ../src/gnome-screensaver-dialog.c:192
 msgid "You must wait longer to change your password"
 msgstr "तुमचा गुप्तशब्द बदलण्यासाठी तुम्हाला बराच वेळ वाट पहावी लागेल"
 
-#: ../src/gnome-screensaver-dialog.c:191
+#: ../src/gnome-screensaver-dialog.c:193
 msgid "Sorry, passwords do not match"
 msgstr "क्षमा करा, गुप्तशब्द जुळत नाहीत"
 
-#: ../src/gnome-screensaver-dialog.c:257
+#: ../src/gnome-screensaver-dialog.c:259
 msgid "Checking..."
 msgstr "तपास करीत आहे..."
 
-#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:301 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "अधिप्रमाणन असफल."
 
@@ -672,28 +704,28 @@ msgstr "संदेश बसशी जुळवणी करू शकला �
 msgid "screensaver already running in this session"
 msgstr "स्क्रीनसेवर आधिपासूनच या सत्रा मध्ये कार्यरत आहे"
 
-#: ../src/gs-lock-plug.c:269
+#: ../src/gs-lock-plug.c:271
 msgid "Time has expired."
 msgstr "वेळ कालबाह्य झाले."
 
-#: ../src/gs-lock-plug.c:297
+#: ../src/gs-lock-plug.c:299
 msgid "You have the Caps Lock key on."
 msgstr "Caps Lock कळ कार्यन्वीत केले गेले आहे."
 
-#: ../src/gs-lock-plug.c:1192
+#: ../src/gs-lock-plug.c:1194
 msgid "S_witch User..."
 msgstr "वापरकर्ता बदलवा (_w)..."
 
-#: ../src/gs-lock-plug.c:1201
+#: ../src/gs-lock-plug.c:1203
 msgid "Log _Out"
 msgstr "बाहेर पडा (_O)"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1378
+#: ../src/gs-lock-plug.c:1380
 msgid "%U on %h"
 msgstr "%h वरील %U"
 
-#: ../src/gs-lock-plug.c:1392
+#: ../src/gs-lock-plug.c:1394
 msgid "_Password:"
 msgstr "गुप्तशब्द (_P):"
 
