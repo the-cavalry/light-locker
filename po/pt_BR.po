@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-02 20:51+0000\n"
-"PO-Revision-Date: 2008-08-07 16:04-0300\n"
+"PO-Revision-Date: 2008-09-13 21:58-0300\n"
 "Last-Translator: Vladimir Melo <vladimirmelo.psi@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,7 @@ msgstr "Permitir que um teclado seja embutido na janela"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow logout"
-msgstr "Permitir sair"
+msgstr "Permitir encerramento de sessão"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
@@ -104,7 +104,7 @@ msgstr "Bloquear ao ativar"
 
 #: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Logout command"
-msgstr "Comando de sair"
+msgstr "Comando de encerramento de sessão"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Reason for being away"
@@ -170,9 +170,10 @@ msgid ""
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
-"O comando para invocar quando o botão de sair for clicado. Esse comando deve "
-"apenas encerrar a sessão do usuário sem qualquer interação. Essa chave tem "
-"efeito apenas se a chave \"logout_enable\" estiver definida como TRUE."
+"O comando para invocar quando o botão de encerramento de sessão for clicado. "
+"Esse comando deve apenas encerrar a sessão do usuário sem qualquer "
+"interação. Essa chave tem efeito apenas se a chave \"logout_enable\" estiver "
+"definida como TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
@@ -188,8 +189,9 @@ msgid ""
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
 "O número de minutos após a ativação da proteção de tela antes que uma opção "
-"de sair apareça na caixa de diálogo de desbloqueio. Essa chave tem efeito "
-"apenas se a chave \"logout_enable\" estiver definida como TRUE."
+"de encerramento de sessão apareça na caixa de diálogo de desbloqueio. Essa "
+"chave tem efeito apenas se a chave \"logout_enable\" estiver definida como "
+"TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
@@ -254,7 +256,7 @@ msgstr "Tempo antes de bloquear"
 
 #: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before logout option"
-msgstr "Tempo antes da opção de sair"
+msgstr "Tempo antes da opção de encerramento de sessão"
 
 #: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before power-management baseline"
@@ -289,11 +291,11 @@ msgstr "_Cancelar"
 
 #: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
-msgstr "D_eixar mensagem"
+msgstr "Deixar _mensagem"
 
 #: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
-msgstr "_Sair da sessão"
+msgstr "_Encerrar sessão"
 
 #: ../data/lock-dialog-default.glade.h:10
 msgid "_Switch User"
@@ -529,11 +531,11 @@ msgstr "Mostrar saída de depuração"
 
 #: ../src/gnome-screensaver-dialog.c:59
 msgid "Show the logout button"
-msgstr "Mostrar o botão de sair"
+msgstr "Mostrar o botão de encerramento de sessão"
 
 #: ../src/gnome-screensaver-dialog.c:61
 msgid "Command to invoke from the logout button"
-msgstr "Comando invocado pelo botão de sair"
+msgstr "Comando invocado pelo botão de encerramento de sessão"
 
 #: ../src/gnome-screensaver-dialog.c:63
 msgid "Show the switch user button"
@@ -745,7 +747,7 @@ msgstr "_Trocar usuário..."
 
 #: ../src/gs-lock-plug.c:1345
 msgid "Log _Out"
-msgstr "Sai_r"
+msgstr "_Encerrar sessão"
 
 #. To translators: This expands to USERNAME on HOSTNAME
 #: ../src/gs-lock-plug.c:1522
@@ -860,13 +862,6 @@ msgstr "_Senha:"
 #~ msgid "The X server in the GDM configuration could not be found."
 #~ msgstr "O servidor X na configuração do GDM não pôde ser encontrado."
 
-#~ msgid ""
-#~ "Trying to set an unknown logout action, or trying to set a logout action "
-#~ "which is not available."
-#~ msgstr ""
-#~ "Tentando definir uma ação de logout desconhecida ou que não está "
-#~ "disponível."
-
 #~ msgid "Virtual terminals not supported."
 #~ msgstr "Terminais virtuais não suportados."
 
@@ -963,15 +958,6 @@ msgstr "_Senha:"
 #~ msgstr ""
 #~ "O servidor X aninhado (Xnest) não consegue se conectar ao servidor X "
 #~ "atual. Pode estar faltando um arquivo de autorização do X."
-
-#~ msgid ""
-#~ "The nested X server (Xnest) is not available, or gdm is badly "
-#~ "configured.\n"
-#~ "Please install the Xnest package in order to use the nested login."
-#~ msgstr ""
-#~ "O servidor X aninhado (Xnest) não está disponível ou o GDM está mal "
-#~ "configurado.\n"
-#~ "Por favor, instale o pacote Xnest para poder usar a sessão aninhada."
 
 #~ msgid ""
 #~ "The X server is not available, it is likely that gdm is badly configured."
@@ -1076,9 +1062,6 @@ msgstr "_Senha:"
 
 #~ msgid "About %ld seconds left"
 #~ msgstr "Em torno de %ld segundos restantes"
-
-#~ msgid "_Login Screen"
-#~ msgstr "Tela de _Login"
 
 #~ msgid "Enter password to unlock screen"
 #~ msgstr "Digite a senha para desbloquear a tela"
