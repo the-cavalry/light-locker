@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-12 22:13+0000\n"
-"PO-Revision-Date: 2008-06-04 11:51+0300\n"
+"PO-Revision-Date: 2008-09-13 12:10+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -249,7 +249,7 @@ msgstr "Aega enne väljalogimise valiku ilmumist"
 
 #: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before power-management baseline"
-msgstr ""
+msgstr "Aega enne vooluhalduse aktiveerimist"
 
 #: ../data/gnome-screensaver.schemas.in.h:31
 msgid "Time before session is considered idle"
