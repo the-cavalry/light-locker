@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-26 14:46+0100\n"
+"POT-Creation-Date: 2008-09-14 11:09+0100\n"
 "PO-Revision-Date: 2008-02-06 04:06+0200\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -391,32 +391,32 @@ msgstr "لا تختر الصور عشوائيًا من المكان"
 msgid "Do not try to stretch images on screen"
 msgstr "لا تقم بمطّ الصور على الشاشة"
 
-#: ../src/copy-theme-dialog.c:213
+#: ../src/copy-theme-dialog.c:212
 msgid "Copying files"
 msgstr "جارٍ نسخ الملفات"
 
-#: ../src/copy-theme-dialog.c:231
+#: ../src/copy-theme-dialog.c:230
 msgid "From:"
 msgstr "من:"
 
-#: ../src/copy-theme-dialog.c:235
+#: ../src/copy-theme-dialog.c:234
 msgid "To:"
 msgstr "إلى:"
 
-#: ../src/copy-theme-dialog.c:255
+#: ../src/copy-theme-dialog.c:254
 msgid "Copying themes"
 msgstr "نسخ السِمات"
 
-#: ../src/copy-theme-dialog.c:299
+#: ../src/copy-theme-dialog.c:298
 msgid "Invalid screensaver theme"
 msgstr "سِمة حافظة شاشة غير سليمة"
 
-#: ../src/copy-theme-dialog.c:302
+#: ../src/copy-theme-dialog.c:301
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
 msgstr "يبدو أن الملف %s لا يمثل سِمة حافظة شاشة سليمة."
 
-#: ../src/copy-theme-dialog.c:482
+#: ../src/copy-theme-dialog.c:481
 #, c-format
 msgid "Copying file: %u of %u"
 msgstr " نسخ:  '%u من %u"
