@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-29 09:34+0000\n"
-"PO-Revision-Date: 2008-09-08 20:12+0530\n"
+"PO-Revision-Date: 2008-09-16 11:18+0530\n"
 "Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
 "Language-Team: Kannada <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,43 +19,43 @@ msgstr ""
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
 msgid "Screensaver"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:2
 msgid "Set your screensaver preferences"
-msgstr ""
+msgstr "ನಿಮ್ಮ ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಆದ್ಯತೆಗಳನ್ನು ಅಣಿಗೊಳಿಸಿ"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
 msgid "<b>Screensaver preview</b>"
-msgstr ""
+msgstr "<b>ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಮುನ್ನೋಟ</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:2
 msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgstr ""
+msgstr "<b>ಎಚ್ಚರಿಕೆ: ಮೂಲದ ಬಳಕೆದಾರರಿಗೆ ತೆರೆಯು ಲಾಕ್ ಮಾಡಲ್ಪಡುವುದಿಲ್ಲ.</b>"
 
 #: ../data/gnome-screensaver-preferences.glade.h:3
 msgid "Power _Management"
-msgstr "ವಿಧ್ಯುಚ್ಛಕ್ತಿ ನಿರ್ವಹಣೆ(_M)"
+msgstr "ವಿದ್ಯುಚ್ಛಕ್ತಿ ನಿರ್ವಹಣೆ(_M)"
 
 #: ../data/gnome-screensaver-preferences.glade.h:4
 msgid "Regard the computer as _idle after:"
-msgstr ""
+msgstr "ಈ ಸಮಯದ ನಂತರ ಗಣಕಕ್ಕೆ ಕೆಲಸವಿಲ್ಲ ಎಂದು ಪರಿಗಣಿಸು(_i):"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "Screensaver Preferences"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಆದ್ಯತೆಗಳು"
 
 #: ../data/gnome-screensaver-preferences.glade.h:6
 msgid "Screensaver Preview"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಮುನ್ನೋಟ"
 
 #: ../data/gnome-screensaver-preferences.glade.h:7
 msgid "_Activate screensaver when computer is idle"
-msgstr ""
+msgstr "ಗಣಕಕ್ಕೆ ಕೆಲಸವಿಲ್ಲದೆ ಇದ್ದಾಗ ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸು(_A)"
 
 #: ../data/gnome-screensaver-preferences.glade.h:8
 msgid "_Lock screen when screensaver is active"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಸಕ್ರಿಯವಾಗಿದ್ದಾಗ ತೆರೆಯನ್ನು ಲಾಕ್ ಮಾಡು(_L)"
 
 #: ../data/gnome-screensaver-preferences.glade.h:9
 msgid "_Preview"
@@ -63,79 +63,79 @@ msgstr "ಮುನ್ನೋಟ(_P)"
 
 #: ../data/gnome-screensaver-preferences.glade.h:10
 msgid "_Screensaver theme:"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಥೀಮ್(_S):"
 
 #: ../data/gnome-screensaver.directory.in.h:1
 #: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Screensaver themes"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಥೀಮ್‌ಗಳು"
 
 #: ../data/gnome-screensaver.directory.in.h:2
 msgid "Screensavers"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರುಗಳು"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
 msgid "Activate when idle"
-msgstr ""
+msgstr "ಕೆಲಸವಿಲ್ಲದಾಗ ಸಕ್ರಿಯಗೊಳಿಸು"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
 msgid "Allow embedding a keyboard into the window"
-msgstr ""
+msgstr "ವಿಂಡೋಗೆ ಒಂದು ಕೀಲಿ ಮಣೆಯನ್ನು ಅಡಕಗೊಳಿಸುವುದನ್ನು ಅನುಮತಿಸು"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow logout"
-msgstr ""
+msgstr "ನಿರ್ಗಮಿಸುವುದನ್ನು ಅನುಮತಿಸು"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
-msgstr ""
+msgstr "ಬಳಕೆದಾರರನ್ನು ಬದಲಾಯಿಸುವುದನ್ನು ಅನುಮತಿಸು"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
 msgid "Embedded keyboard command"
-msgstr ""
+msgstr "ಅಡಕಗೊಳಿಸಲಾದ ಕೀಲಿ ಮಣೆ ಆಜ್ಞೆ"
 
 #: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Lock on activation"
-msgstr ""
+msgstr "ಸಕ್ರಿಯಗೊಂಡಾಗ ಲಾಕ್ ಮಾಡು"
 
 #: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Logout command"
-msgstr ""
+msgstr "ನಿರ್ಗಮಿಸುವ ಆಜ್ಞೆ"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Reason for being away"
-msgstr ""
+msgstr "ಹೊರಹೋಗಿದ್ದರ ಕಾರಣ"
 
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver theme selection mode"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಥೀಮ್ ಆಯ್ಕೆಯ ಕ್ರಮ"
 
 #: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr ""
+msgstr "ಅಧಿವೇಶನದಲ್ಲಿ ಯಾವುದೆ ಕೆಲಸವಿಲ್ಲದೆ ಇದ್ದಾಗ ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ಇದನ್ನು ನಿಜಕ್ಕೆ ಹೊಂದಿಸಿ"
 
 #: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
-msgstr ""
+msgstr "ಅನ್‌ಲಾಕ್ ಮಾಡಲು ಪ್ರಯತ್ನಿಸಿದಾಗ ಒಂದು ಕೀಲಿ ಮಣೆಯನ್ನು ವಿಂಡೋದಲ್ಲಿ ಅಡಕಗೊಳಿಸಲು ಇದನ್ನು TRUE ಗೆ ಹೊಂದಿಸಿ. \"keyboard_command\" ಕೀಲಿಯು ಸೂಕ್ತವಾದ ಆಜ್ಞೆಯೊಂದಿಗೆ ಒದಗಿಸಿರಬೇಕು."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಸಕ್ರಿಯಗೊಂಡಾಗ ತೆರೆಯನ್ನು ಲಾಕ್ ಮಾಡಲು ಇದನ್ನು ನಿಜಕ್ಕೆ ಹೊಂದಿಸಿ."
 
 #: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
-msgstr ""
+msgstr "ಬೇರೊಂದು ಬಳಕೆದಾರ ಖಾತೆಗೆ ಬದಲಾಯಿಸುವ ಒಂದು ಆಯ್ಕೆಯನ್ನು ಅನ್‌ಲಾಕ್‌ ಸಂವಾದದಲ್ಲಿ ಒದಗಿಸಲು ಇದನ್ನು TRUE ಹೊಂದಿಸಿ."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
-msgstr ""
+msgstr "ಒಂದು ಕಾಲ ವಿಳಂಬದ ನಂತರ ನಿರ್ಗಮಿಸುವ ಆಯ್ಕೆಯನ್ನು ಅನ್‌ಲಾಕ್‌ ಸಂವಾದದಲ್ಲಿ ನೀಡಲು ಇದನ್ನು TRUE ಗೆ ಹೊಂದಿಸು. ಕಾಲವಿಳಂಬವು \"logout_delay\" ಕೀಲಿಯಿಂದ ಸೂಚಿತಗೊಂಡಿರುತ್ತದೆ."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
@@ -143,43 +143,43 @@ msgid ""
 "set to TRUE, to embed a keyboard widget into the window. This command should "
 "implement an XEMBED plug interface and output a window XID on the standard "
 "output."
-msgstr ""
+msgstr "\"embedded_keyboard_enabled\" ಕೀಲಿಯು TRUE ಗೆ ಹೊಂದಿಸಲ್ಪಟ್ಟಿದ್ದಲ್ಲಿ, ಒಂದು ಕೀಲಿ ವಿಜೆಟ್‌ ಅನ್ನು ವಿಂಡೋಗೆ ಅಡಕಗೊಳಿಸಲು ಚಲಾಯಿಸಬೇಕಿರುವ ಆಜ್ಞೆ. ಈ ಕೀಲಿಯು ಸ್ಟ್ಯಾಂಡರ್ಡ್ ಔಟ್‌ಪುಟ್‌ನಲ್ಲಿ ಒಂದು XEMBED ಪ್ಲಗ್ ಸಂಪರ್ಕಸಾಧನ ಹಾಗು ವಿಂಡೋ XIDಯ ಔಟ್‌ಪುಟ್ ಅನ್ನು ಅನ್ವಯಿಸುತ್ತದೆ."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
-msgstr ""
+msgstr "ನಿರ್ಗಮಿಸುವ ಗುಂಡಿಯನ್ನು ಒತ್ತಿದಾಗ ಕೋರಬೇಕಿರುವ ಆಜ್ಞೆ. ಈ ಆಜ್ಞೆಯು ಏನನ್ನೂ ಪ್ರಶ್ನಿಸದೆ, ಬಳಕೆದಾರರನ್ನು ಹೊರಗೆ ನಿರ್ಗಮಿಸುವಂತೆ ಮಾಡುಬೇಕು. \"logout_enable\" ಕೀಲಿಯು TRUE ಗೆ ಹೊಂದಿಸಿದಲ್ಲಿ ಮಾತ್ರ ಈ ಕೀಲಿಯು ಪರಿಣಾಮಕಾರಿಯಾಗುತ್ತದೆ."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
 msgid "The number of minutes after screensaver activation before locking the screen."
-msgstr ""
+msgstr "ತೆರೆಯನ್ನು ಲಾಕ್ ಮಾಡುವ ಮೊದಲು, ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ಸಕ್ರಿಯವಾಗಿರಿಸಬೇಕಿರುವ ನಿಮಿಷಗಳ ಸಂಖ್ಯೆ."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
-msgstr ""
+msgstr "ಅನ್‌ಲಾಕ್ ಸಂವಾದದಲ್ಲಿ ನಿರ್ಗಮಿಸುವ ಆಯ್ಕೆಯು ಕಾಣಿಸಿಕೊಳ್ಳುವ ಮೊದಲು, ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ಸಕ್ರಿಯವಾಗಿರಿಸಬೇಕಿರುವ ನಿಮಿಷಗಳ ಸಂಖ್ಯೆ. \"logout_enable\" ಕೀಲಿಯು TRUE ಗೆ ಹೊಂದಿಸಿದಲ್ಲಿ ಮಾತ್ರ ಈ ಕೀಲಿಯು ಪರಿಣಾಮಕಾರಿಯಾಗುತ್ತದೆ."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid "The number of minutes of inactivity before the session is considered idle."
-msgstr ""
+msgstr "ಅಧಿವೇಶನದಲ್ಲಿ ಕೆಲಸವಿಲ್ಲ ಎಂದು ಪರಿಗಣಿಸಬೇಕಿರುವ ಮೊದಲು ಅದು ನಿಷ್ಕ್ರಿಯವಾಗಿರಬೇಕಿರುವ ನಿಮಿಷಗಳ ಸಂಖ್ಯೆ."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಥೀಮ್ ಅನ್ನು ಬದಲಾಯಿಸುವ ಮೊದಲು ಅದನ್ನು ಚಲಾಯಿಸಬೇಕಿರುವ ನಿಮಿಷಗಳ ಸಂಖ್ಯೆ."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
-msgstr ""
+msgstr "ವಿದ್ಯುಚ್ಛಕ್ತಿ ನಿರ್ವಹಣೆಗೆ ಸೂಚಿಸುವ ಮೊದಲು ನಿಷ್ಕ್ರಿಯತೆಯ ಸಮಯ, ಸೆಕೆಂಡುಗಳಲ್ಲಿ. ಈ ಕೀಲಿಯನ್ನು ಅಣಿಗೊಳಿಸುವುದು ಹಾಗು ನೋಡಿಕೊಳ್ಳುವುದು ಅಧಿವೇಶನದ ವಿದ್ಯುಚ್ಛಕ್ತಿ ನಿರ್ವಹಣಾ ಮಧ್ಯವರ್ತಿಯ ಕೆಲಸವಾಗಿರುತ್ತದೆ."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid "The reason for being away from the computer."
-msgstr ""
+msgstr "ಗಣಕದಿಂದ ದೂರ ಇದ್ದಿದ್ದರ ಕಾರಣ."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
@@ -189,14 +189,16 @@ msgid ""
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
 msgstr ""
+"ಸ್ಕ್ರೀನ್‌ಸೇವರಿನಿಂದ ಬಳಸಬೇಕಿರುವ ಆಯ್ಕೆಯ ವಿಧಾನ. ಸಕ್ರಿಯಗೊಳಿಸಿದಾಗ ಯಾವುದೆ ಥೀಮ್ ಅನ್ನು ಬಳಸದೆ ಇರಲು \"ಕೇವಲ ಖಾಲಿ\" ಅನ್ನು, ಸಕ್ರಿಯಗೊಳಿಸಿದಾಗ ಕೇವಲ ಒಂದು ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ಬಳಸಲು \"ಒಂದು\" (\"ಥೀಮ್‌ಗಳು\" "
+"ಕೀಲಿಯಿಂದ ಸೂಚಿಸಲಾದ), ಹಾಗು ಸಕ್ರಿಯಗೊಳಿಸಿದಾಗ ಮನಸ್ಸಿಗೆ ಬಂದಂತೆ ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ಬಳಸಲು \"ಮನಸ್ಸಿಗೆ ಬಂದಂತೆ\" ಅನ್ನು ಶಕ್ತಗೊಳಿಸಬಹುದಾಗಿದೆ."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
-msgstr ""
+msgstr "ಲಾಕ್ ಸಂವಾದಕ್ಕಾಗಿನ ಥೀಮ್"
 
 #: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Theme to use for the lock dialog."
-msgstr ""
+msgstr "ಲಾಕ್ ಸಂವಾದಕ್ಕಾಗಿ ಬಳಸಬೇಕಿರುವ ಥೀಮ್."
 
 #: ../data/gnome-screensaver.schemas.in.h:27
 msgid ""
@@ -204,37 +206,37 @@ msgid ""
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರಿನಿಂದ ಬಳಸಲ್ಪಡಬೇಕಿರುವ ಥೀಮ್‌ಗಳ ಪಟ್ಟಿಯನ್ನು ಈ ಕೀಲಿಯು ಸೂಚಿಸುತ್ತದೆ. ಇದು \"ಕ್ರಮ\" ಕೀಲಿಯು \"ಕೇವಲ ಖಾಲಿ\" ಇದ್ದಲ್ಲಿ ಆಲಕ್ಷಿಸಲ್ಪಡುತ್ತದೆ, \"ಕ್ರಮ\" ವು \"ಒಂದು\" ಆಗಿದ್ದಲ್ಲಿ ಥೀಮ್ ಹೆಸರನ್ನು ನೀಡುತ್ತದೆ, ಹಾಗು \"ಕ್ರಮ\" ವು \"ಮನಸ್ಸಿಗೆ ಬಂದಂತೆ\" ಆಗಿದ್ದಲ್ಲಿ ಥೀಮ್‌ಗಳ ಒಂದು ಪಟ್ಟಿಯನ್ನು ನೀಡುತ್ತದೆ."
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
-msgstr ""
+msgstr "ಲಾಕ್‌ ಮಾಡುವ ಮುಂಚಿನ ಸಮಯ"
 
 #: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before logout option"
-msgstr ""
+msgstr "ನಿರ್ಗಮಿಸುವ ಆಯ್ಕೆಯ ಮುಂಚಿನ ಸಮಯ"
 
 #: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before power-management baseline"
-msgstr ""
+msgstr "ವಿದ್ಯುಚ್ಛಕ್ತಿ-ನಿರ್ವಹಣಾ ಕೆಳಗೆರೆಯ ಮುಂಚಿನ ಸಮಯ"
 
 #: ../data/gnome-screensaver.schemas.in.h:31
 msgid "Time before session is considered idle"
-msgstr ""
+msgstr "ಅಧಿವೇಶನಕ್ಕೆ ಕೆಲಸವಿಲ್ಲ ಎಂದು ಪರಿಗಣಿಸಬೇಕಿರುವ ಮುಂಚಿನ ಸಮಯ"
 
 #: ../data/gnome-screensaver.schemas.in.h:32
 msgid "Time before theme change"
-msgstr ""
+msgstr "ಥೀಮ್ ಬದಲಾಯಿಸಲ್ಪಡಬೇಕಿರುವ ಮುಂಚಿನ ಸಮಯ"
 
 #: ../data/lock-dialog-default.glade.h:2
 #, no-c-format
 msgid "<b>Leave a message for %R:</b>"
-msgstr ""
+msgstr "<b>%R ಗಾಗಿ ಒಂದು ಸಂದೇಶವನ್ನು ಬಿಡಿ:</b>"
 
 #: ../data/lock-dialog-default.glade.h:4
 #, no-c-format
 msgid "<span size=\"small\">%U on %h</span>"
-msgstr ""
+msgstr "<span size=\"small\">%U, %h ನಲ್ಲಿ</span>"
 
 #: ../data/lock-dialog-default.glade.h:6
 #, no-c-format
@@ -247,67 +249,67 @@ msgstr "ರದ್ದು ಮಾಡಲಾಗಿದೆ(_C)"
 
 #: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
-msgstr ""
+msgstr "ಸಂದೇಶವನ್ನು ಬಿಡು(_L)"
 
 #: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
-msgstr ""
+msgstr "ನಿರ್ಗಮಿಸು(_L)"
 
 #: ../data/lock-dialog-default.glade.h:10
 msgid "_Switch User"
-msgstr ""
+msgstr "ಬಳಕೆದಾರನನ್ನು ಬದಲಾಯಿಸು(_S)"
 
 #: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1366
 msgid "_Unlock"
-msgstr ""
+msgstr "ಅನ್‌ಲಾಕ್ ಮಾಡು(_U)"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
-msgstr ""
+msgstr "ಕಾಸ್ಮೋಸ್"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:2
 msgid "Display a slideshow of pictures of the cosmos"
-msgstr ""
+msgstr "ಅಂತರಿಕ್ಷದ ಚಿತ್ರಗಳ ಒಂದು ಚಿತ್ರಪ್ರದರ್ಶನವನ್ನು(ಸ್ಲೈಡ್‌ಶೋ) ತೋರಿಸುತ್ತದೆ"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:1
 msgid "Bubbles the GNOME foot logo around the screen"
-msgstr ""
+msgstr "GNOME ಪಾದದ ಚಿಹ್ನೆಯನ್ನು ತೆರೆಯ ತುಂಬೆಲ್ಲಾ ಬಬಲ್ ಮಾಡುತ್ತದೆ"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:2
 msgid "Floating Feet"
-msgstr ""
+msgstr "ತೇಲುವ ಪಾದ"
 
 #: ../savers/personal-slideshow.desktop.in.h:1
 msgid "Display a slideshow from your Pictures folder"
-msgstr ""
+msgstr "ನಿಮ್ಮ ಚಿತ್ರದ ಕೋಶದಿಂದ ಒಂದು ಚಿತ್ರಪ್ರದರ್ಶನವನ್ನು(ಸ್ಲೈಡ್‌ಶೋ) ತೋರಿಸು"
 
 #: ../savers/personal-slideshow.desktop.in.h:2
 msgid "Pictures folder"
-msgstr ""
+msgstr "ಚಿತ್ರಗಳ ಕೋಶ"
 
 #: ../savers/popsquares.desktop.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
-msgstr ""
+msgstr "ಮಿನುಗುವ ಬಣ್ಣಗಳ ಕಲಾತ್ಮಕ ಚೌಕಗಳನ್ನು ಹೊಂದಿರುವ ಪುಟಿಕೆ ಚೌಕುಳಿಗಳು."
 
 #: ../savers/popsquares.desktop.in.h:2
 msgid "Pop art squares"
-msgstr ""
+msgstr "ಕಲಾ ಚೌಕಗಳನ್ನು ಪುಟಿಸು"
 
 #: ../savers/floaters.c:84
 msgid "Show paths that images follow"
-msgstr ""
+msgstr "ಚಿತ್ರಗಳು ಅನುಸರಿಸುವ ಮಾರ್ಗವನ್ನು ತೋರಿಸು"
 
 #: ../savers/floaters.c:87
 msgid "Occasionally rotate images as they move"
-msgstr ""
+msgstr "ಚಿತ್ರಗಳನ್ನು ಜರುಗಿಸುತ್ತಿರುವಾಗ ಆಗಾಗ ಅವುಗಳನ್ನು ತಿರುಗಿಸು"
 
 #: ../savers/floaters.c:90
 msgid "Print out frame rate and other statistics"
-msgstr ""
+msgstr "ಫ್ರೇಮ್ ದರ ಹಾಗು ಇನ್ನಿತರೆ ಅಂಕಿಅಂಶಗಳನ್ನು ಮುದ್ರಿಸು"
 
 #: ../savers/floaters.c:93
 msgid "The maximum number of images to keep on screen"
-msgstr ""
+msgstr "ತೆರೆಯ ಮೇಲೆ ಇರಿಸಬೇಕಿರುವ ಚಿತ್ರಗಳ ಗರಿಷ್ಟ ಸಂಖ್ಯೆ"
 
 #: ../savers/floaters.c:93
 msgid "MAX_IMAGES"
@@ -315,7 +317,7 @@ msgstr "MAX_IMAGES"
 
 #: ../savers/floaters.c:96
 msgid "The initial size and position of window"
-msgstr ""
+msgstr "ವಿಂಡೋದ ಆರಂಭಿಕ ಗಾತ್ರ ಹಾಗು ಸ್ಥಾನ"
 
 #: ../savers/floaters.c:96
 msgid "WIDTHxHEIGHT+X+Y"
@@ -323,14 +325,14 @@ msgstr "WIDTHxHEIGHT+X+Y"
 
 #: ../savers/floaters.c:99
 msgid "The source image to use"
-msgstr ""
+msgstr "ಬಳಸಬೇಕಿರುವ ಮೂಲ ಚಿತ್ರ"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
 #: ../savers/floaters.c:1194
 msgid "image - floats images around the screen"
-msgstr ""
+msgstr "image - ತೆರೆಯ ಸುತ್ತ ಚಿತ್ರಗಳನ್ನು ತೇಲಿಸುತ್ತದೆ"
 
 #: ../savers/floaters.c:1200
 #, c-format
@@ -340,11 +342,11 @@ msgstr "%s. ಬಳಕೆಯ ಮಾಹಿತಿಗಾಗಿ --help ಅನ್ನ�
 #: ../savers/floaters.c:1209
 #, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
-msgstr ""
+msgstr "ನೀವು ಒಂದು ಚಿತ್ರವನ್ನು ಸೂಚಿಸಲೇ ಬೇಕಾಗುತ್ತದೆ.  ಬಳಕೆಯ ಮಾಹಿತಿಗಾಗಿ --help ಅನ್ನು ನೋಡಿ.\n"
 
 #: ../savers/slideshow.c:53
 msgid "Location to get images from"
-msgstr ""
+msgstr "ಚಿತ್ರಗಳನ್ನು ಪಡೆದುಕೊಳ್ಳಬೇಕಿರುವ ಸ್ಥಳ"
 
 #: ../savers/slideshow.c:53
 msgid "PATH"
@@ -352,7 +354,7 @@ msgstr "PATH"
 
 #: ../savers/slideshow.c:55
 msgid "Color to use for images background"
-msgstr ""
+msgstr "ಚಿತ್ರಗಳ ಹಿನ್ನಲೆಗೆ ಬಳಸಬೇಕಿರುವ ಬಣ್ಣಗಳು"
 
 #: ../savers/slideshow.c:55
 msgid "\"#rrggbb\""
@@ -360,11 +362,11 @@ msgstr "\"#rrggbb\""
 
 #: ../savers/slideshow.c:57
 msgid "Do not randomize pictures from location"
-msgstr ""
+msgstr "ಸ್ಥಳದಿಂದ ಚಿತ್ರಗಳನ್ನು ಮನಬಂದಂತೆ ಇರಿಸ ಬೇಡ "
 
 #: ../savers/slideshow.c:59
 msgid "Do not try to stretch images on screen"
-msgstr ""
+msgstr "ತೆರೆಯಲ್ಲಿನ ಚಿತ್ರಗಳನ್ನು ಎಳೆಯಲು ಪ್ರಯತ್ನಿಸಬೇಡ"
 
 #: ../src/copy-theme-dialog.c:212
 msgid "Copying files"
@@ -384,12 +386,12 @@ msgstr "ಥೀಮ್‌ಗಳನ್ನು ಕಾಪಿ ಮಾಡಲಾಗುತ�
 
 #: ../src/copy-theme-dialog.c:298
 msgid "Invalid screensaver theme"
-msgstr ""
+msgstr "ಅಮಾನ್ಯವಾದ ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಥೀಮ್"
 
 #: ../src/copy-theme-dialog.c:301
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
-msgstr ""
+msgstr "%s ವು ಒಂದು ಮಾನ್ಯವಾದ ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಎಂದು ಕಾಣುತ್ತಿಲ್ಲ."
 
 #: ../src/copy-theme-dialog.c:481
 #, c-format
@@ -398,49 +400,49 @@ msgstr "ಕಡತವನ್ನು ಕಾಪಿ ಮಾಡಲಾಗುತ್ತಿ�
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ಆಕರ್ಷಕವಾಗಿ ನಿರ್ಗಮಿಸುವಂತೆ ಮಾಡುತ್ತದೆ"
 
 #: ../src/gnome-screensaver-command.c:64
 msgid "Query the state of the screensaver"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರಿನ ಸ್ಥಿತಿಗಾಗಿ ಮನವಿ ಸಲ್ಲಿಸಿ"
 
 #: ../src/gnome-screensaver-command.c:66
 msgid "Query the length of time the screensaver has been active"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಸಕ್ರಿಯವಾಗಿರಬೇಕಿರುವ ಸಮಯಕ್ಕಾಗಿ ಮನವಿಸಲ್ಲಿಸಿ"
 
 #: ../src/gnome-screensaver-command.c:68
 msgid "Tells the running screensaver process to lock the screen immediately"
-msgstr ""
+msgstr "ಚಾಲನೆಯಲ್ಲಿರುವ ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಪ್ರಕ್ರಿಯೆಗೆ ತಕ್ಷಣವೆ ತೆರೆಯನ್ನು ಲಾಕ್ ಮಾಡುವಂತೆ ತಿಳಿಸುತ್ತದೆ"
 
 #: ../src/gnome-screensaver-command.c:70
 msgid "If the screensaver is active then switch to another graphics demo"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಸಕ್ರಿಯವಾಗಿದ್ದರೆ ಬೇರೊಂದು ಗ್ರಾಫಿಕ್ಸ್‍ ಡೆಮೋಗೆ ಬದಲಾಯಿಸು"
 
 #: ../src/gnome-screensaver-command.c:72
 msgid "Turn the screensaver on (blank the screen)"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ಆನ್ ಮಾಡು (ತೆರೆಯನ್ನು ಖಾಲಿಯಾಗಿ ಇರಿಸು)"
 
 #: ../src/gnome-screensaver-command.c:74
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಸಕ್ರಿಯವಾಗಿದ್ದರೆ ಅದನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸು (ತೆರೆಯನ್ನು ಖಾಲಿಯಾಗಿ ಇರಿಸಬೇಡ)"
 
 #: ../src/gnome-screensaver-command.c:76
 msgid "Poke the running screensaver to simulate user activity"
-msgstr ""
+msgstr "ಚಲಾಯಿತಗೊಳ್ಳುತ್ತಿರುವ ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ಬಳಕೆದಾರರ ಕಾರ್ಯದಲ್ಲಿ ಹೊಂದಿಕೊಂಡಿರುವಂತೆ ಮಾಡು"
 
 #: ../src/gnome-screensaver-command.c:78
 msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳ್ಳದಂತೆ ತಡೆಹಿಡಿ.  ತಡೆಯೊಡ್ಡುವಿಕೆಯು ಸಕ್ರಿಯಗೊಂಡಿದ್ದಾಗ ಆಜ್ಞೆಯು ನಿರ್ಬಂಧಿಸುತ್ತದೆ."
 
 #: ../src/gnome-screensaver-command.c:80
 msgid "The calling application that is inhibiting the screensaver"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ತಡೆಯತ್ತಿರುವ ಕರೆ ಮಾಡುವ ಅನ್ವಯ"
 
 #: ../src/gnome-screensaver-command.c:82
 msgid "The reason for inhibiting the screensaver"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ತಡೆಯಲು ಕಾರಣ"
 
 #: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:57
 #: ../src/gnome-screensaver.c:56
@@ -450,7 +452,7 @@ msgstr "ಈ ಅನ್ವಯದ ಆವೃತ್ತಿ"
 #: ../src/gnome-screensaver-command.c:307
 #, c-format
 msgid "The screensaver is %s\n"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ %s ಆಗಿದೆ\n"
 
 #: ../src/gnome-screensaver-command.c:307
 msgid "active"
@@ -463,29 +465,29 @@ msgstr "ನಿಷ್ಕ್ರಿಯ"
 #: ../src/gnome-screensaver-command.c:321
 #, c-format
 msgid "The screensaver is not inhibited\n"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ತಡೆಯಲಾಗುತ್ತಿಲ್ಲ\n"
 
 #: ../src/gnome-screensaver-command.c:327
 #, c-format
 msgid "The screensaver is being inhibited by:\n"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ಇದು ತಡೆಯುತ್ತಿದೆ:\n"
 
 #: ../src/gnome-screensaver-command.c:358
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ %d ಸೆಕೆಂಡುಗಳ ಕಾಲ ಸಕ್ರಿಯವಾಗಿತ್ತು.\n"
 
 #: ../src/gnome-screensaver-dialog.c:55
 msgid "Show debugging output"
-msgstr ""
+msgstr "ದೋಷನಿವಾರಣಾ ಔಟ್‌ಪುಟ್ ಅನ್ನು ತೋರಿಸು"
 
 #: ../src/gnome-screensaver-dialog.c:59
 msgid "Show the logout button"
-msgstr ""
+msgstr "ನಿರ್ಗಮಿಸುವ ಗುಂಡಿಯನ್ನು ತೋರಿಸು"
 
 #: ../src/gnome-screensaver-dialog.c:61
 msgid "Command to invoke from the logout button"
-msgstr ""
+msgstr "ನಿರ್ಗಮಿಸುವ ಗುಂಡಿಯಿಂದ ಕೋರಿಕೆ ಸಲ್ಲಿಸಬೇಕಿರುವ ಆಜ್ಞೆ"
 
 #: ../src/gnome-screensaver-dialog.c:63
 msgid "Show the switch user button"
@@ -532,7 +534,7 @@ msgstr "ಗುಪ್ತಪದವನ್ನು ಬದಲಾಯಿಸಲಾಗಿ�
 
 #: ../src/gnome-screensaver-dialog.c:185
 msgid "Can not get username"
-msgstr ""
+msgstr "ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಪಡೆಯಲಾಗಿಲ್ಲ"
 
 #: ../src/gnome-screensaver-dialog.c:186
 msgid "Retype new UNIX password:"
@@ -560,7 +562,7 @@ msgstr "ಗುಪ್ತಪದವು ಈಗಾಗಲೆ ಬಳಸಲಾಗಿದ�
 
 #: ../src/gnome-screensaver-dialog.c:192
 msgid "You must wait longer to change your password"
-msgstr ""
+msgstr "ಗುಪ್ತಪದವನ್ನು ಬದಲಾಯಿಸಲು ನೀವು ಇನ್ನಷ್ಟು ಹೊತ್ತು ಕಾಯಬೇಕು"
 
 #: ../src/gnome-screensaver-dialog.c:193
 msgid "Sorry, passwords do not match"
@@ -638,20 +640,20 @@ msgstr "ಮುಖ್ಯ ಸಂಪರ್ಕ ಸಾಧನವನ್ನು ಲೋಡ
 
 #: ../src/gnome-screensaver-preferences.c:1445
 msgid "Please make sure that the screensaver is properly installed"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಸರಿಯಾಗಿ ಅನುಸ್ಥಾಪಿತಗೊಂಡಿದೆ ಎಂದು ದಯವಿಟ್ಟು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
-msgstr ""
+msgstr "ಒಂದು ಡೆಮನ್ ಆಗಬೇಡ"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
-msgstr ""
+msgstr "ದೋಷನಿವಾರಣಾ ಸಂಜ್ಞೆಯನ್ನು ಶಕ್ತಗೊಳಿಸು"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
 msgid "Unable to establish service %s: %s\n"
-msgstr ""
+msgstr "%s ಸೇವೆಯನ್ನು ನೆಲೆಗೊಳಿಸಲು ಶಕ್ತಗೊಳಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: %s\n"
 
 #: ../src/gs-auth-pam.c:423
 #, c-format
@@ -664,23 +666,23 @@ msgstr "ಸರಿಯಲ್ಲದ ಗುಪ್ತಪದ."
 
 #: ../src/gs-auth-pam.c:471
 msgid "Not permitted to gain access at this time."
-msgstr ""
+msgstr "ಈ ಸಮಯದಲ್ಲಿ ನಿಲುಕನ್ನು ಪಡೆದುಕೊಳ್ಳಲು ಅನುಮತಿ ಇಲ್ಲ."
 
 #: ../src/gs-auth-pam.c:477
 msgid "No longer permitted to access the system."
-msgstr ""
+msgstr "ಗಣಕವನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳಲು ಇನ್ನು ಮುಂದೆ ಅನುಮತಿ ಇಲ್ಲ."
 
 #: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
-msgstr ""
+msgstr "ಸಂದೇಶ ಬಸ್‌ನೊಂದಿಗೆ ನೋಂದಾಯಿಸಲು ವಿಫಲಗೊಂಡಿದೆ"
 
 #: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
-msgstr ""
+msgstr "ಸಂದೇಶ ಬಸ್‌ಗೆ ಸಂಪರ್ಕಿತಗೊಂಡಿಲ್ಲ"
 
 #: ../src/gs-listener-dbus.c:1940
 msgid "screensaver already running in this session"
-msgstr ""
+msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಈಗಾಗಲೆ ಈ ಅಧಿವೇಶನದಲ್ಲಿ ಚಾಲನೆಯಲ್ಲಿದೆ"
 
 #: ../src/gs-lock-plug.c:271
 msgid "Time has expired."
