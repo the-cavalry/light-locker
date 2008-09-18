@@ -9,16 +9,13 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-14 11:09+0100\n"
-"PO-Revision-Date: 2008-02-06 04:06+0200\n"
-"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
+"PO-Revision-Date: 2008-09-18 02:22+0100\n"
+"Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"\n"
-"\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
@@ -119,69 +116,39 @@ msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr "حدد TRUE لتفعيل حافظة الشاشة عند خمول الجلسة."
 
 #: ../data/gnome-screensaver.schemas.in.h:12
-msgid ""
-"Set this to TRUE to allow embedding a keyboard into the window when trying "
-"to unlock. The \"keyboard_command\" key must be set with the appropriate "
-"command."
-msgstr ""
-"اختر TRUE للسماح بإدراج لوحة مفاتيح في النافذة عند محاولة إلغاء القفل. "
-"\"keyboard_command\" يجب أن تكون أمرا صحيحا."
+msgid "Set this to TRUE to allow embedding a keyboard into the window when trying to unlock. The \"keyboard_command\" key must be set with the appropriate command."
+msgstr "اختر TRUE للسماح بإدراج لوحة مفاتيح في النافذة عند محاولة إلغاء القفل. \"keyboard_command\" يجب أن تكون أمرا صحيحا."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr "حدد TRUE لقفل الشاشة عند تفعيل حافظة الشاشة."
 
 #: ../data/gnome-screensaver.schemas.in.h:14
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to switch to a "
-"different user account."
+msgid "Set this to TRUE to offer an option in the unlock dialog to switch to a different user account."
 msgstr "حدد TRUE لإعطاء إمكانية تغيير المستخدم."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
-msgid ""
-"Set this to TRUE to offer an option in unlock dialog to logging out after a "
-"delay. The Delay is specified in the \"logout_delay\" key."
-msgstr ""
-"حدد TRUE لإعطاء إمكانية تسجيل الخروج بعد الفترة المحددة في مفتاح "
-"\"logout_delay\"."
+msgid "Set this to TRUE to offer an option in unlock dialog to logging out after a delay. The Delay is specified in the \"logout_delay\" key."
+msgstr "حدد TRUE لإعطاء إمكانية تسجيل الخروج بعد الفترة المحددة في مفتاح \"logout_delay\"."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
-msgid ""
-"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
-"set to TRUE, to embed a keyboard widget into the window. This command should "
-"implement an XEMBED plug interface and output a window XID on the standard "
-"output."
-msgstr ""
-"الأمر الذي سيتم تشغيله، إذا كان مفتاح \"embedded_keyboard_enabled\" TRUE، "
-"لإدراج لوحة مفاتيح في النافذة. هذا الأمر يجب أن يدرج شاشة إدراج XEMBED ، و "
-"يعطي رمز  XID عند في المخرج."
+msgid "The command that will be run, if the \"embedded_keyboard_enabled\" key is set to TRUE, to embed a keyboard widget into the window. This command should implement an XEMBED plug interface and output a window XID on the standard output."
+msgstr "الأمر الذي سيتم تشغيله، إذا كان مفتاح \"embedded_keyboard_enabled\" TRUE، لإدراج لوحة مفاتيح في النافذة. هذا الأمر يجب أن يدرج شاشة إدراج XEMBED ، و يعطي رمز  XID عند في المخرج."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The command to invoke when the logout button is clicked. This command should "
-"simply log the user out without any interaction. This key has effect only if "
-"the \"logout_enable\" key is set to TRUE."
-msgstr ""
-"الأمر المنفَذ عند الضغط على زر تسجيل الخروج. هذا الزر يعمل فقط عندما يكون "
-"الزر  \"logout_enable\" محددا إلى TRUE."
+msgid "The command to invoke when the logout button is clicked. This command should simply log the user out without any interaction. This key has effect only if the \"logout_enable\" key is set to TRUE."
+msgstr "الأمر المنفَذ عند الضغط على زر تسجيل الخروج. هذا الزر يعمل فقط عندما يكون الزر  \"logout_enable\" محددا إلى TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The number of minutes after screensaver activation before locking the screen."
+msgid "The number of minutes after screensaver activation before locking the screen."
 msgstr "عدد الدقائق بعد تفعيل حافظة الشاشة قبل قفل الشاشة."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes after the screensaver activation before a logout "
-"option will appear in unlock dialog. This key has effect only if the "
-"\"logout_enable\" key is set to TRUE."
-msgstr ""
-"عدد الدقائق بعد تفعيل حافظة الشاشة قبل إظهار زر تسجيل الخروج.  هذا الزر يعمل "
-"فقط عندما يكون الزر  \"logout_enable\" محددا إلى TRUE."
+msgid "The number of minutes after the screensaver activation before a logout option will appear in unlock dialog. This key has effect only if the \"logout_enable\" key is set to TRUE."
+msgstr "عدد الدقائق بعد تفعيل حافظة الشاشة قبل إظهار زر تسجيل الخروج.  هذا الزر يعمل فقط عندما يكون الزر  \"logout_enable\" محددا إلى TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
+msgid "The number of minutes of inactivity before the session is considered idle."
 msgstr "عدد الدقائق من السكون قبل اعتبار الجلسة ساكنة."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
@@ -189,28 +156,16 @@ msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "عدد الدقائق قبل تغيير سِمة حافظة الشاشة."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
-msgid ""
-"The number of seconds of inactivity before signalling to power-management. "
-"This key is set and maintained by the session power-management agent."
-msgstr ""
-"عدد الثواني من الخمول قبل إرسال إشارة إلى إدارة الطاقة. يُضبط ويدار هذا "
-"المفتاح بواسطة عميل إدارة الطاقة."
+msgid "The number of seconds of inactivity before signalling to power-management. This key is set and maintained by the session power-management agent."
+msgstr "عدد الثواني من الخمول قبل إرسال إشارة إلى إدارة الطاقة. يُضبط ويدار هذا المفتاح بواسطة عميل إدارة الطاقة."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid "The reason for being away from the computer."
 msgstr "السبب وراء الذهاب بعيدًا عن الحاسوب."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
-msgid ""
-"The selection mode used by screensaver. May be \"blank-only\" to enable the "
-"screensaver without using any theme on activation, \"single\" to enable "
-"screensaver using only one theme on activation (specified in \"themes\" "
-"key), and \"random\" to enable the screensaver using a random theme on "
-"activation."
-msgstr ""
-"نمط الإختيار لحافظة الشاشة. قد يكون \"blank-only\" لعدم استعمال أي سِمة عند "
-"التفعيل،  \"single\" لاستعمال سِمة واحدة (تحدد في مفتاح \"themes\")، و "
-"\"random\" لاستعمال نمط عشوائي عند التفعيل."
+msgid "The selection mode used by screensaver. May be \"blank-only\" to enable the screensaver without using any theme on activation, \"single\" to enable screensaver using only one theme on activation (specified in \"themes\" key), and \"random\" to enable the screensaver using a random theme on activation."
+msgstr "نمط الإختيار لحافظة الشاشة. قد يكون \"blank-only\" لعدم استعمال أي سِمة عند التفعيل،  \"single\" لاستعمال سِمة واحدة (تحدد في مفتاح \"themes\")، و \"random\" لاستعمال نمط عشوائي عند التفعيل."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
@@ -221,15 +176,8 @@ msgid "Theme to use for the lock dialog."
 msgstr "السِّمة المستعملة لحوار القفل."
 
 #: ../data/gnome-screensaver.schemas.in.h:27
-msgid ""
-"This key specifies the list of themes to be used by the screensaver. It's "
-"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
-"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
-"\" is \"random\"."
-msgstr ""
-"يحدد هذا الزر قائمة السِمة المستعملة من حافظة الشاشة. يتم تجاهله إذا كان زر "
-"\"mode\" هو  \"blank-only\"، يجب توفير اسم السِمة عندما يكون  \"mode\" هو "
-"\"single\"، يجب أيضا توفير قائمة السِمة عندما يكون \"mode\" هو \"random\"."
+msgid "This key specifies the list of themes to be used by the screensaver. It's ignored when \"mode\" key is \"blank-only\", should provide the theme name when \"mode\" is \"single\", and should provide a list of themes when \"mode\" is \"random\"."
+msgstr "يحدد هذا الزر قائمة السِمة المستعملة من حافظة الشاشة. يتم تجاهله إذا كان زر \"mode\" هو  \"blank-only\"، يجب توفير اسم السِمة عندما يكون  \"mode\" هو \"single\"، يجب أيضا توفير قائمة السِمة عندما يكون \"mode\" هو \"random\"."
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
@@ -282,7 +230,8 @@ msgstr "_سجّل خروج"
 msgid "_Switch User"
 msgstr "_بدّل المستخدم"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1366
+#: ../data/lock-dialog-default.glade.h:11
+#: ../src/gs-lock-plug.c:1366
 msgid "_Unlock"
 msgstr "ا_فتح القفل"
 
@@ -454,9 +403,7 @@ msgid "Poke the running screensaver to simulate user activity"
 msgstr "وكز حافظة الشاشة المشتغل لاصطناع نشاط من المستخدم"
 
 #: ../src/gnome-screensaver-command.c:78
-msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
+msgid "Inhibit the screensaver from activating.  Command blocks while inhibit is active."
 msgstr "امنع حافظة الشاشة من التفعيل. الأمر يتوقف عندما يكون المنع نشطا."
 
 #: ../src/gnome-screensaver-command.c:80
@@ -467,7 +414,8 @@ msgstr "التطبيق المنادي الذي يمنع حافظة الشاشة"
 msgid "The reason for inhibiting the screensaver"
 msgstr "السبب وراء توقف حافظة الشاشة"
 
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:57
+#: ../src/gnome-screensaver-command.c:84
+#: ../src/gnome-screensaver-dialog.c:57
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "نسخة هذا التّطبيق"
@@ -486,14 +434,14 @@ msgid "inactive"
 msgstr "غير نشط"
 
 #: ../src/gnome-screensaver-command.c:321
-#, fuzzy, c-format
+#, c-format
 msgid "The screensaver is not inhibited\n"
-msgstr "حافظة الشاشة هي %s\n"
+msgstr "حافظة الشاشة غير ممنوع\n"
 
 #: ../src/gnome-screensaver-command.c:327
-#, fuzzy, c-format
+#, c-format
 msgid "The screensaver is being inhibited by:\n"
-msgstr "حافظة الشاشة هي %s\n"
+msgstr "حافظة الشاشة ممنوع من:\n"
 
 #: ../src/gnome-screensaver-command.c:358
 #, c-format
@@ -525,12 +473,15 @@ msgid "MESSAGE"
 msgstr "الرسالة"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:175 ../src/gnome-screensaver-dialog.c:176
-#: ../src/gnome-screensaver-dialog.c:177 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:175
+#: ../src/gnome-screensaver-dialog.c:176
+#: ../src/gnome-screensaver-dialog.c:177
+#: ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "اسم المستخدم:"
 
-#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:178
+#: ../src/gnome-screensaver-dialog.c:179
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "كلمة السر:"
@@ -595,7 +546,8 @@ msgstr "عفوا، كلمتا السر لا تتطابقان"
 msgid "Checking..."
 msgstr "جاري فحص..."
 
-#: ../src/gnome-screensaver-dialog.c:301 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:301
+#: ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "أخفق التّوثيق."
 
@@ -743,3 +695,4 @@ msgstr "%U على %h"
 #: ../src/gs-lock-plug.c:1546
 msgid "_Password:"
 msgstr "_كلمة السر:"
+
