@@ -2,16 +2,16 @@
 # Copyright (C) 2007 - 2008 Free Software Foundation
 # This file is distributed under the same license as the gnome-screensaver package.
 # Alexandru Szasz <alexxed@gmail.com>, 2007.
-# Mişu Moldovan <dumol@gnome.ro>, 2008.
-# 
-# 
+# Mișu Moldovan <dumol@gnome.ro>, 2008.
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-29 11:00+0000\n"
-"PO-Revision-Date: 2008-03-06 23:13+0200\n"
-"Last-Translator: Mişu Moldovan <dumol@gnome.ro>\n"
+"POT-Creation-Date: 2008-05-12 22:13+0000\n"
+"PO-Revision-Date: 2008-09-20 21:31+0300\n"
+"Last-Translator: Mișu Moldovan <dumol@gnome.ro>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgstr "Economizor de ecran"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:2
 msgid "Set your screensaver preferences"
-msgstr "Schimbaţi opţiunile economizorului de ecran"
+msgstr "Schimbați opțiunile economizorului de ecran"
 
 #: ../data/gnome-screensaver-preferences.glade.h:1
 msgid "<b>Screensaver preview</b>"
@@ -45,7 +45,7 @@ msgstr "Calculatorul este considerat _inactiv după:"
 
 #: ../data/gnome-screensaver-preferences.glade.h:5
 msgid "Screensaver Preferences"
-msgstr "Preferinţe pentru economizorul de ecran"
+msgstr "Preferințe pentru economizorul de ecran"
 
 #: ../data/gnome-screensaver-preferences.glade.h:6
 msgid "Screensaver Preview"
@@ -86,7 +86,7 @@ msgstr "Permite înglobarea unei tastaturi în fereastră"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow logout"
-msgstr "Permite ieşirea din sesiune"
+msgstr "Permite ieșirea din sesiune"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow user switching"
@@ -110,12 +110,11 @@ msgstr "Motivul plecării"
 
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Screensaver theme selection mode"
-msgstr "Selecţie temă pentru economizor"
+msgstr "Selecție temă pentru economizor"
 
 #: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr ""
-"Alegeţi TRUE pentru a activa economizorul când sesiunea este inactivă."
+msgstr "Alegeți TRUE pentru a activa economizorul când sesiunea este inactivă."
 
 #: ../data/gnome-screensaver.schemas.in.h:12
 msgid ""
@@ -123,20 +122,20 @@ msgid ""
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
 msgstr ""
-"Alegeţi TRUE pentru a permite înglobarea unei tastaturi în fereastră când "
-"se încearcă deblocarea. Cheia „keyboard_command” trebuie să fie setată cu o "
+"Alegeți TRUE pentru a permite înglobarea unei tastaturi în fereastră când se "
+"încearcă deblocarea. Cheia „keyboard_command” trebuie să fie setată cu o "
 "comandă potrivită."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr "Alegeţi TRUE pentru a bloca ecranul când economizorul este activ."
+msgstr "Alegeți TRUE pentru a bloca ecranul când economizorul este activ."
 
 #: ../data/gnome-screensaver.schemas.in.h:14
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr ""
-"Alegeţi TRUE pentru a oferi opţiunea de a schimba la un nou cont de "
+"Alegeți TRUE pentru a oferi opțiunea de a schimba la un nou cont de "
 "utilizator în dialogul de deblocare."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
@@ -144,7 +143,7 @@ msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
 msgstr ""
-"Alegeţi TRUE pentru a activa opţiunea de dezautentificare după un timp "
+"Alegeți TRUE pentru a activa opțiunea de dezautentificare după un timp "
 "stabilit în cheia „logout_delay”."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
@@ -156,8 +155,8 @@ msgid ""
 msgstr ""
 "Comanda care va fi executată pentru a îngloba o tastatură în fereastră, dacă "
 "cheia „embedded_keyboard_enabled” este TRUE. Comanda aceasta ar trebui să "
-"implementeze o interfaţă de conectare XEMBED şi să întoarcă o fereastră XID "
-"pe ieşirea standard."
+"implementeze o interfață de conectare XEMBED și să întoarcă o fereastră XID "
+"pe ieșirea standard."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
@@ -165,7 +164,7 @@ msgid ""
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
-"Comanda de invocat când butonul „Ieşire din sesiune” este apăsat. Această "
+"Comanda de invocat când butonul „Ieșire din sesiune” este apăsat. Această "
 "comandă ar trebui să închidă sesiunea curentă în mod neinteractiv. Cheia "
 "aceasta are efect doar dacă cheia „logout_enable” este TRUE."
 
@@ -182,9 +181,9 @@ msgid ""
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
-"Numărul de minute de la activarea economizorului de ecran după care va apărea "
-"opţiunea de ieşire din sesiune în dialogul de deblocare. Această cheie are "
-"efect doar dacă cheia „logout_enable” este TRUE."
+"Numărul de minute de la activarea economizorului de ecran după care va "
+"apărea opțiunea de ieșire din sesiune în dialogul de deblocare. Această "
+"cheie are efect doar dacă cheia „logout_enable” este TRUE."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
@@ -195,8 +194,7 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes to run before changing the screensaver theme."
-msgstr ""
-"Intervalul în minute la care se schimbă tema economizorului."
+msgstr "Intervalul în minute la care se schimbă tema economizorului."
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid ""
@@ -204,12 +202,12 @@ msgid ""
 "This key is set and maintained by the session power-management agent."
 msgstr ""
 "Numărul de secunde de inactivitate înainte de a activa gestionarea "
-"alimentării. Această cheie este setată şi menţinută de agentul de gestiune a "
+"alimentării. Această cheie este setată și menținută de agentul de gestiune a "
 "alimentării pentru sesiune."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid "The reason for being away from the computer."
-msgstr "Motivul pentru care nu mai sunteţi la calculator."
+msgstr "Motivul pentru care nu mai sunteți la calculator."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
@@ -222,7 +220,7 @@ msgstr ""
 "Modul de selectare folosit de economizorul de ecran. Poate fi „blank-only” "
 "pentru a activa economizorul de ecran fără a folosi vreo temă, „single” "
 "pentru a activa economizorul folosind o singură temă (specificată în cheia "
-"„themes”) şi „random” pentru a activa economizorul folosind o temă aleasă "
+"„themes”) și „random” pentru a activa economizorul folosind o temă aleasă "
 "aleator la activare."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
@@ -241,8 +239,8 @@ msgid ""
 "\" is \"random\"."
 msgstr ""
 "Această cheie specifică lista de teme de folosit pentru economizoare. E "
-"ignorată când cheia „mode” este „blank-only”, ar trebui să conţină numele "
-"temei când „mode” este „single” şi ar trebui să conţină o listă de teme când "
+"ignorată când cheia „mode” este „blank-only”, ar trebui să conțină numele "
+"temei când „mode” este „single” și ar trebui să conțină o listă de teme când "
 "„mode” este „random”."
 
 #: ../data/gnome-screensaver.schemas.in.h:28
@@ -251,7 +249,7 @@ msgstr "Timp scurs înainte de blocare"
 
 #: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before logout option"
-msgstr "Timp scurs înainte de ieşirea din sesiune"
+msgstr "Timp scurs înainte de ieșirea din sesiune"
 
 #: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before power-management baseline"
@@ -268,7 +266,7 @@ msgstr "Timp scurs înainte de schimbarea temei"
 #: ../data/lock-dialog-default.glade.h:2
 #, no-c-format
 msgid "<b>Leave a message for %R:</b>"
-msgstr "<b>Lăsaţi un mesaj pentru %R:</b>"
+msgstr "<b>Lăsați un mesaj pentru %R:</b>"
 
 #: ../data/lock-dialog-default.glade.h:4
 #, no-c-format
@@ -286,17 +284,17 @@ msgstr "A_nulare"
 
 #: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
-msgstr "_Mesaj în aşteptare"
+msgstr "_Mesaj în așteptare"
 
 #: ../data/lock-dialog-default.glade.h:9
 msgid "_Log Out"
-msgstr "_Ieşire din sesiune"
+msgstr "_Ieșire din sesiune"
 
 #: ../data/lock-dialog-default.glade.h:10
 msgid "_Switch User"
 msgstr "_Alt utilizator"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1212
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1214
 msgid "_Unlock"
 msgstr "_Deblocare"
 
@@ -310,7 +308,7 @@ msgstr "Arată un set de imagini din Cosmos"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:1
 msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "Sigla GNOME este afişată pe ecran multiplicată"
+msgstr "Sigla GNOME este afișată pe ecran multiplicată"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:2
 msgid "Floating Feet"
@@ -338,11 +336,11 @@ msgstr "Arată căile urmate de imagini"
 
 #: ../savers/floaters.c:87
 msgid "Occasionally rotate images as they move"
-msgstr "Roteşte ocazional imaginile în timp ce se mişcă"
+msgstr "Rotește ocazional imaginile în timp ce se mișcă"
 
 #: ../savers/floaters.c:90
 msgid "Print out frame rate and other statistics"
-msgstr "Arată numărul de cadre pe secundă şi alte statistici"
+msgstr "Arată numărul de cadre pe secundă și alte statistici"
 
 #: ../savers/floaters.c:93
 msgid "The maximum number of images to keep on screen"
@@ -354,11 +352,11 @@ msgstr "MAX_IMAGES"
 
 #: ../savers/floaters.c:96
 msgid "The initial size and position of window"
-msgstr "Mărimea iniţială şi poziţia ferestrei"
+msgstr "Mărimea inițială și poziția ferestrei"
 
 #: ../savers/floaters.c:96
 msgid "WIDTHxHEIGHT+X+Y"
-msgstr "LĂŢIMExÎNĂLŢIME+X+Y"
+msgstr "LĂȚIMExÎNĂLȚIME+X+Y"
 
 #: ../savers/floaters.c:99
 msgid "The source image to use"
@@ -374,12 +372,13 @@ msgstr "imagine - imagini plutind pe ecran"
 #: ../savers/floaters.c:1200
 #, c-format
 msgid "%s. See --help for usage information.\n"
-msgstr "%s. Consultaţi --help pentru informaţii despre utilizare.\n"
+msgstr "%s. Consultați --help pentru informații despre utilizare.\n"
 
 #: ../savers/floaters.c:1209
+#, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
-"E necesară specificarea unei imagini. Consultaţi --help pentru detalii.\n"
+"E necesară specificarea unei imagini. Consultați --help pentru detalii.\n"
 
 #: ../savers/slideshow.c:53
 msgid "Location to get images from"
@@ -405,35 +404,35 @@ msgstr "Nu amesteca aleator imaginile"
 msgid "Do not try to stretch images on screen"
 msgstr "Nu încerca să întinzi imaginile pe ecran"
 
-#: ../src/copy-theme-dialog.c:204
+#: ../src/copy-theme-dialog.c:211
 msgid "Copying files"
-msgstr "Se copiază fişierele"
+msgstr "Se copiază fișierele"
 
-#: ../src/copy-theme-dialog.c:222
+#: ../src/copy-theme-dialog.c:229
 msgid "From:"
 msgstr "De la:"
 
-#: ../src/copy-theme-dialog.c:226
+#: ../src/copy-theme-dialog.c:233
 msgid "To:"
 msgstr "Către:"
 
-#: ../src/copy-theme-dialog.c:246
+#: ../src/copy-theme-dialog.c:253
 msgid "Copying themes"
 msgstr "Se copiază temele"
 
-#: ../src/copy-theme-dialog.c:290
+#: ../src/copy-theme-dialog.c:297
 msgid "Invalid screensaver theme"
 msgstr "Temă invalidă pentru economizor"
 
-#: ../src/copy-theme-dialog.c:293
+#: ../src/copy-theme-dialog.c:300
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
 msgstr "%s nu pare a fi o temă validă de economizor."
 
-#: ../src/copy-theme-dialog.c:454
+#: ../src/copy-theme-dialog.c:480
 #, c-format
 msgid "Copying file: %u of %u"
-msgstr "Se copiază fişierul: %u din %u"
+msgstr "Se copiază fișierul: %u din %u"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -441,16 +440,17 @@ msgstr "Determină economizorul să se încheie normal"
 
 #: ../src/gnome-screensaver-command.c:64
 msgid "Query the state of the screensaver"
-msgstr "Obţine starea economizorului de ecran"
+msgstr "Obține starea economizorului de ecran"
 
 #: ../src/gnome-screensaver-command.c:66
 msgid "Query the length of time the screensaver has been active"
-msgstr "Obţine timpul de activitate al economizorului de ecran"
+msgstr "Obține timpul de activitate al economizorului de ecran"
 
 #: ../src/gnome-screensaver-command.c:68
 msgid "Tells the running screensaver process to lock the screen immediately"
-msgstr "Transmite procesului economizor pornit o comandă de blocare imediată "
-"a ecranului"
+msgstr ""
+"Transmite procesului economizor pornit o comandă de blocare imediată a "
+"ecranului"
 
 #: ../src/gnome-screensaver-command.c:70
 msgid "If the screensaver is active then switch to another graphics demo"
@@ -459,7 +459,7 @@ msgstr ""
 
 #: ../src/gnome-screensaver-command.c:72
 msgid "Turn the screensaver on (blank the screen)"
-msgstr "Porneşte economizorul de ecran (înnegreşte ecranul)"
+msgstr "Pornește economizorul de ecran (înnegrește ecranul)"
 
 #: ../src/gnome-screensaver-command.c:74
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
@@ -467,7 +467,7 @@ msgstr "Dacă economizorul de ecran este activ, atunci deactivează-l"
 
 #: ../src/gnome-screensaver-command.c:76
 msgid "Poke the running screensaver to simulate user activity"
-msgstr "Păcăleşte economizorul de ecran simulând activitate de utilizator"
+msgstr "Păcălește economizorul de ecran simulând activitate de utilizator"
 
 #: ../src/gnome-screensaver-command.c:78
 msgid ""
@@ -479,135 +479,144 @@ msgstr ""
 
 #: ../src/gnome-screensaver-command.c:80
 msgid "The calling application that is inhibiting the screensaver"
-msgstr "Aplicaţia care va inhiba economizorul de ecran"
+msgstr "Aplicația care va inhiba economizorul de ecran"
 
 #: ../src/gnome-screensaver-command.c:82
 msgid "The reason for inhibiting the screensaver"
 msgstr "Motivul pentru inhibarea economizorului"
 
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:57
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
-msgstr "Versiunea acestei aplicaţii"
+msgstr "Versiunea acestei aplicații"
 
-#: ../src/gnome-screensaver-command.c:249
+#: ../src/gnome-screensaver-command.c:307
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "Economizorul de ecran este %s\n"
 
-#: ../src/gnome-screensaver-command.c:249
+#: ../src/gnome-screensaver-command.c:307
 msgid "active"
 msgstr "activ"
 
-#: ../src/gnome-screensaver-command.c:249
+#: ../src/gnome-screensaver-command.c:307
 msgid "inactive"
 msgstr "inactiv"
 
-#: ../src/gnome-screensaver-command.c:274
+#: ../src/gnome-screensaver-command.c:321
+#, c-format
+msgid "The screensaver is not inhibited\n"
+msgstr "Economizorul de ecran nu e întrerupt de nimic\n"
+
+#: ../src/gnome-screensaver-command.c:327
+#, c-format
+msgid "The screensaver is being inhibited by:\n"
+msgstr "Economizorul de ecran este întrerupt de:\n"
+
+#: ../src/gnome-screensaver-command.c:358
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "Economizorul de ecran a fost activ pentru %d secunde.\n"
 
-#: ../src/gnome-screensaver-dialog.c:53
+#: ../src/gnome-screensaver-dialog.c:55
 msgid "Show debugging output"
-msgstr "Arată informaţii de depanare"
-
-#: ../src/gnome-screensaver-dialog.c:57
-msgid "Show the logout button"
-msgstr "Arată butonul de ieşire din sesiune"
+msgstr "Arată informații de depanare"
 
 #: ../src/gnome-screensaver-dialog.c:59
-msgid "Command to invoke from the logout button"
-msgstr "Comandă de invocat pentru butonul de ieşire din sesiune"
+msgid "Show the logout button"
+msgstr "Arată butonul de ieșire din sesiune"
 
 #: ../src/gnome-screensaver-dialog.c:61
+msgid "Command to invoke from the logout button"
+msgstr "Comandă de invocat pentru butonul de ieșire din sesiune"
+
+#: ../src/gnome-screensaver-dialog.c:63
 msgid "Show the switch user button"
 msgstr "Arată butonul „Alt utilizator”"
 
-#: ../src/gnome-screensaver-dialog.c:63
+#: ../src/gnome-screensaver-dialog.c:65
 msgid "Message to show in the dialog"
-msgstr "Mesajul de afişat în dialog"
+msgstr "Mesajul de afișat în dialog"
 
-#: ../src/gnome-screensaver-dialog.c:63
+#: ../src/gnome-screensaver-dialog.c:65
 msgid "MESSAGE"
 msgstr "MESAJ"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
-#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:175 ../src/gnome-screensaver-dialog.c:176
+#: ../src/gnome-screensaver-dialog.c:177 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Utilizator:"
 
-#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
+#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "Parolă:"
 
-#: ../src/gnome-screensaver-dialog.c:178
-msgid "You are required to change your password immediately (password aged)"
-msgstr "Este necesar să vă schimbaţi parola imediat (parola este prea veche)"
-
-#: ../src/gnome-screensaver-dialog.c:179
-msgid "You are required to change your password immediately (root enforced)"
-msgstr ""
-"Este necesar să vă schimbaţi parola imediat (vă obligă administratorul)"
-
 #: ../src/gnome-screensaver-dialog.c:180
-msgid "Your account has expired; please contact your system administrator"
-msgstr "Contul dumneavoastră a expirat, contactaţi administratorul de "
-"sistem"
+msgid "You are required to change your password immediately (password aged)"
+msgstr "Este necesar să vă schimbați parola imediat (parola este prea veche)"
 
 #: ../src/gnome-screensaver-dialog.c:181
-msgid "No password supplied"
-msgstr "Nu aţi introdus o parolă"
+msgid "You are required to change your password immediately (root enforced)"
+msgstr ""
+"Este necesar să vă schimbați parola imediat (vă obligă administratorul)"
 
 #: ../src/gnome-screensaver-dialog.c:182
+msgid "Your account has expired; please contact your system administrator"
+msgstr "Contul dumneavoastră a expirat, contactați administratorul de sistem"
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "No password supplied"
+msgstr "Nu ați introdus o parolă"
+
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "Password unchanged"
 msgstr "Parolă neschimbată"
 
-#: ../src/gnome-screensaver-dialog.c:183
-msgid "Can not get username"
-msgstr "Nu se poate obţine utilizatorul"
-
-#: ../src/gnome-screensaver-dialog.c:184
-msgid "Retype new UNIX password:"
-msgstr "Tastaţi încă o dată noua parolă UNIX:"
-
 #: ../src/gnome-screensaver-dialog.c:185
-msgid "Enter new UNIX password:"
-msgstr "Introduceţi noua parolă UNIX:"
+msgid "Can not get username"
+msgstr "Nu se poate obține utilizatorul"
 
 #: ../src/gnome-screensaver-dialog.c:186
+msgid "Retype new UNIX password:"
+msgstr "Tastați încă o dată noua parolă UNIX:"
+
+#: ../src/gnome-screensaver-dialog.c:187
+msgid "Enter new UNIX password:"
+msgstr "Introduceți noua parolă UNIX:"
+
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "(current) UNIX password:"
 msgstr "Parola (curentă) UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "Error while changing NIS password."
 msgstr "Eroare la schimbarea parolei NIS."
 
-#: ../src/gnome-screensaver-dialog.c:188
-msgid "You must choose a longer password"
-msgstr "Trebuie să alegeţi o parolă mai lungă"
-
-#: ../src/gnome-screensaver-dialog.c:189
-msgid "Password has been already used. Choose another."
-msgstr "Parola a fost deja folosită. Alegeţi alta."
-
 #: ../src/gnome-screensaver-dialog.c:190
-msgid "You must wait longer to change your password"
-msgstr "Trebuie să aşteptaţi mai mult pentru a vă schimba parola"
+msgid "You must choose a longer password"
+msgstr "Trebuie să alegeți o parolă mai lungă"
 
 #: ../src/gnome-screensaver-dialog.c:191
+msgid "Password has been already used. Choose another."
+msgstr "Parola a fost deja folosită. Alegeți alta."
+
+#: ../src/gnome-screensaver-dialog.c:192
+msgid "You must wait longer to change your password"
+msgstr "Trebuie să așteptați mai mult pentru a vă schimba parola"
+
+#: ../src/gnome-screensaver-dialog.c:193
 msgid "Sorry, passwords do not match"
 msgstr "Ne pare rău, parolele nu se potrivesc"
 
-#: ../src/gnome-screensaver-dialog.c:257
+#: ../src/gnome-screensaver-dialog.c:259
 msgid "Checking..."
 msgstr "Se verifică..."
 
-#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:301 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
-msgstr "Autentificarea a eşuat."
+msgstr "Autentificarea a eșuat."
 
 #: ../src/gnome-screensaver-preferences.c:498
 msgid "Blank screen"
@@ -666,16 +675,17 @@ msgid "%s"
 msgstr "%s"
 
 #: ../src/gnome-screensaver-preferences.c:999
+#, c-format
 msgid "Never"
 msgstr "Niciodată"
 
 #: ../src/gnome-screensaver-preferences.c:1398
 msgid "Could not load the main interface"
-msgstr "Nu se poate încărca interfaţa principală"
+msgstr "Nu se poate încărca interfața principală"
 
 #: ../src/gnome-screensaver-preferences.c:1400
 msgid "Please make sure that the screensaver is properly installed"
-msgstr "Vă rugăm să vă asiguraţi că economizorul este instalat corespunzător"
+msgstr "Vă rugăm să vă asigurați că economizorul este instalat corespunzător"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
@@ -709,7 +719,7 @@ msgstr "Nu vă mai este permis accesul la sistem."
 
 #: ../src/gs-listener-dbus.c:1921
 msgid "failed to register with the message bus"
-msgstr "eşec la înregistrarea cu magistrala de mesaje"
+msgstr "eșec la înregistrarea cu magistrala de mesaje"
 
 #: ../src/gs-listener-dbus.c:1931
 msgid "not connected to the message bus"
@@ -719,28 +729,28 @@ msgstr "deconectat de la magistrala de mesaje"
 msgid "screensaver already running in this session"
 msgstr "economizorul rulează deja în această sesiune"
 
-#: ../src/gs-lock-plug.c:269
+#: ../src/gs-lock-plug.c:271
 msgid "Time has expired."
 msgstr "Timpul a expirat."
 
-#: ../src/gs-lock-plug.c:297
+#: ../src/gs-lock-plug.c:299
 msgid "You have the Caps Lock key on."
 msgstr "Caps Lock activat."
 
-#: ../src/gs-lock-plug.c:1192
+#: ../src/gs-lock-plug.c:1194
 msgid "S_witch User..."
 msgstr "S_chimbă utilizatorul..."
 
-#: ../src/gs-lock-plug.c:1201
+#: ../src/gs-lock-plug.c:1203
 msgid "Log _Out"
-msgstr "_Ieşire din sesiune"
+msgstr "_Ieșire din sesiune"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1378
+#: ../src/gs-lock-plug.c:1380
 msgid "%U on %h"
 msgstr "%U pe %h"
 
-#: ../src/gs-lock-plug.c:1392
+#: ../src/gs-lock-plug.c:1394
 msgid "_Password:"
 msgstr "_Parolă:"
 
@@ -760,10 +770,10 @@ msgstr "_Parolă:"
 #~ msgstr "URI transferat către"
 
 #~ msgid "Fraction completed"
-#~ msgstr "Fracţiune completă"
+#~ msgstr "Fracțiune completă"
 
 #~ msgid "Fraction of transfer currently completed"
-#~ msgstr "Fracţiune a transferului încheiat"
+#~ msgstr "Fracțiune a transferului încheiat"
 
 #~ msgid "Current URI index"
 #~ msgstr "Indexul URI curent"
