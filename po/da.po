@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-21 22:59+0200\n"
-"PO-Revision-Date: 2008-09-21 22:57+0200\n"
+"PO-Revision-Date: 2008-09-22 20:48+0000\n"
 "Last-Translator: Kenneth Nielsen <k.nielsen81@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -497,12 +497,12 @@ msgstr "inaktiv"
 #: ../src/gnome-screensaver-command.c:321
 #, c-format
 msgid "The screensaver is not inhibited\n"
-msgstr "Pauseskærm er ikke undertrykket\n"
+msgstr "Pauseskærm er ikke undertrykt\n"
 
 #: ../src/gnome-screensaver-command.c:327
 #, c-format
 msgid "The screensaver is being inhibited by:\n"
-msgstr "Pauseskærm bliver undertrykket af:\n"
+msgstr "Pauseskærm bliver undertrykt af:\n"
 
 #: ../src/gnome-screensaver-command.c:358
 #, c-format
