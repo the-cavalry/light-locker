@@ -1,3 +1,7 @@
+2008-09-23  William Jon McCann  <jmccann@redhat.com>
+
+	* NEWS: Update for release
+
 2008-08-28  William Jon McCann  <jmccann@redhat.com>
 
 	* configure.ac: Post release bump
