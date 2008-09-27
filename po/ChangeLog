@@ -1,3 +1,7 @@
+2008-09-27  Leonardo Ferreira Fontenelle  <leonardof@gnome.org>
+
+	* pt_BR.po: Removed obsolete translations because of bug #549898.
+
 2008-09-23  Pema Geyleg  <pema.geyleg@gmail.com>
 
         * dz.po: Updated Dzongkha Translation
