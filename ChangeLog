@@ -1,3 +1,10 @@
+2008-10-15  William Jon McCann  <jmccann@redhat.com>
+
+	* src/gs-manager.c (apply_background_to_window):
+	Don't ask gnome-bg to create a root pixmap.
+	Patch from <scott@netsplit.com>
+	Fixes #555701
+
 2008-09-23  William Jon McCann  <jmccann@redhat.com>
 
 	* configure.ac: Post release bump

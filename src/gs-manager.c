@@ -1282,7 +1282,7 @@ apply_background_to_window (GSManager *manager,
                                          gs_window_get_gdk_window (window),
                                          width,
                                          height,
-                                         TRUE);
+                                         FALSE);
         gs_window_set_background_pixmap (window, pixmap);
         g_object_unref (pixmap);
 }
