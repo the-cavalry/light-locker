@@ -462,10 +462,20 @@ gs_grab_grab_window (GSGrab    *grab,
 
         if (kstatus != GDK_GRAB_SUCCESS || mstatus != GDK_GRAB_SUCCESS) {
                 /* Do not blank without a keyboard and mouse grabs. */
+
+                /* Release keyboard or mouse which was grabbed. */
+                if (kstatus == GDK_GRAB_SUCCESS) {
+                        gs_grab_release_keyboard (grab);
+                }
+                if (mstatus == GDK_GRAB_SUCCESS) {
+                        gs_grab_release_mouse (grab);
+                }
+
                 return FALSE;
         }
 
-        return TRUE;			/* Grab is good, go ahead and blank.  */
+        /* Grab is good, go ahead and blank.  */
+        return TRUE;
 }
 
 /* this is used to grab the keyboard and mouse to the root */

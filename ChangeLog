@@ -1,3 +1,10 @@
+2008-11-12  William Jon McCann  <jmccann@redhat.com>
+
+	* src/gs-grab-x11.c (gs_grab_grab_window):
+	Release mouse/keyboard when failed to grab both of them.
+	Based on patch from: Joey Yu Zheng <joey.yuzheng@gmail.com>
+	Fixes #555491
+
 2008-10-15  William Jon McCann  <jmccann@redhat.com>
 
 	* src/gs-manager.c (apply_background_to_window):
