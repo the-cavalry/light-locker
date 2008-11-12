@@ -1238,6 +1238,7 @@ fullscreen_preview_start_cb (GtkWidget *widget,
         gtk_widget_grab_focus (fullscreen_preview_window);
 
         fullscreen_preview_area = glade_xml_get_widget (xml, "fullscreen_preview_area");
+        preview_clear (fullscreen_preview_area);
         gs_job_set_widget (job, fullscreen_preview_area);
 }
 
