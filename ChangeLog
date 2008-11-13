@@ -3,12 +3,6 @@
 	* src/gnome-screensaver-preferences.c (config_get_theme):
 	Default to blank only if we can't get the theme list.
 
-2008-11-13  William Jon McCann  <jmccann@redhat.com>
-
-	reviewed by: <delete if not using a buddy>
-
-	* src/gnome-screensaver-preferences.c (config_get_theme):
-
 2008-11-12  William Jon McCann  <jmccann@redhat.com>
 
 	* src/gnome-screensaver-preferences.c (fullscreen_preview_start_cb):
