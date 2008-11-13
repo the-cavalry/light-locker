@@ -172,7 +172,7 @@ static char *
 config_get_theme (gboolean *is_writable)
 {
         GConfClient *client;
-        char        *name = NULL;
+        char        *name;
         int          mode;
 
         client = gconf_client_get_default ();
@@ -192,6 +192,7 @@ config_get_theme (gboolean *is_writable)
 
         mode = config_get_mode (NULL);
 
+        name = NULL;
         if (mode == GS_MODE_BLANK_ONLY) {
                 name = g_strdup ("__blank-only");
         } else if (mode == GS_MODE_RANDOM) {
@@ -202,10 +203,12 @@ config_get_theme (gboolean *is_writable)
                                               KEY_THEMES,
                                               GCONF_VALUE_STRING,
                                               NULL);
-                if (list) {
+                if (list != NULL) {
                         name = g_strdup (list->data);
                 } else {
                         /* TODO: handle error */
+                        /* default to blank */
+                        name = g_strdup ("__blank-only");
                 }
 
                 g_slist_foreach (list, (GFunc)g_free, NULL);
