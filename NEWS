@@ -1,4 +1,23 @@
 ===============
+Version 2.24.1
+===============
+
+- Fixed #555701, libgnome-desktop:gnome_bg_create_pixmap() leaks pixmaps and X clients (Scott Remnant)
+- Fixed #451498, Preview of "Blank screen" is not consistent (Neil Patel)
+- Fixed #552119, Add GTK and GNOME to screensaver desktop (William Jon McCann)
+- Fixed #552523, Screensaver suddenly stopped working (William Jon McCann)
+- Fixed #555254, gnome-screensaver-dialog NULL pointer crash (William Jon McCann)
+- Fixed #555491, gnome-screensaver should release mouse/keyboard when failed to grab both of them (Joey Yu Zheng)
+- Fixed #560456, Cleaning up GTK Includes in gnome-screensaver (Maxim Ermilov)
+
+Translations:
+- Updated ar: Djihed Afifi
+- Updated ast: Andre Klapper, Astur
+- Updated be@latin: Ihar Hračyška, Ihar Hrachyshka
+- Updated pt_BR: Leonardo Ferreira Fontenelle, Vladimir Melo
+
+
+===============
 Version 2.24.0
 ===============
 
