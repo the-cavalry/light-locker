@@ -338,7 +338,6 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
         GError  *error;
 
         error = NULL;
-
         bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_IDLE_ACTIVATION_ENABLED, &error);
         if (! error) {
                 _gs_prefs_set_idle_activation_enabled (prefs, bvalue);
@@ -346,6 +345,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 key_error_and_free (KEY_IDLE_ACTIVATION_ENABLED, error);
         }
 
+        error = NULL;
         bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_LOCK_ENABLED, &error);
         if (! error) {
                 _gs_prefs_set_lock_enabled (prefs, bvalue);
@@ -353,6 +353,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 key_error_and_free (KEY_LOCK_ENABLED, error);
         }
 
+        error = NULL;
         bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_LOCK_DISABLE, &error);
         if (! error) {
                 _gs_prefs_set_lock_disabled (prefs, bvalue);
@@ -360,6 +361,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 key_error_and_free (KEY_LOCK_DISABLE, error);
         }
 
+        error = NULL;
         bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_USER_SWITCH_DISABLE, &error);
         if (! error) {
                 _gs_prefs_set_user_switch_disabled (prefs, bvalue);
@@ -367,6 +369,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 key_error_and_free (KEY_USER_SWITCH_DISABLE, error);
         }
 
+        error = NULL;
         value = gconf_client_get_int (prefs->priv->gconf_client, KEY_ACTIVATE_DELAY, &error);
         if (! error) {
                 _gs_prefs_set_timeout (prefs, value);
@@ -374,6 +377,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 key_error_and_free (KEY_ACTIVATE_DELAY, error);
         }
 
+        error = NULL;
         value = gconf_client_get_int (prefs->priv->gconf_client, KEY_POWER_DELAY, &error);
         if (! error) {
                 _gs_prefs_set_power_timeout (prefs, value);
@@ -381,6 +385,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 key_error_and_free (KEY_POWER_DELAY, error);
         }
 
+        error = NULL;
         value = gconf_client_get_int (prefs->priv->gconf_client, KEY_LOCK_DELAY, &error);
         if (! error) {
                 _gs_prefs_set_lock_timeout (prefs, value);
@@ -388,6 +393,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 key_error_and_free (KEY_LOCK_DELAY, error);
         }
 
+        error = NULL;
         value = gconf_client_get_int (prefs->priv->gconf_client, KEY_CYCLE_DELAY, &error);
         if (! error) {
                 _gs_prefs_set_cycle_timeout (prefs, value);
@@ -395,6 +401,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 key_error_and_free (KEY_CYCLE_DELAY, error);
         }
 
+        error = NULL;
         string = gconf_client_get_string (prefs->priv->gconf_client, KEY_MODE, &error);
         if (! error) {
                 _gs_prefs_set_mode (prefs, string);
@@ -403,8 +410,11 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
         }
         g_free (string);
 
+        error = NULL;
         list = gconf_client_get_list (prefs->priv->gconf_client,
-                                      KEY_THEMES, GCONF_VALUE_STRING, &error);
+                                      KEY_THEMES,
+                                      GCONF_VALUE_STRING,
+                                      &error);
         if (! error) {
                 _gs_prefs_set_themes (prefs, list);
         } else {
@@ -413,6 +423,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
 
         /* Embedded keyboard options */
 
+        error = NULL;
         bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_KEYBOARD_ENABLED, &error);
         if (! error) {
                 _gs_prefs_set_keyboard_enabled (prefs, bvalue);
@@ -420,6 +431,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 key_error_and_free (KEY_KEYBOARD_ENABLED, error);
         }
 
+        error = NULL;
         string = gconf_client_get_string (prefs->priv->gconf_client, KEY_KEYBOARD_COMMAND, &error);
         if (! error) {
                 _gs_prefs_set_keyboard_command (prefs, string);
@@ -428,6 +440,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
         }
         g_free (string);
 
+        error = NULL;
         string = gconf_client_get_string (prefs->priv->gconf_client, KEY_AWAY_MESSAGE, &error);
         if (! error) {
                 _gs_prefs_set_away_message (prefs, string);
@@ -438,6 +451,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
 
         /* Logout options */
 
+        error = NULL;
         bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_LOGOUT_ENABLED, &error);
         if (! error) {
                 _gs_prefs_set_logout_enabled (prefs, bvalue);
@@ -445,6 +459,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
                 key_error_and_free (KEY_LOGOUT_ENABLED, error);
         }
 
+        error = NULL;
         string = gconf_client_get_string (prefs->priv->gconf_client, KEY_LOGOUT_COMMAND, &error);
         if (! error) {
                 _gs_prefs_set_logout_command (prefs, string);
@@ -453,6 +468,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
         }
         g_free (string);
 
+        error = NULL;
         value = gconf_client_get_int (prefs->priv->gconf_client, KEY_LOGOUT_DELAY, &error);
         if (! error) {
                 _gs_prefs_set_logout_timeout (prefs, value);
@@ -462,6 +478,7 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
 
         /* User switching options */
 
+        error = NULL;
         bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_USER_SWITCH_ENABLED, &error);
         if (! error) {
                 _gs_prefs_set_user_switch_enabled (prefs, bvalue);

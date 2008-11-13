@@ -1,5 +1,10 @@
 2008-11-13  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gs-prefs.c (gs_prefs_load_from_gconf):
+	Make sure error is initialized to NULL.
+
+2008-11-13  William Jon McCann  <jmccann@redhat.com>
+
 	* savers/floaters.c:
 	* savers/gste-slideshow.c:
 	* src/copy-theme-dialog.h:
