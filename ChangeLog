@@ -1,5 +1,12 @@
 2008-11-13  William Jon McCann  <jmccann@redhat.com>
 
+	* data/gnome-screensaver-preferences.desktop.in (Categories):
+	Add GTK and GNOME categories to screensaver desktop
+	Patch from: Patryk Zawadzki <patrys@pld-linux.org>
+	Fixes #552119.
+
+2008-11-13  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gnome-screensaver-preferences.c (config_get_theme):
 	Default to blank only if we can't get the theme list.
 
