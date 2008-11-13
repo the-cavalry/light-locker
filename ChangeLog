@@ -2,6 +2,7 @@
 
 	* src/gs-prefs.c (gs_prefs_load_from_gconf):
 	Make sure error is initialized to NULL.
+	Fixes #552523
 
 2008-11-13  William Jon McCann  <jmccann@redhat.com>
 
