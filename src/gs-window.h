@@ -24,7 +24,7 @@
 #define __GS_WINDOW_H
 
 #include <gdk/gdk.h>
-#include <gtk/gtkwindow.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

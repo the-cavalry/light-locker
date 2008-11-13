@@ -1,5 +1,15 @@
 2008-11-13  William Jon McCann  <jmccann@redhat.com>
 
+	* savers/floaters.c:
+	* savers/gste-slideshow.c:
+	* src/copy-theme-dialog.h:
+	* src/gs-window.h:
+	Clean up gtk includes.
+	Patch from: Maxim Ermilov <zaspire@rambler.ru>
+	Fixes #560456
+
+2008-11-13  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gs-lock-plug.c (create_page_one):
 	Don't crash when we can't load the glade theme file.
 	Fixes #555254

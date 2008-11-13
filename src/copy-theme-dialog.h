@@ -20,7 +20,7 @@
 #ifndef __COPY_THEME_DIALOG_H__
 #define __COPY_THEME_DIALOG_H__
 
-#include <gtk/gtkdialog.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

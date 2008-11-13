@@ -27,7 +27,6 @@
 #include <string.h>
 
 #include <glib.h>
-#include <glib/gthread.h>
 #include <gtk/gtk.h>
 
 #include "gs-theme-engine.h"
