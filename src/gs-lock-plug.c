@@ -1498,7 +1498,6 @@ expand_string_for_label (GtkWidget *label)
 static void
 create_page_one (GSLockPlug *plug)
 {
-        GtkWidget            *password_label;
         GtkWidget            *align;
         GtkWidget            *vbox;
         GtkWidget            *vbox2;
@@ -1543,14 +1542,14 @@ create_page_one (GSLockPlug *plug)
         hbox = gtk_hbox_new (FALSE, 6);
         gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 0);
 
-        password_label = gtk_label_new_with_mnemonic (_("_Password:"));
-        gtk_misc_set_alignment (GTK_MISC (password_label), 0, 0.5);
-        gtk_box_pack_start (GTK_BOX (hbox), password_label, FALSE, FALSE, 0);
+        plug->priv->auth_prompt_label = gtk_label_new_with_mnemonic (_("_Password:"));
+        gtk_misc_set_alignment (GTK_MISC (plug->priv->auth_prompt_label), 0, 0.5);
+        gtk_box_pack_start (GTK_BOX (hbox), plug->priv->auth_prompt_label, FALSE, FALSE, 0);
 
         plug->priv->auth_prompt_entry = gtk_entry_new ();
         gtk_box_pack_start (GTK_BOX (hbox), plug->priv->auth_prompt_entry, TRUE, TRUE, 0);
 
-        gtk_label_set_mnemonic_widget (GTK_LABEL (password_label),
+        gtk_label_set_mnemonic_widget (GTK_LABEL (plug->priv->auth_prompt_label),
                                        plug->priv->auth_prompt_entry);
 
         plug->priv->auth_capslock_label = gtk_label_new ("");

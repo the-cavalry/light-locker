@@ -1,5 +1,11 @@
 2008-11-13  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gs-lock-plug.c (create_page_one):
+	Don't crash when we can't load the glade theme file.
+	Fixes #555254
+
+2008-11-13  William Jon McCann  <jmccann@redhat.com>
+
 	* data/gnome-screensaver-preferences.desktop.in (Categories):
 	Add GTK and GNOME categories to screensaver desktop
 	Patch from: Patryk Zawadzki <patrys@pld-linux.org>
