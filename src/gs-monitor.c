@@ -403,11 +403,11 @@ disconnect_watcher_signals (GSMonitor *monitor)
 static void
 connect_watcher_signals (GSMonitor *monitor)
 {
-        g_signal_connect (monitor->priv->watcher, "idle_changed",
+        g_signal_connect (monitor->priv->watcher, "idle-changed",
                           G_CALLBACK (watcher_idle_cb), monitor);
-        g_signal_connect (monitor->priv->watcher, "idle_notice_changed",
+        g_signal_connect (monitor->priv->watcher, "idle-notice-changed",
                           G_CALLBACK (watcher_idle_notice_cb), monitor);
-        g_signal_connect (monitor->priv->watcher, "power_notice_changed",
+        g_signal_connect (monitor->priv->watcher, "power-notice-changed",
                           G_CALLBACK (watcher_power_notice_cb), monitor);
 }
 

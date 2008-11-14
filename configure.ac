@@ -319,6 +319,28 @@ AC_DEFUN(HANDLE_X_PATH_ARG, [
   ])
 
 dnl ---------------------------------------------------------------------------
+dnl - Check for XSync extension
+dnl ---------------------------------------------------------------------------
+
+have_xsync=no
+AC_CHECK_X_HEADER(X11/extensions/sync.h, [have_xsync=yes],,
+                    [#include <X11/Xlib.h>])
+if test "$have_xsync" = yes; then
+  AC_DEFINE(HAVE_XSYNC, 1, [Have the SYNC extension library])
+fi
+
+dnl ---------------------------------------------------------------------------
+dnl - Check for XTest extension
+dnl ---------------------------------------------------------------------------
+
+have_xtest=no
+AC_CHECK_X_LIB(Xtst, XTestFakeKeyEvent, [have_xtest=yes], [have_xtest=no], -lX11 -lXext)
+if test "$have_xtest" = yes; then
+    AC_DEFINE(HAVE_XTEST, 1, [Have the XTest extension library])
+    SAVER_LIBS="$SAVER_LIBS -lXtst"
+fi
+
+dnl ---------------------------------------------------------------------------
 dnl - Check for shaped window extension
 dnl ---------------------------------------------------------------------------
 
@@ -1092,6 +1114,8 @@ echo "
         Extension libs:           ${SAVER_LIBS}
         Maintainer mode:          ${USE_MAINTAINER_MODE}
         Docs enabled:             ${enable_docbook_docs}
+	Have XSync:               ${have_xsync}
+	Have XTest:               ${have_xtest}
 
 	GL:                       ${have_libgl}
 

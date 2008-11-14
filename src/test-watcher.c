@@ -42,11 +42,23 @@ watcher_idle_cb (GSWatcher *watcher,
         return FALSE;
 }
 
+static gboolean
+watcher_idle_notice_cb (GSWatcher *watcher,
+                        gboolean   is_idle,
+                        gpointer   data)
+{
+        g_message ("Idle notice status changed: %s", is_idle ? "idle" : "not idle");
+
+        return TRUE;
+}
+
 static void
 connect_watcher_signals (GSWatcher *watcher)
 {
-        g_signal_connect (watcher, "idle_changed",
+        g_signal_connect (watcher, "idle-changed",
                           G_CALLBACK (watcher_idle_cb), NULL);
+        g_signal_connect (watcher, "idle-notice-changed",
+                          G_CALLBACK (watcher_idle_notice_cb), NULL);
 }
 
 static void
@@ -55,7 +67,7 @@ test_watcher (void)
         GSWatcher *watcher;
         guint      timeout;
 
-        timeout = 60000;
+        timeout = 20000;
 
         watcher = gs_watcher_new (timeout);
         gs_watcher_set_enabled (watcher, TRUE);
@@ -92,5 +104,5 @@ main (int    argc,
 
         gs_debug_shutdown ();
 
-	return 0;
+        return 0;
 }

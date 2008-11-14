@@ -1,5 +1,36 @@
 2008-11-13  William Jon McCann  <jmccann@redhat.com>
 
+	* configure.ac:
+	* src/Makefile.am:
+	* src/gs-idle-monitor.c (_xsyncvalue_to_int64),
+	(_int64_to_xsyncvalue), (gs_idle_monitor_dispose), (_find_alarm),
+	(find_watch_for_alarm), (send_fake_event), (gs_idle_monitor_reset),
+	(handle_alarm_notify_event), (xevent_filter), (init_xsync),
+	(_init_xtest), (gs_idle_monitor_constructor),
+	(gs_idle_monitor_class_init), (get_next_watch_serial),
+	(idle_monitor_watch_new), (idle_monitor_watch_free),
+	(gs_idle_monitor_init), (gs_idle_monitor_finalize),
+	(gs_idle_monitor_new), (_xsync_alarm_set),
+	(gs_idle_monitor_add_watch), (gs_idle_monitor_remove_watch):
+	* src/gs-idle-monitor.h:
+	* src/gs-monitor.c (connect_watcher_signals):
+	* src/gs-watcher-x11.c (remove_watchdog_timer),
+	(add_watchdog_timer), (gs_watcher_reset), (gs_watcher_class_init),
+	(on_power_timeout), (on_notice_timeout), (on_idle_timeout),
+	(start_idle_watcher), (stop_idle_watcher), (gs_watcher_init),
+	(gs_watcher_finalize), (disable_builtin_screensaver),
+	(gs_watcher_new):
+	* src/test-idle-monitor.c (on_less_idle), (on_idle),
+	(on_very_idle), (test_idle_monitor), (main):
+	* src/test-watcher.c (watcher_idle_notice_cb),
+	(connect_watcher_signals), (test_watcher):
+	Create a new class that can use IDLETIME counter to
+	get idle times.  Rip out all the old code that
+	selects for events on windows.
+	Fixes #444927
+
+2008-11-13  William Jon McCann  <jmccann@redhat.com>
+
 	* configure.ac: Post branch bump
 
 2008-11-13  William Jon McCann  <jmccann@redhat.com>
