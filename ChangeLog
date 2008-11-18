@@ -1,3 +1,8 @@
+2008-11-18  William Jon McCann  <jmccann@redhat.com>
+
+	* data/lock-dialog-default.glade:
+	Add a frame bevel around the dialog.
+
 2008-11-13  William Jon McCann  <jmccann@redhat.com>
 
 	* configure.ac:
