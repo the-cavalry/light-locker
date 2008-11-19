@@ -1,5 +1,14 @@
 2008-11-19  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gs-idle-monitor.c (send_fake_event),
+	(handle_alarm_notify_event), (_xsync_alarm_set):
+	Use gs-debug.
+
+	* src/test-idle-ext.c (main):
+	Drop some stuff we don't need.
+
+2008-11-19  William Jon McCann  <jmccann@redhat.com>
+
 	* src/test-idle-ext.c (_xsyncvalue_to_int64),
 	(_int64_to_xsyncvalue), (xevent_filter), (init_xsync),
 	(test_idle_ext), (main):

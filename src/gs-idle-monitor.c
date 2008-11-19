@@ -36,6 +36,7 @@
 #include <gdk/gdkx.h>
 #include <gdk/gdk.h>
 
+#include "gs-debug.h"
 #include "gs-idle-monitor.h"
 
 static void gs_idle_monitor_class_init (GSIdleMonitorClass *klass);
@@ -137,6 +138,8 @@ send_fake_event (GSIdleMonitor *monitor)
                 return FALSE;
         }
 
+        gs_debug ("GSIdleMonitor: sending fake key");
+
         XLockDisplay (GDK_DISPLAY());
         XTestFakeKeyEvent (GDK_DISPLAY(),
                            *monitor->priv->keycode,
@@ -183,7 +186,7 @@ handle_alarm_notify_event (GSIdleMonitor         *monitor,
                 return;
         }
 
-        g_debug ("Watch %d fired, idle time = %lld",
+        gs_debug ("Watch %d fired, idle time = %lld",
                  watch->id,
                  _xsyncvalue_to_int64 (alarm_event->counter_value));
 
@@ -203,7 +206,7 @@ handle_alarm_notify_event (GSIdleMonitor         *monitor,
 
         if (! res) {
                 /* reset all timers */
-                g_debug ("GSIdleMonitor: callback returned FALSE; resetting idle time");
+                gs_debug ("GSIdleMonitor: callback returned FALSE; resetting idle time");
                 gs_idle_monitor_reset (monitor);
         }
 }
@@ -445,15 +448,23 @@ _xsync_alarm_set (GSIdleMonitor      *monitor,
 
         attr.trigger.test_type = XSyncPositiveTransition;
         if (watch->xalarm_positive != None) {
+                gs_debug ("GSIdleMonitor: updating alarm for positive transition wait=%lld",
+                          _xsyncvalue_to_int64 (attr.trigger.wait_value));
                 XSyncChangeAlarm (GDK_DISPLAY (), watch->xalarm_positive, flags, &attr);
         } else {
+                gs_debug ("GSIdleMonitor: creating new alarm for positive transition wait=%lld",
+                          _xsyncvalue_to_int64 (attr.trigger.wait_value));
                 watch->xalarm_positive = XSyncCreateAlarm (GDK_DISPLAY (), flags, &attr);
         }
 
         attr.trigger.test_type = XSyncNegativeTransition;
         if (watch->xalarm_negative != None) {
+                gs_debug ("GSIdleMonitor: updating alarm for negative transition wait=%lld",
+                          _xsyncvalue_to_int64 (attr.trigger.wait_value));
                 XSyncChangeAlarm (GDK_DISPLAY (), watch->xalarm_negative, flags, &attr);
         } else {
+                gs_debug ("GSIdleMonitor: creating new alarm for positive transition wait=%lld",
+                          _xsyncvalue_to_int64 (attr.trigger.wait_value));
                 watch->xalarm_negative = XSyncCreateAlarm (GDK_DISPLAY (), flags, &attr);
         }
 
