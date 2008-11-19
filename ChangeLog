@@ -1,3 +1,10 @@
+2008-11-19  William Jon McCann  <jmccann@redhat.com>
+
+	* src/test-idle-ext.c (_xsyncvalue_to_int64),
+	(_int64_to_xsyncvalue), (xevent_filter), (init_xsync),
+	(test_idle_ext), (main):
+	Add minimal test case for xsync extension.
+
 2008-11-18  William Jon McCann  <jmccann@redhat.com>
 
 	* data/lock-dialog-default.glade:
