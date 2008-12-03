@@ -1,5 +1,16 @@
 2008-12-02  William Jon McCann  <jmccann@redhat.com>
 
+	* COPYING:  Add GPLv2+ version of COPYING file
+	so that autotools won't stick a v3 one in the tarball.
+
+	* savers/personal-slideshow.desktop.in:
+	* savers/personal-slideshow.desktop.in.in:
+	* savers/popsquares.desktop.in:
+	* savers/popsquares.desktop.in.in:
+	Add/remove files from last commit.
+
+2008-12-02  William Jon McCann  <jmccann@redhat.com>
+
 	* savers/Makefile.am:
 	* savers/cosmos-slideshow.desktop.in.in:
 	* savers/footlogo-floaters.desktop.in.in:
