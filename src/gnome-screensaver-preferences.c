@@ -410,7 +410,13 @@ preview_set_theme (GtkWidget  *widget,
 
                 themes = get_all_theme_ids (theme_manager);
                 if (themes != NULL) {
-                        job_set_theme (job, (const char *) themes->data);
+                        GSList *l;
+                        gint32  i;
+
+                        i = g_random_int_range (0, g_slist_length (themes));
+                        l = g_slist_nth (themes, i);
+
+                        job_set_theme (job, (const char *) l->data);
                         g_slist_foreach (themes, (GFunc) g_free, NULL);
                         g_slist_free (themes);
 

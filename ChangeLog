@@ -1,5 +1,12 @@
 2008-12-02  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gnome-screensaver-preferences.c (preview_set_theme):
+	Randomly select the theme to preview for the random setting.
+	Patch from: Maxim Ermilov <zaspire@rambler.ru>
+	Fixes #530561
+
+2008-12-02  William Jon McCann  <jmccann@redhat.com>
+
 	* savers/gste-slideshow.c (add_files_to_list):
 	Skip hidden files and directories.
 	Patch from: Jörg <jo@bitvalve.org>
