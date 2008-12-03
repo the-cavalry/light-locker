@@ -14,21 +14,28 @@ INCLUDES =							\
 	$(WARN_CFLAGS)						\
 	$(NULL)
 
-DESKTOP_IN_IN_FILES = 			\
-	cosmos-slideshow.desktop.in.in 	\
-	footlogo-floaters.desktop.in.in	\
+DESKTOP_IN_IN_FILES = 			 \
+	cosmos-slideshow.desktop.in.in 	 \
+	footlogo-floaters.desktop.in.in	 \
+	personal-slideshow.desktop.in.in \
+	popsquares.desktop.in.in	 \
 	$(NULL)
 
 cosmos-slideshow.desktop.in: cosmos-slideshow.desktop.in.in Makefile
 	$(edit) $< >$@
 footlogo-floaters.desktop.in: footlogo-floaters.desktop.in.in Makefile
 	$(edit) $< >$@
+personal-slideshow.desktop.in: personal-slideshow.desktop.in.in Makefile
+	$(edit) $< >$@
+popsquares.desktop.in: popsquares.desktop.in.in Makefile
+	$(edit) $< >$@
 
 @INTLTOOL_DESKTOP_RULE@
 
 edit = sed \
 	-e 's|@SLIDESHOW_COSMOS_DIR[@]|$(SLIDESHOW_COSMOS_DIR)|g' \
-	-e 's|@FLOATERS_FOOT_LOGO_IMAGE[@]|$(FLOATERS_FOOT_LOGO_IMAGE)|g'
+	-e 's|@FLOATERS_FOOT_LOGO_IMAGE[@]|$(FLOATERS_FOOT_LOGO_IMAGE)|g' \
+	-e 's|@SAVERDIR[@]|$(privlibexecdir)|g'
 
 themesdir = $(datadir)/applications/screensavers
 themes_in_files = 			\

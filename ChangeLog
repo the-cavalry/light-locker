@@ -1,5 +1,14 @@
 2008-12-02  William Jon McCann  <jmccann@redhat.com>
 
+	* savers/Makefile.am:
+	* savers/cosmos-slideshow.desktop.in.in:
+	* savers/footlogo-floaters.desktop.in.in:
+	Use absolute path for screensaver theme engines.
+	Patch from: Frederic Crozat  <fcrozat@mandriva.com>
+	Fixes #561855
+
+2008-12-02  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gnome-screensaver-preferences.c (preview_set_theme):
 	Randomly select the theme to preview for the random setting.
 	Patch from: Maxim Ermilov <zaspire@rambler.ru>

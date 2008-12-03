@@ -2,8 +2,8 @@
 Encoding=UTF-8
 _Name=Floating Feet
 _Comment=Bubbles the GNOME foot logo around the screen
-Exec=floaters @FLOATERS_FOOT_LOGO_IMAGE@
-TryExec=floaters
+Exec=@SAVERDIR@/floaters @FLOATERS_FOOT_LOGO_IMAGE@
+TryExec=@SAVERDIR@/floaters
 StartupNotify=false
 Terminal=false
 Type=Application

@@ -2,8 +2,8 @@
 Encoding=UTF-8
 _Name=Cosmos
 _Comment=Display a slideshow of pictures of the cosmos
-Exec=slideshow --location=@SLIDESHOW_COSMOS_DIR@
-TryExec=slideshow
+Exec=@SAVERDIR@/slideshow --location=@SLIDESHOW_COSMOS_DIR@
+TryExec=@SAVERDIR@/slideshow
 StartupNotify=false
 Terminal=false
 Type=Application
