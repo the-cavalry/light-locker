@@ -496,6 +496,12 @@ add_files_to_list (GSList    **list,
 
         while ((d_name = g_dir_read_name (d)) != NULL) {
                 char *path;
+
+                /* skip hidden files */
+                if (d_name[0] == '.') {
+                        continue;
+                }
+
                 path = g_build_filename (base, d_name, NULL);
                 if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
                         add_files_to_list (list, path);

@@ -1,3 +1,10 @@
+2008-12-02  William Jon McCann  <jmccann@redhat.com>
+
+	* savers/gste-slideshow.c (add_files_to_list):
+	Skip hidden files and directories.
+	Patch from: Jörg <jo@bitvalve.org>
+	Fixes #492949
+
 2008-11-19  William Jon McCann  <jmccann@redhat.com>
 
 	* src/gs-idle-monitor.c (send_fake_event),
