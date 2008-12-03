@@ -1,4 +1,17 @@
 ===============
+Version 2.25.1
+===============
+
+- Add bevel around dialog
+- Fixed #444927, get idle time from xorg
+- Fixed #492949, screensavers-personal-slideshow should not show hidden directories (Jörg)
+- Fixed #530561, "Random" preview is always the last saver (Maxim Ermilov)
+- Fixed #561855, Calls wrong slideshow binary if there is one installed in $PATH (Frederic Crozat)
+
+Translations:
+None
+
+===============
 Version 2.24.1
 ===============
 

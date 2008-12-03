@@ -123,6 +123,8 @@ CLEANFILES = 				\
 	$(BUILT_SOURCES)		\
 	cosmos-slideshow.desktop.in	\
 	footlogo-floaters.desktop.in	\
+	popsquares.desktop.in		\
+	personal-slideshow.desktop.in	\
 	$(NULL)
 
 DISTCLEANFILES = 			\
