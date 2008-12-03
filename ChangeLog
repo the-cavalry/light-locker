@@ -1,3 +1,9 @@
+2008-12-03  William Jon McCann  <jmccann@redhat.com>
+
+	* data/lock-dialog-default.glade:
+	* src/gs-lock-plug.c (gs_lock_plug_style_set):
+	Fix border width.
+
 2008-12-02  William Jon McCann  <jmccann@redhat.com>
 
 	* configure.ac: Post bump
