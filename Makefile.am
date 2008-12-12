@@ -14,6 +14,7 @@ SUBDIRS =			\
 
 EXTRA_DIST =			\
 	COPYING			\
+	COPYING.LIB		\
 	AUTHORS			\
 	INSTALL			\
 	README			\

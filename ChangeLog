@@ -1,3 +1,9 @@
+2008-12-12  Bastien Nocera  <hadess@hadess.net>
+
+	* COPYING.LIB: Add for some of the files under the LGPL
+	(Closes: #564256)
+	* Makefile.am: add COPYING.LIB to the dist
+
 2008-12-03  William Jon McCann  <jmccann@redhat.com>
 
 	* data/lock-dialog-default.glade:
