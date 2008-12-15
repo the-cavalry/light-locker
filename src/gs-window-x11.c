@@ -2287,6 +2287,10 @@ gs_window_finalize (GObject *object)
 
         gs_window_dialog_finish (window);
 
+        if (window->priv->background_pixmap) {
+               g_object_unref (window->priv->background_pixmap);
+        }
+
         G_OBJECT_CLASS (gs_window_parent_class)->finalize (object);
 }
 

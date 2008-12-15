@@ -1,3 +1,9 @@
+2008-12-14  Matthias Clasen <mclasen@redhat.com>
+
+	Bug 564548 – leaks a pixmap for each lock cycle
+
+	* src/gs-window-x11.c (gs_window_finalize): Unref background_pixmap.
+
 2008-12-12  Bastien Nocera  <hadess@hadess.net>
 
 	* COPYING.LIB: Add for some of the files under the LGPL
