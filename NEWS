@@ -1,4 +1,11 @@
 ===============
+Version 2.25.2
+===============
+
+- Fix pixmap leak (Matthias Clasen)
+- Fix dialog border width
+
+===============
 Version 2.25.1
 ===============
 
