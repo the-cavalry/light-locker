@@ -1,3 +1,16 @@
+2009-01-16  William Jon McCann  <jmccann@redhat.com>
+
+	* src/gs-listener-dbus.c (do_introspect):
+	* src/gs-listener-dbus.h:
+	* src/gs-monitor.c (_gs_monitor_update_from_prefs),
+	(disconnect_watcher_signals), (connect_watcher_signals):
+	* src/gs-watcher-x11.c (gs_watcher_set_property),
+	(gs_watcher_get_property), (gs_watcher_class_init),
+	(start_idle_watcher), (stop_idle_watcher),
+	(_gs_watcher_reset_state):
+	* src/gs-watcher.h:
+	Remove power notice signal.
+
 2008-12-16  William Jon McCann  <jmccann@redhat.com>
 
 	* configure.ac: Post release bump

@@ -227,15 +227,6 @@ send_dbus_void_signal (GSListener *listener,
 }
 
 void
-gs_listener_emit_power_notice (GSListener *listener,
-                               gboolean    in_effect)
-{
-        g_return_if_fail (listener != NULL);
-
-        send_dbus_boolean_signal (listener, "SessionPowerManagementIdleChanged", in_effect);
-}
-
-void
 gs_listener_emit_auth_request_begin (GSListener *listener)
 {
         g_return_if_fail (listener != NULL);
@@ -1336,9 +1327,6 @@ do_introspect (DBusConnection *connection,
                                "      <arg name=\"new_value\" type=\"b\"/>\n"
                                "    </signal>\n"
                                "    <signal name=\"SessionIdleChanged\">\n"
-                               "      <arg name=\"new_value\" type=\"b\"/>\n"
-                               "    </signal>\n"
-                               "    <signal name=\"SessionPowerManagementIdleChanged\">\n"
                                "      <arg name=\"new_value\" type=\"b\"/>\n"
                                "    </signal>\n"
                                "    <signal name=\"AuthenticationRequestBegin\">\n"

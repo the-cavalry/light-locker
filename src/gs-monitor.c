@@ -129,36 +129,6 @@ release_grab_timeout (GSMonitor *monitor)
 }
 
 static gboolean
-watcher_power_notice_cb (GSWatcher *watcher,
-                         gboolean   in_effect,
-                         GSMonitor *monitor)
-{
-        gboolean inhibited;
-        gboolean handled;
-
-        gs_debug ("Power notice signal detected: %d", in_effect);
-
-        inhibited = gs_listener_is_inhibited (monitor->priv->listener);
-
-        handled = FALSE;
-        if (in_effect) {
-                if (! inhibited) {
-                        /* send signal */
-                        handled = TRUE;
-                }
-        } else {
-                /* send signal */
-                handled = TRUE;
-        }
-
-        if (handled) {
-                gs_listener_emit_power_notice (monitor->priv->listener, in_effect);
-        }
-
-        return handled;
-}
-
-static gboolean
 watcher_idle_notice_cb (GSWatcher *watcher,
                         gboolean   in_effect,
                         GSMonitor *monitor)
@@ -348,7 +318,6 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
         idle_detection_enabled = TRUE;
 
         gs_watcher_set_timeout (monitor->priv->watcher, monitor->priv->prefs->timeout);
-        gs_watcher_set_power_timeout (monitor->priv->watcher, monitor->priv->prefs->power_timeout);
         gs_watcher_set_enabled (monitor->priv->watcher, idle_detection_enabled);
 
         /* in the case where idle detection is reenabled we may need to
@@ -397,7 +366,6 @@ disconnect_watcher_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->watcher, watcher_idle_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->watcher, watcher_idle_notice_cb, monitor);
-        g_signal_handlers_disconnect_by_func (monitor->priv->watcher, watcher_power_notice_cb, monitor);
 }
 
 static void
@@ -407,8 +375,6 @@ connect_watcher_signals (GSMonitor *monitor)
                           G_CALLBACK (watcher_idle_cb), monitor);
         g_signal_connect (monitor->priv->watcher, "idle-notice-changed",
                           G_CALLBACK (watcher_idle_notice_cb), monitor);
-        g_signal_connect (monitor->priv->watcher, "power-notice-changed",
-                          G_CALLBACK (watcher_power_notice_cb), monitor);
 }
 
 static void

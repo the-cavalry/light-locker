@@ -46,8 +46,6 @@ typedef struct
 
         gboolean          (* idle_changed)        (GSWatcher *watcher,
                                                    gboolean   is_idle);
-        gboolean          (* power_notice_changed)(GSWatcher *watcher,
-                                                   gboolean   in_effect);
         gboolean          (* idle_notice_changed) (GSWatcher *watcher,
                                                    gboolean   in_effect);
 } GSWatcherClass;
@@ -63,8 +61,6 @@ gboolean    gs_watcher_set_active       (GSWatcher *watcher,
                                          gboolean   active);
 gboolean    gs_watcher_get_active       (GSWatcher *watcher);
 void        gs_watcher_set_timeout      (GSWatcher *watcher,
-                                         guint      timeout);
-void        gs_watcher_set_power_timeout(GSWatcher *watcher,
                                          guint      timeout);
 
 G_END_DECLS
