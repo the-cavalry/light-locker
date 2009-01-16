@@ -1,5 +1,10 @@
 2009-01-16  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gs-listener-dbus.c (listener_set_session_idle_internal):
+	Don't set idle hint in CK.  This is now done by gnome-session.
+
+2009-01-16  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gs-listener-dbus.c (do_introspect):
 	* src/gs-listener-dbus.h:
 	* src/gs-monitor.c (_gs_monitor_update_from_prefs),
