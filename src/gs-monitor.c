@@ -201,9 +201,7 @@ gs_monitor_lock_screen (GSMonitor *monitor)
 static void
 gs_monitor_simulate_user_activity (GSMonitor *monitor)
 {
-        /* in case the screen isn't blanked reset the
-           idle watcher */
-        gs_watcher_reset (monitor->priv->watcher);
+        /* FIXME: reset the xsync timer? */
 
         /* request that the manager unlock -
            will pop up a dialog if necessary */
@@ -317,7 +315,6 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
         /* idle detection always enabled */
         idle_detection_enabled = TRUE;
 
-        gs_watcher_set_timeout (monitor->priv->watcher, monitor->priv->prefs->timeout);
         gs_watcher_set_enabled (monitor->priv->watcher, idle_detection_enabled);
 
         /* in the case where idle detection is reenabled we may need to
@@ -427,7 +424,7 @@ gs_monitor_init (GSMonitor *monitor)
         monitor->priv->fade = gs_fade_new ();
         monitor->priv->grab = gs_grab_new ();
 
-        monitor->priv->watcher = gs_watcher_new (monitor->priv->prefs->timeout);
+        monitor->priv->watcher = gs_watcher_new ();
         connect_watcher_signals (monitor);
 
         monitor->priv->manager = gs_manager_new ();

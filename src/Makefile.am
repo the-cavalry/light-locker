@@ -48,7 +48,6 @@ noinst_PROGRAMS = 	\
 	test-fade	\
 	test-passwd	\
 	test-watcher	\
-	test-idle-monitor	\
 	test-window	\
 	$(NULL)
 
@@ -96,8 +95,6 @@ test_watcher_SOURCES =			\
 	test-watcher.c			\
 	gs-watcher.h			\
 	gs-watcher-x11.c		\
-	gs-idle-monitor.h		\
-	gs-idle-monitor.c		\
 	gs-marshal.c 			\
 	gs-marshal.h			\
 	gs-debug.c			\
@@ -105,19 +102,6 @@ test_watcher_SOURCES =			\
 	$(NULL)
 
 test_watcher_LDADD =			\
-	$(GNOME_SCREENSAVER_LIBS)	\
-	$(SAVER_LIBS)			\
-	$(NULL)
-
-test_idle_monitor_SOURCES =		\
-	test-idle-monitor.c		\
-	gs-idle-monitor.h		\
-	gs-idle-monitor.c		\
-	gs-debug.c			\
-	gs-debug.h			\
-	$(NULL)
-
-test_idle_monitor_LDADD =		\
 	$(GNOME_SCREENSAVER_LIBS)	\
 	$(SAVER_LIBS)			\
 	$(NULL)
@@ -187,8 +171,6 @@ gnome_screensaver_SOURCES =	\
 	gs-monitor.h		\
 	gs-watcher-x11.c	\
 	gs-watcher.h		\
-	gs-idle-monitor.h	\
-	gs-idle-monitor.c	\
 	gs-listener-dbus.c	\
 	gs-listener-dbus.h	\
 	gs-manager.c		\

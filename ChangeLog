@@ -1,3 +1,23 @@
+2009-01-18  William Jon McCann  <jmccann@redhat.com>
+
+	* configure.ac:
+	* src/Makefile.am:
+	* src/gs-idle-monitor.c:
+	* src/gs-idle-monitor.h:
+	* src/gs-listener-dbus.c:
+	* src/gs-monitor.c (gs_monitor_simulate_user_activity),
+	(_gs_monitor_update_from_prefs), (gs_monitor_init):
+	* src/gs-watcher-x11.c (gs_watcher_class_init),
+	(_gs_watcher_set_active_internal), (on_idle_timeout),
+	(on_presence_status_changed), (connect_presence_watcher),
+	(gs_watcher_init), (gs_watcher_finalize), (gs_watcher_new):
+	* src/gs-watcher.h:
+	* src/test-idle-ext.c:
+	* src/test-idle-monitor.c:
+	* src/test-watcher.c (test_watcher):
+	Rely on session idle detection.
+	Fixes #567919
+
 2009-01-16  William Jon McCann  <jmccann@redhat.com>
 
 	* src/gs-listener-dbus.c (listener_set_session_idle_internal):

@@ -65,11 +65,8 @@ static void
 test_watcher (void)
 {
         GSWatcher *watcher;
-        guint      timeout;
 
-        timeout = 20000;
-
-        watcher = gs_watcher_new (timeout);
+        watcher = gs_watcher_new ();
         gs_watcher_set_enabled (watcher, TRUE);
         gs_watcher_set_active (watcher, TRUE);
 
