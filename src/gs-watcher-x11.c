@@ -33,7 +33,6 @@
 #include <dbus/dbus.h>
 #include <dbus/dbus-glib.h>
 
-#include "gs-idle-monitor.h"
 #include "gs-watcher.h"
 #include "gs-marshal.h"
 #include "gs-debug.h"
