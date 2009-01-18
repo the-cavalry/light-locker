@@ -1,5 +1,10 @@
 2009-01-18  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gs-watcher-x11.c (connect_presence_watcher):
+	Fix search replace error.
+
+2009-01-18  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gs-watcher-x11.c:
 	Oops fix build.
 

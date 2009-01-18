@@ -340,7 +340,7 @@ connect_presence_watcher (GSWatcher *watcher)
                 dbus_g_proxy_connect_signal (watcher->priv->presence_proxy,
                                              "StatusChanged",
                                              G_CALLBACK (on_presence_status_changed),
-                                             watcher->priv,
+                                             watcher,
                                              NULL);
 
                 proxy = dbus_g_proxy_new_from_proxy (watcher->priv->presence_proxy,
