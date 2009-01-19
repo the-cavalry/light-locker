@@ -1,5 +1,12 @@
 2009-01-18  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gs-listener-dbus.c (add_session_inhibit),
+	(remove_session_inhibit), (listener_add_ref_entry),
+	(listener_remove_ref_entry):
+	Proxy g-s inhibitors over to the session.
+
+2009-01-18  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gs-listener-dbus.c (listener_set_session_idle_internal),
 	(listener_get_property), (do_introspect),
 	(listener_dbus_handle_session_message):

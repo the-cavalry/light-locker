@@ -64,6 +64,10 @@ static DBusHandlerResult gs_listener_message_handler    (DBusConnection  *connec
 #define CK_MANAGER_INTERFACE "org.freedesktop.ConsoleKit.Manager"
 #define CK_SESSION_INTERFACE "org.freedesktop.ConsoleKit.Session"
 
+#define SESSION_NAME         "org.gnome.SessionManager"
+#define SESSION_PATH         "/org/gnome/SessionManager"
+#define SESSION_INTERFACE    "org.gnome.SessionManager"
+
 #define TYPE_MISMATCH_ERROR GS_LISTENER_INTERFACE ".TypeMismatch"
 
 #define GS_LISTENER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_LISTENER, GSListenerPrivate))
@@ -93,6 +97,7 @@ typedef struct
         char    *reason;
         char    *connection;
         guint32  cookie;
+        guint32  foreign_cookie;
         GTimeVal since;
 } GSListenerRefEntry;
 
@@ -599,6 +604,104 @@ listener_ref_entry_check (GSListener *listener,
 }
 
 static void
+add_session_inhibit (GSListener         *listener,
+                     GSListenerRefEntry *entry)
+{
+        DBusMessage    *message;
+        DBusMessage    *reply;
+        DBusMessageIter iter;
+        DBusMessageIter reply_iter;
+        DBusError       error;
+        guint           xid;
+        guint           flags;
+
+        g_return_if_fail (listener != NULL);
+
+        dbus_error_init (&error);
+
+        message = dbus_message_new_method_call (SESSION_NAME,
+                                                SESSION_PATH,
+                                                SESSION_INTERFACE,
+                                                "Inhibit");
+        if (message == NULL) {
+                gs_debug ("Couldn't allocate the dbus message");
+                return;
+        }
+
+        dbus_message_iter_init_append (message, &iter);
+        xid = 0;
+        flags = 8;
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_STRING, &entry->application);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &xid);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_STRING, &entry->reason);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &flags);
+
+        /* FIXME: use async? */
+        reply = dbus_connection_send_with_reply_and_block (listener->priv->connection,
+                                                           message,
+                                                           -1,
+                                                           &error);
+        dbus_message_unref (message);
+
+        if (dbus_error_is_set (&error)) {
+                gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
+                dbus_error_free (&error);
+                return;
+        }
+
+        dbus_message_iter_init (reply, &reply_iter);
+        dbus_message_iter_get_basic (&reply_iter, &entry->foreign_cookie);
+
+        dbus_message_unref (reply);
+}
+
+static void
+remove_session_inhibit (GSListener         *listener,
+                        GSListenerRefEntry *entry)
+{
+        DBusMessage    *message;
+        DBusMessage    *reply;
+        DBusMessageIter iter;
+        DBusError       error;
+
+        g_return_if_fail (listener != NULL);
+
+        if (entry->foreign_cookie == 0) {
+                gs_debug ("Can't remove inhibitor from session: Session cookie not set");
+                return;
+        }
+
+        dbus_error_init (&error);
+
+        message = dbus_message_new_method_call (SESSION_NAME,
+                                                SESSION_PATH,
+                                                SESSION_INTERFACE,
+                                                "Uninhibit");
+        if (message == NULL) {
+                gs_debug ("Couldn't allocate the dbus message");
+                return;
+        }
+
+        dbus_message_iter_init_append (message, &iter);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &entry->foreign_cookie);
+
+        /* FIXME: use async? */
+        reply = dbus_connection_send_with_reply_and_block (listener->priv->connection,
+                                                           message,
+                                                           -1,
+                                                           &error);
+        dbus_message_unref (message);
+
+        if (dbus_error_is_set (&error)) {
+                gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
+                dbus_error_free (&error);
+                return;
+        }
+
+        dbus_message_unref (reply);
+}
+
+static void
 listener_add_ref_entry (GSListener         *listener,
                         int                 entry_type,
                         GSListenerRefEntry *entry)
@@ -613,6 +716,11 @@ listener_add_ref_entry (GSListener         *listener,
 
         hash = get_hash_for_entry_type (listener, entry_type);
         g_hash_table_insert (hash, &entry->cookie, entry);
+
+        if (entry_type == REF_ENTRY_TYPE_INHIBIT) {
+                /* proxy inhibit over to gnome session */
+                add_session_inhibit (listener, entry);
+        }
 
         listener_ref_entry_check (listener, entry_type);
 }
@@ -635,6 +743,11 @@ listener_remove_ref_entry (GSListener *listener,
                           entry->application,
                           entry->reason,
                           entry->connection);
+        }
+
+        if (entry_type == REF_ENTRY_TYPE_INHIBIT) {
+                /* remove inhibit from gnome session */
+                remove_session_inhibit (listener, entry);
         }
 
         removed = g_hash_table_remove (hash, &cookie);
