@@ -1,3 +1,10 @@
+2009-01-19  William Jon McCann  <jmccann@redhat.com>
+
+	* data/gnome-screensaver:
+	Add gnome keyring to pam config.
+	Patch from: Matthias Clasen <mclasen@redhat.com>
+	Fixes #567112
+
 2009-01-18  William Jon McCann  <jmccann@redhat.com>
 
 	* src/gs-listener-dbus.c (add_session_inhibit),
