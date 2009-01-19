@@ -1,5 +1,13 @@
 2009-01-19  William Jon McCann  <jmccann@redhat.com>
 
+	* data/lock-dialog-default.glade:
+	* src/gs-lock-plug.c (gs_lock_plug_init):
+	Don't explicitly set invisible char
+	Patch from: Matthias Clasen <mclasen@redhat.com>
+	Fixes #567111
+
+2009-01-19  William Jon McCann  <jmccann@redhat.com>
+
 	* data/gnome-screensaver-preferences.1:
 	* data/gnome-screensaver.1:
 	Fix incorrect manpages WHATIS section

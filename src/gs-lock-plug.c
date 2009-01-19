@@ -1752,8 +1752,6 @@ on_note_text_buffer_changed (GtkTextBuffer *buffer,
 static void
 gs_lock_plug_init (GSLockPlug *plug)
 {
-        gunichar invisible_char;
-
         gs_profile_start (NULL);
 
         plug->priv = GS_LOCK_PLUG_GET_PRIVATE (plug);
@@ -1861,12 +1859,6 @@ gs_lock_plug_init (GSLockPlug *plug)
                           G_CALLBACK (entry_button_press), NULL);
         gtk_entry_set_activates_default (GTK_ENTRY (plug->priv->auth_prompt_entry), TRUE);
         gtk_entry_set_visibility (GTK_ENTRY (plug->priv->auth_prompt_entry), FALSE);
-
-        /* Only change the invisible character if it '*' otherwise assume it is OK */
-        if ('*' == gtk_entry_get_invisible_char (GTK_ENTRY (plug->priv->auth_prompt_entry))) {
-                invisible_char = INVISIBLE_CHAR_BLACK_CIRCLE;
-                gtk_entry_set_invisible_char (GTK_ENTRY (plug->priv->auth_prompt_entry), invisible_char);
-        }
 
         g_signal_connect (plug->priv->auth_unlock_button, "clicked",
                           G_CALLBACK (unlock_button_clicked), plug);
