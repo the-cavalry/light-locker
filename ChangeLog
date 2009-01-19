@@ -1,5 +1,13 @@
 2009-01-19  William Jon McCann  <jmccann@redhat.com>
 
+	* data/gnome-screensaver-preferences.1:
+	* data/gnome-screensaver.1:
+	Fix incorrect manpages WHATIS section
+	Patch from: Emilio Pozuelo Monfort <pochu@ubuntu.com>
+	Fixes #563883
+
+2009-01-19  William Jon McCann  <jmccann@redhat.com>
+
 	* data/gnome-screensaver:
 	Add gnome keyring to pam config.
 	Patch from: Matthias Clasen <mclasen@redhat.com>
