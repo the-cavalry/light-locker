@@ -207,41 +207,6 @@ send_dbus_boolean_signal (GSListener *listener,
 }
 
 static void
-send_dbus_void_signal (GSListener *listener,
-                       const char *name)
-{
-        DBusMessage  *message;
-
-        g_return_if_fail (listener != NULL);
-
-        message = dbus_message_new_signal (GS_LISTENER_PATH,
-                                           GS_LISTENER_SERVICE,
-                                           name);
-
-        if (! send_dbus_message (listener->priv->connection, message)) {
-                gs_debug ("Could not send %s signal", name);
-        }
-
-        dbus_message_unref (message);
-}
-
-void
-gs_listener_emit_auth_request_begin (GSListener *listener)
-{
-        g_return_if_fail (listener != NULL);
-
-        send_dbus_void_signal (listener, "AuthenticationRequestBegin");
-}
-
-void
-gs_listener_emit_auth_request_end (GSListener *listener)
-{
-        g_return_if_fail (listener != NULL);
-
-        send_dbus_void_signal (listener, "AuthenticationRequestEnd");
-}
-
-static void
 gs_listener_send_signal_active_changed (GSListener *listener)
 {
         g_return_if_fail (listener != NULL);
@@ -250,14 +215,6 @@ gs_listener_send_signal_active_changed (GSListener *listener)
                   listener->priv->active ? "TRUE" : "FALSE");
 
         send_dbus_boolean_signal (listener, "ActiveChanged", listener->priv->active);
-}
-
-static void
-gs_listener_send_signal_session_idle_changed (GSListener *listener)
-{
-        g_return_if_fail (listener != NULL);
-
-        send_dbus_boolean_signal (listener, "SessionIdleChanged", listener->priv->session_idle);
 }
 
 static const char *
@@ -409,8 +366,6 @@ listener_set_session_idle_internal (GSListener *listener,
         } else {
                 listener->priv->session_idle_start = 0;
         }
-
-        gs_listener_send_signal_session_idle_changed (listener);
 
         return TRUE;
 }
@@ -1089,13 +1044,6 @@ listener_get_property (GSListener     *listener,
                         dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &b);
                 }
                 break;
-        case PROP_SESSION_IDLE:
-                {
-                        dbus_bool_t b;
-                        b = listener->priv->session_idle;
-                        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &b);
-                }
-                break;
         default:
                 gs_debug ("Unsupported property id %u", prop_id);
                 break;
@@ -1146,53 +1094,6 @@ listener_get_active_time (GSListener     *listener,
         }
 
         gs_debug ("Returning screensaver active for %u seconds", secs);
-        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &secs);
-
-        if (! dbus_connection_send (connection, reply, NULL)) {
-                g_error ("No memory");
-        }
-
-        dbus_message_unref (reply);
-
-        return DBUS_HANDLER_RESULT_HANDLED;
-}
-
-static DBusHandlerResult
-listener_get_session_idle_time (GSListener     *listener,
-                                DBusConnection *connection,
-                                DBusMessage    *message)
-{
-        DBusMessageIter iter;
-        DBusMessage    *reply;
-        dbus_uint32_t    secs;
-
-        reply = dbus_message_new_method_return (message);
-
-        if (reply == NULL) {
-                g_error ("No memory");
-        }
-
-        dbus_message_iter_init_append (reply, &iter);
-
-        if (listener->priv->session_idle) {
-                time_t now = time (NULL);
-
-                if (now < listener->priv->session_idle_start) {
-                        /* shouldn't happen */
-                        gs_debug ("Session idle start time is in the future");
-                        secs = 0;
-                } else if (listener->priv->session_idle_start <= 0) {
-                        /* shouldn't happen */
-                        gs_debug ("Session idle start time was not set");
-                        secs = 0;
-                } else {
-                        secs = now - listener->priv->session_idle_start;
-                }
-        } else {
-                secs = 0;
-        }
-
-        gs_debug ("Returning session idle for %u seconds", secs);
         dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &secs);
 
         if (! dbus_connection_send (connection, reply, NULL)) {
@@ -1260,21 +1161,8 @@ do_introspect (DBusConnection *connection,
                                "    <method name=\"SetActive\">\n"
                                "      <arg name=\"value\" direction=\"in\" type=\"b\"/>\n"
                                "    </method>\n"
-                               "    <method name=\"GetSessionIdle\">\n"
-                               "      <arg name=\"value\" direction=\"out\" type=\"b\"/>\n"
-                               "    </method>\n"
-                               "    <method name=\"GetSessionIdleTime\">\n"
-                               "      <arg name=\"seconds\" direction=\"out\" type=\"u\"/>\n"
-                               "    </method>\n"
                                "    <signal name=\"ActiveChanged\">\n"
                                "      <arg name=\"new_value\" type=\"b\"/>\n"
-                               "    </signal>\n"
-                               "    <signal name=\"SessionIdleChanged\">\n"
-                               "      <arg name=\"new_value\" type=\"b\"/>\n"
-                               "    </signal>\n"
-                               "    <signal name=\"AuthenticationRequestBegin\">\n"
-                               "    </signal>\n"
-                               "    <signal name=\"AuthenticationRequestEnd\">\n"
                                "    </signal>\n"
                                "  </interface>\n");
 
@@ -1356,12 +1244,6 @@ listener_dbus_handle_session_message (DBusConnection *connection,
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "GetActiveTime")) {
                 return listener_get_active_time (listener, connection, message);
-        }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "GetSessionIdle")) {
-                return listener_get_property (listener, connection, message, PROP_SESSION_IDLE);
-        }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "GetSessionIdleTime")) {
-                return listener_get_session_idle_time (listener, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "SimulateUserActivity")) {
                 g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
