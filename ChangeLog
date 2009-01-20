@@ -1,5 +1,10 @@
 2009-01-20  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gs-window-x11.c (popup_dialog_idle):
+	Remove extra quoting.
+
+2009-01-20  William Jon McCann  <jmccann@redhat.com>
+
 	* data/gnome-screensaver.schemas.in:
 	* data/lock-dialog-default.glade:
 	* src/gnome-screensaver-dialog.c (popup_dialog_idle):

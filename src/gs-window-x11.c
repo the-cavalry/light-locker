@@ -1536,7 +1536,7 @@ popup_dialog_idle (GSWindow *window)
                 char *quoted;
 
                 quoted = g_shell_quote (window->priv->status_message);
-                g_string_append_printf (command, " --status-message=\"%s\"", quoted);
+                g_string_append_printf (command, " --status-message=%s", quoted);
                 g_free (quoted);
         }
 
