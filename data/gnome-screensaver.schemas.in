@@ -240,15 +240,15 @@
     </schema>
 
     <schema>
-      <key>/schemas/apps/gnome-screensaver/away_message</key>
-      <applyto>/apps/gnome-screensaver/away_message</applyto>
+      <key>/schemas/apps/gnome-screensaver/status_message_enabled</key>
+      <applyto>/apps/gnome-screensaver/status_message_enabled</applyto>
       <owner>gnome-screensaver</owner>
-      <type>string</type>
-      <default></default>
+      <type>bool</type>
+      <default>TRUE</default>
       <locale name="C">
-        <short>Reason for being away</short>
+        <short>Allow the session status message to be displayed</short>
         <long>
-          The reason for being away from the computer.
+        Allow the session status message to be displayed when the screen is locked.
         </long>
       </locale>
     </schema>

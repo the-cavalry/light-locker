@@ -1,3 +1,33 @@
+2009-01-20  William Jon McCann  <jmccann@redhat.com>
+
+	* data/gnome-screensaver.schemas.in:
+	* data/lock-dialog-default.glade:
+	* src/gnome-screensaver-dialog.c (popup_dialog_idle):
+	* src/gs-listener-dbus.h:
+	* src/gs-lock-plug.c (gs_lock_plug_set_status_message),
+	(gs_lock_plug_get_property), (gs_lock_plug_set_property),
+	(gs_lock_plug_class_init), (load_theme), (gs_lock_plug_init):
+	* src/gs-manager.c (gs_manager_set_status_message),
+	(gs_manager_set_property), (gs_manager_get_property),
+	(gs_manager_create_window_for_monitor), (gs_manager_finalize):
+	* src/gs-manager.h:
+	* src/gs-monitor.c (_gs_monitor_update_from_prefs),
+	(on_watcher_status_message_changed), (disconnect_watcher_signals),
+	(connect_watcher_signals):
+	* src/gs-prefs.c (_gs_prefs_set_status_message_enabled),
+	(gs_prefs_load_from_gconf), (key_changed_cb), (gs_prefs_finalize):
+	* src/gs-prefs.h:
+	* src/gs-watcher-x11.c (gs_watcher_get_property),
+	(set_status_text), (gs_watcher_set_property),
+	(gs_watcher_class_init), (set_status),
+	(on_presence_status_changed), (on_presence_status_text_changed),
+	(connect_presence_watcher), (gs_watcher_finalize):
+	* src/gs-window-x11.c (popup_dialog_idle),
+	(gs_window_set_status_message), (gs_window_set_property),
+	(gs_window_get_property), (gs_window_class_init):
+	* src/gs-window.h:
+	Read status message from session.
+
 2009-01-19  William Jon McCann  <jmccann@redhat.com>
 
 	* data/lock-dialog-default.glade:

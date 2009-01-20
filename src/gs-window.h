@@ -81,8 +81,8 @@ void        gs_window_set_logout_timeout (GSWindow  *window,
                                           glong      timeout);
 void        gs_window_set_logout_command (GSWindow   *window,
                                           const char *command);
-void        gs_window_set_away_message   (GSWindow   *window,
-                                          const char *away_message);
+void        gs_window_set_status_message   (GSWindow   *window,
+                                            const char *status_message);
 
 void        gs_window_request_unlock     (GSWindow  *window);
 void        gs_window_cancel_unlock_request (GSWindow  *window);

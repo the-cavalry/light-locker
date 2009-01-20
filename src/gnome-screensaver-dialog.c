@@ -48,7 +48,7 @@ static gboolean show_version   = FALSE;
 static gboolean enable_logout  = FALSE;
 static gboolean enable_switch  = FALSE;
 static char    *logout_command = NULL;
-static char    *away_message   = NULL;
+static char    *status_message   = NULL;
 
 static GOptionEntry entries [] = {
         { "verbose", 0, 0, G_OPTION_ARG_NONE, &verbose,
@@ -61,7 +61,7 @@ static GOptionEntry entries [] = {
           N_("Command to invoke from the logout button"), NULL },
         { "enable-switch", 0, 0, G_OPTION_ARG_NONE, &enable_switch,
           N_("Show the switch user button"), NULL },
-        { "away-message", 0, 0, G_OPTION_ARG_STRING, &away_message,
+        { "status-message", 0, 0, G_OPTION_ARG_STRING, &status_message,
           N_("Message to show in the dialog"), N_("MESSAGE") },
         { NULL }
 };
@@ -379,8 +379,8 @@ popup_dialog_idle (void)
                 g_object_set (widget, "switch-enabled", TRUE, NULL);
         }
 
-        if (away_message) {
-                g_object_set (widget, "away-message", away_message, NULL);
+        if (status_message) {
+                g_object_set (widget, "status-message", status_message, NULL);
         }
 
         g_signal_connect (GS_LOCK_PLUG (widget), "response", G_CALLBACK (response_cb), NULL);

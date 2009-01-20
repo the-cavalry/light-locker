@@ -79,8 +79,6 @@ void        gs_listener_set_activation_enabled  (GSListener *listener,
                                                  gboolean    enabled);
 gboolean    gs_listener_get_activation_enabled  (GSListener *listener);
 gboolean    gs_listener_is_inhibited            (GSListener *listener);
-void        gs_listener_emit_auth_request_begin (GSListener *listener);
-void        gs_listener_emit_auth_request_end   (GSListener *listener);
 
 G_END_DECLS
 

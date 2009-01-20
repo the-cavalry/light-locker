@@ -53,7 +53,7 @@ static void gs_prefs_finalize   (GObject      *object);
 #define KEY_LOGOUT_COMMAND KEY_DIR "/logout_command"
 #define KEY_KEYBOARD_ENABLED KEY_DIR "/embedded_keyboard_enabled"
 #define KEY_KEYBOARD_COMMAND KEY_DIR "/embedded_keyboard_command"
-#define KEY_AWAY_MESSAGE   KEY_DIR "/away_message"
+#define KEY_STATUS_MESSAGE_ENABLED   KEY_DIR "/status_message_enabled"
 
 #define GS_PREFS_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_PREFS, GSPrefsPrivate))
 
@@ -269,11 +269,10 @@ _gs_prefs_set_keyboard_command (GSPrefs    *prefs,
 }
 
 static void
-_gs_prefs_set_away_message (GSPrefs    *prefs,
-                            const char *value)
+_gs_prefs_set_status_message_enabled (GSPrefs  *prefs,
+                                      gboolean  enabled)
 {
-        g_free (prefs->away_message);
-        prefs->away_message = g_strdup (value);
+        prefs->status_message_enabled = enabled;
 }
 
 static void
@@ -441,13 +440,12 @@ gs_prefs_load_from_gconf (GSPrefs *prefs)
         g_free (string);
 
         error = NULL;
-        string = gconf_client_get_string (prefs->priv->gconf_client, KEY_AWAY_MESSAGE, &error);
+        bvalue = gconf_client_get_bool (prefs->priv->gconf_client, KEY_STATUS_MESSAGE_ENABLED, &error);
         if (! error) {
-                _gs_prefs_set_away_message (prefs, string);
+                _gs_prefs_set_status_message_enabled (prefs, bvalue);
         } else {
-                key_error_and_free (KEY_AWAY_MESSAGE, error);
+                key_error_and_free (KEY_STATUS_MESSAGE_ENABLED, error);
         }
-        g_free (string);
 
         /* Logout options */
 
@@ -688,13 +686,13 @@ key_changed_cb (GConfClient *client,
                         invalid_type_warning (key);
                 }
 
-        } else if (strcmp (key, KEY_AWAY_MESSAGE) == 0) {
+        } else if (strcmp (key, KEY_STATUS_MESSAGE_ENABLED) == 0) {
 
-                if (value->type == GCONF_VALUE_STRING) {
-                        const char *away_message;
+                if (value->type == GCONF_VALUE_BOOL) {
+                        gboolean enabled;
 
-                        away_message = gconf_value_get_string (value);
-                        _gs_prefs_set_away_message (prefs, away_message);
+                        enabled = gconf_value_get_bool (value);
+                        _gs_prefs_set_status_message_enabled (prefs, enabled);
 
                         changed = TRUE;
                 } else {
@@ -830,7 +828,6 @@ gs_prefs_finalize (GObject *object)
 
         g_free (prefs->logout_command);
         g_free (prefs->keyboard_command);
-        g_free (prefs->away_message);
 
         G_OBJECT_CLASS (gs_prefs_parent_class)->finalize (object);
 }

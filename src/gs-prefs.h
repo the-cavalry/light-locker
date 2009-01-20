@@ -53,6 +53,7 @@ typedef struct
         guint            user_switch_disabled : 1;      /* Whether user switching is disabled */
         guint            user_switch_enabled : 1;       /* Whether to offer the user switch option */
         guint            keyboard_enabled : 1;  /* Whether to try to embed a keyboard */
+        guint            status_message_enabled : 1; /* show the status message in the lock */
 
         guint            power_timeout;         /* how much idle time before power management */
         guint            timeout;               /* how much idle time before activation */
@@ -62,7 +63,6 @@ typedef struct
 
         char            *logout_command;        /* command to use to logout */
         char            *keyboard_command;      /* command to use to embed a keyboard */
-        char            *away_message;
 
         GSList          *themes;                /* the screensaver themes to run */
         GSSaverMode      mode;                  /* theme selection mode */
