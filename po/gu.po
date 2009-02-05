@@ -4,13 +4,13 @@
 #
 # Ankit Patel <ankit644@yahoo.com>, 2005, 2006.
 # Ankit Patel <ankit@redhat.com>, 2006, 2007.
-# Sweta Kothari <swkothar@redhat.com>, 2008.
+# Sweta Kothari <swkothar@redhat.com>, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.gu\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-12 22:13+0000\n"
-"PO-Revision-Date: 2008-08-04 14:23+0530\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver&component=general\n"
+"POT-Creation-Date: 2009-01-20 05:58+0000\n"
+"PO-Revision-Date: 2009-02-05 17:34+0530\n"
 "Last-Translator: Sweta Kothari <swkothar@redhat.com>\n"
 "Language-Team: Gujarati\n"
 "MIME-Version: 1.0\n"
@@ -87,7 +87,7 @@ msgid "_Screensaver theme:"
 msgstr "સ્ક્રીનસેવર થીમ (_S):"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Screensaver themes"
 msgstr "સ્ક્રીનસેવર થીમો"
 
@@ -108,34 +108,38 @@ msgid "Allow logout"
 msgstr "બહાર નીકળવાની પરવાનગી આપો"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow the session status message to be displayed"
+msgstr "દર્શાવવા માટે સત્ર સ્થિતિ સંદેશ ને પરવાનગી આપો"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Allow the session status message to be displayed when the screen is locked."
+msgstr "દર્શાવવા માટે સત્ર સ્થિતિ સંદેશ ને પરવાનગી આપો જ્યારે સ્ક્રીન ને તાળુ મારેલ હોય."
+
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Allow user switching"
 msgstr "વપરાશકર્તા બદલવાની પરવાનગી આપો"
 
-#: ../data/gnome-screensaver.schemas.in.h:5
+#: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Embedded keyboard command"
 msgstr "જડિત કીબોર્ડ આદેશ"
 
-#: ../data/gnome-screensaver.schemas.in.h:6
+#: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Lock on activation"
 msgstr "સક્રિયકરણ પર તાળું મારો"
 
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Logout command"
 msgstr "બહાર નીકળો આદેશ"
 
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Reason for being away"
-msgstr "દૂર રહેવાનું કારણ"
-
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Screensaver theme selection mode"
 msgstr "સ્ક્રીનસેવર થીમ પસંદગી સ્થિતિ"
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr "જ્યારે સત્ર ફાજલ હોય ત્યારે સ્ક્રીનસેવરને સક્રિય કરવા માટે આને TRUE સુયોજિત કરો."
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
@@ -145,11 +149,11 @@ msgstr ""
 "ખોલવાનો પ્રયત્ન કરી રહ્યા હોય. \"keyboard_command\" કી યોગ્ય આદેશ સાથે સુયોજિત થયેલ "
 "હોવી જ જોઈએ."
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr "જ્યારે સ્ક્રીનસેવર સક્રિય થઈ જાય ત્યારે સ્ક્રીનને તાળું મારવા માટે આને ખરું સુયોજિત કરો."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -157,7 +161,7 @@ msgstr ""
 "અલગ વપરાશકર્તા ખાતામાં બદલાવા માટે તાળું ખોલો સંવાદમાં વિકલ્પની તક આપવા માટે આને ખરું "
 "સુયોજિત કરો."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -165,7 +169,7 @@ msgstr ""
 "વિલંબ પછી બહાર નીકળવા માટે તાળું ખોલો સંવાદમાં વિકલ્પની તક આપવા માટે આને ખરું સુયોજિત "
 "કરો. વિલંબ એ \"logout_delay\" કીમાં સ્પષ્ટ થયેલ છે."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
 "set to TRUE, to embed a keyboard widget into the window. This command should "
@@ -176,7 +180,7 @@ msgstr ""
 "થયેલ હોય, વિન્ડોમાં કીબોર્ડ વિજેટને જડવા માટે. આ આદેશે XEMBED પ્લગ ઈન્ટરફેસ અમલમાં મૂકવું "
 "જોઈએ અને વિન્ડો XID ને પ્રમાણભૂત આઉટપુટ પર આઉટપુટ આપવું જોઈએ."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -186,11 +190,11 @@ msgstr ""
 "કોઈપણ જાતના સંપર્ક વિના તેને બહાર કાઢી નાંખવો જોઈએ. આ કીને માત્ર ત્યારે જ હોય જો "
 "\"logout_enable\" કી એ ખરું તરીકે સુયોજિત થયેલ હોય."
 
-#: ../data/gnome-screensaver.schemas.in.h:18
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid "The number of minutes after screensaver activation before locking the screen."
 msgstr "સ્ક્રીનને તાળું મારવા પહેલાં સ્ક્રીનસેવર સક્રિયકરણ પછી મિનિટોની સંખ્યા."
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -200,25 +204,21 @@ msgstr ""
 "સંખ્યા. આ કીને માત્ર ત્યારે જ અસર હશે જો \"logout_enable\" કી એ ખરું તરીકે સુયોજિત થયેલ "
 "હોય."
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes of inactivity before the session is considered idle."
 msgstr "સત્ર એ ફાજલ તરીકે સમજવામાં આવે તે પહેલાં અસક્રિયતાની મિનિટોની સંખ્યા."
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "સ્ક્રીનસેવર થીમ બદલવા પહેલાં ચલાવવા માટેની મિનિટોની સંખ્યા."
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
 msgstr ""
 "પાવર-વ્યવસ્થાપનમાં સંકેતીકરણ પહેલાં અસક્રિયતાની સેકન્ડોની સંખ્યા. આ કી એ સત્ર પાવર-"
 "વ્યવસ્થાપન એજન્ટ દ્વારા સુયોજિત કરવામાં આવે છે અને જાળવવામાં આવે છે."
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-msgid "The reason for being away from the computer."
-msgstr "કમ્પ્યૂટરથી દૂર રહેવાનું કારણ."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
@@ -303,7 +303,7 @@ msgstr "બહાર નીકળો (_L)"
 msgid "_Switch User"
 msgstr "વપરાશકર્તા બદલો (_S)"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1214
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1366
 msgid "_Unlock"
 msgstr "તાળું ખોલો (_U)"
 
@@ -323,19 +323,19 @@ msgstr "સ્ક્રીનની ફરતે જીનોમ પગનો �
 msgid "Floating Feet"
 msgstr "તરતો પગ"
 
-#: ../savers/personal-slideshow.desktop.in.h:1
+#: ../savers/personal-slideshow.desktop.in.in.h:1
 msgid "Display a slideshow from your Pictures folder"
 msgstr "તમારા ચિત્રો ફોલ્ડરમાંથી સ્લાઈડશો દર્શાવો"
 
-#: ../savers/personal-slideshow.desktop.in.h:2
+#: ../savers/personal-slideshow.desktop.in.in.h:2
 msgid "Pictures folder"
 msgstr "ચિત્રો ફોલ્ડર"
 
-#: ../savers/popsquares.desktop.in.h:1
+#: ../savers/popsquares.desktop.in.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
 msgstr "રંગોના કંપન માટે pop-art-ish જાળી."
 
-#: ../savers/popsquares.desktop.in.h:2
+#: ../savers/popsquares.desktop.in.in.h:2
 msgid "Pop art squares"
 msgstr "Pop art squares"
 
@@ -412,32 +412,32 @@ msgstr "સ્થાનમાંથી ચિત્રો રેન્ડમા�
 msgid "Do not try to stretch images on screen"
 msgstr "સ્ક્રીન પર ચિત્રો ખેંચવાનો પ્રયાસ કરો નહિં"
 
-#: ../src/copy-theme-dialog.c:211
+#: ../src/copy-theme-dialog.c:212
 msgid "Copying files"
 msgstr "ફાઈલોની નકલ કરી રહ્યા છીએ"
 
-#: ../src/copy-theme-dialog.c:229
+#: ../src/copy-theme-dialog.c:230
 msgid "From:"
 msgstr "તરફથી:"
 
-#: ../src/copy-theme-dialog.c:233
+#: ../src/copy-theme-dialog.c:234
 msgid "To:"
 msgstr "પ્રતિ:"
 
-#: ../src/copy-theme-dialog.c:253
+#: ../src/copy-theme-dialog.c:254
 msgid "Copying themes"
 msgstr "થીમોની નકલ કરી રહ્યા છીએ"
 
-#: ../src/copy-theme-dialog.c:297
+#: ../src/copy-theme-dialog.c:298
 msgid "Invalid screensaver theme"
 msgstr "અયોગ્ય સ્ક્રીનસેવર થીમ"
 
-#: ../src/copy-theme-dialog.c:300
+#: ../src/copy-theme-dialog.c:301
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
 msgstr "%s માન્ય સ્ક્રીનસેવર થીમ હોય એમ દેખાતું નથી."
 
-#: ../src/copy-theme-dialog.c:480
+#: ../src/copy-theme-dialog.c:481
 #, c-format
 msgid "Copying file: %u of %u"
 msgstr "ફાઈલની નકલ કરી રહ્યા છીએ: %u જેટલું %u માંથી"
@@ -620,29 +620,29 @@ msgstr "ચકાસી રહ્યા છીએ..."
 msgid "Authentication failed."
 msgstr "સત્તાધિકરણ નિષ્ફળ."
 
-#: ../src/gnome-screensaver-preferences.c:498
+#: ../src/gnome-screensaver-preferences.c:524
 msgid "Blank screen"
 msgstr "ખાલી સ્ક્રીન"
 
-#: ../src/gnome-screensaver-preferences.c:504
+#: ../src/gnome-screensaver-preferences.c:530
 msgid "Random"
 msgstr "રેન્ડમ"
 
-#: ../src/gnome-screensaver-preferences.c:954
+#: ../src/gnome-screensaver-preferences.c:980
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d કલાક"
 msgstr[1] "%d કલાકો"
 
-#: ../src/gnome-screensaver-preferences.c:957
+#: ../src/gnome-screensaver-preferences.c:983
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d મિનિટો"
 msgstr[1] "%d મિનિટો"
 
-#: ../src/gnome-screensaver-preferences.c:960
+#: ../src/gnome-screensaver-preferences.c:986
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -650,15 +650,15 @@ msgstr[0] "%d સેકન્ડ"
 msgstr[1] "%d સેકન્ડો"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:966
+#: ../src/gnome-screensaver-preferences.c:992
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:969
-#: ../src/gnome-screensaver-preferences.c:977
+#: ../src/gnome-screensaver-preferences.c:995
+#: ../src/gnome-screensaver-preferences.c:1003
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -666,23 +666,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:972
-#: ../src/gnome-screensaver-preferences.c:980
-#: ../src/gnome-screensaver-preferences.c:984
+#: ../src/gnome-screensaver-preferences.c:998
+#: ../src/gnome-screensaver-preferences.c:1006
+#: ../src/gnome-screensaver-preferences.c:1010
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:999
+#: ../src/gnome-screensaver-preferences.c:1025
 #, c-format
 msgid "Never"
 msgstr "ક્યારેય નહિં"
 
-#: ../src/gnome-screensaver-preferences.c:1398
+#: ../src/gnome-screensaver-preferences.c:1453
 msgid "Could not load the main interface"
 msgstr "મુખ્ય ઈન્ટરફેસ લાવી શક્યા નહિં"
 
-#: ../src/gnome-screensaver-preferences.c:1400
+#: ../src/gnome-screensaver-preferences.c:1455
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "મહેરબાની કરીને ખાતરી કરો કે સ્ક્રીનસેવર યોગ્ય રીતે સ્થાપિત થયેલ છે"
 
@@ -716,15 +716,15 @@ msgstr "આ સમયે વપરાશની પરવાનગી નથી."
 msgid "No longer permitted to access the system."
 msgstr "સિસ્ટમના વપરાશની લાંબા સમય સુધી પરવાનગી નથી."
 
-#: ../src/gs-listener-dbus.c:1921
+#: ../src/gs-listener-dbus.c:1847
 msgid "failed to register with the message bus"
 msgstr "સંદેશા બસ સાથે રજીસ્ટર કરવામાં નિષ્ફળ"
 
-#: ../src/gs-listener-dbus.c:1931
+#: ../src/gs-listener-dbus.c:1857
 msgid "not connected to the message bus"
 msgstr "સંદેશા બસમાં જોડાયેલ નથી"
 
-#: ../src/gs-listener-dbus.c:1940
+#: ../src/gs-listener-dbus.c:1866
 msgid "screensaver already running in this session"
 msgstr "આ સત્રમાં સ્ક્રીનસેવર પહેલાથી જ ચાલી રહ્યું છે"
 
@@ -736,20 +736,20 @@ msgstr "સમય સમાપ્ત થઈ ગયો."
 msgid "You have the Caps Lock key on."
 msgstr "તમારી Caps Lock કી ચાલુ છે."
 
-#: ../src/gs-lock-plug.c:1194
+#: ../src/gs-lock-plug.c:1346
 msgid "S_witch User..."
 msgstr "વપરાશકર્તા બદલો (_w)..."
 
-#: ../src/gs-lock-plug.c:1203
+#: ../src/gs-lock-plug.c:1355
 msgid "Log _Out"
 msgstr "બહાર નીકળો (_O)"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1380
+#: ../src/gs-lock-plug.c:1531
 msgid "%U on %h"
 msgstr "%U એ %h પર"
 
-#: ../src/gs-lock-plug.c:1394
+#: ../src/gs-lock-plug.c:1545
 msgid "_Password:"
 msgstr "પાસવર્ડ (_P):"
 
