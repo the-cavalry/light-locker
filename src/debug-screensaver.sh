@@ -39,4 +39,4 @@ gnome-screensaver-command --exit
 #gnome-screensaver --no-daemon --debug > /tmp/gs-debug-log.txt 2>&1
 
 # or just run it with debugging on
-/opt/gnome/bin/gnome-screensaver --no-daemon --debug
+gnome-screensaver --no-daemon --debug

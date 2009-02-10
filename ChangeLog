@@ -1,3 +1,7 @@
+2009-02-10  William Jon McCann  <jmccann@redhat.com>
+
+	* src/debug-screensaver.sh: Remove absolute path
+
 2009-01-20  William Jon McCann  <jmccann@redhat.com>
 
 	* src/gs-window-x11.c (popup_dialog_idle):
