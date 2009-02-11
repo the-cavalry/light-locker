@@ -1,14 +1,14 @@
 # Thai translation of gnome-screensaver.
-# Copyright (C) 2005-2008 Free Software Foundation, Inc.
+# Copyright (C) 2005-2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-screensaver package.
-# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005-2008.
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005-2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 0.0.21\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-11 18:15+0700\n"
-"PO-Revision-Date: 2008-06-11 18:17+0700\n"
+"POT-Creation-Date: 2009-02-07 20:43+0700\n"
+"PO-Revision-Date: 2009-02-07 20:46+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgid "_Screensaver theme:"
 msgstr "_ชุดโปรแกรมรักษาหน้าจอ:"
 
 #: data/gnome-screensaver.directory.in.h:1
-#: data/gnome-screensaver.schemas.in.h:10
+#: data/gnome-screensaver.schemas.in.h:11
 msgid "Screensaver themes"
 msgstr "ชุดโปรแกรมรักษาหน้าจอ"
 
@@ -86,34 +86,39 @@ msgid "Allow logout"
 msgstr "ให้ออกจากระบบได้"
 
 #: data/gnome-screensaver.schemas.in.h:4
+msgid "Allow the session status message to be displayed"
+msgstr "อนุญาตให้แสดงข้อความสถานะของวาระ"
+
+#: data/gnome-screensaver.schemas.in.h:5
+msgid ""
+"Allow the session status message to be displayed when the screen is locked."
+msgstr "อนุญาตให้แสดงข้อความสถานะของวาระในระหว่างล็อคหน้าจอ"
+
+#: data/gnome-screensaver.schemas.in.h:6
 msgid "Allow user switching"
 msgstr "ให้เปลี่ยนผู้ใช้ได้"
 
-#: data/gnome-screensaver.schemas.in.h:5
+#: data/gnome-screensaver.schemas.in.h:7
 msgid "Embedded keyboard command"
 msgstr "คำสั่งสำหรับแป้นพิมพ์ฝังตัว"
 
-#: data/gnome-screensaver.schemas.in.h:6
+#: data/gnome-screensaver.schemas.in.h:8
 msgid "Lock on activation"
 msgstr "ล็อคหน้าจอเมื่อทำงาน"
 
-#: data/gnome-screensaver.schemas.in.h:7
+#: data/gnome-screensaver.schemas.in.h:9
 msgid "Logout command"
 msgstr "คำสั่งออกจากระบบ"
 
-#: data/gnome-screensaver.schemas.in.h:8
-msgid "Reason for being away"
-msgstr "เหตุผลที่ไม่อยู่"
-
-#: data/gnome-screensaver.schemas.in.h:9
+#: data/gnome-screensaver.schemas.in.h:10
 msgid "Screensaver theme selection mode"
 msgstr "วิธีการเลือกชุดโปรแกรมรักษาหน้าจอ"
 
-#: data/gnome-screensaver.schemas.in.h:11
+#: data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr "กำหนดเป็น TRUE เพื่อเริ่มโปรแกรมรักษาหน้าจอเมื่อวาระเดินเครื่องเปล่า"
 
-#: data/gnome-screensaver.schemas.in.h:12
+#: data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
@@ -122,17 +127,17 @@ msgstr ""
 "กำหนดเป็น TRUE เพื่อเปิดใช้แป้นพิมพ์ฝังตัวในหน้าต่างเมื่อจะปลดล็อคหน้าจอ คุณต้องกำหนดคีย์ "
 "\"keyboard_command\" เป็นคำสั่งที่เหมาะสมด้วย"
 
-#: data/gnome-screensaver.schemas.in.h:13
+#: data/gnome-screensaver.schemas.in.h:14
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr "กำหนดเป็น TRUE เพื่อล็อคหน้าจอเมื่อโปรแกรมรักษาหน้าจอทำงาน"
 
-#: data/gnome-screensaver.schemas.in.h:14
+#: data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr "กำหนดเป็น TRUE เพื่อให้มีตัวเลือกในกล่องโต้ตอบปลดล็อคหน้าจอ ให้เปลี่ยนไปใช้บัญชีผู้ใช้อื่นได้"
 
-#: data/gnome-screensaver.schemas.in.h:15
+#: data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -140,7 +145,7 @@ msgstr ""
 "กำหนดเป็น TRUE เพื่อให้มีตัวเลือกในกล่องโต้ตอบปลดล็อคหน้าจอ "
 "ให้ออกจากระบบหลังจากการหน่วงเวลาได้ ช่วงเวลาที่หน่วงกำหนดโดยคีย์ \"logout_delay\""
 
-#: data/gnome-screensaver.schemas.in.h:16
+#: data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
 "set to TRUE, to embed a keyboard widget into the window. This command should "
@@ -151,7 +156,7 @@ msgstr ""
 "เพื่อฝังวิดเจ็ตแป้นพิมพ์ลงในหน้าต่าง คำสั่งนี้ควรสร้างตามอินเทอร์เฟซ XEMBED และแสดง XID "
 "ของหน้าต่างออกทางเอาต์พุตมาตรฐาน"
 
-#: data/gnome-screensaver.schemas.in.h:17
+#: data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -160,12 +165,12 @@ msgstr ""
 "คำสั่งที่จะเรียกเมื่อผู้ใช้คลิกปุ่มออกจากระบบ คำสั่งนี้ควรจะออกจากวาระของผู้ใช้ "
 "โดยไม่มีการโต้ตอบกับผู้ใช้อีก คีย์นี้จะมีผลก็ต่อเมื่อคีย์ \"logout_enable\" มีค่าเป็น TRUE"
 
-#: data/gnome-screensaver.schemas.in.h:18
+#: data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr "จำนวนนาทีหลังการเริ่มทำงาน ที่โปรแกรมรักษาหน้าจอจะล็อคหน้าจอ"
 
-#: data/gnome-screensaver.schemas.in.h:19
+#: data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -175,26 +180,22 @@ msgstr ""
 "ที่โปรแกรมรักษาหน้าจอจะปรากฏตัวเลือกให้ออกจากระบบในกล่องโต้ตอบปลดล็อคหน้าจอ "
 "คีย์นี้จะมีผลก็ต่อเมื่อคีย์ \"logout_enable\" มีค่าเป็น TRUE"
 
-#: data/gnome-screensaver.schemas.in.h:20
+#: data/gnome-screensaver.schemas.in.h:21
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr "จำนวนนาทีที่ไม่มีความเคลื่อนไหว ก่อนที่จะถือว่าวาระเริ่มเดินเครื่องเปล่า"
 
-#: data/gnome-screensaver.schemas.in.h:21
+#: data/gnome-screensaver.schemas.in.h:22
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "จำนวนนาทีที่จะทำงาน ก่อนเปลี่ยนชุดโปรแกรมรักษาหน้าจอ"
 
-#: data/gnome-screensaver.schemas.in.h:22
+#: data/gnome-screensaver.schemas.in.h:23
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
 msgstr ""
 "จำนวนวินาทีที่ไม่มีความเคลื่อนไหว ก่อนที่จะส่งสัญญาณไปยังระบบจัดการการใช้พลังงาน "
 "คีย์นี้ดูแลและกำหนดค่าโดยตัวดำเนินการจัดการพลังงานของวาระที่เปิด"
-
-#: data/gnome-screensaver.schemas.in.h:23
-msgid "The reason for being away from the computer."
-msgstr "เหตุผลที่ไม่อยู่ที่หน้าจอคอมพิวเตอร์"
 
 #: data/gnome-screensaver.schemas.in.h:24
 msgid ""
@@ -279,7 +280,7 @@ msgstr "_ออกจากระบบ"
 msgid "_Switch User"
 msgstr "_สลับผู้ใช้"
 
-#: data/lock-dialog-default.glade.h:11 src/gs-lock-plug.c:1356
+#: data/lock-dialog-default.glade.h:11 src/gs-lock-plug.c:1366
 msgid "_Unlock"
 msgstr "_ปลดล็อค"
 
@@ -299,19 +300,19 @@ msgstr "เลื่อนตรารูปรอยเท้าของ GNOME
 msgid "Floating Feet"
 msgstr "บาทาเหินหาว"
 
-#: savers/personal-slideshow.desktop.in.h:1
+#: savers/personal-slideshow.desktop.in.in.h:1
 msgid "Display a slideshow from your Pictures folder"
 msgstr "แสดงภาพสไลด์จากโฟลเดอร์ภาพของคุณ"
 
-#: savers/personal-slideshow.desktop.in.h:2
+#: savers/personal-slideshow.desktop.in.in.h:2
 msgid "Pictures folder"
 msgstr "โฟลเดอร์ภาพ"
 
-#: savers/popsquares.desktop.in.h:1
+#: savers/popsquares.desktop.in.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
 msgstr "ตารางไฟกะพริบแบบศิลปะแนวป๊อป"
 
-#: savers/popsquares.desktop.in.h:2
+#: savers/popsquares.desktop.in.in.h:2
 msgid "Pop art squares"
 msgstr "จัตุรัสศิลปะแนวป๊อป"
 
@@ -388,32 +389,32 @@ msgstr "ไม่ต้องสุ่มภาพจากแหล่งเก
 msgid "Do not try to stretch images on screen"
 msgstr "ไม่ต้องพยายามยืดภาพให้เต็มจอ"
 
-#: src/copy-theme-dialog.c:211
+#: src/copy-theme-dialog.c:212
 msgid "Copying files"
 msgstr "กำลังคัดลอกแฟ้ม"
 
-#: src/copy-theme-dialog.c:229
+#: src/copy-theme-dialog.c:230
 msgid "From:"
 msgstr "จาก:"
 
-#: src/copy-theme-dialog.c:233
+#: src/copy-theme-dialog.c:234
 msgid "To:"
 msgstr "ไปยัง:"
 
-#: src/copy-theme-dialog.c:253
+#: src/copy-theme-dialog.c:254
 msgid "Copying themes"
 msgstr "กำลังคัดลอกชุดโปรแกรมรักษาหน้าจอ"
 
-#: src/copy-theme-dialog.c:297
+#: src/copy-theme-dialog.c:298
 msgid "Invalid screensaver theme"
 msgstr "ชุดโปรแกรมรักษาหน้าจอใช้ไม่ได้"
 
-#: src/copy-theme-dialog.c:300
+#: src/copy-theme-dialog.c:301
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
 msgstr "%s ดูเหมือนไม่ใช่ชุดโปรแกรมรักษาหน้าจอที่ใช้ได้"
 
-#: src/copy-theme-dialog.c:480
+#: src/copy-theme-dialog.c:481
 #, c-format
 msgid "Copying file: %u of %u"
 msgstr "กำลังคัดลอกแฟ้ม: %u จาก %u"
@@ -596,42 +597,42 @@ msgstr "กำลังตรวจสอบ..."
 msgid "Authentication failed."
 msgstr "การยืนยันตัวบุคคลไม่ผ่าน"
 
-#: src/gnome-screensaver-preferences.c:498
+#: src/gnome-screensaver-preferences.c:524
 msgid "Blank screen"
 msgstr "จอเปล่า"
 
-#: src/gnome-screensaver-preferences.c:504
+#: src/gnome-screensaver-preferences.c:530
 msgid "Random"
 msgstr "สุ่ม"
 
-#: src/gnome-screensaver-preferences.c:954
+#: src/gnome-screensaver-preferences.c:980
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d ชั่วโมง"
 
-#: src/gnome-screensaver-preferences.c:957
+#: src/gnome-screensaver-preferences.c:983
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d นาที"
 
-#: src/gnome-screensaver-preferences.c:960
+#: src/gnome-screensaver-preferences.c:986
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d วินาที"
 
 #. hour:minutes:seconds
-#: src/gnome-screensaver-preferences.c:966
+#: src/gnome-screensaver-preferences.c:992
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: src/gnome-screensaver-preferences.c:969
-#: src/gnome-screensaver-preferences.c:977
+#: src/gnome-screensaver-preferences.c:995
+#: src/gnome-screensaver-preferences.c:1003
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -639,23 +640,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: src/gnome-screensaver-preferences.c:972
-#: src/gnome-screensaver-preferences.c:980
-#: src/gnome-screensaver-preferences.c:984
+#: src/gnome-screensaver-preferences.c:998
+#: src/gnome-screensaver-preferences.c:1006
+#: src/gnome-screensaver-preferences.c:1010
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: src/gnome-screensaver-preferences.c:999
+#: src/gnome-screensaver-preferences.c:1025
 #, c-format
 msgid "Never"
 msgstr "ไม่ทำงาน"
 
-#: src/gnome-screensaver-preferences.c:1398
+#: src/gnome-screensaver-preferences.c:1453
 msgid "Could not load the main interface"
 msgstr "ไม่สามารถโหลดส่วนติดต่อผู้ใช้หลักได้"
 
-#: src/gnome-screensaver-preferences.c:1400
+#: src/gnome-screensaver-preferences.c:1455
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "กรุณาตรวจสอบการติดตั้งโปรแกรมรักษาหน้าจอว่าครบถ้วนหรือไม่"
 
@@ -689,15 +690,15 @@ msgstr "คุณไม่ได้รับอนุญาตให้ใช้
 msgid "No longer permitted to access the system."
 msgstr "คุณไม่ได้รับอนุญาตให้ใช้ระบบอีกต่อไป"
 
-#: src/gs-listener-dbus.c:1921
+#: src/gs-listener-dbus.c:1847
 msgid "failed to register with the message bus"
 msgstr "ลงทะเบียนกับบัสข้อความไม่สำเร็จ"
 
-#: src/gs-listener-dbus.c:1931
+#: src/gs-listener-dbus.c:1857
 msgid "not connected to the message bus"
 msgstr "ไม่ได้เชื่อมต่อกับบัสข้อความ"
 
-#: src/gs-listener-dbus.c:1940
+#: src/gs-listener-dbus.c:1866
 msgid "screensaver already running in this session"
 msgstr "โปรแกรมรักษาหน้าจอกำลังทำงานอยู่แล้วในวาระนี้"
 
@@ -709,22 +710,28 @@ msgstr "หมดเวลา"
 msgid "You have the Caps Lock key on."
 msgstr "ปุ่ม Caps Lock ถูกกดอยู่"
 
-#: src/gs-lock-plug.c:1336
+#: src/gs-lock-plug.c:1346
 msgid "S_witch User..."
 msgstr "_สลับผู้ใช้..."
 
-#: src/gs-lock-plug.c:1345
+#: src/gs-lock-plug.c:1355
 msgid "Log _Out"
 msgstr "_ออกจากระบบ"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: src/gs-lock-plug.c:1522
+#: src/gs-lock-plug.c:1531
 msgid "%U on %h"
 msgstr "%s ที่เครื่อง %s"
 
-#: src/gs-lock-plug.c:1536
+#: src/gs-lock-plug.c:1545
 msgid "_Password:"
 msgstr "_รหัสผ่าน:"
+
+#~ msgid "Reason for being away"
+#~ msgstr "เหตุผลที่ไม่อยู่"
+
+#~ msgid "The reason for being away from the computer."
+#~ msgstr "เหตุผลที่ไม่อยู่ที่หน้าจอคอมพิวเตอร์"
 
 #~ msgid "Copying '%s'"
 #~ msgstr "กำลังคัดลอก '%s'"
