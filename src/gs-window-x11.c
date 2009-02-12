@@ -414,12 +414,25 @@ update_geometry (GSWindow *window)
         gdk_screen_get_monitor_geometry (GTK_WINDOW (window)->screen,
                                          window->priv->monitor,
                                          &geometry);
+        gs_debug ("got geometry for monitor %d: x=%d y=%d w=%d h=%d",
+                  window->priv->monitor,
+                  geometry.x,
+                  geometry.y,
+                  geometry.width,
+                  geometry.height);
         monitor_region = gdk_region_rectangle (&geometry);
         gdk_region_subtract (monitor_region, outside_region);
         gdk_region_destroy (outside_region);
 
         gdk_region_get_clipbox (monitor_region, &geometry);
         gdk_region_destroy (monitor_region);
+
+        gs_debug ("using geometry for monitor %d: x=%d y=%d w=%d h=%d",
+                  window->priv->monitor,
+                  geometry.x,
+                  geometry.y,
+                  geometry.width,
+                  geometry.height);
 
         window->priv->geometry.x = geometry.x;
         window->priv->geometry.y = geometry.y;

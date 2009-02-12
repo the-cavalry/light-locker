@@ -1,3 +1,8 @@
+2009-02-12  William Jon McCann  <jmccann@redhat.com>
+
+	* src/gs-window-x11.c (update_geometry):
+	Add geometry debugging.
+
 2009-02-10  William Jon McCann  <jmccann@redhat.com>
 
 	* src/debug-screensaver.sh: Remove absolute path
