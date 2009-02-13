@@ -2,21 +2,22 @@
 #
 # This file is distributed under the same license as the gnome-screensaver package.
 #
-# Tino Meinen <a.t.meinen@chello.nl>, 2005, 2006
-# Wouter Bolsterlee <wbolster@gnome.org>, 2007, 2008
+# Tino Meinen <a.t.meinen@chello.nl>, 2005–2006
+# Wouter Bolsterlee <wbolster@gnome.org>, 2007–2009
 #
 # idle time         - inactiviteit
-# screensaver       - schermbeveiliging / screensaver (afhankelijk van context)
-# theme             - screensaver
-# screensaver theme - screensaver
 # inhibit           - verhindering/verhinderen (of een vorm daarvan)
+# lock              - vergrendeling/vergrendelen (of een vorm daarvan)
+# screensaver       - schermbeveiliging / screensaver (afhankelijk van context)
+# screensaver theme - screensaver
+# theme             - screensaver
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Totem\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-07 22:33+0200\n"
-"PO-Revision-Date: 2008-09-07 17:19+0200\n"
+"POT-Creation-Date: 2009-02-14 00:08+0100\n"
+"PO-Revision-Date: 2009-02-14 00:08+0100\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -75,7 +76,7 @@ msgid "_Screensaver theme:"
 msgstr "_Schermbeveiligingsthema:"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Screensaver themes"
 msgstr "Screensavers"
 
@@ -99,39 +100,45 @@ msgstr "Toestaan een toetsenbord in het scherm te plaatsen"
 msgid "Allow logout"
 msgstr "Afmelden toestaan"
 
-# gebruikers wisselen toestaan
 #: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow the session status message to be displayed"
+msgstr "Weergave van sessiestatusbericht toestaan"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid ""
+"Allow the session status message to be displayed when the screen is locked."
+msgstr ""
+"Weergave van het sessiestatusbericht toestaan als het scherm vergrendeld is."
+
+# gebruikers wisselen toestaan
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Allow user switching"
 msgstr "Van gebruiker wisselen toestaan"
 
-#: ../data/gnome-screensaver.schemas.in.h:5
+#: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Embedded keyboard command"
 msgstr "Opdrachtregel voor het ingebouwde toetsenbord"
 
-#: ../data/gnome-screensaver.schemas.in.h:6
+#: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Lock on activation"
 msgstr "Vergrendelen bij activering"
 
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Logout command"
 msgstr "Afmeldopdracht"
 
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Reason for being away"
-msgstr "Reden voor afwezigheid"
-
 # thema niet meevertalen
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Screensaver theme selection mode"
 msgstr "Screensaver selectiemodus"
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr ""
 "Zet dit op TRUE (waar) om de schermbeveiliging te activeren wanneer de "
 "sessie inactief is."
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
@@ -141,13 +148,13 @@ msgstr ""
 "plaatsen bij ontgrendeling. De ‘keyboard_command’-sleutel moet ingesteld "
 "worden met de juiste opdrachtregel."
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr ""
 "Zet dit op TRUE (waar) om het scherm te vergrendelen wanneer de "
 "schermbeveiliging wordt geactiveerd."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -156,7 +163,7 @@ msgstr ""
 "tonen om van gebruiker te wisselen."
 
 # na een bepaalde tijd zou dubbelzinnig zijn
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -165,7 +172,7 @@ msgstr ""
 "dialoogvenster om na een bepaalde periode af te melden. De lengte van de "
 "periode kan worden ingesteld via de sleutel: \"logout_delay\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
 "set to TRUE, to embed a keyboard widget into the window. This command should "
@@ -177,7 +184,7 @@ msgstr ""
 "moet een XEMBED-plug interface implementeren en een ‘window XID’ op "
 "‘standard output’ geven."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -188,14 +195,14 @@ msgstr ""
 "Deze sleutel heeft alleen effect wanneer de sleutel \"logout_enable\" "
 "ingesteld is op TRUE (waar)."
 
-#: ../data/gnome-screensaver.schemas.in.h:18
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr ""
 "Het aantal minuten tussen activeren van de schermbeveiliging en het "
 "vergrendelen van het beeldscherm."
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -206,7 +213,7 @@ msgstr ""
 "alleen effect wanneer de sleutel \"logout_enable\" ingesteld is op TRUE "
 "(waar)."
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr ""
@@ -214,11 +221,11 @@ msgstr ""
 "beschouwd."
 
 # tussen wisselen van screensaver/voordat gewisseld wordt/nadat gewisseld wordt
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "Het aantal minuten voordat gewisseld wordt van screensaver."
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
@@ -226,10 +233,6 @@ msgstr ""
 "Dit is het aantal seconden inactiviteit voordat het energiebeheer op de "
 "hoogte wordt gebracht. De sessie-agent voor energiebeheer houdt deze sleutel "
 "bij."
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-msgid "The reason for being away from the computer."
-msgstr "Reden voor de afwezigheid van de computer."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
@@ -337,19 +340,19 @@ msgstr "Bubbelt het GNOME voet-logo over het scherm"
 msgid "Floating Feet"
 msgstr "Drijvende voet"
 
-#: ../savers/personal-slideshow.desktop.in.h:1
+#: ../savers/personal-slideshow.desktop.in.in.h:1
 msgid "Display a slideshow from your Pictures folder"
 msgstr "Dit toont een diashow met afbeeldingen uit uw afbeeldingenmap."
 
-#: ../savers/personal-slideshow.desktop.in.h:2
+#: ../savers/personal-slideshow.desktop.in.in.h:2
 msgid "Pictures folder"
 msgstr "Afbeeldingenmap"
 
-#: ../savers/popsquares.desktop.in.h:1
+#: ../savers/popsquares.desktop.in.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
 msgstr "Dit toont pop-art-achtige blokken in pulserende kleuren."
 
-#: ../savers/popsquares.desktop.in.h:2
+#: ../savers/popsquares.desktop.in.in.h:2
 msgid "Pop art squares"
 msgstr "Pop-art blokken"
 
@@ -651,30 +654,30 @@ msgstr "Controle…"
 msgid "Authentication failed."
 msgstr "Controle mislukt."
 
-#: ../src/gnome-screensaver-preferences.c:515
+#: ../src/gnome-screensaver-preferences.c:524
 msgid "Blank screen"
 msgstr "Zwart scherm"
 
-#: ../src/gnome-screensaver-preferences.c:521
+#: ../src/gnome-screensaver-preferences.c:530
 msgid "Random"
 msgstr "Willekeurig"
 
 #  1 uur, 2 uur
-#: ../src/gnome-screensaver-preferences.c:971
+#: ../src/gnome-screensaver-preferences.c:980
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d uur"
 msgstr[1] "%d uur"
 
-#: ../src/gnome-screensaver-preferences.c:974
+#: ../src/gnome-screensaver-preferences.c:983
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minuut"
 msgstr[1] "%d minuten"
 
-#: ../src/gnome-screensaver-preferences.c:977
+#: ../src/gnome-screensaver-preferences.c:986
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -682,15 +685,15 @@ msgstr[0] "%d seconde"
 msgstr[1] "%d seconden"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:983
+#: ../src/gnome-screensaver-preferences.c:992
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:986
-#: ../src/gnome-screensaver-preferences.c:994
+#: ../src/gnome-screensaver-preferences.c:995
+#: ../src/gnome-screensaver-preferences.c:1003
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -698,23 +701,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:989
-#: ../src/gnome-screensaver-preferences.c:997
-#: ../src/gnome-screensaver-preferences.c:1001
+#: ../src/gnome-screensaver-preferences.c:998
+#: ../src/gnome-screensaver-preferences.c:1006
+#: ../src/gnome-screensaver-preferences.c:1010
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1016
+#: ../src/gnome-screensaver-preferences.c:1025
 #, c-format
 msgid "Never"
 msgstr "Nooit"
 
-#: ../src/gnome-screensaver-preferences.c:1443
+#: ../src/gnome-screensaver-preferences.c:1453
 msgid "Could not load the main interface"
 msgstr "Kon de hoofd-interface niet laden"
 
-#: ../src/gnome-screensaver-preferences.c:1445
+#: ../src/gnome-screensaver-preferences.c:1455
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Controleer of de schermbeveiliging correct is geïnstalleerd"
 
@@ -749,15 +752,15 @@ msgstr "U heeft geen toegang op dit moment."
 msgid "No longer permitted to access the system."
 msgstr "U heeft niet langer toegang tot deze computer."
 
-#: ../src/gs-listener-dbus.c:1921
+#: ../src/gs-listener-dbus.c:1847
 msgid "failed to register with the message bus"
 msgstr "kon niet aanmelden bij de berichtenbus"
 
-#: ../src/gs-listener-dbus.c:1931
+#: ../src/gs-listener-dbus.c:1857
 msgid "not connected to the message bus"
 msgstr "kon verbonden met de berichtenbus"
 
-#: ../src/gs-listener-dbus.c:1940
+#: ../src/gs-listener-dbus.c:1866
 msgid "screensaver already running in this session"
 msgstr "schermbeveiliging al actief in deze sessie"
 
@@ -778,13 +781,19 @@ msgid "Log _Out"
 msgstr "_Afmelden"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1532
+#: ../src/gs-lock-plug.c:1531
 msgid "%U on %h"
 msgstr "%U op %h"
 
-#: ../src/gs-lock-plug.c:1546
+#: ../src/gs-lock-plug.c:1545
 msgid "_Password:"
 msgstr "_Wachtwoord:"
+
+#~ msgid "Reason for being away"
+#~ msgstr "Reden voor afwezigheid"
+
+#~ msgid "The reason for being away from the computer."
+#~ msgstr "Reden voor de afwezigheid van de computer."
 
 #~ msgid "Copying '%s'"
 #~ msgstr "kopiëren '%s'"
