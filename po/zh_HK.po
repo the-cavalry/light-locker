@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 2.25.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-06 22:00+0800\n"
-"PO-Revision-Date: 2009-02-06 22:00+0800\n"
+"POT-Creation-Date: 2009-02-17 22:05+0800\n"
+"PO-Revision-Date: 2009-02-17 22:05+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
@@ -186,6 +186,7 @@ msgid ""
 "This key is set and maintained by the session power-management agent."
 msgstr "沒有動作後經過多少時間（秒）才通知電源管理。此設定鍵由電源管理程式維護。"
 
+# (pofilter) gconf: do not translate gconf attribute: "single", "themes", "random"
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
 "The selection mode used by screensaver. May be \"blank-only\" to enable the "
@@ -193,7 +194,7 @@ msgid ""
 "screensaver using only one theme on activation (specified in \"themes\" "
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
-msgstr "用於螢幕保護程式的選擇模式。可以為「只有空白」會啟用螢幕保護程式但不使用任何主題；「單一」會啟用螢幕保護程式但只使用一種主題(在「佈景主題」鍵值指定)；還有「亂數」會啟用螢幕保護程式且使用亂數主題。"
+msgstr "用於螢幕保護程式的選擇模式。可以為「blank-only」(只有空白)會啟用螢幕保護程式但不使用任何主題；「single」(單一)會啟用螢幕保護程式但只使用一種主題(在「themes」(佈景主題)鍵值指定)；還有「random」(亂數)會啟用螢幕保護程式且使用亂數主題。"
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
@@ -203,13 +204,14 @@ msgstr "鎖定對話視窗的佈景主題"
 msgid "Theme to use for the lock dialog."
 msgstr "鎖定對話視窗使用的佈景主題。"
 
+# (pofilter) gconf: do not translate gconf attribute: "single", "random"
 #: ../data/gnome-screensaver.schemas.in.h:27
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
-msgstr "這個鍵值指定用於螢幕保護程式的主題清單。但是當“mode”鍵值為「只有空白」時會忽略此項，當“mode”鍵值為「單一」時應提供該主題的名稱，而當“mode”鍵值為「亂數」時應提供主題的清單。"
+msgstr "這個鍵值指定用於螢幕保護程式的主題清單。但是當「mode」鍵值為「blank-only」(只有空白)時會忽略此項，當「mode」鍵值為「single」(單一)時應提供該主題的名稱，而當「mode」鍵值為「random」(亂數)時應提供主題的清單。"
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
