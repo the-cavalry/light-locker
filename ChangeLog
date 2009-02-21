@@ -1,3 +1,8 @@
+2009-02-21  Matthias Clasen  <mclasen@redhat.com>
+
+	* src/gs-theme-manager.c (find_command): Accept a full path
+	as long as it is one of the trusted directories. (#561855)
+
 2009-02-12  William Jon McCann  <jmccann@redhat.com>
 
 	* src/gs-window-x11.c (update_geometry):

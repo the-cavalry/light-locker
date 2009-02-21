@@ -75,17 +75,33 @@ find_command (const char *command)
 {
         int i;
 
-        for (i = 0; known_engine_locations [i]; i++){
-                char *path;
+        if (g_path_is_absolute (command)) {
+                char *dirname;
 
-                path = g_build_filename (known_engine_locations [i], command, NULL);
-
-                if (g_file_test (path, G_FILE_TEST_IS_EXECUTABLE)
-                    && ! g_file_test (path, G_FILE_TEST_IS_DIR)) {
-                        return path;
+                dirname = g_path_get_dirname (command);
+                for (i = 0; known_engine_locations [i]; i++) {
+                        if (strcmp (dirname, known_engine_locations [i]) == 0) {
+                                if (g_file_test (command, G_FILE_TEST_IS_EXECUTABLE)
+                                    && ! g_file_test (command, G_FILE_TEST_IS_DIR)) {
+                                        g_free (dirname);
+                                        return g_strdup (command);
+                                }
+                        }
                 }
+                g_free (dirname);
+        } else {
+                for (i = 0; known_engine_locations [i]; i++){
+                        char *path;
 
-                g_free (path);
+                        path = g_build_filename (known_engine_locations [i], command, NULL);
+
+                        if (g_file_test (path, G_FILE_TEST_IS_EXECUTABLE)
+                            && ! g_file_test (path, G_FILE_TEST_IS_DIR)) {
+                                return path;
+                        }
+
+                        g_free (path);
+                }
         }
 
         return NULL;
