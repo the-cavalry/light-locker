@@ -623,8 +623,8 @@ image_set_from_pixbuf (GtkImage  *image,
 
         cairo_surface_destroy (surface);
 
-        gdk_pixmap_unref (bitmask);
-        gdk_pixmap_unref (pixmap);
+        g_object_unref (bitmask);
+        g_object_unref (pixmap);
 
         cairo_destroy (cr_mask);
         cairo_destroy (cr);

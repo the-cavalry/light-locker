@@ -1,3 +1,8 @@
+2009-02-23  Andre Klapper  <a9016009@gmx.de>
+
+	* src/gs-lock-plug.c:
+	Replace deprecated gdk_pixmap_unref() by g_object_unref().
+
 2009-02-21  Matthias Clasen  <mclasen@redhat.com>
 
 	* src/gs-theme-manager.c (find_command): Accept a full path
