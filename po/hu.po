@@ -277,7 +277,7 @@ msgstr "<span size=\"x-large\">%R</span>"
 
 #: ../data/lock-dialog-default.glade.h:7
 msgid "_Cancel"
-msgstr "_Mégsem"
+msgstr "Mé_gse"
 
 #: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
