@@ -1,3 +1,8 @@
+2009-02-26  Adam Jackson  <ajax@redhat.com>
+
+	* src/gs-grab-x11.c:
+	Don't carp about missing XFree86-Misc extension.
+
 2009-02-23  Andre Klapper  <a9016009@gmx.de>
 
 	* src/gs-lock-plug.c:

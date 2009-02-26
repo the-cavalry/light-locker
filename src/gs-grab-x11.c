@@ -118,7 +118,12 @@ static void
 xorg_lock_smasher_set_active (GSGrab  *grab,
                               gboolean active)
 {
-        int status;
+        int status, event, error;
+
+	if (!XF86MiscQueryExtension (GDK_DISPLAY (), &event, &error)) {
+		gs_debug ("No XFree86-Misc extension present");
+		return;
+	}
 
         if (active) {
                 gs_debug ("Enabling the x.org grab smasher");
