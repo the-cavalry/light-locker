@@ -1,3 +1,7 @@
+2009-02-25  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* nb.po: Updated Norwegian bokmål translation.
+
 2009-02-25  Takeshi AIHANA <takeshi.aihana@gmail.com>
 
 	* ja.po: Updated Japanese translation.
@@ -64,6 +68,7 @@
 
 	* th.po: Updated Thai translation.
 
+>>>>>>> .r1619
 2009-02-06  Chao-Hsiung Liao  <j_h_liau@yahoo.com.tw>
 
 	* zh_HK.po: Updated Traditional Chinese translation(Hong Kong).
