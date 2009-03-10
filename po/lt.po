@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-02 04:27+0200\n"
-"PO-Revision-Date: 2009-02-02 04:27+0200\n"
+"PO-Revision-Date: 2009-03-11 01:28+0200\n"
 "Last-Translator: Gintautas Miliauskas <gintas@akl.lt>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "MIME-Version: 1.0\n"
@@ -281,7 +281,7 @@ msgstr "<span size=\"x-large\">%R</span>"
 
 #: ../data/lock-dialog-default.glade.h:7
 msgid "_Cancel"
-msgstr "_Atšaukti"
+msgstr "_Atsisakyti"
 
 #: ../data/lock-dialog-default.glade.h:8
 msgid "_Leave Message"
