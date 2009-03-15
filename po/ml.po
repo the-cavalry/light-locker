@@ -1,16 +1,18 @@
 # translation of gnome-screensaver.HEAD.ml.po to Malayalam
 # This file is distributed under the same license as the gnome-screensaver package.
-# Copyright (C) 2007-2008 gnome-screensaver'S COPYRIGHT HOLDER.
+# Copyright (C) 2006-2009 gnome-screensaver'S COPYRIGHT HOLDER.
 # Reviewed by Santhosh Thottingal <santhosh00@gmail.com>
 # Ani Peter <apeter@redhat.com>, 2006.
-# Praveen|പ്രവീണ്‍ A|എ <pravi.a@gmail.com>, 2007,2008‌.
+# Praveen|പ്രവീണ്‍ A|എ <pravi.a@gmail.com>, 2007, 2008‌.
+# Abhishek Jacob <abhishekjacob123@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.ml\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-13 03:45+0000\n"
-"PO-Revision-Date: 2008-09-13 10:55-0500\n"
-"Last-Translator: പ്രവീണ്‍ അരിമ്പ്രത്തൊടിയില്‍ <pravi.a@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"screensaver&component=general\n"
+"POT-Creation-Date: 2009-03-14 07:02+0000\n"
+"PO-Revision-Date: 2009-02-27 21:48+0530\n"
+"Last-Translator: Abhishek Jacob <abhishekjacob123@gmail.com>\n"
 "Language-Team: Malayalam <smc-discuss@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,12 +66,12 @@ msgstr "_കണ്ടു നോക്കുക"
 
 #: ../data/gnome-screensaver-preferences.glade.h:10
 msgid "_Screensaver theme:"
-msgstr "_സ്ക്രീന്‍സേവറിന്റെ രംഗവിധാനം:"
+msgstr "_സ്ക്രീന്‍സേവറിന്റെ പ്രമേയം:"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Screensaver themes"
-msgstr "സ്ക്രീന്‍സേവറിന്റെ രംഗവിധാനങ്ങള്‍"
+msgstr "സ്ക്രീന്‍സേവറിന്റെ പ്രമേയങ്ങള്‍"
 
 #: ../data/gnome-screensaver.directory.in.h:2
 msgid "Screensavers"
@@ -88,47 +90,52 @@ msgid "Allow logout"
 msgstr "പുറത്തിറങ്ങാന്‍ അനുവദിയ്ക്കുക"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow the session status message to be displayed"
+msgstr "പ്രവര്‍ത്തനവേളയുടെ അവസ്ഥാസന്ദേശം കാണിക്കുവാന്‍ അനുവദിക്കുക"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid ""
+"Allow the session status message to be displayed when the screen is locked."
+msgstr "സ്ക്രീന്‍ പൂട്ടിയിരിക്കുമ്പോള്‍ പ്രവര്‍ത്തനവേളയുടെ അവസ്ഥാസന്ദേശം കാണിക്കുവാന്‍ അനുവദിക്കുക."
+
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Allow user switching"
 msgstr "മറ്റൊരു ഉപയോക്താവാകുന്നത് അനുവദിയ്ക്കുക"
 
-#: ../data/gnome-screensaver.schemas.in.h:5
+#: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Embedded keyboard command"
-msgstr "കൂട്ടിച്ചേര്‍ത്ത കീബോര്‍ഡിനുള്ള ആജ്ഞ"
+msgstr "തുന്നിച്ചേര്‍ത്ത കീബോര്‍ഡിനുള്ള ആജ്ഞ"
 
-#: ../data/gnome-screensaver.schemas.in.h:6
+#: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Lock on activation"
 msgstr "പ്രവര്‍ത്തനത്തിലാകുമ്പോള്‍ പൂട്ടുക"
 
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Logout command"
 msgstr "പുറത്തിറങ്ങുന്നതിനുളള ആജ്ഞ"
 
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Reason for being away"
-msgstr "ദൂരെയാകാന്‍ കാരണം"
-
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Screensaver theme selection mode"
-msgstr "സ്ക്രീന്‍സേവറിന്റെ രംഗവിധാനം തിരഞ്ഞെടുക്കുന്നതിനുള്ള രീതി"
+msgstr "സ്ക്രീന്‍സേവറിന്റെ പ്രമേയം തിരഞ്ഞെടുക്കുന്നതിനുള്ള രീതി"
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr "ആലസ്യാവസ്ഥയില്‍ സ്ക്രീന്‍സേവര്‍ പ്രവര്‍ത്തിപ്പിയ്ക്കാന്‍ ഇത് ശരിയെന്ന് സജ്ജീകരിയ്ക്കുക."
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
 msgstr ""
-"ജാലകത്തില്‍ കീബോര്‍ഡ് കൂട്ടിച്ചേര്‍ക്കുന്നത് അനുവദിയ്ക്കാന്‍ ഇത് ശരിയെന്ന് സജ്ജീകരിയ്ക്കുക. "
+"ജാലകത്തില്‍ കീബോര്‍ഡ് തുന്നിച്ചേര്‍ക്കുന്നത് അനുവദിയ്ക്കാന്‍ ഇത് ശരിയെന്ന് സജ്ജീകരിയ്ക്കുക. "
 "\"keyboard_command\" എന്ന കീ യോജിച്ച ആജ്ഞയായി സജ്ജീകരിച്ചിരിയ്ക്കണം."
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr "സ്ക്രീന്‍സേവര്‍ സജീവമാകുമ്പോള്‍ സ്ക്രീന്‍ പൂട്ടുന്നതിനായി ഇത് ശരിയെന്ന് സജ്ജീകരിയ്ക്കുക."
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
@@ -136,7 +143,7 @@ msgstr ""
 "മറ്റൊരു ഉപയോക്താവിന്റെ അക്കൌണ്ടിലേയ്ക്ക് മാറുന്നതിനുള്ള ഐച്ഛികം പൂട്ടു തുറക്കാനുള്ള ജാലകത്തില്‍ "
 "ലഭ്യമാക്കാന്‍ ഇത് ശരിയെന്ന് സജ്ജീകരിയ്ക്കുക."
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -144,7 +151,7 @@ msgstr ""
 "ഒരിടവേളയ്ക്ക് ശേഷം പുറത്തിറങ്ങാനുള്ള ഐച്ഛികം തുറക്കുന്നതിനായുള്ള ജാലകത്തില്‍ ലഭ്യമാക്കാന്‍ ഇത് "
 "ശരിയെന്ന് സജ്ജീകരിയ്ക്കുക. \"logout_delay\" എന്ന കീയിലാണ് ഇടവേള വ്യക്തമാക്കിയിരിയ്ക്കുന്നത്."
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
 "set to TRUE, to embed a keyboard widget into the window. This command should "
@@ -156,7 +163,7 @@ msgstr ""
 "സംയോജക വിനിമയതലം നടപ്പിലാക്കിയിരിയ്ക്കുകയും ഒരു ജാലക എക്സ്ഐഡി സ്റ്റാന്‍ഡേര്‍ഡ് ഔട്ട്പുട്ടില്‍ "
 "കാണിയ്ക്കുകയും വേണം."
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -166,11 +173,12 @@ msgstr ""
 "ഉപയോക്താവിനെ നേരെയങ്ങ് പുറത്തിറക്കണം.  \"logout_enable\" കീ ശരിയെന്ന് "
 "സജ്ജീകരിച്ചിട്ടുണ്ടെങ്കില്‍ മാത്രമേ ഈ കീയ്ക്ക് പ്രഭാവമുള്ളൂ."
 
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid "The number of minutes after screensaver activation before locking the screen."
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
 msgstr "സ്ക്രീന്‍സേവര്‍ സജീവമായതിന് ശേഷം സ്ക്രീന്‍ പൂട്ടുന്നതിന് എത്ര മിനിറ്റുകള്‍."
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -180,25 +188,22 @@ msgstr ""
 "എത്ര മിനിറ്റുകള്‍. \"logout_enable\" കീ ശരിയെന്ന് സജ്ജീകരിച്ചിട്ടുണ്ടെങ്കില്‍ മാത്രമേ ഈ "
 "കീയ്ക്ക് പ്രഭാവമുള്ളൂ."
 
-#: ../data/gnome-screensaver.schemas.in.h:20
-msgid "The number of minutes of inactivity before the session is considered idle."
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
 msgstr "നിഷ്ക്രിയമായതിനു ശേഷം ആലസ്യാവസ്ഥയിലാണെന്നു കണക്കാക്കാന്‍ എത്ര മിനിറ്റുകള്‍ കഴിയണം."
 
-#: ../data/gnome-screensaver.schemas.in.h:21
-msgid "The number of minutes to run before changing the screensaver theme."
-msgstr "എത്ര മിനിറ്റുകള്‍ പ്രവര്‍ത്തിച്ചതിനു ശേഷം സ്ക്രീന്‍സേവറിന്റെ രംഗവിധാനം മാറ്റണം."
-
 #: ../data/gnome-screensaver.schemas.in.h:22
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr "എത്ര മിനിറ്റുകള്‍ പ്രവര്‍ത്തിച്ചതിനു ശേഷം സ്ക്രീന്‍സേവറിന്റെ പ്രമേയം മാറ്റണം."
+
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
 msgstr ""
 "എത്ര മിനിറ്റുകള്‍ നിഷ്ക്രിയതിനു ശേഷം വൈദ്യുതി-നടത്തിപ്പിന് അടയാളം കാണിക്കണം. അവസ്ഥയിലെ "
 "വൈദ്യുതി-നടത്തിപ്പ് കക്ഷിയാണ് ഈ കീ സജ്ജീകരിയ്ക്കുന്നതും നോക്കിനടത്തുന്നതും."
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-msgid "The reason for being away from the computer."
-msgstr "കമ്പ്യൂട്ടറില്‍ നിന്നും ദൂരെയാകാനുള്ള കാരണം."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
@@ -208,19 +213,19 @@ msgid ""
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
 msgstr ""
-"സ്ക്രീന്‍സേവറുപയോഗിയ്ക്കുന്ന തിരഞ്ഞെടുക്കല്‍ രീതി. സജീവമാകുമ്പോള്‍ രംഗവിധാനമൊന്നുമുയോഗിയ്ക്കാതെ "
+"സ്ക്രീന്‍സേവറുപയോഗിയ്ക്കുന്ന തിരഞ്ഞെടുക്കല്‍ രീതി. സജീവമാകുമ്പോള്‍ പ്രമേയമൊന്നുമുയോഗിയ്ക്കാതെ "
 "സ്ക്രീന്‍സേവര്‍ പ്രാവര്‍ത്തികമാക്കാന്‍ \"ശൂന്യമാക്കിയാല്‍ മതി (blank-only)\" എന്നോ സജീവമാകുമ്പോള്‍ "
-"(\"രംഗവിധാനങ്ങള്‍ (themes)\" എന്ന കീയില്‍ വ്യക്തമാക്കിയ) ഒരേഒരു രംഗവിധാനമുപയോഗിച്ച് "
+"(\"പ്രമേയങ്ങള്‍ (themes)\" എന്ന കീയില്‍ വ്യക്തമാക്കിയ) ഒരേ ഒരു പ്രമേയമുപയോഗിച്ച് "
 "സ്ക്രീന്‍സേവര്‍ പ്രാവര്‍ത്തികമാക്കാന്‍ \"ഒരെണ്ണം (single)\" എന്നോ ഏതെങ്കിലുമൊരു "
-"രംഗവിധാനമുപയോഗിച്ച് സ്ക്രീന്‍സേവര്‍ പ്രാവര്‍ത്തികമാക്കാന്‍ \"ഏതെങ്കിലും (random)\" എന്നോ ഇതാകാം."
+"പ്രമേയമുപയോഗിച്ച് സ്ക്രീന്‍സേവര്‍ പ്രാവര്‍ത്തികമാക്കാന്‍ \"ഏതെങ്കിലും (random)\" എന്നോ ഇതാകാം."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
-msgstr "പൂട്ടാനുള്ള ജാലകത്തിന്റെ രംഗവിധാനം"
+msgstr "പൂട്ടാനുള്ള ജാലകത്തിന്റെ പ്രമേയം"
 
 #: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Theme to use for the lock dialog."
-msgstr "പൂട്ടിയ ഡയലോഗിനുപയോഗിയ്ക്കേണ്ട രംഗവിധാനം"
+msgstr "പൂട്ടാനുള്ള സംവാദത്തിനുപയോഗിയ്ക്കേണ്ട പ്രമേയം"
 
 #: ../data/gnome-screensaver.schemas.in.h:27
 msgid ""
@@ -229,10 +234,10 @@ msgid ""
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
 msgstr ""
-"ഈ കീ സ്ക്രീന്‍സേവര്‍ ഉപയോഗിയ്ക്കുന്ന രംഗവിധാനങ്ങളുടെ പട്ടിക വ്യക്തമാക്കുന്നു. \"രീതിയുടെ (mode)"
+"ഈ കീ സ്ക്രീന്‍സേവര്‍ ഉപയോഗിയ്ക്കുന്ന പ്രമേയങ്ങളുടെ പട്ടിക വ്യക്തമാക്കുന്നു. \"രീതിയുടെ (mode)"
 "\" കീ \"ശൂന്യമാക്കിയാല്‍ മതി (blank-only)\" എന്നാണെങ്കില്‍ ഇത് അവഗണിയ്ക്കപ്പെടുകയും \"രീതി "
-"(mode)\" \"ഒരെണ്ണം (single)\" എന്നാണെങ്കില്‍ രംഗവിധാനത്തിന്റെ പേരും \"രീതി (mode)\" "
-"\"ഏതെങ്കിലും (random)\" എന്നാണെങ്കില്‍ രംഗവിധാനങ്ങളുടെ ഒരു പട്ടികയും നല്‍കണം."
+"(mode)\" \"ഒരെണ്ണം (single)\" എന്നാണെങ്കില്‍ പ്രമേയത്തിന്റെ പേരും \"രീതി (mode)\" "
+"\"ഏതെങ്കിലും (random)\" എന്നാണെങ്കില്‍ പ്രമേയങ്ങളുടെ ഒരു പട്ടികയും നല്‍കണം."
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
@@ -252,7 +257,7 @@ msgstr "ആലസ്യാവസ്ഥയിലാണെന്ന് കണക�
 
 #: ../data/gnome-screensaver.schemas.in.h:32
 msgid "Time before theme change"
-msgstr "രംഗവിധാനം മാറ്റുന്നതിനെടുക്കുന്ന സമയം"
+msgstr "പ്രമേയം മാറ്റുന്നതിനെടുക്കുന്ന സമയം"
 
 #: ../data/lock-dialog-default.glade.h:2
 #, no-c-format
@@ -305,19 +310,19 @@ msgstr "ഗ്നോമിന്റെ കാല്‍പ്പാദമുദ�
 msgid "Floating Feet"
 msgstr "പാറിനടക്കുന്ന കാല്‍പ്പാദം"
 
-#: ../savers/personal-slideshow.desktop.in.h:1
+#: ../savers/personal-slideshow.desktop.in.in.h:1
 msgid "Display a slideshow from your Pictures folder"
 msgstr "നിങ്ങളുടെ ചിത്രങ്ങളുള്ള കൂടയില്‍ നിന്നും ഒന്നൊന്നായി പ്രദര്‍ശിപ്പിയ്ക്കുക"
 
-#: ../savers/personal-slideshow.desktop.in.h:2
+#: ../savers/personal-slideshow.desktop.in.in.h:2
 msgid "Pictures folder"
 msgstr "ചിത്രങ്ങളുള്ള കൂട"
 
-#: ../savers/popsquares.desktop.in.h:1
+#: ../savers/popsquares.desktop.in.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
 msgstr "ഒരു പോപ് കലാപരമായ സ്പന്ദിയ്ക്കുന്ന നിറങ്ങളുടെ ഗ്രിഡ്"
 
-#: ../savers/popsquares.desktop.in.h:2
+#: ../savers/popsquares.desktop.in.in.h:2
 msgid "Pop art squares"
 msgstr "പോപ് കലാ ചതുരങ്ങള്‍"
 
@@ -368,7 +373,8 @@ msgstr "%s. ഉപയോഗിയ്ക്കുന്നതിനെക്ക�
 #: ../savers/floaters.c:1209
 #, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
-msgstr "നിങ്ങള്‍ ഒരു ചിത്രം വ്യക്തമാക്കണം. ഉപയോഗിയ്ക്കുന്നതിനെക്കുറിച്ചുള്ള വിവരത്തിനായി --help കാണുക.\n"
+msgstr ""
+"നിങ്ങള്‍ ഒരു ചിത്രം വ്യക്തമാക്കണം. ഉപയോഗിയ്ക്കുന്നതിനെക്കുറിച്ചുള്ള വിവരത്തിനായി --help കാണുക.\n"
 
 #: ../savers/slideshow.c:53
 msgid "Location to get images from"
@@ -412,12 +418,12 @@ msgstr "രംഗവിതാനങ്ങള്‍ പകര്‍ത്തു�
 
 #: ../src/copy-theme-dialog.c:298
 msgid "Invalid screensaver theme"
-msgstr "അസാധുവായ സ്ക്രീന്‍സേവര്‍ രംഗവിധാനം"
+msgstr "അസാധുവായ സ്ക്രീന്‍സേവര്‍ പ്രമേയം"
 
 #: ../src/copy-theme-dialog.c:301
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
-msgstr "%s സാധുവായ ഒരു സ്ക്രീന്‍സേവര്‍ രംഗവിധാനമാണെന്നു തോന്നുന്നില്ല."
+msgstr "%s സാധുവായ ഒരു സ്ക്രീന്‍സേവര്‍ പ്രമേയമാണെന്നു തോന്നുന്നില്ല."
 
 #: ../src/copy-theme-dialog.c:481
 #, c-format
@@ -606,29 +612,29 @@ msgstr "പരിശോധനയില്‍..."
 msgid "Authentication failed."
 msgstr "തിരിച്ചറിയല്‍ പരാജയപ്പെട്ടു."
 
-#: ../src/gnome-screensaver-preferences.c:515
+#: ../src/gnome-screensaver-preferences.c:524
 msgid "Blank screen"
 msgstr "ശൂന്യമായ സ്ക്രീന്‍"
 
-#: ../src/gnome-screensaver-preferences.c:521
+#: ../src/gnome-screensaver-preferences.c:530
 msgid "Random"
 msgstr "ഏതെങ്കിലുമൊന്ന്"
 
-#: ../src/gnome-screensaver-preferences.c:971
+#: ../src/gnome-screensaver-preferences.c:980
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d മണിക്കൂര്‍"
 msgstr[1] "%d മണിക്കൂറുകള്‍"
 
-#: ../src/gnome-screensaver-preferences.c:974
+#: ../src/gnome-screensaver-preferences.c:983
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d നിമിഷം"
 msgstr[1] "%d നിമിഷങ്ങള്‍"
 
-#: ../src/gnome-screensaver-preferences.c:977
+#: ../src/gnome-screensaver-preferences.c:986
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -636,15 +642,15 @@ msgstr[0] "%d സെക്കന്‍ഡ്"
 msgstr[1] "%d സെക്കന്‍ഡുകള്‍"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:983
+#: ../src/gnome-screensaver-preferences.c:992
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:986
-#: ../src/gnome-screensaver-preferences.c:994
+#: ../src/gnome-screensaver-preferences.c:995
+#: ../src/gnome-screensaver-preferences.c:1003
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -652,23 +658,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:989
-#: ../src/gnome-screensaver-preferences.c:997
-#: ../src/gnome-screensaver-preferences.c:1001
+#: ../src/gnome-screensaver-preferences.c:998
+#: ../src/gnome-screensaver-preferences.c:1006
+#: ../src/gnome-screensaver-preferences.c:1010
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1016
+#: ../src/gnome-screensaver-preferences.c:1025
 #, c-format
 msgid "Never"
 msgstr "ഒരിക്കലുമില്ല"
 
-#: ../src/gnome-screensaver-preferences.c:1443
+#: ../src/gnome-screensaver-preferences.c:1453
 msgid "Could not load the main interface"
 msgstr "പ്രധാന വിനിമയതലം ചേര്‍ക്കുവാന്‍ സാധിച്ചില്ല"
 
-#: ../src/gnome-screensaver-preferences.c:1445
+#: ../src/gnome-screensaver-preferences.c:1455
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "സ്ക്രീന്‍സേവര്‍ ശരിയായിട്ടാണ് ഇന്‍സ്റ്റാള്‍ ചെയ്തിട്ടുളളത് എന്നുറപ്പ് വരുത്തുക"
 
@@ -702,15 +708,15 @@ msgstr "ഈ സമയത്ത് പ്രവേശനത്തിനുളള 
 msgid "No longer permitted to access the system."
 msgstr "സിസ്റ്റത്തിലേക്ക് ഇനി പ്രവേശിക്കുന്നതിനുളള അനുമതിയില്ല."
 
-#: ../src/gs-listener-dbus.c:1921
+#: ../src/gs-listener-dbus.c:1847
 msgid "failed to register with the message bus"
 msgstr "മെസ്സേജ് ബസ്സുമായി രജിസ്ടര്‍ ചെയ്യുന്നതില്‍ പരാജയപ്പെട്ടു"
 
-#: ../src/gs-listener-dbus.c:1931
+#: ../src/gs-listener-dbus.c:1857
 msgid "not connected to the message bus"
 msgstr "മെസ്സേജ് ബസ്സുമായി ബന്ധിപ്പിച്ചിട്ടില്ല"
 
-#: ../src/gs-listener-dbus.c:1940
+#: ../src/gs-listener-dbus.c:1866
 msgid "screensaver already running in this session"
 msgstr "ഈ സെഷനില്‍ സ്ക്രീന്‍സേവര്‍ പ്രവര്‍ത്തനത്തിലാണ്"
 
@@ -731,10 +737,10 @@ msgid "Log _Out"
 msgstr "_പുറത്തിറങ്ങുക"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1532
+#: ../src/gs-lock-plug.c:1531
 msgid "%U on %h"
 msgstr "%h ല്‍ %U"
 
-#: ../src/gs-lock-plug.c:1546
+#: ../src/gs-lock-plug.c:1545
 msgid "_Password:"
 msgstr "_അടയാളവാക്ക്:"
