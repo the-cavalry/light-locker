@@ -1,4 +1,14 @@
 ===============
+Version 2.26.0
+===============
+
+- Remove power notice signal
+- Rely on GNOME session idle detection
+- Proxy g-s inhibitors over to the session
+- Read status message from session
+- Accept a full path for theme (Matthias Clasen)
+
+===============
 Version 2.25.2
 ===============
 
