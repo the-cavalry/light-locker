@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-25 00:00+0900\n"
-"PO-Revision-Date: 2009-02-24 23:59+0900\n"
+"POT-Creation-Date: 2009-04-05 10:55+0900\n"
+"PO-Revision-Date: 2009-04-05 10:54+0900\n"
 "Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
 msgid "Screensaver"
-msgstr "GNOME スクリーンセーバー"
+msgstr "スクリーンセーバー"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:2
 msgid "Set your screensaver preferences"
