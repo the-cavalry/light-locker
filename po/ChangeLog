@@ -1,3 +1,8 @@
+2009-04-06  Reşat SABIQ <tilde.birlik@gmail.com>
+
+	* LINGUAS: crh
+	* crh.po: Added Crimean Tatar (Crimean Turkish) translation.
+
 2009-04-05  Takeshi AIHANA <takeshi.aihana@gmail.com>
 
 	* ja.po: Fixed #576532. 
