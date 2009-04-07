@@ -50,10 +50,11 @@
 #define KEY_LOCK_DISABLE    GNOME_LOCKDOWN_DIR "/disable_lock_screen"
 
 #define KEY_DIR             "/apps/gnome-screensaver"
+#define GNOME_SESSION_DIR   "/desktop/gnome/session"
 #define KEY_LOCK            KEY_DIR "/lock_enabled"
 #define KEY_IDLE_ACTIVATION_ENABLED         KEY_DIR "/idle_activation_enabled"
 #define KEY_MODE            KEY_DIR "/mode"
-#define KEY_ACTIVATE_DELAY  KEY_DIR "/idle_delay"
+#define KEY_ACTIVATE_DELAY  GNOME_SESSION_DIR "/idle_delay"
 #define KEY_LOCK_DELAY      KEY_DIR "/lock_delay"
 #define KEY_CYCLE_DELAY     KEY_DIR "/cycle_delay"
 #define KEY_THEMES          KEY_DIR "/themes"

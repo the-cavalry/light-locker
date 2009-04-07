@@ -39,10 +39,11 @@ static void gs_prefs_finalize   (GObject      *object);
 #define KEY_USER_SWITCH_DISABLE   GNOME_LOCKDOWN_DIR "/disable_user_switching"
 
 #define KEY_DIR            "/apps/gnome-screensaver"
+#define GNOME_SESSION_DIR  "/desktop/gnome/session"
 #define KEY_IDLE_ACTIVATION_ENABLED         KEY_DIR "/idle_activation_enabled"
 #define KEY_LOCK_ENABLED   KEY_DIR "/lock_enabled"
 #define KEY_MODE           KEY_DIR "/mode"
-#define KEY_ACTIVATE_DELAY KEY_DIR "/idle_delay"
+#define KEY_ACTIVATE_DELAY GNOME_SESSION_DIR "/idle_delay"
 #define KEY_POWER_DELAY    KEY_DIR "/power_management_delay"
 #define KEY_LOCK_DELAY     KEY_DIR "/lock_delay"
 #define KEY_CYCLE_DELAY    KEY_DIR "/cycle_delay"

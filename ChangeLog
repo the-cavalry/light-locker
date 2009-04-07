@@ -1,3 +1,9 @@
+2009-04-07  Matthias Clasen <mclasen@redhat.com>
+
+	* src/gnome-screensaver-preferences.c:
+	* src/gs-prefs.c: Use and set the new gnome-session idle-delay
+	keys.
+
 2009-03-18  William Jon McCann  <jmccann@redhat.com>
 
 	* configure.ac: Post release version bump
