@@ -995,6 +995,7 @@ get_gconf_client (void)
         engine = gconf_engine_get_for_addresses (addresses, &error);
         if (engine == NULL) {
                 gs_debug ("Unable to get gconf engine for addresses: %s", error->message);
+                g_error_free (error);
         } else {
                 client = gconf_client_get_for_engine (engine);
         }

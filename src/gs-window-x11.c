@@ -970,6 +970,7 @@ error_watch (GIOChannel   *source,
                 case G_IO_STATUS_ERROR:
                         finished = TRUE;
                         gs_debug ("Error reading from child: %s\n", error->message);
+                        g_error_free (error);
                         return FALSE;
                 case G_IO_STATUS_AGAIN:
                 default:
@@ -1282,6 +1283,7 @@ keyboard_command_watch (GIOChannel   *source,
                 case G_IO_STATUS_ERROR:
                         finished = TRUE;
                         gs_debug ("Error reading from child: %s\n", error->message);
+                        g_error_free (error);
                         return FALSE;
                 case G_IO_STATUS_AGAIN:
                 default:
@@ -1463,6 +1465,7 @@ lock_command_watch (GIOChannel   *source,
                 case G_IO_STATUS_ERROR:
                         finished = TRUE;
                         gs_debug ("Error reading from child: %s\n", error->message);
+                        g_error_free (error);
                         return FALSE;
                 case G_IO_STATUS_AGAIN:
                 default:

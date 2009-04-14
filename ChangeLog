@@ -1,5 +1,18 @@
 2009-04-13  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gnome-screensaver-preferences.c (get_best_visual):
+	* src/gs-job.c (command_watch):
+	* src/gs-manager.c (get_gconf_client):
+	* src/gs-window-x11.c (error_watch), (keyboard_command_watch),
+	(lock_command_watch):
+	Fix misc problems with the use of GError,
+	mostly leaking the error on the error path.
+
+	Patch from: Paolo Borelli <pborelli@katamail.com>
+	Fixes #572955
+
+2009-04-13  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gs-auth-helper.c (ext_run):
 	Use g_strerror.
 	Patch from: Paolo Borelli <pborelli@katamail.com>

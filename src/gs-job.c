@@ -386,12 +386,16 @@ command_watch (GIOChannel   *source,
 
                 status = g_io_channel_read_line (source, &str, NULL, NULL, &error);
 
-		if (status == G_IO_STATUS_NORMAL) {
+                if (status == G_IO_STATUS_NORMAL) {
                         gs_debug ("command output: %s", str);
 
-		} else if (status == G_IO_STATUS_EOF) {
+                } else if (status == G_IO_STATUS_EOF) {
                         done = TRUE;
-		}
+
+                } else if (error != NULL) {
+                        gs_debug ("command error: %s", error->message);
+                        g_error_free (error);
+                }
 
                 g_free (str);
         } else if (condition & G_IO_HUP) {
