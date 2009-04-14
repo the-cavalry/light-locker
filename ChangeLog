@@ -1,5 +1,12 @@
 2009-04-13  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gnome-screensaver-gl-helper.c (main):
+	Don't try to lookup xvisual for null visuals.
+	Patch from Tomislav Vujec <tvujec@gmail.com>
+	Fixes #577739
+
+2009-04-13  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gs-listener-dbus.c (listener_remove_ref_entry):
 	Don't try to remove an invalid inhibitor entry.
 	Fixes #578669

@@ -64,13 +64,13 @@ main (int    argc,
         display = gdk_display_get_default ();
         screen = gdk_display_get_default_screen (display);
         visual = gs_visual_gl_get_best_for_screen (screen);
-        xvisual = gdk_x11_visual_get_xvisual (visual);
 
         if (visual != NULL) {
+                xvisual = gdk_x11_visual_get_xvisual (visual);
                 printf ("0x%x\n", (unsigned int) XVisualIDFromVisual (xvisual));
         } else {
                 printf ("none\n");
         }
 
-	return 0;
+        return 0;
 }
