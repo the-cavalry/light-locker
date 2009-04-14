@@ -1,3 +1,9 @@
+2009-04-13  William Jon McCann  <jmccann@redhat.com>
+
+	* src/gs-listener-dbus.c (listener_remove_ref_entry):
+	Don't try to remove an invalid inhibitor entry.
+	Fixes #578669
+
 2009-04-07  Matthias Clasen <mclasen@redhat.com>
 
 	* src/gnome-screensaver-preferences.c:

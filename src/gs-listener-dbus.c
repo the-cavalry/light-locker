@@ -734,16 +734,20 @@ listener_remove_ref_entry (GSListener *listener,
         gboolean            removed;
         GSListenerRefEntry *entry;
 
+        removed = FALSE;
+
         hash = get_hash_for_entry_type (listener, entry_type);
 
         entry = g_hash_table_lookup (hash, &cookie);
-        if (entry != NULL) {
-                gs_debug ("removing %s from %s for reason '%s' on connection %s",
-                          get_name_for_entry_type (entry_type),
-                          entry->application,
-                          entry->reason,
-                          entry->connection);
+        if (entry == NULL) {
+                goto out;
         }
+
+        gs_debug ("removing %s from %s for reason '%s' on connection %s",
+                  get_name_for_entry_type (entry_type),
+                  entry->application,
+                  entry->reason,
+                  entry->connection);
 
         if (entry_type == REF_ENTRY_TYPE_INHIBIT) {
                 /* remove inhibit from gnome session */
@@ -751,7 +755,7 @@ listener_remove_ref_entry (GSListener *listener,
         }
 
         removed = g_hash_table_remove (hash, &cookie);
-
+ out:
         if (removed) {
                 listener_ref_entry_check (listener, entry_type);
         } else {
