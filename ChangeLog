@@ -1,5 +1,12 @@
 2009-04-13  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gs-auth-helper.c (ext_run):
+	Use g_strerror.
+	Patch from: Paolo Borelli <pborelli@katamail.com>
+	Fixes #572956
+
+2009-04-13  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gs-manager.c (gs_manager_set_keyboard_command):
 	Fix copy/paste bug that overwrites logout-command.
 	Patch from Robert Basch <rbasch@mit.edu>

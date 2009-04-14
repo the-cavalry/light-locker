@@ -109,7 +109,7 @@ ext_run (const char *user,
                 /* Helper is invoked as helper service-name [user] */
                 execlp (PASSWD_HELPER_PROGRAM, PASSWD_HELPER_PROGRAM, "gnome-screensaver", user, NULL);
                 if (verbose) {
-                        g_message ("%s: %s", PASSWD_HELPER_PROGRAM, strerror (errno));
+                        g_message ("%s: %s", PASSWD_HELPER_PROGRAM, g_strerror (errno));
                 }
 
                 exit (1);
@@ -131,7 +131,7 @@ ext_run (const char *user,
 
                 if (verbose) {
                         g_message ("ext_run: waitpid failed: %s\n",
-                                   strerror (errno));
+                                   g_strerror (errno));
                 }
 
                 unblock_sigchld ();
