@@ -610,7 +610,7 @@ gs_manager_set_keyboard_command (GSManager  *manager,
         }
 
         for (l = manager->priv->windows; l; l = l->next) {
-                gs_window_set_logout_command (l->data, manager->priv->keyboard_command);
+                gs_window_set_keyboard_command (l->data, manager->priv->keyboard_command);
         }
 }
 

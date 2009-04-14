@@ -1,5 +1,12 @@
 2009-04-13  William Jon McCann  <jmccann@redhat.com>
 
+	* src/gs-manager.c (gs_manager_set_keyboard_command):
+	Fix copy/paste bug that overwrites logout-command.
+	Patch from Robert Basch <rbasch@mit.edu>
+	Fixes #573495
+
+2009-04-13  William Jon McCann  <jmccann@redhat.com>
+
 	* src/gnome-screensaver-gl-helper.c (main):
 	Don't try to lookup xvisual for null visuals.
 	Patch from Tomislav Vujec <tvujec@gmail.com>
