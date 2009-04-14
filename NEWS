@@ -1,3 +1,19 @@
+
+===============
+Version 2.26.1
+===============
+
+- Fixed #572955, audit GError usage (William Jon McCann)
+- Fixed #572956, use g_strerror (William Jon McCann)
+- Fixed #573495, logout_command setting may be overwritten with keyboard_command value (William Jon McCann)
+- Fixed #577739, gnome-screensaver-gl-helper calls gdk_x11_visual_get_xvisual with NULL visual (William Jon McCann)
+- Fixed #578669, Screenserver (William Jon McCann)
+
+Translations:
+- Updated crh: Reşat SABIQ
+- Updated ja: Takeshi AIHANA
+- Updated kn: Shankar Prasad
+
 ===============
 Version 2.26.0
 ===============

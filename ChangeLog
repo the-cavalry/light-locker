@@ -1,3 +1,9 @@
+==== 2.26.1 ====
+
+2009-04-13  William Jon McCann  <jmccann@redhat.com>
+
+	* NEWS: Update for release.
+
 2009-04-13  William Jon McCann  <jmccann@redhat.com>
 
 	* src/gnome-screensaver-preferences.c (get_best_visual):
