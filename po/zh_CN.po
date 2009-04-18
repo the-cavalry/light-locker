@@ -1,16 +1,19 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# zh_CN translation of gnome-screensaver.
+# Copyright (C) 2009 THE gnome-screensaver'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-screensaver package.
 # Funda Wang <fundawang@linux.net.cn>, 2005.
+# Yang Zhang <zyangmath@gmail.com>, 2009.
+#
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-12 22:13+0000\n"
-"PO-Revision-Date: 2008-09-23 17:43+0800\n"
-"Last-Translator: Yang Zhang <zyangmath@gmail.com>\n"
-"Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
+"Project-Id-Version: gnome-screensaver HEAD\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"screensaver&component=general\n"
+"POT-Creation-Date: 2009-04-14 01:54+0000\n"
+"PO-Revision-Date: 2009-04-11 22:05+0800\n"
+"Last-Translator: Ray Wang <wanglei1123@gmail.com>\n"
+"Language-Team: Chinese/Simplified <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -65,7 +68,7 @@ msgid "_Screensaver theme:"
 msgstr "屏幕保护程序主题(_S):"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Screensaver themes"
 msgstr "屏幕保护程序主题"
 
@@ -86,34 +89,39 @@ msgid "Allow logout"
 msgstr "允许注销"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow the session status message to be displayed"
+msgstr "允许显示会话状态消息"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid ""
+"Allow the session status message to be displayed when the screen is locked."
+msgstr "当屏幕被锁时允许显示会话状态消息。"
+
+#: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Allow user switching"
 msgstr "允许用户切换"
 
-#: ../data/gnome-screensaver.schemas.in.h:5
+#: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Embedded keyboard command"
 msgstr "嵌入键盘命令"
 
-#: ../data/gnome-screensaver.schemas.in.h:6
+#: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Lock on activation"
 msgstr "激活时锁定"
 
-#: ../data/gnome-screensaver.schemas.in.h:7
+#: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Logout command"
 msgstr "注销命令"
 
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Reason for being away"
-msgstr "离开的原因"
-
-#: ../data/gnome-screensaver.schemas.in.h:9
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Screensaver theme selection mode"
 msgstr "屏幕保护程序主题选择模式"
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr "将此值设定为 TRUE 以在会话空闲时激活屏幕保护程序。"
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
@@ -122,18 +130,18 @@ msgstr ""
 "将此值设定为 TRUE 将在用户解除锁定时的窗口中嵌入键盘。“keyboard_command”键必"
 "须设定为适当的命令。"
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr "将此值设定为 TRUE 可在屏幕保护程序激活时锁定屏幕。"
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr ""
 "将此值设定为 TRUE 将在解除锁定对话框中提供一个选项来切换到不同的用户帐户。"
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
@@ -141,7 +149,7 @@ msgstr ""
 "将此值设定为 TRUE 可在解除锁定对话框中提供一个选项来在一定延时后注销。该延时"
 "由“logout_delay”键指定。"
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
 "set to TRUE, to embed a keyboard widget into the window. This command should "
@@ -151,7 +159,7 @@ msgstr ""
 "用以在窗口中嵌入键盘部件的命令，当“embedded_keyboard_enabled”键被设定为 TRUE "
 "时有效。该命令应当实现一个 XEMBED 插件接口并输出窗口 XID 到标准输出。"
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
@@ -160,12 +168,12 @@ msgstr ""
 "单击注销按钮调用的命令。该命令应当简单地将用户注销而不需要用户参与。本键仅"
 "当“logout_enable”键被设定为 TRUE 时有效。"
 
-#: ../data/gnome-screensaver.schemas.in.h:18
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr "屏幕保护程序激活后锁定屏幕之前等待的时间。"
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -174,25 +182,21 @@ msgstr ""
 "屏幕保护程序激活后注销选项出现在解除锁定对话框之前等待的时间。本键仅当 "
 "“logout_enable”键被设定为 TRUE 时有效。"
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr "会话在被视为空闲之前的非活动分钟数。"
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "改变屏幕保护程序主题之前运行的分钟数。"
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
 msgstr ""
 "向电源管理程序发送信号前非活动的秒钟数。本键由会话的电源管理代理设定并维护。"
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-msgid "The reason for being away from the computer."
-msgstr "离开计算机的原因。"
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
@@ -276,7 +280,7 @@ msgstr "注销(_L)"
 msgid "_Switch User"
 msgstr "切换用户(_S)"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1214
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1366
 msgid "_Unlock"
 msgstr "解锁(_U)"
 
@@ -296,19 +300,19 @@ msgstr "在屏幕上如泡泡一样浮动 GNOME 脚徽标"
 msgid "Floating Feet"
 msgstr "浮动的脚"
 
-#: ../savers/personal-slideshow.desktop.in.h:1
+#: ../savers/personal-slideshow.desktop.in.in.h:1
 msgid "Display a slideshow from your Pictures folder"
 msgstr "显示您图片文件夹中图片的幻灯片"
 
-#: ../savers/personal-slideshow.desktop.in.h:2
+#: ../savers/personal-slideshow.desktop.in.in.h:2
 msgid "Pictures folder"
 msgstr "图片文件夹"
 
-#: ../savers/popsquares.desktop.in.h:1
+#: ../savers/popsquares.desktop.in.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
 msgstr "一个由跳动的颜色组成的流行艺术栅格"
 
-#: ../savers/popsquares.desktop.in.h:2
+#: ../savers/popsquares.desktop.in.in.h:2
 msgid "Pop art squares"
 msgstr "流行艺术方块"
 
@@ -385,32 +389,32 @@ msgstr "不随机放置图片"
 msgid "Do not try to stretch images on screen"
 msgstr "不在屏幕上伸展图片"
 
-#: ../src/copy-theme-dialog.c:211
+#: ../src/copy-theme-dialog.c:212
 msgid "Copying files"
 msgstr "正在复制文件"
 
-#: ../src/copy-theme-dialog.c:229
+#: ../src/copy-theme-dialog.c:230
 msgid "From:"
 msgstr "从："
 
-#: ../src/copy-theme-dialog.c:233
+#: ../src/copy-theme-dialog.c:234
 msgid "To:"
 msgstr "到："
 
-#: ../src/copy-theme-dialog.c:253
+#: ../src/copy-theme-dialog.c:254
 msgid "Copying themes"
 msgstr "正在复制主题"
 
-#: ../src/copy-theme-dialog.c:297
+#: ../src/copy-theme-dialog.c:298
 msgid "Invalid screensaver theme"
 msgstr "无效的屏幕保护程序主题"
 
-#: ../src/copy-theme-dialog.c:300
+#: ../src/copy-theme-dialog.c:301
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
 msgstr "%s 似乎不是有效的屏幕保护程序主题。"
 
-#: ../src/copy-theme-dialog.c:480
+#: ../src/copy-theme-dialog.c:481
 #, c-format
 msgid "Copying file: %u of %u"
 msgstr "正复制文件：第%u个，共%u个"
@@ -593,42 +597,42 @@ msgstr "正在检查..."
 msgid "Authentication failed."
 msgstr "验证失败。"
 
-#: ../src/gnome-screensaver-preferences.c:498
+#: ../src/gnome-screensaver-preferences.c:525
 msgid "Blank screen"
 msgstr "黑屏幕"
 
-#: ../src/gnome-screensaver-preferences.c:504
+#: ../src/gnome-screensaver-preferences.c:531
 msgid "Random"
 msgstr "随机"
 
-#: ../src/gnome-screensaver-preferences.c:954
+#: ../src/gnome-screensaver-preferences.c:981
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d 小时"
 
-#: ../src/gnome-screensaver-preferences.c:957
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d 分钟"
 
-#: ../src/gnome-screensaver-preferences.c:960
+#: ../src/gnome-screensaver-preferences.c:987
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d 秒"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:966
+#: ../src/gnome-screensaver-preferences.c:993
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:969
-#: ../src/gnome-screensaver-preferences.c:977
+#: ../src/gnome-screensaver-preferences.c:996
+#: ../src/gnome-screensaver-preferences.c:1004
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -636,23 +640,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:972
-#: ../src/gnome-screensaver-preferences.c:980
-#: ../src/gnome-screensaver-preferences.c:984
+#: ../src/gnome-screensaver-preferences.c:999
+#: ../src/gnome-screensaver-preferences.c:1007
+#: ../src/gnome-screensaver-preferences.c:1011
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:999
+#: ../src/gnome-screensaver-preferences.c:1026
 #, c-format
 msgid "Never"
 msgstr "从不"
 
-#: ../src/gnome-screensaver-preferences.c:1398
+#: ../src/gnome-screensaver-preferences.c:1463
 msgid "Could not load the main interface"
 msgstr "无法装入主界面"
 
-#: ../src/gnome-screensaver-preferences.c:1400
+#: ../src/gnome-screensaver-preferences.c:1465
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "请确定屏幕保护程序已经正确安装"
 
@@ -686,15 +690,15 @@ msgstr "目前不允许获得访问。"
 msgid "No longer permitted to access the system."
 msgstr "不再允许访问系统。"
 
-#: ../src/gs-listener-dbus.c:1921
+#: ../src/gs-listener-dbus.c:1851
 msgid "failed to register with the message bus"
 msgstr "注册到消息总线失败"
 
-#: ../src/gs-listener-dbus.c:1931
+#: ../src/gs-listener-dbus.c:1861
 msgid "not connected to the message bus"
 msgstr "未连接到消息总线"
 
-#: ../src/gs-listener-dbus.c:1940
+#: ../src/gs-listener-dbus.c:1870
 msgid "screensaver already running in this session"
 msgstr "本会话中屏幕保护程序已经运行"
 
@@ -706,22 +710,28 @@ msgstr "时间已到。"
 msgid "You have the Caps Lock key on."
 msgstr "您打开了 Caps Lock 键。"
 
-#: ../src/gs-lock-plug.c:1194
+#: ../src/gs-lock-plug.c:1346
 msgid "S_witch User..."
 msgstr "切换用户(_W)..."
 
-#: ../src/gs-lock-plug.c:1203
+#: ../src/gs-lock-plug.c:1355
 msgid "Log _Out"
 msgstr "注销(_O)"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1380
+#: ../src/gs-lock-plug.c:1531
 msgid "%U on %h"
 msgstr "%h 上的 %U"
 
-#: ../src/gs-lock-plug.c:1394
+#: ../src/gs-lock-plug.c:1545
 msgid "_Password:"
 msgstr "密码(_P)："
+
+#~ msgid "Reason for being away"
+#~ msgstr "离开的原因"
+
+#~ msgid "The reason for being away from the computer."
+#~ msgstr "离开计算机的原因。"
 
 #~ msgid "Copying '%s'"
 #~ msgstr "正复制“%s”"
