@@ -51,6 +51,11 @@ noinst_PROGRAMS = 	\
 	test-window	\
 	$(NULL)
 
+desktopdir = $(sysconfdir)/xdg/autostart
+desktop_in_files = gnome-screensaver.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+@INTLTOOL_DESKTOP_RULE@
+
 gnome_screensaver_command_SOURCES = 	\
 	gnome-screensaver-command.c	\
 	$(NULL)
@@ -233,9 +238,13 @@ gnome_screensaver_preferences_LDADD =	\
 EXTRA_DIST =				\
 	debug-screensaver.sh		\
 	gs-marshal.list			\
+	gnome-screensaver.desktop.in	\
 	$(NULL)
 
-CLEANFILES = $(BUILT_SOURCES)
+CLEANFILES = 				\
+	$(desktop_DATA) 		\
+	gnome-screensaver.desktop.in	\
+	$(BUILT_SOURCES)
 
 MAINTAINERCLEANFILES =			\
 	*~				\
