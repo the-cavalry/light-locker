@@ -1,5 +1,13 @@
 
 ===============
+Version 2.27.0
+===============
+
+- Add an autostart file for gnome-screensaver (#585485)
+
+Updated Translations: Telugu, Catalan, zh_CN, Crimean Tatar
+
+===============
 Version 2.26.1
 ===============
 
