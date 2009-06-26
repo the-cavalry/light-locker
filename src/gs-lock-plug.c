@@ -1194,6 +1194,7 @@ gs_lock_plug_enable_prompt (GSLockPlug *plug,
         gtk_label_set_text (GTK_LABEL (plug->priv->auth_prompt_label), message);
         gtk_widget_show (plug->priv->auth_prompt_label);
         gtk_entry_set_visibility (GTK_ENTRY (plug->priv->auth_prompt_entry), visible);
+        gtk_widget_set_sensitive (plug->priv->auth_prompt_entry, TRUE);
         gtk_widget_show (plug->priv->auth_prompt_entry);
 
         if (! GTK_WIDGET_HAS_FOCUS (plug->priv->auth_prompt_entry)) {
@@ -1216,6 +1217,7 @@ gs_lock_plug_disable_prompt (GSLockPlug *plug)
         /* gtk_widget_hide (plug->priv->auth_prompt_entry); */
         /* gtk_widget_hide (plug->priv->auth_prompt_label); */
         gtk_widget_set_sensitive (plug->priv->auth_unlock_button, FALSE);
+        gtk_widget_set_sensitive (plug->priv->auth_prompt_entry, FALSE);
         /* gtk_widget_hide (plug->priv->auth_unlock_button); */
 
         gtk_widget_grab_default (plug->priv->auth_cancel_button);
