@@ -6,6 +6,7 @@
 # Hendrik Richter <hendrikr@gnome.org>, 2005, 2006, 2007, 2008.
 # Hendrik Brandt  <heb@gnome-de.org>, 2006.
 # Andre Klapper <ak-47@gmx.net>, 2007, 2008.
+# Christian Kirbach <Christian.Kirbach@googlemail.com>, 2009.
 #
 # Based on German gdm and fast-user-switch-applet translations.
 # Copyright on gdm and fast-user-switch-applet translations is held
@@ -13,12 +14,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"screensaver&component=general\n"
-"POT-Creation-Date: 2009-02-21 05:37+0000\n"
-"PO-Revision-Date: 2009-02-21 09:48+0100\n"
-"Last-Translator: Wolfgang Stoeggl <c72578@yahoo.de>\n"
+"Project-Id-Version: gnome-screensaver master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-12 23:23+0200\n"
+"PO-Revision-Date: 2009-07-12 23:23+0200\n"
+"Last-Translator: Christian Kirbach <Christian.Kirbach@googlemail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,6 +26,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
+#: ../src/gnome-screensaver.desktop.in.in.h:1
 msgid "Screensaver"
 msgstr "Bildschirmschoner"
 
@@ -310,7 +311,7 @@ msgstr "A_bmelden"
 msgid "_Switch User"
 msgstr "Benutzer _wechseln"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1366
+#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1368
 msgid "_Unlock"
 msgstr "Sperrung auf_heben"
 
@@ -540,7 +541,7 @@ msgstr "Der Bildschirmschoner war für %d Sekunden aktiv.\n"
 
 #: ../src/gnome-screensaver-dialog.c:55
 msgid "Show debugging output"
-msgstr "Debugging-Ausgaben anzeigen"
+msgstr "Fehlerdiagnose-Ausgaben anzeigen"
 
 #: ../src/gnome-screensaver-dialog.c:59
 msgid "Show the logout button"
@@ -594,7 +595,7 @@ msgstr "Kein Passwort angegeben"
 
 #: ../src/gnome-screensaver-dialog.c:184
 msgid "Password unchanged"
-msgstr "Ungeändertes Passwort"
+msgstr "Passwort ist unverändert"
 
 #: ../src/gnome-screensaver-dialog.c:185
 msgid "Can not get username"
@@ -640,29 +641,29 @@ msgstr "Überprüfung läuft …"
 msgid "Authentication failed."
 msgstr "Authentifizierung ist gescheitert."
 
-#: ../src/gnome-screensaver-preferences.c:524
+#: ../src/gnome-screensaver-preferences.c:525
 msgid "Blank screen"
 msgstr "Leerer Bildschirm"
 
-#: ../src/gnome-screensaver-preferences.c:530
+#: ../src/gnome-screensaver-preferences.c:531
 msgid "Random"
 msgstr "Zufällig"
 
-#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:981
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d Stunde"
 msgstr[1] "%d Stunden"
 
-#: ../src/gnome-screensaver-preferences.c:983
+#: ../src/gnome-screensaver-preferences.c:984
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d Minute"
 msgstr[1] "%d Minuten"
 
-#: ../src/gnome-screensaver-preferences.c:986
+#: ../src/gnome-screensaver-preferences.c:987
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -670,15 +671,15 @@ msgstr[0] "%d Sekunde"
 msgstr[1] "%d Sekunden"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:992
+#: ../src/gnome-screensaver-preferences.c:993
 #, c-format
 msgid "%s %s %s"
 msgstr "%s:%s:%s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:995
-#: ../src/gnome-screensaver-preferences.c:1003
+#: ../src/gnome-screensaver-preferences.c:996
+#: ../src/gnome-screensaver-preferences.c:1004
 #, c-format
 msgid "%s %s"
 msgstr "%s:%s"
@@ -686,23 +687,23 @@ msgstr "%s:%s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:998
-#: ../src/gnome-screensaver-preferences.c:1006
-#: ../src/gnome-screensaver-preferences.c:1010
+#: ../src/gnome-screensaver-preferences.c:999
+#: ../src/gnome-screensaver-preferences.c:1007
+#: ../src/gnome-screensaver-preferences.c:1011
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1025
+#: ../src/gnome-screensaver-preferences.c:1026
 #, c-format
 msgid "Never"
 msgstr "Nie"
 
-#: ../src/gnome-screensaver-preferences.c:1453
+#: ../src/gnome-screensaver-preferences.c:1463
 msgid "Could not load the main interface"
 msgstr "Die Hauptschnittstelle konnte nicht geladen werden"
 
-#: ../src/gnome-screensaver-preferences.c:1455
+#: ../src/gnome-screensaver-preferences.c:1465
 msgid "Please make sure that the screensaver is properly installed"
 msgstr ""
 "Bitte stellen Sie sicher, dass der Bildschirmschoner korrekt installiert ist"
@@ -713,7 +714,7 @@ msgstr "Kein Hintergrundprozess"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
-msgstr "Fehlererkennungsfunktionen aktivieren"
+msgstr "Fehlerdiagnosefunktionen aktivieren"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -727,7 +728,7 @@ msgstr "PAM_TTY=%s konnte nicht gesetzt werden"
 
 #: ../src/gs-auth-pam.c:455
 msgid "Incorrect password."
-msgstr "Inkorrektes Passwort."
+msgstr "Falsches Passwort."
 
 #: ../src/gs-auth-pam.c:471
 msgid "Not permitted to gain access at this time."
@@ -737,15 +738,15 @@ msgstr "Ein Zugriff ist derzeit nicht gestattet."
 msgid "No longer permitted to access the system."
 msgstr "Es ist nicht länger gestattet, auf das System zuzugreifen."
 
-#: ../src/gs-listener-dbus.c:1847
+#: ../src/gs-listener-dbus.c:1851
 msgid "failed to register with the message bus"
 msgstr "Registrierung am Benachrichtigungssystem fehlgeschlagen"
 
-#: ../src/gs-listener-dbus.c:1857
+#: ../src/gs-listener-dbus.c:1861
 msgid "not connected to the message bus"
 msgstr "Keine Verbindung zum Benachrichtigungssystem"
 
-#: ../src/gs-listener-dbus.c:1866
+#: ../src/gs-listener-dbus.c:1870
 msgid "screensaver already running in this session"
 msgstr "Der Bildschirmschoner ist in dieser Sitzung bereits aktiv"
 
@@ -757,20 +758,20 @@ msgstr "Die Zeit ist abgelaufen."
 msgid "You have the Caps Lock key on."
 msgstr "Die Feststelltaste ist aktiviert."
 
-#: ../src/gs-lock-plug.c:1346
+#: ../src/gs-lock-plug.c:1348
 msgid "S_witch User..."
 msgstr "Benutzer _wechseln …"
 
-#: ../src/gs-lock-plug.c:1355
+#: ../src/gs-lock-plug.c:1357
 msgid "Log _Out"
 msgstr "A_bmelden"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1531
+#: ../src/gs-lock-plug.c:1533
 msgid "%U on %h"
 msgstr "%U auf %h"
 
-#: ../src/gs-lock-plug.c:1545
+#: ../src/gs-lock-plug.c:1547
 msgid "_Password:"
 msgstr "_Passwort:"
 
