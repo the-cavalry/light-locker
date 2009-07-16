@@ -33,7 +33,6 @@
 #include <glib/gi18n.h>
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 #include <gconf/gconf-client.h>
 
 #include <gio/gio.h>
@@ -44,7 +43,7 @@
 #include "gs-job.h"
 #include "gs-prefs.h" /* for GS_MODE enum */
 
-#define GLADE_XML_FILE "gnome-screensaver-preferences.glade"
+#define GTK_BUILDER_FILE "gnome-screensaver-preferences.ui"
 
 #define GNOME_LOCKDOWN_DIR  "/desktop/gnome/lockdown"
 #define KEY_LOCK_DISABLE    GNOME_LOCKDOWN_DIR "/disable_lock_screen"
@@ -86,7 +85,7 @@ static GtkTargetEntry drop_types [] =
         { "_NETSCAPE_URL", 0, TARGET_NS_URL }
 };
 
-static GladeXML       *xml = NULL;
+static GtkBuilder       *builder = NULL;
 static GSThemeManager *theme_manager = NULL;
 static GSJob          *job = NULL;
 
@@ -399,7 +398,7 @@ preview_set_theme (GtkWidget  *widget,
 
         preview_clear (widget);
 
-        label = glade_xml_get_widget (xml, "fullscreen_preview_theme_label");
+        label = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_preview_theme_label"));
         markup = g_markup_printf_escaped ("<i>%s</i>", name);
         gtk_label_set_markup (GTK_LABEL (label), markup);
         g_free (markup);
@@ -825,7 +824,7 @@ reload_themes (void)
         GtkWidget    *treeview;
         GtkTreeModel *model;
 
-        treeview = glade_xml_get_widget (xml, "savers_treeview");
+        treeview = GTK_WIDGET (gtk_builder_get_object (builder, "savers_treeview"));
         model = gtk_tree_view_get_model (GTK_TREE_VIEW (treeview));
         gtk_tree_store_clear (GTK_TREE_STORE (model));
         populate_model (GTK_TREE_STORE (model));
@@ -960,7 +959,7 @@ drag_data_received_cb (GtkWidget        *widget,
         if (files != NULL) {
                 GtkWidget *prefs_dialog;
 
-                prefs_dialog = glade_xml_get_widget (xml, "prefs_dialog");
+                prefs_dialog = GTK_WIDGET (gtk_builder_get_object (builder, "prefs_dialog"));
                 theme_installer_run (prefs_dialog, files);
         }
 }
@@ -1052,7 +1051,7 @@ ui_disable_lock (gboolean disable)
 {
         GtkWidget *widget;
 
-        widget = glade_xml_get_widget (xml, "lock_checkbox");
+        widget = GTK_WIDGET (gtk_builder_get_object (builder, "lock_checkbox"));
         gtk_widget_set_sensitive (widget, !disable);
         if (disable) {
                 gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), FALSE);
@@ -1066,7 +1065,7 @@ ui_set_lock (gboolean enabled)
         gboolean   active;
         gboolean   lock_disabled;
 
-        widget = glade_xml_get_widget (xml, "lock_checkbox");
+        widget = GTK_WIDGET (gtk_builder_get_object (builder, "lock_checkbox"));
 
         active = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
         if (active != enabled) {
@@ -1084,13 +1083,13 @@ ui_set_enabled (gboolean enabled)
         gboolean   is_writable;
         gboolean   lock_disabled;
 
-        widget = glade_xml_get_widget (xml, "enable_checkbox");
+        widget = GTK_WIDGET (gtk_builder_get_object (builder, "enable_checkbox"));
         active = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget));
         if (active != enabled) {
                 gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), enabled);
         }
 
-        widget = glade_xml_get_widget (xml, "lock_checkbox");
+        widget = GTK_WIDGET (gtk_builder_get_object (builder, "lock_checkbox"));
         config_get_lock (&is_writable);
         if (is_writable) {
                 gtk_widget_set_sensitive (widget, enabled);
@@ -1104,7 +1103,7 @@ ui_set_delay (int delay)
 {
         GtkWidget *widget;
 
-        widget = glade_xml_get_widget (xml, "activate_delay_hscale");
+        widget = GTK_WIDGET (gtk_builder_get_object (builder, "activate_delay_hscale"));
         gtk_range_set_value (GTK_RANGE (widget), delay);
 }
 
@@ -1159,7 +1158,7 @@ key_changed_cb (GConfClient *client,
                 if (value->type == GCONF_VALUE_LIST) {
                         GtkWidget *treeview;
 
-                        treeview = glade_xml_get_widget (xml, "savers_treeview");
+                        treeview = GTK_WIDGET (gtk_builder_get_object (builder, "savers_treeview"));
                         setup_treeview_selection (treeview);
                 } else {
                         invalid_type_warning (key);
@@ -1187,7 +1186,7 @@ fullscreen_preview_previous_cb (GtkWidget *fullscreen_preview_window,
         GtkWidget        *treeview;
         GtkTreeSelection *selection;
 
-        treeview = glade_xml_get_widget (xml, "savers_treeview");
+        treeview = GTK_WIDGET (gtk_builder_get_object (builder, "savers_treeview"));
         selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
         tree_selection_previous (selection);
 }
@@ -1199,7 +1198,7 @@ fullscreen_preview_next_cb (GtkWidget *fullscreen_preview_window,
         GtkWidget        *treeview;
         GtkTreeSelection *selection;
 
-        treeview = glade_xml_get_widget (xml, "savers_treeview");
+        treeview = GTK_WIDGET (gtk_builder_get_object (builder, "savers_treeview"));
         selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
         tree_selection_next (selection);
 }
@@ -1214,16 +1213,16 @@ fullscreen_preview_cancelled_cb (GtkWidget *button,
         GtkWidget *preview_area;
         GtkWidget *dialog;
 
-        preview_area = glade_xml_get_widget (xml, "preview_area");
+        preview_area = GTK_WIDGET (gtk_builder_get_object (builder, "preview_area"));
         gs_job_set_widget (job, preview_area);
 
-        fullscreen_preview_area = glade_xml_get_widget (xml, "fullscreen_preview_area");
+        fullscreen_preview_area = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_preview_area"));
         preview_clear (fullscreen_preview_area);
 
-        fullscreen_preview_window = glade_xml_get_widget (xml, "fullscreen_preview_window");
+        fullscreen_preview_window = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_preview_window"));
         gtk_widget_hide (fullscreen_preview_window);
 
-        dialog = glade_xml_get_widget (xml, "prefs_dialog");
+        dialog = GTK_WIDGET (gtk_builder_get_object (builder, "prefs_dialog"));
         gtk_widget_show (dialog);
         gtk_window_present (GTK_WINDOW (dialog));
 }
@@ -1236,10 +1235,10 @@ fullscreen_preview_start_cb (GtkWidget *widget,
         GtkWidget *fullscreen_preview_window;
         GtkWidget *dialog;
 
-        dialog = glade_xml_get_widget (xml, "prefs_dialog");
+        dialog = GTK_WIDGET (gtk_builder_get_object (builder, "prefs_dialog"));
         gtk_widget_hide (dialog);
 
-        fullscreen_preview_window = glade_xml_get_widget (xml, "fullscreen_preview_window");
+        fullscreen_preview_window = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_preview_window"));
 
         gtk_window_fullscreen (GTK_WINDOW (fullscreen_preview_window));
         gtk_window_set_keep_above (GTK_WINDOW (fullscreen_preview_window), TRUE);
@@ -1247,7 +1246,7 @@ fullscreen_preview_start_cb (GtkWidget *widget,
         gtk_widget_show (fullscreen_preview_window);
         gtk_widget_grab_focus (fullscreen_preview_window);
 
-        fullscreen_preview_area = glade_xml_get_widget (xml, "fullscreen_preview_area");
+        fullscreen_preview_area = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_preview_area"));
         preview_clear (fullscreen_preview_area);
         gs_job_set_widget (job, fullscreen_preview_area);
 }
@@ -1308,8 +1307,8 @@ setup_for_root_user (void)
         GtkWidget *lock_checkbox;
         GtkWidget *label;
 
-        lock_checkbox = glade_xml_get_widget (xml, "lock_checkbox");
-        label = glade_xml_get_widget (xml, "root_warning_label");
+        lock_checkbox = GTK_WIDGET (gtk_builder_get_object (builder, "lock_checkbox"));
+        label = GTK_WIDGET (gtk_builder_get_object (builder, "root_warning_label"));
 
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (lock_checkbox), FALSE);
         gtk_widget_set_sensitive (lock_checkbox, FALSE);
@@ -1403,8 +1402,8 @@ setup_treeview_idle (gpointer data)
         GtkWidget *preview;
         GtkWidget *treeview;
 
-        preview  = glade_xml_get_widget (xml, "preview_area");
-        treeview = glade_xml_get_widget (xml, "savers_treeview");
+        preview  = GTK_WIDGET (gtk_builder_get_object (builder, "preview_area"));
+        treeview = GTK_WIDGET (gtk_builder_get_object (builder, "savers_treeview"));
 
         setup_treeview (treeview, preview);
         setup_treeview_selection (treeview);
@@ -1444,18 +1443,23 @@ init_capplet (void)
         GtkWidget *fullscreen_preview_next;
         GtkWidget *fullscreen_preview_area;
         GtkWidget *fullscreen_preview_close;
-        char      *glade_file;
+        char      *gtk_builder_file;
         char      *string;
         gdouble    activate_delay;
         gboolean   enabled;
         gboolean   is_writable;
         GConfClient *client;
+        GError    *error=NULL;
 
-        glade_file = g_build_filename (GLADEDIR, GLADE_XML_FILE, NULL);
-        xml = glade_xml_new (glade_file, NULL, PACKAGE);
-        g_free (glade_file);
+        gtk_builder_file = g_build_filename (GTKBUILDERDIR, GTK_BUILDER_FILE, NULL);
+        builder = gtk_builder_new();
+        if (!gtk_builder_add_from_file(builder, gtk_builder_file, &error)) {
+                g_warning("Couldn't load builder file: %s", error->message);
+                g_error_free(error);
+        }
+        g_free (gtk_builder_file);
 
-        if (xml == NULL) {
+        if (builder == NULL) {
 
                 dialog = gtk_message_dialog_new (NULL,
                                                  0, GTK_MESSAGE_ERROR,
@@ -1471,26 +1475,26 @@ init_capplet (void)
                 exit (1);
         }
 
-        preview            = glade_xml_get_widget (xml, "preview_area");
-        dialog             = glade_xml_get_widget (xml, "prefs_dialog");
-        treeview           = glade_xml_get_widget (xml, "savers_treeview");
-        list_scroller      = glade_xml_get_widget (xml, "themes_scrolled_window");
-        activate_delay_hscale = glade_xml_get_widget (xml, "activate_delay_hscale");
-        activate_delay_hbox   = glade_xml_get_widget (xml, "activate_delay_hbox");
-        enabled_checkbox   = glade_xml_get_widget (xml, "enable_checkbox");
-        lock_checkbox      = glade_xml_get_widget (xml, "lock_checkbox");
-        root_warning_label = glade_xml_get_widget (xml, "root_warning_label");
-        preview_button     = glade_xml_get_widget (xml, "preview_button");
-        gpm_button         = glade_xml_get_widget (xml, "gpm_button");
-        fullscreen_preview_window = glade_xml_get_widget (xml, "fullscreen_preview_window");
-        fullscreen_preview_area = glade_xml_get_widget (xml, "fullscreen_preview_area");
-        fullscreen_preview_close = glade_xml_get_widget (xml, "fullscreen_preview_close");
-        fullscreen_preview_previous = glade_xml_get_widget (xml, "fullscreen_preview_previous_button");
-        fullscreen_preview_next = glade_xml_get_widget (xml, "fullscreen_preview_next_button");
+        preview            = GTK_WIDGET (gtk_builder_get_object (builder, "preview_area"));
+        dialog             = GTK_WIDGET (gtk_builder_get_object (builder, "prefs_dialog"));
+        treeview           = GTK_WIDGET (gtk_builder_get_object (builder, "savers_treeview"));
+        list_scroller      = GTK_WIDGET (gtk_builder_get_object (builder, "themes_scrolled_window"));
+        activate_delay_hscale = GTK_WIDGET (gtk_builder_get_object (builder, "activate_delay_hscale"));
+        activate_delay_hbox   = GTK_WIDGET (gtk_builder_get_object (builder, "activate_delay_hbox"));
+        enabled_checkbox   = GTK_WIDGET (gtk_builder_get_object (builder, "enable_checkbox"));
+        lock_checkbox      = GTK_WIDGET (gtk_builder_get_object (builder, "lock_checkbox"));
+        root_warning_label = GTK_WIDGET (gtk_builder_get_object (builder, "root_warning_label"));
+        preview_button     = GTK_WIDGET (gtk_builder_get_object (builder, "preview_button"));
+        gpm_button         = GTK_WIDGET (gtk_builder_get_object (builder, "gpm_button"));
+        fullscreen_preview_window = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_preview_window"));
+        fullscreen_preview_area = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_preview_area"));
+        fullscreen_preview_close = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_preview_close"));
+        fullscreen_preview_previous = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_preview_previous_button"));
+        fullscreen_preview_next = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_preview_next_button"));
 
-        label              = glade_xml_get_widget (xml, "activate_delay_label");
+        label              = GTK_WIDGET (gtk_builder_get_object (builder, "activate_delay_label"));
         gtk_label_set_mnemonic_widget (GTK_LABEL (label), activate_delay_hscale);
-        label              = glade_xml_get_widget (xml, "savers_label");
+        label              = GTK_WIDGET (gtk_builder_get_object (builder, "savers_label"));
         gtk_label_set_mnemonic_widget (GTK_LABEL (label), treeview);
 
         gtk_widget_set_no_show_all (root_warning_label, TRUE);

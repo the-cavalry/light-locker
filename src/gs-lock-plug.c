@@ -37,7 +37,6 @@
 #include <gdk/gdkx.h>
 #include <X11/XKBlib.h>
 #include <gtk/gtk.h>
-#include <glade/glade-xml.h>
 #include <gconf/gconf-client.h>
 
 #ifdef WITH_KBD_LAYOUT_INDICATOR
@@ -1627,21 +1626,22 @@ load_theme (GSLockPlug *plug)
 {
         char       *theme;
         char       *filename;
-        char       *glade;
+        char       *gtkbuilder;
         char       *rc;
-        GladeXML   *xml;
+        GtkBuilder *builder;
         GtkWidget  *lock_dialog;
+        GError     *error=NULL;
 
         theme = get_dialog_theme_name (plug);
         if (theme == NULL) {
                 return FALSE;
         }
 
-        filename = g_strdup_printf ("lock-dialog-%s.glade", theme);
-        glade = g_build_filename (GLADEDIR, filename, NULL);
+        filename = g_strdup_printf ("lock-dialog-%s.ui", theme);
+        gtkbuilder = g_build_filename (GTKBUILDERDIR, filename, NULL);
         g_free (filename);
-        if (! g_file_test (glade, G_FILE_TEST_IS_REGULAR)) {
-                g_free (glade);
+        if (! g_file_test (gtkbuilder, G_FILE_TEST_IS_REGULAR)) {
+                g_free (gtkbuilder);
                 g_free (theme);
                 return FALSE;
         }
@@ -1649,50 +1649,51 @@ load_theme (GSLockPlug *plug)
         filename = g_strdup_printf ("lock-dialog-%s.gtkrc", theme);
         g_free (theme);
 
-        rc = g_build_filename (GLADEDIR, filename, NULL);
+        rc = g_build_filename (GTKBUILDERDIR, filename, NULL);
         g_free (filename);
         if (g_file_test (rc, G_FILE_TEST_IS_REGULAR)) {
                 gtk_rc_parse (rc);
         }
         g_free (rc);
 
-        xml = glade_xml_new (glade, "lock-dialog", NULL);
+        builder = gtk_builder_new();
 
-        if (xml == NULL) {
-                g_warning ("Failed to load '%s'\n", glade);
-                g_free (glade);
+        if (!gtk_builder_add_from_file (builder,filename ,&error)) {
+                g_warning ("Couldn't load builder file: %s", error->message);
+                g_error_free(error);
+                g_free (gtkbuilder);
                 return FALSE;
         }
-        g_free (glade);
+        g_free (gtkbuilder);
 
-        lock_dialog = glade_xml_get_widget (xml, "lock-dialog");
+        lock_dialog = GTK_WIDGET (gtk_builder_get_object(builder, "lock-dialog"));
         gtk_container_add (GTK_CONTAINER (plug), lock_dialog);
 
         plug->priv->vbox = NULL;
-        plug->priv->notebook = glade_xml_get_widget (xml, "notebook");
+        plug->priv->notebook = GTK_WIDGET (gtk_builder_get_object(builder, "notebook"));
 
-        plug->priv->auth_face_image = glade_xml_get_widget (xml, "auth-face-image");
-        plug->priv->auth_action_area = glade_xml_get_widget (xml, "auth-action-area");
-        plug->priv->auth_realname_label = glade_xml_get_widget (xml, "auth-realname-label");
-        plug->priv->auth_username_label = glade_xml_get_widget (xml, "auth-username-label");
-        plug->priv->auth_prompt_label = glade_xml_get_widget (xml, "auth-prompt-label");
-        plug->priv->auth_prompt_entry = glade_xml_get_widget (xml, "auth-prompt-entry");
-        plug->priv->auth_prompt_box = glade_xml_get_widget (xml, "auth-prompt-box");
-        plug->priv->auth_capslock_label = glade_xml_get_widget (xml, "auth-capslock-label");
-        plug->priv->auth_message_label = glade_xml_get_widget (xml, "auth-status-label");
-        plug->priv->auth_unlock_button = glade_xml_get_widget (xml, "auth-unlock-button");
-        plug->priv->auth_cancel_button = glade_xml_get_widget (xml, "auth-cancel-button");
-        plug->priv->auth_logout_button = glade_xml_get_widget (xml, "auth-logout-button");
-        plug->priv->auth_switch_button = glade_xml_get_widget (xml, "auth-switch-button");
-        plug->priv->auth_note_button = glade_xml_get_widget (xml, "auth-note-button");
-        plug->priv->note_tab = glade_xml_get_widget (xml, "note-tab");
-        plug->priv->note_tab_label = glade_xml_get_widget (xml, "note-tab-label");
-        plug->priv->note_ok_button = glade_xml_get_widget (xml, "note-ok-button");
-        plug->priv->note_text_view = glade_xml_get_widget (xml, "note-text-view");
-        plug->priv->note_cancel_button = glade_xml_get_widget (xml, "note-cancel-button");
+        plug->priv->auth_face_image = GTK_WIDGET (gtk_builder_get_object(builder, "auth-face-image"));
+        plug->priv->auth_action_area = GTK_WIDGET (gtk_builder_get_object(builder, "auth-action-area"));
+        plug->priv->auth_realname_label = GTK_WIDGET (gtk_builder_get_object(builder, "auth-realname-label"));
+        plug->priv->auth_username_label = GTK_WIDGET (gtk_builder_get_object(builder, "auth-username-label"));
+        plug->priv->auth_prompt_label = GTK_WIDGET (gtk_builder_get_object(builder, "auth-prompt-label"));
+        plug->priv->auth_prompt_entry = GTK_WIDGET (gtk_builder_get_object(builder, "auth-prompt-entry"));
+        plug->priv->auth_prompt_box = GTK_WIDGET (gtk_builder_get_object(builder, "auth-prompt-box"));
+        plug->priv->auth_capslock_label = GTK_WIDGET (gtk_builder_get_object(builder, "auth-capslock-label"));
+        plug->priv->auth_message_label = GTK_WIDGET (gtk_builder_get_object(builder, "auth-status-label"));
+        plug->priv->auth_unlock_button = GTK_WIDGET (gtk_builder_get_object(builder, "auth-unlock-button"));
+        plug->priv->auth_cancel_button = GTK_WIDGET (gtk_builder_get_object(builder, "auth-cancel-button"));
+        plug->priv->auth_logout_button = GTK_WIDGET (gtk_builder_get_object(builder, "auth-logout-button"));
+        plug->priv->auth_switch_button = GTK_WIDGET (gtk_builder_get_object(builder, "auth-switch-button"));
+        plug->priv->auth_note_button = GTK_WIDGET (gtk_builder_get_object(builder, "auth-note-button"));
+        plug->priv->note_tab = GTK_WIDGET (gtk_builder_get_object(builder, "note-tab"));
+        plug->priv->note_tab_label = GTK_WIDGET (gtk_builder_get_object(builder, "note-tab-label"));
+        plug->priv->note_ok_button = GTK_WIDGET (gtk_builder_get_object(builder, "note-ok-button"));
+        plug->priv->note_text_view = GTK_WIDGET (gtk_builder_get_object(builder, "note-text-view"));
+        plug->priv->note_cancel_button = GTK_WIDGET (gtk_builder_get_object(builder, "note-cancel-button"));
 
         /* Placeholder for the keyboard indicator */
-        plug->priv->auth_prompt_kbd_layout_indicator = glade_xml_get_widget (xml, "auth-prompt-kbd-layout-indicator");
+        plug->priv->auth_prompt_kbd_layout_indicator = GTK_WIDGET (gtk_builder_get_object(builder, "auth-prompt-kbd-layout-indicator"));
         if (plug->priv->auth_logout_button != NULL) {
                 gtk_widget_set_no_show_all (plug->priv->auth_logout_button, TRUE);
         }
@@ -1705,7 +1706,7 @@ load_theme (GSLockPlug *plug)
 
         gtk_widget_show_all (lock_dialog);
 
-        plug->priv->status_message_label = glade_xml_get_widget (xml, "status-message-label");
+        plug->priv->status_message_label = GTK_WIDGET (gtk_builder_get_object(builder, "status-message-label"));
 
         return TRUE;
 }

@@ -1,10 +1,10 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
 data/gnome-screensaver-preferences.desktop.in
-data/gnome-screensaver-preferences.glade
+[type: gettext/glade]data/gnome-screensaver-preferences.ui
 data/gnome-screensaver.directory.in
 data/gnome-screensaver.schemas.in
-data/lock-dialog-default.glade
+[type: gettext/glade]data/lock-dialog-default.ui
 savers/cosmos-slideshow.desktop.in.in
 savers/footlogo-floaters.desktop.in.in
 savers/personal-slideshow.desktop.in.in

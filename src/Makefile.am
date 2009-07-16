@@ -23,7 +23,7 @@ INCLUDES =							\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"		\
 	-DSAVERDIR=\""$(saverdir)"\"				\
 	-DTHEMESDIR=\""$(themesdir)"\"				\
-	-DGLADEDIR=\"$(pkgdatadir)\"				\
+	-DGTKBUILDERDIR=\"$(pkgdatadir)\"				\
 	-DPAM_SERVICE_NAME=\""gnome-screensaver"\"		\
 	$(WARN_CFLAGS)						\
 	$(AUTH_CFLAGS)						\
