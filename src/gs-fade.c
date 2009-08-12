@@ -308,32 +308,15 @@ gamma_info_init (GSFade *fade)
         */
         for (screen = 0; screen < fade->priv->num_screens; screen++) {
 
-                if (FADE_TYPE_GAMMA_NUMBER == fade->priv->fade_type) {
-                        /* only have gamma parameter, not ramps. */
-
-                        res = XF86VidModeGetGamma (GDK_DISPLAY (), screen, &info [screen].vmg);
-                        if (! res) {
-                                goto FAIL;
-                        }
-                        gs_debug ("Initialized gamma fade for screen %d: %f %f %f",
-                                  screen,
-                                  info [screen].vmg.red,
-                                  info [screen].vmg.green,
-                                  info [screen].vmg.blue);
-                }
-
 # ifdef HAVE_XF86VMODE_GAMMA_RAMP
 
-                else if (FADE_TYPE_GAMMA_RAMP == fade->priv->fade_type) {
+                if (FADE_TYPE_GAMMA_RAMP == fade->priv->fade_type) {
                         /* have ramps */
 
                         res = XF86VidModeGetGammaRampSize (GDK_DISPLAY (), screen, &info [screen].size);
-                        if (! res) {
-                                goto FAIL;
-                        }
-
-                        if (info [screen].size <= 0) {
-                                goto FAIL;
+                        if (! res || info [screen].size <= 0) {
+                                fade->priv->fade_type = FADE_TYPE_GAMMA_NUMBER;
+                                goto test_number;
                         }
 
                         info [screen].r = g_new0 (unsigned short, info[screen].size);
@@ -341,7 +324,8 @@ gamma_info_init (GSFade *fade)
                         info [screen].b = g_new0 (unsigned short, info[screen].size);
 
                         if (! (info [screen].r && info [screen].g && info [screen].b)) {
-                                goto FAIL;
+                                fade->priv->fade_type = FADE_TYPE_GAMMA_NUMBER;
+                                goto test_number;
                         }
 
                         res = XF86VidModeGetGammaRamp (GDK_DISPLAY (),
@@ -351,15 +335,32 @@ gamma_info_init (GSFade *fade)
                                                        info [screen].g,
                                                        info [screen].b);
                         if (! res) {
-                                goto FAIL;
+                                fade->priv->fade_type = FADE_TYPE_GAMMA_NUMBER;
+                                goto test_number;
                         }
                         gs_debug ("Initialized gamma ramp fade");
                 }
 # endif /* HAVE_XF86VMODE_GAMMA_RAMP */
-                else if (FADE_TYPE_NONE == fade->priv->fade_type) {
+
+ test_number:
+                if (FADE_TYPE_GAMMA_NUMBER == fade->priv->fade_type) {
+                        /* only have gamma parameter, not ramps. */
+
+                        res = XF86VidModeGetGamma (GDK_DISPLAY (), screen, &info [screen].vmg);
+                        if (! res) {
+                                fade->priv->fade_type = FADE_TYPE_NONE;
+                                goto test_none;
+                        }
+                        gs_debug ("Initialized gamma fade for screen %d: %f %f %f",
+                                  screen,
+                                  info [screen].vmg.red,
+                                  info [screen].vmg.green,
+                                  info [screen].vmg.blue);
+                }
+
+ test_none:
+                if (FADE_TYPE_NONE == fade->priv->fade_type) {
                         goto FAIL;
-                } else {
-                        g_assert_not_reached ();
                 }
         }
 
