@@ -1,14 +1,14 @@
 # Irish translations for gnome-screensaver package.
-# Copyright (C) 2007-2008 Free Software Foundation, Inc.
+# Copyright (C) 2007-2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-screensaver package.
-# Seán de Búrca <leftmostcat@gmail.com>, 2007-2008.
+# Seán de Búrca <leftmostcat@gmail.com>, 2007, 2008, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver HEAD\n"
+"Project-Id-Version: gnome-screensaver.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-30 23:45-0400\n"
-"PO-Revision-Date: 2008-08-30 23:45-0500\n"
+"POT-Creation-Date: 2009-08-15 05:01-0600\n"
+"PO-Revision-Date: 2009-08-15 05:16-0600\n"
 "Last-Translator: Seán de Búrca <leftmostcat@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,7 @@ msgstr ""
 "10>=3 && n%10<= 6) ? 2 : ((n%10>=7 && n%10<=9) || n==10) ? 3 : 4;\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
+#: ../src/gnome-screensaver.desktop.in.in.h:1
 msgid "Screensaver"
 msgstr "Spárálaí Scáileáin"
 
@@ -25,48 +26,48 @@ msgstr "Spárálaí Scáileáin"
 msgid "Set your screensaver preferences"
 msgstr "Socraigh do chuid sainroghanna spárálaí scáileáin"
 
-#: ../data/gnome-screensaver-preferences.glade.h:1
+#: ../data/gnome-screensaver-preferences.ui.h:1
 msgid "<b>Screensaver preview</b>"
 msgstr "<b>Réamhamharc spárálaí scáileáin</b>"
 
-#: ../data/gnome-screensaver-preferences.glade.h:2
+#: ../data/gnome-screensaver-preferences.ui.h:2
 msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgstr ""
+msgstr "<b>Rabhadh: ní bheidh an scáileán faoi ghlas don fhréamhúsáideoir.</b>"
 
-#: ../data/gnome-screensaver-preferences.glade.h:3
+#: ../data/gnome-screensaver-preferences.ui.h:3
 msgid "Power _Management"
-msgstr "_Bainistíocht na Cumhachta"
+msgstr "_Bainistíocht Cumhachta"
 
-#: ../data/gnome-screensaver-preferences.glade.h:4
+#: ../data/gnome-screensaver-preferences.ui.h:4
 msgid "Regard the computer as _idle after:"
-msgstr "_Sonraigh an ríomhaire mar dhíomhaoin tar éis:"
+msgstr "_Meas an ríomhaire ina staid dhíomhaoin i ndiaidh:"
 
-#: ../data/gnome-screensaver-preferences.glade.h:5
+#: ../data/gnome-screensaver-preferences.ui.h:5
 msgid "Screensaver Preferences"
 msgstr "Sainroghanna Spárálaí Scáileáin"
 
-#: ../data/gnome-screensaver-preferences.glade.h:6
+#: ../data/gnome-screensaver-preferences.ui.h:6
 msgid "Screensaver Preview"
 msgstr "Réamhamharc Spárálaí Scáileáin"
 
-#: ../data/gnome-screensaver-preferences.glade.h:7
+#: ../data/gnome-screensaver-preferences.ui.h:7
 msgid "_Activate screensaver when computer is idle"
-msgstr "_Gníomhachtaigh an spárálaí scáileáin nuair atá an ríomhaire díomhaoin"
+msgstr "_Gníomhachtaigh an spárálaí scáileáin agus an ríomhaire díomhaoin"
 
-#: ../data/gnome-screensaver-preferences.glade.h:8
+#: ../data/gnome-screensaver-preferences.ui.h:8
 msgid "_Lock screen when screensaver is active"
-msgstr "_Cuir an scáileán faoi ghlas nuair atá an spárálaí scáileáin gníomhach"
+msgstr "_Cuir an scáileán faoi ghlas agus an spárálaí scáileáin gníomhach"
 
-#: ../data/gnome-screensaver-preferences.glade.h:9
+#: ../data/gnome-screensaver-preferences.ui.h:9
 msgid "_Preview"
 msgstr "_Réamhamharc"
 
-#: ../data/gnome-screensaver-preferences.glade.h:10
+#: ../data/gnome-screensaver-preferences.ui.h:10
 msgid "_Screensaver theme:"
 msgstr "_Téama spárálaí scáileáin:"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:10
+#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Screensaver themes"
 msgstr "Téamaí spárálaí scáileáin"
 
@@ -76,7 +77,7 @@ msgstr "Spárálaithe Scáileáin"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
 msgid "Activate when idle"
-msgstr ""
+msgstr "Gníomhachtaigh agus díomhaoin"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
 msgid "Allow embedding a keyboard into the window"
@@ -84,60 +85,65 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow logout"
-msgstr ""
+msgstr "Ceadaigh logáil amach"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
-msgid "Allow user switching"
+msgid "Allow the session status message to be displayed"
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:5
-msgid "Embedded keyboard command"
+msgid ""
+"Allow the session status message to be displayed when the screen is locked."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Lock on activation"
-msgstr ""
+msgid "Allow user switching"
+msgstr "Ceadaigh athrú úsáideoirí"
 
 #: ../data/gnome-screensaver.schemas.in.h:7
-msgid "Logout command"
+msgid "Embedded keyboard command"
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Reason for being away"
-msgstr ""
+msgid "Lock on activation"
+msgstr "Cuir faoi ghlas ag gníomhachtú"
 
 #: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Logout command"
+msgstr "Ordú logála amach"
+
+#: ../data/gnome-screensaver.schemas.in.h:10
 msgid "Screensaver theme selection mode"
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:11
+#: ../data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:12
+#: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:13
+#: ../data/gnome-screensaver.schemas.in.h:14
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:14
+#: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:15
+#: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:16
+#: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
 "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
 "set to TRUE, to embed a keyboard widget into the window. This command should "
@@ -145,42 +151,38 @@ msgid ""
 "output."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:17
+#: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:18
+#: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
 "The number of minutes after screensaver activation before locking the screen."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:19
+#: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:20
+#: ../data/gnome-screensaver.schemas.in.h:21
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:21
+#: ../data/gnome-screensaver.schemas.in.h:22
 msgid "The number of minutes to run before changing the screensaver theme."
 msgstr ""
 
-#: ../data/gnome-screensaver.schemas.in.h:22
+#: ../data/gnome-screensaver.schemas.in.h:23
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-msgid "The reason for being away from the computer."
 msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:24
@@ -228,38 +230,38 @@ msgstr ""
 msgid "Time before theme change"
 msgstr ""
 
-#: ../data/lock-dialog-default.glade.h:2
+#: ../data/lock-dialog-default.ui.h:2
 #, no-c-format
 msgid "<b>Leave a message for %R:</b>"
 msgstr "<b>Fág teachtaireacht do %R:</b>"
 
-#: ../data/lock-dialog-default.glade.h:4
+#: ../data/lock-dialog-default.ui.h:4
 #, no-c-format
 msgid "<span size=\"small\">%U on %h</span>"
 msgstr "<span size=\"small\">%U ar %h</span>"
 
-#: ../data/lock-dialog-default.glade.h:6
+#: ../data/lock-dialog-default.ui.h:6
 #, no-c-format
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:7
+#: ../data/lock-dialog-default.ui.h:7
 msgid "_Cancel"
 msgstr "_Cealaigh"
 
-#: ../data/lock-dialog-default.glade.h:8
+#: ../data/lock-dialog-default.ui.h:8
 msgid "_Leave Message"
 msgstr "_Fág Teachtaireacht"
 
-#: ../data/lock-dialog-default.glade.h:9
+#: ../data/lock-dialog-default.ui.h:9
 msgid "_Log Out"
 msgstr "_Logáil Amach"
 
-#: ../data/lock-dialog-default.glade.h:10
+#: ../data/lock-dialog-default.ui.h:10
 msgid "_Switch User"
-msgstr "_Aistrigh Úsáideoir"
+msgstr "_Athraigh Úsáideoir"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1366
+#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1367
 msgid "_Unlock"
 msgstr "_Díghlasáil"
 
@@ -279,19 +281,19 @@ msgstr ""
 msgid "Floating Feet"
 msgstr "Cosa ar Snámh"
 
-#: ../savers/personal-slideshow.desktop.in.h:1
+#: ../savers/personal-slideshow.desktop.in.in.h:1
 msgid "Display a slideshow from your Pictures folder"
 msgstr ""
 
-#: ../savers/personal-slideshow.desktop.in.h:2
+#: ../savers/personal-slideshow.desktop.in.in.h:2
 msgid "Pictures folder"
 msgstr "Fillteán pictiúr"
 
-#: ../savers/popsquares.desktop.in.h:1
+#: ../savers/popsquares.desktop.in.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
 msgstr ""
 
-#: ../savers/popsquares.desktop.in.h:2
+#: ../savers/popsquares.desktop.in.in.h:2
 msgid "Pop art squares"
 msgstr "Cearnóga pop-ealaíne"
 
@@ -313,11 +315,11 @@ msgstr ""
 
 #: ../savers/floaters.c:93
 msgid "MAX_IMAGES"
-msgstr ""
+msgstr "ÍOMHÁNNA_UASTA"
 
 #: ../savers/floaters.c:96
 msgid "The initial size and position of window"
-msgstr ""
+msgstr "Méid agus ionad tosaithe na fuinneoige"
 
 #: ../savers/floaters.c:96
 msgid "WIDTHxHEIGHT+X+Y"
@@ -325,7 +327,7 @@ msgstr "LEITHEADxAIRDE+X+Y"
 
 #: ../savers/floaters.c:99
 msgid "The source image to use"
-msgstr ""
+msgstr "Íomhá fhoinseach le húsáid"
 
 #. translators: the word "image" here
 #. * represents a command line argument
@@ -337,7 +339,7 @@ msgstr ""
 #: ../savers/floaters.c:1200
 #, c-format
 msgid "%s. See --help for usage information.\n"
-msgstr "%s. Féach ar --help le haghaidh eolas úsáide.\n"
+msgstr "%s. Féach --help le haghaidh eolas úsáide.\n"
 
 #: ../savers/floaters.c:1209
 #, c-format
@@ -346,7 +348,7 @@ msgstr ""
 
 #: ../savers/slideshow.c:53
 msgid "Location to get images from"
-msgstr ""
+msgstr "Suíomh óna fhaightear íomhánna"
 
 #: ../savers/slideshow.c:53
 msgid "PATH"
@@ -370,7 +372,7 @@ msgstr ""
 
 #: ../src/copy-theme-dialog.c:212
 msgid "Copying files"
-msgstr "Comhaid á chóipeáil"
+msgstr "Comhaid á gcóipeáil"
 
 #: ../src/copy-theme-dialog.c:230
 msgid "From:"
@@ -382,7 +384,7 @@ msgstr "Chuig:"
 
 #: ../src/copy-theme-dialog.c:254
 msgid "Copying themes"
-msgstr "Téamaí á chóipeáil"
+msgstr "Téamaí á gcóipeáil"
 
 #: ../src/copy-theme-dialog.c:298
 msgid "Invalid screensaver theme"
@@ -452,15 +454,15 @@ msgstr "Leagan an fheidhmchláir seo"
 #: ../src/gnome-screensaver-command.c:307
 #, c-format
 msgid "The screensaver is %s\n"
-msgstr ""
+msgstr "Tá an spárálaí scáileáin %s\n"
 
 #: ../src/gnome-screensaver-command.c:307
 msgid "active"
-msgstr ""
+msgstr "gníomhach"
 
 #: ../src/gnome-screensaver-command.c:307
 msgid "inactive"
-msgstr ""
+msgstr "neamhghníomhach"
 
 #: ../src/gnome-screensaver-command.c:321
 #, c-format
@@ -505,12 +507,12 @@ msgstr "TEACHTAIREACHT"
 #: ../src/gnome-screensaver-dialog.c:175 ../src/gnome-screensaver-dialog.c:176
 #: ../src/gnome-screensaver-dialog.c:177 ../src/gs-auth-pam.c:698
 msgid "Username:"
-msgstr "Ainm Úsáideora:"
+msgstr "Ainm úsáideora:"
 
 #: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
-msgstr "Focal Faire:"
+msgstr "Focal faire:"
 
 #: ../src/gnome-screensaver-dialog.c:180
 msgid "You are required to change your password immediately (password aged)"
@@ -570,21 +572,21 @@ msgstr ""
 
 #: ../src/gnome-screensaver-dialog.c:259
 msgid "Checking..."
-msgstr "Á Sheiceáil..."
+msgstr "Á sheiceáil..."
 
 #: ../src/gnome-screensaver-dialog.c:301 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "Theip ar fhíordheimhniú."
 
-#: ../src/gnome-screensaver-preferences.c:515
+#: ../src/gnome-screensaver-preferences.c:524
 msgid "Blank screen"
 msgstr "Scáileán bán"
 
-#: ../src/gnome-screensaver-preferences.c:521
+#: ../src/gnome-screensaver-preferences.c:530
 msgid "Random"
 msgstr "Fánach"
 
-#: ../src/gnome-screensaver-preferences.c:971
+#: ../src/gnome-screensaver-preferences.c:980
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -594,7 +596,7 @@ msgstr[2] "%d uair"
 msgstr[3] "%d n-uair"
 msgstr[4] "%d uair"
 
-#: ../src/gnome-screensaver-preferences.c:974
+#: ../src/gnome-screensaver-preferences.c:983
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -604,7 +606,7 @@ msgstr[2] "%d nóiméad"
 msgstr[3] "%d nóiméad"
 msgstr[4] "%d nóiméad"
 
-#: ../src/gnome-screensaver-preferences.c:977
+#: ../src/gnome-screensaver-preferences.c:986
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -615,15 +617,15 @@ msgstr[3] "%d soicind"
 msgstr[4] "%d soicind"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:983
+#: ../src/gnome-screensaver-preferences.c:992
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:986
-#: ../src/gnome-screensaver-preferences.c:994
+#: ../src/gnome-screensaver-preferences.c:995
+#: ../src/gnome-screensaver-preferences.c:1003
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -631,23 +633,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:989
-#: ../src/gnome-screensaver-preferences.c:997
-#: ../src/gnome-screensaver-preferences.c:1001
+#: ../src/gnome-screensaver-preferences.c:998
+#: ../src/gnome-screensaver-preferences.c:1006
+#: ../src/gnome-screensaver-preferences.c:1010
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1016
+#: ../src/gnome-screensaver-preferences.c:1025
 #, c-format
 msgid "Never"
 msgstr "Riamh"
 
-#: ../src/gnome-screensaver-preferences.c:1443
+#: ../src/gnome-screensaver-preferences.c:1467
 msgid "Could not load the main interface"
 msgstr ""
 
-#: ../src/gnome-screensaver-preferences.c:1445
+#: ../src/gnome-screensaver-preferences.c:1469
 msgid "Please make sure that the screensaver is properly installed"
 msgstr ""
 
@@ -681,31 +683,31 @@ msgstr ""
 msgid "No longer permitted to access the system."
 msgstr ""
 
-#: ../src/gs-listener-dbus.c:1921
+#: ../src/gs-listener-dbus.c:1851
 msgid "failed to register with the message bus"
 msgstr ""
 
-#: ../src/gs-listener-dbus.c:1931
+#: ../src/gs-listener-dbus.c:1861
 msgid "not connected to the message bus"
 msgstr ""
 
-#: ../src/gs-listener-dbus.c:1940
+#: ../src/gs-listener-dbus.c:1870
 msgid "screensaver already running in this session"
 msgstr ""
 
-#: ../src/gs-lock-plug.c:271
+#: ../src/gs-lock-plug.c:270
 msgid "Time has expired."
 msgstr "Chuaigh am in éag."
 
-#: ../src/gs-lock-plug.c:299
+#: ../src/gs-lock-plug.c:298
 msgid "You have the Caps Lock key on."
 msgstr "Tá an eochair Caps Lock brúite."
 
-#: ../src/gs-lock-plug.c:1346
+#: ../src/gs-lock-plug.c:1347
 msgid "S_witch User..."
-msgstr "_Aistrigh Úsáideoir..."
+msgstr "_Athraigh Úsáideoir..."
 
-#: ../src/gs-lock-plug.c:1355
+#: ../src/gs-lock-plug.c:1356
 msgid "Log _Out"
 msgstr "Logáil _Amach:"
 
@@ -716,4 +718,4 @@ msgstr "%U ar %h"
 
 #: ../src/gs-lock-plug.c:1546
 msgid "_Password:"
-msgstr "_Focal Faire:"
+msgstr "_Focal faire:"
