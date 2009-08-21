@@ -47,7 +47,7 @@ EXTRA_DIST = 				\
 	$(schemas_in_files)		\
 	$(desktop_in_files)		\
 	$(directory_in_files)		\
-	$(glade_DATA)			\
+	$(gtkbuilder_DATA)		\
 	$(man_MANS)			\
 	gnome-screensaver		\
 	gnome-screensaver.pc.in		\
