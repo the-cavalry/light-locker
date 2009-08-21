@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 _Name=Pop art squares
 _Comment=A pop-art-ish grid of pulsing colors.
 Exec=@SAVERDIR@/popsquares

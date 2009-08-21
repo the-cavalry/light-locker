@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 _Name=Cosmos
 _Comment=Display a slideshow of pictures of the cosmos
 Exec=@SAVERDIR@/slideshow --location=@SLIDESHOW_COSMOS_DIR@
