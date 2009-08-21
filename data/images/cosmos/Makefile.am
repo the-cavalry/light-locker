@@ -1,10 +1,10 @@
 NULL =
 
 BACKGROUNDS = \
+	blue-marble-west.jpg	\
 	cloud.jpg 		\
 	comet.jpg 		\
 	earth-horizon.jpg	\
-	earthrise.jpg		\
 	galaxy-ngc3370.jpg	\
 	helix-nebula.jpg	\
 	jupiter.jpg		\
