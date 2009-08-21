@@ -11,9 +11,32 @@ images_DATA =			\
 	jupiter.jpg		\
 	sombrero.jpg		\
 	whirlpool.jpg		\
+	background-1.xml	\
 	$(NULL)
+
+cosmos.xml.in: cosmos.xml.in.in Makefile
+	$(edit) $< >$@
+
+metadata_in_files = cosmos.xml.in
+metadatadir = $(datadir)/gnome-background-properties
+metadata_DATA = $(metadata_in_files:.xml.in=.xml)
+@INTLTOOL_XML_RULE@
+
+edit = sed \
+	-e 's|@IMAGESDIR[@]|$(imagesdir)|g'
 
 EXTRA_DIST =			\
 	CREDITS 		\
 	$(images_DATA)		\
+	cosmos.xml.in.in	\
+	$(NULL)
+
+CLEANFILES = \
+	cosmos.xml.in			\
+	$(NULL)
+
+MAINTAINERCLEANFILES =                  \
+	*~				\
+	Makefile.in			\
+	cosmos.xml			\
 	$(NULL)

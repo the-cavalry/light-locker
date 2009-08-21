@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
+<wallpapers>
+  <wallpaper deleted="false">
+    <!-- Translators: This is the name of a desktop background image that shows outer space images.
+         You might want to translate it into the equivalent words of your language  -->
+    <_name>Cosmos</_name>
+    <filename>@IMAGESDIR@/background-1.xml</filename>
+    <options>zoom</options>
+  </wallpaper>
+</wallpapers>
