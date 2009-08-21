@@ -49,6 +49,7 @@ static gboolean enable_logout  = FALSE;
 static gboolean enable_switch  = FALSE;
 static char    *logout_command = NULL;
 static char    *status_message   = NULL;
+static char    *away_message     = NULL;
 
 static GOptionEntry entries [] = {
         { "verbose", 0, 0, G_OPTION_ARG_NONE, &verbose,
@@ -63,6 +64,8 @@ static GOptionEntry entries [] = {
           N_("Show the switch user button"), NULL },
         { "status-message", 0, 0, G_OPTION_ARG_STRING, &status_message,
           N_("Message to show in the dialog"), N_("MESSAGE") },
+        { "away-message", 0, 0, G_OPTION_ARG_STRING, &away_message,
+          N_("Not used"), N_("MESSAGE") },
         { NULL }
 };
 
