@@ -35,8 +35,11 @@ CLEANFILES = \
 	cosmos.xml.in			\
 	$(NULL)
 
+DISTCLEANFILES = \
+	cosmos.xml			\
+	$(NULL)
+
 MAINTAINERCLEANFILES =                  \
 	*~				\
 	Makefile.in			\
-	cosmos.xml			\
 	$(NULL)

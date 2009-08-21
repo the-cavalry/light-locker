@@ -5,6 +5,7 @@ data/gnome-screensaver-preferences.desktop.in
 data/gnome-screensaver.directory.in
 data/gnome-screensaver.schemas.in
 [type: gettext/glade]data/lock-dialog-default.ui
+data/images/cosmos/cosmos.xml.in.in
 savers/cosmos-slideshow.desktop.in.in
 savers/footlogo-floaters.desktop.in.in
 savers/personal-slideshow.desktop.in.in
