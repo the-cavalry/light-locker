@@ -231,6 +231,10 @@ get_string_from_iter (DBusMessageIter *iter,
         int    count;
         char **buffer;
 
+        if (num_elements != NULL) {
+                *num_elements = 0;
+        }
+
         count = 0;
         buffer = (char **)malloc (sizeof (char *) * 8);
 
@@ -327,7 +331,7 @@ do_command (DBusConnection *connection)
                         g_print (_("The screensaver is being inhibited by:\n"));
                         inhibitors = get_string_from_iter (&array, &num);
                         for (i = 0; i < num; i++) {
-                                g_printf ("\t%s\n", inhibitors[i]);
+                                g_print ("\t%s\n", inhibitors[i]);
                         }
                         g_strfreev (inhibitors);
                 }
