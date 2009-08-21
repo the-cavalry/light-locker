@@ -33,15 +33,15 @@
   <transition>
     <duration>5.0</duration>
     <from>@IMAGESDIR@/earth-horizon.jpg</from>
-    <to>@IMAGESDIR@/earthrise.jpg</to>
+    <to>@IMAGESDIR@/blue-marble-west.jpg</to>
   </transition>
   <static>
     <duration>1795.0</duration>
-    <file>@IMAGESDIR@/earthrise.jpg</file>
+    <file>@IMAGESDIR@/blue-marble-west.jpg</file>
   </static>
   <transition>
     <duration>5.0</duration>
-    <from>@IMAGESDIR@/earthrise.jpg</from>
+    <from>@IMAGESDIR@/blue-marble-west.jpg</from>
     <to>@IMAGESDIR@/galaxy-ngc3370.jpg</to>
   </transition>
   <static>
