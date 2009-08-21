@@ -350,17 +350,17 @@ do_command (DBusConnection *connection)
                 dbus_message_iter_get_basic (&iter, &v);
                 dbus_message_unref (reply);
 
-		if (v) {
+                if (v) {
 
-	                reply = screensaver_send_message_void (connection, "GetActiveTime", TRUE);
-        	        dbus_message_iter_init (reply, &iter);
-                	dbus_message_iter_get_basic (&iter, &t);
-	                g_print (_("The screensaver has been active for %d seconds.\n"), t);
+                        reply = screensaver_send_message_void (connection, "GetActiveTime", TRUE);
+                        dbus_message_iter_init (reply, &iter);
+                        dbus_message_iter_get_basic (&iter, &t);
+                        g_print (_("The screensaver has been active for %d seconds.\n"), t);
 
-        	        dbus_message_unref (reply);
-		} else {
-			g_print ("The screensaver is not currently active.\n");
-		}
+                        dbus_message_unref (reply);
+                } else {
+                        g_print (_("The screensaver is not currently active.\n"));
+                }
         }
 
         if (do_lock) {
@@ -474,5 +474,5 @@ main (int    argc,
         loop = g_main_loop_new (NULL, FALSE);
         g_main_loop_run (loop);
 
-	return 0;
+        return 0;
 }
