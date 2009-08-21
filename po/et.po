@@ -13,9 +13,9 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "screensaver&component=general\n"
-"POT-Creation-Date: 2009-04-18 06:37+0000\n"
-"PO-Revision-Date: 2009-06-25 01:23+0300\n"
-"Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
+"POT-Creation-Date: 2009-08-21 03:05+0000\n"
+"PO-Revision-Date: 2009-08-21 10:34+0300\n"
+"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -242,6 +242,8 @@ msgstr "Vaheta _kasutajat"
 msgid "_Unlock"
 msgstr "_Võta lukust lahti"
 
+#. Translators: This is the name of a desktop background image that shows outer space images.
+#. You might want to translate it into the equivalent words of your language
 msgid "Cosmos"
 msgstr "Kosmos"
 
@@ -411,6 +413,10 @@ msgstr "Ekraanisäästja on piiratud. Piiraja:\n"
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "Ekraanisäästja on olnud aktiivne %d sekundit.\n"
 
+#, c-format
+msgid "The screensaver is not currently active.\n"
+msgstr "Ekraanisäästja ei ole hetkel aktiivne.\n"
+
 msgid "Show debugging output"
 msgstr "Silumisväljundi näitamine"
 
@@ -428,6 +434,9 @@ msgstr "Dialoogis näidatav sõnum"
 
 msgid "MESSAGE"
 msgstr "SÕNUM"
+
+msgid "Not used"
+msgstr "Pole kasutusel"
 
 #. login: is whacked always translate to Username:
 msgid "Username:"
@@ -541,6 +550,9 @@ msgstr "Deemoniks ei minda"
 
 msgid "Enable debugging code"
 msgstr "Silumise lubamine"
+
+msgid "Launch screen saver and locker program"
+msgstr "Ekraanisäästmis- ja lukustustamisprogrammi käivitamine"
 
 #, c-format
 msgid "Unable to establish service %s: %s\n"
