@@ -1050,6 +1050,19 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
 }
 
 static void
+clear_clipboards (GSLockPlug *plug)
+{
+        GtkClipboard *clipboard;
+
+        clipboard = gtk_widget_get_clipboard (GTK_WIDGET (plug), GDK_SELECTION_PRIMARY);
+        gtk_clipboard_clear (clipboard);
+        gtk_clipboard_set_text (clipboard, "", -1);
+        clipboard = gtk_widget_get_clipboard (GTK_WIDGET (plug), GDK_SELECTION_CLIPBOARD);
+        gtk_clipboard_clear (clipboard);
+        gtk_clipboard_set_text (clipboard, "", -1);
+}
+
+static void
 take_note (GtkButton  *button,
            GSLockPlug *plug)
 {
@@ -1113,6 +1126,8 @@ cancel_note (GtkButton  *button,
         restart_cancel_timeout (plug);
 
         gtk_window_set_default (GTK_WINDOW (plug), plug->priv->auth_unlock_button);
+
+        clear_clipboards (plug);
 }
 
 static void
@@ -1719,19 +1734,6 @@ delete_handler (GSLockPlug  *plug,
         gs_lock_plug_response (plug, GS_LOCK_PLUG_RESPONSE_CANCEL);
 
         return TRUE; /* Do not destroy */
-}
-
-static void
-clear_clipboards (GSLockPlug *plug)
-{
-        GtkClipboard *clipboard;
-
-        clipboard = gtk_widget_get_clipboard (GTK_WIDGET (plug), GDK_SELECTION_PRIMARY);
-        gtk_clipboard_clear (clipboard);
-        gtk_clipboard_set_text (clipboard, "", -1);
-        clipboard = gtk_widget_get_clipboard (GTK_WIDGET (plug), GDK_SELECTION_CLIPBOARD);
-        gtk_clipboard_clear (clipboard);
-        gtk_clipboard_set_text (clipboard, "", -1);
 }
 
 static void
