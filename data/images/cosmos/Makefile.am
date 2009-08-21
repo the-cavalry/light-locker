@@ -1,7 +1,6 @@
 NULL =
 
-imagesdir   = $(SLIDESHOW_COSMOS_DIR)
-images_DATA =			\
+BACKGROUNDS = \
 	cloud.jpg 		\
 	comet.jpg 		\
 	earth-horizon.jpg	\
@@ -11,10 +10,18 @@ images_DATA =			\
 	jupiter.jpg		\
 	sombrero.jpg		\
 	whirlpool.jpg		\
+	$(NULL)
+
+imagesdir   = $(SLIDESHOW_COSMOS_DIR)
+images_DATA =			\
+	$(BACKGROUNDS)		\
 	background-1.xml	\
 	$(NULL)
 
 cosmos.xml.in: cosmos.xml.in.in Makefile
+	$(edit) $< >$@
+
+background-1.xml: background-1.xml.in Makefile
 	$(edit) $< >$@
 
 metadata_in_files = cosmos.xml.in
@@ -27,7 +34,8 @@ edit = sed \
 
 EXTRA_DIST =			\
 	CREDITS 		\
-	$(images_DATA)		\
+	$(BACKGROUNDS)		\
+	background-1.xml.in	\
 	cosmos.xml.in.in	\
 	$(NULL)
 
@@ -37,6 +45,7 @@ CLEANFILES = \
 
 DISTCLEANFILES = \
 	cosmos.xml			\
+	background-1.xml		\
 	$(NULL)
 
 MAINTAINERCLEANFILES =                  \
