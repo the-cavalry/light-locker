@@ -3,6 +3,8 @@
 *.o
 .deps
 .libs
+*.desktop
+*.desktop.in
 Makefile
 Makefile.in
 gnome-screensaver

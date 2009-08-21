@@ -1,4 +1,5 @@
 *.la
+*.a
 *.lo
 *.o
 .deps
@@ -11,6 +12,8 @@ floaters
 *.desktop
 cosmos-slideshow.desktop.in
 footlogo-floaters.desktop.in
+personal-slideshow.desktop.in
+popsquares.desktop.in
 savers/cosmos-slideshow.xml
 gs-theme-engine-marshal.c
 gs-theme-engine-marshal.h

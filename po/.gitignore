@@ -1,4 +1,5 @@
 *.gmo
+.intltool-merge-cache
 *.mo
 *.pot
 Makefile
