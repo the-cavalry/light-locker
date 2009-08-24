@@ -1673,8 +1673,8 @@ load_theme (GSLockPlug *plug)
 
         builder = gtk_builder_new();
 
-        if (!gtk_builder_add_from_file (builder,filename ,&error)) {
-                g_warning ("Couldn't load builder file: %s", error->message);
+        if (!gtk_builder_add_from_file (builder,gtkbuilder,&error)) {
+                g_warning ("Couldn't load builder file '%s': %s", gtkbuilder, error->message);
                 g_error_free(error);
                 g_free (gtkbuilder);
                 return FALSE;
