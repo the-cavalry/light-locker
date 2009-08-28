@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bn_IN\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver&component=general\n"
-"POT-Creation-Date: 2009-01-20 05:58+0000\n"
-"PO-Revision-Date: 2009-03-04 10:55+0530\n"
+"POT-Creation-Date: 2009-08-21 03:05+0000\n"
+"PO-Revision-Date: 2009-08-28 12:14+0530\n"
 "Last-Translator: Runa Bhattacharjee <runab@redhat.com>\n"
-"Language-Team: Bengali INDIA <fedora-trans-bn_IN@redhat.com>\n"
+"Language-Team: Bengali INDIA <anubad@lists.ankur.org.in>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,6 +20,7 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
+#: ../src/gnome-screensaver.desktop.in.in.h:2
 msgid "Screensaver"
 msgstr "স্ক্রিন-সেভার"
 
@@ -27,43 +28,43 @@ msgstr "স্ক্রিন-সেভার"
 msgid "Set your screensaver preferences"
 msgstr "স্ক্রিন-সেভার সংক্রান্ত পছন্দ নির্ধারণ করুন"
 
-#: ../data/gnome-screensaver-preferences.glade.h:1
+#: ../data/gnome-screensaver-preferences.ui.h:1
 msgid "<b>Screensaver preview</b>"
 msgstr "<b>স্ক্রিন-সেভারের পূর্বরূপ প্রদর্শন</b>"
 
-#: ../data/gnome-screensaver-preferences.glade.h:2
+#: ../data/gnome-screensaver-preferences.ui.h:2
 msgid "<b>Warning: the screen will not be locked for the root user.</b>"
 msgstr "<b>সতর্কবার্তা: root ব্যবহারকারীর জন্য পর্দা লক করা হবে না।</b>"
 
-#: ../data/gnome-screensaver-preferences.glade.h:3
+#: ../data/gnome-screensaver-preferences.ui.h:3
 msgid "Power _Management"
 msgstr "বিদ্যৎ সরবরাহ পরিচালনা (_M)"
 
-#: ../data/gnome-screensaver-preferences.glade.h:4
+#: ../data/gnome-screensaver-preferences.ui.h:4
 msgid "Regard the computer as _idle after:"
 msgstr "চিহ্নিত সময় অতিবাহিত হলে কম্পিউটারে কর্ম সঞ্চালন স্থগিত ধার্য করা হবে: (_i)"
 
-#: ../data/gnome-screensaver-preferences.glade.h:5
+#: ../data/gnome-screensaver-preferences.ui.h:5
 msgid "Screensaver Preferences"
 msgstr "স্ক্রীনসেভারের পছন্দতালিকা"
 
-#: ../data/gnome-screensaver-preferences.glade.h:6
+#: ../data/gnome-screensaver-preferences.ui.h:6
 msgid "Screensaver Preview"
 msgstr "স্ক্রিন-সেভারের পূর্বরূপ প্রদর্শন"
 
-#: ../data/gnome-screensaver-preferences.glade.h:7
+#: ../data/gnome-screensaver-preferences.ui.h:7
 msgid "_Activate screensaver when computer is idle"
 msgstr "কর্মহীন অবস্থায় কম্পিউটারে স্ক্রিন-সেভার সক্রিয় করা হবে (_A)"
 
-#: ../data/gnome-screensaver-preferences.glade.h:8
+#: ../data/gnome-screensaver-preferences.ui.h:8
 msgid "_Lock screen when screensaver is active"
 msgstr "স্ক্রিন-সেভার সক্রিয় হলে পর্দা লক করা হবে (_L)"
 
-#: ../data/gnome-screensaver-preferences.glade.h:9
+#: ../data/gnome-screensaver-preferences.ui.h:9
 msgid "_Preview"
 msgstr "পূর্বরূপ প্রদর্শন (_P)"
 
-#: ../data/gnome-screensaver-preferences.glade.h:10
+#: ../data/gnome-screensaver-preferences.ui.h:10
 msgid "_Screensaver theme:"
 msgstr "স্ক্রিন-সেভারের থিম: (_S)"
 
@@ -258,41 +259,44 @@ msgstr "সেশানকে কর্মবিহীন নির্ধার�
 msgid "Time before theme change"
 msgstr "সময়, থিম পরিবর্তনের পূর্বে"
 
-#: ../data/lock-dialog-default.glade.h:2
+#: ../data/lock-dialog-default.ui.h:2
 #, no-c-format
 msgid "<b>Leave a message for %R:</b>"
 msgstr "<b>%R-র জন্য বার্তা লিখুন:</b>"
 
-#: ../data/lock-dialog-default.glade.h:4
+#: ../data/lock-dialog-default.ui.h:4
 #, no-c-format
 msgid "<span size=\"small\">%U on %h</span>"
 msgstr "<span size=\"small\">%U, %h-র উপর</span>"
 
-#: ../data/lock-dialog-default.glade.h:6
+#: ../data/lock-dialog-default.ui.h:6
 #, no-c-format
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:7
+#: ../data/lock-dialog-default.ui.h:7
 msgid "_Cancel"
 msgstr "বাতিল (_C)"
 
-#: ../data/lock-dialog-default.glade.h:8
+#: ../data/lock-dialog-default.ui.h:8
 msgid "_Leave Message"
 msgstr "বার্তা লিখুন (_L)"
 
-#: ../data/lock-dialog-default.glade.h:9
+#: ../data/lock-dialog-default.ui.h:9
 msgid "_Log Out"
 msgstr "লগ আউট করুন (_L)"
 
-#: ../data/lock-dialog-default.glade.h:10
+#: ../data/lock-dialog-default.ui.h:10
 msgid "_Switch User"
 msgstr "ব্যবহারকারী পরিবর্তন করুন (_S)"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1366
+#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1382
 msgid "_Unlock"
 msgstr "আনলক (_U)"
 
+#. Translators: This is the name of a desktop background image that shows outer space images.
+#. You might want to translate it into the equivalent words of your language
+#: ../data/images/cosmos/cosmos.xml.in.in.h:3
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
 msgstr "কসমস"
@@ -480,7 +484,7 @@ msgstr "স্ক্রিন-সেভার প্রতিরোধকার�
 msgid "The reason for inhibiting the screensaver"
 msgstr "স্ক্রিন-সেভার প্রতিরোধের কারণ"
 
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:57
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:58
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "এই অ্যাপলিকেশনটির সংস্করণ"
@@ -513,104 +517,114 @@ msgstr "স্ক্রিন-সেভার প্রতিরোধকার�
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "%d সেকেন্ড অবধি স্ক্রিন-সেভার সক্রিয় ছিল।\n"
 
-#: ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver-command.c:362
+#, c-format
+#| msgid "The screensaver is not inhibited\n"
+msgid "The screensaver is not currently active.\n"
+msgstr "স্ক্রিন-সেভার বর্তমানে সক্রিয় নয়।\n"
+
+#: ../src/gnome-screensaver-dialog.c:56
 msgid "Show debugging output"
 msgstr "ডিবাগিং আউটপুট প্রদর্শন করুন"
 
-#: ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver-dialog.c:60
 msgid "Show the logout button"
 msgstr "লগ আউট বাটন দেখাও"
 
-#: ../src/gnome-screensaver-dialog.c:61
+#: ../src/gnome-screensaver-dialog.c:62
 msgid "Command to invoke from the logout button"
 msgstr "লগ-আউট বাটন দ্বারা সঞ্চালিত কমান্ড"
 
-#: ../src/gnome-screensaver-dialog.c:63
+#: ../src/gnome-screensaver-dialog.c:64
 msgid "Show the switch user button"
 msgstr "ব্যবহারকারী পরিবর্তনের বাটন প্রদর্শন করা হবে"
 
-#: ../src/gnome-screensaver-dialog.c:65
+#: ../src/gnome-screensaver-dialog.c:66
 msgid "Message to show in the dialog"
 msgstr "ডায়লগের মধ্যে প্রদর্শনের জন্য নির্ধারিত টেক্সট"
 
-#: ../src/gnome-screensaver-dialog.c:65
+#: ../src/gnome-screensaver-dialog.c:66 ../src/gnome-screensaver-dialog.c:68
 msgid "MESSAGE"
 msgstr "MESSAGE"
 
+#: ../src/gnome-screensaver-dialog.c:68
+msgid "Not used"
+msgstr "ব্যবহৃত হয়নি"
+
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:175 ../src/gnome-screensaver-dialog.c:176
-#: ../src/gnome-screensaver-dialog.c:177 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:180 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "ব্যবহারকারী:"
 
-#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:181 ../src/gnome-screensaver-dialog.c:182
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "পাসওয়ার্ড:"
 
-#: ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:183
 msgid "You are required to change your password immediately (password aged)"
 msgstr "অবিলম্বে পাসওয়ার্ড পরিবর্তন করা আবশ্যক (পাসওয়ার্ডের মেয়াদ পূর্ণ হয়েছে)"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "অবিলম্বে পাসওয়ার্ড পরিবর্তন করা আবশ্যক (root দ্বারা বাধ্যতামূলক)"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "Your account has expired; please contact your system administrator"
 msgstr ""
 "আপনার অ্যাকাউন্টের ব্যবহারকালের মেয়াদ উত্তীর্ণ হয়েছে; অনুগ্রহ করে সিস্টেম "
 "অ্যাডমিনিস্ট্রেটরের সাথে যোগাযোগ করুন"
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "No password supplied"
 msgstr "পাসওয়ার্ড উল্লেখ করা হয়নি"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:187
 msgid "Password unchanged"
 msgstr "পাসওয়ার্ড পরিবর্তন করা হয়নি"
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "Can not get username"
 msgstr "ব্যবহারকারীর নাম"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "Retype new UNIX password:"
 msgstr "নতুন UNIX পাসওয়ার্ড পুনরায় লিখুন:"
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:190
 msgid "Enter new UNIX password:"
 msgstr "নতুন UNIX পাসওয়ার্ড লিখুন:"
 
-#: ../src/gnome-screensaver-dialog.c:188
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "(current) UNIX password:"
 msgstr "(বর্তমান) UNIX পাসওয়ার্ড:"
 
-#: ../src/gnome-screensaver-dialog.c:189
+#: ../src/gnome-screensaver-dialog.c:192
 msgid "Error while changing NIS password."
 msgstr "NIS পাসওয়ার্ড পরিবর্তন করতে ত্রুটি।"
 
-#: ../src/gnome-screensaver-dialog.c:190
+#: ../src/gnome-screensaver-dialog.c:193
 msgid "You must choose a longer password"
 msgstr "দীর্ঘ মাপের পাসওয়ার্ড নির্বাচন করা আবশ্যক"
 
-#: ../src/gnome-screensaver-dialog.c:191
+#: ../src/gnome-screensaver-dialog.c:194
 msgid "Password has been already used. Choose another."
 msgstr "এই পাসওয়ার্ড ব্যবহৃত হয়েছে। অনুগ্রহ করে একটি পৃথক পাসওয়ার্ড লিখুন।"
 
-#: ../src/gnome-screensaver-dialog.c:192
+#: ../src/gnome-screensaver-dialog.c:195
 msgid "You must wait longer to change your password"
 msgstr "পাসওয়ার্ড পরিবর্তনের জন্য আরো কিছু কাল অপেক্ষা করা আবশ্যক"
 
-#: ../src/gnome-screensaver-dialog.c:193
+#: ../src/gnome-screensaver-dialog.c:196
 msgid "Sorry, passwords do not match"
 msgstr "দুঃখিত, পাসওয়ার্ডে গরমিল"
 
-#: ../src/gnome-screensaver-dialog.c:259
+#: ../src/gnome-screensaver-dialog.c:262
 msgid "Checking..."
 msgstr "পরীক্ষা করা হচ্ছে..."
 
-#: ../src/gnome-screensaver-dialog.c:301 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:304 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "অনুমোদন বিফল।"
 
@@ -672,11 +686,11 @@ msgstr "%s"
 msgid "Never"
 msgstr "কখনোই না"
 
-#: ../src/gnome-screensaver-preferences.c:1453
+#: ../src/gnome-screensaver-preferences.c:1467
 msgid "Could not load the main interface"
 msgstr "প্রধান ইন্টারফেস লোড করা যায়নি"
 
-#: ../src/gnome-screensaver-preferences.c:1455
+#: ../src/gnome-screensaver-preferences.c:1469
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "অনুগ্রহ করে স্ক্রিন-সেভা সঠিক রূপে ইনস্টল করা হয়েছে কি না তা নিশ্চিত করুন"
 
@@ -687,6 +701,10 @@ msgstr "ডেমন তৈরি করা হবে না"
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
 msgstr "কোড ডিবাগের ব্যবস্থা সক্রিয় করা হবে"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:1
+msgid "Launch screen saver and locker program"
+msgstr "স্ক্রিন-সেভার ও লকিং প্রোগ্রাম আরম্ভ করুন"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -710,40 +728,40 @@ msgstr "এই মুহূর্তে ব্যবহারের অধিক
 msgid "No longer permitted to access the system."
 msgstr "সিস্টেম ব্যবহারের অধিকার উপস্থিত নেই।"
 
-#: ../src/gs-listener-dbus.c:1847
+#: ../src/gs-listener-dbus.c:1851
 msgid "failed to register with the message bus"
 msgstr "মেসেজ বাসের সাথে নিবন্ধন করতে ব্যর্থ"
 
-#: ../src/gs-listener-dbus.c:1857
+#: ../src/gs-listener-dbus.c:1861
 msgid "not connected to the message bus"
 msgstr "মেসেজ বাসের সাথে সংযুক্ত নয়"
 
-#: ../src/gs-listener-dbus.c:1866
+#: ../src/gs-listener-dbus.c:1870
 msgid "screensaver already running in this session"
 msgstr "বর্তমান সেশানে স্ক্রিন-সেভার চলছে"
 
-#: ../src/gs-lock-plug.c:271
+#: ../src/gs-lock-plug.c:270
 msgid "Time has expired."
 msgstr "সময় অতিবাহিত হয়ে গেছে।"
 
-#: ../src/gs-lock-plug.c:299
+#: ../src/gs-lock-plug.c:298
 msgid "You have the Caps Lock key on."
 msgstr "ক্যাপস-লক কি চালু আছে।"
 
-#: ../src/gs-lock-plug.c:1346
+#: ../src/gs-lock-plug.c:1362
 msgid "S_witch User..."
 msgstr "ব্যবহারকারী পরিবর্তন করুন (_w)"
 
-#: ../src/gs-lock-plug.c:1355
+#: ../src/gs-lock-plug.c:1371
 msgid "Log _Out"
 msgstr "লগ আউট (_O)"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1531
+#: ../src/gs-lock-plug.c:1547
 msgid "%U on %h"
 msgstr "%U, %h-র উপর"
 
-#: ../src/gs-lock-plug.c:1545
+#: ../src/gs-lock-plug.c:1561
 msgid "_Password:"
 msgstr "পাসওয়ার্ড (_P):"
 
