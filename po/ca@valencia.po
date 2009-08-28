@@ -1,0 +1,787 @@
+# translation of gnome-screensaver.master.po to catalan
+# Catalan translations for gnome-screensaver package
+# Traduccions al català del paquet «gnome-screensaver».
+# Copyright (C) 2006, 2009 The Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-screensaver
+# package.
+#
+#
+# Josep Puigdemont i Casamajó <josep.puigdemont@gmail.com>, 2006.
+# Gil Forcada <gilforcada@guifi.net>, 2006, 2007, 2008.
+# Carles Ferrando Garcia <carles.ferrando@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver.master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-08-28 11:58+0200\n"
+"PO-Revision-Date: 2009-08-20 15:59+0200\n"
+"Last-Translator: Carles Ferrando Garcia <carles.ferrando@gmail.com>\n"
+"Language-Team: catalan <tradgnome@softcatala.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+#: ../src/gnome-screensaver.desktop.in.in.h:2
+msgid "Screensaver"
+msgstr "Estalvi de pantalla"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "Establiu les preferències de l'estalvi de pantalla"
+
+#: ../data/gnome-screensaver-preferences.ui.h:1
+msgid "<b>Screensaver preview</b>"
+msgstr "<b>Previsualització de l'estalvi de pantalla</b>"
+
+#: ../data/gnome-screensaver-preferences.ui.h:2
+msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+msgstr "<b>Avís: la pantalla no es bloquejarà per al superusuari (root).</b>"
+
+#: ../data/gnome-screensaver-preferences.ui.h:3
+msgid "Power _Management"
+msgstr "_Gestor d'energia"
+
+#: ../data/gnome-screensaver-preferences.ui.h:4
+msgid "Regard the computer as _idle after:"
+msgstr "Considera l'ordinador com a _inactiu després de:"
+
+#: ../data/gnome-screensaver-preferences.ui.h:5
+msgid "Screensaver Preferences"
+msgstr "Preferències de l'estalvi de pantalla"
+
+#: ../data/gnome-screensaver-preferences.ui.h:6
+msgid "Screensaver Preview"
+msgstr "Previsualització de l'estalvi de pantalla"
+
+#: ../data/gnome-screensaver-preferences.ui.h:7
+msgid "_Activate screensaver when computer is idle"
+msgstr "_Activa l'estalvi de pantalla quan l'ordinador estiga inactiu"
+
+#: ../data/gnome-screensaver-preferences.ui.h:8
+msgid "_Lock screen when screensaver is active"
+msgstr "_Bloca la pantalla quan l'estalvi de pantalla estiga actiu"
+
+#: ../data/gnome-screensaver-preferences.ui.h:9
+msgid "_Preview"
+msgstr "_Previsualització"
+
+#: ../data/gnome-screensaver-preferences.ui.h:10
+msgid "_Screensaver theme:"
+msgstr "Tema de l'e_stalvi de pantalla:"
+
+#: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "Screensaver themes"
+msgstr "Temes de l'estalvi de pantalla"
+
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "Estalvis de pantalla"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Activate when idle"
+msgstr "Activa quan estiga inactiu"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow embedding a keyboard into the window"
+msgstr "Permet incrustar un teclat a la pantalla"
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "Allow logout"
+msgstr "Permet eixir"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow the session status message to be displayed"
+msgstr "Permet que es mostre el missatge d'estat de la sessió"
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid ""
+"Allow the session status message to be displayed when the screen is locked."
+msgstr ""
+"Permet que es mostre el missatge d'estat de la sessió quan la pantalla "
+"estiga blocada."
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "Allow user switching"
+msgstr "Permet canviar d'usuari"
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Embedded keyboard command"
+msgstr "Orde per incrustar el teclat a la pantalla"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Lock on activation"
+msgstr "Bloca en activar-se"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Logout command"
+msgstr "Orde d'eixida"
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "Screensaver theme selection mode"
+msgstr "Mode de selecció del tema de l'estalvi de pantalla"
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr ""
+"Establiu-ho com a cert per activar l'estalvi de pantalla quan la sessió "
+"estiga inactiva."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr ""
+"Establiu-ho com a CERT per permetre l'incrustació d'un teclat a la pantalla "
+"quan es prove de desblocar. La clau «keyboard_command» s'ha d'establir a "
+"l'orde apropiada."
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr ""
+"Establiu-ho com a cert per blocar la pantalla quan l'estalvi de pantalla "
+"estiga actiu."
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr ""
+"Establiu-ho com a cert per oferir una opció en el diàleg de desbloqueig per "
+"canviar a una compte d'usuari diferent."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr ""
+"Establiu-ho com a cert per oferir una opció en el diàleg de desbloqueig per "
+"eixir després d'un retard. El retard està especificat a la clau "
+"«logout_delay»."
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr ""
+"L'orde que s'executarà, si la clau «embedded_keyboard_enabled» s'estableix a "
+"CERT, per incrustar un teclat a la pantalla. Esta orde hauria d'implementar "
+"un connector d'interfície XEMBED, i escriure a la eixida estàndard un XID de "
+"finestra."
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr ""
+"L'orde a invocar en prémer el botó d'eixida. Esta orde només hauria de "
+"tancar la sessió de l'usuari sense cap interacció. Esta clau només te efecte "
+"si la clau «logout_enable» està a cert."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
+msgstr ""
+"El nombre de minuts que han de passar perquè es bloque la pantalla un cop "
+"activat l'estalvi de pantalla."
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr ""
+"El nombre de minuts que han de passar perquè aparega l'opció d'eixir en el "
+"diàleg de desbloqueig un cop activat l'estalvi de pantalla. Esta clau només "
+"té efecte si la clau «logout_enable» està a cert."
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
+msgstr ""
+"El nombre de minuts d'inactivitat que han de passar perquè la sessió es "
+"considere inactiva."
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr ""
+"El nombre de minuts que ha de passar abans de canviar el tema de l'estalvi "
+"de pantalla."
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid ""
+"The number of seconds of inactivity before signalling to power-management. "
+"This key is set and maintained by the session power-management agent."
+msgstr ""
+"El nombre de segons d'inactivitat abans d'avisar el gestor d'energia. Esta "
+"clau s'estableix i es manté per l'agent de la sessió del gestor d'energia."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid ""
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
+msgstr ""
+"El mode de selecció utilitzat per l'estalvi de pantalla. Podria ser «blank-"
+"only» per habilitar l'estalvi de pantalla sense utilitzar cap tema en "
+"l'activació, «single» per habilitar que l'estalvi de pantalla utilitze només "
+"un tema en activar-se (especificat en la clau «themes»), i «random» per "
+"habilitar que l'estalvi de pantalla utilitze un tema aleatori en activar-se."
+
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Theme for lock dialog"
+msgstr "Tema pel diàleg de bloqueig"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Theme to use for the lock dialog."
+msgstr "Tema que s'utilitzarà pel diàleg de bloqueig."
+
+#: ../data/gnome-screensaver.schemas.in.h:27
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
+msgstr ""
+"Esta clau especifica la llista de temes a utilitzar per l'estalvi de "
+"pantalla. S'ignora si la clau «mode» és «blank-only», hauria de tindre el nom "
+"del tema quan «mode» és «single», i hauria de tindre una llista de temes quan "
+"«mode» és «random»."
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before locking"
+msgstr "Temps abans de blocar"
+
+#: ../data/gnome-screensaver.schemas.in.h:29
+msgid "Time before logout option"
+msgstr "Temps abans de l'opció d'eixida"
+
+#: ../data/gnome-screensaver.schemas.in.h:30
+msgid "Time before power-management baseline"
+msgstr "Temps abans de la línia base del gestor d'energia"
+
+#: ../data/gnome-screensaver.schemas.in.h:31
+msgid "Time before session is considered idle"
+msgstr "Temps abans que la sessió es considere inactiva"
+
+#: ../data/gnome-screensaver.schemas.in.h:32
+msgid "Time before theme change"
+msgstr "Temps abans de canviar el tema"
+
+#: ../data/lock-dialog-default.ui.h:2
+#, no-c-format
+msgid "<b>Leave a message for %R:</b>"
+msgstr "<b>Deixeu un missatge per a %R:</b>"
+
+#: ../data/lock-dialog-default.ui.h:4
+#, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
+msgstr "<span size=\"small\">%U a %h</span>"
+
+#: ../data/lock-dialog-default.ui.h:6
+#, no-c-format
+msgid "<span size=\"x-large\">%R</span>"
+msgstr "<span size=\"x-large\">%R</span>"
+
+#: ../data/lock-dialog-default.ui.h:7
+msgid "_Cancel"
+msgstr "_Cancel·la"
+
+#: ../data/lock-dialog-default.ui.h:8
+msgid "_Leave Message"
+msgstr "Deixeu un _missatge"
+
+#: ../data/lock-dialog-default.ui.h:9
+msgid "_Log Out"
+msgstr "I_x"
+
+#: ../data/lock-dialog-default.ui.h:10
+msgid "_Switch User"
+msgstr "Canvia d'_usuari"
+
+#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1382
+msgid "_Unlock"
+msgstr "_Desbloca"
+
+#. Translators: This is the name of a desktop background image that shows outer space images.
+#. You might want to translate it into the equivalent words of your language
+#: ../data/images/cosmos/cosmos.xml.in.in.h:3
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr "Cosmos"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "Mostra una projecció amb diapositives d'imatges del cosmos"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "Bombolles amb el logotip del peu del GNOME per tota la pantalla"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "Peus flotants"
+
+#: ../savers/personal-slideshow.desktop.in.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr "Mostra una projecció amb diapositives de la vostre carpeta d'imatges"
+
+#: ../savers/personal-slideshow.desktop.in.in.h:2
+msgid "Pictures folder"
+msgstr "Carpeta d'imatges"
+
+#: ../savers/popsquares.desktop.in.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr "Una xarxa de colors de pulsació d'estil pop-art."
+
+#: ../savers/popsquares.desktop.in.in.h:2
+msgid "Pop art squares"
+msgstr "Quadrats pop-art"
+
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr "Mostra els camins que segueixen les imatges"
+
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr "De tant en tant gireu les imatges mentre es mouen"
+
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr "Mostra les imatges per segon i altres estadístiques"
+
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr "El nombre màxim d'imatges a mantindre en pantalla"
+
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr "MAX_IMATGES"
+
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr "La mida i posició inicials de la finestra"
+
+#: ../savers/floaters.c:96
+msgid "WIDTHxHEIGHT+X+Y"
+msgstr "AMPLADAxALÇADA+X+Y"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr "La imatge que s'utilitzarà"
+
+#. translators: the word "image" here
+#. * represents a command line argument
+#.
+#: ../savers/floaters.c:1194
+msgid "image - floats images around the screen"
+msgstr "image - fa flotar imatges per la pantalla"
+
+#: ../savers/floaters.c:1200
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s. Vegeu --help per a la informació sobre la forma d'ús.\n"
+
+#: ../savers/floaters.c:1209
+#, c-format
+msgid "You must specify one image.  See --help for usage information.\n"
+msgstr ""
+"Heu d'indicar una imatge. Vegeu --help per a la informació sobre la forma "
+"d'ús.\n"
+
+#: ../savers/slideshow.c:53
+msgid "Location to get images from"
+msgstr "Ubicació d'on obtindre les imatges"
+
+#: ../savers/slideshow.c:53
+msgid "PATH"
+msgstr "CAMÍ"
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr "El color a utilitzar per a les imatges de fons"
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr "«#rrggbb»"
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr "No mostres imatges aleatòries de la ubicació"
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr "No intentes encabir les imatges a la pantalla"
+
+#: ../src/copy-theme-dialog.c:212
+msgid "Copying files"
+msgstr "S'està copiant fitxers"
+
+#: ../src/copy-theme-dialog.c:230
+msgid "From:"
+msgstr "De:"
+
+#: ../src/copy-theme-dialog.c:234
+msgid "To:"
+msgstr "A:"
+
+#: ../src/copy-theme-dialog.c:254
+msgid "Copying themes"
+msgstr "S'estan copiant els temes"
+
+#: ../src/copy-theme-dialog.c:298
+msgid "Invalid screensaver theme"
+msgstr "Tema de l'estalvi de pantalla invàlid"
+
+#: ../src/copy-theme-dialog.c:301
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr "Pareix que el %s no siga un tema d'estalvi de pantalla vàlid."
+
+#: ../src/copy-theme-dialog.c:481
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "S'està copiant el fitxer: %u de %u"
+
+#: ../src/gnome-screensaver-command.c:62
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Fa que l'estalvi de pantalla isca sense errors"
+
+#: ../src/gnome-screensaver-command.c:64
+msgid "Query the state of the screensaver"
+msgstr "Consulta l'estat de l'estalvi de pantalla"
+
+#: ../src/gnome-screensaver-command.c:66
+msgid "Query the length of time the screensaver has been active"
+msgstr "Consulta quan temps fa que l'estalvi de pantalla s'ha activat"
+
+#: ../src/gnome-screensaver-command.c:68
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr ""
+"Diu al procés d'estalvi de pantalla en funcionament que bloquege la pantalla "
+"immediatament"
+
+#: ../src/gnome-screensaver-command.c:70
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr ""
+"Si l'estalvi de pantalla està actiu llavors canvia a una altra demostració "
+"de gràfics"
+
+#: ../src/gnome-screensaver-command.c:72
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "Activa l'estalvi de pantalla (enfosqueix la pantalla)"
+
+#: ../src/gnome-screensaver-command.c:74
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr ""
+"Si l'estalvi de pantalla està actiu, desactiva'l (restableix la pantalla)"
+
+#: ../src/gnome-screensaver-command.c:76
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "Burxa l'estalvi de pantalla actiu per simular activitat de l'usuari"
+
+#: ../src/gnome-screensaver-command.c:78
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr ""
+"Inhibeix l'activació de l'estalvi de pantalla. L'orde bloqueja mentre la "
+"inhibició està activa."
+
+#: ../src/gnome-screensaver-command.c:80
+msgid "The calling application that is inhibiting the screensaver"
+msgstr "L'aplicació que està demanant d'inhibir l'estalvi de pantalla"
+
+#: ../src/gnome-screensaver-command.c:82
+msgid "The reason for inhibiting the screensaver"
+msgstr "El motiu per inhibir l'estalvi de pantalla"
+
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:58
+#: ../src/gnome-screensaver.c:56
+msgid "Version of this application"
+msgstr "Versió d'esta aplicació"
+
+#: ../src/gnome-screensaver-command.c:311
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "L'estalvi de pantalla està %s\n"
+
+#: ../src/gnome-screensaver-command.c:311
+msgid "active"
+msgstr "activat"
+
+#: ../src/gnome-screensaver-command.c:311
+msgid "inactive"
+msgstr "desactivat"
+
+#: ../src/gnome-screensaver-command.c:325
+#, c-format
+msgid "The screensaver is not inhibited\n"
+msgstr "L'estalvi de pantalla està inhibit\n"
+
+#: ../src/gnome-screensaver-command.c:331
+#, c-format
+msgid "The screensaver is being inhibited by:\n"
+msgstr "L'estalvi de pantalla l'inhibeix:\n"
+
+#: ../src/gnome-screensaver-command.c:362
+#, c-format
+msgid "The screensaver has been active for %d seconds.\n"
+msgstr "Fa %d segons que l'estalvi de pantalla s'ha activat.\n"
+
+#: ../src/gnome-screensaver-command.c:366
+#, fuzzy, c-format
+msgid "The screensaver is not currently active.\n"
+msgstr "L'estalvi de pantalla està inhibit\n"
+
+#: ../src/gnome-screensaver-dialog.c:56
+msgid "Show debugging output"
+msgstr "Mostra els missatges de depuració"
+
+#: ../src/gnome-screensaver-dialog.c:60
+msgid "Show the logout button"
+msgstr "Mostra el botó d'eixida"
+
+#: ../src/gnome-screensaver-dialog.c:62
+msgid "Command to invoke from the logout button"
+msgstr "Orde per invocar des del botó d'eixir"
+
+#: ../src/gnome-screensaver-dialog.c:64
+msgid "Show the switch user button"
+msgstr "Mostra el botó de canvi d'usuari"
+
+#: ../src/gnome-screensaver-dialog.c:66
+msgid "Message to show in the dialog"
+msgstr "Missatge que es mostrarà en el diàleg"
+
+#: ../src/gnome-screensaver-dialog.c:66 ../src/gnome-screensaver-dialog.c:68
+msgid "MESSAGE"
+msgstr "MISSATGE"
+
+#: ../src/gnome-screensaver-dialog.c:68
+msgid "Not used"
+msgstr ""
+
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:180 ../src/gs-auth-pam.c:698
+msgid "Username:"
+msgstr "Nom d'usuari:"
+
+#: ../src/gnome-screensaver-dialog.c:181 ../src/gnome-screensaver-dialog.c:182
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "Contrasenya:"
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "You are required to change your password immediately (password aged)"
+msgstr ""
+"Heu de canviar la contrasenya immediatament (la contrasenya s'ha fet vella)"
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "You are required to change your password immediately (root enforced)"
+msgstr ""
+"Heu de canviar la contrasenya immediatament (vos hi obliga el superusuari)"
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "Your account has expired; please contact your system administrator"
+msgstr ""
+"El vostre compte ha expirat, contacteu amb l'administrador d'este sistema"
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "No password supplied"
+msgstr "No s'ha proporcionat cap contrasenya"
+
+#: ../src/gnome-screensaver-dialog.c:187
+msgid "Password unchanged"
+msgstr "No s'ha canviat la contrasenya"
+
+#: ../src/gnome-screensaver-dialog.c:188
+msgid "Can not get username"
+msgstr "No s'ha pogut obtindre el nom d'usuari"
+
+#: ../src/gnome-screensaver-dialog.c:189
+msgid "Retype new UNIX password:"
+msgstr "Reescriviu la nova contrasenya UNIX:"
+
+#: ../src/gnome-screensaver-dialog.c:190
+msgid "Enter new UNIX password:"
+msgstr "Entreu la nova contrasenya UNIX:"
+
+#: ../src/gnome-screensaver-dialog.c:191
+msgid "(current) UNIX password:"
+msgstr "Contrasenya UNIX (actual):"
+
+#: ../src/gnome-screensaver-dialog.c:192
+msgid "Error while changing NIS password."
+msgstr "S'ha produït un error en canviar la contrasenya NIS."
+
+#: ../src/gnome-screensaver-dialog.c:193
+msgid "You must choose a longer password"
+msgstr "Heu d'escollir una contrasenya més llarga"
+
+#: ../src/gnome-screensaver-dialog.c:194
+msgid "Password has been already used. Choose another."
+msgstr "La contrasenya ja s'ha fet servir. Escolliu-ne una altra."
+
+#: ../src/gnome-screensaver-dialog.c:195
+msgid "You must wait longer to change your password"
+msgstr "Heu d'esperar més per canviar la contrasenya"
+
+#: ../src/gnome-screensaver-dialog.c:196
+msgid "Sorry, passwords do not match"
+msgstr "Les contrasenyes no coincideixen"
+
+#: ../src/gnome-screensaver-dialog.c:262
+msgid "Checking..."
+msgstr "S'està comprovant..."
+
+#: ../src/gnome-screensaver-dialog.c:304 ../src/gs-auth-pam.c:457
+msgid "Authentication failed."
+msgstr "Ha fallat l'autenticació."
+
+#: ../src/gnome-screensaver-preferences.c:524
+msgid "Blank screen"
+msgstr "Pantalla en negre"
+
+#: ../src/gnome-screensaver-preferences.c:530
+msgid "Random"
+msgstr "Aleatori"
+
+#: ../src/gnome-screensaver-preferences.c:980
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d hora"
+msgstr[1] "%d hores"
+
+#: ../src/gnome-screensaver-preferences.c:983
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minut"
+msgstr[1] "%d minuts"
+
+#: ../src/gnome-screensaver-preferences.c:986
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d segon"
+msgstr[1] "%d segons"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:992
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:995
+#: ../src/gnome-screensaver-preferences.c:1003
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:998
+#: ../src/gnome-screensaver-preferences.c:1006
+#: ../src/gnome-screensaver-preferences.c:1010
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: ../src/gnome-screensaver-preferences.c:1025
+#, c-format
+msgid "Never"
+msgstr "Mai"
+
+#: ../src/gnome-screensaver-preferences.c:1467
+msgid "Could not load the main interface"
+msgstr "No s'ha pogut carregar la interfície principal"
+
+#: ../src/gnome-screensaver-preferences.c:1469
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "Assegureu-vos que l'estalvi de pantalla estiga ben instal·lat"
+
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "No esdevingues un dimoni"
+
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr "Habilita el codi de depuració"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:1
+msgid "Launch screen saver and locker program"
+msgstr ""
+
+#: ../src/gs-auth-pam.c:397
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr "No s'ha pogut establir el servei %s: %s\n"
+
+#: ../src/gs-auth-pam.c:423
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr "No s'ha pogut establir PAM_TTY=%s"
+
+#: ../src/gs-auth-pam.c:455
+msgid "Incorrect password."
+msgstr "Contrasenya incorrecta."
+
+#: ../src/gs-auth-pam.c:471
+msgid "Not permitted to gain access at this time."
+msgstr "No podeu accedir-hi ara mateix."
+
+#: ../src/gs-auth-pam.c:477
+msgid "No longer permitted to access the system."
+msgstr "Ja no podeu accedir al sistema."
+
+#: ../src/gs-listener-dbus.c:1851
+msgid "failed to register with the message bus"
+msgstr "no s'ha pogut registrar en el bus de missatges"
+
+#: ../src/gs-listener-dbus.c:1861
+msgid "not connected to the message bus"
+msgstr "no s'ha pogut connectar al bus de missatges"
+
+#: ../src/gs-listener-dbus.c:1870
+msgid "screensaver already running in this session"
+msgstr "l'estalvi de pantalla ja està funcionant en esta sessió"
+
+#: ../src/gs-lock-plug.c:270
+msgid "Time has expired."
+msgstr "S'ha excedit el temps."
+
+#: ../src/gs-lock-plug.c:298
+msgid "You have the Caps Lock key on."
+msgstr "Teniu la tecla de fixació de majúscules activada."
+
+#: ../src/gs-lock-plug.c:1362
+msgid "S_witch User..."
+msgstr "Canvia d'_usuari..."
+
+#: ../src/gs-lock-plug.c:1371
+msgid "Log _Out"
+msgstr "I_x"
+
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1547
+msgid "%U on %h"
+msgstr "%U a %h"
+
+#: ../src/gs-lock-plug.c:1561
+msgid "_Password:"
+msgstr "_Contrasenya:"
