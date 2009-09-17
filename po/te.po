@@ -9,17 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.master.te\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver&component=general\n"
-"POT-Creation-Date: 2009-04-18 06:37+0000\n"
-"PO-Revision-Date: 2009-05-14 17:11+0530\n"
+"POT-Creation-Date: 2009-08-21 03:05+0000\n"
+"PO-Revision-Date: 2009-09-17 17:15+0530\n"
 "Last-Translator: Krishna Babu K <kkrothap@redhat.com>\n"
 "Language-Team: Telugu <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
+#: ../src/gnome-screensaver.desktop.in.in.h:2
 msgid "Screensaver"
 msgstr "తెరకాపరి"
 
@@ -27,43 +29,43 @@ msgstr "తెరకాపరి"
 msgid "Set your screensaver preferences"
 msgstr "మీ  తెరకాపరి యొక్క అభీష్టాలు అమర్చుకొను"
 
-#: ../data/gnome-screensaver-preferences.glade.h:1
+#: ../data/gnome-screensaver-preferences.ui.h:1
 msgid "<b>Screensaver preview</b>"
 msgstr "<b>తెరకాపరి యొక్క ఉపదర్శనము</b>"
 
-#: ../data/gnome-screensaver-preferences.glade.h:2
+#: ../data/gnome-screensaver-preferences.ui.h:2
 msgid "<b>Warning: the screen will not be locked for the root user.</b>"
 msgstr "<b>హెచ్చరిక : మూల వినియోగదారునికి తెర తాళము వేయబడదు </b>"
 
-#: ../data/gnome-screensaver-preferences.glade.h:3
+#: ../data/gnome-screensaver-preferences.ui.h:3
 msgid "Power _Management"
 msgstr "విద్యుత్ నిర్వహణ(_M)"
 
-#: ../data/gnome-screensaver-preferences.glade.h:4
+#: ../data/gnome-screensaver-preferences.ui.h:4
 msgid "Regard the computer as _idle after:"
 msgstr "జడముగా ఉన్న తర్వాత కంప్యూటర్ గురించి(_i):"
 
-#: ../data/gnome-screensaver-preferences.glade.h:5
+#: ../data/gnome-screensaver-preferences.ui.h:5
 msgid "Screensaver Preferences"
 msgstr "తెరకాపరి యొక్క అభీష్టాలు "
 
-#: ../data/gnome-screensaver-preferences.glade.h:6
+#: ../data/gnome-screensaver-preferences.ui.h:6
 msgid "Screensaver Preview"
 msgstr "తెరకాపరి యొక్క ఉపదర్శనం"
 
-#: ../data/gnome-screensaver-preferences.glade.h:7
+#: ../data/gnome-screensaver-preferences.ui.h:7
 msgid "_Activate screensaver when computer is idle"
 msgstr "కంప్యూటర్ తీరికగా ఉన్నప్పుడు తెరకాపరిని ప్రేరేపించు(_A)"
 
-#: ../data/gnome-screensaver-preferences.glade.h:8
+#: ../data/gnome-screensaver-preferences.ui.h:8
 msgid "_Lock screen when screensaver is active"
 msgstr "తెరకాపరి చురుకుగా ఉన్నప్పుడు తెరకు తాళం వేయు(_L)"
 
-#: ../data/gnome-screensaver-preferences.glade.h:9
+#: ../data/gnome-screensaver-preferences.ui.h:9
 msgid "_Preview"
 msgstr "ఉపదర్శనం(_P)"
 
-#: ../data/gnome-screensaver-preferences.glade.h:10
+#: ../data/gnome-screensaver-preferences.ui.h:10
 msgid "_Screensaver theme:"
 msgstr "తెరకాపరి వైవిద్యాంశం(_S):"
 
@@ -247,41 +249,44 @@ msgstr "సమకూర్పు తీరికగా భావించక మ
 msgid "Time before theme change"
 msgstr "వైవిద్యాంశ మార్పు ముందు సమయం"
 
-#: ../data/lock-dialog-default.glade.h:2
+#: ../data/lock-dialog-default.ui.h:2
 #, no-c-format
 msgid "<b>Leave a message for %R:</b>"
 msgstr "<b>%R కొరకు  సందేశాన్ని వదులు</b>"
 
-#: ../data/lock-dialog-default.glade.h:4
+#: ../data/lock-dialog-default.ui.h:4
 #, no-c-format
 msgid "<span size=\"small\">%U on %h</span>"
 msgstr "<span size=\"small\">%U on %h</span>"
 
-#: ../data/lock-dialog-default.glade.h:6
+#: ../data/lock-dialog-default.ui.h:6
 #, no-c-format
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:7
+#: ../data/lock-dialog-default.ui.h:7
 msgid "_Cancel"
 msgstr "రద్దు(_C)"
 
-#: ../data/lock-dialog-default.glade.h:8
+#: ../data/lock-dialog-default.ui.h:8
 msgid "_Leave Message"
 msgstr "సందేశాన్ని వదులు(_L)"
 
-#: ../data/lock-dialog-default.glade.h:9
+#: ../data/lock-dialog-default.ui.h:9
 msgid "_Log Out"
 msgstr "నిష్క్రమణ ద్వారం(_L)"
 
-#: ../data/lock-dialog-default.glade.h:10
+#: ../data/lock-dialog-default.ui.h:10
 msgid "_Switch User"
 msgstr "వినియోగదారున్ని మార్చు(_S)"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1366
+#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1382
 msgid "_Unlock"
 msgstr "తెరచివేయు(_U)"
 
+#. Translators: This is the name of a desktop background image that shows outer space images.
+#. You might want to translate it into the equivalent words of your language
+#: ../data/images/cosmos/cosmos.xml.in.in.h:3
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
 msgstr "కాస్మోస్"
@@ -463,7 +468,7 @@ msgstr "తెరకాపరిని ఆపడానికి పిలుస�
 msgid "The reason for inhibiting the screensaver"
 msgstr "తెరకాపరి ఆటంకానికి కారణం"
 
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:57
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:58
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "ఈ కార్యక్షేత్ర వివరణం"
@@ -483,13 +488,11 @@ msgstr "చురుకుగాలేదు"
 
 #: ../src/gnome-screensaver-command.c:321
 #, c-format
-#| msgid "The screensaver is %s\n"
 msgid "The screensaver is not inhibited\n"
 msgstr "తెరకాపరి ఆక్షేపితమైనది కాదు\n"
 
 #: ../src/gnome-screensaver-command.c:327
 #, c-format
-#| msgid "The screensaver is %s\n"
 msgid "The screensaver is being inhibited by:\n"
 msgstr "తెరకాపరి దీనిచేత అక్షేపించబడుచున్నది:\n"
 
@@ -498,128 +501,138 @@ msgstr "తెరకాపరి దీనిచేత అక్షేపిం�
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "తెరకాపరి %d క్షణాలు చురుకుగా ఉంది.\n"
 
-#: ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver-command.c:362
+#, c-format
+#| msgid "The screensaver is not inhibited\n"
+msgid "The screensaver is not currently active.\n"
+msgstr "తెరకాపరి ప్రస్తుతం క్రియాశీలముగా లేదు.\n"
+
+#: ../src/gnome-screensaver-dialog.c:56
 msgid "Show debugging output"
 msgstr "లోపనిర్మూలన దిగుబడిని చూపించు"
 
-#: ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver-dialog.c:60
 msgid "Show the logout button"
 msgstr "నిష్ర్కమణద్వార బొత్తాన్ని చూపించు"
 
-#: ../src/gnome-screensaver-dialog.c:61
+#: ../src/gnome-screensaver-dialog.c:62
 msgid "Command to invoke from the logout button"
 msgstr "నిష్ర్కమణద్వార బొత్తం నుంచి పిలుచుటకు ఆదేశం"
 
-#: ../src/gnome-screensaver-dialog.c:63
+#: ../src/gnome-screensaver-dialog.c:64
 msgid "Show the switch user button"
 msgstr "వినియోగదారున్ని మార్చే బొత్తాన్ని చూపించు"
 
-#: ../src/gnome-screensaver-dialog.c:65
+#: ../src/gnome-screensaver-dialog.c:66
 msgid "Message to show in the dialog"
 msgstr "వివరణలో చూపటానికి సందేశం"
 
-#: ../src/gnome-screensaver-dialog.c:65
+#: ../src/gnome-screensaver-dialog.c:66 ../src/gnome-screensaver-dialog.c:68
 msgid "MESSAGE"
 msgstr "సందేశం"
 
+#: ../src/gnome-screensaver-dialog.c:68
+msgid "Not used"
+msgstr "ఉపయోగించబడలేదు"
+
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:175 ../src/gnome-screensaver-dialog.c:176
-#: ../src/gnome-screensaver-dialog.c:177 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:180 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "వినియోగదారుని పేరు:"
 
-#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:181 ../src/gnome-screensaver-dialog.c:182
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "రహస్యపదం:"
 
-#: ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:183
 msgid "You are required to change your password immediately (password aged)"
 msgstr "మీరు వెంటనే రహస్యపదాన్ని మార్చమని కోరడమైనది (రహస్యపదం పాతదైనది)"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "మీ రహస్యపదాన్ని మార్చుకోమని కోరడమైనది (మూలం బలవంతంగా )"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "Your account has expired; please contact your system administrator"
 msgstr "మీ అకౌంట్ ముగిసినది; దయచేసి మీ వ్యవస్థ నిర్వాహకుడిని సంప్రదించండి"
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "No password supplied"
 msgstr "రహస్యపదం ఇవబడలేదు"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:187
 msgid "Password unchanged"
 msgstr "రహస్యపదం మార్చబడలేదు"
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "Can not get username"
 msgstr "వినియోగదారుని పేరు దొరకలేదు"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "Retype new UNIX password:"
 msgstr "మరల కొత్త యూనిక్స్  రహస్యపదాన్ని వ్రాయండి:"
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:190
 msgid "Enter new UNIX password:"
 msgstr "కొత్త యూనిక్స్  రహస్యపదాన్ని వ్రాయండి:"
 
-#: ../src/gnome-screensaver-dialog.c:188
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "(current) UNIX password:"
 msgstr "(ప్రస్తుత) యూనిక్స్  రహస్యపదం:"
 
-#: ../src/gnome-screensaver-dialog.c:189
+#: ../src/gnome-screensaver-dialog.c:192
 msgid "Error while changing NIS password."
 msgstr "NIS రహస్యపదాన్ని మార్చేటప్పుడు తప్పు జరిగినది."
 
-#: ../src/gnome-screensaver-dialog.c:190
+#: ../src/gnome-screensaver-dialog.c:193
 msgid "You must choose a longer password"
 msgstr "మీరు పెద్ద రహస్యపదాన్ని ఎంచుకోవాలి"
 
-#: ../src/gnome-screensaver-dialog.c:191
+#: ../src/gnome-screensaver-dialog.c:194
 msgid "Password has been already used. Choose another."
 msgstr "రహస్యపదం మునుపే వాడుకలో ఉంది. వేరేదాన్ని ఎంచుకోండి."
 
-#: ../src/gnome-screensaver-dialog.c:192
+#: ../src/gnome-screensaver-dialog.c:195
 msgid "You must wait longer to change your password"
 msgstr "మీ రహస్యపదాన్ని మార్చుకోవటానికి చాలా సమయం ఆగాల్సివుంటుంది"
 
-#: ../src/gnome-screensaver-dialog.c:193
+#: ../src/gnome-screensaver-dialog.c:196
 msgid "Sorry, passwords do not match"
 msgstr "క్షమించాలి , రహస్యపదాలు జతకూడట్లేదు"
 
-#: ../src/gnome-screensaver-dialog.c:259
+#: ../src/gnome-screensaver-dialog.c:262
 msgid "Checking..."
 msgstr "తనిఖీ చేస్తోంది..."
 
-#: ../src/gnome-screensaver-dialog.c:301 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:304 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "ప్రామాణీకరణ తప్పినది"
 
-#: ../src/gnome-screensaver-preferences.c:525
+#: ../src/gnome-screensaver-preferences.c:524
 msgid "Blank screen"
 msgstr "వట్టి తెర"
 
-#: ../src/gnome-screensaver-preferences.c:531
+#: ../src/gnome-screensaver-preferences.c:530
 msgid "Random"
 msgstr "విభిన్న"
 
-#: ../src/gnome-screensaver-preferences.c:981
+#: ../src/gnome-screensaver-preferences.c:980
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d గంట"
 msgstr[1] "%d గంటలు"
 
-#: ../src/gnome-screensaver-preferences.c:984
+#: ../src/gnome-screensaver-preferences.c:983
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d నిమిషము"
 msgstr[1] "%d నిమిషాలు"
 
-#: ../src/gnome-screensaver-preferences.c:987
+#: ../src/gnome-screensaver-preferences.c:986
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -627,15 +640,15 @@ msgstr[0] "%d క్షణం"
 msgstr[1] "%d క్షణాలు"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:993
+#: ../src/gnome-screensaver-preferences.c:992
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:996
-#: ../src/gnome-screensaver-preferences.c:1004
+#: ../src/gnome-screensaver-preferences.c:995
+#: ../src/gnome-screensaver-preferences.c:1003
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -643,23 +656,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:999
-#: ../src/gnome-screensaver-preferences.c:1007
-#: ../src/gnome-screensaver-preferences.c:1011
+#: ../src/gnome-screensaver-preferences.c:998
+#: ../src/gnome-screensaver-preferences.c:1006
+#: ../src/gnome-screensaver-preferences.c:1010
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1026
+#: ../src/gnome-screensaver-preferences.c:1025
 #, c-format
 msgid "Never"
 msgstr "ఎప్పుడును లేదు"
 
-#: ../src/gnome-screensaver-preferences.c:1463
+#: ../src/gnome-screensaver-preferences.c:1467
 msgid "Could not load the main interface"
 msgstr "ప్రధాన సంవిధాన్ని భారం చేయలేకపోయింది"
 
-#: ../src/gnome-screensaver-preferences.c:1465
+#: ../src/gnome-screensaver-preferences.c:1469
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "దయచేసి తెరకాపరి సరిగ్గా నెలకొల్పండిందో లేదో చూసుకోండి"
 
@@ -670,6 +683,10 @@ msgstr "సూత్రదారి అవ్వకు"
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
 msgstr "లోపనిర్మూలన సంకేతాన్ని ఉపయోగించు"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:1
+msgid "Launch screen saver and locker program"
+msgstr "తెరకాపరినిను మరియు లాకర్ ప్రోగ్రామ్‌ను ఆరంభించుము"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -705,28 +722,28 @@ msgstr "సందేశ వాహకానికి బంధింపబడల�
 msgid "screensaver already running in this session"
 msgstr "ఈ సమకూర్పులో తెరకాపరి మునుపే నడుస్తున్నది "
 
-#: ../src/gs-lock-plug.c:271
+#: ../src/gs-lock-plug.c:270
 msgid "Time has expired."
 msgstr "సమయం ముగిసినది"
 
-#: ../src/gs-lock-plug.c:299
+#: ../src/gs-lock-plug.c:298
 msgid "You have the Caps Lock key on."
 msgstr "కాప్స్ లాక్ ఆన్లో ఉంది"
 
-#: ../src/gs-lock-plug.c:1346
+#: ../src/gs-lock-plug.c:1362
 msgid "S_witch User..."
 msgstr "వినియోగదారున్ని మార్చు(_w)..."
 
-#: ../src/gs-lock-plug.c:1355
+#: ../src/gs-lock-plug.c:1371
 msgid "Log _Out"
 msgstr "నిష్క్రమణద్వారం(_O)"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1531
+#: ../src/gs-lock-plug.c:1547
 msgid "%U on %h"
 msgstr "%U మీద %h"
 
-#: ../src/gs-lock-plug.c:1545
+#: ../src/gs-lock-plug.c:1561
 msgid "_Password:"
 msgstr "రహస్యపదం(_P):"
 
