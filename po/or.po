@@ -1,4 +1,4 @@
-# translation of gnome-screensaver.HEAD.or.po to Oriya
+# translation of gnome-screensaver.master.or.po to Oriya
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 #
@@ -7,10 +7,10 @@
 # Manoj Kumar Giri <mgiri@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver.HEAD.or\n"
+"Project-Id-Version: gnome-screensaver.master.or\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver&component=general\n"
-"POT-Creation-Date: 2009-03-02 09:52+0000\n"
-"PO-Revision-Date: 2009-03-11 00:39+0530\n"
+"POT-Creation-Date: 2009-08-21 03:05+0000\n"
+"PO-Revision-Date: 2009-09-17 20:44+0530\n"
 "Last-Translator: Manoj Kumar Giri <mgiri@redhat.com>\n"
 "Language-Team: Oriya <oriya-it@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -20,9 +20,12 @@ msgstr ""
 "\n"
 "\n"
 "\n"
+"\n"
+"\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
+#: ../src/gnome-screensaver.desktop.in.in.h:2
 msgid "Screensaver"
 msgstr "Screensaver"
 
@@ -30,43 +33,43 @@ msgstr "Screensaver"
 msgid "Set your screensaver preferences"
 msgstr "ଆପଣଙ୍କର ସ୍କ୍ରିନସେଭର ପସନ୍ଦଗୁଡିକୁ ସ୍ଥିର କରନ୍ତୁ"
 
-#: ../data/gnome-screensaver-preferences.glade.h:1
+#: ../data/gnome-screensaver-preferences.ui.h:1
 msgid "<b>Screensaver preview</b>"
 msgstr "<b>ସ୍କ୍ରିନସେଭର ପୂର୍ବଦୃଶ୍ଯ</b>"
 
-#: ../data/gnome-screensaver-preferences.glade.h:2
+#: ../data/gnome-screensaver-preferences.ui.h:2
 msgid "<b>Warning: the screen will not be locked for the root user.</b>"
 msgstr "<b>ଚେତାବନୀ: ମୂଳ ଉପୟୋଗକର୍ତ୍ତା ପାଇଁ ସ୍କ୍ରିନ ତାଲାବନ୍ଦ ହେବ ନାହିଁ </b>"
 
-#: ../data/gnome-screensaver-preferences.glade.h:3
+#: ../data/gnome-screensaver-preferences.ui.h:3
 msgid "Power _Management"
 msgstr "ବିଦ୍ଯୁତ _ପ୍ରବନ୍ଧନ"
 
-#: ../data/gnome-screensaver-preferences.glade.h:4
+#: ../data/gnome-screensaver-preferences.ui.h:4
 msgid "Regard the computer as _idle after:"
 msgstr "ପରେ କମ୍ପ୍ଯୁଟରକୁ ନିଷ୍କ୍ରିଯ ପରି _ବିଚାର କର:"
 
-#: ../data/gnome-screensaver-preferences.glade.h:5
+#: ../data/gnome-screensaver-preferences.ui.h:5
 msgid "Screensaver Preferences"
 msgstr "ସ୍କ୍ରିନସେଭର ପସନ୍ଦଗୁଡିକ"
 
-#: ../data/gnome-screensaver-preferences.glade.h:6
+#: ../data/gnome-screensaver-preferences.ui.h:6
 msgid "Screensaver Preview"
 msgstr "ସ୍କ୍ରିନସେଭର ପୂର୍ବଦୃଶ୍ଯ"
 
-#: ../data/gnome-screensaver-preferences.glade.h:7
+#: ../data/gnome-screensaver-preferences.ui.h:7
 msgid "_Activate screensaver when computer is idle"
 msgstr " _ୟେବେ କମ୍ପ୍ଯୁଟର ନିଷ୍କ୍ରିଯ ହୁଏ ସ୍କ୍ରିନସେଭରକୁ ସକ୍ରିଯ କର "
 
-#: ../data/gnome-screensaver-preferences.glade.h:8
+#: ../data/gnome-screensaver-preferences.ui.h:8
 msgid "_Lock screen when screensaver is active"
 msgstr "_ ୟେବେ ସ୍କ୍ରିନସେଭର ସକ୍ରିଯ ହୁଏ ସ୍କ୍ରିନକୁ ତାଲାବନ୍ଦ କର"
 
-#: ../data/gnome-screensaver-preferences.glade.h:9
+#: ../data/gnome-screensaver-preferences.ui.h:9
 msgid "_Preview"
 msgstr "ପୂର୍ବାଲୋକନ (_P)"
 
-#: ../data/gnome-screensaver-preferences.glade.h:10
+#: ../data/gnome-screensaver-preferences.ui.h:10
 msgid "_Screensaver theme:"
 msgstr "ପରଦା ସଂରକ୍ଷକ ପ୍ରସଙ୍ଗ (_S):"
 
@@ -128,7 +131,10 @@ msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
-msgstr "ତାଲାବନ୍ଦକୁ ଖୋଲିବା ପାଇଁ ଚେଷ୍ଟା କରିବା ବେଳେ ଉଇଣ୍ଡୋରେ ଗୋଟିଏ କିବୋର୍ଡକୁ ଏମ୍ବେଡେଡ କରିବା ପାଇଁ ସ୍ବୀକୃତି ଦେବା ନିମନ୍ତେ ଏହାକୁ TRUE କୁ ସ୍ଥିର କର ୤  \"କିବୋର୍ଡ_ଆଦେଶ\" କି ଉପୟୁକ୍ତ ଆଦେଶ ସହିତ ସେଟ ହେବା ଆବଶ୍ଯକ ୤"
+msgstr ""
+"ତାଲାବନ୍ଦକୁ ଖୋଲିବା ପାଇଁ ଚେଷ୍ଟା କରିବା ବେଳେ ଉଇଣ୍ଡୋରେ ଗୋଟିଏ କିବୋର୍ଡକୁ ଏମ୍ବେଡେଡ କରିବା ପାଇଁ "
+"ସ୍ବୀକୃତି ଦେବା ନିମନ୍ତେ ଏହାକୁ TRUE କୁ ସ୍ଥିର କର ୤  \"କିବୋର୍ଡ_ଆଦେଶ\" କି ଉପୟୁକ୍ତ ଆଦେଶ ସହିତ ସେଟ "
+"ହେବା ଆବଶ୍ଯକ ୤"
 
 #: ../data/gnome-screensaver.schemas.in.h:14
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
@@ -138,13 +144,17 @@ msgstr "ୟେବେ ସ୍କ୍ରିନସେଭର ସକ୍ରିଯ ହୁ
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
-msgstr "ଗୋଟିଏ ଭିନ୍ନ ଉପୟୋଗକର୍ତ୍ତା ଆକାଉଣ୍ଟକୁ ବଦଳ କରିବା ପାଇଁ ତାଲାବନ୍ଦ ଖୋଲିବା ଡାଏଲଗରେ ଗୋଟିଏ ବିକଳ୍ପ ପ୍ରଦାନ କରିବା ନିମନ୍ତେ ଏହାକୁ TRUE କୁ ସ୍ଥିର କର ୤"
+msgstr ""
+"ଗୋଟିଏ ଭିନ୍ନ ଉପୟୋଗକର୍ତ୍ତା ଆକାଉଣ୍ଟକୁ ବଦଳ କରିବା ପାଇଁ ତାଲାବନ୍ଦ ଖୋଲିବା ଡାଏଲଗରେ ଗୋଟିଏ ବିକଳ୍ପ "
+"ପ୍ରଦାନ କରିବା ନିମନ୍ତେ ଏହାକୁ TRUE କୁ ସ୍ଥିର କର ୤"
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
-msgstr "ତାଲାବନ୍ଦ ଖୋଲିବା ଡାଏଲଗରେ ଗୋଟିଏ ବିଳମ୍ବ ପରେ ଲଗ-ଆଉଟ କରିବା ପାଇଁ ଗୋଟିଏ ବିକଳ୍ପ ପ୍ରଦାନ କରିବା ନିମନ୍ତେ ଏହାକୁ TRUE କୁ ସ୍ଥିର କର ୤ ବିଳମ୍ବ \"ଲଗଆଉଟ_ବିଳମ୍ବ\" କିରେ ନିର୍ଦ୍ଦିଷ୍ଟ ହୋଇଥାଏ ୤"
+msgstr ""
+"ତାଲାବନ୍ଦ ଖୋଲିବା ଡାଏଲଗରେ ଗୋଟିଏ ବିଳମ୍ବ ପରେ ଲଗ-ଆଉଟ କରିବା ପାଇଁ ଗୋଟିଏ ବିକଳ୍ପ ପ୍ରଦାନ କରିବା "
+"ନିମନ୍ତେ ଏହାକୁ TRUE କୁ ସ୍ଥିର କର ୤ ବିଳମ୍ବ \"ଲଗଆଉଟ_ବିଳମ୍ବ\" କିରେ ନିର୍ଦ୍ଦିଷ୍ଟ ହୋଇଥାଏ ୤"
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
@@ -152,14 +162,20 @@ msgid ""
 "set to TRUE, to embed a keyboard widget into the window. This command should "
 "implement an XEMBED plug interface and output a window XID on the standard "
 "output."
-msgstr "ଆଦେଶ ୟାହାକି ଚାଲିବ ,ୟଦି \"ଏମ୍ବେଡେଡ_କିବୋର୍ଡ_ସକ୍ଷମହେଲା\" କି TRUEକୁ ସ୍ଥିର ହୋଇଥାଏ, ଗୋଟିଏ କିବୋର୍ଡ ବିଜେଟକୁ ଉଇଣ୍ଡୋରେ ଏମ୍ବେଡ କରିବା ପାଇଁ ୤ ଏହି ଆଦେଶ ଗୋଟିଏ XEMBED ପ୍ଲଗ ଇଣ୍ଟରଫେସ  ଏବଂ ଆଉଟପୁଟ ଗୋଟିଏ ଉଇଣ୍ଡୋ XID ଷ୍ଟାଣ୍ଡାର୍ଡ ଆଉଟପୁଟରେ କାର୍ୟ୍ଯକାରୀ ହେବା ଉଚିତ ୤"
+msgstr ""
+"ଆଦେଶ ୟାହାକି ଚାଲିବ ,ୟଦି \"ଏମ୍ବେଡେଡ_କିବୋର୍ଡ_ସକ୍ଷମହେଲା\" କି TRUEକୁ ସ୍ଥିର ହୋଇଥାଏ, ଗୋଟିଏ "
+"କିବୋର୍ଡ ବିଜେଟକୁ ଉଇଣ୍ଡୋରେ ଏମ୍ବେଡ କରିବା ପାଇଁ ୤ ଏହି ଆଦେଶ ଗୋଟିଏ XEMBED ପ୍ଲଗ ଇଣ୍ଟରଫେସ  ଏବଂ "
+"ଆଉଟପୁଟ ଗୋଟିଏ ଉଇଣ୍ଡୋ XID ଷ୍ଟାଣ୍ଡାର୍ଡ ଆଉଟପୁଟରେ କାର୍ୟ୍ଯକାରୀ ହେବା ଉଚିତ ୤"
 
 #: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
-msgstr "ଲଗ-ଆଉଟ ବଟନ କ୍ଲିକ ହେଲେ ଆହ୍ବାନ କରିବାକୁ ଥିବା ଆଦେଶ ୤ ଏହି ଆଦେଶ ଉପୟୋଗକର୍ତ୍ତାଙ୍କୁ ସରଳ ଭାବରେ ଲଗ-ଆଉଟ କରେ ଅନ୍ଯ କୌଣସି କଥାବାର୍ତ୍ତା ବିନା ୤ ଏହି କିର ପ୍ରଭାବ ପଡିଥାଏ, କେବଳ ୟଦି  \"ଲଗଆଉଟ_ସକ୍ଷମ\" କି TRUEକୁ ସ୍ଥିର ହୋଇଥାଏ ୤"
+msgstr ""
+"ଲଗ-ଆଉଟ ବଟନ କ୍ଲିକ ହେଲେ ଆହ୍ବାନ କରିବାକୁ ଥିବା ଆଦେଶ ୤ ଏହି ଆଦେଶ ଉପୟୋଗକର୍ତ୍ତାଙ୍କୁ ସରଳ ଭାବରେ ଲଗ-"
+"ଆଉଟ କରେ ଅନ୍ଯ କୌଣସି କଥାବାର୍ତ୍ତା ବିନା ୤ ଏହି କିର ପ୍ରଭାବ ପଡିଥାଏ, କେବଳ ୟଦି  \"ଲଗଆଉଟ_ସକ୍ଷମ\" "
+"କି TRUEକୁ ସ୍ଥିର ହୋଇଥାଏ ୤"
 
 #: ../data/gnome-screensaver.schemas.in.h:19
 msgid "The number of minutes after screensaver activation before locking the screen."
@@ -170,7 +186,10 @@ msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
-msgstr "ଗେଟିଏ ଲଗ-ଆଉଟ ବିକଳ୍ପ ତାଲାବନ୍ଦ ଖୋଲିବା ଡାଏଲଗରେ ପ୍ରତୀତ ହେବା ପୂର୍ବରୁ ସ୍କ୍ରିନସେଭର ସକ୍ରିଯ ହେବା ପରେ ମିନିଟଗୁଡିକର ସଂଖ୍ଯା ୤ ଏହି କିର ପ୍ରଭାବ ପଡିଥାଏ କେବଳ ୟଦି  \"ଲଗଆଉଟ_ସକ୍ଷମ\" କି TRUEକୁ ସ୍ଥିର ହୋଇଥାଏ ୤"
+msgstr ""
+"ଗେଟିଏ ଲଗ-ଆଉଟ ବିକଳ୍ପ ତାଲାବନ୍ଦ ଖୋଲିବା ଡାଏଲଗରେ ପ୍ରତୀତ ହେବା ପୂର୍ବରୁ ସ୍କ୍ରିନସେଭର ସକ୍ରିଯ ହେବା "
+"ପରେ ମିନିଟଗୁଡିକର ସଂଖ୍ଯା ୤ ଏହି କିର ପ୍ରଭାବ ପଡିଥାଏ କେବଳ ୟଦି  \"ଲଗଆଉଟ_ସକ୍ଷମ\" କି TRUEକୁ ସ୍ଥିର "
+"ହୋଇଥାଏ ୤"
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid "The number of minutes of inactivity before the session is considered idle."
@@ -184,7 +203,9 @@ msgstr "ସ୍କ୍ରିନସେଭର ଥିମ ପରିବର୍ତ୍ତ�
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
-msgstr "ବିଦ୍ଯୁତ ପ୍ରବନ୍ଧନକୁ ସଂକେତ ଦେବା ପୂର୍ବରୁ ନିଷ୍କ୍ରିଯତାର ସେକେଣ୍ଡଗୁଡିକର ସଂଖ୍ଯା ୤ ଏହି କି  ଅଧିବେଶନ ବିଦ୍ଯୁତ ପ୍ରବନ୍ଧନ ଏଜେଣ୍ଟ ଦ୍ବାରା ସ୍ଥିର ଏବଂ ରକ୍ଷଣାବେକ୍ଷଣ ହୋଇଥାଏ ୤"
+msgstr ""
+"ବିଦ୍ଯୁତ ପ୍ରବନ୍ଧନକୁ ସଂକେତ ଦେବା ପୂର୍ବରୁ ନିଷ୍କ୍ରିଯତାର ସେକେଣ୍ଡଗୁଡିକର ସଂଖ୍ଯା ୤ ଏହି କି  ଅଧିବେଶନ ବିଦ୍ଯୁତ "
+"ପ୍ରବନ୍ଧନ ଏଜେଣ୍ଟ ଦ୍ବାରା ସ୍ଥିର ଏବଂ ରକ୍ଷଣାବେକ୍ଷଣ ହୋଇଥାଏ ୤"
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
@@ -193,7 +214,11 @@ msgid ""
 "screensaver using only one theme on activation (specified in \"themes\" "
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
-msgstr "ସ୍କ୍ରିନସେଭର ଦ୍ବାରା ଉପୟୋଗ ହୋଇଥିବା ମନୋନଯନ ମୋଡ ୤  ହୁଏତ \"କେବଳ-ଖାଲି\" ସକ୍ରିଯ ହେବାରେ କୌଣସି ଥିମ ଉପୟୋଗ କରିବା ବିନା ସ୍କ୍ରିନସେଭରକୁ ସକ୍ଷମ କରିବା ପାଇଁ, \"ଏକମାତ୍ର\"  ସକ୍ରିଯ ହେବାରେ କେବଳ ଗୋଟିଏ ଥିମକୁ ଉପୟୋଗ କରି ସ୍କ୍ରିନସେଭରକୁ ସକ୍ଷମ କରିବା ପାଇଁ ( \"ଥିମ\" କିରେ ନିର୍ଦ୍ଦିଷ୍ଟ), ଏବଂ \"ୟଦୃଚ୍ଛାକ୍ରମରେ\" ସକ୍ରିଯ ହେବାରେ ଗୋଟିଏ ୟଦୃଚ୍ଛା ଥିମକୁ ଉପୟୋଗ କରି ସ୍କ୍ରିନସେଭରକୁ ସକ୍ଷମ କରିବା ପାଇଁ ହୋଇପାରେ ୤"
+msgstr ""
+"ସ୍କ୍ରିନସେଭର ଦ୍ବାରା ଉପୟୋଗ ହୋଇଥିବା ମନୋନଯନ ମୋଡ ୤  ହୁଏତ \"କେବଳ-ଖାଲି\" ସକ୍ରିଯ ହେବାରେ କୌଣସି "
+"ଥିମ ଉପୟୋଗ କରିବା ବିନା ସ୍କ୍ରିନସେଭରକୁ ସକ୍ଷମ କରିବା ପାଇଁ, \"ଏକମାତ୍ର\"  ସକ୍ରିଯ ହେବାରେ କେବଳ ଗୋଟିଏ "
+"ଥିମକୁ ଉପୟୋଗ କରି ସ୍କ୍ରିନସେଭରକୁ ସକ୍ଷମ କରିବା ପାଇଁ ( \"ଥିମ\" କିରେ ନିର୍ଦ୍ଦିଷ୍ଟ), ଏବଂ \"ୟଦୃଚ୍ଛାକ୍ରମରେ"
+"\" ସକ୍ରିଯ ହେବାରେ ଗୋଟିଏ ୟଦୃଚ୍ଛା ଥିମକୁ ଉପୟୋଗ କରି ସ୍କ୍ରିନସେଭରକୁ ସକ୍ଷମ କରିବା ପାଇଁ ହୋଇପାରେ ୤"
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
@@ -209,7 +234,11 @@ msgid ""
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
-msgstr "ଏହି କି ସ୍କ୍ରିନସେଭର ଦ୍ବାରା ଉପୟୋଗ ହେବାକୁ ଥିବା ଥିମଗୁଡିକର ତାଲିକାକୁ ନିର୍ଦ୍ଦିଷ୍ଟ କରେ ୤  ଏହା ଅବହେଳିତ ହୋଇଥାଏ ୟେବେ \"ମୋଡ\" କି \"କେବଳ-ଖାଲି\"ଅଟେ, ଥିମ ନାମ ୟୋଗାଇଦେବା ଉଚିତ ୟେବେ \"ମୋଡ\"  \"ଏକମାତ୍ର\"ଅଟେ, ଏବଂ ଥିମ ନାମଗୁଡିକର ତାଲିକା ୟୋଗାଇଦେବା ଉଚିତ ୟେବେ \"ମୋଡ\"  \"ୟଦୃଚ୍ଛା\" ଅଟେ ୤"
+msgstr ""
+"ଏହି କି ସ୍କ୍ରିନସେଭର ଦ୍ବାରା ଉପୟୋଗ ହେବାକୁ ଥିବା ଥିମଗୁଡିକର ତାଲିକାକୁ ନିର୍ଦ୍ଦିଷ୍ଟ କରେ ୤  ଏହା ଅବହେଳିତ "
+"ହୋଇଥାଏ ୟେବେ \"ମୋଡ\" କି \"କେବଳ-ଖାଲି\"ଅଟେ, ଥିମ ନାମ ୟୋଗାଇଦେବା ଉଚିତ ୟେବେ \"ମୋଡ\"  "
+"\"ଏକମାତ୍ର\"ଅଟେ, ଏବଂ ଥିମ ନାମଗୁଡିକର ତାଲିକା ୟୋଗାଇଦେବା ଉଚିତ ୟେବେ \"ମୋଡ\"  \"ୟଦୃଚ୍ଛା\" "
+"ଅଟେ ୤"
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
@@ -231,41 +260,44 @@ msgstr "ଅଧିବେଶନ ନିଷ୍କ୍ରିଯ ବୋଲି ବିଚ
 msgid "Time before theme change"
 msgstr "ଥିମ ପରିବର୍ତ୍ତନ ପୂର୍ବରୁ ସମଯ"
 
-#: ../data/lock-dialog-default.glade.h:2
+#: ../data/lock-dialog-default.ui.h:2
 #, no-c-format
 msgid "<b>Leave a message for %R:</b>"
 msgstr "<b>%R ପାଇଁ ଗୋଟିଏ ସନ୍ଦେଶ ଦିଅନ୍ତୁ:</b>"
 
-#: ../data/lock-dialog-default.glade.h:4
+#: ../data/lock-dialog-default.ui.h:4
 #, no-c-format
 msgid "<span size=\"small\">%U on %h</span>"
 msgstr "<span size=\"small\">%U on %h</span>"
 
-#: ../data/lock-dialog-default.glade.h:6
+#: ../data/lock-dialog-default.ui.h:6
 #, no-c-format
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:7
+#: ../data/lock-dialog-default.ui.h:7
 msgid "_Cancel"
 msgstr "ବାତିଲ କରନ୍ତୁ (_C)"
 
-#: ../data/lock-dialog-default.glade.h:8
+#: ../data/lock-dialog-default.ui.h:8
 msgid "_Leave Message"
 msgstr "ସଂନ୍ଦେଶ ଛାଡନ୍ତୁ (_L)"
 
-#: ../data/lock-dialog-default.glade.h:9
+#: ../data/lock-dialog-default.ui.h:9
 msgid "_Log Out"
 msgstr "ଲଗ ଆଉଟ (_L)"
 
-#: ../data/lock-dialog-default.glade.h:10
+#: ../data/lock-dialog-default.ui.h:10
 msgid "_Switch User"
 msgstr "ବ୍ଯବହାରକାରୀ ବଦଳାନ୍ତୁ (_S)"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1366
+#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1382
 msgid "_Unlock"
 msgstr "_ତାଲାଖୋଲ"
 
+#. Translators: This is the name of a desktop background image that shows outer space images.
+#. You might want to translate it into the equivalent words of your language
+#: ../data/images/cosmos/cosmos.xml.in.in.h:3
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
 msgstr "ବିଶ୍ବବ୍ରହ୍ମାଣ୍ଡ "
@@ -447,7 +479,7 @@ msgstr "ଡାକୁଥିବା ପ୍ରଯୋଗ ୟାହାକି ସ୍କ
 msgid "The reason for inhibiting the screensaver"
 msgstr "ସ୍କ୍ରିନସେଭରକୁ ନିଷେଧ କରିବା ନିମନ୍ତେ କାରଣ"
 
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:57
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:58
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "ଏହି ପ୍ରୟୋଗର ସଂସ୍କରଣ"
@@ -480,102 +512,112 @@ msgstr "ଦ୍ୱାରା ପରଦା ସଂରକ୍ଷକଟି ବାରଣ
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "ସ୍କ୍ରିନସେଭର %d ସେକେଣ୍ଡ ପାଇଁ ସକ୍ରିଯ ହୋଇଛି ୤\n"
 
-#: ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver-command.c:362
+#, c-format
+#| msgid "The screensaver is not inhibited\n"
+msgid "The screensaver is not currently active.\n"
+msgstr "ପରଦା ସଂରକ୍ଷକଟି ବର୍ତ୍ତମାନ ସକ୍ରିୟ ନାହିଁ।\n"
+
+#: ../src/gnome-screensaver-dialog.c:56
 msgid "Show debugging output"
 msgstr "ଡିବଗ୍ କରିବା ଆଉଟପୁଟ ଦେଖାଅ"
 
-#: ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver-dialog.c:60
 msgid "Show the logout button"
 msgstr "ଲଗଆଉଟ ବଟନ ଦେଖାଅ"
 
-#: ../src/gnome-screensaver-dialog.c:61
+#: ../src/gnome-screensaver-dialog.c:62
 msgid "Command to invoke from the logout button"
 msgstr "ଲଗଆଉଟ ବଟନରୁ ଆହ୍ବାନ କରିବା ପାଇଁ ଆଦେଶ"
 
-#: ../src/gnome-screensaver-dialog.c:63
+#: ../src/gnome-screensaver-dialog.c:64
 msgid "Show the switch user button"
 msgstr "ଉପୟୋଗକର୍ତ୍ତା ବଦଳ ବଟନ ଦେଖାଅ"
 
-#: ../src/gnome-screensaver-dialog.c:65
+#: ../src/gnome-screensaver-dialog.c:66
 msgid "Message to show in the dialog"
 msgstr "ସଂଳାପରେ ଦର୍ଶାଇବା ପାଇଁ ସନ୍ଦେଶ"
 
-#: ../src/gnome-screensaver-dialog.c:65
+#: ../src/gnome-screensaver-dialog.c:66 ../src/gnome-screensaver-dialog.c:68
 msgid "MESSAGE"
 msgstr "MESSAGE"
 
+#: ../src/gnome-screensaver-dialog.c:68
+msgid "Not used"
+msgstr "ବ୍ୟବହାର ହୋଇନାହିଁ"
+
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:175 ../src/gnome-screensaver-dialog.c:176
-#: ../src/gnome-screensaver-dialog.c:177 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:180 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "ଚାଳକ ନାମ:"
 
-#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:181 ../src/gnome-screensaver-dialog.c:182
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "ପ୍ରବେଶ ସଙ୍କେତ:"
 
-#: ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:183
 msgid "You are required to change your password immediately (password aged)"
 msgstr "ଆପଣ ଆପଣଙ୍କର ପ୍ରବେଶ ସଙ୍କେତକୁ ଯଥାଶୀଘ୍ର ବଦଳାଇବା ଆବଶ୍ଯକ (ପ୍ରବେଶ ସଙ୍କେତ କାଲବାଧିତ ହୋଇସାରିଛି)"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "ଆପଣ ଆପଣଙ୍କର ପ୍ରବେଶ ସଙ୍କେତକୁ ଯଥାଶୀଘ୍ର ବଦଳାଇବା ଆବଶ୍ଯକ (ରୁଟ ଦ୍ବାରା ବାଧ୍ଯ)"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "Your account has expired; please contact your system administrator"
 msgstr "ଆପଣଙ୍କର ଖାତାଟି ଅଚଳ ବନ୍ଦ ହୋଇଯାଇଛି; ଦୟାକରି ଆପଣଙ୍କ ତନ୍ତ୍ର ପ୍ରଶାସକଙ୍କ ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ"
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "No password supplied"
 msgstr "କୌଣସି ପ୍ରବେଶ ସଙ୍କେତ ଦିଆଯାଇ ନାହିଁ"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:187
 msgid "Password unchanged"
 msgstr "ପ୍ରବେଶ ସଙ୍କେତ ଟି ଅପରିବର୍ତ୍ତିତ ଅଛି"
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "Can not get username"
 msgstr "ଚାଳକ ନାମକୁ ପାଇ ପାରିବ ନାହିଁ"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "Retype new UNIX password:"
 msgstr "ନୂତନ UNIX ପ୍ରବେଶ ସଙ୍କେତକୁ ପୁନର୍ବାର ଟାଇପ କରନ୍ତୁ:"
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:190
 msgid "Enter new UNIX password:"
 msgstr "ନୂତନ UNIX ପ୍ରବେଶ ସଙ୍କେତକୁ ଭରଣ କରନ୍ତୁ:"
 
-#: ../src/gnome-screensaver-dialog.c:188
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "(current) UNIX password:"
 msgstr "(ପ୍ରଚଳିତ) UNIX ପ୍ରବେଶ ସଙ୍କେତ:"
 
-#: ../src/gnome-screensaver-dialog.c:189
+#: ../src/gnome-screensaver-dialog.c:192
 msgid "Error while changing NIS password."
 msgstr "NIS ପ୍ରବେଶ ସଙ୍କେତକୁ ବଦଳାଇବା ସମୟରେ ତ୍ରୁଟି।"
 
-#: ../src/gnome-screensaver-dialog.c:190
+#: ../src/gnome-screensaver-dialog.c:193
 msgid "You must choose a longer password"
 msgstr "ଆପଣ ଗୋଟିଏ ଲମ୍ବା ପ୍ରବେଶ ସଙ୍କେତ ଚୟନ କରିବା ଉଚିତ"
 
-#: ../src/gnome-screensaver-dialog.c:191
+#: ../src/gnome-screensaver-dialog.c:194
 msgid "Password has been already used. Choose another."
 msgstr "ପ୍ରବେଶ ସଙ୍କେତକୁ ପୂର୍ବରୁ ବଦଳା ଯାଇଛି। ଆଉ ଗୋଟିଏ ପ୍ରବେଶ ସଙ୍କେତ ଚୟନ କରନ୍ତୁ।"
 
-#: ../src/gnome-screensaver-dialog.c:192
+#: ../src/gnome-screensaver-dialog.c:195
 msgid "You must wait longer to change your password"
 msgstr "ପ୍ରବେଶ ସଙ୍କେତକୁ ବଦଳାଇବା ପାଇଁ ଆପଣଙ୍କୁ ଅଧିକ ଅପେକ୍ଷା କରିବା ପାଇଁ ପଡିବ"
 
-#: ../src/gnome-screensaver-dialog.c:193
+#: ../src/gnome-screensaver-dialog.c:196
 msgid "Sorry, passwords do not match"
 msgstr "କ୍ଷମା କରିବେ, ପ୍ରବେଶ ସଙ୍କେତଟି ମିଶୁ ହେଉନାହିଁ"
 
-#: ../src/gnome-screensaver-dialog.c:259
+#: ../src/gnome-screensaver-dialog.c:262
 msgid "Checking..."
 msgstr "ଯାଞ୍ଚ କରୁଅଛି ..."
 
-#: ../src/gnome-screensaver-dialog.c:301 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:304 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "ବୈଧିକରଣ ବିଫଳ।"
 
@@ -637,11 +679,11 @@ msgstr "%s"
 msgid "Never"
 msgstr "କେବେ ନୁହେଁ"
 
-#: ../src/gnome-screensaver-preferences.c:1453
+#: ../src/gnome-screensaver-preferences.c:1467
 msgid "Could not load the main interface"
 msgstr "ମୁଖ୍ୟ ଅନ୍ତରାପୃଷ୍ଠ ଧାରଣ କରିବାରେ ଅସମର୍ଥ"
 
-#: ../src/gnome-screensaver-preferences.c:1455
+#: ../src/gnome-screensaver-preferences.c:1469
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "ଦଯାକରି ନିଶ୍ଚିତ କରନ୍ତୁ ୟେ ସ୍କ୍ରିନ ସେଭର ସଠିକ ଭାବରେ ପ୍ରତିଷ୍ଠାପିତ ହୋଇଛି ୤"
 
@@ -652,6 +694,10 @@ msgstr "ଗୋଟିଏ ଡିମୋନ ହୁଅ ନାହିଁ"
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
 msgstr "ତ୍ରୁଟି ନିବାରଣ ସଂକେତକୁ ସକ୍ରିୟ କରନ୍ତୁ"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:1
+msgid "Launch screen saver and locker program"
+msgstr "ପରଦା ସଂରକ୍ଷକ ଏବଂ ଅପରିବର୍ତ୍ତନୀୟ ପ୍ରଗ୍ରାମକୁ ଆରମ୍ଭ କରନ୍ତୁ"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -675,40 +721,40 @@ msgstr "ଏହି ସମଯରେ ପ୍ରବେଶ ଲାଭ କରିବା �
 msgid "No longer permitted to access the system."
 msgstr "ସିଷ୍ଟମକୁ ପ୍ରବେଶ କରିବା ପାଇଁ ଆଉ ଅନୁମତି ଦିଆୟିବନାହିଁ"
 
-#: ../src/gs-listener-dbus.c:1847
+#: ../src/gs-listener-dbus.c:1851
 msgid "failed to register with the message bus"
 msgstr "ସଂଦେଶ ବସ ସହିତ ପଞ୍ଜିକରଣ କରିବାକୁ ବିଫଳ ହେଲା"
 
-#: ../src/gs-listener-dbus.c:1857
+#: ../src/gs-listener-dbus.c:1861
 msgid "not connected to the message bus"
 msgstr "ସଂଦେଶ ବସ୍ ସହିତ ସଂୟୋଗ ହୋଇ ନାହିଁ"
 
-#: ../src/gs-listener-dbus.c:1866
+#: ../src/gs-listener-dbus.c:1870
 msgid "screensaver already running in this session"
 msgstr "ଏହି ଅଧିବେଶନରେ ସ୍କ୍ରିନସେଭର ପୂର୍ବରୁ ଚାଲୁଛି"
 
-#: ../src/gs-lock-plug.c:271
+#: ../src/gs-lock-plug.c:270
 msgid "Time has expired."
 msgstr "ସମଯ ସମାପ୍ତ ହୋଇୟାଇଛି"
 
-#: ../src/gs-lock-plug.c:299
+#: ../src/gs-lock-plug.c:298
 msgid "You have the Caps Lock key on."
 msgstr "ଆପଣଙ୍କର କ୍ଯାପସ୍ ଲକ କି ଅନ୍ ଅଛି ୤"
 
-#: ../src/gs-lock-plug.c:1346
+#: ../src/gs-lock-plug.c:1362
 msgid "S_witch User..."
 msgstr "ଉପୟୋଗକର୍ତ୍ତା_ବଦଳକର..."
 
-#: ../src/gs-lock-plug.c:1355
+#: ../src/gs-lock-plug.c:1371
 msgid "Log _Out"
 msgstr "ଲଗଆଉଟ କରନ୍ତୁ (_O)"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1531
+#: ../src/gs-lock-plug.c:1547
 msgid "%U on %h"
 msgstr "%U %h ଉପରେ"
 
-#: ../src/gs-lock-plug.c:1545
+#: ../src/gs-lock-plug.c:1561
 msgid "_Password:"
 msgstr "ପ୍ରବେଶ ସଂଙ୍କେତ (_P):"
 
