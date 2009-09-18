@@ -1,0 +1,728 @@
+# translation of gnome-screensaver.master.po to Maithili
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sangeeta Kumari <sangeeta09@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver.master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver&component=general\n"
+"POT-Creation-Date: 2009-09-11 10:02+0000\n"
+"PO-Revision-Date: 2009-09-11 20:39+0530\n"
+"Last-Translator: Sangeeta Kumari <sangeeta09@gmail.com>\n"
+"Language-Team: Maithili <maithili.sf.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+#: ../src/gnome-screensaver.desktop.in.in.h:2
+msgid "Screensaver"
+msgstr "स्क्रीनसेवर"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "अपन स्क्रीनसेवर वरीयता सेट करू"
+
+#: ../data/gnome-screensaver-preferences.ui.h:1
+msgid "<b>Screensaver preview</b>"
+msgstr "<b> स्क्रीनसेवर पूर्वावलोकन</b>"
+
+#: ../data/gnome-screensaver-preferences.ui.h:2
+msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+msgstr "<b>चेतावनी: रूट प्रयोक्ता क' लेल स्क्रीन लाक नहि हाएत.</b>"
+
+#: ../data/gnome-screensaver-preferences.ui.h:3
+msgid "Power _Management"
+msgstr "उर्जा प्रबंधन (_M)"
+
+#: ../data/gnome-screensaver-preferences.ui.h:4
+msgid "Regard the computer as _idle after:"
+msgstr "कंप्यूटरकेँ निष्क्रिय क' रूपमे एकर बाद देखू (_i):"
+
+#: ../data/gnome-screensaver-preferences.ui.h:5
+msgid "Screensaver Preferences"
+msgstr "स्क्रीनसेवर वरीयता"
+
+#: ../data/gnome-screensaver-preferences.ui.h:6
+msgid "Screensaver Preview"
+msgstr "स्क्रीनसेवर पूर्वावलोकन"
+
+#: ../data/gnome-screensaver-preferences.ui.h:7
+msgid "_Activate screensaver when computer is idle"
+msgstr "स्क्रीनसेवर सक्रिय करू जखन कंप्यूटर निष्क्रिय हुए (_A)"
+
+#: ../data/gnome-screensaver-preferences.ui.h:8
+msgid "_Lock screen when screensaver is active"
+msgstr "जखन सक्रीनसेवर सक्रिय हुए तँ स्क्रीन लाक करू (_L)"
+
+#: ../data/gnome-screensaver-preferences.ui.h:9
+msgid "_Preview"
+msgstr "पूर्वावलोकन (_P)"
+
+#: ../data/gnome-screensaver-preferences.ui.h:10
+msgid "_Screensaver theme:"
+msgstr "स्क्रीनसेवर थीम (_S):"
+
+#: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "Screensaver themes"
+msgstr "स्क्रीनसेवर थीम"
+
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "स्क्रीनसेवर"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Activate when idle"
+msgstr "निष्क्रिय रहब पर सक्रिय करू"
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow embedding a keyboard into the window"
+msgstr "विंडोमे कीबोर्ड अंतःस्थापनक स्वीकृति दिअ'"
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "Allow logout"
+msgstr "लॉगआउटक अनुमति दिअ'"
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow the session status message to be displayed"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid "Allow the session status message to be displayed when the screen is locked."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "Allow user switching"
+msgstr "प्रयोक्ता स्विचिंगक अनुमति दिअ'"
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Embedded keyboard command"
+msgstr "अंतःस्थापित कीबोर्ड कमांड"
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Lock on activation"
+msgstr "सक्रियकरण पर लाक करू"
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Logout command"
+msgstr "लागआउट कमांड"
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "Screensaver theme selection mode"
+msgstr "स्क्रीनसेवर थीम चयन मोड"
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr "एकरा सही पर सेट करू स्क्रीनसेवरकेँ सक्रिय करब क' लेल जखन सत्र निष्क्रिय अछि."
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr "अनलाक करबाक कोसिस क' दौरान विंडोमे कीबोर्ड एंबेड करब क' लेल एकरा सही पर सेट करू.\"keyboard_command\" कुँजीकेँ उचित कमांडक सँग जरूर सेट होनाइ चाही."
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr "एकरा सही पर सेट करू स्क्रीनकेँ तब लाक करब क' लेल जखन स्क्रीनसेवर सक्रिय भ' जाएत अछि."
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr "भिन्न प्रयोक्ता खातामे जाए क' लेल अनलाक समादमे एकटा विकल्प दए क' लेल एकरा सही पर सेट करू."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr "एकरा सही पर सेट करू अनलॉक समादमे एकटा विलंब क' बाद लॉग आउट हए क' एकटा विकल्प दए क' लेल. विलंब \"logout_delay\" कुँजीमे निर्दिष्ट अछि."
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr "कमांड चलताह, जँ \"embedded_keyboard_enabled\" कुँजी सही पर सेट अछि कीबोर्ड विजेट केँ विंडोमे अंतःस्थापित करबाक' लेल. एहि कमांडकेँ XEMBED प्लग इंटरफेसकेँ लागू कएनाइ चाही आओर मानक आउटपुट पर विंडो XID क' आउटपुट देनाइ चाही."
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr "लाबै क' लेल कमांड जखन लागआउट बटन क्लिक कएल जाएत अछि. एहि कमांडकेँ बिनु कोनो अंतःक्रिया क' प्रयोक्ताकेँ लॉग आउट कएनाइ चाही. ई कुँजी क' प्रभाव अछि सिर्फ जखन \"logout_enable\" कुँजी सही पर सेट अछि."
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid "The number of minutes after screensaver activation before locking the screen."
+msgstr "स्क्रीन लाक करबाक पहिने स्क्रीनसेवर सक्रियता क' बाद मिनट क' सँख्या."
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr "अनलॉक समादमे लॉगआउट विकल्प आबै क' पहिने स्क्रीनसेवर सक्रियता क' मिनट क' सँख्या . एहि कुँजी क' प्रभाव तखन सिर्फ अछि जखन \"logout_enable\" कुँजी सही पर सेट अछि."
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid "The number of minutes of inactivity before the session is considered idle."
+msgstr "सत्र क' निष्क्रिय समझल जएबाक पहिने निष्क्रियता क' मिनट क' सँख्या."
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr "स्क्रीनसेवर थीम के बदलब के पहिने चलाबै क' लेल मिनटक सँख्या."
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid ""
+"The number of seconds of inactivity before signalling to power-management. "
+"This key is set and maintained by the session power-management agent."
+msgstr ""
+"उर्जा प्रबंधनमे संकेतक पहिने क' निष्क्रियताक सेकेंड क' सँख्या . "
+"ई कुँजी सेट अछि आओर सत्र उर्जा प्रबंधन प्रतिनिधिक द्वारा देखभाल कएल जाएत अछि."
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid ""
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
+msgstr "स्क्रीनसेवरक द्वारा प्रयुक्त चयन मोड. स्क्रीनसेवरकेँ बिनु कोनो थीम क' सक्रिय करब पर सिर्फ \"सिर्फ खाली\" भ' सकैत अछि \"एकल\" केँ स्क्रीनसेवरकेँ सक्रियकरण पर सिर्फ एकटा थीमक प्रयोग क' लेल (\"थीम\" कुँजीमे निर्दिष्ट), आओर \"क्रमहीन\" स्क्रीनसेवरकेँ सक्रियकरण पर क्रमहीन थीमक प्रयोग क' लेल."
+
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Theme for lock dialog"
+msgstr "लॉक समाद क'लेल थीम"
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Theme to use for the lock dialog."
+msgstr "लॉक समादक प्रयोग क'लेल थीम."
+
+#: ../data/gnome-screensaver.schemas.in.h:27
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
+msgstr "ई कुँजी निर्दिष्ट करैत अछि स्क्रीनसेवरक द्वारा प्रयुक्त थीम क' सूची. ई अनदेखा कएल जाएत अछि जखन \"मोड\" कुँजी \"सिर्फ खाली\" अछि थीम नाम देनाइ चाही जखन \"मोड\" \"एकल\" अछि आओर थीम सूची देनाइ चाही जखन \"मोड\" \"क्रमहीन\" अछि."
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before locking"
+msgstr "लाकिंगसँ पहिने क' समय"
+
+#: ../data/gnome-screensaver.schemas.in.h:29
+msgid "Time before logout option"
+msgstr "लॉगआउट विकल्पसँ पहिने क' समय"
+
+#: ../data/gnome-screensaver.schemas.in.h:30
+msgid "Time before power-management baseline"
+msgstr "उर्जा प्रबंधन बेसलाइनप पहिने क' समय"
+
+#: ../data/gnome-screensaver.schemas.in.h:31
+msgid "Time before session is considered idle"
+msgstr "सत्रक निष्क्रिय मानल जाएबाक' पहिने क' समय"
+
+#: ../data/gnome-screensaver.schemas.in.h:32
+msgid "Time before theme change"
+msgstr "थीम बदलाव सँ पहिने क' समय"
+
+#: ../data/lock-dialog-default.ui.h:2
+#, no-c-format
+msgid "<b>Leave a message for %R:</b>"
+msgstr ""
+
+#: ../data/lock-dialog-default.ui.h:4
+#, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
+msgstr "<span size=\"small\">%U चालू %h</span>"
+
+#: ../data/lock-dialog-default.ui.h:6
+#, no-c-format
+msgid "<span size=\"x-large\">%R</span>"
+msgstr "<span size=\"x-large\">%R</span>"
+
+#: ../data/lock-dialog-default.ui.h:7
+msgid "_Cancel"
+msgstr "रद्द करू (_C)"
+
+#: ../data/lock-dialog-default.ui.h:8
+msgid "_Leave Message"
+msgstr ""
+
+#: ../data/lock-dialog-default.ui.h:9
+msgid "_Log Out"
+msgstr "लाग-आउट (_L)"
+
+#: ../data/lock-dialog-default.ui.h:10
+msgid "_Switch User"
+msgstr "प्रयोक्ता बदलू (_S)"
+
+#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1382
+msgid "_Unlock"
+msgstr "अनलाक करू (_U)"
+
+#. Translators: This is the name of a desktop background image that shows outer space images.
+#. You might want to translate it into the equivalent words of your language
+#: ../data/images/cosmos/cosmos.xml.in.in.h:3
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr "कोसमोस"
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr "कोसमोस क' चित्र क' स्लाइडशो देखाबू"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr "स्क्रीनक चारू कात गनोम फुट लोगो बबल"
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr "फ्लोटिंग पएर"
+
+#: ../savers/personal-slideshow.desktop.in.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr "अपन चित्र फोल्डर सँ स्लाइडशो देखाबू"
+
+#: ../savers/personal-slideshow.desktop.in.in.h:2
+msgid "Pictures folder"
+msgstr "चित्र फोल्डर"
+
+#: ../savers/popsquares.desktop.in.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr "पल्सिंग रँग क' एकटा pop-art-ish ग्रिड"
+
+#: ../savers/popsquares.desktop.in.in.h:2
+msgid "Pop art squares"
+msgstr "पॉप आर्ट वर्ग"
+
+#: ../savers/floaters.c:84
+msgid "Show paths that images follow"
+msgstr ""
+
+#: ../savers/floaters.c:87
+msgid "Occasionally rotate images as they move"
+msgstr ""
+
+#: ../savers/floaters.c:90
+msgid "Print out frame rate and other statistics"
+msgstr ""
+
+#: ../savers/floaters.c:93
+msgid "The maximum number of images to keep on screen"
+msgstr ""
+
+#: ../savers/floaters.c:93
+msgid "MAX_IMAGES"
+msgstr ""
+
+#: ../savers/floaters.c:96
+msgid "The initial size and position of window"
+msgstr ""
+
+#: ../savers/floaters.c:96
+msgid "WIDTHxHEIGHT+X+Y"
+msgstr "WIDTHxHEIGHT+X+Y"
+
+#: ../savers/floaters.c:99
+msgid "The source image to use"
+msgstr ""
+
+#. translators: the word "image" here
+#. * represents a command line argument
+#.
+#: ../savers/floaters.c:1194
+msgid "image - floats images around the screen"
+msgstr "चित्र - स्क्रीन क' चारो कात चित्र फ्लोट करैत अछि"
+
+#: ../savers/floaters.c:1200
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s. देखू --मद्दति प्रयोग सूचना क'लेल .\n"
+
+#: ../savers/floaters.c:1209
+#, c-format
+msgid "You must specify one image.  See --help for usage information.\n"
+msgstr "अहाँ जरूर एकटा चित्र निर्दिष्ट करू.  देखू --प्रयोग सूचना क'लेल मद्दति देखू.\n"
+
+#: ../savers/slideshow.c:53
+msgid "Location to get images from"
+msgstr "स्थान जकरासँ बिंब लेनाइ अछि"
+
+#: ../savers/slideshow.c:53
+msgid "PATH"
+msgstr "PATH"
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr ""
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr ""
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr ""
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr ""
+
+#: ../src/copy-theme-dialog.c:212
+msgid "Copying files"
+msgstr "फ़ाइलसभ कॉपी कए रहल अछि"
+
+#: ../src/copy-theme-dialog.c:230
+msgid "From:"
+msgstr "द्वारा:"
+
+#: ../src/copy-theme-dialog.c:234
+msgid "To:"
+msgstr "प्रति:"
+
+#: ../src/copy-theme-dialog.c:254
+msgid "Copying themes"
+msgstr ""
+
+#: ../src/copy-theme-dialog.c:298
+msgid "Invalid screensaver theme"
+msgstr "अवैध स्क्रीनसेवर थीम"
+
+#: ../src/copy-theme-dialog.c:301
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr ""
+
+#: ../src/copy-theme-dialog.c:481
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr "फाइल कॉपी कए रहल अछि %u %u क'"
+
+#: ../src/gnome-screensaver-command.c:62
+msgid "Causes the screensaver to exit gracefully"
+msgstr "स्क्रीनसेवर क' शांति सँ निकलि जाए क' कारण बनल"
+
+#: ../src/gnome-screensaver-command.c:64
+msgid "Query the state of the screensaver"
+msgstr "स्क्रीनसेवर क' स्थिति प्रश्नगत करू"
+
+#: ../src/gnome-screensaver-command.c:66
+msgid "Query the length of time the screensaver has been active"
+msgstr "समय क' नमाइ बताउ जखनसँ स्क्रीनसेवर सक्रिय अछि"
+
+#: ../src/gnome-screensaver-command.c:68
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "स्क्रीनकेँ तत्काल लाक करबाक लेल काज करत स्क्रीनसेवर प्रक्रिया बतबैत अछि"
+
+#: ../src/gnome-screensaver-command.c:70
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr "जँ स्क्रीनसेवर सक्रिय अछि तब दोसर आलेखीय डेमो पर जाउ"
+
+#: ../src/gnome-screensaver-command.c:72
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "स्क्रीनसेवर चालू करू (स्क्रीन खाली करू)"
+
+#: ../src/gnome-screensaver-command.c:74
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "जँ स्क्रीनसेवर सक्रिय अछि तब एकरा निष्क्रिय करू (स्क्रीन खाली करू)"
+
+#: ../src/gnome-screensaver-command.c:76
+msgid "Poke the running screensaver to simulate user activity"
+msgstr "प्रयोक्ता क्रियाकलापकेँ सिमुलेट करब क'लेल कार्यशील स्क्रीनसेवर आगाँ बढाबू"
+
+#: ../src/gnome-screensaver-command.c:78
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr "सक्रिय करब सँ स्क्रीनसेवर रोकि रहल अछि बाधा सक्रिय रहबाक दौरान कमांड खंड."
+
+#: ../src/gnome-screensaver-command.c:80
+msgid "The calling application that is inhibiting the screensaver"
+msgstr "स्क्रीनसेवर रोकबाक लेल कालिंग अनुप्रयोग"
+
+#: ../src/gnome-screensaver-command.c:82
+msgid "The reason for inhibiting the screensaver"
+msgstr "स्क्रीनसेवर रोकबाक लेल कारण"
+
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:58
+#: ../src/gnome-screensaver.c:56
+msgid "Version of this application"
+msgstr "एहि अनुप्रयोग क' संस्करण"
+
+#: ../src/gnome-screensaver-command.c:311
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr "%s स्क्रीनसेवर अछि\n"
+
+#: ../src/gnome-screensaver-command.c:311
+msgid "active"
+msgstr "क्रियाशील"
+
+#: ../src/gnome-screensaver-command.c:311
+msgid "inactive"
+msgstr "निष्क्रिय"
+
+#: ../src/gnome-screensaver-command.c:325
+#, c-format
+msgid "The screensaver is not inhibited\n"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:331
+#, c-format
+msgid "The screensaver is being inhibited by:\n"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:362
+#, c-format
+msgid "The screensaver has been active for %d seconds.\n"
+msgstr "स्क्रीनसेवर %d सकेंड सँ सक्रिय रहल अछि.\n"
+
+#: ../src/gnome-screensaver-command.c:366
+#, c-format
+msgid "The screensaver is not currently active.\n"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:56
+msgid "Show debugging output"
+msgstr "डिबगिंग आउटपुट देखाबू"
+
+#: ../src/gnome-screensaver-dialog.c:60
+msgid "Show the logout button"
+msgstr "लागआउट बटन देखाबू"
+
+#: ../src/gnome-screensaver-dialog.c:62
+msgid "Command to invoke from the logout button"
+msgstr "लागआउट बटन लाबै क'लेल कमांड"
+
+#: ../src/gnome-screensaver-dialog.c:64
+msgid "Show the switch user button"
+msgstr "प्रयोक्ता बदलू बटन देखाबू"
+
+#: ../src/gnome-screensaver-dialog.c:66
+msgid "Message to show in the dialog"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:66 ../src/gnome-screensaver-dialog.c:68
+msgid "MESSAGE"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:68
+msgid "Not used"
+msgstr ""
+
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:180 ../src/gs-auth-pam.c:698
+msgid "Username:"
+msgstr "प्रयोक्ताक नाम:"
+
+#: ../src/gnome-screensaver-dialog.c:181 ../src/gnome-screensaver-dialog.c:182
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "कूटशब्द: "
+
+#: ../src/gnome-screensaver-dialog.c:183
+msgid "You are required to change your password immediately (password aged)"
+msgstr "अहाँक अपन कूटशब्द आवश्यक रूप सँ तत्काल बदलना हाएत (कूटशब्द कालबाधित भ' चुकल अछि)."
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "You are required to change your password immediately (root enforced)"
+msgstr "अहाँक अपन कूटशब्द आवश्यक रूप सँ तत्काल बदलना हाएत (रूट द्वारा बाध्य)"
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "Your account has expired; please contact your system administrator"
+msgstr "अहाँक खाता खत्म भ' गेल अछि कृप्या अपन सिस्टम प्रशासक सँ संपर्क करू"
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "No password supplied"
+msgstr "कोनो कूटशब्द नहि देलक"
+
+#: ../src/gnome-screensaver-dialog.c:187
+msgid "Password unchanged"
+msgstr "कूटशब्द अपरिवर्तित"
+
+#: ../src/gnome-screensaver-dialog.c:188
+msgid "Can not get username"
+msgstr "प्रयोक्ता नाम नहि भेटल"
+
+#: ../src/gnome-screensaver-dialog.c:189
+msgid "Retype new UNIX password:"
+msgstr "नवीन यूनिक्स कूटशब्द दोबारा टाइप करू:"
+
+#: ../src/gnome-screensaver-dialog.c:190
+msgid "Enter new UNIX password:"
+msgstr "नवीन यूनिक्स कूटशब्द भरू:"
+
+#: ../src/gnome-screensaver-dialog.c:191
+msgid "(current) UNIX password:"
+msgstr "(वर्तमान) यूनिक्स कूटशब्द:"
+
+#: ../src/gnome-screensaver-dialog.c:192
+msgid "Error while changing NIS password."
+msgstr "एनआईएस कूटशब्द परिवर्तन क' दौरान त्रुटि."
+
+#: ../src/gnome-screensaver-dialog.c:193
+msgid "You must choose a longer password"
+msgstr "अहाँक बेसी नमहर कूटशब्द चुनै हाएत"
+
+#: ../src/gnome-screensaver-dialog.c:194
+msgid "Password has been already used. Choose another."
+msgstr "कूटशब्द पहिले उपयोग कएल जाए चुकल अछि आन चुनू."
+
+#: ../src/gnome-screensaver-dialog.c:195
+msgid "You must wait longer to change your password"
+msgstr "अपन कूटशब्दकेँ बदलब लेल अहाँक बेसी इंतजार कएनाइ हाएत"
+
+#: ../src/gnome-screensaver-dialog.c:196
+msgid "Sorry, passwords do not match"
+msgstr "क्षमा करू, कूटशब्द क' जोड़ नहि मिलैत अछि"
+
+#: ../src/gnome-screensaver-dialog.c:262
+msgid "Checking..."
+msgstr "जाँचि रहल अछि..."
+
+#: ../src/gnome-screensaver-dialog.c:304 ../src/gs-auth-pam.c:457
+msgid "Authentication failed."
+msgstr "सत्यापन असफल"
+
+#: ../src/gnome-screensaver-preferences.c:524
+msgid "Blank screen"
+msgstr "खाली स्क्रीन"
+
+#: ../src/gnome-screensaver-preferences.c:530
+msgid "Random"
+msgstr "क्रमहीन"
+
+#: ../src/gnome-screensaver-preferences.c:980
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d घंटा"
+msgstr[1] "%d घंटा"
+
+#: ../src/gnome-screensaver-preferences.c:983
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d मिनट"
+msgstr[1] "%d मिनट"
+
+#: ../src/gnome-screensaver-preferences.c:986
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d सकेंड"
+msgstr[1] "%d सकेंड"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:992
+#, c-format
+msgid "%s %s %s"
+msgstr "%s %s %s"
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:995
+#: ../src/gnome-screensaver-preferences.c:1003
+#, c-format
+msgid "%s %s"
+msgstr "%s %s"
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:998
+#: ../src/gnome-screensaver-preferences.c:1006
+#: ../src/gnome-screensaver-preferences.c:1010
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: ../src/gnome-screensaver-preferences.c:1025
+#, c-format
+msgid "Never"
+msgstr "कहियो नहि"
+
+#: ../src/gnome-screensaver-preferences.c:1467
+msgid "Could not load the main interface"
+msgstr "मुख्य अंतरफलक लोड नहि कए सकल"
+
+#: ../src/gnome-screensaver-preferences.c:1469
+msgid "Please make sure that the screensaver is properly installed"
+msgstr "निश्चित करू जे स्क्रीनसेवर विधिवत संस्थापित अछि"
+
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "डेमोन नहि होउ"
+
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr "डिबगिंग कोड सक्रिय करू"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:1
+msgid "Launch screen saver and locker program"
+msgstr ""
+
+#: ../src/gs-auth-pam.c:397
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr "सेवा %s: प्रतिष्ठापित करबमे अक्षम %s\n"
+
+#: ../src/gs-auth-pam.c:423
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr "PAM_TTY=%s नियत नहि कए सकल"
+
+#: ../src/gs-auth-pam.c:455
+msgid "Incorrect password."
+msgstr "गलत कूटशब्द"
+
+#: ../src/gs-auth-pam.c:471
+msgid "Not permitted to gain access at this time."
+msgstr "एहि समय अभिगम पाबै क'लेल अनुमति नहि."
+
+#: ../src/gs-auth-pam.c:477
+msgid "No longer permitted to access the system."
+msgstr "सिस्टम अभिगम क'लेल आब अनुमति प्राप्त नहि अछि."
+
+#: ../src/gs-listener-dbus.c:1851
+msgid "failed to register with the message bus"
+msgstr "संदेश बस क' सँग पंजीयनमे विफल"
+
+#: ../src/gs-listener-dbus.c:1861
+msgid "not connected to the message bus"
+msgstr "संदेश बस सँ जुड़बमे विफल"
+
+#: ../src/gs-listener-dbus.c:1870
+msgid "screensaver already running in this session"
+msgstr "एहि सत्रमे स्क्रीनसेवर पहिने सँ चलि रहल अछि"
+
+#: ../src/gs-lock-plug.c:270
+msgid "Time has expired."
+msgstr "समय समाप्त भ' गेल अछि."
+
+#: ../src/gs-lock-plug.c:298
+msgid "You have the Caps Lock key on."
+msgstr "अहाँक पास कैप्स लाक कुँजी चालू अछि."
+
+#: ../src/gs-lock-plug.c:1362
+msgid "S_witch User..."
+msgstr "प्रयोक्ता बदलू (_w)..."
+
+#: ../src/gs-lock-plug.c:1371
+msgid "Log _Out"
+msgstr "लाग आउट (_O)"
+
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1547
+msgid "%U on %h"
+msgstr "%U %h पर"
+
+#: ../src/gs-lock-plug.c:1561
+msgid "_Password:"
+msgstr "कूटशब्द (_P):"
+
