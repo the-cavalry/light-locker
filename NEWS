@@ -1,3 +1,75 @@
+===============
+Version 2.28.0
+===============
+
+Fixed bugs:
+
+ - #444927, get idle time from xorg
+ - #463010, Port gnome-screensaver from libglade to gtkbuilder
+ - #564061, Install .desktop file
+ - #570402, screensaver crash if number of screens changes
+ - #570941, String not marked for translation gnome-screensaver-command.c
+ - #574896, [Leave message] Cancel button should clean clipboard buffe
+ - #576463, can't unlock screen after upgrade until restarting gnome-
+            screensaver
+ - #581995, Fade out doesn't properly fall back to gamma number if X server
+            only supports 0-size ramp
+ - #586174, Encoding key in desktop files is deprecated
+ - #589728, gnome-screensaver: implicit declaration g_printf
+ - #590776, screensaver is never activated
+ - #591193, Update/Create .gitignore
+ - #591194, Add Comment and Icon in gnome-screensaver.desktop
+ - #594082, gnome-screensaver ignores input when fading to black
+
+Translators:
+
+- Khaled Hosny (ar)
+- Amitakhya Phukan (as)
+- Alexander Shopov (bg)
+- Runa Bhattacharjee (bn_IN)
+- Jamil Ahmed (bn)
+- Denis ARNAUD (br)
+- Carles Ferrando (ca@valencia)
+- Petr Kovar (cz)
+- Ask H. Larsen (da)
+- Mario Blättermann, Christian Kirbach (de)
+- Philip Withnall (en_GB)
+- Jorge González (es)
+- Ivar Smolin, Mattias Põldaru (et)
+- Inaki Larranaga Murgoitio (eu)
+- Tommi Vainikainen (fi)
+- Claude Paroz (fr)
+- Seán de Búrca (ga)
+- Antón Méixome (gl)
+- Sweta Kothari (gu)
+- Yaron Shahrabani (he)
+- Rajesh Ranjan (hi)
+- Gabor Kelemen (hu)
+- Luca Ferretti (it)
+- Shankar Prasad (kn)
+- Changwoo Ryu (ko)
+- Gintautas Miliauskas (lt)
+- Rajesh Ranjan (mai)
+- Ani (ml)
+- Sandeep Shedmake (mr)
+- Kjartan Maraas (nb)
+- Niels-Christoph Fiedler (nds)
+- Manoj Kumar Giri (or)
+- A S Alam (pa)
+- Tomasz Dominikowski (pl)
+- Rodrigo L. M. Flores, Krix Apolinário (pt_BR)
+- Duarte Loreto (pt)
+- Lucian Adrian Grijincu (ro)
+- Matej Urbančič (sl)
+- Miloš Popović (sr@latin)
+- Miloš Popović (sr)
+- Daniel Nylander (sv)
+- ifelix (ta)
+- krishnababu k (te)
+- Theppitak Karoonboonyanan (th)
+- Maxim V. Dziumanenko (uk)
+- Chao-Hsiung Liao (zh_HK)
+- Chao-Hsiung Liao (zh_TW)
 
 ===============
 Version 2.27.0
