@@ -3,7 +3,7 @@
 # This is probably linux only at the moment
 
 if [ -z "${DBUS_SESSION_BUS_ADDRESS}" ]; then
-    pid=`pgrep "gnome-session|x-session-manager"`
+    pid=`pgrep -u $USER "gnome-session|x-session-manager"`
     if [ "x$pid" != "x" ]; then
         env_address=`(cat /proc/$pid/environ; echo) | tr "\000" "\n" | grep '^DBUS_SESSION_BUS_ADDRESS='`
         env_display=`(cat /proc/$pid/environ; echo) | tr "\000" "\n" | grep '^DISPLAY='`
