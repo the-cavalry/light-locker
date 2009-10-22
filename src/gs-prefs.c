@@ -789,6 +789,9 @@ gs_prefs_init (GSPrefs *prefs)
         gconf_client_add_dir (prefs->priv->gconf_client,
                               GNOME_LOCKDOWN_DIR,
                               GCONF_CLIENT_PRELOAD_NONE, NULL);
+        gconf_client_add_dir (prefs->priv->gconf_client,
+                              GNOME_SESSION_DIR,
+                              GCONF_CLIENT_PRELOAD_NONE, NULL);
 
 
         gconf_client_notify_add (prefs->priv->gconf_client,
