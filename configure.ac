@@ -2,7 +2,7 @@ dnl -*- mode: m4 -*-
 
 AC_PREREQ(2.60)
 AC_INIT([gnome-screensaver],
-        [2.28.1],
+        [2.29.0],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver])
 
 AC_CONFIG_SRCDIR(src/gnome-screensaver.c)
@@ -41,7 +41,7 @@ GCONF_REQUIRED_VERSION=2.6.1
 GDK_REQUIRED_VERSION=2.14.0
 GTK_REQUIRED_VERSION=2.11.5
 LIBGNOME_MENU_REQUIRED_VERSION=2.11.1
-GNOME_DESKTOP_REQUIRED_VERSION=2.23.2
+GNOME_DESKTOP_REQUIRED_VERSION=2.29.0
 
 LIBGNOMEKBDUI_REQUIRED_VERSION=0.1
 
