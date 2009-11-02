@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * Copyright (C) 2004-2005 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2004-2009 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2009      Red Hat, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,21 +41,18 @@
 #include "gs-fade.h"
 #include "gs-debug.h"
 
+#define GNOME_DESKTOP_USE_UNSTABLE_API
+
+#include "libgnomeui/gnome-rr.h"
+
 /* XFree86 4.x+ Gamma fading */
+
 
 #ifdef HAVE_XF86VMODE_GAMMA
 
 #include <X11/extensions/xf86vmode.h>
 
 #define XF86_MIN_GAMMA  0.1
-
-typedef struct {
-        XF86VidModeGamma vmg;
-        int              size;
-        unsigned short  *r;
-        unsigned short  *g;
-        unsigned short  *b;
-} xf86_gamma_info;
 
 #endif /* HAVE_XF86VMODE_GAMMA */
 
@@ -63,6 +61,34 @@ static void     gs_fade_init       (GSFade      *fade);
 static void     gs_fade_finalize   (GObject        *object);
 
 #define GS_FADE_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_FADE, GSFadePrivate))
+
+struct GSGammaInfo {
+        int              size;
+        unsigned short  *r;
+        unsigned short  *g;
+        unsigned short  *b;
+};
+
+struct GSFadeScreenPrivate
+{
+        int                 fade_type;
+        int                 num_ramps;
+        /* one per crtc in randr mode */
+        struct GSGammaInfo *info;
+        /* one per screen in theory */
+        GnomeRRScreen      *rrscreen;
+#ifdef HAVE_XF86VMODE_GAMMA
+        /* one per screen also */
+        XF86VidModeGamma    vmg;
+#endif /* HAVE_XF86VMODE_GAMMA */
+        gboolean (*fade_setup)           (GSFade *fade,
+                                          int     screen);
+        gboolean (*fade_set_alpha_gamma) (GSFade *fade,
+                                          int     screen,
+                                          gdouble alpha);
+        void     (*fade_finish)          (GSFade *fade,
+                                          int     screen);
+};
 
 struct GSFadePrivate
 {
@@ -78,14 +104,9 @@ struct GSFadePrivate
         gdouble          alpha_per_iter;
         gdouble          current_alpha;
 
-        int              fade_type;
-
         int              num_screens;
 
-#ifdef HAVE_XF86VMODE_GAMMA
-        xf86_gamma_info *gamma_info;
-#endif /* HAVE_XF86VMODE_GAMMA */
-
+        struct GSFadeScreenPrivate *screen_priv;
 };
 
 enum {
@@ -96,7 +117,8 @@ enum {
 enum {
         FADE_TYPE_NONE,
         FADE_TYPE_GAMMA_NUMBER,
-        FADE_TYPE_GAMMA_RAMP
+        FADE_TYPE_GAMMA_RAMP,
+        FADE_TYPE_XRANDR,
 };
 
 static guint         signals [LAST_SIGNAL] = { 0, };
@@ -149,10 +171,16 @@ safe_XF86VidModeQueryVersion (Display *dpy,
 
 static gboolean
 xf86_whack_gamma (int              screen,
-                  xf86_gamma_info *info,
+                  struct GSFadeScreenPrivate *screen_priv,
                   float            ratio)
 {
         Bool status;
+        struct GSGammaInfo *gamma_info;
+
+        gamma_info = screen_priv->info;
+
+        if (!gamma_info)
+                return FALSE;
 
         if (ratio < 0) {
                 ratio = 0;
@@ -161,14 +189,14 @@ xf86_whack_gamma (int              screen,
                 ratio = 1;
         }
 
-        if (info->size == 0) {
+        if (gamma_info->size == 0) {
                 /* we only have a gamma number, not a ramp. */
 
                 XF86VidModeGamma g2;
 
-                g2.red   = info->vmg.red   * ratio;
-                g2.green = info->vmg.green * ratio;
-                g2.blue  = info->vmg.blue  * ratio;
+                g2.red   = screen_priv->vmg.red   * ratio;
+                g2.green = screen_priv->vmg.green * ratio;
+                g2.blue  = screen_priv->vmg.blue  * ratio;
 
                 if (g2.red < XF86_MIN_GAMMA) {
                         g2.red = XF86_MIN_GAMMA;
@@ -187,21 +215,21 @@ xf86_whack_gamma (int              screen,
                 unsigned short *r, *g, *b;
                 int i;
 
-                r = g_new0 (unsigned short, info->size);
-                g = g_new0 (unsigned short, info->size);
-                b = g_new0 (unsigned short, info->size);
+                r = g_new0 (unsigned short, gamma_info->size);
+                g = g_new0 (unsigned short, gamma_info->size);
+                b = g_new0 (unsigned short, gamma_info->size);
 
-                for (i = 0; i < info->size; i++) {
-                        r[i] = info->r[i] * ratio;
-                        g[i] = info->g[i] * ratio;
-                        b[i] = info->b[i] * ratio;
+                for (i = 0; i < gamma_info->size; i++) {
+                        r[i] = gamma_info->r[i] * ratio;
+                        g[i] = gamma_info->g[i] * ratio;
+                        b[i] = gamma_info->b[i] * ratio;
                 }
 
-                status = XF86VidModeSetGammaRamp (GDK_DISPLAY (), screen, info->size, r, g, b);
+                status = XF86VidModeSetGammaRamp (GDK_DISPLAY (), screen, gamma_info->size, r, g, b);
 
-                free (r);
-                free (g);
-                free (b);
+                g_free (r);
+                g_free (g);
+                g_free (b);
 
 # else  /* !HAVE_XF86VMODE_GAMMA_RAMP */
                 abort ();
@@ -223,44 +251,6 @@ xf86_whack_gamma (int              screen,
 # define XF86_VIDMODE_GAMMA_RAMP_MIN_MAJOR 2
 # define XF86_VIDMODE_GAMMA_RAMP_MIN_MINOR 1
 
-static int
-check_gamma_extension (void)
-{
-#ifdef HAVE_XF86VMODE_GAMMA
-        int      event;
-        int      error;
-        int      major;
-        int      minor;
-        gboolean res;
-
-        res = XF86VidModeQueryExtension (GDK_DISPLAY (), &event, &error);
-        if (! res) {
-                return FADE_TYPE_NONE;  /* display doesn't have the extension. */
-        }
-
-        res = safe_XF86VidModeQueryVersion (GDK_DISPLAY (), &major, &minor);
-        if (! res) {
-                return FADE_TYPE_NONE;  /* unable to get version number? */
-        }
-
-        if (major < XF86_VIDMODE_GAMMA_MIN_MAJOR ||
-            (major == XF86_VIDMODE_GAMMA_MIN_MAJOR &&
-             minor < XF86_VIDMODE_GAMMA_MIN_MINOR)) {
-                return FADE_TYPE_NONE;  /* extension is too old for gamma. */
-        }
-
-        if (major < XF86_VIDMODE_GAMMA_RAMP_MIN_MAJOR ||
-            (major == XF86_VIDMODE_GAMMA_RAMP_MIN_MAJOR &&
-             minor < XF86_VIDMODE_GAMMA_RAMP_MIN_MINOR)) {
-                return FADE_TYPE_GAMMA_NUMBER;  /* extension is too old for gamma ramps. */
-        }
-
-        /* Copacetic */
-        return FADE_TYPE_GAMMA_RAMP;
-#else
-        return FADE_TYPE_NONE;
-#endif /* HAVE_XF86VMODE_GAMMA */
-}
 
 gboolean
 gs_fade_get_enabled (GSFade *fade)
@@ -282,86 +272,80 @@ gs_fade_set_enabled (GSFade  *fade,
 }
 
 static gboolean
-gamma_info_init (GSFade *fade)
+gamma_fade_setup (GSFade *fade, int screen_idx)
 {
 #ifdef HAVE_XF86VMODE_GAMMA
-        int              screen;
-        xf86_gamma_info *info;
         gboolean         res;
+        struct GSFadeScreenPrivate *screen_priv;
+
+        screen_priv = &fade->priv->screen_priv[screen_idx];
+
+        if (screen_priv->info)
+                return TRUE;
 
 # ifndef HAVE_XF86VMODE_GAMMA_RAMP
-        if (FADE_TYPE_GAMMA_RAMP == fade->priv->fade_type) {
+        if (FADE_TYPE_GAMMA_RAMP == screen_priv->fade_type) {
                 /* server is newer than client! */
-                fade->priv->fade_type = FADE_TYPE_GAMMA_NUMBER;
+                screen_priv->fade_type = FADE_TYPE_GAMMA_NUMBER;
         }
 # endif
 
-        if (fade->priv->gamma_info != NULL) {
-                return TRUE;
-        }
-
-        info = g_new0 (xf86_gamma_info, fade->priv->num_screens);
-        fade->priv->gamma_info = info;
-
-        /* Get the current gamma maps for all screens.
-           Bug out and return -1 if we can't get them for some screen.
-        */
-        for (screen = 0; screen < fade->priv->num_screens; screen++) {
-
 # ifdef HAVE_XF86VMODE_GAMMA_RAMP
 
-                if (FADE_TYPE_GAMMA_RAMP == fade->priv->fade_type) {
-                        /* have ramps */
+        screen_priv->info = g_new0(struct GSGammaInfo, 1);
+        screen_priv->num_ramps = 1;
 
-                        res = XF86VidModeGetGammaRampSize (GDK_DISPLAY (), screen, &info [screen].size);
-                        if (! res || info [screen].size <= 0) {
-                                fade->priv->fade_type = FADE_TYPE_GAMMA_NUMBER;
-                                goto test_number;
-                        }
+        if (FADE_TYPE_GAMMA_RAMP == screen_priv->fade_type) {
+                /* have ramps */
 
-                        info [screen].r = g_new0 (unsigned short, info[screen].size);
-                        info [screen].g = g_new0 (unsigned short, info[screen].size);
-                        info [screen].b = g_new0 (unsigned short, info[screen].size);
-
-                        if (! (info [screen].r && info [screen].g && info [screen].b)) {
-                                fade->priv->fade_type = FADE_TYPE_GAMMA_NUMBER;
-                                goto test_number;
-                        }
-
-                        res = XF86VidModeGetGammaRamp (GDK_DISPLAY (),
-                                                       screen,
-                                                       info [screen].size,
-                                                       info [screen].r,
-                                                       info [screen].g,
-                                                       info [screen].b);
-                        if (! res) {
-                                fade->priv->fade_type = FADE_TYPE_GAMMA_NUMBER;
-                                goto test_number;
-                        }
-                        gs_debug ("Initialized gamma ramp fade");
+                res = XF86VidModeGetGammaRampSize (GDK_DISPLAY (), screen_idx, &screen_priv->info->size);
+                if (!res || screen_priv->info->size <= 0) {
+                        screen_priv->fade_type = FADE_TYPE_GAMMA_NUMBER;
+                        goto test_number;
                 }
+
+                screen_priv->info->r = g_new0 (unsigned short, screen_priv->info->size);
+                screen_priv->info->g = g_new0 (unsigned short, screen_priv->info->size);
+                screen_priv->info->b = g_new0 (unsigned short, screen_priv->info->size);
+
+                if (! (screen_priv->info->r && screen_priv->info->g && screen_priv->info->b)) {
+                        screen_priv->fade_type = FADE_TYPE_GAMMA_NUMBER;
+                        goto test_number;
+                }
+
+                res = XF86VidModeGetGammaRamp (GDK_DISPLAY (),
+                                               screen_idx,
+                                               screen_priv->info->size,
+                                               screen_priv->info->r,
+                                               screen_priv->info->g,
+                                               screen_priv->info->b);
+                if (! res) {
+                        screen_priv->fade_type = FADE_TYPE_GAMMA_NUMBER;
+                        goto test_number;
+                }
+                gs_debug ("Initialized gamma ramp fade");
+        }
 # endif /* HAVE_XF86VMODE_GAMMA_RAMP */
 
  test_number:
-                if (FADE_TYPE_GAMMA_NUMBER == fade->priv->fade_type) {
-                        /* only have gamma parameter, not ramps. */
+        if (FADE_TYPE_GAMMA_NUMBER == screen_priv->fade_type) {
+                /* only have gamma parameter, not ramps. */
 
-                        res = XF86VidModeGetGamma (GDK_DISPLAY (), screen, &info [screen].vmg);
-                        if (! res) {
-                                fade->priv->fade_type = FADE_TYPE_NONE;
-                                goto test_none;
-                        }
-                        gs_debug ("Initialized gamma fade for screen %d: %f %f %f",
-                                  screen,
-                                  info [screen].vmg.red,
-                                  info [screen].vmg.green,
-                                  info [screen].vmg.blue);
+                res = XF86VidModeGetGamma (GDK_DISPLAY (), screen_idx, &screen_priv->vmg);
+                if (! res) {
+                        screen_priv->fade_type = FADE_TYPE_NONE;
+                        goto test_none;
                 }
+                gs_debug ("Initialized gamma fade for screen %d: %f %f %f",
+                          screen_idx,
+                          screen_priv->vmg.red,
+                          screen_priv->vmg.green,
+                          screen_priv->vmg.blue);
+        }
 
  test_none:
-                if (FADE_TYPE_NONE == fade->priv->fade_type) {
-                        goto FAIL;
-                }
+        if (FADE_TYPE_NONE == screen_priv->fade_type) {
+                goto FAIL;
         }
 
         return TRUE;
@@ -369,49 +353,44 @@ gamma_info_init (GSFade *fade)
 
 #endif /* HAVE_XF86VMODE_GAMMA */
 
-return FALSE;
+        return FALSE;
 }
 
 static void
-gamma_info_free (GSFade *fade)
+screen_fade_finish (GSFade *fade, int screen_idx)
 {
-#ifdef HAVE_XF86VMODE_GAMMA
+        struct GSFadeScreenPrivate *screen_priv;
+        int i;
+        screen_priv = &fade->priv->screen_priv[screen_idx];
 
-        if (fade->priv->gamma_info) {
-                int screen;
+        if (!screen_priv->info)
+                return;
 
-                for (screen = 0; screen < fade->priv->num_screens; screen++) {
-                        if (fade->priv->gamma_info [screen].r) {
-                                g_free (fade->priv->gamma_info[screen].r);
-                        }
-                        if (fade->priv->gamma_info [screen].g) {
-                                g_free (fade->priv->gamma_info[screen].g);
-                        }
-                        if (fade->priv->gamma_info [screen].b) {
-                                g_free (fade->priv->gamma_info[screen].b);
-                        }
-                }
-
-                g_free (fade->priv->gamma_info);
-                fade->priv->gamma_info = NULL;
+        for (i = 0; i < screen_priv->num_ramps; i++) {
+                if (screen_priv->info[i].r)
+                        g_free (screen_priv->info[i].r);
+                if (screen_priv->info[i].g)
+                        g_free (screen_priv->info[i].g);
+                if (screen_priv->info[i].b)
+                        g_free (screen_priv->info[i].b);
         }
 
-#endif /* HAVE_XF86VMODE_GAMMA */
+        g_free (screen_priv->info);
+        screen_priv->info = NULL;
+        screen_priv->num_ramps = 0;
 }
 
 static gboolean
-gs_fade_set_alpha_gamma (GSFade *fade,
-                         gdouble alpha)
+gamma_fade_set_alpha_gamma (GSFade *fade,
+                            int screen_idx,
+                            gdouble alpha)
 {
 #ifdef HAVE_XF86VMODE_GAMMA
-        int      screen;
+        struct GSFadeScreenPrivate *screen_priv;
         gboolean res;
 
-        if (fade->priv->gamma_info != NULL) {
-                for (screen = 0; screen < fade->priv->num_screens; screen++) {
-                        res = xf86_whack_gamma (screen, &fade->priv->gamma_info [screen], alpha);
-                }
-        }
+        screen_priv = &fade->priv->screen_priv[screen_idx];
+        res = xf86_whack_gamma (screen_idx, screen_priv, alpha);
 
         return TRUE;
 #else
@@ -419,26 +398,218 @@ gs_fade_set_alpha_gamma (GSFade *fade,
 #endif /* HAVE_XF86VMODE_GAMMA */
 }
 
+static void
+check_gamma_extension (GSFade *fade, int screen_idx)
+{
+#ifdef HAVE_XF86VMODE_GAMMA
+        struct GSFadeScreenPrivate *screen_priv;
+        int      event;
+        int      error;
+        int      major;
+        int      minor;
+        gboolean res;
+
+        screen_priv = &fade->priv->screen_priv[screen_idx];
+
+        res = XF86VidModeQueryExtension (GDK_DISPLAY (), &event, &error);
+        if (! res)
+                goto fade_none;
+
+        res = safe_XF86VidModeQueryVersion (GDK_DISPLAY (), &major, &minor);
+        if (! res)
+                goto fade_none;
+
+        if (major < XF86_VIDMODE_GAMMA_MIN_MAJOR ||
+            (major == XF86_VIDMODE_GAMMA_MIN_MAJOR &&
+             minor < XF86_VIDMODE_GAMMA_MIN_MINOR))
+                goto fade_none;
+
+        screen_priv->fade_setup = gamma_fade_setup;
+        screen_priv->fade_finish = screen_fade_finish;
+        screen_priv->fade_set_alpha_gamma = gamma_fade_set_alpha_gamma;
+
+        if (major < XF86_VIDMODE_GAMMA_RAMP_MIN_MAJOR ||
+            (major == XF86_VIDMODE_GAMMA_RAMP_MIN_MAJOR &&
+             minor < XF86_VIDMODE_GAMMA_RAMP_MIN_MINOR)) {
+                screen_priv->fade_type = FADE_TYPE_GAMMA_NUMBER;
+                return;
+        }
+
+        /* Copacetic */
+        screen_priv->fade_type = FADE_TYPE_GAMMA_RAMP;
+        return;
+ fade_none:
+#endif
+        screen_priv->fade_type = FADE_TYPE_NONE;
+}
+
+/* Xrandr support */
+
+static gboolean xrandr_fade_setup (GSFade *fade, int screen_idx)
+{
+        struct GSFadeScreenPrivate *screen_priv;
+        GnomeRRCrtc *crtc;
+        GnomeRRCrtc **crtcs;
+        int crtc_count = 0;
+        struct GSGammaInfo *info;
+        gboolean res;
+
+        screen_priv = &fade->priv->screen_priv[screen_idx];
+
+        if (screen_priv->info)
+                return TRUE;
+
+        /* refresh the screen info */
+        gnome_rr_screen_refresh (screen_priv->rrscreen, NULL);
+
+        crtcs = gnome_rr_screen_list_crtcs (screen_priv->rrscreen);
+        while (*crtcs) {
+                crtc_count++;
+                crtcs++;
+        };
+
+        screen_priv->info = g_new0 (struct GSGammaInfo, crtc_count);
+        screen_priv->num_ramps = crtc_count;
+
+        crtc_count = 0;
+        crtcs = gnome_rr_screen_list_crtcs (screen_priv->rrscreen);
+        while (*crtcs)
+        {
+                crtc = *crtcs;
+
+                info = &screen_priv->info[crtc_count];
+
+                /* if no mode ignore crtc */
+                if (!gnome_rr_crtc_get_current_mode (crtc)) {
+                        info->size = 0;
+                        info->r = NULL;
+                        info->g = NULL;
+                        info->b = NULL;
+                }
+                else {
+                        res = gnome_rr_crtc_get_gamma (crtc, &info->size,
+                                                       &info->r, &info->g,
+                                                       &info->b);
+                        if (res == FALSE)
+                                goto fail;
+                }
+
+                crtcs++;
+                crtc_count++;
+        }
+        return TRUE;
+ fail:
+        return FALSE;
+}
+
+static void xrandr_crtc_whack_gamma (GnomeRRCrtc *crtc,
+                                     struct GSGammaInfo *gamma_info,
+                                     float            ratio)
+{
+        unsigned short *r, *g, *b;
+        int i;
+
+        if (gamma_info->size == 0)
+                return;
+
+        if (ratio < 0) {
+                ratio = 0;
+        }
+        if (ratio > 1) {
+                ratio = 1;
+        }
+
+        r = g_new0 (unsigned short, gamma_info->size);
+        g = g_new0 (unsigned short, gamma_info->size);
+        b = g_new0 (unsigned short, gamma_info->size);
+
+        for (i = 0; i < gamma_info->size; i++) {
+                r[i] = gamma_info->r[i] * ratio;
+                g[i] = gamma_info->g[i] * ratio;
+                b[i] = gamma_info->b[i] * ratio;
+        }
+
+        gnome_rr_crtc_set_gamma (crtc, gamma_info->size,
+                                 r, g, b);
+        g_free (r);
+        g_free (g);
+        g_free (b);
+}
+
+static gboolean xrandr_fade_set_alpha_gamma (GSFade *fade,
+                                             int screen_idx,
+                                             gdouble alpha)
+{
+        struct GSFadeScreenPrivate *screen_priv;
+        struct GSGammaInfo *info;
+        GnomeRRCrtc **crtcs;
+        int i;
+
+        screen_priv = &fade->priv->screen_priv[screen_idx];
+
+        if (!screen_priv->info)
+                return FALSE;
+
+        crtcs = gnome_rr_screen_list_crtcs (screen_priv->rrscreen);
+        i = 0;
+
+        while (*crtcs)
+        {
+                info = &screen_priv->info[i];
+                xrandr_crtc_whack_gamma (*crtcs, info, alpha);
+                i++;
+                crtcs++;
+        }
+        return TRUE;
+}
+
+static void
+check_randr_extension (GSFade *fade, int screen_idx)
+{
+        GdkDisplay *display = gdk_display_get_default ();
+        GdkScreen *screen = gdk_display_get_screen (display, screen_idx);
+        struct GSFadeScreenPrivate *screen_priv;
+
+        screen_priv = &fade->priv->screen_priv[screen_idx];
+
+        screen_priv->rrscreen = gnome_rr_screen_new (screen,
+                                                     NULL,
+                                                     NULL,
+                                                     NULL);
+        if (!screen_priv->rrscreen) {
+                screen_priv->fade_type = FADE_TYPE_NONE;
+                return;
+        }
+
+        screen_priv->fade_type = FADE_TYPE_XRANDR;
+        screen_priv->fade_setup = xrandr_fade_setup;
+        screen_priv->fade_finish = screen_fade_finish;
+        screen_priv->fade_set_alpha_gamma = xrandr_fade_set_alpha_gamma;
+}
+
 static gboolean
 gs_fade_set_alpha (GSFade *fade,
                    gdouble alpha)
 {
-        gboolean ret;
+        gboolean ret = FALSE;
+        int i;
 
-        switch (fade->priv->fade_type) {
-        case FADE_TYPE_GAMMA_RAMP:
-        case FADE_TYPE_GAMMA_NUMBER:
-                ret = gs_fade_set_alpha_gamma (fade, alpha);
-                break;
-        case FADE_TYPE_NONE:
-                ret = FALSE;
-                break;
-        default:
-                g_warning ("Unknown fade type");
-                ret = FALSE;
-                break;
+        for (i = 0; i < fade->priv->num_screens; i++) {
+                switch (fade->priv->screen_priv[i].fade_type) {
+                case FADE_TYPE_GAMMA_RAMP:
+                case FADE_TYPE_GAMMA_NUMBER:
+                case FADE_TYPE_XRANDR:
+                        ret = fade->priv->screen_priv[i].fade_set_alpha_gamma (fade, i, alpha);
+                        break;
+                case FADE_TYPE_NONE:
+                        ret = FALSE;
+                        break;
+                default:
+                        g_warning ("Unknown fade type");
+                        ret = FALSE;
+                        break;
+                }
         }
-
         return ret;
 }
 
@@ -527,10 +698,18 @@ gs_fade_start (GSFade *fade,
 {
         guint steps_per_sec = 30;
         guint msecs_per_step;
+        struct GSFadeScreenPrivate *screen_priv;
+        gboolean active_fade, res;
+        int i;
 
         g_return_if_fail (GS_IS_FADE (fade));
 
-        gamma_info_init (fade);
+        for (i = 0; i < fade->priv->num_screens; i++) {
+                screen_priv = &fade->priv->screen_priv[i];
+                res = screen_priv->fade_setup (fade, i);
+                if (res == FALSE)
+                        return;
+        }
 
         if (fade->priv->timer_id > 0) {
                 gs_fade_stop (fade);
@@ -540,7 +719,13 @@ gs_fade_start (GSFade *fade,
 
         gs_fade_set_timeout (fade, timeout);
 
-        if (fade->priv->fade_type != FADE_TYPE_NONE) {
+        active_fade = FALSE;
+        for (i = 0; i < fade->priv->num_screens; i++) {
+                screen_priv = &fade->priv->screen_priv[i];
+                if (screen_priv->fade_type != FADE_TYPE_NONE)
+                        active_fade = TRUE;
+        }
+        if (active_fade) {
                 guint num_steps;
 
                 num_steps = (fade->priv->timeout / 1000) * steps_per_sec;
@@ -564,7 +749,7 @@ gs_fade_async_callback (GSFade            *fade,
                         FadedCallbackData *cdata)
 {
         g_signal_handlers_disconnect_by_func (fade,
-                                              gs_fade_async_callback, 
+                                              gs_fade_async_callback,
                                               cdata);
 
         if (cdata->done_cb) {
@@ -639,6 +824,7 @@ gs_fade_sync (GSFade        *fade,
 void
 gs_fade_reset (GSFade *fade)
 {
+        int i;
         g_return_if_fail (GS_IS_FADE (fade));
 
         gs_debug ("Resetting fade");
@@ -651,7 +837,8 @@ gs_fade_reset (GSFade *fade)
 
         gs_fade_set_alpha (fade, fade->priv->current_alpha);
 
-        gamma_info_free (fade);
+        for (i = 0; i < fade->priv->num_screens; i++)
+                fade->priv->screen_priv[i].fade_finish (fade, i);
 }
 
 static void
@@ -679,28 +866,31 @@ static void
 gs_fade_init (GSFade *fade)
 {
         GdkDisplay *display;
+        int i;
 
         fade->priv = GS_FADE_GET_PRIVATE (fade);
 
         fade->priv->timeout = 1000;
         fade->priv->current_alpha = 1.0;
 
-        fade->priv->fade_type = check_gamma_extension ();
-
-        gs_debug ("Fade type: %d", fade->priv->fade_type);
-
         display = gdk_display_get_default ();
         fade->priv->num_screens = gdk_display_get_n_screens (display);
 
-#ifdef HAVE_XF86VMODE_GAMMA
-        fade->priv->gamma_info = NULL;
-#endif
+        fade->priv->screen_priv = g_new0 (struct GSFadeScreenPrivate, fade->priv->num_screens);
+
+        for (i = 0; i < fade->priv->num_screens; i++) {
+                check_randr_extension (fade, i);
+                if (!fade->priv->screen_priv[i].fade_type)
+                        check_gamma_extension (fade, i);
+                gs_debug ("Fade type: %d", fade->priv->screen_priv[i].fade_type);
+        }
 }
 
 static void
 gs_fade_finalize (GObject *object)
 {
         GSFade *fade;
+        int i;
 
         g_return_if_fail (object != NULL);
         g_return_if_fail (GS_IS_FADE (object));
@@ -709,7 +899,19 @@ gs_fade_finalize (GObject *object)
 
         g_return_if_fail (fade->priv != NULL);
 
-        gamma_info_free (fade);
+        for (i = 0; i < fade->priv->num_screens; i++)
+                fade->priv->screen_priv[i].fade_finish(fade, i);
+
+        if (fade->priv->screen_priv) {
+                for (i = 0; i < fade->priv->num_screens; i++) {
+                        if (!fade->priv->screen_priv[i].rrscreen)
+                                continue;
+                        gnome_rr_screen_destroy (fade->priv->screen_priv[i].rrscreen);
+                }
+
+                g_free (fade->priv->screen_priv);
+                fade->priv->screen_priv = NULL;
+        }
 
         G_OBJECT_CLASS (gs_fade_parent_class)->finalize (object);
 }
