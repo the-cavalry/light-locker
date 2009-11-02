@@ -986,47 +986,40 @@ listener_dbus_remove_ref_entry (GSListener     *listener,
 }
 
 static gboolean
-listener_ref_entry_has_connection (gpointer key,
-                                   gpointer value,
-                                   gpointer user_data)
-{
-        GSListenerRefEntry *entry;
-        const char         *connection;
-        gboolean            matches;
-
-        entry = (GSListenerRefEntry *)value;
-        connection = (const char *) user_data;
-
-        matches = FALSE;
-        if (connection != NULL && entry->connection != NULL) {
-                matches = (strcmp (connection, entry->connection) == 0);
-                if (matches) {
-                        gs_debug ("removing %s from %s for reason '%s' on connection %s",
-                                  get_name_for_entry_type (entry->entry_type),
-                                  entry->application,
-                                  entry->reason,
-                                  entry->connection);
-                }
-        }
-
-        return matches;
-}
-
-static gboolean
 listener_ref_entry_remove_for_connection (GSListener  *listener,
                                           int          entry_type,
                                           const char  *connection)
 {
         gboolean    removed;
-        guint       n_removed;
         GHashTable *hash;
+        GHashTableIter iter;
+        GSListenerRefEntry *entry;
+
+        if (connection == NULL)
+                return FALSE;
 
         hash = get_hash_for_entry_type (listener, entry_type);
 
         removed = FALSE;
-        n_removed = g_hash_table_foreach_remove (hash, listener_ref_entry_has_connection, (gpointer)connection);
+        g_hash_table_iter_init (&iter, hash);
+        while (g_hash_table_iter_next (&iter, NULL, (gpointer *)&entry)) {
+                if (entry->connection != NULL &&
+                    strcmp (connection, entry->connection) == 0) {
+                        gs_debug ("removing %s from %s for reason '%s' on connection %s",
+                                  get_name_for_entry_type (entry->entry_type),
+                                  entry->application,
+                                  entry->reason,
+                                  entry->connection);
 
-        removed = (n_removed > 0);
+                        if (entry->entry_type == REF_ENTRY_TYPE_INHIBIT) {
+                                /* remove inhibit from gnome session */
+                                remove_session_inhibit (listener, entry);
+                        }
+
+                        g_hash_table_iter_remove (&iter);
+                        removed = TRUE;
+                }
+        }
 
         return removed;
 }
