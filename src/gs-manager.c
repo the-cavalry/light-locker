@@ -1174,6 +1174,23 @@ find_window_at_pointer (GSManager *manager)
         return window;
 }
 
+void
+gs_manager_show_message (GSManager  *manager,
+                         const char *summary,
+                         const char *body,
+                         const char *icon)
+{
+        GSWindow *window;
+
+        g_return_if_fail (GS_IS_MANAGER (manager));
+
+        /* Find the GSWindow that contains the pointer */
+        window = find_window_at_pointer (manager);
+        gs_window_show_message (window, summary, body, icon);
+
+        gs_manager_request_unlock (manager);
+}
+
 static gboolean
 manager_maybe_grab_window (GSManager *manager,
                            GSWindow  *window)

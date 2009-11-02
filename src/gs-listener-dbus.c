@@ -108,6 +108,7 @@ enum {
         SIMULATE_USER_ACTIVITY,
         ACTIVE_CHANGED,
         THROTTLE_CHANGED,
+        SHOW_MESSAGE,
         LAST_SIGNAL
 };
 
@@ -1223,6 +1224,52 @@ listener_get_active_time (GSListener     *listener,
 }
 
 static DBusHandlerResult
+listener_show_message (GSListener     *listener,
+                       DBusConnection *connection,
+                       DBusMessage    *message)
+{
+        DBusMessageIter iter;
+        DBusMessage    *reply;
+        DBusError       error;
+
+        reply = dbus_message_new_method_return (message);
+
+        dbus_message_iter_init_append (reply, &iter);
+
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        if (listener->priv->active) {
+                char *summary;
+                char *body;
+                char *icon;
+
+                /* if we're not active we ignore the request */
+
+                dbus_error_init (&error);
+                if (! dbus_message_get_args (message, &error,
+                                             DBUS_TYPE_STRING, &summary,
+                                             DBUS_TYPE_STRING, &body,
+                                             DBUS_TYPE_STRING, &icon,
+                                             DBUS_TYPE_INVALID)) {
+                        raise_syntax (connection, message, "ShowMessage");
+                        return DBUS_HANDLER_RESULT_HANDLED;
+                }
+
+                g_signal_emit (listener, signals [SHOW_MESSAGE], 0, summary, body, icon);
+        }
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
 do_introspect (DBusConnection *connection,
                DBusMessage    *message,
                dbus_bool_t     local_interface)
@@ -1277,6 +1324,11 @@ do_introspect (DBusConnection *connection,
                                "    </method>\n"
                                "    <method name=\"SetActive\">\n"
                                "      <arg name=\"value\" direction=\"in\" type=\"b\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"ShowMessage\">\n"
+                               "      <arg name=\"summary\" direction=\"in\" type=\"s\"/>\n"
+                               "      <arg name=\"body\" direction=\"in\" type=\"s\"/>\n"
+                               "      <arg name=\"icon\" direction=\"in\" type=\"s\"/>\n"
                                "    </method>\n"
                                "    <signal name=\"ActiveChanged\">\n"
                                "      <arg name=\"new_value\" type=\"b\"/>\n"
@@ -1361,6 +1413,9 @@ listener_dbus_handle_session_message (DBusConnection *connection,
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "GetActiveTime")) {
                 return listener_get_active_time (listener, connection, message);
+        }
+        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "ShowMessage")) {
+                return listener_show_message (listener, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "SimulateUserActivity")) {
                 g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
@@ -1796,6 +1851,19 @@ gs_listener_class_init (GSListenerClass *klass)
                               G_TYPE_NONE,
                               1,
                               G_TYPE_BOOLEAN);
+        signals [SHOW_MESSAGE] =
+                g_signal_new ("show-message",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, show_message),
+                              NULL,
+                              NULL,
+                              gs_marshal_VOID__STRING_STRING_STRING,
+                              G_TYPE_NONE,
+                              3,
+                              G_TYPE_STRING,
+                              G_TYPE_STRING,
+                              G_TYPE_STRING);
 
         g_object_class_install_property (object_class,
                                          PROP_ACTIVE,

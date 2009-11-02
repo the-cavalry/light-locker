@@ -220,6 +220,19 @@ listener_cycle_cb (GSListener *listener,
         gs_manager_cycle (monitor->priv->manager);
 }
 
+static void
+listener_show_message_cb (GSListener *listener,
+                          const char *summary,
+                          const char *body,
+                          const char *icon,
+                          GSMonitor  *monitor)
+{
+        gs_manager_show_message (monitor->priv->manager,
+                                 summary,
+                                 body,
+                                 icon);
+}
+
 static gboolean
 listener_active_changed_cb (GSListener *listener,
                             gboolean    active,
@@ -334,6 +347,7 @@ disconnect_listener_signals (GSMonitor *monitor)
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_active_changed_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_throttle_changed_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_simulate_user_activity_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_show_message_cb, monitor);
 }
 
 static void
@@ -351,6 +365,8 @@ connect_listener_signals (GSMonitor *monitor)
                           G_CALLBACK (listener_throttle_changed_cb), monitor);
         g_signal_connect (monitor->priv->listener, "simulate-user-activity",
                           G_CALLBACK (listener_simulate_user_activity_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "show-message",
+                          G_CALLBACK (listener_show_message_cb), monitor);
 }
 
 static void

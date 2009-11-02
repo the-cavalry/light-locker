@@ -52,6 +52,10 @@ typedef struct
                                                       gboolean    active);
         void            (* throttle_changed)         (GSListener *listener,
                                                       gboolean    throttled);
+        void            (* show_message)             (GSListener *listener,
+                                                      const char *summary,
+                                                      const char *body,
+                                                      const char *icon);
 
 } GSListenerClass;
 
