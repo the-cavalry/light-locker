@@ -9,15 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver&component=general\n"
-"POT-Creation-Date: 2009-09-11 10:02+0000\n"
-"PO-Revision-Date: 2009-09-12 10:26+0100\n"
-"Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
+"POT-Creation-Date: 2009-08-21 08:10+0000\n"
+"PO-Revision-Date: 2009-11-30 11:42+0100\n"
+"Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
+"X-Poedit-Country: SLOVENIA\n"
 "X-Poedit-Language: Slovenian\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
 #: ../src/gnome-screensaver.desktop.in.in.h:2
@@ -143,7 +145,7 @@ msgstr "Določa uporabljen ukaz, kadar je omogočen ključ \"embedded_keyboard_e
 
 #: ../data/gnome-screensaver.schemas.in.h:18
 msgid "The command to invoke when the logout button is clicked. This command should simply log the user out without any interaction. This key has effect only if the \"logout_enable\" key is set to TRUE."
-msgstr "Določa ukaz, ki bo uporabljen ob kliku na gumb za odjavo. Ta ukaz bi moral samo odjaviti uporabnika, brez posegov uporabnika. Ključ ima učinek le, če je omogočen tudi ključ \"logout_enable\"."
+msgstr "Določa ukaz, ki bo uporabljen ob kliku na gumb za odjavo. Ta ukaz bi moral le odjaviti uporabnika, brez posegov uporabnika. Ključ ima učinek le, če je omogočen tudi ključ \"logout_enable\"."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
 msgid "The number of minutes after screensaver activation before locking the screen."
@@ -163,11 +165,11 @@ msgstr "Število minut pred zamenjavo teme ohranjevalnika zaslona."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid "The number of seconds of inactivity before signalling to power-management. This key is set and maintained by the session power-management agent."
-msgstr "Število sekund nedejavnosti pred zagonom upravljavca delovanja. Ključ nadzira in upravlja upravljavec seje."
+msgstr "Število sekund nedejavnosti pred zagonom upravljalnika delovanja. Ključ nadzira in upravlja upravljalnik seje."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid "The selection mode used by screensaver. May be \"blank-only\" to enable the screensaver without using any theme on activation, \"single\" to enable screensaver using only one theme on activation (specified in \"themes\" key), and \"random\" to enable the screensaver using a random theme on activation."
-msgstr "Način izbire, ki ga uporablja ohranjevalnik zaslona. Lahko je \"blank-only\", ki omogoči ohranjevalnik zaslona brez uporabe katerekoli teme ob vključitvi, \"single\", ki uporablja samo eno temo ob vključitvi (določeno v ključu \"themes\") ali \"random\", ki omogoči ohranjevalnik zaslona z uporabo naključne teme ob vključitvi."
+msgstr "Način izbire, ki ga uporablja ohranjevalnik zaslona. Lahko je \"blank-only\", ki omogoči ohranjevalnik zaslona brez uporabe katerekoli teme ob vključitvi, \"single\", ki uporablja le eno temo ob vključitvi (določeno v ključu \"themes\") ali \"random\", ki omogoči ohranjevalnik zaslona z uporabo naključne teme ob vključitvi."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid "Theme for lock dialog"
@@ -191,7 +193,7 @@ msgstr "Čas pred možnostjo odjave"
 
 #: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before power-management baseline"
-msgstr "Čas pred zagonom upravljavca delovanja"
+msgstr "Čas pred zagonom upravljalnika delovanja"
 
 #: ../data/gnome-screensaver.schemas.in.h:31
 msgid "Time before session is considered idle"
@@ -222,7 +224,7 @@ msgstr "_Prekliči"
 
 #: ../data/lock-dialog-default.ui.h:8
 msgid "_Leave Message"
-msgstr "_Pusti sporočilo"
+msgstr "P_usti sporočilo"
 
 #: ../data/lock-dialog-default.ui.h:9
 msgid "_Log Out"
@@ -230,7 +232,7 @@ msgstr "_Odjava"
 
 #: ../data/lock-dialog-default.ui.h:10
 msgid "_Switch User"
-msgstr "_Preklop uporabnika"
+msgstr "P_reklop uporabnika"
 
 #: ../data/lock-dialog-default.ui.h:11
 #: ../src/gs-lock-plug.c:1382
@@ -246,7 +248,7 @@ msgstr "Vesolje"
 
 #: ../savers/cosmos-slideshow.desktop.in.in.h:2
 msgid "Display a slideshow of pictures of the cosmos"
-msgstr "Prikaži predstavitev slik vesolja"
+msgstr "Pokaži predstavitev slik vesolja"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:1
 msgid "Bubbles the GNOME foot logo around the screen"
@@ -258,7 +260,7 @@ msgstr "Lebdeče noge"
 
 #: ../savers/personal-slideshow.desktop.in.in.h:1
 msgid "Display a slideshow from your Pictures folder"
-msgstr "Prikaži predstavitev iz mape slike"
+msgstr "Pokaži predstavitev iz mape slike"
 
 #: ../savers/personal-slideshow.desktop.in.in.h:2
 msgid "Pictures folder"
@@ -274,7 +276,7 @@ msgstr "Kvadrati pop-arta"
 
 #: ../savers/floaters.c:84
 msgid "Show paths that images follow"
-msgstr "Prikaži poti, ki jim sledijo slike"
+msgstr "Pokaži poti, ki jim sledijo slike"
 
 #: ../savers/floaters.c:87
 msgid "Occasionally rotate images as they move"
@@ -460,11 +462,11 @@ msgstr "Ohranjevalnik zaslona trenutno ni dejaven.\n"
 
 #: ../src/gnome-screensaver-dialog.c:56
 msgid "Show debugging output"
-msgstr "Prikaži izpis razhroščevanja"
+msgstr "Pokaži izpis razhroščevanja"
 
 #: ../src/gnome-screensaver-dialog.c:60
 msgid "Show the logout button"
-msgstr "Prikaži gumb za odjavo"
+msgstr "Pokaži gumb za odjavo"
 
 #: ../src/gnome-screensaver-dialog.c:62
 msgid "Command to invoke from the logout button"
@@ -472,7 +474,7 @@ msgstr "Ukaz, ki ga sproži gumb za odjavo"
 
 #: ../src/gnome-screensaver-dialog.c:64
 msgid "Show the switch user button"
-msgstr "Prikaži gumb za preklop uporabnika"
+msgstr "Pokaži gumb za preklop uporabnika"
 
 #: ../src/gnome-screensaver-dialog.c:66
 msgid "Message to show in the dialog"
@@ -511,7 +513,7 @@ msgstr "Svoje geslo morate takoj spremeniti (zahteva skrbnika)"
 
 #: ../src/gnome-screensaver-dialog.c:185
 msgid "Your account has expired; please contact your system administrator"
-msgstr "Vaš uporabniški račun je pretekel; prosim, obrnite se na vašega sistemskega administratorja"
+msgstr "Vaš uporabniški račun je pretekel; obrnite se na vašega sistemskega skrbnika"
 
 #: ../src/gnome-screensaver-dialog.c:186
 msgid "No password supplied"
@@ -555,7 +557,7 @@ msgstr "Za spremembo gesla morate počakati dlje"
 
 #: ../src/gnome-screensaver-dialog.c:196
 msgid "Sorry, passwords do not match"
-msgstr "Oprostite, gesli se ne ujemata"
+msgstr "Oprostite, gesli se ne skladata"
 
 #: ../src/gnome-screensaver-dialog.c:262
 msgid "Checking..."
@@ -640,7 +642,7 @@ msgstr "Prepričajte se, da je ohranjevalnik zaslona pravilno nameščen"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
-msgstr "Ne postani demon"
+msgstr "Ne zaženi kot ozadnji program"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
