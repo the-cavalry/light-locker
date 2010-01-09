@@ -8,6 +8,8 @@ AC_INIT([gnome-screensaver],
 AC_CONFIG_SRCDIR(src/gnome-screensaver.c)
 
 AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2])
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+
 AM_CONFIG_HEADER(config.h)
 
 AM_MAINTAINER_MODE
