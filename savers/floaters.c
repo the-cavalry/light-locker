@@ -41,6 +41,10 @@
 
 #include "gs-theme-window.h"
 
+#ifndef trunc
+#define trunc(x) ((x > 0.0) ? floor(x) : -floor(-x))
+#endif
+
 #ifndef OPTIMAL_FRAME_RATE
 #define OPTIMAL_FRAME_RATE (25.0)
 #endif
