@@ -29,6 +29,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <signal.h>
 
 #include <glib/gi18n.h>
 #include <gdk/gdkx.h>
@@ -326,6 +327,21 @@ response_cb (GSLockPlug *plug,
 }
 
 static gboolean
+response_request_quit (void)
+{
+        printf ("REQUEST QUIT\n");
+        fflush (stdout);
+        return FALSE;
+}
+
+static gboolean
+quit_timeout_cb (gpointer data)
+{
+        gtk_main_quit ();
+        return FALSE;
+}
+
+static gboolean
 auth_check_idle (GSLockPlug *plug)
 {
         gboolean     res;
@@ -347,7 +363,11 @@ auth_check_idle (GSLockPlug *plug)
                 } else {
                         gs_debug ("Authentication failed, quitting (max failures)");
                         again = FALSE;
-                        gtk_main_quit ();
+                        /* Don't quit immediately, but rather request that gnome-screensaver
+                         * terminates us after it has finished the dialog shake. Time out
+                         * after 5 seconds and quit anyway if this doesn't happen though */
+                        g_idle_add ((GSourceFunc)response_request_quit, NULL);
+                        g_timeout_add (5000, (GSourceFunc)quit_timeout_cb, NULL);
                 }
         }
 

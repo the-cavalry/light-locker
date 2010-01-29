@@ -95,6 +95,8 @@ struct GSWindowPrivate
         gint       lock_pid;
         gint       lock_watch_id;
         gint       dialog_response;
+        gboolean   dialog_quit_requested;
+        gboolean   dialog_shake_in_progress;
 
         gint       keyboard_pid;
         gint       keyboard_watch_id;
@@ -1477,6 +1479,16 @@ gs_window_dialog_finish (GSWindow *window)
         remove_key_events (window);
 }
 
+static void
+maybe_kill_dialog (GSWindow *window)
+{
+        if (!window->priv->dialog_shake_in_progress
+            && window->priv->dialog_quit_requested
+            && window->priv->lock_pid > 0) {
+                kill (window->priv->lock_pid, SIGTERM);
+        }
+}
+
 /* very rudimentary animation for indicating an auth failure */
 static void
 shake_dialog (GSWindow *window)
@@ -1484,6 +1496,8 @@ shake_dialog (GSWindow *window)
         int   i;
         guint left;
         guint right;
+
+        window->priv->dialog_shake_in_progress = TRUE;
 
         for (i = 0; i < 9; i++) {
                 if (i % 2 == 0) {
@@ -1509,6 +1523,9 @@ shake_dialog (GSWindow *window)
 
                 g_usleep (10000);
         }
+
+        window->priv->dialog_shake_in_progress = FALSE;
+        maybe_kill_dialog (window);
 }
 
 static gboolean
@@ -1551,6 +1568,10 @@ lock_command_watch (GIOChannel   *source,
                                         window->priv->dialog_response = DIALOG_RESPONSE_CANCEL;
                                 }
                                 finished = TRUE;
+                        } else if (strstr (line, "REQUEST QUIT") != NULL) {
+                                gs_debug ("Got request for quit");
+                                window->priv->dialog_quit_requested = TRUE;
+                                maybe_kill_dialog (window);
                         }
                         break;
                 case G_IO_STATUS_EOF:
@@ -1663,6 +1684,9 @@ popup_dialog_idle (GSWindow *window)
         gs_window_clear_to_background_pixmap (window);
 
         set_invisible_cursor (GTK_WIDGET (window)->window, FALSE);
+
+        window->priv->dialog_quit_requested = FALSE;
+        window->priv->dialog_shake_in_progress = FALSE;
 
         result = spawn_on_window (window,
                                   command->str,
