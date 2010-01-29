@@ -10,6 +10,7 @@ savers/cosmos-slideshow.desktop.in.in
 savers/footlogo-floaters.desktop.in.in
 savers/personal-slideshow.desktop.in.in
 savers/popsquares.desktop.in.in
+savers/popsquares.c
 savers/floaters.c
 savers/slideshow.c
 src/copy-theme-dialog.c
