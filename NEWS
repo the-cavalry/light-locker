@@ -1,4 +1,16 @@
 ===============
+Version 2.29.1
+===============
+
+Fixed bugs:
+ - #597874, Use xrandr 1.2 gamma fading
+ - RH bug #546656, Fix crash in popsquares
+ - #598476, Don't crash when lock dialog dies during shake
+ - #593616, Fix multi-head issues
+ - #600488, Remove session inhibitors if the originator falls of the bus
+
+
+===============
 Version 2.28.0
 ===============
 
