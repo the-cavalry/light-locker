@@ -172,6 +172,18 @@ PKG_CHECK_MODULES(LIB_GNOME_MENU,
 AC_SUBST(LIB_GNOME_MENU_CFLAGS)
 AC_SUBST(LIB_GNOME_MENU_LIBS)
 
+dnl ================================================================
+dnl Control Center Extension
+dnl ================================================================
+
+PKG_CHECK_MODULES(CC_EXTENSION, libgnome-control-center-extension)
+
+CC_EXTENSION_LIBTOOL_FLAGS="-export_dynamic -avoid-version -module -no-undefined -export-symbols-regex '^g_io_module_(load|unload)'"
+AC_SUBST(CC_EXTENSION_LIBTOOL_FLAGS)
+
+CCEXTENSIONSDIR="${libdir}/control-center-1/extensions"
+AC_SUBST(CCEXTENSIONSDIR)
+
 dnl ---------------------------------------------------------------------------
 dnl - Where should we put documentation ?
 dnl ---------------------------------------------------------------------------
