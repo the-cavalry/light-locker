@@ -1,4 +1,11 @@
 ===============
+Version 2.29.90
+===============
+
+Fixed bugs:
+ - #609337, CVE-2010-0414, handle monitor removal more securely
+
+===============
 Version 2.29.1
 ===============
 
