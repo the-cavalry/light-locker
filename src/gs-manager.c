@@ -1495,6 +1495,9 @@ on_screen_monitors_changed (GdkScreen *screen,
                         gs_manager_create_window_for_monitor (manager, screen, i);
                 }
         } else {
+
+                gdk_x11_grab_server ();
+
                 /* remove the extra windows */
                 l = manager->priv->windows;
                 while (l != NULL) {
@@ -1512,6 +1515,16 @@ on_screen_monitors_changed (GdkScreen *screen,
                         }
                         l = next;
                 }
+
+                /* make sure there is a lock dialog on a connected monitor,
+                 * and that the keyboard is still properly grabbed after all
+                 * the windows above got destroyed*/
+                if (n_windows > n_monitors) {
+                        gs_manager_request_unlock (manager);
+                }
+
+                gdk_flush ();
+                gdk_x11_ungrab_server ();
         }
 }
 
