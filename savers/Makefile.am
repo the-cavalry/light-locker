@@ -87,6 +87,7 @@ floaters_SOURCES =	\
 floaters_LDADD =		       \
 	libgs-theme-engine.a		\
 	$(GNOME_SCREENSAVER_SAVER_LIBS) \
+	-lm                             \
 	$(NULL)
 
 popsquares_SOURCES = 		\
