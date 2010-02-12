@@ -1,4 +1,12 @@
 ===============
+Version 2.29.91
+===============
+
+Fixed bugs:
+ - #609789 - CVE-2010-0422, handle monitor hotplugging more securely
+ - Fix screen dirt in floaters screensaver
+
+===============
 Version 2.29.90
 ===============
 
