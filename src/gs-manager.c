@@ -1491,10 +1491,24 @@ on_screen_monitors_changed (GdkScreen *screen,
                   n_monitors);
 
         if (n_monitors > n_windows) {
+
+                /* Tear down unlock dialog in case we want to move it
+                 * to a new monitor
+                 */
+                l = manager->priv->windows;
+                while (l != NULL) {
+                        gs_window_cancel_unlock_request (GS_WINDOW (l->data));
+                        l = l->next;
+                }
+
                 /* add more windows */
                 for (i = n_windows; i < n_monitors; i++) {
                         gs_manager_create_window_for_monitor (manager, screen, i);
                 }
+
+                /* And put unlock dialog up where ever it's supposed to be
+                 */
+                gs_manager_request_unlock (manager);
         } else {
 
                 gdk_x11_grab_server ();
