@@ -24,6 +24,7 @@
 
 #include <time.h>
 #include <gdk/gdk.h>
+#include <gdk/gdkx.h>
 
 #include <gconf/gconf-engine.h>
 #include <gconf/gconf-client.h>
