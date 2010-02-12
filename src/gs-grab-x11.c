@@ -172,7 +172,15 @@ gs_grab_get_keyboard (GSGrab    *grab,
         status = gdk_keyboard_grab (window, FALSE, GDK_CURRENT_TIME);
 
         if (status == GDK_GRAB_SUCCESS) {
+                if (grab->priv->keyboard_grab_window != NULL) {
+                        g_object_remove_weak_pointer (G_OBJECT (grab->priv->keyboard_grab_window),
+                                                      (gpointer *) &grab->priv->keyboard_grab_window);
+                }
                 grab->priv->keyboard_grab_window = window;
+
+                g_object_add_weak_pointer (G_OBJECT (grab->priv->keyboard_grab_window),
+                                           (gpointer *) &grab->priv->keyboard_grab_window);
+
                 grab->priv->keyboard_grab_screen = screen;
         } else {
                 gs_debug ("Couldn't grab keyboard!  (%s)", grab_string (status));
@@ -201,7 +209,15 @@ gs_grab_get_mouse (GSGrab    *grab,
                                    GDK_CURRENT_TIME);
 
         if (status == GDK_GRAB_SUCCESS) {
+                if (grab->priv->mouse_grab_window != NULL) {
+                        g_object_remove_weak_pointer (G_OBJECT (grab->priv->mouse_grab_window),
+                                                      (gpointer *) &grab->priv->mouse_grab_window);
+                }
                 grab->priv->mouse_grab_window = window;
+
+                g_object_add_weak_pointer (G_OBJECT (grab->priv->mouse_grab_window),
+                                           (gpointer *) &grab->priv->mouse_grab_window);
+
                 grab->priv->mouse_grab_screen = screen;
                 grab->priv->mouse_hide_cursor = hide_cursor;
         }
@@ -214,6 +230,10 @@ gs_grab_get_mouse (GSGrab    *grab,
 void
 gs_grab_keyboard_reset (GSGrab *grab)
 {
+        if (grab->priv->keyboard_grab_window != NULL) {
+                g_object_remove_weak_pointer (G_OBJECT (grab->priv->keyboard_grab_window),
+                                              (gpointer *) &grab->priv->keyboard_grab_window);
+        }
         grab->priv->keyboard_grab_window = NULL;
         grab->priv->keyboard_grab_screen = NULL;
 }
@@ -232,6 +252,11 @@ gs_grab_release_keyboard (GSGrab *grab)
 void
 gs_grab_mouse_reset (GSGrab *grab)
 {
+        if (grab->priv->mouse_grab_window != NULL) {
+                g_object_remove_weak_pointer (G_OBJECT (grab->priv->mouse_grab_window),
+                                              (gpointer *) &grab->priv->mouse_grab_window);
+        }
+
         grab->priv->mouse_grab_window = NULL;
         grab->priv->mouse_grab_screen = NULL;
 }
