@@ -1267,7 +1267,7 @@ create_page_one_buttons (GSLockPlug *plug)
 
         plug->priv->auth_switch_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
                                                                    plug->priv->auth_action_area,
-                                                                   _("S_witch User..."));
+                                                                   _("S_witch User…"));
         gtk_button_box_set_child_secondary (GTK_BUTTON_BOX (plug->priv->auth_action_area),
                                             plug->priv->auth_switch_button,
                                             TRUE);

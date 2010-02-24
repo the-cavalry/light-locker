@@ -1195,7 +1195,7 @@ main (int   argc,
                       /* translators: the word "image" here
                        * represents a command line argument
                        */
-                      _("image - floats images around the screen"),
+                      _("image — floats images around the screen"),
                       options, GETTEXT_PACKAGE, &error);
 
 

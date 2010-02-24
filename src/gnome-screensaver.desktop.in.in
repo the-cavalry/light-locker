@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 _Name=Screensaver
-_Comment=Launch screen saver and locker program
+_Comment=Launch screensaver and locker program
 Icon=preferences-desktop-screensaver
 Exec=gnome-screensaver
 OnlyShowIn=GNOME;

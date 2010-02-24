@@ -186,10 +186,10 @@ maybe_translate_message (const char *msg)
                 g_hash_table_insert (hash, "Your account has expired; please contact your system administrator", _("Your account has expired; please contact your system administrator"));
                 g_hash_table_insert (hash, "No password supplied", _("No password supplied"));
                 g_hash_table_insert (hash, "Password unchanged", _("Password unchanged"));
-                g_hash_table_insert (hash, "Can not get username", _("Can not get username"));
-                g_hash_table_insert (hash, "Retype new UNIX password:", _("Retype new UNIX password:"));
-                g_hash_table_insert (hash, "Enter new UNIX password:", _("Enter new UNIX password:"));
-                g_hash_table_insert (hash, "(current) UNIX password:", _("(current) UNIX password:"));
+                g_hash_table_insert (hash, "Can not get username", _("Cannot get username"));
+                g_hash_table_insert (hash, "Retype new UNIX password:", _("Retype new Unix password:"));
+                g_hash_table_insert (hash, "Enter new UNIX password:", _("Enter new Unix password:"));
+                g_hash_table_insert (hash, "(current) UNIX password:", _("(current) Unix password:"));
                 g_hash_table_insert (hash, "Error while changing NIS password.", _("Error while changing NIS password."));
                 g_hash_table_insert (hash, "You must choose a longer password", _("You must choose a longer password"));
                 g_hash_table_insert (hash, "Password has been already used. Choose another.", _("Password has been already used. Choose another."));
@@ -260,7 +260,7 @@ auth_message_handler (GSAuthMessageStyle style,
                 gs_debug ("Got no response");
                 ret = FALSE;
         } else {
-                gs_lock_plug_show_message (plug, _("Checking..."));
+                gs_lock_plug_show_message (plug, _("Checking…"));
                 gs_lock_plug_set_sensitive (plug, FALSE);
         }
 
