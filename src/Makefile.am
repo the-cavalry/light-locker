@@ -51,14 +51,6 @@ noinst_PROGRAMS = 	\
 	test-window	\
 	$(NULL)
 
-noinst_LTLIBRARIES = 				\
-	libscreensaver-settings-common.la	\
-	libscreensaver-common.la		\
-	$(NULL)
-
-ccmodulesdir = $(CCEXTENSIONSDIR)
-ccmodules_LTLIBRARIES = libgnome-screensaver.la
-
 desktopdir = $(sysconfdir)/xdg/autostart
 desktop_in_files = gnome-screensaver.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
@@ -81,10 +73,11 @@ test_fade_SOURCES = 			\
 	test-fade.c 			\
 	gs-fade.c	 		\
 	gs-fade.h	 		\
+	gs-debug.c			\
+	gs-debug.h			\
 	$(NULL)
 
 test_fade_LDADD =			\
-	libscreensaver-common.la	\
 	$(GNOME_SCREENSAVER_LIBS)	\
 	$(SAVER_LIBS)			\
 	$(NULL)
@@ -94,10 +87,11 @@ test_passwd_SOURCES = 			\
 	$(AUTH_SOURCES)			\
 	setuid.c			\
 	setuid.h			\
+	subprocs.c			\
+	subprocs.h			\
 	$(NULL)
 
 test_passwd_LDADD =			\
-	libscreensaver-common.la	\
 	$(GNOME_SCREENSAVER_DIALOG_LIBS)\
 	$(AUTH_LIBS)			\
 	$(NULL)
@@ -108,10 +102,11 @@ test_watcher_SOURCES =			\
 	gs-watcher-x11.c		\
 	gs-marshal.c 			\
 	gs-marshal.h			\
+	gs-debug.c			\
+	gs-debug.h			\
 	$(NULL)
 
 test_watcher_LDADD =			\
-	libscreensaver-common.la	\
 	$(GNOME_SCREENSAVER_LIBS)	\
 	$(SAVER_LIBS)			\
 	$(NULL)
@@ -124,10 +119,13 @@ test_window_SOURCES =			\
 	gs-grab.h			\
 	gs-marshal.c 			\
 	gs-marshal.h			\
+	gs-debug.c			\
+	gs-debug.h			\
+	subprocs.c			\
+	subprocs.h			\
 	$(NULL)
 
 test_window_LDADD =			\
-	libscreensaver-common.la	\
 	$(GNOME_SCREENSAVER_LIBS)	\
 	$(SAVER_LIBS)			\
 	$(NULL)
@@ -136,8 +134,12 @@ gnome_screensaver_dialog_SOURCES = 	\
 	gnome-screensaver-dialog.c	\
 	gs-lock-plug.c			\
 	gs-lock-plug.h			\
+	gs-debug.c			\
+	gs-debug.h			\
 	setuid.c			\
 	setuid.h			\
+	subprocs.c			\
+	subprocs.h			\
 	$(AUTH_SOURCES)			\
 	$(NULL)
 
@@ -148,7 +150,6 @@ EXTRA_gnome_screensaver_dialog_SOURCES = \
 	$(NULL)
 
 gnome_screensaver_dialog_LDADD =	\
-	libscreensaver-common.la	\
 	$(GNOME_SCREENSAVER_DIALOG_LIBS)\
 	$(SAVER_LIBS)			\
 	$(AUTH_LIBS)			\
@@ -183,6 +184,14 @@ gnome_screensaver_SOURCES =	\
 	gs-window.h		\
 	gs-prefs.c		\
 	gs-prefs.h		\
+	gs-theme-manager.c	\
+	gs-theme-manager.h	\
+	gs-job.c		\
+	gs-job.h		\
+	gs-debug.c		\
+	gs-debug.h		\
+	subprocs.c		\
+	subprocs.h		\
 	gs-grab-x11.c		\
 	gs-grab.h		\
 	gs-fade.c		\
@@ -202,14 +211,16 @@ gnome_screensaver_gl_helper_SOURCES =	\
 	$(NULL)
 
 gnome_screensaver_LDADD =		\
-	libscreensaver-common.la	\
 	$(GNOME_SCREENSAVER_LIBS)	\
 	$(SAVER_LIBS)			\
 	$(NULL)
 
 gnome_screensaver_LDFLAGS = -export-dynamic
 
-libscreensaver_common_la_SOURCES =	\
+gnome_screensaver_preferences_SOURCES =	\
+	gnome-screensaver-preferences.c	\
+	copy-theme-dialog.c		\
+	copy-theme-dialog.h		\
 	gs-theme-manager.c		\
 	gs-theme-manager.h		\
 	gs-job.c			\
@@ -220,42 +231,7 @@ libscreensaver_common_la_SOURCES =	\
 	subprocs.h			\
 	$(NULL)
 
-libscreensaver_settings_common_la_SOURCES =	\
-	copy-theme-dialog.c		\
-	copy-theme-dialog.h		\
-	$(NULL)
-
-libgnome_screensaver_la_SOURCES =	\
-	screensaver-module.c		\
-	cc-screensaver-panel.c		\
-	cc-screensaver-panel.h		\
-	cc-screensaver-page.c		\
-	cc-screensaver-page.h		\
-	$(NULL)
-
-libgnome_screensaver_la_LDFLAGS =	\
-	$(CC_EXTENSION_LIBTOOL_FLAGS)	\
-	$(NULL)
-
-libgnome_screensaver_la_LIBADD =		\
-	libscreensaver-settings-common.la	\
-	libscreensaver-common.la		\
-	$(CC_EXTENSION_LIBS)			\
-	$(NULL)
-
-libgnome_screensaver_la_CFLAGS =	\
-	$(CC_EXTENSION_CFLAGS)		\
-	$(NULL)
-
-libgnome_screensaver_la_LIBTOOLFLAGS = --tag=disable-static
-
-gnome_screensaver_preferences_SOURCES =	\
-	gnome-screensaver-preferences.c	\
-	$(NULL)
-
-gnome_screensaver_preferences_LDADD =		\
-	libscreensaver-settings-common.la	\
-	libscreensaver-common.la		\
+gnome_screensaver_preferences_LDADD =	\
 	$(GNOME_SCREENSAVER_CAPPLET_LIBS)	\
 	$(NULL)
 
