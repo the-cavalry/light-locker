@@ -1,28 +1,21 @@
-# translation of gnome-screensaver to Polish
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # Aviary.pl
 # Jeśli masz jakiekolwiek uwagi odnoszące się do tłumaczenia lub chcesz
 # pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas:
 # gnomepl@aviary.pl
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-#
-# This file is distributed under the same license as the gnome-screensaver package.
-# Copyright (C) 2008 The Free Software Foundation, Inc.
-# Andrzej Polatyński <andrzej@datatel.net.pl>, 2006.
-# Tomasz Dominikowski <tdominikowski@aviary.pl>, 2008
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-25 18:47+0200\n"
-"PO-Revision-Date: 2009-08-25 18:59+0100\n"
-"Last-Translator: Tomasz Dominikowski <dominikowski@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver&component=general\n"
+"POT-Creation-Date: 2009-12-14 20:28+0000\n"
+"PO-Revision-Date: 2010-02-25 20:31+0100\n"
+"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>20) ? 1 : 2);\n"
-"X-Generator: KBabel 1.10.2\n"
 "X-Poedit-Language: Polish\n"
 "X-Poedit-Country: Poland\n"
 
@@ -61,11 +54,11 @@ msgstr "Podgląd wygaszacza ekranu"
 
 #: ../data/gnome-screensaver-preferences.ui.h:7
 msgid "_Activate screensaver when computer is idle"
-msgstr "_Uruchomienie wygaszacza ekranu gdy komputer jest w stanie bezczynności"
+msgstr "_Uruchomienie wygaszacza ekranu, gdy komputer jest w stanie bezczynności"
 
 #: ../data/gnome-screensaver-preferences.ui.h:8
 msgid "_Lock screen when screensaver is active"
-msgstr "Blokowani_e ekranu gdy wygaszacz jest aktywny"
+msgstr "Blokowani_e ekranu, gdy wygaszacz jest aktywny"
 
 #: ../data/gnome-screensaver-preferences.ui.h:9
 msgid "_Preview"
@@ -86,7 +79,7 @@ msgstr "Wygaszacze ekranu"
 
 #: ../data/gnome-screensaver.schemas.in.h:1
 msgid "Activate when idle"
-msgstr "Uaktywnienie gdy w stanie bezczynności"
+msgstr "Aktywowanie, gdy w stanie bezczynności"
 
 #: ../data/gnome-screensaver.schemas.in.h:2
 msgid "Allow embedding a keyboard into the window"
@@ -94,7 +87,7 @@ msgstr "Zezwolenie na wyświetlanie klawiatury w oknie"
 
 #: ../data/gnome-screensaver.schemas.in.h:3
 msgid "Allow logout"
-msgstr "Zezwala na wylogowanie"
+msgstr "Zezwalanie na wylogowanie"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow the session status message to be displayed"
@@ -106,7 +99,7 @@ msgstr "Zezwolenie na wyświetlenie komunikatu o stanie sesji, gdy ekran jest za
 
 #: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Allow user switching"
-msgstr "Zezwala na przełączanie użytkowników"
+msgstr "Zezwolenie na przełączanie użytkowników"
 
 #: ../data/gnome-screensaver.schemas.in.h:7
 msgid "Embedded keyboard command"
@@ -114,7 +107,7 @@ msgstr "Polecenie klawiatury ekranowej"
 
 #: ../data/gnome-screensaver.schemas.in.h:8
 msgid "Lock on activation"
-msgstr "Blokuje ekran przy aktywowaniu"
+msgstr "Blokowanie ekranu podczas aktywowania"
 
 #: ../data/gnome-screensaver.schemas.in.h:9
 msgid "Logout command"
@@ -134,7 +127,7 @@ msgstr "Wartość \"true\" pozwala na wyświetlanie klawiatury na zablokowanym e
 
 #: ../data/gnome-screensaver.schemas.in.h:14
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr "Wartość \"true\" włącza blokowanie ekranu przy uruchomieniu wygaszacza."
+msgstr "Wartość \"true\" włącza blokowanie ekranu podczas uruchomienia wygaszacza."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid "Set this to TRUE to offer an option in the unlock dialog to switch to a different user account."
@@ -146,7 +139,7 @@ msgstr "Wartość \"true\" włącza możliwość wylogowania bezpośrednio z zab
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid "The command that will be run, if the \"embedded_keyboard_enabled\" key is set to TRUE, to embed a keyboard widget into the window. This command should implement an XEMBED plug interface and output a window XID on the standard output."
-msgstr "Polecenie wyświetlające klawiaturę ekranową, które będzie wykonane gdy klucz \"embedded_keyboard_enabled\" jest aktywny. To polecenie powinno mieć zaimplementowany interfejs wtyczki XEMBED oraz powinno zwracać XID okna na standardowe wyjście."
+msgstr "Polecenie wyświetlające klawiaturę ekranową, które będzie wykonane, gdy klucz \"embedded_keyboard_enabled\" jest aktywny. To polecenie powinno mieć zaimplementowany interfejs wtyczki XEMBED oraz powinno zwracać XID okna na standardowe wyjście."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
 msgid "The command to invoke when the logout button is clicked. This command should simply log the user out without any interaction. This key has effect only if the \"logout_enable\" key is set to TRUE."
@@ -154,7 +147,7 @@ msgstr "Polecenie wykonywane po naciśnięciu przycisku \"Wyloguj\". Polecenie t
 
 #: ../data/gnome-screensaver.schemas.in.h:19
 msgid "The number of minutes after screensaver activation before locking the screen."
-msgstr "Liczba minut opóźnienia blokowania ekranu od czasu uruchomienia wygaszacza."
+msgstr "Liczba minut opóźnienia blokowania ekranu od czasu aktywowania wygaszacza."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid "The number of minutes after the screensaver activation before a logout option will appear in unlock dialog. This key has effect only if the \"logout_enable\" key is set to TRUE."
@@ -186,7 +179,7 @@ msgstr "Motyw stosowany do wyświetlania okna dialogowego zablokowanego ekranu."
 
 #: ../data/gnome-screensaver.schemas.in.h:27
 msgid "This key specifies the list of themes to be used by the screensaver. It's ignored when \"mode\" key is \"blank-only\", should provide the theme name when \"mode\" is \"single\", and should provide a list of themes when \"mode\" is \"random\"."
-msgstr "Ten klucz określa które motywy wygaszacza ekranu będą użyte. Gdy klucz \"mode\" ma wartość \"blank-only\", ten parametr będzie ignorowany. W przypadku gdy \"mode\" ma wartość \"single\", klucz ten powinien zawierać jedną nazwę motywu, natomiast w przypadku gdy \"mode\" ma wartość \"random\", powinien zawierać listę nazw."
+msgstr "Ten klucz określa, które motywy wygaszacza ekranu będą użyte. Gdy klucz \"mode\" ma wartość \"blank-only\", ten parametr będzie ignorowany. W przypadku, gdy \"mode\" ma wartość \"single\", klucz ten powinien zawierać jedną nazwę motywu, natomiast w przypadku gdy \"mode\" ma wartość \"random\", powinien zawierać listę nazw."
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
@@ -194,11 +187,11 @@ msgstr "Odstęp czasu przed zablokowaniem ekranu"
 
 #: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before logout option"
-msgstr "Odstęp czasu przed uaktywnieniem opcji wylogowania"
+msgstr "Odstęp czasu przed aktywowaniem opcji wylogowania"
 
 #: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before power-management baseline"
-msgstr "Odstęp czasu przed uaktywnieniem zarządzania energią"
+msgstr "Odstęp czasu przed aktywowaniem zarządzania energią"
 
 #: ../data/gnome-screensaver.schemas.in.h:31
 msgid "Time before session is considered idle"
@@ -211,7 +204,7 @@ msgstr "Odstęp czasu pomiędzy zmianami motywów"
 #: ../data/lock-dialog-default.ui.h:2
 #, no-c-format
 msgid "<b>Leave a message for %R:</b>"
-msgstr "<b>Wiadomość dla %R:</b>"
+msgstr "<b>Wiadomość dla użytkownika %R:</b>"
 
 #: ../data/lock-dialog-default.ui.h:4
 #, no-c-format
@@ -309,7 +302,7 @@ msgstr "SZEROKOŚĆxWYSOKOŚĆ+X+Y"
 
 #: ../savers/floaters.c:99
 msgid "The source image to use"
-msgstr "Obraz źródłowy"
+msgstr "Używany obraz źródłowy"
 
 #. translators: the word "image" here
 #. * represents a command line argument
@@ -330,7 +323,7 @@ msgstr "Należy wybrać jeden obraz. Parametr --help wyświetla instrukcję uży
 
 #: ../savers/slideshow.c:53
 msgid "Location to get images from"
-msgstr "Położenie skąd pobierane będą obrazy"
+msgstr "Położenie, skąd pobierane będą obrazy"
 
 #: ../savers/slideshow.c:53
 msgid "PATH"
@@ -416,7 +409,7 @@ msgstr "Generuje zdarzenie symulujące aktywność użytkownika"
 
 #: ../src/gnome-screensaver-command.c:78
 msgid "Inhibit the screensaver from activating.  Command blocks while inhibit is active."
-msgstr "Wstrzymuje aktywację wygaszacza ekranu. Polecenia są blokowane gdy wstrzymanie jest włączone."
+msgstr "Wstrzymuje aktywację wygaszacza ekranu. Polecenia są blokowane, gdy wstrzymanie jest włączone."
 
 #: ../src/gnome-screensaver-command.c:80
 msgid "The calling application that is inhibiting the screensaver"
@@ -430,7 +423,7 @@ msgstr "Powód wstrzymania wygaszacza ekranu"
 #: ../src/gnome-screensaver-dialog.c:58
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
-msgstr "Wypisuje wersję tego programu"
+msgstr "Wersja tego programu"
 
 #: ../src/gnome-screensaver-command.c:311
 #, c-format
@@ -510,15 +503,15 @@ msgstr "Hasło:"
 
 #: ../src/gnome-screensaver-dialog.c:183
 msgid "You are required to change your password immediately (password aged)"
-msgstr "Wymagana natychmiastowa zmiana hasła (minął okres ważności hasła)"
+msgstr "Wymagana jest natychmiastowa zmiana hasła (minął okres ważności hasła)"
 
 #: ../src/gnome-screensaver-dialog.c:184
 msgid "You are required to change your password immediately (root enforced)"
-msgstr "Wymagana natychmiastowa zmiana hasła (zmiana wymuszona przez administratora)"
+msgstr "Wymagana jest natychmiastowa zmiana hasła (zmiana wymuszona przez administratora)"
 
 #: ../src/gnome-screensaver-dialog.c:185
 msgid "Your account has expired; please contact your system administrator"
-msgstr "Minął okres ważności konta; proszę skontaktować się z administratorem systemu"
+msgstr "Minął okres ważności konta. Proszę skontaktować się z administratorem systemu"
 
 #: ../src/gnome-screensaver-dialog.c:186
 msgid "No password supplied"
@@ -546,7 +539,7 @@ msgstr "Hasło UNIX (bieżące):"
 
 #: ../src/gnome-screensaver-dialog.c:192
 msgid "Error while changing NIS password."
-msgstr "Błąd przy zmianie hasła NIS."
+msgstr "Błąd podczas zmieniania hasła NIS."
 
 #: ../src/gnome-screensaver-dialog.c:193
 msgid "You must choose a longer password"
@@ -558,7 +551,7 @@ msgstr "To hasło było już używane. Należy wybrać inne."
 
 #: ../src/gnome-screensaver-dialog.c:195
 msgid "You must wait longer to change your password"
-msgstr "Przy zmianie hasła należy poczekać dłużej"
+msgstr "Podczas zmiany hasła należy poczekać dłużej"
 
 #: ../src/gnome-screensaver-dialog.c:196
 msgid "Sorry, passwords do not match"
@@ -571,7 +564,7 @@ msgstr "Sprawdzanie..."
 #: ../src/gnome-screensaver-dialog.c:304
 #: ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
-msgstr "Uwierzytelnianie nie powiodło się"
+msgstr "Uwierzytelnienie się nie powiodło."
 
 #: ../src/gnome-screensaver-preferences.c:524
 msgid "Blank screen"
@@ -640,7 +633,7 @@ msgstr "Nie można wczytać głównego interfejsu"
 
 #: ../src/gnome-screensaver-preferences.c:1469
 msgid "Please make sure that the screensaver is properly installed"
-msgstr "Należy upewnić się, czy wygaszacz ekranu jest prawidłowo zainstalowany"
+msgstr "Proszę upewnić się, że wygaszacz ekranu jest poprawnie zainstalowany"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
@@ -648,7 +641,7 @@ msgstr "Uruchamia program bez przełączania do pracy w tle"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
-msgstr "Uaktywnia kod debugowania"
+msgstr "Włącza kod debugowania"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
 msgid "Launch screen saver and locker program"
@@ -666,7 +659,7 @@ msgstr "Nie można ustawić PAM_TTY=%s"
 
 #: ../src/gs-auth-pam.c:455
 msgid "Incorrect password."
-msgstr "Hasło nieprawidłowe."
+msgstr "Niepoprawne hasło."
 
 #: ../src/gs-auth-pam.c:471
 msgid "Not permitted to gain access at this time."
@@ -676,21 +669,21 @@ msgstr "Brak zezwolenia na dostęp w tej chwili."
 msgid "No longer permitted to access the system."
 msgstr "Zezwolenie na dostęp do systemu odwołane."
 
-#: ../src/gs-listener-dbus.c:1851
+#: ../src/gs-listener-dbus.c:1912
 msgid "failed to register with the message bus"
-msgstr "nie można zarejestrować się w szynie komunikatów"
+msgstr "zarejestrowanie w magistrali komunikatów się nie powiodło"
 
-#: ../src/gs-listener-dbus.c:1861
+#: ../src/gs-listener-dbus.c:1922
 msgid "not connected to the message bus"
-msgstr "brak podłączenia do szyny komunikatów"
+msgstr "brak podłączenia do magistrali komunikatów"
 
-#: ../src/gs-listener-dbus.c:1870
+#: ../src/gs-listener-dbus.c:1931
 msgid "screensaver already running in this session"
 msgstr "wygaszacz ekranu jest już uruchomiony w tej sesji"
 
 #: ../src/gs-lock-plug.c:270
 msgid "Time has expired."
-msgstr "Przekroczono limit czasu."
+msgstr "Przekroczono ograniczenie czasu."
 
 #: ../src/gs-lock-plug.c:298
 msgid "You have the Caps Lock key on."
@@ -712,187 +705,3 @@ msgstr "%U na %h"
 #: ../src/gs-lock-plug.c:1561
 msgid "_Password:"
 msgstr "_Hasło:"
-
-#~ msgid "Reason for being away"
-#~ msgstr "Powód odejścia od komputera"
-#~ msgid "The reason for being away from the computer."
-#~ msgstr "Powód odejścia od komputera."
-#~ msgid "Copying '%s'"
-#~ msgstr "Kopiowanie \"%s\""
-#~ msgid "From URI"
-#~ msgstr "Z URI"
-#~ msgid "URI currently transferring from"
-#~ msgstr "URI źródłowy"
-#~ msgid "To URI"
-#~ msgstr "Do URI"
-#~ msgid "URI currently transferring to"
-#~ msgstr "URI docelowy"
-#~ msgid "Fraction completed"
-#~ msgstr "Ukończona część"
-#~ msgid "Fraction of transfer currently completed"
-#~ msgstr "Ukończona część transferu"
-#~ msgid "Current URI index"
-#~ msgstr "Aktualny indeks URI"
-#~ msgid "Current URI index - starts from 1"
-#~ msgstr "Aktualny indeks URI - zaczynając od 1"
-#~ msgid "Total URIs"
-#~ msgstr "Wszystkich URI"
-#~ msgid "Total number of URIs"
-#~ msgstr "Liczba wszystkich URI"
-#~ msgid "Connecting..."
-#~ msgstr "Łączenie..."
-#~ msgid "Authentication"
-#~ msgstr "Uwierzytelnianie"
-#~ msgid "N"
-#~ msgstr "N"
-#~ msgid "_Switch user..."
-#~ msgstr "_Przełącz użytkownika..."
-#~ msgid "S_witch to user:"
-#~ msgstr "Przełączenie na _użytkownika:"
-#~ msgid "Time before activation"
-#~ msgstr "Odstęp czasu przed aktywacją"
-#~ msgid "Manager"
-#~ msgstr "Menedżer"
-#~ msgid "The manager which owns this object."
-#~ msgstr "Menedżer, który jest właścicielem tego obiektu."
-#~ msgid "Name"
-#~ msgstr "Nazwa"
-#~ msgid "The name of the X11 display this object refers to."
-#~ msgstr "Nazwa ekranu X11, do którego odnosi się ten obiekt."
-#~ msgid "User"
-#~ msgstr "Użytkownik"
-#~ msgid "The user currently logged in on this virtual terminal."
-#~ msgstr ""
-#~ "Użytkownik, który jest aktualnie zalogowany na wirtualnym terminalu."
-#~ msgid "Console"
-#~ msgstr "Konsola"
-#~ msgid ""
-#~ "The number of the virtual console this display can be found on, or %-1."
-#~ msgstr "Numer wirtualnej konsoli, na której znajduje się ekran, lub %-1."
-#~ msgid "Nested"
-#~ msgstr "Zagnieżdżenie"
-#~ msgid "Whether or not this display is a windowed (Xnest) display."
-#~ msgstr "Określa czy ten ekran jest ekranem zagnieżdżonym."
-#~ msgid "The display manager could not be contacted for unknown reasons."
-#~ msgstr ""
-#~ "Z nieznanych przyczyn nie można połączyć się z menedżerem wyświetlania."
-#~ msgid "The display manager is not running or too old."
-#~ msgstr ""
-#~ "Menedżer wyświetlania jest wyłączony, lub zbyt stara wersja menedżera."
-#~ msgid "The configured limit of flexible servers has been reached."
-#~ msgstr "Przekroczono ustalony limit ilości elastycznych serwerów."
-#~ msgid "There was an unknown error starting X."
-#~ msgstr "Wystąpił nieokreślony błąd podczas uruchamiania X serwera."
-#~ msgid "The X server failed to finish starting."
-#~ msgstr "X serwer nie zakończył procesu uruchamiania."
-#~ msgid "There are too many X sessions running."
-#~ msgstr "Zbyt dużo uruchomionych sesji X."
-#~ msgid "The nested X server (Xnest) cannot connect to your current X server."
-#~ msgstr ""
-#~ "Zagnieżdżony serwer X (Xnest) nie mógł skomunikować się z X serwerem."
-#~ msgid "The X server in the GDM configuration could not be found."
-#~ msgstr "X serwer, określony w konfiguracji GDM, nie został odnaleziony."
-#~ msgid ""
-#~ "Trying to set an unknown logout action, or trying to set a logout action "
-#~ "which is not available."
-#~ msgstr ""
-#~ "Próba ustawienia nieznanej akcji wylogowania, lub próba ustawienia "
-#~ "niedostępnej akcji wylogowania."
-#~ msgid "Virtual terminals not supported."
-#~ msgstr "Wirtualne terminale nie są obsługiwane."
-#~ msgid "Invalid virtual terminal number."
-#~ msgstr "Nieprawidłowy numer wirtualnego terminala."
-#~ msgid "Trying to update an unsupported configuration key."
-#~ msgstr "Próba aktualizacji nieobsługiwanego klucza konfiguracji."
-#~ msgid "~/.Xauthority file badly configured or missing."
-#~ msgstr "Brak pliku ~/.Xauthority, lub plik źle skonfigurowany."
-#~ msgid "Too many messages were sent to the display manager, and it hung up."
-#~ msgstr ""
-#~ "Menedżer wyświetlania zawieszony z powodu zbyt dużej ilości odebranych "
-#~ "komunikatów."
-#~ msgid "The display manager sent an unknown error message."
-#~ msgstr "Menedżer wyświetlania wysłał nieznany komunikat o błędzie."
-#~ msgid "The user this menu item represents."
-#~ msgstr "Użytkownik, którego reprezentuje ta pozycja menu."
-#~ msgid "Icon Size"
-#~ msgstr "Rozmiar ikony"
-#~ msgid "The size of the icon to use."
-#~ msgstr "Rozmiar ikony."
-#~ msgid "Indicator Size"
-#~ msgstr "Rozmiar wskaźnika"
-#~ msgid "Size of check indicator"
-#~ msgstr "Rozmiar wskaźnika zaznaczenia"
-#~ msgid "Indicator Spacing"
-#~ msgstr "Odstęp wskaźnika"
-#~ msgid "Space between the username and the indicator"
-#~ msgstr "Odstęp między nazwą użytkownika a wskaźnikiem"
-#~ msgid "The user manager object this user is controlled by."
-#~ msgstr "Obiekt menedżera użytkowników, który kontroluje tego użytkownika."
-#~ msgid "Show Details"
-#~ msgstr "Wyświetl szczegóły"
-#~ msgid "GDM (The GNOME Display Manager) is not running."
-#~ msgstr "GDM (menedżer logowania GNOME) nie jest uruchomiony."
-#~ msgid ""
-#~ "You might in fact be using a different display manager, such as KDM (KDE "
-#~ "Display Manager) or xdm."
-#~ msgstr ""
-#~ "Prawdopobnie w systemie uruchomiony jest inny menedżer wyświetlania, taki "
-#~ "jak KDM (menedżer wyświetlania KDE) lub xdm."
-#~ msgid ""
-#~ "If you still wish to use this feature, either start GDM yourself or ask "
-#~ "your system administrator to start GDM."
-#~ msgstr ""
-#~ "Aby nadal korzystać z tej funkcji, należy uruchomić GDM. W przypadku "
-#~ "problemów z uruchamianiem GDM, pomoc administratora systemowego może "
-#~ "okazać się niezbędna."
-#~ msgid "Cannot communicate with GDM (The GNOME Display Manager)"
-#~ msgstr "Nie można skontaktować się z GDM (menedżerem wyświetlania GNOME)."
-#~ msgid "Perhaps you have an old version of GDM running."
-#~ msgstr "Być może uruchomiona wersja GDM jest zbyt stara."
-#~ msgid ""
-#~ "Cannot communicate with gdm, perhaps you have an old version running."
-#~ msgstr ""
-#~ "Nie można skomunikować się z gdm. Być może uruchomiona wersja jest zbyt "
-#~ "stara."
-#~ msgid "The allowed limit of flexible X servers reached."
-#~ msgstr "Przekroczono ustalony limit ilości elastycznych X serwerów."
-#~ msgid "There were errors trying to start the X server."
-#~ msgstr "Podczas uruchamiania X serwera wystąpiły błędy."
-#~ msgid "The X server failed.  Perhaps it is not configured well."
-#~ msgstr ""
-#~ "Uruchamianie X serwera nie powiodło się.  Być może jest źle "
-#~ "skonfigurowany."
-#~ msgid "Too many X sessions running."
-#~ msgstr "Zbyt wiele uruchomionych sesji X."
-#~ msgid ""
-#~ "The nested X server (Xnest) cannot connect to your current X server.  You "
-#~ "may be missing an X authorization file."
-#~ msgstr ""
-#~ "Zagnieżdżony serwer X (Xnest) nie mógł połączyć się z twoim serwerem X.  "
-#~ "Być może brakuje piku autoryzacji X."
-#~ msgid ""
-#~ "The nested X server (Xnest) is not available, or gdm is badly "
-#~ "configured.\n"
-#~ "Please install the Xnest package in order to use the nested login."
-#~ msgstr ""
-#~ "Zagnieżdżony serwer X (Xnest) jest niedostępny lub gdm jest źle "
-#~ "skonfigurowany. \n"
-#~ "Aby skorzystać z zagnieżdżonego logowania, należy zainstalować pakiet "
-#~ "Xnest."
-#~ msgid ""
-#~ "The X server is not available, it is likely that gdm is badly configured."
-#~ msgstr ""
-#~ "Serwer X jest niedostępny. Prawdopodobnie gdm jest źle skonfigurowany."
-#~ msgid "Trying to change to an invalid virtual terminal number."
-#~ msgstr "Próba zmiany na nieprawidłowy numer wirtualnego terminala."
-#~ msgid ""
-#~ "You do not seem to have authentication needed be for this operation.  "
-#~ "Perhaps your .Xauthority file is not set up correctly."
-#~ msgstr ""
-#~ "Brak wystarczających uprawnień do wykonania tej operacji. Być może plik ."
-#~ "Xauthority jest niepoprawnie skonfigurowany."
-#~ msgid "Too many messages were sent to gdm and it hung upon us."
-#~ msgstr "GDM zawieszony z powodu zbyt dużej ilości odebranych komunikatów."
-#~ msgid "Unknown error occurred."
-#~ msgstr "Wystąpił nieznany błąd."
-
