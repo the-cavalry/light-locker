@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "screensaver&component=general\n"
-"POT-Creation-Date: 2010-02-15 17:37+0000\n"
-"PO-Revision-Date: 2010-02-23 01:25+0100\n"
+"POT-Creation-Date: 2010-02-26 10:06+0000\n"
+"PO-Revision-Date: 2010-02-26 14:28+0100\n"
 "Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -90,13 +90,12 @@ msgstr "Povoliť odhlásenie"
 
 #: ../data/gnome-screensaver.schemas.in.h:4
 msgid "Allow the session status message to be displayed"
-msgstr "Povoliť zobrazenie stavovej správy relácie"
+msgstr "Povoliť zobrazenie správy o stave relácie"
 
 #: ../data/gnome-screensaver.schemas.in.h:5
 msgid ""
 "Allow the session status message to be displayed when the screen is locked."
-msgstr ""
-"Povoliť zobrazenie stavovej správy relácie, keď je obrazovka uzamknutá."
+msgstr "Povoliť zobrazenie správy o stave relácie, keď je obrazovka uzamknutá."
 
 #: ../data/gnome-screensaver.schemas.in.h:6
 msgid "Allow user switching"
@@ -294,7 +293,7 @@ msgstr "_Odhlásiť"
 msgid "_Switch User"
 msgstr "_Prepnúť používateľa"
 
-#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1382
+#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1372
 msgid "_Unlock"
 msgstr "_Odomknúť"
 
@@ -348,7 +347,7 @@ msgstr "Občas otočiť obrázky počas pohybu"
 
 #: ../savers/floaters.c:94
 msgid "Print out frame rate and other statistics"
-msgstr "Zobraziť počet snímok za sekundu a inú štatistiku"
+msgstr "Zobraziť počet snímok za sekundu a iné štatistiky"
 
 #: ../savers/floaters.c:97
 msgid "The maximum number of images to keep on screen"
@@ -478,7 +477,7 @@ msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
 msgstr ""
-"Potlačiť aktiváciu šetriča obrazovky. Príkaz blokuje kým je aktívne "
+"Potlačiť aktiváciu šetriča obrazovky. Príkaz blokuje, kým je aktívne "
 "potlačenie."
 
 #: ../src/gnome-screensaver-command.c:80
@@ -515,7 +514,7 @@ msgstr "Šetrič obrazovky nie je potlačený\n"
 #: ../src/gnome-screensaver-command.c:331
 #, c-format
 msgid "The screensaver is being inhibited by:\n"
-msgstr ""
+msgstr "Šetrič obrazovky potlačuje:\n"
 
 #: ../src/gnome-screensaver-command.c:362
 #, c-format
@@ -753,20 +752,20 @@ msgstr "Čas vypršal."
 msgid "You have the Caps Lock key on."
 msgstr "Máte zapnutý Caps Lock."
 
-#: ../src/gs-lock-plug.c:1362
+#: ../src/gs-lock-plug.c:1352
 msgid "S_witch User..."
 msgstr "_Prepnúť používateľa..."
 
-#: ../src/gs-lock-plug.c:1371
+#: ../src/gs-lock-plug.c:1361
 msgid "Log _Out"
 msgstr "_Odhlásiť"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1547
+#: ../src/gs-lock-plug.c:1537
 msgid "%U on %h"
 msgstr "%U na %h"
 
-#: ../src/gs-lock-plug.c:1561
+#: ../src/gs-lock-plug.c:1551
 msgid "_Password:"
 msgstr "_Heslo:"
 
