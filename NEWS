@@ -1,4 +1,11 @@
 ===============
+Version 2.29.92
+===============
+
+Fixed bugs:
+ - Build fix for systems with x11 < 1.3
+
+===============
 Version 2.29.91
 ===============
 
