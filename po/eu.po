@@ -2,14 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2006, 2007, 2008, 2009.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2006, 2007, 2008, 2009, 2010.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-26 21:02+0200\n"
-"PO-Revision-Date: 2009-08-26 21:02+0200\n"
+"PO-Revision-Date: 2010-03-23 16:13+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -321,7 +321,7 @@ msgstr "Irudiak karpeta"
 
 #: ../savers/popsquares.desktop.in.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
-msgstr "Pop-art-dun sareta kolore pilpilekin"
+msgstr "Pop-art-dun sareta kolorezko taupadekin."
 
 #: ../savers/popsquares.desktop.in.in.h:2
 msgid "Pop art squares"
