@@ -1,16 +1,16 @@
-# translation of gnome-screensaver.master.gu.po to Gujarati
+# translation of gnome-screensaver.gnome-2-28.gu.po to Gujarati
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 #
 # Ankit Patel <ankit644@yahoo.com>, 2005, 2006.
 # Ankit Patel <ankit@redhat.com>, 2006, 2007.
-# Sweta Kothari <swkothar@redhat.com>, 2008, 2009.
+# Sweta Kothari <swkothar@redhat.com>, 2008, 2009, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver.master.gu\n"
+"Project-Id-Version: gnome-screensaver.gnome-2-28.gu\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver&component=general\n"
-"POT-Creation-Date: 2009-08-21 03:05+0000\n"
-"PO-Revision-Date: 2009-08-24 15:33+0530\n"
+"POT-Creation-Date: 2009-12-14 20:28+0000\n"
+"PO-Revision-Date: 2010-03-24 15:30+0530\n"
 "Last-Translator: Sweta Kothari <swkothar@redhat.com>\n"
 "Language-Team: Gujarati\n"
 "MIME-Version: 1.0\n"
@@ -341,7 +341,7 @@ msgstr "રંગોના કંપન માટે pop-art-ish જાળી."
 
 #: ../savers/popsquares.desktop.in.in.h:2
 msgid "Pop art squares"
-msgstr "Pop art squares"
+msgstr "ઝબૂકતા ચોકઠાઓ"
 
 #: ../savers/floaters.c:84
 msgid "Show paths that images follow"
@@ -497,37 +497,36 @@ msgstr "સ્ક્રીનસેવરને બચાવવા માટે�
 msgid "Version of this application"
 msgstr "આ કાર્યક્રમની આવૃત્તિ"
 
-#: ../src/gnome-screensaver-command.c:307
+#: ../src/gnome-screensaver-command.c:311
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "સ્ક્રીનસેવર એ %s છે\n"
 
-#: ../src/gnome-screensaver-command.c:307
+#: ../src/gnome-screensaver-command.c:311
 msgid "active"
 msgstr "સક્રિય"
 
-#: ../src/gnome-screensaver-command.c:307
+#: ../src/gnome-screensaver-command.c:311
 msgid "inactive"
 msgstr "અસક્રિય"
 
-#: ../src/gnome-screensaver-command.c:321
+#: ../src/gnome-screensaver-command.c:325
 #, c-format
 msgid "The screensaver is not inhibited\n"
 msgstr "સ્ક્રીનસેવર એ અટકાવાયેલ છે\n"
 
-#: ../src/gnome-screensaver-command.c:327
+#: ../src/gnome-screensaver-command.c:331
 #, c-format
 msgid "The screensaver is being inhibited by:\n"
 msgstr "સ્ક્રીનસેવર એ અટકાવી દેવામાં આવ્યું છે:\n"
 
-#: ../src/gnome-screensaver-command.c:358
+#: ../src/gnome-screensaver-command.c:362
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "સ્ક્રીનસેવર %d સેકન્ડોથી સક્રિય છે.\n"
 
-#: ../src/gnome-screensaver-command.c:362
+#: ../src/gnome-screensaver-command.c:366
 #, c-format
-#| msgid "The screensaver is not inhibited\n"
 msgid "The screensaver is not currently active.\n"
 msgstr "સ્ક્રીનસેવર એ હમણાં સક્રિય નથી.\n"
 
@@ -734,15 +733,15 @@ msgstr "આ સમયે વપરાશની પરવાનગી નથી."
 msgid "No longer permitted to access the system."
 msgstr "સિસ્ટમના વપરાશની લાંબા સમય સુધી પરવાનગી નથી."
 
-#: ../src/gs-listener-dbus.c:1851
+#: ../src/gs-listener-dbus.c:1844
 msgid "failed to register with the message bus"
 msgstr "સંદેશા બસ સાથે રજીસ્ટર કરવામાં નિષ્ફળ"
 
-#: ../src/gs-listener-dbus.c:1861
+#: ../src/gs-listener-dbus.c:1854
 msgid "not connected to the message bus"
 msgstr "સંદેશા બસમાં જોડાયેલ નથી"
 
-#: ../src/gs-listener-dbus.c:1870
+#: ../src/gs-listener-dbus.c:1863
 msgid "screensaver already running in this session"
 msgstr "આ સત્રમાં સ્ક્રીનસેવર પહેલાથી જ ચાલી રહ્યું છે"
 
