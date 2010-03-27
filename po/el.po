@@ -9,11 +9,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
-"cgi?product=gnome-screensaver&component=general\n"
-"POT-Creation-Date: 2009-01-20 05:58+0000\n"
-"PO-Revision-Date: 2009-03-11 13:03+0100\n"
-"Last-Translator: Jennie Petoumenou <epetoumenou@gmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-27 17:29+0200\n"
+"PO-Revision-Date: 2010-03-27 16:05+0200\n"
+"Last-Translator: Bakaoukas Nikolaos <nikolaosx1@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,6 +21,7 @@ msgstr ""
 "X-Generator: Lokalize 0.2\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
+#: ../src/gnome-screensaver.desktop.in.in.h:2
 msgid "Screensaver"
 msgstr "Προστασία οθόνης"
 
@@ -29,43 +29,43 @@ msgstr "Προστασία οθόνης"
 msgid "Set your screensaver preferences"
 msgstr "Ρύθμιση των προτιμήσεων σας για την προστασία οθόνης"
 
-#: ../data/gnome-screensaver-preferences.glade.h:1
+#: ../data/gnome-screensaver-preferences.ui.h:1
 msgid "<b>Screensaver preview</b>"
 msgstr "<b>Προεπισκόπηση προστασίας οθόνης</b>"
 
-#: ../data/gnome-screensaver-preferences.glade.h:2
+#: ../data/gnome-screensaver-preferences.ui.h:2
 msgid "<b>Warning: the screen will not be locked for the root user.</b>"
 msgstr "<b>Προειδοποίηση: η οθόνη δεν θα κλειδώνεται για το χρήστη root.</b>"
 
-#: ../data/gnome-screensaver-preferences.glade.h:3
+#: ../data/gnome-screensaver-preferences.ui.h:3
 msgid "Power _Management"
 msgstr "_Διαχείριση ενέργειας"
 
-#: ../data/gnome-screensaver-preferences.glade.h:4
+#: ../data/gnome-screensaver-preferences.ui.h:4
 msgid "Regard the computer as _idle after:"
 msgstr "Ορισμός υπολογιστή ως _αδρανή μετά:"
 
-#: ../data/gnome-screensaver-preferences.glade.h:5
+#: ../data/gnome-screensaver-preferences.ui.h:5
 msgid "Screensaver Preferences"
 msgstr "Προτιμήσεις προστασίας οθόνης"
 
-#: ../data/gnome-screensaver-preferences.glade.h:6
+#: ../data/gnome-screensaver-preferences.ui.h:6
 msgid "Screensaver Preview"
 msgstr "Προεπισκόπηση προστασίας οθόνης"
 
-#: ../data/gnome-screensaver-preferences.glade.h:7
+#: ../data/gnome-screensaver-preferences.ui.h:7
 msgid "_Activate screensaver when computer is idle"
 msgstr "Ε_νεργοποίηση προστασίας οθόνης όταν ο υπολογιστής είναι αδρανής"
 
-#: ../data/gnome-screensaver-preferences.glade.h:8
+#: ../data/gnome-screensaver-preferences.ui.h:8
 msgid "_Lock screen when screensaver is active"
 msgstr "_Κλείδωμα οθόνης όταν η προστασία οθόνης είναι ενεργή"
 
-#: ../data/gnome-screensaver-preferences.glade.h:9
+#: ../data/gnome-screensaver-preferences.ui.h:9
 msgid "_Preview"
 msgstr "_Προεπισκόπηση"
 
-#: ../data/gnome-screensaver-preferences.glade.h:10
+#: ../data/gnome-screensaver-preferences.ui.h:10
 msgid "_Screensaver theme:"
 msgstr "Θέματα προ_στασίας οθόνης:"
 
@@ -272,41 +272,44 @@ msgstr "Ο χρόνος για να θεωρηθεί η συνεδρία αδρ�
 msgid "Time before theme change"
 msgstr "Χρόνος πριν την αλλαγή θέματος"
 
-#: ../data/lock-dialog-default.glade.h:2
+#: ../data/lock-dialog-default.ui.h:2
 #, no-c-format
 msgid "<b>Leave a message for %R:</b>"
 msgstr "<b>Αφήστε μήνυμα για %R:</b>"
 
-#: ../data/lock-dialog-default.glade.h:4
+#: ../data/lock-dialog-default.ui.h:4
 #, no-c-format
 msgid "<span size=\"small\">%U on %h</span>"
 msgstr "<span size=\"small\">%U σε %h</span>"
 
-#: ../data/lock-dialog-default.glade.h:6
+#: ../data/lock-dialog-default.ui.h:6
 #, no-c-format
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.glade.h:7
+#: ../data/lock-dialog-default.ui.h:7
 msgid "_Cancel"
 msgstr "Α_κύρωση"
 
-#: ../data/lock-dialog-default.glade.h:8
+#: ../data/lock-dialog-default.ui.h:8
 msgid "_Leave Message"
 msgstr "_Αφήστε μήνυμα"
 
-#: ../data/lock-dialog-default.glade.h:9
+#: ../data/lock-dialog-default.ui.h:9
 msgid "_Log Out"
 msgstr "Α_ποσύνδεση"
 
-#: ../data/lock-dialog-default.glade.h:10
+#: ../data/lock-dialog-default.ui.h:10
 msgid "_Switch User"
 msgstr "_Αλλαγή χρήστη"
 
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1366
+#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1372
 msgid "_Unlock"
 msgstr "_Ξεκλείδωμα"
 
+#. Translators: This is the name of a desktop background image that shows outer space images.
+#. You might want to translate it into the equivalent words of your language
+#: ../data/images/cosmos/cosmos.xml.in.in.h:3
 #: ../savers/cosmos-slideshow.desktop.in.in.h:1
 msgid "Cosmos"
 msgstr "Cosmos"
@@ -339,51 +342,51 @@ msgstr "Ένα πλέγμα παλλόμενων εικόνων pop-art"
 msgid "Pop art squares"
 msgstr "Τετράγωνα pop-art"
 
-#: ../savers/floaters.c:84
+#: ../savers/popsquares.c:49 ../savers/floaters.c:1204
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s. Βλέπε --help για πληροφορίες χρήσης.\n"
+
+#: ../savers/floaters.c:88
 msgid "Show paths that images follow"
 msgstr "Εμφάνιση των διαδρομών  των εικόνων"
 
-#: ../savers/floaters.c:87
+#: ../savers/floaters.c:91
 msgid "Occasionally rotate images as they move"
 msgstr "Περιοδική επιστροφή εικόνων καθώς κινούνται"
 
-#: ../savers/floaters.c:90
+#: ../savers/floaters.c:94
 msgid "Print out frame rate and other statistics"
 msgstr "Εκτύπωση του μέγιστου αριθμού καρέ και άλλων στατιστικών"
 
-#: ../savers/floaters.c:93
+#: ../savers/floaters.c:97
 msgid "The maximum number of images to keep on screen"
 msgstr "Ο μέγιστος αριθμός εικόνων που θα διατηρούνται στην οθόνη"
 
-#: ../savers/floaters.c:93
+#: ../savers/floaters.c:97
 msgid "MAX_IMAGES"
 msgstr "MAX_IMAGES"
 
-#: ../savers/floaters.c:96
+#: ../savers/floaters.c:100
 msgid "The initial size and position of window"
 msgstr "Το αρχικό μέγεθος και θέση του παραθύρου"
 
-#: ../savers/floaters.c:96
+#: ../savers/floaters.c:100
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "WIDTHxHEIGHT+X+Y"
 
-#: ../savers/floaters.c:99
+#: ../savers/floaters.c:103
 msgid "The source image to use"
 msgstr "Η πηγή εικόνας που θα χρησιμοποιηθεί"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1194
+#: ../savers/floaters.c:1198
 msgid "image - floats images around the screen"
 msgstr "εικόνα - πλωτές εικόνες στην οθόνη"
 
-#: ../savers/floaters.c:1200
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s. Βλέπε --help για πληροφορίες χρήσης.\n"
-
-#: ../savers/floaters.c:1209
+#: ../savers/floaters.c:1213
 #, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
@@ -494,140 +497,147 @@ msgstr "Η εφαρμογή που παρακωλύει την προστασί�
 msgid "The reason for inhibiting the screensaver"
 msgstr "Ο λόγος για την παρακώλυση της προστασίας οθόνης."
 
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:57
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:59
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Η Έκδοση αυτής της εφαρμογής"
 
-#: ../src/gnome-screensaver-command.c:307
+#: ../src/gnome-screensaver-command.c:311
 #, c-format
 msgid "The screensaver is %s\n"
 msgstr "Η προστασία οθόνης είναι %s\n"
 
-#: ../src/gnome-screensaver-command.c:307
+#: ../src/gnome-screensaver-command.c:311
 msgid "active"
 msgstr "ενεργή"
 
-#: ../src/gnome-screensaver-command.c:307
+#: ../src/gnome-screensaver-command.c:311
 msgid "inactive"
 msgstr "ανενεργή"
 
-#: ../src/gnome-screensaver-command.c:321
+#: ../src/gnome-screensaver-command.c:325
 #, c-format
-#| msgid "The screensaver is %s\n"
 msgid "The screensaver is not inhibited\n"
 msgstr "Η προστασία οθόνης δεν παρεμποδίζεται\n"
 
-#: ../src/gnome-screensaver-command.c:327
+#: ../src/gnome-screensaver-command.c:331
 #, c-format
-#| msgid "The screensaver is %s\n"
 msgid "The screensaver is being inhibited by:\n"
 msgstr "Η προστασία οθόνης παρεμποδίζεται από:\n"
 
-#: ../src/gnome-screensaver-command.c:358
+#: ../src/gnome-screensaver-command.c:362
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "Η προστασία οθόνης ήταν ενεργή για %d δευτερόλεπτα.\n"
 
-#: ../src/gnome-screensaver-dialog.c:55
+#: ../src/gnome-screensaver-command.c:366
+#, c-format
+msgid "The screensaver is not currently active.\n"
+msgstr "Η προστασία οθόνης δεν είναι προς το παρόν ενεργή\n"
+
+#: ../src/gnome-screensaver-dialog.c:57
 msgid "Show debugging output"
 msgstr "Προβολή επιλογών αποσφαλμάτωσης"
 
-#: ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver-dialog.c:61
 msgid "Show the logout button"
 msgstr "Εμφάνιση του κουμπιού αποσύνδεσης"
 
-#: ../src/gnome-screensaver-dialog.c:61
+#: ../src/gnome-screensaver-dialog.c:63
 msgid "Command to invoke from the logout button"
 msgstr "Εντολή για εκτέλεση από το κουμπί αποσύνδεσης"
 
-#: ../src/gnome-screensaver-dialog.c:63
+#: ../src/gnome-screensaver-dialog.c:65
 msgid "Show the switch user button"
 msgstr "Προβολή του κουμπιού αλλαγής χρήστη"
 
-#: ../src/gnome-screensaver-dialog.c:65
+#: ../src/gnome-screensaver-dialog.c:67
 msgid "Message to show in the dialog"
 msgstr "Μήνυμα που θα εμφανίζεται στον διάλογο"
 
-#: ../src/gnome-screensaver-dialog.c:65
+#: ../src/gnome-screensaver-dialog.c:67 ../src/gnome-screensaver-dialog.c:69
 msgid "MESSAGE"
 msgstr "ΜΗΝΥΜΑ"
 
+#: ../src/gnome-screensaver-dialog.c:69
+msgid "Not used"
+msgstr "Δεν χρησιμοποιείται"
+
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:175 ../src/gnome-screensaver-dialog.c:176
-#: ../src/gnome-screensaver-dialog.c:177 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:179 ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:181 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Όνομα χρήστη:"
 
-#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
+#: ../src/gnome-screensaver-dialog.c:182 ../src/gnome-screensaver-dialog.c:183
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "Κωδικός:"
 
-#: ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "You are required to change your password immediately (password aged)"
 msgstr ""
 "Απαιτείται να αλλάξετε κωδικό άμεσα (ο κωδικός σας έχει ημερομηνία λήξης)"
 
-#: ../src/gnome-screensaver-dialog.c:181
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "Απαιτείται να αλλάξετε κωδικό άμεσα (εξαναγκασμός από το root)"
 
-#: ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "Your account has expired; please contact your system administrator"
 msgstr ""
 "Ο λογαριασμός σας έχει λήξει. Παρακαλώ επικοινωνήστε με το διαχειριστή του "
 "συστήματος σας"
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:187
 msgid "No password supplied"
 msgstr "Δεν δόθηκε κωδικός"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "Password unchanged"
 msgstr "Αναλλοίωτος κωδικός"
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "Can not get username"
 msgstr "Αδυναμία λήψης ονόματος χρήστη"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:190
 msgid "Retype new UNIX password:"
 msgstr "Επαπληκτρολόγηση νέου κωδικού UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "Enter new UNIX password:"
 msgstr "Εισαγωγή νέου κωδικού UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:188
+#: ../src/gnome-screensaver-dialog.c:192
 msgid "(current) UNIX password:"
 msgstr "(τρέχων) κωδικός UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:189
+#: ../src/gnome-screensaver-dialog.c:193
 msgid "Error while changing NIS password."
 msgstr "Σφάλμα κατά την αλλαγή του κωδικού NIS"
 
-#: ../src/gnome-screensaver-dialog.c:190
+#: ../src/gnome-screensaver-dialog.c:194
 msgid "You must choose a longer password"
 msgstr "Θα πρέπει να επιλέξετε ένα μεγαλύτερο κωδικό."
 
-#: ../src/gnome-screensaver-dialog.c:191
+#: ../src/gnome-screensaver-dialog.c:195
 msgid "Password has been already used. Choose another."
 msgstr "Ο Κωδικός χρησιμοποιείται ήδη. Διαλέξτε έναν άλλο."
 
-#: ../src/gnome-screensaver-dialog.c:192
+#: ../src/gnome-screensaver-dialog.c:196
 msgid "You must wait longer to change your password"
 msgstr "Θα πρέπει να περιμένετε περισσότερο για να αλλάξετε το κωδικό σας"
 
-#: ../src/gnome-screensaver-dialog.c:193
+#: ../src/gnome-screensaver-dialog.c:197
 msgid "Sorry, passwords do not match"
 msgstr "Συγγνώμη, οι κωδικοί δεν ταιριάζουν"
 
-#: ../src/gnome-screensaver-dialog.c:259
+#: ../src/gnome-screensaver-dialog.c:263
 msgid "Checking..."
 msgstr "Έλεγχος..."
 
-#: ../src/gnome-screensaver-dialog.c:301 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:305 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "Αποτυχία πιστοποίησης."
 
@@ -689,11 +699,11 @@ msgstr "%s"
 msgid "Never"
 msgstr "Ποτέ"
 
-#: ../src/gnome-screensaver-preferences.c:1453
+#: ../src/gnome-screensaver-preferences.c:1467
 msgid "Could not load the main interface"
 msgstr "Αδυναμία φόρτωση της κύριας επιφάνειας χρήσης"
 
-#: ../src/gnome-screensaver-preferences.c:1455
+#: ../src/gnome-screensaver-preferences.c:1469
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Βεβαιωθείτε ότι η προστασία οθόνης έχει εγκατασταθεί σωστά"
 
@@ -704,6 +714,11 @@ msgstr "Να μη γίνει daemon"
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
 msgstr "Ενεργοποίηση κώδικα αποσφαλμάτωσης"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:1
+msgid "Launch screen saver and locker program"
+msgstr ""
+"Έναρξη της προφύλαξης οθόνης και του προγράμματος κλειδώματος υπολογιστή"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -727,40 +742,40 @@ msgstr "Δεν σας επιτρέπεται η πρόσβαση αυτή τη �
 msgid "No longer permitted to access the system."
 msgstr "Δεν σας επιτρέπεται πια η πρόσβαση στο σύστημα."
 
-#: ../src/gs-listener-dbus.c:1847
+#: ../src/gs-listener-dbus.c:1912
 msgid "failed to register with the message bus"
 msgstr "αποτυχία εγγραφής με το message bus"
 
-#: ../src/gs-listener-dbus.c:1857
+#: ../src/gs-listener-dbus.c:1922
 msgid "not connected to the message bus"
 msgstr "δεν υπάρχει σύωδεση με το message bus"
 
-#: ../src/gs-listener-dbus.c:1866
+#: ../src/gs-listener-dbus.c:1931
 msgid "screensaver already running in this session"
 msgstr "η προστασία οθόνης εκτελείται ήδη σε αυτή τη συνεδρία."
 
-#: ../src/gs-lock-plug.c:271
+#: ../src/gs-lock-plug.c:270
 msgid "Time has expired."
 msgstr "Ο χρόνος έχει λήξει."
 
-#: ../src/gs-lock-plug.c:299
+#: ../src/gs-lock-plug.c:298
 msgid "You have the Caps Lock key on."
 msgstr "Έχετε πατημένο το πλήκτρο Caps Lock."
 
-#: ../src/gs-lock-plug.c:1346
+#: ../src/gs-lock-plug.c:1352
 msgid "S_witch User..."
 msgstr "Α_λλαγή χρήστη..."
 
-#: ../src/gs-lock-plug.c:1355
+#: ../src/gs-lock-plug.c:1361
 msgid "Log _Out"
 msgstr "Α_ποσύνδεση"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1531
+#: ../src/gs-lock-plug.c:1537
 msgid "%U on %h"
 msgstr "%U σε %h"
 
-#: ../src/gs-lock-plug.c:1545
+#: ../src/gs-lock-plug.c:1551
 msgid "_Password:"
 msgstr "_Κωδικός:"
 
@@ -769,4 +784,3 @@ msgstr "_Κωδικός:"
 
 #~ msgid "The reason for being away from the computer."
 #~ msgstr "Ο λόγος απουσίας από τον υπολογιστή."
-
