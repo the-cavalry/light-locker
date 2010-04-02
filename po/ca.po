@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-12 19:44+0200\n"
-"PO-Revision-Date: 2009-10-10 00:10+0200\n"
+"PO-Revision-Date: 2010-04-02 18:08+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.net>\n"
 "MIME-Version: 1.0\n"
@@ -133,7 +133,7 @@ msgid ""
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
 msgstr ""
-"Establiu-ho com a CERT per permetre l'incrustació d'un teclat a la pantalla "
+"Establiu-ho com a CERT per permetre la incrustació d'un teclat a la pantalla "
 "quan es provi de desblocar. La clau «keyboard_command» s'ha d'establir a "
 "l'ordre apropiada."
 
@@ -169,7 +169,7 @@ msgid ""
 msgstr ""
 "L'ordre que s'executarà, si la clau «embedded_keyboard_enabled» s'estableix a "
 "CERT, per incrustar un teclat a la pantalla. Aquesta ordre hauria "
-"d'implementar un connector d'interfície XEMBED, i escriure a la sortira "
+"d'implementar un connector d'interfície XEMBED, i escriure a la sortida "
 "estàndard un XID de finestra."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
@@ -422,7 +422,7 @@ msgstr "No intentis encabir les imatges a la pantalla"
 
 #: ../src/copy-theme-dialog.c:212
 msgid "Copying files"
-msgstr "S'està copiant fitxers"
+msgstr "S'estan copiant fitxers"
 
 #: ../src/copy-theme-dialog.c:230
 msgid "From:"
