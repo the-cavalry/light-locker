@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Totem\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-20 17:37+0100\n"
-"PO-Revision-Date: 2010-03-20 17:37+0100\n"
+"POT-Creation-Date: 2010-04-10 17:45+0200\n"
+"PO-Revision-Date: 2010-04-10 17:47+0200\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgstr "Computer als i_nactief beschouwen na:"
 
 #: ../data/gnome-screensaver-preferences.ui.h:5
 msgid "Screensaver Preferences"
-msgstr "Schermbeveiliging voorkeuren"
+msgstr "Voorkeuren schermbeveiliging"
 
 #: ../data/gnome-screensaver-preferences.ui.h:6
 msgid "Screensaver Preview"
