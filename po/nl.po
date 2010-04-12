@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Totem\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-10 17:45+0200\n"
-"PO-Revision-Date: 2010-04-10 17:47+0200\n"
+"POT-Creation-Date: 2010-04-13 00:01+0200\n"
+"PO-Revision-Date: 2010-04-13 00:02+0200\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Schermbeveiliging"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:2
 msgid "Set your screensaver preferences"
-msgstr "Uw schermbeveiliging-voorkeuren instellen"
+msgstr "Voorkeuren voor de schermbeveiliging instellen"
 
 #: ../data/gnome-screensaver-preferences.ui.h:1
 msgid "<b>Screensaver preview</b>"
@@ -1334,7 +1334,7 @@ msgstr "_Wachtwoord:"
 #~ msgstr "Opties"
 
 #~ msgid "Some preferences have been locked by the system adminstrator."
-#~ msgstr "Bepaalde voorkeuren zijn beveiligd door de systeembeheerder."
+#~ msgstr "Bepaalde voorkeuren zijn vergrendeld door de systeembeheerder."
 
 #~ msgid ""
 #~ "The user you want to switch to is logged in multiple times on this "
