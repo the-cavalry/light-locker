@@ -15,7 +15,7 @@
   <maintainer>
     <foaf:Person>
       <foaf:name>William Jon McCann</foaf:name>
-      <foaf:mbox rdf:resource="mccann@jhu.edu" />
+      <foaf:mbox rdf:resource="mailto:mccann@jhu.edu" />
       <gnome:userid>mccann</gnome:userid>
     </foaf:Person>
   </maintainer>
