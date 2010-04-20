@@ -148,6 +148,10 @@ else
         AC_SUBST(DBUS_CFLAGS)
 fi
 
+# Find out where the session service file goes
+DBUS_SESSION_SERVICE_DIR=`pkg-config --variable session_bus_services_dir dbus-1`
+AC_SUBST(DBUS_SESSION_SERVICE_DIR)
+
 # Determine PAM prefix
 
 withval=""
@@ -1068,6 +1072,7 @@ src/gnome-screensaver.desktop.in
 data/Makefile
 data/gnome-screensavers.menu
 data/gnome-screensaver.pc
+data/org.gnome.ScreenSaver.service
 data/images/Makefile
 data/images/cosmos/Makefile
 savers/Makefile

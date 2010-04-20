@@ -43,6 +43,9 @@ gtkbuilder_DATA = 					\
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gnome-screensaver.pc
 
+dbussessionservicedir = $(DBUS_SESSION_SERVICE_DIR)
+dbussessionservice_DATA = org.gnome.ScreenSaver.service
+
 EXTRA_DIST = 				\
 	$(schemas_in_files)		\
 	$(desktop_in_files)		\
@@ -51,6 +54,7 @@ EXTRA_DIST = 				\
 	$(man_MANS)			\
 	gnome-screensaver		\
 	gnome-screensaver.pc.in		\
+	org.gnome.ScreenSaver.service.in\
 	xscreensaver-config.xsl		\
 	migrate-xscreensaver-config.sh	\
 	$(NULL)
