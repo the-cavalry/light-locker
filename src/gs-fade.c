@@ -706,9 +706,11 @@ gs_fade_start (GSFade *fade,
 
         for (i = 0; i < fade->priv->num_screens; i++) {
                 screen_priv = &fade->priv->screen_priv[i];
-                res = screen_priv->fade_setup (fade, i);
-                if (res == FALSE)
-                        return;
+                if (screen_priv->fade_type != FADE_TYPE_NONE) {
+                        res = screen_priv->fade_setup (fade, i);
+                        if (res == FALSE)
+                                return;
+                }
         }
 
         if (fade->priv->timer_id > 0) {
