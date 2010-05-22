@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-12 19:44+0200\n"
-"PO-Revision-Date: 2010-04-02 18:08+0200\n"
+"POT-Creation-Date: 2010-05-22 23:23+0200\n"
+"PO-Revision-Date: 2010-05-22 23:23+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.net>\n"
 "MIME-Version: 1.0\n"
@@ -179,7 +179,7 @@ msgid ""
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
 "L'ordre a invocar en prémer el botó de sortida. Aquesta ordre només hauria "
-"de tancar la sessió de l'usuari sense cap interacció. Aquesta clau només te "
+"de tancar la sessió de l'usuari sense cap interacció. Aquesta clau només té "
 "efecte si la clau «logout_enable» està a cert."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
@@ -306,7 +306,7 @@ msgstr "_Surt"
 msgid "_Switch User"
 msgstr "Canvia d'_usuari"
 
-#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1382
+#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1372
 msgid "_Unlock"
 msgstr "_Desbloca"
 
@@ -345,51 +345,51 @@ msgstr "Una xarxa de colors de pulsació d'estil pop-art."
 msgid "Pop art squares"
 msgstr "Quadrats pop-art"
 
-#: ../savers/floaters.c:84
+#: ../savers/popsquares.c:49 ../savers/floaters.c:1204
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s. Vegeu --help per a la informació sobre la forma d'ús.\n"
+
+#: ../savers/floaters.c:88
 msgid "Show paths that images follow"
 msgstr "Mostra els camins que segueixen les imatges"
 
-#: ../savers/floaters.c:87
+#: ../savers/floaters.c:91
 msgid "Occasionally rotate images as they move"
 msgstr "De tant en tant gireu les imatges mentre es mouen"
 
-#: ../savers/floaters.c:90
+#: ../savers/floaters.c:94
 msgid "Print out frame rate and other statistics"
 msgstr "Mostra les imatges per segon i altres estadístiques"
 
-#: ../savers/floaters.c:93
+#: ../savers/floaters.c:97
 msgid "The maximum number of images to keep on screen"
 msgstr "El nombre màxim d'imatges a mantenir en pantalla"
 
-#: ../savers/floaters.c:93
+#: ../savers/floaters.c:97
 msgid "MAX_IMAGES"
 msgstr "MAX_IMATGES"
 
-#: ../savers/floaters.c:96
+#: ../savers/floaters.c:100
 msgid "The initial size and position of window"
 msgstr "La mida i posició inicials de la finestra"
 
-#: ../savers/floaters.c:96
+#: ../savers/floaters.c:100
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "AMPLADAxALÇADA+X+Y"
 
-#: ../savers/floaters.c:99
+#: ../savers/floaters.c:103
 msgid "The source image to use"
 msgstr "La imatge que s'utilitzarà"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1194
+#: ../savers/floaters.c:1198
 msgid "image - floats images around the screen"
 msgstr "image - fa flotar imatges per la pantalla"
 
-#: ../savers/floaters.c:1200
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s. Vegeu --help per a la informació sobre la forma d'ús.\n"
-
-#: ../savers/floaters.c:1209
+#: ../savers/floaters.c:1213
 #, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
@@ -503,7 +503,7 @@ msgstr "L'aplicació que està demanant d'inhibir l'estalvi de pantalla"
 msgid "The reason for inhibiting the screensaver"
 msgstr "El motiu per inhibir l'estalvi de pantalla"
 
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:58
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:59
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Versió d'aquesta aplicació"
@@ -541,109 +541,109 @@ msgstr "Fa %d segons que l'estalvi de pantalla s'ha activat.\n"
 msgid "The screensaver is not currently active.\n"
 msgstr "L'estalvi de pantalla no és actiu.\n"
 
-#: ../src/gnome-screensaver-dialog.c:56
+#: ../src/gnome-screensaver-dialog.c:57
 msgid "Show debugging output"
 msgstr "Mostra els missatges de depuració"
 
-#: ../src/gnome-screensaver-dialog.c:60
+#: ../src/gnome-screensaver-dialog.c:61
 msgid "Show the logout button"
 msgstr "Mostra el botó de sortida"
 
-#: ../src/gnome-screensaver-dialog.c:62
+#: ../src/gnome-screensaver-dialog.c:63
 msgid "Command to invoke from the logout button"
 msgstr "Ordre per invocar des del botó de sortir"
 
-#: ../src/gnome-screensaver-dialog.c:64
+#: ../src/gnome-screensaver-dialog.c:65
 msgid "Show the switch user button"
 msgstr "Mostra el botó de canvi d'usuari"
 
-#: ../src/gnome-screensaver-dialog.c:66
+#: ../src/gnome-screensaver-dialog.c:67
 msgid "Message to show in the dialog"
 msgstr "Missatge que es mostrarà en el diàleg"
 
-#: ../src/gnome-screensaver-dialog.c:66 ../src/gnome-screensaver-dialog.c:68
+#: ../src/gnome-screensaver-dialog.c:67 ../src/gnome-screensaver-dialog.c:69
 msgid "MESSAGE"
 msgstr "MISSATGE"
 
-#: ../src/gnome-screensaver-dialog.c:68
+#: ../src/gnome-screensaver-dialog.c:69
 msgid "Not used"
 msgstr "No s'utilitza"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
-#: ../src/gnome-screensaver-dialog.c:180 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:179 ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:181 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Nom d'usuari:"
 
-#: ../src/gnome-screensaver-dialog.c:181 ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:182 ../src/gnome-screensaver-dialog.c:183
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "Contrasenya:"
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:184
 msgid "You are required to change your password immediately (password aged)"
 msgstr ""
 "Heu de canviar la contrasenya immediatament (la contrasenya s'ha fet vella)"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:185
 msgid "You are required to change your password immediately (root enforced)"
 msgstr ""
 "Heu de canviar la contrasenya immediatament (us hi obliga el superusuari)"
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:186
 msgid "Your account has expired; please contact your system administrator"
 msgstr ""
 "El vostre compte ha expirat, contacteu amb l'administrador d'aquest sistema"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:187
 msgid "No password supplied"
 msgstr "No s'ha proporcionat cap contrasenya"
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "Password unchanged"
 msgstr "No s'ha canviat la contrasenya"
 
-#: ../src/gnome-screensaver-dialog.c:188
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "Can not get username"
 msgstr "No s'ha pogut obtenir el nom d'usuari"
 
-#: ../src/gnome-screensaver-dialog.c:189
+#: ../src/gnome-screensaver-dialog.c:190
 msgid "Retype new UNIX password:"
 msgstr "Reescriviu la nova contrasenya UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:190
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "Enter new UNIX password:"
 msgstr "Entreu la nova contrasenya UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:191
+#: ../src/gnome-screensaver-dialog.c:192
 msgid "(current) UNIX password:"
 msgstr "Contrasenya UNIX (actual):"
 
-#: ../src/gnome-screensaver-dialog.c:192
+#: ../src/gnome-screensaver-dialog.c:193
 msgid "Error while changing NIS password."
 msgstr "S'ha produït un error en canviar la contrasenya NIS."
 
-#: ../src/gnome-screensaver-dialog.c:193
+#: ../src/gnome-screensaver-dialog.c:194
 msgid "You must choose a longer password"
 msgstr "Heu d'escollir una contrasenya més llarga"
 
-#: ../src/gnome-screensaver-dialog.c:194
+#: ../src/gnome-screensaver-dialog.c:195
 msgid "Password has been already used. Choose another."
 msgstr "La contrasenya ja s'ha fet servir. Escolliu-ne una altra."
 
-#: ../src/gnome-screensaver-dialog.c:195
+#: ../src/gnome-screensaver-dialog.c:196
 msgid "You must wait longer to change your password"
 msgstr "Heu d'esperar més per canviar la contrasenya"
 
-#: ../src/gnome-screensaver-dialog.c:196
+#: ../src/gnome-screensaver-dialog.c:197
 msgid "Sorry, passwords do not match"
 msgstr "Les contrasenyes no coincideixen"
 
-#: ../src/gnome-screensaver-dialog.c:262
+#: ../src/gnome-screensaver-dialog.c:263
 msgid "Checking..."
 msgstr "S'està comprovant..."
 
-#: ../src/gnome-screensaver-dialog.c:304 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:305 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "Ha fallat l'autenticació."
 
@@ -747,15 +747,15 @@ msgstr "No podeu accedir-hi ara mateix."
 msgid "No longer permitted to access the system."
 msgstr "Ja no podeu accedir al sistema."
 
-#: ../src/gs-listener-dbus.c:1851
+#: ../src/gs-listener-dbus.c:1912
 msgid "failed to register with the message bus"
 msgstr "no s'ha pogut registrar en el bus de missatges"
 
-#: ../src/gs-listener-dbus.c:1861
+#: ../src/gs-listener-dbus.c:1922
 msgid "not connected to the message bus"
 msgstr "no s'ha pogut connectar al bus de missatges"
 
-#: ../src/gs-listener-dbus.c:1870
+#: ../src/gs-listener-dbus.c:1931
 msgid "screensaver already running in this session"
 msgstr "l'estalvi de pantalla ja està funcionant en aquesta sessió"
 
@@ -767,20 +767,20 @@ msgstr "S'ha excedit el temps."
 msgid "You have the Caps Lock key on."
 msgstr "Teniu la tecla de fixació de majúscules activada."
 
-#: ../src/gs-lock-plug.c:1362
+#: ../src/gs-lock-plug.c:1352
 msgid "S_witch User..."
 msgstr "Canvia d'_usuari..."
 
-#: ../src/gs-lock-plug.c:1371
+#: ../src/gs-lock-plug.c:1361
 msgid "Log _Out"
 msgstr "_Surt"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1547
+#: ../src/gs-lock-plug.c:1537
 msgid "%U on %h"
 msgstr "%U a %h"
 
-#: ../src/gs-lock-plug.c:1561
+#: ../src/gs-lock-plug.c:1551
 msgid "_Password:"
 msgstr "_Contrasenya:"
 
