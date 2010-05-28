@@ -43,10 +43,6 @@
 #include <libgnomekbd/gkbd-indicator.h>
 #endif
 
-#ifdef WITH_LIBNOTIFY
-#include <libnotify/notify.h>
-#endif
-
 #include "gs-lock-plug.h"
 
 #include "gs-debug.h"
@@ -54,9 +50,6 @@
 #define KEY_LOCK_DIALOG_THEME "/apps/gnome-screensaver/lock_dialog_theme"
 #define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
 #define GDM_FLEXISERVER_ARGS    "--startnew Standard"
-
-/* same as SMS ;) */
-#define NOTE_BUFFER_MAX_CHARS 160
 
 enum {
         AUTH_PAGE = 0,
@@ -89,18 +82,11 @@ struct GSLockPlugPrivate
         GtkWidget   *auth_switch_button;
         GtkWidget   *auth_cancel_button;
         GtkWidget   *auth_logout_button;
-        GtkWidget   *auth_note_button;
-        GtkWidget   *note_tab;
-        GtkWidget   *note_tab_label;
-        GtkWidget   *note_text_view;
-        GtkWidget   *note_ok_button;
-        GtkWidget   *note_cancel_button;
 
         GtkWidget   *auth_prompt_kbd_layout_indicator;
 
         gboolean     caps_lock_on;
         gboolean     switch_enabled;
-        gboolean     leave_note_enabled;
         gboolean     logout_enabled;
         char        *logout_command;
         char        *status_message;
@@ -1053,74 +1039,6 @@ clear_clipboards (GSLockPlug *plug)
 }
 
 static void
-take_note (GtkButton  *button,
-           GSLockPlug *plug)
-{
-        int page;
-
-        page = gtk_notebook_page_num (GTK_NOTEBOOK (plug->priv->notebook), plug->priv->note_tab);
-        gtk_notebook_set_current_page (GTK_NOTEBOOK (plug->priv->notebook), page);
-        /* this counts as activity so restart the timer */
-        restart_cancel_timeout (plug);
-}
-
-static void
-submit_note (GtkButton  *button,
-             GSLockPlug *plug)
-{
-#ifdef WITH_LIBNOTIFY
-        char               *text;
-        char                summary[128];
-        char               *escaped_text;
-        GtkTextBuffer      *buffer;
-        GtkTextIter         start, end;
-        time_t              t;
-        struct tm          *tmp;
-        NotifyNotification *note;
-
-        gtk_notebook_set_current_page (GTK_NOTEBOOK (plug->priv->notebook), AUTH_PAGE);
-        buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (plug->priv->note_text_view));
-        gtk_text_buffer_get_bounds (buffer, &start, &end);
-        text = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
-        gtk_text_buffer_set_text (buffer, "", 0);
-        escaped_text = g_markup_escape_text (text, -1);
-
-        t = time (NULL);
-        tmp = localtime (&t);
-        strftime (summary, 128, "%X", tmp);
-
-        notify_init ("gnome-screensaver-dialog");
-        note = notify_notification_new (summary, escaped_text, NULL, NULL);
-        notify_notification_set_timeout (note, NOTIFY_EXPIRES_NEVER);
-        notify_notification_show (note, NULL);
-        g_object_unref (note);
-
-        g_free (text);
-        g_free (escaped_text);
-
-        gs_lock_plug_response (plug, GS_LOCK_PLUG_RESPONSE_CANCEL);
-#endif /* WITH_LIBNOTIFY */
-}
-
-static void
-cancel_note (GtkButton  *button,
-             GSLockPlug *plug)
-{
-        GtkTextBuffer *buffer;
-
-        gtk_notebook_set_current_page (GTK_NOTEBOOK (plug->priv->notebook), AUTH_PAGE);
-        buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (plug->priv->note_text_view));
-        gtk_text_buffer_set_text (buffer, "", 0);
-
-        /* this counts as activity so restart the timer */
-        restart_cancel_timeout (plug);
-
-        gtk_window_set_default (GTK_WINDOW (plug), plug->priv->auth_unlock_button);
-
-        clear_clipboards (plug);
-}
-
-static void
 logout_button_clicked (GtkButton  *button,
                        GSLockPlug *plug)
 {
@@ -1690,12 +1608,6 @@ load_theme (GSLockPlug *plug)
         plug->priv->auth_cancel_button = GTK_WIDGET (gtk_builder_get_object(builder, "auth-cancel-button"));
         plug->priv->auth_logout_button = GTK_WIDGET (gtk_builder_get_object(builder, "auth-logout-button"));
         plug->priv->auth_switch_button = GTK_WIDGET (gtk_builder_get_object(builder, "auth-switch-button"));
-        plug->priv->auth_note_button = GTK_WIDGET (gtk_builder_get_object(builder, "auth-note-button"));
-        plug->priv->note_tab = GTK_WIDGET (gtk_builder_get_object(builder, "note-tab"));
-        plug->priv->note_tab_label = GTK_WIDGET (gtk_builder_get_object(builder, "note-tab-label"));
-        plug->priv->note_ok_button = GTK_WIDGET (gtk_builder_get_object(builder, "note-ok-button"));
-        plug->priv->note_text_view = GTK_WIDGET (gtk_builder_get_object(builder, "note-text-view"));
-        plug->priv->note_cancel_button = GTK_WIDGET (gtk_builder_get_object(builder, "note-cancel-button"));
 
         /* Placeholder for the keyboard indicator */
         plug->priv->auth_prompt_kbd_layout_indicator = GTK_WIDGET (gtk_builder_get_object(builder, "auth-prompt-kbd-layout-indicator"));
@@ -1704,9 +1616,6 @@ load_theme (GSLockPlug *plug)
         }
         if (plug->priv->auth_switch_button != NULL) {
                 gtk_widget_set_no_show_all (plug->priv->auth_switch_button, TRUE);
-        }
-        if (plug->priv->auth_note_button != NULL) {
-                gtk_widget_set_no_show_all (plug->priv->auth_note_button, TRUE);
         }
 
         gtk_widget_show_all (lock_dialog);
@@ -1727,18 +1636,6 @@ delete_handler (GSLockPlug  *plug,
 }
 
 static void
-on_note_text_buffer_changed (GtkTextBuffer *buffer,
-                             GSLockPlug    *plug)
-{
-        int len;
-
-        len = gtk_text_buffer_get_char_count (buffer);
-        if (len > NOTE_BUFFER_MAX_CHARS) {
-                gtk_widget_set_sensitive (plug->priv->note_text_view, FALSE);
-        }
-}
-
-static void
 gs_lock_plug_init (GSLockPlug *plug)
 {
         gs_profile_start (NULL);
@@ -1746,12 +1643,6 @@ gs_lock_plug_init (GSLockPlug *plug)
         plug->priv = GS_LOCK_PLUG_GET_PRIVATE (plug);
 
         clear_clipboards (plug);
-
-#ifdef WITH_LIBNOTIFY
-        plug->priv->leave_note_enabled = TRUE;
-#else
-        plug->priv->leave_note_enabled = FALSE;
-#endif
 
         if (! load_theme (plug)) {
                 gs_debug ("Unable to load theme!");
@@ -1772,12 +1663,6 @@ gs_lock_plug_init (GSLockPlug *plug)
                 create_page_one (plug);
 
                 gtk_widget_show_all (plug->priv->vbox);
-        }
-
-        if (plug->priv->note_text_view != NULL) {
-                GtkTextBuffer *buffer;
-                buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (plug->priv->note_text_view));
-                g_signal_connect (buffer, "changed", G_CALLBACK (on_note_text_buffer_changed), plug);
         }
 
         /* Layout indicator */
@@ -1807,13 +1692,6 @@ gs_lock_plug_init (GSLockPlug *plug)
         }
 #endif
 
-        if (plug->priv->auth_note_button != NULL) {
-                if (plug->priv->leave_note_enabled) {
-                        gtk_widget_show_all (plug->priv->auth_note_button);
-                } else {
-                        gtk_widget_hide (plug->priv->auth_note_button);
-                }
-        }
         if (plug->priv->auth_switch_button != NULL) {
                 if (plug->priv->switch_enabled) {
                         gtk_widget_show_all (plug->priv->auth_switch_button);
@@ -1868,19 +1746,6 @@ gs_lock_plug_init (GSLockPlug *plug)
         if (plug->priv->auth_switch_button != NULL) {
                 g_signal_connect (plug->priv->auth_switch_button, "clicked",
                                   G_CALLBACK (switch_user_button_clicked), plug);
-        }
-
-        if (plug->priv->auth_note_button != NULL) {
-                g_signal_connect (plug->priv->auth_note_button, "clicked",
-                                  G_CALLBACK (take_note), plug);
-                g_signal_connect (plug->priv->note_ok_button, "clicked",
-                                  G_CALLBACK (submit_note), plug);
-                g_signal_connect (plug->priv->note_cancel_button, "clicked",
-                                  G_CALLBACK (cancel_note), plug);
-        }
-
-        if (plug->priv->note_tab_label != NULL) {
-                expand_string_for_label (plug->priv->note_tab_label);
         }
 
         if (plug->priv->auth_logout_button != NULL) {
