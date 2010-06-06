@@ -1470,7 +1470,7 @@ gs_manager_create_window_for_monitor (GSManager *manager,
         manager->priv->windows = g_slist_append (manager->priv->windows, window);
 
         if (manager->priv->active && !manager->priv->fading) {
-                gtk_widget_show (window);
+                gtk_widget_show (GTK_WIDGET (window));
         }
 }
 
