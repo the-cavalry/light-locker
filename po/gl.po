@@ -6,23 +6,23 @@
 #
 # Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
 # Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007, 2008.
-# Fran Diéguez <fran.dieguez@mabishu.com>, 2009.
 # Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
 # Antón Méixome <meixome@mancomun.org>, 2009.
-# Fran Diéguez <frandieguez@ubuntu.com>, 2010.
+# Fran Diéguez <frandieguez@ubuntu.com>, 2009, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-15 18:37+0100\n"
-"PO-Revision-Date: 2010-02-12 09:43+0100\n"
+"POT-Creation-Date: 2010-06-13 19:38+0200\n"
+"PO-Revision-Date: 2010-06-13 19:39+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
-"Language-Team: Gallician <proxecto@trasno.net>\n"
+"Language-Team: Galician <gnome@g11.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\\\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
@@ -274,7 +274,7 @@ msgstr "Tempo antes da liña base do xestor de enerxía"
 
 #: ../data/gnome-screensaver.schemas.in.h:31
 msgid "Time before session is considered idle"
-msgstr "Tempo antes de que a sesión se considere inactiva"
+msgstr "Tempo antes de considerar a sesión como inactiva"
 
 #: ../data/gnome-screensaver.schemas.in.h:32
 msgid "Time before theme change"
@@ -282,36 +282,27 @@ msgstr "Tempo antes de modificar o tema"
 
 #: ../data/lock-dialog-default.ui.h:2
 #, no-c-format
-msgid "<b>Leave a message for %R:</b>"
-msgstr "<b>Deixar unha mensaxe para %R:</b>"
-
-#: ../data/lock-dialog-default.ui.h:4
-#, no-c-format
 msgid "<span size=\"small\">%U on %h</span>"
 msgstr "<span size=\"small\">%U en %h</span>"
 
-#: ../data/lock-dialog-default.ui.h:6
+#: ../data/lock-dialog-default.ui.h:4
 #, no-c-format
 msgid "<span size=\"x-large\">%R</span>"
 msgstr "<span size=\"x-large\">%R</span>"
 
-#: ../data/lock-dialog-default.ui.h:7
+#: ../data/lock-dialog-default.ui.h:5
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: ../data/lock-dialog-default.ui.h:8
-msgid "_Leave Message"
-msgstr "_Deixar unha mensaxe"
-
-#: ../data/lock-dialog-default.ui.h:9
+#: ../data/lock-dialog-default.ui.h:6
 msgid "_Log Out"
 msgstr "_Saír da sesión"
 
-#: ../data/lock-dialog-default.ui.h:10
+#: ../data/lock-dialog-default.ui.h:7
 msgid "_Switch User"
 msgstr "_Cambiar de usuario"
 
-#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1382
+#: ../data/lock-dialog-default.ui.h:8 ../src/gs-lock-plug.c:1290
 msgid "_Unlock"
 msgstr "_Desbloquear"
 
@@ -446,7 +437,7 @@ msgstr "O tema do protector de pantalla non é válido"
 #: ../src/copy-theme-dialog.c:301
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
-msgstr "Non parece que %s sexa un tema válido para a pantalla."
+msgstr "Semella que %s non é un tema de salvapantallas válido"
 
 #: ../src/copy-theme-dialog.c:481
 #, c-format
@@ -463,7 +454,7 @@ msgstr "Consultar o estado do protector de pantalla"
 
 #: ../src/gnome-screensaver-command.c:66
 msgid "Query the length of time the screensaver has been active"
-msgstr "Consultar canto tempo estivo activo o protector de pantalla"
+msgstr "Consultar canto tempo leva activo o protector de pantalla"
 
 #: ../src/gnome-screensaver-command.c:68
 msgid "Tells the running screensaver process to lock the screen immediately"
@@ -502,7 +493,7 @@ msgstr ""
 
 #: ../src/gnome-screensaver-command.c:80
 msgid "The calling application that is inhibiting the screensaver"
-msgstr "A aplicativo que chama e que está inhibindo o protector de pantalla"
+msgstr "O aplicativo que chama e que está inhibindo o protector de pantalla"
 
 #: ../src/gnome-screensaver-command.c:82
 msgid "The reason for inhibiting the screensaver"
@@ -762,27 +753,33 @@ msgstr "non está conectado ao bus de mensaxes"
 msgid "screensaver already running in this session"
 msgstr "xa se está executando o protector de pantalla nesta sesión"
 
-#: ../src/gs-lock-plug.c:270
+#: ../src/gs-lock-plug.c:256
 msgid "Time has expired."
 msgstr "O tempo caducou."
 
-#: ../src/gs-lock-plug.c:298
+#: ../src/gs-lock-plug.c:284
 msgid "You have the Caps Lock key on."
 msgstr "A tecla Bloq Maiús está activada."
 
-#: ../src/gs-lock-plug.c:1362
+#: ../src/gs-lock-plug.c:1270
 msgid "S_witch User..."
 msgstr "_Cambiar de usuario..."
 
-#: ../src/gs-lock-plug.c:1371
+#: ../src/gs-lock-plug.c:1279
 msgid "Log _Out"
 msgstr "_Saír da sesión"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1547
+#: ../src/gs-lock-plug.c:1455
 msgid "%U on %h"
 msgstr "%U en %h"
 
-#: ../src/gs-lock-plug.c:1561
+#: ../src/gs-lock-plug.c:1469
 msgid "_Password:"
 msgstr "Co_ntrasinal:"
+
+#~ msgid "<b>Leave a message for %R:</b>"
+#~ msgstr "<b>Deixar unha mensaxe para %R:</b>"
+
+#~ msgid "_Leave Message"
+#~ msgstr "_Deixar unha mensaxe"
