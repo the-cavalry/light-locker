@@ -64,6 +64,7 @@ struct GSWindowPrivate
 
         GdkRectangle geometry;
         guint      obscured : 1;
+        guint      dialog_up : 1;
 
         guint      lock_enabled : 1;
         guint      user_switch_enabled : 1;
@@ -118,14 +119,13 @@ struct GSWindowPrivate
 enum {
         ACTIVITY,
         DEACTIVATED,
-        DIALOG_UP,
-        DIALOG_DOWN,
         LAST_SIGNAL
 };
 
 enum {
         PROP_0,
         PROP_OBSCURED,
+        PROP_DIALOG_UP,
         PROP_LOCK_ENABLED,
         PROP_LOGOUT_ENABLED,
         PROP_KEYBOARD_ENABLED,
@@ -1532,6 +1532,43 @@ shake_dialog (GSWindow *window)
         maybe_kill_dialog (window);
 }
 
+static void
+window_set_dialog_up (GSWindow *window,
+                      gboolean  dialog_up)
+{
+        if (window->priv->dialog_up == dialog_up) {
+                return;
+        }
+
+        window->priv->dialog_up = dialog_up;
+        g_object_notify (G_OBJECT (window), "dialog-up");
+}
+
+static void
+popdown_dialog (GSWindow *window)
+{
+        gs_window_dialog_finish (window);
+
+        gtk_widget_show (window->priv->drawing_area);
+
+        gs_window_clear (window);
+        set_invisible_cursor (GTK_WIDGET (window)->window, TRUE);
+
+        window_set_dialog_up (window, FALSE);
+
+        /* reset the pointer positions */
+        window->priv->last_x = -1;
+        window->priv->last_y = -1;
+
+        if (window->priv->lock_box != NULL) {
+                gtk_container_remove (GTK_CONTAINER (window->priv->vbox), GTK_WIDGET (window->priv->lock_box));
+                window->priv->lock_box = NULL;
+        }
+
+        remove_popup_dialog_idle (window);
+        remove_command_watches (window);
+}
+
 static gboolean
 lock_command_watch (GIOChannel   *source,
                     GIOCondition  condition,
@@ -1597,21 +1634,11 @@ lock_command_watch (GIOChannel   *source,
         }
 
         if (finished) {
-                gs_window_dialog_finish (window);
+                popdown_dialog (window);
 
                 if (window->priv->dialog_response == DIALOG_RESPONSE_OK) {
                         add_emit_deactivated_idle (window);
                 }
-
-                gtk_widget_show (window->priv->drawing_area);
-
-                gs_window_clear (window);
-                set_invisible_cursor (GTK_WIDGET (window)->window, TRUE);
-                g_signal_emit (window, signals [DIALOG_DOWN], 0);
-
-                /* reset the pointer positions */
-                window->priv->last_x = -1;
-                window->priv->last_y = -1;
 
                 window->priv->lock_watch_id = 0;
 
@@ -1649,8 +1676,8 @@ is_user_switch_enabled (GSWindow *window)
         return window->priv->user_switch_enabled;
 }
 
-static gboolean
-popup_dialog_idle (GSWindow *window)
+static void
+popup_dialog (GSWindow *window)
 {
         gboolean  result;
         char     *tmp;
@@ -1703,6 +1730,12 @@ popup_dialog_idle (GSWindow *window)
         }
 
         g_string_free (command, TRUE);
+}
+
+static gboolean
+popup_dialog_idle (GSWindow *window)
+{
+        popup_dialog (window);
 
         window->priv->popup_dialog_idle_id = 0;
 
@@ -1735,7 +1768,7 @@ gs_window_request_unlock (GSWindow *window)
                 add_popup_dialog_idle (window);
         }
 
-        g_signal_emit (window, signals [DIALOG_UP], 0);
+        window_set_dialog_up (window, TRUE);
 }
 
 void
@@ -1747,24 +1780,7 @@ gs_window_cancel_unlock_request (GSWindow  *window)
 	 */
         g_return_if_fail (GS_IS_WINDOW (window));
 
-        if (window->priv->lock_socket == NULL) {
-                return;
-        }
-
-        if (window->priv->lock_pid > 0) {
-                gs_window_dialog_finish (window);
-        }
-
-        remove_popup_dialog_idle (window);
-        remove_command_watches (window);
-        remove_watchdog_timer (window);
-
-        if (window->priv->lock_box != NULL) {
-                gtk_container_remove (GTK_CONTAINER (window->priv->vbox), GTK_WIDGET (window->priv->lock_box));
-                window->priv->lock_box = NULL;
-
-                g_signal_emit (window, signals [DIALOG_DOWN], 0);
-        }
+        popdown_dialog (window);
 }
 
 void
@@ -1984,6 +2000,9 @@ gs_window_get_property (GObject    *object,
         case PROP_OBSCURED:
                 g_value_set_boolean (value, self->priv->obscured);
                 break;
+        case PROP_DIALOG_UP:
+                g_value_set_boolean (value, self->priv->dialog_up);
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -2182,6 +2201,14 @@ gs_window_is_obscured (GSWindow *window)
         return window->priv->obscured;
 }
 
+gboolean
+gs_window_is_dialog_up (GSWindow *window)
+{
+        g_return_val_if_fail (GS_IS_WINDOW (window), FALSE);
+
+        return window->priv->dialog_up;
+}
+
 static void
 window_set_obscured (GSWindow *window,
                      gboolean  obscured)
@@ -2258,30 +2285,17 @@ gs_window_class_init (GSWindowClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
-        signals [DIALOG_UP] =
-                g_signal_new ("dialog-up",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSWindowClass, dialog_up),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-        signals [DIALOG_DOWN] =
-                g_signal_new ("dialog-down",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSWindowClass, dialog_down),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
 
         g_object_class_install_property (object_class,
                                          PROP_OBSCURED,
                                          g_param_spec_boolean ("obscured",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READABLE));
+        g_object_class_install_property (object_class,
+                                         PROP_DIALOG_UP,
+                                         g_param_spec_boolean ("dialog-up",
                                                                NULL,
                                                                NULL,
                                                                FALSE,

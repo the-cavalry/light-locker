@@ -57,6 +57,7 @@ typedef struct
 GType       gs_window_get_type           (void);
 
 gboolean    gs_window_is_obscured        (GSWindow  *window);
+gboolean    gs_window_is_dialog_up       (GSWindow  *window);
 
 void        gs_window_set_screen         (GSWindow  *window,
                                           GdkScreen *screen);

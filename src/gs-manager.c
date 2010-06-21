@@ -1069,75 +1069,6 @@ window_deactivated_cb (GSWindow  *window,
         g_idle_add ((GSourceFunc)window_deactivated_idle, manager);
 }
 
-static void
-window_dialog_up_cb (GSWindow  *window,
-                     GSManager *manager)
-{
-        GSList *l;
-
-        g_return_if_fail (manager != NULL);
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        gs_debug ("Handling dialog up");
-
-        g_signal_emit (manager, signals [AUTH_REQUEST_BEGIN], 0);
-
-        manager->priv->dialog_up = TRUE;
-        /* Make all other windows insensitive so we don't get events */
-        for (l = manager->priv->windows; l; l = l->next) {
-                if (l->data != window) {
-                        gtk_widget_set_sensitive (GTK_WIDGET (l->data), FALSE);
-                }
-        }
-
-        /* Move keyboard and mouse grabs so dialog can be used */
-        gs_grab_move_to_window (manager->priv->grab,
-                                gs_window_get_gdk_window (window),
-                                gs_window_get_screen (window),
-                                FALSE);
-
-        /* Release the pointer grab while dialog is up so that
-           the dialog can be used.  We'll regrab it when the dialog goes down. */
-        gs_grab_release_mouse (manager->priv->grab);
-
-        if (! manager->priv->throttled) {
-                gs_debug ("Suspending jobs");
-
-                manager_suspend_jobs (manager);
-        }
-}
-
-static void
-window_dialog_down_cb (GSWindow  *window,
-                       GSManager *manager)
-{
-        GSList *l;
-
-        g_return_if_fail (manager != NULL);
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        gs_debug ("Handling dialog down");
-
-        /* Regrab the mouse */
-        gs_grab_move_to_window (manager->priv->grab,
-                                gs_window_get_gdk_window (window),
-                                gs_window_get_screen (window),
-                                FALSE);
-
-        /* Make all windows sensitive so we get events */
-        for (l = manager->priv->windows; l; l = l->next) {
-                gtk_widget_set_sensitive (GTK_WIDGET (l->data), TRUE);
-        }
-
-        manager->priv->dialog_up = FALSE;
-
-        if (! manager->priv->throttled) {
-                manager_resume_jobs (manager);
-        }
-
-        g_signal_emit (manager, signals [AUTH_REQUEST_END], 0);
-}
-
 static GSWindow *
 find_window_at_pointer (GSManager *manager)
 {
@@ -1380,6 +1311,91 @@ window_obscured_cb (GSWindow   *window,
         }
 }
 
+static void
+handle_window_dialog_up (GSManager *manager,
+                         GSWindow  *window)
+{
+        GSList *l;
+
+        g_return_if_fail (manager != NULL);
+        g_return_if_fail (GS_IS_MANAGER (manager));
+
+        gs_debug ("Handling dialog up");
+
+        g_signal_emit (manager, signals [AUTH_REQUEST_BEGIN], 0);
+
+        manager->priv->dialog_up = TRUE;
+        /* Make all other windows insensitive so we don't get events */
+        for (l = manager->priv->windows; l; l = l->next) {
+                if (l->data != window) {
+                        gtk_widget_set_sensitive (GTK_WIDGET (l->data), FALSE);
+                }
+        }
+
+        /* Move keyboard and mouse grabs so dialog can be used */
+        gs_grab_move_to_window (manager->priv->grab,
+                                gs_window_get_gdk_window (window),
+                                gs_window_get_screen (window),
+                                FALSE);
+
+        /* Release the pointer grab while dialog is up so that
+           the dialog can be used.  We'll regrab it when the dialog goes down. */
+        gs_grab_release_mouse (manager->priv->grab);
+
+        if (! manager->priv->throttled) {
+                gs_debug ("Suspending jobs");
+
+                manager_suspend_jobs (manager);
+        }
+}
+
+static void
+handle_window_dialog_down (GSManager *manager,
+                           GSWindow  *window)
+{
+        GSList *l;
+
+        g_return_if_fail (manager != NULL);
+        g_return_if_fail (GS_IS_MANAGER (manager));
+
+        gs_debug ("Handling dialog down");
+
+        /* Regrab the mouse */
+        gs_grab_move_to_window (manager->priv->grab,
+                                gs_window_get_gdk_window (window),
+                                gs_window_get_screen (window),
+                                FALSE);
+
+        /* Make all windows sensitive so we get events */
+        for (l = manager->priv->windows; l; l = l->next) {
+                gtk_widget_set_sensitive (GTK_WIDGET (l->data), TRUE);
+        }
+
+        manager->priv->dialog_up = FALSE;
+
+        if (! manager->priv->throttled) {
+                manager_resume_jobs (manager);
+        }
+
+        g_signal_emit (manager, signals [AUTH_REQUEST_END], 0);
+}
+
+static void
+window_dialog_up_changed_cb (GSWindow   *window,
+                             GParamSpec *pspec,
+                             GSManager  *manager)
+{
+        gboolean up;
+
+        up = gs_window_is_dialog_up (window);
+        gs_debug ("Handling window dialog up changed: %s", up ? "up" : "down");
+        if (up) {
+                handle_window_dialog_up (manager, window);
+        } else {
+                handle_window_dialog_down (manager, window);
+        }
+}
+
 static gboolean
 window_activity_cb (GSWindow  *window,
                     GSManager *manager)
@@ -1397,12 +1413,11 @@ disconnect_window_signals (GSManager *manager,
 {
         g_signal_handlers_disconnect_by_func (window, window_deactivated_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_activity_cb, manager);
-        g_signal_handlers_disconnect_by_func (window, window_dialog_up_cb, manager);
-        g_signal_handlers_disconnect_by_func (window, window_dialog_down_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_show_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_map_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_map_event_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_obscured_cb, manager);
+        g_signal_handlers_disconnect_by_func (window, window_dialog_up_changed_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_unmap_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_grab_broken_cb, manager);
 }
@@ -1424,10 +1439,6 @@ connect_window_signals (GSManager *manager,
                                  G_CALLBACK (window_activity_cb), manager, 0);
         g_signal_connect_object (window, "deactivated",
                                  G_CALLBACK (window_deactivated_cb), manager, 0);
-        g_signal_connect_object (window, "dialog-up",
-                                 G_CALLBACK (window_dialog_up_cb), manager, 0);
-        g_signal_connect_object (window, "dialog-down",
-                                 G_CALLBACK (window_dialog_down_cb), manager, 0);
         g_signal_connect_object (window, "show",
                                  G_CALLBACK (window_show_cb), manager, G_CONNECT_AFTER);
         g_signal_connect_object (window, "map",
@@ -1436,6 +1447,8 @@ connect_window_signals (GSManager *manager,
                                  G_CALLBACK (window_map_event_cb), manager, G_CONNECT_AFTER);
         g_signal_connect_object (window, "notify::obscured",
                                  G_CALLBACK (window_obscured_cb), manager, G_CONNECT_AFTER);
+        g_signal_connect_object (window, "notify::dialog-up",
+                                 G_CALLBACK (window_dialog_up_changed_cb), manager, 0);
         g_signal_connect_object (window, "unmap",
                                  G_CALLBACK (window_unmap_cb), manager, G_CONNECT_AFTER);
         g_signal_connect_object (window, "grab_broken_event",
