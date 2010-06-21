@@ -41,8 +41,10 @@
                             <child>
                               <object class="GtkLabel" id="auth-realname-label">
                                 <property name="visible">True</property>
-                                <property name="label" translatable="yes">&lt;span size="x-large"&gt;%R&lt;/span&gt;</property>
-                                <property name="use_markup">True</property>
+                                <property name="label">%R</property>
+                                <attributes>
+                                  <attribute name="scale" value="1.44"/><!-- PANGO_SCALE_X_LARGE -->
+                                </attributes>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -53,8 +55,10 @@
                             <child>
                               <object class="GtkLabel" id="auth-username-label">
                                 <property name="visible">True</property>
-                                <property name="label" translatable="yes">&lt;span size="small"&gt;%U on %h&lt;/span&gt;</property>
-                                <property name="use_markup">True</property>
+                                <property name="label">%U on %h</property>
+                                <attributes>
+                                  <attribute name="scale" value="0.8"/><!-- PANGO_SCALE_SMALL -->
+                                </attributes>
                               </object>
                               <packing>
                                 <property name="expand">False</property>

@@ -372,9 +372,8 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel" id="root_warning_label">
-                                    <property name="label" translatable="yes">&lt;b&gt;Warning: the screen will not be locked for the root user.&lt;/b&gt;</property>
+                                    <property name="label" translatable="yes">Warning: the screen will not be locked for the root user.</property>
                                     <property name="use_underline">False</property>
-                                    <property name="use_markup">True</property>
                                     <property name="justify">GTK_JUSTIFY_LEFT</property>
                                     <property name="wrap">True</property>
                                     <property name="selectable">False</property>
@@ -386,6 +385,9 @@
                                     <property name="width_chars">-1</property>
                                     <property name="single_line_mode">False</property>
                                     <property name="angle">0</property>
+                                    <attributes>
+                                      <attribute name="weight" value="PANGO_WEIGHT_BOLD"/>
+                                    </attributes>
                                   </object>
                                   <packing>
                                     <property name="padding">0</property>
@@ -489,9 +491,8 @@
             <child>
               <object class="GtkLabel" id="label15">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">&lt;b&gt;Screensaver preview&lt;/b&gt;</property>
+                <property name="label" translatable="yes">Screensaver preview</property>
                 <property name="use_underline">False</property>
-                <property name="use_markup">True</property>
                 <property name="justify">GTK_JUSTIFY_FILL</property>
                 <property name="wrap">True</property>
                 <property name="selectable">False</property>
@@ -503,6 +504,9 @@
                 <property name="width_chars">-1</property>
                 <property name="single_line_mode">False</property>
                 <property name="angle">0</property>
+                <attributes>
+                  <attribute name="weight" value="PANGO_WEIGHT_BOLD"/>
+                </attributes>
               </object>
               <packing>
                 <property name="padding">0</property>

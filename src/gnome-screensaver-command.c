@@ -292,7 +292,7 @@ do_command (DBusConnection *connection)
 
                 dbus_message_iter_init (reply, &iter);
                 dbus_message_iter_get_basic (&iter, &v);
-                g_print (_("The screensaver is %s\n"), v ? _("active") : _("inactive"));
+                g_print (v ? _("The screensaver is active\n") : _("The screensaver is inactive\n"));
 
                 dbus_message_unref (reply);
 
