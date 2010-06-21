@@ -271,10 +271,10 @@ gs_fade_set_enabled (GSFade  *fade,
         }
 }
 
+#ifdef HAVE_XF86VMODE_GAMMA
 static gboolean
 gamma_fade_setup (GSFade *fade, int screen_idx)
 {
-#ifdef HAVE_XF86VMODE_GAMMA
         gboolean         res;
         struct GSFadeScreenPrivate *screen_priv;
 
@@ -351,10 +351,9 @@ gamma_fade_setup (GSFade *fade, int screen_idx)
         return TRUE;
  FAIL:
 
-#endif /* HAVE_XF86VMODE_GAMMA */
-
         return FALSE;
 }
+#endif /* HAVE_XF86VMODE_GAMMA */
 
 static void
 screen_fade_finish (GSFade *fade, int screen_idx)
@@ -380,12 +379,12 @@ screen_fade_finish (GSFade *fade, int screen_idx)
         screen_priv->num_ramps = 0;
 }
 
+#ifdef HAVE_XF86VMODE_GAMMA
 static gboolean
 gamma_fade_set_alpha_gamma (GSFade *fade,
                             int screen_idx,
                             gdouble alpha)
 {
-#ifdef HAVE_XF86VMODE_GAMMA
         struct GSFadeScreenPrivate *screen_priv;
         gboolean res;
 
@@ -393,24 +392,24 @@ gamma_fade_set_alpha_gamma (GSFade *fade,
         res = xf86_whack_gamma (screen_idx, screen_priv, alpha);
 
         return TRUE;
-#else
-        return FALSE;
-#endif /* HAVE_XF86VMODE_GAMMA */
 }
+#endif /* HAVE_XF86VMODE_GAMMA */
 
 static void
 check_gamma_extension (GSFade *fade, int screen_idx)
 {
-#ifdef HAVE_XF86VMODE_GAMMA
         struct GSFadeScreenPrivate *screen_priv;
+#ifdef HAVE_XF86VMODE_GAMMA
         int      event;
         int      error;
         int      major;
         int      minor;
         gboolean res;
+#endif /* HAVE_XF86VMODE_GAMMA */
 
         screen_priv = &fade->priv->screen_priv[screen_idx];
 
+#ifdef HAVE_XF86VMODE_GAMMA
         res = XF86VidModeQueryExtension (GDK_DISPLAY (), &event, &error);
         if (! res)
                 goto fade_none;
