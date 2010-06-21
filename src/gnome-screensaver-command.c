@@ -87,22 +87,6 @@ static GOptionEntry entries [] = {
 
 static GMainLoop *loop = NULL;
 
-static gboolean
-screensaver_is_running (DBusConnection *connection)
-{
-        DBusError               error;
-        gboolean                exists;
-
-        g_return_val_if_fail (connection != NULL, FALSE);
-
-        dbus_error_init (&error);
-        exists = dbus_bus_name_has_owner (connection, GS_SERVICE, &error);
-        if (dbus_error_is_set (&error))
-                dbus_error_free (&error);
-
-        return exists;
-}
-
 static DBusMessage *
 screensaver_send_message_inhibit (DBusConnection *connection,
                                   const char     *application,
@@ -467,11 +451,6 @@ main (int    argc,
         }
 
         dbus_connection_setup_with_g_main (connection, NULL);
-
-        if (! screensaver_is_running (connection)) {
-                g_message ("Screensaver is not running!");
-                exit (1);
-        }
 
         g_idle_add ((GSourceFunc)do_command, connection);
 
