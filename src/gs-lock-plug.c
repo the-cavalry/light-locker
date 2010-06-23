@@ -408,12 +408,12 @@ gs_lock_plug_run (GSLockPlug *plug)
 
         g_object_ref (plug);
 
-        was_modal = GTK_WINDOW (plug)->modal;
+        was_modal = gtk_window_get_modal (GTK_WINDOW (plug));
         if (!was_modal) {
                 gtk_window_set_modal (GTK_WINDOW (plug), TRUE);
         }
 
-        if (!GTK_WIDGET_VISIBLE (plug)) {
+        if (!gtk_widget_get_visible (GTK_WIDGET (plug))) {
                 gtk_widget_show (GTK_WIDGET (plug));
         }
 
@@ -554,8 +554,8 @@ image_set_from_pixbuf (GtkImage  *image,
 
         radius = w / 10;
 
-        pixmap = gdk_pixmap_new (GTK_WIDGET (image)->window, w, h, -1);
-        bitmask = gdk_pixmap_new (GTK_WIDGET (image)->window, w, h, 1);
+        pixmap = gdk_pixmap_new (gtk_widget_get_window (GTK_WIDGET (image)), w, h, -1);
+        bitmask = gdk_pixmap_new (gtk_widget_get_window (GTK_WIDGET (image)), w, h, 1);
 
         cr = gdk_cairo_create (pixmap);
         cr_mask = gdk_cairo_create (bitmask);
@@ -570,7 +570,7 @@ image_set_from_pixbuf (GtkImage  *image,
         cairo_set_source_rgb (cr_mask, 1, 1, 1);
         cairo_fill (cr_mask);
 
-        color = GTK_WIDGET (image)->style->bg [GTK_STATE_NORMAL];
+        color = gtk_widget_get_style (GTK_WIDGET (image))->bg [GTK_STATE_NORMAL];
         r = (float)color.red / 65535.0;
         g = (float)color.green / 65535.0;
         b = (float)color.blue / 65535.0;
@@ -947,7 +947,7 @@ gs_lock_plug_close (GSLockPlug *plug)
         GdkEvent  *event;
 
         event = gdk_event_new (GDK_DELETE);
-        event->any.window = g_object_ref (widget->window);
+        event->any.window = g_object_ref (gtk_widget_get_window (widget));
         event->any.send_event = TRUE;
 
         gtk_main_do_event (event);
@@ -1084,7 +1084,7 @@ gs_lock_plug_set_busy (GSLockPlug *plug)
         top_level = gtk_widget_get_toplevel (GTK_WIDGET (plug));
 
         cursor = gdk_cursor_new (GDK_WATCH);
-        gdk_window_set_cursor (top_level->window, cursor);
+        gdk_window_set_cursor (gtk_widget_get_window (top_level), cursor);
         gdk_cursor_unref (cursor);
 }
 
@@ -1097,7 +1097,7 @@ gs_lock_plug_set_ready (GSLockPlug *plug)
         top_level = gtk_widget_get_toplevel (GTK_WIDGET (plug));
 
         cursor = gdk_cursor_new (GDK_LEFT_PTR);
-        gdk_window_set_cursor (top_level->window, cursor);
+        gdk_window_set_cursor (gtk_widget_get_window (top_level), cursor);
         gdk_cursor_unref (cursor);
 }
 
@@ -1119,7 +1119,7 @@ gs_lock_plug_enable_prompt (GSLockPlug *plug,
         gtk_widget_set_sensitive (plug->priv->auth_prompt_entry, TRUE);
         gtk_widget_show (plug->priv->auth_prompt_entry);
 
-        if (! GTK_WIDGET_HAS_FOCUS (plug->priv->auth_prompt_entry)) {
+        if (!gtk_widget_has_focus (plug->priv->auth_prompt_entry)) {
                 gtk_widget_grab_focus (plug->priv->auth_prompt_entry);
         }
 
@@ -1184,8 +1184,8 @@ entry_key_press (GtkWidget   *widget,
         /* if the input widget is visible and ready for input
          * then just carry on as usual
          */
-        if (GTK_WIDGET_VISIBLE (plug->priv->auth_prompt_entry) &&
-            GTK_WIDGET_IS_SENSITIVE (plug->priv->auth_prompt_entry)) {
+        if (gtk_widget_get_visible (plug->priv->auth_prompt_entry) &&
+            gtk_widget_get_sensitive (plug->priv->auth_prompt_entry)) {
                 return FALSE;
         }
 
@@ -1211,7 +1211,7 @@ gs_lock_plug_add_button (GSLockPlug  *plug,
 
         button = gtk_button_new_from_stock (button_text);
 
-        GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+        gtk_widget_set_can_default (button, TRUE);
 
         gtk_widget_show (button);
 

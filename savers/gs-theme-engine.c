@@ -112,23 +112,25 @@ gs_theme_engine_clear (GtkWidget *widget)
         GdkColor     color = { 0, 0x0000, 0x0000, 0x0000 };
         GdkColormap *colormap;
         GtkStateType state;
+        GdkWindow   *window;
 
         g_return_if_fail (GS_IS_THEME_ENGINE (widget));
 
-        if (! GTK_WIDGET_VISIBLE (widget)) {
+        if (!gtk_widget_get_visible (widget)) {
                 return;
         }
 
         state = (GtkStateType) 0;
-        while (state < (GtkStateType) G_N_ELEMENTS (widget->style->bg)) {
+        while (state < (GtkStateType) G_N_ELEMENTS (gtk_widget_get_style (widget)->bg)) {
                 gtk_widget_modify_bg (widget, state, &color);
                 state++;
         }
 
-        colormap = gdk_drawable_get_colormap (widget->window);
+        window = gtk_widget_get_window (widget);
+        colormap = gdk_drawable_get_colormap (window);
         gdk_colormap_alloc_color (colormap, &color, FALSE, TRUE);
-        gdk_window_set_background (widget->window, &color);
-        gdk_window_clear (widget->window);
+        gdk_window_set_background (window, &color);
+        gdk_window_clear (window);
         gdk_flush ();
 }
 
@@ -195,11 +197,11 @@ gs_theme_engine_get_window_size (GSThemeEngine *engine,
 
         g_return_if_fail (GS_IS_THEME_ENGINE (engine));
 
-        if (! GTK_WIDGET_VISIBLE (GTK_WIDGET (engine))) {
+        if (!gtk_widget_get_visible (GTK_WIDGET (engine))) {
                 return;
         }
 
-        gdk_window_get_geometry (GTK_WIDGET (engine)->window,
+        gdk_window_get_geometry (gtk_widget_get_window (GTK_WIDGET (engine)),
                                  NULL,
                                  NULL,
                                  width,
@@ -212,5 +214,5 @@ gs_theme_engine_get_window (GSThemeEngine *engine)
 {
         g_return_val_if_fail (GS_IS_THEME_ENGINE (engine), NULL);
 
-        return GTK_WIDGET (engine)->window;
+        return gtk_widget_get_window (GTK_WIDGET (engine));
 }

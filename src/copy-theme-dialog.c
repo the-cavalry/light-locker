@@ -180,6 +180,7 @@ copy_theme_dialog_init (CopyThemeDialog *dlg)
 	GtkWidget *vbox;
 	GtkWidget *hbox;
 	GtkWidget *progress_vbox;
+	GtkWidget *content_area;
 	GtkWidget *table;
 	GtkWidget *label;
 	char      *markup;
@@ -200,13 +201,15 @@ copy_theme_dialog_init (CopyThemeDialog *dlg)
 	dlg->priv->cancellable = g_cancellable_new ();
 	
 	/* GUI settings */
-	gtk_container_set_border_width (GTK_CONTAINER (GTK_DIALOG (dlg)->vbox),
+	content_area = gtk_dialog_get_content_area (GTK_DIALOG (dlg));
+
+	gtk_container_set_border_width (GTK_CONTAINER (content_area),
 	                                4);
-	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dlg)->vbox), 4);
+	gtk_box_set_spacing (GTK_BOX (content_area), 4);
 	
 	vbox = gtk_vbox_new (FALSE, 6);
 	gtk_container_set_border_width (GTK_CONTAINER (vbox), 6);
-	gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dlg)->vbox), vbox, TRUE, TRUE, 0);
+	gtk_box_pack_start (GTK_BOX (content_area), vbox, TRUE, TRUE, 0);
 	
 	dlg->priv->status = gtk_label_new ("");
 	markup = g_strdup_printf ("<big><b>%s</b></big>", _("Copying files"));
@@ -255,7 +258,7 @@ copy_theme_dialog_init (CopyThemeDialog *dlg)
 	gtk_dialog_set_has_separator (GTK_DIALOG (dlg), FALSE);
 	gtk_container_set_border_width (GTK_CONTAINER (dlg), 6);
 	
-	gtk_widget_show_all (GTK_DIALOG (dlg)->vbox);
+	gtk_widget_show_all (content_area);
 }
 
 static void

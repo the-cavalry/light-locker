@@ -360,7 +360,7 @@ preview_clear (GtkWidget *widget)
         GdkColor color = { 0, 0, 0 };
 
         gtk_widget_modify_bg (widget, GTK_STATE_NORMAL, &color);
-        gdk_window_clear (widget->window);
+        gdk_window_clear (gtk_widget_get_window (widget));
 }
 
 static void
@@ -955,7 +955,7 @@ drag_data_received_cb (GtkWidget        *widget,
         if (!(info == TARGET_URI_LIST || info == TARGET_NS_URL))
                 return;
 
-        files = uri_list_parse ((char *) selection_data->data);
+        files = uri_list_parse ((char *) gtk_selection_data_get_data (selection_data));
         if (files != NULL) {
                 GtkWidget *prefs_dialog;
 

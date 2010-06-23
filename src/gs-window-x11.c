@@ -189,10 +189,10 @@ gs_window_override_user_time (GSWindow *window)
                  * NOTE: Last resort for D-BUS or other non-interactive
                  *       openings.  Causes roundtrip to server.  Lame.
                  */
-                ev_time = gdk_x11_get_server_time (GTK_WIDGET (window)->window);
+                ev_time = gdk_x11_get_server_time (gtk_widget_get_window (GTK_WIDGET (window)));
         }
 
-        gdk_x11_window_set_user_time (GTK_WIDGET (window)->window, ev_time);
+        gdk_x11_window_set_user_time (gtk_widget_get_window (GTK_WIDGET (window)), ev_time);
 }
 
 static void
@@ -263,7 +263,7 @@ widget_clear_all_children (GtkWidget *widget)
 
         gdk_error_trap_push ();
 
-        w = widget->window;
+        w = gtk_widget_get_window (widget);
 
         clear_children (GDK_WINDOW_XID (w));
 
@@ -283,7 +283,7 @@ gs_window_set_background_pixmap (GSWindow  *window,
 
         if (pixmap != NULL) {
                 window->priv->background_pixmap = g_object_ref (pixmap);
-                gdk_window_set_back_pixmap (GTK_WIDGET (window)->window,
+                gdk_window_set_back_pixmap (gtk_widget_get_window (GTK_WIDGET (window)),
                                             pixmap,
                                             FALSE);
         }
@@ -297,7 +297,7 @@ gs_window_clear_to_background_pixmap (GSWindow *window)
 
         g_return_if_fail (GS_IS_WINDOW (window));
 
-        if (! GTK_WIDGET_VISIBLE (GTK_WIDGET (window))) {
+        if (!gtk_widget_get_visible (GTK_WIDGET (window))) {
                 return;
         }
 
@@ -308,10 +308,10 @@ gs_window_clear_to_background_pixmap (GSWindow *window)
 
         gs_debug ("Clearing window to background pixmap");
 
-        style = gtk_style_copy (GTK_WIDGET (window)->style);
+        style = gtk_style_copy (gtk_widget_get_style (GTK_WIDGET (window)));
 
         state = (GtkStateType) 0;
-        while (state < (GtkStateType) G_N_ELEMENTS (GTK_WIDGET (window)->style->bg_pixmap)) {
+        while (state < (GtkStateType) G_N_ELEMENTS (gtk_widget_get_style (GTK_WIDGET (window))->bg_pixmap)) {
 
                 if (style->bg_pixmap[state] != NULL) {
                         g_object_unref (style->bg_pixmap[state]);
@@ -325,12 +325,12 @@ gs_window_clear_to_background_pixmap (GSWindow *window)
         g_object_unref (style);
 
         if (window->priv->background_pixmap != NULL) {
-                gdk_window_set_back_pixmap (GTK_WIDGET (window)->window,
+                gdk_window_set_back_pixmap (gtk_widget_get_window (GTK_WIDGET (window)),
                                             window->priv->background_pixmap,
                                             FALSE);
         }
 
-        gdk_window_clear (GTK_WIDGET (window)->window);
+        gdk_window_clear (gtk_widget_get_window (GTK_WIDGET (window)));
 
         gdk_flush ();
 }
@@ -340,25 +340,28 @@ clear_widget (GtkWidget *widget)
 {
         GdkColor     color = { 0, 0x0000, 0x0000, 0x0000 };
         GdkColormap *colormap;
+        GdkWindow   *window;
         GtkStateType state;
         GtkStyle    *style;
+        GtkStyle    *widget_style;
 
-        if (! GTK_WIDGET_VISIBLE (widget)) {
+        if (!gtk_widget_get_visible (widget)) {
                 return;
         }
 
         gs_debug ("Clearing widget");
 
+        widget_style = gtk_widget_get_style (widget);
         state = (GtkStateType) 0;
-        while (state < (GtkStateType) G_N_ELEMENTS (widget->style->bg)) {
+        while (state < (GtkStateType) G_N_ELEMENTS (widget_style->bg)) {
                 gtk_widget_modify_bg (widget, state, &color);
                 state++;
         }
 
-        style = gtk_style_copy (widget->style);
+        style = gtk_style_copy (widget_style);
 
         state = (GtkStateType) 0;
-        while (state < (GtkStateType) G_N_ELEMENTS (widget->style->bg_pixmap)) {
+        while (state < (GtkStateType) G_N_ELEMENTS (widget_style->bg_pixmap)) {
 
                 if (style->bg_pixmap[state] != NULL) {
                         g_object_unref (style->bg_pixmap[state]);
@@ -368,14 +371,15 @@ clear_widget (GtkWidget *widget)
                 state++;
         }
 
-        colormap = gdk_drawable_get_colormap (widget->window);
+        window = gtk_widget_get_window (widget);
+        colormap = gdk_drawable_get_colormap (window);
         gdk_colormap_alloc_color (colormap, &color, FALSE, TRUE);
-        gdk_window_set_background (widget->window, &color);
+        gdk_window_set_background (window, &color);
 
         gtk_widget_set_style (widget, style);
         g_object_unref (style);
 
-        gdk_window_clear (widget->window);
+        gdk_window_clear (window);
 
         /* If a screensaver theme adds child windows we need to clear them too */
         widget_clear_all_children (widget);
@@ -402,7 +406,7 @@ get_outside_region (GSWindow *window)
         for (i = 0; i < window->priv->monitor; i++) {
                 GdkRectangle geometry;
 
-                gdk_screen_get_monitor_geometry (GTK_WINDOW (window)->screen,
+                gdk_screen_get_monitor_geometry (gtk_window_get_screen (GTK_WINDOW (window)),
                                                    i, &geometry);
                 gdk_region_union_with_rect (region, &geometry);
         }
@@ -419,7 +423,7 @@ update_geometry (GSWindow *window)
 
         outside_region = get_outside_region (window);
 
-        gdk_screen_get_monitor_geometry (GTK_WINDOW (window)->screen,
+        gdk_screen_get_monitor_geometry (gtk_window_get_screen (GTK_WINDOW (window)),
                                          window->priv->monitor,
                                          &geometry);
         gs_debug ("got geometry for monitor %d: x=%d y=%d w=%d h=%d",
@@ -466,7 +470,7 @@ gs_window_move_resize_window (GSWindow *window,
 
         widget = GTK_WIDGET (window);
 
-        g_assert (GTK_WIDGET_REALIZED (widget));
+        g_assert (gtk_widget_get_realized (widget));
 
         gs_debug ("Move and/or resize window on monitor %d: x=%d y=%d w=%d h=%d",
                   window->priv->monitor,
@@ -476,17 +480,17 @@ gs_window_move_resize_window (GSWindow *window,
                   window->priv->geometry.height);
 
         if (move && resize) {
-                gdk_window_move_resize (widget->window,
+                gdk_window_move_resize (gtk_widget_get_window (widget),
                                         window->priv->geometry.x,
                                         window->priv->geometry.y,
                                         window->priv->geometry.width,
                                         window->priv->geometry.height);
         } else if (move) {
-                gdk_window_move (widget->window,
+                gdk_window_move (gtk_widget_get_window (widget),
                                  window->priv->geometry.x,
                                  window->priv->geometry.y);
         } else if (resize) {
-                gdk_window_resize (widget->window,
+                gdk_window_resize (gtk_widget_get_window (widget),
                                    window->priv->geometry.width,
                                    window->priv->geometry.height);
         }
@@ -687,7 +691,7 @@ watchdog_timer (GSWindow *window)
 {
         GtkWidget *widget = GTK_WIDGET (window);
 
-        gdk_window_focus (widget->window, GDK_CURRENT_TIME);
+        gdk_window_focus (gtk_widget_get_window (widget), GDK_CURRENT_TIME);
 
         return TRUE;
 }
@@ -748,7 +752,7 @@ gs_window_raise (GSWindow *window)
 
         gs_debug ("Raising screensaver window");
 
-        win = GTK_WIDGET (window)->window;
+        win = gtk_widget_get_window (GTK_WIDGET (window));
 
         gdk_window_raise (win);
 }
@@ -773,7 +777,7 @@ x11_window_is_ours (Window window)
 static void
 unshape_window (GSWindow *window)
 {
-        gdk_window_shape_combine_region (GTK_WIDGET (window)->window,
+        gdk_window_shape_combine_region (gtk_widget_get_window (GTK_WIDGET (window)),
                                          NULL,
                                          0,
                                          0);
@@ -869,7 +873,7 @@ window_select_shape_events (GSWindow *window)
 
         if (XShapeQueryExtension (GDK_DISPLAY (), &window->priv->shape_event_base, &shape_error_base)) {
                 events = ShapeNotifyMask;
-                XShapeSelectInput (GDK_DISPLAY (), GDK_WINDOW_XID (GTK_WIDGET (window)->window), events);
+                XShapeSelectInput (GDK_DISPLAY (), GDK_WINDOW_XID (gtk_widget_get_window (GTK_WIDGET (window))), events);
         }
 
         gdk_display_sync (gdk_display_get_default ());
@@ -888,7 +892,7 @@ gs_window_real_show (GtkWidget *widget)
 
         gs_window_clear (GS_WINDOW (widget));
 
-        set_invisible_cursor (widget->window, TRUE);
+        set_invisible_cursor (gtk_widget_get_window (widget), TRUE);
 
         window = GS_WINDOW (widget);
         if (window->priv->timer) {
@@ -1033,7 +1037,7 @@ gs_window_get_gdk_window (GSWindow *window)
 {
         g_return_val_if_fail (GS_IS_WINDOW (window), NULL);
 
-        return GTK_WIDGET (window)->window;
+        return gtk_widget_get_window (GTK_WIDGET (window));
 }
 
 GtkWidget *
@@ -1114,7 +1118,7 @@ spawn_on_window (GSWindow *window,
         }
 
         error = NULL;
-        result = gdk_spawn_on_screen_with_pipes (GTK_WINDOW (window)->screen,
+        result = gdk_spawn_on_screen_with_pipes (gtk_window_get_screen (GTK_WINDOW (window)),
                                                  NULL,
                                                  argv,
                                                  NULL,
@@ -1552,7 +1556,7 @@ popdown_dialog (GSWindow *window)
         gtk_widget_show (window->priv->drawing_area);
 
         gs_window_clear (window);
-        set_invisible_cursor (GTK_WIDGET (window)->window, TRUE);
+        set_invisible_cursor (gtk_widget_get_window (GTK_WIDGET (window)), TRUE);
 
         window_set_dialog_up (window, FALSE);
 
@@ -1714,7 +1718,7 @@ popup_dialog (GSWindow *window)
 
         gs_window_clear_to_background_pixmap (window);
 
-        set_invisible_cursor (GTK_WIDGET (window)->window, FALSE);
+        set_invisible_cursor (gtk_widget_get_window (GTK_WIDGET (window)), FALSE);
 
         window->priv->dialog_quit_requested = FALSE;
         window->priv->dialog_shake_in_progress = FALSE;
@@ -1749,7 +1753,7 @@ gs_window_request_unlock (GSWindow *window)
 
         gs_debug ("Requesting unlock");
 
-        if (! GTK_WIDGET_VISIBLE (GTK_WIDGET (window))) {
+        if (! gtk_widget_get_visible (GTK_WIDGET (window))) {
                 gs_debug ("Request unlock but window is not visible!");
                 return;
         }
@@ -1813,7 +1817,7 @@ gs_window_get_screen (GSWindow  *window)
 {
         g_return_val_if_fail (GS_IS_WINDOW (window), NULL);
 
-        return GTK_WINDOW (window)->screen;
+        return gtk_window_get_screen (GTK_WINDOW (window));
 }
 
 void
@@ -2043,7 +2047,7 @@ maybe_handle_activity (GSWindow *window)
 
         /* if we already have a socket then don't bother */
         if (! window->priv->lock_socket
-            && GTK_WIDGET_IS_SENSITIVE (GTK_WIDGET (window))) {
+            && gtk_widget_get_sensitive (GTK_WIDGET (window))) {
                 g_signal_emit (window, signals [ACTIVITY], 0, &handled);
         }
 
@@ -2147,8 +2151,8 @@ gs_window_real_size_request (GtkWidget      *widget,
         window = GS_WINDOW (widget);
         bin = GTK_BIN (widget);
 
-        if (bin->child && GTK_WIDGET_VISIBLE (bin->child)) {
-                gtk_widget_size_request (bin->child, requisition);
+        if (gtk_bin_get_child (bin) && gtk_widget_get_visible (gtk_bin_get_child (bin))) {
+                gtk_widget_size_request (gtk_bin_get_child (bin), requisition);
         }
 
         old_geometry = window->priv->geometry;
@@ -2158,7 +2162,7 @@ gs_window_real_size_request (GtkWidget      *widget,
         requisition->width  = window->priv->geometry.width;
         requisition->height = window->priv->geometry.height;
 
-        if (! GTK_WIDGET_REALIZED (widget)) {
+        if (!gtk_widget_get_realized (widget)) {
                 return;
         }
 

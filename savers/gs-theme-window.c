@@ -169,15 +169,15 @@ gs_theme_window_real_realize (GtkWidget *widget)
                 return;
         }
 
-        gtk_style_set_background (widget->style,
+        gtk_style_set_background (gtk_widget_get_style (widget),
                                   window,
                                   GTK_STATE_NORMAL);
         gdk_window_set_decorations (window, (GdkWMDecoration) 0);
         gdk_window_set_events (window, gdk_window_get_events (window) | event_mask);
 
-        widget->window = window;
+        gtk_widget_set_window (widget, window);
         gdk_window_set_user_data (window, widget);
-        GTK_WIDGET_SET_FLAGS (widget, GTK_REALIZED);
+        gtk_widget_set_realized (widget, TRUE);
 
         gdk_window_get_geometry (window, &x, &y, &width, &height, NULL);
 

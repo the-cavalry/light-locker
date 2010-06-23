@@ -1006,7 +1006,7 @@ screen_saver_on_expose_event (ScreenSaver    *screen_saver,
   if (screen_saver->floaters == NULL)
     screen_saver_create_floaters (screen_saver);
 
-  context = gdk_cairo_create (screen_saver->drawing_area->window);
+  context = gdk_cairo_create (gtk_widget_get_window (screen_saver->drawing_area));
 
   cairo_rectangle (context,
                    (double) event->area.x,
@@ -1064,7 +1064,7 @@ screen_saver_update_state (ScreenSaver *screen_saver,
 
       screen_saver_floater_update_state (screen_saver, floater, time);
 
-      if (GTK_WIDGET_REALIZED (screen_saver->drawing_area)
+      if (gtk_widget_get_realized (screen_saver->drawing_area)
           && (floater->bounds.width > 0) && (floater->bounds.height > 0))
         {
           gint size;
@@ -1180,6 +1180,7 @@ main (int   argc,
   ScreenSaver *screen_saver;
   GtkWidget *window;
   GtkWidget *drawing_area;
+  GtkStyle *style;
 
   GtkStateType state;
 
@@ -1222,10 +1223,11 @@ main (int   argc,
 
   drawing_area = gtk_drawing_area_new ();
 
+  style = gtk_widget_get_style (drawing_area);
   state = (GtkStateType) 0;
-  while (state < (GtkStateType) G_N_ELEMENTS (drawing_area->style->bg))
+  while (state < (GtkStateType) G_N_ELEMENTS (style->bg))
     {
-      gtk_widget_modify_bg (drawing_area, state, &drawing_area->style->mid[state]);
+      gtk_widget_modify_bg (drawing_area, state, &style->mid[state]);
       state++;
     }
 

@@ -306,7 +306,7 @@ update_display (GSTESlideshow *show)
         cairo_destroy (cr);
 
         /* paint the image buffer into the window */
-        cr = gdk_cairo_create (GTK_WIDGET (show)->window);
+        cr = gdk_cairo_create (gtk_widget_get_window (GTK_WIDGET (show)));
 
         cairo_set_source_surface (cr, show->priv->surf, 0, 0);
 
@@ -846,7 +846,7 @@ gste_slideshow_real_configure (GtkWidget         *widget,
                 cairo_surface_destroy (show->priv->surf);
         }
 
-        cr = gdk_cairo_create (widget->window);
+        cr = gdk_cairo_create (gtk_widget_get_window (widget));
         show->priv->surf = cairo_surface_create_similar (cairo_get_target (cr),
                                                          CAIRO_CONTENT_COLOR,
                                                          show->priv->window_width,
