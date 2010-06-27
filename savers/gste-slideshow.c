@@ -182,7 +182,11 @@ start_fade (GSTESlideshow *show,
                                                              256,
                                                              color,
                                                              color);
+#if GTK_CHECK_VERSION (2,21,1)
+                pixmap = gdk_pixmap_new (NULL, ph, pw,  gdk_visual_get_depth (gdk_visual_get_system ()));
+#else
                 pixmap = gdk_pixmap_new (NULL, ph, pw,  gdk_visual_get_system ()->depth);
+#endif
 
                 gdk_draw_pixbuf (pixmap, NULL, colored, 0, 0, 0, 0, -1, -1, GDK_RGB_DITHER_MAX, 0, 0);
                 gdk_pixbuf_get_from_drawable (pixbuf, pixmap, NULL, 0, 0, 0, 0, -1, -1);
