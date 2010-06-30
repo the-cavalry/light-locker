@@ -35,9 +35,8 @@ menu_DATA =					\
 	$(NULL)
 
 gtkbuilderdir = $(pkgdatadir)
-gtkbuilder_DATA = 					\
+gtkbuilder_DATA = 				\
 	gnome-screensaver-preferences.ui	\
-	lock-dialog-default.ui		\
 	$(NULL)
 
 pkgconfigdir = $(libdir)/pkgconfig

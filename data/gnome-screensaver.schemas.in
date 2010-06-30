@@ -226,20 +226,6 @@
     </schema>
 
     <schema>
-      <key>/schemas/apps/gnome-screensaver/lock_dialog_theme</key>
-      <applyto>/apps/gnome-screensaver/lock_dialog_theme</applyto>
-      <owner>gnome-screensaver</owner>
-      <type>string</type>
-      <default>default</default>
-      <locale name="C">
-        <short>Theme for lock dialog</short>
-        <long>
-          Theme to use for the lock dialog.
-        </long>
-      </locale>
-    </schema>
-
-    <schema>
       <key>/schemas/apps/gnome-screensaver/status_message_enabled</key>
       <applyto>/apps/gnome-screensaver/status_message_enabled</applyto>
       <owner>gnome-screensaver</owner>

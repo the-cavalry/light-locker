@@ -47,7 +47,6 @@
 
 #include "gs-debug.h"
 
-#define KEY_LOCK_DIALOG_THEME "/apps/gnome-screensaver/lock_dialog_theme"
 #define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
 #define GDM_FLEXISERVER_ARGS    "--startnew Standard"
 
@@ -137,10 +136,6 @@ gs_lock_plug_style_set (GtkWidget *widget,
         }
 
         plug = GS_LOCK_PLUG (widget);
-
-        if (! plug->priv->vbox) {
-                return;
-        }
 
         gtk_container_set_border_width (GTK_CONTAINER (plug->priv->vbox), 12);
         gtk_box_set_spacing (GTK_BOX (plug->priv->vbox), 12);
@@ -753,17 +748,11 @@ static void
 gs_lock_plug_size_request (GtkWidget      *widget,
                            GtkRequisition *requisition)
 {
-        GSLockPlug *plug = GS_LOCK_PLUG (widget);
         int mod_width;
         int mod_height;
 
         if (GTK_WIDGET_CLASS (gs_lock_plug_parent_class)->size_request) {
                 GTK_WIDGET_CLASS (gs_lock_plug_parent_class)->size_request (widget, requisition);
-        }
-
-        /* don't constrain size when themed */
-        if (plug->priv->vbox == NULL) {
-                return;
         }
 
         mod_width = requisition->height * 1.3;
@@ -1531,100 +1520,6 @@ switch_user_button_clicked (GtkButton  *button,
         do_user_switch (plug);
 }
 
-static char *
-get_dialog_theme_name (GSLockPlug *plug)
-{
-        char        *name;
-        GConfClient *client;
-
-        client = gconf_client_get_default ();
-        name = gconf_client_get_string (client, KEY_LOCK_DIALOG_THEME, NULL);
-        g_object_unref (client);
-
-        return name;
-}
-
-static gboolean
-load_theme (GSLockPlug *plug)
-{
-        char       *theme;
-        char       *filename;
-        char       *gtkbuilder;
-        char       *rc;
-        GtkBuilder *builder;
-        GtkWidget  *lock_dialog;
-        GError     *error=NULL;
-
-        theme = get_dialog_theme_name (plug);
-        if (theme == NULL) {
-                return FALSE;
-        }
-
-        filename = g_strdup_printf ("lock-dialog-%s.ui", theme);
-        gtkbuilder = g_build_filename (GTKBUILDERDIR, filename, NULL);
-        g_free (filename);
-        if (! g_file_test (gtkbuilder, G_FILE_TEST_IS_REGULAR)) {
-                g_free (gtkbuilder);
-                g_free (theme);
-                return FALSE;
-        }
-
-        filename = g_strdup_printf ("lock-dialog-%s.gtkrc", theme);
-        g_free (theme);
-
-        rc = g_build_filename (GTKBUILDERDIR, filename, NULL);
-        g_free (filename);
-        if (g_file_test (rc, G_FILE_TEST_IS_REGULAR)) {
-                gtk_rc_parse (rc);
-        }
-        g_free (rc);
-
-        builder = gtk_builder_new();
-
-        if (!gtk_builder_add_from_file (builder,gtkbuilder,&error)) {
-                g_warning ("Couldn't load builder file '%s': %s", gtkbuilder, error->message);
-                g_error_free(error);
-                g_free (gtkbuilder);
-                return FALSE;
-        }
-        g_free (gtkbuilder);
-
-        lock_dialog = GTK_WIDGET (gtk_builder_get_object(builder, "lock-dialog"));
-        gtk_container_add (GTK_CONTAINER (plug), lock_dialog);
-
-        plug->priv->vbox = NULL;
-        plug->priv->notebook = GTK_WIDGET (gtk_builder_get_object(builder, "notebook"));
-
-        plug->priv->auth_face_image = GTK_WIDGET (gtk_builder_get_object(builder, "auth-face-image"));
-        plug->priv->auth_action_area = GTK_WIDGET (gtk_builder_get_object(builder, "auth-action-area"));
-        plug->priv->auth_realname_label = GTK_WIDGET (gtk_builder_get_object(builder, "auth-realname-label"));
-        plug->priv->auth_username_label = GTK_WIDGET (gtk_builder_get_object(builder, "auth-username-label"));
-        plug->priv->auth_prompt_label = GTK_WIDGET (gtk_builder_get_object(builder, "auth-prompt-label"));
-        plug->priv->auth_prompt_entry = GTK_WIDGET (gtk_builder_get_object(builder, "auth-prompt-entry"));
-        plug->priv->auth_prompt_box = GTK_WIDGET (gtk_builder_get_object(builder, "auth-prompt-box"));
-        plug->priv->auth_capslock_label = GTK_WIDGET (gtk_builder_get_object(builder, "auth-capslock-label"));
-        plug->priv->auth_message_label = GTK_WIDGET (gtk_builder_get_object(builder, "auth-status-label"));
-        plug->priv->auth_unlock_button = GTK_WIDGET (gtk_builder_get_object(builder, "auth-unlock-button"));
-        plug->priv->auth_cancel_button = GTK_WIDGET (gtk_builder_get_object(builder, "auth-cancel-button"));
-        plug->priv->auth_logout_button = GTK_WIDGET (gtk_builder_get_object(builder, "auth-logout-button"));
-        plug->priv->auth_switch_button = GTK_WIDGET (gtk_builder_get_object(builder, "auth-switch-button"));
-
-        /* Placeholder for the keyboard indicator */
-        plug->priv->auth_prompt_kbd_layout_indicator = GTK_WIDGET (gtk_builder_get_object(builder, "auth-prompt-kbd-layout-indicator"));
-        if (plug->priv->auth_logout_button != NULL) {
-                gtk_widget_set_no_show_all (plug->priv->auth_logout_button, TRUE);
-        }
-        if (plug->priv->auth_switch_button != NULL) {
-                gtk_widget_set_no_show_all (plug->priv->auth_switch_button, TRUE);
-        }
-
-        gtk_widget_show_all (lock_dialog);
-
-        plug->priv->status_message_label = GTK_WIDGET (gtk_builder_get_object(builder, "status-message-label"));
-
-        return TRUE;
-}
-
 static int
 delete_handler (GSLockPlug  *plug,
                 GdkEventAny *event,
@@ -1644,26 +1539,21 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         clear_clipboards (plug);
 
-        if (! load_theme (plug)) {
-                gs_debug ("Unable to load theme!");
+        plug->priv->vbox = gtk_vbox_new (FALSE, 0);
 
-                plug->priv->vbox = gtk_vbox_new (FALSE, 0);
+        gtk_container_add (GTK_CONTAINER (plug), plug->priv->vbox);
 
-                gtk_container_add (GTK_CONTAINER (plug), plug->priv->vbox);
+        /* Notebook */
+        plug->priv->notebook = gtk_notebook_new ();
+        gtk_notebook_set_show_tabs (GTK_NOTEBOOK (plug->priv->notebook), FALSE);
+        gtk_notebook_set_show_border (GTK_NOTEBOOK (plug->priv->notebook), FALSE);
+        gtk_box_pack_start (GTK_BOX (plug->priv->vbox), plug->priv->notebook, TRUE, TRUE, 0);
 
-                /* Notebook */
+        /* Page 1 */
 
-                plug->priv->notebook = gtk_notebook_new ();
-                gtk_notebook_set_show_tabs (GTK_NOTEBOOK (plug->priv->notebook), FALSE);
-                gtk_notebook_set_show_border (GTK_NOTEBOOK (plug->priv->notebook), FALSE);
-                gtk_box_pack_start (GTK_BOX (plug->priv->vbox), plug->priv->notebook, TRUE, TRUE, 0);
+        create_page_one (plug);
 
-                /* Page 1 */
-
-                create_page_one (plug);
-
-                gtk_widget_show_all (plug->priv->vbox);
-        }
+        gtk_widget_show_all (plug->priv->vbox);
 
         /* Layout indicator */
 #ifdef WITH_KBD_LAYOUT_INDICATOR
