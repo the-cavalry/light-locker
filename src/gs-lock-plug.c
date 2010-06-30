@@ -35,7 +35,6 @@
 #include <glib/gi18n.h>
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdkx.h>
-#include <X11/XKBlib.h>
 #include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
 
@@ -286,15 +285,17 @@ capslock_update (GSLockPlug *plug,
 static gboolean
 is_capslock_on (void)
 {
-        XkbStateRec states;
-        Display    *dsp;
+        GdkKeymap *keymap;
+        gboolean   res;
 
-        dsp = GDK_DISPLAY ();
-        if (XkbGetState (dsp, XkbUseCoreKbd, &states) != Success) {
-                return FALSE;
+        res = FALSE;
+
+        keymap = gdk_keymap_get_default ();
+        if (keymap != NULL) {
+                res = gdk_keymap_get_caps_lock_state (keymap);
         }
 
-        return (states.locked_mods & LockMask) != 0;
+        return res;
 }
 
 static void
