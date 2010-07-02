@@ -42,14 +42,8 @@ window_deactivated_cb (GSWindow  *window,
 }
 
 static void
-window_dialog_up_cb (GSWindow  *window,
-                     gpointer   data)
-{
-}
-
-static void
-window_dialog_down_cb (GSWindow  *window,
-                       gpointer   data)
+window_dialog_up_changed_cb (GSWindow  *window,
+                             gpointer   data)
 {
 }
 
@@ -82,8 +76,7 @@ disconnect_window_signals (GSWindow *window)
         data = NULL;
         g_signal_handlers_disconnect_by_func (window, window_activity_cb, data);
         g_signal_handlers_disconnect_by_func (window, window_deactivated_cb, data);
-        g_signal_handlers_disconnect_by_func (window, window_dialog_up_cb, data);
-        g_signal_handlers_disconnect_by_func (window, window_dialog_down_cb, data);
+        g_signal_handlers_disconnect_by_func (window, window_dialog_up_changed_cb, data);
         g_signal_handlers_disconnect_by_func (window, window_show_cb, data);
 }
 
@@ -109,10 +102,8 @@ connect_window_signals (GSWindow *window)
                                  G_CALLBACK (window_destroyed_cb), data, 0);
         g_signal_connect_object (window, "deactivated",
                                  G_CALLBACK (window_deactivated_cb), data, 0);
-        g_signal_connect_object (window, "dialog-up",
-                                 G_CALLBACK (window_dialog_up_cb), data, 0);
-        g_signal_connect_object (window, "dialog-down",
-                                 G_CALLBACK (window_dialog_down_cb), data, 0);
+        g_signal_connect_object (window, "notify::dialog-up",
+                                 G_CALLBACK (window_dialog_up_changed_cb), data, 0);
         g_signal_connect_object (window, "show",
                                  G_CALLBACK (window_show_cb), data, 0);
 }
