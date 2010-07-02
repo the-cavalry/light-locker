@@ -53,6 +53,12 @@ enum {
         AUTH_PAGE = 0,
 };
 
+enum {
+        LOCK_NONE = 0,
+        LOCK_CAPS = 1 << 0,
+        LOCK_NUM = 1 << 1,
+};
+
 #define FACE_ICON_SIZE 48
 #define DIALOG_TIMEOUT_MSEC 60000
 
@@ -83,7 +89,7 @@ struct GSLockPlugPrivate
 
         GtkWidget   *auth_prompt_kbd_layout_indicator;
 
-        gboolean     caps_lock_on;
+        int          kbd_lock_mode;
         gboolean     switch_enabled;
         gboolean     logout_enabled;
         char        *logout_command;
@@ -263,39 +269,59 @@ dialog_timed_out (GSLockPlug *plug)
 
 
 static void
-capslock_update (GSLockPlug *plug,
-                 gboolean    is_on)
+kbd_lock_mode_update (GSLockPlug *plug,
+                      int         mode)
 {
+        if (plug->priv->kbd_lock_mode == mode) {
+                return;
+        }
 
-        plug->priv->caps_lock_on = is_on;
+        plug->priv->kbd_lock_mode = mode;
 
         if (plug->priv->auth_capslock_label == NULL) {
                 return;
         }
 
-        if (is_on) {
+        if ((mode & LOCK_CAPS) != 0 && (mode & LOCK_NUM) != 0) {
+                gtk_label_set_text (GTK_LABEL (plug->priv->auth_capslock_label),
+                                    _("You have the Caps & Num Lock keys on."));
+        } else if ((mode & LOCK_CAPS) != 0) {
                 gtk_label_set_text (GTK_LABEL (plug->priv->auth_capslock_label),
                                     _("You have the Caps Lock key on."));
+        } else if ((mode & LOCK_NUM) != 0) {
+                gtk_label_set_text (GTK_LABEL (plug->priv->auth_capslock_label),
+                                    _("You have the Num Lock key on."));
         } else {
                 gtk_label_set_text (GTK_LABEL (plug->priv->auth_capslock_label),
                                     "");
         }
 }
 
-static gboolean
-is_capslock_on (void)
+static int
+get_kbd_lock_mode (void)
 {
         GdkKeymap *keymap;
-        gboolean   res;
+        int        mode;
 
-        res = FALSE;
+        mode = LOCK_NONE;
 
         keymap = gdk_keymap_get_default ();
         if (keymap != NULL) {
+                gboolean res;
+
                 res = gdk_keymap_get_caps_lock_state (keymap);
+                if (res) {
+                        mode |= LOCK_CAPS;
+                }
+#if GTK_CHECK_VERSION(2,90,6)
+                res = gdk_keymap_get_num_lock_state (keymap);
+                if (res) {
+                        mode |= LOCK_NUM;
+                }
+#endif
         }
 
-        return res;
+        return mode;
 }
 
 static void
@@ -703,7 +729,7 @@ gs_lock_plug_show (GtkWidget *widget)
                 set_face_image (plug);
         }
 
-        capslock_update (plug, is_capslock_on ());
+        kbd_lock_mode_update (plug, get_kbd_lock_mode ());
 
         restart_cancel_timeout (plug);
 
@@ -1161,15 +1187,9 @@ entry_key_press (GtkWidget   *widget,
                  GdkEventKey *event,
                  GSLockPlug  *plug)
 {
-        gboolean capslock_on;
-
         restart_cancel_timeout (plug);
 
-        capslock_on = is_capslock_on ();
-
-        if (capslock_on != plug->priv->caps_lock_on) {
-                capslock_update (plug, capslock_on);
-        }
+        kbd_lock_mode_update (plug, get_kbd_lock_mode ());
 
         /* if the input widget is visible and ready for input
          * then just carry on as usual
