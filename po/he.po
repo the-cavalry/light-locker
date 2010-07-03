@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-22 07:49+0300\n"
-"PO-Revision-Date: 2010-06-22 07:53+0200\n"
+"POT-Creation-Date: 2010-07-03 10:12+0300\n"
+"PO-Revision-Date: 2010-07-03 10:13+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -221,14 +221,6 @@ msgstr ""
 "activation."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
-msgid "Theme for lock dialog"
-msgstr "Theme for lock dialog"
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Theme to use for the lock dialog."
-msgstr "Theme to use for the lock dialog."
-
-#: ../data/gnome-screensaver.schemas.in.h:27
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -240,41 +232,25 @@ msgstr ""
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:28
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before locking"
 msgstr "Time before locking"
 
-#: ../data/gnome-screensaver.schemas.in.h:29
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before logout option"
 msgstr "Time before logout option"
 
-#: ../data/gnome-screensaver.schemas.in.h:30
+#: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before power management baseline"
 msgstr "Time before power management baseline"
 
-#: ../data/gnome-screensaver.schemas.in.h:31
+#: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before session is considered idle"
 msgstr "Time before session is considered idle"
 
-#: ../data/gnome-screensaver.schemas.in.h:32
+#: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before theme change"
 msgstr "Time before theme change"
-
-#: ../data/lock-dialog-default.ui.h:1
-msgid "_Cancel"
-msgstr "_בטל"
-
-#: ../data/lock-dialog-default.ui.h:2
-msgid "_Log Out"
-msgstr "_התנתק"
-
-#: ../data/lock-dialog-default.ui.h:3
-msgid "_Switch User"
-msgstr "_החלף משתמש"
-
-#: ../data/lock-dialog-default.ui.h:4 ../src/gs-lock-plug.c:1290
-msgid "_Unlock"
-msgstr "_התחבר"
 
 #. Translators: This is the name of a desktop background image that shows outer space images.
 #. You might want to translate it into the equivalent words of your language
@@ -311,7 +287,7 @@ msgstr "רשת פופ־ארטית של פעימות צבע"
 msgid "Pop art squares"
 msgstr "ריבועי פופ־ארט"
 
-#: ../savers/popsquares.c:49 ../savers/floaters.c:1204
+#: ../savers/popsquares.c:49 ../savers/floaters.c:1205
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. See --help for usage information.\n"
@@ -351,11 +327,11 @@ msgstr "The source image to use"
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1198
+#: ../savers/floaters.c:1199
 msgid "image — floats images around the screen"
 msgstr "image — floats images around the screen"
 
-#: ../savers/floaters.c:1213
+#: ../savers/floaters.c:1214
 #, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "You must specify one image.  See --help for usage information.\n"
@@ -384,32 +360,32 @@ msgstr "אל תציג באקראי תמונות מהמיקום"
 msgid "Do not try to stretch images on screen"
 msgstr "אל תנסה למתוח תמוונת על המסך"
 
-#: ../src/copy-theme-dialog.c:212
+#: ../src/copy-theme-dialog.c:215
 msgid "Copying files"
 msgstr "מעתיק קבצים"
 
-#: ../src/copy-theme-dialog.c:230
+#: ../src/copy-theme-dialog.c:233
 msgid "From:"
 msgstr "מ:"
 
-#: ../src/copy-theme-dialog.c:234
+#: ../src/copy-theme-dialog.c:237
 msgid "To:"
 msgstr "אל:"
 
-#: ../src/copy-theme-dialog.c:254
+#: ../src/copy-theme-dialog.c:257
 msgid "Copying themes"
 msgstr "מעתיק ערכות נושא"
 
-#: ../src/copy-theme-dialog.c:298
+#: ../src/copy-theme-dialog.c:301
 msgid "Invalid screensaver theme"
 msgstr "ערכת נושא לא תקינה"
 
-#: ../src/copy-theme-dialog.c:301
+#: ../src/copy-theme-dialog.c:304
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
 msgstr "‏%s אינו ערכת נושא תקינה."
 
-#: ../src/copy-theme-dialog.c:481
+#: ../src/copy-theme-dialog.c:484
 #, c-format
 msgid "Copying file: %u of %u"
 msgstr "מעתיק קובץ: %u מתוך %u"
@@ -718,26 +694,53 @@ msgstr "שומר המסך כבר רץ עבור התחברות זאת"
 msgid "Time has expired."
 msgstr "עבר הזמן."
 
-#: ../src/gs-lock-plug.c:284
+#: ../src/gs-lock-plug.c:287
+msgid "You have the Caps & Num Lock keys on."
+msgstr "מקש ה־Caps Lock וה־Num Lock לחוצים."
+
+#: ../src/gs-lock-plug.c:290
 msgid "You have the Caps Lock key on."
 msgstr "מקש ה־Caps Lock לחוץ."
 
-#: ../src/gs-lock-plug.c:1270
+#: ../src/gs-lock-plug.c:293
+msgid "You have the Num Lock key on."
+msgstr "מקש ה־Num Lock לחוץ."
+
+#: ../src/gs-lock-plug.c:1280
 msgid "S_witch User…"
 msgstr "ה_חלפת משתמש…"
 
-#: ../src/gs-lock-plug.c:1279
+#: ../src/gs-lock-plug.c:1289
 msgid "Log _Out"
 msgstr "_התנתק"
 
+#: ../src/gs-lock-plug.c:1300
+msgid "_Unlock"
+msgstr "_התחבר"
+
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1455
+#: ../src/gs-lock-plug.c:1465
 msgid "%U on %h"
 msgstr "‏%U ב־%h"
 
-#: ../src/gs-lock-plug.c:1469
+#: ../src/gs-lock-plug.c:1479
 msgid "_Password:"
 msgstr "_סיסמה:"
+
+#~ msgid "Theme for lock dialog"
+#~ msgstr "Theme for lock dialog"
+
+#~ msgid "Theme to use for the lock dialog."
+#~ msgstr "Theme to use for the lock dialog."
+
+#~ msgid "_Cancel"
+#~ msgstr "_בטל"
+
+#~ msgid "_Log Out"
+#~ msgstr "_התנתק"
+
+#~ msgid "_Switch User"
+#~ msgstr "_החלף משתמש"
 
 #~ msgid "<b>Screensaver preview</b>"
 #~ msgstr "<b>תצוגה מקדימה של שומר המסך</b>"
