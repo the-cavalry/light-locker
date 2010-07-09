@@ -1,20 +1,20 @@
 # GNOME ekraanisäästja eesti keele tõlge.
 # Estonian translation of GNOME screensaver.
 #
-# Copyright (C) 2006-2008, The GNOME Project.
+# Copyright (C) 2006-2008, 2010, The GNOME Project.
 # This file is distributed under the same license as the gnome-screensaver
 # package.
 #
-# Ivar Smolin <okul@linux.ee>, 2006-2008.
+# Ivar Smolin <okul@linux.ee>, 2006-2008, 2010.
 # Priit Laes <amd@store20.com>, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver HEAD\n"
+"Project-Id-Version: gnome-screensaver MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "screensaver&component=general\n"
-"POT-Creation-Date: 2009-08-21 03:05+0000\n"
-"PO-Revision-Date: 2009-09-14 08:57+0300\n"
+"POT-Creation-Date: 2010-07-02 01:36+0000\n"
+"PO-Revision-Date: 2010-07-09 16:38+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -28,12 +28,6 @@ msgstr "Ekraanisäästja"
 msgid "Set your screensaver preferences"
 msgstr "Ekraanisäästja eelistuste seadmine"
 
-msgid "<b>Screensaver preview</b>"
-msgstr "<b>Ekraanisäästja eelvaade</b>"
-
-msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgstr "<b>Hoiatus: ekraanilukustus ei toimi root kasutaja jaoks.</b>"
-
 msgid "Power _Management"
 msgstr "_Vooluhaldus"
 
@@ -45,6 +39,12 @@ msgstr "Ekraanisäästja eelistused"
 
 msgid "Screensaver Preview"
 msgstr "Ekraanisäästja eelvaade"
+
+msgid "Screensaver preview"
+msgstr "Ekraanisäästja eelvaade"
+
+msgid "Warning: the screen will not be locked for the root user."
+msgstr "Hoiatus: ekraanilukustus ei toimi root kasutaja jaoks."
 
 msgid "_Activate screensaver when computer is idle"
 msgstr "Kui arvuti on jõude, siis aktiveeritakse e_kraanisäästja"
@@ -112,18 +112,18 @@ msgstr ""
 "Märgi see valik, kui ekraanisäästja peab aktiveerumisel ekraani lukustama."
 
 msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to allow logging "
+"out after a delay. The delay is specified in the \"logout_delay\" key."
+msgstr ""
+"Selle märkimine lisab lukust lahtivõtmise dialoogile võimaluse pärast "
+"viivitust välja logida. Viivituse kestus määratakse võtmega \"logout_delay\"."
+
+msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr ""
 "Selle valiku märkimine lisab lahtilukustamise dialoogi valiku teisele "
 "kasutajakontole ümberlülitumiseks."
-
-msgid ""
-"Set this to TRUE to offer an option in unlock dialog to logging out after a "
-"delay. The Delay is specified in the \"logout_delay\" key."
-msgstr ""
-"Selle märkimine lisab lukust lahtivõtmise dialoogile võimaluse pärast "
-"viivitust välja logida. Viivituse kestus määratakse võtmega \"logout_delay\"."
 
 msgid ""
 "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
@@ -150,7 +150,7 @@ msgstr "Ekraanisäästja tööminutite arv pärast mida ekraan lukustatakse."
 
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
-"option will appear in unlock dialog. This key has effect only if the "
+"option will appear in the unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
 "Ekraanisäästja aktiveerimisest mööduv aeg (mitutites), pärast mida ilmub "
@@ -165,8 +165,8 @@ msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "Tööminutite arv enne ekraanisäästja teema vahetamist."
 
 msgid ""
-"The number of seconds of inactivity before signalling to power-management. "
-"This key is set and maintained by the session power-management agent."
+"The number of seconds of inactivity before signalling to power management. "
+"This key is set and maintained by the session power management agent."
 msgstr ""
 "Jõudeoleku kestus (sekundites) enne vooluhaldusele (power-management) "
 "signaali saatmist. Seda võtit haldab seansi vooluhalduse agent."
@@ -182,12 +182,6 @@ msgstr ""
 "\"blank-only\" ekraanisäästja teemade keelamiseks, \"single\" ühe teema "
 "kasutamiseks (määratakse võtmega \"themes\") ja \"random\" juhusliku teema "
 "kasutamiseks."
-
-msgid "Theme for lock dialog"
-msgstr "Lukustusdialoogi teema"
-
-msgid "Theme to use for the lock dialog."
-msgstr "Lukustusdialoogi jaoks kasutatav teema."
 
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
@@ -206,7 +200,7 @@ msgstr "Aeg enne lukustamist"
 msgid "Time before logout option"
 msgstr "Aega enne väljalogimise valiku ilmumist"
 
-msgid "Time before power-management baseline"
+msgid "Time before power management baseline"
 msgstr "Aega enne vooluhalduse aktiveerimist"
 
 msgid "Time before session is considered idle"
@@ -214,33 +208,6 @@ msgstr "Jõudeoleku kestus enne kui seanss hinnatakse jõude olevaks"
 
 msgid "Time before theme change"
 msgstr "Aeg enne teemavahetust"
-
-#, no-c-format
-msgid "<b>Leave a message for %R:</b>"
-msgstr "<b>Sõnumi jätmine kasutajale %R:</b>"
-
-#, no-c-format
-msgid "<span size=\"small\">%U on %h</span>"
-msgstr "<span size=\"small\">%U hostil %h</span>"
-
-#, no-c-format
-msgid "<span size=\"x-large\">%R</span>"
-msgstr "<span size=\"x-large\">%R</span>"
-
-msgid "_Cancel"
-msgstr "_Tühista"
-
-msgid "_Leave Message"
-msgstr "_Jäta sõnum"
-
-msgid "_Log Out"
-msgstr "Logi _välja"
-
-msgid "_Switch User"
-msgstr "Vaheta _kasutajat"
-
-msgid "_Unlock"
-msgstr "_Võta lukust lahti"
 
 #. Translators: This is the name of a desktop background image that shows outer space images.
 #. You might want to translate it into the equivalent words of your language
@@ -267,6 +234,10 @@ msgstr "Popkunstilik pulseerivate värvidega ruudustik."
 
 msgid "Pop art squares"
 msgstr "Popkunstist inspireeritud ruudud"
+
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s. Lähema teabe saamiseks kasuta --help võtit.\n"
 
 msgid "Show paths that images follow"
 msgstr "Piltide liikumisteede näitamine"
@@ -295,12 +266,8 @@ msgstr "Kasutatav lähtepilt"
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-msgid "image - floats images around the screen"
-msgstr "pilt - hõljub ekraanil ringi"
-
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s. Lähema teabe saamiseks kasuta --help võtit.\n"
+msgid "image — floats images around the screen"
+msgstr "image — ekraanil ringi hõljuvad pildid"
 
 #, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
@@ -313,7 +280,7 @@ msgstr "Piltide hankimise lähtekoht"
 msgid "PATH"
 msgstr "RADA"
 
-msgid "Color to use for images background"
+msgid "Color to use for image background"
 msgstr "Piltide taustaks kasutatav värvus"
 
 msgid "\"#rrggbb\""
@@ -392,14 +359,12 @@ msgid "Version of this application"
 msgstr "Selle rakenduse versioon"
 
 #, c-format
-msgid "The screensaver is %s\n"
-msgstr "Ekraanisäästja on %s\n"
+msgid "The screensaver is active\n"
+msgstr "Ekraanisäästja on aktiivne\n"
 
-msgid "active"
-msgstr "aktiivne"
-
-msgid "inactive"
-msgstr "aktiveerimata"
+#, c-format
+msgid "The screensaver is inactive\n"
+msgstr "Ekraanisäästja on jõude\n"
 
 #, c-format
 msgid "The screensaver is not inhibited\n"
@@ -432,6 +397,8 @@ msgstr "Kasutajate vahel lülitumise nupu näitamine"
 msgid "Message to show in the dialog"
 msgstr "Dialoogis näidatav sõnum"
 
+#. Translators: This is the example input for the --status-message command line option.
+#. Translators: This is the example input for the --away-message command line option.
 msgid "MESSAGE"
 msgstr "SÕNUM"
 
@@ -460,17 +427,17 @@ msgstr "Parooli pole antud"
 msgid "Password unchanged"
 msgstr "Parool on muutmata"
 
-msgid "Can not get username"
+msgid "Cannot get username"
 msgstr "Kasutajanime pole võimalik hankida"
 
-msgid "Retype new UNIX password:"
-msgstr "Sisesta UNIX-i parool uuesti:"
+msgid "Retype new Unix password:"
+msgstr "Sisesta Unixi parool uuesti:"
 
-msgid "Enter new UNIX password:"
-msgstr "Sisesta UNIX-i parool:"
+msgid "Enter new Unix password:"
+msgstr "Sisesta uus Unixi parool:"
 
-msgid "(current) UNIX password:"
-msgstr "(praegune) UNIX-i parool:"
+msgid "(current) Unix password:"
+msgstr "(praegune) Unixi parool:"
 
 msgid "Error while changing NIS password."
 msgstr "Viga NIS-parooli muutmisel."
@@ -487,8 +454,8 @@ msgstr "Parooli muutmiseks pead sa kauem ootama"
 msgid "Sorry, passwords do not match"
 msgstr "Vabandust, paroolid ei klapi omavahel"
 
-msgid "Checking..."
-msgstr "Kontrollimine..."
+msgid "Checking…"
+msgstr "Kontrollimine…"
 
 msgid "Authentication failed."
 msgstr "Tõrge autentimisel."
@@ -551,7 +518,7 @@ msgstr "Deemoniks ei minda"
 msgid "Enable debugging code"
 msgstr "Silumise lubamine"
 
-msgid "Launch screen saver and locker program"
+msgid "Launch screensaver and locker program"
 msgstr "Ekraanisäästmis- ja lukustustamisprogrammi käivitamine"
 
 #, c-format
@@ -566,7 +533,7 @@ msgid "Incorrect password."
 msgstr "Vigane parool."
 
 msgid "Not permitted to gain access at this time."
-msgstr "Puudvad õigused ligipääsuks praegusel kellaajal"
+msgstr "Puuduvad õigused ligipääsuks praegusel kellaajal."
 
 msgid "No longer permitted to access the system."
 msgstr "Süsteemile ligipääsuks pole enam õiguseid."
@@ -583,14 +550,23 @@ msgstr "ekraanisäästja töötab juba selle seansi raames"
 msgid "Time has expired."
 msgstr "Ajapiirang ületati."
 
-msgid "You have the Caps Lock key on."
-msgstr "Sul on Caps Lock klahv sisse lülitatud"
+msgid "You have the Caps & Num Lock keys on."
+msgstr "Sul on Caps ja Num Lock klahvid sisse lülitatud."
 
-msgid "S_witch User..."
-msgstr "_Vaheta kasutajat..."
+msgid "You have the Caps Lock key on."
+msgstr "Sul on Caps Lock klahv sisse lülitatud."
+
+msgid "You have the Num Lock key on."
+msgstr "Sul on Num Lock klahv sisse lülitatud."
+
+msgid "S_witch User…"
+msgstr "Vaheta _kasutajat…"
 
 msgid "Log _Out"
 msgstr "Logi _välja"
+
+msgid "_Unlock"
+msgstr "_Võta lukust lahti"
 
 #. To translators: This expands to USERNAME on HOSTNAME
 msgid "%U on %h"
@@ -598,3 +574,33 @@ msgstr "%U hostil %h"
 
 msgid "_Password:"
 msgstr "_Parool:"
+
+#~ msgid "<b>Screensaver preview</b>"
+#~ msgstr "<b>Ekraanisäästja eelvaade</b>"
+
+#~ msgid "Theme for lock dialog"
+#~ msgstr "Lukustusdialoogi teema"
+
+#~ msgid "Theme to use for the lock dialog."
+#~ msgstr "Lukustusdialoogi jaoks kasutatav teema."
+
+#~ msgid "<b>Leave a message for %R:</b>"
+#~ msgstr "<b>Sõnumi jätmine kasutajale %R:</b>"
+
+#~ msgid "_Cancel"
+#~ msgstr "_Tühista"
+
+#~ msgid "_Leave Message"
+#~ msgstr "_Jäta sõnum"
+
+#~ msgid "_Log Out"
+#~ msgstr "Logi _välja"
+
+#~ msgid "active"
+#~ msgstr "aktiivne"
+
+#~ msgid "inactive"
+#~ msgstr "aktiveerimata"
+
+#~ msgid "S_witch User..."
+#~ msgstr "_Vaheta kasutajat..."
