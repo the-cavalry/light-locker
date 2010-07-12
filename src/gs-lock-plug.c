@@ -68,6 +68,7 @@ static void gs_lock_plug_finalize   (GObject         *object);
 
 struct GSLockPlugPrivate
 {
+        GtkWidget   *frame;
         GtkWidget   *vbox;
         GtkWidget   *auth_action_area;
 
@@ -1560,9 +1561,12 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         clear_clipboards (plug);
 
-        plug->priv->vbox = gtk_vbox_new (FALSE, 0);
+        plug->priv->frame = gtk_frame_new (NULL);
+        gtk_frame_set_shadow_type (GTK_FRAME (plug->priv->frame), GTK_SHADOW_OUT);
+        gtk_container_add (GTK_CONTAINER (plug), plug->priv->frame);
 
-        gtk_container_add (GTK_CONTAINER (plug), plug->priv->vbox);
+        plug->priv->vbox = gtk_vbox_new (FALSE, 0);
+        gtk_container_add (GTK_CONTAINER (plug->priv->frame), plug->priv->vbox);
 
         /* Notebook */
         plug->priv->notebook = gtk_notebook_new ();
@@ -1574,7 +1578,7 @@ gs_lock_plug_init (GSLockPlug *plug)
 
         create_page_one (plug);
 
-        gtk_widget_show_all (plug->priv->vbox);
+        gtk_widget_show_all (plug->priv->frame);
 
         /* Layout indicator */
 #ifdef WITH_KBD_LAYOUT_INDICATOR
