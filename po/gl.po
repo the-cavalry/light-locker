@@ -1,7 +1,7 @@
 # translation of gnome-screensaver.master.po to Galician
 # translation of gnome-screensaver.gl.po to
 # This file is distributed under the same license as the PACKAGE package.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER, 2005.
+# Copyright (C) 2010 Fran Diéguez
 #
 #
 # Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
@@ -14,10 +14,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-07 18:47+0200\n"
-"PO-Revision-Date: 2010-07-07 18:46+0200\n"
+"POT-Creation-Date: 2010-07-20 12:56+0200\n"
+"PO-Revision-Date: 2010-07-20 12:57+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
-"Language-Team: Galician <gnome@g11n.net>\n"
+"Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -718,54 +718,39 @@ msgstr "non está conectado ao bus de mensaxes"
 msgid "screensaver already running in this session"
 msgstr "xa se está executando o protector de pantalla nesta sesión"
 
-#: ../src/gs-lock-plug.c:256
+#: ../src/gs-lock-plug.c:257
 msgid "Time has expired."
 msgstr "O tempo caducou."
 
-#: ../src/gs-lock-plug.c:287
+#: ../src/gs-lock-plug.c:288
 msgid "You have the Caps & Num Lock keys on."
 msgstr "Vostede ten as teclas Bloq Num e Bloq Maiús activadas."
 
-#: ../src/gs-lock-plug.c:290
+#: ../src/gs-lock-plug.c:291
 msgid "You have the Caps Lock key on."
 msgstr "A tecla Bloq Maiús está activada."
 
-#: ../src/gs-lock-plug.c:293
+#: ../src/gs-lock-plug.c:294
 msgid "You have the Num Lock key on."
 msgstr "A tecla Bloq Num está activada."
 
-#: ../src/gs-lock-plug.c:1280
+#: ../src/gs-lock-plug.c:1281
 msgid "S_witch User…"
 msgstr "_Cambiar usuario..."
 
-#: ../src/gs-lock-plug.c:1289
+#: ../src/gs-lock-plug.c:1290
 msgid "Log _Out"
 msgstr "_Saír da sesión"
 
-#: ../src/gs-lock-plug.c:1300
+#: ../src/gs-lock-plug.c:1301
 msgid "_Unlock"
 msgstr "_Desbloquear"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1465
+#: ../src/gs-lock-plug.c:1466
 msgid "%U on %h"
 msgstr "%U en %h"
 
-#: ../src/gs-lock-plug.c:1479
+#: ../src/gs-lock-plug.c:1480
 msgid "_Password:"
 msgstr "Co_ntrasinal:"
-
-#~ msgid "Theme for lock dialog"
-#~ msgstr "Tema para o diálogo de bloqueo"
-
-#~ msgid "Theme to use for the lock dialog."
-#~ msgstr "Tema que se usará para o diálogo de bloqueo."
-
-#~ msgid "_Cancel"
-#~ msgstr "_Cancelar"
-
-#~ msgid "_Log Out"
-#~ msgstr "_Saír da sesión"
-
-#~ msgid "_Switch User"
-#~ msgstr "_Cambiar de usuario"
