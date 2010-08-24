@@ -1,18 +1,20 @@
 # Bulgarian translation of gnome-screensaver po-file.
 # Copyright (C) 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
+# Copyright (C) 2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-screensaver package.
 # Rostislav "zbrox" Raykov <zbrox@i-space.org>, 2005, 2006.
-# Alexander Shopov <ash@contact.bg>, 2005, 2006, 2007, 2008, 2009.
+# Alexander Shopov <ash@kambanaria.org>, 2005, 2006, 2007, 2008, 2009, 2010.
 # Yavor Doganov <yavor@gnu.org>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-22 18:55+0300\n"
-"PO-Revision-Date: 2009-08-22 18:55+0300\n"
-"Last-Translator: Alexander Shopov <ash@contact.bg>\n"
+"POT-Creation-Date: 2010-08-24 16:01+0300\n"
+"PO-Revision-Date: 2010-08-24 16:01+0300\n"
+"Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,28 +30,28 @@ msgid "Set your screensaver preferences"
 msgstr "Настройване на предпазителя на екрана"
 
 #: ../data/gnome-screensaver-preferences.ui.h:1
-msgid "<b>Screensaver preview</b>"
-msgstr "<b>Преглед на темата</b>"
-
-#: ../data/gnome-screensaver-preferences.ui.h:2
-msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgstr "<b>Внимание: екранът няма да бъде заключен за администратора.</b>"
-
-#: ../data/gnome-screensaver-preferences.ui.h:3
 msgid "Power _Management"
 msgstr "_Управление на захранването"
 
-#: ../data/gnome-screensaver-preferences.ui.h:4
+#: ../data/gnome-screensaver-preferences.ui.h:2
 msgid "Regard the computer as _idle after:"
 msgstr "Сесията е _неактивна след:"
 
-#: ../data/gnome-screensaver-preferences.ui.h:5
+#: ../data/gnome-screensaver-preferences.ui.h:3
 msgid "Screensaver Preferences"
 msgstr "Настройки на предпазителя на екрана"
 
-#: ../data/gnome-screensaver-preferences.ui.h:6
+#: ../data/gnome-screensaver-preferences.ui.h:4
 msgid "Screensaver Preview"
 msgstr "Преглед на предпазителя на екрана"
+
+#: ../data/gnome-screensaver-preferences.ui.h:5
+msgid "Screensaver preview"
+msgstr "Преглед на предпазителя на екрана"
+
+#: ../data/gnome-screensaver-preferences.ui.h:6
+msgid "Warning: the screen will not be locked for the root user."
+msgstr "Внимание: екранът няма да бъде заключен за администратора."
 
 #: ../data/gnome-screensaver-preferences.ui.h:7
 msgid "_Activate screensaver when computer is idle"
@@ -139,19 +141,19 @@ msgstr "Дали екранният предпазител да заключва
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to allow logging "
+"out after a delay. The delay is specified in the \"logout_delay\" key."
+msgstr ""
+"Дали да се дава възможността за изход в диалога за отключване след известно "
+"време. То се задава в ключа „logout_delay“."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr ""
 "Дали да се дава възможност за превключване към друг потребител в диалога за "
 "отключване"
-
-#: ../data/gnome-screensaver.schemas.in.h:16
-msgid ""
-"Set this to TRUE to offer an option in unlock dialog to logging out after a "
-"delay. The Delay is specified in the \"logout_delay\" key."
-msgstr ""
-"Дали да се дава възможността за изход в диалога за отключване след известно "
-"време. То се задава в ключа „logout_delay“."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
@@ -185,7 +187,7 @@ msgstr ""
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
-"option will appear in unlock dialog. This key has effect only if the "
+"option will appear in the unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
 "Броят минути след задействане на екранния предпазител, преди да се появи "
@@ -204,8 +206,8 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid ""
-"The number of seconds of inactivity before signalling to power-management. "
-"This key is set and maintained by the session power-management agent."
+"The number of seconds of inactivity before signalling to power management. "
+"This key is set and maintained by the session power management agent."
 msgstr ""
 "Броят секунди бездействие, преди да се сигнализира на управлението на "
 "захранването. Този ключ се задава и се поддържа от програмата за "
@@ -225,14 +227,6 @@ msgstr ""
 "предпазителя."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
-msgid "Theme for lock dialog"
-msgstr "Тема за прозореца за заключен екран"
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Theme to use for the lock dialog."
-msgstr "Тема на прозореца за заключен екран."
-
-#: ../data/gnome-screensaver.schemas.in.h:27
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -244,60 +238,25 @@ msgstr ""
 "съдържа името на темата, когато режимът е „single“, а когато режимът е "
 "„random“, трябва да съдържа списък с имена на темите."
 
-#: ../data/gnome-screensaver.schemas.in.h:28
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before locking"
 msgstr "Време преди заключване"
 
-#: ../data/gnome-screensaver.schemas.in.h:29
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before logout option"
 msgstr "Време преди възможност за изход"
 
-#: ../data/gnome-screensaver.schemas.in.h:30
-msgid "Time before power-management baseline"
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before power management baseline"
 msgstr "Време преди съобщаване на управлението на захранване"
 
-#: ../data/gnome-screensaver.schemas.in.h:31
+#: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before session is considered idle"
 msgstr "Време, за да се счете сесията за неактивна"
 
-#: ../data/gnome-screensaver.schemas.in.h:32
+#: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before theme change"
 msgstr "Време преди промяна на темата"
-
-#: ../data/lock-dialog-default.ui.h:2
-#, no-c-format
-msgid "<b>Leave a message for %R:</b>"
-msgstr "<b>Оставяне на съобщение за %R:</b>"
-
-#: ../data/lock-dialog-default.ui.h:4
-#, no-c-format
-msgid "<span size=\"small\">%U on %h</span>"
-msgstr "<span size=\"small\">%U на %h</span>"
-
-#: ../data/lock-dialog-default.ui.h:6
-#, no-c-format
-msgid "<span size=\"x-large\">%R</span>"
-msgstr "<span size=\"x-large\">%R</span>"
-
-#: ../data/lock-dialog-default.ui.h:7
-msgid "_Cancel"
-msgstr "_Отказ"
-
-#: ../data/lock-dialog-default.ui.h:8
-msgid "_Leave Message"
-msgstr "Оставяне на _съобщение"
-
-#: ../data/lock-dialog-default.ui.h:9
-msgid "_Log Out"
-msgstr "_Изход"
-
-#: ../data/lock-dialog-default.ui.h:10
-msgid "_Switch User"
-msgstr "_Смяна на потребител"
-
-#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1382
-msgid "_Unlock"
-msgstr "_Отключване"
 
 #. Translators: This is the name of a desktop background image that shows outer space images.
 #. You might want to translate it into the equivalent words of your language
@@ -334,51 +293,51 @@ msgstr "Мрежа от пулсиращи цветове в стил поп-а�
 msgid "Pop art squares"
 msgstr "Квадрати поп-арт"
 
-#: ../savers/floaters.c:84
+#: ../savers/popsquares.c:49 ../savers/floaters.c:1205
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr "%s. За помощ използвайте опцията „--help“.\n"
+
+#: ../savers/floaters.c:88
 msgid "Show paths that images follow"
 msgstr "Показване на пътищата, по които се движат изображенията"
 
-#: ../savers/floaters.c:87
+#: ../savers/floaters.c:91
 msgid "Occasionally rotate images as they move"
 msgstr "Изображенията понякога да се въртят при движението си"
 
-#: ../savers/floaters.c:90
+#: ../savers/floaters.c:94
 msgid "Print out frame rate and other statistics"
 msgstr "Отпечатване на броя кадри в секунда и други статистики"
 
-#: ../savers/floaters.c:93
+#: ../savers/floaters.c:97
 msgid "The maximum number of images to keep on screen"
 msgstr "Максималният брой изображения, които да се държат на екрана"
 
-#: ../savers/floaters.c:93
+#: ../savers/floaters.c:97
 msgid "MAX_IMAGES"
 msgstr "МАКС_ИЗОБРАЖЕНИЯ"
 
-#: ../savers/floaters.c:96
+#: ../savers/floaters.c:100
 msgid "The initial size and position of window"
 msgstr "Първоначалният размер и местоположение на прозореца"
 
-#: ../savers/floaters.c:96
+#: ../savers/floaters.c:100
 msgid "WIDTHxHEIGHT+X+Y"
 msgstr "ШИР.xВИС.+ОТМ.поX+ОТМ.поY"
 
-#: ../savers/floaters.c:99
+#: ../savers/floaters.c:103
 msgid "The source image to use"
 msgstr "Изображение, което да се ползва"
 
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1194
-msgid "image - floats images around the screen"
-msgstr "image — разни изображения движат по екрана"
+#: ../savers/floaters.c:1199
+msgid "image — floats images around the screen"
+msgstr "image — разни изображения се движат по екрана"
 
-#: ../savers/floaters.c:1200
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s. За помощ използвайте опцията „--help“.\n"
-
-#: ../savers/floaters.c:1209
+#: ../savers/floaters.c:1214
 #, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
@@ -393,7 +352,7 @@ msgid "PATH"
 msgstr "ПЪТ"
 
 #: ../savers/slideshow.c:55
-msgid "Color to use for images background"
+msgid "Color to use for image background"
 msgstr "Цвят за фона на изображенията"
 
 #: ../savers/slideshow.c:55
@@ -408,32 +367,32 @@ msgstr "Изображенията от местоположението да с
 msgid "Do not try to stretch images on screen"
 msgstr "Изображенията да не се разтягат по екрана"
 
-#: ../src/copy-theme-dialog.c:212
+#: ../src/copy-theme-dialog.c:215
 msgid "Copying files"
 msgstr "Копиране на файлове"
 
-#: ../src/copy-theme-dialog.c:230
+#: ../src/copy-theme-dialog.c:233
 msgid "From:"
 msgstr "От:"
 
-#: ../src/copy-theme-dialog.c:234
+#: ../src/copy-theme-dialog.c:237
 msgid "To:"
 msgstr "До:"
 
-#: ../src/copy-theme-dialog.c:254
+#: ../src/copy-theme-dialog.c:257
 msgid "Copying themes"
 msgstr "Копиране на теми"
 
-#: ../src/copy-theme-dialog.c:298
+#: ../src/copy-theme-dialog.c:301
 msgid "Invalid screensaver theme"
 msgstr "Грешна тема за екранния предпазител"
 
-#: ../src/copy-theme-dialog.c:301
+#: ../src/copy-theme-dialog.c:304
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
 msgstr "%s не изглежда да е валидна тема за екранния предпазител."
 
-#: ../src/copy-theme-dialog.c:481
+#: ../src/copy-theme-dialog.c:484
 #, c-format
 msgid "Copying file: %u of %u"
 msgstr "Копиране на файл: %u от %u"
@@ -503,145 +462,144 @@ msgstr ""
 "Причината за недопускането на стартирането на\n"
 "                             предпазителя на екрана"
 
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:58
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:59
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Версия на програмата"
 
-#: ../src/gnome-screensaver-command.c:311
+#: ../src/gnome-screensaver-command.c:295
 #, c-format
-msgid "The screensaver is %s\n"
-msgstr "Екранният предпазител е %s\n"
+msgid "The screensaver is active\n"
+msgstr "Екранният предпазител е активен\n"
 
-#: ../src/gnome-screensaver-command.c:311
-msgid "active"
-msgstr "активен"
+#: ../src/gnome-screensaver-command.c:295
+#, c-format
+msgid "The screensaver is inactive\n"
+msgstr "Екранният предпазител не е активен\n"
 
-#: ../src/gnome-screensaver-command.c:311
-msgid "inactive"
-msgstr "неактивен"
-
-#: ../src/gnome-screensaver-command.c:325
+#: ../src/gnome-screensaver-command.c:309
 #, c-format
 msgid "The screensaver is not inhibited\n"
 msgstr "Стартирането на екранният предпазител не се допуска\n"
 
-#: ../src/gnome-screensaver-command.c:331
+#: ../src/gnome-screensaver-command.c:315
 #, c-format
 msgid "The screensaver is being inhibited by:\n"
 msgstr "Стартирането на екранният предпазител не се допуска от:\n"
 
-#: ../src/gnome-screensaver-command.c:362
+#: ../src/gnome-screensaver-command.c:346
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "Екранният предпазител се е задействал преди %d секунди.\n"
 
-#: ../src/gnome-screensaver-command.c:366
+#: ../src/gnome-screensaver-command.c:350
 #, c-format
 msgid "The screensaver is not currently active.\n"
 msgstr "В момента екранният предпазител не е включен.\n"
 
-#: ../src/gnome-screensaver-dialog.c:56
+#: ../src/gnome-screensaver-dialog.c:57
 msgid "Show debugging output"
 msgstr "Показване на информацията за изчистване на грешки"
 
-#: ../src/gnome-screensaver-dialog.c:60
+#: ../src/gnome-screensaver-dialog.c:61
 msgid "Show the logout button"
 msgstr "Показване на бутона за изход"
 
-#: ../src/gnome-screensaver-dialog.c:62
+#: ../src/gnome-screensaver-dialog.c:63
 msgid "Command to invoke from the logout button"
 msgstr "Команда стартирана от бутона за изход"
 
-#: ../src/gnome-screensaver-dialog.c:64
+#: ../src/gnome-screensaver-dialog.c:65
 msgid "Show the switch user button"
 msgstr "Показване на бутона за смяна на потребителя"
 
-#: ../src/gnome-screensaver-dialog.c:66
+#: ../src/gnome-screensaver-dialog.c:67
 msgid "Message to show in the dialog"
 msgstr "Съобщение, което да се покаже в прозореца"
 
-#: ../src/gnome-screensaver-dialog.c:66 ../src/gnome-screensaver-dialog.c:68
+#. Translators: This is the example input for the --status-message command line option.
+#. Translators: This is the example input for the --away-message command line option.
+#: ../src/gnome-screensaver-dialog.c:69 ../src/gnome-screensaver-dialog.c:73
 msgid "MESSAGE"
 msgstr "СЪОБЩЕНИЕ"
 
-#: ../src/gnome-screensaver-dialog.c:68
+#: ../src/gnome-screensaver-dialog.c:71
 msgid "Not used"
 msgstr "Не се използва"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
-#: ../src/gnome-screensaver-dialog.c:180 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:183 ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:185 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Потребител:"
 
-#: ../src/gnome-screensaver-dialog.c:181 ../src/gnome-screensaver-dialog.c:182
+#: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "Парола:"
 
-#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "You are required to change your password immediately (password aged)"
 msgstr "Изисква се да смените паролата си незабавно (остаряла парола)"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "You are required to change your password immediately (root enforced)"
 msgstr ""
 "Необходимо е незабавно да смените паролата (администраторът ви е задължил)"
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:190
 msgid "Your account has expired; please contact your system administrator"
 msgstr "Регистрацията ви е изтекла. Свържете се със системния администратор."
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "No password supplied"
 msgstr "Не е предоставена парола"
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:192
 msgid "Password unchanged"
 msgstr "Паролата е непроменена"
 
-#: ../src/gnome-screensaver-dialog.c:188
-msgid "Can not get username"
+#: ../src/gnome-screensaver-dialog.c:193
+msgid "Cannot get username"
 msgstr "Не може да се получи потребителското име"
 
-#: ../src/gnome-screensaver-dialog.c:189
-msgid "Retype new UNIX password:"
+#: ../src/gnome-screensaver-dialog.c:194
+msgid "Retype new Unix password:"
 msgstr "Въведете отново новата парола за UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:190
-msgid "Enter new UNIX password:"
+#: ../src/gnome-screensaver-dialog.c:195
+msgid "Enter new Unix password:"
 msgstr "Въведете нова парола за UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:191
-msgid "(current) UNIX password:"
+#: ../src/gnome-screensaver-dialog.c:196
+msgid "(current) Unix password:"
 msgstr "(текуща) парола за UNIX:"
 
-#: ../src/gnome-screensaver-dialog.c:192
+#: ../src/gnome-screensaver-dialog.c:197
 msgid "Error while changing NIS password."
 msgstr "Грешка при сменяне на паролата за NIS."
 
-#: ../src/gnome-screensaver-dialog.c:193
+#: ../src/gnome-screensaver-dialog.c:198
 msgid "You must choose a longer password"
 msgstr "Трябва да изберете друга парола."
 
-#: ../src/gnome-screensaver-dialog.c:194
+#: ../src/gnome-screensaver-dialog.c:199
 msgid "Password has been already used. Choose another."
 msgstr "Паролата вече е използвана. Изберете друга."
 
-#: ../src/gnome-screensaver-dialog.c:195
+#: ../src/gnome-screensaver-dialog.c:200
 msgid "You must wait longer to change your password"
 msgstr "Трябва да изчакате по-дълго, за да смените паролата си."
 
-#: ../src/gnome-screensaver-dialog.c:196
+#: ../src/gnome-screensaver-dialog.c:201
 msgid "Sorry, passwords do not match"
 msgstr "Паролите не съвпадат."
 
-#: ../src/gnome-screensaver-dialog.c:262
-msgid "Checking..."
+#: ../src/gnome-screensaver-dialog.c:267
+msgid "Checking…"
 msgstr "Проверка…"
 
-#: ../src/gnome-screensaver-dialog.c:304 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "Неуспех при удостоверяването."
 
@@ -720,7 +678,7 @@ msgid "Enable debugging code"
 msgstr "Да се включи режим на изчистване на грешки"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
-msgid "Launch screen saver and locker program"
+msgid "Launch screensaver and locker program"
 msgstr "Стартиране на предпазителя на екрана и заключване"
 
 #: ../src/gs-auth-pam.c:397
@@ -745,39 +703,51 @@ msgstr "В момента нямате право на достъп."
 msgid "No longer permitted to access the system."
 msgstr "Вече нямате право на достъп до системата."
 
-#: ../src/gs-listener-dbus.c:1851
+#: ../src/gs-listener-dbus.c:1912
 msgid "failed to register with the message bus"
 msgstr "неуспех при регистрирането към шината за съобщенията"
 
-#: ../src/gs-listener-dbus.c:1861
+#: ../src/gs-listener-dbus.c:1922
 msgid "not connected to the message bus"
 msgstr "няма връзка с шината за съобщенията"
 
-#: ../src/gs-listener-dbus.c:1870
+#: ../src/gs-listener-dbus.c:1931
 msgid "screensaver already running in this session"
 msgstr "предпазителят на екрана вече е стартиран в тази сесия"
 
-#: ../src/gs-lock-plug.c:270
+#: ../src/gs-lock-plug.c:257
 msgid "Time has expired."
 msgstr "Времето изтече."
 
-#: ../src/gs-lock-plug.c:298
+#: ../src/gs-lock-plug.c:288
+msgid "You have the Caps & Num Lock keys on."
+msgstr "Клавишите „Caps Lock“ и „Num Lock“ са натиснати."
+
+#: ../src/gs-lock-plug.c:291
 msgid "You have the Caps Lock key on."
 msgstr "Клавишът „Caps Lock“ е натиснат."
 
-#: ../src/gs-lock-plug.c:1362
-msgid "S_witch User..."
+#: ../src/gs-lock-plug.c:294
+msgid "You have the Num Lock key on."
+msgstr "Клавишът „Num Lock“ е натиснат."
+
+#: ../src/gs-lock-plug.c:1281
+msgid "S_witch User…"
 msgstr "_Смяна на потребител…"
 
-#: ../src/gs-lock-plug.c:1371
+#: ../src/gs-lock-plug.c:1290
 msgid "Log _Out"
 msgstr "_Изход"
 
+#: ../src/gs-lock-plug.c:1301
+msgid "_Unlock"
+msgstr "_Отключване"
+
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1547
+#: ../src/gs-lock-plug.c:1466
 msgid "%U on %h"
 msgstr "%U на %h"
 
-#: ../src/gs-lock-plug.c:1561
+#: ../src/gs-lock-plug.c:1480
 msgid "_Password:"
 msgstr "Па_рола:"
