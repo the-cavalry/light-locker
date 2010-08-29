@@ -4,13 +4,12 @@
 #
 # Szilveszter Farkas <szilveszter.farkas at gmail dot com>, 2005.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2005, 2006, 2007, 2008, 2009, 2010.
-
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-22 12:57+0100\n"
-"PO-Revision-Date: 2009-09-08 17:56+0200\n"
+"POT-Creation-Date: 2010-08-29 15:25+0200\n"
+"PO-Revision-Date: 2010-08-29 15:23+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "MIME-Version: 1.0\n"
@@ -30,30 +29,29 @@ msgid "Set your screensaver preferences"
 msgstr "A képernyővédő tulajdonságainak beállítása"
 
 #: ../data/gnome-screensaver-preferences.ui.h:1
-msgid "<b>Screensaver preview</b>"
-msgstr "<b>Képernyővédő előnézete</b>"
-
-#: ../data/gnome-screensaver-preferences.ui.h:2
-msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgstr ""
-"<b>Figyelmeztetés: a képernyő nem kerül zárolásra a rendszergazda számára.</"
-"b>"
-
-#: ../data/gnome-screensaver-preferences.ui.h:3
 msgid "Power _Management"
 msgstr "_Energiakezelés"
 
-#: ../data/gnome-screensaver-preferences.ui.h:4
+#: ../data/gnome-screensaver-preferences.ui.h:2
 msgid "Regard the computer as _idle after:"
 msgstr "A számítógé_p üresjáratba kerül:"
 
-#: ../data/gnome-screensaver-preferences.ui.h:5
+#: ../data/gnome-screensaver-preferences.ui.h:3
 msgid "Screensaver Preferences"
 msgstr "Képernyővédő tulajdonságai"
 
-#: ../data/gnome-screensaver-preferences.ui.h:6
+#: ../data/gnome-screensaver-preferences.ui.h:4
 msgid "Screensaver Preview"
 msgstr "Képernyővédő előnézete"
+
+#: ../data/gnome-screensaver-preferences.ui.h:5
+msgid "Screensaver preview"
+msgstr "Képernyővédő előnézete"
+
+#: ../data/gnome-screensaver-preferences.ui.h:6
+msgid "Warning: the screen will not be locked for the root user."
+msgstr ""
+"Figyelmeztetés: a képernyő nem kerül zárolásra a root felhasználó számára."
 
 #: ../data/gnome-screensaver-preferences.ui.h:7
 msgid "_Activate screensaver when computer is idle"
@@ -144,20 +142,20 @@ msgstr ""
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to allow logging "
+"out after a delay. The delay is specified in the \"logout_delay\" key."
+msgstr ""
+"Állítsa ezt igazra, ha a zárolás feloldása párbeszédablak felajánlja a "
+"kijelentkezés lehetőségét egy késleltetés után. A késleltetés a "
+"„logout_delay” kulcsban adható meg."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr ""
 "Állítsa ezt igazra, ha a zárolás feloldása párbeszédablak felajánlja a "
 "felhasználóváltás lehetőségét."
-
-#: ../data/gnome-screensaver.schemas.in.h:16
-msgid ""
-"Set this to TRUE to offer an option in unlock dialog to logging out after a "
-"delay. The Delay is specified in the \"logout_delay\" key."
-msgstr ""
-"Állítsa ezt igazra, ha a zárolás feloldása párbeszédablak felajánlja a "
-"kijelentkezés lehetőségét egy késleltetés után. A késleltetés a "
-"„logout_delay” kulcsban adható meg."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
@@ -190,7 +188,7 @@ msgstr ""
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
-"option will appear in unlock dialog. This key has effect only if the "
+"option will appear in the unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
 "A képernyővédő aktiválásától a kijelentkezés lehetőségének megjelenéséig "
@@ -208,8 +206,8 @@ msgstr "A képernyővédő témájának cseréje előtt eltelő percek száma."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid ""
-"The number of seconds of inactivity before signalling to power-management. "
-"This key is set and maintained by the session power-management agent."
+"The number of seconds of inactivity before signalling to power management. "
+"This key is set and maintained by the session power management agent."
 msgstr ""
 "Inaktívan töltött másodpercek száma az energiakezelés értesítése előtt. Ezt "
 "a kulcsot a munkamenet energiakezelő ügynöke állítja be és tartja karban."
@@ -229,14 +227,6 @@ msgstr ""
 "használatával."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
-msgid "Theme for lock dialog"
-msgstr "A zárolási párbeszédablak témája"
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Theme to use for the lock dialog."
-msgstr "A zárolási párbeszédablakban használandó téma."
-
-#: ../data/gnome-screensaver.schemas.in.h:27
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -248,60 +238,25 @@ msgstr ""
 "értéke „single”, akkor a téma nevét adja meg és a témák listáját adja, ha a "
 "„mode” értéke „random”."
 
-#: ../data/gnome-screensaver.schemas.in.h:28
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before locking"
 msgstr "A zárolásig eltelő idő"
 
-#: ../data/gnome-screensaver.schemas.in.h:29
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before logout option"
 msgstr "A kijelentkezési lehetőség megjelenéséig eltelő idő"
 
-#: ../data/gnome-screensaver.schemas.in.h:30
-msgid "Time before power-management baseline"
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before power management baseline"
 msgstr "Az energiakezelési tevékenységig eltelő idő"
 
-#: ../data/gnome-screensaver.schemas.in.h:31
+#: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before session is considered idle"
 msgstr "A munkamenet üresjárati állapotúvá nyilvánításáig eltelő idő"
 
-#: ../data/gnome-screensaver.schemas.in.h:32
+#: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before theme change"
 msgstr "A témaváltásig eltelő idő"
-
-#: ../data/lock-dialog-default.ui.h:2
-#, no-c-format
-msgid "<b>Leave a message for %R:</b>"
-msgstr "<b>Üzenet hagyása a következőnek: %R</b>"
-
-#: ../data/lock-dialog-default.ui.h:4
-#, no-c-format
-msgid "<span size=\"small\">%U on %h</span>"
-msgstr "<span size=\"small\">%U a következőn: %h</span>"
-
-#: ../data/lock-dialog-default.ui.h:6
-#, no-c-format
-msgid "<span size=\"x-large\">%R</span>"
-msgstr "<span size=\"x-large\">%R</span>"
-
-#: ../data/lock-dialog-default.ui.h:7
-msgid "_Cancel"
-msgstr "Mé_gse"
-
-#: ../data/lock-dialog-default.ui.h:8
-msgid "_Leave Message"
-msgstr "Ü_zenet hagyása"
-
-#: ../data/lock-dialog-default.ui.h:9
-msgid "_Log Out"
-msgstr "_Kijelentkezés"
-
-#: ../data/lock-dialog-default.ui.h:10
-msgid "_Switch User"
-msgstr "Felhasználó_váltás"
-
-#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1372
-msgid "_Unlock"
-msgstr "_Feloldás"
 
 #. Translators: This is the name of a desktop background image that shows outer space images.
 #. You might want to translate it into the equivalent words of your language
@@ -338,7 +293,7 @@ msgstr "Pulzáló színek pop-artos rácsa"
 msgid "Pop art squares"
 msgstr "Pop art négyzetek"
 
-#: ../savers/popsquares.c:49 ../savers/floaters.c:1204
+#: ../savers/popsquares.c:49 ../savers/floaters.c:1205
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Használati információkért lásd a --help kapcsolót.\n"
@@ -378,11 +333,11 @@ msgstr "A használandó forráskép"
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1198
-msgid "image - floats images around the screen"
+#: ../savers/floaters.c:1199
+msgid "image — floats images around the screen"
 msgstr "kép – képeket lebegtet körbe a képernyőn"
 
-#: ../savers/floaters.c:1213
+#: ../savers/floaters.c:1214
 #, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
@@ -398,7 +353,7 @@ msgid "PATH"
 msgstr "ÚTVONAL"
 
 #: ../savers/slideshow.c:55
-msgid "Color to use for images background"
+msgid "Color to use for image background"
 msgstr "Képek háttereként használandó szín"
 
 #: ../savers/slideshow.c:55
@@ -413,32 +368,32 @@ msgstr "Ne véletlenszerűsítse a képeket a hely alapján"
 msgid "Do not try to stretch images on screen"
 msgstr "Ne próbálja nyújtani a képeket a képernyőn"
 
-#: ../src/copy-theme-dialog.c:212
+#: ../src/copy-theme-dialog.c:215
 msgid "Copying files"
 msgstr "Fájlok másolása"
 
-#: ../src/copy-theme-dialog.c:230
+#: ../src/copy-theme-dialog.c:233
 msgid "From:"
 msgstr "Forrás:"
 
-#: ../src/copy-theme-dialog.c:234
+#: ../src/copy-theme-dialog.c:237
 msgid "To:"
 msgstr "Cél:"
 
-#: ../src/copy-theme-dialog.c:254
+#: ../src/copy-theme-dialog.c:257
 msgid "Copying themes"
 msgstr "Témák másolása"
 
-#: ../src/copy-theme-dialog.c:298
+#: ../src/copy-theme-dialog.c:301
 msgid "Invalid screensaver theme"
 msgstr "Érvénytelen képernyővédő téma"
 
-#: ../src/copy-theme-dialog.c:301
+#: ../src/copy-theme-dialog.c:304
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
 msgstr "A fájl (%s) nem tűnik érvényes képernyővédő témának."
 
-#: ../src/copy-theme-dialog.c:481
+#: ../src/copy-theme-dialog.c:484
 #, c-format
 msgid "Copying file: %u of %u"
 msgstr "Fájl másolása: %u/%u"
@@ -496,35 +451,32 @@ msgstr "A képernyővédő felfüggesztésének oka"
 msgid "Version of this application"
 msgstr "Ezen alkalmazás verziója"
 
-#: ../src/gnome-screensaver-command.c:311
+#: ../src/gnome-screensaver-command.c:295
 #, c-format
-msgid "The screensaver is %s\n"
-msgstr "A képernyővédő %s\n"
+msgid "The screensaver is active\n"
+msgstr "A képernyővédő aktív\n"
 
-#: ../src/gnome-screensaver-command.c:311
-msgid "active"
-msgstr "aktív"
+#: ../src/gnome-screensaver-command.c:295
+#, c-format
+msgid "The screensaver is inactive\n"
+msgstr "A képernyővédő inaktív\n"
 
-#: ../src/gnome-screensaver-command.c:311
-msgid "inactive"
-msgstr "inaktív"
-
-#: ../src/gnome-screensaver-command.c:325
+#: ../src/gnome-screensaver-command.c:309
 #, c-format
 msgid "The screensaver is not inhibited\n"
 msgstr "A képernyővédő nincs korlátozva\n"
 
-#: ../src/gnome-screensaver-command.c:331
+#: ../src/gnome-screensaver-command.c:315
 #, c-format
 msgid "The screensaver is being inhibited by:\n"
 msgstr "A képernyővédőt korlátozza:\n"
 
-#: ../src/gnome-screensaver-command.c:362
+#: ../src/gnome-screensaver-command.c:346
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "A képernyővédő %d másodpercig volt aktív.\n"
 
-#: ../src/gnome-screensaver-command.c:366
+#: ../src/gnome-screensaver-command.c:350
 #, c-format
 msgid "The screensaver is not currently active.\n"
 msgstr "A képernyővédő jelenleg nem aktív.\n"
@@ -549,87 +501,89 @@ msgstr "Felhasználóváltás gomb megjelenítése"
 msgid "Message to show in the dialog"
 msgstr "A párbeszédablakban megjelenítendő üzenet"
 
-#: ../src/gnome-screensaver-dialog.c:67 ../src/gnome-screensaver-dialog.c:69
+#. Translators: This is the example input for the --status-message command line option.
+#. Translators: This is the example input for the --away-message command line option.
+#: ../src/gnome-screensaver-dialog.c:69 ../src/gnome-screensaver-dialog.c:73
 msgid "MESSAGE"
 msgstr "ÜZENET"
 
-#: ../src/gnome-screensaver-dialog.c:69
+#: ../src/gnome-screensaver-dialog.c:71
 msgid "Not used"
 msgstr "Nincs használatban"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:179 ../src/gnome-screensaver-dialog.c:180
-#: ../src/gnome-screensaver-dialog.c:181 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:183 ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:185 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Felhasználónév:"
 
-#: ../src/gnome-screensaver-dialog.c:182 ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "Jelszó:"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "You are required to change your password immediately (password aged)"
 msgstr "Azonnal meg kell változtatnia a jelszavát (a régi jelszó lejárt)"
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "Azonnal meg kell változtatnia a jelszavát (a rendszergazda kérése)"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:190
 msgid "Your account has expired; please contact your system administrator"
 msgstr ""
 "Az Ön felhasználói fiókja lejárt; lépjen kapcsolatba a rendszergazdával"
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "No password supplied"
 msgstr "Nincs jelszó megadva"
 
-#: ../src/gnome-screensaver-dialog.c:188
+#: ../src/gnome-screensaver-dialog.c:192
 msgid "Password unchanged"
 msgstr "A jelszó nem változott"
 
-#: ../src/gnome-screensaver-dialog.c:189
-msgid "Can not get username"
-msgstr "A felhasználónév nem található"
-
-#: ../src/gnome-screensaver-dialog.c:190
-msgid "Retype new UNIX password:"
-msgstr "Adja meg ismét az új UNIX jelszót:"
-
-#: ../src/gnome-screensaver-dialog.c:191
-msgid "Enter new UNIX password:"
-msgstr "Adja meg az új UNIX jelszót:"
-
-#: ../src/gnome-screensaver-dialog.c:192
-msgid "(current) UNIX password:"
-msgstr "(jelenlegi) UNIX jelszó:"
-
 #: ../src/gnome-screensaver-dialog.c:193
+msgid "Cannot get username"
+msgstr "A felhasználónév nem kérhető le"
+
+#: ../src/gnome-screensaver-dialog.c:194
+msgid "Retype new Unix password:"
+msgstr "Adja meg ismét az új Unix jelszót:"
+
+#: ../src/gnome-screensaver-dialog.c:195
+msgid "Enter new Unix password:"
+msgstr "Adja meg az új Unix jelszót:"
+
+#: ../src/gnome-screensaver-dialog.c:196
+msgid "(current) Unix password:"
+msgstr "(jelenlegi) Unix jelszó:"
+
+#: ../src/gnome-screensaver-dialog.c:197
 msgid "Error while changing NIS password."
 msgstr "Hiba a NIS jelszó módosítása közben."
 
-#: ../src/gnome-screensaver-dialog.c:194
+#: ../src/gnome-screensaver-dialog.c:198
 msgid "You must choose a longer password"
 msgstr "Válasszon hosszabb jelszót"
 
-#: ../src/gnome-screensaver-dialog.c:195
+#: ../src/gnome-screensaver-dialog.c:199
 msgid "Password has been already used. Choose another."
 msgstr "A megadott jelszót már használta. Adjon meg egy másikat."
 
-#: ../src/gnome-screensaver-dialog.c:196
+#: ../src/gnome-screensaver-dialog.c:200
 msgid "You must wait longer to change your password"
 msgstr "Még várnia kell a jelszó megváltoztatásával"
 
-#: ../src/gnome-screensaver-dialog.c:197
+#: ../src/gnome-screensaver-dialog.c:201
 msgid "Sorry, passwords do not match"
 msgstr "Sajnálom, a megadott jelszavak nem egyeznek meg"
 
-#: ../src/gnome-screensaver-dialog.c:263
-msgid "Checking..."
+#: ../src/gnome-screensaver-dialog.c:267
+msgid "Checking…"
 msgstr "Ellenőrzés…"
 
-#: ../src/gnome-screensaver-dialog.c:305 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "A hitelesítés meghiúsult."
 
@@ -709,7 +663,7 @@ msgid "Enable debugging code"
 msgstr "Hibakeresési kód engedélyezése"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
-msgid "Launch screen saver and locker program"
+msgid "Launch screensaver and locker program"
 msgstr "Képernyővédő és -zároló program indítása"
 
 #: ../src/gs-auth-pam.c:397
@@ -746,27 +700,39 @@ msgstr "nincs kapcsolat az üzenetbusszal"
 msgid "screensaver already running in this session"
 msgstr "már fut képernyővédő ebben a munkamenetben"
 
-#: ../src/gs-lock-plug.c:270
+#: ../src/gs-lock-plug.c:257
 msgid "Time has expired."
 msgstr "Az idő lejárt."
 
-#: ../src/gs-lock-plug.c:298
+#: ../src/gs-lock-plug.c:288
+msgid "You have the Caps & Num Lock keys on."
+msgstr "A Caps Lock és Num Lock be van kapcsolva."
+
+#: ../src/gs-lock-plug.c:291
 msgid "You have the Caps Lock key on."
 msgstr "A Caps Lock be van kapcsolva."
 
-#: ../src/gs-lock-plug.c:1352
-msgid "S_witch User..."
+#: ../src/gs-lock-plug.c:294
+msgid "You have the Num Lock key on."
+msgstr "A Num Lock be van kapcsolva."
+
+#: ../src/gs-lock-plug.c:1281
+msgid "S_witch User…"
 msgstr "Felhasználó_váltás…"
 
-#: ../src/gs-lock-plug.c:1361
+#: ../src/gs-lock-plug.c:1290
 msgid "Log _Out"
 msgstr "_Kijelentkezés"
 
+#: ../src/gs-lock-plug.c:1301
+msgid "_Unlock"
+msgstr "_Feloldás"
+
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1537
+#: ../src/gs-lock-plug.c:1466
 msgid "%U on %h"
 msgstr "%U ezen: %h"
 
-#: ../src/gs-lock-plug.c:1551
+#: ../src/gs-lock-plug.c:1480
 msgid "_Password:"
 msgstr "_Jelszó:"
