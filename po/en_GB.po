@@ -3,19 +3,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Abigail Brady <morwen@evilmagic.org>, Bastien Nocera <hadess@hadess.net>, 2005.
 # Philip Withnall <philip@tecnocode.co.uk>, 2009.
-#
+# Bruce Cowan <bruce@bcowan.me.uk>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-24 23:15+0000\n"
-"PO-Revision-Date: 2008-03-03 18:30+0000\n"
-"Last-Translator: Philip Withnall <philip@tecnocode.co.uk>\n"
+"POT-Creation-Date: 2010-08-31 15:37+0100\n"
+"PO-Revision-Date: 2010-08-31 15:38+0100\n"
+"Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
 "Language-Team: British English <en@li.org>\n"
+"Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.6.1\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
 #: ../src/gnome-screensaver.desktop.in.in.h:2
@@ -27,28 +29,28 @@ msgid "Set your screensaver preferences"
 msgstr "Set your screensaver preferences"
 
 #: ../data/gnome-screensaver-preferences.ui.h:1
-msgid "<b>Screensaver preview</b>"
-msgstr "<b>Screensaver preview</b>"
-
-#: ../data/gnome-screensaver-preferences.ui.h:2
-msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgstr "<b>Warning: the screen will not be locked for the root user.</b>"
-
-#: ../data/gnome-screensaver-preferences.ui.h:3
 msgid "Power _Management"
 msgstr "Power _Management"
 
-#: ../data/gnome-screensaver-preferences.ui.h:4
+#: ../data/gnome-screensaver-preferences.ui.h:2
 msgid "Regard the computer as _idle after:"
 msgstr "Regard the computer as _idle after:"
 
-#: ../data/gnome-screensaver-preferences.ui.h:5
+#: ../data/gnome-screensaver-preferences.ui.h:3
 msgid "Screensaver Preferences"
 msgstr "Screensaver Preferences"
 
-#: ../data/gnome-screensaver-preferences.ui.h:6
+#: ../data/gnome-screensaver-preferences.ui.h:4
 msgid "Screensaver Preview"
 msgstr "Screensaver Preview"
+
+#: ../data/gnome-screensaver-preferences.ui.h:5
+msgid "Screensaver preview"
+msgstr "Screensaver preview"
+
+#: ../data/gnome-screensaver-preferences.ui.h:6
+msgid "Warning: the screen will not be locked for the root user."
+msgstr "Warning: the screen will not be locked for the root user."
 
 #: ../data/gnome-screensaver-preferences.ui.h:7
 msgid "_Activate screensaver when computer is idle"
@@ -137,19 +139,19 @@ msgstr "Set this to TRUE to lock the screen when the screensaver goes active."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to allow logging "
+"out after a delay. The delay is specified in the \"logout_delay\" key."
+msgstr ""
+"Set this to TRUE to offer an option in the unlock dialogue to allow logging "
+"out after a delay. The delay is specified in the \"logout_delay\" key."
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr ""
 "Set this to TRUE to offer an option in the unlock dialogue to switch to a "
 "different user account."
-
-#: ../data/gnome-screensaver.schemas.in.h:16
-msgid ""
-"Set this to TRUE to offer an option in unlock dialog to logging out after a "
-"delay. The Delay is specified in the \"logout_delay\" key."
-msgstr ""
-"Set this to TRUE to offer an option in the unlock dialogue to allow logging out "
-"after a delay. The delay is specified in the \"logout_delay\" key."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
@@ -182,7 +184,7 @@ msgstr ""
 #: ../data/gnome-screensaver.schemas.in.h:20
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
-"option will appear in unlock dialog. This key has effect only if the "
+"option will appear in the unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
 "The number of minutes after the screensaver activation before a logout "
@@ -201,8 +203,8 @@ msgstr "The number of minutes to run before changing the screensaver theme."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid ""
-"The number of seconds of inactivity before signalling to power-management. "
-"This key is set and maintained by the session power-management agent."
+"The number of seconds of inactivity before signalling to power management. "
+"This key is set and maintained by the session power management agent."
 msgstr ""
 "The number of seconds of inactivity before signalling to power management. "
 "This key is set and maintained by the session power management agent."
@@ -222,14 +224,6 @@ msgstr ""
 "activation."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
-msgid "Theme for lock dialog"
-msgstr "Theme for lock dialogue"
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Theme to use for the lock dialog."
-msgstr "Theme to use for the lock dialogue."
-
-#: ../data/gnome-screensaver.schemas.in.h:27
 msgid ""
 "This key specifies the list of themes to be used by the screensaver. It's "
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
@@ -241,60 +235,25 @@ msgstr ""
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
 
-#: ../data/gnome-screensaver.schemas.in.h:28
+#: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before locking"
 msgstr "Time before locking"
 
-#: ../data/gnome-screensaver.schemas.in.h:29
+#: ../data/gnome-screensaver.schemas.in.h:27
 msgid "Time before logout option"
 msgstr "Time before logout option"
 
-#: ../data/gnome-screensaver.schemas.in.h:30
-msgid "Time before power-management baseline"
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before power management baseline"
 msgstr "Time before power management baseline"
 
-#: ../data/gnome-screensaver.schemas.in.h:31
+#: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before session is considered idle"
 msgstr "Time before session is considered idle"
 
-#: ../data/gnome-screensaver.schemas.in.h:32
+#: ../data/gnome-screensaver.schemas.in.h:30
 msgid "Time before theme change"
 msgstr "Time before theme change"
-
-#: ../data/lock-dialog-default.ui.h:2
-#, no-c-format
-msgid "<b>Leave a message for %R:</b>"
-msgstr "<b>Leave a message for %R:</b>"
-
-#: ../data/lock-dialog-default.ui.h:4
-#, no-c-format
-msgid "<span size=\"small\">%U on %h</span>"
-msgstr "<span size=\"small\">%U on %h</span>"
-
-#: ../data/lock-dialog-default.ui.h:6
-#, no-c-format
-msgid "<span size=\"x-large\">%R</span>"
-msgstr "<span size=\"x-large\">%R</span>"
-
-#: ../data/lock-dialog-default.ui.h:7
-msgid "_Cancel"
-msgstr "_Cancel"
-
-#: ../data/lock-dialog-default.ui.h:8
-msgid "_Leave Message"
-msgstr "_Leave Message"
-
-#: ../data/lock-dialog-default.ui.h:9
-msgid "_Log Out"
-msgstr "_Log Out"
-
-#: ../data/lock-dialog-default.ui.h:10
-msgid "_Switch User"
-msgstr "_Switch User"
-
-#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1382
-msgid "_Unlock"
-msgstr "_Unlock"
 
 #. Translators: This is the name of a desktop background image that shows outer space images.
 #. You might want to translate it into the equivalent words of your language
@@ -331,7 +290,7 @@ msgstr "A pop-art-ish grid of pulsing colours."
 msgid "Pop art squares"
 msgstr "Pop art squares"
 
-#: ../savers/popsquares.c:49 ../savers/floaters.c:1204
+#: ../savers/popsquares.c:49 ../savers/floaters.c:1205
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. See --help for usage information.\n"
@@ -371,11 +330,11 @@ msgstr "The source image to use"
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1198
-msgid "image - floats images around the screen"
+#: ../savers/floaters.c:1199
+msgid "image — floats images around the screen"
 msgstr "image — floats images around the screen"
 
-#: ../savers/floaters.c:1213
+#: ../savers/floaters.c:1214
 #, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "You must specify one image.  See --help for usage information.\n"
@@ -389,7 +348,7 @@ msgid "PATH"
 msgstr "PATH"
 
 #: ../savers/slideshow.c:55
-msgid "Color to use for images background"
+msgid "Color to use for image background"
 msgstr "Colour to use for image background"
 
 #: ../savers/slideshow.c:55
@@ -404,32 +363,32 @@ msgstr "Do not randomise pictures from location"
 msgid "Do not try to stretch images on screen"
 msgstr "Do not try to stretch images on screen"
 
-#: ../src/copy-theme-dialog.c:212
+#: ../src/copy-theme-dialog.c:215
 msgid "Copying files"
 msgstr "Copying files"
 
-#: ../src/copy-theme-dialog.c:230
+#: ../src/copy-theme-dialog.c:233
 msgid "From:"
 msgstr "From:"
 
-#: ../src/copy-theme-dialog.c:234
+#: ../src/copy-theme-dialog.c:237
 msgid "To:"
 msgstr "To:"
 
-#: ../src/copy-theme-dialog.c:254
+#: ../src/copy-theme-dialog.c:257
 msgid "Copying themes"
 msgstr "Copying themes"
 
-#: ../src/copy-theme-dialog.c:298
+#: ../src/copy-theme-dialog.c:301
 msgid "Invalid screensaver theme"
 msgstr "Invalid screensaver theme"
 
-#: ../src/copy-theme-dialog.c:301
+#: ../src/copy-theme-dialog.c:304
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
 msgstr "%s does not appear to be a valid screensaver theme."
 
-#: ../src/copy-theme-dialog.c:481
+#: ../src/copy-theme-dialog.c:484
 #, c-format
 msgid "Copying file: %u of %u"
 msgstr "Copying file: %u of %u"
@@ -487,35 +446,32 @@ msgstr "The reason for inhibiting the screensaver"
 msgid "Version of this application"
 msgstr "Version of this application"
 
-#: ../src/gnome-screensaver-command.c:311
+#: ../src/gnome-screensaver-command.c:295
 #, c-format
-msgid "The screensaver is %s\n"
-msgstr "The screensaver is %s\n"
+msgid "The screensaver is active\n"
+msgstr "The screensaver is active\n"
 
-#: ../src/gnome-screensaver-command.c:311
-msgid "active"
-msgstr "active"
+#: ../src/gnome-screensaver-command.c:295
+#, c-format
+msgid "The screensaver is inactive\n"
+msgstr "The screensaver is inactive\n"
 
-#: ../src/gnome-screensaver-command.c:311
-msgid "inactive"
-msgstr "inactive"
-
-#: ../src/gnome-screensaver-command.c:325
+#: ../src/gnome-screensaver-command.c:309
 #, c-format
 msgid "The screensaver is not inhibited\n"
 msgstr "The screensaver is not inhibited\n"
 
-#: ../src/gnome-screensaver-command.c:331
+#: ../src/gnome-screensaver-command.c:315
 #, c-format
 msgid "The screensaver is being inhibited by:\n"
 msgstr "The screensaver is being inhibited by:\n"
 
-#: ../src/gnome-screensaver-command.c:362
+#: ../src/gnome-screensaver-command.c:346
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "The screensaver has been active for %d seconds.\n"
 
-#: ../src/gnome-screensaver-command.c:366
+#: ../src/gnome-screensaver-command.c:350
 #, c-format
 msgid "The screensaver is not currently active.\n"
 msgstr "The screensaver is not currently active.\n"
@@ -540,86 +496,88 @@ msgstr "Show the switch user button"
 msgid "Message to show in the dialog"
 msgstr "Message to show in the dialogue"
 
-#: ../src/gnome-screensaver-dialog.c:67 ../src/gnome-screensaver-dialog.c:69
+#. Translators: This is the example input for the --status-message command line option.
+#. Translators: This is the example input for the --away-message command line option.
+#: ../src/gnome-screensaver-dialog.c:69 ../src/gnome-screensaver-dialog.c:73
 msgid "MESSAGE"
 msgstr "MESSAGE"
 
-#: ../src/gnome-screensaver-dialog.c:69
+#: ../src/gnome-screensaver-dialog.c:71
 msgid "Not used"
 msgstr "Not used"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:179 ../src/gnome-screensaver-dialog.c:180
-#: ../src/gnome-screensaver-dialog.c:181 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:183 ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:185 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Username:"
 
-#: ../src/gnome-screensaver-dialog.c:182 ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "Password:"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "You are required to change your password immediately (password aged)"
 msgstr "You are required to change your password immediately (password aged)"
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "You are required to change your password immediately (root enforced)"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:190
 msgid "Your account has expired; please contact your system administrator"
 msgstr "Your account has expired; please contact your system administrator"
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "No password supplied"
 msgstr "No password supplied"
 
-#: ../src/gnome-screensaver-dialog.c:188
+#: ../src/gnome-screensaver-dialog.c:192
 msgid "Password unchanged"
 msgstr "Password unchanged"
 
-#: ../src/gnome-screensaver-dialog.c:189
-msgid "Can not get username"
+#: ../src/gnome-screensaver-dialog.c:193
+msgid "Cannot get username"
 msgstr "Cannot get username"
 
-#: ../src/gnome-screensaver-dialog.c:190
-msgid "Retype new UNIX password:"
+#: ../src/gnome-screensaver-dialog.c:194
+msgid "Retype new Unix password:"
 msgstr "Retype new Unix password:"
 
-#: ../src/gnome-screensaver-dialog.c:191
-msgid "Enter new UNIX password:"
+#: ../src/gnome-screensaver-dialog.c:195
+msgid "Enter new Unix password:"
 msgstr "Enter new Unix password:"
 
-#: ../src/gnome-screensaver-dialog.c:192
-msgid "(current) UNIX password:"
+#: ../src/gnome-screensaver-dialog.c:196
+msgid "(current) Unix password:"
 msgstr "(current) Unix password:"
 
-#: ../src/gnome-screensaver-dialog.c:193
+#: ../src/gnome-screensaver-dialog.c:197
 msgid "Error while changing NIS password."
 msgstr "Error while changing NIS password."
 
-#: ../src/gnome-screensaver-dialog.c:194
+#: ../src/gnome-screensaver-dialog.c:198
 msgid "You must choose a longer password"
 msgstr "You must choose a longer password"
 
-#: ../src/gnome-screensaver-dialog.c:195
+#: ../src/gnome-screensaver-dialog.c:199
 msgid "Password has been already used. Choose another."
 msgstr "Password has been already used. Choose another."
 
-#: ../src/gnome-screensaver-dialog.c:196
+#: ../src/gnome-screensaver-dialog.c:200
 msgid "You must wait longer to change your password"
 msgstr "You must wait longer to change your password"
 
-#: ../src/gnome-screensaver-dialog.c:197
+#: ../src/gnome-screensaver-dialog.c:201
 msgid "Sorry, passwords do not match"
 msgstr "Sorry, passwords do not match"
 
-#: ../src/gnome-screensaver-dialog.c:263
-msgid "Checking..."
+#: ../src/gnome-screensaver-dialog.c:267
+msgid "Checking…"
 msgstr "Checking…"
 
-#: ../src/gnome-screensaver-dialog.c:305 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "Authentication failed."
 
@@ -698,7 +656,7 @@ msgid "Enable debugging code"
 msgstr "Enable debugging code"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
-msgid "Launch screen saver and locker program"
+msgid "Launch screensaver and locker program"
 msgstr "Launch screensaver and locker program"
 
 #: ../src/gs-auth-pam.c:397
@@ -735,30 +693,78 @@ msgstr "not connected to the message bus"
 msgid "screensaver already running in this session"
 msgstr "screensaver already running in this session"
 
-#: ../src/gs-lock-plug.c:270
+#: ../src/gs-lock-plug.c:257
 msgid "Time has expired."
 msgstr "Time has expired."
 
-#: ../src/gs-lock-plug.c:298
+#: ../src/gs-lock-plug.c:288
+msgid "You have the Caps & Num Lock keys on."
+msgstr "You have the Caps & Num Lock keys on."
+
+#: ../src/gs-lock-plug.c:291
 msgid "You have the Caps Lock key on."
 msgstr "You have the Caps Lock key on."
 
-#: ../src/gs-lock-plug.c:1362
-msgid "S_witch User..."
+#: ../src/gs-lock-plug.c:294
+msgid "You have the Num Lock key on."
+msgstr "You have the Num Lock key on."
+
+#: ../src/gs-lock-plug.c:1281
+msgid "S_witch User…"
 msgstr "S_witch User…"
 
-#: ../src/gs-lock-plug.c:1371
+#: ../src/gs-lock-plug.c:1290
 msgid "Log _Out"
 msgstr "Log _Out"
 
+#: ../src/gs-lock-plug.c:1301
+msgid "_Unlock"
+msgstr "_Unlock"
+
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1547
+#: ../src/gs-lock-plug.c:1466
 msgid "%U on %h"
 msgstr "%U on %h"
 
-#: ../src/gs-lock-plug.c:1561
+#: ../src/gs-lock-plug.c:1480
 msgid "_Password:"
 msgstr "_Password:"
+
+#~ msgid "<b>Screensaver preview</b>"
+#~ msgstr "<b>Screensaver preview</b>"
+
+#~ msgid "Theme for lock dialog"
+#~ msgstr "Theme for lock dialogue"
+
+#~ msgid "Theme to use for the lock dialog."
+#~ msgstr "Theme to use for the lock dialogue."
+
+#~ msgid "<b>Leave a message for %R:</b>"
+#~ msgstr "<b>Leave a message for %R:</b>"
+
+#~ msgid "<span size=\"small\">%U on %h</span>"
+#~ msgstr "<span size=\"small\">%U on %h</span>"
+
+#~ msgid "<span size=\"x-large\">%R</span>"
+#~ msgstr "<span size=\"x-large\">%R</span>"
+
+#~ msgid "_Cancel"
+#~ msgstr "_Cancel"
+
+#~ msgid "_Leave Message"
+#~ msgstr "_Leave Message"
+
+#~ msgid "_Log Out"
+#~ msgstr "_Log Out"
+
+#~ msgid "active"
+#~ msgstr "active"
+
+#~ msgid "inactive"
+#~ msgstr "inactive"
+
+#~ msgid "S_witch User..."
+#~ msgstr "S_witch User…"
 
 #~ msgid "Reason for being away"
 #~ msgstr "Reason for being away"
