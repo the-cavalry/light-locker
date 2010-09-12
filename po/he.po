@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-03 10:12+0300\n"
-"PO-Revision-Date: 2010-07-03 10:13+0200\n"
+"POT-Creation-Date: 2010-09-12 23:21+0200\n"
+"PO-Revision-Date: 2010-09-13 00:02+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "שומר מסך"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:2
 msgid "Set your screensaver preferences"
-msgstr "קבע את העדפות שומר המסך"
+msgstr "הגדרת העדפות שומר המסך"
 
 #: ../data/gnome-screensaver-preferences.ui.h:1
 msgid "Power _Management"
@@ -31,7 +31,7 @@ msgstr "_ניהול צריכת חשמל"
 
 #: ../data/gnome-screensaver-preferences.ui.h:2
 msgid "Regard the computer as _idle after:"
-msgstr "התיחס למחשב כלא _פעיל לאחר:"
+msgstr "המחשב ייחשב כלא _פעיל לאחר:"
 
 #: ../data/gnome-screensaver-preferences.ui.h:3
 msgid "Screensaver Preferences"
@@ -47,15 +47,15 @@ msgstr "תצוגה מקדימה של שומר המסך"
 
 #: ../data/gnome-screensaver-preferences.ui.h:6
 msgid "Warning: the screen will not be locked for the root user."
-msgstr "אזהרה: המסך לא יינעל עבור משתמש העל."
+msgstr "אזהרה: המסך לא ינעל עבור משתמש העל."
 
 #: ../data/gnome-screensaver-preferences.ui.h:7
 msgid "_Activate screensaver when computer is idle"
-msgstr "הפעל _שומר מסך כאשר המחשב לא פעיל"
+msgstr "הפעלת _שומר המסך כאשר המחשב לא פעיל"
 
 #: ../data/gnome-screensaver-preferences.ui.h:8
 msgid "_Lock screen when screensaver is active"
-msgstr "_נעל מסך כששומר המסך פועל"
+msgstr "_נעילת המסך כששומר המסך פועל"
 
 #: ../data/gnome-screensaver-preferences.ui.h:9
 msgid "_Preview"
@@ -265,7 +265,7 @@ msgstr "הצגת שקופיות של תמונות מהקוסמוס"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:1
 msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "מבעבע את רגל הסמל של GNOME ברחבי המסך"
+msgstr "מבעבע את הרגל מהסמל של GNOME ברחבי המסך"
 
 #: ../savers/footlogo-floaters.desktop.in.in.h:2
 msgid "Floating Feet"
@@ -281,7 +281,7 @@ msgstr "תיקיית התמונות"
 
 #: ../savers/popsquares.desktop.in.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
-msgstr "רשת פופ־ארטית של פעימות צבע"
+msgstr "רשת פופ־ארטית של פעימות צבע."
 
 #: ../savers/popsquares.desktop.in.in.h:2
 msgid "Pop art squares"
@@ -354,19 +354,19 @@ msgstr "\"#rrggbb\""
 
 #: ../savers/slideshow.c:57
 msgid "Do not randomize pictures from location"
-msgstr "אל תציג באקראי תמונות מהמיקום"
+msgstr "אין להציג באקראי תמונות מהמיקום"
 
 #: ../savers/slideshow.c:59
 msgid "Do not try to stretch images on screen"
-msgstr "אל תנסה למתוח תמוונת על המסך"
+msgstr "אין לנסות למתוח תמוונת על המסך"
 
 #: ../src/copy-theme-dialog.c:215
 msgid "Copying files"
-msgstr "מעתיק קבצים"
+msgstr "קבצים מועתקים"
 
 #: ../src/copy-theme-dialog.c:233
 msgid "From:"
-msgstr "מ:"
+msgstr "מ־:"
 
 #: ../src/copy-theme-dialog.c:237
 msgid "To:"
@@ -374,7 +374,7 @@ msgstr "אל:"
 
 #: ../src/copy-theme-dialog.c:257
 msgid "Copying themes"
-msgstr "מעתיק ערכות נושא"
+msgstr "ערכות נושא מועתקות"
 
 #: ../src/copy-theme-dialog.c:301
 msgid "Invalid screensaver theme"
@@ -383,12 +383,12 @@ msgstr "ערכת נושא לא תקינה"
 #: ../src/copy-theme-dialog.c:304
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
-msgstr "‏%s אינו ערכת נושא תקינה."
+msgstr "‏%s אינה ערכת נושא תקינה."
 
 #: ../src/copy-theme-dialog.c:484
 #, c-format
 msgid "Copying file: %u of %u"
-msgstr "מעתיק קובץ: %u מתוך %u"
+msgstr "העתקת קבצים: %u מתוך %u"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -512,27 +512,27 @@ msgstr "שם משתמש:"
 #: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
-msgstr "סיסמה:"
+msgstr "ססמה:"
 
 #: ../src/gnome-screensaver-dialog.c:188
 msgid "You are required to change your password immediately (password aged)"
-msgstr "הינך מחוייב לשנות את סיסמתך מיידית (הסיסמה התיישנה)"
+msgstr "עליך לשנות את ססמתך מידית (הססמה התיישנה)"
 
 #: ../src/gnome-screensaver-dialog.c:189
 msgid "You are required to change your password immediately (root enforced)"
-msgstr "הינך מחוייב לשנות את סיסמתך מיידית (דרישת מנהל המערכת)"
+msgstr "עליך לשנות את ססמתך מידית (דרישת מנהל המערכת)"
 
 #: ../src/gnome-screensaver-dialog.c:190
 msgid "Your account has expired; please contact your system administrator"
-msgstr "פג תוקף חשבונך; אנא צור קשר עם מנהל המערכת שלך"
+msgstr "פג תוקף חשבונך; נא ליצור קשר עם מנהל המערכת שלך"
 
 #: ../src/gnome-screensaver-dialog.c:191
 msgid "No password supplied"
-msgstr "לא סופקה סיסמה"
+msgstr "לא סופקה ססמה"
 
 #: ../src/gnome-screensaver-dialog.c:192
 msgid "Password unchanged"
-msgstr "סיסמה לא השתנתה"
+msgstr "הססמה לא השתנתה"
 
 #: ../src/gnome-screensaver-dialog.c:193
 msgid "Cannot get username"
@@ -540,7 +540,7 @@ msgstr "לא ניתן לקבל את שם המשתמש"
 
 #: ../src/gnome-screensaver-dialog.c:194
 msgid "Retype new Unix password:"
-msgstr "הקלדה מחדש של ססמת UNIX החדשה:"
+msgstr "הקלדה מחדש של ססמת ה־UNIX החדשה:"
 
 #: ../src/gnome-screensaver-dialog.c:195
 msgid "Enter new Unix password:"
@@ -556,19 +556,19 @@ msgstr "שגיאה בזמן שינוי סיסמת NIS."
 
 #: ../src/gnome-screensaver-dialog.c:198
 msgid "You must choose a longer password"
-msgstr "אתה חייב לבחור סיסמה ארוכה יותר"
+msgstr "עליך לבחור בססמה ארוכה יותר"
 
 #: ../src/gnome-screensaver-dialog.c:199
 msgid "Password has been already used. Choose another."
-msgstr "הסיסמה הייתה כבר בשימוש. בחר אחרת."
+msgstr "כבר נעשה שימוש בססמה. נא לבחור באחרת."
 
 #: ../src/gnome-screensaver-dialog.c:200
 msgid "You must wait longer to change your password"
-msgstr "אתה חייב לחכות יותר כדי לשנות את הסיסמה"
+msgstr "עליך להמתין זמן רב יותר כדי לשנות את הססמה"
 
 #: ../src/gnome-screensaver-dialog.c:201
 msgid "Sorry, passwords do not match"
-msgstr "סליחה, הסיסמאות אינן מתאימות"
+msgstr "הססמאות אינן מתאימות, עמך הסליחה"
 
 #: ../src/gnome-screensaver-dialog.c:267
 msgid "Checking…"
@@ -590,21 +590,21 @@ msgstr "אקראי"
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
-msgstr[0] "שעה %d"
+msgstr[0] "שעה אחת"
 msgstr[1] "%d שעות"
 
 #: ../src/gnome-screensaver-preferences.c:983
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
-msgstr[0] "דקה %d"
+msgstr[0] "דקה אחת"
 msgstr[1] "%d דקות"
 
 #: ../src/gnome-screensaver-preferences.c:986
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] "שנייה %d"
+msgstr[0] "שנייה אחת"
 msgstr[1] "%d שניות"
 
 #. hour:minutes:seconds
@@ -642,7 +642,7 @@ msgstr "לא ניתן להעלות את המנשק הראשי"
 
 #: ../src/gnome-screensaver-preferences.c:1469
 msgid "Please make sure that the screensaver is properly installed"
-msgstr "אנא וודא ששומר המסך מותקן כיאות."
+msgstr "נא לוודא כי שומר המסך מותקן כראוי"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
@@ -668,64 +668,64 @@ msgstr "Can't set PAM_TTY=%s"
 
 #: ../src/gs-auth-pam.c:455
 msgid "Incorrect password."
-msgstr "סיסמה שגויה."
+msgstr "ססמה שגויה."
 
 #: ../src/gs-auth-pam.c:471
 msgid "Not permitted to gain access at this time."
-msgstr "לא מורשה לקבל גישה בזמן זה."
+msgstr "ללא הרשאה לקבלת גישה כעת."
 
 #: ../src/gs-auth-pam.c:477
 msgid "No longer permitted to access the system."
-msgstr "כבר לא מורשה לגשת למערכת"
+msgstr "כבר נחסמה גישת המשתמש למערכת."
 
 #: ../src/gs-listener-dbus.c:1912
 msgid "failed to register with the message bus"
-msgstr "נכשל ברישום עם ה־message bus"
+msgstr "ארע כשל ברישום עם ה־message bus"
 
 #: ../src/gs-listener-dbus.c:1922
 msgid "not connected to the message bus"
-msgstr "לא מוחבר ל־message bus"
+msgstr "לא מחובר ל־message bus"
 
 #: ../src/gs-listener-dbus.c:1931
 msgid "screensaver already running in this session"
 msgstr "שומר המסך כבר רץ עבור התחברות זאת"
 
-#: ../src/gs-lock-plug.c:256
+#: ../src/gs-lock-plug.c:257
 msgid "Time has expired."
 msgstr "עבר הזמן."
 
-#: ../src/gs-lock-plug.c:287
+#: ../src/gs-lock-plug.c:288
 msgid "You have the Caps & Num Lock keys on."
-msgstr "מקש ה־Caps Lock וה־Num Lock לחוצים."
+msgstr "מקש ה־Caps Lock וה־Num Lock פעילים."
 
-#: ../src/gs-lock-plug.c:290
+#: ../src/gs-lock-plug.c:291
 msgid "You have the Caps Lock key on."
-msgstr "מקש ה־Caps Lock לחוץ."
+msgstr "מקש ה־Caps Lock פעיל."
 
-#: ../src/gs-lock-plug.c:293
+#: ../src/gs-lock-plug.c:294
 msgid "You have the Num Lock key on."
-msgstr "מקש ה־Num Lock לחוץ."
+msgstr "מקש ה־Num Lock פעיל."
 
-#: ../src/gs-lock-plug.c:1280
+#: ../src/gs-lock-plug.c:1281
 msgid "S_witch User…"
 msgstr "ה_חלפת משתמש…"
 
-#: ../src/gs-lock-plug.c:1289
+#: ../src/gs-lock-plug.c:1290
 msgid "Log _Out"
-msgstr "_התנתק"
+msgstr "י_ציאה"
 
-#: ../src/gs-lock-plug.c:1300
+#: ../src/gs-lock-plug.c:1301
 msgid "_Unlock"
-msgstr "_התחבר"
+msgstr "ה_תחברות"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1465
+#: ../src/gs-lock-plug.c:1466
 msgid "%U on %h"
 msgstr "‏%U ב־%h"
 
-#: ../src/gs-lock-plug.c:1479
+#: ../src/gs-lock-plug.c:1480
 msgid "_Password:"
-msgstr "_סיסמה:"
+msgstr "_ססמה:"
 
 #~ msgid "Theme for lock dialog"
 #~ msgstr "Theme for lock dialog"
