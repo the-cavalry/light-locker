@@ -381,19 +381,24 @@ gs_window_clear (GSWindow *window)
         clear_widget (window->priv->drawing_area);
 }
 
-static GdkRegion *
+static cairo_region_t *
 get_outside_region (GSWindow *window)
 {
-        int        i;
-        GdkRegion *region;
+        int             i;
+        cairo_region_t *region;
 
-        region = gdk_region_new ();
+        region = cairo_region_create ();
         for (i = 0; i < window->priv->monitor; i++) {
                 GdkRectangle geometry;
+                cairo_rectangle_int_t rectangle;
 
                 gdk_screen_get_monitor_geometry (gtk_window_get_screen (GTK_WINDOW (window)),
                                                    i, &geometry);
-                gdk_region_union_with_rect (region, &geometry);
+                rectangle.x = geometry.x;
+                rectangle.y = geometry.y;
+                rectangle.width = geometry.width;
+                rectangle.height = geometry.height;
+                cairo_region_union_rectangle (region, &rectangle);
         }
 
         return region;
@@ -402,9 +407,9 @@ get_outside_region (GSWindow *window)
 static void
 update_geometry (GSWindow *window)
 {
-        GdkRectangle geometry;
-        GdkRegion   *outside_region;
-        GdkRegion   *monitor_region;
+        GdkRectangle    geometry;
+        cairo_region_t *outside_region;
+        cairo_region_t *monitor_region;
 
         outside_region = get_outside_region (window);
 
@@ -417,12 +422,12 @@ update_geometry (GSWindow *window)
                   geometry.y,
                   geometry.width,
                   geometry.height);
-        monitor_region = gdk_region_rectangle (&geometry);
-        gdk_region_subtract (monitor_region, outside_region);
-        gdk_region_destroy (outside_region);
+        monitor_region = cairo_region_create_rectangle ((const cairo_rectangle_int_t *)&geometry);
+        cairo_region_subtract (monitor_region, outside_region);
+        cairo_region_destroy (outside_region);
 
-        gdk_region_get_clipbox (monitor_region, &geometry);
-        gdk_region_destroy (monitor_region);
+        cairo_region_get_extents (monitor_region, (cairo_rectangle_int_t *)&geometry);
+        cairo_region_destroy (monitor_region);
 
         gs_debug ("using geometry for monitor %d: x=%d y=%d w=%d h=%d",
                   window->priv->monitor,
