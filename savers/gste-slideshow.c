@@ -170,7 +170,6 @@ start_fade (GSTESlideshow *show,
         if (gdk_pixbuf_get_has_alpha (pixbuf) && show->priv->background_color) {
                 GdkPixbuf *colored;
                 guint32    color;
-                GdkPixmap *pixmap;
 
                 color = (show->priv->background_color->red << 16)
                         + (show->priv->background_color->green / 256 << 8)
@@ -182,17 +181,10 @@ start_fade (GSTESlideshow *show,
                                                              256,
                                                              color,
                                                              color);
-#if GTK_CHECK_VERSION (2,21,1)
-                pixmap = gdk_pixmap_new (NULL, ph, pw,  gdk_visual_get_depth (gdk_visual_get_system ()));
-#else
-                pixmap = gdk_pixmap_new (NULL, ph, pw,  gdk_visual_get_system ()->depth);
-#endif
-
-                gdk_draw_pixbuf (pixmap, NULL, colored, 0, 0, 0, 0, -1, -1, GDK_RGB_DITHER_MAX, 0, 0);
-                gdk_pixbuf_get_from_drawable (pixbuf, pixmap, NULL, 0, 0, 0, 0, -1, -1);
-
-                g_object_unref (pixmap);
-
+                gdk_pixbuf_copy_area (colored, 0, 0,
+                                      gdk_pixbuf_get_width (colored),
+                                      gdk_pixbuf_get_height (colored),
+                                      pixbuf, 0, 0);
                 g_object_unref(colored);
         }
 
