@@ -48,7 +48,6 @@ struct GSTEPopsquaresPrivate
         int        ncolors;
         int        subdivision;
 
-        GdkGC     *gc;
         GdkColor  *colors;
         square    *squares;
 
@@ -373,11 +372,6 @@ setup_colors (GSTEPopsquares *pop)
 
         set_colors (window, &fg, &bg);
 
-        if (pop->priv->gc) {
-                g_object_unref (pop->priv->gc);
-        }
-        pop->priv->gc = gdk_gc_new (window);
-
         if (pop->priv->colors) {
                 g_free (pop->priv->colors);
         }
@@ -484,6 +478,7 @@ draw_iter (GSTEPopsquares *pop)
         int      window_width;
         int      window_height;
         GdkWindow *window;
+        cairo_t *cr;
 
         window = gs_theme_engine_get_window (GS_THEME_ENGINE (pop));
 
@@ -501,14 +496,16 @@ draw_iter (GSTEPopsquares *pop)
         gh = pop->priv->subdivision;
         nsquares = gw * gh;
 
+        cr = gdk_cairo_create (window);
+
         for (y = 0; y < gh; y++) {
                 for (x = 0; x < gw; x++) {
                         square *s = (square *) &pop->priv->squares [gw * y + x];
-
-                        gdk_gc_set_foreground (pop->priv->gc, &(pop->priv->colors [s->color]));
-                        gdk_draw_rectangle (window, pop->priv->gc, TRUE, s->x, s->y,
-                                            border ? s->w - border : s->w,
-                                            border ? s->h - border : s->h);
+                        gdk_cairo_set_source_color (cr, &(pop->priv->colors [s->color]));
+                        cairo_rectangle (cr, s->x, s->y,
+                                         border ? s->w - border : s->w,
+                                         border ? s->h - border : s->h);
+                        cairo_fill (cr);
                         s->color++;
 
                         if (s->color == pop->priv->ncolors) {
@@ -520,6 +517,8 @@ draw_iter (GSTEPopsquares *pop)
                         }
                 }
         }
+
+        cairo_destroy (cr);
 
         return TRUE;
 }
@@ -557,7 +556,6 @@ gste_popsquares_finalize (GObject *object)
 
         g_free (pop->priv->squares);
         g_free (pop->priv->colors);
-        g_object_unref (pop->priv->gc);
 
         G_OBJECT_CLASS (parent_class)->finalize (object);
 }
