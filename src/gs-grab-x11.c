@@ -58,31 +58,6 @@ struct GSGrabPrivate
         GtkWidget *invisible;
 };
 
-static GdkCursor *
-get_cursor (void)
-{
-        GdkBitmap *empty_bitmap;
-        GdkCursor *cursor;
-        GdkColor   useless;
-        char       invisible_cursor_bits [] = { 0x0 };
-
-        useless.red = useless.green = useless.blue = 0;
-        useless.pixel = 0;
-
-        empty_bitmap = gdk_bitmap_create_from_data (NULL,
-                                                    invisible_cursor_bits,
-                                                    1, 1);
-
-        cursor = gdk_cursor_new_from_pixmap (empty_bitmap,
-                                             empty_bitmap,
-                                             &useless,
-                                             &useless, 0, 0);
-
-        g_object_unref (empty_bitmap);
-
-        return cursor;
-}
-
 static const char *
 grab_string (int status)
 {
@@ -201,7 +176,7 @@ gs_grab_get_mouse (GSGrab    *grab,
         g_return_val_if_fail (window != NULL, FALSE);
         g_return_val_if_fail (screen != NULL, FALSE);
 
-        cursor = get_cursor ();
+        cursor = gdk_cursor_new (GDK_BLANK_CURSOR);
 
         gs_debug ("Grabbing mouse widget=%X", (guint32) GDK_WINDOW_XID (window));
         status = gdk_pointer_grab (window, TRUE, 0, NULL,
