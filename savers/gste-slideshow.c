@@ -916,7 +916,7 @@ set_colormap (GtkWidget *widget)
         screen = gtk_widget_get_screen (widget);
         colormap = gdk_screen_get_rgba_colormap (screen);
         if (colormap == NULL) {
-                colormap = gdk_screen_get_rgb_colormap (screen);
+                colormap = gdk_screen_get_system_colormap (screen);
         }
 
         gtk_widget_set_colormap (widget, colormap);
