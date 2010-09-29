@@ -216,7 +216,7 @@ clear_children (Window window)
         int               status;
 
         children = NULL;
-        status = XQueryTree (GDK_DISPLAY (), window, &root, &parent, &children, &n_children);
+        status = XQueryTree (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), window, &root, &parent, &children, &n_children);
 
         if (status == 0) {
                 if (children) {
@@ -231,7 +231,7 @@ clear_children (Window window)
 
                         child = children [--n_children];
 
-                        XClearWindow (GDK_DISPLAY (), child);
+                        XClearWindow (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), child);
                         clear_children (child);
                 }
 
@@ -838,10 +838,10 @@ select_popup_events (void)
         gdk_error_trap_push ();
 
         memset (&attr, 0, sizeof (attr));
-        XGetWindowAttributes (GDK_DISPLAY (), GDK_ROOT_WINDOW (), &attr);
+        XGetWindowAttributes (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), GDK_ROOT_WINDOW (), &attr);
 
         events = SubstructureNotifyMask | attr.your_event_mask;
-        XSelectInput (GDK_DISPLAY (), GDK_ROOT_WINDOW (), events);
+        XSelectInput (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), GDK_ROOT_WINDOW (), events);
 
         gdk_display_sync (gdk_display_get_default ());
         gdk_error_trap_pop ();
@@ -856,9 +856,9 @@ window_select_shape_events (GSWindow *window)
 
         gdk_error_trap_push ();
 
-        if (XShapeQueryExtension (GDK_DISPLAY (), &window->priv->shape_event_base, &shape_error_base)) {
+        if (XShapeQueryExtension (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), &window->priv->shape_event_base, &shape_error_base)) {
                 events = ShapeNotifyMask;
-                XShapeSelectInput (GDK_DISPLAY (), GDK_WINDOW_XID (gtk_widget_get_window (GTK_WIDGET (window))), events);
+                XShapeSelectInput (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), GDK_WINDOW_XID (gtk_widget_get_window (GTK_WIDGET (window))), events);
         }
 
         gdk_display_sync (gdk_display_get_default ());

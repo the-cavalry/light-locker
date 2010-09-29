@@ -95,7 +95,7 @@ xorg_lock_smasher_set_active (GSGrab  *grab,
 {
         int status, event, error;
 
-	if (!XF86MiscQueryExtension (GDK_DISPLAY (), &event, &error)) {
+	if (!XF86MiscQueryExtension (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), &event, &error)) {
 		gs_debug ("No XFree86-Misc extension present");
 		return;
 	}
@@ -108,7 +108,7 @@ xorg_lock_smasher_set_active (GSGrab  *grab,
 
         gdk_error_trap_push ();
 
-        status = XF86MiscSetGrabKeysState (GDK_DISPLAY (), active);
+        status = XF86MiscSetGrabKeysState (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), active);
 
         gdk_display_sync (gdk_display_get_default ());
         gdk_error_trap_pop ();
@@ -379,9 +379,9 @@ gs_grab_nuke_focus (void)
 
         gdk_error_trap_push ();
 
-        XGetInputFocus (GDK_DISPLAY (), &focus, &rev);
+        XGetInputFocus (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), &focus, &rev);
 
-        XSetInputFocus (GDK_DISPLAY (), None, RevertToNone, CurrentTime);
+        XSetInputFocus (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), None, RevertToNone, CurrentTime);
 
         gdk_display_sync (gdk_display_get_default ());
         gdk_error_trap_pop ();

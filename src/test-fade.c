@@ -97,14 +97,14 @@ main (int    argc,
                 exit (1);
         }
 
-        if (! XQueryExtension (GDK_DISPLAY (), XF86_VIDMODE_NAME, &op, &event, &err)) {
+        if (! XQueryExtension (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), XF86_VIDMODE_NAME, &op, &event, &err)) {
                 g_message ("no " XF86_VIDMODE_NAME " extension");
         } else {
 # ifdef HAVE_XF86VMODE_GAMMA
                 int major;
                 int minor;
 
-                if (! XF86VidModeQueryVersion (GDK_DISPLAY (), &major, &minor)) {
+                if (! XF86VidModeQueryVersion (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), &major, &minor)) {
                         g_message ("unable to get " XF86_VIDMODE_NAME " version");
                 } else {
                         g_message (XF86_VIDMODE_NAME " version %d.%d", major, minor);
