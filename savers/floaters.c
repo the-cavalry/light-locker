@@ -1021,7 +1021,7 @@ screen_saver_on_expose_event (ScreenSaver    *screen_saver,
   for (tmp = screen_saver->floaters; tmp != NULL; tmp = tmp->next)
     {
       ScreenSaverFloater *floater;
-      GdkRectangle rect;
+      cairo_rectangle_int_t rect;
       gint size;
 
       floater = (ScreenSaverFloater *) tmp->data;
@@ -1034,7 +1034,7 @@ screen_saver_on_expose_event (ScreenSaver    *screen_saver,
       rect.width = G_SQRT2 * size;
       rect.height = G_SQRT2 * size;
 
-      if (!gdk_region_rect_in (event->region, &rect))
+      if (!cairo_region_contains_rectangle (event->region, &rect))
         continue;
 
       if (!screen_saver_floater_do_draw (screen_saver, floater, context))
