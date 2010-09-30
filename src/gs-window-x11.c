@@ -557,7 +557,7 @@ get_best_visual_for_screen (GdkScreen *screen)
         g_free (std_output);
         g_free (command);
 
-        return visual;
+        return g_object_ref (visual);
 }
 
 static void

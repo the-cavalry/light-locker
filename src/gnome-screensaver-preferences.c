@@ -1361,7 +1361,7 @@ get_best_visual (void)
         g_free (std_output);
         g_free (command);
 
-        return visual;
+        return g_object_ref (visual);
 }
 
 static void
