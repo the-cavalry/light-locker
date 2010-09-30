@@ -110,7 +110,6 @@ static void
 gs_theme_engine_clear (GtkWidget *widget)
 {
         GdkColor     color = { 0, 0x0000, 0x0000, 0x0000 };
-        GdkColormap *colormap;
         GtkStateType state;
         GdkWindow   *window;
 
@@ -126,12 +125,7 @@ gs_theme_engine_clear (GtkWidget *widget)
                 state++;
         }
 
-        window = gtk_widget_get_window (widget);
-        colormap = gdk_drawable_get_colormap (window);
-        gdk_colormap_alloc_color (colormap, &color, FALSE, TRUE);
-        gdk_window_set_background (window, &color);
-        gdk_window_clear (window);
-        gdk_flush ();
+        gtk_widget_queue_draw (widget);
 }
 
 static gboolean

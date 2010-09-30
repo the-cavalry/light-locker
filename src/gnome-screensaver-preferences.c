@@ -1364,35 +1364,17 @@ get_best_visual (void)
         return visual;
 }
 
-static GdkColormap *
-get_best_colormap_for_screen (GdkScreen *screen)
-{
-        GdkColormap *colormap;
-        GdkVisual   *visual;
-
-        g_return_val_if_fail (screen != NULL, NULL);
-
-        visual = get_best_visual ();
-
-        colormap = NULL;
-        if (visual != NULL) {
-                colormap = gdk_colormap_new (visual, FALSE);
-        }
-
-        return colormap;
-}
-
 static void
-widget_set_best_colormap (GtkWidget *widget)
+widget_set_best_visual (GtkWidget *widget)
 {
-        GdkColormap *colormap;
+        GdkVisual *visual;
 
         g_return_if_fail (widget != NULL);
 
-        colormap = get_best_colormap_for_screen (gtk_widget_get_screen (widget));
-        if (colormap != NULL) {
-                gtk_widget_set_colormap (widget, colormap);
-                g_object_unref (colormap);
+        visual = get_best_visual ();
+        if (visual != NULL) {
+                gtk_widget_set_visual (widget, visual);
+                g_object_unref (visual);
         }
 }
 
@@ -1498,7 +1480,7 @@ init_capplet (void)
         gtk_label_set_mnemonic_widget (GTK_LABEL (label), treeview);
 
         gtk_widget_set_no_show_all (root_warning_label, TRUE);
-        widget_set_best_colormap (preview);
+        widget_set_best_visual (preview);
 
         if (! is_program_in_path (GPM_COMMAND)) {
                 gtk_widget_set_no_show_all (gpm_button, TRUE);

@@ -560,42 +560,24 @@ get_best_visual_for_screen (GdkScreen *screen)
         return visual;
 }
 
-static GdkColormap *
-get_best_colormap_for_screen (GdkScreen *screen)
-{
-        GdkColormap *colormap;
-        GdkVisual   *visual;
-
-        g_return_val_if_fail (screen != NULL, NULL);
-
-        visual = get_best_visual_for_screen (screen);
-
-        colormap = NULL;
-        if (visual != NULL) {
-                colormap = gdk_colormap_new (visual, FALSE);
-        }
-
-        return colormap;
-}
-
 static void
-widget_set_best_colormap (GtkWidget *widget)
+widget_set_best_visual (GtkWidget *widget)
 {
-        GdkColormap *colormap;
+        GdkVisual *visual;
 
         g_return_if_fail (widget != NULL);
 
-        colormap = get_best_colormap_for_screen (gtk_widget_get_screen (widget));
-        if (colormap != NULL) {
-                gtk_widget_set_colormap (widget, colormap);
-                g_object_unref (colormap);
+        visual = get_best_visual_for_screen (gtk_widget_get_screen (widget));
+        if (visual != NULL) {
+                gtk_widget_set_visual (widget, visual);
+                g_object_unref (visual);
         }
 }
 
 static void
 gs_window_real_realize (GtkWidget *widget)
 {
-        widget_set_best_colormap (widget);
+        widget_set_best_visual (widget);
 
         if (GTK_WIDGET_CLASS (gs_window_parent_class)->realize) {
                 GTK_WIDGET_CLASS (gs_window_parent_class)->realize (widget);

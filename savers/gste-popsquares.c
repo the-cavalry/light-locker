@@ -183,8 +183,7 @@ rgb_to_hsv (unsigned short r,
 }
 
 static void
-make_color_ramp (GdkColormap *colormap,
-		 int          h1,
+make_color_ramp (int          h1,
                  double       s1,
                  double       v1,
 		 int          h2,
@@ -193,7 +192,6 @@ make_color_ramp (GdkColormap *colormap,
 		 GdkColor    *colors,
                  int          n_colors,
 		 gboolean     closed,
-		 gboolean     allocate,
 		 gboolean     writable)
 {
         double   dh, ds, dv;		/* deltas */
@@ -230,12 +228,6 @@ make_color_ramp (GdkColormap *colormap,
                             &colors [i].red,
                             &colors [i].green,
                             &colors [i].blue);
-                if (allocate) {
-                        gdk_colormap_alloc_color (colormap,
-                                                  &colors [i],
-                                                  writable,
-                                                  TRUE);
-                }
         }
 
         if (closed) {
@@ -382,12 +374,10 @@ setup_colors (GSTEPopsquares *pop)
         rgb_to_hsv (fg.red, fg.green, fg.blue, &h1, &s1, &v1);
         rgb_to_hsv (bg.red, bg.green, bg.blue, &h2, &s2, &v2);
 
-        make_color_ramp (gtk_widget_get_colormap (GTK_WIDGET (pop)),
-                         h1, s1, v1,
+        make_color_ramp (h1, s1, v1,
                          h2, s2, v2,
                          pop->priv->colors,
                          pop->priv->ncolors,
-                         TRUE,
                          TRUE,
                          FALSE);
 

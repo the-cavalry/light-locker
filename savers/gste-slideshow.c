@@ -900,21 +900,6 @@ gste_slideshow_class_init (GSTESlideshowClass *klass)
 }
 
 static void
-set_colormap (GtkWidget *widget)
-{
-        GdkScreen   *screen;
-        GdkColormap *colormap;
-
-        screen = gtk_widget_get_screen (widget);
-        colormap = gdk_screen_get_rgba_colormap (screen);
-        if (colormap == NULL) {
-                colormap = gdk_screen_get_system_colormap (screen);
-        }
-
-        gtk_widget_set_colormap (widget, colormap);
-}
-
-static void
 gste_slideshow_init (GSTESlideshow *show)
 {
         GError *error;
@@ -934,8 +919,6 @@ gste_slideshow_init (GSTESlideshow *show)
                 g_error_free (error);
                 exit (-1);
         }
-
-        set_colormap (GTK_WIDGET (show));
 }
 
 static void
