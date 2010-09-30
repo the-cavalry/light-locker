@@ -252,8 +252,7 @@ widget_clear_all_children (GtkWidget *widget)
 
         clear_children (GDK_WINDOW_XID (w));
 
-        gdk_display_sync (gtk_widget_get_display (widget));
-        gdk_error_trap_pop ();
+        gdk_error_trap_pop_ignored ();
 }
 
 void
@@ -848,8 +847,7 @@ select_popup_events (void)
         events = SubstructureNotifyMask | attr.your_event_mask;
         XSelectInput (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), GDK_ROOT_WINDOW (), events);
 
-        gdk_display_sync (gdk_display_get_default ());
-        gdk_error_trap_pop ();
+        gdk_error_trap_pop_ignored ();
 }
 
 static void
@@ -866,8 +864,7 @@ window_select_shape_events (GSWindow *window)
                 XShapeSelectInput (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), GDK_WINDOW_XID (gtk_widget_get_window (GTK_WIDGET (window))), events);
         }
 
-        gdk_display_sync (gdk_display_get_default ());
-        gdk_error_trap_pop ();
+        gdk_error_trap_pop_ignored ();
 #endif
 }
 
