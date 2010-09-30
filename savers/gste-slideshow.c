@@ -301,18 +301,7 @@ update_display (GSTESlideshow *show)
 
         cairo_destroy (cr);
 
-        /* paint the image buffer into the window */
-        cr = gdk_cairo_create (gtk_widget_get_window (GTK_WIDGET (show)));
-
-        cairo_set_source_surface (cr, show->priv->surf, 0, 0);
-
-        gs_theme_engine_profile_start ("paint surface to window");
-        cairo_paint (cr);
-        gs_theme_engine_profile_end ("paint surface to window");
-
-        cairo_destroy (cr);
-
-        gs_theme_engine_profile_end ("end");
+        gtk_widget_queue_draw (GTK_WIDGET (show));
 }
 
 static gboolean
@@ -806,19 +795,22 @@ gste_slideshow_real_show (GtkWidget *widget)
 }
 
 static gboolean
-gste_slideshow_real_expose (GtkWidget      *widget,
-                            GdkEventExpose *event)
+gste_slideshow_real_draw (GtkWidget      *widget,
+                          cairo_t        *cr)
 {
         GSTESlideshow *show = GSTE_SLIDESHOW (widget);
-        gboolean       handled = FALSE;
 
-        update_display (show);
-
-        if (GTK_WIDGET_CLASS (parent_class)->expose_event) {
-                handled = GTK_WIDGET_CLASS (parent_class)->expose_event (widget, event);
+        if (GTK_WIDGET_CLASS (parent_class)->draw) {
+                GTK_WIDGET_CLASS (parent_class)->draw (widget, cr);
         }
 
-        return handled;
+        cairo_set_source_surface (cr, show->priv->surf, 0, 0);
+
+        gs_theme_engine_profile_start ("paint surface to window");
+        cairo_paint (cr);
+        gs_theme_engine_profile_end ("paint surface to window");
+
+        return TRUE;
 }
 
 static gboolean
@@ -872,7 +864,7 @@ gste_slideshow_class_init (GSTESlideshowClass *klass)
         object_class->set_property = gste_slideshow_set_property;
 
         widget_class->show = gste_slideshow_real_show;
-        widget_class->expose_event = gste_slideshow_real_expose;
+        widget_class->draw = gste_slideshow_real_draw;
         widget_class->configure_event = gste_slideshow_real_configure;
 
         g_type_class_add_private (klass, sizeof (GSTESlideshowPrivate));
