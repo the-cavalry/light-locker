@@ -360,7 +360,7 @@ preview_clear (GtkWidget *widget)
         GdkColor color = { 0, 0, 0 };
 
         gtk_widget_modify_bg (widget, GTK_STATE_NORMAL, &color);
-        gdk_window_clear (gtk_widget_get_window (widget));
+        gtk_widget_queue_draw (widget);
 }
 
 static void
