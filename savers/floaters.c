@@ -271,8 +271,8 @@ static void screen_saver_create_floaters (ScreenSaver *screen_saver);
 static void screen_saver_destroy_floaters (ScreenSaver *screen_saver);
 static void screen_saver_on_size_allocate (ScreenSaver   *screen_saver,
                                            GtkAllocation *allocation);
-static void screen_saver_on_expose_event (ScreenSaver    *screen_saver,
-                                          GdkEventExpose *event);
+static void screen_saver_on_draw_request (ScreenSaver    *screen_saver,
+                                          cairo_t        *context);
 static gboolean do_print_screen_saver_stats (ScreenSaver *screen_saver);
 static GdkPixbuf *gamma_correct (const GdkPixbuf *input_pixbuf);
 
@@ -846,8 +846,8 @@ screen_saver_new (GtkDrawingArea  *drawing_area,
                             G_CALLBACK (screen_saver_on_size_allocate),
                             screen_saver);
 
-  g_signal_connect_swapped (G_OBJECT (drawing_area), "expose-event",
-                            G_CALLBACK (screen_saver_on_expose_event),
+  g_signal_connect_swapped (G_OBJECT (drawing_area), "draw",
+                            G_CALLBACK (screen_saver_on_draw_request),
                             screen_saver);
 
   screen_saver->first_update_time = 0.0;
@@ -997,23 +997,13 @@ compare_floaters (ScreenSaverFloater *a,
 }
 
 static void
-screen_saver_on_expose_event (ScreenSaver    *screen_saver,
-                              GdkEventExpose *event)
+screen_saver_on_draw_request (ScreenSaver    *screen_saver,
+                              cairo_t        *context)
 {
   GList *tmp;
-  cairo_t *context;
 
   if (screen_saver->floaters == NULL)
     screen_saver_create_floaters (screen_saver);
-
-  context = gdk_cairo_create (gtk_widget_get_window (screen_saver->drawing_area));
-
-  cairo_rectangle (context,
-                   (double) event->area.x,
-                   (double) event->area.y,
-                   (double) event->area.width,
-                   (double) event->area.height);
-  cairo_clip (context);
 
   screen_saver->floaters = g_list_sort (screen_saver->floaters,
                                         (GCompareFunc)compare_floaters);
@@ -1021,21 +1011,12 @@ screen_saver_on_expose_event (ScreenSaver    *screen_saver,
   for (tmp = screen_saver->floaters; tmp != NULL; tmp = tmp->next)
     {
       ScreenSaverFloater *floater;
-      cairo_rectangle_int_t rect;
       gint size;
 
       floater = (ScreenSaverFloater *) tmp->data;
 
       size = CLAMP ((int) (FLOATER_MAX_SIZE * floater->scale),
-		    FLOATER_MIN_SIZE, FLOATER_MAX_SIZE);
-
-      rect.x = (int) (floater->position.x - .5 * G_SQRT2 * size);
-      rect.y = (int) (floater->position.y - .5 * G_SQRT2 * size);
-      rect.width = G_SQRT2 * size;
-      rect.height = G_SQRT2 * size;
-
-      if (!cairo_region_contains_rectangle (event->region, &rect))
-        continue;
+                    FLOATER_MIN_SIZE, FLOATER_MAX_SIZE);
 
       if (!screen_saver_floater_do_draw (screen_saver, floater, context))
         {
@@ -1043,8 +1024,6 @@ screen_saver_on_expose_event (ScreenSaver    *screen_saver,
           break;
         }
     }
-
-  cairo_destroy (context);
 
   screen_saver->draw_ops_pending = TRUE;
   screen_saver->frame_count++;
