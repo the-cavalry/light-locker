@@ -35,6 +35,8 @@
 static void     gste_popsquares_class_init (GSTEPopsquaresClass *klass);
 static void     gste_popsquares_init       (GSTEPopsquares      *engine);
 static void     gste_popsquares_finalize   (GObject            *object);
+static void     draw_frame                 (GSTEPopsquares *pop,
+                                            cairo_t        *cr);
 
 typedef struct _square {
         int x, y, w, h;
@@ -409,20 +411,16 @@ gste_popsquares_real_show (GtkWidget *widget)
 }
 
 static gboolean
-gste_popsquares_real_expose (GtkWidget      *widget,
-                             GdkEventExpose *event)
+gste_popsquares_real_draw (GtkWidget      *widget,
+                           cairo_t        *cr)
 {
-        gboolean handled = FALSE;
-
-        /* draw */
-
-        /* FIXME: should double buffer? */
-
-        if (GTK_WIDGET_CLASS (parent_class)->expose_event) {
-                handled = GTK_WIDGET_CLASS (parent_class)->expose_event (widget, event);
+        if (GTK_WIDGET_CLASS (parent_class)->draw) {
+                GTK_WIDGET_CLASS (parent_class)->draw (widget, cr);
         }
 
-        return handled;
+        draw_frame (GSTE_POPSQUARES (widget), cr);
+
+        return TRUE;
 }
 
 static gboolean
@@ -461,14 +459,15 @@ gste_popsquares_class_init (GSTEPopsquaresClass *klass)
         object_class->set_property = gste_popsquares_set_property;
 
         widget_class->show = gste_popsquares_real_show;
-        widget_class->expose_event = gste_popsquares_real_expose;
+        widget_class->draw = gste_popsquares_real_draw;
         widget_class->configure_event = gste_popsquares_real_configure;
 
         g_type_class_add_private (klass, sizeof (GSTEPopsquaresPrivate));
 }
 
-static gboolean
-draw_iter (GSTEPopsquares *pop)
+static void
+draw_frame (GSTEPopsquares *pop,
+            cairo_t        *cr)
 {
         int      border = 1;
         gboolean twitch = FALSE;
@@ -478,12 +477,11 @@ draw_iter (GSTEPopsquares *pop)
         int      window_width;
         int      window_height;
         GdkWindow *window;
-        cairo_t *cr;
 
         window = gs_theme_engine_get_window (GS_THEME_ENGINE (pop));
 
         if (window == NULL) {
-                return TRUE;
+                return;
         }
 
         gs_theme_engine_get_window_size (GS_THEME_ENGINE (pop),
@@ -495,8 +493,6 @@ draw_iter (GSTEPopsquares *pop)
         gw = pop->priv->subdivision;
         gh = pop->priv->subdivision;
         nsquares = gw * gh;
-
-        cr = gdk_cairo_create (window);
 
         for (y = 0; y < gh; y++) {
                 for (x = 0; x < gw; x++) {
@@ -517,9 +513,12 @@ draw_iter (GSTEPopsquares *pop)
                         }
                 }
         }
+}
 
-        cairo_destroy (cr);
-
+static gboolean
+draw_iter (GSTEPopsquares *pop)
+{
+        gtk_widget_queue_draw (GTK_WIDGET (pop));
         return TRUE;
 }
 
