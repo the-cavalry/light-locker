@@ -552,55 +552,143 @@ rounded_rectangle (cairo_t *cr,
         cairo_close_path (cr);
 }
 
+/* copied from gdm-user.c */
+
+/**
+ * go_cairo_convert_data_to_pixbuf:
+ * @src: a pointer to pixel data in cairo format
+ * @dst: a pointer to pixel data in pixbuf format
+ * @width: image width
+ * @height: image height
+ * @rowstride: data rowstride
+ *
+ * Converts the pixel data stored in @src in CAIRO_FORMAT_ARGB32 cairo format
+ * to GDK_COLORSPACE_RGB pixbuf format and move them
+ * to @dst. If @src == @dst, pixel are converted in place.
+ **/
+
 static void
-image_set_from_pixbuf (GtkImage  *image,
-                       GdkPixbuf *source)
+go_cairo_convert_data_to_pixbuf (unsigned char *dst,
+                                 unsigned char const *src,
+                                 int width,
+                                 int height,
+                                 int rowstride)
 {
+        int i,j;
+        unsigned int t;
+        unsigned char a, b, c;
+
+        g_return_if_fail (dst != NULL);
+
+#define MULT(d,c,a,t) G_STMT_START { t = (a)? c * 255 / a: 0; d = t;} G_STMT_END
+
+        if (src == dst || src == NULL) {
+                for (i = 0; i < height; i++) {
+                        for (j = 0; j < width; j++) {
+#if G_BYTE_ORDER == G_LITTLE_ENDIAN
+                                MULT(a, dst[2], dst[3], t);
+                                MULT(b, dst[1], dst[3], t);
+                                MULT(c, dst[0], dst[3], t);
+                                dst[0] = a;
+                                dst[1] = b;
+                                dst[2] = c;
+#else
+                                MULT(a, dst[1], dst[0], t);
+                                MULT(b, dst[2], dst[0], t);
+                                MULT(c, dst[3], dst[0], t);
+                                dst[3] = dst[0];
+                                dst[0] = a;
+                                dst[1] = b;
+                                dst[2] = c;
+#endif
+                                dst += 4;
+                        }
+                        dst += rowstride - width * 4;
+                }
+        } else {
+                for (i = 0; i < height; i++) {
+                        for (j = 0; j < width; j++) {
+#if G_BYTE_ORDER == G_LITTLE_ENDIAN
+                                MULT(dst[0], src[2], src[3], t);
+                                MULT(dst[1], src[1], src[3], t);
+                                MULT(dst[2], src[0], src[3], t);
+                                dst[3] = src[3];
+#else
+                                MULT(dst[0], src[1], src[0], t);
+                                MULT(dst[1], src[2], src[0], t);
+                                MULT(dst[2], src[3], src[0], t);
+                                dst[3] = src[0];
+#endif
+                                src += 4;
+                                dst += 4;
+                        }
+                        src += rowstride - width * 4;
+                        dst += rowstride - width * 4;
+                }
+        }
+#undef MULT
+}
+
+static void
+cairo_to_pixbuf (guint8    *src_data,
+                 GdkPixbuf *dst_pixbuf)
+{
+        unsigned char *src;
+        unsigned char *dst;
+        guint          w;
+        guint          h;
+        guint          rowstride;
+
+        w = gdk_pixbuf_get_width (dst_pixbuf);
+        h = gdk_pixbuf_get_height (dst_pixbuf);
+        rowstride = gdk_pixbuf_get_rowstride (dst_pixbuf);
+
+        dst = gdk_pixbuf_get_pixels (dst_pixbuf);
+        src = src_data;
+
+        go_cairo_convert_data_to_pixbuf (dst, src, w, h, rowstride);
+}
+
+static GdkPixbuf *
+frame_pixbuf (GdkPixbuf *source)
+{
+        GdkPixbuf       *dest;
         cairo_t         *cr;
-        cairo_t         *cr_mask;
         cairo_surface_t *surface;
-        GdkPixmap       *pixmap;
-        GdkPixmap       *bitmask;
-        int              w;
-        int              h;
+        guint            w;
+        guint            h;
+        guint            rowstride;
         int              frame_width;
         double           radius;
-        GdkColor         color;
-        double           r;
-        double           g;
-        double           b;
+        guint8          *data;
 
         frame_width = 5;
 
         w = gdk_pixbuf_get_width (source) + frame_width * 2;
         h = gdk_pixbuf_get_height (source) + frame_width * 2;
-
         radius = w / 10;
 
-        pixmap = gdk_pixmap_new (gtk_widget_get_window (GTK_WIDGET (image)), w, h, -1);
-        bitmask = gdk_pixmap_new (gtk_widget_get_window (GTK_WIDGET (image)), w, h, 1);
+        dest = gdk_pixbuf_new (GDK_COLORSPACE_RGB,
+                               TRUE,
+                               8,
+                               w,
+                               h);
+        rowstride = gdk_pixbuf_get_rowstride (dest);
 
-        cr = gdk_cairo_create (pixmap);
-        cr_mask = gdk_cairo_create (bitmask);
 
-        /* setup mask */
-        cairo_rectangle (cr_mask, 0, 0, w, h);
-        cairo_set_operator (cr_mask, CAIRO_OPERATOR_CLEAR);
-        cairo_fill (cr_mask);
+        data = g_new0 (guint8, h * rowstride);
 
-        rounded_rectangle (cr_mask, 1.0, 0.5, 0.5, radius, w - 1, h - 1);
-        cairo_set_operator (cr_mask, CAIRO_OPERATOR_OVER);
-        cairo_set_source_rgb (cr_mask, 1, 1, 1);
-        cairo_fill (cr_mask);
-
-        color = gtk_widget_get_style (GTK_WIDGET (image))->bg [GTK_STATE_NORMAL];
-        r = (float)color.red / 65535.0;
-        g = (float)color.green / 65535.0;
-        b = (float)color.blue / 65535.0;
+        surface = cairo_image_surface_create_for_data (data,
+                                                       CAIRO_FORMAT_ARGB32,
+                                                       w,
+                                                       h,
+                                                       rowstride);
+        cr = cairo_create (surface);
+        cairo_surface_destroy (surface);
 
         /* set up image */
         cairo_rectangle (cr, 0, 0, w, h);
-        cairo_set_source_rgb (cr, r, g, b);
+        cairo_set_source_rgba (cr, 1.0, 1.0, 1.0, 0.0);
         cairo_fill (cr);
 
         rounded_rectangle (cr,
@@ -616,18 +704,28 @@ image_set_from_pixbuf (GtkImage  *image,
         surface = surface_from_pixbuf (source);
         cairo_set_source_surface (cr, surface, frame_width, frame_width);
         cairo_fill (cr);
-
-        gtk_image_set_from_pixmap (image, pixmap, bitmask);
-
         cairo_surface_destroy (surface);
 
-        g_object_unref (bitmask);
-        g_object_unref (pixmap);
+        cairo_to_pixbuf (data, dest);
 
-        cairo_destroy (cr_mask);
         cairo_destroy (cr);
+        g_free (data);
+
+        return dest;
 }
 
+/* end copied from gdm-user.c */
+
+static void
+image_set_from_pixbuf (GtkImage  *image,
+                       GdkPixbuf *source)
+{
+        GdkPixbuf *pixbuf;
+
+        pixbuf = frame_pixbuf (source);
+        gtk_image_set_from_pixbuf (image, pixbuf);
+        g_object_unref (pixbuf);
+}
 
 static gboolean
 check_user_file (const gchar *filename,

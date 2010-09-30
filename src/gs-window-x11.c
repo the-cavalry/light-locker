@@ -84,7 +84,7 @@ struct GSWindowPrivate
         GtkWidget *info_bar;
         GtkWidget *info_content;
 
-        GdkPixmap *background_pixmap;
+        cairo_surface_t *background_surface;
 
         guint      popup_dialog_idle_id;
 
@@ -255,120 +255,58 @@ widget_clear_all_children (GtkWidget *widget)
         gdk_error_trap_pop_ignored ();
 }
 
+static void
+gs_window_reset_background_surface (GSWindow *window)
+{
+        cairo_pattern_t *pattern;
+        pattern = cairo_pattern_create_for_surface (window->priv->background_surface);
+        gdk_window_set_background_pattern (gtk_widget_get_window (GTK_WIDGET (window)),
+                                           pattern);
+        cairo_pattern_destroy (pattern);
+        gtk_widget_queue_draw (GTK_WIDGET (window));
+}
+
 void
-gs_window_set_background_pixmap (GSWindow  *window,
-                                 GdkPixmap *pixmap)
+gs_window_set_background_surface (GSWindow        *window,
+                                  cairo_surface_t *surface)
 {
         g_return_if_fail (GS_IS_WINDOW (window));
 
-        if (window->priv->background_pixmap != NULL) {
-                g_object_unref (window->priv->background_pixmap);
+        if (window->priv->background_surface != NULL) {
+                cairo_surface_destroy (window->priv->background_surface);
         }
 
-        if (pixmap != NULL) {
-                window->priv->background_pixmap = g_object_ref (pixmap);
-                gdk_window_set_back_pixmap (gtk_widget_get_window (GTK_WIDGET (window)),
-                                            pixmap,
-                                            FALSE);
+        if (surface != NULL) {
+                window->priv->background_surface = cairo_surface_reference (surface);
+                gs_window_reset_background_surface (window);
         }
 }
 
 static void
-gs_window_clear_to_background_pixmap (GSWindow *window)
+gs_window_clear_to_background_surface (GSWindow *window)
 {
-        GtkStateType state;
-        GtkStyle    *style;
-
         g_return_if_fail (GS_IS_WINDOW (window));
 
         if (!gtk_widget_get_visible (GTK_WIDGET (window))) {
                 return;
         }
 
-        if (window->priv->background_pixmap == NULL) {
-                /* don't allow null pixmaps */
+        if (window->priv->background_surface == NULL) {
                 return;
         }
 
         gs_debug ("Clearing window to background pixmap");
-
-        style = gtk_style_copy (gtk_widget_get_style (GTK_WIDGET (window)));
-
-        state = (GtkStateType) 0;
-        while (state < (GtkStateType) G_N_ELEMENTS (gtk_widget_get_style (GTK_WIDGET (window))->bg_pixmap)) {
-
-                if (style->bg_pixmap[state] != NULL) {
-                        g_object_unref (style->bg_pixmap[state]);
-                }
-
-                style->bg_pixmap[state] = g_object_ref (window->priv->background_pixmap);
-                state++;
-        }
-
-        gtk_widget_set_style (GTK_WIDGET (window), style);
-        g_object_unref (style);
-
-        if (window->priv->background_pixmap != NULL) {
-                gdk_window_set_back_pixmap (gtk_widget_get_window (GTK_WIDGET (window)),
-                                            window->priv->background_pixmap,
-                                            FALSE);
-        }
-
-        gdk_window_clear (gtk_widget_get_window (GTK_WIDGET (window)));
-
-        gdk_flush ();
+        gs_window_reset_background_surface (window);
 }
 
 static void
 clear_widget (GtkWidget *widget)
 {
-        GdkColor     color = { 0, 0x0000, 0x0000, 0x0000 };
-        GdkColormap *colormap;
-        GdkWindow   *window;
-        GtkStateType state;
-        GtkStyle    *style;
-        GtkStyle    *widget_style;
+        GdkColor color = { 0, 0x0000, 0x0000, 0x0000 };
 
-        if (!gtk_widget_get_visible (widget)) {
-                return;
-        }
-
-        gs_debug ("Clearing widget");
-
-        widget_style = gtk_widget_get_style (widget);
-        state = (GtkStateType) 0;
-        while (state < (GtkStateType) G_N_ELEMENTS (widget_style->bg)) {
-                gtk_widget_modify_bg (widget, state, &color);
-                state++;
-        }
-
-        style = gtk_style_copy (widget_style);
-
-        state = (GtkStateType) 0;
-        while (state < (GtkStateType) G_N_ELEMENTS (widget_style->bg_pixmap)) {
-
-                if (style->bg_pixmap[state] != NULL) {
-                        g_object_unref (style->bg_pixmap[state]);
-                }
-
-                style->bg_pixmap[state] = NULL;
-                state++;
-        }
-
-        window = gtk_widget_get_window (widget);
-        colormap = gdk_drawable_get_colormap (window);
-        gdk_colormap_alloc_color (colormap, &color, FALSE, TRUE);
-        gdk_window_set_background (window, &color);
-
-        gtk_widget_set_style (widget, style);
-        g_object_unref (style);
-
-        gdk_window_clear (window);
-
-        /* If a screensaver theme adds child windows we need to clear them too */
-        widget_clear_all_children (widget);
-
-        gdk_flush ();
+        gdk_window_set_background (gtk_widget_get_window (widget),
+                                   &color);
+        gtk_widget_queue_draw (GTK_WIDGET (widget));
 }
 
 void
@@ -1703,7 +1641,7 @@ popup_dialog (GSWindow *window)
 
         gtk_widget_hide (window->priv->drawing_area);
 
-        gs_window_clear_to_background_pixmap (window);
+        gs_window_clear_to_background_surface (window);
 
         set_invisible_cursor (gtk_widget_get_window (GTK_WIDGET (window)), FALSE);
 
@@ -2403,6 +2341,7 @@ gs_window_init (GSWindow *window)
 
         window->priv->drawing_area = gtk_drawing_area_new ();
         gtk_widget_show (window->priv->drawing_area);
+        gtk_widget_set_app_paintable (window->priv->drawing_area, TRUE);
         gtk_box_pack_start (GTK_BOX (window->priv->vbox), window->priv->drawing_area, TRUE, TRUE, 0);
         create_info_bar (window);
 
@@ -2454,8 +2393,8 @@ gs_window_finalize (GObject *object)
 
         gs_window_dialog_finish (window);
 
-        if (window->priv->background_pixmap) {
-               g_object_unref (window->priv->background_pixmap);
+        if (window->priv->background_surface) {
+               cairo_surface_destroy (window->priv->background_surface);
         }
 
         G_OBJECT_CLASS (gs_window_parent_class)->finalize (object);
@@ -2473,6 +2412,7 @@ gs_window_new (GdkScreen *screen,
                                "screen", screen,
                                "monitor", monitor,
                                "lock-enabled", lock_enabled,
+                               "app-paintable", TRUE,
                                NULL);
 
         return GS_WINDOW (result);

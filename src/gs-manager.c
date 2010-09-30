@@ -1214,27 +1214,27 @@ static void
 apply_background_to_window (GSManager *manager,
                             GSWindow  *window)
 {
-        GdkPixmap       *pixmap;
+        cairo_surface_t *surface;
         GdkScreen       *screen;
         int              width;
         int              height;
 
         if (manager->priv->bg == NULL) {
                 gs_debug ("No background available");
-                gs_window_set_background_pixmap (window, NULL);
+                gs_window_set_background_surface (window, NULL);
         }
 
         screen = gs_window_get_screen (window);
         width = gdk_screen_get_width (screen);
         height = gdk_screen_get_height (screen);
-        gs_debug ("Creating pixmap background w:%d h:%d", width, height);
-        pixmap = gnome_bg_create_pixmap (manager->priv->bg,
-                                         gs_window_get_gdk_window (window),
-                                         width,
-                                         height,
-                                         FALSE);
-        gs_window_set_background_pixmap (window, pixmap);
-        g_object_unref (pixmap);
+        gs_debug ("Creating background w:%d h:%d", width, height);
+        surface = gnome_bg_create_surface (manager->priv->bg,
+                                           gs_window_get_gdk_window (window),
+                                           width,
+                                           height,
+                                           FALSE);
+        gs_window_set_background_surface (window, surface);
+        cairo_surface_destroy (surface);
 }
 
 static void

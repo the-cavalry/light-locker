@@ -66,8 +66,8 @@ void        gs_window_set_monitor        (GSWindow  *window,
                                           int        monitor);
 int         gs_window_get_monitor        (GSWindow  *window);
 
-void        gs_window_set_background_pixmap (GSWindow  *window,
-                                             GdkPixmap *pixmap);
+void        gs_window_set_background_surface (GSWindow        *window,
+                                              cairo_surface_t *surface);
 void        gs_window_set_lock_enabled   (GSWindow  *window,
                                           gboolean   lock_enabled);
 void        gs_window_set_logout_enabled (GSWindow  *window,
