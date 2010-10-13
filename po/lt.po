@@ -2,23 +2,24 @@
 # Lithuanian translation for gnome-screensaver.
 # Copyright (C) 2005-2006, 2007, 2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-screensaver package.
-# Žygimantas Beručka <zygis@gnome.org>, 2005-2006, 2010.
+# Žygimantas Beručka <zygis@gnome.org>, 2005-2006.
 # Gintautas Miliauskas <gintas@akl.lt>, 2006, 2007, 2008.
+# Aurimas Černius <aurisc4@gmail.com>, 2010.
+# Rimas Kudelis <rq@akl.lt>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"screensaver&component=general\n"
-"POT-Creation-Date: 2010-07-02 01:36+0000\n"
-"PO-Revision-Date: 2010-09-28 19:24+0200\n"
-"Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
-"Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-10-13 15:48+0300\n"
+"PO-Revision-Date: 2010-10-03 13:58+0300\n"
+"Last-Translator: Rimas Kudelis <rq@akl.lt>\n"
+"Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
+"Content-Transfer-Encoding: UTF-8\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Virtaal 0.6.1\n"
 
 #: ../data/gnome-screensaver-preferences.desktop.in.h:1
@@ -47,14 +48,12 @@ msgid "Screensaver Preview"
 msgstr "Ekrano užsklandos peržiūra"
 
 #: ../data/gnome-screensaver-preferences.ui.h:5
-#| msgid "Screensaver Preview"
 msgid "Screensaver preview"
 msgstr "Ekrano užsklandos peržiūra"
 
 #: ../data/gnome-screensaver-preferences.ui.h:6
-#| msgid "<b>Warning: the screen will not be locked for the root user.</b>"
 msgid "Warning: the screen will not be locked for the root user."
-msgstr "Dėmesio: ekranas root naudotojui bus neužrakintas."
+msgstr "Dėmesio: root naudotojui ekranas nebus užrakintas."
 
 #: ../data/gnome-screensaver-preferences.ui.h:7
 msgid "_Activate screensaver when computer is idle"
@@ -144,15 +143,12 @@ msgstr ""
 "ekranas."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
-#| msgid ""
-#| "Set this to TRUE to offer an option in unlock dialog to logging out after "
-#| "a delay. The Delay is specified in the \"logout_delay\" key."
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to allow logging "
 "out after a delay. The delay is specified in the \"logout_delay\" key."
 msgstr ""
-"Nustatykite į teigiamą, jei norite, kad atrakinimo dialoge būtų rodoma "
-"galimybė atsijungti po tam tikro laiko tarpo. Laikas nurodomas "
+"Nustatykite į TEIGIAMĄ, jei norite, kad atrakinimo dialoge po tam tikro "
+"laiko tarpo būtų siūloma galimybė atsijungti. Laikas nurodomas "
 "„logout_delay“ rakte."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
@@ -191,18 +187,14 @@ msgstr ""
 "Minučių skaičius nuo ekrano užsklandos aktyvavimo iki ekrano užrakinimo."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
-#| msgid ""
-#| "The number of minutes after the screensaver activation before a logout "
-#| "option will appear in unlock dialog. This key has effect only if the "
-#| "\"logout_enable\" key is set to TRUE."
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in the unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
-"Minučių skaičius nuo ekrano užsklandos suaktyvinimo iki atsijungimo "
-"galimybės atsiradimo atrakinimo dialoge. Šis raktas aktualus tik tada, kai "
-"rakto „logout_enable“ reikšmė yra teigiama."
+"Minučių skaičius nuo ekrano užsklandos aktyvavimo iki atsijungimo galimybės "
+"atsiradimo atrakinimo dialoge. Šis raktas turi prasmę tik tada, kai rakto "
+"„logout_enable“ reikšmė yra TEIGIAMA."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid ""
@@ -214,16 +206,13 @@ msgid "The number of minutes to run before changing the screensaver theme."
 msgstr "Kas kiek minučių pakeičiama ekrano užsklandos tema."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
-#| msgid ""
-#| "The number of seconds of inactivity before signalling to power-"
-#| "management. This key is set and maintained by the session power-"
-#| "management agent."
 msgid ""
 "The number of seconds of inactivity before signalling to power management. "
 "This key is set and maintained by the session power management agent."
 msgstr ""
 "Neaktyvumo laikas sekundėmis, po kurio siunčiamas signalas energijos valdymo "
-"posistemei. Šią reikšmę nustato ir valdo seanso energijos valdymo programa."
+"posistemei. Ši reikšmė nustatoma sesijos energijos valdymo agentinė "
+"programos."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
@@ -260,9 +249,8 @@ msgid "Time before logout option"
 msgstr "Laikas iki atsijungimo parinkties"
 
 #: ../data/gnome-screensaver.schemas.in.h:28
-#| msgid "Time before power-management baseline"
 msgid "Time before power management baseline"
-msgstr "Laikas iki energijos valdymo bazinė linija"
+msgstr "Laikas iki energijos valdymo pirmos reikšmės pranešimo"
 
 #: ../data/gnome-screensaver.schemas.in.h:29
 msgid "Time before session is considered idle"
@@ -301,13 +289,13 @@ msgstr "Paveikslėlių aplankas"
 
 #: ../savers/popsquares.desktop.in.in.h:1
 msgid "A pop-art-ish grid of pulsing colors."
-msgstr "Popartinis pulsuojančių spalvų tinklelis."
+msgstr "Pulsuojančių spalvų kvadratėliai."
 
 #: ../savers/popsquares.desktop.in.in.h:2
 msgid "Pop art squares"
-msgstr "Poparto kvadratėliai"
+msgstr "Meniški kvadratėliai"
 
-#: ../savers/popsquares.c:49 ../savers/floaters.c:1205
+#: ../savers/popsquares.c:49 ../savers/floaters.c:1184
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Norėdami daugiau informacijos, žr. --help.\n"
@@ -347,12 +335,11 @@ msgstr "Naudotinas paveikslėlis"
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1199
-#| msgid "image - floats images around the screen"
+#: ../savers/floaters.c:1178
 msgid "image — floats images around the screen"
-msgstr "image – ekrane plaukioja paveikslėliai"
+msgstr "image — ekrane plaukioja paveikslėlis"
 
-#: ../savers/floaters.c:1214
+#: ../savers/floaters.c:1193
 #, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
@@ -368,9 +355,8 @@ msgid "PATH"
 msgstr "KELIAS"
 
 #: ../savers/slideshow.c:55
-#| msgid "Color to use for images background"
 msgid "Color to use for image background"
-msgstr "Naudotina paveikslėlių fono spalva"
+msgstr "Paveikslėlių fono spalva"
 
 #: ../savers/slideshow.c:55
 msgid "\"#rrggbb\""
@@ -400,16 +386,16 @@ msgstr "Į:"
 msgid "Copying themes"
 msgstr "Kopijuojamos temos"
 
-#: ../src/copy-theme-dialog.c:301
+#: ../src/copy-theme-dialog.c:300
 msgid "Invalid screensaver theme"
 msgstr "Netinkama ekrano užsklandos tema"
 
-#: ../src/copy-theme-dialog.c:304
+#: ../src/copy-theme-dialog.c:303
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
 msgstr "%s nėra tinkama ekrano užsklandos tema."
 
-#: ../src/copy-theme-dialog.c:484
+#: ../src/copy-theme-dialog.c:483
 #, c-format
 msgid "Copying file: %u of %u"
 msgstr "Kopijuojamas failas: %u iš %u"
@@ -470,13 +456,11 @@ msgstr "Šios programos versija"
 
 #: ../src/gnome-screensaver-command.c:295
 #, c-format
-#| msgid "The screensaver is %s\n"
 msgid "The screensaver is active\n"
 msgstr "Ekrano užsklanda yra aktyvi\n"
 
 #: ../src/gnome-screensaver-command.c:295
 #, c-format
-#| msgid "The screensaver is %s\n"
 msgid "The screensaver is inactive\n"
 msgstr "Ekrano užsklanda yra neaktyvi\n"
 
@@ -563,22 +547,18 @@ msgid "Password unchanged"
 msgstr "Slaptažodis nepakeistas"
 
 #: ../src/gnome-screensaver-dialog.c:193
-#| msgid "Can not get username"
 msgid "Cannot get username"
 msgstr "Nepavyko gauti naudotojo vardo"
 
 #: ../src/gnome-screensaver-dialog.c:194
-#| msgid "Retype new UNIX password:"
 msgid "Retype new Unix password:"
 msgstr "Pakartokite naują UNIX slaptažodį:"
 
 #: ../src/gnome-screensaver-dialog.c:195
-#| msgid "Enter new UNIX password:"
 msgid "Enter new Unix password:"
 msgstr "Įveskite naują UNIX slaptažodį:"
 
 #: ../src/gnome-screensaver-dialog.c:196
-#| msgid "(current) UNIX password:"
 msgid "(current) Unix password:"
 msgstr "(dabartinis) UNIX slaptažodis:"
 
@@ -603,7 +583,6 @@ msgid "Sorry, passwords do not match"
 msgstr "Slaptažodžiai nevienodi"
 
 #: ../src/gnome-screensaver-dialog.c:267
-#| msgid "Checking..."
 msgid "Checking…"
 msgstr "Tikrinama…"
 
@@ -672,11 +651,11 @@ msgstr "%s"
 msgid "Never"
 msgstr "Niekada"
 
-#: ../src/gnome-screensaver-preferences.c:1467
+#: ../src/gnome-screensaver-preferences.c:1449
 msgid "Could not load the main interface"
 msgstr "Nepavyko įkelti pagrindinės sąsajos"
 
-#: ../src/gnome-screensaver-preferences.c:1469
+#: ../src/gnome-screensaver-preferences.c:1451
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Įsitikinkite, kad ekrano užsklanda yra tinkamai įdiegta"
 
@@ -689,7 +668,6 @@ msgid "Enable debugging code"
 msgstr "Įjungti derinimo kodą"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
-#| msgid "Launch screen saver and locker program"
 msgid "Launch screensaver and locker program"
 msgstr "Paleisti ekrano užsklandą ir užraktą"
 
@@ -727,43 +705,40 @@ msgstr "neprisijungta prie pranešimų prievado"
 msgid "screensaver already running in this session"
 msgstr "šioje sesijoje jau paleista ekrano užsklanda"
 
-#: ../src/gs-lock-plug.c:256
+#: ../src/gs-lock-plug.c:257
 msgid "Time has expired."
 msgstr "Baigėsi laikas."
 
-#: ../src/gs-lock-plug.c:287
-#| msgid "You have the Caps Lock key on."
+#: ../src/gs-lock-plug.c:288
 msgid "You have the Caps & Num Lock keys on."
-msgstr "Įjungti jūsų Caps Lock ir Num Lock klavišai."
+msgstr "Įjungti Caps Lock ir Num Lock klavišai."
 
-#: ../src/gs-lock-plug.c:290
+#: ../src/gs-lock-plug.c:291
 msgid "You have the Caps Lock key on."
-msgstr "Įjungtas jūsų Caps Lock klavišas."
+msgstr "Įjungtas Caps Lock klavišas."
 
-#: ../src/gs-lock-plug.c:293
-#| msgid "You have the Caps Lock key on."
+#: ../src/gs-lock-plug.c:294
 msgid "You have the Num Lock key on."
-msgstr "Įjungtas jūsų Num Lock klavišas."
+msgstr "Įjungtas Num Lock klavišas."
 
-#: ../src/gs-lock-plug.c:1280
-#| msgid "_Switch User"
+#: ../src/gs-lock-plug.c:1379
 msgid "S_witch User…"
 msgstr "_Pakeisti naudotoją…"
 
-#: ../src/gs-lock-plug.c:1289
+#: ../src/gs-lock-plug.c:1388
 msgid "Log _Out"
 msgstr "At_sijungti"
 
-#: ../src/gs-lock-plug.c:1300
+#: ../src/gs-lock-plug.c:1399
 msgid "_Unlock"
 msgstr "_Atrakinti"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1465
+#: ../src/gs-lock-plug.c:1564
 msgid "%U on %h"
 msgstr "%U kompiuteryje %h"
 
-#: ../src/gs-lock-plug.c:1479
+#: ../src/gs-lock-plug.c:1578
 msgid "_Password:"
 msgstr "_Slaptažodis:"
 
