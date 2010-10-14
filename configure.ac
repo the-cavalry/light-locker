@@ -153,22 +153,6 @@ fi
 DBUS_SESSION_SERVICE_DIR=`pkg-config --variable session_bus_services_dir dbus-1 | sed -e 's,/usr/share,${datarootdir},g'`
 AC_SUBST(DBUS_SESSION_SERVICE_DIR)
 
-# Determine PAM prefix
-
-withval=""
-AC_ARG_WITH(pam-prefix,
-[  --with-pam-prefix=<prefix>   specify where pam files go],[
-if test x$withval != x; then
-   AC_MSG_RESULT("PAM files will be installed in prefix ${withval}.")
-fi])
-if test x$withval != x; then
-	PAM_PREFIX_UNEXPANDED="$withval"
-else
-	PAM_PREFIX_UNEXPANDED="$sysconfdir"
-fi
-PAM_PREFIX=`eval echo $PAM_PREFIX_UNEXPANDED`
-AC_SUBST(PAM_PREFIX)
-
 # Desktop entry handling
 
 PKG_CHECK_MODULES(LIB_GNOME_MENU,
@@ -570,326 +554,86 @@ dnl ---------------------------------------------------------------------------
 dnl - Check for PAM
 dnl ---------------------------------------------------------------------------
 
-have_pam=no
-AC_ARG_ENABLE(pam, AC_HELP_STRING([--enable-pam],
-                   [Enable PAM support @<:@default=auto@:>@],
-                   ),,enable_pam=auto)
+withval=""
+AC_ARG_WITH(pam-prefix,
+            AS_HELP_STRING([--with-pam-prefix=<prefix>],
+                           [specify where pam files go]),
+            [if test x$withval != x; then
+               AC_MSG_RESULT("PAM files will be installed in prefix ${withval}.")
+             fi])
 
-if test "x$enable_locking" = "xyes" -a  "x$enable_pam" != "xno"; then
+if test x$withval != x; then
+	PAM_PREFIX="$withval"
+else
+	PAM_PREFIX='${sysconfdir}'
+fi
+AC_SUBST(PAM_PREFIX)
+
+have_pam=no
+if test "x$enable_locking" = "xyes"; then
 AC_CHECK_LIB(pam, pam_start, have_pam=yes)
 fi
+
 if test "x$have_pam" = "xyes"; then
-
-    AUTH_LIBS="${AUTH_LIBS} -lpam"
-    AC_DEFINE(HAVE_PAM, 1, [Define if PAM support is included])
-
-    # On Linux, sigtimedwait() is in libc; on Solaris, it's in librt.
-    have_timedwait=no
-    AC_CHECK_LIB(c, sigtimedwait, [have_timedwait=yes])
-    if test "$have_timedwait" = no ; then
-      AC_CHECK_LIB(rt, sigtimedwait, [AUTH_LIBS="${AUTH_LIBS} -lrt"])
-    fi
-
-    AC_MSG_CHECKING(how to call pam_strerror)
-    AC_CACHE_VAL(ac_cv_pam_strerror_args,
-     [AC_TRY_COMPILE([#include <stdio.h>
-                      #include <stdlib.h>
-                      #include <security/pam_appl.h>],
-                     [pam_handle_t *pamh = 0;
-                      char *s = pam_strerror(pamh, PAM_SUCCESS);],
-                     [ac_pam_strerror_args=2],
-                     [AC_TRY_COMPILE([#include <stdio.h>
-                                      #include <stdlib.h>
-                                      #include <security/pam_appl.h>],
-                                     [char *s =
-                                       pam_strerror(PAM_SUCCESS);],
-                                     [ac_pam_strerror_args=1],
-                                     [ac_pam_strerror_args=0])])
-      ac_cv_pam_strerror_args=$ac_pam_strerror_args])
-    ac_pam_strerror_args=$ac_cv_pam_strerror_args
-    if test "$ac_pam_strerror_args" = 1 ; then
-      AC_MSG_RESULT(one argument)
-    elif test "$ac_pam_strerror_args" = 2 ; then
-      AC_DEFINE(PAM_STRERROR_TWO_ARGS, 1, [Define if pam_strerror takes two arguments])
-      AC_MSG_RESULT(two arguments)
-    else
-      AC_MSG_RESULT(unknown)
-    fi
-
-fi
-AM_CONDITIONAL(HAVE_PAM, test x$have_pam = xyes)
-AC_SUBST(HAVE_PAM)
-
-
-#       Check for the nine billion variants of shadow passwords...
-
-need_setuid=no
-
-have_shadow=no
-have_shadow_enhanced=no
-have_shadow_adjunct=no
-have_shadow_hpux=no
-have_passwd_helper=no
-
-with_shadow_req=unspecified
-
-AC_ARG_WITH(shadow,
-[  --with-shadow           Include support for shadow password authentication.],
-  [with_shadow="$withval"; with_shadow_req="$withval"],[with_shadow=yes])
-
-HANDLE_X_PATH_ARG(with_shadow, --with-shadow, shadow password)
-
-if test "$enable_locking" = no ; then
-  with_shadow_req=no
-  with_shadow=no
-fi
-
-
-#       Check for Sun "adjunct" passwords.
-
-if test "$with_shadow" = yes ; then
-  AC_CACHE_CHECK([for Sun-style shadow passwords], ac_cv_sun_adjunct,
-                 [AC_TRY_X_COMPILE([#include <stdlib.h>
-                                    #include <unistd.h>
-                                    #include <sys/types.h>
-                                    #include <sys/label.h>
-                                    #include <sys/audit.h>
-                                    #include <pwdadj.h>],
-                      [struct passwd_adjunct *p = getpwanam("nobody");
-                       const char *pw = p->pwa_passwd;],
-                      [ac_cv_sun_adjunct=yes],
-                      [ac_cv_sun_adjunct=no])])
-  if test "$ac_cv_sun_adjunct" = yes; then
-    have_shadow_adjunct=yes
-    have_shadow=yes
-    need_setuid=yes
-  fi
-fi
-
-
-#       Check for DEC and SCO so-called "enhanced" security.
-
-if test "$with_shadow" = yes ; then
-  AC_CACHE_CHECK([for DEC-style shadow passwords], ac_cv_enhanced_passwd,
-                 [AC_TRY_X_COMPILE([#include <stdlib.h>
-                                    #include <unistd.h>
-                                    #include <sys/types.h>
-                                    #include <pwd.h>
-                                    #include <sys/security.h>
-                                    #include <prot.h>],
-                      [struct pr_passwd *p;
-                       const char *pw;
-                       set_auth_parameters(0, 0);
-                       check_auth_parameters();
-                       p = getprpwnam("nobody");
-                       pw = p->ufld.fd_encrypt;],
-                      [ac_cv_enhanced_passwd=yes],
-                      [ac_cv_enhanced_passwd=no])])
-  if test $ac_cv_enhanced_passwd = yes; then
-    have_shadow_enhanced=yes
-    have_shadow=yes
-    need_setuid=yes
-
-    # On SCO, getprpwnam() is in -lprot (which uses nap() from -lx)
-    # (I'm told it needs -lcurses too, but I don't understand why.)
-    # But on DEC, it's in -lsecurity.
-    #
-    AC_CHECK_LIB(prot, getprpwnam,
-                 [AUTH_LIBS="$AUTH_LIBS -lprot -lcurses -lx"],
-                 [AC_CHECK_LIB(security, getprpwnam,
-                               [AUTH_LIBS="$AUTH_LIBS -lsecurity"])],
-                 [-lx])
-  fi
-fi
-
-#       Check for HP's entry in the "Not Invented Here" Sweepstakes.
-
-if test "$with_shadow" = yes ; then
-  AC_CACHE_CHECK([for HP-style shadow passwords], ac_cv_hpux_passwd,
-                 [AC_TRY_X_COMPILE([#include <stdlib.h>
-                                    #include <unistd.h>
-                                    #include <sys/types.h>
-                                    #include <pwd.h>
-                                    #include <hpsecurity.h>
-                                    #include <prot.h>],
-                      [struct s_passwd *p = getspwnam("nobody");
-                       const char *pw = p->pw_passwd;],
-                      [ac_cv_hpux_passwd=yes],
-                      [ac_cv_hpux_passwd=no])])
-  if test "$ac_cv_hpux_passwd" = yes; then
-    have_shadow_hpux=yes
-    have_shadow=yes
-    need_setuid=yes
-
-    # on HPUX, bigcrypt is in -lsec
-    AC_CHECK_LIB(sec, bigcrypt, [AUTH_LIBS="$AUTH_LIBS -lsec"])
-  fi
-fi
-
-
-#       Check for FreeBSD-style shadow passwords.
-#
-#       On FreeBSD, getpwnam() and friends work just like on non-shadow-
-#       password systems -- except you only get stuff in the pw_passwd field
-#       if the running program is setuid.  So, guess that we've got this
-#       lossage to contend with if /etc/master.passwd exists, and default to
-#       a setuid installation.
-
-if test "$with_shadow" = yes ; then
-  AC_CACHE_CHECK([for FreeBSD-style shadow passwords], ac_cv_master_passwd,
-                 [if test -f /etc/master.passwd ; then
-                    ac_cv_master_passwd=yes
-                  else
-                    ac_cv_master_passwd=no
-                  fi])
-  if test "$ac_cv_master_passwd" = yes; then
-    need_setuid=yes
-  fi
-fi
-
-
-#       Check for "traditional" shadow passwords.
-
-if test "$with_shadow" = yes ; then
-  AC_CACHE_CHECK([for generic shadow passwords], ac_cv_shadow,
-                 [AC_TRY_X_COMPILE([#include <stdlib.h>
-                                    #include <unistd.h>
-                                    #include <sys/types.h>
-                                    #include <pwd.h>
-                                    #include <shadow.h>],
-                      [struct spwd *p = getspnam("nobody");
-                       const char *pw = p->sp_pwdp;],
-                      [ac_cv_shadow=yes],
-                      [ac_cv_shadow=no])])
-  if test "$ac_cv_shadow" = yes; then
-    have_shadow=yes
-    need_setuid=yes
-
-    # On some systems (UnixWare 2.1), getspnam() is in -lgen instead of -lc.
-    have_getspnam=no
-    AC_CHECK_LIB(c, getspnam, [have_getspnam=yes])
-    if test "$have_getspnam" = no ; then
-      AC_CHECK_LIB(gen, getspnam,
-                   [have_getspnam=yes; AUTH_LIBS="$AUTH_LIBS -lgen"])
-    fi
-  fi
-fi
-
-
-#       Check for other libraries needed for non-shadow passwords.
-
-if test "$enable_locking" = yes ; then
-
-  # On some systems (UnixWare 2.1), crypt() is in -lcrypt instead of -lc.
-  have_crypt=no
-  AC_CHECK_LIB(c, crypt, [have_crypt=yes])
-  if test "$have_crypt" = no ; then
-    AC_CHECK_LIB(crypt, crypt,
-                 [have_crypt=yes; AUTH_LIBS="${AUTH_LIBS} -lcrypt"])
-  fi
-fi
-
-# Most of the above shadow mechanisms will have set need_setuid to yes,
-# if they were found.  But, on some systems, we need setuid even when
-# using plain old vanilla passwords.
-#
-if test "$enable_locking" = yes ; then
-  case "$host" in
-    *-hpux* | *-aix* | *-netbsd* | *-freebsd* | *-openbsd* )
-      need_setuid=yes
-    ;;
-  esac
-fi
-
-if test "$have_shadow_adjunct" = yes ; then
-  AC_DEFINE(HAVE_ADJUNCT_PASSWD, 1, [Define if system uses adjunct shadow passwords])
-elif test "$have_shadow_enhanced" = yes ; then
-  AC_DEFINE(HAVE_ENHANCED_PASSWD, 1, [Define if system uses enhanced shadow passwords])
-elif test "$have_shadow_hpux" = yes ; then
-  AC_DEFINE(HAVE_HPUX_PASSWD, 1, [Define if system uses HPUX shadow passwords])
-elif test "$have_shadow" = yes ; then
-  AC_DEFINE(HAVE_SHADOW_PASSWD, 1, [Define if system uses traditional shadow passwords])
-fi
-
-#       Check for external password helper
-#       On SuSE, instead of having xscreensaver be a setuid program, they
-#       fork an external program that takes the password on stdin, and
-#       returns true if that password is a valid one.  Then only that
-#       smaller program needs to be setuid.
-#
-#       (Note that this external program is not a GUI: the GUI is still
-#       all in xscreensaver itself; the external program just does auth.)
-
-have_passwd_helper=no
-with_passwd_helper_req=unspecified
-
-AC_ARG_WITH(passwd-helper,
-[  --with-passwd-helper    Include support for an external password
-                          verification helper program.],
-  [with_passwd_helper="$withval"; with_passwd_helper_req="$withval"],[with_passwd_helper=no])
-# no HANDLE_X_PATH_ARG for this one
-
-if test "$enable_locking" = no ; then
-  with_passwd_helper_req=no
-  with_passwd_helper=no
-fi
-
-case "$with_passwd_helper" in
-  ""|no) : ;;
-  /*)
-    AC_DEFINE_UNQUOTED(PASSWD_HELPER_PROGRAM, "$with_passwd_helper", [Full pathname of password helper application])
-    have_passwd_helper=yes;;
-  *)
-    echo "error: --with-passwd-helper needs full pathname of helper (not '$with_passwd_helper')." >&2
-    exit 1
-esac
-AM_CONDITIONAL(HAVE_PASSWD_HELPER, test x$have_passwd_helper = xyes)
-AC_SUBST(HAVE_PASSWD_HELPER)
-
-if test "$need_setuid" = yes -a "$have_pam" != yes ; then
-  NEED_SETUID=yes
-else
-  NEED_SETUID=no
-fi
-AC_SUBST(NEED_SETUID)
-
-dnl ---------------------------------------------------------------------------
-dnl  Authentication scheme
-dnl ---------------------------------------------------------------------------
-
-AC_ARG_ENABLE(authentication-scheme,
-  [  --enable-authentication-scheme=[auto/pam/helper/pwent]  Choose a specific
-                          authentication scheme [default=auto]],,
-  enable_authentication_scheme=auto)
-
-AUTH_SCHEME="auth-pam"
-
-if test x$enable_authentication_scheme = xpam -a x$have_pam = xno ; then
-	AC_MSG_ERROR(PAM support requested but not available)
-fi
-if test x$enable_authentication_scheme = xhelper -a x$have_passwd_helper = xno ; then
-	AC_MSG_ERROR(Password helper support requested but not available)
-fi
-
-if test x$enable_authentication_scheme = xpam ; then
-        AUTH_SCHEME="pam"
-elif test x$enable_authentication_scheme = xhelper ; then
-        AUTH_SCHEME="helper"
-elif test x$enable_authentication_scheme = xpwent ; then
-        AUTH_SCHEME="pwent"
-elif test x$enable_authentication_scheme = xauto ; then
-	if test x$have_pam != xno ; then
-		AUTH_SCHEME="pam"
-	elif test x$have_passwd_helper != xno ; then
-		AUTH_SCHEME="helper"
-	else
-		AUTH_SCHEME="pwent"
+        AUTH_LIBS="${AUTH_LIBS} -lpam"
+        # On Linux, sigtimedwait() is in libc; on Solaris, it's in librt.
+        have_timedwait=no
+        AC_CHECK_LIB(c, sigtimedwait, [have_timedwait=yes])
+        if test "$have_timedwait" = no ; then
+                AC_CHECK_LIB(rt, sigtimedwait, [AUTH_LIBS="${AUTH_LIBS} -lrt"])
         fi
+
+        AC_MSG_CHECKING(how to call pam_strerror)
+        AC_CACHE_VAL(ac_cv_pam_strerror_args,
+         [AC_TRY_COMPILE([#include <stdio.h>
+                          #include <stdlib.h>
+                          #include <security/pam_appl.h>],
+                         [pam_handle_t *pamh = 0;
+                          char *s = pam_strerror(pamh, PAM_SUCCESS);],
+                         [ac_pam_strerror_args=2],
+                         [AC_TRY_COMPILE([#include <stdio.h>
+                                          #include <stdlib.h>
+                                          #include <security/pam_appl.h>],
+                                         [char *s =
+                                           pam_strerror(PAM_SUCCESS);],
+                                         [ac_pam_strerror_args=1],
+                                         [ac_pam_strerror_args=0])])
+          ac_cv_pam_strerror_args=$ac_pam_strerror_args])
+        ac_pam_strerror_args=$ac_cv_pam_strerror_args
+        if test "$ac_pam_strerror_args" = 1 ; then
+          AC_MSG_RESULT(one argument)
+        elif test "$ac_pam_strerror_args" = 2 ; then
+          AC_DEFINE(PAM_STRERROR_TWO_ARGS, 1, [Define if pam_strerror takes two arguments])
+          AC_MSG_RESULT(two arguments)
+        else
+          AC_MSG_RESULT(unknown)
+        fi
+
 else
-	AC_MSG_ERROR(Unknown authentication scheme)
+	AC_MSG_ERROR("PAM libraries not found")
+fi
+AC_SUBST(HAVE_PAM)
+AC_SUBST(AUTH_LIBS)
+
+AC_CHECK_HEADERS([security/pam_modutil.h security/pam_ext.h])
+AC_CHECK_LIB(pam, pam_syslog, [AC_DEFINE(HAVE_PAM_SYSLOG, [], [Define to 1 if you have the pam_syslog function])])
+
+dnl test whether struct pam_message is const (Linux) or not (Sun)
+if test "x$have_pam" = "xyes"; then
+   pam_appl_h="$ac_pam_includes/security/pam_appl.h"
+   AC_MSG_CHECKING(for const pam_message)
+   AC_EGREP_HEADER([struct pam_message],
+      $pam_appl_h,
+      [ AC_EGREP_HEADER([const struct pam_message],
+                        $pam_appl_h,
+                        [AC_MSG_RESULT(["const: Linux-type PAM"]) ],
+                        [AC_MSG_RESULT(["nonconst: Sun-type PAM"])
+                        AC_DEFINE(PAM_MESSAGE_NONCONST, 1, [Define if your PAM support takes non-const arguments (Solaris)])]
+                        )],
+       [AC_MSG_RESULT(["not found - assume const, Linux-type PAM"])]
+       )
 fi
 
-AC_SUBST(AUTH_SCHEME)
 
 dnl ---------------------------------------------------------------------------
 dnl libgnomekbd
@@ -1077,7 +821,6 @@ echo "
         sysconfdir:               ${EXPANDED_SYSCONFDIR}
         localstatedir:            ${EXPANDED_LOCALSTATEDIR}
         datadir:                  ${EXPANDED_DATADIR}
-        PAM prefix:               ${PAM_PREFIX}
 	source code location:	  ${srcdir}
 	compiler:		  ${CC}
 	cflags:		          ${CFLAGS}
@@ -1091,23 +834,7 @@ echo "
         Screen locking enabled:   ${enable_locking}
         User switching enabled:   ${enable_user_switching}
         Show keyboard indicator:  ${with_kbd_layout_indicator}
-        PAM support:              ${have_pam}
-        Have shadow passwords:    ${have_shadow}
-        Have adjunct shadow:      ${have_shadow_adjunct}
-        Have enhanced shadow:     ${have_shadow_enhanced}
-        Have HPUX shadow:         ${have_shadow_hpux}
-        Have password helper:     ${have_passwd_helper}
-        Authentication scheme:    ${AUTH_SCHEME}"
+        PAM prefix:               ${PAM_PREFIX}
 
-if test "x$need_setuid" = "xyes" -a "x$have_pam" != "xyes" ; then
-echo \
-"        Need setuid dialog:       yes
 "
-else
-echo \
-"        Need setuid dialog:       no
-"
-fi
 
-
-echo ""

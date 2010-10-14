@@ -64,11 +64,6 @@ gnome_screensaver_command_LDADD =	\
 	$(GNOME_SCREENSAVER_COMMAND_LIBS)	\
 	$(NULL)
 
-AUTH_SOURCES = 			\
-	gs-auth.h		\
-	gs-auth-@AUTH_SCHEME@.c	\
-	$(NULL)
-
 test_fade_SOURCES = 			\
 	test-fade.c 			\
 	gs-fade.c	 		\
@@ -84,7 +79,8 @@ test_fade_LDADD =			\
 
 test_passwd_SOURCES = 			\
 	test-passwd.c 			\
-	$(AUTH_SOURCES)			\
+	gs-auth.h			\
+	gs-auth-pam.c			\
 	setuid.c			\
 	setuid.h			\
 	subprocs.c			\
@@ -140,13 +136,8 @@ gnome_screensaver_dialog_SOURCES = 	\
 	setuid.h			\
 	subprocs.c			\
 	subprocs.h			\
-	$(AUTH_SOURCES)			\
-	$(NULL)
-
-EXTRA_gnome_screensaver_dialog_SOURCES = \
-	gs-auth-pam.c		\
-	gs-auth-helper.c	\
-	gs-auth-pwent.c		\
+	gs-auth.h			\
+	gs-auth-pam.c			\
 	$(NULL)
 
 gnome_screensaver_dialog_LDADD =	\
