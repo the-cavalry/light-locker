@@ -1,4 +1,20 @@
 ===============
+Version  2.91.0
+===============
+
+ - Switch to GTK+ 3.0
+ - Fix crash on systems that lack vidmode and randr extensions
+ - Add session service activation file
+ - Use better unicode symbols in strings
+ - Drop "Leave a message" feature
+ - Drop unlock dialog theme support
+ - Drop support for non-PAM based authentication
+ - Improve aesthetics of unlock dialog
+ - Monitor hotplug fixes
+ - Auto-activate screensaver when needed if not running
+ - Translation updates
+
+===============
 Version  2.30.0
 ===============
 
