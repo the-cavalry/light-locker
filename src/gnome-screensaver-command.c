@@ -270,6 +270,22 @@ oom:
 }
 
 static gboolean
+screensaver_is_running (DBusConnection *connection)
+{
+        DBusError               error;
+        gboolean                exists;
+
+        g_return_val_if_fail (connection != NULL, FALSE);
+
+        dbus_error_init (&error);
+        exists = dbus_bus_name_has_owner (connection, GS_SERVICE, &error);
+        if (dbus_error_is_set (&error))
+                dbus_error_free (&error);
+
+        return exists;
+}
+
+static gboolean
 do_command (DBusConnection *connection)
 {
         DBusMessage *reply;
@@ -283,6 +299,11 @@ do_command (DBusConnection *connection)
                 DBusMessageIter iter;
                 DBusMessageIter array;
                 dbus_bool_t     v;
+
+                if (!screensaver_is_running (connection)) {
+                        g_message ("Screensaver is not running!");
+                        goto done;
+                }
 
                 reply = screensaver_send_message_void (connection, "GetActive", TRUE);
                 if (! reply) {
