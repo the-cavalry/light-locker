@@ -4,17 +4,18 @@
 # This file is distributed under the same license as the gnome-screensaver
 # package.
 # Josep Puigdemont i Casamajó <josep.puigdemont@gmail.com>, 2006.
-# Gil Forcada <gilforcada@guifi.net>, 2006, 2007, 2008, 2009.
+# Gil Forcada <gilforcada@guifi.net>, 2006, 2007, 2008, 2009, 2010.
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-21 23:24+0200\n"
-"PO-Revision-Date: 2010-04-02 18:08+0200\n"
+"POT-Creation-Date: 2010-10-29 01:18+0100\n"
+"PO-Revision-Date: 2010-09-27 14:40+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.net>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -34,8 +35,9 @@ msgid "<b>Screensaver preview</b>"
 msgstr "<b>Previsualització de l'estalvi de pantalla</b>"
 
 #: ../data/gnome-screensaver-preferences.ui.h:2
+#, fuzzy
 msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgstr "<b>Avís: la pantalla no es bloquejarà per al superusuari (root).</b>"
+msgstr "Avís: la pantalla no es bloquejarà per al superusuari (root)."
 
 #: ../data/gnome-screensaver-preferences.ui.h:3
 msgid "Power _Management"
@@ -152,13 +154,14 @@ msgstr ""
 "canviar a una compte d'usuari diferent."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
+#, fuzzy
 msgid ""
 "Set this to TRUE to offer an option in unlock dialog to logging out after a "
 "delay. The Delay is specified in the \"logout_delay\" key."
 msgstr ""
-"Establiu-ho com a cert per oferir una opció en el diàleg de desbloqueig per "
-"eixir després d'un retard. El retard està especificat a la clau "
-"«logout_delay»."
+"Establiu-ho com a «TRUE» (cert) per oferir una opció en el diàleg de "
+"desbloqueig per eixir després d'un retard. El retard està especificat a la "
+"clau «logout_delay»."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
@@ -169,7 +172,7 @@ msgid ""
 msgstr ""
 "L'orde que s'executarà, si la clau «embedded_keyboard_enabled» s'estableix a "
 "CERT, per incrustar un teclat a la pantalla. Esta orde hauria d'implementar "
-"un connector d'interfície XEMBED, i escriure a l'eixida estàndard un XID de "
+"un connector d'interfície XEMBED, i escriure a la eixida estàndard un XID de "
 "finestra."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
@@ -179,7 +182,7 @@ msgid ""
 "the \"logout_enable\" key is set to TRUE."
 msgstr ""
 "L'orde a invocar en prémer el botó d'eixida. Esta orde només hauria de "
-"tancar la sessió de l'usuari sense cap interacció. Esta clau només te efecte "
+"tancar la sessió de l'usuari sense cap interacció. Esta clau només té efecte "
 "si la clau «logout_enable» està a cert."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
@@ -190,6 +193,7 @@ msgstr ""
 "activat l'estalvi de pantalla."
 
 #: ../data/gnome-screensaver.schemas.in.h:20
+#, fuzzy
 msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in unlock dialog. This key has effect only if the "
@@ -197,7 +201,7 @@ msgid ""
 msgstr ""
 "El nombre de minuts que han de passar perquè aparega l'opció d'eixir en el "
 "diàleg de desbloqueig un cop activat l'estalvi de pantalla. Esta clau només "
-"té efecte si la clau «logout_enable» està a cert."
+"té efecte si la clau «logout_enable» està a «TRUE» (cert)."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid ""
@@ -213,6 +217,7 @@ msgstr ""
 "de pantalla."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
+#, fuzzy
 msgid ""
 "The number of seconds of inactivity before signalling to power-management. "
 "This key is set and maintained by the session power-management agent."
@@ -250,9 +255,9 @@ msgid ""
 "\" is \"random\"."
 msgstr ""
 "Esta clau especifica la llista de temes a utilitzar per l'estalvi de "
-"pantalla. S'ignora si la clau «mode» és «blank-only», hauria de tindre el nom "
-"del tema quan «mode» és «single», i hauria de tindre una llista de temes quan "
-"«mode» és «random»."
+"pantalla. S'ignora si la clau «mode» és «blank-only», hauria de tindre el "
+"nom del tema quan «mode» és «single», i hauria de tindre una llista de temes "
+"quan «mode» és «random»."
 
 #: ../data/gnome-screensaver.schemas.in.h:28
 msgid "Time before locking"
@@ -263,6 +268,7 @@ msgid "Time before logout option"
 msgstr "Temps abans de l'opció d'eixida"
 
 #: ../data/gnome-screensaver.schemas.in.h:30
+#, fuzzy
 msgid "Time before power-management baseline"
 msgstr "Temps abans de la línia base del gestor d'energia"
 
@@ -299,11 +305,12 @@ msgstr "Deixeu un _missatge"
 
 #: ../data/lock-dialog-default.ui.h:9
 msgid "_Log Out"
-msgstr "I_x"
+msgstr "_Surt"
 
 #: ../data/lock-dialog-default.ui.h:10
+#, fuzzy
 msgid "_Switch User"
-msgstr "Canvia d'_usuari"
+msgstr "Canvia d'_usuari…"
 
 #: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1372
 msgid "_Unlock"
@@ -385,8 +392,9 @@ msgstr "La imatge que s'utilitzarà"
 #. * represents a command line argument
 #.
 #: ../savers/floaters.c:1198
+#, fuzzy
 msgid "image - floats images around the screen"
-msgstr "image - fa flotar imatges per la pantalla"
+msgstr "image — fa flotar imatges per la pantalla"
 
 #: ../savers/floaters.c:1213
 #, c-format
@@ -404,8 +412,9 @@ msgid "PATH"
 msgstr "CAMÍ"
 
 #: ../savers/slideshow.c:55
+#, fuzzy
 msgid "Color to use for images background"
-msgstr "El color a utilitzar per a les imatges de fons"
+msgstr "El color a utilitzar per a la imatge de fons"
 
 #: ../savers/slideshow.c:55
 msgid "\"#rrggbb\""
@@ -508,9 +517,9 @@ msgid "Version of this application"
 msgstr "Versió d'esta aplicació"
 
 #: ../src/gnome-screensaver-command.c:311
-#, c-format
+#, fuzzy, c-format
 msgid "The screensaver is %s\n"
-msgstr "L'estalvi de pantalla està %s\n"
+msgstr "L'estalvi de pantalla està actiu\n"
 
 #: ../src/gnome-screensaver-command.c:311
 msgid "active"
@@ -603,18 +612,22 @@ msgid "Password unchanged"
 msgstr "No s'ha canviat la contrasenya"
 
 #: ../src/gnome-screensaver-dialog.c:189
+#, fuzzy
 msgid "Can not get username"
 msgstr "No s'ha pogut obtindre el nom d'usuari"
 
 #: ../src/gnome-screensaver-dialog.c:190
+#, fuzzy
 msgid "Retype new UNIX password:"
 msgstr "Reescriviu la nova contrasenya UNIX:"
 
 #: ../src/gnome-screensaver-dialog.c:191
+#, fuzzy
 msgid "Enter new UNIX password:"
-msgstr "Entreu la nova contrasenya UNIX:"
+msgstr "Introduïu la nova contrasenya UNIX:"
 
 #: ../src/gnome-screensaver-dialog.c:192
+#, fuzzy
 msgid "(current) UNIX password:"
 msgstr "Contrasenya UNIX (actual):"
 
@@ -639,8 +652,9 @@ msgid "Sorry, passwords do not match"
 msgstr "Les contrasenyes no coincideixen"
 
 #: ../src/gnome-screensaver-dialog.c:263
+#, fuzzy
 msgid "Checking..."
-msgstr "S'està comprovant..."
+msgstr "S'està connectant..."
 
 #: ../src/gnome-screensaver-dialog.c:305 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
@@ -721,6 +735,7 @@ msgid "Enable debugging code"
 msgstr "Habilita el codi de depuració"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
+#, fuzzy
 msgid "Launch screen saver and locker program"
 msgstr "Executa l'estalvi de pantalla i el programa de blocatge"
 
@@ -783,6 +798,21 @@ msgstr "%U a %h"
 msgid "_Password:"
 msgstr "_Contrasenya:"
 
+#~ msgid "Screensaver preview"
+#~ msgstr "Previsualització de l'estalvi de pantalla"
+
+#~ msgid "The screensaver is inactive\n"
+#~ msgstr "L'estalvi de pantalla està inactiu\n"
+
+#~ msgid "Checking…"
+#~ msgstr "S'està comprovant…"
+
+#~ msgid "You have the Caps & Num Lock keys on."
+#~ msgstr "Teniu les tecles de fixació de majúscules i de números activades."
+
+#~ msgid "You have the Num Lock key on."
+#~ msgstr "Teniu la tecla de fixació de fixació de números activada."
+
 #~ msgid "Reason for being away"
 #~ msgstr "Motiu pel que esteu absent"
 
@@ -821,9 +851,6 @@ msgstr "_Contrasenya:"
 
 #~ msgid "Total number of URIs"
 #~ msgstr "El nombre total d'URIs"
-
-#~ msgid "Connecting..."
-#~ msgstr "S'està connectant..."
 
 #~ msgid "_Switch user..."
 #~ msgstr "Canvia d'_usuari..."
