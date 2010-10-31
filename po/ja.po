@@ -10,10 +10,11 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "screensaver&component=general\n"
-"POT-Creation-Date: 2010-09-15 21:42+0000\n"
-"PO-Revision-Date: 2010-09-19 15:30+0900\n"
+"POT-Creation-Date: 2010-10-29 00:24+0000\n"
+"PO-Revision-Date: 2010-10-28 00:18+0900\n"
 "Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -51,7 +52,7 @@ msgstr "スクリーンセーバーのプレビュー"
 #: ../data/gnome-screensaver-preferences.ui.h:6
 msgid "Warning: the screen will not be locked for the root user."
 msgstr ""
-"注意: root ユーザの場合、スクリーンはロックされないので注意してください。"
+"注意: root ユーザの場合、スクリーンはロックされないので注意してください"
 
 #: ../data/gnome-screensaver-preferences.ui.h:7
 msgid "_Activate screensaver when computer is idle"
@@ -146,17 +147,16 @@ msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to allow logging "
 "out after a delay. The delay is specified in the \"logout_delay\" key."
 msgstr ""
-"TRUE にすると、ある時間経過するとログアウトを許可するオプションがロック解除の"
-"ダイアログに現れます。どの程度の経過すると出現するかは、\"logout_delay\" キー"
-"で指定します。"
+"TRUE にすると、ロックを解除するダイアログに、一定時間後にログアウトするための"
+"オプションを表示します。時間は \"logout_delay\" キーで指定します。"
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
 msgstr ""
-"TRUE にすると、他のユーザ・アカウントへ切り替えるためのオプションをロックを解"
-"除するダイアログに表示します。"
+"TRUE にすると、ロックを解除するダイアログに、他のユーザ・アカウントへ切り替え"
+"るためのオプションを表示します。"
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
@@ -193,8 +193,8 @@ msgid ""
 "\"logout_enable\" key is set to TRUE."
 msgstr ""
 "スクリーンセーバーを起動してロックを解除するダイアログにログアウトのオプショ"
-"ンが表示されるまでの時間 (分) です。このキーは、\"logout_enable\" キーが "
-"TRUE の場合にのみ効果があります。"
+"ンが表示されるまでのアイドル時間 (分) です。このキーは、\"logout_enable\" "
+"キーが TRUE の場合にのみ効果があります。"
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid ""
@@ -208,6 +208,7 @@ msgstr ""
 "す。"
 
 #: ../data/gnome-screensaver.schemas.in.h:23
+#, fuzzy
 msgid ""
 "The number of seconds of inactivity before signalling to power management. "
 "This key is set and maintained by the session power management agent."
@@ -226,8 +227,8 @@ msgid ""
 msgstr ""
 "スクリーンセーバーが使用する選択モードを指定します。指定可能な値: \"blank-"
 "only\" (テーマを使用せずにスクリーンセーバーを起動する)、\"single\" (\"themes"
-"\" キーで指定したテーマを一つだけ使用してスクリーンセーバーを起動する)、"
-"\"random\" (テーマをランダムに使用してスクリーンセーバーを起動する)"
+"\" キーで指定したテーマを一つだけ使用してスクリーンセーバーを起動す"
+"る)、\"random\" (テーマをランダムに使用してスクリーンセーバーを起動する)"
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid ""
@@ -250,6 +251,7 @@ msgid "Time before logout option"
 msgstr "ログアウトのオプションを表示するまでの時間"
 
 #: ../data/gnome-screensaver.schemas.in.h:28
+#, fuzzy
 msgid "Time before power management baseline"
 msgstr "パワー・マネージメントに制御を移すまでの時間"
 
@@ -296,7 +298,7 @@ msgstr "四角形が脈打つように見えるポップ・アートを表示し
 msgid "Pop art squares"
 msgstr "ポップな矩形のアート"
 
-#: ../savers/popsquares.c:49 ../savers/floaters.c:1205
+#: ../savers/popsquares.c:49 ../savers/floaters.c:1184
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s (用法については --help オプションで確認してください)\n"
@@ -336,11 +338,12 @@ msgstr "使用する元の画像"
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1199
+#: ../savers/floaters.c:1178
+#, fuzzy
 msgid "image — floats images around the screen"
 msgstr "画像 - スクリーンの回りに画像を浮かす"
 
-#: ../savers/floaters.c:1214
+#: ../savers/floaters.c:1193
 #, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
@@ -356,6 +359,7 @@ msgid "PATH"
 msgstr "PATH"
 
 #: ../savers/slideshow.c:55
+#, fuzzy
 msgid "Color to use for image background"
 msgstr "画像の背景に使用する色を指定する"
 
@@ -387,16 +391,16 @@ msgstr "コピー先:"
 msgid "Copying themes"
 msgstr "テーマのコピー中"
 
-#: ../src/copy-theme-dialog.c:301
+#: ../src/copy-theme-dialog.c:300
 msgid "Invalid screensaver theme"
 msgstr "スクリーンセーバーのテーマが間違っています"
 
-#: ../src/copy-theme-dialog.c:304
+#: ../src/copy-theme-dialog.c:303
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
 msgstr "%s はスクリーンセーバーとして妥当なテーマではないようです。"
 
-#: ../src/copy-theme-dialog.c:484
+#: ../src/copy-theme-dialog.c:483
 #, c-format
 msgid "Copying file: %u of %u"
 msgstr "ファイルのコピー中: %u / %u"
@@ -456,32 +460,32 @@ msgstr "スクリーンセーバーを抑止するための理由を指定する
 msgid "Version of this application"
 msgstr "このアプリケーションのバージョンを表示する"
 
-#: ../src/gnome-screensaver-command.c:295
-#, c-format
+#: ../src/gnome-screensaver-command.c:316
+#, fuzzy, c-format
 msgid "The screensaver is active\n"
-msgstr "スクリーンセーバーは有効です\n"
+msgstr "スクリーンセーバーは%s\n"
 
-#: ../src/gnome-screensaver-command.c:295
-#, c-format
+#: ../src/gnome-screensaver-command.c:316
+#, fuzzy, c-format
 msgid "The screensaver is inactive\n"
-msgstr "スクリーンセーバーは無効です\n"
+msgstr "スクリーンセーバーは%s\n"
 
-#: ../src/gnome-screensaver-command.c:309
+#: ../src/gnome-screensaver-command.c:330
 #, c-format
 msgid "The screensaver is not inhibited\n"
 msgstr "スクリーンセーバーは無効になっていません\n"
 
-#: ../src/gnome-screensaver-command.c:315
+#: ../src/gnome-screensaver-command.c:336
 #, c-format
 msgid "The screensaver is being inhibited by:\n"
 msgstr "次のアプリがスクリーンセーバーを無効にしています:\n"
 
-#: ../src/gnome-screensaver-command.c:346
+#: ../src/gnome-screensaver-command.c:367
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "スクリーンセーバーは %d 秒間起動されています\n"
 
-#: ../src/gnome-screensaver-command.c:350
+#: ../src/gnome-screensaver-command.c:371
 #, c-format
 msgid "The screensaver is not currently active.\n"
 msgstr "スクリーンセーバーは現在、有効になっていません。\n"
@@ -548,18 +552,22 @@ msgid "Password unchanged"
 msgstr "パスワードは変更されていません"
 
 #: ../src/gnome-screensaver-dialog.c:193
+#, fuzzy
 msgid "Cannot get username"
 msgstr "ユーザ名を取得できません"
 
 #: ../src/gnome-screensaver-dialog.c:194
+#, fuzzy
 msgid "Retype new Unix password:"
 msgstr "(確認) 新しい UNIX パスワード:"
 
 #: ../src/gnome-screensaver-dialog.c:195
+#, fuzzy
 msgid "Enter new Unix password:"
 msgstr "新しい UNIX パスワード:"
 
 #: ../src/gnome-screensaver-dialog.c:196
+#, fuzzy
 msgid "(current) Unix password:"
 msgstr "(現在の) UNIX パスワード:"
 
@@ -584,8 +592,9 @@ msgid "Sorry, passwords do not match"
 msgstr "すみませんが、パスワードが一致しません"
 
 #: ../src/gnome-screensaver-dialog.c:267
+#, fuzzy
 msgid "Checking…"
-msgstr "確認中…"
+msgstr "確認中..."
 
 #: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
@@ -646,11 +655,11 @@ msgstr "%s"
 msgid "Never"
 msgstr "しない"
 
-#: ../src/gnome-screensaver-preferences.c:1467
+#: ../src/gnome-screensaver-preferences.c:1449
 msgid "Could not load the main interface"
 msgstr "Glade インタフェースを読み込めませんでした"
 
-#: ../src/gnome-screensaver-preferences.c:1469
+#: ../src/gnome-screensaver-preferences.c:1451
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "gnome-screensaver が正しくインストールされているか確認してください。"
 
@@ -663,6 +672,7 @@ msgid "Enable debugging code"
 msgstr "デバッグ・モードにする"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
+#, fuzzy
 msgid "Launch screensaver and locker program"
 msgstr "スクリーンセーバーおよびロックするプロラグラムを起動"
 
@@ -705,6 +715,7 @@ msgid "Time has expired."
 msgstr "タイムアウトしました"
 
 #: ../src/gs-lock-plug.c:288
+#, fuzzy
 msgid "You have the Caps & Num Lock keys on."
 msgstr "[Caps Lock] キーが押されています"
 
@@ -713,27 +724,29 @@ msgid "You have the Caps Lock key on."
 msgstr "[Caps Lock] キーが押されています"
 
 #: ../src/gs-lock-plug.c:294
+#, fuzzy
 msgid "You have the Num Lock key on."
-msgstr "[Num Lock] キーが押されています"
+msgstr "[Caps Lock] キーが押されています"
 
-#: ../src/gs-lock-plug.c:1281
+#: ../src/gs-lock-plug.c:1379
+#, fuzzy
 msgid "S_witch User…"
-msgstr "ユーザの切り替え(_W)…"
+msgstr "ユーザの切り替え(_S)"
 
-#: ../src/gs-lock-plug.c:1290
+#: ../src/gs-lock-plug.c:1388
 msgid "Log _Out"
 msgstr "ログアウト(_O)"
 
-#: ../src/gs-lock-plug.c:1301
+#: ../src/gs-lock-plug.c:1399
 msgid "_Unlock"
 msgstr "ロックの解除(_U)"
 
 #. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1466
+#: ../src/gs-lock-plug.c:1564
 msgid "%U on %h"
 msgstr "%U@%h"
 
-#: ../src/gs-lock-plug.c:1480
+#: ../src/gs-lock-plug.c:1578
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
