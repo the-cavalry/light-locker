@@ -6,9 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"screensaver&component=general\n"
-"POT-Creation-Date: 2010-10-19 18:04+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver&component=general\n"
+"POT-Creation-Date: 2010-10-31 05:35+0000\n"
 "PO-Revision-Date: 2009-10-29 10:52+0000\n"
 "Last-Translator: Sahran <sahran@live.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -120,42 +119,30 @@ msgstr "ئېكران قوغدىغۇچ تېمىسىنى تاللاش ھالىتى
 
 #: ../data/gnome-screensaver.schemas.in.h:12
 msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr ""
-"بۇ قىممەت TRUE قىلىپ تەڭشەلسە ئەڭگىمە بوش ۋاقىتتا ئېكران قوغدىغۇچنى "
-"ئاكتىپلايدۇ."
+msgstr "بۇ قىممەت TRUE قىلىپ تەڭشەلسە ئەڭگىمە بوش ۋاقىتتا ئېكران قوغدىغۇچنى ئاكتىپلايدۇ."
 
 #: ../data/gnome-screensaver.schemas.in.h:13
 msgid ""
 "Set this to TRUE to allow embedding a keyboard into the window when trying "
 "to unlock. The \"keyboard_command\" key must be set with the appropriate "
 "command."
-msgstr ""
-"بۇ قىممەت TRUE قىلىپ تەڭشەلسە ئىشلەتكۈچى قۇلۇپ ئاچقان ۋاقىتتىكى كۆزنەككە "
-"ھەرپتاختىنى سىڭدۈرىدۇ. \"keyboard_command\" كۇنۇپكا چوقۇم مۇۋاپىق بۇيرۇققا "
-"تەڭشىلىشى لازىم."
+msgstr "بۇ قىممەت TRUE قىلىپ تەڭشەلسە ئىشلەتكۈچى قۇلۇپ ئاچقان ۋاقىتتىكى كۆزنەككە ھەرپتاختىنى سىڭدۈرىدۇ. \"keyboard_command\" كۇنۇپكا چوقۇم مۇۋاپىق بۇيرۇققا تەڭشىلىشى لازىم."
 
 #: ../data/gnome-screensaver.schemas.in.h:14
 msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr ""
-"بۇ قىممەت TRUE قىلىپ تەڭشەلسە ئېكران قوغدىغۇچ ئاكتىپلانغاندا ئېكران "
-"قۇلۇپلىنىدۇ."
+msgstr "بۇ قىممەت TRUE قىلىپ تەڭشەلسە ئېكران قوغدىغۇچ ئاكتىپلانغاندا ئېكران قۇلۇپلىنىدۇ."
 
 #: ../data/gnome-screensaver.schemas.in.h:15
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to allow logging "
 "out after a delay. The delay is specified in the \"logout_delay\" key."
-msgstr ""
-"بۇ قىممەت TRUE قىلىپ تەڭشەلسە قۇلۇپ ئېچىش سۆزلەشكۈدە تاللانمىدىن بىرى "
-"تەمىنلىنىپ سەل كېچىكتۈرۈلگەندىن كېيىن تىزىمدىن چىقىدۇ. بۇ كېچىكتۈرۈشنى "
-"\"logout_delay\" قىممىتى بەلگىلەيدۇ."
+msgstr "بۇ قىممەت TRUE قىلىپ تەڭشەلسە قۇلۇپ ئېچىش سۆزلەشكۈدە تاللانمىدىن بىرى تەمىنلىنىپ سەل كېچىكتۈرۈلگەندىن كېيىن تىزىمدىن چىقىدۇ. بۇ كېچىكتۈرۈشنى \"logout_delay\" قىممىتى بەلگىلەيدۇ."
 
 #: ../data/gnome-screensaver.schemas.in.h:16
 msgid ""
 "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 "different user account."
-msgstr ""
-"بۇ قىممەت TRUE قىلىپ تەڭشەلسە قۇلۇپ ئېچىش سۆزلەشكۈدە تاللانمىدىن بىرى "
-"تەمىنلىنىپ ئوخشاش بولمىغان ئىشلەتكۈچى ھېساباتى ئالماشتۇرۇلىدۇ."
+msgstr "بۇ قىممەت TRUE قىلىپ تەڭشەلسە قۇلۇپ ئېچىش سۆزلەشكۈدە تاللانمىدىن بىرى تەمىنلىنىپ ئوخشاش بولمىغان ئىشلەتكۈچى ھېساباتى ئالماشتۇرۇلىدۇ."
 
 #: ../data/gnome-screensaver.schemas.in.h:17
 msgid ""
@@ -163,21 +150,14 @@ msgid ""
 "set to TRUE, to embed a keyboard widget into the window. This command should "
 "implement an XEMBED plug interface and output a window XID on the standard "
 "output."
-msgstr ""
-"كۆزنەككە سىڭدۈرۈلىدىغان ھەرپتاختا بۆلەك بۇيرۇقى ئارقىلىق "
-"\"embedded_keyboard_enabled\" كۇنۇپكىسى TRUE قىلىپ تەڭشەلسە كۈچكە ئىگە. بۇ "
-"بۇيرۇق XEMBED قىستۇرما ئېغىزىنى ئەمەلگە ئاشۇرىدۇ ھەمدە XID كۆزنىكىنى "
-"ئۆلچەملىك ئېغىزغا چىقىرىدۇ."
+msgstr "كۆزنەككە سىڭدۈرۈلىدىغان ھەرپتاختا بۆلەك بۇيرۇقى ئارقىلىق \"embedded_keyboard_enabled\" كۇنۇپكىسى TRUE قىلىپ تەڭشەلسە كۈچكە ئىگە. بۇ بۇيرۇق XEMBED قىستۇرما ئېغىزىنى ئەمەلگە ئاشۇرىدۇ ھەمدە XID كۆزنىكىنى ئۆلچەملىك ئېغىزغا چىقىرىدۇ."
 
 #: ../data/gnome-screensaver.schemas.in.h:18
 msgid ""
 "The command to invoke when the logout button is clicked. This command should "
 "simply log the user out without any interaction. This key has effect only if "
 "the \"logout_enable\" key is set to TRUE."
-msgstr ""
-"تىزىمدىن چىق توپچىسى چېكىلگەندە چاقىرىدىغان بۇيرۇق. بۇ بۇيرۇق ئىشلەتكۈچىنى "
-"ئاددىي ھالدا تىزىمدىن چىقىرىپ ئىشلەتكۈچىنى ئارىلاشتۇرمايدۇ. بۇ كۇنۇپكا پەقەت "
-"\"logout_enable\" كۇنۇپكا قىممىتى TRUE بولغاندا ئاندىن كۈچكە ئىگە."
+msgstr "تىزىمدىن چىق توپچىسى چېكىلگەندە چاقىرىدىغان بۇيرۇق. بۇ بۇيرۇق ئىشلەتكۈچىنى ئاددىي ھالدا تىزىمدىن چىقىرىپ ئىشلەتكۈچىنى ئارىلاشتۇرمايدۇ. بۇ كۇنۇپكا پەقەت \"logout_enable\" كۇنۇپكا قىممىتى TRUE بولغاندا ئاندىن كۈچكە ئىگە."
 
 #: ../data/gnome-screensaver.schemas.in.h:19
 msgid ""
@@ -189,10 +169,7 @@ msgid ""
 "The number of minutes after the screensaver activation before a logout "
 "option will appear in the unlock dialog. This key has effect only if the "
 "\"logout_enable\" key is set to TRUE."
-msgstr ""
-"ئېكران قوغدىغۇچ ئاكتىپلىنىپ تىزىمدىن چىق تاللانما قۇلۇپنى ئاچ سۆزلەشكۈ "
-"كۆرۈنۈشتىن ئىلگىرى كۈتۈش ۋاقتى. بۇ كۇنۇپكا پەقەت \"logout_enable\" قىممىتى "
-"TRUE قىلىپ تەڭشەلگەندە ئاندىن كۈچكە ئىگە."
+msgstr "ئېكران قوغدىغۇچ ئاكتىپلىنىپ تىزىمدىن چىق تاللانما قۇلۇپنى ئاچ سۆزلەشكۈ كۆرۈنۈشتىن ئىلگىرى كۈتۈش ۋاقتى. بۇ كۇنۇپكا پەقەت \"logout_enable\" قىممىتى TRUE قىلىپ تەڭشەلگەندە ئاندىن كۈچكە ئىگە."
 
 #: ../data/gnome-screensaver.schemas.in.h:21
 msgid ""
@@ -201,16 +178,13 @@ msgstr "ئەڭگىمە بوش دەپ قارىلىشتىن ئىلگىرىكى ھ�
 
 #: ../data/gnome-screensaver.schemas.in.h:22
 msgid "The number of minutes to run before changing the screensaver theme."
-msgstr ""
-"ئېكران قوغدىغۇچ تېمىسىنى ئۆزگەرتىشتىن ئىلگىرى ئىجرا قىلىنغان مىنۇت سانى."
+msgstr "ئېكران قوغدىغۇچ تېمىسىنى ئۆزگەرتىشتىن ئىلگىرى ئىجرا قىلىنغان مىنۇت سانى."
 
 #: ../data/gnome-screensaver.schemas.in.h:23
 msgid ""
 "The number of seconds of inactivity before signalling to power management. "
 "This key is set and maintained by the session power management agent."
-msgstr ""
-"مەنبە باشقۇرۇش پروگراممىسىغا ئۇچۇر يوللاشتىن ئىلگىرى ھەرىكەتسىز سېكۇنت سانى. "
-"بۇ كۇنۇپكا ئەڭگىمەنىڭ مەنبە باشقۇرۇش ۋاكالەتچىسىدە تەڭشىلىپ ئاسرىلىدۇ."
+msgstr "مەنبە باشقۇرۇش پروگراممىسىغا ئۇچۇر يوللاشتىن ئىلگىرى ھەرىكەتسىز سېكۇنت سانى. بۇ كۇنۇپكا ئەڭگىمەنىڭ مەنبە باشقۇرۇش ۋاكالەتچىسىدە تەڭشىلىپ ئاسرىلىدۇ."
 
 #: ../data/gnome-screensaver.schemas.in.h:24
 msgid ""
@@ -219,12 +193,7 @@ msgid ""
 "screensaver using only one theme on activation (specified in \"themes\" "
 "key), and \"random\" to enable the screensaver using a random theme on "
 "activation."
-msgstr ""
-"ئېكران قوغدىغۇچنىڭ تېما تاللاش ئۇسۇلى. تاللاشقا بولىدىغان قىممىتى \"blank-"
-"only\" ئېكران قوغدىغۇچنى قوزغىتىپ ئاكتىپلىغاندىن كېيىن ھېچقانداق تېما "
-"ئىشلەتمەيدۇ؛ \"single\" ئېكران قوغدىغۇچنى قوزغىتىپ ئاكتىپلىغاندىن كېيىن "
-"بىرلا تېما (\"themes\" كۇنۇپكىسى بەلگىلەيدۇ) ئىشلىتىدۇ؛ \"random\" ئېكران "
-"قوغدىغۇچنى قوزغىتىپ ئاكتىپلىغاندىن كېيىن خالىغان تېما ئىشلىتىدۇ."
+msgstr "ئېكران قوغدىغۇچنىڭ تېما تاللاش ئۇسۇلى. تاللاشقا بولىدىغان قىممىتى \"blank-only\" ئېكران قوغدىغۇچنى قوزغىتىپ ئاكتىپلىغاندىن كېيىن ھېچقانداق تېما ئىشلەتمەيدۇ؛ \"single\" ئېكران قوغدىغۇچنى قوزغىتىپ ئاكتىپلىغاندىن كېيىن بىرلا تېما (\"themes\" كۇنۇپكىسى بەلگىلەيدۇ) ئىشلىتىدۇ؛ \"random\" ئېكران قوغدىغۇچنى قوزغىتىپ ئاكتىپلىغاندىن كېيىن خالىغان تېما ئىشلىتىدۇ."
 
 #: ../data/gnome-screensaver.schemas.in.h:25
 msgid ""
@@ -232,11 +201,7 @@ msgid ""
 "ignored when \"mode\" key is \"blank-only\", should provide the theme name "
 "when \"mode\" is \"single\", and should provide a list of themes when \"mode"
 "\" is \"random\"."
-msgstr ""
-"بۇ كۇنۇپكا ئېكران قوغدىغۇچ ئىشلىتىدىغان تېما تىزىملىكىنى بەلگىلەيدۇ. ئۇنىڭ "
-"\"mode\" كۇنۇپكا قىممىتى \"blank-only\" بولغاندا پەرۋا قىلمايدۇ؛ \"mode\" "
-"كۇنۇپكا قىممىتى \"single\" بولغاندا تېما ئاتىدىن بىرنى تەمىنلەيدۇ؛\"mode\" "
-"كۇنۇپكا قىممىتى \"random\" بولغاندا تېما تىزىملىكىدىن بىرنى تەمىنلەيدۇ؛"
+msgstr "بۇ كۇنۇپكا ئېكران قوغدىغۇچ ئىشلىتىدىغان تېما تىزىملىكىنى بەلگىلەيدۇ. ئۇنىڭ \"mode\" كۇنۇپكا قىممىتى \"blank-only\" بولغاندا پەرۋا قىلمايدۇ؛ \"mode\" كۇنۇپكا قىممىتى \"single\" بولغاندا تېما ئاتىدىن بىرنى تەمىنلەيدۇ؛\"mode\" كۇنۇپكا قىممىتى \"random\" بولغاندا تېما تىزىملىكىدىن بىرنى تەمىنلەيدۇ؛"
 
 #: ../data/gnome-screensaver.schemas.in.h:26
 msgid "Time before locking"
@@ -340,9 +305,7 @@ msgstr "image - ئېكراندا سۈرەتنى لەيلەت"
 #: ../savers/floaters.c:1193
 #, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
-msgstr ""
-"سىز چوقۇم بىر پارچە سۈرەت بەلگىلەڭ. --help تىن پايدىلىنىپ  ئىشلىتىش ئۇسۇلى "
-"ئۇچۇرىغا ئېرىشىڭ.\n"
+msgstr "سىز چوقۇم بىر پارچە سۈرەت بەلگىلەڭ. --help تىن پايدىلىنىپ  ئىشلىتىش ئۇسۇلى ئۇچۇرىغا ئېرىشىڭ.\n"
 
 #: ../savers/slideshow.c:53
 msgid "Location to get images from"
@@ -412,13 +375,11 @@ msgstr "ئېكران قوغدىغۇچنىڭ ئاكتىپلانغان ۋاقتى�
 
 #: ../src/gnome-screensaver-command.c:68
 msgid "Tells the running screensaver process to lock the screen immediately"
-msgstr ""
-"ئىجرا قىلىنىۋاتقان ئېكران قوغدىغۇچقا ئېكراننى دەرھال قۇلۇپلاشنى ئۇقتۇرىدۇ"
+msgstr "ئىجرا قىلىنىۋاتقان ئېكران قوغدىغۇچقا ئېكراننى دەرھال قۇلۇپلاشنى ئۇقتۇرىدۇ"
 
 #: ../src/gnome-screensaver-command.c:70
 msgid "If the screensaver is active then switch to another graphics demo"
-msgstr ""
-"ئەگەر ئېكران قوغدىغۇچ ئاكتىپ بولسا باشقا سۈرەت كۆرگەزمىسىگە ئالماشتۇرىدۇ"
+msgstr "ئەگەر ئېكران قوغدىغۇچ ئاكتىپ بولسا باشقا سۈرەت كۆرگەزمىسىگە ئالماشتۇرىدۇ"
 
 #: ../src/gnome-screensaver-command.c:72
 msgid "Turn the screensaver on (blank the screen)"
@@ -426,23 +387,17 @@ msgstr "ئېكران قوغدىغۇچنى ئاچىدۇ(قارا ئېكران)"
 
 #: ../src/gnome-screensaver-command.c:74
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
-"ئەگەر ئېكران قوغدىغۇچ ئاكتىپ بولسا ئۇنى ئاكتىپسىز قىلىدۇ (قارا ئېكراننى "
-"بىكار قىلىدۇ)"
+msgstr "ئەگەر ئېكران قوغدىغۇچ ئاكتىپ بولسا ئۇنى ئاكتىپسىز قىلىدۇ (قارا ئېكراننى بىكار قىلىدۇ)"
 
 #: ../src/gnome-screensaver-command.c:76
 msgid "Poke the running screensaver to simulate user activity"
-msgstr ""
-"ئىجرا قىلىنىۋاتقان ئېكران قوغدىغۇچقا ئۇچۇر يوللاپ ئىشلەتكۈچى ھەرىكىتىنى "
-"تەقلىد قىلىدۇ"
+msgstr "ئىجرا قىلىنىۋاتقان ئېكران قوغدىغۇچقا ئۇچۇر يوللاپ ئىشلەتكۈچى ھەرىكىتىنى تەقلىد قىلىدۇ"
 
 #: ../src/gnome-screensaver-command.c:78
 msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
-msgstr ""
-"ئېكران قوغدىغۇچ ئاكتىپلاشنى چەكلەيدۇ. ئاكتىپلانغاندا باشقا بۇيرۇقلار "
-"توسۇلىدۇ."
+msgstr "ئېكران قوغدىغۇچ ئاكتىپلاشنى چەكلەيدۇ. ئاكتىپلانغاندا باشقا بۇيرۇقلار توسۇلىدۇ."
 
 #: ../src/gnome-screensaver-command.c:80
 msgid "The calling application that is inhibiting the screensaver"
