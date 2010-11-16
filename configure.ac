@@ -643,7 +643,7 @@ have_libgnomekbdui=no
 AC_ARG_WITH(kbd-layout-indicator,[  --without-kbd-layout-indicator         disable keyboard layout indicator],
             [with_kbd_layout_indicator="$withval"],[with_kbd_layout_indicator=yes])
 if test x$with_kbd_layout_indicator != xno; then
-  PKG_CHECK_MODULES(LIBGNOMEKBDUI, libgnomekbdui >= $LIBGNOMEKBDUI_REQUIRED_VERSION, have_libgnomekbdui=yes, have_libgnomekbdui=no)
+  PKG_CHECK_MODULES(LIBGNOMEKBDUI, libgnomekbdui >= $LIBGNOMEKBDUI_REQUIRED_VERSION libxklavier, have_libgnomekbdui=yes, have_libgnomekbdui=no)
 fi
 if test "x$have_libgnomekbdui" = "xyes"; then
   AC_SUBST(LIBGNOMEKBDUI_CFLAGS)
