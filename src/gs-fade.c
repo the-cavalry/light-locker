@@ -43,7 +43,7 @@
 
 #define GNOME_DESKTOP_USE_UNSTABLE_API
 
-#include "libgnomeui/gnome-rr.h"
+#include <libgnome-desktop/gnome-rr.h>
 
 /* XFree86 4.x+ Gamma fading */
 
