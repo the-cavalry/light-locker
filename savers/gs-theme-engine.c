@@ -111,7 +111,6 @@ gs_theme_engine_clear (GtkWidget *widget)
 {
         GdkColor     color = { 0, 0x0000, 0x0000, 0x0000 };
         GtkStateType state;
-        GdkWindow   *window;
 
         g_return_if_fail (GS_IS_THEME_ENGINE (widget));
 
