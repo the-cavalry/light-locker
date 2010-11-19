@@ -26,11 +26,8 @@
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 
-#include <gconf/gconf-engine.h>
-#include <gconf/gconf-client.h>
-
 #define GNOME_DESKTOP_USE_UNSTABLE_API
-#include <libgnomeui/gnome-bg.h>
+#include <libgnome-desktop/gnome-bg.h>
 
 #include "gs-prefs.h"        /* for GSSaverMode */
 
@@ -54,9 +51,8 @@ struct GSManagerPrivate
         GHashTable  *jobs;
 
         GSThemeManager *theme_manager;
-        GConfClient    *client;
+        GSettings      *settings;
         GnomeBG        *bg;
-        guint           bg_notify_id;
 
         /* Policy */
         glong        lock_timeout;
@@ -949,61 +945,46 @@ on_bg_changed (GnomeBG   *bg,
         gs_debug ("background changed");
 }
 
-static void
-gconf_changed_callback (GConfClient *client,
-                        guint        cnxn_id,
-                        GConfEntry  *entry,
-                        GSManager   *manager)
+static gboolean
+background_settings_change_event_cb (GSettings *settings,
+                                     gpointer   keys,
+                                     gint       n_keys,
+                                     GSManager   *manager)
 {
+#if 0
+        /* FIXME: since we bind user settings instead of system ones,
+         *        watching for changes is no longer valid.
+         */
         gnome_bg_load_from_preferences (manager->priv->bg,
-                                        manager->priv->client);
+                                        manager->priv->settings);
+#endif
+
+        return FALSE;
 }
 
-static void
-watch_bg_preferences (GSManager *manager)
+static GSettings *
+get_system_settings (void)
 {
-        g_assert (manager->priv->bg_notify_id == 0);
+        GSettings *settings;
+        gchar **keys;
+        gchar **k;
 
-        gconf_client_add_dir (manager->priv->client,
-                              GNOME_BG_KEY_DIR,
-                              GCONF_CLIENT_PRELOAD_NONE,
-                              NULL);
-        manager->priv->bg_notify_id = gconf_client_notify_add (manager->priv->client,
-                                                               GNOME_BG_KEY_DIR,
-                                                               (GConfClientNotifyFunc)gconf_changed_callback,
-                                                               manager,
-                                                               NULL,
-                                                               NULL);
-}
+        /* FIXME: we need to bind system settings instead of user but
+         *        that's currently impossible, not implemented yet.
+         *        Hence, reset to system default values.
+         */
+        /* TODO: Ideally we would like to bind some other key, screensaver-specific. */
+        settings = g_settings_new ("org.gnome.desktop.background");
 
-static GConfClient *
-get_gconf_client (void)
-{
-        GConfClient        *client;
-        GSList             *addresses;
-        GError             *error;
-        GConfEngine        *engine;
+        g_settings_delay (settings);
 
-        client = NULL;
-        addresses = NULL;
-
-        addresses = g_slist_prepend (addresses, "xml:merged:" SYSCONFDIR "/gconf/gconf.xml.mandatory");
-        addresses = g_slist_prepend (addresses, "xml:merged:" SYSCONFDIR "/gconf/gconf.xml.system");
-        addresses = g_slist_prepend (addresses, "xml:merged:" SYSCONFDIR "/gconf/gconf.xml.defaults");
-        addresses = g_slist_reverse (addresses);
-
-        error = NULL;
-        engine = gconf_engine_get_for_addresses (addresses, &error);
-        if (engine == NULL) {
-                gs_debug ("Unable to get gconf engine for addresses: %s", error->message);
-                g_error_free (error);
-        } else {
-                client = gconf_client_get_for_engine (engine);
+        keys = g_settings_list_keys (settings);
+        for (k = keys; *k; k++) {
+                g_settings_reset (settings, *k);
         }
+        g_strfreev (keys);
 
-        g_slist_free (addresses);
-
-        return client;
+        return settings;
 }
 
 static void
@@ -1015,18 +996,20 @@ gs_manager_init (GSManager *manager)
         manager->priv->grab = gs_grab_new ();
         manager->priv->theme_manager = gs_theme_manager_new ();
 
-        manager->priv->client = get_gconf_client ();
-        if (manager->priv->client != NULL) {
-                manager->priv->bg = gnome_bg_new ();
+        manager->priv->settings = get_system_settings ();
+        manager->priv->bg = gnome_bg_new ();
 
-                g_signal_connect (manager->priv->bg,
-                                  "changed",
-                                  G_CALLBACK (on_bg_changed),
-                                  manager);
-                watch_bg_preferences (manager);
+        g_signal_connect (manager->priv->bg,
+                          "changed",
+                          G_CALLBACK (on_bg_changed),
+                          manager);
+        g_signal_connect (manager->priv->settings,
+                          "change-event",
+                          G_CALLBACK (background_settings_change_event_cb),
+                          manager);
 
-                gnome_bg_load_from_preferences (manager->priv->bg, manager->priv->client);
-        }
+        gnome_bg_load_from_preferences (manager->priv->bg,
+                                        manager->priv->settings);
 }
 
 static void
@@ -1600,19 +1583,12 @@ gs_manager_finalize (GObject *object)
 
         g_return_if_fail (manager->priv != NULL);
 
-        if (manager->priv->bg_notify_id != 0) {
-                gconf_client_remove_dir (manager->priv->client,
-                                         GNOME_BG_KEY_DIR,
-                                         NULL);
-                gconf_client_notify_remove (manager->priv->client,
-                                            manager->priv->bg_notify_id);
-                manager->priv->bg_notify_id = 0;
-        }
         if (manager->priv->bg != NULL) {
                 g_object_unref (manager->priv->bg);
         }
-        if (manager->priv->client != NULL) {
-                g_object_unref (manager->priv->client);
+        if (manager->priv->settings != NULL) {
+                g_settings_revert (manager->priv->settings);
+                g_object_unref (manager->priv->settings);
         }
 
         free_themes (manager);
