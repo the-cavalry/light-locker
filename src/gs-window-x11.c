@@ -207,55 +207,6 @@ force_no_pixmap_background (GtkWidget *widget)
 }
 
 static void
-clear_children (Window window)
-{
-        Window            root;
-        Window            parent;
-        Window           *children;
-        unsigned int      n_children;
-        int               status;
-
-        children = NULL;
-        status = XQueryTree (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), window, &root, &parent, &children, &n_children);
-
-        if (status == 0) {
-                if (children) {
-                        XFree (children);
-                }
-                return;
-        }
-
-        if (children) {
-                while (n_children) {
-                        Window child;
-
-                        child = children [--n_children];
-
-                        XClearWindow (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), child);
-                        clear_children (child);
-                }
-
-                XFree (children);
-        }
-}
-
-static void
-widget_clear_all_children (GtkWidget *widget)
-{
-        GdkWindow *w;
-
-        gs_debug ("Clearing all child windows");
-
-        gdk_error_trap_push ();
-
-        w = gtk_widget_get_window (widget);
-
-        clear_children (GDK_WINDOW_XID (w));
-
-        gdk_error_trap_pop_ignored ();
-}
-
-static void
 gs_window_reset_background_surface (GSWindow *window)
 {
         cairo_pattern_t *pattern;
