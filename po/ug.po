@@ -2,12 +2,12 @@
 # Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
 # This file is distributed under the same license as the gnome-screensaver package.
 # Sahran <sahran@live.com>, 2010.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver&component=general\n"
-"POT-Creation-Date: 2010-10-31 05:35+0000\n"
+"POT-Creation-Date: 2010-11-13 21:25+0000\n"
 "PO-Revision-Date: 2009-10-29 10:52+0000\n"
 "Last-Translator: Sahran <sahran@live.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
