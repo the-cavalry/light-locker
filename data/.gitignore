@@ -1,8 +1,10 @@
 Makefile
 Makefile.in
 *.desktop
-*.schemas
+*.valid
 *.gladep
 *.menu
 *.directory
 *.pc
+org.gnome.screensaver.gschema.xml
+org.gnome.screensaver.gschema.xml.in

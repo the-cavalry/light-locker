@@ -1,0 +1,16 @@
+[org.gnome.screensaver]
+idle-activation-enabled = /apps/gnome-screensaver/idle_activation_enabled
+lock-enabled = /apps/gnome-screensaver/lock_enabled
+mode = /apps/gnome-screensaver/mode
+themes = /apps/gnome-screensaver/themes
+idle-delay = /apps/gnome-screensaver/idle_delay
+power-management-delay = /apps/gnome-screensaver/power_management_delay
+cycle-delay = /apps/gnome-screensaver/cycle_delay
+lock-delay = /apps/gnome-screensaver/lock_delay
+embedded-keyboard-enabled = /apps/gnome-screensaver/embedded_keyboard_enabled
+embedded-keyboard-command = /apps/gnome-screensaver/embedded_keyboard_command
+logout-enabled = /apps/gnome-screensaver/logout_enabled
+logout-delay = /apps/gnome-screensaver/logout_delay
+logout-command = /apps/gnome-screensaver/logout_command
+user-switch-enabled = /apps/gnome-screensaver/user_switch_enabled
+status-message-enabled = /apps/gnome-screensaver/status_message_enabled

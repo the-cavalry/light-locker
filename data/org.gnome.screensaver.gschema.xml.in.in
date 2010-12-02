@@ -1,0 +1,84 @@
+<schemalist>
+  <enum id="org.gnome.screensaver.Mode">
+    <value nick="blank-only" value="0"/>
+    <value nick="random" value="1"/>
+    <value nick="single" value="2"/>
+  </enum>
+  <schema gettext-domain="@GETTEXT_PACKAGE@" id="org.gnome.screensaver" path="/apps/gnome-screensaver/">
+    <key name="idle-activation-enabled" type="b">
+      <default>true</default>
+      <summary>Activate when idle</summary>
+      <description>Set this to TRUE to activate the screensaver when the session is idle.</description>
+    </key>
+    <key name="lock-enabled" type="b">
+      <default>true</default>
+      <summary>Lock on activation</summary>
+      <description>Set this to TRUE to lock the screen when the screensaver goes active.</description>
+    </key>
+    <key name="mode" enum="org.gnome.screensaver.Mode">
+      <default>'blank-only'</default>
+      <summary>Screensaver theme selection mode</summary>
+      <description>The selection mode used by screensaver.  May be "blank-only" to enable the screensaver without using any theme on activation, "single" to enable screensaver using only one theme on activation (specified in "themes" key), and "random" to enable the screensaver using a random theme on activation.</description>
+    </key>
+    <key name="themes" type="as">
+      <default>[]</default>
+      <summary>Screensaver themes</summary>
+      <description>This key specifies the list of themes to be used by the screensaver. It's ignored when "mode" key is  "blank-only", should provide the theme name when "mode" is "single", and should provide a list of themes when "mode" is "random".</description>
+    </key>
+    <key name="idle-delay" type="i">
+      <default>10</default>
+      <summary>Time before session is considered idle</summary>
+      <description>The number of minutes of inactivity before the session is considered idle.</description>
+    </key>
+    <key name="power-management-delay" type="i">
+      <default>30</default>
+      <summary>Time before power management baseline</summary>
+      <description>The number of seconds of inactivity before signalling to power management.  This key is set and maintained by the session power management agent.</description>
+    </key>
+    <key name="cycle-delay" type="i">
+      <default>10</default>
+      <summary>Time before theme change</summary>
+      <description>The number of minutes to run before changing the screensaver theme.</description>
+    </key>
+    <key name="lock-delay" type="i">
+      <default>0</default>
+      <summary>Time before locking</summary>
+      <description>The number of minutes after screensaver activation before locking the screen.</description>
+    </key>
+    <key name="embedded-keyboard-enabled" type="b">
+      <default>false</default>
+      <summary>Allow embedding a keyboard into the window</summary>
+      <description>Set this to TRUE to allow embedding a keyboard into the window when trying to unlock.  The "keyboard_command" key must be set with the appropriate command.</description>
+    </key>
+    <key name="embedded-keyboard-command" type="s">
+      <default>''</default>
+      <summary>Embedded keyboard command</summary>
+      <description>The command that will be run, if the "embedded_keyboard_enabled" key is set to TRUE, to embed a keyboard widget into the window. This command should implement an XEMBED plug interface and output a window XID on the standard output.</description>
+    </key>
+    <key name="logout-enabled" type="b">
+      <default>false</default>
+      <summary>Allow logout</summary>
+      <description>Set this to TRUE to offer an option in the unlock dialog to allow logging out after a delay.  The delay is specified in the "logout_delay" key.</description>
+    </key>
+    <key name="logout-delay" type="i">
+      <default>120</default>
+      <summary>Time before logout option</summary>
+      <description>The number of minutes after the screensaver activation before a logout option will appear in the unlock dialog. This key has effect only if the "logout_enable" key is set to TRUE.</description>
+    </key>
+    <key name="logout-command" type="s">
+      <default>''</default>
+      <summary>Logout command</summary>
+      <description>The command to invoke when the logout button is clicked.  This command should simply log the user out without any interaction. This key has effect only if the "logout_enable" key is set to TRUE.</description>
+    </key>
+    <key name="user-switch-enabled" type="b">
+      <default>true</default>
+      <summary>Allow user switching</summary>
+      <description>Set this to TRUE to offer an option in the unlock dialog to switch to a different user account.</description>
+    </key>
+    <key name="status-message-enabled" type="b">
+      <default>true</default>
+      <summary>Allow the session status message to be displayed</summary>
+      <description>Allow the session status message to be displayed when the screen is locked.</description>
+    </key>
+  </schema>
+</schemalist>

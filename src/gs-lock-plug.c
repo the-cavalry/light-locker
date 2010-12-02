@@ -36,7 +36,6 @@
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
-#include <gconf/gconf-client.h>
 
 #ifdef WITH_KBD_LAYOUT_INDICATOR
 #include <libgnomekbd/gkbd-indicator.h>
