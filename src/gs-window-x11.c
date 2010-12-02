@@ -2104,6 +2104,30 @@ gs_window_real_visibility_notify_event (GtkWidget          *widget,
 }
 
 static void
+gs_window_real_get_preferred_width (GtkWidget *widget,
+                               gint      *minimal_width,
+                               gint      *natural_width)
+{
+	GtkRequisition requisition;
+
+	gs_window_real_size_request (widget, &requisition);
+
+	*minimal_width = *natural_width = requisition.width;
+}
+
+static void
+gs_window_real_get_preferred_height (GtkWidget *widget,
+                                gint      *minimal_height,
+                                gint      *natural_height)
+{
+	GtkRequisition requisition;
+
+	gs_window_real_size_request (widget, &requisition);
+
+	*minimal_height = *natural_height = requisition.height;
+}
+
+static void
 gs_window_class_init (GSWindowClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
@@ -2121,7 +2145,8 @@ gs_window_class_init (GSWindowClass *klass)
         widget_class->motion_notify_event = gs_window_real_motion_notify_event;
         widget_class->button_press_event  = gs_window_real_button_press_event;
         widget_class->scroll_event        = gs_window_real_scroll_event;
-        widget_class->size_request        = gs_window_real_size_request;
+        widget_class->get_preferred_width        = gs_window_real_get_preferred_width;
+        widget_class->get_preferred_height       = gs_window_real_get_preferred_height;
         widget_class->grab_broken_event   = gs_window_real_grab_broken;
         widget_class->visibility_notify_event = gs_window_real_visibility_notify_event;
 

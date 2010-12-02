@@ -870,28 +870,6 @@ forward_key_events (GSLockPlug *plug)
 }
 
 static void
-gs_lock_plug_size_request (GtkWidget      *widget,
-                           GtkRequisition *requisition)
-{
-        int mod_width;
-        int mod_height;
-
-        if (GTK_WIDGET_CLASS (gs_lock_plug_parent_class)->size_request) {
-                GTK_WIDGET_CLASS (gs_lock_plug_parent_class)->size_request (widget, requisition);
-        }
-
-        mod_width = requisition->height * 1.3;
-        mod_height = requisition->width / 1.6;
-        if (requisition->width < mod_width) {
-                /* if the dialog is tall fill out the width */
-                requisition->width = mod_width;
-        } else if (requisition->height < mod_height) {
-                /* if the dialog is wide fill out the height */
-                requisition->height = mod_height;
-        }
-}
-
-static void
 gs_lock_plug_set_logout_enabled (GSLockPlug *plug,
                                  gboolean    logout_enabled)
 {
@@ -1082,7 +1060,6 @@ gs_lock_plug_class_init (GSLockPlugClass *klass)
         widget_class->style_set    = gs_lock_plug_style_set;
         widget_class->show         = gs_lock_plug_show;
         widget_class->hide         = gs_lock_plug_hide;
-        widget_class->size_request = gs_lock_plug_size_request;
 
         klass->close = gs_lock_plug_close;
 
