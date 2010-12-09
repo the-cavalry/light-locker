@@ -204,7 +204,7 @@ get_all_theme_ids (GSThemeManager *theme_manager)
         guint idx = 0;
 
         entries = gs_theme_manager_get_info_list (theme_manager);
-        ids = g_new0 (gchar *, g_slist_length (entries + 1));
+        ids = g_new0 (gchar *, g_slist_length (entries) + 1);
         for (l = entries; l; l = l->next) {
                 GSThemeInfo *info = l->data;
                 ids[idx++] = g_strdup (gs_theme_info_get_id (info));
