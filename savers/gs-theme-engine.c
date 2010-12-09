@@ -195,11 +195,7 @@ gs_theme_engine_get_window_size (GSThemeEngine *engine,
         }
 
         gdk_window_get_geometry (gtk_widget_get_window (GTK_WIDGET (engine)),
-                                 NULL,
-                                 NULL,
-                                 width,
-                                 height,
-                                 NULL);
+                                 NULL, NULL, width, height);
 }
 
 GdkWindow *

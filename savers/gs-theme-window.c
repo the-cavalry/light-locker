@@ -179,7 +179,7 @@ gs_theme_window_real_realize (GtkWidget *widget)
         gdk_window_set_user_data (window, widget);
         gtk_widget_set_realized (widget, TRUE);
 
-        gdk_window_get_geometry (window, &x, &y, &width, &height, NULL);
+        gdk_window_get_geometry (window, &x, &y, &width, &height);
 
         if (width < MIN_SIZE || height < MIN_SIZE) {
                 g_critical ("This window is way too small to use");
