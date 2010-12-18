@@ -49,6 +49,8 @@ static gpointer grab_object = NULL;
 
 struct GSGrabPrivate
 {
+        GDBusConnection *session_bus;
+
         guint      mouse_hide_cursor : 1;
         GdkWindow *mouse_grab_window;
         GdkWindow *keyboard_grab_window;
@@ -406,6 +408,39 @@ gs_grab_release (GSGrab *grab)
         gdk_flush ();
 }
 
+/* The GNOME 3 Shell holds an X grab when we're in the overview;
+ * ask it to bounce out before we try locking the screen.
+ */
+static void
+request_shell_exit_overview (GSGrab *grab)
+{
+        GDBusMessage *reply;
+        GDBusMessage *message;
+        GError *error = NULL;
+
+        /* Shouldn't happen, but... */
+        if (!grab->priv->session_bus)
+                return;
+
+        message = g_dbus_message_new_method_call ("org.gnome.Shell",
+                                                  "/org/gnome/Shell",
+                                                  "org.freedesktop.DBus.Properties",
+                                                  "Set");
+        g_dbus_message_set_body (message,
+                                 g_variant_new ("(ssv)",
+                                                "org.gnome.Shell",
+                                                "OverviewActive",
+                                                g_variant_new ("b",
+                                                               FALSE)));
+
+        g_dbus_connection_send_message (grab->priv->session_bus,
+                                        message,
+                                        G_DBUS_SEND_MESSAGE_FLAGS_NONE,
+                                        NULL,
+                                        NULL);
+        g_object_unref (message);
+}
+
 gboolean
 gs_grab_grab_window (GSGrab    *grab,
                      GdkWindow *window,
@@ -417,6 +452,9 @@ gs_grab_grab_window (GSGrab    *grab,
         int      i;
         int      retries = 4;
         gboolean focus_fuckus = FALSE;
+
+        /* First, have stuff we control in GNOME un-grab */
+        request_shell_exit_overview (grab);
 
  AGAIN:
 
@@ -563,6 +601,8 @@ gs_grab_init (GSGrab *grab)
 {
         grab->priv = GS_GRAB_GET_PRIVATE (grab);
 
+        grab->priv->session_bus = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
+
         grab->priv->mouse_hide_cursor = FALSE;
         grab->priv->invisible = gtk_invisible_new ();
         gtk_widget_show (grab->priv->invisible);
@@ -577,6 +617,8 @@ gs_grab_finalize (GObject *object)
         g_return_if_fail (GS_IS_GRAB (object));
 
         grab = GS_GRAB (object);
+
+        g_object_unref (grab->priv->session_bus);
 
         g_return_if_fail (grab->priv != NULL);
 
