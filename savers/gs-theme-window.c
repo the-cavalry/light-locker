@@ -136,7 +136,7 @@ gs_theme_window_real_realize (GtkWidget *widget)
                 if ((remote_xwindow != 0) && (end != NULL) &&
                     ((*end == ' ') || (*end == '\0')) &&
                     ((remote_xwindow < G_MAXULONG) || (errno != ERANGE))) {
-                        window = gdk_window_foreign_new (remote_xwindow);
+                        window = gdk_x11_window_foreign_new_for_display (gtk_widget_get_display (widget), remote_xwindow);
 
                         if (window != NULL) {
                                 /* This is a kludge; we need to set the same
