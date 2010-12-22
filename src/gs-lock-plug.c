@@ -152,8 +152,9 @@ gs_lock_plug_style_set (GtkWidget *widget,
 static void
 do_user_switch (GSLockPlug *plug)
 {
+        GAppInfo *app;
+        GAppLaunchContext *context;
         GError  *error;
-        gboolean res;
         char    *command;
 
         command = g_strdup_printf ("%s %s",
@@ -161,11 +162,16 @@ do_user_switch (GSLockPlug *plug)
                                    GDM_FLEXISERVER_ARGS);
 
         error = NULL;
-        res = g_spawn_command_line_async (command, &error);
+        context = (GAppLaunchContext*)gdk_app_launch_context_new ();
+        app = g_app_info_create_from_commandline (command, "gdmflexiserver", 0, &error);
+        if (app)
+                g_app_info_launch (app, NULL, context, &error);
 
         g_free (command);
+        g_object_unref (context);
+        g_object_unref (app);
 
-        if (! res) {
+        if (!error) {
                 gs_debug ("Unable to start GDM greeter: %s", error->message);
                 g_error_free (error);
         }
