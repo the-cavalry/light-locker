@@ -161,9 +161,7 @@ do_user_switch (GSLockPlug *plug)
                                    GDM_FLEXISERVER_ARGS);
 
         error = NULL;
-        res = gdk_spawn_command_line_on_screen (gdk_screen_get_default (),
-                                                command,
-                                                &error);
+        res = g_spawn_command_line_async (command, &error);
 
         g_free (command);
 

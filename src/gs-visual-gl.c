@@ -90,7 +90,7 @@ gs_visual_gl_get_best_for_screen (GdkScreen *screen)
 
                         vid = XVisualIDFromVisual (vi->visual);
 
-                        visual = gdkx_visual_get (vid);
+                        visual = gdk_x11_screen_lookup_visual (screen, vid);
 
                         XFree (vi);
 

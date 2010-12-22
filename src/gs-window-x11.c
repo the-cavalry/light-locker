@@ -497,7 +497,7 @@ get_best_visual_for_screen (GdkScreen *screen)
                         VisualID      visual_id;
 
                         visual_id = (VisualID) v;
-                        visual = gdkx_visual_get (visual_id);
+                        visual = gdk_x11_screen_lookup_visual (screen, visual_id);
 
                         gs_debug ("Found best GL visual for screen %d: 0x%x",
                                   gdk_screen_get_number (screen),
@@ -625,7 +625,7 @@ x11_window_is_ours (Window window)
 
         ret = FALSE;
 
-        gwindow = gdk_window_lookup (window);
+        gwindow = gdk_x11_window_lookup_for_display (gdk_display_get_default (), window);
         if (gwindow && (window != GDK_ROOT_WINDOW ())) {
                 ret = TRUE;
         }
@@ -960,6 +960,7 @@ spawn_on_window (GSWindow *window,
 {
         int         argc;
         char      **argv;
+        char      **envp;
         GError     *error;
         gboolean    result;
         GIOChannel *channel;
@@ -975,19 +976,20 @@ spawn_on_window (GSWindow *window,
                 return FALSE;
         }
 
+        envp = spawn_make_environment_for_screen (gtk_window_get_screen (GTK_WINDOW (window)), NULL);
+
         error = NULL;
-        result = gdk_spawn_on_screen_with_pipes (gtk_window_get_screen (GTK_WINDOW (window)),
-                                                 NULL,
-                                                 argv,
-                                                 NULL,
-                                                 G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
-                                                 NULL,
-                                                 NULL,
-                                                 &child_pid,
-                                                 NULL,
-                                                 &standard_output,
-                                                 &standard_error,
-                                                 &error);
+        result = g_spawn_async_with_pipes (NULL,
+                                           argv,
+                                           envp,
+                                           G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
+                                           NULL,
+                                           NULL,
+                                           &child_pid,
+                                           NULL,
+                                           &standard_output,
+                                           &standard_error,
+                                           &error);
 
         if (! result) {
                 gs_debug ("Could not start command '%s': %s", command, error->message);
@@ -1030,6 +1032,7 @@ spawn_on_window (GSWindow *window,
         g_io_channel_unref (channel);
 
         g_strfreev (argv);
+        g_strfreev (envp);
 
         return result;
 }

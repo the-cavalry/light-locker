@@ -56,7 +56,7 @@
 #define KEY_CYCLE_DELAY     "cycle-delay"
 #define KEY_THEMES          "themes"
 
-#define GPM_COMMAND "gnome-power-preferences"
+#define GPM_COMMAND "gnome-control-center power"
 
 enum {
         NAME_COLUMN = 0,
@@ -398,38 +398,10 @@ preview_set_theme (GtkWidget  *widget,
 static void
 help_display (void)
 {
-        GError     *error = NULL;
-        char       *command;
-        const char *lang;
-        char       *uri = NULL;
-        GdkScreen  *gscreen;
-        int         i;
+        GError *error;
 
-        const char * const * langs = g_get_language_names ();
-
-        for (i = 0; langs[i] != NULL; i++) {
-                lang = langs[i];
-                if (strchr (lang, '.')) {
-                        continue;
-                }
-
-                uri = g_build_filename (DATADIR,
-                                        "/gnome/help/user-guide/",
-                                        lang,
-                                        "/user-guide.xml",
-                                        NULL);
-
-                if (g_file_test (uri, G_FILE_TEST_EXISTS)) {
-                    break;
-                }
-        }
-
-        command = g_strconcat ("gnome-open ghelp://",
-                               uri,
-                               "?prefs-screensaver",
-                               NULL);
-        gscreen = gdk_screen_get_default ();
-        gdk_spawn_command_line_on_screen (gscreen, command, &error);
+        error = NULL;
+        gtk_show_uri (NULL, "ghelp:prefs-screensaver", GDK_CURRENT_TIME, &error);
 
         if (error != NULL) {
                 GtkWidget *d;
@@ -442,9 +414,6 @@ help_display (void)
                 gtk_widget_destroy (d);
                 g_error_free (error);
         }
-
-        g_free (command);
-        g_free (uri);
 }
 
 static void
@@ -455,18 +424,25 @@ response_cb (GtkWidget *widget,
         if (response_id == GTK_RESPONSE_HELP) {
                 help_display ();
         } else if (response_id == GTK_RESPONSE_REJECT) {
+                GAppInfo *appinfo;
+                GAppLaunchContext *context;
                 GError  *error;
-                gboolean res;
 
                 error = NULL;
 
-                res = gdk_spawn_command_line_on_screen (gdk_screen_get_default (),
-                                                        GPM_COMMAND,
-                                                        &error);
-                if (! res) {
+                context = gdk_app_launch_context_new ();
+                appinfo = g_app_info_create_from_commandline (GPM_COMMAND, "Power preferences", 0, &error);
+                if (appinfo) {
+                        g_app_info_launch (appinfo, NULL, context, &error);
+                }
+
+                if (error) {
                         g_warning ("Unable to start power management preferences: %s", error->message);
                         g_error_free (error);
                 }
+
+                g_object_unref (context);
+                g_object_unref (appinfo);
         } else {
                 gtk_widget_destroy (widget);
                 gtk_main_quit ();
@@ -1278,7 +1254,7 @@ get_best_visual (void)
                         VisualID      visual_id;
 
                         visual_id = (VisualID) v;
-                        visual = gdkx_visual_get (visual_id);
+                        visual = gdk_x11_screen_lookup_visual (gdk_screen_get_default (), visual_id);
 
                         g_debug ("Found best visual for GL: 0x%x",
                                  (unsigned int) visual_id);
