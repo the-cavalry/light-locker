@@ -430,7 +430,7 @@ response_cb (GtkWidget *widget,
 
                 error = NULL;
 
-                context = gdk_app_launch_context_new ();
+                context = (GAppLaunchContext*)gdk_app_launch_context_new ();
                 appinfo = g_app_info_create_from_commandline (GPM_COMMAND, "Power preferences", 0, &error);
                 if (appinfo) {
                         g_app_info_launch (appinfo, NULL, context, &error);
