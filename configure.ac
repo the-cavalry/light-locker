@@ -729,7 +729,6 @@ echo "
         Docs enabled:             ${enable_docbook_docs}
 
         Screen locking enabled:   ${enable_locking}
-        User switching enabled:   ${enable_user_switching}
         Show keyboard indicator:  ${with_kbd_layout_indicator}
         PAM prefix:               ${PAM_PREFIX}
 
