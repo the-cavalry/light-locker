@@ -33,6 +33,11 @@
 #define CK_SESSION_PATH                 CK_PATH "/Session"
 #define CK_SESSION_INTERFACE            CK_INTERFACE ".Session"
 
+/* DBus */
+#define DBUS_SERVICE                    "org.freedesktop.DBus"
+#define DBUS_PATH                       "/org/freedesktop/DBus"
+#define DBUS_INTERFACE                  "org.freedesktop.DBus"
+
 /* Gnome Screensaver */
 #define GS_SERVICE                      "org.gnome.ScreenSaver"
 #define GS_PATH                         "/org/gnome/ScreenSaver"
