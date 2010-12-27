@@ -36,6 +36,8 @@
 #include "gs-marshal.h"
 #include "gs-debug.h"
 
+#include "bus.h"
+
 /* this is for dbus < 0.3 */
 #if ((DBUS_VERSION_MAJOR == 0) && (DBUS_VERSION_MINOR < 30))
 #define dbus_bus_name_has_owner(connection, name, err)      dbus_bus_service_exists(connection, name, err)
@@ -53,22 +55,9 @@ static DBusHandlerResult gs_listener_message_handler    (DBusConnection  *connec
                                                          DBusMessage     *message,
                                                          void            *user_data);
 
-#define GS_LISTENER_SERVICE   "org.gnome.ScreenSaver"
-#define GS_LISTENER_PATH      "/org/gnome/ScreenSaver"
-#define GS_LISTENER_INTERFACE "org.gnome.ScreenSaver"
-
 #define HAL_DEVICE_INTERFACE "org.freedesktop.Hal.Device"
 
-#define CK_NAME              "org.freedesktop.ConsoleKit"
-#define CK_MANAGER_PATH      "/org/freedesktop/ConsoleKit/Manager"
-#define CK_MANAGER_INTERFACE "org.freedesktop.ConsoleKit.Manager"
-#define CK_SESSION_INTERFACE "org.freedesktop.ConsoleKit.Session"
-
-#define SESSION_NAME         "org.gnome.SessionManager"
-#define SESSION_PATH         "/org/gnome/SessionManager"
-#define SESSION_INTERFACE    "org.gnome.SessionManager"
-
-#define TYPE_MISMATCH_ERROR GS_LISTENER_INTERFACE ".TypeMismatch"
+#define TYPE_MISMATCH_ERROR  GS_INTERFACE ".TypeMismatch"
 
 #define GS_LISTENER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_LISTENER, GSListenerPrivate))
 
@@ -165,8 +154,8 @@ send_dbus_boolean_signal (GSListener *listener,
 
         g_return_if_fail (listener != NULL);
 
-        message = dbus_message_new_signal (GS_LISTENER_PATH,
-                                           GS_LISTENER_SERVICE,
+        message = dbus_message_new_signal (GS_PATH,
+                                           GS_SERVICE,
                                            name);
 
         dbus_message_iter_init_append (message, &iter);
@@ -383,7 +372,7 @@ raise_syntax (DBusConnection *connection,
               const char     *method_name)
 {
         raise_error (connection, in_reply_to,
-                     GS_LISTENER_SERVICE ".SyntaxError",
+                     GS_SERVICE ".SyntaxError",
                      "There is a syntax error in the invocation of the method %s",
                      method_name);
 }
@@ -617,7 +606,7 @@ do_introspect (DBusConnection *connection,
 
         /* ScreenSaver interface */
         xml = g_string_append (xml,
-                               "  <interface name=\"org.gnome.ScreenSaver\">\n"
+                               "  <interface name=\""GS_INTERFACE"\">\n"
                                "    <method name=\"Lock\">\n"
                                "    </method>\n"
                                "    <method name=\"SimulateUserActivity\">\n"
@@ -708,27 +697,27 @@ listener_dbus_handle_session_message (DBusConnection *connection,
         g_return_val_if_fail (connection != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
         g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
 
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Lock")) {
+        if (dbus_message_is_method_call (message, GS_SERVICE, "Lock")) {
                 g_signal_emit (listener, signals [LOCK], 0);
                 return send_success_reply (connection, message);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Quit")) {
+        if (dbus_message_is_method_call (message, GS_SERVICE, "Quit")) {
                 g_signal_emit (listener, signals [QUIT], 0);
                 return send_success_reply (connection, message);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "SetActive")) {
+        if (dbus_message_is_method_call (message, GS_SERVICE, "SetActive")) {
                 return listener_set_property (listener, connection, message, PROP_ACTIVE);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "GetActive")) {
+        if (dbus_message_is_method_call (message, GS_SERVICE, "GetActive")) {
                 return listener_get_property (listener, connection, message, PROP_ACTIVE);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "GetActiveTime")) {
+        if (dbus_message_is_method_call (message, GS_SERVICE, "GetActiveTime")) {
                 return listener_get_active_time (listener, connection, message);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "ShowMessage")) {
+        if (dbus_message_is_method_call (message, GS_SERVICE, "ShowMessage")) {
                 return listener_show_message (listener, connection, message);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "SimulateUserActivity")) {
+        if (dbus_message_is_method_call (message, GS_SERVICE, "SimulateUserActivity")) {
                 g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
@@ -1157,7 +1146,7 @@ screensaver_is_running (DBusConnection *connection)
         g_return_val_if_fail (connection != NULL, FALSE);
 
         dbus_error_init (&error);
-        exists = dbus_bus_name_has_owner (connection, GS_LISTENER_SERVICE, &error);
+        exists = dbus_bus_name_has_owner (connection, GS_SERVICE, &error);
         if (dbus_error_is_set (&error)) {
                 dbus_error_free (&error);
         }
@@ -1206,7 +1195,7 @@ gs_listener_acquire (GSListener *listener,
         dbus_error_init (&buserror);
 
         if (dbus_connection_register_object_path (listener->priv->connection,
-                                                  GS_LISTENER_PATH,
+                                                  GS_PATH,
                                                   &gs_listener_vtable,
                                                   listener) == FALSE) {
                 g_critical ("out of memory registering object path");
@@ -1214,7 +1203,7 @@ gs_listener_acquire (GSListener *listener,
         }
 
         res = dbus_bus_request_name (listener->priv->connection,
-                                     GS_LISTENER_SERVICE,
+                                     GS_SERVICE,
                                      DBUS_NAME_FLAG_DO_NOT_QUEUE,
                                      &buserror);
         if (dbus_error_is_set (&buserror)) {
@@ -1293,7 +1282,7 @@ query_session_id (GSListener *listener)
 
         dbus_error_init (&error);
 
-        message = dbus_message_new_method_call (CK_NAME, CK_MANAGER_PATH, CK_MANAGER_INTERFACE, "GetCurrentSession");
+        message = dbus_message_new_method_call (CK_SERVICE, CK_MANAGER_PATH, CK_MANAGER_INTERFACE, "GetCurrentSession");
         if (message == NULL) {
                 gs_debug ("Couldn't allocate the dbus message");
                 return NULL;

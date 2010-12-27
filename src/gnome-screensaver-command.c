@@ -28,14 +28,12 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 
+#include "bus.h"
+
 #define DBUS_API_SUBJECT_TO_CHANGE
 #include <dbus/dbus.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
-
-#define GS_SERVICE   "org.gnome.ScreenSaver"
-#define GS_PATH      "/org/gnome/ScreenSaver"
-#define GS_INTERFACE "org.gnome.ScreenSaver"
 
 /* this is for dbus < 0.3 */
 #if ((DBUS_VERSION_MAJOR == 0) && (DBUS_VERSION_MINOR < 30))

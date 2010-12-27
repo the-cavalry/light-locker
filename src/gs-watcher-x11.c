@@ -37,6 +37,8 @@
 #include "gs-marshal.h"
 #include "gs-debug.h"
 
+#include "bus.h"
+
 static void     gs_watcher_class_init (GSWatcherClass *klass);
 static void     gs_watcher_init       (GSWatcher      *watcher);
 static void     gs_watcher_finalize   (GObject        *object);
@@ -407,9 +409,9 @@ connect_presence_watcher (GSWatcher *watcher)
         }
 
         watcher->priv->presence_proxy = dbus_g_proxy_new_for_name (bus,
-                                                                   "org.gnome.SessionManager",
-                                                                   "/org/gnome/SessionManager/Presence",
-                                                                   "org.gnome.SessionManager.Presence");
+                                                                   GSM_SERVICE,
+                                                                   GSM_PRESENCE_PATH,
+                                                                   GSM_PRESENCE_INTERFACE);
 
         dbus_g_proxy_add_signal (watcher->priv->presence_proxy,
                                  "StatusChanged",
@@ -432,7 +434,7 @@ connect_presence_watcher (GSWatcher *watcher)
 
         proxy = dbus_g_proxy_new_from_proxy (watcher->priv->presence_proxy,
                                              "org.freedesktop.DBus.Properties",
-                                             "/org/gnome/SessionManager/Presence");
+                                             GSM_PRESENCE_PATH);
 
         status = 0;
         status_text = NULL;
@@ -441,7 +443,7 @@ connect_presence_watcher (GSWatcher *watcher)
         dbus_g_proxy_call (proxy,
                            "Get",
                            &error,
-                           G_TYPE_STRING, "org.gnome.SessionManager.Presence",
+                           G_TYPE_STRING, GSM_PRESENCE_INTERFACE,
                            G_TYPE_STRING, "status",
                            G_TYPE_INVALID,
                            G_TYPE_VALUE, &value,
@@ -461,7 +463,7 @@ connect_presence_watcher (GSWatcher *watcher)
         dbus_g_proxy_call (proxy,
                            "Get",
                            &error,
-                           G_TYPE_STRING, "org.gnome.SessionManager.Presence",
+                           G_TYPE_STRING, GSM_PRESENCE_INTERFACE,
                            G_TYPE_STRING, "status-text",
                            G_TYPE_INVALID,
                            G_TYPE_VALUE, &value,
