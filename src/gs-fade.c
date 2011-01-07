@@ -572,8 +572,6 @@ check_randr_extension (GSFade *fade, int screen_idx)
         screen_priv = &fade->priv->screen_priv[screen_idx];
 
         screen_priv->rrscreen = gnome_rr_screen_new (screen,
-                                                     NULL,
-                                                     NULL,
                                                      NULL);
         if (!screen_priv->rrscreen) {
                 screen_priv->fade_type = FADE_TYPE_NONE;
@@ -907,7 +905,7 @@ gs_fade_finalize (GObject *object)
                 for (i = 0; i < fade->priv->num_screens; i++) {
                         if (!fade->priv->screen_priv[i].rrscreen)
                                 continue;
-                        gnome_rr_screen_destroy (fade->priv->screen_priv[i].rrscreen);
+                        g_object_unref (fade->priv->screen_priv[i].rrscreen);
                 }
 
                 g_free (fade->priv->screen_priv);
