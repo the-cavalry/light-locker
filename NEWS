@@ -1,4 +1,12 @@
 ===============
+Version  2.91.3
+===============
+
+- Fix build against recent gnome-screensaver
+- Use GIO to launch gdmflexiserver
+- Translation updates
+
+===============
 Version  2.91.2
 ===============
 
