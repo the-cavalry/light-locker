@@ -8,8 +8,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "screensaver&component=general\n"
 "POT-Creation-Date: 2010-12-02 11:57+0000\n"
-"PO-Revision-Date: 2009-02-06 23:33+0930\n"
-"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"PO-Revision-Date: 2011-01-03 13:48+0900\n"
+"Last-Translator: Nguyen Vu Hung <vuhung16plus@gmail.com>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,20 +43,18 @@ msgid "Screensaver Preview"
 msgstr "Xem thử ảnh bảo vệ màn hình"
 
 #: ../data/gnome-screensaver-preferences.ui.h:5
-#, fuzzy
 #| msgid "Screensaver Preview"
 msgid "Screensaver preview"
 msgstr "Xem thử ảnh bảo vệ màn hình"
 
 #: ../data/gnome-screensaver-preferences.ui.h:6
-#, fuzzy
 #| msgid "<b>Warning: the screen will not be locked for the root user.</b>"
 msgid "Warning: the screen will not be locked for the root user."
-msgstr "<b>Cảnh báo : màn hình sẽ không bị khoá cho người dùng chủ (root).</b>"
+msgstr "Cảnh báo : màn hình sẽ không bị khoá đối với người dùng root."
 
 #: ../data/gnome-screensaver-preferences.ui.h:7
 msgid "_Activate screensaver when computer is idle"
-msgstr "_Hoạt hoá bộ bảo vệ màn hình khi máy tính mới nghỉ"
+msgstr "_Kích hoạt bộ bảo vệ màn hình khi máy tính nghỉ"
 
 #: ../data/gnome-screensaver-preferences.ui.h:8
 msgid "_Lock screen when screensaver is active"
@@ -156,7 +154,6 @@ msgstr "Ảnh nguồn cần dùng"
 #. * represents a command line argument
 #.
 #: ../savers/floaters.c:1178
-#, fuzzy
 #| msgid "image - floats images around the screen"
 msgid "image — floats images around the screen"
 msgstr "image - làm nổi ảnh ở chung quanh màn hình"
@@ -177,10 +174,9 @@ msgid "PATH"
 msgstr "ĐƯỜNG DẪN"
 
 #: ../savers/slideshow.c:55
-#, fuzzy
 #| msgid "Color to use for images background"
 msgid "Color to use for image background"
-msgstr "Màu cần dùng để đặt nền của ảnh"
+msgstr "Màu nền ảnh"
 
 #: ../savers/slideshow.c:55
 msgid "\"#rrggbb\""
@@ -281,16 +277,16 @@ msgid "Version of this application"
 msgstr "Phiên bản ứng dụng này"
 
 #: ../src/gnome-screensaver-command.c:316
-#, fuzzy, c-format
+#, c-format
 #| msgid "The screensaver is %s\n"
 msgid "The screensaver is active\n"
-msgstr "Bộ bảo vệ màn hình là %s\n"
+msgstr "Bộ bảo vệ màn hình là đang hoạt động\n"
 
 #: ../src/gnome-screensaver-command.c:316
-#, fuzzy, c-format
+#, c-format
 #| msgid "The screensaver is %s\n"
 msgid "The screensaver is inactive\n"
-msgstr "Bộ bảo vệ màn hình là %s\n"
+msgstr "Bộ bảo vệ màn hình không hoạt động\n"
 
 #: ../src/gnome-screensaver-command.c:330
 #, c-format
@@ -308,10 +304,10 @@ msgid "The screensaver has been active for %d seconds.\n"
 msgstr "Bộ bảo vệ màn hình đã hoạt động trong vòng %d giây.\n"
 
 #: ../src/gnome-screensaver-command.c:371
-#, fuzzy, c-format
+#, c-format
 #| msgid "The screensaver is not inhibited\n"
 msgid "The screensaver is not currently active.\n"
-msgstr "Bộ bảo vệ màn hình không phải bị thu hồi\n"
+msgstr "Bộ bảo vệ màn hình hiện thời không hoạt động.\n"
 
 #: ../src/gnome-screensaver-dialog.c:57
 msgid "Show debugging output"
@@ -341,7 +337,7 @@ msgstr "THÔNG ĐIỆP"
 
 #: ../src/gnome-screensaver-dialog.c:71
 msgid "Not used"
-msgstr ""
+msgstr "Chưa sử dụng"
 
 #. login: is whacked always translate to Username:
 #: ../src/gnome-screensaver-dialog.c:183 ../src/gnome-screensaver-dialog.c:184
@@ -376,28 +372,24 @@ msgid "Password unchanged"
 msgstr "Chưa thay đổi mật khẩu"
 
 #: ../src/gnome-screensaver-dialog.c:193
-#, fuzzy
 #| msgid "Can not get username"
 msgid "Cannot get username"
 msgstr "Không thể lấy tên người dùng"
 
 #: ../src/gnome-screensaver-dialog.c:194
-#, fuzzy
 #| msgid "Retype new UNIX password:"
 msgid "Retype new Unix password:"
 msgstr "Gõ lại mật khẩu UNIX mới:"
 
 #: ../src/gnome-screensaver-dialog.c:195
-#, fuzzy
 #| msgid "Enter new UNIX password:"
 msgid "Enter new Unix password:"
 msgstr "Nhập mật khẩu UNIX mới:"
 
 #: ../src/gnome-screensaver-dialog.c:196
-#, fuzzy
 #| msgid "(current) UNIX password:"
 msgid "(current) Unix password:"
-msgstr "Mật khẩu UNIX (hiện có):"
+msgstr "Mật khẩu UNIX (hiện tại):"
 
 #: ../src/gnome-screensaver-dialog.c:197
 msgid "Error while changing NIS password."
@@ -420,10 +412,9 @@ msgid "Sorry, passwords do not match"
 msgstr "Tiếc là hai mật khẩu không trùng"
 
 #: ../src/gnome-screensaver-dialog.c:267
-#, fuzzy
 #| msgid "Checking..."
 msgid "Checking…"
-msgstr "Đang kiểm tra..."
+msgstr "Kiểm tra..."
 
 #: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
@@ -503,7 +494,7 @@ msgstr "Bật chạy mã gỡ lỗi"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
 msgid "Launch screensaver and locker program"
-msgstr ""
+msgstr "Chạy chương trình bảo vệ và khóa màn hình"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -544,26 +535,23 @@ msgid "Time has expired."
 msgstr "Quá giờ."
 
 #: ../src/gs-lock-plug.c:287
-#, fuzzy
 #| msgid "You have the Caps Lock key on."
 msgid "You have the Caps & Num Lock keys on."
-msgstr "Bạn đã bật phím Khoá Chữ Hoa (CapsLock)."
+msgstr "Phím chữ hoa (CapsLock) và phím số (Num Lock) đang bật."
 
 #: ../src/gs-lock-plug.c:290
 msgid "You have the Caps Lock key on."
 msgstr "Bạn đã bật phím Khoá Chữ Hoa (CapsLock)."
 
 #: ../src/gs-lock-plug.c:293
-#, fuzzy
 #| msgid "You have the Caps Lock key on."
 msgid "You have the Num Lock key on."
-msgstr "Bạn đã bật phím Khoá Chữ Hoa (CapsLock)."
+msgstr "Phím số (Num Lock) đang bật."
 
 #: ../src/gs-lock-plug.c:1355
-#, fuzzy
 #| msgid "_Switch User"
 msgid "S_witch User…"
-msgstr "_Chuyển đổi người dùng"
+msgstr "_Chuyển người dùng..."
 
 #: ../src/gs-lock-plug.c:1364
 msgid "Log _Out"
