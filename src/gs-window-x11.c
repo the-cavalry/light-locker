@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
  * Copyright (C) 2004-2008 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2008-2011 Red Hat, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,17 +17,17 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  *
- * Authors: William Jon McCann <mccann@jhu.edu>
- *
  */
 
 #include "config.h"
 
+#include <sys/time.h>
 #include <sys/types.h>
 #include <errno.h>
 #include <sys/wait.h>
 #include <string.h>
 
+#include <glib/gi18n.h>
 #include <gdk/gdkx.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
@@ -77,6 +78,8 @@ struct GSWindowPrivate
         char      *status_message;
 
         GtkWidget *vbox;
+        GtkWidget *panel;
+        GtkWidget *clock;
         GtkWidget *drawing_area;
         GtkWidget *lock_box;
         GtkWidget *lock_socket;
@@ -94,6 +97,7 @@ struct GSWindowPrivate
 
         guint      watchdog_timer_id;
         guint      info_bar_timer_id;
+        guint      clock_update_id;
 
         gint       lock_pid;
         gint       lock_watch_id;
@@ -139,6 +143,8 @@ enum {
 static guint           signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSWindow, gs_window, GTK_TYPE_WINDOW)
+
+static void queue_clock_update (GSWindow *window);
 
 static void
 set_invisible_cursor (GdkWindow *window,
@@ -2262,6 +2268,116 @@ create_info_bar (GSWindow *window)
         gtk_box_pack_end (GTK_BOX (window->priv->vbox), window->priv->info_bar, FALSE, FALSE, 0);
 }
 
+static gboolean
+on_panel_draw (GtkWidget    *widget,
+               cairo_t      *cr,
+               GSWindow     *window)
+{
+        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 1.0);
+        cairo_paint (cr);
+
+        return FALSE;
+}
+
+static void
+update_clock (GSWindow *window)
+{
+        const char *clock_format;
+        char *text;
+        char *markup;
+        gboolean use_24 = FALSE;
+        GDateTime *dt;
+
+        /* clock */
+        /* FIXME: set 12/24 hour */
+        if (use_24)
+                clock_format = _("%a %R");
+        else
+                clock_format = _("%a %l:%M %p");
+
+        dt = g_date_time_new_now_local ();
+        text = g_date_time_format (dt, clock_format);
+        markup = g_strdup_printf ("<b><span foreground=\"white\">%s</span></b>", text);
+        gtk_label_set_markup (GTK_LABEL (window->priv->clock), markup);
+        g_free (markup);
+        g_free (text);
+        g_date_time_unref (dt);
+}
+
+
+static gboolean
+update_clock_timer (GSWindow *window)
+{
+        update_clock (window);
+        queue_clock_update (window);
+        return FALSE;
+}
+
+static void
+queue_clock_update (GSWindow *window)
+{
+        int timeouttime;
+        struct timeval tv;
+
+        gettimeofday (&tv, NULL);
+        timeouttime = (G_USEC_PER_SEC - tv.tv_usec) / 1000 + 1;
+
+        /* timeout of one minute if we don't care about the seconds */
+        timeouttime += 1000 * (59 - tv.tv_sec % 60);
+
+        window->priv->clock_update_id = g_timeout_add (timeouttime, (GSourceFunc)update_clock_timer, window);
+}
+
+static void
+create_panel (GSWindow *window)
+{
+        GtkWidget    *left_hbox;
+        GtkWidget    *right_hbox;
+        GtkWidget    *alignment;
+        GtkSizeGroup *sg;
+        GdkRGBA       bg;
+        GdkRGBA       fg;
+        int           all_states;
+
+        bg.red = 0;
+        bg.green = 0;
+        bg.blue = 0;
+        bg.alpha = 1.0;
+
+        fg.red = 1.0;
+        fg.green = 1.0;
+        fg.blue = 1.0;
+        fg.alpha = 1.0;
+
+        all_states = GTK_STATE_FLAG_NORMAL|GTK_STATE_FLAG_ACTIVE|GTK_STATE_FLAG_PRELIGHT|GTK_STATE_FLAG_SELECTED|GTK_STATE_FLAG_INSENSITIVE|GTK_STATE_FLAG_INCONSISTENT|GTK_STATE_FLAG_FOCUSED;
+
+        gtk_widget_override_background_color (window->priv->panel, all_states, &bg);
+        gtk_widget_override_color (window->priv->panel, all_states, &fg);
+        gtk_container_set_border_width (GTK_CONTAINER (window->priv->panel), 0);
+
+        g_signal_connect (window->priv->panel, "draw", G_CALLBACK (on_panel_draw), window);
+
+        left_hbox = gtk_hbox_new (FALSE, 6);
+        gtk_box_pack_start (GTK_BOX (window->priv->panel), left_hbox, TRUE, TRUE, 0);
+
+        alignment = gtk_alignment_new (0.5, 0.5, 1, 1);
+        gtk_box_pack_start (GTK_BOX (window->priv->panel), alignment, FALSE, FALSE, 0);
+        window->priv->clock = gtk_label_new (NULL);
+        gtk_misc_set_padding (GTK_MISC (window->priv->clock), 4, 4);
+        update_clock (window);
+        queue_clock_update (window);
+        gtk_container_add (GTK_CONTAINER (alignment), window->priv->clock);
+
+        right_hbox = gtk_hbox_new (FALSE, 6);
+        gtk_box_pack_end (GTK_BOX (window->priv->panel), right_hbox, TRUE, TRUE, 0);
+
+        sg = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
+        gtk_size_group_add_widget (sg, left_hbox);
+        gtk_size_group_add_widget (sg, right_hbox);
+
+        gtk_widget_show_all (window->priv->panel);
+}
+
 static void
 gs_window_init (GSWindow *window)
 {
@@ -2296,9 +2412,14 @@ gs_window_init (GSWindow *window)
                                | GDK_ENTER_NOTIFY_MASK
                                | GDK_LEAVE_NOTIFY_MASK);
 
-        window->priv->vbox = gtk_vbox_new (FALSE, 12);
+        window->priv->vbox = gtk_vbox_new (FALSE, 0);
         gtk_widget_show (window->priv->vbox);
         gtk_container_add (GTK_CONTAINER (window), window->priv->vbox);
+
+        window->priv->panel = gtk_hbox_new (FALSE, 12);
+        gtk_widget_show (window->priv->panel);
+        gtk_box_pack_start (GTK_BOX (window->priv->vbox), window->priv->panel, FALSE, FALSE, 0);
+        create_panel (window);
 
         window->priv->drawing_area = gtk_drawing_area_new ();
         gtk_widget_show (window->priv->drawing_area);
@@ -2336,6 +2457,10 @@ gs_window_finalize (GObject *object)
 
         g_free (window->priv->logout_command);
         g_free (window->priv->keyboard_command);
+
+        if (window->priv->clock_update_id > 0) {
+                g_source_remove (window->priv->clock_update_id);
+        }
 
         if (window->priv->info_bar_timer_id > 0) {
                 g_source_remove (window->priv->info_bar_timer_id);
