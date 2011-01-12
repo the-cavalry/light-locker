@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
- * Copyright (C) 2004-2006 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2004-2008 William Jon McCann <mccann@jhu.edu>
+ * Copyright (C) 2008-2011 Red Hat, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,8 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *
- * Authors: William Jon McCann <mccann@jhu.edu>
  *
  */
 
@@ -84,7 +83,6 @@ struct GSLockPlugPrivate
 
         GtkWidget   *auth_unlock_button;
         GtkWidget   *auth_switch_button;
-        GtkWidget   *auth_cancel_button;
         GtkWidget   *auth_logout_button;
 
         GtkWidget   *auth_prompt_kbd_layout_indicator;
@@ -1236,8 +1234,6 @@ gs_lock_plug_disable_prompt (GSLockPlug *plug)
         gtk_widget_set_sensitive (plug->priv->auth_unlock_button, FALSE);
         gtk_widget_set_sensitive (plug->priv->auth_prompt_entry, FALSE);
         /* gtk_widget_hide (plug->priv->auth_unlock_button); */
-
-        gtk_widget_grab_default (plug->priv->auth_cancel_button);
 }
 
 void
@@ -1369,10 +1365,6 @@ create_page_one_buttons (GSLockPlug *plug)
         gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->auth_logout_button), FALSE);
         gtk_widget_set_no_show_all (plug->priv->auth_logout_button, TRUE);
 
-        plug->priv->auth_cancel_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
-                                                                   plug->priv->auth_action_area,
-                                                                   GTK_STOCK_CANCEL);
-        gtk_button_set_focus_on_click (GTK_BUTTON (plug->priv->auth_cancel_button), FALSE);
 
         plug->priv->auth_unlock_button =  gs_lock_plug_add_button (GS_LOCK_PLUG (plug),
                                                                    plug->priv->auth_action_area,
@@ -1597,13 +1589,6 @@ unlock_button_clicked (GtkButton  *button,
 }
 
 static void
-cancel_button_clicked (GtkButton  *button,
-                       GSLockPlug *plug)
-{
-        gs_lock_plug_response (plug, GS_LOCK_PLUG_RESPONSE_CANCEL);
-}
-
-static void
 switch_user_button_clicked (GtkButton  *button,
                             GSLockPlug *plug)
 {
@@ -1723,9 +1708,6 @@ gs_lock_plug_init (GSLockPlug *plug)
         g_signal_connect (plug->priv->auth_unlock_button, "clicked",
                           G_CALLBACK (unlock_button_clicked), plug);
 
-        g_signal_connect (plug->priv->auth_cancel_button, "clicked",
-                          G_CALLBACK (cancel_button_clicked), plug);
-
         if (plug->priv->status_message_label) {
                 if (plug->priv->status_message) {
                         gtk_label_set_text (GTK_LABEL (plug->priv->status_message_label),
@@ -1747,6 +1729,8 @@ gs_lock_plug_init (GSLockPlug *plug)
         }
 
         g_signal_connect (plug, "delete_event", G_CALLBACK (delete_handler), NULL);
+
+        gtk_widget_set_size_request (GTK_WIDGET (plug), 450, -1);
 
         gs_profile_end (NULL);
 }
