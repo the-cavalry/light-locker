@@ -80,6 +80,7 @@ struct GSWindowPrivate
         GtkWidget *vbox;
         GtkWidget *panel;
         GtkWidget *clock;
+        GtkWidget *name_label;
         GtkWidget *drawing_area;
         GtkWidget *lock_box;
         GtkWidget *lock_socket;
@@ -2328,16 +2329,52 @@ queue_clock_update (GSWindow *window)
         window->priv->clock_update_id = g_timeout_add (timeouttime, (GSourceFunc)update_clock_timer, window);
 }
 
+static char *
+get_user_display_name (void)
+{
+        const char *name;
+        char       *utf8_name;
+
+        name = g_get_real_name ();
+
+        if (name == NULL || strcmp (name, "Unknown") == 0) {
+                name = g_get_user_name ();
+        }
+
+        utf8_name = NULL;
+
+        if (name != NULL) {
+                utf8_name = g_locale_to_utf8 (name, -1, NULL, NULL, NULL);
+        }
+
+        return utf8_name;
+}
+
+static void
+update_name_label (GSWindow *window)
+{
+        char *name;
+        char *markup;
+        name = get_user_display_name ();
+        markup = g_strdup_printf ("<b><span foreground=\"white\">%s</span></b>", name);
+        gtk_label_set_markup (GTK_LABEL (window->priv->name_label), markup);
+        g_free (markup);
+        g_free (name);
+}
+
 static void
 create_panel (GSWindow *window)
 {
         GtkWidget    *left_hbox;
         GtkWidget    *right_hbox;
         GtkWidget    *alignment;
+        GtkWidget    *right_alignment;
+        GtkWidget    *image;
         GtkSizeGroup *sg;
         GdkRGBA       bg;
         GdkRGBA       fg;
         int           all_states;
+        GIcon        *gicon;
 
         bg.red = 0;
         bg.green = 0;
@@ -2349,7 +2386,7 @@ create_panel (GSWindow *window)
         fg.blue = 1.0;
         fg.alpha = 1.0;
 
-        all_states = GTK_STATE_FLAG_NORMAL|GTK_STATE_FLAG_ACTIVE|GTK_STATE_FLAG_PRELIGHT|GTK_STATE_FLAG_SELECTED|GTK_STATE_FLAG_INSENSITIVE|GTK_STATE_FLAG_INCONSISTENT|GTK_STATE_FLAG_FOCUSED;
+        all_states = 0;
 
         gtk_widget_override_background_color (window->priv->panel, all_states, &bg);
         gtk_widget_override_color (window->priv->panel, all_states, &fg);
@@ -2368,8 +2405,23 @@ create_panel (GSWindow *window)
         queue_clock_update (window);
         gtk_container_add (GTK_CONTAINER (alignment), window->priv->clock);
 
+        right_alignment = gtk_alignment_new (1, 0.5, 1, 1);
+        gtk_box_pack_end (GTK_BOX (window->priv->panel), right_alignment, TRUE, TRUE, 0);
+        gtk_alignment_set_padding (GTK_ALIGNMENT (right_alignment),
+                                   0, 0, 10, 10);
+
         right_hbox = gtk_hbox_new (FALSE, 6);
-        gtk_box_pack_end (GTK_BOX (window->priv->panel), right_hbox, TRUE, TRUE, 0);
+        gtk_container_add (GTK_CONTAINER (right_alignment), right_hbox);
+
+        window->priv->name_label = gtk_label_new (NULL);
+        update_name_label (window);
+        gtk_box_pack_end (GTK_BOX (right_hbox), window->priv->name_label, FALSE, FALSE, 0);
+
+        gicon = g_themed_icon_new_with_default_fallbacks ("changes-prevent-symbolic");
+        image = gtk_image_new_from_gicon (gicon, GTK_ICON_SIZE_MENU);
+        gtk_widget_override_color (image, all_states, &fg);
+        g_object_unref (gicon);
+        gtk_box_pack_end (GTK_BOX (right_hbox), image, FALSE, FALSE, 0);
 
         sg = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
         gtk_size_group_add_widget (sg, left_hbox);
