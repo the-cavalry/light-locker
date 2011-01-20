@@ -72,8 +72,6 @@ struct GSLockPlugPrivate
 
         GtkWidget   *notebook;
         GtkWidget   *auth_face_image;
-        GtkWidget   *auth_realname_label;
-        GtkWidget   *auth_username_label;
         GtkWidget   *auth_prompt_label;
         GtkWidget   *auth_prompt_entry;
         GtkWidget   *auth_prompt_box;
@@ -780,7 +778,7 @@ set_face_image (GSLockPlug *plug)
         GdkPixbuf    *pixbuf;
         const char   *homedir;
         char         *path;
-        int           icon_size = 96;
+        int           icon_size = 64;
         gsize         user_max_file = 65536;
         uid_t         uid;
 
@@ -1199,6 +1197,8 @@ gs_lock_plug_enable_prompt (GSLockPlug *plug,
                             const char *message,
                             gboolean    visible)
 {
+        char *markup;
+
         g_return_if_fail (GS_IS_LOCK_PLUG (plug));
 
         gs_debug ("Setting prompt to: %s", message);
@@ -1206,7 +1206,9 @@ gs_lock_plug_enable_prompt (GSLockPlug *plug,
         gtk_widget_set_sensitive (plug->priv->auth_unlock_button, TRUE);
         gtk_widget_show (plug->priv->auth_unlock_button);
         gtk_widget_grab_default (plug->priv->auth_unlock_button);
-        gtk_label_set_text (GTK_LABEL (plug->priv->auth_prompt_label), message);
+        markup = g_strdup_printf ("<b><big>%s</big></b>", message);
+        gtk_label_set_markup (GTK_LABEL (plug->priv->auth_prompt_label), markup);
+        g_free (markup);
         gtk_widget_show (plug->priv->auth_prompt_label);
         gtk_entry_set_visibility (GTK_ENTRY (plug->priv->auth_prompt_entry), visible);
         gtk_widget_set_sensitive (plug->priv->auth_prompt_entry, TRUE);
@@ -1307,43 +1309,6 @@ gs_lock_plug_add_button (GSLockPlug  *plug,
         return button;
 }
 
-static char *
-get_user_display_name (void)
-{
-        const char *name;
-        char       *utf8_name;
-
-        name = g_get_real_name ();
-
-        if (name == NULL || strcmp (name, "Unknown") == 0) {
-                name = g_get_user_name ();
-        }
-
-        utf8_name = NULL;
-
-        if (name != NULL) {
-                utf8_name = g_locale_to_utf8 (name, -1, NULL, NULL, NULL);
-        }
-
-        return utf8_name;
-}
-
-static char *
-get_user_name (void)
-{
-        const char *name;
-        char       *utf8_name;
-
-        name = g_get_user_name ();
-
-        utf8_name = NULL;
-        if (name != NULL) {
-                utf8_name = g_locale_to_utf8 (name, -1, NULL, NULL, NULL);
-        }
-
-        return utf8_name;
-}
-
 static void
 create_page_one_buttons (GSLockPlug *plug)
 {
@@ -1376,130 +1341,6 @@ create_page_one_buttons (GSLockPlug *plug)
         gs_profile_end ("page one buttons");
 }
 
-/* adapted from GDM */
-static char *
-expand_string (const char *text)
-{
-        GString       *str;
-        const char    *p;
-        char          *username;
-        int            i;
-        int            n_chars;
-        struct utsname name;
-
-        str = g_string_sized_new (strlen (text));
-
-        p = text;
-        n_chars = g_utf8_strlen (text, -1);
-        i = 0;
-
-        while (i < n_chars) {
-                gunichar ch;
-
-                ch = g_utf8_get_char (p);
-
-                /* Backslash commands */
-                if (ch == '\\') {
-                        p = g_utf8_next_char (p);
-                        i++;
-                        ch = g_utf8_get_char (p);
-
-                        if (i >= n_chars || ch == '\0') {
-                                g_warning ("Unescaped \\ at end of text\n");
-                                goto bail;
-                        } else if (ch == 'n') {
-                                g_string_append_unichar (str, '\n');
-                        } else {
-                                g_string_append_unichar (str, ch);
-                        }
-                } else if (ch == '%') {
-                        p = g_utf8_next_char (p);
-                        i++;
-                        ch = g_utf8_get_char (p);
-
-                        if (i >= n_chars || ch == '\0') {
-                                g_warning ("Unescaped %% at end of text\n");
-                                goto bail;
-                        }
-
-                        switch (ch) {
-                        case '%':
-                                g_string_append (str, "%");
-                                break;
-                        case 'c':
-                                /* clock */
-                                break;
-                        case 'd':
-                                /* display */
-                                g_string_append (str, g_getenv ("DISPLAY"));
-                                break;
-                        case 'h':
-                                /* hostname */
-                                g_string_append (str, g_get_host_name ());
-                                break;
-                        case 'm':
-                                /* machine name */
-                                uname (&name);
-                                g_string_append (str, name.machine);
-                                break;
-                        case 'n':
-                                /* nodename */
-                                uname (&name);
-                                g_string_append (str, name.nodename);
-                                break;
-                        case 'r':
-                                /* release */
-                                uname (&name);
-                                g_string_append (str, name.release);
-                                break;
-                        case 'R':
-                                /* Real name */
-                                username = get_user_display_name ();
-                                g_string_append (str, username);
-                                g_free (username);
-                                break;
-                        case 's':
-                                /* system name */
-                                uname (&name);
-                                g_string_append (str, name.sysname);
-                                break;
-                        case 'U':
-                                /* Username */
-                                username = get_user_name ();
-                                g_string_append (str, username);
-                                g_free (username);
-                                break;
-                        default:
-                                if (ch < 127) {
-                                        g_warning ("unknown escape code %%%c in text\n", (char)ch);
-                                } else {
-                                        g_warning ("unknown escape code %%(U%x) in text\n", (int)ch);
-                                }
-                        }
-                } else {
-                        g_string_append_unichar (str, ch);
-                }
-                p = g_utf8_next_char (p);
-                i++;
-        }
-
- bail:
-
-        return g_string_free (str, FALSE);
-}
-
-static void
-expand_string_for_label (GtkWidget *label)
-{
-        const char *template;
-        char       *str;
-
-        template = gtk_label_get_label (GTK_LABEL (label));
-        str = expand_string (template);
-        gtk_label_set_label (GTK_LABEL (label), str);
-        g_free (str);
-}
-
 static void
 create_page_one (GSLockPlug *plug)
 {
@@ -1507,7 +1348,6 @@ create_page_one (GSLockPlug *plug)
         GtkWidget            *vbox;
         GtkWidget            *vbox2;
         GtkWidget            *hbox;
-        char                 *str;
 
         gs_profile_start ("page one");
 
@@ -1517,42 +1357,23 @@ create_page_one (GSLockPlug *plug)
         vbox = gtk_vbox_new (FALSE, 12);
         gtk_container_add (GTK_CONTAINER (align), vbox);
 
-        plug->priv->auth_face_image = gtk_image_new ();
-        gtk_box_pack_start (GTK_BOX (vbox), plug->priv->auth_face_image, TRUE, TRUE, 0);
-        gtk_misc_set_alignment (GTK_MISC (plug->priv->auth_face_image), 0.5, 1.0);
-
-        vbox2 = gtk_vbox_new (FALSE, 0);
-        gtk_box_pack_start (GTK_BOX (vbox), vbox2, FALSE, FALSE, 0);
-
-        str = g_strdup ("<span size=\"x-large\">%R</span>");
-        plug->priv->auth_realname_label = gtk_label_new (str);
-        g_free (str);
-        expand_string_for_label (plug->priv->auth_realname_label);
-        gtk_misc_set_alignment (GTK_MISC (plug->priv->auth_realname_label), 0.5, 0.5);
-        gtk_label_set_use_markup (GTK_LABEL (plug->priv->auth_realname_label), TRUE);
-        gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->auth_realname_label, FALSE, FALSE, 0);
-
-        /* To translators: This expands to USERNAME on HOSTNAME */
-        str = g_strdup_printf ("<span size=\"small\">%s</span>", _("%U on %h"));
-        plug->priv->auth_username_label = gtk_label_new (str);
-        g_free (str);
-        expand_string_for_label (plug->priv->auth_username_label);
-        gtk_misc_set_alignment (GTK_MISC (plug->priv->auth_username_label), 0.5, 0.5);
-        gtk_label_set_use_markup (GTK_LABEL (plug->priv->auth_username_label), TRUE);
-        gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->auth_username_label, FALSE, FALSE, 0);
-
-        vbox2 = gtk_vbox_new (FALSE, 0);
-        gtk_box_pack_start (GTK_BOX (vbox), vbox2, TRUE, TRUE, 0);
-
         hbox = gtk_hbox_new (FALSE, 6);
-        gtk_box_pack_start (GTK_BOX (vbox2), hbox, FALSE, FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
+
+        plug->priv->auth_face_image = gtk_image_new ();
+        gtk_box_pack_start (GTK_BOX (hbox), plug->priv->auth_face_image, FALSE, FALSE, 0);
+        gtk_misc_set_alignment (GTK_MISC (plug->priv->auth_face_image), 0, 0);
+
+        vbox2 = gtk_vbox_new (FALSE, 6);
+        gtk_box_pack_start (GTK_BOX (hbox), vbox2, TRUE, TRUE, 0);
+        gtk_container_set_border_width (GTK_CONTAINER (vbox2), 10);
 
         plug->priv->auth_prompt_label = gtk_label_new_with_mnemonic (_("_Password:"));
         gtk_misc_set_alignment (GTK_MISC (plug->priv->auth_prompt_label), 0, 0.5);
-        gtk_box_pack_start (GTK_BOX (hbox), plug->priv->auth_prompt_label, FALSE, FALSE, 0);
+        gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->auth_prompt_label, FALSE, FALSE, 0);
 
         plug->priv->auth_prompt_entry = gtk_entry_new ();
-        gtk_box_pack_start (GTK_BOX (hbox), plug->priv->auth_prompt_entry, TRUE, TRUE, 0);
+        gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->auth_prompt_entry, TRUE, TRUE, 0);
 
         gtk_label_set_mnemonic_widget (GTK_LABEL (plug->priv->auth_prompt_label),
                                        plug->priv->auth_prompt_entry);
@@ -1679,14 +1500,6 @@ gs_lock_plug_init (GSLockPlug *plug)
         }
 
         gtk_widget_grab_default (plug->priv->auth_unlock_button);
-
-        if (plug->priv->auth_username_label != NULL) {
-                expand_string_for_label (plug->priv->auth_username_label);
-        }
-
-        if (plug->priv->auth_realname_label != NULL) {
-                expand_string_for_label (plug->priv->auth_realname_label);
-        }
 
         if (! plug->priv->logout_enabled || ! plug->priv->logout_command) {
                 if (plug->priv->auth_logout_button != NULL) {
