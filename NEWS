@@ -1,8 +1,16 @@
 ===============
+Version  2.91.4
+===============
+
+- Fix build against recent GTK+
+- GNOME 3 style updates
+- Translation updates
+
+===============
 Version  2.91.3
 ===============
 
-- Fix build against recent gnome-screensaver
+- Fix build against recent GTK+
 - Use GIO to launch gdmflexiserver
 - Translation updates
 
