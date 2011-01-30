@@ -23,6 +23,8 @@
 #ifndef __GS_LOCK_PLUG_H
 #define __GS_LOCK_PLUG_H
 
+#include <gtk/gtkx.h>
+
 G_BEGIN_DECLS
 
 typedef enum

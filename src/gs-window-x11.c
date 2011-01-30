@@ -28,9 +28,8 @@
 #include <string.h>
 
 #include <glib/gi18n.h>
-#include <gdk/gdkx.h>
-#include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
+#include <gtk/gtkx.h>
 
 #include "gs-window.h"
 #include "gs-marshal.h"
