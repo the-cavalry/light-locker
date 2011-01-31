@@ -21,3 +21,4 @@ src/gnome-screensaver.desktop.in.in
 src/gs-auth-pam.c
 src/gs-listener-dbus.c
 src/gs-lock-plug.c
+src/gs-window-x11.c
