@@ -1,16 +1,17 @@
 # Swedish messages for gnome-screensaver.
-# Copyright (C) 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
+# Copyright (C) 2005-2011 Free Software Foundation, Inc.
 # Christian Rose <menthos@menthos.com>, 2005.
-# Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008, 2009.
+# Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008, 2009, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-06 14:12+0200\n"
-"PO-Revision-Date: 2010-08-06 14:15+0100\n"
+"POT-Creation-Date: 2011-02-02 21:48+0100\n"
+"PO-Revision-Date: 2011-02-02 21:51+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,129 +67,12 @@ msgid "_Screensaver theme:"
 msgstr "_Skärmsläckartema:"
 
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Screensaver themes"
 msgstr "Skärmsläckarteman"
 
 #: ../data/gnome-screensaver.directory.in.h:2
 msgid "Screensavers"
 msgstr "Skärmsläckare"
-
-#: ../data/gnome-screensaver.schemas.in.h:1
-msgid "Activate when idle"
-msgstr "Aktivera vid inaktiv"
-
-#: ../data/gnome-screensaver.schemas.in.h:2
-msgid "Allow embedding a keyboard into the window"
-msgstr "Tillåt inbäddning av ett tangentbord i fönstret"
-
-#: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow logout"
-msgstr "Tillåt utloggning"
-
-#: ../data/gnome-screensaver.schemas.in.h:4
-msgid "Allow the session status message to be displayed"
-msgstr "Tillåt att sessionsstatusmeddelandet visas"
-
-#: ../data/gnome-screensaver.schemas.in.h:5
-msgid "Allow the session status message to be displayed when the screen is locked."
-msgstr "Tillåt att sessionsstatusmeddelandet visas när skärmen är låst."
-
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Allow user switching"
-msgstr "Tillåt byte av användare"
-
-#: ../data/gnome-screensaver.schemas.in.h:7
-msgid "Embedded keyboard command"
-msgstr "Kommando för inbäddat tangentbord"
-
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Lock on activation"
-msgstr "Lås vid aktivering"
-
-#: ../data/gnome-screensaver.schemas.in.h:9
-msgid "Logout command"
-msgstr "Kommando för att logga ut"
-
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Screensaver theme selection mode"
-msgstr "Läge för val av skärmsläckartema"
-
-#: ../data/gnome-screensaver.schemas.in.h:12
-msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr "Ställ in den här till TRUE för att aktivera skärmsläckaren när sessionen är inaktiv."
-
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid "Set this to TRUE to allow embedding a keyboard into the window when trying to unlock. The \"keyboard_command\" key must be set with the appropriate command."
-msgstr "Ställ in detta till TRUE för att tillåta inbäddning av ett tangentbord i fönstret vid försök att låsa upp. Nyckeln \"keyboard_command\" måste ställas in med lämpligt kommando."
-
-#: ../data/gnome-screensaver.schemas.in.h:14
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr "Ställ in den här till TRUE för att låsa skärmen när skärmsläckaren blir aktiverad."
-
-#: ../data/gnome-screensaver.schemas.in.h:15
-msgid "Set this to TRUE to offer an option in the unlock dialog to allow logging out after a delay. The delay is specified in the \"logout_delay\" key."
-msgstr "Ställ in den här till TRUE för att erbjuda ett alternativ i upplåsningsdialogen om att logga ut efter en viss fördröjning. Fördröjningen anges i nyckeln \"logout_delay\"."
-
-#: ../data/gnome-screensaver.schemas.in.h:16
-msgid "Set this to TRUE to offer an option in the unlock dialog to switch to a different user account."
-msgstr "Ställ in den här till TRUE för att erbjuda ett alternativ i upplåsningsdialogen om att byta till ett annat användarkonto."
-
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid "The command that will be run, if the \"embedded_keyboard_enabled\" key is set to TRUE, to embed a keyboard widget into the window. This command should implement an XEMBED plug interface and output a window XID on the standard output."
-msgstr "Kommandot som kommer att köras, om nyckeln \"embedded_keyboard_enabled\" är inställd till TRUE, för att inbädda en tangentbordswidget i fönstret. Detta kommando bör implementera en XEMBED-insticksgränssnitt och skriva ut ett fönster-xid på standard ut."
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid "The command to invoke when the logout button is clicked. This command should simply log the user out without any interaction. This key has effect only if the \"logout_enable\" key is set to TRUE."
-msgstr "Kommandot att starta när utloggningsknappen klickas på. Det här kommandot ska helt enkelt logga ut användaren utan någon interaktion. Den här nyckeln har endast effekt om nyckeln \"logout_enable\" är inställd till TRUE."
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid "The number of minutes after screensaver activation before locking the screen."
-msgstr "Antal minuter efter att skärmsläckaren aktiverats innan skärmen låses."
-
-#: ../data/gnome-screensaver.schemas.in.h:20
-msgid "The number of minutes after the screensaver activation before a logout option will appear in the unlock dialog. This key has effect only if the \"logout_enable\" key is set to TRUE."
-msgstr "Antal minuter efter att skärmsläckaren aktiverats innan ett utloggningsalternativ visas i upplåsningsdialogen.  Den här nyckeln har endast effekt om nyckeln \"logout_enable\" är inställd till TRUE."
-
-#: ../data/gnome-screensaver.schemas.in.h:21
-msgid "The number of minutes of inactivity before the session is considered idle."
-msgstr "Antal minuter efter att skärmsläckaren aktiverats innan sessionen anses som inaktiv."
-
-#: ../data/gnome-screensaver.schemas.in.h:22
-msgid "The number of minutes to run before changing the screensaver theme."
-msgstr "Antal minuter att köra innan skärmsläckartemat byts."
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-msgid "The number of seconds of inactivity before signalling to power management. This key is set and maintained by the session power management agent."
-msgstr "Antalet sekunders inaktivitet innan signalering om strömhantering. Den här nyckeln är inställd och hanteras av sessionsagenten för strömhantering."
-
-#: ../data/gnome-screensaver.schemas.in.h:24
-msgid "The selection mode used by screensaver. May be \"blank-only\" to enable the screensaver without using any theme on activation, \"single\" to enable screensaver using only one theme on activation (specified in \"themes\" key), and \"random\" to enable the screensaver using a random theme on activation."
-msgstr "Valläget som används av skärmsläckaren. Kan vara \"blank-only\" för att aktivera skärmsläckaren utan att använda något tema vid aktivering, \"single\" för att aktivera skärmsläckaren med endast ett tema vid aktivering (anges i nyckeln \"themes\" och \"random\" för att aktivera skärmsläckaren med ett slumpmässigt tema vid aktivering."
-
-#: ../data/gnome-screensaver.schemas.in.h:25
-msgid "This key specifies the list of themes to be used by the screensaver. It's ignored when \"mode\" key is \"blank-only\", should provide the theme name when \"mode\" is \"single\", and should provide a list of themes when \"mode\" is \"random\"."
-msgstr "Den här nyckeln anger temalistan som ska användas av skärmsläckaren. Den ignoreras när \"mode\"-nyckeln är \"blank-only\", ska ge temanamnet när \"mode\" är \"single\" och ska ge en temalista när \"mode\" är \"random\"."
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Time before locking"
-msgstr "Tid före låsning"
-
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid "Time before logout option"
-msgstr "Tid före utloggningsalternativ"
-
-#: ../data/gnome-screensaver.schemas.in.h:28
-msgid "Time before power management baseline"
-msgstr "Tid innan strömhanteringsläge aktiveras"
-
-#: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before session is considered idle"
-msgstr "Tid innan sessionen anses som overksam"
-
-#: ../data/gnome-screensaver.schemas.in.h:30
-msgid "Time before theme change"
-msgstr "Tide före temabyte"
 
 #. Translators: This is the name of a desktop background image that shows outer space images.
 #. You might want to translate it into the equivalent words of your language
@@ -225,8 +109,8 @@ msgstr "En popartigt rutnät med pulserande färger."
 msgid "Pop art squares"
 msgstr "Popart-rutor"
 
-#: ../savers/popsquares.c:49
-#: ../savers/floaters.c:1205
+#: ../savers/popsquares.c:50
+#: ../savers/floaters.c:1184
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Se --help för information om användning.\n"
@@ -266,11 +150,11 @@ msgstr "Källbilden att använda"
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1199
+#: ../savers/floaters.c:1178
 msgid "image — floats images around the screen"
 msgstr "image - flytande bilder på skärmen"
 
-#: ../savers/floaters.c:1214
+#: ../savers/floaters.c:1193
 #, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr "Du måste ange en bild.  Se --help för information om användning.\n"
@@ -315,16 +199,16 @@ msgstr "Till:"
 msgid "Copying themes"
 msgstr "Kopierar teman"
 
-#: ../src/copy-theme-dialog.c:301
+#: ../src/copy-theme-dialog.c:300
 msgid "Invalid screensaver theme"
 msgstr "Ogiltigt skärmsläckartema"
 
-#: ../src/copy-theme-dialog.c:304
+#: ../src/copy-theme-dialog.c:303
 #, c-format
 msgid "%s does not appear to be a valid screensaver theme."
 msgstr "%s verkar inte vara ett giltigt skärmsläckartema."
 
-#: ../src/copy-theme-dialog.c:484
+#: ../src/copy-theme-dialog.c:483
 #, c-format
 msgid "Copying file: %u of %u"
 msgstr "Kopierar fil: %u av %u"
@@ -379,32 +263,32 @@ msgstr "Anledning för hindring av skärmsläckaren"
 msgid "Version of this application"
 msgstr "Detta programs versionsnummer"
 
-#: ../src/gnome-screensaver-command.c:295
+#: ../src/gnome-screensaver-command.c:316
 #, c-format
 msgid "The screensaver is active\n"
 msgstr "Skärmsläckaren är aktiv\n"
 
-#: ../src/gnome-screensaver-command.c:295
+#: ../src/gnome-screensaver-command.c:316
 #, c-format
 msgid "The screensaver is inactive\n"
 msgstr "Skärmsläckaren är inaktiv\n"
 
-#: ../src/gnome-screensaver-command.c:309
+#: ../src/gnome-screensaver-command.c:330
 #, c-format
 msgid "The screensaver is not inhibited\n"
 msgstr "Skärmsläckaren förhindras inte\n"
 
-#: ../src/gnome-screensaver-command.c:315
+#: ../src/gnome-screensaver-command.c:336
 #, c-format
 msgid "The screensaver is being inhibited by:\n"
 msgstr "Skärmsläckaren förhindras av:\n"
 
-#: ../src/gnome-screensaver-command.c:346
+#: ../src/gnome-screensaver-command.c:367
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "Skärmsläckaren har varit aktiv i %d sekunder.\n"
 
-#: ../src/gnome-screensaver-command.c:350
+#: ../src/gnome-screensaver-command.c:371
 #, c-format
 msgid "The screensaver is not currently active.\n"
 msgstr "Skärmsläckaren är för närvarande inte aktiv.\n"
@@ -519,29 +403,29 @@ msgstr "Kontrollerar..."
 msgid "Authentication failed."
 msgstr "Autentisering misslyckades."
 
-#: ../src/gnome-screensaver-preferences.c:524
+#: ../src/gnome-screensaver-preferences.c:467
 msgid "Blank screen"
 msgstr "Blank skärm"
 
-#: ../src/gnome-screensaver-preferences.c:530
+#: ../src/gnome-screensaver-preferences.c:473
 msgid "Random"
 msgstr "Slumpmässigt"
 
-#: ../src/gnome-screensaver-preferences.c:980
+#: ../src/gnome-screensaver-preferences.c:923
 #, c-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d timme"
 msgstr[1] "%d timmar"
 
-#: ../src/gnome-screensaver-preferences.c:983
+#: ../src/gnome-screensaver-preferences.c:926
 #, c-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d minut"
 msgstr[1] "%d minuter"
 
-#: ../src/gnome-screensaver-preferences.c:986
+#: ../src/gnome-screensaver-preferences.c:929
 #, c-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -549,15 +433,15 @@ msgstr[0] "%d sekund"
 msgstr[1] "%d sekunder"
 
 #. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:992
+#: ../src/gnome-screensaver-preferences.c:935
 #, c-format
 msgid "%s %s %s"
 msgstr "%s %s %s"
 
 #. hour:minutes
 #. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:995
-#: ../src/gnome-screensaver-preferences.c:1003
+#: ../src/gnome-screensaver-preferences.c:938
+#: ../src/gnome-screensaver-preferences.c:946
 #, c-format
 msgid "%s %s"
 msgstr "%s %s"
@@ -565,23 +449,23 @@ msgstr "%s %s"
 #. hour
 #. minutes
 #. seconds
-#: ../src/gnome-screensaver-preferences.c:998
-#: ../src/gnome-screensaver-preferences.c:1006
-#: ../src/gnome-screensaver-preferences.c:1010
+#: ../src/gnome-screensaver-preferences.c:941
+#: ../src/gnome-screensaver-preferences.c:949
+#: ../src/gnome-screensaver-preferences.c:953
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: ../src/gnome-screensaver-preferences.c:1025
+#: ../src/gnome-screensaver-preferences.c:968
 #, c-format
 msgid "Never"
 msgstr "Aldrig"
 
-#: ../src/gnome-screensaver-preferences.c:1467
+#: ../src/gnome-screensaver-preferences.c:1353
 msgid "Could not load the main interface"
 msgstr "Kunde inte läsa in huvudgränssnittet"
 
-#: ../src/gnome-screensaver-preferences.c:1469
+#: ../src/gnome-screensaver-preferences.c:1355
 msgid "Please make sure that the screensaver is properly installed"
 msgstr "Försäkra dig om att skärmsläckaren är korrekt installerad"
 
@@ -631,43 +515,179 @@ msgstr "inte ansluten till meddelandebussen"
 msgid "screensaver already running in this session"
 msgstr "skärmsläckaren kör redan i denna session"
 
-#: ../src/gs-lock-plug.c:257
+#: ../src/gs-lock-plug.c:256
 msgid "Time has expired."
 msgstr "Tiden gick ut."
 
-#: ../src/gs-lock-plug.c:288
+#: ../src/gs-lock-plug.c:287
 msgid "You have the Caps & Num Lock keys on."
 msgstr "Du har Caps och Num Lock-tangenterna aktiverade."
 
-#: ../src/gs-lock-plug.c:291
+#: ../src/gs-lock-plug.c:290
 msgid "You have the Caps Lock key on."
 msgstr "Du har CapsLock-tangenten på."
 
-#: ../src/gs-lock-plug.c:294
+#: ../src/gs-lock-plug.c:293
 msgid "You have the Num Lock key on."
 msgstr "Du har Num Lock-tangenten aktiverad."
 
-#: ../src/gs-lock-plug.c:1281
+#: ../src/gs-lock-plug.c:1320
 msgid "S_witch User…"
 msgstr "_Byt användare..."
 
-#: ../src/gs-lock-plug.c:1290
+#: ../src/gs-lock-plug.c:1329
 msgid "Log _Out"
 msgstr "Logga _ut"
 
-#: ../src/gs-lock-plug.c:1301
+#: ../src/gs-lock-plug.c:1336
 msgid "_Unlock"
 msgstr "Lås _upp"
 
-#. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1466
-msgid "%U on %h"
-msgstr "%U på %h"
-
-#: ../src/gs-lock-plug.c:1480
+#: ../src/gs-lock-plug.c:1371
 msgid "_Password:"
 msgstr "_Lösenord:"
 
+#: ../src/gs-window-x11.c:2294
+msgid "%a %R"
+msgstr "%a %H.%M"
+
+#: ../src/gs-window-x11.c:2296
+msgid "%a %l:%M %p"
+msgstr "%a %l.%M"
+
+#~ msgid "%U on %h"
+#~ msgstr "%U på %h"
+#~ msgid "Activate when idle"
+#~ msgstr "Aktivera vid inaktiv"
+#~ msgid "Allow embedding a keyboard into the window"
+#~ msgstr "Tillåt inbäddning av ett tangentbord i fönstret"
+#~ msgid "Allow logout"
+#~ msgstr "Tillåt utloggning"
+#~ msgid "Allow the session status message to be displayed"
+#~ msgstr "Tillåt att sessionsstatusmeddelandet visas"
+#~ msgid ""
+#~ "Allow the session status message to be displayed when the screen is "
+#~ "locked."
+#~ msgstr "Tillåt att sessionsstatusmeddelandet visas när skärmen är låst."
+#~ msgid "Allow user switching"
+#~ msgstr "Tillåt byte av användare"
+#~ msgid "Embedded keyboard command"
+#~ msgstr "Kommando för inbäddat tangentbord"
+#~ msgid "Lock on activation"
+#~ msgstr "Lås vid aktivering"
+#~ msgid "Logout command"
+#~ msgstr "Kommando för att logga ut"
+#~ msgid "Screensaver theme selection mode"
+#~ msgstr "Läge för val av skärmsläckartema"
+#~ msgid ""
+#~ "Set this to TRUE to activate the screensaver when the session is idle."
+#~ msgstr ""
+#~ "Ställ in den här till TRUE för att aktivera skärmsläckaren när sessionen "
+#~ "är inaktiv."
+#~ msgid ""
+#~ "Set this to TRUE to allow embedding a keyboard into the window when "
+#~ "trying to unlock. The \"keyboard_command\" key must be set with the "
+#~ "appropriate command."
+#~ msgstr ""
+#~ "Ställ in detta till TRUE för att tillåta inbäddning av ett tangentbord i "
+#~ "fönstret vid försök att låsa upp. Nyckeln \"keyboard_command\" måste "
+#~ "ställas in med lämpligt kommando."
+#~ msgid ""
+#~ "Set this to TRUE to lock the screen when the screensaver goes active."
+#~ msgstr ""
+#~ "Ställ in den här till TRUE för att låsa skärmen när skärmsläckaren blir "
+#~ "aktiverad."
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in the unlock dialog to allow logging "
+#~ "out after a delay. The delay is specified in the \"logout_delay\" key."
+#~ msgstr ""
+#~ "Ställ in den här till TRUE för att erbjuda ett alternativ i "
+#~ "upplåsningsdialogen om att logga ut efter en viss fördröjning. "
+#~ "Fördröjningen anges i nyckeln \"logout_delay\"."
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in the unlock dialog to switch to a "
+#~ "different user account."
+#~ msgstr ""
+#~ "Ställ in den här till TRUE för att erbjuda ett alternativ i "
+#~ "upplåsningsdialogen om att byta till ett annat användarkonto."
+#~ msgid ""
+#~ "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+#~ "set to TRUE, to embed a keyboard widget into the window. This command "
+#~ "should implement an XEMBED plug interface and output a window XID on the "
+#~ "standard output."
+#~ msgstr ""
+#~ "Kommandot som kommer att köras, om nyckeln \"embedded_keyboard_enabled\" "
+#~ "är inställd till TRUE, för att inbädda en tangentbordswidget i fönstret. "
+#~ "Detta kommando bör implementera en XEMBED-insticksgränssnitt och skriva "
+#~ "ut ett fönster-xid på standard ut."
+#~ msgid ""
+#~ "The command to invoke when the logout button is clicked. This command "
+#~ "should simply log the user out without any interaction. This key has "
+#~ "effect only if the \"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "Kommandot att starta när utloggningsknappen klickas på. Det här kommandot "
+#~ "ska helt enkelt logga ut användaren utan någon interaktion. Den här "
+#~ "nyckeln har endast effekt om nyckeln \"logout_enable\" är inställd till "
+#~ "TRUE."
+#~ msgid ""
+#~ "The number of minutes after screensaver activation before locking the "
+#~ "screen."
+#~ msgstr ""
+#~ "Antal minuter efter att skärmsläckaren aktiverats innan skärmen låses."
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation before a logout "
+#~ "option will appear in the unlock dialog. This key has effect only if the "
+#~ "\"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "Antal minuter efter att skärmsläckaren aktiverats innan ett "
+#~ "utloggningsalternativ visas i upplåsningsdialogen.  Den här nyckeln har "
+#~ "endast effekt om nyckeln \"logout_enable\" är inställd till TRUE."
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr ""
+#~ "Antal minuter efter att skärmsläckaren aktiverats innan sessionen anses "
+#~ "som inaktiv."
+#~ msgid "The number of minutes to run before changing the screensaver theme."
+#~ msgstr "Antal minuter att köra innan skärmsläckartemat byts."
+#~ msgid ""
+#~ "The number of seconds of inactivity before signalling to power "
+#~ "management. This key is set and maintained by the session power "
+#~ "management agent."
+#~ msgstr ""
+#~ "Antalet sekunders inaktivitet innan signalering om strömhantering. Den "
+#~ "här nyckeln är inställd och hanteras av sessionsagenten för "
+#~ "strömhantering."
+#~ msgid ""
+#~ "The selection mode used by screensaver. May be \"blank-only\" to enable "
+#~ "the screensaver without using any theme on activation, \"single\" to "
+#~ "enable screensaver using only one theme on activation (specified in "
+#~ "\"themes\" key), and \"random\" to enable the screensaver using a random "
+#~ "theme on activation."
+#~ msgstr ""
+#~ "Valläget som används av skärmsläckaren. Kan vara \"blank-only\" för att "
+#~ "aktivera skärmsläckaren utan att använda något tema vid aktivering, "
+#~ "\"single\" för att aktivera skärmsläckaren med endast ett tema vid "
+#~ "aktivering (anges i nyckeln \"themes\" och \"random\" för att aktivera "
+#~ "skärmsläckaren med ett slumpmässigt tema vid aktivering."
+#~ msgid ""
+#~ "This key specifies the list of themes to be used by the screensaver. It's "
+#~ "ignored when \"mode\" key is \"blank-only\", should provide the theme "
+#~ "name when \"mode\" is \"single\", and should provide a list of themes "
+#~ "when \"mode\" is \"random\"."
+#~ msgstr ""
+#~ "Den här nyckeln anger temalistan som ska användas av skärmsläckaren. Den "
+#~ "ignoreras när \"mode\"-nyckeln är \"blank-only\", ska ge temanamnet när "
+#~ "\"mode\" är \"single\" och ska ge en temalista när \"mode\" är \"random\"."
+#~ msgid "Time before locking"
+#~ msgstr "Tid före låsning"
+#~ msgid "Time before logout option"
+#~ msgstr "Tid före utloggningsalternativ"
+#~ msgid "Time before power management baseline"
+#~ msgstr "Tid innan strömhanteringsläge aktiveras"
+#~ msgid "Time before session is considered idle"
+#~ msgstr "Tid innan sessionen anses som overksam"
+#~ msgid "Time before theme change"
+#~ msgstr "Tide före temabyte"
 #~ msgid "<b>Screensaver preview</b>"
 #~ msgstr "<b>Förhandsgranska skärmsläckare</b>"
 #~ msgid "Theme for lock dialog"
@@ -748,8 +768,8 @@ msgstr "_Lösenord:"
 #~ msgid ""
 #~ "The number of the virtual console this display can be found on, or %-1."
 #~ msgstr ""
-#~ "Antalet virtuella konsoller som den här displayen kan hittas på, eller %-"
-#~ "1."
+#~ "Antalet virtuella konsoller som den här displayen kan hittas på, eller "
+#~ "%-1."
 #~ msgid "Nested"
 #~ msgstr "Nästlad"
 #~ msgid "Whether or not this display is a windowed (Xnest) display."
