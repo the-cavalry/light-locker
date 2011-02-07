@@ -27,6 +27,7 @@
 #include <glib.h>
 #include <glib-object.h>
 #include <gio/gio.h>
+#include <gdesktop-enums.h>
 
 #include "gs-prefs.h"
 
@@ -129,7 +130,7 @@ gs_prefs_class_init (GSPrefsClass *klass)
 
 static void
 _gs_prefs_set_timeout (GSPrefs *prefs,
-                       int      value)
+                       guint    value)
 {
         if (value < 1)
                 value = 10;
@@ -144,7 +145,7 @@ _gs_prefs_set_timeout (GSPrefs *prefs,
 
 static void
 _gs_prefs_set_power_timeout (GSPrefs *prefs,
-                             int      value)
+                             guint    value)
 {
         if (value < 1)
                 value = 60;
@@ -160,11 +161,8 @@ _gs_prefs_set_power_timeout (GSPrefs *prefs,
 
 static void
 _gs_prefs_set_lock_timeout (GSPrefs *prefs,
-                            int      value)
+                            guint    value)
 {
-        if (value < 0)
-                value = 0;
-
         /* pick a reasonable large number for the
            upper bound */
         if (value > 480)
@@ -175,7 +173,7 @@ _gs_prefs_set_lock_timeout (GSPrefs *prefs,
 
 static void
 _gs_prefs_set_cycle_timeout (GSPrefs *prefs,
-                             int      value)
+                             guint    value)
 {
         if (value < 1)
                 value = 1;
@@ -189,8 +187,8 @@ _gs_prefs_set_cycle_timeout (GSPrefs *prefs,
 }
 
 static void
-_gs_prefs_set_mode (GSPrefs    *prefs,
-                    gint        mode)
+_gs_prefs_set_mode (GSPrefs                 *prefs,
+                    GDesktopScreensaverMode  mode)
 {
         prefs->mode = mode;
 }
@@ -291,11 +289,8 @@ _gs_prefs_set_logout_command (GSPrefs    *prefs,
 
 static void
 _gs_prefs_set_logout_timeout (GSPrefs *prefs,
-                              int      value)
+                              guint    value)
 {
-        if (value < 0)
-                value = 0;
-
         /* pick a reasonable large number for the
            upper bound */
         if (value > 480)
@@ -311,14 +306,24 @@ _gs_prefs_set_user_switch_enabled (GSPrefs *prefs,
         prefs->user_switch_enabled = value;
 }
 
+static guint
+_gs_settings_get_uint (GSettings  *settings,
+		       const char *key)
+{
+  guint value;
+
+  g_settings_get (settings, key, "u", &value);
+  return value;
+}
+
 static void
 gs_prefs_load_from_settings (GSPrefs *prefs)
 {
-        glong    value;
+        guint    uvalue;
         gboolean bvalue;
         char    *string;
         gchar  **strv;
-        gint     mode;
+        GDesktopScreensaverMode mode;
 
         bvalue = g_settings_get_boolean (prefs->priv->settings, KEY_IDLE_ACTIVATION_ENABLED);
         _gs_prefs_set_idle_activation_enabled (prefs, bvalue);
@@ -332,17 +337,17 @@ gs_prefs_load_from_settings (GSPrefs *prefs)
         bvalue = g_settings_get_boolean (prefs->priv->lockdown, KEY_USER_SWITCH_DISABLE);
         _gs_prefs_set_user_switch_disabled (prefs, bvalue);
 
-        value = g_settings_get_int (prefs->priv->settings, KEY_ACTIVATE_DELAY);
-        _gs_prefs_set_timeout (prefs, value);
+        uvalue = _gs_settings_get_uint (prefs->priv->settings, KEY_ACTIVATE_DELAY);
+        _gs_prefs_set_timeout (prefs, uvalue);
 
-        value = g_settings_get_int (prefs->priv->settings, KEY_POWER_DELAY);
-        _gs_prefs_set_power_timeout (prefs, value);
+        uvalue = _gs_settings_get_uint (prefs->priv->settings, KEY_POWER_DELAY);
+        _gs_prefs_set_power_timeout (prefs, uvalue);
 
-        value = g_settings_get_int (prefs->priv->settings, KEY_LOCK_DELAY);
-        _gs_prefs_set_lock_timeout (prefs, value);
+        uvalue = _gs_settings_get_uint (prefs->priv->settings, KEY_LOCK_DELAY);
+        _gs_prefs_set_lock_timeout (prefs, uvalue);
 
-        value = g_settings_get_int (prefs->priv->settings, KEY_CYCLE_DELAY);
-        _gs_prefs_set_cycle_timeout (prefs, value);
+        uvalue = _gs_settings_get_uint (prefs->priv->settings, KEY_CYCLE_DELAY);
+        _gs_prefs_set_cycle_timeout (prefs, uvalue);
 
         mode = g_settings_get_enum (prefs->priv->settings, KEY_MODE);
         _gs_prefs_set_mode (prefs, mode);
@@ -372,8 +377,8 @@ gs_prefs_load_from_settings (GSPrefs *prefs)
         _gs_prefs_set_logout_command (prefs, string);
         g_free (string);
 
-        value = g_settings_get_int (prefs->priv->settings, KEY_LOGOUT_DELAY);
-        _gs_prefs_set_logout_timeout (prefs, value);
+        uvalue = g_settings_get_int (prefs->priv->settings, KEY_LOGOUT_DELAY);
+        _gs_prefs_set_logout_timeout (prefs, uvalue);
 
         /* User switching options */
 
@@ -402,23 +407,23 @@ key_changed_cb (GSettings   *settings,
 
         } else if (strcmp (key, KEY_ACTIVATE_DELAY) == 0) {
 
-		int delay;
+		guint delay;
 
-		delay = g_settings_get_int (settings, key);
+		delay = _gs_settings_get_uint (settings, key);
 		_gs_prefs_set_timeout (prefs, delay);
 
         } else if (strcmp (key, KEY_POWER_DELAY) == 0) {
 
-		int delay;
+		guint delay;
 
-		delay = g_settings_get_int (settings, key);
+		delay = _gs_settings_get_uint (settings, key);
 		_gs_prefs_set_power_timeout (prefs, delay);
 
         } else if (strcmp (key, KEY_LOCK_DELAY) == 0) {
 
-		int delay;
+		guint delay;
 
-		delay = g_settings_get_int (settings, key);
+		delay = _gs_settings_get_uint (settings, key);
 		_gs_prefs_set_lock_timeout (prefs, delay);
 
         } else if (strcmp (key, KEY_IDLE_ACTIVATION_ENABLED) == 0) {
@@ -451,9 +456,9 @@ key_changed_cb (GSettings   *settings,
 
         } else if (strcmp (key, KEY_CYCLE_DELAY) == 0) {
 
-		int delay;
+		guint delay;
 
-		delay = g_settings_get_int (settings, key);
+		delay = _gs_settings_get_uint (settings, key);
 		_gs_prefs_set_cycle_timeout (prefs, delay);
 
         } else if (strcmp (key, KEY_KEYBOARD_ENABLED) == 0) {
@@ -486,9 +491,9 @@ key_changed_cb (GSettings   *settings,
 
         } else if (strcmp (key, KEY_LOGOUT_DELAY) == 0) {
 
-		int delay;
+		guint delay;
 
-		delay = g_settings_get_int (settings, key);
+		delay = _gs_settings_get_uint (settings, key);
 		_gs_prefs_set_logout_timeout (prefs, delay);
 
         } else if (strcmp (key, KEY_LOGOUT_COMMAND) == 0) {
