@@ -6,7 +6,6 @@ NULL =
 man_MANS = 				\
 	gnome-screensaver.1		\
 	gnome-screensaver-command.1	\
-	gnome-screensaver-preferences.1	\
 	$(NULL)
 
 @GSETTINGS_RULES@
@@ -17,12 +16,6 @@ gsettings_SCHEMAS = org.gnome.screensaver.gschema.xml
 
 migrationdir = $(datadir)/GConf/gsettings
 dist_migration_DATA = org.gnome.screensaver.gschema.migrate
-
-@INTLTOOL_DESKTOP_RULE@
-
-desktopdir = $(datadir)/applications
-desktop_in_files = gnome-screensaver-preferences.desktop.in
-desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 @INTLTOOL_DIRECTORY_RULE@
 
@@ -35,11 +28,6 @@ directory_DATA = $(directory_in_files:.directory.in=.directory)
 menudir = $(sysconfdir)/xdg/menus
 menu_DATA =					\
 	gnome-screensavers.menu			\
-	$(NULL)
-
-gtkbuilderdir = $(pkgdatadir)
-gtkbuilder_DATA = 				\
-	gnome-screensaver-preferences.ui	\
 	$(NULL)
 
 pkgconfigdir = $(libdir)/pkgconfig

@@ -36,7 +36,6 @@ INCLUDES =							\
 bin_PROGRAMS = \
 	gnome-screensaver		\
 	gnome-screensaver-command	\
-	gnome-screensaver-preferences	\
 	$(NULL)
 
 libexec_PROGRAMS = \
@@ -207,24 +206,6 @@ gnome_screensaver_LDADD =		\
 	$(NULL)
 
 gnome_screensaver_LDFLAGS = -export-dynamic
-
-gnome_screensaver_preferences_SOURCES =	\
-	gnome-screensaver-preferences.c	\
-	copy-theme-dialog.c		\
-	copy-theme-dialog.h		\
-	gs-theme-manager.c		\
-	gs-theme-manager.h		\
-	gs-job.c			\
-	gs-job.h			\
-	gs-debug.c			\
-	gs-debug.h			\
-	subprocs.c			\
-	subprocs.h			\
-	$(NULL)
-
-gnome_screensaver_preferences_LDADD =	\
-	$(GNOME_SCREENSAVER_CAPPLET_LIBS)	\
-	$(NULL)
 
 EXTRA_DIST =				\
 	debug-screensaver.sh		\
