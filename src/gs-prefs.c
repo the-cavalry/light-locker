@@ -39,7 +39,7 @@ static void gs_prefs_finalize   (GObject      *object);
 #define KEY_LOCK_DISABLE          "disable-lock-screen"
 #define KEY_USER_SWITCH_DISABLE   "disable-user-switching"
 
-#define GS_SETTINGS_SCHEMA "org.gnome.screensaver"
+#define GS_SETTINGS_SCHEMA "org.gnome.desktop.screensaver"
 #define KEY_IDLE_ACTIVATION_ENABLED         "idle-activation-enabled"
 #define KEY_LOCK_ENABLED   "lock-enabled"
 #define KEY_MODE           "mode"

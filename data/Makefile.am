@@ -12,11 +12,6 @@ man_MANS = 				\
 
 @INTLTOOL_XML_NOMERGE_RULE@
 
-gsettings_SCHEMAS = org.gnome.screensaver.gschema.xml
-
-migrationdir = $(datadir)/GConf/gsettings
-dist_migration_DATA = org.gnome.screensaver.gschema.migrate
-
 @INTLTOOL_DIRECTORY_RULE@
 
 directorydir = $(datadir)/desktop-directories
