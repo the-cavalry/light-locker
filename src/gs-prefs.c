@@ -377,7 +377,7 @@ gs_prefs_load_from_settings (GSPrefs *prefs)
         _gs_prefs_set_logout_command (prefs, string);
         g_free (string);
 
-        uvalue = g_settings_get_int (prefs->priv->settings, KEY_LOGOUT_DELAY);
+        uvalue = _gs_settings_get_uint (prefs->priv->settings, KEY_LOGOUT_DELAY);
         _gs_prefs_set_logout_timeout (prefs, uvalue);
 
         /* User switching options */
