@@ -1,10 +1,7 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
-data/gnome-screensaver-preferences.desktop.in
-[type: gettext/glade]data/gnome-screensaver-preferences.ui
 data/gnome-screensaver.directory.in
 data/images/cosmos/cosmos.xml.in.in
-data/org.gnome.screensaver.gschema.xml.in.in
 savers/cosmos-slideshow.desktop.in.in
 savers/footlogo-floaters.desktop.in.in
 savers/personal-slideshow.desktop.in.in
@@ -12,10 +9,8 @@ savers/popsquares.desktop.in.in
 savers/popsquares.c
 savers/floaters.c
 savers/slideshow.c
-src/copy-theme-dialog.c
 src/gnome-screensaver-command.c
 src/gnome-screensaver-dialog.c
-src/gnome-screensaver-preferences.c
 src/gnome-screensaver.c
 src/gnome-screensaver.desktop.in.in
 src/gs-auth-pam.c
