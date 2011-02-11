@@ -530,7 +530,7 @@ gs_prefs_init (GSPrefs *prefs)
                           "changed",
                           G_CALLBACK (key_changed_cb),
                           prefs);
-        prefs->priv->session_settings  = g_settings_new (GS_SETTINGS_SCHEMA);
+        prefs->priv->session_settings  = g_settings_new (GSM_SETTINGS_SCHEMA);
         g_signal_connect (prefs->priv->session_settings,
                           "changed",
                           G_CALLBACK (key_changed_cb),
