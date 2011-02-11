@@ -311,7 +311,7 @@ _gs_prefs_set_user_switch_enabled (GSPrefs *prefs,
 
 static guint
 _gs_settings_get_uint (GSettings  *settings,
-		       const char *key)
+                       const char *key)
 {
   guint value;
 
@@ -391,15 +391,15 @@ gs_prefs_load_from_settings (GSPrefs *prefs)
 
 static void
 key_changed_cb (GSettings   *settings,
-		const gchar *key,
-		GSPrefs     *prefs)
+                const gchar *key,
+                GSPrefs     *prefs)
 {
         if (strcmp (key, KEY_MODE) == 0) {
 
-		gint mode;
+                gint mode;
 
-		mode = g_settings_get_enum (settings, key);
-		_gs_prefs_set_mode (prefs, mode);
+                mode = g_settings_get_enum (settings, key);
+                _gs_prefs_set_mode (prefs, mode);
 
         } else if (strcmp (key, KEY_THEMES) == 0) {
                 gchar **strv = NULL;
@@ -410,108 +410,108 @@ key_changed_cb (GSettings   *settings,
 
         } else if (strcmp (key, KEY_ACTIVATE_DELAY) == 0) {
 
-		guint delay;
+                guint delay;
 
-		delay = _gs_settings_get_uint (settings, key);
-		_gs_prefs_set_timeout (prefs, delay);
+                delay = _gs_settings_get_uint (settings, key);
+                _gs_prefs_set_timeout (prefs, delay);
 
         } else if (strcmp (key, KEY_POWER_DELAY) == 0) {
 
-		guint delay;
+                guint delay;
 
-		delay = _gs_settings_get_uint (settings, key);
-		_gs_prefs_set_power_timeout (prefs, delay);
+                delay = _gs_settings_get_uint (settings, key);
+                _gs_prefs_set_power_timeout (prefs, delay);
 
         } else if (strcmp (key, KEY_LOCK_DELAY) == 0) {
 
-		guint delay;
+                guint delay;
 
-		delay = _gs_settings_get_uint (settings, key);
-		_gs_prefs_set_lock_timeout (prefs, delay);
+                delay = _gs_settings_get_uint (settings, key);
+                _gs_prefs_set_lock_timeout (prefs, delay);
 
         } else if (strcmp (key, KEY_IDLE_ACTIVATION_ENABLED) == 0) {
 
-		gboolean enabled;
+                gboolean enabled;
 
-		enabled = g_settings_get_boolean (settings, key);
-		_gs_prefs_set_idle_activation_enabled (prefs, enabled);
+                enabled = g_settings_get_boolean (settings, key);
+                _gs_prefs_set_idle_activation_enabled (prefs, enabled);
 
         } else if (strcmp (key, KEY_LOCK_ENABLED) == 0) {
 
-		gboolean enabled;
+                gboolean enabled;
 
-		enabled = g_settings_get_boolean (settings, key);
-		_gs_prefs_set_lock_enabled (prefs, enabled);
+                enabled = g_settings_get_boolean (settings, key);
+                _gs_prefs_set_lock_enabled (prefs, enabled);
 
         } else if (strcmp (key, KEY_LOCK_DISABLE) == 0) {
 
-		gboolean disabled;
+                gboolean disabled;
 
-		disabled = g_settings_get_boolean (settings, key);
-		_gs_prefs_set_lock_disabled (prefs, disabled);
+                disabled = g_settings_get_boolean (settings, key);
+                _gs_prefs_set_lock_disabled (prefs, disabled);
 
         } else if (strcmp (key, KEY_USER_SWITCH_DISABLE) == 0) {
 
-		gboolean disabled;
+                gboolean disabled;
 
-		disabled = g_settings_get_boolean (settings, key);
-		_gs_prefs_set_user_switch_disabled (prefs, disabled);
+                disabled = g_settings_get_boolean (settings, key);
+                _gs_prefs_set_user_switch_disabled (prefs, disabled);
 
         } else if (strcmp (key, KEY_CYCLE_DELAY) == 0) {
 
-		guint delay;
+                guint delay;
 
-		delay = _gs_settings_get_uint (settings, key);
-		_gs_prefs_set_cycle_timeout (prefs, delay);
+                delay = _gs_settings_get_uint (settings, key);
+                _gs_prefs_set_cycle_timeout (prefs, delay);
 
         } else if (strcmp (key, KEY_KEYBOARD_ENABLED) == 0) {
 
-		gboolean enabled;
+                gboolean enabled;
 
-		enabled = g_settings_get_boolean (settings, key);
-		_gs_prefs_set_keyboard_enabled (prefs, enabled);
+                enabled = g_settings_get_boolean (settings, key);
+                _gs_prefs_set_keyboard_enabled (prefs, enabled);
 
         } else if (strcmp (key, KEY_KEYBOARD_COMMAND) == 0) {
 
-		const char *command;
+                const char *command;
 
-		command = g_settings_get_string (settings, key);
-		_gs_prefs_set_keyboard_command (prefs, command);
+                command = g_settings_get_string (settings, key);
+                _gs_prefs_set_keyboard_command (prefs, command);
 
         } else if (strcmp (key, KEY_STATUS_MESSAGE_ENABLED) == 0) {
 
-		gboolean enabled;
+                gboolean enabled;
 
-		enabled = g_settings_get_boolean (settings, key);
-		_gs_prefs_set_status_message_enabled (prefs, enabled);
+                enabled = g_settings_get_boolean (settings, key);
+                _gs_prefs_set_status_message_enabled (prefs, enabled);
 
         } else if (strcmp (key, KEY_LOGOUT_ENABLED) == 0) {
 
-		gboolean enabled;
+                gboolean enabled;
 
-		enabled = g_settings_get_boolean (settings, key);
-		_gs_prefs_set_logout_enabled (prefs, enabled);
+                enabled = g_settings_get_boolean (settings, key);
+                _gs_prefs_set_logout_enabled (prefs, enabled);
 
         } else if (strcmp (key, KEY_LOGOUT_DELAY) == 0) {
 
-		guint delay;
+                guint delay;
 
-		delay = _gs_settings_get_uint (settings, key);
-		_gs_prefs_set_logout_timeout (prefs, delay);
+                delay = _gs_settings_get_uint (settings, key);
+                _gs_prefs_set_logout_timeout (prefs, delay);
 
         } else if (strcmp (key, KEY_LOGOUT_COMMAND) == 0) {
 
-		const char *command;
+                const char *command;
 
-		command = g_settings_get_string (settings, key);
-		_gs_prefs_set_logout_command (prefs, command);
+                command = g_settings_get_string (settings, key);
+                _gs_prefs_set_logout_command (prefs, command);
 
         } else if (strcmp (key, KEY_USER_SWITCH_ENABLED) == 0) {
 
-		gboolean enabled;
+                gboolean enabled;
 
-		enabled = g_settings_get_boolean (settings, key);
-		_gs_prefs_set_user_switch_enabled (prefs, enabled);
+                enabled = g_settings_get_boolean (settings, key);
+                _gs_prefs_set_user_switch_enabled (prefs, enabled);
 
         } else {
                 g_warning ("Config key not handled: %s", key);
@@ -526,20 +526,20 @@ gs_prefs_init (GSPrefs *prefs)
         prefs->priv = GS_PREFS_GET_PRIVATE (prefs);
 
         prefs->priv->settings          = g_settings_new (GS_SETTINGS_SCHEMA);
-	g_signal_connect (prefs->priv->settings,
-			  "changed",
-			  G_CALLBACK (key_changed_cb),
-			  prefs);
+        g_signal_connect (prefs->priv->settings,
+                          "changed",
+                          G_CALLBACK (key_changed_cb),
+                          prefs);
         prefs->priv->session_settings  = g_settings_new (GS_SETTINGS_SCHEMA);
-	g_signal_connect (prefs->priv->session_settings,
-			  "changed",
-			  G_CALLBACK (key_changed_cb),
-			  prefs);
+        g_signal_connect (prefs->priv->session_settings,
+                          "changed",
+                          G_CALLBACK (key_changed_cb),
+                          prefs);
         prefs->priv->lockdown          = g_settings_new (LOCKDOWN_SETTINGS_SCHEMA);
-	g_signal_connect (prefs->priv->lockdown,
-			  "changed",
-			  G_CALLBACK (key_changed_cb),
-			  prefs);
+        g_signal_connect (prefs->priv->lockdown,
+                          "changed",
+                          G_CALLBACK (key_changed_cb),
+                          prefs);
 
         prefs->idle_activation_enabled = TRUE;
         prefs->lock_enabled            = TRUE;
