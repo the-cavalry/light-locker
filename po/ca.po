@@ -11,261 +11,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-27 20:42+0200\n"
-"PO-Revision-Date: 2010-09-27 14:40+0200\n"
+"POT-Creation-Date: 2011-02-12 00:22+0100\n"
+"PO-Revision-Date: 2011-02-12 00:23+0100\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.net>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: ../data/gnome-screensaver-preferences.desktop.in.h:1
-#: ../src/gnome-screensaver.desktop.in.in.h:2
-msgid "Screensaver"
-msgstr "Estalvi de pantalla"
-
-#: ../data/gnome-screensaver-preferences.desktop.in.h:2
-msgid "Set your screensaver preferences"
-msgstr "Establiu les preferències de l'estalvi de pantalla"
-
-#: ../data/gnome-screensaver-preferences.ui.h:1
-msgid "Power _Management"
-msgstr "_Gestor d'energia"
-
-#: ../data/gnome-screensaver-preferences.ui.h:2
-msgid "Regard the computer as _idle after:"
-msgstr "Considera l'ordinador com a _inactiu després de:"
-
-#: ../data/gnome-screensaver-preferences.ui.h:3
-msgid "Screensaver Preferences"
-msgstr "Preferències de l'estalvi de pantalla"
-
-#: ../data/gnome-screensaver-preferences.ui.h:4
-msgid "Screensaver Preview"
-msgstr "Previsualització de l'estalvi de pantalla"
-
-#: ../data/gnome-screensaver-preferences.ui.h:5
-msgid "Screensaver preview"
-msgstr "Previsualització de l'estalvi de pantalla"
-
-#: ../data/gnome-screensaver-preferences.ui.h:6
-msgid "Warning: the screen will not be locked for the root user."
-msgstr "Avís: la pantalla no es bloquejarà per al superusuari (root)."
-
-#: ../data/gnome-screensaver-preferences.ui.h:7
-msgid "_Activate screensaver when computer is idle"
-msgstr "_Activa l'estalvi de pantalla quan l'ordinador estigui inactiu"
-
-#: ../data/gnome-screensaver-preferences.ui.h:8
-msgid "_Lock screen when screensaver is active"
-msgstr "_Bloca la pantalla quan l'estalvi de pantalla estigui actiu"
-
-#: ../data/gnome-screensaver-preferences.ui.h:9
-msgid "_Preview"
-msgstr "_Previsualització"
-
-#: ../data/gnome-screensaver-preferences.ui.h:10
-msgid "_Screensaver theme:"
-msgstr "Tema de l'e_stalvi de pantalla:"
-
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Screensaver themes"
 msgstr "Temes de l'estalvi de pantalla"
 
 #: ../data/gnome-screensaver.directory.in.h:2
 msgid "Screensavers"
 msgstr "Estalvis de pantalla"
-
-#: ../data/gnome-screensaver.schemas.in.h:1
-msgid "Activate when idle"
-msgstr "Activa quan estigui inactiu"
-
-#: ../data/gnome-screensaver.schemas.in.h:2
-msgid "Allow embedding a keyboard into the window"
-msgstr "Permet incrustar un teclat a la pantalla"
-
-#: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow logout"
-msgstr "Permet sortir"
-
-#: ../data/gnome-screensaver.schemas.in.h:4
-msgid "Allow the session status message to be displayed"
-msgstr "Permet que es mostri el missatge d'estat de la sessió"
-
-#: ../data/gnome-screensaver.schemas.in.h:5
-msgid ""
-"Allow the session status message to be displayed when the screen is locked."
-msgstr ""
-"Permet que es mostri el missatge d'estat de la sessió quan la pantalla "
-"estigui blocada."
-
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Allow user switching"
-msgstr "Permet canviar d'usuari"
-
-#: ../data/gnome-screensaver.schemas.in.h:7
-msgid "Embedded keyboard command"
-msgstr "Ordre per incrustar el teclat a la pantalla"
-
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Lock on activation"
-msgstr "Bloca en activar-se"
-
-#: ../data/gnome-screensaver.schemas.in.h:9
-msgid "Logout command"
-msgstr "Ordre de sortida"
-
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Screensaver theme selection mode"
-msgstr "Mode de selecció del tema de l'estalvi de pantalla"
-
-#: ../data/gnome-screensaver.schemas.in.h:12
-msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr ""
-"Establiu-ho com a cert per activar l'estalvi de pantalla quan la sessió "
-"estigui inactiva."
-
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid ""
-"Set this to TRUE to allow embedding a keyboard into the window when trying "
-"to unlock. The \"keyboard_command\" key must be set with the appropriate "
-"command."
-msgstr ""
-"Establiu-ho com a CERT per permetre la incrustació d'un teclat a la pantalla "
-"quan es provi de desblocar. La clau «keyboard_command» s'ha d'establir a "
-"l'ordre apropiada."
-
-#: ../data/gnome-screensaver.schemas.in.h:14
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr ""
-"Establiu-ho com a cert per blocar la pantalla quan l'estalvi de pantalla "
-"estigui actiu."
-
-#: ../data/gnome-screensaver.schemas.in.h:15
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to allow logging "
-"out after a delay. The delay is specified in the \"logout_delay\" key."
-msgstr ""
-"Establiu-ho com a «TRUE» (cert) per oferir una opció en el diàleg de "
-"desbloqueig per sortir després d'un retard. El retard està especificat a la "
-"clau «logout_delay»."
-
-#: ../data/gnome-screensaver.schemas.in.h:16
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to switch to a "
-"different user account."
-msgstr ""
-"Establiu-ho com a cert per oferir una opció en el diàleg de desbloqueig per "
-"canviar a una compte d'usuari diferent."
-
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
-"set to TRUE, to embed a keyboard widget into the window. This command should "
-"implement an XEMBED plug interface and output a window XID on the standard "
-"output."
-msgstr ""
-"L'ordre que s'executarà, si la clau «embedded_keyboard_enabled» s'estableix a "
-"CERT, per incrustar un teclat a la pantalla. Aquesta ordre hauria "
-"d'implementar un connector d'interfície XEMBED, i escriure a la sortida "
-"estàndard un XID de finestra."
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The command to invoke when the logout button is clicked. This command should "
-"simply log the user out without any interaction. This key has effect only if "
-"the \"logout_enable\" key is set to TRUE."
-msgstr ""
-"L'ordre a invocar en prémer el botó de sortida. Aquesta ordre només hauria "
-"de tancar la sessió de l'usuari sense cap interacció. Aquesta clau només té "
-"efecte si la clau «logout_enable» està a cert."
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes after screensaver activation before locking the screen."
-msgstr ""
-"El nombre de minuts que han de passar perquè es bloqui la pantalla un cop "
-"activat l'estalvi de pantalla."
-
-#: ../data/gnome-screensaver.schemas.in.h:20
-msgid ""
-"The number of minutes after the screensaver activation before a logout "
-"option will appear in the unlock dialog. This key has effect only if the "
-"\"logout_enable\" key is set to TRUE."
-msgstr ""
-"El nombre de minuts que han de passar perquè aparegui l'opció de sortir en "
-"el diàleg de desbloqueig un cop activat l'estalvi de pantalla. Aquesta clau "
-"només té efecte si la clau «logout_enable» està a «TRUE» (cert)."
-
-#: ../data/gnome-screensaver.schemas.in.h:21
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr ""
-"El nombre de minuts d'inactivitat que han de passar perquè la sessió es "
-"consideri inactiva."
-
-#: ../data/gnome-screensaver.schemas.in.h:22
-msgid "The number of minutes to run before changing the screensaver theme."
-msgstr ""
-"El nombre de minuts que ha de passar abans de canviar el tema de l'estalvi "
-"de pantalla."
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-msgid ""
-"The number of seconds of inactivity before signalling to power management. "
-"This key is set and maintained by the session power management agent."
-msgstr ""
-"El nombre de segons d'inactivitat abans d'avisar el gestor d'energia. "
-"Aquesta clau s'estableix i es manté per l'agent de la sessió del gestor "
-"d'energia."
-
-#: ../data/gnome-screensaver.schemas.in.h:24
-msgid ""
-"The selection mode used by screensaver. May be \"blank-only\" to enable the "
-"screensaver without using any theme on activation, \"single\" to enable "
-"screensaver using only one theme on activation (specified in \"themes\" "
-"key), and \"random\" to enable the screensaver using a random theme on "
-"activation."
-msgstr ""
-"El mode de selecció utilitzat per l'estalvi de pantalla. Podria ser «blank-"
-"only» per habilitar l'estalvi de pantalla sense utilitzar cap tema en "
-"l'activació, «single» per habilitar que l'estalvi de pantalla utilitzi només "
-"un tema en activar-se (especificat en la clau «themes»), i «random» per "
-"habilitar que l'estalvi de pantalla utilitzi un tema aleatori en activar-se."
-
-#: ../data/gnome-screensaver.schemas.in.h:25
-msgid ""
-"This key specifies the list of themes to be used by the screensaver. It's "
-"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
-"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
-"\" is \"random\"."
-msgstr ""
-"Aquesta clau especifica la llista de temes a utilitzar per l'estalvi de "
-"pantalla. S'ignora si la clau «mode» és «blank-only», hauria de tenir el nom "
-"del tema quan «mode» és «single», i hauria de tenir una llista de temes quan "
-"«mode» és «random»."
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Time before locking"
-msgstr "Temps abans de blocar"
-
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid "Time before logout option"
-msgstr "Temps abans de l'opció de sortida"
-
-#: ../data/gnome-screensaver.schemas.in.h:28
-msgid "Time before power management baseline"
-msgstr "Temps abans de la línia base del gestor d'energia"
-
-#: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before session is considered idle"
-msgstr "Temps abans que la sessió es consideri inactiva"
-
-#: ../data/gnome-screensaver.schemas.in.h:30
-msgid "Time before theme change"
-msgstr "Temps abans de canviar el tema"
 
 #. Translators: This is the name of a desktop background image that shows outer space images.
 #. You might want to translate it into the equivalent words of your language
@@ -302,7 +64,7 @@ msgstr "Una xarxa de colors de pulsació d'estil pop-art."
 msgid "Pop art squares"
 msgstr "Quadrats pop-art"
 
-#: ../savers/popsquares.c:49 ../savers/floaters.c:1205
+#: ../savers/popsquares.c:50 ../savers/floaters.c:1184
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Vegeu --help per a la informació sobre la forma d'ús.\n"
@@ -342,11 +104,11 @@ msgstr "La imatge que s'utilitzarà"
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1199
+#: ../savers/floaters.c:1178
 msgid "image — floats images around the screen"
 msgstr "image — fa flotar imatges per la pantalla"
 
-#: ../savers/floaters.c:1214
+#: ../savers/floaters.c:1193
 #, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
@@ -376,36 +138,6 @@ msgstr "No mostris imatges aleatòries de la ubicació"
 #: ../savers/slideshow.c:59
 msgid "Do not try to stretch images on screen"
 msgstr "No intentis encabir les imatges a la pantalla"
-
-#: ../src/copy-theme-dialog.c:215
-msgid "Copying files"
-msgstr "S'estan copiant fitxers"
-
-#: ../src/copy-theme-dialog.c:233
-msgid "From:"
-msgstr "De:"
-
-#: ../src/copy-theme-dialog.c:237
-msgid "To:"
-msgstr "A:"
-
-#: ../src/copy-theme-dialog.c:257
-msgid "Copying themes"
-msgstr "S'estan copiant els temes"
-
-#: ../src/copy-theme-dialog.c:301
-msgid "Invalid screensaver theme"
-msgstr "Tema de l'estalvi de pantalla invàlid"
-
-#: ../src/copy-theme-dialog.c:304
-#, c-format
-msgid "%s does not appear to be a valid screensaver theme."
-msgstr "Sembla que el %s no sigui un tema d'estalvi de pantalla vàlid."
-
-#: ../src/copy-theme-dialog.c:484
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "S'està copiant el fitxer: %u de %u"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -465,32 +197,32 @@ msgstr "El motiu per inhibir l'estalvi de pantalla"
 msgid "Version of this application"
 msgstr "Versió d'aquesta aplicació"
 
-#: ../src/gnome-screensaver-command.c:295
+#: ../src/gnome-screensaver-command.c:316
 #, c-format
 msgid "The screensaver is active\n"
 msgstr "L'estalvi de pantalla està actiu\n"
 
-#: ../src/gnome-screensaver-command.c:295
+#: ../src/gnome-screensaver-command.c:316
 #, c-format
 msgid "The screensaver is inactive\n"
 msgstr "L'estalvi de pantalla està inactiu\n"
 
-#: ../src/gnome-screensaver-command.c:309
+#: ../src/gnome-screensaver-command.c:330
 #, c-format
 msgid "The screensaver is not inhibited\n"
 msgstr "L'estalvi de pantalla està inhibit\n"
 
-#: ../src/gnome-screensaver-command.c:315
+#: ../src/gnome-screensaver-command.c:336
 #, c-format
 msgid "The screensaver is being inhibited by:\n"
 msgstr "L'estalvi de pantalla l'inhibeix:\n"
 
-#: ../src/gnome-screensaver-command.c:346
+#: ../src/gnome-screensaver-command.c:367
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "Fa %d segons que l'estalvi de pantalla s'ha activat.\n"
 
-#: ../src/gnome-screensaver-command.c:350
+#: ../src/gnome-screensaver-command.c:371
 #, c-format
 msgid "The screensaver is not currently active.\n"
 msgstr "L'estalvi de pantalla no és actiu.\n"
@@ -603,72 +335,6 @@ msgstr "S'està comprovant…"
 msgid "Authentication failed."
 msgstr "Ha fallat l'autenticació."
 
-#: ../src/gnome-screensaver-preferences.c:524
-msgid "Blank screen"
-msgstr "Pantalla en negre"
-
-#: ../src/gnome-screensaver-preferences.c:530
-msgid "Random"
-msgstr "Aleatori"
-
-#: ../src/gnome-screensaver-preferences.c:980
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d hora"
-msgstr[1] "%d hores"
-
-#: ../src/gnome-screensaver-preferences.c:983
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d minut"
-msgstr[1] "%d minuts"
-
-#: ../src/gnome-screensaver-preferences.c:986
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d segon"
-msgstr[1] "%d segons"
-
-#. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:992
-#, c-format
-msgid "%s %s %s"
-msgstr "%s %s %s"
-
-#. hour:minutes
-#. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:995
-#: ../src/gnome-screensaver-preferences.c:1003
-#, c-format
-msgid "%s %s"
-msgstr "%s %s"
-
-#. hour
-#. minutes
-#. seconds
-#: ../src/gnome-screensaver-preferences.c:998
-#: ../src/gnome-screensaver-preferences.c:1006
-#: ../src/gnome-screensaver-preferences.c:1010
-#, c-format
-msgid "%s"
-msgstr "%s"
-
-#: ../src/gnome-screensaver-preferences.c:1025
-#, c-format
-msgid "Never"
-msgstr "Mai"
-
-#: ../src/gnome-screensaver-preferences.c:1467
-msgid "Could not load the main interface"
-msgstr "No s'ha pogut carregar la interfície principal"
-
-#: ../src/gnome-screensaver-preferences.c:1469
-msgid "Please make sure that the screensaver is properly installed"
-msgstr "Assegureu-vos que l'estalvi de pantalla estigui ben instal·lat"
-
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
 msgstr "No esdevinguis un dimoni"
@@ -680,6 +346,10 @@ msgstr "Habilita el codi de depuració"
 #: ../src/gnome-screensaver.desktop.in.in.h:1
 msgid "Launch screensaver and locker program"
 msgstr "Executa l'estalvi de pantalla i el programa de blocatge"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:2
+msgid "Screensaver"
+msgstr "Estalvi de pantalla"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -715,42 +385,307 @@ msgstr "no s'ha pogut connectar al bus de missatges"
 msgid "screensaver already running in this session"
 msgstr "l'estalvi de pantalla ja està funcionant en aquesta sessió"
 
-#: ../src/gs-lock-plug.c:257
+#: ../src/gs-lock-plug.c:256
 msgid "Time has expired."
 msgstr "S'ha excedit el temps."
 
-#: ../src/gs-lock-plug.c:288
+#: ../src/gs-lock-plug.c:287
 msgid "You have the Caps & Num Lock keys on."
 msgstr "Teniu les tecles de fixació de majúscules i de números activades."
 
-#: ../src/gs-lock-plug.c:291
+#: ../src/gs-lock-plug.c:290
 msgid "You have the Caps Lock key on."
 msgstr "Teniu la tecla de fixació de majúscules activada."
 
-#: ../src/gs-lock-plug.c:294
+#: ../src/gs-lock-plug.c:293
 msgid "You have the Num Lock key on."
 msgstr "Teniu la tecla de fixació de fixació de números activada."
 
-#: ../src/gs-lock-plug.c:1281
+#: ../src/gs-lock-plug.c:1320
 msgid "S_witch User…"
 msgstr "Canvia d'_usuari…"
 
-#: ../src/gs-lock-plug.c:1290
+#: ../src/gs-lock-plug.c:1329
 msgid "Log _Out"
 msgstr "_Surt"
 
-#: ../src/gs-lock-plug.c:1301
+#: ../src/gs-lock-plug.c:1336
 msgid "_Unlock"
 msgstr "_Desbloca"
 
-#. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1466
-msgid "%U on %h"
-msgstr "%U a %h"
-
-#: ../src/gs-lock-plug.c:1480
+#: ../src/gs-lock-plug.c:1371
 msgid "_Password:"
 msgstr "_Contrasenya:"
+
+#: ../src/gs-window-x11.c:2294
+msgid "%a %R"
+msgstr "%a %R"
+
+#: ../src/gs-window-x11.c:2296
+msgid "%a %l:%M %p"
+msgstr "%a %l:%M"
+
+#~ msgid "Set your screensaver preferences"
+#~ msgstr "Establiu les preferències de l'estalvi de pantalla"
+
+#~ msgid "Power _Management"
+#~ msgstr "_Gestor d'energia"
+
+#~ msgid "Regard the computer as _idle after:"
+#~ msgstr "Considera l'ordinador com a _inactiu després de:"
+
+#~ msgid "Screensaver Preferences"
+#~ msgstr "Preferències de l'estalvi de pantalla"
+
+#~ msgid "Screensaver Preview"
+#~ msgstr "Previsualització de l'estalvi de pantalla"
+
+#~ msgid "Screensaver preview"
+#~ msgstr "Previsualització de l'estalvi de pantalla"
+
+#~ msgid "Warning: the screen will not be locked for the root user."
+#~ msgstr "Avís: la pantalla no es bloquejarà per al superusuari (root)."
+
+#~ msgid "_Activate screensaver when computer is idle"
+#~ msgstr "_Activa l'estalvi de pantalla quan l'ordinador estigui inactiu"
+
+#~ msgid "_Lock screen when screensaver is active"
+#~ msgstr "_Bloca la pantalla quan l'estalvi de pantalla estigui actiu"
+
+#~ msgid "_Preview"
+#~ msgstr "_Previsualització"
+
+#~ msgid "_Screensaver theme:"
+#~ msgstr "Tema de l'e_stalvi de pantalla:"
+
+#~ msgid "Activate when idle"
+#~ msgstr "Activa quan estigui inactiu"
+
+#~ msgid "Allow embedding a keyboard into the window"
+#~ msgstr "Permet incrustar un teclat a la pantalla"
+
+#~ msgid "Allow logout"
+#~ msgstr "Permet sortir"
+
+#~ msgid "Allow the session status message to be displayed"
+#~ msgstr "Permet que es mostri el missatge d'estat de la sessió"
+
+#~ msgid ""
+#~ "Allow the session status message to be displayed when the screen is "
+#~ "locked."
+#~ msgstr ""
+#~ "Permet que es mostri el missatge d'estat de la sessió quan la pantalla "
+#~ "estigui blocada."
+
+#~ msgid "Allow user switching"
+#~ msgstr "Permet canviar d'usuari"
+
+#~ msgid "Embedded keyboard command"
+#~ msgstr "Ordre per incrustar el teclat a la pantalla"
+
+#~ msgid "Lock on activation"
+#~ msgstr "Bloca en activar-se"
+
+#~ msgid "Logout command"
+#~ msgstr "Ordre de sortida"
+
+#~ msgid "Screensaver theme selection mode"
+#~ msgstr "Mode de selecció del tema de l'estalvi de pantalla"
+
+#~ msgid ""
+#~ "Set this to TRUE to activate the screensaver when the session is idle."
+#~ msgstr ""
+#~ "Establiu-ho com a cert per activar l'estalvi de pantalla quan la sessió "
+#~ "estigui inactiva."
+
+#~ msgid ""
+#~ "Set this to TRUE to allow embedding a keyboard into the window when "
+#~ "trying to unlock. The \"keyboard_command\" key must be set with the "
+#~ "appropriate command."
+#~ msgstr ""
+#~ "Establiu-ho com a CERT per permetre la incrustació d'un teclat a la "
+#~ "pantalla quan es provi de desblocar. La clau «keyboard_command» s'ha "
+#~ "d'establir a l'ordre apropiada."
+
+#~ msgid ""
+#~ "Set this to TRUE to lock the screen when the screensaver goes active."
+#~ msgstr ""
+#~ "Establiu-ho com a cert per blocar la pantalla quan l'estalvi de pantalla "
+#~ "estigui actiu."
+
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in the unlock dialog to allow logging "
+#~ "out after a delay. The delay is specified in the \"logout_delay\" key."
+#~ msgstr ""
+#~ "Establiu-ho com a «TRUE» (cert) per oferir una opció en el diàleg de "
+#~ "desbloqueig per sortir després d'un retard. El retard està especificat a "
+#~ "la clau «logout_delay»."
+
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in the unlock dialog to switch to a "
+#~ "different user account."
+#~ msgstr ""
+#~ "Establiu-ho com a cert per oferir una opció en el diàleg de desbloqueig "
+#~ "per canviar a una compte d'usuari diferent."
+
+#~ msgid ""
+#~ "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+#~ "set to TRUE, to embed a keyboard widget into the window. This command "
+#~ "should implement an XEMBED plug interface and output a window XID on the "
+#~ "standard output."
+#~ msgstr ""
+#~ "L'ordre que s'executarà, si la clau «embedded_keyboard_enabled» "
+#~ "s'estableix a CERT, per incrustar un teclat a la pantalla. Aquesta ordre "
+#~ "hauria d'implementar un connector d'interfície XEMBED, i escriure a la "
+#~ "sortida estàndard un XID de finestra."
+
+#~ msgid ""
+#~ "The command to invoke when the logout button is clicked. This command "
+#~ "should simply log the user out without any interaction. This key has "
+#~ "effect only if the \"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "L'ordre a invocar en prémer el botó de sortida. Aquesta ordre només "
+#~ "hauria de tancar la sessió de l'usuari sense cap interacció. Aquesta clau "
+#~ "només té efecte si la clau «logout_enable» està a cert."
+
+#~ msgid ""
+#~ "The number of minutes after screensaver activation before locking the "
+#~ "screen."
+#~ msgstr ""
+#~ "El nombre de minuts que han de passar perquè es bloqui la pantalla un cop "
+#~ "activat l'estalvi de pantalla."
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation before a logout "
+#~ "option will appear in the unlock dialog. This key has effect only if the "
+#~ "\"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "El nombre de minuts que han de passar perquè aparegui l'opció de sortir "
+#~ "en el diàleg de desbloqueig un cop activat l'estalvi de pantalla. Aquesta "
+#~ "clau només té efecte si la clau «logout_enable» està a «TRUE» (cert)."
+
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr ""
+#~ "El nombre de minuts d'inactivitat que han de passar perquè la sessió es "
+#~ "consideri inactiva."
+
+#~ msgid "The number of minutes to run before changing the screensaver theme."
+#~ msgstr ""
+#~ "El nombre de minuts que ha de passar abans de canviar el tema de "
+#~ "l'estalvi de pantalla."
+
+#~ msgid ""
+#~ "The number of seconds of inactivity before signalling to power "
+#~ "management. This key is set and maintained by the session power "
+#~ "management agent."
+#~ msgstr ""
+#~ "El nombre de segons d'inactivitat abans d'avisar el gestor d'energia. "
+#~ "Aquesta clau s'estableix i es manté per l'agent de la sessió del gestor "
+#~ "d'energia."
+
+#~ msgid ""
+#~ "The selection mode used by screensaver. May be \"blank-only\" to enable "
+#~ "the screensaver without using any theme on activation, \"single\" to "
+#~ "enable screensaver using only one theme on activation (specified in "
+#~ "\"themes\" key), and \"random\" to enable the screensaver using a random "
+#~ "theme on activation."
+#~ msgstr ""
+#~ "El mode de selecció utilitzat per l'estalvi de pantalla. Podria ser "
+#~ "«blank-only» per habilitar l'estalvi de pantalla sense utilitzar cap tema "
+#~ "en l'activació, «single» per habilitar que l'estalvi de pantalla utilitzi "
+#~ "només un tema en activar-se (especificat en la clau «themes»), i «random» "
+#~ "per habilitar que l'estalvi de pantalla utilitzi un tema aleatori en "
+#~ "activar-se."
+
+#~ msgid ""
+#~ "This key specifies the list of themes to be used by the screensaver. It's "
+#~ "ignored when \"mode\" key is \"blank-only\", should provide the theme "
+#~ "name when \"mode\" is \"single\", and should provide a list of themes "
+#~ "when \"mode\" is \"random\"."
+#~ msgstr ""
+#~ "Aquesta clau especifica la llista de temes a utilitzar per l'estalvi de "
+#~ "pantalla. S'ignora si la clau «mode» és «blank-only», hauria de tenir el "
+#~ "nom del tema quan «mode» és «single», i hauria de tenir una llista de "
+#~ "temes quan «mode» és «random»."
+
+#~ msgid "Time before locking"
+#~ msgstr "Temps abans de blocar"
+
+#~ msgid "Time before logout option"
+#~ msgstr "Temps abans de l'opció de sortida"
+
+#~ msgid "Time before power management baseline"
+#~ msgstr "Temps abans de la línia base del gestor d'energia"
+
+#~ msgid "Time before session is considered idle"
+#~ msgstr "Temps abans que la sessió es consideri inactiva"
+
+#~ msgid "Time before theme change"
+#~ msgstr "Temps abans de canviar el tema"
+
+#~ msgid "Copying files"
+#~ msgstr "S'estan copiant fitxers"
+
+#~ msgid "From:"
+#~ msgstr "De:"
+
+#~ msgid "To:"
+#~ msgstr "A:"
+
+#~ msgid "Copying themes"
+#~ msgstr "S'estan copiant els temes"
+
+#~ msgid "Invalid screensaver theme"
+#~ msgstr "Tema de l'estalvi de pantalla invàlid"
+
+#~ msgid "%s does not appear to be a valid screensaver theme."
+#~ msgstr "Sembla que el %s no sigui un tema d'estalvi de pantalla vàlid."
+
+#~ msgid "Copying file: %u of %u"
+#~ msgstr "S'està copiant el fitxer: %u de %u"
+
+#~ msgid "Blank screen"
+#~ msgstr "Pantalla en negre"
+
+#~ msgid "Random"
+#~ msgstr "Aleatori"
+
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "%d hora"
+#~ msgstr[1] "%d hores"
+
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d minut"
+#~ msgstr[1] "%d minuts"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d segon"
+#~ msgstr[1] "%d segons"
+
+#~ msgid "%s %s %s"
+#~ msgstr "%s %s %s"
+
+#~ msgid "%s %s"
+#~ msgstr "%s %s"
+
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgid "Never"
+#~ msgstr "Mai"
+
+#~ msgid "Could not load the main interface"
+#~ msgstr "No s'ha pogut carregar la interfície principal"
+
+#~ msgid "Please make sure that the screensaver is properly installed"
+#~ msgstr "Assegureu-vos que l'estalvi de pantalla estigui ben instal·lat"
+
+#~ msgid "%U on %h"
+#~ msgstr "%U a %h"
 
 #~ msgid "<b>Screensaver preview</b>"
 #~ msgstr "<b>Previsualització de l'estalvi de pantalla</b>"
