@@ -261,6 +261,9 @@ clear_widget (GtkWidget *widget)
 {
         GdkColor color = { 0, 0x0000, 0x0000, 0x0000 };
 
+        if (!gtk_widget_get_realized (widget))
+                return;
+
         gdk_window_set_background (gtk_widget_get_window (widget),
                                    &color);
         gtk_widget_queue_draw (GTK_WIDGET (widget));
