@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "screensaver&component=general\n"
-"POT-Creation-Date: 2010-07-02 01:36+0000\n"
+"POT-Creation-Date: 2011-02-08 00:55+0000\n"
 "PO-Revision-Date: 2010-08-05 23:33+0200\n"
 "Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -25,251 +25,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
-#: ../data/gnome-screensaver-preferences.desktop.in.h:1
-#: ../src/gnome-screensaver.desktop.in.in.h:2
-msgid "Screensaver"
-msgstr "Économiseur d'écran"
-
-#: ../data/gnome-screensaver-preferences.desktop.in.h:2
-msgid "Set your screensaver preferences"
-msgstr "Définir vos préférences pour l'économiseur d'écran"
-
-#: ../data/gnome-screensaver-preferences.ui.h:1
-msgid "Power _Management"
-msgstr "_Gestion de l'énergie"
-
-#: ../data/gnome-screensaver-preferences.ui.h:2
-msgid "Regard the computer as _idle after:"
-msgstr "Considérer l'ordinateur _inactif après :"
-
-#: ../data/gnome-screensaver-preferences.ui.h:3
-msgid "Screensaver Preferences"
-msgstr "Préférences de l'économiseur d'écran"
-
-#: ../data/gnome-screensaver-preferences.ui.h:4
-msgid "Screensaver Preview"
-msgstr "Aperçu de l'économiseur d'écran"
-
-#: ../data/gnome-screensaver-preferences.ui.h:5
-msgid "Screensaver preview"
-msgstr "Aperçu de l'économiseur d'écran"
-
-#: ../data/gnome-screensaver-preferences.ui.h:6
-msgid "Warning: the screen will not be locked for the root user."
-msgstr ""
-"Attention : l'écran ne sera pas verrouillé pour l'utilisateur root."
-
-#: ../data/gnome-screensaver-preferences.ui.h:7
-msgid "_Activate screensaver when computer is idle"
-msgstr "A_ctiver l'économiseur d'écran quand l'ordinateur est inactif"
-
-#: ../data/gnome-screensaver-preferences.ui.h:8
-msgid "_Lock screen when screensaver is active"
-msgstr "_Verrouiller l'écran quand l'économiseur d'écran est actif"
-
-#: ../data/gnome-screensaver-preferences.ui.h:9
-msgid "_Preview"
-msgstr "A_perçu"
-
-#: ../data/gnome-screensaver-preferences.ui.h:10
-msgid "_Screensaver theme:"
-msgstr "_Thèmes de l'économiseur d'écran :"
-
 #: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:11
 msgid "Screensaver themes"
 msgstr "Thèmes de l'économiseur d'écran"
 
 #: ../data/gnome-screensaver.directory.in.h:2
 msgid "Screensavers"
 msgstr "Économiseurs d'écran"
-
-#: ../data/gnome-screensaver.schemas.in.h:1
-msgid "Activate when idle"
-msgstr "Activer quand inactif"
-
-#: ../data/gnome-screensaver.schemas.in.h:2
-msgid "Allow embedding a keyboard into the window"
-msgstr "Autoriser l'incorporation d'un clavier dans la fenêtre"
-
-#: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow logout"
-msgstr "Autoriser la déconnexion"
-
-#: ../data/gnome-screensaver.schemas.in.h:4
-msgid "Allow the session status message to be displayed"
-msgstr "Autoriser l'affichage du message d'état de la session"
-
-#: ../data/gnome-screensaver.schemas.in.h:5
-msgid ""
-"Allow the session status message to be displayed when the screen is locked."
-msgstr ""
-"Autoriser l'affichage du message d'état de la session lorsque l'écran est "
-"verrouillé."
-
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Allow user switching"
-msgstr "Autoriser le changement d'utilisateur"
-
-#: ../data/gnome-screensaver.schemas.in.h:7
-msgid "Embedded keyboard command"
-msgstr "Commande de clavier incorporé"
-
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Lock on activation"
-msgstr "Verrouiller à l'activation"
-
-#: ../data/gnome-screensaver.schemas.in.h:9
-msgid "Logout command"
-msgstr "Commande de déconnexion"
-
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Screensaver theme selection mode"
-msgstr "Mode de sélection du thème de l'économiseur d'écran"
-
-#: ../data/gnome-screensaver.schemas.in.h:12
-msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr ""
-"Définir à VRAI pour activer l'économiseur d'écran quand la session est "
-"inactive."
-
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid ""
-"Set this to TRUE to allow embedding a keyboard into the window when trying "
-"to unlock. The \"keyboard_command\" key must be set with the appropriate "
-"command."
-msgstr ""
-"Définir à VRAI pour autoriser l'incorporation d'un clavier au sein de la "
-"fenêtre lors de l'essai de déverrouillage. La clé « keyboard_command » doit "
-"être définie avec la commande appropriée."
-
-#: ../data/gnome-screensaver.schemas.in.h:14
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr ""
-"Définir à VRAI pour verrouiller l'écran lors de l'activation de "
-"l'économiseur d'écran."
-
-#: ../data/gnome-screensaver.schemas.in.h:15
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to allow logging "
-"out after a delay. The delay is specified in the \"logout_delay\" key."
-msgstr ""
-"Définir à VRAI pour offrir une option dans la boîte de dialogue de "
-"déverrouillage qui autorise la déconnexion après un certain délai. Le délai est "
-"indiqué dans la clé « logout_delay »."
-
-#: ../data/gnome-screensaver.schemas.in.h:16
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to switch to a "
-"different user account."
-msgstr ""
-"Définir à VRAI pour offrir une option dans la boîte de dialogue de "
-"déverrouillage pour basculer vers un compte utilisateur différent."
-
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
-"set to TRUE, to embed a keyboard widget into the window. This command should "
-"implement an XEMBED plug interface and output a window XID on the standard "
-"output."
-msgstr ""
-"La commande qui sera lancée, si la clé « embedded_keyboard_enabled » est "
-"définie à VRAI, pour incorporer un widget clavier dans la fenêtre. Cette "
-"commande devrait implémenter une interface de connexion XEMBED et afficher "
-"une fenêtre XID sur la sortie standard."
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The command to invoke when the logout button is clicked. This command should "
-"simply log the user out without any interaction. This key has effect only if "
-"the \"logout_enable\" key is set to TRUE."
-msgstr ""
-"La commande à invoquer lorsque le bouton de déconnexion est cliqué. La "
-"commande doit simplement déconnecter l'utilisateur sans aucune interaction. "
-"Cette clé n'a d'effets que si la clé « logout_enable » est a VRAI."
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes after screensaver activation before locking the screen."
-msgstr ""
-"Le nombre de minutes après l'activation de l'économiseur d'écran avant de "
-"verrouiller l'écran."
-
-#: ../data/gnome-screensaver.schemas.in.h:20
-msgid ""
-"The number of minutes after the screensaver activation before a logout "
-"option will appear in the unlock dialog. This key has effect only if the "
-"\"logout_enable\" key is set to TRUE."
-msgstr ""
-"Le nombre de minutes après l'activation de l'économiseur d'écran avant que "
-"l'option de déconnexion apparaisse dans la boîte de dialogue de "
-"déverrouillage. Cette clé n'a d'effets que si la clé « logout_enable » est "
-"définie à VRAI."
-
-#: ../data/gnome-screensaver.schemas.in.h:21
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr ""
-"Le nombre de minutes d'inactivité avant que la session ne soit considérée "
-"comme inactive."
-
-#: ../data/gnome-screensaver.schemas.in.h:22
-msgid "The number of minutes to run before changing the screensaver theme."
-msgstr "Le nombre de minutes entre chaque changement d'économiseur d'écran."
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-msgid ""
-"The number of seconds of inactivity before signalling to power management. "
-"This key is set and maintained by the session power management agent."
-msgstr ""
-"La durée d'inactivité en secondes avant signalement à la gestion d'énergie. "
-"Cette valeur est définie et maintenue par l'agent de gestion d'énergie de la "
-"session."
-
-#: ../data/gnome-screensaver.schemas.in.h:24
-msgid ""
-"The selection mode used by screensaver. May be \"blank-only\" to enable the "
-"screensaver without using any theme on activation, \"single\" to enable "
-"screensaver using only one theme on activation (specified in \"themes\" "
-"key), and \"random\" to enable the screensaver using a random theme on "
-"activation."
-msgstr ""
-"Le mode de sélection utilisé par l'économiseur d'écran. Les valeurs "
-"possibles sont « blank-only » pour activer l'économiseur d'écran sans thème, "
-"« single » pour l'activer en utilisant un seul thème (précisé dans la clé "
-"« themes ») ou bien « random » pour l'activer en utilisant un thème aléatoire."
-
-#: ../data/gnome-screensaver.schemas.in.h:25
-msgid ""
-"This key specifies the list of themes to be used by the screensaver. It's "
-"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
-"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
-"\" is \"random\"."
-msgstr ""
-"Cette clé indique la liste des thèmes utilisés par l'économiseur d'écran. "
-"Elle est ignorée lorsque que la clé « mode » est « blank-only ». Lorsque "
-"« mode » est « single » elle fournit le nom du thème et lorsque « mode » est "
-"« random » elle fournit une liste de thèmes."
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Time before locking"
-msgstr "Délai avant verrouillage"
-
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid "Time before logout option"
-msgstr "Délai avant option de déconnexion"
-
-#: ../data/gnome-screensaver.schemas.in.h:28
-msgid "Time before power management baseline"
-msgstr "Délai de base avant mise en action de la gestion d'énergie"
-
-#: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before session is considered idle"
-msgstr "Délai avant que la session ne soit considérée comme inactive"
-
-#: ../data/gnome-screensaver.schemas.in.h:30
-msgid "Time before theme change"
-msgstr "Délai avant changement de thème"
 
 #. Translators: This is the name of a desktop background image that shows outer space images.
 #. You might want to translate it into the equivalent words of your language
@@ -306,7 +68,7 @@ msgstr "Dessine une grille de couleurs pulsées ressemblant à du Pop art."
 msgid "Pop art squares"
 msgstr "Carrés « Pop Art »"
 
-#: ../savers/popsquares.c:49 ../savers/floaters.c:1205
+#: ../savers/popsquares.c:50 ../savers/floaters.c:1184
 #, c-format
 msgid "%s. See --help for usage information.\n"
 msgstr "%s. Pour en savoir d'avantage, faites --help\n"
@@ -347,11 +109,11 @@ msgstr "L'image source à utiliser"
 #. translators: the word "image" here
 #. * represents a command line argument
 #.
-#: ../savers/floaters.c:1199
+#: ../savers/floaters.c:1178
 msgid "image — floats images around the screen"
 msgstr "image — des images flottent à l'écran"
 
-#: ../savers/floaters.c:1214
+#: ../savers/floaters.c:1193
 #, c-format
 msgid "You must specify one image.  See --help for usage information.\n"
 msgstr ""
@@ -380,36 +142,6 @@ msgstr "Ne pas choisir aléatoirement les images depuis l'emplacement"
 #: ../savers/slideshow.c:59
 msgid "Do not try to stretch images on screen"
 msgstr "Ne pas essayer d'étendre les images sur l'écran"
-
-#: ../src/copy-theme-dialog.c:215
-msgid "Copying files"
-msgstr "Copie de fichiers"
-
-#: ../src/copy-theme-dialog.c:233
-msgid "From:"
-msgstr "De :"
-
-#: ../src/copy-theme-dialog.c:237
-msgid "To:"
-msgstr "Vers :"
-
-#: ../src/copy-theme-dialog.c:257
-msgid "Copying themes"
-msgstr "Copie de thèmes"
-
-#: ../src/copy-theme-dialog.c:301
-msgid "Invalid screensaver theme"
-msgstr "Thème d'économiseur d'écran non valide"
-
-#: ../src/copy-theme-dialog.c:304
-#, c-format
-msgid "%s does not appear to be a valid screensaver theme."
-msgstr "%s ne semble pas être un thème d'économiseur d'écran valide."
-
-#: ../src/copy-theme-dialog.c:484
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Copie du fichier : %u sur %u"
 
 #: ../src/gnome-screensaver-command.c:62
 msgid "Causes the screensaver to exit gracefully"
@@ -468,32 +200,32 @@ msgstr "La raison de la désactivation de l'économiseur d'écran"
 msgid "Version of this application"
 msgstr "Version de cette application"
 
-#: ../src/gnome-screensaver-command.c:295
+#: ../src/gnome-screensaver-command.c:316
 #, c-format
 msgid "The screensaver is active\n"
 msgstr "L'économiseur d'écran est actif\n"
 
-#: ../src/gnome-screensaver-command.c:295
+#: ../src/gnome-screensaver-command.c:316
 #, c-format
 msgid "The screensaver is inactive\n"
 msgstr "L'économiseur d'écran est inactif\n"
 
-#: ../src/gnome-screensaver-command.c:309
+#: ../src/gnome-screensaver-command.c:330
 #, c-format
 msgid "The screensaver is not inhibited\n"
 msgstr "L'économiseur d'écran n'est pas inhibé\n"
 
-#: ../src/gnome-screensaver-command.c:315
+#: ../src/gnome-screensaver-command.c:336
 #, c-format
 msgid "The screensaver is being inhibited by:\n"
 msgstr "L'économiseur d'écran est inhibé par :\n"
 
-#: ../src/gnome-screensaver-command.c:346
+#: ../src/gnome-screensaver-command.c:367
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "L'économiseur d'écran a été actif pendant %d secondes.\n"
 
-#: ../src/gnome-screensaver-command.c:350
+#: ../src/gnome-screensaver-command.c:371
 #, c-format
 msgid "The screensaver is not currently active.\n"
 msgstr "L'économiseur d'écran n'est actuellement pas actif.\n"
@@ -607,72 +339,6 @@ msgstr "Vérification en cours…"
 msgid "Authentication failed."
 msgstr "L'authentification a échoué."
 
-#: ../src/gnome-screensaver-preferences.c:524
-msgid "Blank screen"
-msgstr "Écran vide"
-
-#: ../src/gnome-screensaver-preferences.c:530
-msgid "Random"
-msgstr "Aléatoire"
-
-#: ../src/gnome-screensaver-preferences.c:980
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d heure"
-msgstr[1] "%d heures"
-
-#: ../src/gnome-screensaver-preferences.c:983
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d minute"
-msgstr[1] "%d minutes"
-
-#: ../src/gnome-screensaver-preferences.c:986
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d seconde"
-msgstr[1] "%d secondes"
-
-#. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:992
-#, c-format
-msgid "%s %s %s"
-msgstr "%s %s %s"
-
-#. hour:minutes
-#. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:995
-#: ../src/gnome-screensaver-preferences.c:1003
-#, c-format
-msgid "%s %s"
-msgstr "%s %s"
-
-#. hour
-#. minutes
-#. seconds
-#: ../src/gnome-screensaver-preferences.c:998
-#: ../src/gnome-screensaver-preferences.c:1006
-#: ../src/gnome-screensaver-preferences.c:1010
-#, c-format
-msgid "%s"
-msgstr "%s"
-
-#: ../src/gnome-screensaver-preferences.c:1025
-#, c-format
-msgid "Never"
-msgstr "Jamais"
-
-#: ../src/gnome-screensaver-preferences.c:1467
-msgid "Could not load the main interface"
-msgstr "Impossible de charger l'interface principale"
-
-#: ../src/gnome-screensaver-preferences.c:1469
-msgid "Please make sure that the screensaver is properly installed"
-msgstr "Assurez-vous que l'économiseur d'écran est correctement installé"
-
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
 msgstr "Impossible de devenir un « daemon » (démon)"
@@ -684,6 +350,10 @@ msgstr "Activer le code de debogage"
 #: ../src/gnome-screensaver.desktop.in.in.h:1
 msgid "Launch screensaver and locker program"
 msgstr "Lancer l'économiseur d'écran et le programme de verrouillage"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:2
+msgid "Screensaver"
+msgstr "Économiseur d'écran"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -736,23 +406,284 @@ msgstr "La touche Verr. Maj. est enfoncée."
 msgid "You have the Num Lock key on."
 msgstr "La touche Verr. Num. est enfoncée."
 
-#: ../src/gs-lock-plug.c:1280
+#: ../src/gs-lock-plug.c:1320
 msgid "S_witch User…"
 msgstr "Changer d'_utilisateur…"
 
-#: ../src/gs-lock-plug.c:1289
+#: ../src/gs-lock-plug.c:1329
 msgid "Log _Out"
 msgstr "Se _déconnecter"
 
-#: ../src/gs-lock-plug.c:1300
+#: ../src/gs-lock-plug.c:1336
 msgid "_Unlock"
 msgstr "_Déverrouiller"
 
-#. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1465
-msgid "%U on %h"
-msgstr "%U sur %h"
-
-#: ../src/gs-lock-plug.c:1479
+#: ../src/gs-lock-plug.c:1371
 msgid "_Password:"
 msgstr "_Mot de passe :"
+
+#: ../src/gs-window-x11.c:2294
+msgid "%a %R"
+msgstr "%a %R"
+
+#: ../src/gs-window-x11.c:2296
+msgid "%a %l:%M %p"
+msgstr "%a %H:%M"
+
+#~ msgid "Set your screensaver preferences"
+#~ msgstr "Définir vos préférences pour l'économiseur d'écran"
+
+#~ msgid "Power _Management"
+#~ msgstr "_Gestion de l'énergie"
+
+#~ msgid "Regard the computer as _idle after:"
+#~ msgstr "Considérer l'ordinateur _inactif après :"
+
+#~ msgid "Screensaver Preferences"
+#~ msgstr "Préférences de l'économiseur d'écran"
+
+#~ msgid "Screensaver Preview"
+#~ msgstr "Aperçu de l'économiseur d'écran"
+
+#~ msgid "Screensaver preview"
+#~ msgstr "Aperçu de l'économiseur d'écran"
+
+#~ msgid "Warning: the screen will not be locked for the root user."
+#~ msgstr "Attention : l'écran ne sera pas verrouillé pour l'utilisateur root."
+
+#~ msgid "_Activate screensaver when computer is idle"
+#~ msgstr "A_ctiver l'économiseur d'écran quand l'ordinateur est inactif"
+
+#~ msgid "_Lock screen when screensaver is active"
+#~ msgstr "_Verrouiller l'écran quand l'économiseur d'écran est actif"
+
+#~ msgid "_Preview"
+#~ msgstr "A_perçu"
+
+#~ msgid "_Screensaver theme:"
+#~ msgstr "_Thèmes de l'économiseur d'écran :"
+
+#~ msgid "Activate when idle"
+#~ msgstr "Activer quand inactif"
+
+#~ msgid "Allow embedding a keyboard into the window"
+#~ msgstr "Autoriser l'incorporation d'un clavier dans la fenêtre"
+
+#~ msgid "Allow logout"
+#~ msgstr "Autoriser la déconnexion"
+
+#~ msgid "Allow the session status message to be displayed"
+#~ msgstr "Autoriser l'affichage du message d'état de la session"
+
+#~ msgid ""
+#~ "Allow the session status message to be displayed when the screen is "
+#~ "locked."
+#~ msgstr ""
+#~ "Autoriser l'affichage du message d'état de la session lorsque l'écran est "
+#~ "verrouillé."
+
+#~ msgid "Allow user switching"
+#~ msgstr "Autoriser le changement d'utilisateur"
+
+#~ msgid "Embedded keyboard command"
+#~ msgstr "Commande de clavier incorporé"
+
+#~ msgid "Lock on activation"
+#~ msgstr "Verrouiller à l'activation"
+
+#~ msgid "Logout command"
+#~ msgstr "Commande de déconnexion"
+
+#~ msgid "Screensaver theme selection mode"
+#~ msgstr "Mode de sélection du thème de l'économiseur d'écran"
+
+#~ msgid ""
+#~ "Set this to TRUE to activate the screensaver when the session is idle."
+#~ msgstr ""
+#~ "Définir à VRAI pour activer l'économiseur d'écran quand la session est "
+#~ "inactive."
+
+#~ msgid ""
+#~ "Set this to TRUE to allow embedding a keyboard into the window when "
+#~ "trying to unlock. The \"keyboard_command\" key must be set with the "
+#~ "appropriate command."
+#~ msgstr ""
+#~ "Définir à VRAI pour autoriser l'incorporation d'un clavier au sein de la "
+#~ "fenêtre lors de l'essai de déverrouillage. La clé « keyboard_command » "
+#~ "doit être définie avec la commande appropriée."
+
+#~ msgid ""
+#~ "Set this to TRUE to lock the screen when the screensaver goes active."
+#~ msgstr ""
+#~ "Définir à VRAI pour verrouiller l'écran lors de l'activation de "
+#~ "l'économiseur d'écran."
+
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in the unlock dialog to allow logging "
+#~ "out after a delay. The delay is specified in the \"logout_delay\" key."
+#~ msgstr ""
+#~ "Définir à VRAI pour offrir une option dans la boîte de dialogue de "
+#~ "déverrouillage qui autorise la déconnexion après un certain délai. Le "
+#~ "délai est indiqué dans la clé « logout_delay »."
+
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in the unlock dialog to switch to a "
+#~ "different user account."
+#~ msgstr ""
+#~ "Définir à VRAI pour offrir une option dans la boîte de dialogue de "
+#~ "déverrouillage pour basculer vers un compte utilisateur différent."
+
+#~ msgid ""
+#~ "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+#~ "set to TRUE, to embed a keyboard widget into the window. This command "
+#~ "should implement an XEMBED plug interface and output a window XID on the "
+#~ "standard output."
+#~ msgstr ""
+#~ "La commande qui sera lancée, si la clé « embedded_keyboard_enabled » est "
+#~ "définie à VRAI, pour incorporer un widget clavier dans la fenêtre. Cette "
+#~ "commande devrait implémenter une interface de connexion XEMBED et "
+#~ "afficher une fenêtre XID sur la sortie standard."
+
+#~ msgid ""
+#~ "The command to invoke when the logout button is clicked. This command "
+#~ "should simply log the user out without any interaction. This key has "
+#~ "effect only if the \"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "La commande à invoquer lorsque le bouton de déconnexion est cliqué. La "
+#~ "commande doit simplement déconnecter l'utilisateur sans aucune "
+#~ "interaction. Cette clé n'a d'effets que si la clé « logout_enable » est a "
+#~ "VRAI."
+
+#~ msgid ""
+#~ "The number of minutes after screensaver activation before locking the "
+#~ "screen."
+#~ msgstr ""
+#~ "Le nombre de minutes après l'activation de l'économiseur d'écran avant de "
+#~ "verrouiller l'écran."
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation before a logout "
+#~ "option will appear in the unlock dialog. This key has effect only if the "
+#~ "\"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "Le nombre de minutes après l'activation de l'économiseur d'écran avant "
+#~ "que l'option de déconnexion apparaisse dans la boîte de dialogue de "
+#~ "déverrouillage. Cette clé n'a d'effets que si la clé « logout_enable » est "
+#~ "définie à VRAI."
+
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr ""
+#~ "Le nombre de minutes d'inactivité avant que la session ne soit considérée "
+#~ "comme inactive."
+
+#~ msgid "The number of minutes to run before changing the screensaver theme."
+#~ msgstr "Le nombre de minutes entre chaque changement d'économiseur d'écran."
+
+#~ msgid ""
+#~ "The number of seconds of inactivity before signalling to power "
+#~ "management. This key is set and maintained by the session power "
+#~ "management agent."
+#~ msgstr ""
+#~ "La durée d'inactivité en secondes avant signalement à la gestion "
+#~ "d'énergie. Cette valeur est définie et maintenue par l'agent de gestion "
+#~ "d'énergie de la session."
+
+#~ msgid ""
+#~ "The selection mode used by screensaver. May be \"blank-only\" to enable "
+#~ "the screensaver without using any theme on activation, \"single\" to "
+#~ "enable screensaver using only one theme on activation (specified in "
+#~ "\"themes\" key), and \"random\" to enable the screensaver using a random "
+#~ "theme on activation."
+#~ msgstr ""
+#~ "Le mode de sélection utilisé par l'économiseur d'écran. Les valeurs "
+#~ "possibles sont « blank-only » pour activer l'économiseur d'écran sans "
+#~ "thème, « single » pour l'activer en utilisant un seul thème (précisé dans "
+#~ "la clé « themes ») ou bien « random » pour l'activer en utilisant un thème "
+#~ "aléatoire."
+
+#~ msgid ""
+#~ "This key specifies the list of themes to be used by the screensaver. It's "
+#~ "ignored when \"mode\" key is \"blank-only\", should provide the theme "
+#~ "name when \"mode\" is \"single\", and should provide a list of themes "
+#~ "when \"mode\" is \"random\"."
+#~ msgstr ""
+#~ "Cette clé indique la liste des thèmes utilisés par l'économiseur d'écran. "
+#~ "Elle est ignorée lorsque que la clé « mode » est « blank-only ». Lorsque "
+#~ "« mode » est « single » elle fournit le nom du thème et lorsque « mode » est "
+#~ "« random » elle fournit une liste de thèmes."
+
+#~ msgid "Time before locking"
+#~ msgstr "Délai avant verrouillage"
+
+#~ msgid "Time before logout option"
+#~ msgstr "Délai avant option de déconnexion"
+
+#~ msgid "Time before power management baseline"
+#~ msgstr "Délai de base avant mise en action de la gestion d'énergie"
+
+#~ msgid "Time before session is considered idle"
+#~ msgstr "Délai avant que la session ne soit considérée comme inactive"
+
+#~ msgid "Time before theme change"
+#~ msgstr "Délai avant changement de thème"
+
+#~ msgid "Copying files"
+#~ msgstr "Copie de fichiers"
+
+#~ msgid "From:"
+#~ msgstr "De :"
+
+#~ msgid "To:"
+#~ msgstr "Vers :"
+
+#~ msgid "Copying themes"
+#~ msgstr "Copie de thèmes"
+
+#~ msgid "Invalid screensaver theme"
+#~ msgstr "Thème d'économiseur d'écran non valide"
+
+#~ msgid "%s does not appear to be a valid screensaver theme."
+#~ msgstr "%s ne semble pas être un thème d'économiseur d'écran valide."
+
+#~ msgid "Copying file: %u of %u"
+#~ msgstr "Copie du fichier : %u sur %u"
+
+#~ msgid "Blank screen"
+#~ msgstr "Écran vide"
+
+#~ msgid "Random"
+#~ msgstr "Aléatoire"
+
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "%d heure"
+#~ msgstr[1] "%d heures"
+
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d minute"
+#~ msgstr[1] "%d minutes"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d seconde"
+#~ msgstr[1] "%d secondes"
+
+#~ msgid "%s %s %s"
+#~ msgstr "%s %s %s"
+
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgid "Never"
+#~ msgstr "Jamais"
+
+#~ msgid "Could not load the main interface"
+#~ msgstr "Impossible de charger l'interface principale"
+
+#~ msgid "Please make sure that the screensaver is properly installed"
+#~ msgstr "Assurez-vous que l'économiseur d'écran est correctement installé"
+
+#~ msgid "%U on %h"
+#~ msgstr "%U sur %h"
