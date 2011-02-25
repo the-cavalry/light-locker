@@ -2297,7 +2297,7 @@ update_clock (GSWindow *window)
 
         dt = g_date_time_new_now_local ();
         text = g_date_time_format (dt, clock_format);
-        markup = g_strdup_printf ("<b><span foreground=\"white\">%s</span></b>", text);
+        markup = g_strdup_printf ("<b><span foreground=\"#ccc\">%s</span></b>", text);
         gtk_label_set_markup (GTK_LABEL (window->priv->clock), markup);
         g_free (markup);
         g_free (text);
@@ -2355,7 +2355,7 @@ update_name_label (GSWindow *window)
         char *name;
         char *markup;
         name = get_user_display_name ();
-        markup = g_strdup_printf ("<b><span foreground=\"white\">%s</span></b>", name);
+        markup = g_strdup_printf ("<b><span foreground=\"#ccc\">%s</span></b>", name);
         gtk_label_set_markup (GTK_LABEL (window->priv->name_label), markup);
         g_free (markup);
         g_free (name);
@@ -2380,9 +2380,9 @@ create_panel (GSWindow *window)
         bg.blue = 0;
         bg.alpha = 1.0;
 
-        fg.red = 1.0;
-        fg.green = 1.0;
-        fg.blue = 1.0;
+        fg.red = 0.8;
+        fg.green = 0.8;
+        fg.blue = 0.8;
         fg.alpha = 1.0;
 
         all_states = 0;
