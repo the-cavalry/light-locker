@@ -726,76 +726,106 @@ image_set_from_pixbuf (GtkImage  *image,
         g_object_unref (pixbuf);
 }
 
-static gboolean
-check_user_file (const gchar *filename,
-                 uid_t        user,
-                 gssize       max_file_size,
-                 gboolean     relax_group,
-                 gboolean     relax_other)
+static GdkPixbuf *
+get_pixbuf_of_user_icon (GSLockPlug *plug)
 {
-        struct stat fileinfo;
+        GError          *error;
+        GDBusConnection *system_bus;
+        GVariant        *find_user_by_name_reply;
+        const char      *user;
+        GVariant        *get_icon_file_reply;
+        GVariant        *icon_file_variant;
+        const char      *icon_file;
+        GdkPixbuf       *pixbuf;
 
-        if (max_file_size < 0) {
-                max_file_size = G_MAXSIZE;
+        error = NULL;
+        system_bus = g_bus_get_sync (G_BUS_TYPE_SYSTEM, NULL, &error);
+
+        if (error != NULL) {
+                g_warning ("Unable to get system bus: %s", error->message);
+                g_error_free (error);
+                return NULL;
         }
 
-        /* Exists/Readable? */
-        if (g_stat (filename, &fileinfo) < 0) {
-                return FALSE;
+        find_user_by_name_reply = g_dbus_connection_call_sync (system_bus,
+                                                               "org.freedesktop.Accounts",
+                                                               "/org/freedesktop/Accounts",
+                                                               "org.freedesktop.Accounts",
+                                                               "FindUserByName",
+                                                               g_variant_new ("(s)",
+                                                                              g_get_user_name ()),
+                                                               G_VARIANT_TYPE ("(o)"),
+                                                               G_DBUS_CALL_FLAGS_NONE,
+                                                               -1,
+                                                               NULL,
+                                                               &error);
+        if (error != NULL) {
+                g_warning ("Couldn't find user in accounts service: %s", error->message);
+                g_error_free (error);
+                return NULL;
         }
 
-        /* Is a regular file */
-        if (G_UNLIKELY (!S_ISREG (fileinfo.st_mode))) {
-                return FALSE;
+        user = g_variant_get_string (g_variant_get_child_value (find_user_by_name_reply,
+                                                                0),
+                                     NULL);
+
+        get_icon_file_reply = g_dbus_connection_call_sync (system_bus,
+                                                           "org.freedesktop.Accounts",
+                                                           user,
+                                                           "org.freedesktop.DBus.Properties",
+                                                           "Get",
+                                                           g_variant_new ("(ss)",
+                                                                          "org.freedesktop.Accounts.User",
+                                                                          "IconFile"),
+                                                           G_VARIANT_TYPE ("(v)"),
+                                                           G_DBUS_CALL_FLAGS_NONE,
+                                                           -1,
+                                                           NULL,
+                                                           &error);
+        g_variant_unref (find_user_by_name_reply);
+
+        if (error != NULL) {
+                g_warning ("Couldn't find user icon in accounts service: %s", error->message);
+                g_error_free (error);
+                return NULL;
         }
 
-        /* Owned by user? */
-        if (G_UNLIKELY (fileinfo.st_uid != user)) {
-                return FALSE;
+        g_variant_get_child (get_icon_file_reply, 0, "v", &icon_file_variant);
+
+        icon_file = g_variant_get_string (icon_file_variant, NULL);
+
+        if (icon_file == NULL) {
+                char *string;
+
+                string = g_variant_print (get_icon_file_reply, TRUE);
+                g_warning ("reply for user icon path returned invalid response '%s'", string);
+                g_free (string);
+
+                pixbuf = NULL;
+        } else {
+                pixbuf = gdk_pixbuf_new_from_file_at_size (icon_file,
+                                                           64,
+                                                           64,
+                                                           &error);
+        }
+        g_variant_unref (icon_file_variant);
+        g_variant_unref (get_icon_file_reply);
+
+        if (error != NULL) {
+                g_warning ("Couldn't load user icon: %s", error->message);
+                g_error_free (error);
+                return NULL;
         }
 
-        /* Group not writable or relax_group? */
-        if (G_UNLIKELY ((fileinfo.st_mode & S_IWGRP) == S_IWGRP && !relax_group)) {
-                return FALSE;
-        }
-
-        /* Other not writable or relax_other? */
-        if (G_UNLIKELY ((fileinfo.st_mode & S_IWOTH) == S_IWOTH && !relax_other)) {
-                return FALSE;
-        }
-
-        /* Size is kosher? */
-        if (G_UNLIKELY (fileinfo.st_size > max_file_size)) {
-                return FALSE;
-        }
-
-        return TRUE;
+        return pixbuf;
 }
 
 static gboolean
 set_face_image (GSLockPlug *plug)
 {
         GdkPixbuf    *pixbuf;
-        const char   *homedir;
-        char         *path;
-        int           icon_size = 64;
-        gsize         user_max_file = 65536;
-        uid_t         uid;
 
-        homedir = g_get_home_dir ();
-        uid = getuid ();
-
-        path = g_build_filename (homedir, ".face", NULL);
-
-        pixbuf = NULL;
-        if (check_user_file (path, uid, user_max_file, 0, 0)) {
-                pixbuf = gdk_pixbuf_new_from_file_at_size (path,
-                                                           icon_size,
-                                                           icon_size,
-                                                           NULL);
-        }
-
-        g_free (path);
+        pixbuf = get_pixbuf_of_user_icon (plug);
 
         if (pixbuf == NULL) {
                 return FALSE;
