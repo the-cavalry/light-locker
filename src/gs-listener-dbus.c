@@ -1357,9 +1357,10 @@ send_success_reply (DBusConnection  *connection,
                     DBusMessage     *message)
 {
         DBusMessage *reply;
-        
-        if (dbus_message_get_no_reply (message))
+
+        if (dbus_message_get_no_reply (message)) {
                 return DBUS_HANDLER_RESULT_HANDLED;
+        }
 
         reply = dbus_message_new_method_return (message);
         if (reply == NULL) {
