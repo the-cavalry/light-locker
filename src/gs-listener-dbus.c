@@ -1353,6 +1353,29 @@ do_introspect (DBusConnection *connection,
 }
 
 static DBusHandlerResult
+send_success_reply (DBusConnection  *connection,
+                    DBusMessage     *message)
+{
+        DBusMessage *reply;
+        
+        if (dbus_message_get_no_reply (message))
+                return DBUS_HANDLER_RESULT_HANDLED;
+
+        reply = dbus_message_new_method_return (message);
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
 listener_dbus_handle_session_message (DBusConnection *connection,
                                       DBusMessage    *message,
                                       void           *user_data,
@@ -1373,15 +1396,15 @@ listener_dbus_handle_session_message (DBusConnection *connection,
 
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Lock")) {
                 g_signal_emit (listener, signals [LOCK], 0);
-                return DBUS_HANDLER_RESULT_HANDLED;
+                return send_success_reply (connection, message);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Quit")) {
                 g_signal_emit (listener, signals [QUIT], 0);
-                return DBUS_HANDLER_RESULT_HANDLED;
+                return send_success_reply (connection, message);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Cycle")) {
                 g_signal_emit (listener, signals [CYCLE], 0);
-                return DBUS_HANDLER_RESULT_HANDLED;
+                return send_success_reply (connection, message);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Inhibit")) {
                 return listener_dbus_add_ref_entry (listener, REF_ENTRY_TYPE_INHIBIT, connection, message);
