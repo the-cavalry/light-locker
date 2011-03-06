@@ -7,8 +7,6 @@ man_MANS = 				\
 
 @INTLTOOL_XML_NOMERGE_RULE@
 
-@INTLTOOL_DIRECTORY_RULE@
-
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gnome-screensaver.pc
 
@@ -16,9 +14,6 @@ dbussessionservicedir = $(DBUS_SESSION_SERVICE_DIR)
 dbussessionservice_DATA = org.gnome.ScreenSaver.service
 
 EXTRA_DIST = 				\
-	$(desktop_in_files)		\
-	$(directory_in_files)		\
-	$(gtkbuilder_DATA)		\
 	$(man_MANS)			\
 	gnome-screensaver		\
 	gnome-screensaver.pc.in		\
@@ -27,7 +22,6 @@ EXTRA_DIST = 				\
 
 DISTCLEANFILES = 			\
 	$(desktop_DATA)			\
-	$(directory_DATA)		\
 	$(NULL)
 
 MAINTAINERCLEANFILES =			\
