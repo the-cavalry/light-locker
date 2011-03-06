@@ -2,8 +2,6 @@
 # Please keep this file sorted alphabetically.
 data/gnome-screensaver.directory.in
 savers/personal-slideshow.desktop.in.in
-savers/popsquares.desktop.in.in
-savers/popsquares.c
 savers/floaters.c
 savers/slideshow.c
 src/gnome-screensaver-command.c

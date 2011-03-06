@@ -16,12 +16,9 @@ INCLUDES =							\
 
 DESKTOP_IN_IN_FILES = 			 \
 	personal-slideshow.desktop.in.in \
-	popsquares.desktop.in.in	 \
 	$(NULL)
 
 personal-slideshow.desktop.in: personal-slideshow.desktop.in.in Makefile
-	$(edit) $< >$@
-popsquares.desktop.in: popsquares.desktop.in.in Makefile
 	$(edit) $< >$@
 
 @INTLTOOL_DESKTOP_RULE@
@@ -32,7 +29,6 @@ edit = sed \
 themesdir = $(datadir)/applications/screensavers
 themes_in_files = 			\
 	personal-slideshow.desktop.in	\
-	popsquares.desktop.in		\
 	$(NULL)
 themes_DATA = $(themes_in_files:.desktop.in=.desktop)
 
@@ -66,7 +62,6 @@ libgs_theme_engine_a_SOURCES =		\
 saverdir = $(libexecdir)/gnome-screensaver
 saver_PROGRAMS = 	\
 	floaters	\
-	popsquares	\
 	slideshow	\
 	$(NULL)
 
@@ -78,17 +73,6 @@ floaters_LDADD =		       \
 	libgs-theme-engine.a		\
 	$(GNOME_SCREENSAVER_SAVER_LIBS) \
 	-lm                             \
-	$(NULL)
-
-popsquares_SOURCES = 		\
-	gste-popsquares.c	\
-	gste-popsquares.h	\
-	popsquares.c		\
-	$(NULL)
-
-popsquares_LDADD =			\
-	libgs-theme-engine.a 		\
-	$(GNOME_SCREENSAVER_SAVER_LIBS)	\
 	$(NULL)
 
 slideshow_SOURCES =   \
@@ -112,7 +96,6 @@ EXTRA_DIST =				\
 
 CLEANFILES = 				\
 	$(BUILT_SOURCES)		\
-	popsquares.desktop.in		\
 	personal-slideshow.desktop.in	\
 	$(NULL)
 
@@ -124,5 +107,4 @@ MAINTAINERCLEANFILES =			\
 	*~				\
 	Makefile.in			\
 	personal-slideshow.desktop	\
-	popsquares.desktop		\
 	$(NULL)
