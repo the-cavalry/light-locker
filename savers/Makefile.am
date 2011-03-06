@@ -61,18 +61,7 @@ libgs_theme_engine_a_SOURCES =		\
 
 saverdir = $(libexecdir)/gnome-screensaver
 saver_PROGRAMS = 	\
-	floaters	\
 	slideshow	\
-	$(NULL)
-
-floaters_SOURCES =	\
-	floaters.c	\
-	$(NULL)
-
-floaters_LDADD =		       \
-	libgs-theme-engine.a		\
-	$(GNOME_SCREENSAVER_SAVER_LIBS) \
-	-lm                             \
 	$(NULL)
 
 slideshow_SOURCES =   \

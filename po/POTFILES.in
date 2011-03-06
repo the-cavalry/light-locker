@@ -2,7 +2,6 @@
 # Please keep this file sorted alphabetically.
 data/gnome-screensaver.directory.in
 savers/personal-slideshow.desktop.in.in
-savers/floaters.c
 savers/slideshow.c
 src/gnome-screensaver-command.c
 src/gnome-screensaver-dialog.c
