@@ -119,18 +119,16 @@ watcher_idle_notice_cb (GSWatcher *watcher,
                         GSMonitor *monitor)
 {
         gboolean activation_enabled;
-        gboolean inhibited;
         gboolean handled;
 
         gs_debug ("Idle notice signal detected: %d", in_effect);
 
         /* only fade if screensaver can activate */
         activation_enabled = gs_listener_get_activation_enabled (monitor->priv->listener);
-        inhibited = gs_listener_is_inhibited (monitor->priv->listener);
 
         handled = FALSE;
         if (in_effect) {
-                if (activation_enabled && ! inhibited) {
+                if (activation_enabled) {
                         /* start slow fade */
                         if (gs_grab_grab_offscreen (monitor->priv->grab, FALSE)) {
                                 gs_fade_async (monitor->priv->fade, FADE_TIMEOUT, NULL, NULL);

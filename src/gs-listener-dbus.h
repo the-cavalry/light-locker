@@ -81,7 +81,6 @@ gboolean    gs_listener_set_session_idle        (GSListener *listener,
 void        gs_listener_set_activation_enabled  (GSListener *listener,
                                                  gboolean    enabled);
 gboolean    gs_listener_get_activation_enabled  (GSListener *listener);
-gboolean    gs_listener_is_inhibited            (GSListener *listener);
 
 G_END_DECLS
 

@@ -48,13 +48,9 @@ static gboolean do_activate   = FALSE;
 static gboolean do_deactivate = FALSE;
 static gboolean do_version    = FALSE;
 static gboolean do_poke       = FALSE;
-static gboolean do_inhibit    = FALSE;
 
 static gboolean do_query      = FALSE;
 static gboolean do_time       = FALSE;
-
-static char    *inhibit_reason      = NULL;
-static char    *inhibit_application = NULL;
 
 static GOptionEntry entries [] = {
         { "exit", 0, 0, G_OPTION_ARG_NONE, &do_quit,
@@ -71,58 +67,12 @@ static GOptionEntry entries [] = {
           N_("If the screensaver is active then deactivate it (un-blank the screen)"), NULL },
         { "poke", 'p', 0, G_OPTION_ARG_NONE, &do_poke,
           N_("Poke the running screensaver to simulate user activity"), NULL },
-        { "inhibit", 'i', 0, G_OPTION_ARG_NONE, &do_inhibit,
-          N_("Inhibit the screensaver from activating.  Command blocks while inhibit is active."), NULL },
-        { "application-name", 'n', 0, G_OPTION_ARG_STRING, &inhibit_application,
-          N_("The calling application that is inhibiting the screensaver"), NULL },
-        { "reason", 'r', 0, G_OPTION_ARG_STRING, &inhibit_reason,
-          N_("The reason for inhibiting the screensaver"), NULL },
         { "version", 'V', 0, G_OPTION_ARG_NONE, &do_version,
           N_("Version of this application"), NULL },
         { NULL }
 };
 
 static GMainLoop *loop = NULL;
-
-static DBusMessage *
-screensaver_send_message_inhibit (DBusConnection *connection,
-                                  const char     *application,
-                                  const char     *reason)
-{
-        DBusMessage    *message;
-        DBusMessage    *reply;
-        DBusError       error;
-        DBusMessageIter iter;
-
-        g_return_val_if_fail (connection != NULL, NULL);
-
-        dbus_error_init (&error);
-
-        message = dbus_message_new_method_call (GS_SERVICE, GS_PATH, GS_INTERFACE, "Inhibit");
-        if (message == NULL) {
-                g_warning ("Couldn't allocate the dbus message");
-                return NULL;
-        }
-
-        dbus_message_iter_init_append (message, &iter);
-        dbus_message_iter_append_basic (&iter, DBUS_TYPE_STRING, &application);
-        dbus_message_iter_append_basic (&iter, DBUS_TYPE_STRING, &reason);
-
-        reply = dbus_connection_send_with_reply_and_block (connection,
-                                                           message,
-                                                           -1, &error);
-        if (dbus_error_is_set (&error)) {
-                g_warning ("%s raised:\n %s\n\n", error.name, error.message);
-                reply = NULL;
-        }
-
-        dbus_connection_flush (connection);
-
-        dbus_message_unref (message);
-        dbus_error_free (&error);
-
-        return reply;
-}
 
 static DBusMessage *
 screensaver_send_message_bool (DBusConnection *connection,
@@ -205,67 +155,6 @@ screensaver_send_message_void (DBusConnection *connection,
         return reply;
 }
 
-static char **
-get_string_from_iter (DBusMessageIter *iter,
-                      int             *num_elements)
-{
-        int    count;
-        char **buffer;
-
-        if (num_elements != NULL) {
-                *num_elements = 0;
-        }
-
-        count = 0;
-        buffer = (char **)malloc (sizeof (char *) * 8);
-
-        if (buffer == NULL) {
-                goto oom;
-        }
-
-        buffer[0] = NULL;
-        while (dbus_message_iter_get_arg_type (iter) == DBUS_TYPE_STRING) {
-                const char *value;
-                char       *str;
-
-                if ((count % 8) == 0 && count != 0) {
-                        buffer = realloc (buffer, sizeof (char *) * (count + 8));
-                        if (buffer == NULL) {
-                                goto oom;
-                        }
-                }
-
-                dbus_message_iter_get_basic (iter, &value);
-                str = strdup (value);
-                if (str == NULL) {
-                        goto oom;
-                }
-
-                buffer[count] = str;
-
-                dbus_message_iter_next (iter);
-                count++;
-        }
-
-        if ((count % 8) == 0) {
-                buffer = realloc (buffer, sizeof (char *) * (count + 1));
-                if (buffer == NULL) {
-                        goto oom;
-                }
-        }
-
-        buffer[count] = NULL;
-        if (num_elements != NULL) {
-                *num_elements = count;
-        }
-        return buffer;
-
-oom:
-        g_debug ("%s %d : error allocating memory\n", __FILE__, __LINE__);
-        return NULL;
-
-}
-
 static gboolean
 screensaver_is_running (DBusConnection *connection)
 {
@@ -294,7 +183,6 @@ do_command (DBusConnection *connection)
 
         if (do_query) {
                 DBusMessageIter iter;
-                DBusMessageIter array;
                 dbus_bool_t     v;
 
                 if (!screensaver_is_running (connection)) {
@@ -311,32 +199,6 @@ do_command (DBusConnection *connection)
                 dbus_message_iter_init (reply, &iter);
                 dbus_message_iter_get_basic (&iter, &v);
                 g_print (v ? _("The screensaver is active\n") : _("The screensaver is inactive\n"));
-
-                dbus_message_unref (reply);
-
-                reply = screensaver_send_message_void (connection, "GetInhibitors", TRUE);
-                if (! reply) {
-                        g_message ("Did not receive a reply from screensaver.");
-                        goto done;
-                }
-
-                dbus_message_iter_init (reply, &iter);
-                dbus_message_iter_recurse (&iter, &array);
-
-                if (dbus_message_iter_get_arg_type (&array) == DBUS_TYPE_INVALID) {
-                        g_print (_("The screensaver is not inhibited\n"));
-                } else {
-                        char **inhibitors;
-                        int    i;
-                        int    num;
-
-                        g_print (_("The screensaver is being inhibited by:\n"));
-                        inhibitors = get_string_from_iter (&array, &num);
-                        for (i = 0; i < num; i++) {
-                                g_print ("\t%s\n", inhibitors[i]);
-                        }
-                        g_strfreev (inhibitors);
-                }
 
                 dbus_message_unref (reply);
         }
@@ -393,19 +255,6 @@ do_command (DBusConnection *connection)
                         goto done;
                 }
                 dbus_message_unref (reply);
-        }
-
-        if (do_inhibit) {
-                reply = screensaver_send_message_inhibit (connection,
-                                                          inhibit_application ? inhibit_application : "Unknown",
-                                                          inhibit_reason ? inhibit_reason : "Unknown");
-                if (! reply) {
-                        g_message ("Did not receive a reply from the screensaver.");
-                        goto done;
-                }
-                dbus_message_unref (reply);
-
-                return FALSE;
         }
 
  done:
