@@ -1,8 +1,6 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
 data/gnome-screensaver.directory.in
-savers/cosmos-slideshow.desktop.in.in
-savers/footlogo-floaters.desktop.in.in
 savers/personal-slideshow.desktop.in.in
 savers/popsquares.desktop.in.in
 savers/popsquares.c
