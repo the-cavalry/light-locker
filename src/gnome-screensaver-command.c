@@ -47,7 +47,6 @@ static gboolean do_lock       = FALSE;
 static gboolean do_activate   = FALSE;
 static gboolean do_deactivate = FALSE;
 static gboolean do_version    = FALSE;
-static gboolean do_poke       = FALSE;
 
 static gboolean do_query      = FALSE;
 static gboolean do_time       = FALSE;
@@ -65,8 +64,6 @@ static GOptionEntry entries [] = {
           N_("Turn the screensaver on (blank the screen)"), NULL },
         { "deactivate", 'd', 0, G_OPTION_ARG_NONE, &do_deactivate,
           N_("If the screensaver is active then deactivate it (un-blank the screen)"), NULL },
-        { "poke", 'p', 0, G_OPTION_ARG_NONE, &do_poke,
-          N_("Poke the running screensaver to simulate user activity"), NULL },
         { "version", 'V', 0, G_OPTION_ARG_NONE, &do_version,
           N_("Version of this application"), NULL },
         { NULL }
@@ -233,10 +230,6 @@ do_command (DBusConnection *connection)
 
         if (do_lock) {
                 reply = screensaver_send_message_void (connection, "Lock", FALSE);
-        }
-
-        if (do_poke) {
-                reply = screensaver_send_message_void (connection, "SimulateUserActivity", FALSE);
         }
 
         if (do_activate) {
