@@ -32,12 +32,6 @@ G_BEGIN_DECLS
 #define GS_IS_PREFS_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GS_TYPE_PREFS))
 #define GS_PREFS_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GS_TYPE_PREFS, GSPrefsClass))
 
-typedef enum {
-        GS_MODE_BLANK_ONLY,
-        GS_MODE_RANDOM,
-        GS_MODE_SINGLE
-} GSSaverMode;
-
 typedef struct GSPrefsPrivate GSPrefsPrivate;
 
 typedef struct
@@ -59,13 +53,9 @@ typedef struct
         guint            timeout;               /* how much idle time before activation */
         guint            lock_timeout;          /* how long after activation locking starts */
         guint            logout_timeout;        /* how long until the logout option appears */
-        guint            cycle;                 /* how long each theme should run */
 
         char            *logout_command;        /* command to use to logout */
         char            *keyboard_command;      /* command to use to embed a keyboard */
-
-        GSList          *themes;                /* the screensaver themes to run */
-        GSSaverMode      mode;                  /* theme selection mode */
 } GSPrefs;
 
 typedef struct

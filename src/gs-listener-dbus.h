@@ -45,7 +45,6 @@ typedef struct
         GObjectClass       parent_class;
 
         void            (* lock)                     (GSListener *listener);
-        void            (* cycle)                    (GSListener *listener);
         void            (* quit)                     (GSListener *listener);
         void            (* simulate_user_activity)   (GSListener *listener);
         gboolean        (* active_changed)           (GSListener *listener,

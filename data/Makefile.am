@@ -9,17 +9,6 @@ man_MANS = 				\
 
 @INTLTOOL_DIRECTORY_RULE@
 
-directorydir = $(datadir)/desktop-directories
-directory_in_files =                            \
-	gnome-screensaver.directory.in		\
-	$(NULL)
-directory_DATA = $(directory_in_files:.directory.in=.directory)
-
-menudir = $(sysconfdir)/xdg/menus
-menu_DATA =					\
-	gnome-screensavers.menu			\
-	$(NULL)
-
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gnome-screensaver.pc
 

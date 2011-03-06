@@ -33,8 +33,6 @@
 
 #include "gs-manager.h"
 #include "gs-window.h"
-#include "gs-theme-manager.h"
-#include "gs-job.h"
 #include "gs-grab.h"
 #include "gs-fade.h"
 #include "gs-debug.h"
@@ -48,22 +46,17 @@ static void gs_manager_finalize   (GObject        *object);
 struct GSManagerPrivate
 {
         GSList      *windows;
-        GHashTable  *jobs;
-
-        GSThemeManager *theme_manager;
         GSettings      *settings;
         GnomeBG        *bg;
 
         /* Policy */
         glong        lock_timeout;
-        glong        cycle_timeout;
         glong        logout_timeout;
 
         guint        lock_enabled : 1;
         guint        logout_enabled : 1;
         guint        keyboard_enabled : 1;
         guint        user_switch_enabled : 1;
-        guint        throttled : 1;
 
         char        *logout_command;
         char        *keyboard_command;
@@ -80,10 +73,7 @@ struct GSManagerPrivate
         time_t       activate_time;
 
         guint        lock_timeout_id;
-        guint        cycle_timeout_id;
 
-        GSList      *themes;
-        GSSaverMode  saver_mode;
         GSGrab      *grab;
         GSFade      *fade;
         guint        unfade_idle_id;
@@ -104,13 +94,11 @@ enum {
         PROP_USER_SWITCH_ENABLED,
         PROP_KEYBOARD_ENABLED,
         PROP_LOCK_TIMEOUT,
-        PROP_CYCLE_TIMEOUT,
         PROP_LOGOUT_TIMEOUT,
         PROP_LOGOUT_COMMAND,
         PROP_KEYBOARD_COMMAND,
         PROP_STATUS_MESSAGE,
         PROP_ACTIVE,
-        PROP_THROTTLED,
 };
 
 #define FADE_TIMEOUT 1000
@@ -118,280 +106,6 @@ enum {
 static guint         signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSManager, gs_manager, G_TYPE_OBJECT)
-
-static void
-manager_add_job_for_window (GSManager *manager,
-                            GSWindow  *window,
-                            GSJob     *job)
-{
-        if (manager->priv->jobs == NULL) {
-                return;
-        }
-
-        g_hash_table_insert (manager->priv->jobs, window, job);
-}
-
-static const char *
-select_theme (GSManager *manager)
-{
-        const char *theme = NULL;
-
-        g_return_val_if_fail (manager != NULL, NULL);
-        g_return_val_if_fail (GS_IS_MANAGER (manager), NULL);
-
-        if (manager->priv->saver_mode == GS_MODE_BLANK_ONLY) {
-                return NULL;
-        }
-
-        if (manager->priv->themes) {
-                int number = 0;
-
-                if (manager->priv->saver_mode == GS_MODE_RANDOM) {
-                        g_random_set_seed (time (NULL));
-                        number = g_random_int_range (0, g_slist_length (manager->priv->themes));
-                }
-                theme = g_slist_nth_data (manager->priv->themes, number);
-        }
-
-        return theme;
-}
-
-static GSJob *
-lookup_job_for_window (GSManager *manager,
-                       GSWindow  *window)
-{
-        GSJob *job;
-
-        if (manager->priv->jobs == NULL) {
-                return NULL;
-        }
-
-        job = g_hash_table_lookup (manager->priv->jobs, window);
-
-        return job;
-}
-
-static void
-manager_maybe_stop_job_for_window (GSManager *manager,
-                                   GSWindow  *window)
-{
-        GSJob *job;
-
-        job = lookup_job_for_window (manager, window);
-
-        if (job == NULL) {
-                gs_debug ("Job not found for window");
-                return;
-        }
-
-        gs_job_stop (job);
-}
-
-static void
-manager_maybe_start_job_for_window (GSManager *manager,
-                                    GSWindow  *window)
-{
-        GSJob *job;
-
-        job = lookup_job_for_window (manager, window);
-
-        if (job == NULL) {
-                gs_debug ("Job not found for window");
-                return;
-        }
-
-        if (! manager->priv->dialog_up) {
-                if (! manager->priv->throttled) {
-                        if (! gs_job_is_running (job)) {
-                                if (! gs_window_is_obscured (window)) {
-                                        gs_debug ("Starting job for window");
-                                        gs_job_start (job);
-                                } else {
-                                        gs_debug ("Window is obscured deferring start of job");
-                                }
-                        } else {
-                                gs_debug ("Not starting job because job is running");
-                        }
-                } else {
-                        gs_debug ("Not starting job because throttled");
-                }
-        } else {
-                gs_debug ("Not starting job because dialog is up");
-        }
-}
-
-static void
-manager_select_theme_for_job (GSManager *manager,
-                              GSJob     *job)
-{
-        const char *theme;
-
-        theme = select_theme (manager);
-
-        if (theme != NULL) {
-                GSThemeInfo    *info;
-                const char     *command;
-
-                command = NULL;
-
-                info = gs_theme_manager_lookup_theme_info (manager->priv->theme_manager, theme);
-                if (info != NULL) {
-                        command = gs_theme_info_get_exec (info);
-                } else {
-                        gs_debug ("Could not find information for theme: %s",
-                                  theme);
-                }
-
-                gs_job_set_command (job, command);
-
-
-                if (info != NULL) {
-                        gs_theme_info_unref (info);
-                }
-        } else {
-                gs_job_set_command (job, NULL);
-        }
-}
-
-static void
-cycle_job (GSWindow  *window,
-           GSJob     *job,
-           GSManager *manager)
-{
-        gs_job_stop (job);
-        manager_select_theme_for_job (manager, job);
-        manager_maybe_start_job_for_window (manager, window);
-}
-
-static void
-manager_cycle_jobs (GSManager *manager)
-{
-        if (manager->priv->jobs != NULL) {
-                g_hash_table_foreach (manager->priv->jobs, (GHFunc) cycle_job, manager);
-        }
-}
-
-static void
-throttle_job (GSWindow  *window,
-              GSJob     *job,
-              GSManager *manager)
-{
-        if (manager->priv->throttled) {
-                gs_job_stop (job);
-        } else {
-                manager_maybe_start_job_for_window (manager, window);
-        }
-}
-
-static void
-manager_throttle_jobs (GSManager *manager)
-{
-        if (manager->priv->jobs != NULL) {
-                g_hash_table_foreach (manager->priv->jobs, (GHFunc) throttle_job, manager);
-        }
-}
-
-static void
-resume_job (GSWindow  *window,
-            GSJob     *job,
-            GSManager *manager)
-{
-        if (gs_job_is_running (job)) {
-                gs_job_suspend (job, FALSE);
-        } else {
-                manager_maybe_start_job_for_window (manager, window);
-        }
-}
-
-static void
-manager_resume_jobs (GSManager *manager)
-{
-        if (manager->priv->jobs != NULL) {
-                g_hash_table_foreach (manager->priv->jobs, (GHFunc) resume_job, manager);
-        }
-}
-
-static void
-suspend_job (GSWindow  *window,
-             GSJob     *job,
-             GSManager *manager)
-{
-        gs_job_suspend (job, TRUE);
-}
-
-static void
-manager_suspend_jobs (GSManager *manager)
-{
-        if (manager->priv->jobs != NULL) {
-                g_hash_table_foreach (manager->priv->jobs, (GHFunc) suspend_job, manager);
-        }
-}
-
-static void
-manager_stop_jobs (GSManager *manager)
-{
-        if (manager->priv->jobs != NULL) {
-                g_hash_table_destroy (manager->priv->jobs);
-
-        }
-        manager->priv->jobs = NULL;
-}
-
-void
-gs_manager_set_mode (GSManager  *manager,
-                     GSSaverMode mode)
-{
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        manager->priv->saver_mode = mode;
-}
-
-static void
-free_themes (GSManager *manager)
-{
-        if (manager->priv->themes) {
-                g_slist_foreach (manager->priv->themes, (GFunc)g_free, NULL);
-                g_slist_free (manager->priv->themes);
-        }
-}
-
-void
-gs_manager_set_themes (GSManager *manager,
-                       GSList    *themes)
-{
-        GSList *l;
-
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        free_themes (manager);
-        manager->priv->themes = NULL;
-
-        for (l = themes; l; l = l->next) {
-                manager->priv->themes = g_slist_append (manager->priv->themes, g_strdup (l->data));
-        }
-}
-
-void
-gs_manager_set_throttled (GSManager *manager,
-                          gboolean   throttled)
-{
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        if (manager->priv->throttled != throttled) {
-                GSList *l;
-
-                manager->priv->throttled = throttled;
-
-                if (! manager->priv->dialog_up) {
-
-                        manager_throttle_jobs (manager);
-
-                        for (l = manager->priv->windows; l; l = l->next) {
-                                gs_window_clear (l->data);
-                        }
-                }
-        }
-}
 
 void
 gs_manager_get_lock_active (GSManager *manager,
@@ -628,90 +342,6 @@ gs_manager_set_status_message (GSManager  *manager,
         }
 }
 
-gboolean
-gs_manager_cycle (GSManager *manager)
-{
-        g_return_val_if_fail (manager != NULL, FALSE);
-        g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
-
-        gs_debug ("cycling jobs");
-
-        if (! manager->priv->active) {
-                return FALSE;
-        }
-
-        if (manager->priv->dialog_up) {
-                return FALSE;
-        }
-
-        if (manager->priv->throttled) {
-                return FALSE;
-        }
-
-        manager_cycle_jobs (manager);
-
-        return TRUE;
-}
-
-static gboolean
-cycle_timeout (GSManager *manager)
-{
-        g_return_val_if_fail (manager != NULL, FALSE);
-        g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
-
-        if (! manager->priv->dialog_up) {
-                gs_manager_cycle (manager);
-        }
-
-        return TRUE;
-}
-
-static void
-remove_cycle_timer (GSManager *manager)
-{
-        if (manager->priv->cycle_timeout_id != 0) {
-                g_source_remove (manager->priv->cycle_timeout_id);
-                manager->priv->cycle_timeout_id = 0;
-        }
-}
-
-static void
-add_cycle_timer (GSManager *manager,
-                 glong      timeout)
-{
-        manager->priv->cycle_timeout_id = g_timeout_add (timeout,
-                                                         (GSourceFunc)cycle_timeout,
-                                                         manager);
-}
-
-void
-gs_manager_set_cycle_timeout (GSManager *manager,
-                              glong      cycle_timeout)
-{
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        if (manager->priv->cycle_timeout != cycle_timeout) {
-
-                manager->priv->cycle_timeout = cycle_timeout;
-
-                if (manager->priv->active && (cycle_timeout >= 0)) {
-                        glong timeout;
-                        glong elapsed = (time (NULL) - manager->priv->activate_time) * 1000;
-
-                        remove_cycle_timer (manager);
-
-                        if (elapsed >= cycle_timeout) {
-                                timeout = 0;
-                        } else {
-                                timeout = cycle_timeout - elapsed;
-                        }
-
-                        add_cycle_timer (manager, timeout);
-
-                }
-        }
-}
-
 static void
 gs_manager_set_property (GObject            *object,
                          guint               prop_id,
@@ -723,9 +353,6 @@ gs_manager_set_property (GObject            *object,
         self = GS_MANAGER (object);
 
         switch (prop_id) {
-        case PROP_THROTTLED:
-                gs_manager_set_throttled (self, g_value_get_boolean (value));
-                break;
         case PROP_LOCK_ENABLED:
                 gs_manager_set_lock_enabled (self, g_value_get_boolean (value));
                 break;
@@ -753,9 +380,6 @@ gs_manager_set_property (GObject            *object,
         case PROP_STATUS_MESSAGE:
                 gs_manager_set_status_message (self, g_value_get_string (value));
                 break;
-        case PROP_CYCLE_TIMEOUT:
-                gs_manager_set_cycle_timeout (self, g_value_get_long (value));
-                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -773,9 +397,6 @@ gs_manager_get_property (GObject            *object,
         self = GS_MANAGER (object);
 
         switch (prop_id) {
-        case PROP_THROTTLED:
-                g_value_set_boolean (value, self->priv->throttled);
-                break;
         case PROP_LOCK_ENABLED:
                 g_value_set_boolean (value, self->priv->lock_enabled);
                 break;
@@ -802,9 +423,6 @@ gs_manager_get_property (GObject            *object,
                 break;
         case PROP_STATUS_MESSAGE:
                 g_value_set_string (value, self->priv->status_message);
-                break;
-        case PROP_CYCLE_TIMEOUT:
-                g_value_set_long (value, self->priv->cycle_timeout);
                 break;
         case PROP_ACTIVE:
                 g_value_set_boolean (value, self->priv->active);
@@ -918,22 +536,6 @@ gs_manager_class_init (GSManagerClass *klass)
                                                               NULL,
                                                               NULL,
                                                               G_PARAM_READWRITE));
-        g_object_class_install_property (object_class,
-                                         PROP_CYCLE_TIMEOUT,
-                                         g_param_spec_long ("cycle-timeout",
-                                                            NULL,
-                                                            NULL,
-                                                            10000,
-                                                            G_MAXLONG,
-                                                            300000,
-                                                            G_PARAM_READWRITE));
-        g_object_class_install_property (object_class,
-                                         PROP_THROTTLED,
-                                         g_param_spec_boolean ("throttled",
-                                                               NULL,
-                                                               NULL,
-                                                               TRUE,
-                                                               G_PARAM_READWRITE));
 
         g_type_class_add_private (klass, sizeof (GSManagerPrivate));
 }
@@ -994,7 +596,6 @@ gs_manager_init (GSManager *manager)
 
         manager->priv->fade = gs_fade_new ();
         manager->priv->grab = gs_grab_new ();
-        manager->priv->theme_manager = gs_theme_manager_new ();
 
         manager->priv->settings = get_system_settings ();
         manager->priv->bg = gnome_bg_new ();
@@ -1016,7 +617,6 @@ static void
 remove_timers (GSManager *manager)
 {
         remove_lock_timer (manager);
-        remove_cycle_timer (manager);
 }
 
 static void
@@ -1174,8 +774,6 @@ window_map_event_cb (GSWindow  *window,
 
         manager_maybe_grab_window (manager, window);
 
-        manager_maybe_start_job_for_window (manager, window);
-
         return FALSE;
 }
 
@@ -1224,25 +822,13 @@ static void
 manager_show_window (GSManager *manager,
                      GSWindow  *window)
 {
-        GSJob *job;
-
         apply_background_to_window (manager, window);
-
-        job = gs_job_new_for_widget (gs_window_get_drawing_area (window));
-
-        manager_select_theme_for_job (manager, job);
-        manager_add_job_for_window (manager, window, job);
 
         manager->priv->activate_time = time (NULL);
 
         if (manager->priv->lock_timeout >= 0) {
                 remove_lock_timer (manager);
                 add_lock_timer (manager, manager->priv->lock_timeout);
-        }
-
-        if (manager->priv->cycle_timeout >= 10000) {
-                remove_cycle_timer (manager);
-                add_cycle_timer (manager, manager->priv->cycle_timeout);
         }
 
         add_unfade_idle (manager);
@@ -1263,35 +849,6 @@ window_show_cb (GSWindow  *window,
 
         gs_debug ("Handling window show");
         manager_show_window (manager, window);
-}
-
-static void
-maybe_set_window_throttle (GSManager *manager,
-                           GSWindow  *window,
-                           gboolean   throttled)
-{
-        if (throttled) {
-                manager_maybe_stop_job_for_window (manager, window);
-        } else {
-                manager_maybe_start_job_for_window (manager, window);
-        }
-}
-
-static void
-window_obscured_cb (GSWindow   *window,
-                    GParamSpec *pspec,
-                    GSManager  *manager)
-{
-        gboolean obscured;
-
-        obscured = gs_window_is_obscured (window);
-        gs_debug ("Handling window obscured: %s", obscured ? "obscured" : "unobscured");
-
-        maybe_set_window_throttle (manager, window, obscured);
-
-        if (! obscured) {
-                gs_manager_request_unlock (manager);
-        }
 }
 
 static void
@@ -1324,12 +881,6 @@ handle_window_dialog_up (GSManager *manager,
         /* Release the pointer grab while dialog is up so that
            the dialog can be used.  We'll regrab it when the dialog goes down. */
         gs_grab_release_mouse (manager->priv->grab);
-
-        if (! manager->priv->throttled) {
-                gs_debug ("Suspending jobs");
-
-                manager_suspend_jobs (manager);
-        }
 }
 
 static void
@@ -1355,10 +906,6 @@ handle_window_dialog_down (GSManager *manager,
         }
 
         manager->priv->dialog_up = FALSE;
-
-        if (! manager->priv->throttled) {
-                manager_resume_jobs (manager);
-        }
 
         g_signal_emit (manager, signals [AUTH_REQUEST_END], 0);
 }
@@ -1399,7 +946,6 @@ disconnect_window_signals (GSManager *manager,
         g_signal_handlers_disconnect_by_func (window, window_show_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_map_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_map_event_cb, manager);
-        g_signal_handlers_disconnect_by_func (window, window_obscured_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_dialog_up_changed_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_unmap_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_grab_broken_cb, manager);
@@ -1428,8 +974,6 @@ connect_window_signals (GSManager *manager,
                                  G_CALLBACK (window_map_cb), manager, G_CONNECT_AFTER);
         g_signal_connect_object (window, "map_event",
                                  G_CALLBACK (window_map_event_cb), manager, G_CONNECT_AFTER);
-        g_signal_connect_object (window, "notify::obscured",
-                                 G_CALLBACK (window_obscured_cb), manager, G_CONNECT_AFTER);
         g_signal_connect_object (window, "notify::dialog-up",
                                  G_CALLBACK (window_dialog_up_changed_cb), manager, 0);
         g_signal_connect_object (window, "unmap",
@@ -1519,8 +1063,6 @@ on_screen_monitors_changed (GdkScreen *screen,
                         this_screen = gs_window_get_screen (GS_WINDOW (l->data));
                         this_monitor = gs_window_get_monitor (GS_WINDOW (l->data));
                         if (this_screen == screen && this_monitor >= n_monitors) {
-                                manager_maybe_stop_job_for_window (manager, GS_WINDOW (l->data));
-                                g_hash_table_remove (manager->priv->jobs, l->data);
                                 gs_window_destroy (GS_WINDOW (l->data));
                                 manager->priv->windows = g_slist_delete_link (manager->priv->windows, l);
                         }
@@ -1591,7 +1133,6 @@ gs_manager_finalize (GObject *object)
                 g_object_unref (manager->priv->settings);
         }
 
-        free_themes (manager);
         g_free (manager->priv->logout_command);
         g_free (manager->priv->keyboard_command);
         g_free (manager->priv->status_message);
@@ -1601,8 +1142,6 @@ gs_manager_finalize (GObject *object)
 
         gs_grab_release (manager->priv->grab);
 
-        manager_stop_jobs (manager);
-
         gs_manager_destroy_windows (manager);
 
         manager->priv->active = FALSE;
@@ -1611,7 +1150,6 @@ gs_manager_finalize (GObject *object)
 
         g_object_unref (manager->priv->fade);
         g_object_unref (manager->priv->grab);
-        g_object_unref (manager->priv->theme_manager);
 
         G_OBJECT_CLASS (gs_manager_parent_class)->finalize (object);
 }
@@ -1688,17 +1226,6 @@ show_windows (GSList *windows)
 }
 
 static void
-remove_job (GSJob *job)
-{
-        if (job == NULL) {
-                return;
-        }
-
-        gs_job_stop (job);
-        g_object_unref (job);
-}
-
-static void
 fade_done_cb (GSFade    *fade,
               GSManager *manager)
 {
@@ -1729,11 +1256,6 @@ gs_manager_activate (GSManager *manager)
         if (manager->priv->windows == NULL) {
                 gs_manager_create_windows (GS_MANAGER (manager));
         }
-
-        manager->priv->jobs = g_hash_table_new_full (g_direct_hash,
-                                                     g_direct_equal,
-                                                     NULL,
-                                                     (GDestroyNotify)remove_job);
 
         manager->priv->active = TRUE;
 
@@ -1773,8 +1295,6 @@ gs_manager_deactivate (GSManager *manager)
         remove_timers (manager);
 
         gs_grab_release (manager->priv->grab);
-
-        manager_stop_jobs (manager);
 
         gs_manager_destroy_windows (manager);
 

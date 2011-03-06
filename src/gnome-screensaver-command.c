@@ -44,7 +44,6 @@
 
 static gboolean do_quit       = FALSE;
 static gboolean do_lock       = FALSE;
-static gboolean do_cycle      = FALSE;
 static gboolean do_activate   = FALSE;
 static gboolean do_deactivate = FALSE;
 static gboolean do_version    = FALSE;
@@ -66,8 +65,6 @@ static GOptionEntry entries [] = {
           N_("Query the length of time the screensaver has been active"), NULL },
         { "lock", 'l', 0, G_OPTION_ARG_NONE, &do_lock,
           N_("Tells the running screensaver process to lock the screen immediately"), NULL },
-        { "cycle", 'c', 0, G_OPTION_ARG_NONE, &do_cycle,
-          N_("If the screensaver is active then switch to another graphics demo"), NULL },
         { "activate", 'a', 0, G_OPTION_ARG_NONE, &do_activate,
           N_("Turn the screensaver on (blank the screen)"), NULL },
         { "deactivate", 'd', 0, G_OPTION_ARG_NONE, &do_deactivate,
@@ -374,10 +371,6 @@ do_command (DBusConnection *connection)
 
         if (do_lock) {
                 reply = screensaver_send_message_void (connection, "Lock", FALSE);
-        }
-
-        if (do_cycle) {
-                reply = screensaver_send_message_void (connection, "Cycle", FALSE);
         }
 
         if (do_poke) {

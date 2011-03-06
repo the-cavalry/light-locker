@@ -214,13 +214,6 @@ listener_quit_cb (GSListener *listener,
 }
 
 static void
-listener_cycle_cb (GSListener *listener,
-                   GSMonitor  *monitor)
-{
-        gs_manager_cycle (monitor->priv->manager);
-}
-
-static void
 listener_show_message_cb (GSListener *listener,
                           const char *summary,
                           const char *body,
@@ -265,14 +258,6 @@ listener_active_changed_cb (GSListener *listener,
 }
 
 static void
-listener_throttle_changed_cb (GSListener *listener,
-                              gboolean    throttled,
-                              GSMonitor  *monitor)
-{
-        gs_manager_set_throttled (monitor->priv->manager, throttled);
-}
-
-static void
 listener_simulate_user_activity_cb (GSListener *listener,
                                     GSMonitor  *monitor)
 {
@@ -301,9 +286,6 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
         gs_manager_set_logout_timeout (monitor->priv->manager, monitor->priv->prefs->logout_timeout);
         gs_manager_set_logout_command (monitor->priv->manager, monitor->priv->prefs->logout_command);
         gs_manager_set_keyboard_command (monitor->priv->manager, monitor->priv->prefs->keyboard_command);
-        gs_manager_set_cycle_timeout (monitor->priv->manager, monitor->priv->prefs->cycle);
-        gs_manager_set_mode (monitor->priv->manager, monitor->priv->prefs->mode);
-        gs_manager_set_themes (monitor->priv->manager, monitor->priv->prefs->themes);
 
         /* enable activation when allowed */
         gs_listener_set_activation_enabled (monitor->priv->listener,
@@ -343,9 +325,7 @@ disconnect_listener_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_lock_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_quit_cb, monitor);
-        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_cycle_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_active_changed_cb, monitor);
-        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_throttle_changed_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_simulate_user_activity_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_show_message_cb, monitor);
 }
@@ -357,12 +337,8 @@ connect_listener_signals (GSMonitor *monitor)
                           G_CALLBACK (listener_lock_cb), monitor);
         g_signal_connect (monitor->priv->listener, "quit",
                           G_CALLBACK (listener_quit_cb), monitor);
-        g_signal_connect (monitor->priv->listener, "cycle",
-                          G_CALLBACK (listener_cycle_cb), monitor);
         g_signal_connect (monitor->priv->listener, "active-changed",
                           G_CALLBACK (listener_active_changed_cb), monitor);
-        g_signal_connect (monitor->priv->listener, "throttle-changed",
-                          G_CALLBACK (listener_throttle_changed_cb), monitor);
         g_signal_connect (monitor->priv->listener, "simulate-user-activity",
                           G_CALLBACK (listener_simulate_user_activity_cb), monitor);
         g_signal_connect (monitor->priv->listener, "show-message",

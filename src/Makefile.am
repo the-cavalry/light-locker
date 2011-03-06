@@ -173,10 +173,6 @@ gnome_screensaver_SOURCES =	\
 	gs-window.h		\
 	gs-prefs.c		\
 	gs-prefs.h		\
-	gs-theme-manager.c	\
-	gs-theme-manager.h	\
-	gs-job.c		\
-	gs-job.h		\
 	gs-debug.c		\
 	gs-debug.h		\
 	subprocs.c		\

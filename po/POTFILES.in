@@ -1,6 +1,5 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
-data/gnome-screensaver.directory.in
 src/gnome-screensaver-command.c
 src/gnome-screensaver-dialog.c
 src/gnome-screensaver.c

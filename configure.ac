@@ -757,7 +757,6 @@ po/Makefile.in
 src/Makefile
 src/gnome-screensaver.desktop.in
 data/Makefile
-data/gnome-screensavers.menu
 data/gnome-screensaver.pc
 data/org.gnome.ScreenSaver.service
 doc/Makefile

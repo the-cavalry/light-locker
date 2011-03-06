@@ -80,14 +80,10 @@ struct GSListenerPrivate
         guint           session_idle : 1;
         guint           active : 1;
         guint           activation_enabled : 1;
-        guint           throttled : 1;
         GHashTable     *inhibitors;
-        GHashTable     *throttlers;
         time_t          active_start;
         time_t          session_idle_start;
         char           *session_id;
-
-        guint32         ck_throttle_cookie;
 };
 
 typedef struct
@@ -103,11 +99,9 @@ typedef struct
 
 enum {
         LOCK,
-        CYCLE,
         QUIT,
         SIMULATE_USER_ACTIVITY,
         ACTIVE_CHANGED,
-        THROTTLE_CHANGED,
         SHOW_MESSAGE,
         LAST_SIGNAL
 };
@@ -121,7 +115,6 @@ enum {
 
 enum {
         REF_ENTRY_TYPE_INHIBIT,
-        REF_ENTRY_TYPE_THROTTLE
 };
 
 static DBusObjectPathVTable
@@ -232,9 +225,6 @@ get_name_for_entry_type (int entry_type)
         case REF_ENTRY_TYPE_INHIBIT:
                 name = "inhibitor";
                 break;
-        case REF_ENTRY_TYPE_THROTTLE:
-                name = "throttler";
-                break;
         default:
                 g_assert_not_reached ();
                 break;
@@ -252,9 +242,6 @@ get_hash_for_entry_type (GSListener         *listener,
         switch (entry_type) {
         case REF_ENTRY_TYPE_INHIBIT:
                 hash = listener->priv->inhibitors;
-                break;
-        case REF_ENTRY_TYPE_THROTTLE:
-                hash = listener->priv->throttlers;
                 break;
         default:
                 g_assert_not_reached ();
@@ -328,37 +315,6 @@ listener_check_activation (GSListener *listener)
         }
 
         return res;
-}
-
-static void
-gs_listener_set_throttle (GSListener *listener,
-                          gboolean    throttled)
-{
-        g_return_if_fail (GS_IS_LISTENER (listener));
-
-        if (listener->priv->throttled != throttled) {
-                gs_debug ("Changing throttle status: %d", throttled);
-
-                listener->priv->throttled = throttled;
-
-                g_signal_emit (listener, signals [THROTTLE_CHANGED], 0, throttled);
-        }
-}
-
-static gboolean
-listener_check_throttle (GSListener *listener)
-{
-        gboolean throttled;
-
-        gs_debug ("Checking for throttle");
-
-        throttled = listener_ref_entry_is_present (listener, REF_ENTRY_TYPE_THROTTLE);
-
-        if (throttled != listener->priv->throttled) {
-                gs_listener_set_throttle (listener, throttled);
-        }
-
-        return TRUE;
 }
 
 static gboolean
@@ -594,9 +550,6 @@ listener_ref_entry_check (GSListener *listener,
         switch (entry_type) {
         case REF_ENTRY_TYPE_INHIBIT:
                 listener_check_activation (listener);
-                break;
-        case REF_ENTRY_TYPE_THROTTLE:
-                listener_check_throttle (listener);
                 break;
         default:
                 g_assert_not_reached ();
@@ -851,39 +804,6 @@ listener_dbus_get_ref_entries (GSListener     *listener,
         return DBUS_HANDLER_RESULT_HANDLED;
 }
 
-static void
-listener_add_ck_ref_entry (GSListener     *listener,
-                           int             entry_type,
-                           DBusConnection *connection,
-                           DBusMessage    *message,
-                           guint32        *cookiep)
-{
-        GSListenerRefEntry *entry;
-
-        entry = g_new0 (GSListenerRefEntry, 1);
-        entry->entry_type = entry_type;
-        entry->connection = g_strdup (dbus_message_get_sender (message));
-        entry->cookie = listener_generate_unique_key (listener, entry_type);
-        entry->application = g_strdup ("ConsoleKit");
-        entry->reason = g_strdup ("Session is not active");
-        g_get_current_time (&entry->since);
-
-        /* takes ownership of entry */
-        listener_add_ref_entry (listener, entry_type, entry);
-
-        if (cookiep != NULL) {
-                *cookiep = entry->cookie;
-        }
-}
-
-static void
-listener_remove_ck_ref_entry (GSListener *listener,
-                              int         entry_type,
-                              guint32     cookie)
-{
-        listener_remove_ref_entry (listener, entry_type, cookie);
-}
-
 static DBusHandlerResult
 listener_dbus_add_ref_entry (GSListener     *listener,
                              int             entry_type,
@@ -904,8 +824,6 @@ listener_dbus_add_ref_entry (GSListener     *listener,
                                      DBUS_TYPE_INVALID)) {
                 if (entry_type == REF_ENTRY_TYPE_INHIBIT) {
                         raise_syntax (connection, message, "Inhibit");
-                } else if (entry_type == REF_ENTRY_TYPE_THROTTLE) {
-                        raise_syntax (connection, message, "Throttle");
                 } else {
                         g_assert_not_reached ();
                  }
@@ -957,8 +875,6 @@ listener_dbus_remove_ref_entry (GSListener     *listener,
                                      DBUS_TYPE_INVALID)) {
                 if (entry_type == REF_ENTRY_TYPE_INHIBIT) {
                         raise_syntax (connection, message, "UnInhibit");
-                } else if (entry_type == REF_ENTRY_TYPE_THROTTLE) {
-                        raise_syntax (connection, message, "UnThrottle");
                 } else {
                         g_assert_not_reached ();
                 }
@@ -1041,11 +957,6 @@ listener_service_deleted (GSListener  *listener,
         }
 
         gs_debug ("DBUS service deleted: %s", new_service_name);
-
-        removed = listener_ref_entry_remove_for_connection (listener, REF_ENTRY_TYPE_THROTTLE, new_service_name);
-        if (removed) {
-                listener_ref_entry_check (listener, REF_ENTRY_TYPE_THROTTLE);
-        }
 
         removed = listener_ref_entry_remove_for_connection (listener, REF_ENTRY_TYPE_INHIBIT, new_service_name);
         if (removed) {
@@ -1286,8 +1197,6 @@ do_introspect (DBusConnection *connection,
                                "  <interface name=\"org.gnome.ScreenSaver\">\n"
                                "    <method name=\"Lock\">\n"
                                "    </method>\n"
-                               "    <method name=\"Cycle\">\n"
-                               "    </method>\n"
                                "    <method name=\"SimulateUserActivity\">\n"
                                "    </method>\n"
                                "    <method name=\"Inhibit\">\n"
@@ -1300,14 +1209,6 @@ do_introspect (DBusConnection *connection,
                                "    </method>\n"
                                "    <method name=\"GetInhibitors\">\n"
                                "      <arg name=\"list\" direction=\"out\" type=\"as\"/>\n"
-                               "    </method>\n"
-                               "    <method name=\"Throttle\">\n"
-                               "      <arg name=\"application_name\" direction=\"in\" type=\"s\"/>\n"
-                               "      <arg name=\"reason\" direction=\"in\" type=\"s\"/>\n"
-                               "      <arg name=\"cookie\" direction=\"out\" type=\"u\"/>\n"
-                               "    </method>\n"
-                               "    <method name=\"UnThrottle\">\n"
-                               "      <arg name=\"cookie\" direction=\"in\" type=\"u\"/>\n"
                                "    </method>\n"
                                "    <method name=\"GetActive\">\n"
                                "      <arg name=\"value\" direction=\"out\" type=\"b\"/>\n"
@@ -1403,10 +1304,6 @@ listener_dbus_handle_session_message (DBusConnection *connection,
                 g_signal_emit (listener, signals [QUIT], 0);
                 return send_success_reply (connection, message);
         }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Cycle")) {
-                g_signal_emit (listener, signals [CYCLE], 0);
-                return send_success_reply (connection, message);
-        }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Inhibit")) {
                 return listener_dbus_add_ref_entry (listener, REF_ENTRY_TYPE_INHIBIT, connection, message);
         }
@@ -1415,12 +1312,6 @@ listener_dbus_handle_session_message (DBusConnection *connection,
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "GetInhibitors")) {
                 return listener_dbus_get_ref_entries (listener, REF_ENTRY_TYPE_INHIBIT, connection, message);
-        }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "Throttle")) {
-                return listener_dbus_add_ref_entry (listener, REF_ENTRY_TYPE_THROTTLE, connection, message);
-        }
-        if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "UnThrottle")) {
-                return listener_dbus_remove_ref_entry (listener, REF_ENTRY_TYPE_THROTTLE, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_LISTENER_SERVICE, "SetActive")) {
                 return listener_set_property (listener, connection, message, PROP_ACTIVE);
@@ -1538,31 +1429,9 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                                                    DBUS_TYPE_INVALID)) {
                                 gs_debug ("ConsoleKit notified ActiveChanged %d", new_active);
 
-                                /* when we aren't active add an implicit throttle from CK
-                                 * when we become active remove the throttle and poke the lock */
+                                /* when we become active poke the lock */
                                 if (new_active) {
-                                        if (listener->priv->ck_throttle_cookie != 0) {
-                                                listener_remove_ck_ref_entry (listener,
-                                                                              REF_ENTRY_TYPE_THROTTLE,
-                                                                              listener->priv->ck_throttle_cookie);
-                                                listener->priv->ck_throttle_cookie = 0;
-                                        }
-
                                         g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
-                                } else {
-                                        if (listener->priv->ck_throttle_cookie != 0) {
-                                                g_warning ("ConsoleKit throttle already set");
-                                                listener_remove_ck_ref_entry (listener,
-                                                                              REF_ENTRY_TYPE_THROTTLE,
-                                                                              listener->priv->ck_throttle_cookie);
-                                                listener->priv->ck_throttle_cookie = 0;
-                                        }
-
-                                        listener_add_ck_ref_entry (listener,
-                                                                   REF_ENTRY_TYPE_THROTTLE,
-                                                                   connection,
-                                                                   message,
-                                                                   &listener->priv->ck_throttle_cookie);
                                 }
                         }
 
@@ -1826,16 +1695,6 @@ gs_listener_class_init (GSListenerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
-        signals [CYCLE] =
-                g_signal_new ("cycle",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, cycle),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
         signals [SIMULATE_USER_ACTIVITY] =
                 g_signal_new ("simulate-user-activity",
                               G_TYPE_FROM_CLASS (object_class),
@@ -1855,17 +1714,6 @@ gs_listener_class_init (GSListenerClass *klass)
                               NULL,
                               gs_marshal_BOOLEAN__BOOLEAN,
                               G_TYPE_BOOLEAN,
-                              1,
-                              G_TYPE_BOOLEAN);
-        signals [THROTTLE_CHANGED] =
-                g_signal_new ("throttle-changed",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, throttle_changed),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__BOOLEAN,
-                              G_TYPE_NONE,
                               1,
                               G_TYPE_BOOLEAN);
         signals [SHOW_MESSAGE] =
@@ -2084,10 +1932,6 @@ gs_listener_init (GSListener *listener)
                                                             g_int_equal,
                                                             NULL,
                                                             (GDestroyNotify)gs_listener_ref_entry_free);
-        listener->priv->throttlers = g_hash_table_new_full (g_int_hash,
-                                                            g_int_equal,
-                                                            NULL,
-                                                            (GDestroyNotify)gs_listener_ref_entry_free);
 }
 
 static void
@@ -2104,10 +1948,6 @@ gs_listener_finalize (GObject *object)
 
         if (listener->priv->inhibitors) {
                 g_hash_table_destroy (listener->priv->inhibitors);
-        }
-
-        if (listener->priv->throttlers) {
-                g_hash_table_destroy (listener->priv->throttlers);
         }
 
         g_free (listener->priv->session_id);

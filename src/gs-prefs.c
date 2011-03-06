@@ -45,11 +45,8 @@ static void gs_prefs_finalize   (GObject      *object);
 #define GS_SETTINGS_SCHEMA "org.gnome.desktop.screensaver"
 #define KEY_IDLE_ACTIVATION_ENABLED         "idle-activation-enabled"
 #define KEY_LOCK_ENABLED   "lock-enabled"
-#define KEY_MODE           "mode"
 #define KEY_POWER_DELAY    "power-management-delay"
 #define KEY_LOCK_DELAY     "lock-delay"
-#define KEY_CYCLE_DELAY    "cycle-delay"
-#define KEY_THEMES         "themes"
 #define KEY_USER_SWITCH_ENABLED "user-switch-enabled"
 #define KEY_LOGOUT_ENABLED "logout-enabled"
 #define KEY_LOGOUT_DELAY   "logout-delay"
@@ -175,45 +172,6 @@ _gs_prefs_set_lock_timeout (GSPrefs *prefs,
 }
 
 static void
-_gs_prefs_set_cycle_timeout (GSPrefs *prefs,
-                             guint    value)
-{
-        if (value < 1)
-                value = 1;
-
-        /* pick a reasonable large number for the
-           upper bound */
-        if (value > 480)
-                value = 480;
-
-        prefs->cycle = value * 60000;
-}
-
-static void
-_gs_prefs_set_mode (GSPrefs                 *prefs,
-                    GDesktopScreensaverMode  mode)
-{
-        prefs->mode = mode;
-}
-
-static void
-_gs_prefs_set_themes (GSPrefs *prefs,
-                      gchar  **values)
-{
-        guint i;
-
-        if (prefs->themes) {
-                g_slist_foreach (prefs->themes, (GFunc)g_free, NULL);
-                g_slist_free (prefs->themes);
-        }
-
-        /* take ownership of the list */
-        prefs->themes = NULL;
-        for (i=0; values[i] != NULL; i++)
-                prefs->themes = g_slist_append (prefs->themes, g_strdup (values[i]));
-}
-
-static void
 _gs_prefs_set_idle_activation_enabled (GSPrefs *prefs,
                                        gboolean value)
 {
@@ -325,8 +283,6 @@ gs_prefs_load_from_settings (GSPrefs *prefs)
         guint    uvalue;
         gboolean bvalue;
         char    *string;
-        gchar  **strv;
-        GDesktopScreensaverMode mode;
 
         bvalue = g_settings_get_boolean (prefs->priv->settings, KEY_IDLE_ACTIVATION_ENABLED);
         _gs_prefs_set_idle_activation_enabled (prefs, bvalue);
@@ -348,16 +304,6 @@ gs_prefs_load_from_settings (GSPrefs *prefs)
 
         uvalue = _gs_settings_get_uint (prefs->priv->settings, KEY_LOCK_DELAY);
         _gs_prefs_set_lock_timeout (prefs, uvalue);
-
-        uvalue = _gs_settings_get_uint (prefs->priv->settings, KEY_CYCLE_DELAY);
-        _gs_prefs_set_cycle_timeout (prefs, uvalue);
-
-        mode = g_settings_get_enum (prefs->priv->settings, KEY_MODE);
-        _gs_prefs_set_mode (prefs, mode);
-
-        strv = g_settings_get_strv (prefs->priv->settings, KEY_THEMES);
-        _gs_prefs_set_themes (prefs, strv);
-        g_strfreev (strv);
 
         /* Embedded keyboard options */
 
@@ -394,21 +340,7 @@ key_changed_cb (GSettings   *settings,
                 const gchar *key,
                 GSPrefs     *prefs)
 {
-        if (strcmp (key, KEY_MODE) == 0) {
-
-                gint mode;
-
-                mode = g_settings_get_enum (settings, key);
-                _gs_prefs_set_mode (prefs, mode);
-
-        } else if (strcmp (key, KEY_THEMES) == 0) {
-                gchar **strv = NULL;
-
-                strv = g_settings_get_strv (settings, key);
-                _gs_prefs_set_themes (prefs, strv);
-                g_strfreev (strv);
-
-        } else if (strcmp (key, KEY_ACTIVATE_DELAY) == 0) {
+       if (strcmp (key, KEY_ACTIVATE_DELAY) == 0) {
 
                 guint delay;
 
@@ -456,13 +388,6 @@ key_changed_cb (GSettings   *settings,
 
                 disabled = g_settings_get_boolean (settings, key);
                 _gs_prefs_set_user_switch_disabled (prefs, disabled);
-
-        } else if (strcmp (key, KEY_CYCLE_DELAY) == 0) {
-
-                guint delay;
-
-                delay = _gs_settings_get_uint (settings, key);
-                _gs_prefs_set_cycle_timeout (prefs, delay);
 
         } else if (strcmp (key, KEY_KEYBOARD_ENABLED) == 0) {
 
@@ -551,9 +476,6 @@ gs_prefs_init (GSPrefs *prefs)
         prefs->power_timeout           = 60000;
         prefs->lock_timeout            = 0;
         prefs->logout_timeout          = 14400000;
-        prefs->cycle                   = 600000;
-
-        prefs->mode                    = GS_MODE_SINGLE;
 
         gs_prefs_load_from_settings (prefs);
 }
@@ -581,11 +503,6 @@ gs_prefs_finalize (GObject *object)
         if (prefs->priv->lockdown) {
                 g_object_unref (prefs->priv->lockdown);
                 prefs->priv->lockdown = NULL;
-        }
-
-        if (prefs->themes) {
-                g_slist_foreach (prefs->themes, (GFunc)g_free, NULL);
-                g_slist_free (prefs->themes);
         }
 
         g_free (prefs->logout_command);
