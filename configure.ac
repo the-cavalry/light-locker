@@ -522,31 +522,6 @@ else
 fi
 
 dnl ---------------------------------------------------------------------------
-dnl - Check for GL
-dnl ---------------------------------------------------------------------------
-
-AC_ARG_WITH(gl, [  --with-libgl	  build with GL support])
-have_libgl=no
-GL_LIBS=""
-
-if test x$with_libgl != xno; then
-  AC_CHECK_X_HEADER(GL/gl.h, have_gl=yes, have_gl=no)
-  if test "$have_gl" = yes ; then
-    AC_CHECK_X_HEADER(GL/glx.h, have_gl=yes, have_gl=no,
-                      [#include <GL/gl.h>])
-  fi
-
-  if test "$have_gl" = yes ; then
-    AC_CHECK_X_LIB(GL, glXChooseVisual, have_libgl=yes, have_libgl=no, -lm)
-  fi
-fi
-
-if test "x$have_libgl" = "xyes"; then
-    AC_DEFINE(HAVE_LIBGL, 1, [Define if libgl is available])
-    GL_LIBS="-lGL $GL_LIBS"
-fi
-
-dnl ---------------------------------------------------------------------------
 dnl - Check for PAM
 dnl ---------------------------------------------------------------------------
 
@@ -653,7 +628,6 @@ dnl ---------------------------------------------------------------------------
 
 AC_SUBST(AUTH_LIBS)
 AC_SUBST(SAVER_LIBS)
-AC_SUBST(GL_LIBS)
 
 
 REAL_PREFIX=
@@ -808,8 +782,6 @@ echo "
         Extension libs:           ${SAVER_LIBS}
         Maintainer mode:          ${USE_MAINTAINER_MODE}
         Docs enabled:             ${enable_docbook_docs}
-
-	GL:                       ${have_libgl}
 
         Screen locking enabled:   ${enable_locking}
         User switching enabled:   ${enable_user_switching}

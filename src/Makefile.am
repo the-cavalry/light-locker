@@ -40,7 +40,6 @@ bin_PROGRAMS = \
 
 libexec_PROGRAMS = \
 	gnome-screensaver-dialog	\
-	gnome-screensaver-gl-helper	\
 	$(NULL)
 
 noinst_PROGRAMS = 	\
@@ -187,17 +186,6 @@ gnome_screensaver_SOURCES =	\
 	gs-fade.c		\
 	gs-fade.h		\
 	$(BUILT_SOURCES)	\
-	$(NULL)
-
-gnome_screensaver_gl_helper_LDADD =	\
-	$(GNOME_SCREENSAVER_LIBS)	\
-	$(GL_LIBS)			\
-	$(NULL)
-
-gnome_screensaver_gl_helper_SOURCES =	\
-	gnome-screensaver-gl-helper.c	\
-	gs-visual-gl.c			\
-	gs-visual-gl.h			\
 	$(NULL)
 
 gnome_screensaver_LDADD =		\
