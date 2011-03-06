@@ -1,6 +1,3 @@
-SUBDIRS =			\
-	images
-
 NULL =
 
 man_MANS = 				\

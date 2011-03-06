@@ -799,8 +799,6 @@ data/Makefile
 data/gnome-screensavers.menu
 data/gnome-screensaver.pc
 data/org.gnome.ScreenSaver.service
-data/images/Makefile
-data/images/cosmos/Makefile
 savers/Makefile
 doc/Makefile
 doc/gnome-screensaver.xml
