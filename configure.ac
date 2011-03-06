@@ -470,57 +470,6 @@ if test "$ac_macosx" = yes; then
   fi
 fi
 
-# Check whether to use a xscreensaver hacks configuration directory
-AC_MSG_CHECKING([whether to use xscreensaver hacks configuration])
-AC_ARG_WITH(xscreensaverdir, AC_HELP_STRING([--with-xscreensaverdir=dir], [Use xscreensaver hack configs found in directory],))
-xscreensaverdir=
-if test "x$with_xscreensaverdir" = "xyes"; then
-  if test -d /usr/share/xscreensaver/config; then
-    xscreensaverdir=/usr/share/xscreensaver/config
-  elif test -d /etc/xscreensaver; then
-    xscreensaverdir=/etc/xscreensaver
-  fi
-elif test "x$with_xscreensaverdir" = "x" -o "x$with_xscreensaverdir" = "xno"; then
-  xscreensaverdir=
-else
-  xscreensaverdir="$with_xscreensaverdir"
-fi
-
-if test "x$xscreensaverdir" != "x" ; then
-  AC_DEFINE_UNQUOTED(XSCREENSAVER_CONFIG_DIR, "$xscreensaverdir", [Define to the directory containing XScreensaver configuration files])
-  AC_MSG_RESULT([$xscreensaverdir])
-else
-  AC_MSG_RESULT([no])
-fi
-
-# Path to xscreensaver hack executables
-AC_ARG_WITH(xscreensaverhackdir, AC_HELP_STRING([--with-xscreensaverhackdir=dir], [Look for xscreensaver hack executables in directory],))
-AC_MSG_CHECKING([for location of xscreensaver hack executables])
-xscreensaverhackdir=
-if test "x$with_xscreensaverhackdir" = "xyes" -o "x$with_xscreensaverhackdir" = "x"; then
-  if test -d /usr/X11R6/lib/xscreensaver; then
-    xscreensaverhackdir=/usr/X11R6/lib/xscreensaver
-  elif test -d $prefix/libexec/xscreensaver; then
-    xscreensaverhackdir=$prefix/libexec/xscreensaver
-  elif test -d /usr/libexec/xscreensaver; then
-    xscreensaverhackdir=/usr/libexec/xscreensaver
-  elif test -d /usr/lib/xscreensaver; then
-    xscreensaverhackdir=/usr/lib/xscreensaver
-  elif test -d /usr/lib64/xscreensaver; then
-    xscreensaverhackdir=/usr/lib64/xscreensaver
-  fi
-elif test "x$with_xscreensaverhackdir" != "xno"; then
-  xscreensaverhackdir="$with_xscreensaverhackdir"
-fi
-
-if test "x$xscreensaverhackdir" != "x" ; then
-  AC_DEFINE_UNQUOTED(XSCREENSAVER_HACK_DIR, "$xscreensaverhackdir", [Define to the directory containing XScreensaver hack executables])
-  AC_MSG_RESULT([$xscreensaverhackdir])
-else
-  AC_MSG_RESULT([no])
-  AC_MSG_WARN([could not find directory containing xscreensaver hacks])
-fi
-
 dnl ---------------------------------------------------------------------------
 dnl - Check for PAM
 dnl ---------------------------------------------------------------------------
@@ -744,9 +693,6 @@ AC_SUBST(privlibexecdir)
 
 privdatadir='${datadir}'/gnome-screensaver
 AC_SUBST(privdatadir)
-
-themesdir='${datadir}'/applications/screensavers
-AC_SUBST(themesdir)
 
 
 # Files
