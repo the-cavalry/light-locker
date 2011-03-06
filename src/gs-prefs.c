@@ -128,21 +128,6 @@ gs_prefs_class_init (GSPrefsClass *klass)
 }
 
 static void
-_gs_prefs_set_timeout (GSPrefs *prefs,
-                       guint    value)
-{
-        if (value < 1)
-                value = 10;
-
-        /* pick a reasonable large number for the
-           upper bound */
-        if (value > 480)
-                value = 480;
-
-        prefs->timeout = value * 60000;
-}
-
-static void
 _gs_prefs_set_lock_timeout (GSPrefs *prefs,
                             guint    value)
 {
@@ -279,9 +264,6 @@ gs_prefs_load_from_settings (GSPrefs *prefs)
         bvalue = g_settings_get_boolean (prefs->priv->lockdown, KEY_USER_SWITCH_DISABLE);
         _gs_prefs_set_user_switch_disabled (prefs, bvalue);
 
-        uvalue = _gs_settings_get_uint (prefs->priv->session_settings, KEY_ACTIVATE_DELAY);
-        _gs_prefs_set_timeout (prefs, uvalue);
-
         uvalue = _gs_settings_get_uint (prefs->priv->settings, KEY_LOCK_DELAY);
         _gs_prefs_set_lock_timeout (prefs, uvalue);
 
@@ -320,14 +302,7 @@ key_changed_cb (GSettings   *settings,
                 const gchar *key,
                 GSPrefs     *prefs)
 {
-       if (strcmp (key, KEY_ACTIVATE_DELAY) == 0) {
-
-                guint delay;
-
-                delay = _gs_settings_get_uint (settings, key);
-                _gs_prefs_set_timeout (prefs, delay);
-
-        } else if (strcmp (key, KEY_LOCK_DELAY) == 0) {
+        if (strcmp (key, KEY_LOCK_DELAY) == 0) {
 
                 guint delay;
 
@@ -445,7 +420,6 @@ gs_prefs_init (GSPrefs *prefs)
         prefs->logout_enabled          = FALSE;
         prefs->user_switch_enabled     = FALSE;
 
-        prefs->timeout                 = 600000;
         prefs->lock_timeout            = 0;
         prefs->logout_timeout          = 14400000;
 

@@ -49,7 +49,6 @@ typedef struct
         guint            keyboard_enabled : 1;  /* Whether to try to embed a keyboard */
         guint            status_message_enabled : 1; /* show the status message in the lock */
 
-        guint            timeout;               /* how much idle time before activation */
         guint            lock_timeout;          /* how long after activation locking starts */
         guint            logout_timeout;        /* how long until the logout option appears */
 
