@@ -45,7 +45,6 @@ static void gs_prefs_finalize   (GObject      *object);
 #define GS_SETTINGS_SCHEMA "org.gnome.desktop.screensaver"
 #define KEY_IDLE_ACTIVATION_ENABLED         "idle-activation-enabled"
 #define KEY_LOCK_ENABLED   "lock-enabled"
-#define KEY_POWER_DELAY    "power-management-delay"
 #define KEY_LOCK_DELAY     "lock-delay"
 #define KEY_USER_SWITCH_ENABLED "user-switch-enabled"
 #define KEY_LOGOUT_ENABLED "logout-enabled"
@@ -141,22 +140,6 @@ _gs_prefs_set_timeout (GSPrefs *prefs,
                 value = 480;
 
         prefs->timeout = value * 60000;
-}
-
-static void
-_gs_prefs_set_power_timeout (GSPrefs *prefs,
-                             guint    value)
-{
-        if (value < 1)
-                value = 60;
-
-        /* pick a reasonable large number for the
-           upper bound */
-        if (value > 480)
-                value = 480;
-
-        /* this value is in seconds - others are in minutes */
-        prefs->power_timeout = value * 1000;
 }
 
 static void
@@ -299,9 +282,6 @@ gs_prefs_load_from_settings (GSPrefs *prefs)
         uvalue = _gs_settings_get_uint (prefs->priv->session_settings, KEY_ACTIVATE_DELAY);
         _gs_prefs_set_timeout (prefs, uvalue);
 
-        uvalue = _gs_settings_get_uint (prefs->priv->settings, KEY_POWER_DELAY);
-        _gs_prefs_set_power_timeout (prefs, uvalue);
-
         uvalue = _gs_settings_get_uint (prefs->priv->settings, KEY_LOCK_DELAY);
         _gs_prefs_set_lock_timeout (prefs, uvalue);
 
@@ -346,13 +326,6 @@ key_changed_cb (GSettings   *settings,
 
                 delay = _gs_settings_get_uint (settings, key);
                 _gs_prefs_set_timeout (prefs, delay);
-
-        } else if (strcmp (key, KEY_POWER_DELAY) == 0) {
-
-                guint delay;
-
-                delay = _gs_settings_get_uint (settings, key);
-                _gs_prefs_set_power_timeout (prefs, delay);
 
         } else if (strcmp (key, KEY_LOCK_DELAY) == 0) {
 
@@ -473,7 +446,6 @@ gs_prefs_init (GSPrefs *prefs)
         prefs->user_switch_enabled     = FALSE;
 
         prefs->timeout                 = 600000;
-        prefs->power_timeout           = 60000;
         prefs->lock_timeout            = 0;
         prefs->logout_timeout          = 14400000;
 
