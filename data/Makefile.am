@@ -23,8 +23,6 @@ EXTRA_DIST = 				\
 	gnome-screensaver		\
 	gnome-screensaver.pc.in		\
 	org.gnome.ScreenSaver.service.in\
-	xscreensaver-config.xsl		\
-	migrate-xscreensaver-config.sh	\
 	$(NULL)
 
 DISTCLEANFILES = 			\
