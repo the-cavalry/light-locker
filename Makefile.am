@@ -6,7 +6,6 @@ NULL =
 
 SUBDIRS =			\
 	src			\
-	savers			\
 	po 			\
 	data			\
 	doc			\

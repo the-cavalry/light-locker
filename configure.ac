@@ -762,11 +762,6 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
-# Menu stuff
-
-GNOME_SCREENSAVER_THEMES_DIR="${EXPANDED_DATADIR}/applications/screensavers"
-AC_SUBST(GNOME_SCREENSAVER_THEMES_DIR)
-
 # Special directories
 # Used for .pc.in file
 
@@ -791,7 +786,6 @@ data/Makefile
 data/gnome-screensavers.menu
 data/gnome-screensaver.pc
 data/org.gnome.ScreenSaver.service
-savers/Makefile
 doc/Makefile
 doc/gnome-screensaver.xml
 ])
