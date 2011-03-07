@@ -39,7 +39,6 @@ MAINTAINERCLEANFILES =		\
 	compile			\
 	configure		\
 	INSTALL			\
-	COPYING			\
 	install-sh		\
 	missing			\
 	mkinstalldirs		\
