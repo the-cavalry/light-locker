@@ -45,7 +45,7 @@
 
 /* Gnome Session Manager */
 #define GSM_SERVICE                     "org.gnome.SessionManager"
-#define GSM_PATH                        "/org/gnome/SesionManager"
+#define GSM_PATH                        "/org/gnome/SessionManager"
 #define GSM_INTERFACE                   "org.gnome.SessionManager"
 
 #define GSM_PRESENCE_PATH               GSM_PATH "/Presence"
