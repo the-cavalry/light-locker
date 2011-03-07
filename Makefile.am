@@ -53,3 +53,5 @@ MAINTAINERCLEANFILES =		\
 	acinclude.m4		\
 	$(NULL)
 
+
+-include $(top_srcdir)/git.mk

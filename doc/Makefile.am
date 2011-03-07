@@ -25,3 +25,5 @@ EXTRA_DIST =				\
 clean-local:
 	rm -f *~
 	rm -f gnome-screensaver.html
+
+-include $(top_srcdir)/git.mk
