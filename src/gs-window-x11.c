@@ -31,6 +31,8 @@
 #include <gtk/gtk.h>
 #include <gtk/gtkx.h>
 
+#include <gdesktop-enums.h>
+
 #include "gs-window.h"
 #include "gs-marshal.h"
 #include "subprocs.h"
@@ -114,6 +116,9 @@ struct GSWindowPrivate
         gdouble    last_y;
 
         GTimer    *timer;
+
+        GSettings           *clock_settings;
+        GDesktopClockFormat  clock_format;
 
 #ifdef HAVE_SHAPE_EXT
         int        shape_event_base;
@@ -1547,9 +1552,9 @@ void
 gs_window_cancel_unlock_request (GSWindow  *window)
 {
         /* FIXME: This is a bit of a hammer approach...
-	 * Maybe we should send a delete-event to
-	 * the plug?
-	 */
+         * Maybe we should send a delete-event to
+         * the plug?
+         */
         g_return_if_fail (GS_IS_WINDOW (window));
 
         popdown_dialog (window);
@@ -2018,11 +2023,11 @@ gs_window_real_get_preferred_width (GtkWidget *widget,
                                gint      *minimal_width,
                                gint      *natural_width)
 {
-	GtkRequisition requisition;
+        GtkRequisition requisition;
 
-	gs_window_real_size_request (widget, &requisition);
+        gs_window_real_size_request (widget, &requisition);
 
-	*minimal_width = *natural_width = requisition.width;
+        *minimal_width = *natural_width = requisition.width;
 }
 
 static void
@@ -2030,11 +2035,11 @@ gs_window_real_get_preferred_height (GtkWidget *widget,
                                 gint      *minimal_height,
                                 gint      *natural_height)
 {
-	GtkRequisition requisition;
+        GtkRequisition requisition;
 
-	gs_window_real_size_request (widget, &requisition);
+        gs_window_real_size_request (widget, &requisition);
 
-	*minimal_height = *natural_height = requisition.height;
+        *minimal_height = *natural_height = requisition.height;
 }
 
 static void
@@ -2186,12 +2191,10 @@ update_clock (GSWindow *window)
         const char *clock_format;
         char *text;
         char *markup;
-        gboolean use_24 = FALSE;
         GDateTime *dt;
 
         /* clock */
-        /* FIXME: set 12/24 hour */
-        if (use_24)
+        if (window->priv->clock_format == G_DESKTOP_CLOCK_FORMAT_24H)
                 clock_format = _("%a %R");
         else
                 clock_format = _("%a %l:%M %p");
@@ -2331,6 +2334,20 @@ create_panel (GSWindow *window)
 }
 
 static void
+update_clock_format (GSettings  *settings,
+                     const char *key,
+                     GSWindow   *window)
+{
+        GDesktopClockFormat clock_format;
+
+        clock_format = g_settings_get_enum (settings, key);
+        if (clock_format != window->priv->clock_format) {
+                window->priv->clock_format = clock_format;
+                queue_clock_update (window);
+        }
+}
+
+static void
 gs_window_init (GSWindow *window)
 {
         window->priv = GS_WINDOW_GET_PRIVATE (window);
@@ -2379,6 +2396,11 @@ gs_window_init (GSWindow *window)
         gtk_box_pack_start (GTK_BOX (window->priv->vbox), window->priv->drawing_area, TRUE, TRUE, 0);
         create_info_bar (window);
 
+        window->priv->clock_settings = g_settings_new ("org.gnome.desktop.interface");
+        window->priv->clock_format = g_settings_get_enum (window->priv->clock_settings, "clock-format");
+        g_signal_connect (window->priv->clock_settings, "changed::clock-format",
+                          G_CALLBACK (update_clock_format), window);
+
         force_no_pixmap_background (window->priv->drawing_area);
 }
 
@@ -2409,6 +2431,10 @@ gs_window_finalize (GObject *object)
 
         g_free (window->priv->logout_command);
         g_free (window->priv->keyboard_command);
+
+        if (window->priv->clock_settings) {
+                g_object_unref (window->priv->clock_settings);
+        }
 
         if (window->priv->clock_update_id > 0) {
                 g_source_remove (window->priv->clock_update_id);
