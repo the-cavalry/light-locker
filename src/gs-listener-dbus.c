@@ -55,8 +55,6 @@ static DBusHandlerResult gs_listener_message_handler    (DBusConnection  *connec
                                                          DBusMessage     *message,
                                                          void            *user_data);
 
-#define HAL_DEVICE_INTERFACE "org.freedesktop.Hal.Device"
-
 #define TYPE_MISMATCH_ERROR  GS_INTERFACE ".TypeMismatch"
 
 #define GS_LISTENER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_LISTENER, GSListenerPrivate))
@@ -766,29 +764,7 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                   dbus_message_get_destination (message));
 #endif
 
-        if (dbus_message_is_signal (message, HAL_DEVICE_INTERFACE, "Condition")) {
-                DBusError   error;
-                const char *event;
-                const char *keyname;
-
-                dbus_error_init (&error);
-                if (dbus_message_get_args (message, &error,
-                                           DBUS_TYPE_STRING, &event,
-                                           DBUS_TYPE_STRING, &keyname,
-                                           DBUS_TYPE_INVALID)) {
-                        if ((event && strcmp (event, "ButtonPressed") == 0) &&
-                            (keyname && strcmp (keyname, "coffee") == 0)) {
-                                gs_debug ("Coffee key was pressed - locking");
-                                g_signal_emit (listener, signals [LOCK], 0);
-                        }
-                }
-
-                if (dbus_error_is_set (&error)) {
-                        dbus_error_free (&error);
-                }
-
-                return DBUS_HANDLER_RESULT_HANDLED;
-        } else if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "Unlock")) {
+        if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "Unlock")) {
                 if (_listener_message_path_is_our_session (listener, message)) {
                         gs_debug ("Console kit requested session unlock");
                         gs_listener_set_active (listener, FALSE);
@@ -1239,11 +1215,6 @@ gs_listener_acquire (GSListener *listener,
                                             listener,
                                             NULL);
 
-                dbus_bus_add_match (listener->priv->system_connection,
-                                    "type='signal'"
-                                    ",interface='"HAL_DEVICE_INTERFACE"'"
-                                    ",member='Condition'",
-                                    NULL);
                 dbus_bus_add_match (listener->priv->system_connection,
                                     "type='signal'"
                                     ",interface='"CK_SESSION_INTERFACE"'"
