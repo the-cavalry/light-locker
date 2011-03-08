@@ -30,7 +30,7 @@
 #include <gio/gio.h>
 #include <glib/gi18n.h>
 
-#include "bus.h"
+#include "gs-bus.h"
 
 static gboolean do_quit       = FALSE;
 static gboolean do_lock       = FALSE;

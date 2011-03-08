@@ -40,8 +40,7 @@
 #include "gs-listener-dbus.h"
 #include "gs-marshal.h"
 #include "gs-debug.h"
-
-#include "bus.h"
+#include "gs-bus.h"
 
 /* this is for dbus < 0.3 */
 #if ((DBUS_VERSION_MAJOR == 0) && (DBUS_VERSION_MINOR < 30))

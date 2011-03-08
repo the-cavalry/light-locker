@@ -36,8 +36,7 @@
 #include "gs-watcher.h"
 #include "gs-marshal.h"
 #include "gs-debug.h"
-
-#include "bus.h"
+#include "gs-bus.h"
 
 static void     gs_watcher_class_init (GSWatcherClass *klass);
 static void     gs_watcher_init       (GSWatcher      *watcher);

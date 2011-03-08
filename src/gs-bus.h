@@ -19,8 +19,8 @@
  *
  */
 
-#ifndef bus_h
-#define bus_h
+#ifndef __GS_BUS_H
+#define __GS_BUS_H
 
 /* systemd logind */
 #define SYSTEMD_LOGIND_SERVICE          "org.freedesktop.login1"

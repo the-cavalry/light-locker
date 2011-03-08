@@ -53,8 +53,8 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
 gnome_screensaver_command_SOURCES = 	\
-	bus.h				\
 	gnome-screensaver-command.c	\
+	gs-bus.h			\
 	$(NULL)
 
 gnome_screensaver_command_LDADD =	\
@@ -94,8 +94,8 @@ test_passwd_LDADD =			\
 	$(NULL)
 
 test_watcher_SOURCES =			\
-	bus.h				\
 	test-watcher.c			\
+	gs-bus.h			\
 	gs-watcher.h			\
 	gs-watcher-x11.c		\
 	gs-marshal.c 			\
@@ -163,9 +163,9 @@ gs-marshal.h: gs-marshal.list
 	@GLIB_GENMARSHAL@ $< --prefix=gs_marshal --header > $@
 
 gnome_screensaver_SOURCES =	\
-	bus.h			\
 	gnome-screensaver.c	\
 	gnome-screensaver.h	\
+	gs-bus.h		\
 	gs-monitor.c		\
 	gs-monitor.h		\
 	gs-watcher-x11.c	\
