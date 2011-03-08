@@ -1,3 +1,19 @@
+================
+Version  2.91.91
+================
+
+- Follow the users clock format preference
+- Port to GDBus
+- Build cleanups
+- Remove --poke option from the commandline tool (didn't work anyway)
+- Remove unused delay and timeout preferences
+- Remove inhibit interface (inhibit the session instead)
+- Remove theme and job support
+- Update style to match gnome-shell
+- Use accountsservice to get face
+- Translation updates (Korean, Simplified Chinese,
+  Norwegian bokmål, Latvian Oriya, Ukrainian, Russian)
+
 ===============
 Version  2.91.90
 ===============
