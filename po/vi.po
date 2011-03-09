@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver GNOME TRUNK\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "screensaver&component=general\n"
-"POT-Creation-Date: 2010-12-02 11:57+0000\n"
+"POT-Creation-Date: 2011-03-06 07:49+0000\n"
 "PO-Revision-Date: 2011-01-03 13:48+0900\n"
 "Last-Translator: Nguyen Vu Hung <vuhung16plus@gmail.com>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
@@ -17,295 +17,52 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: LocFactoryEditor 1.8\n"
 
-#: ../data/gnome-screensaver-preferences.desktop.in.h:1
-#: ../src/gnome-screensaver.desktop.in.in.h:2
-msgid "Screensaver"
-msgstr "Bộ bảo vệ màn hình"
-
-#: ../data/gnome-screensaver-preferences.desktop.in.h:2
-msgid "Set your screensaver preferences"
-msgstr "Lập các tùy thích cho trình bảo vệ màn hình"
-
-#: ../data/gnome-screensaver-preferences.ui.h:1
-msgid "Power _Management"
-msgstr "_Quản lý điện năng"
-
-#: ../data/gnome-screensaver-preferences.ui.h:2
-msgid "Regard the computer as _idle after:"
-msgstr "Co_i như máy tính nghỉ sau :"
-
-#: ../data/gnome-screensaver-preferences.ui.h:3
-msgid "Screensaver Preferences"
-msgstr "Tùy thích Bộ bảo vệ màn hình"
-
-#: ../data/gnome-screensaver-preferences.ui.h:4
-msgid "Screensaver Preview"
-msgstr "Xem thử ảnh bảo vệ màn hình"
-
-#: ../data/gnome-screensaver-preferences.ui.h:5
-#| msgid "Screensaver Preview"
-msgid "Screensaver preview"
-msgstr "Xem thử ảnh bảo vệ màn hình"
-
-#: ../data/gnome-screensaver-preferences.ui.h:6
-#| msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgid "Warning: the screen will not be locked for the root user."
-msgstr "Cảnh báo : màn hình sẽ không bị khoá đối với người dùng root."
-
-#: ../data/gnome-screensaver-preferences.ui.h:7
-msgid "_Activate screensaver when computer is idle"
-msgstr "_Kích hoạt bộ bảo vệ màn hình khi máy tính nghỉ"
-
-#: ../data/gnome-screensaver-preferences.ui.h:8
-msgid "_Lock screen when screensaver is active"
-msgstr "_Khoá màn hình khi bộ bảo vệ màn hình hoạt động"
-
-#: ../data/gnome-screensaver-preferences.ui.h:9
-msgid "_Preview"
-msgstr "_Xem thử"
-
-#: ../data/gnome-screensaver-preferences.ui.h:10
-msgid "_Screensaver theme:"
-msgstr "_Sắc thái của ảnh bảo vệ màn hình:"
-
-#: ../data/gnome-screensaver.directory.in.h:1
-msgid "Screensaver themes"
-msgstr "Sắc thái của ảnh bảo vệ màn hình"
-
-#: ../data/gnome-screensaver.directory.in.h:2
-msgid "Screensavers"
-msgstr "Ảnh bảo vệ màn hình"
-
-#. Translators: This is the name of a desktop background image that shows outer space images.
-#. You might want to translate it into the equivalent words of your language
-#: ../data/images/cosmos/cosmos.xml.in.in.h:3
-#: ../savers/cosmos-slideshow.desktop.in.in.h:1
-msgid "Cosmos"
-msgstr "Vũ trụ"
-
-#: ../savers/cosmos-slideshow.desktop.in.in.h:2
-msgid "Display a slideshow of pictures of the cosmos"
-msgstr "Hiển thị trình diễn các ảnh của vũ trụ"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "Thổi bong bóng biểu tượng chân GNOME chung quanh màn hình"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "Chân nổi"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:1
-msgid "Display a slideshow from your Pictures folder"
-msgstr "Hiển thị trình diễn các ảnh từ thư mục Ảnh (Pictures) của bạn"
-
-# 48x48/emblems/emblem-pictures.icon.in.h:1
-#: ../savers/personal-slideshow.desktop.in.in.h:2
-msgid "Pictures folder"
-msgstr "Thư mục Ảnh"
-
-#: ../savers/popsquares.desktop.in.in.h:1
-msgid "A pop-art-ish grid of pulsing colors."
-msgstr "Vẽ lưới các màu đập kiểu dáng nghệ thuật phổ biến."
-
-#: ../savers/popsquares.desktop.in.in.h:2
-msgid "Pop art squares"
-msgstr "Vuông nghệ thuật phổ biến"
-
-#: ../savers/popsquares.c:50 ../savers/floaters.c:1184
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr ""
-"%s: Hãy chạy lệnh « --help » (trợ giúp) để xem thông tin về cách sử dụng.\n"
-
-#: ../savers/floaters.c:88
-msgid "Show paths that images follow"
-msgstr "Hiển thị các đường dẫn mà ảnh theo"
-
-#: ../savers/floaters.c:91
-msgid "Occasionally rotate images as they move"
-msgstr "Thỉnh thoảng quay ảnh trong khi di chuyển"
-
-#: ../savers/floaters.c:94
-msgid "Print out frame rate and other statistics"
-msgstr "In ra tỷ lệ khung và thống kê khác"
-
-#: ../savers/floaters.c:97
-msgid "The maximum number of images to keep on screen"
-msgstr "Số ảnh tối đa cần giữ trên màn hình"
-
-#: ../savers/floaters.c:97
-msgid "MAX_IMAGES"
-msgstr "MAX_IMAGES"
-
-#: ../savers/floaters.c:100
-msgid "The initial size and position of window"
-msgstr "Kích cỡ và vị trí đầu tiên của cửa sổ"
-
-#: ../savers/floaters.c:100
-msgid "WIDTHxHEIGHT+X+Y"
-msgstr "RỘNGxCAO+X+Y"
-
-#: ../savers/floaters.c:103
-msgid "The source image to use"
-msgstr "Ảnh nguồn cần dùng"
-
-#. translators: the word "image" here
-#. * represents a command line argument
-#.
-#: ../savers/floaters.c:1178
-#| msgid "image - floats images around the screen"
-msgid "image — floats images around the screen"
-msgstr "image - làm nổi ảnh ở chung quanh màn hình"
-
-#: ../savers/floaters.c:1193
-#, c-format
-msgid "You must specify one image.  See --help for usage information.\n"
-msgstr ""
-"Bạn phải ghi rõ một ảnh. Hãy chạy lệnh « --help » (trợ giúp) để xem thông tin "
-"về cách sử dụng.\n"
-
-#: ../savers/slideshow.c:53
-msgid "Location to get images from"
-msgstr "Địa điểm nơi cần lấy ảnh"
-
-#: ../savers/slideshow.c:53
-msgid "PATH"
-msgstr "ĐƯỜNG DẪN"
-
-#: ../savers/slideshow.c:55
-#| msgid "Color to use for images background"
-msgid "Color to use for image background"
-msgstr "Màu nền ảnh"
-
-#: ../savers/slideshow.c:55
-msgid "\"#rrggbb\""
-msgstr "\"#rrggbb\""
-
-#: ../savers/slideshow.c:57
-msgid "Do not randomize pictures from location"
-msgstr "Đừng ngẫu nhiên hoá các ảnh từ địa điểm"
-
-#: ../savers/slideshow.c:59
-msgid "Do not try to stretch images on screen"
-msgstr "Đừng thử kéo giãn ảnh trên màn hình"
-
-#: ../src/copy-theme-dialog.c:215
-msgid "Copying files"
-msgstr "Đang sao chép tập tin"
-
-#: ../src/copy-theme-dialog.c:233
-msgid "From:"
-msgstr "Từ:"
-
-#: ../src/copy-theme-dialog.c:237
-msgid "To:"
-msgstr "Đến:"
-
-#: ../src/copy-theme-dialog.c:257
-msgid "Copying themes"
-msgstr "Đang sao chép các sắc thái"
-
-#: ../src/copy-theme-dialog.c:300
-msgid "Invalid screensaver theme"
-msgstr "Sắc thái bảo vệ màn hình không hợp lệ"
-
-#: ../src/copy-theme-dialog.c:303
-#, c-format
-msgid "%s does not appear to be a valid screensaver theme."
-msgstr "Có vẻ là %s không phải là một sắc thái bảo vệ màn hình hợp lệ."
-
-#: ../src/copy-theme-dialog.c:483
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Đang sao chép tập tin: %u trên %u"
-
-#: ../src/gnome-screensaver-command.c:62
+#: ../src/gnome-screensaver-command.c:56
 msgid "Causes the screensaver to exit gracefully"
 msgstr "Làm cho bộ bảo vệ màn hình thoát cho đúng"
 
-#: ../src/gnome-screensaver-command.c:64
+#: ../src/gnome-screensaver-command.c:58
 msgid "Query the state of the screensaver"
 msgstr "Truy vấn tính trạng của bộ bảo vệ màn hình"
 
-#: ../src/gnome-screensaver-command.c:66
+#: ../src/gnome-screensaver-command.c:60
 msgid "Query the length of time the screensaver has been active"
 msgstr "Truy vấn khoảng thời gian hoạt động của bộ bảo vệ màn hình"
 
-#: ../src/gnome-screensaver-command.c:68
+#: ../src/gnome-screensaver-command.c:62
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "Báo tiến trình bảo vệ màn hình đang chạy phải khoá ngay màn hình"
 
-#: ../src/gnome-screensaver-command.c:70
-msgid "If the screensaver is active then switch to another graphics demo"
-msgstr ""
-"Nếu bộ bảo vệ màn hình có hoạt động thì chuyển đổi sang một chứng minh đồ "
-"họa khác"
-
-#: ../src/gnome-screensaver-command.c:72
+#: ../src/gnome-screensaver-command.c:64
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "Khởi chạy bộ bảo vệ màn hình (làm trắng màn hình)"
 
-#: ../src/gnome-screensaver-command.c:74
+#: ../src/gnome-screensaver-command.c:66
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr "Nếu bộ bảo vệ màn hình có hoạt động thì tắt nó (bỏ trắng màn hình)"
 
-#: ../src/gnome-screensaver-command.c:76
-msgid "Poke the running screensaver to simulate user activity"
-msgstr ""
-"Thức bộ bảo vệ màn hình đang chạy, để mô phỏng hoạt động của người dùng"
-
-#: ../src/gnome-screensaver-command.c:78
-msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
-msgstr ""
-"Ngăn chặn bộ bảo vệ màn hình kích hoạt. Lệnh chặn trong khi khả năng ngăn "
-"chặn còn hoạt động."
-
-#: ../src/gnome-screensaver-command.c:80
-msgid "The calling application that is inhibiting the screensaver"
-msgstr "Ứng dụng gọi mà ngăn chặn bộ bảo vệ màn hình"
-
-#: ../src/gnome-screensaver-command.c:82
-msgid "The reason for inhibiting the screensaver"
-msgstr "Lý do ngăn chặn bộ bảo vệ màn hình"
-
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver-command.c:68 ../src/gnome-screensaver-dialog.c:59
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Phiên bản ứng dụng này"
 
-#: ../src/gnome-screensaver-command.c:316
+#: ../src/gnome-screensaver-command.c:198
 #, c-format
-#| msgid "The screensaver is %s\n"
 msgid "The screensaver is active\n"
 msgstr "Bộ bảo vệ màn hình là đang hoạt động\n"
 
-#: ../src/gnome-screensaver-command.c:316
+#: ../src/gnome-screensaver-command.c:198
 #, c-format
-#| msgid "The screensaver is %s\n"
 msgid "The screensaver is inactive\n"
 msgstr "Bộ bảo vệ màn hình không hoạt động\n"
 
-#: ../src/gnome-screensaver-command.c:330
-#, c-format
-msgid "The screensaver is not inhibited\n"
-msgstr "Bộ bảo vệ màn hình không phải bị thu hồi\n"
-
-#: ../src/gnome-screensaver-command.c:336
-#, c-format
-msgid "The screensaver is being inhibited by:\n"
-msgstr "Bộ bảo vệ màn hình đang bị thu hồi bởi:\n"
-
-#: ../src/gnome-screensaver-command.c:367
+#: ../src/gnome-screensaver-command.c:223
 #, c-format
 msgid "The screensaver has been active for %d seconds.\n"
 msgstr "Bộ bảo vệ màn hình đã hoạt động trong vòng %d giây.\n"
 
-#: ../src/gnome-screensaver-command.c:371
+#: ../src/gnome-screensaver-command.c:227
 #, c-format
-#| msgid "The screensaver is not inhibited\n"
 msgid "The screensaver is not currently active.\n"
 msgstr "Bộ bảo vệ màn hình hiện thời không hoạt động.\n"
 
@@ -372,22 +129,18 @@ msgid "Password unchanged"
 msgstr "Chưa thay đổi mật khẩu"
 
 #: ../src/gnome-screensaver-dialog.c:193
-#| msgid "Can not get username"
 msgid "Cannot get username"
 msgstr "Không thể lấy tên người dùng"
 
 #: ../src/gnome-screensaver-dialog.c:194
-#| msgid "Retype new UNIX password:"
 msgid "Retype new Unix password:"
 msgstr "Gõ lại mật khẩu UNIX mới:"
 
 #: ../src/gnome-screensaver-dialog.c:195
-#| msgid "Enter new UNIX password:"
 msgid "Enter new Unix password:"
 msgstr "Nhập mật khẩu UNIX mới:"
 
 #: ../src/gnome-screensaver-dialog.c:196
-#| msgid "(current) UNIX password:"
 msgid "(current) Unix password:"
 msgstr "Mật khẩu UNIX (hiện tại):"
 
@@ -412,77 +165,12 @@ msgid "Sorry, passwords do not match"
 msgstr "Tiếc là hai mật khẩu không trùng"
 
 #: ../src/gnome-screensaver-dialog.c:267
-#| msgid "Checking..."
 msgid "Checking…"
 msgstr "Kiểm tra..."
 
 #: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "Lỗi xác thực."
-
-#: ../src/gnome-screensaver-preferences.c:491
-msgid "Blank screen"
-msgstr "Màn hình trắng"
-
-#: ../src/gnome-screensaver-preferences.c:497
-msgid "Random"
-msgstr "Ngẫu nhiên"
-
-#: ../src/gnome-screensaver-preferences.c:947
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d giờ"
-
-#: ../src/gnome-screensaver-preferences.c:950
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d phút"
-
-#: ../src/gnome-screensaver-preferences.c:953
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d giây"
-
-# Variable: don't translate / Biến: đừng dịch
-#. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:959
-#, c-format
-msgid "%s %s %s"
-msgstr "%s %s %s"
-
-#. hour:minutes
-#. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:962
-#: ../src/gnome-screensaver-preferences.c:970
-#, c-format
-msgid "%s %s"
-msgstr "%s %s"
-
-#. hour
-#. minutes
-#. seconds
-#: ../src/gnome-screensaver-preferences.c:965
-#: ../src/gnome-screensaver-preferences.c:973
-#: ../src/gnome-screensaver-preferences.c:977
-#, c-format
-msgid "%s"
-msgstr "%s"
-
-#: ../src/gnome-screensaver-preferences.c:992
-#, c-format
-msgid "Never"
-msgstr "Không bao giờ"
-
-#: ../src/gnome-screensaver-preferences.c:1377
-msgid "Could not load the main interface"
-msgstr "Không thể tải giao diện chính"
-
-#: ../src/gnome-screensaver-preferences.c:1379
-msgid "Please make sure that the screensaver is properly installed"
-msgstr "Hãy chắc là bộ bảo vệ màn hình được cài đặt đúng"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
@@ -495,6 +183,10 @@ msgstr "Bật chạy mã gỡ lỗi"
 #: ../src/gnome-screensaver.desktop.in.in.h:1
 msgid "Launch screensaver and locker program"
 msgstr "Chạy chương trình bảo vệ và khóa màn hình"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:2
+msgid "Screensaver"
+msgstr "Bộ bảo vệ màn hình"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -518,15 +210,15 @@ msgstr "Không cho phép truy cập vào lúc này."
 msgid "No longer permitted to access the system."
 msgstr "Không còn có quyền truy cập lại hệ thống."
 
-#: ../src/gs-listener-dbus.c:1912
+#: ../src/gs-listener-dbus.c:1183
 msgid "failed to register with the message bus"
 msgstr "việc đăng ký với mạch nối thông điệp bị lỗi"
 
-#: ../src/gs-listener-dbus.c:1922
+#: ../src/gs-listener-dbus.c:1193
 msgid "not connected to the message bus"
 msgstr "chưa kết nối đến mạch nối thông điệp"
 
-#: ../src/gs-listener-dbus.c:1931
+#: ../src/gs-listener-dbus.c:1202 ../src/gs-listener-dbus.c:1232
 msgid "screensaver already running in this session"
 msgstr "bộ bảo vệ màn hình đang chạy trong phiên làm việc này"
 
@@ -535,7 +227,6 @@ msgid "Time has expired."
 msgstr "Quá giờ."
 
 #: ../src/gs-lock-plug.c:287
-#| msgid "You have the Caps Lock key on."
 msgid "You have the Caps & Num Lock keys on."
 msgstr "Phím chữ hoa (CapsLock) và phím số (Num Lock) đang bật."
 
@@ -544,31 +235,242 @@ msgid "You have the Caps Lock key on."
 msgstr "Bạn đã bật phím Khoá Chữ Hoa (CapsLock)."
 
 #: ../src/gs-lock-plug.c:293
-#| msgid "You have the Caps Lock key on."
 msgid "You have the Num Lock key on."
 msgstr "Phím số (Num Lock) đang bật."
 
-#: ../src/gs-lock-plug.c:1355
-#| msgid "_Switch User"
+#: ../src/gs-lock-plug.c:1350
 msgid "S_witch User…"
 msgstr "_Chuyển người dùng..."
 
-#: ../src/gs-lock-plug.c:1364
+#: ../src/gs-lock-plug.c:1359
 msgid "Log _Out"
 msgstr "Đăng _xuất"
 
-#: ../src/gs-lock-plug.c:1375
+#: ../src/gs-lock-plug.c:1366
 msgid "_Unlock"
 msgstr "_Bỏ khoá"
 
-#. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1540
-msgid "%U on %h"
-msgstr "%U trên %h"
-
-#: ../src/gs-lock-plug.c:1554
+#: ../src/gs-lock-plug.c:1401
 msgid "_Password:"
 msgstr "_Mật khẩu :"
+
+#: ../src/gs-window-x11.c:2195
+#, fuzzy
+#| msgid "%s %s"
+msgid "%a %R"
+msgstr "%s %s"
+
+#: ../src/gs-window-x11.c:2197
+msgid "%a %l:%M %p"
+msgstr ""
+
+#~ msgid "Set your screensaver preferences"
+#~ msgstr "Lập các tùy thích cho trình bảo vệ màn hình"
+
+#~ msgid "Power _Management"
+#~ msgstr "_Quản lý điện năng"
+
+#~ msgid "Regard the computer as _idle after:"
+#~ msgstr "Co_i như máy tính nghỉ sau :"
+
+#~ msgid "Screensaver Preferences"
+#~ msgstr "Tùy thích Bộ bảo vệ màn hình"
+
+#~ msgid "Screensaver Preview"
+#~ msgstr "Xem thử ảnh bảo vệ màn hình"
+
+#~| msgid "Screensaver Preview"
+#~ msgid "Screensaver preview"
+#~ msgstr "Xem thử ảnh bảo vệ màn hình"
+
+#~| msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+#~ msgid "Warning: the screen will not be locked for the root user."
+#~ msgstr "Cảnh báo : màn hình sẽ không bị khoá đối với người dùng root."
+
+#~ msgid "_Activate screensaver when computer is idle"
+#~ msgstr "_Kích hoạt bộ bảo vệ màn hình khi máy tính nghỉ"
+
+#~ msgid "_Lock screen when screensaver is active"
+#~ msgstr "_Khoá màn hình khi bộ bảo vệ màn hình hoạt động"
+
+#~ msgid "_Preview"
+#~ msgstr "_Xem thử"
+
+#~ msgid "_Screensaver theme:"
+#~ msgstr "_Sắc thái của ảnh bảo vệ màn hình:"
+
+#~ msgid "Screensaver themes"
+#~ msgstr "Sắc thái của ảnh bảo vệ màn hình"
+
+#~ msgid "Screensavers"
+#~ msgstr "Ảnh bảo vệ màn hình"
+
+#~ msgid "Cosmos"
+#~ msgstr "Vũ trụ"
+
+#~ msgid "Display a slideshow of pictures of the cosmos"
+#~ msgstr "Hiển thị trình diễn các ảnh của vũ trụ"
+
+#~ msgid "Bubbles the GNOME foot logo around the screen"
+#~ msgstr "Thổi bong bóng biểu tượng chân GNOME chung quanh màn hình"
+
+#~ msgid "Floating Feet"
+#~ msgstr "Chân nổi"
+
+#~ msgid "Display a slideshow from your Pictures folder"
+#~ msgstr "Hiển thị trình diễn các ảnh từ thư mục Ảnh (Pictures) của bạn"
+
+# 48x48/emblems/emblem-pictures.icon.in.h:1
+#~ msgid "Pictures folder"
+#~ msgstr "Thư mục Ảnh"
+
+#~ msgid "A pop-art-ish grid of pulsing colors."
+#~ msgstr "Vẽ lưới các màu đập kiểu dáng nghệ thuật phổ biến."
+
+#~ msgid "Pop art squares"
+#~ msgstr "Vuông nghệ thuật phổ biến"
+
+#~ msgid "%s. See --help for usage information.\n"
+#~ msgstr ""
+#~ "%s: Hãy chạy lệnh « --help » (trợ giúp) để xem thông tin về cách sử dụng.\n"
+
+#~ msgid "Show paths that images follow"
+#~ msgstr "Hiển thị các đường dẫn mà ảnh theo"
+
+#~ msgid "Occasionally rotate images as they move"
+#~ msgstr "Thỉnh thoảng quay ảnh trong khi di chuyển"
+
+#~ msgid "Print out frame rate and other statistics"
+#~ msgstr "In ra tỷ lệ khung và thống kê khác"
+
+#~ msgid "The maximum number of images to keep on screen"
+#~ msgstr "Số ảnh tối đa cần giữ trên màn hình"
+
+#~ msgid "MAX_IMAGES"
+#~ msgstr "MAX_IMAGES"
+
+#~ msgid "The initial size and position of window"
+#~ msgstr "Kích cỡ và vị trí đầu tiên của cửa sổ"
+
+#~ msgid "WIDTHxHEIGHT+X+Y"
+#~ msgstr "RỘNGxCAO+X+Y"
+
+#~ msgid "The source image to use"
+#~ msgstr "Ảnh nguồn cần dùng"
+
+#~| msgid "image - floats images around the screen"
+#~ msgid "image — floats images around the screen"
+#~ msgstr "image - làm nổi ảnh ở chung quanh màn hình"
+
+#~ msgid "You must specify one image.  See --help for usage information.\n"
+#~ msgstr ""
+#~ "Bạn phải ghi rõ một ảnh. Hãy chạy lệnh « --help » (trợ giúp) để xem thông "
+#~ "tin về cách sử dụng.\n"
+
+#~ msgid "Location to get images from"
+#~ msgstr "Địa điểm nơi cần lấy ảnh"
+
+#~ msgid "PATH"
+#~ msgstr "ĐƯỜNG DẪN"
+
+#~| msgid "Color to use for images background"
+#~ msgid "Color to use for image background"
+#~ msgstr "Màu nền ảnh"
+
+#~ msgid "\"#rrggbb\""
+#~ msgstr "\"#rrggbb\""
+
+#~ msgid "Do not randomize pictures from location"
+#~ msgstr "Đừng ngẫu nhiên hoá các ảnh từ địa điểm"
+
+#~ msgid "Do not try to stretch images on screen"
+#~ msgstr "Đừng thử kéo giãn ảnh trên màn hình"
+
+#~ msgid "Copying files"
+#~ msgstr "Đang sao chép tập tin"
+
+#~ msgid "From:"
+#~ msgstr "Từ:"
+
+#~ msgid "To:"
+#~ msgstr "Đến:"
+
+#~ msgid "Copying themes"
+#~ msgstr "Đang sao chép các sắc thái"
+
+#~ msgid "Invalid screensaver theme"
+#~ msgstr "Sắc thái bảo vệ màn hình không hợp lệ"
+
+#~ msgid "%s does not appear to be a valid screensaver theme."
+#~ msgstr "Có vẻ là %s không phải là một sắc thái bảo vệ màn hình hợp lệ."
+
+#~ msgid "Copying file: %u of %u"
+#~ msgstr "Đang sao chép tập tin: %u trên %u"
+
+#~ msgid "If the screensaver is active then switch to another graphics demo"
+#~ msgstr ""
+#~ "Nếu bộ bảo vệ màn hình có hoạt động thì chuyển đổi sang một chứng minh đồ "
+#~ "họa khác"
+
+#~ msgid "Poke the running screensaver to simulate user activity"
+#~ msgstr ""
+#~ "Thức bộ bảo vệ màn hình đang chạy, để mô phỏng hoạt động của người dùng"
+
+#~ msgid ""
+#~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
+#~ "active."
+#~ msgstr ""
+#~ "Ngăn chặn bộ bảo vệ màn hình kích hoạt. Lệnh chặn trong khi khả năng ngăn "
+#~ "chặn còn hoạt động."
+
+#~ msgid "The calling application that is inhibiting the screensaver"
+#~ msgstr "Ứng dụng gọi mà ngăn chặn bộ bảo vệ màn hình"
+
+#~ msgid "The reason for inhibiting the screensaver"
+#~ msgstr "Lý do ngăn chặn bộ bảo vệ màn hình"
+
+#~ msgid "The screensaver is not inhibited\n"
+#~ msgstr "Bộ bảo vệ màn hình không phải bị thu hồi\n"
+
+#~ msgid "The screensaver is being inhibited by:\n"
+#~ msgstr "Bộ bảo vệ màn hình đang bị thu hồi bởi:\n"
+
+#~ msgid "Blank screen"
+#~ msgstr "Màn hình trắng"
+
+#~ msgid "Random"
+#~ msgstr "Ngẫu nhiên"
+
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "%d giờ"
+
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d phút"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d giây"
+
+# Variable: don't translate / Biến: đừng dịch
+#~ msgid "%s %s %s"
+#~ msgstr "%s %s %s"
+
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgid "Never"
+#~ msgstr "Không bao giờ"
+
+#~ msgid "Could not load the main interface"
+#~ msgstr "Không thể tải giao diện chính"
+
+#~ msgid "Please make sure that the screensaver is properly installed"
+#~ msgstr "Hãy chắc là bộ bảo vệ màn hình được cài đặt đúng"
+
+#~ msgid "%U on %h"
+#~ msgstr "%U trên %h"
 
 #~ msgid "<b>Screensaver preview</b>"
 #~ msgstr "<b>Xem thử ảnh bảo vệ màn hình</b>"
