@@ -2195,8 +2195,10 @@ update_clock (GSWindow *window)
 
         /* clock */
         if (window->priv->clock_format == G_DESKTOP_CLOCK_FORMAT_24H)
+                /* Translators, this is the 24h date format used in the panel clock */
                 clock_format = _("%a %R");
         else
+                /* Translators, this is the 12h date format used in the panel clock */
                 clock_format = _("%a %l:%M %p");
 
         dt = g_date_time_new_now_local ();
