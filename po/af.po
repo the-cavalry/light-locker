@@ -51,13 +51,11 @@ msgstr "Weergawe van dié toepassing"
 
 #: ../src/gnome-screensaver-command.c:224
 #, c-format
-#| msgid "The screensaver is %s\n"
 msgid "The screensaver is active\n"
 msgstr "Die sluimerskerm is aktief\n"
 
 #: ../src/gnome-screensaver-command.c:226
 #, c-format
-#| msgid "The screensaver is %s\n"
 msgid "The screensaver is inactive\n"
 msgstr "Die sluimerskerm is onaktief\n"
 
@@ -133,22 +131,18 @@ msgid "Password unchanged"
 msgstr "Wagwoord onveranderd"
 
 #: ../src/gnome-screensaver-dialog.c:193
-#| msgid "Can not get username"
 msgid "Cannot get username"
 msgstr "Kan nie gebruikernaam kry nie"
 
 #: ../src/gnome-screensaver-dialog.c:194
-#| msgid "Retype new UNIX password:"
 msgid "Retype new Unix password:"
 msgstr "Tik nuwe UNIX-wagwoord in (weer):"
 
 #: ../src/gnome-screensaver-dialog.c:195
-#| msgid "Enter new UNIX password:"
 msgid "Enter new Unix password:"
 msgstr "Tik nuwe UNIX-wagwoord in:"
 
 #: ../src/gnome-screensaver-dialog.c:196
-#| msgid "(current) UNIX password:"
 msgid "(current) Unix password:"
 msgstr "(huidige) UNIX-wagwoord:"
 
@@ -173,7 +167,6 @@ msgid "Sorry, passwords do not match"
 msgstr "Jammer, wagwoorde verskil"
 
 #: ../src/gnome-screensaver-dialog.c:267
-#| msgid "Checking..."
 msgid "Checking…"
 msgstr "Kontroleer tans…"
 
@@ -191,7 +184,6 @@ msgid "Enable debugging code"
 msgstr "Aktiveer ontfoutkode"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
-#| msgid "Launch screen saver and locker program"
 msgid "Launch screensaver and locker program"
 msgstr "Lanseer sluimerskerm en sluitprogram"
 
@@ -250,7 +242,6 @@ msgid "You have the Num Lock key on."
 msgstr "Die syferslot is aan."
 
 #: ../src/gs-lock-plug.c:1350
-#| msgid "_Switch User"
 msgid "S_witch User…"
 msgstr "_Wissel gebruiker…"
 
@@ -268,7 +259,6 @@ msgstr "_Wagwoord:"
 
 #. Translators, this is the 24h date format used in the panel clock
 #: ../src/gs-window-x11.c:2199
-#| msgid "%s %s"
 msgid "%a %R"
 msgstr "%a %R"
 
