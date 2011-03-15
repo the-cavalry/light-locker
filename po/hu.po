@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-15 04:15+0100\n"
-"PO-Revision-Date: 2011-03-15 04:18+0100\n"
+"POT-Creation-Date: 2011-03-15 15:55+0100\n"
+"PO-Revision-Date: 2011-03-15 15:56+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "Language: \n"
@@ -61,8 +61,10 @@ msgstr "A képernyővédő inaktív\n"
 
 #: ../src/gnome-screensaver-command.c:256
 #, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "A képernyővédő %d másodpercig volt aktív.\n"
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "A képernyővédő %d másodpercig volt aktív.\n"
+msgstr[1] "A képernyővédő %d másodpercig volt aktív.\n"
 
 #: ../src/gnome-screensaver-command.c:258
 #, c-format
