@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-09 20:21+0100\n"
-"PO-Revision-Date: 2011-03-09 20:22+0100\n"
+"POT-Creation-Date: 2011-03-15 14:09+0100\n"
+"PO-Revision-Date: 2011-03-15 14:10+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -62,8 +62,11 @@ msgstr "Wygaszacz ekranu jest nieaktywny\n"
 
 #: ../src/gnome-screensaver-command.c:256
 #, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "Wygaszacz ekranu jest aktywny od %d sekund.\n"
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "Wygaszacz ekranu jest aktywny od %d sekundy.\n"
+msgstr[1] "Wygaszacz ekranu jest aktywny od %d sekund.\n"
+msgstr[2] "Wygaszacz ekranu jest aktywny od %d sekund.\n"
 
 #: ../src/gnome-screensaver-command.c:258
 #, c-format
@@ -260,10 +263,12 @@ msgstr "_Odblokuj"
 msgid "_Password:"
 msgstr "_Hasło:"
 
-#: ../src/gs-window-x11.c:2198
+#. Translators, this is the 24h date format used in the panel clock
+#: ../src/gs-window-x11.c:2199
 msgid "%a %R"
 msgstr "%a %R"
 
-#: ../src/gs-window-x11.c:2200
+#. Translators, this is the 12h date format used in the panel clock
+#: ../src/gs-window-x11.c:2202
 msgid "%a %l:%M %p"
 msgstr "%s %l:%M %p"
