@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"screensaver&component=general\n"
-"POT-Creation-Date: 2011-01-31 17:39+0000\n"
-"PO-Revision-Date: 2011-02-01 08:48+0200\n"
+"screensaver&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-15 12:22+0000\n"
+"PO-Revision-Date: 2011-03-15 15:07+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -22,154 +22,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-msgid "Screensaver"
-msgstr "Ekraanisäästja"
-
-msgid "Set your screensaver preferences"
-msgstr "Ekraanisäästja eelistuste seadmine"
-
-msgid "Power _Management"
-msgstr "_Vooluhaldus"
-
-msgid "Regard the computer as _idle after:"
-msgstr "Seanss määratakse _jõudeolevaks pärast ajavahemikku:"
-
-msgid "Screensaver Preferences"
-msgstr "Ekraanisäästja eelistused"
-
-msgid "Screensaver Preview"
-msgstr "Ekraanisäästja eelvaade"
-
-msgid "Screensaver preview"
-msgstr "Ekraanisäästja eelvaade"
-
-msgid "Warning: the screen will not be locked for the root user."
-msgstr "Hoiatus: ekraanilukustus ei toimi root kasutaja jaoks."
-
-msgid "_Activate screensaver when computer is idle"
-msgstr "Kui arvuti on jõude, siis aktiveeritakse e_kraanisäästja"
-
-msgid "_Lock screen when screensaver is active"
-msgstr "Ekraanisäästja aktiveerimisel ekraan _lukustatakse"
-
-msgid "_Preview"
-msgstr "_Eelvaade"
-
-msgid "_Screensaver theme:"
-msgstr "Ekraanisäästja _teema:"
-
-msgid "Screensaver themes"
-msgstr "Ekraanisäästja teemad"
-
-msgid "Screensavers"
-msgstr "Ekraanisäästjad"
-
-#. Translators: This is the name of a desktop background image that shows outer space images.
-#. You might want to translate it into the equivalent words of your language
-msgid "Cosmos"
-msgstr "Kosmos"
-
-msgid "Display a slideshow of pictures of the cosmos"
-msgstr "Kosmosepiltide slaidiesituse kuvamine"
-
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "GNOME jalajälje logod ekraanil ringi hõljumas"
-
-msgid "Floating Feet"
-msgstr "Hõljuv jalg"
-
-msgid "Display a slideshow from your Pictures folder"
-msgstr "Slaidiesitluse kuvamine Sinu pildikataloogi põhjal"
-
-msgid "Pictures folder"
-msgstr "Pildikataloog"
-
-msgid "A pop-art-ish grid of pulsing colors."
-msgstr "Popkunstilik pulseerivate värvidega ruudustik."
-
-msgid "Pop art squares"
-msgstr "Popkunstist inspireeritud ruudud"
-
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s. Lähema teabe saamiseks kasuta --help võtit.\n"
-
-msgid "Show paths that images follow"
-msgstr "Piltide liikumisteede näitamine"
-
-msgid "Occasionally rotate images as they move"
-msgstr "Piltide juhuslik pööramine liikumisel"
-
-msgid "Print out frame rate and other statistics"
-msgstr "Kaadrisageduse ja muu statistika väljastamine"
-
-msgid "The maximum number of images to keep on screen"
-msgstr "Suurim ekraanil hoitavate piltide arv"
-
-msgid "MAX_IMAGES"
-msgstr "MAKS_PILTE"
-
-msgid "The initial size and position of window"
-msgstr "Akna lähtesuurus ja -asukoht"
-
-msgid "WIDTHxHEIGHT+X+Y"
-msgstr "LAIUSxKÕRGUS+X+Y"
-
-msgid "The source image to use"
-msgstr "Kasutatav lähtepilt"
-
-#. translators: the word "image" here
-#. * represents a command line argument
-#.
-msgid "image — floats images around the screen"
-msgstr "image — ekraanil ringi hõljuvad pildid"
-
-#, c-format
-msgid "You must specify one image.  See --help for usage information.\n"
-msgstr ""
-"Sa pead määrama ühe pilti.  Lähema teabe saamiseks kasuta --help võtit.\n"
-
-msgid "Location to get images from"
-msgstr "Piltide hankimise lähtekoht"
-
-msgid "PATH"
-msgstr "RADA"
-
-msgid "Color to use for image background"
-msgstr "Piltide taustaks kasutatav värvus"
-
-msgid "\"#rrggbb\""
-msgstr "\"#rrggbb\""
-
-msgid "Do not randomize pictures from location"
-msgstr "Asukohast ei valita pilte juhuslikus järjekorras"
-
-msgid "Do not try to stretch images on screen"
-msgstr "Pilte ei proovita üle ekraani venitada"
-
-msgid "Copying files"
-msgstr "Failide kopeerimine"
-
-msgid "From:"
-msgstr "Lähtekoht:"
-
-msgid "To:"
-msgstr "Sihtkoht:"
-
-msgid "Copying themes"
-msgstr "Teemade kopeerimine"
-
-msgid "Invalid screensaver theme"
-msgstr "Vigane ekraanisäästja teema"
-
-#, c-format
-msgid "%s does not appear to be a valid screensaver theme."
-msgstr "%s ei paista olevate korrektne ekraanisäästja teema."
-
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Faili kopeerimine: %u (%u'st)"
 
 msgid "Causes the screensaver to exit gracefully"
 msgstr "Ekraanisäästjat töö lõpetamine (ilma veakoodita)"
@@ -184,9 +36,6 @@ msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr ""
 "Töötavale ekraanisäästja protsessile kohese ekraanilukustamise käsu saatmine"
 
-msgid "If the screensaver is active then switch to another graphics demo"
-msgstr "Kui ekraanisäästja on aktiivne, siis graafilise demo vahetamine"
-
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "Ekraanisäästja sisselülitamine (ekraani tühjendamine)"
 
@@ -194,22 +43,6 @@ msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr ""
 "Kui ekraanisäästja on aktiivne, siis selle deaktiveerimine (ekraani "
 "taastamine)"
-
-msgid "Poke the running screensaver to simulate user activity"
-msgstr "Töötava ekraanisäästja torkimine kasutaja aktiivsuse jäljendamiseks"
-
-msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
-msgstr ""
-"Ekraanisäästja aktiveerimise keelamine. Käsk blokeerub kui aktiveerimine on "
-"juba keelatud."
-
-msgid "The calling application that is inhibiting the screensaver"
-msgstr "Ekraanisäästja aktiveerimist keelava rakenduse nimi"
-
-msgid "The reason for inhibiting the screensaver"
-msgstr "Ekraanisäästja aktiveerimise keelamise selgitus"
 
 msgid "Version of this application"
 msgstr "Selle rakenduse versioon"
@@ -223,16 +56,10 @@ msgid "The screensaver is inactive\n"
 msgstr "Ekraanisäästja on jõude\n"
 
 #, c-format
-msgid "The screensaver is not inhibited\n"
-msgstr "Ekraanisäästja on piiramata\n"
-
-#, c-format
-msgid "The screensaver is being inhibited by:\n"
-msgstr "Ekraanisäästja on piiratud. Piiraja:\n"
-
-#, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "Ekraanisäästja on olnud aktiivne %d sekundit.\n"
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "Ekraanisäästja on olnud aktiivne %d sekund.\n"
+msgstr[1] "Ekraanisäästja on olnud aktiivne %d sekundit.\n"
 
 #, c-format
 msgid "The screensaver is not currently active.\n"
@@ -316,58 +143,6 @@ msgstr "Kontrollimine…"
 msgid "Authentication failed."
 msgstr "Tõrge autentimisel."
 
-msgid "Blank screen"
-msgstr "Tühi ekraan"
-
-msgid "Random"
-msgstr "Juhuslik"
-
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d tund"
-msgstr[1] "%d tundi"
-
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d minut"
-msgstr[1] "%d minutit"
-
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d sekund"
-msgstr[1] "%d sekundit"
-
-#. hour:minutes:seconds
-#, c-format
-msgid "%s %s %s"
-msgstr "%s:%s:%s"
-
-#. hour:minutes
-#. minutes:seconds
-#, c-format
-msgid "%s %s"
-msgstr "%s:%s"
-
-#. hour
-#. minutes
-#. seconds
-#, c-format
-msgid "%s"
-msgstr "%s"
-
-#, c-format
-msgid "Never"
-msgstr "Mitte kunagi"
-
-msgid "Could not load the main interface"
-msgstr "Peamist liidest pole võimalik laadida"
-
-msgid "Please make sure that the screensaver is properly installed"
-msgstr "Palun veendu, et ekraanisäästja on korrektselt paigaldatud"
-
 msgid "Don't become a daemon"
 msgstr "Deemoniks ei minda"
 
@@ -376,6 +151,9 @@ msgstr "Silumise lubamine"
 
 msgid "Launch screensaver and locker program"
 msgstr "Ekraanisäästmis- ja lukustustamisprogrammi käivitamine"
+
+msgid "Screensaver"
+msgstr "Ekraanisäästja"
 
 #, c-format
 msgid "Unable to establish service %s: %s\n"
@@ -427,193 +205,10 @@ msgstr "_Võta lukust lahti"
 msgid "_Password:"
 msgstr "_Parool:"
 
+#. Translators, this is the 24h date format used in the panel clock
 msgid "%a %R"
 msgstr "%a %R"
 
+#. Translators, this is the 12h date format used in the panel clock
 msgid "%a %l:%M %p"
 msgstr "%a %l:%M %p"
-
-#~ msgid "%U on %h"
-#~ msgstr "%U hostil %h"
-
-#~ msgid "Activate when idle"
-#~ msgstr "Aktiveerimine jõudeolekul"
-
-#~ msgid "Allow embedding a keyboard into the window"
-#~ msgstr "Klaviatuuri aknasse põimimise lubamine"
-
-#~ msgid "Allow logout"
-#~ msgstr "Väljalogimine lubatud"
-
-#~ msgid "Allow the session status message to be displayed"
-#~ msgstr "Seansi olekuteadet tohib kuvada"
-
-#~ msgid ""
-#~ "Allow the session status message to be displayed when the screen is "
-#~ "locked."
-#~ msgstr "Seansi olekuteadet tohib kuvada, kui ekraan on lukustatud."
-
-#~ msgid "Allow user switching"
-#~ msgstr "Kasutaja vahetamine lubatud"
-
-#~ msgid "Embedded keyboard command"
-#~ msgstr "Põimitud klaviatuuri käsk"
-
-#~ msgid "Lock on activation"
-#~ msgstr "Lukustamine aktiveerimisel"
-
-#~ msgid "Logout command"
-#~ msgstr "Väljalogimise käsk"
-
-#~ msgid "Screensaver theme selection mode"
-#~ msgstr "Ekraanisäästja teemavalimise režiim"
-
-#~ msgid ""
-#~ "Set this to TRUE to activate the screensaver when the session is idle."
-#~ msgstr ""
-#~ "Märgi see valik, kui ekraanisäästja tuleb seansi jõudeoleku korral "
-#~ "käivitada."
-
-#~ msgid ""
-#~ "Set this to TRUE to allow embedding a keyboard into the window when "
-#~ "trying to unlock. The \"keyboard_command\" key must be set with the "
-#~ "appropriate command."
-#~ msgstr ""
-#~ "Kui märgitud, siis on ekraani lukust lahtivõtmise aknas põimitud "
-#~ "klaviatuur. Klaviatuuri käsklus on määratud võtmes \"keyboard_command\"."
-
-#~ msgid ""
-#~ "Set this to TRUE to lock the screen when the screensaver goes active."
-#~ msgstr ""
-#~ "Märgi see valik, kui ekraanisäästja peab aktiveerumisel ekraani lukustama."
-
-#~ msgid ""
-#~ "Set this to TRUE to offer an option in the unlock dialog to allow logging "
-#~ "out after a delay. The delay is specified in the \"logout_delay\" key."
-#~ msgstr ""
-#~ "Selle märkimine lisab lukust lahtivõtmise dialoogile võimaluse pärast "
-#~ "viivitust välja logida. Viivituse kestus määratakse võtmega \"logout_delay"
-#~ "\"."
-
-#~ msgid ""
-#~ "Set this to TRUE to offer an option in the unlock dialog to switch to a "
-#~ "different user account."
-#~ msgstr ""
-#~ "Selle valiku märkimine lisab lahtilukustamise dialoogi valiku teisele "
-#~ "kasutajakontole ümberlülitumiseks."
-
-#~ msgid ""
-#~ "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
-#~ "set to TRUE, to embed a keyboard widget into the window. This command "
-#~ "should implement an XEMBED plug interface and output a window XID on the "
-#~ "standard output."
-#~ msgstr ""
-#~ "Aknasse klaviatuurividina põimimise käsk, mis käivitatakse kui võti "
-#~ "\"embedded_keyboard_enabled\" on märgitud. See käsk peaks teostama XEMBED "
-#~ "ühendusliidese ja väljastama standardväljundisse akna XID-i."
-
-#~ msgid ""
-#~ "The command to invoke when the logout button is clicked. This command "
-#~ "should simply log the user out without any interaction. This key has "
-#~ "effect only if the \"logout_enable\" key is set to TRUE."
-#~ msgstr ""
-#~ "Käsk, mis käivitatakse väljalogimise nupule klõpsamise korral. Käsk peaks "
-#~ "kasutaja ilma igasuguste interaktsioonideta välja logima. See võti mõjub "
-#~ "ainult juhul, kui \"logout_enable\" võti on märgitud."
-
-#~ msgid ""
-#~ "The number of minutes after screensaver activation before locking the "
-#~ "screen."
-#~ msgstr "Ekraanisäästja tööminutite arv pärast mida ekraan lukustatakse."
-
-#~ msgid ""
-#~ "The number of minutes after the screensaver activation before a logout "
-#~ "option will appear in the unlock dialog. This key has effect only if the "
-#~ "\"logout_enable\" key is set to TRUE."
-#~ msgstr ""
-#~ "Ekraanisäästja aktiveerimisest mööduv aeg (mitutites), pärast mida ilmub "
-#~ "väljalogimise valik lukust lahtivõtmise dialoogi. See võti mõjub ainult "
-#~ "juhul, kui \"logout_enable\" võti on märgitud."
-
-#~ msgid ""
-#~ "The number of minutes of inactivity before the session is considered idle."
-#~ msgstr "Jõudeoleku minutite arv enne kui seanss hinnatakse jõude olevaks."
-
-#~ msgid "The number of minutes to run before changing the screensaver theme."
-#~ msgstr "Tööminutite arv enne ekraanisäästja teema vahetamist."
-
-#~ msgid ""
-#~ "The number of seconds of inactivity before signalling to power "
-#~ "management. This key is set and maintained by the session power "
-#~ "management agent."
-#~ msgstr ""
-#~ "Jõudeoleku kestus (sekundites) enne vooluhaldusele (power-management) "
-#~ "signaali saatmist. Seda võtit haldab seansi vooluhalduse agent."
-
-#~ msgid ""
-#~ "The selection mode used by screensaver. May be \"blank-only\" to enable "
-#~ "the screensaver without using any theme on activation, \"single\" to "
-#~ "enable screensaver using only one theme on activation (specified in "
-#~ "\"themes\" key), and \"random\" to enable the screensaver using a random "
-#~ "theme on activation."
-#~ msgstr ""
-#~ "Teemavalimise režiim ekraanisäästja aktiveerimisel. Võimalikud valikud on "
-#~ "\"blank-only\" ekraanisäästja teemade keelamiseks, \"single\" ühe teema "
-#~ "kasutamiseks (määratakse võtmega \"themes\") ja \"random\" juhusliku "
-#~ "teema kasutamiseks."
-
-#~ msgid ""
-#~ "This key specifies the list of themes to be used by the screensaver. It's "
-#~ "ignored when \"mode\" key is \"blank-only\", should provide the theme "
-#~ "name when \"mode\" is \"single\", and should provide a list of themes "
-#~ "when \"mode\" is \"random\"."
-#~ msgstr ""
-#~ "Selle võtmega määratakse ekraanisäästja poolt kasutatavate teemade "
-#~ "loetelu. Kui võtme \"mode\" väärtus on \"blank-only\", siis seda "
-#~ "eiratakse, kui \"mode\" väärtus on \"single\", siis peab siin olema teema "
-#~ "nimi ja kui \"mode\" väärtus on \"random\", siis aga teemade loetelu."
-
-#~ msgid "Time before locking"
-#~ msgstr "Aeg enne lukustamist"
-
-#~ msgid "Time before logout option"
-#~ msgstr "Aega enne väljalogimise valiku ilmumist"
-
-#~ msgid "Time before power management baseline"
-#~ msgstr "Aega enne vooluhalduse aktiveerimist"
-
-#~ msgid "Time before session is considered idle"
-#~ msgstr "Jõudeoleku kestus enne kui seanss hinnatakse jõude olevaks"
-
-#~ msgid "Time before theme change"
-#~ msgstr "Aeg enne teemavahetust"
-
-#~ msgid "<b>Screensaver preview</b>"
-#~ msgstr "<b>Ekraanisäästja eelvaade</b>"
-
-#~ msgid "Theme for lock dialog"
-#~ msgstr "Lukustusdialoogi teema"
-
-#~ msgid "Theme to use for the lock dialog."
-#~ msgstr "Lukustusdialoogi jaoks kasutatav teema."
-
-#~ msgid "<b>Leave a message for %R:</b>"
-#~ msgstr "<b>Sõnumi jätmine kasutajale %R:</b>"
-
-#~ msgid "_Cancel"
-#~ msgstr "_Tühista"
-
-#~ msgid "_Leave Message"
-#~ msgstr "_Jäta sõnum"
-
-#~ msgid "_Log Out"
-#~ msgstr "Logi _välja"
-
-#~ msgid "active"
-#~ msgstr "aktiivne"
-
-#~ msgid "inactive"
-#~ msgstr "aktiveerimata"
-
-#~ msgid "S_witch User..."
-#~ msgstr "_Vaheta kasutajat..."
