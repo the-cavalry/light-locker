@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver&component=general\n"
-"POT-Creation-Date: 2011-02-11 23:24+0000\n"
-"PO-Revision-Date: 2011-02-12 20:33+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-15 15:15+0000\n"
+"PO-Revision-Date: 2011-03-15 21:09+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: \n"
@@ -23,199 +23,56 @@ msgstr ""
 "X-Poedit-Language: Slovenian\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../data/gnome-screensaver.directory.in.h:1
-msgid "Screensaver themes"
-msgstr "Teme ohranjevalnika zaslona"
-
-#: ../data/gnome-screensaver.directory.in.h:2
-msgid "Screensavers"
-msgstr "Ohranjevalniki zaslona"
-
-#. Translators: This is the name of a desktop background image that shows outer space images.
-#. You might want to translate it into the equivalent words of your language
-#: ../data/images/cosmos/cosmos.xml.in.in.h:3
-#: ../savers/cosmos-slideshow.desktop.in.in.h:1
-msgid "Cosmos"
-msgstr "Vesolje"
-
-#: ../savers/cosmos-slideshow.desktop.in.in.h:2
-msgid "Display a slideshow of pictures of the cosmos"
-msgstr "Pokaži predstavitev slik vesolja"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "Premikanje mehurčkov z logotipom noge GNOME po zaslonu"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "Lebdeče noge"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:1
-msgid "Display a slideshow from your Pictures folder"
-msgstr "Pokaži predstavitev iz mape slike"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:2
-msgid "Pictures folder"
-msgstr "Mapa slik"
-
-#: ../savers/popsquares.desktop.in.in.h:1
-msgid "A pop-art-ish grid of pulsing colors."
-msgstr "Razpredelnica utripajočih barv v slogu pop-arta."
-
-#: ../savers/popsquares.desktop.in.in.h:2
-msgid "Pop art squares"
-msgstr "Kvadrati pop-arta"
-
-#: ../savers/popsquares.c:50
-#: ../savers/floaters.c:1184
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s. Uporabite --help za navodila o uporabi.\n"
-
-#: ../savers/floaters.c:88
-msgid "Show paths that images follow"
-msgstr "Pokaži poti, ki jim sledijo slike"
-
-#: ../savers/floaters.c:91
-msgid "Occasionally rotate images as they move"
-msgstr "Občasno zavrti slike, ko se premikajo"
-
-#: ../savers/floaters.c:94
-msgid "Print out frame rate and other statistics"
-msgstr "Izpiši hitrost sličic in drugo statistiko"
-
-#: ../savers/floaters.c:97
-msgid "The maximum number of images to keep on screen"
-msgstr "Največje število slik na zaslonu"
-
-#: ../savers/floaters.c:97
-msgid "MAX_IMAGES"
-msgstr "NAJVEČ_SLIK"
-
-#: ../savers/floaters.c:100
-msgid "The initial size and position of window"
-msgstr "Začetna velikost in položaj okna"
-
-#: ../savers/floaters.c:100
-msgid "WIDTHxHEIGHT+X+Y"
-msgstr "ŠIRINAxVIŠINA+X+Y"
-
-#: ../savers/floaters.c:103
-msgid "The source image to use"
-msgstr "Izvorno uporabljena slika"
-
-#. translators: the word "image" here
-#. * represents a command line argument
-#.
-#: ../savers/floaters.c:1178
-msgid "image — floats images around the screen"
-msgstr "image - vključi lebdeče slike na zaslonu"
-
-#: ../savers/floaters.c:1193
-#, c-format
-msgid "You must specify one image.  See --help for usage information.\n"
-msgstr "Navedena mora biti ena slika. Uporabite --help za navodila o uporabi.\n"
-
-#: ../savers/slideshow.c:53
-msgid "Location to get images from"
-msgstr "Mesto, kjer so shranjene slike"
-
-#: ../savers/slideshow.c:53
-msgid "PATH"
-msgstr "POT"
-
-#: ../savers/slideshow.c:55
-msgid "Color to use for image background"
-msgstr "Barva, ki naj se uporabi za ozadje."
-
-#: ../savers/slideshow.c:55
-msgid "\"#rrggbb\""
-msgstr "\"#rrggbb\""
-
-#: ../savers/slideshow.c:57
-msgid "Do not randomize pictures from location"
-msgstr "Slike naj se ne prikažejo naključno iz izbranega mesta"
-
-#: ../savers/slideshow.c:59
-msgid "Do not try to stretch images on screen"
-msgstr "Slike na zaslonu ni treba razširjati"
-
-#: ../src/gnome-screensaver-command.c:62
+#: ../src/gnome-screensaver-command.c:46
 msgid "Causes the screensaver to exit gracefully"
 msgstr "Omogoča enostaven izhod ohranjevalnika zaslona"
 
-#: ../src/gnome-screensaver-command.c:64
+#: ../src/gnome-screensaver-command.c:48
 msgid "Query the state of the screensaver"
 msgstr "Poizvedba stanja ohranjevalnika zaslona"
 
-#: ../src/gnome-screensaver-command.c:66
+#: ../src/gnome-screensaver-command.c:50
 msgid "Query the length of time the screensaver has been active"
 msgstr "Poizvedba o trajanju ohranjevalnika zaslona"
 
-#: ../src/gnome-screensaver-command.c:68
+#: ../src/gnome-screensaver-command.c:52
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "Procesu ohranjevalnika zaslona v teku pove, da nemudoma zaklene zaslon"
 
-#: ../src/gnome-screensaver-command.c:70
-msgid "If the screensaver is active then switch to another graphics demo"
-msgstr "V primeru, da je ohranjevalnik zaslona dejaven, preklopi na prikaz druge grafike"
-
-#: ../src/gnome-screensaver-command.c:72
+#: ../src/gnome-screensaver-command.c:54
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "Vključi ohranjevalnik zaslona (izprazni zaslon)"
 
-#: ../src/gnome-screensaver-command.c:74
+#: ../src/gnome-screensaver-command.c:56
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr "V primeru, da je ohranjevalnik zaslona dejaven, ga onemogoči (napolni zaslon)"
 
-#: ../src/gnome-screensaver-command.c:76
-msgid "Poke the running screensaver to simulate user activity"
-msgstr "Zatresi ohranjevalnik zaslona za simulacijo dejavnosti uporabnika"
-
-#: ../src/gnome-screensaver-command.c:78
-msgid "Inhibit the screensaver from activating.  Command blocks while inhibit is active."
-msgstr "Onemogoči vključitev ohranjevalnika zaslona. Ukaz zavira, ko je ohranjevalnik dejaven."
-
-#: ../src/gnome-screensaver-command.c:80
-msgid "The calling application that is inhibiting the screensaver"
-msgstr "Klicni program, ki onemogoča delovanje ohranjevalnika zaslona"
-
-#: ../src/gnome-screensaver-command.c:82
-msgid "The reason for inhibiting the screensaver"
-msgstr "Razlog za onemogočanje ohranjevalnika zaslona"
-
-#: ../src/gnome-screensaver-command.c:84
+#: ../src/gnome-screensaver-command.c:58
 #: ../src/gnome-screensaver-dialog.c:59
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Različica programa"
 
-#: ../src/gnome-screensaver-command.c:316
+#: ../src/gnome-screensaver-command.c:224
 #, c-format
 msgid "The screensaver is active\n"
 msgstr "Ohranjevalnik zaslona je dejaven.\n"
 
-#: ../src/gnome-screensaver-command.c:316
+#: ../src/gnome-screensaver-command.c:226
 #, c-format
 msgid "The screensaver is inactive\n"
 msgstr "Ohranjevalnik zaslona ni dejaven.\n"
 
-#: ../src/gnome-screensaver-command.c:330
+#: ../src/gnome-screensaver-command.c:256
 #, c-format
-msgid "The screensaver is not inhibited\n"
-msgstr "Ohranjevalnik zaslona ni  onemogočen\n"
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "Ohranjevalnik zaslona je bil dejaven %d sekund.\n"
+msgstr[1] "Ohranjevalnik zaslona je bil dejaven %d sekundo.\n"
+msgstr[2] "Ohranjevalnik zaslona je bil dejaven %d sekundi.\n"
+msgstr[3] "Ohranjevalnik zaslona je bil dejaven %d sekunde.\n"
 
-#: ../src/gnome-screensaver-command.c:336
-#, c-format
-msgid "The screensaver is being inhibited by:\n"
-msgstr "Ohranjevalnik zaslona  onemogoča program:\n"
-
-#: ../src/gnome-screensaver-command.c:367
-#, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "Ohranjevalnik zaslona je bil dejaven %d sekund.\n"
-
-#: ../src/gnome-screensaver-command.c:371
+#: ../src/gnome-screensaver-command.c:258
 #, c-format
 msgid "The screensaver is not currently active.\n"
 msgstr "Ohranjevalnik zaslona trenutno ni dejaven.\n"
@@ -368,15 +225,16 @@ msgstr "Ni dovoljeno pridobiti dostopa ob tem času."
 msgid "No longer permitted to access the system."
 msgstr "Dostop do sistema ni več dovoljen."
 
-#: ../src/gs-listener-dbus.c:1912
+#: ../src/gs-listener-dbus.c:1148
 msgid "failed to register with the message bus"
 msgstr "prijava s sporočilnim vodilom ni uspela"
 
-#: ../src/gs-listener-dbus.c:1922
+#: ../src/gs-listener-dbus.c:1158
 msgid "not connected to the message bus"
 msgstr "ni povezave s sporočilnim vodilom"
 
-#: ../src/gs-listener-dbus.c:1931
+#: ../src/gs-listener-dbus.c:1167
+#: ../src/gs-listener-dbus.c:1197
 msgid "screensaver already running in this session"
 msgstr "Ohranjevalnik zaslona že teče v tej seji."
 
@@ -396,30 +254,107 @@ msgstr "Vključene so velike črke."
 msgid "You have the Num Lock key on."
 msgstr "Vključena je tipka zaklepa številčnice"
 
-#: ../src/gs-lock-plug.c:1320
+#: ../src/gs-lock-plug.c:1350
 msgid "S_witch User…"
 msgstr "_Preklop uporabnika ..."
 
-#: ../src/gs-lock-plug.c:1329
+#: ../src/gs-lock-plug.c:1359
 msgid "Log _Out"
 msgstr "_Odjava"
 
-#: ../src/gs-lock-plug.c:1336
+#: ../src/gs-lock-plug.c:1366
 msgid "_Unlock"
 msgstr "_Odkleni"
 
-#: ../src/gs-lock-plug.c:1371
+#: ../src/gs-lock-plug.c:1401
 msgid "_Password:"
 msgstr "_Geslo:"
 
-#: ../src/gs-window-x11.c:2294
+#. Translators, this is the 24h date format used in the panel clock
+#: ../src/gs-window-x11.c:2199
 msgid "%a %R"
 msgstr "%a %R"
 
-#: ../src/gs-window-x11.c:2296
+#. Translators, this is the 12h date format used in the panel clock
+#: ../src/gs-window-x11.c:2202
 msgid "%a %l:%M %p"
 msgstr "%a, %H:%M"
 
+#~ msgid "Screensaver themes"
+#~ msgstr "Teme ohranjevalnika zaslona"
+#~ msgid "Screensavers"
+#~ msgstr "Ohranjevalniki zaslona"
+#~ msgid "Cosmos"
+#~ msgstr "Vesolje"
+#~ msgid "Display a slideshow of pictures of the cosmos"
+#~ msgstr "Pokaži predstavitev slik vesolja"
+#~ msgid "Bubbles the GNOME foot logo around the screen"
+#~ msgstr "Premikanje mehurčkov z logotipom noge GNOME po zaslonu"
+#~ msgid "Floating Feet"
+#~ msgstr "Lebdeče noge"
+#~ msgid "Display a slideshow from your Pictures folder"
+#~ msgstr "Pokaži predstavitev iz mape slike"
+#~ msgid "Pictures folder"
+#~ msgstr "Mapa slik"
+#~ msgid "A pop-art-ish grid of pulsing colors."
+#~ msgstr "Razpredelnica utripajočih barv v slogu pop-arta."
+#~ msgid "Pop art squares"
+#~ msgstr "Kvadrati pop-arta"
+#~ msgid "%s. See --help for usage information.\n"
+#~ msgstr "%s. Uporabite --help za navodila o uporabi.\n"
+#~ msgid "Show paths that images follow"
+#~ msgstr "Pokaži poti, ki jim sledijo slike"
+#~ msgid "Occasionally rotate images as they move"
+#~ msgstr "Občasno zavrti slike, ko se premikajo"
+#~ msgid "Print out frame rate and other statistics"
+#~ msgstr "Izpiši hitrost sličic in drugo statistiko"
+#~ msgid "The maximum number of images to keep on screen"
+#~ msgstr "Največje število slik na zaslonu"
+#~ msgid "MAX_IMAGES"
+#~ msgstr "NAJVEČ_SLIK"
+#~ msgid "The initial size and position of window"
+#~ msgstr "Začetna velikost in položaj okna"
+#~ msgid "WIDTHxHEIGHT+X+Y"
+#~ msgstr "ŠIRINAxVIŠINA+X+Y"
+#~ msgid "The source image to use"
+#~ msgstr "Izvorno uporabljena slika"
+#~ msgid "image — floats images around the screen"
+#~ msgstr "image - vključi lebdeče slike na zaslonu"
+#~ msgid "You must specify one image.  See --help for usage information.\n"
+#~ msgstr ""
+#~ "Navedena mora biti ena slika. Uporabite --help za navodila o uporabi.\n"
+#~ msgid "Location to get images from"
+#~ msgstr "Mesto, kjer so shranjene slike"
+#~ msgid "PATH"
+#~ msgstr "POT"
+#~ msgid "Color to use for image background"
+#~ msgstr "Barva, ki naj se uporabi za ozadje."
+#~ msgid "\"#rrggbb\""
+#~ msgstr "\"#rrggbb\""
+#~ msgid "Do not randomize pictures from location"
+#~ msgstr "Slike naj se ne prikažejo naključno iz izbranega mesta"
+#~ msgid "Do not try to stretch images on screen"
+#~ msgstr "Slike na zaslonu ni treba razširjati"
+#~ msgid "If the screensaver is active then switch to another graphics demo"
+#~ msgstr ""
+#~ "V primeru, da je ohranjevalnik zaslona dejaven, preklopi na prikaz druge "
+#~ "grafike"
+#~ msgid "Poke the running screensaver to simulate user activity"
+#~ msgstr "Zatresi ohranjevalnik zaslona za simulacijo dejavnosti uporabnika"
+#~ msgid ""
+#~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
+#~ "active."
+#~ msgstr ""
+#~ "Onemogoči vključitev ohranjevalnika zaslona. Ukaz zavira, ko je "
+#~ "ohranjevalnik dejaven."
+#~ msgid "The calling application that is inhibiting the screensaver"
+#~ msgstr "Klicni program, ki onemogoča delovanje ohranjevalnika zaslona"
+#~ msgid "The reason for inhibiting the screensaver"
+#~ msgstr "Razlog za onemogočanje ohranjevalnika zaslona"
+#~ msgid "The screensaver is not inhibited\n"
+#~ msgstr "Ohranjevalnik zaslona ni  onemogočen\n"
+#~ msgid "The screensaver is being inhibited by:\n"
+#~ msgstr "Ohranjevalnik zaslona  onemogoča program:\n"
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "Možnosti ohranjevalnika zaslona"
 #~ msgid "Power _Management"
