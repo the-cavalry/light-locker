@@ -8,225 +8,73 @@
 # Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007, 2008.
 # Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
 # Antón Méixome <meixome@mancomun.org>, 2009.
-# Fran Diéguez <frandieguez@ubuntu.com>, 2009, 2010, 2011.
+# Fran Diéguez <frandieguez@gnome.org>, 2009, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-13 14:41+0100\n"
-"PO-Revision-Date: 2011-02-13 14:41+0100\n"
-"Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
-"Language-Team: Galician <gnome-gl-list@gnome.org>\n"
+"POT-Creation-Date: 2011-03-15 15:45+0100\n"
+"PO-Revision-Date: 2011-03-15 15:46+0100\n"
+"Last-Translator: Fran Diéguez <frandieguez@gnome.org>\n"
+"Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../data/gnome-screensaver.directory.in.h:1
-msgid "Screensaver themes"
-msgstr "Temas do protector de pantalla"
-
-#: ../data/gnome-screensaver.directory.in.h:2
-msgid "Screensavers"
-msgstr "Protectores de pantalla"
-
-#. Translators: This is the name of a desktop background image that shows outer space images.
-#. You might want to translate it into the equivalent words of your language
-#: ../data/images/cosmos/cosmos.xml.in.in.h:3
-#: ../savers/cosmos-slideshow.desktop.in.in.h:1
-msgid "Cosmos"
-msgstr "Cosmos"
-
-#: ../savers/cosmos-slideshow.desktop.in.in.h:2
-msgid "Display a slideshow of pictures of the cosmos"
-msgstr "Mostra unha presentación de imaxes do cosmos"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "Move o logotipo do pé do GNOME ao redor da pantalla"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "Pé flotante"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:1
-msgid "Display a slideshow from your Pictures folder"
-msgstr "Mostra unha presentación das imaxes do seu cartafol Imaxes"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:2
-msgid "Pictures folder"
-msgstr "Cartafol Imaxes"
-
-#: ../savers/popsquares.desktop.in.in.h:1
-msgid "A pop-art-ish grid of pulsing colors."
-msgstr "Unha grella de cadros pop-art de cores pulsantes."
-
-#: ../savers/popsquares.desktop.in.in.h:2
-msgid "Pop art squares"
-msgstr "Cadrados de arte pop"
-
-#: ../savers/popsquares.c:50 ../savers/floaters.c:1184
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s. Vexa --help para ver a información de uso.\n"
-
-#: ../savers/floaters.c:88
-msgid "Show paths that images follow"
-msgstr "Mostrar as rutas que seguen as imaxes"
-
-#: ../savers/floaters.c:91
-msgid "Occasionally rotate images as they move"
-msgstr "Rotar as imaxes ocasionalmente mentres se moven"
-
-#: ../savers/floaters.c:94
-msgid "Print out frame rate and other statistics"
-msgstr "Imprimir a taxa de fotogramas e outras estatísticas"
-
-#: ../savers/floaters.c:97
-msgid "The maximum number of images to keep on screen"
-msgstr "O número máximo de imaxes que se vai manter na pantalla"
-
-#: ../savers/floaters.c:97
-msgid "MAX_IMAGES"
-msgstr "MAX_IMAXES"
-
-#: ../savers/floaters.c:100
-msgid "The initial size and position of window"
-msgstr "O tamaño e a posición iniciais da xanela"
-
-#: ../savers/floaters.c:100
-msgid "WIDTHxHEIGHT+X+Y"
-msgstr "LARGURAxALTURA+X+Y"
-
-#: ../savers/floaters.c:103
-msgid "The source image to use"
-msgstr "A imaxe orixe que se vai usar"
-
-#. translators: the word "image" here
-#. * represents a command line argument
-#.
-#: ../savers/floaters.c:1178
-msgid "image — floats images around the screen"
-msgstr "imaxe — imaxes flotan ao redor da pantalla"
-
-#: ../savers/floaters.c:1193
-#, c-format
-msgid "You must specify one image.  See --help for usage information.\n"
-msgstr "Especifique unha imaxe. Vexa --help para a ver a información de uso.\n"
-
-#: ../savers/slideshow.c:53
-msgid "Location to get images from"
-msgstr "Localización da que obter as imaxes"
-
-#: ../savers/slideshow.c:53
-msgid "PATH"
-msgstr "RUTA"
-
-#: ../savers/slideshow.c:55
-msgid "Color to use for image background"
-msgstr "Cor que se vai usar como imaxe de fondo"
-
-#: ../savers/slideshow.c:55
-msgid "\"#rrggbb\""
-msgstr "\"#rrggbb\""
-
-#: ../savers/slideshow.c:57
-msgid "Do not randomize pictures from location"
-msgstr "Non dispoñer as imaxes aleatoriamente desde a localización"
-
-#: ../savers/slideshow.c:59
-msgid "Do not try to stretch images on screen"
-msgstr "Non tentar ampliar as imaxes na pantalla"
-
-#: ../src/gnome-screensaver-command.c:62
+#: ../src/gnome-screensaver-command.c:46
 msgid "Causes the screensaver to exit gracefully"
 msgstr "Fai que o protector de pantalla termine correctamente"
 
-#: ../src/gnome-screensaver-command.c:64
+#: ../src/gnome-screensaver-command.c:48
 msgid "Query the state of the screensaver"
 msgstr "Consultar o estado do protector de pantalla"
 
-#: ../src/gnome-screensaver-command.c:66
+#: ../src/gnome-screensaver-command.c:50
 msgid "Query the length of time the screensaver has been active"
 msgstr "Consultar canto tempo leva activo o protector de pantalla"
 
-#: ../src/gnome-screensaver-command.c:68
+#: ../src/gnome-screensaver-command.c:52
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr ""
 "Dille ao proceso do protector de pantalla en execución que bloquee a "
 "pantalla inmediatamente"
 
-#: ../src/gnome-screensaver-command.c:70
-msgid "If the screensaver is active then switch to another graphics demo"
-msgstr ""
-"Se o protector de pantalla está activo entón cambia a outra demostración "
-"gráfica"
-
-#: ../src/gnome-screensaver-command.c:72
+#: ../src/gnome-screensaver-command.c:54
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "Activar o protector de pantalla (pór a pantalla en branco)"
 
-#: ../src/gnome-screensaver-command.c:74
+#: ../src/gnome-screensaver-command.c:56
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr ""
 "Se o protector de pantalla está activo entón desactívao (ilumina a pantalla)"
 
-#: ../src/gnome-screensaver-command.c:76
-msgid "Poke the running screensaver to simulate user activity"
-msgstr ""
-"Enviar mensaxes ao protector de pantalla en execución para simular a "
-"actividade do usuario"
-
-#: ../src/gnome-screensaver-command.c:78
-msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
-msgstr ""
-"Inhibir a activación do protector de pantalla. A orde bloquéase cando está "
-"activa a inhibición."
-
-#: ../src/gnome-screensaver-command.c:80
-msgid "The calling application that is inhibiting the screensaver"
-msgstr "O aplicativo que chama e que está inhibindo o protector de pantalla"
-
-#: ../src/gnome-screensaver-command.c:82
-msgid "The reason for inhibiting the screensaver"
-msgstr "A razón para inhibir o protector de pantalla"
-
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:59
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Versión deste aplicativo"
 
-#: ../src/gnome-screensaver-command.c:316
+#: ../src/gnome-screensaver-command.c:224
 #, c-format
 msgid "The screensaver is active\n"
 msgstr "O protector de pantalla está activo\n"
 
-#: ../src/gnome-screensaver-command.c:316
+#: ../src/gnome-screensaver-command.c:226
 #, c-format
 msgid "The screensaver is inactive\n"
 msgstr "O protector de pantalla está inactivo\n"
 
-#: ../src/gnome-screensaver-command.c:330
+#: ../src/gnome-screensaver-command.c:256
 #, c-format
-msgid "The screensaver is not inhibited\n"
-msgstr "O protector de pantalla non está inhibido\n"
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "O protector de pantalla estivo activo durante %d segundo.\n"
+msgstr[1] "O protector de pantalla estivo activo durante %d segundos.\n"
 
-#: ../src/gnome-screensaver-command.c:336
-#, c-format
-msgid "The screensaver is being inhibited by:\n"
-msgstr "O protector de pantalla está sendo inhibido por:\n"
-
-#: ../src/gnome-screensaver-command.c:367
-#, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "O protector de pantalla estivo activo durante %d segundos.\n"
-
-#: ../src/gnome-screensaver-command.c:371
+#: ../src/gnome-screensaver-command.c:258
 #, c-format
 msgid "The screensaver is not currently active.\n"
 msgstr "O protector de pantalla non está activo actualmente\n"
@@ -375,15 +223,15 @@ msgstr "Non está permitido obter o acceso neste momento."
 msgid "No longer permitted to access the system."
 msgstr "Xa non se lle permite acceder máis ao sistema."
 
-#: ../src/gs-listener-dbus.c:1912
+#: ../src/gs-listener-dbus.c:1148
 msgid "failed to register with the message bus"
 msgstr "produciuse un fallo ao rexistrarse no bus de mensaxe"
 
-#: ../src/gs-listener-dbus.c:1922
+#: ../src/gs-listener-dbus.c:1158
 msgid "not connected to the message bus"
 msgstr "non está conectado ao bus de mensaxes"
 
-#: ../src/gs-listener-dbus.c:1931
+#: ../src/gs-listener-dbus.c:1167 ../src/gs-listener-dbus.c:1197
 msgid "screensaver already running in this session"
 msgstr "xa se está executando o protector de pantalla nesta sesión"
 
@@ -403,29 +251,142 @@ msgstr "A tecla Bloq Maiús está activada."
 msgid "You have the Num Lock key on."
 msgstr "A tecla Bloq Num está activada."
 
-#: ../src/gs-lock-plug.c:1320
+#: ../src/gs-lock-plug.c:1350
 msgid "S_witch User…"
 msgstr "_Cambiar usuario…"
 
-#: ../src/gs-lock-plug.c:1329
+#: ../src/gs-lock-plug.c:1359
 msgid "Log _Out"
 msgstr "_Saír da sesión"
 
-#: ../src/gs-lock-plug.c:1336
+#: ../src/gs-lock-plug.c:1366
 msgid "_Unlock"
 msgstr "_Desbloquear"
 
-#: ../src/gs-lock-plug.c:1371
+#: ../src/gs-lock-plug.c:1401
 msgid "_Password:"
 msgstr "Co_ntrasinal:"
 
-#: ../src/gs-window-x11.c:2294
+#. Translators, this is the 24h date format used in the panel clock
+#: ../src/gs-window-x11.c:2199
 msgid "%a %R"
 msgstr "%a %R"
 
-#: ../src/gs-window-x11.c:2296
+#. Translators, this is the 12h date format used in the panel clock
+#: ../src/gs-window-x11.c:2202
 msgid "%a %l:%M %p"
 msgstr "%a %l:%M %p"
+
+#~ msgid "Screensaver themes"
+#~ msgstr "Temas do protector de pantalla"
+
+#~ msgid "Screensavers"
+#~ msgstr "Protectores de pantalla"
+
+#~ msgid "Cosmos"
+#~ msgstr "Cosmos"
+
+#~ msgid "Display a slideshow of pictures of the cosmos"
+#~ msgstr "Mostra unha presentación de imaxes do cosmos"
+
+#~ msgid "Bubbles the GNOME foot logo around the screen"
+#~ msgstr "Move o logotipo do pé do GNOME ao redor da pantalla"
+
+#~ msgid "Floating Feet"
+#~ msgstr "Pé flotante"
+
+#~ msgid "Display a slideshow from your Pictures folder"
+#~ msgstr "Mostra unha presentación das imaxes do seu cartafol Imaxes"
+
+#~ msgid "Pictures folder"
+#~ msgstr "Cartafol Imaxes"
+
+#~ msgid "A pop-art-ish grid of pulsing colors."
+#~ msgstr "Unha grella de cadros pop-art de cores pulsantes."
+
+#~ msgid "Pop art squares"
+#~ msgstr "Cadrados de arte pop"
+
+#~ msgid "%s. See --help for usage information.\n"
+#~ msgstr "%s. Vexa --help para ver a información de uso.\n"
+
+#~ msgid "Show paths that images follow"
+#~ msgstr "Mostrar as rutas que seguen as imaxes"
+
+#~ msgid "Occasionally rotate images as they move"
+#~ msgstr "Rotar as imaxes ocasionalmente mentres se moven"
+
+#~ msgid "Print out frame rate and other statistics"
+#~ msgstr "Imprimir a taxa de fotogramas e outras estatísticas"
+
+#~ msgid "The maximum number of images to keep on screen"
+#~ msgstr "O número máximo de imaxes que se vai manter na pantalla"
+
+#~ msgid "MAX_IMAGES"
+#~ msgstr "MAX_IMAXES"
+
+#~ msgid "The initial size and position of window"
+#~ msgstr "O tamaño e a posición iniciais da xanela"
+
+#~ msgid "WIDTHxHEIGHT+X+Y"
+#~ msgstr "LARGURAxALTURA+X+Y"
+
+#~ msgid "The source image to use"
+#~ msgstr "A imaxe orixe que se vai usar"
+
+#~ msgid "image — floats images around the screen"
+#~ msgstr "imaxe — imaxes flotan ao redor da pantalla"
+
+#~ msgid "You must specify one image.  See --help for usage information.\n"
+#~ msgstr ""
+#~ "Especifique unha imaxe. Vexa --help para a ver a información de uso.\n"
+
+#~ msgid "Location to get images from"
+#~ msgstr "Localización da que obter as imaxes"
+
+#~ msgid "PATH"
+#~ msgstr "RUTA"
+
+#~ msgid "Color to use for image background"
+#~ msgstr "Cor que se vai usar como imaxe de fondo"
+
+#~ msgid "\"#rrggbb\""
+#~ msgstr "\"#rrggbb\""
+
+#~ msgid "Do not randomize pictures from location"
+#~ msgstr "Non dispoñer as imaxes aleatoriamente desde a localización"
+
+#~ msgid "Do not try to stretch images on screen"
+#~ msgstr "Non tentar ampliar as imaxes na pantalla"
+
+#~ msgid "If the screensaver is active then switch to another graphics demo"
+#~ msgstr ""
+#~ "Se o protector de pantalla está activo entón cambia a outra demostración "
+#~ "gráfica"
+
+#~ msgid "Poke the running screensaver to simulate user activity"
+#~ msgstr ""
+#~ "Enviar mensaxes ao protector de pantalla en execución para simular a "
+#~ "actividade do usuario"
+
+#~ msgid ""
+#~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
+#~ "active."
+#~ msgstr ""
+#~ "Inhibir a activación do protector de pantalla. A orde bloquéase cando "
+#~ "está activa a inhibición."
+
+#~ msgid "The calling application that is inhibiting the screensaver"
+#~ msgstr "O aplicativo que chama e que está inhibindo o protector de pantalla"
+
+#~ msgid "The reason for inhibiting the screensaver"
+#~ msgstr "A razón para inhibir o protector de pantalla"
+
+#~ msgid "The screensaver is not inhibited\n"
+#~ msgstr "O protector de pantalla non está inhibido\n"
+
+#~ msgid "The screensaver is being inhibited by:\n"
+#~ msgstr "O protector de pantalla está sendo inhibido por:\n"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "Defina as súas preferencias para o protector de pantalla"
