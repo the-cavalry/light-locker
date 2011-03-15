@@ -253,7 +253,7 @@ do_command (GDBusConnection *connection)
                         g_variant_get (body, "(i)", &t);
                         g_object_unref (reply);
 
-                        g_print (_("The screensaver has been active for %d seconds.\n"), t);
+                        g_print (ngettext ("The screensaver has been active for %d second.\n", "The screensaver has been active for %d seconds.\n", t), t);
                 } else {
                         g_print (_("The screensaver is not currently active.\n"));
                 }
