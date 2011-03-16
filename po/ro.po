@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "screensaver&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-12 22:42+0000\n"
+"POT-Creation-Date: 2011-03-15 12:22+0000\n"
 "PO-Revision-Date: 2011-03-13 03:07+0200\n"
 "Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
-"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
 "X-Generator: Virtaal 0.6.1\n"
@@ -65,9 +65,13 @@ msgid "The screensaver is inactive\n"
 msgstr "Protectorul de ecran este inactiv\n"
 
 #: ../src/gnome-screensaver-command.c:256
-#, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "Protectorul de ecran a fost activ pentru %d secunde.\n"
+#, fuzzy, c-format
+#| msgid "The screensaver has been active for %d seconds.\n"
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "Protectorul de ecran a fost activ pentru %d secunde.\n"
+msgstr[1] "Protectorul de ecran a fost activ pentru %d secunde.\n"
+msgstr[2] "Protectorul de ecran a fost activ pentru %d secunde.\n"
 
 #: ../src/gnome-screensaver-command.c:258
 #, c-format
@@ -121,7 +125,8 @@ msgstr "Este necesar să vă schimbați parola imediat (parola este prea veche)"
 
 #: ../src/gnome-screensaver-dialog.c:189
 msgid "You are required to change your password immediately (root enforced)"
-msgstr "Este necesar să vă schimbați parola imediat (vă obligă administratorul)"
+msgstr ""
+"Este necesar să vă schimbați parola imediat (vă obligă administratorul)"
 
 #: ../src/gnome-screensaver-dialog.c:190
 msgid "Your account has expired; please contact your system administrator"
