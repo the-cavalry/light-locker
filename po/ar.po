@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-11 16:55+0200\n"
-"PO-Revision-Date: 2011-02-04 18:52+0300\n"
+"POT-Creation-Date: 2011-03-16 14:38+0200\n"
+"PO-Revision-Date: 2011-03-16 14:37+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
@@ -59,8 +59,14 @@ msgstr "حافظة الشاشة غير نشطة\n"
 
 #: ../src/gnome-screensaver-command.c:256
 #, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "حافظة الشاشة نشِطة منذ %Id ثواني.\n"
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "حافظة الشاشة نشِطة منذ %d ثواني.\n"
+msgstr[1] "حافظة الشاشة نشِطة منذ ثانية.\n"
+msgstr[2] "حافظة الشاشة نشِطة منذ ثانيتين.\n"
+msgstr[3] "حافظة الشاشة نشِطة منذ %d ثوان.\n"
+msgstr[4] "حافظة الشاشة نشِطة منذ %d ثانية.\n"
+msgstr[5] "حافظة الشاشة نشِطة منذ %d ثانية.\n"
 
 #: ../src/gnome-screensaver-command.c:258
 #, c-format
