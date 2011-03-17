@@ -2306,8 +2306,6 @@ create_panel (GSWindow *window)
         gtk_box_pack_start (GTK_BOX (window->priv->panel), alignment, FALSE, FALSE, 0);
         window->priv->clock = gtk_label_new (NULL);
         gtk_misc_set_padding (GTK_MISC (window->priv->clock), 4, 4);
-        update_clock (window);
-        queue_clock_update (window);
         gtk_container_add (GTK_CONTAINER (alignment), window->priv->clock);
 
         right_alignment = gtk_alignment_new (1, 0.5, 1, 1);
@@ -2402,6 +2400,8 @@ gs_window_init (GSWindow *window)
         window->priv->clock_format = g_settings_get_enum (window->priv->clock_settings, "clock-format");
         g_signal_connect (window->priv->clock_settings, "changed::clock-format",
                           G_CALLBACK (update_clock_format), window);
+        update_clock (window);
+        queue_clock_update (window);
 
         force_no_pixmap_background (window->priv->drawing_area);
 }
