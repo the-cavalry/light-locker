@@ -39,9 +39,6 @@ static void gs_prefs_finalize   (GObject      *object);
 #define KEY_LOCK_DISABLE          "disable-lock-screen"
 #define KEY_USER_SWITCH_DISABLE   "disable-user-switching"
 
-#define GSM_SETTINGS_SCHEMA "org.gnome.desktop.session"
-#define KEY_ACTIVATE_DELAY "idle-delay"
-
 #define GS_SETTINGS_SCHEMA "org.gnome.desktop.screensaver"
 #define KEY_IDLE_ACTIVATION_ENABLED         "idle-activation-enabled"
 #define KEY_LOCK_ENABLED   "lock-enabled"
@@ -59,7 +56,6 @@ static void gs_prefs_finalize   (GObject      *object);
 struct GSPrefsPrivate
 {
         GSettings *settings;
-        GSettings *session_settings;
         GSettings *lockdown;
 };
 
@@ -403,11 +399,6 @@ gs_prefs_init (GSPrefs *prefs)
                           "changed",
                           G_CALLBACK (key_changed_cb),
                           prefs);
-        prefs->priv->session_settings  = g_settings_new (GSM_SETTINGS_SCHEMA);
-        g_signal_connect (prefs->priv->session_settings,
-                          "changed",
-                          G_CALLBACK (key_changed_cb),
-                          prefs);
         prefs->priv->lockdown          = g_settings_new (LOCKDOWN_SETTINGS_SCHEMA);
         g_signal_connect (prefs->priv->lockdown,
                           "changed",
@@ -441,10 +432,6 @@ gs_prefs_finalize (GObject *object)
         if (prefs->priv->settings) {
                 g_object_unref (prefs->priv->settings);
                 prefs->priv->settings = NULL;
-        }
-        if (prefs->priv->session_settings) {
-                g_object_unref (prefs->priv->session_settings);
-                prefs->priv->session_settings = NULL;
         }
         if (prefs->priv->lockdown) {
                 g_object_unref (prefs->priv->lockdown);
