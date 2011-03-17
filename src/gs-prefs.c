@@ -254,12 +254,6 @@ gs_prefs_load_from_settings (GSPrefs *prefs)
         bvalue = g_settings_get_boolean (prefs->priv->settings, KEY_LOCK_ENABLED);
         _gs_prefs_set_lock_enabled (prefs, bvalue);
 
-        bvalue = g_settings_get_boolean (prefs->priv->lockdown, KEY_LOCK_DISABLE);
-        _gs_prefs_set_lock_disabled (prefs, bvalue);
-
-        bvalue = g_settings_get_boolean (prefs->priv->lockdown, KEY_USER_SWITCH_DISABLE);
-        _gs_prefs_set_user_switch_disabled (prefs, bvalue);
-
         uvalue = _gs_settings_get_uint (prefs->priv->settings, KEY_LOCK_DELAY);
         _gs_prefs_set_lock_timeout (prefs, uvalue);
 
@@ -291,6 +285,15 @@ gs_prefs_load_from_settings (GSPrefs *prefs)
 
         bvalue = g_settings_get_boolean (prefs->priv->settings, KEY_USER_SWITCH_ENABLED);
         _gs_prefs_set_user_switch_enabled (prefs, bvalue);
+
+        /* Lockdown keys */
+
+        bvalue = g_settings_get_boolean (prefs->priv->lockdown, KEY_LOCK_DISABLE);
+        _gs_prefs_set_lock_disabled (prefs, bvalue);
+
+        bvalue = g_settings_get_boolean (prefs->priv->lockdown, KEY_USER_SWITCH_DISABLE);
+        _gs_prefs_set_user_switch_disabled (prefs, bvalue);
+
 }
 
 static void
