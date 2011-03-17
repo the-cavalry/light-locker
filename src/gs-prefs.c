@@ -136,7 +136,7 @@ _gs_prefs_set_lock_timeout (GSPrefs *prefs,
         if (value > 480)
                 value = 480;
 
-        prefs->lock_timeout = value * 60000;
+        prefs->lock_timeout = value * 1000;
 }
 
 static void
@@ -225,7 +225,7 @@ _gs_prefs_set_logout_timeout (GSPrefs *prefs,
         if (value > 480)
                 value = 480;
 
-        prefs->logout_timeout = value * 60000;
+        prefs->logout_timeout = value * 1000;
 }
 
 static void
