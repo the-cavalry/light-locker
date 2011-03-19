@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-12 23:41+0100\n"
-"PO-Revision-Date: 2011-03-12 23:40+0100\n"
+"POT-Creation-Date: 2011-03-19 01:25+0100\n"
+"PO-Revision-Date: 2011-03-19 01:25+0100\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "Language: nl\n"
@@ -71,8 +71,10 @@ msgstr "De schermbeveiliging is niet actief\n"
 
 #: ../src/gnome-screensaver-command.c:256
 #, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "De schermbeveiliging is geactiveerd geweest gedurende %d seconden\n"
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "De schermbeveiliging was voor %d seconden actief.\n"
+msgstr[1] "De schermbeveiliging was voor %d seconden actief.\n"
 
 #: ../src/gnome-screensaver-command.c:258
 #, c-format
@@ -193,7 +195,7 @@ msgstr "Niet als daemon uitvoeren"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
-msgstr "Debugging code gebruiken"
+msgstr "Debugging-code gebruiken"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
 msgid "Launch screensaver and locker program"
