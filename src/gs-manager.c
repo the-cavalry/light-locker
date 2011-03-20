@@ -159,6 +159,7 @@ gs_manager_set_lock_enabled (GSManager *manager,
 
         if (manager->priv->lock_enabled != lock_enabled) {
                 manager->priv->lock_enabled = lock_enabled;
+                gs_debug ("GSManager: lock-enabled=%d", lock_enabled);
         }
 }
 

@@ -30,6 +30,7 @@
 #include <gdesktop-enums.h>
 
 #include "gs-prefs.h"
+#include "gs-debug.h"
 
 static void gs_prefs_class_init (GSPrefsClass *klass);
 static void gs_prefs_init       (GSPrefs      *prefs);
@@ -321,7 +322,7 @@ key_changed_cb (GSettings   *settings,
 
                 enabled = g_settings_get_boolean (settings, key);
                 _gs_prefs_set_lock_enabled (prefs, enabled);
-
+                gs_debug ("lock-enabled=%d",enabled);
         } else if (strcmp (key, KEY_LOCK_DISABLE) == 0) {
 
                 gboolean disabled;
