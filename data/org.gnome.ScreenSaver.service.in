@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=org.gnome.ScreenSaver
-Exec=@EXPANDED_BINDIR@/gnome-screensaver --no-daemon
