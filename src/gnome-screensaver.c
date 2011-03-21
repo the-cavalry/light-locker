@@ -50,7 +50,7 @@ main (int    argc,
         GSMonitor          *monitor;
         GError             *error = NULL;
         static gboolean     show_version = FALSE;
-        static gboolean     no_daemon    = FALSE;
+        static gboolean     no_daemon    = TRUE;
         static gboolean     debug        = FALSE;
         static GOptionEntry entries []   = {
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
@@ -82,8 +82,7 @@ main (int    argc,
                 exit (1);
         }
 
-        /* debug to a file if in deamon mode */
-        gs_debug_init (debug, ! no_daemon);
+        gs_debug_init (debug, FALSE);
         gs_debug ("initializing gnome-screensaver %s", VERSION);
 
         monitor = gs_monitor_new ();
@@ -101,11 +100,6 @@ main (int    argc,
                         g_warning ("Unable to start screensaver");
                 }
                 exit (1);
-        }
-
-        /* Don't close stdout and stderr for now */
-        if (! no_daemon && daemon (0, 1)) {
-                g_error ("Could not daemonize: %s", g_strerror (errno));
         }
 
         gtk_main ();
