@@ -95,13 +95,6 @@ AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
 GNOME_COMPILE_WARNINGS(yes)
 
-# Solaris requires libresolv for daemon()
-case "$host" in
-	*-*-solaris*)
-		AC_CHECK_LIB(resolv, daemon, [GNOME_SCREENSAVER_LIBS="$GNOME_SCREENSAVER_LIBS -lresolv"])
-	;;
-esac
-
 # Optional dependencies for the theme engines
 
 SAVER_MODULES="gthread-2.0 gtk+-3.0 >= $GTK_REQUIRED_VERSION"
