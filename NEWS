@@ -1,4 +1,20 @@
 ================
+Version  2.91.92
+================
+
+- Store time values in seconds instead of minutes
+- Don't monitor session settings
+- Ensure the initial state of the clock is correct
+- Remove dbus activation
+- Remove daemonization
+- Request shell exit overview when locking
+- Translation updates ((Polish, Vietnamese, Brazilian Portuguese,
+  Arabic, Dutch, Romanian, Africaans, Hungarian, Estonian, Slovenian,
+  Portuguese, Hebrew, Norwegian bokmål, British English, German,
+  Ukrainian, Swedish, Catalan, Serbian, Korean, French, Indonesian,
+  Assamese)
+
+================
 Version  2.91.91
 ================
 
