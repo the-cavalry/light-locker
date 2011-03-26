@@ -4,483 +4,71 @@
 #
 # ASB <aalam@users.sf.net>, 2005, 2006, 2007.
 # Amanpreet Singh Alam <aalam@users.sf.net>, 2008.
-# A S Alam <aalam@users.sf.net>, 2009, 2010.
+# A S Alam <aalam@users.sf.net>, 2009, 2010, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
-"cgi?product=gnome-screensaver&component=general\n"
-"POT-Creation-Date: 2010-07-02 01:36+0000\n"
-"PO-Revision-Date: 2010-08-04 15:25+0530\n"
+"cgi?product=gnome-screensaver&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-15 12:22+0000\n"
+"PO-Revision-Date: 2011-03-26 23:44+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.2\n"
+"Language: pa\n"
 
-#: ../data/gnome-screensaver-preferences.desktop.in.h:1
-#: ../src/gnome-screensaver.desktop.in.in.h:2
-msgid "Screensaver"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ"
-
-#: ../data/gnome-screensaver-preferences.desktop.in.h:2
-msgid "Set your screensaver preferences"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਲਈ ਆਪਣੀ ਪਸੰਦ ਦਿਓ"
-
-#: ../data/gnome-screensaver-preferences.ui.h:1
-msgid "Power _Management"
-msgstr "ਊਰਜਾ ਪਰਬੰਧ(_M)"
-
-#: ../data/gnome-screensaver-preferences.ui.h:2
-msgid "Regard the computer as _idle after:"
-msgstr "ਕੰਪਿਊਟਰ ਨੂੰ ਇੰਨੇ ਸਮੇਂ ਬਾਅਦ ਵੇਹਲਾ ਮੰਨੋ(_i):"
-
-#: ../data/gnome-screensaver-preferences.ui.h:3
-msgid "Screensaver Preferences"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਪਸੰਦ"
-
-#: ../data/gnome-screensaver-preferences.ui.h:4
-msgid "Screensaver Preview"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਝਲਕ"
-
-#: ../data/gnome-screensaver-preferences.ui.h:5
-#| msgid "Screensaver Preview"
-msgid "Screensaver preview"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਝਲਕ"
-
-#: ../data/gnome-screensaver-preferences.ui.h:6
-#| msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgid "Warning: the screen will not be locked for the root user."
-msgstr "ਚੇਤਾਵਨੀ: ਸਕਰੀਨ root ਯੂਜ਼ਰ ਲਈ ਤਾਲਾਬੰਦ ਨਹੀਂ ਹੋਵੇਗੀ।"
-
-#: ../data/gnome-screensaver-preferences.ui.h:7
-msgid "_Activate screensaver when computer is idle"
-msgstr "ਜਦੋਂ ਕੰਪਿਊਟਰ ਵੇਹਲਾ ਹੋਵੇ ਤਾਂ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਕਰੋ(_A)"
-
-#: ../data/gnome-screensaver-preferences.ui.h:8
-msgid "_Lock screen when screensaver is active"
-msgstr "ਜਦੋਂ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਵੇ ਤਾਂ ਸਕਰੀਨ ਲਾਕ ਕਰੋ(_L)"
-
-#: ../data/gnome-screensaver-preferences.ui.h:9
-msgid "_Preview"
-msgstr "ਝਲਕ(_P)"
-
-#: ../data/gnome-screensaver-preferences.ui.h:10
-msgid "_Screensaver theme:"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਥੀਮ(_S):"
-
-#: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:11
-msgid "Screensaver themes"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਥੀਮ"
-
-#: ../data/gnome-screensaver.directory.in.h:2
-msgid "Screensavers"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ"
-
-#: ../data/gnome-screensaver.schemas.in.h:1
-msgid "Activate when idle"
-msgstr "ਜਦੋਂ ਵੇਹਲਾ ਹੋਵੇ ਤਾਂ ਸਰਗਰਮ"
-
-#: ../data/gnome-screensaver.schemas.in.h:2
-msgid "Allow embedding a keyboard into the window"
-msgstr "ਇੱਕ ਕੀ-ਬੋਰਡ ਨੂੰ ਵਿੰਡੋ ਵਿੱਚ ਸ਼ਾਮਲ ਰੱਖਣਾ ਮਨਜ਼ੂਰ"
-
-#: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow logout"
-msgstr "ਲਾਗਆਉਟ ਮਨਜ਼ੂਰ"
-
-#: ../data/gnome-screensaver.schemas.in.h:4
-msgid "Allow the session status message to be displayed"
-msgstr "ਸ਼ੈਸ਼ਨ ਹਾਲਤ ਸੁਨੇਹੇ ਵੇਖਾਉਣਾ ਮਨਜ਼ੂਰ"
-
-#: ../data/gnome-screensaver.schemas.in.h:5
-msgid "Allow the session status message to be displayed when the screen is locked."
-msgstr "ਜਦੋਂ ਸਕਰੀਨ ਲਾਕ (ਤਾਲਾਬੰਦ) ਹੋਵੇ ਤਾਂ ਸ਼ੈਸ਼ਨ ਸੁਨੇਹੇ ਵੇਖਾਉਣ ਦੀ ਮਨਜ਼ੂਰੀ ਹੈ।"
-
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Allow user switching"
-msgstr "ਯੂਜ਼ਰ ਬਦਲਣਾ ਮਨਜ਼ੂਰ"
-
-#: ../data/gnome-screensaver.schemas.in.h:7
-msgid "Embedded keyboard command"
-msgstr "ਸ਼ਾਮਿਲ ਕੀ-ਬੋਰਡ ਕਮਾਂਡ"
-
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Lock on activation"
-msgstr "ਸਰਗਰਮੀ ਸਮੇਂ ਲਾਕ ਕਰੋ"
-
-#: ../data/gnome-screensaver.schemas.in.h:9
-msgid "Logout command"
-msgstr "ਲਾਗਆਉਟ ਕਮਾਂਡ"
-
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Screensaver theme selection mode"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਥੀਮ ਚੋਣ ਢੰਗ"
-
-#: ../data/gnome-screensaver.schemas.in.h:12
-msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr "ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਸ਼ੈਸ਼ਨ ਵੇਹਲਾ ਹੋਣ ਸਮੇਂ ਸਕਰੀਨ ਨੂੰ ਤਾਲਾਬੰਦ ਕਰਨਾ ਹੈ"
-
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid ""
-"Set this to TRUE to allow embedding a keyboard into the window when trying "
-"to unlock. The \"keyboard_command\" key must be set with the appropriate "
-"command."
-msgstr ""
-"ਇਹ ਨੂੰ ਸੱਚ ਬਣਾਉਣ ਨਾਲ ਵਿੰਡੋ ਵਿੱਚ ਇੱਕ ਸ਼ਾਮਿਲ ਕੀ-ਬੋਰਡ ਵੇਖਾਇਆ ਜਾਵੇਗਾ, ਜਦੋਂ ਕਿ ਤਾਲਾ-ਖੋਲ੍ਹਣ ਦੀ "
-"ਕੋਸ਼ਿਸ਼ ਕੀਤੀ ਜਾ ਰਹੀ ਹੋਵੇ। \"keyboard_command\" ਕੁੰਜੀ ਨੂੰ ਢੁੱਕਵੀਂ ਕਮਾਂਡ ਲਈ ਸੈੱਟ ਕੀਤਾ ਹੋਣਾ "
-"ਲਾਜ਼ਮੀ ਹੈ।"
-
-#: ../data/gnome-screensaver.schemas.in.h:14
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr "ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਣ ਸਮੇਂ ਸਕਰੀਨ ਨੂੰ ਲਾਕ ਕਰਨਾ ਹੈ"
-
-#: ../data/gnome-screensaver.schemas.in.h:15
-#| msgid ""
-#| "Set this to TRUE to offer an option in unlock dialog to logging out after "
-#| "a delay. The Delay is specified in the \"logout_delay\" key."
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to allow logging "
-"out after a delay. The delay is specified in the \"logout_delay\" key."
-msgstr ""
-"ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਤਾਲਾ-ਖੋਲ੍ਹਣ ਡਾਈਲਾਗ ਵਿੱਚ ਇੱਕ ਚੋਣ ਰੱਖਣੀ ਹੈ ਕਿ ਅੰਤਰਾਲ ਦੇ ਬਾਅਦ ਲਾਗ-ਆਉਣ ਹੋ "
-"ਜਾਵੇ। ਅੰਤਰਾਲ ਨੂੰ \"logout_delay\" ਕੁੰਜੀ ਵਿੱਚ ਦਿਓ।"
-
-#: ../data/gnome-screensaver.schemas.in.h:16
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to switch to a "
-"different user account."
-msgstr ""
-"ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਤਾਲਾ ਖੋਲ੍ਹਣ ਡਾਈਲਾਗ ਵਿੱਚ ਇੱਕ ਚੋਣ ਦਿੱਤੀ ਜਾਵੇ, ਜਿਸ ਨਾਲ ਵੱਖਰੇ ਯੂਜ਼ਰ ਅਕਾਊਂਟ "
-"ਲਈ ਬਦਲਿਆ ਜਾ ਸਕੇ।"
-
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
-"set to TRUE, to embed a keyboard widget into the window. This command should "
-"implement an XEMBED plug interface and output a window XID on the standard "
-"output."
-msgstr ""
-"ਕਮਾਂਡ, ਜੋ ਚੱਲੇਗੀ, ਜਦੋਂ \"embedded_keyboard_enabled\" ਕੁੰਜੀ ਨੂੰ ਸੈੱਟ ਕੀਤਾ ਗਿਆ ਹੋਵੇ, ਤਾਂ ਕਿ "
-"ਕੀ-ਬੋਰਡ ਨੂੰ ਵਿੰਡੋ ਵਿੱਚ ਸ਼ਾਮਿਲ ਕੀਤਾ ਗਿਆ ਹੋਵੇ। ਇਹ ਕਮਾਂਡ ਨੂੰ XEMBED ਪਲੱਗ ਇੰਟਰਫੇਸ ਰਾਹੀਂ ਬਣਾਇਆ "
-"ਗਿਆ ਹੈ ਅਤੇ ਸਟੈਂਡਰਡ ਆਉਟਪੁੱਟ ਉੱਤੇ ਇੱਕ ਵਿੰਡੋ XID ਆਉਟਪੁੱਟ ਹੈ।"
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The command to invoke when the logout button is clicked. This command should "
-"simply log the user out without any interaction. This key has effect only if "
-"the \"logout_enable\" key is set to TRUE."
-msgstr ""
-"ਲਾਗਆਉਟ (logout) ਬਟਨ ਨੂੰ ਦਬਾਉਣ ਸਮੇਂ ਵਰਤੀ ਜਾਣ ਵਾਲੀ ਕਮਾਂਡ ਹੈ। ਇਹ ਕਮਾਂਡ ਬਿਨਾਂ ਕਿਸੇ ਯੂਜ਼ਰ "
-"ਦਖਲ ਦੇ ਲਾਗ ਆਉਟ ਕਰ ਦੇਣ ਵਾਲੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ। ਇਹ ਕੁੰਜੀ ਤਾਂ ਹੀ ਪਰਭਾਵੀ ਹੈ, ਜੇਕਰ "
-"\"logout_enable\" ਕੁੰਜੀ ਨੂੰ ਸੱਚ ਕੀਤਾ ਹੋਵੇਗਾ।"
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid "The number of minutes after screensaver activation before locking the screen."
-msgstr "ਸਕਰੀਨ ਨੂੰ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਣ ਦੇ ਬਾਅਦ ਲਾਕ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਟਾਈਮ (ਅੰਤਰਾਲ) ਮਿੰਟਾਂ ਵਿੱਚ ਹੈ।"
-
-#: ../data/gnome-screensaver.schemas.in.h:20
-#| msgid ""
-#| "The number of minutes after the screensaver activation before a logout "
-#| "option will appear in unlock dialog. This key has effect only if the "
-#| "\"logout_enable\" key is set to TRUE."
-msgid ""
-"The number of minutes after the screensaver activation before a logout "
-"option will appear in the unlock dialog. This key has effect only if the "
-"\"logout_enable\" key is set to TRUE."
-msgstr ""
-"ਸਕਰੀਨ-ਸੇਵਰ ਦੇ ਸਰਗਰਮ ਹੋਣ ਬਾਅਦ ਤਾਲਾ-ਖੋਲ੍ਹਣ ਡਾਈਲਾਗ ਵਿੱਚ ਲਾਗ-ਆਉਟ ਚੋਣ ਉਪਲੱਬਧ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ "
-"ਦਾ ਟਾਈਮ (ਅੰਤਰਾਲ) ਮਿੰਟਾਂ ਵਿੱਚ ਹੈ। ਇਹ ਕੁੰਜੀ ਤਾਂ ਹੀ ਪਰਭਾਵੀ ਹੈ, ਜੇਕਰ \"logout_enable\" ਕੁੰਜੀ "
-"ਸੱਚ ਕੀਤੀ ਗਈ ਹੈ।"
-
-#: ../data/gnome-screensaver.schemas.in.h:21
-msgid "The number of minutes of inactivity before the session is considered idle."
-msgstr "ਸ਼ੈਸ਼ਨ ਨੂੰ ਵੇਹਲਾ (idle) ਮੰਨਣ ਤੋਂ ਪਹਿਲਾਂ ਕੋਈ ਸਰਗਰਮੀ ਤੋਂ ਬਿਨਾਂ ਟਾਈਮ-ਮਿੰਟਾਂ ਵਿੱਚ ਹੈ।"
-
-#: ../data/gnome-screensaver.schemas.in.h:22
-msgid "The number of minutes to run before changing the screensaver theme."
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਥੀਮ ਬਦਲਣ ਤੋਂ ਪਹਿਲਾਂ ਉਸ ਨੂੰ ਚਲਾਉਣ ਦਾ ਟਾਈਮ ਮਿੰਟਾਂ ਵਿੱਚ ਹੈ।"
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-#| msgid ""
-#| "The number of seconds of inactivity before signalling to power-"
-#| "management. This key is set and maintained by the session power-"
-#| "management agent."
-msgid ""
-"The number of seconds of inactivity before signalling to power management. "
-"This key is set and maintained by the session power management agent."
-msgstr ""
-"ਊਰਜਾ-ਪਰਬੰਧ ਨੂੰ ਸੰਕੇਤ ਭੇਜਣ ਤੋਂ ਪਹਿਲਾਂ ਨਾ-ਸਰਗਰਮੀ ਦੇ ਸਕਿੰਟ ਦੀ ਗਿਣਤੀ ਹੈ। ਇਹ ਕੁੰਜੀ ਨੂੰ ਸ਼ੈਸ਼ਨ ਊਰਜਾ-"
-"ਪਰਬੰਧ ਏਜੰਟ ਵਲੋਂ ਸੈੱਟ ਅਤੇ ਪਰਬੰਧ ਅਧੀਨ ਰੱਖਿਆ ਜਾਂਦਾ ਹੈ।"
-
-#: ../data/gnome-screensaver.schemas.in.h:24
-msgid ""
-"The selection mode used by screensaver. May be \"blank-only\" to enable the "
-"screensaver without using any theme on activation, \"single\" to enable "
-"screensaver using only one theme on activation (specified in \"themes\" "
-"key), and \"random\" to enable the screensaver using a random theme on "
-"activation."
-msgstr ""
-"ਸਕਰੀਨ-ਸੇਵਰ ਵਲੋਂ ਵਰਤਿਆ ਜਾਣ ਵਾਲਾ ਚੋਣ ਢੰਗ ਹੈ। \"ਸਿਰਫ਼ ਖਾਲੀ (blank-only\" ਨੂੰ ਬਿਨਾਂ ਕਿਸੇ "
-"ਥੀਮ ਦੇ ਸਕਰੀਨ-ਸੇਵਰ ਨੂੰ ਸਰਗਰਮ ਕਰਨ ਲਈ ਵਰਤੋਂ, \"ਇੱਕਲਾ (single)\" ਨੂੰ ਸਰਗਰਮ ਹੋਣ ਦੀ ਹਾਲਤ ਵਿੱਚ "
-"ਇੱਕ ਹੀ ਥੀਮ ਵਰਤਣ ਲਈ ਦਿਓ, (\"ਥੀਮ (themes)\" ਕੁੰਜੀ ਦੱਸਣੀ ਲਾਜ਼ਮੀ ਹੈ) ਅਤੇ \"ਰਲਵਾਂ (random)"
-"\" ਨੂੰ ਸਰਗਰਮ ਹੋਣ ਦੀ ਹਾਲਤ ਵਿੱਚ ਰਲਵੇਂ ਥੀਮ ਵਰਤਣ ਲਈ ਯੋਗ ਕਰਦਾ ਹੈ।"
-
-#: ../data/gnome-screensaver.schemas.in.h:25
-msgid ""
-"This key specifies the list of themes to be used by the screensaver. It's "
-"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
-"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
-"\" is \"random\"."
-msgstr ""
-"ਇਹ ਕੁੰਜੀ ਸਕਰੀਨ-ਸੇਵਰ ਵਲੋਂ ਵਰਤੇ ਜਾਣ ਵਾਲੇ ਥੀਮ ਦੀ ਲਿਸਟ ਦੱਸਦੀ ਹੈ। ਇਹ ਨੂੰ ਅਣਡਿੱਠਾ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, "
-"ਜਦੋਂ \"mode\" ਕੁੰਜੀ ਨੂੰ \"blank-only\" ਰੱਖਿਆ ਜਾਂਦਾ ਹੈ, ਥੀਮ ਨਾਂ ਦੇਣਾ ਲਾਜ਼ਮੀ ਹੈ, ਜਦੋਂ \"mode"
-"\" ਨੂੰ \"single\" ਮੁੱਲ ਦਿੱਤਾ ਹੋਵੇ ਅਤੇ \"mode\" ਨੂੰ \"random\" ਮੁੱਲ ਹੋਣ ਦੀ ਹਾਲਤ ਵਿੱਚ ਥੀਮਾਂ "
-"ਦੀ ਲਿਸਟ ਦੇਣਾ ਲਾਜ਼ਮੀ ਹੈ।"
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Time before locking"
-msgstr "ਲਾਕ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਟਾਈਮ"
-
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid "Time before logout option"
-msgstr "ਲਾਗਆਉਟ ਚੋਣ ਤੋਂ ਪਹਿਲਾਂ ਟਾਈਮ"
-
-#: ../data/gnome-screensaver.schemas.in.h:28
-#| msgid "Time before power-management baseline"
-msgid "Time before power management baseline"
-msgstr "ਊਰਜਾ-ਪਰਬੰਧ ਬੇਸ-ਲਾਇਨ ਤੋਂ ਪਹਿਲਾਂ ਟਾਈਮ"
-
-#: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before session is considered idle"
-msgstr "ਸ਼ੈਸ਼ਨ ਨੂੰ ਵੇਹਲਾ (idle) ਮੰਨਣ ਤੋਂ ਪਹਿਲਾਂ ਟਾਈਮ"
-
-#: ../data/gnome-screensaver.schemas.in.h:30
-msgid "Time before theme change"
-msgstr "ਥੀਮ ਬਦਲਣ ਤੋਂ ਪਹਿਲਾਂ ਟਾਈਮ"
-
-#. Translators: This is the name of a desktop background image that shows outer space images.
-#. You might want to translate it into the equivalent words of your language
-#: ../data/images/cosmos/cosmos.xml.in.in.h:3
-#: ../savers/cosmos-slideshow.desktop.in.in.h:1
-msgid "Cosmos"
-msgstr "ਕੋਸਮੋਸ"
-
-#: ../savers/cosmos-slideshow.desktop.in.in.h:2
-msgid "Display a slideshow of pictures of the cosmos"
-msgstr "ਕੋਸਮੋਸ ਦੀਆਂ ਤਸਵੀਰਾਂ ਦੀਆਂ ਝਾਕੀਆਂ ਵੇਖਾਓ"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "ਸਕਰੀਨ ਵਿੱਚ ਗਨੋਮ ਦਾ ਪੈਰ ਵਾਲਾ ਲੋਗੋ ਵੇਖਾਓ"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "ਤਰਦਾ ਪੈਰ"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:1
-msgid "Display a slideshow from your Pictures folder"
-msgstr "ਆਪਣੇ ਤਸਵੀਰਾਂ ਫੋਲਡਰ ਤੋਂ ਝਾਕੀਆਂ ਵੇਖਾਓ"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:2
-msgid "Pictures folder"
-msgstr "ਤਸਵੀਰ ਫੋਲਡਰ"
-
-#: ../savers/popsquares.desktop.in.in.h:1
-msgid "A pop-art-ish grid of pulsing colors."
-msgstr "ਧੜਕਦੇ ਰੰਗਾਂ ਦਾ ਪੋਪ-ਆਰਟ ਗਰਿੱਡ ਹੈ।"
-
-#: ../savers/popsquares.desktop.in.in.h:2
-msgid "Pop art squares"
-msgstr "ਪੋਪ ਆਰਟ ਵਰਗ"
-
-#: ../savers/popsquares.c:49 ../savers/floaters.c:1205
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s, ਵਰਤਣ ਲਈ --help ਨੂੰ ਵੇਖੋ।\n"
-
-#: ../savers/floaters.c:88
-msgid "Show paths that images follow"
-msgstr "ਚਿੱਤਰਾਂ ਦਾ ਮਾਰਗ ਵੇਖਾਓ"
-
-#: ../savers/floaters.c:91
-msgid "Occasionally rotate images as they move"
-msgstr "ਚਿੱਤਰਾਂ ਨੂੰ ਹਿਲਾਉਣ ਦੌਰਾਨ ਅਕਸਰ ਘੁੰਮਾਓ ਵੀ"
-
-#: ../savers/floaters.c:94
-msgid "Print out frame rate and other statistics"
-msgstr "ਫਰੇਮ ਰੇਟ ਅਤੇ ਹੋਰ ਅੰਕੜੇ ਵੀ ਪਰਿੰਟ ਕਰੋ"
-
-#: ../savers/floaters.c:97
-msgid "The maximum number of images to keep on screen"
-msgstr "ਸਕਰੀਨ ਉੱਤੇ ਵੇਖਾਉਣ ਵਾਲੇ ਚਿੱਤਰਾਂ ਦੀ ਵੱਧ ਤੋਂ ਵੱਧ ਗਿਣਤੀ"
-
-#: ../savers/floaters.c:97
-msgid "MAX_IMAGES"
-msgstr "MAX_IMAGES"
-
-#: ../savers/floaters.c:100
-msgid "The initial size and position of window"
-msgstr "ਵਿੰਡੋ ਦਾ ਸ਼ੁਰੂਆਤੀ ਅਕਾਰ ਅਤੇ ਸਥਿਤੀ"
-
-#: ../savers/floaters.c:100
-msgid "WIDTHxHEIGHT+X+Y"
-msgstr "WIDTHxHEIGHT+X+Y"
-
-#: ../savers/floaters.c:103
-msgid "The source image to use"
-msgstr "ਵਰਤਣ ਲਈ ਸਰੋਤ ਚਿੱਤਰ"
-
-#. translators: the word "image" here
-#. * represents a command line argument
-#.
-#: ../savers/floaters.c:1199
-#| msgid "image - floats images around the screen"
-msgid "image — floats images around the screen"
-msgstr "ਚਿੱਤਰ —ਸਕਰੀਨ ਉੱਤੇ ਤਰਦੇ ਚਿੱਤਰ"
-
-#: ../savers/floaters.c:1214
-#, c-format
-msgid "You must specify one image.  See --help for usage information.\n"
-msgstr "ਤੁਹਾਨੂੰ ਇੱਕ ਚਿੱਤਰ ਦੇਣਾ ਪਵੇਗਾ।  ਵਰਤਣ ਲਈ --help ਵੇਖੋ।\n"
-
-#: ../savers/slideshow.c:53
-msgid "Location to get images from"
-msgstr "ਚਿੱਤਰ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਟਿਕਾਣਾ"
-
-#: ../savers/slideshow.c:53
-msgid "PATH"
-msgstr "ਮਾਰਗ"
-
-#: ../savers/slideshow.c:55
-#| msgid "Color to use for images background"
-msgid "Color to use for image background"
-msgstr "ਚਿੱਤਰ ਬੈਕਗਰਾਊਂਡ ਲਈ ਵਰਤਣ ਵਾਸਤੇ ਰੰਗ"
-
-#: ../savers/slideshow.c:55
-msgid "\"#rrggbb\""
-msgstr "\"#rrggbb\""
-
-#: ../savers/slideshow.c:57
-msgid "Do not randomize pictures from location"
-msgstr "ਟਿਕਾਣੇ ਤੋਂ ਤਸਵੀਰਾਂ ਰਲਵੀਂ ਨਾ ਵਰਤੋਂ"
-
-#: ../savers/slideshow.c:59
-msgid "Do not try to stretch images on screen"
-msgstr "ਸਕਰੀਨ ਉੱਤੇ ਚਿੱਤਰ ਨਾ ਖਿੱਚੋ"
-
-#: ../src/copy-theme-dialog.c:215
-msgid "Copying files"
-msgstr "ਫਾਇਲਾਂ ਦੀ ਕਾਪੀ ਜਾਰੀ"
-
-#: ../src/copy-theme-dialog.c:233
-msgid "From:"
-msgstr "ਵੱਲੋਂ:"
-
-#: ../src/copy-theme-dialog.c:237
-msgid "To:"
-msgstr "ਵੱਲ"
-
-#: ../src/copy-theme-dialog.c:257
-msgid "Copying themes"
-msgstr " ਥੀਮ ਕਾਪੀ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ"
-
-#: ../src/copy-theme-dialog.c:301
-msgid "Invalid screensaver theme"
-msgstr "ਗਲਤ ਸਕਰੀਨ-ਸੇਵਰ ਥੀਮ"
-
-#: ../src/copy-theme-dialog.c:304
-#, c-format
-msgid "%s does not appear to be a valid screensaver theme."
-msgstr "%s ਫਾਇਲ ਇੱਕ ਠੀਕ ਸਕਰੀਨ-ਸੇਵਰ ਥੀਮ ਨਹੀਂ ਜਾਪਦੀ ਹੈ।"
-
-#: ../src/copy-theme-dialog.c:484
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "ਫਾਇਲ ਕਾਪੀ ਜਾਰੀ: %2$u ਵਿੱਚੋਂ %1$u"
-
-#: ../src/gnome-screensaver-command.c:62
+#: ../src/gnome-screensaver-command.c:46
 msgid "Causes the screensaver to exit gracefully"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਨੂੰ ਮਾਣ ਨਾਲ ਬੰਦ ਕਰਨ ਦਾ ਕਾਰਨ ਬਣਦਾ ਹੈ"
 
-#: ../src/gnome-screensaver-command.c:64
+#: ../src/gnome-screensaver-command.c:48
 msgid "Query the state of the screensaver"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਦੀ ਹਾਲਤ ਬਾਰੇ ਸਵਾਲ"
 
-#: ../src/gnome-screensaver-command.c:66
+#: ../src/gnome-screensaver-command.c:50
 msgid "Query the length of time the screensaver has been active"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਣ ਦੇ ਸਮੇਂ ਦੀ ਲੰਬਾਈ ਬਾਰੇ ਸਵਾਲ"
 
-#: ../src/gnome-screensaver-command.c:68
+#: ../src/gnome-screensaver-command.c:52
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "ਚੱਲਦੇ ਸਕਰੀਨ-ਸੇਵਰ ਕਾਰਵਾਈ ਨੂੰ ਸਕਰੀਨ ਨੂੰ ਤੁਰੰਤ ਲਾਕ ਕਰਨ ਦਾ ਸੰਕੇਤ ਦਿਓ"
 
-#: ../src/gnome-screensaver-command.c:70
-msgid "If the screensaver is active then switch to another graphics demo"
-msgstr "ਜੇਕਰ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਵੇ ਤਾਂ ਹੋਰ ਗਰਾਫਿਕਸ ਡੈਮੋ ਲਈ ਤਬਦੀਲ ਕਰੋ"
-
-#: ../src/gnome-screensaver-command.c:72
+#: ../src/gnome-screensaver-command.c:54
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਚਾਲੂ ਕਰੋ (ਖਾਲੀ ਸਕਰੀਨ ਹੀ)"
 
-#: ../src/gnome-screensaver-command.c:74
+#: ../src/gnome-screensaver-command.c:56
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr "ਜੇਕਰ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਵੇ ਤਾਂ ਉਸ ਨੂੰ ਨਾ-ਸਰਗਰਮ ਕਰੋ (ਨਾ-ਖਾਲੀ ਸਕਰੀਨ)"
 
-#: ../src/gnome-screensaver-command.c:76
-msgid "Poke the running screensaver to simulate user activity"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਨੂੰ ਯੂਜ਼ਰ ਕਾਰਵਾਈਆਂ ਮੁਤਾਬਕ ਨਕਲ ਕਰਨ ਲਈ ਤਿਆਰ ਕਰੋ"
-
-#: ../src/gnome-screensaver-command.c:78
-msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਨੂੰ ਸਰਗਰਮ ਹੋਣ ਤੋਂ ਰੋਕਿਆ ਗਿਆ।  ਕਮਾਂਡਾਂ ਉੱਤੇ ਰੋਕ ਹੈ, ਜਦੋਂ ਕਿ ਰੋਕਣਾ ਸਰਗਰਮ ਹੈ।"
-
-#: ../src/gnome-screensaver-command.c:80
-msgid "The calling application that is inhibiting the screensaver"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਨੂੰ ਰੋਕਣ ਵਾਲੇ ਕਾਰਜ ਬਾਰੇ ਜਾਣਕਾਰੀ ਲਈ ਜਾ ਰਹੀ ਹੈ"
-
-#: ../src/gnome-screensaver-command.c:82
-msgid "The reason for inhibiting the screensaver"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਰੋਕਣ ਲਈ ਕਾਰਨ"
-
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:59
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "ਇਹ ਐਪਲੀਕੇਸ਼ਨ ਦਾ ਵਰਜਨ"
 
-#: ../src/gnome-screensaver-command.c:295
+#: ../src/gnome-screensaver-command.c:224
 #, c-format
-#| msgid "The screensaver is %s\n"
 msgid "The screensaver is active\n"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਚਾਲੂ ਹੈ।\n"
 
-#: ../src/gnome-screensaver-command.c:295
+#: ../src/gnome-screensaver-command.c:226
 #, c-format
-#| msgid "The screensaver is %s\n"
 msgid "The screensaver is inactive\n"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਬੰਦ ਹੈ।\n"
 
-#: ../src/gnome-screensaver-command.c:309
+#: ../src/gnome-screensaver-command.c:256
 #, c-format
-msgid "The screensaver is not inhibited\n"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਇੰਹੈਬਿਟ ਨਹੀਂ ਹੈ\n"
+#| msgid "The screensaver has been active for %d seconds.\n"
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "ਸਕਰੀਨ-ਸੇਵਰ %d ਸਕਿੰਟ ਤੋਂ ਸਰਗਰਮ ਹੈ।\n"
+msgstr[1] "ਸਕਰੀਨ-ਸੇਵਰ %d ਸਕਿੰਟਾਂ ਤੋਂ ਸਰਗਰਮ ਹੈ।\n"
 
-#: ../src/gnome-screensaver-command.c:315
-#, c-format
-msgid "The screensaver is being inhibited by:\n"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਇੰਹੈਬਿਟ ਕੀਤਾ ਹੈ:\n"
-
-#: ../src/gnome-screensaver-command.c:346
-#, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "ਸਕਰੀਨ-ਸੇਵਰ %d ਸਕਿੰਟਾਂ ਤੋਂ ਸਰਗਰਮ ਹੈ।\n"
-
-#: ../src/gnome-screensaver-command.c:350
+#: ../src/gnome-screensaver-command.c:258
 #, c-format
 msgid "The screensaver is not currently active.\n"
 msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਹਾਲੇ ਐਕਟਿਵ ਨਹੀਂ ਹੈ।\n"
@@ -536,7 +124,8 @@ msgstr "ਤੁਹਾਨੂੰ ਆਪਣਾ ਪਾਸਵਰਡ ਹੁਣੇ ਬ�
 
 #: ../src/gnome-screensaver-dialog.c:190
 msgid "Your account has expired; please contact your system administrator"
-msgstr "ਤੁਹਾਡੇ ਅਕਾਊਂਟ ਦੀ ਮਿਆਦ ਖਤਮ ਹੋ ਗਈ ਹੈ; ਆਪਣੇ ਸਿਸਟਮ ਪਰਸ਼ਾਸ਼ਕ ਨਾਲ ਸੰਪਰਕ ਕਰੋ ਜੀ।"
+msgstr ""
+"ਤੁਹਾਡੇ ਅਕਾਊਂਟ ਦੀ ਮਿਆਦ ਖਤਮ ਹੋ ਗਈ ਹੈ; ਆਪਣੇ ਸਿਸਟਮ ਪਰਸ਼ਾਸ਼ਕ ਨਾਲ ਸੰਪਰਕ ਕਰੋ ਜੀ।"
 
 #: ../src/gnome-screensaver-dialog.c:191
 msgid "No password supplied"
@@ -547,22 +136,18 @@ msgid "Password unchanged"
 msgstr "ਪਾਸਵਰਡ ਬਦਲਿਆ ਗਿਆ"
 
 #: ../src/gnome-screensaver-dialog.c:193
-#| msgid "Can not get username"
 msgid "Cannot get username"
 msgstr "ਯੂਜ਼ਰ ਨਾਂ ਲਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ"
 
 #: ../src/gnome-screensaver-dialog.c:194
-#| msgid "Retype new UNIX password:"
 msgid "Retype new Unix password:"
 msgstr "ਨਵਾਂ UNIX ਪਾਸਵਰਡ ਮੁੜ-ਲਿਖੋ:"
 
 #: ../src/gnome-screensaver-dialog.c:195
-#| msgid "Enter new UNIX password:"
 msgid "Enter new Unix password:"
 msgstr "ਨਵਾਂ UNIX ਪਾਸਵਰਡ ਦਿਓ:"
 
 #: ../src/gnome-screensaver-dialog.c:196
-#| msgid "(current) UNIX password:"
 msgid "(current) Unix password:"
 msgstr "(ਮੌਜੂਦਾ) UNIX ਪਾਸਵਰਡ:"
 
@@ -587,79 +172,12 @@ msgid "Sorry, passwords do not match"
 msgstr "ਅਫ਼ਸੋਸ ਹੈ ਕਿ ਪਾਸਵਰਡ ਮਿਲਦਾ ਨਹੀਂ ਹੈ"
 
 #: ../src/gnome-screensaver-dialog.c:267
-#| msgid "Checking..."
 msgid "Checking…"
 msgstr "ਚੈੱਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…"
 
 #: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "ਪਰਮਾਣਕਿਤਾ ਫ਼ੇਲ੍ਹ ਹੋ ਗਈ ਹੈ।"
-
-#: ../src/gnome-screensaver-preferences.c:524
-msgid "Blank screen"
-msgstr "ਖਾਲੀ ਸਕਰੀਨ"
-
-#: ../src/gnome-screensaver-preferences.c:530
-msgid "Random"
-msgstr "ਰਲਵੇਂ"
-
-#: ../src/gnome-screensaver-preferences.c:980
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d ਘੰਟਾ"
-msgstr[1] "%d ਘੰਟੇ"
-
-#: ../src/gnome-screensaver-preferences.c:983
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d ਮਿੰਟ"
-msgstr[1] "%d ਮਿੰਟ"
-
-#: ../src/gnome-screensaver-preferences.c:986
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d ਸਕਿੰਟ"
-msgstr[1] "%d ਸਕਿੰਟ"
-
-#. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:992
-#, c-format
-msgid "%s %s %s"
-msgstr "%s %s %s"
-
-#. hour:minutes
-#. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:995
-#: ../src/gnome-screensaver-preferences.c:1003
-#, c-format
-msgid "%s %s"
-msgstr "%s %s"
-
-#. hour
-#. minutes
-#. seconds
-#: ../src/gnome-screensaver-preferences.c:998
-#: ../src/gnome-screensaver-preferences.c:1006
-#: ../src/gnome-screensaver-preferences.c:1010
-#, c-format
-msgid "%s"
-msgstr "%s"
-
-#: ../src/gnome-screensaver-preferences.c:1025
-#, c-format
-msgid "Never"
-msgstr "ਕਦੇ ਨਹੀਂ"
-
-#: ../src/gnome-screensaver-preferences.c:1467
-msgid "Could not load the main interface"
-msgstr "ਮੁੱਖ ਇੰਟਰਫੇਸ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕਿਆ ਹੈ।"
-
-#: ../src/gnome-screensaver-preferences.c:1469
-msgid "Please make sure that the screensaver is properly installed"
-msgstr "ਜਾਂਚ ਕਰੋ ਕਿ ਸਕਰੀਨ-ਸੇਵਰ ਠੀਕ ਤਰ੍ਹਾਂ ਇੰਸਟਾਲ ਹੈ ਜੀ"
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
@@ -670,9 +188,12 @@ msgid "Enable debugging code"
 msgstr "ਡੀਬੱਗ ਕੋਡ ਨੂੰ ਯੋਗ"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
-#| msgid "Launch screen saver and locker program"
 msgid "Launch screensaver and locker program"
 msgstr "ਸਕਰੀਨ ਸੇਵਰ ਅਤੇ ਲਾਕਰ ਪਰੋਗਰਾਮ ਚਲਾਓ"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:2
+msgid "Screensaver"
+msgstr "ਸਕਰੀਨ-ਸੇਵਰ"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -696,15 +217,15 @@ msgstr "ਇਸ ਸਮੇਂ ਵਰਤੋਂ ਲਈ ਆਗਿਆ ਨਹੀਂ ਹ
 msgid "No longer permitted to access the system."
 msgstr "ਹੁਣ ਸਿਸਟਮ ਦੀ ਵਰਤੋਂ ਲਈ ਆਗਿਆ ਨਹੀਂ ਹੈ।"
 
-#: ../src/gs-listener-dbus.c:1912
+#: ../src/gs-listener-dbus.c:1148
 msgid "failed to register with the message bus"
 msgstr "ਸੁਨੇਹਾ ਬਸ ਨਾਲ ਰਜਿਸਟਰ ਹੋਣ ਲਈ ਅਸਫ਼ਲ"
 
-#: ../src/gs-listener-dbus.c:1922
+#: ../src/gs-listener-dbus.c:1158
 msgid "not connected to the message bus"
 msgstr "ਸੁਨੇਹਾ ਬਸ ਨਾਲ ਜੁੜਿਆ ਨਹੀਂ ਹੈ"
 
-#: ../src/gs-listener-dbus.c:1931
+#: ../src/gs-listener-dbus.c:1167 ../src/gs-listener-dbus.c:1197
 msgid "screensaver already running in this session"
 msgstr "ਇਹ ਸ਼ੈਸ਼ਨ ਵਿੱਚ ਪਹਿਲਾਂ ਹੀ ਸਕਰੀਨ-ਸੇਵਰ ਚੱਲ ਰਿਹਾ ਹੈ"
 
@@ -713,7 +234,6 @@ msgid "Time has expired."
 msgstr "ਟਾਈਮ ਖਤਮ ਹੋ ਗਿਆ ਹੈ।"
 
 #: ../src/gs-lock-plug.c:287
-#| msgid "You have the Caps Lock key on."
 msgid "You have the Caps & Num Lock keys on."
 msgstr "ਤੁਹਾਡਾ ਕੈਪਸ (Caps) ਤੇ ਨਮ (NUM) ਬਟਨ ਦੱਬਿਆ ਹੈ।"
 
@@ -722,31 +242,399 @@ msgid "You have the Caps Lock key on."
 msgstr "ਤੁਹਾਡਾ ਕੈਪਸ (Caps) ਬਟਨ ਦੱਬਿਆ ਹੈ।"
 
 #: ../src/gs-lock-plug.c:293
-#| msgid "You have the Caps Lock key on."
 msgid "You have the Num Lock key on."
 msgstr "ਤੁਹਾਡਾ ਨਮ (Num) ਬਟਨ ਦੱਬਿਆ ਹੈ।"
 
-#: ../src/gs-lock-plug.c:1280
-#| msgid "_Switch User"
+#: ../src/gs-lock-plug.c:1350
 msgid "S_witch User…"
 msgstr "ਯੂਜ਼ਰ ਸਵਿੱਚ ਕਰੋ(_w)…"
 
-#: ../src/gs-lock-plug.c:1289
+#: ../src/gs-lock-plug.c:1359
 msgid "Log _Out"
 msgstr "ਲਾਗ-ਆਉਟ(_O)"
 
-#: ../src/gs-lock-plug.c:1300
+#: ../src/gs-lock-plug.c:1366
 msgid "_Unlock"
 msgstr "ਤਾਲਾ ਖੋਲ੍ਹੋ(_U)"
 
-#. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1465
-msgid "%U on %h"
-msgstr "%h ਉੱਤੇ %U"
-
-#: ../src/gs-lock-plug.c:1479
+#: ../src/gs-lock-plug.c:1401
 msgid "_Password:"
 msgstr "ਪਾਸਵਰਡ(_P):"
+
+#. Translators, this is the 24h date format used in the panel clock
+#: ../src/gs-window-x11.c:2199
+#| msgid "%s %s"
+msgid "%a %R"
+msgstr "%a %R"
+
+#. Translators, this is the 12h date format used in the panel clock
+#: ../src/gs-window-x11.c:2202
+msgid "%a %l:%M %p"
+msgstr "%a %l:%M %p"
+
+#~ msgid "Set your screensaver preferences"
+#~ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਲਈ ਆਪਣੀ ਪਸੰਦ ਦਿਓ"
+
+#~ msgid "Power _Management"
+#~ msgstr "ਊਰਜਾ ਪਰਬੰਧ(_M)"
+
+#~ msgid "Regard the computer as _idle after:"
+#~ msgstr "ਕੰਪਿਊਟਰ ਨੂੰ ਇੰਨੇ ਸਮੇਂ ਬਾਅਦ ਵੇਹਲਾ ਮੰਨੋ(_i):"
+
+#~ msgid "Screensaver Preferences"
+#~ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਪਸੰਦ"
+
+#~ msgid "Screensaver Preview"
+#~ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਝਲਕ"
+
+#~| msgid "Screensaver Preview"
+#~ msgid "Screensaver preview"
+#~ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਝਲਕ"
+
+#~| msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+#~ msgid "Warning: the screen will not be locked for the root user."
+#~ msgstr "ਚੇਤਾਵਨੀ: ਸਕਰੀਨ root ਯੂਜ਼ਰ ਲਈ ਤਾਲਾਬੰਦ ਨਹੀਂ ਹੋਵੇਗੀ।"
+
+#~ msgid "_Activate screensaver when computer is idle"
+#~ msgstr "ਜਦੋਂ ਕੰਪਿਊਟਰ ਵੇਹਲਾ ਹੋਵੇ ਤਾਂ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਕਰੋ(_A)"
+
+#~ msgid "_Lock screen when screensaver is active"
+#~ msgstr "ਜਦੋਂ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਵੇ ਤਾਂ ਸਕਰੀਨ ਲਾਕ ਕਰੋ(_L)"
+
+#~ msgid "_Preview"
+#~ msgstr "ਝਲਕ(_P)"
+
+#~ msgid "_Screensaver theme:"
+#~ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਥੀਮ(_S):"
+
+#~ msgid "Screensaver themes"
+#~ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਥੀਮ"
+
+#~ msgid "Screensavers"
+#~ msgstr "ਸਕਰੀਨ-ਸੇਵਰ"
+
+#~ msgid "Activate when idle"
+#~ msgstr "ਜਦੋਂ ਵੇਹਲਾ ਹੋਵੇ ਤਾਂ ਸਰਗਰਮ"
+
+#~ msgid "Allow embedding a keyboard into the window"
+#~ msgstr "ਇੱਕ ਕੀ-ਬੋਰਡ ਨੂੰ ਵਿੰਡੋ ਵਿੱਚ ਸ਼ਾਮਲ ਰੱਖਣਾ ਮਨਜ਼ੂਰ"
+
+#~ msgid "Allow logout"
+#~ msgstr "ਲਾਗਆਉਟ ਮਨਜ਼ੂਰ"
+
+#~ msgid "Allow the session status message to be displayed"
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਹਾਲਤ ਸੁਨੇਹੇ ਵੇਖਾਉਣਾ ਮਨਜ਼ੂਰ"
+
+#~ msgid ""
+#~ "Allow the session status message to be displayed when the screen is "
+#~ "locked."
+#~ msgstr "ਜਦੋਂ ਸਕਰੀਨ ਲਾਕ (ਤਾਲਾਬੰਦ) ਹੋਵੇ ਤਾਂ ਸ਼ੈਸ਼ਨ ਸੁਨੇਹੇ ਵੇਖਾਉਣ ਦੀ ਮਨਜ਼ੂਰੀ ਹੈ।"
+
+#~ msgid "Allow user switching"
+#~ msgstr "ਯੂਜ਼ਰ ਬਦਲਣਾ ਮਨਜ਼ੂਰ"
+
+#~ msgid "Embedded keyboard command"
+#~ msgstr "ਸ਼ਾਮਿਲ ਕੀ-ਬੋਰਡ ਕਮਾਂਡ"
+
+#~ msgid "Lock on activation"
+#~ msgstr "ਸਰਗਰਮੀ ਸਮੇਂ ਲਾਕ ਕਰੋ"
+
+#~ msgid "Logout command"
+#~ msgstr "ਲਾਗਆਉਟ ਕਮਾਂਡ"
+
+#~ msgid "Screensaver theme selection mode"
+#~ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਥੀਮ ਚੋਣ ਢੰਗ"
+
+#~ msgid ""
+#~ "Set this to TRUE to activate the screensaver when the session is idle."
+#~ msgstr "ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਸ਼ੈਸ਼ਨ ਵੇਹਲਾ ਹੋਣ ਸਮੇਂ ਸਕਰੀਨ ਨੂੰ ਤਾਲਾਬੰਦ ਕਰਨਾ ਹੈ"
+
+#~ msgid ""
+#~ "Set this to TRUE to allow embedding a keyboard into the window when "
+#~ "trying to unlock. The \"keyboard_command\" key must be set with the "
+#~ "appropriate command."
+#~ msgstr ""
+#~ "ਇਹ ਨੂੰ ਸੱਚ ਬਣਾਉਣ ਨਾਲ ਵਿੰਡੋ ਵਿੱਚ ਇੱਕ ਸ਼ਾਮਿਲ ਕੀ-ਬੋਰਡ ਵੇਖਾਇਆ ਜਾਵੇਗਾ, ਜਦੋਂ ਕਿ ਤਾਲਾ-ਖੋਲ੍ਹਣ ਦੀ "
+#~ "ਕੋਸ਼ਿਸ਼ ਕੀਤੀ ਜਾ ਰਹੀ ਹੋਵੇ। \"keyboard_command\" ਕੁੰਜੀ ਨੂੰ ਢੁੱਕਵੀਂ ਕਮਾਂਡ ਲਈ ਸੈੱਟ ਕੀਤਾ ਹੋਣਾ "
+#~ "ਲਾਜ਼ਮੀ ਹੈ।"
+
+#~ msgid ""
+#~ "Set this to TRUE to lock the screen when the screensaver goes active."
+#~ msgstr "ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਣ ਸਮੇਂ ਸਕਰੀਨ ਨੂੰ ਲਾਕ ਕਰਨਾ ਹੈ"
+
+#~| msgid ""
+#~| "Set this to TRUE to offer an option in unlock dialog to logging out "
+#~| "after a delay. The Delay is specified in the \"logout_delay\" key."
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in the unlock dialog to allow logging "
+#~ "out after a delay. The delay is specified in the \"logout_delay\" key."
+#~ msgstr ""
+#~ "ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਤਾਲਾ-ਖੋਲ੍ਹਣ ਡਾਈਲਾਗ ਵਿੱਚ ਇੱਕ ਚੋਣ ਰੱਖਣੀ ਹੈ ਕਿ ਅੰਤਰਾਲ ਦੇ ਬਾਅਦ ਲਾਗ-ਆਉਣ "
+#~ "ਹੋ ਜਾਵੇ। ਅੰਤਰਾਲ ਨੂੰ \"logout_delay\" ਕੁੰਜੀ ਵਿੱਚ ਦਿਓ।"
+
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in the unlock dialog to switch to a "
+#~ "different user account."
+#~ msgstr ""
+#~ "ਇਹ ਨੂੰ ਸੱਚ ਕਰੋ, ਜੇਕਰ ਤਾਲਾ ਖੋਲ੍ਹਣ ਡਾਈਲਾਗ ਵਿੱਚ ਇੱਕ ਚੋਣ ਦਿੱਤੀ ਜਾਵੇ, ਜਿਸ ਨਾਲ ਵੱਖਰੇ ਯੂਜ਼ਰ "
+#~ "ਅਕਾਊਂਟ ਲਈ ਬਦਲਿਆ ਜਾ ਸਕੇ।"
+
+#~ msgid ""
+#~ "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+#~ "set to TRUE, to embed a keyboard widget into the window. This command "
+#~ "should implement an XEMBED plug interface and output a window XID on the "
+#~ "standard output."
+#~ msgstr ""
+#~ "ਕਮਾਂਡ, ਜੋ ਚੱਲੇਗੀ, ਜਦੋਂ \"embedded_keyboard_enabled\" ਕੁੰਜੀ ਨੂੰ ਸੈੱਟ ਕੀਤਾ ਗਿਆ ਹੋਵੇ, ਤਾਂ "
+#~ "ਕਿ ਕੀ-ਬੋਰਡ ਨੂੰ ਵਿੰਡੋ ਵਿੱਚ ਸ਼ਾਮਿਲ ਕੀਤਾ ਗਿਆ ਹੋਵੇ। ਇਹ ਕਮਾਂਡ ਨੂੰ XEMBED ਪਲੱਗ ਇੰਟਰਫੇਸ ਰਾਹੀਂ "
+#~ "ਬਣਾਇਆ ਗਿਆ ਹੈ ਅਤੇ ਸਟੈਂਡਰਡ ਆਉਟਪੁੱਟ ਉੱਤੇ ਇੱਕ ਵਿੰਡੋ XID ਆਉਟਪੁੱਟ ਹੈ।"
+
+#~ msgid ""
+#~ "The command to invoke when the logout button is clicked. This command "
+#~ "should simply log the user out without any interaction. This key has "
+#~ "effect only if the \"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "ਲਾਗਆਉਟ (logout) ਬਟਨ ਨੂੰ ਦਬਾਉਣ ਸਮੇਂ ਵਰਤੀ ਜਾਣ ਵਾਲੀ ਕਮਾਂਡ ਹੈ। ਇਹ ਕਮਾਂਡ ਬਿਨਾਂ ਕਿਸੇ ਯੂਜ਼ਰ "
+#~ "ਦਖਲ ਦੇ ਲਾਗ ਆਉਟ ਕਰ ਦੇਣ ਵਾਲੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ। ਇਹ ਕੁੰਜੀ ਤਾਂ ਹੀ ਪਰਭਾਵੀ ਹੈ, ਜੇਕਰ "
+#~ "\"logout_enable\" ਕੁੰਜੀ ਨੂੰ ਸੱਚ ਕੀਤਾ ਹੋਵੇਗਾ।"
+
+#~ msgid ""
+#~ "The number of minutes after screensaver activation before locking the "
+#~ "screen."
+#~ msgstr ""
+#~ "ਸਕਰੀਨ ਨੂੰ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਣ ਦੇ ਬਾਅਦ ਲਾਕ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਟਾਈਮ (ਅੰਤਰਾਲ) ਮਿੰਟਾਂ ਵਿੱਚ ਹੈ।"
+
+#~| msgid ""
+#~| "The number of minutes after the screensaver activation before a logout "
+#~| "option will appear in unlock dialog. This key has effect only if the "
+#~| "\"logout_enable\" key is set to TRUE."
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation before a logout "
+#~ "option will appear in the unlock dialog. This key has effect only if the "
+#~ "\"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "ਸਕਰੀਨ-ਸੇਵਰ ਦੇ ਸਰਗਰਮ ਹੋਣ ਬਾਅਦ ਤਾਲਾ-ਖੋਲ੍ਹਣ ਡਾਈਲਾਗ ਵਿੱਚ ਲਾਗ-ਆਉਟ ਚੋਣ ਉਪਲੱਬਧ ਹੋਣ ਤੋਂ "
+#~ "ਪਹਿਲਾਂ ਦਾ ਟਾਈਮ (ਅੰਤਰਾਲ) ਮਿੰਟਾਂ ਵਿੱਚ ਹੈ। ਇਹ ਕੁੰਜੀ ਤਾਂ ਹੀ ਪਰਭਾਵੀ ਹੈ, ਜੇਕਰ "
+#~ "\"logout_enable\" ਕੁੰਜੀ ਸੱਚ ਕੀਤੀ ਗਈ ਹੈ।"
+
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਨੂੰ ਵੇਹਲਾ (idle) ਮੰਨਣ ਤੋਂ ਪਹਿਲਾਂ ਕੋਈ ਸਰਗਰਮੀ ਤੋਂ ਬਿਨਾਂ ਟਾਈਮ-ਮਿੰਟਾਂ ਵਿੱਚ ਹੈ।"
+
+#~ msgid "The number of minutes to run before changing the screensaver theme."
+#~ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਥੀਮ ਬਦਲਣ ਤੋਂ ਪਹਿਲਾਂ ਉਸ ਨੂੰ ਚਲਾਉਣ ਦਾ ਟਾਈਮ ਮਿੰਟਾਂ ਵਿੱਚ ਹੈ।"
+
+#~| msgid ""
+#~| "The number of seconds of inactivity before signalling to power-"
+#~| "management. This key is set and maintained by the session power-"
+#~| "management agent."
+#~ msgid ""
+#~ "The number of seconds of inactivity before signalling to power "
+#~ "management. This key is set and maintained by the session power "
+#~ "management agent."
+#~ msgstr ""
+#~ "ਊਰਜਾ-ਪਰਬੰਧ ਨੂੰ ਸੰਕੇਤ ਭੇਜਣ ਤੋਂ ਪਹਿਲਾਂ ਨਾ-ਸਰਗਰਮੀ ਦੇ ਸਕਿੰਟ ਦੀ ਗਿਣਤੀ ਹੈ। ਇਹ ਕੁੰਜੀ ਨੂੰ ਸ਼ੈਸ਼ਨ "
+#~ "ਊਰਜਾ-ਪਰਬੰਧ ਏਜੰਟ ਵਲੋਂ ਸੈੱਟ ਅਤੇ ਪਰਬੰਧ ਅਧੀਨ ਰੱਖਿਆ ਜਾਂਦਾ ਹੈ।"
+
+#~ msgid ""
+#~ "The selection mode used by screensaver. May be \"blank-only\" to enable "
+#~ "the screensaver without using any theme on activation, \"single\" to "
+#~ "enable screensaver using only one theme on activation (specified in "
+#~ "\"themes\" key), and \"random\" to enable the screensaver using a random "
+#~ "theme on activation."
+#~ msgstr ""
+#~ "ਸਕਰੀਨ-ਸੇਵਰ ਵਲੋਂ ਵਰਤਿਆ ਜਾਣ ਵਾਲਾ ਚੋਣ ਢੰਗ ਹੈ। \"ਸਿਰਫ਼ ਖਾਲੀ (blank-only\" ਨੂੰ ਬਿਨਾਂ ਕਿਸੇ "
+#~ "ਥੀਮ ਦੇ ਸਕਰੀਨ-ਸੇਵਰ ਨੂੰ ਸਰਗਰਮ ਕਰਨ ਲਈ ਵਰਤੋਂ, \"ਇੱਕਲਾ (single)\" ਨੂੰ ਸਰਗਰਮ ਹੋਣ ਦੀ ਹਾਲਤ "
+#~ "ਵਿੱਚ ਇੱਕ ਹੀ ਥੀਮ ਵਰਤਣ ਲਈ ਦਿਓ, (\"ਥੀਮ (themes)\" ਕੁੰਜੀ ਦੱਸਣੀ ਲਾਜ਼ਮੀ ਹੈ) ਅਤੇ \"ਰਲਵਾਂ "
+#~ "(random)\" ਨੂੰ ਸਰਗਰਮ ਹੋਣ ਦੀ ਹਾਲਤ ਵਿੱਚ ਰਲਵੇਂ ਥੀਮ ਵਰਤਣ ਲਈ ਯੋਗ ਕਰਦਾ ਹੈ।"
+
+#~ msgid ""
+#~ "This key specifies the list of themes to be used by the screensaver. It's "
+#~ "ignored when \"mode\" key is \"blank-only\", should provide the theme "
+#~ "name when \"mode\" is \"single\", and should provide a list of themes "
+#~ "when \"mode\" is \"random\"."
+#~ msgstr ""
+#~ "ਇਹ ਕੁੰਜੀ ਸਕਰੀਨ-ਸੇਵਰ ਵਲੋਂ ਵਰਤੇ ਜਾਣ ਵਾਲੇ ਥੀਮ ਦੀ ਲਿਸਟ ਦੱਸਦੀ ਹੈ। ਇਹ ਨੂੰ ਅਣਡਿੱਠਾ ਕੀਤਾ ਜਾਂਦਾ "
+#~ "ਹੈ, ਜਦੋਂ \"mode\" ਕੁੰਜੀ ਨੂੰ \"blank-only\" ਰੱਖਿਆ ਜਾਂਦਾ ਹੈ, ਥੀਮ ਨਾਂ ਦੇਣਾ ਲਾਜ਼ਮੀ ਹੈ, ਜਦੋਂ "
+#~ "\"mode\" ਨੂੰ \"single\" ਮੁੱਲ ਦਿੱਤਾ ਹੋਵੇ ਅਤੇ \"mode\" ਨੂੰ \"random\" ਮੁੱਲ ਹੋਣ ਦੀ ਹਾਲਤ "
+#~ "ਵਿੱਚ ਥੀਮਾਂ ਦੀ ਲਿਸਟ ਦੇਣਾ ਲਾਜ਼ਮੀ ਹੈ।"
+
+#~ msgid "Time before locking"
+#~ msgstr "ਲਾਕ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਟਾਈਮ"
+
+#~ msgid "Time before logout option"
+#~ msgstr "ਲਾਗਆਉਟ ਚੋਣ ਤੋਂ ਪਹਿਲਾਂ ਟਾਈਮ"
+
+#~| msgid "Time before power-management baseline"
+#~ msgid "Time before power management baseline"
+#~ msgstr "ਊਰਜਾ-ਪਰਬੰਧ ਬੇਸ-ਲਾਇਨ ਤੋਂ ਪਹਿਲਾਂ ਟਾਈਮ"
+
+#~ msgid "Time before session is considered idle"
+#~ msgstr "ਸ਼ੈਸ਼ਨ ਨੂੰ ਵੇਹਲਾ (idle) ਮੰਨਣ ਤੋਂ ਪਹਿਲਾਂ ਟਾਈਮ"
+
+#~ msgid "Time before theme change"
+#~ msgstr "ਥੀਮ ਬਦਲਣ ਤੋਂ ਪਹਿਲਾਂ ਟਾਈਮ"
+
+#~ msgid "Cosmos"
+#~ msgstr "ਕੋਸਮੋਸ"
+
+#~ msgid "Display a slideshow of pictures of the cosmos"
+#~ msgstr "ਕੋਸਮੋਸ ਦੀਆਂ ਤਸਵੀਰਾਂ ਦੀਆਂ ਝਾਕੀਆਂ ਵੇਖਾਓ"
+
+#~ msgid "Bubbles the GNOME foot logo around the screen"
+#~ msgstr "ਸਕਰੀਨ ਵਿੱਚ ਗਨੋਮ ਦਾ ਪੈਰ ਵਾਲਾ ਲੋਗੋ ਵੇਖਾਓ"
+
+#~ msgid "Floating Feet"
+#~ msgstr "ਤਰਦਾ ਪੈਰ"
+
+#~ msgid "Display a slideshow from your Pictures folder"
+#~ msgstr "ਆਪਣੇ ਤਸਵੀਰਾਂ ਫੋਲਡਰ ਤੋਂ ਝਾਕੀਆਂ ਵੇਖਾਓ"
+
+#~ msgid "Pictures folder"
+#~ msgstr "ਤਸਵੀਰ ਫੋਲਡਰ"
+
+#~ msgid "A pop-art-ish grid of pulsing colors."
+#~ msgstr "ਧੜਕਦੇ ਰੰਗਾਂ ਦਾ ਪੋਪ-ਆਰਟ ਗਰਿੱਡ ਹੈ।"
+
+#~ msgid "Pop art squares"
+#~ msgstr "ਪੋਪ ਆਰਟ ਵਰਗ"
+
+#~ msgid "%s. See --help for usage information.\n"
+#~ msgstr "%s, ਵਰਤਣ ਲਈ --help ਨੂੰ ਵੇਖੋ।\n"
+
+#~ msgid "Show paths that images follow"
+#~ msgstr "ਚਿੱਤਰਾਂ ਦਾ ਮਾਰਗ ਵੇਖਾਓ"
+
+#~ msgid "Occasionally rotate images as they move"
+#~ msgstr "ਚਿੱਤਰਾਂ ਨੂੰ ਹਿਲਾਉਣ ਦੌਰਾਨ ਅਕਸਰ ਘੁੰਮਾਓ ਵੀ"
+
+#~ msgid "Print out frame rate and other statistics"
+#~ msgstr "ਫਰੇਮ ਰੇਟ ਅਤੇ ਹੋਰ ਅੰਕੜੇ ਵੀ ਪਰਿੰਟ ਕਰੋ"
+
+#~ msgid "The maximum number of images to keep on screen"
+#~ msgstr "ਸਕਰੀਨ ਉੱਤੇ ਵੇਖਾਉਣ ਵਾਲੇ ਚਿੱਤਰਾਂ ਦੀ ਵੱਧ ਤੋਂ ਵੱਧ ਗਿਣਤੀ"
+
+#~ msgid "MAX_IMAGES"
+#~ msgstr "MAX_IMAGES"
+
+#~ msgid "The initial size and position of window"
+#~ msgstr "ਵਿੰਡੋ ਦਾ ਸ਼ੁਰੂਆਤੀ ਅਕਾਰ ਅਤੇ ਸਥਿਤੀ"
+
+#~ msgid "WIDTHxHEIGHT+X+Y"
+#~ msgstr "WIDTHxHEIGHT+X+Y"
+
+#~ msgid "The source image to use"
+#~ msgstr "ਵਰਤਣ ਲਈ ਸਰੋਤ ਚਿੱਤਰ"
+
+#~| msgid "image - floats images around the screen"
+#~ msgid "image — floats images around the screen"
+#~ msgstr "ਚਿੱਤਰ —ਸਕਰੀਨ ਉੱਤੇ ਤਰਦੇ ਚਿੱਤਰ"
+
+#~ msgid "You must specify one image.  See --help for usage information.\n"
+#~ msgstr "ਤੁਹਾਨੂੰ ਇੱਕ ਚਿੱਤਰ ਦੇਣਾ ਪਵੇਗਾ।  ਵਰਤਣ ਲਈ --help ਵੇਖੋ।\n"
+
+#~ msgid "Location to get images from"
+#~ msgstr "ਚਿੱਤਰ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਟਿਕਾਣਾ"
+
+#~ msgid "PATH"
+#~ msgstr "ਮਾਰਗ"
+
+#~| msgid "Color to use for images background"
+#~ msgid "Color to use for image background"
+#~ msgstr "ਚਿੱਤਰ ਬੈਕਗਰਾਊਂਡ ਲਈ ਵਰਤਣ ਵਾਸਤੇ ਰੰਗ"
+
+#~ msgid "\"#rrggbb\""
+#~ msgstr "\"#rrggbb\""
+
+#~ msgid "Do not randomize pictures from location"
+#~ msgstr "ਟਿਕਾਣੇ ਤੋਂ ਤਸਵੀਰਾਂ ਰਲਵੀਂ ਨਾ ਵਰਤੋਂ"
+
+#~ msgid "Do not try to stretch images on screen"
+#~ msgstr "ਸਕਰੀਨ ਉੱਤੇ ਚਿੱਤਰ ਨਾ ਖਿੱਚੋ"
+
+#~ msgid "Copying files"
+#~ msgstr "ਫਾਇਲਾਂ ਦੀ ਕਾਪੀ ਜਾਰੀ"
+
+#~ msgid "From:"
+#~ msgstr "ਵੱਲੋਂ:"
+
+#~ msgid "To:"
+#~ msgstr "ਵੱਲ"
+
+#~ msgid "Copying themes"
+#~ msgstr " ਥੀਮ ਕਾਪੀ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ"
+
+#~ msgid "Invalid screensaver theme"
+#~ msgstr "ਗਲਤ ਸਕਰੀਨ-ਸੇਵਰ ਥੀਮ"
+
+#~ msgid "%s does not appear to be a valid screensaver theme."
+#~ msgstr "%s ਫਾਇਲ ਇੱਕ ਠੀਕ ਸਕਰੀਨ-ਸੇਵਰ ਥੀਮ ਨਹੀਂ ਜਾਪਦੀ ਹੈ।"
+
+#~ msgid "Copying file: %u of %u"
+#~ msgstr "ਫਾਇਲ ਕਾਪੀ ਜਾਰੀ: %2$u ਵਿੱਚੋਂ %1$u"
+
+#~ msgid "If the screensaver is active then switch to another graphics demo"
+#~ msgstr "ਜੇਕਰ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਵੇ ਤਾਂ ਹੋਰ ਗਰਾਫਿਕਸ ਡੈਮੋ ਲਈ ਤਬਦੀਲ ਕਰੋ"
+
+#~ msgid "Poke the running screensaver to simulate user activity"
+#~ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਨੂੰ ਯੂਜ਼ਰ ਕਾਰਵਾਈਆਂ ਮੁਤਾਬਕ ਨਕਲ ਕਰਨ ਲਈ ਤਿਆਰ ਕਰੋ"
+
+#~ msgid ""
+#~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
+#~ "active."
+#~ msgstr ""
+#~ "ਸਕਰੀਨ-ਸੇਵਰ ਨੂੰ ਸਰਗਰਮ ਹੋਣ ਤੋਂ ਰੋਕਿਆ ਗਿਆ।  ਕਮਾਂਡਾਂ ਉੱਤੇ ਰੋਕ ਹੈ, ਜਦੋਂ ਕਿ ਰੋਕਣਾ ਸਰਗਰਮ ਹੈ।"
+
+#~ msgid "The calling application that is inhibiting the screensaver"
+#~ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਨੂੰ ਰੋਕਣ ਵਾਲੇ ਕਾਰਜ ਬਾਰੇ ਜਾਣਕਾਰੀ ਲਈ ਜਾ ਰਹੀ ਹੈ"
+
+#~ msgid "The reason for inhibiting the screensaver"
+#~ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਰੋਕਣ ਲਈ ਕਾਰਨ"
+
+#~ msgid "The screensaver is not inhibited\n"
+#~ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਇੰਹੈਬਿਟ ਨਹੀਂ ਹੈ\n"
+
+#~ msgid "The screensaver is being inhibited by:\n"
+#~ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਇੰਹੈਬਿਟ ਕੀਤਾ ਹੈ:\n"
+
+#~ msgid "Blank screen"
+#~ msgstr "ਖਾਲੀ ਸਕਰੀਨ"
+
+#~ msgid "Random"
+#~ msgstr "ਰਲਵੇਂ"
+
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "%d ਘੰਟਾ"
+#~ msgstr[1] "%d ਘੰਟੇ"
+
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d ਮਿੰਟ"
+#~ msgstr[1] "%d ਮਿੰਟ"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d ਸਕਿੰਟ"
+#~ msgstr[1] "%d ਸਕਿੰਟ"
+
+#~ msgid "%s %s %s"
+#~ msgstr "%s %s %s"
+
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgid "Never"
+#~ msgstr "ਕਦੇ ਨਹੀਂ"
+
+#~ msgid "Could not load the main interface"
+#~ msgstr "ਮੁੱਖ ਇੰਟਰਫੇਸ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕਿਆ ਹੈ।"
+
+#~ msgid "Please make sure that the screensaver is properly installed"
+#~ msgstr "ਜਾਂਚ ਕਰੋ ਕਿ ਸਕਰੀਨ-ਸੇਵਰ ਠੀਕ ਤਰ੍ਹਾਂ ਇੰਸਟਾਲ ਹੈ ਜੀ"
+
+#~ msgid "%U on %h"
+#~ msgstr "%h ਉੱਤੇ %U"
 
 #~ msgid "<b>Screensaver preview</b>"
 #~ msgstr "<b>ਸਕਰੀਨ-ਸੇਵਰ ਝਲਕ</b>"
