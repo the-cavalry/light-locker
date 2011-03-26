@@ -256,7 +256,7 @@ msgstr "_Mật khẩu:"
 #: ../src/gs-window-x11.c:2195
 #| msgid "%s %s"
 msgid "%a %R"
-msgstr "%R %a"
+msgstr "%a %R"
 
 #: ../src/gs-window-x11.c:2197
 msgid "%a %l:%M %p"
