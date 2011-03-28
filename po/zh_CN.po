@@ -5,214 +5,69 @@
 # Yang Zhang <zyangmath@gmail.com>, 2009.
 # Tao Wei <weitao1979@gmail.com>, 2010.
 # YunQiang Su <wzssyqa@gmail.com>, 2011.
+# wei Li <lw124124@gmail.com>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"screensaver&component=general\n"
-"POT-Creation-Date: 2011-02-28 22:10+0000\n"
-"PO-Revision-Date: 2011-03-01 22:44+0800\n"
-"Last-Translator: YunQiang Su <wzssyqa@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-15 12:22+0000\n"
+"PO-Revision-Date: 2011-03-28 17:30+0800\n"
+"Last-Translator: liwei <lw124124@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/gnome-screensaver.directory.in.h:1
-msgid "Screensaver themes"
-msgstr "屏幕保护程序主题"
-
-#: ../data/gnome-screensaver.directory.in.h:2
-msgid "Screensavers"
-msgstr "屏幕保护程序"
-
-#. Translators: This is the name of a desktop background image that shows outer space images.
-#. You might want to translate it into the equivalent words of your language
-#: ../data/images/cosmos/cosmos.xml.in.in.h:3
-#: ../savers/cosmos-slideshow.desktop.in.in.h:1
-msgid "Cosmos"
-msgstr "宇宙"
-
-#: ../savers/cosmos-slideshow.desktop.in.in.h:2
-msgid "Display a slideshow of pictures of the cosmos"
-msgstr "显示一组宇宙图片的幻灯片"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "在屏幕上如泡泡一样浮动 GNOME 脚徽标"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "浮动的脚"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:1
-msgid "Display a slideshow from your Pictures folder"
-msgstr "显示您图片文件夹中图片的幻灯片"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:2
-msgid "Pictures folder"
-msgstr "图片文件夹"
-
-#: ../savers/popsquares.desktop.in.in.h:1
-msgid "A pop-art-ish grid of pulsing colors."
-msgstr "一个由跳动的颜色组成的流行艺术栅格"
-
-#: ../savers/popsquares.desktop.in.in.h:2
-msgid "Pop art squares"
-msgstr "流行艺术方块"
-
-#: ../savers/popsquares.c:50 ../savers/floaters.c:1184
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s。参见 --help 以获得用法信息。\n"
-
-#: ../savers/floaters.c:88
-msgid "Show paths that images follow"
-msgstr "显示图片跟随的路径"
-
-#: ../savers/floaters.c:91
-msgid "Occasionally rotate images as they move"
-msgstr "图片移动过程中不时旋转"
-
-#: ../savers/floaters.c:94
-msgid "Print out frame rate and other statistics"
-msgstr "打印帧率和其它统计数据"
-
-#: ../savers/floaters.c:97
-msgid "The maximum number of images to keep on screen"
-msgstr "屏幕上保留的图片的最大数目"
-
-#: ../savers/floaters.c:97
-msgid "MAX_IMAGES"
-msgstr "MAX_IMAGES"
-
-#: ../savers/floaters.c:100
-msgid "The initial size and position of window"
-msgstr "窗口的初始大小和位置"
-
-#: ../savers/floaters.c:100
-msgid "WIDTHxHEIGHT+X+Y"
-msgstr "宽度x高度+X+Y"
-
-#: ../savers/floaters.c:103
-msgid "The source image to use"
-msgstr "待使用的源图片"
-
-#. translators: the word "image" here
-#. * represents a command line argument
-#.
-#: ../savers/floaters.c:1178
-msgid "image — floats images around the screen"
-msgstr "image - 在屏幕上浮动图片"
-
-#: ../savers/floaters.c:1193
-#, c-format
-msgid "You must specify one image.  See --help for usage information.\n"
-msgstr "您必须指定一幅图片。参见 --help 以获得用法信息。\n"
-
-#: ../savers/slideshow.c:53
-msgid "Location to get images from"
-msgstr "获取图片的位置"
-
-#: ../savers/slideshow.c:53
-msgid "PATH"
-msgstr "路径"
-
-#: ../savers/slideshow.c:55
-msgid "Color to use for image background"
-msgstr "图片背景使用的颜色"
-
-#: ../savers/slideshow.c:55
-msgid "\"#rrggbb\""
-msgstr "\"#rrggbb\""
-
-#: ../savers/slideshow.c:57
-msgid "Do not randomize pictures from location"
-msgstr "不随机放置图片"
-
-#: ../savers/slideshow.c:59
-msgid "Do not try to stretch images on screen"
-msgstr "不在屏幕上伸展图片"
-
-#: ../src/gnome-screensaver-command.c:62
+#: ../src/gnome-screensaver-command.c:46
 msgid "Causes the screensaver to exit gracefully"
 msgstr "使屏幕保护程序正常退出"
 
-#: ../src/gnome-screensaver-command.c:64
+#: ../src/gnome-screensaver-command.c:48
 msgid "Query the state of the screensaver"
 msgstr "查询屏幕保护程序的状态"
 
-#: ../src/gnome-screensaver-command.c:66
+#: ../src/gnome-screensaver-command.c:50
 msgid "Query the length of time the screensaver has been active"
 msgstr "查询屏幕保护程序已经活动的时间"
 
-#: ../src/gnome-screensaver-command.c:68
+#: ../src/gnome-screensaver-command.c:52
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "通知正在运行的屏幕保护程序进程立即锁定屏幕"
 
-#: ../src/gnome-screensaver-command.c:70
-msgid "If the screensaver is active then switch to another graphics demo"
-msgstr "如果屏幕保护程序正活动则切换到其它图像演示"
-
-#: ../src/gnome-screensaver-command.c:72
+#: ../src/gnome-screensaver-command.c:54
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "开启屏幕保护程序(黑屏)"
 
-#: ../src/gnome-screensaver-command.c:74
+#: ../src/gnome-screensaver-command.c:56
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr "如果屏幕保护程序正活动则使之不活动(解除黑屏)"
 
-#: ../src/gnome-screensaver-command.c:76
-msgid "Poke the running screensaver to simulate user activity"
-msgstr "发送信息到正在运行的屏幕保护程序以模拟用户活动"
-
-#: ../src/gnome-screensaver-command.c:78
-msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
-msgstr "禁止屏幕保护程序激活。启动后其它命令将被阻塞。"
-
-#: ../src/gnome-screensaver-command.c:80
-msgid "The calling application that is inhibiting the screensaver"
-msgstr "正在禁用屏幕保护程序的应用程序"
-
-#: ../src/gnome-screensaver-command.c:82
-msgid "The reason for inhibiting the screensaver"
-msgstr "禁用屏幕保护程序的原因"
-
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver-command.c:58
+#: ../src/gnome-screensaver-dialog.c:59
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "此应用程序的版本"
 
-#: ../src/gnome-screensaver-command.c:316
+#: ../src/gnome-screensaver-command.c:224
 #, c-format
 msgid "The screensaver is active\n"
 msgstr "屏幕保护程序状态为活动\n"
 
-#: ../src/gnome-screensaver-command.c:316
+#: ../src/gnome-screensaver-command.c:226
 #, c-format
 msgid "The screensaver is inactive\n"
 msgstr "屏幕保护程序状态为不活动\n"
 
-#: ../src/gnome-screensaver-command.c:330
+#: ../src/gnome-screensaver-command.c:256
 #, c-format
-msgid "The screensaver is not inhibited\n"
-msgstr "屏幕保护程序未被阻止\n"
+#| msgid "The screensaver has been active for %d seconds.\n"
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "屏幕保护程序已激活 %d 秒。\n"
 
-#: ../src/gnome-screensaver-command.c:336
-#, c-format
-msgid "The screensaver is being inhibited by:\n"
-msgstr "屏幕保护程序被阻止：\n"
-
-#: ../src/gnome-screensaver-command.c:367
-#, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "屏幕保护程序已运行 %d 秒。\n"
-
-#: ../src/gnome-screensaver-command.c:371
+#: ../src/gnome-screensaver-command.c:258
 #, c-format
 msgid "The screensaver is not currently active.\n"
 msgstr "屏幕保护当前没有激活。\n"
@@ -239,7 +94,8 @@ msgstr "在对话框中显示的消息"
 
 #. Translators: This is the example input for the --status-message command line option.
 #. Translators: This is the example input for the --away-message command line option.
-#: ../src/gnome-screensaver-dialog.c:69 ../src/gnome-screensaver-dialog.c:73
+#: ../src/gnome-screensaver-dialog.c:69
+#: ../src/gnome-screensaver-dialog.c:73
 msgid "MESSAGE"
 msgstr "MESSAGE"
 
@@ -248,12 +104,15 @@ msgid "Not used"
 msgstr "没有使用"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:183 ../src/gnome-screensaver-dialog.c:184
-#: ../src/gnome-screensaver-dialog.c:185 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "用户名："
 
-#: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:187
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "密码："
@@ -318,7 +177,8 @@ msgstr "对不起，密码不匹配"
 msgid "Checking…"
 msgstr "正在检查..."
 
-#: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:309
+#: ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "验证失败。"
 
@@ -360,15 +220,16 @@ msgstr "目前不允许获得访问。"
 msgid "No longer permitted to access the system."
 msgstr "不再允许访问系统。"
 
-#: ../src/gs-listener-dbus.c:1912
+#: ../src/gs-listener-dbus.c:1148
 msgid "failed to register with the message bus"
 msgstr "注册到消息总线失败"
 
-#: ../src/gs-listener-dbus.c:1922
+#: ../src/gs-listener-dbus.c:1158
 msgid "not connected to the message bus"
 msgstr "未连接到消息总线"
 
-#: ../src/gs-listener-dbus.c:1931
+#: ../src/gs-listener-dbus.c:1167
+#: ../src/gs-listener-dbus.c:1197
 msgid "screensaver already running in this session"
 msgstr "本会话中屏幕保护程序已经运行"
 
@@ -404,13 +265,119 @@ msgstr "解锁(_U)"
 msgid "_Password:"
 msgstr "密码(_P)："
 
-#: ../src/gs-window-x11.c:2294
+#. Translators, this is the 24h date format used in the panel clock
+#: ../src/gs-window-x11.c:2199
 msgid "%a %R"
 msgstr "%a %R"
 
-#: ../src/gs-window-x11.c:2296
+#. Translators, this is the 12h date format used in the panel clock
+#: ../src/gs-window-x11.c:2202
 msgid "%a %l:%M %p"
 msgstr "%a %l:%M %p"
+
+#~ msgid "Screensaver themes"
+#~ msgstr "屏幕保护程序主题"
+
+#~ msgid "Screensavers"
+#~ msgstr "屏幕保护程序"
+
+#~ msgid "Cosmos"
+#~ msgstr "宇宙"
+
+#~ msgid "Display a slideshow of pictures of the cosmos"
+#~ msgstr "显示一组宇宙图片的幻灯片"
+
+#~ msgid "Bubbles the GNOME foot logo around the screen"
+#~ msgstr "在屏幕上如泡泡一样浮动 GNOME 脚徽标"
+
+#~ msgid "Floating Feet"
+#~ msgstr "浮动的脚"
+
+#~ msgid "Display a slideshow from your Pictures folder"
+#~ msgstr "显示您图片文件夹中图片的幻灯片"
+
+#~ msgid "Pictures folder"
+#~ msgstr "图片文件夹"
+
+#~ msgid "A pop-art-ish grid of pulsing colors."
+#~ msgstr "一个由跳动的颜色组成的流行艺术栅格"
+
+#~ msgid "Pop art squares"
+#~ msgstr "流行艺术方块"
+
+#~ msgid "%s. See --help for usage information.\n"
+#~ msgstr "%s。参见 --help 以获得用法信息。\n"
+
+#~ msgid "Show paths that images follow"
+#~ msgstr "显示图片跟随的路径"
+
+#~ msgid "Occasionally rotate images as they move"
+#~ msgstr "图片移动过程中不时旋转"
+
+#~ msgid "Print out frame rate and other statistics"
+#~ msgstr "打印帧率和其它统计数据"
+
+#~ msgid "The maximum number of images to keep on screen"
+#~ msgstr "屏幕上保留的图片的最大数目"
+
+#~ msgid "MAX_IMAGES"
+#~ msgstr "MAX_IMAGES"
+
+#~ msgid "The initial size and position of window"
+#~ msgstr "窗口的初始大小和位置"
+
+#~ msgid "WIDTHxHEIGHT+X+Y"
+#~ msgstr "宽度x高度+X+Y"
+
+#~ msgid "The source image to use"
+#~ msgstr "待使用的源图片"
+
+#~ msgid "image — floats images around the screen"
+#~ msgstr "image - 在屏幕上浮动图片"
+
+#~ msgid "You must specify one image.  See --help for usage information.\n"
+#~ msgstr "您必须指定一幅图片。参见 --help 以获得用法信息。\n"
+
+#~ msgid "Location to get images from"
+#~ msgstr "获取图片的位置"
+
+#~ msgid "PATH"
+#~ msgstr "路径"
+
+#~ msgid "Color to use for image background"
+#~ msgstr "图片背景使用的颜色"
+
+#~ msgid "\"#rrggbb\""
+#~ msgstr "\"#rrggbb\""
+
+#~ msgid "Do not randomize pictures from location"
+#~ msgstr "不随机放置图片"
+
+#~ msgid "Do not try to stretch images on screen"
+#~ msgstr "不在屏幕上伸展图片"
+
+#~ msgid "If the screensaver is active then switch to another graphics demo"
+#~ msgstr "如果屏幕保护程序正活动则切换到其它图像演示"
+
+#~ msgid "Poke the running screensaver to simulate user activity"
+#~ msgstr "发送信息到正在运行的屏幕保护程序以模拟用户活动"
+
+#~ msgid ""
+#~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
+#~ "active."
+#~ msgstr "禁止屏幕保护程序激活。启动后其它命令将被阻塞。"
+
+#~ msgid "The calling application that is inhibiting the screensaver"
+#~ msgstr "正在禁用屏幕保护程序的应用程序"
+
+#~ msgid "The reason for inhibiting the screensaver"
+#~ msgstr "禁用屏幕保护程序的原因"
+
+#~ msgid "The screensaver is not inhibited\n"
+#~ msgstr "屏幕保护程序未被阻止\n"
+
+#~ msgid "The screensaver is being inhibited by:\n"
+#~ msgstr "屏幕保护程序被阻止：\n"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "设定您的屏幕保护程序首选项"
@@ -616,14 +583,17 @@ msgstr "%a %l:%M %p"
 #~ msgstr "随机"
 
 #~ msgid "%d hour"
+
 #~ msgid_plural "%d hours"
 #~ msgstr[0] "%d 小时"
 
 #~ msgid "%d minute"
+
 #~ msgid_plural "%d minutes"
 #~ msgstr[0] "%d 分钟"
 
 #~ msgid "%d second"
+
 #~ msgid_plural "%d seconds"
 #~ msgstr[0] "%d 秒"
 
