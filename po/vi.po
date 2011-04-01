@@ -6,9 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver GNOME TRUNK\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver&component=general\n"
-"POT-Creation-Date: 2011-03-06 07:49+0000\n"
-"PO-Revision-Date: 2011-03-10 03:31+0700\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"screensaver&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-26 06:49+0000\n"
+"PO-Revision-Date: 2011-04-01 20:31+0700\n"
 "Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -58,8 +59,10 @@ msgstr "Bộ bảo vệ màn hình không hoạt động\n"
 
 #: ../src/gnome-screensaver-command.c:223
 #, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "Bộ bảo vệ màn hình đã hoạt động trong %d giây.\n"
+#| msgid "The screensaver has been active for %d seconds.\n"
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "Bộ bảo vệ màn hình đã hoạt động trong %d giây.\n"
 
 #: ../src/gnome-screensaver-command.c:227
 #, c-format
