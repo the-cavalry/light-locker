@@ -48,7 +48,7 @@
         <literal>Lock</literal>
       </title>
       <para>
-        Request that the screen be locked.  This bypasses all Inhibit requests.
+        Request that the screen be locked.
       </para>
     </sect2>
 
@@ -72,74 +72,6 @@
         requested if necessary.  If the screensaver is not activated
         then the idle timers will be reset.
       </para>
-    </sect2>
-
-    <sect2 id="gs-method-Inhibit">
-      <title>
-        <literal>Inhibit</literal>
-      </title>
-      <para>
-        Request that saving the screen due to system idleness be blocked until
-        UnInhibit is called or the calling process exits.
-      </para>
-      <informaltable>
-        <tgroup cols="2">
-          <thead>
-            <row>
-              <entry>Direction</entry>
-              <entry>Type</entry>
-              <entry>Description</entry>
-            </row>
-          </thead>
-          <tbody>
-            <row>
-              <entry>in</entry>
-              <entry>string</entry>
-              <entry>the application name, e.g. "totem"</entry>
-            </row>
-            <row>
-              <entry>in</entry>
-              <entry>string</entry>
-              <entry>the localized reason to inhibit, e.g. "playing movie"</entry>
-            </row>
-            <row>
-              <entry>out</entry>
-              <entry>unsigned integer</entry>
-              <entry>the cookie</entry>
-            </row>
-          </tbody>
-        </tgroup>
-      </informaltable>
-      <para>
-        A cookie is a random, unique, non-zero UINT32 used to identify the inhibit request.
-      </para>
-    </sect2>
-
-    <sect2 id="gs-method-UnInhibit">
-      <title>
-        <literal>UnInhibit</literal>
-      </title>
-      <para>
-        Cancel a previous call to Inhibit() identified by the cookie.
-      </para>
-      <informaltable>
-        <tgroup cols="2">
-          <thead>
-            <row>
-              <entry>Direction</entry>
-              <entry>Type</entry>
-              <entry>Description</entry>
-            </row>
-          </thead>
-          <tbody>
-            <row>
-              <entry>in</entry>
-              <entry>unsigned integer</entry>
-              <entry>the cookie</entry>
-            </row>
-          </tbody>
-        </tgroup>
-      </informaltable>
     </sect2>
 
     <sect2 id="gs-method-Throttle">
