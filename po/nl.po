@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-19 01:25+0100\n"
-"PO-Revision-Date: 2011-03-19 01:25+0100\n"
+"POT-Creation-Date: 2011-04-03 18:09+0200\n"
+"PO-Revision-Date: 2011-04-03 18:10+0200\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "Language: nl\n"
@@ -42,7 +42,7 @@ msgstr "Opvragen hoe lang de schermbeveiliging actief is geweest"
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr ""
 "Geeft de actieve schermbeveiliging opdracht om het scherm onmiddellijk te "
-"blokkeren"
+"vergrendelen"
 
 #: ../src/gnome-screensaver-command.c:54
 msgid "Turn the screensaver on (blank the screen)"
@@ -265,7 +265,7 @@ msgstr "_Afmelden"
 
 #: ../src/gs-lock-plug.c:1366
 msgid "_Unlock"
-msgstr "_Deblokkeren"
+msgstr "_Ontgrendelen"
 
 #: ../src/gs-lock-plug.c:1401
 msgid "_Password:"
@@ -1069,12 +1069,12 @@ msgstr "%a, %I:%M %p"
 #~ msgid "The number of minutes after blanking the screen before locking"
 #~ msgstr ""
 #~ "Het aantal minuten nadat het scherm zwart is geworden dat het scherm "
-#~ "wordt geblokkeerd"
+#~ "wordt vergrendeld"
 
 #~ msgid "The number of minutes after blanking the screen before locking."
 #~ msgstr ""
 #~ "Het aantal minuten nadat het scherm zwart is geworden dat het scherm "
-#~ "wordt geblokkeerd."
+#~ "wordt vergrendeld."
 
 #~ msgid ""
 #~ "This key specifies the selection mode used by the screensaver. Possible "
@@ -1084,10 +1084,10 @@ msgstr "%a, %I:%M %p"
 #~ "waarden zijn \"disabled\", \"blank-only\", \"single\", en \"random\"."
 
 #~ msgid "Whether to lock as well as blank"
-#~ msgstr "Of zowel geblokkeerd als zwartgemaakt wordt"
+#~ msgstr "Of zowel vergrendeld als zwartgemaakt wordt"
 
 #~ msgid "Whether to lock as well as blank."
-#~ msgstr "Of zowel geblokkeerd als zwartgemaakt wordt."
+#~ msgstr "Of zowel vergrendeld als zwartgemaakt wordt."
 
 #~ msgid "Whether to offer the option of logging out after logout_delay"
 #~ msgstr "Of een afmeldoptie geboden wordt na logout_delay"
@@ -1104,7 +1104,7 @@ msgstr "%a, %I:%M %p"
 #~ msgstr[1] "Ongeveer %ld seconden over<"
 
 #~ msgid "Enter a password to unlock the screen"
-#~ msgstr "Geef het wachtwoord om het scherm te deblokkeren"
+#~ msgstr "Geef het wachtwoord om het scherm te ontgrendelen"
 
 #~ msgid "Name:"
 #~ msgstr "Naam:"
