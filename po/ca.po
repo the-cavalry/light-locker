@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-18 17:29+0100\n"
-"PO-Revision-Date: 2011-03-18 17:30+0100\n"
+"PO-Revision-Date: 2011-04-03 23:51+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.net>\n"
 "Language: ca\n"
@@ -161,11 +161,11 @@ msgstr "S'ha produït un error en canviar la contrasenya NIS."
 
 #: ../src/gnome-screensaver-dialog.c:198
 msgid "You must choose a longer password"
-msgstr "Heu d'escollir una contrasenya més llarga"
+msgstr "Heu de triar una contrasenya més llarga"
 
 #: ../src/gnome-screensaver-dialog.c:199
 msgid "Password has been already used. Choose another."
-msgstr "La contrasenya ja s'ha fet servir. Escolliu-ne una altra."
+msgstr "La contrasenya ja s'ha fet servir. Trieu-ne una altra."
 
 #: ../src/gnome-screensaver-dialog.c:200
 msgid "You must wait longer to change your password"
