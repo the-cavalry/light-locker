@@ -4,15 +4,15 @@
 #
 # Felix <ifelix@redhat.com>, 2006.
 # Dr.T.Vasudevan <agnihot3@gmail.com>, 2007, 2010.
-# I. Felix <ifelix@redhat.com>, 2008, 2009.
+# I. Felix <ifelix@redhat.com>, 2008, 2009, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.master.ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-04 04:23+0530\n"
-"PO-Revision-Date: 2010-09-04 04:36+0530\n"
-"Last-Translator: Dr.T.Vasudevan <agnihot3@gmail.com>\n"
-"Language-Team: Tamil <<Ubuntu-l10n-tam@lists.ubuntu.com>>\n"
+"POT-Creation-Date: 2011-04-03 08:49+0530\n"
+"PO-Revision-Date: 2011-04-03 08:51+0530\n"
+"Last-Translator: \n"
+"Language-Team: American English <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,447 +22,53 @@ msgstr ""
 "\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: ../data/gnome-screensaver-preferences.desktop.in.h:1
-#: ../src/gnome-screensaver.desktop.in.in.h:2
-msgid "Screensaver"
-msgstr "திரை சேமிப்பி"
-
-#: ../data/gnome-screensaver-preferences.desktop.in.h:2
-msgid "Set your screensaver preferences"
-msgstr "உங்கள் திரை சேமிப்பி முன்னுரிமைகளை அமைக்கவும்"
-
-#: ../data/gnome-screensaver-preferences.ui.h:1
-msgid "Power _Management"
-msgstr "சக்தி நிர்வாகம்"
-
-#: ../data/gnome-screensaver-preferences.ui.h:2
-msgid "Regard the computer as _idle after:"
-msgstr "இந்த நேரத்துக்குப்பின் கணினி சும்மாயிருப்பதாக கொள்ளவும்:"
-
-#: ../data/gnome-screensaver-preferences.ui.h:3
-msgid "Screensaver Preferences"
-msgstr "திரைசேமிப்பி முன்னுரிமைகள்"
-
-#: ../data/gnome-screensaver-preferences.ui.h:4
-msgid "Screensaver Preview"
-msgstr "திரைசேமிப்பி முன்பார்வை"
-
-#: ../data/gnome-screensaver-preferences.ui.h:5
-msgid "Screensaver preview"
-msgstr "திரைசேமிப்பி முன்பார்வை"
-
-#: ../data/gnome-screensaver-preferences.ui.h:6
-msgid "Warning: the screen will not be locked for the root user."
-msgstr "எச்சரிக்கை: திரை ரூட் பயனருக்கு பூட்டப்பட மாட்டாது. "
-
-#: ../data/gnome-screensaver-preferences.ui.h:7
-msgid "_Activate screensaver when computer is idle"
-msgstr "கணினி சும்மாயிருப்பின் திரை சேமிப்பியை செயல்படுத்துக"
-
-#: ../data/gnome-screensaver-preferences.ui.h:8
-msgid "_Lock screen when screensaver is active"
-msgstr "திரை சேமிப்பி செயலில் இருப்பின் திரையை பூட்டவும்."
-
-#: ../data/gnome-screensaver-preferences.ui.h:9
-msgid "_Preview"
-msgstr "முன்பார்வை (_P)"
-
-#: ../data/gnome-screensaver-preferences.ui.h:10
-msgid "_Screensaver theme:"
-msgstr "திரைசேமிப்பி சூழல்: (_S)"
-
-#: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:11
-msgid "Screensaver themes"
-msgstr "திரைசேமிப்பி சூழல்கள்"
-
-#: ../data/gnome-screensaver.directory.in.h:2
-msgid "Screensavers"
-msgstr "திரைசேமிப்பிகள்"
-
-#: ../data/gnome-screensaver.schemas.in.h:1
-msgid "Activate when idle"
-msgstr "வெறுமையாக இருக்கும் போது செயல்படுத்து"
-
-#: ../data/gnome-screensaver.schemas.in.h:2
-msgid "Allow embedding a keyboard into the window"
-msgstr "சாளரத்தில் ஒரு விசைப்பலகையை உட்பொதிய அனுமதி"
-
-#: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow logout"
-msgstr "வெளிசெல்ல அனுமதி"
-
-#: ../data/gnome-screensaver.schemas.in.h:4
-msgid "Allow the session status message to be displayed"
-msgstr "அமர்வு நிலை செய்தியை காட்ட அனுமதி"
-
-#: ../data/gnome-screensaver.schemas.in.h:5
-msgid "Allow the session status message to be displayed when the screen is locked."
-msgstr "திரை பூட்டியிருக்கும் போது அமர்வு நிலை செய்தியை காட்ட அனுமதி"
-
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Allow user switching"
-msgstr "பயனர் மாற்ற அனுமதி"
-
-#: ../data/gnome-screensaver.schemas.in.h:7
-msgid "Embedded keyboard command"
-msgstr "உட்பொதியப்பட்ட விசைப்பலகை கட்டளை"
-
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Lock on activation"
-msgstr "செயல்படுத்தும் போது பூட்டு"
-
-#: ../data/gnome-screensaver.schemas.in.h:9
-msgid "Logout command"
-msgstr "வெளிச்செல் கட்டளை"
-
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Screensaver theme selection mode"
-msgstr "திரைசேமிப்பி சூழல் தேர்ந்தெடுப்பு முறை"
-
-#: ../data/gnome-screensaver.schemas.in.h:12
-msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr "அமர்வு சும்மாயிருக்கும் போது திரை சேமிப்பியை இயக்க இதை உண்மை என அமைக்கவும்."
-
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid ""
-"Set this to TRUE to allow embedding a keyboard into the window when trying "
-"to unlock. The \"keyboard_command\" key must be set with the appropriate "
-"command."
-msgstr ""
-"பூட்டை திறக்க முயலும்போது சாளரத்தில் ஒரு விசைப்பலகையை உள் அமைக்க இதை உண்மை என "
-"அமைக்கவும். \"keyboard_command\" விசை பொருத்தமான கட்டளையால் அமைக்கப்பட வேண்டும்."
-
-#: ../data/gnome-screensaver.schemas.in.h:14
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr "திரை சேமிப்பி இயங்கும் போது திரையை பூட்ட இதை உண்மை என அமைக்கவும்."
-
-#: ../data/gnome-screensaver.schemas.in.h:15
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to allow logging "
-"out after a delay. The delay is specified in the \"logout_delay\" key."
-msgstr ""
-"திரை பூட்டை திறக்கும் போது ஒரு தாமதம் கழித்து வெளியேற தேர்வை தர இதை உண்மை என "
-"அமைக்கவும். தாமத நேரம் \"logout_delay\"  விசையில் அமைக்கப்பட்டது."
-
-#: ../data/gnome-screensaver.schemas.in.h:16
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to switch to a "
-"different user account."
-msgstr ""
-"திரை பூட்டை திறக்கும் போது வேறு ஒரு பயனர் கணக்குக்கு மாற தேர்வை தர இதை உண்மை என "
-"அமைக்கவும்."
-
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
-"set to TRUE, to embed a keyboard widget into the window. This command should "
-"implement an XEMBED plug interface and output a window XID on the standard "
-"output."
-msgstr ""
-"\"embedded_keyboard_enabled\" விசை உண்மை என அமைந்தால் ஒரு விசைப்பலகை விட்செட்டை "
-"சாளரத்தில் உள்ளமைக்க பயன்படும் கட்டளை. இந்த கட்டளை XEMBED சொருகி இடைமுகத்தை செயலாக்க "
-"வேண்டும் மற்றும் சாதாரண வெளியீட்டில் சாளர XID ஐ வெளியிட வேண்டும்."
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The command to invoke when the logout button is clicked. This command should "
-"simply log the user out without any interaction. This key has effect only if "
-"the \"logout_enable\" key is set to TRUE."
-msgstr ""
-"வெளியேறு பொத்தானை சொடுக்கியதும் நிறைவேற்ற வேண்டிய கட்டளை. இது ஒரு ஊடாடலும் இல்லாமல் "
-"பயனரை வெளியேற்ற வேண்டும். இது \"logout_enable\"  விசை உண்மை என அமைந்தால் மட்டுமே "
-"செயல் படும்."
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid "The number of minutes after screensaver activation before locking the screen."
-msgstr "திரை சேமிப்பி துவங்கிய பின் திரையை பூட்டு முன் நேரம்."
-
-#: ../data/gnome-screensaver.schemas.in.h:20
-msgid ""
-"The number of minutes after the screensaver activation before a logout "
-"option will appear in the unlock dialog. This key has effect only if the "
-"\"logout_enable\" key is set to TRUE."
-msgstr ""
-"திரை சேமிப்பி துவங்கிய பின் பூட்டு திறப்பு உரையாடலில் வெளியேற்ற தேர்வு அமைய "
-"நிமிடங்களில் நேரம். இது \"logout_enable\"  விசை உண்மை என அமைந்தால் மட்டுமே செயல் "
-"படும்."
-
-#: ../data/gnome-screensaver.schemas.in.h:21
-msgid "The number of minutes of inactivity before the session is considered idle."
-msgstr "அமர்வு சும்மாயிருப்பதாக கருத  நிமிடங்களில் செயலற்ற நேரம்."
-
-#: ../data/gnome-screensaver.schemas.in.h:22
-msgid "The number of minutes to run before changing the screensaver theme."
-msgstr "திரை சேமிப்பி கருப்பொருளை மாற்று முன் இயங்க நிமிடங்களில் நேரம்."
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-msgid ""
-"The number of seconds of inactivity before signalling to power management. "
-"This key is set and maintained by the session power management agent."
-msgstr ""
-"சக்தி மேலாண்மை அமைய சமிக்ஞை வரு முன் வினாடிகளில் நேரம். இந்த விசை சக்தி மேலாண்மை "
-"அமைப்பியால் அமைக்கப்பட்டு பராமரிக்கப்படும்."
-
-#: ../data/gnome-screensaver.schemas.in.h:24
-msgid ""
-"The selection mode used by screensaver. May be \"blank-only\" to enable the "
-"screensaver without using any theme on activation, \"single\" to enable "
-"screensaver using only one theme on activation (specified in \"themes\" "
-"key), and \"random\" to enable the screensaver using a random theme on "
-"activation."
-msgstr ""
-"திரை சேமிப்பி பயன்படுத்தும் தேர்வு பாங்கு. செயலாக்கும் போது, ஒரு கருப்பொருளையும் "
-"பயன்படுத்தாமல் வெற்றாக்க \"blank-only\" , \"themes\" விசையால் குறிப்பிட்ட ஒரே ஒரு "
-"கருப்பொருளை பயன்படுத்த \"single\"  குறிப்பற்ற கருப்பொருளை பயன்படுத்த \"random\"."
-
-#: ../data/gnome-screensaver.schemas.in.h:25
-msgid ""
-"This key specifies the list of themes to be used by the screensaver. It's "
-"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
-"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
-"\" is \"random\"."
-msgstr ""
-"இந்த விசை திரை சேமிப்பி பயன்படுத்த வேண்டிய கருப்பொருட்களை பட்டியல் இடுகிறது. \"mode\" "
-"விசை \"blank-only\", ஆக இருப்பின் இது உதாசீனப்படுத்தப்படும். \"mode\"  \"single\" "
-"ஆக இருப்பின் கருப்பொருளின் பெயரை தர வேண்டும்.\"mode\" \"random\" ஆனால் ஒரு "
-"கருப்பொருள் பட்டியலை தர வேண்டும்."
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Time before locking"
-msgstr "பூட்டுவதற்கு முன் நேரம்"
-
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid "Time before logout option"
-msgstr "வெளிச்செல் விருப்பத்திற்கு முன் நேரம்"
-
-#: ../data/gnome-screensaver.schemas.in.h:28
-msgid "Time before power management baseline"
-msgstr "சக்தி அடித்தளம் வரு முன் நேரம்"
-
-#: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before session is considered idle"
-msgstr "அமர்வு சும்மாயிருப்பதாக கருத நேரம்"
-
-#: ../data/gnome-screensaver.schemas.in.h:30
-msgid "Time before theme change"
-msgstr "சூழல் மாற்றுவதற்கு முன் நேரம்"
-
-#. Translators: This is the name of a desktop background image that shows outer space images.
-#. You might want to translate it into the equivalent words of your language
-#: ../data/images/cosmos/cosmos.xml.in.in.h:3
-#: ../savers/cosmos-slideshow.desktop.in.in.h:1
-msgid "Cosmos"
-msgstr "Cosmos"
-
-#: ../savers/cosmos-slideshow.desktop.in.in.h:2
-msgid "Display a slideshow of pictures of the cosmos"
-msgstr "cosmosன் படங்களை ஸ்லைடு காட்சியாக காட்டவும்"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "திரையில் பல் இடங்களில் க்னோம் கால் சின்னத்தை குமிழ்களாக வெளியிடுகிறது."
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "மிதவை பாதம்"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:1
-msgid "Display a slideshow from your Pictures folder"
-msgstr "உங்கள் படங்கள் அடைவிலிருந்து ஸ்லைடு காட்சியை காட்டவும்"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:2
-msgid "Pictures folder"
-msgstr "படங்கள் அடைவு"
-
-#: ../savers/popsquares.desktop.in.in.h:1
-msgid "A pop-art-ish grid of pulsing colors."
-msgstr "நிறங்களின் துடிப்பில் ஒரு pop-art-ish கட்டம்."
-
-#: ../savers/popsquares.desktop.in.in.h:2
-msgid "Pop art squares"
-msgstr "Pop art சதுரங்கள்"
-
-#: ../savers/popsquares.c:49 ../savers/floaters.c:1205
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s. --பயன்பாடு தகவலுக்கு உதவியை பார்க்கவும்.\n"
-
-#: ../savers/floaters.c:88
-msgid "Show paths that images follow"
-msgstr "படங்கள் பின்பற்றும் பாதைகளை காட்டு"
-
-#: ../savers/floaters.c:91
-msgid "Occasionally rotate images as they move"
-msgstr "படங்களை அவற்றை நகரும் போது எப்போதாவது சுழற்றவும்"
-
-#: ../savers/floaters.c:94
-msgid "Print out frame rate and other statistics"
-msgstr "சட்ட விகிதம் மற்றும் பிற புள்ளி விவரங்களை அச்சிடுக"
-
-#: ../savers/floaters.c:97
-msgid "The maximum number of images to keep on screen"
-msgstr "திரையில் வைக்க வேண்டிய பிம்பங்களின் அதிகபட்ச எண்ணிக்கை"
-
-#: ../savers/floaters.c:97
-msgid "MAX_IMAGES"
-msgstr "MAX_IMAGES"
-
-#: ../savers/floaters.c:100
-msgid "The initial size and position of window"
-msgstr "சாளரத்தின் ஆரம்ப அளவு மற்றும் இடம்."
-
-#: ../savers/floaters.c:100
-msgid "WIDTHxHEIGHT+X+Y"
-msgstr "WIDTHxHEIGHT+X+Y"
-
-#: ../savers/floaters.c:103
-msgid "The source image to use"
-msgstr "பயன்படுத்த வேண்டிய மூல பிம்பம்"
-
-#. translators: the word "image" here
-#. * represents a command line argument
-#.
-#: ../savers/floaters.c:1199
-msgid "image — floats images around the screen"
-msgstr "படம் - திரையில் படங்களை மிதக்க விடவும்"
-
-#: ../savers/floaters.c:1214
-#, c-format
-msgid "You must specify one image.  See --help for usage information.\n"
-msgstr "நீங்கள் ஒரு படத்தை குறிப்பிட வேண்டும்.  --பயன்பாடு தகவலுக்கு உதவியை பார்க்கவும்.\n"
-
-#: ../savers/slideshow.c:53
-msgid "Location to get images from"
-msgstr "படத்தை பெறுவதற்கான இடம்"
-
-#: ../savers/slideshow.c:53
-msgid "PATH"
-msgstr "PATH"
-
-#: ../savers/slideshow.c:55
-msgid "Color to use for image background"
-msgstr "பிம்பங்களின் பின்னணிக்கு பயன்படுத்த வண்ணம்"
-
-#: ../savers/slideshow.c:55
-msgid "\"#rrggbb\""
-msgstr "\"#rrggbb\""
-
-#: ../savers/slideshow.c:57
-msgid "Do not randomize pictures from location"
-msgstr "இடத்திலிருந்து படங்களை குறிப்பில்லாததாக செய்யாதே"
-
-#: ../savers/slideshow.c:59
-msgid "Do not try to stretch images on screen"
-msgstr "திரையில் பிம்பங்களை விரிவு படுத்தாதே"
-
-#: ../src/copy-theme-dialog.c:215
-msgid "Copying files"
-msgstr "கோப்புகளை நகலெடுக்கிறது"
-
-#: ../src/copy-theme-dialog.c:233
-msgid "From:"
-msgstr "ஆரம்பம்:"
-
-#: ../src/copy-theme-dialog.c:237
-msgid "To:"
-msgstr "முடிவு:"
-
-#: ../src/copy-theme-dialog.c:257
-msgid "Copying themes"
-msgstr "தீம்களை நகலெடுக்கிறது"
-
-#: ../src/copy-theme-dialog.c:301
-msgid "Invalid screensaver theme"
-msgstr "தவறான திரைசேமிப்பி சூழல்"
-
-#: ../src/copy-theme-dialog.c:304
-#, c-format
-msgid "%s does not appear to be a valid screensaver theme."
-msgstr "%s சரியான திரைசேமிப்பி சூழலாக தோன்றாது."
-
-#: ../src/copy-theme-dialog.c:484
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "கோப்பினை நகலெடுக்கிறது: %u ல் %uஐ"
-
-#: ../src/gnome-screensaver-command.c:62
+#: ../src/gnome-screensaver-command.c:46
 msgid "Causes the screensaver to exit gracefully"
 msgstr "திரை சேமிப்பினை வெளியேற்றுகிறது"
 
-#: ../src/gnome-screensaver-command.c:64
+#: ../src/gnome-screensaver-command.c:48
 msgid "Query the state of the screensaver"
 msgstr "திரை சேமிப்பியின் நிலையை கேட்கிறது"
 
-#: ../src/gnome-screensaver-command.c:66
+#: ../src/gnome-screensaver-command.c:50
 msgid "Query the length of time the screensaver has been active"
 msgstr "திரை சேமிப்பி செயல்பட்ட நேரத்தை கேள்"
 
-#: ../src/gnome-screensaver-command.c:68
+#: ../src/gnome-screensaver-command.c:52
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "இயங்கும் திரை சேமிப்பி செயலை உடனே திரையை பூட்டச் சொல்லுகிறது."
 
-#: ../src/gnome-screensaver-command.c:70
-msgid "If the screensaver is active then switch to another graphics demo"
-msgstr "திரைசேமிப்பி இயங்கினால் வேறு ஒரு வரைகலை காட்சிக்கு மாறுக."
-
-#: ../src/gnome-screensaver-command.c:72
+#: ../src/gnome-screensaver-command.c:54
 msgid "Turn the screensaver on (blank the screen)"
 msgstr "திரை சேமிப்பினை செயல்படுத்தவும் (திரையை வெறுமையாக்கவும்)"
 
-#: ../src/gnome-screensaver-command.c:74
+#: ../src/gnome-screensaver-command.c:56
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr "திரைசேமிப்பி இயங்கினால் அதை செயல் நீக்குக. (திரையை வெற்றாக ஆக்காதே)"
 
-#: ../src/gnome-screensaver-command.c:76
-msgid "Poke the running screensaver to simulate user activity"
-msgstr "பயனர் செயலை போல் செய்ய இயங்கும் திரை சேமிப்பியை சீண்டுக"
-
-#: ../src/gnome-screensaver-command.c:78
-msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
-msgstr "திரை சேமிப்பி இயங்குவதை தடுக்கவும்.  தடுப்பு செயல்படும்போது கட்டளை தடுக்கும்"
-
-#: ../src/gnome-screensaver-command.c:80
-msgid "The calling application that is inhibiting the screensaver"
-msgstr "திரை சேமிப்பியை தடுக்க காரணமான பயன்பாடு"
-
-#: ../src/gnome-screensaver-command.c:82
-msgid "The reason for inhibiting the screensaver"
-msgstr "திரை சேமிப்பியை தடுக்க காரணம்"
-
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:59
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "இந்த பயன்பாட்டின் பதிப்பு"
 
-#: ../src/gnome-screensaver-command.c:295
+#: ../src/gnome-screensaver-command.c:224
 #, c-format
 msgid "The screensaver is active\n"
 msgstr "திரைசேமிப்பி செயலிலுள்ளது\n"
 
-#: ../src/gnome-screensaver-command.c:295
+#: ../src/gnome-screensaver-command.c:226
 #, c-format
 msgid "The screensaver is inactive\n"
 msgstr "திரைசேமிப்பி செயலில் இல்லை\n"
 
-#: ../src/gnome-screensaver-command.c:309
+#: ../src/gnome-screensaver-command.c:256
 #, c-format
-msgid "The screensaver is not inhibited\n"
-msgstr "திரைசேமிப்பி தடை செய்யப்பட்டதில்லை\n"
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "திரை சேமிப்பி %d வினாடியாக செயல்படுகிறது\n"
+msgstr[1] "திரை சேமிப்பி %d வினாடிகளாக செயல்படுகிறது.\n"
 
-#: ../src/gnome-screensaver-command.c:315
-#, c-format
-msgid "The screensaver is being inhibited by:\n"
-msgstr "திரைசேமிப்பி பின்வருவதால் தடைசெய்யப்படுகிறது:\n"
-
-#: ../src/gnome-screensaver-command.c:346
-#, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "திரை சேமிப்பி %d வினாடிகளுக்கு செயல் பட்டு உள்ளது.\n"
-
-#: ../src/gnome-screensaver-command.c:350
+#: ../src/gnome-screensaver-command.c:258
 #, c-format
 msgid "The screensaver is not currently active.\n"
 msgstr "திரைசேமிப்பி தற்போது செயலிலுள்ளது.\n"
@@ -572,72 +178,6 @@ msgstr "சோதிக்கிறது..."
 msgid "Authentication failed."
 msgstr "அங்கீகாரம் இல்லை."
 
-#: ../src/gnome-screensaver-preferences.c:524
-msgid "Blank screen"
-msgstr "வெற்று திரை"
-
-#: ../src/gnome-screensaver-preferences.c:530
-msgid "Random"
-msgstr "குறிப்பில்லாத"
-
-#: ../src/gnome-screensaver-preferences.c:980
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d மணி நேரம்"
-msgstr[1] "%d மணி நேரங்கள்"
-
-#: ../src/gnome-screensaver-preferences.c:983
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d நிமிடம்"
-msgstr[1] "%d நிமிடங்கள்"
-
-#: ../src/gnome-screensaver-preferences.c:986
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d விநாடி"
-msgstr[1] "%d விநாடிகள்"
-
-#. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:992
-#, c-format
-msgid "%s %s %s"
-msgstr "%s %s %s"
-
-#. hour:minutes
-#. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:995
-#: ../src/gnome-screensaver-preferences.c:1003
-#, c-format
-msgid "%s %s"
-msgstr "%s %s"
-
-#. hour
-#. minutes
-#. seconds
-#: ../src/gnome-screensaver-preferences.c:998
-#: ../src/gnome-screensaver-preferences.c:1006
-#: ../src/gnome-screensaver-preferences.c:1010
-#, c-format
-msgid "%s"
-msgstr "%s"
-
-#: ../src/gnome-screensaver-preferences.c:1025
-#, c-format
-msgid "Never"
-msgstr "ஒருபோதும்"
-
-#: ../src/gnome-screensaver-preferences.c:1467
-msgid "Could not load the main interface"
-msgstr "முக்கியமான இடைமுகத்தை ஏற்ற முடியவில்லை"
-
-#: ../src/gnome-screensaver-preferences.c:1469
-msgid "Please make sure that the screensaver is properly installed"
-msgstr "திரைச்சேமிப்பி சரியாக நிறுவப்பட்டுள்ளதா என உறுதிப்படுத்தவும்"
-
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
 msgstr "ஒரு டீமானாக ஆக வேண்டாம்"
@@ -649,6 +189,10 @@ msgstr "பிழைத்திருத்த குறியீட்டை �
 #: ../src/gnome-screensaver.desktop.in.in.h:1
 msgid "Launch screensaver and locker program"
 msgstr "திரைசேமிப்பு மற்றும் பூட்டு நிரலை துவக்கு"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:2
+msgid "Screensaver"
+msgstr "திரை சேமிப்பி"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -672,54 +216,404 @@ msgstr "இந்த நேரத்தில் அணுகல் பெற �
 msgid "No longer permitted to access the system."
 msgstr "கணினியை அணுக அனுமதி இல்லை."
 
-#: ../src/gs-listener-dbus.c:1912
+#: ../src/gs-listener-dbus.c:1148
 msgid "failed to register with the message bus"
 msgstr "செய்தி வடத்துடன் பதிவு செய்ய முடியவில்லை"
 
-#: ../src/gs-listener-dbus.c:1922
+#: ../src/gs-listener-dbus.c:1158
 msgid "not connected to the message bus"
 msgstr "செய்தி வடத்துடன் இணைக்கவில்லை"
 
-#: ../src/gs-listener-dbus.c:1931
+#: ../src/gs-listener-dbus.c:1167 ../src/gs-listener-dbus.c:1197
 msgid "screensaver already running in this session"
 msgstr "இந்த அமர்வில் திரைசேமிப்பு ஏற்கனவே இயங்குகிறது"
 
-#: ../src/gs-lock-plug.c:257
+#: ../src/gs-lock-plug.c:256
 msgid "Time has expired."
 msgstr "நேரம் முடிந்தது"
 
-#: ../src/gs-lock-plug.c:288
+#: ../src/gs-lock-plug.c:287
 msgid "You have the Caps & Num Lock keys on."
 msgstr "நீங்கள் உயர் நிலை எழுத்து எண்கள் பூட்டு விசைகளை செயலாக்கி உள்ளீர்கள்."
 
-#: ../src/gs-lock-plug.c:291
+#: ../src/gs-lock-plug.c:290
 msgid "You have the Caps Lock key on."
 msgstr "நீங்கள் உயர் நிலை எழுத்து பூட்டு விசையை செயலாக்கி உள்ளீர்கள்."
 
-#: ../src/gs-lock-plug.c:294
+#: ../src/gs-lock-plug.c:293
 msgid "You have the Num Lock key on."
 msgstr "நீங்கள் எண் பூட்டு விசையை செயலாக்கி உள்ளீர்கள்."
 
-#: ../src/gs-lock-plug.c:1281
+#: ../src/gs-lock-plug.c:1350
 msgid "S_witch User…"
 msgstr "_w பயனரை மாற்றுக..."
 
-#: ../src/gs-lock-plug.c:1290
+#: ../src/gs-lock-plug.c:1359
 msgid "Log _Out"
 msgstr "வெளிச்சொல் (_O)"
 
-#: ../src/gs-lock-plug.c:1301
+#: ../src/gs-lock-plug.c:1366
 msgid "_Unlock"
 msgstr "பூட்டு நீக்கு (_U)"
 
-#. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1466
-msgid "%U on %h"
-msgstr "%U ல் %h"
-
-#: ../src/gs-lock-plug.c:1480
+#: ../src/gs-lock-plug.c:1401
 msgid "_Password:"
 msgstr "கடவுச்சொல்: (_P)"
+
+#. Translators, this is the 24h date format used in the panel clock
+#: ../src/gs-window-x11.c:2199
+msgid "%a %R"
+msgstr "%a %R"
+
+#. Translators, this is the 12h date format used in the panel clock
+#: ../src/gs-window-x11.c:2202
+msgid "%a %l:%M %p"
+msgstr "%a %l:%M %p"
+
+#~ msgid "Set your screensaver preferences"
+#~ msgstr "உங்கள் திரை சேமிப்பி முன்னுரிமைகளை அமைக்கவும்"
+
+#~ msgid "Power _Management"
+#~ msgstr "சக்தி நிர்வாகம்"
+
+#~ msgid "Regard the computer as _idle after:"
+#~ msgstr "இந்த நேரத்துக்குப்பின் கணினி சும்மாயிருப்பதாக கொள்ளவும்:"
+
+#~ msgid "Screensaver Preferences"
+#~ msgstr "திரைசேமிப்பி முன்னுரிமைகள்"
+
+#~ msgid "Screensaver Preview"
+#~ msgstr "திரைசேமிப்பி முன்பார்வை"
+
+#~ msgid "Screensaver preview"
+#~ msgstr "திரைசேமிப்பி முன்பார்வை"
+
+#~ msgid "Warning: the screen will not be locked for the root user."
+#~ msgstr "எச்சரிக்கை: திரை ரூட் பயனருக்கு பூட்டப்பட மாட்டாது. "
+
+#~ msgid "_Activate screensaver when computer is idle"
+#~ msgstr "கணினி சும்மாயிருப்பின் திரை சேமிப்பியை செயல்படுத்துக"
+
+#~ msgid "_Lock screen when screensaver is active"
+#~ msgstr "திரை சேமிப்பி செயலில் இருப்பின் திரையை பூட்டவும்."
+
+#~ msgid "_Preview"
+#~ msgstr "முன்பார்வை (_P)"
+
+#~ msgid "_Screensaver theme:"
+#~ msgstr "திரைசேமிப்பி சூழல்: (_S)"
+
+#~ msgid "Screensaver themes"
+#~ msgstr "திரைசேமிப்பி சூழல்கள்"
+
+#~ msgid "Screensavers"
+#~ msgstr "திரைசேமிப்பிகள்"
+
+#~ msgid "Activate when idle"
+#~ msgstr "வெறுமையாக இருக்கும் போது செயல்படுத்து"
+
+#~ msgid "Allow embedding a keyboard into the window"
+#~ msgstr "சாளரத்தில் ஒரு விசைப்பலகையை உட்பொதிய அனுமதி"
+
+#~ msgid "Allow logout"
+#~ msgstr "வெளிசெல்ல அனுமதி"
+
+#~ msgid "Allow the session status message to be displayed"
+#~ msgstr "அமர்வு நிலை செய்தியை காட்ட அனுமதி"
+
+#~ msgid ""
+#~ "Allow the session status message to be displayed when the screen is "
+#~ "locked."
+#~ msgstr "திரை பூட்டியிருக்கும் போது அமர்வு நிலை செய்தியை காட்ட அனுமதி"
+
+#~ msgid "Allow user switching"
+#~ msgstr "பயனர் மாற்ற அனுமதி"
+
+#~ msgid "Embedded keyboard command"
+#~ msgstr "உட்பொதியப்பட்ட விசைப்பலகை கட்டளை"
+
+#~ msgid "Lock on activation"
+#~ msgstr "செயல்படுத்தும் போது பூட்டு"
+
+#~ msgid "Logout command"
+#~ msgstr "வெளிச்செல் கட்டளை"
+
+#~ msgid "Screensaver theme selection mode"
+#~ msgstr "திரைசேமிப்பி சூழல் தேர்ந்தெடுப்பு முறை"
+
+#~ msgid ""
+#~ "Set this to TRUE to activate the screensaver when the session is idle."
+#~ msgstr "அமர்வு சும்மாயிருக்கும் போது திரை சேமிப்பியை இயக்க இதை உண்மை என அமைக்கவும்."
+
+#~ msgid ""
+#~ "Set this to TRUE to allow embedding a keyboard into the window when "
+#~ "trying to unlock. The \"keyboard_command\" key must be set with the "
+#~ "appropriate command."
+#~ msgstr ""
+#~ "பூட்டை திறக்க முயலும்போது சாளரத்தில் ஒரு விசைப்பலகையை உள் அமைக்க இதை உண்மை என "
+#~ "அமைக்கவும். \"keyboard_command\" விசை பொருத்தமான கட்டளையால் அமைக்கப்பட வேண்டும்."
+
+#~ msgid ""
+#~ "Set this to TRUE to lock the screen when the screensaver goes active."
+#~ msgstr "திரை சேமிப்பி இயங்கும் போது திரையை பூட்ட இதை உண்மை என அமைக்கவும்."
+
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in the unlock dialog to allow logging "
+#~ "out after a delay. The delay is specified in the \"logout_delay\" key."
+#~ msgstr ""
+#~ "திரை பூட்டை திறக்கும் போது ஒரு தாமதம் கழித்து வெளியேற தேர்வை தர இதை உண்மை என "
+#~ "அமைக்கவும். தாமத நேரம் \"logout_delay\"  விசையில் அமைக்கப்பட்டது."
+
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in the unlock dialog to switch to a "
+#~ "different user account."
+#~ msgstr ""
+#~ "திரை பூட்டை திறக்கும் போது வேறு ஒரு பயனர் கணக்குக்கு மாற தேர்வை தர இதை உண்மை என "
+#~ "அமைக்கவும்."
+
+#~ msgid ""
+#~ "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+#~ "set to TRUE, to embed a keyboard widget into the window. This command "
+#~ "should implement an XEMBED plug interface and output a window XID on the "
+#~ "standard output."
+#~ msgstr ""
+#~ "\"embedded_keyboard_enabled\" விசை உண்மை என அமைந்தால் ஒரு விசைப்பலகை விட்செட்டை "
+#~ "சாளரத்தில் உள்ளமைக்க பயன்படும் கட்டளை. இந்த கட்டளை XEMBED சொருகி இடைமுகத்தை செயலாக்க "
+#~ "வேண்டும் மற்றும் சாதாரண வெளியீட்டில் சாளர XID ஐ வெளியிட வேண்டும்."
+
+#~ msgid ""
+#~ "The command to invoke when the logout button is clicked. This command "
+#~ "should simply log the user out without any interaction. This key has "
+#~ "effect only if the \"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "வெளியேறு பொத்தானை சொடுக்கியதும் நிறைவேற்ற வேண்டிய கட்டளை. இது ஒரு ஊடாடலும் "
+#~ "இல்லாமல் பயனரை வெளியேற்ற வேண்டும். இது \"logout_enable\"  விசை உண்மை என அமைந்தால் "
+#~ "மட்டுமே செயல் படும்."
+
+#~ msgid ""
+#~ "The number of minutes after screensaver activation before locking the "
+#~ "screen."
+#~ msgstr "திரை சேமிப்பி துவங்கிய பின் திரையை பூட்டு முன் நேரம்."
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation before a logout "
+#~ "option will appear in the unlock dialog. This key has effect only if the "
+#~ "\"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "திரை சேமிப்பி துவங்கிய பின் பூட்டு திறப்பு உரையாடலில் வெளியேற்ற தேர்வு அமைய "
+#~ "நிமிடங்களில் நேரம். இது \"logout_enable\"  விசை உண்மை என அமைந்தால் மட்டுமே செயல் "
+#~ "படும்."
+
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr "அமர்வு சும்மாயிருப்பதாக கருத  நிமிடங்களில் செயலற்ற நேரம்."
+
+#~ msgid "The number of minutes to run before changing the screensaver theme."
+#~ msgstr "திரை சேமிப்பி கருப்பொருளை மாற்று முன் இயங்க நிமிடங்களில் நேரம்."
+
+#~ msgid ""
+#~ "The number of seconds of inactivity before signalling to power "
+#~ "management. This key is set and maintained by the session power "
+#~ "management agent."
+#~ msgstr ""
+#~ "சக்தி மேலாண்மை அமைய சமிக்ஞை வரு முன் வினாடிகளில் நேரம். இந்த விசை சக்தி மேலாண்மை "
+#~ "அமைப்பியால் அமைக்கப்பட்டு பராமரிக்கப்படும்."
+
+#~ msgid ""
+#~ "The selection mode used by screensaver. May be \"blank-only\" to enable "
+#~ "the screensaver without using any theme on activation, \"single\" to "
+#~ "enable screensaver using only one theme on activation (specified in "
+#~ "\"themes\" key), and \"random\" to enable the screensaver using a random "
+#~ "theme on activation."
+#~ msgstr ""
+#~ "திரை சேமிப்பி பயன்படுத்தும் தேர்வு பாங்கு. செயலாக்கும் போது, ஒரு கருப்பொருளையும் "
+#~ "பயன்படுத்தாமல் வெற்றாக்க \"blank-only\" , \"themes\" விசையால் குறிப்பிட்ட ஒரே ஒரு "
+#~ "கருப்பொருளை பயன்படுத்த \"single\"  குறிப்பற்ற கருப்பொருளை பயன்படுத்த \"random\"."
+
+#~ msgid ""
+#~ "This key specifies the list of themes to be used by the screensaver. It's "
+#~ "ignored when \"mode\" key is \"blank-only\", should provide the theme "
+#~ "name when \"mode\" is \"single\", and should provide a list of themes "
+#~ "when \"mode\" is \"random\"."
+#~ msgstr ""
+#~ "இந்த விசை திரை சேமிப்பி பயன்படுத்த வேண்டிய கருப்பொருட்களை பட்டியல் இடுகிறது. \"mode"
+#~ "\" விசை \"blank-only\", ஆக இருப்பின் இது உதாசீனப்படுத்தப்படும். \"mode\"  "
+#~ "\"single\" ஆக இருப்பின் கருப்பொருளின் பெயரை தர வேண்டும்.\"mode\" \"random\" "
+#~ "ஆனால் ஒரு கருப்பொருள் பட்டியலை தர வேண்டும்."
+
+#~ msgid "Time before locking"
+#~ msgstr "பூட்டுவதற்கு முன் நேரம்"
+
+#~ msgid "Time before logout option"
+#~ msgstr "வெளிச்செல் விருப்பத்திற்கு முன் நேரம்"
+
+#~ msgid "Time before power management baseline"
+#~ msgstr "சக்தி அடித்தளம் வரு முன் நேரம்"
+
+#~ msgid "Time before session is considered idle"
+#~ msgstr "அமர்வு சும்மாயிருப்பதாக கருத நேரம்"
+
+#~ msgid "Time before theme change"
+#~ msgstr "சூழல் மாற்றுவதற்கு முன் நேரம்"
+
+#~ msgid "Cosmos"
+#~ msgstr "Cosmos"
+
+#~ msgid "Display a slideshow of pictures of the cosmos"
+#~ msgstr "cosmosன் படங்களை ஸ்லைடு காட்சியாக காட்டவும்"
+
+#~ msgid "Bubbles the GNOME foot logo around the screen"
+#~ msgstr "திரையில் பல் இடங்களில் க்னோம் கால் சின்னத்தை குமிழ்களாக வெளியிடுகிறது."
+
+#~ msgid "Floating Feet"
+#~ msgstr "மிதவை பாதம்"
+
+#~ msgid "Display a slideshow from your Pictures folder"
+#~ msgstr "உங்கள் படங்கள் அடைவிலிருந்து ஸ்லைடு காட்சியை காட்டவும்"
+
+#~ msgid "Pictures folder"
+#~ msgstr "படங்கள் அடைவு"
+
+#~ msgid "A pop-art-ish grid of pulsing colors."
+#~ msgstr "நிறங்களின் துடிப்பில் ஒரு pop-art-ish கட்டம்."
+
+#~ msgid "Pop art squares"
+#~ msgstr "Pop art சதுரங்கள்"
+
+#~ msgid "%s. See --help for usage information.\n"
+#~ msgstr "%s. --பயன்பாடு தகவலுக்கு உதவியை பார்க்கவும்.\n"
+
+#~ msgid "Show paths that images follow"
+#~ msgstr "படங்கள் பின்பற்றும் பாதைகளை காட்டு"
+
+#~ msgid "Occasionally rotate images as they move"
+#~ msgstr "படங்களை அவற்றை நகரும் போது எப்போதாவது சுழற்றவும்"
+
+#~ msgid "Print out frame rate and other statistics"
+#~ msgstr "சட்ட விகிதம் மற்றும் பிற புள்ளி விவரங்களை அச்சிடுக"
+
+#~ msgid "The maximum number of images to keep on screen"
+#~ msgstr "திரையில் வைக்க வேண்டிய பிம்பங்களின் அதிகபட்ச எண்ணிக்கை"
+
+#~ msgid "MAX_IMAGES"
+#~ msgstr "MAX_IMAGES"
+
+#~ msgid "The initial size and position of window"
+#~ msgstr "சாளரத்தின் ஆரம்ப அளவு மற்றும் இடம்."
+
+#~ msgid "WIDTHxHEIGHT+X+Y"
+#~ msgstr "WIDTHxHEIGHT+X+Y"
+
+#~ msgid "The source image to use"
+#~ msgstr "பயன்படுத்த வேண்டிய மூல பிம்பம்"
+
+#~ msgid "image — floats images around the screen"
+#~ msgstr "படம் - திரையில் படங்களை மிதக்க விடவும்"
+
+#~ msgid "You must specify one image.  See --help for usage information.\n"
+#~ msgstr ""
+#~ "நீங்கள் ஒரு படத்தை குறிப்பிட வேண்டும்.  --பயன்பாடு தகவலுக்கு உதவியை பார்க்கவும்.\n"
+
+#~ msgid "Location to get images from"
+#~ msgstr "படத்தை பெறுவதற்கான இடம்"
+
+#~ msgid "PATH"
+#~ msgstr "PATH"
+
+#~ msgid "Color to use for image background"
+#~ msgstr "பிம்பங்களின் பின்னணிக்கு பயன்படுத்த வண்ணம்"
+
+#~ msgid "\"#rrggbb\""
+#~ msgstr "\"#rrggbb\""
+
+#~ msgid "Do not randomize pictures from location"
+#~ msgstr "இடத்திலிருந்து படங்களை குறிப்பில்லாததாக செய்யாதே"
+
+#~ msgid "Do not try to stretch images on screen"
+#~ msgstr "திரையில் பிம்பங்களை விரிவு படுத்தாதே"
+
+#~ msgid "Copying files"
+#~ msgstr "கோப்புகளை நகலெடுக்கிறது"
+
+#~ msgid "From:"
+#~ msgstr "ஆரம்பம்:"
+
+#~ msgid "To:"
+#~ msgstr "முடிவு:"
+
+#~ msgid "Copying themes"
+#~ msgstr "தீம்களை நகலெடுக்கிறது"
+
+#~ msgid "Invalid screensaver theme"
+#~ msgstr "தவறான திரைசேமிப்பி சூழல்"
+
+#~ msgid "%s does not appear to be a valid screensaver theme."
+#~ msgstr "%s சரியான திரைசேமிப்பி சூழலாக தோன்றாது."
+
+#~ msgid "Copying file: %u of %u"
+#~ msgstr "கோப்பினை நகலெடுக்கிறது: %u ல் %uஐ"
+
+#~ msgid "If the screensaver is active then switch to another graphics demo"
+#~ msgstr "திரைசேமிப்பி இயங்கினால் வேறு ஒரு வரைகலை காட்சிக்கு மாறுக."
+
+#~ msgid "Poke the running screensaver to simulate user activity"
+#~ msgstr "பயனர் செயலை போல் செய்ய இயங்கும் திரை சேமிப்பியை சீண்டுக"
+
+#~ msgid ""
+#~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
+#~ "active."
+#~ msgstr "திரை சேமிப்பி இயங்குவதை தடுக்கவும்.  தடுப்பு செயல்படும்போது கட்டளை தடுக்கும்"
+
+#~ msgid "The calling application that is inhibiting the screensaver"
+#~ msgstr "திரை சேமிப்பியை தடுக்க காரணமான பயன்பாடு"
+
+#~ msgid "The reason for inhibiting the screensaver"
+#~ msgstr "திரை சேமிப்பியை தடுக்க காரணம்"
+
+#~ msgid "The screensaver is not inhibited\n"
+#~ msgstr "திரைசேமிப்பி தடை செய்யப்பட்டதில்லை\n"
+
+#~ msgid "The screensaver is being inhibited by:\n"
+#~ msgstr "திரைசேமிப்பி பின்வருவதால் தடைசெய்யப்படுகிறது:\n"
+
+#~ msgid "Blank screen"
+#~ msgstr "வெற்று திரை"
+
+#~ msgid "Random"
+#~ msgstr "குறிப்பில்லாத"
+
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "%d மணி நேரம்"
+#~ msgstr[1] "%d மணி நேரங்கள்"
+
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d நிமிடம்"
+#~ msgstr[1] "%d நிமிடங்கள்"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d விநாடி"
+#~ msgstr[1] "%d விநாடிகள்"
+
+#~ msgid "%s %s %s"
+#~ msgstr "%s %s %s"
+
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgid "Never"
+#~ msgstr "ஒருபோதும்"
+
+#~ msgid "Could not load the main interface"
+#~ msgstr "முக்கியமான இடைமுகத்தை ஏற்ற முடியவில்லை"
+
+#~ msgid "Please make sure that the screensaver is properly installed"
+#~ msgstr "திரைச்சேமிப்பி சரியாக நிறுவப்பட்டுள்ளதா என உறுதிப்படுத்தவும்"
+
+#~ msgid "%U on %h"
+#~ msgstr "%U ல் %h"
 
 #~ msgid "<b>Screensaver preview</b>"
 #~ msgstr "<b>திரை சேமிப்பி முன்பார்வை</b>"
