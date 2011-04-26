@@ -167,7 +167,7 @@ do_user_switch (GSLockPlug *plug)
         g_object_unref (context);
         g_object_unref (app);
 
-        if (!error) {
+        if (error != NULL) {
                 gs_debug ("Unable to start GDM greeter: %s", error->message);
                 g_error_free (error);
         }
