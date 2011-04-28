@@ -427,6 +427,7 @@ gs_manager_get_property (GObject            *object,
                 break;
         case PROP_ACTIVE:
                 g_value_set_boolean (value, self->priv->active);
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
