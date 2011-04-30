@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-15 14:09+0100\n"
-"PO-Revision-Date: 2011-03-15 14:10+0100\n"
+"POT-Creation-Date: 2011-04-30 12:38+0200\n"
+"PO-Revision-Date: 2011-04-30 12:39+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -43,7 +43,7 @@ msgstr "Aktywuje wygaszacz ekranu"
 
 #: ../src/gnome-screensaver-command.c:56
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr "Jeżeli wygaszacz jest aktywny, przełącza w stan nieaktywny"
+msgstr "Jeżeli wygaszacz jest aktywny, to przełącza w stan nieaktywny"
 
 #: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:59
 #: ../src/gnome-screensaver.c:56
@@ -75,7 +75,7 @@ msgstr "Wygaszacz ekranu nie jest obecnie aktywny.\n"
 
 #: ../src/gnome-screensaver-dialog.c:57
 msgid "Show debugging output"
-msgstr "Wypisuje komunikaty debugowania"
+msgstr "Wyświetla komunikaty debugowania"
 
 #: ../src/gnome-screensaver-dialog.c:61
 msgid "Show the logout button"
@@ -87,7 +87,7 @@ msgstr "Polecenie wykonywane po naciśnięciu przycisku wylogowania"
 
 #: ../src/gnome-screensaver-dialog.c:65
 msgid "Show the switch user button"
-msgstr "Wyświetlanie przycisku przełączania użytkowników"
+msgstr "Wyświetla przycisk przełączenia użytkownika"
 
 #: ../src/gnome-screensaver-dialog.c:67
 msgid "Message to show in the dialog"
@@ -266,9 +266,9 @@ msgstr "_Hasło:"
 #. Translators, this is the 24h date format used in the panel clock
 #: ../src/gs-window-x11.c:2199
 msgid "%a %R"
-msgstr "%a %R"
+msgstr "%a, %R"
 
 #. Translators, this is the 12h date format used in the panel clock
 #: ../src/gs-window-x11.c:2202
 msgid "%a %l:%M %p"
-msgstr "%s %l:%M %p"
+msgstr "%s, %l:%M %p"
