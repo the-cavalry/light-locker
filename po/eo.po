@@ -1,512 +1,78 @@
-# Esperanto translation for gnome-screensaver
-# Copyright (c) (c) 2006 Canonical Ltd, and Rosetta Contributors 2006
+# Esperanto translation for gnome-screensaver.
+# Copyright (c) 2006 Canonical Ltd, and Rosetta Contributors 2006.
 # This file is distributed under the same license as the gnome-screensaver package.
 #
 # Ed GLEZ <herzo2@gmail.com>, 2006.
 # Joop EGGEN <joop_eggen@yahoo.de>, 2006.
-# Brian CROOM <>, 2008
-# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2010.
+# Brian CROOM < >, 2008.
+# Michael MORONI < >, 2011.
+# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"screensaver&component=general\n"
-"POT-Creation-Date: 2010-06-23 22:47+0000\n"
-"PO-Revision-Date: 2010-06-24 19:15+0200\n"
+"screensaver&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-04-30 10:42+0000\n"
+"PO-Revision-Date: 2011-05-21 18:39+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <ubuntu-l10n-eo@lists.launchpad.net>\n"
+"Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Launchpad-Export-Date: 2010-06-24 17:08+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-05-20 19:52+0000\n"
+"X-Generator: Launchpad (build 13085)\n"
 
-#: ../data/gnome-screensaver-preferences.desktop.in.h:1
-#: ../src/gnome-screensaver.desktop.in.in.h:2
-msgid "Screensaver"
-msgstr "Ekrankurteno"
-
-#: ../data/gnome-screensaver-preferences.desktop.in.h:2
-msgid "Set your screensaver preferences"
-msgstr "Faru viajn ekrankurtenajn agordojn"
-
-#: ../data/gnome-screensaver-preferences.ui.h:1
-msgid "Power _Management"
-msgstr "Energi_administrado"
-
-#: ../data/gnome-screensaver-preferences.ui.h:2
-msgid "Regard the computer as _idle after:"
-msgstr "Konsideru la komputilon neakt_iva post:"
-
-#: ../data/gnome-screensaver-preferences.ui.h:3
-msgid "Screensaver Preferences"
-msgstr "Ekrankurtenajn agordoj"
-
-#: ../data/gnome-screensaver-preferences.ui.h:4
-msgid "Screensaver Preview"
-msgstr "Ekrankurtena antaŭrigardo"
-
-#: ../data/gnome-screensaver-preferences.ui.h:5
-msgid "Screensaver preview"
-msgstr "Ekrankurtena antaŭrigardo"
-
-#: ../data/gnome-screensaver-preferences.ui.h:6
-msgid "Warning: the screen will not be locked for the root user."
-msgstr "Averto: la ekrano ne estos ŝlosita por la administra uzanto."
-
-#: ../data/gnome-screensaver-preferences.ui.h:7
-msgid "_Activate screensaver when computer is idle"
-msgstr "_Aktivigi ekrankurtenon kiam la komputilo estas neaktiva"
-
-#: ../data/gnome-screensaver-preferences.ui.h:8
-msgid "_Lock screen when screensaver is active"
-msgstr "Ŝ_losi ekranon kiam ekrankurteno estas aktiva"
-
-#: ../data/gnome-screensaver-preferences.ui.h:9
-msgid "_Preview"
-msgstr "_Antaŭrigardi"
-
-#: ../data/gnome-screensaver-preferences.ui.h:10
-msgid "_Screensaver theme:"
-msgstr "Ekrankurtena _etoso:"
-
-#: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:11
-msgid "Screensaver themes"
-msgstr "Ekrankurtenaj etosoj"
-
-#: ../data/gnome-screensaver.directory.in.h:2
-msgid "Screensavers"
-msgstr "Ekrankurtenoj"
-
-#: ../data/gnome-screensaver.schemas.in.h:1
-msgid "Activate when idle"
-msgstr "Aktivigi dum senaktiveco"
-
-#: ../data/gnome-screensaver.schemas.in.h:2
-msgid "Allow embedding a keyboard into the window"
-msgstr "Permesi enkorpigo de klavaro en la fenestron"
-
-#: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow logout"
-msgstr "Permesi elsaluton"
-
-#: ../data/gnome-screensaver.schemas.in.h:4
-msgid "Allow the session status message to be displayed"
-msgstr "Permesi montron de la seanco-stat-mesaĝo"
-
-#: ../data/gnome-screensaver.schemas.in.h:5
-msgid ""
-"Allow the session status message to be displayed when the screen is locked."
-msgstr "Permesi montron de la seanco-stat-mesaĝo kiam la ekrano estas ŝlosite."
-
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Allow user switching"
-msgstr "Permesi ŝanĝi uzanton"
-
-#: ../data/gnome-screensaver.schemas.in.h:7
-msgid "Embedded keyboard command"
-msgstr "Enkorpigita klavara komando"
-
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Lock on activation"
-msgstr "Ŝlosi dum aktivado"
-
-#: ../data/gnome-screensaver.schemas.in.h:9
-msgid "Logout command"
-msgstr "Elsalut-komando"
-
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Screensaver theme selection mode"
-msgstr "Reĝimo de elekto de ekrankurtena temo"
-
-#: ../data/gnome-screensaver.schemas.in.h:12
-msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr ""
-"Agordu ĉi tion kiel VERA por aktivigi ekrankurtenon kiam seanco estas "
-"senaktive."
-
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid ""
-"Set this to TRUE to allow embedding a keyboard into the window when trying "
-"to unlock. The \"keyboard_command\" key must be set with the appropriate "
-"command."
-msgstr ""
-"Agordu ĉi tion VERA por permesi enkorpigon de klavaro en la fenestron "
-"provante malŝlosi. La ŝlosilo \"keyboard_command\" estu agordita per la "
-"konvena komando."
-
-#: ../data/gnome-screensaver.schemas.in.h:14
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr ""
-"Agordu ĉi tion kiel VERA por ŝlosi la ekranon kiam ekrankurteno estas aktiva."
-
-#: ../data/gnome-screensaver.schemas.in.h:15
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to allow logging "
-"out after a delay. The delay is specified in the \"logout_delay\" key."
-msgstr ""
-"Agordu ĉi tion al VERA por provizi opcion en la malŝlosa dialogo por "
-"elsaluto post prokrasto. La prokrasto estas specifita en la ŝlosilo "
-"\"logout_delay\"."
-
-#: ../data/gnome-screensaver.schemas.in.h:16
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to switch to a "
-"different user account."
-msgstr ""
-"Agordu ĉi tion kiel VERA por proponi en malŝlosa dialogo la eblecon ŝanĝi al "
-"malsaman uzantokonton."
-
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
-"set to TRUE, to embed a keyboard widget into the window. This command should "
-"implement an XEMBED plug interface and output a window XID on the standard "
-"output."
-msgstr ""
-"La komando kiu estos rulata, se la ŝlosilo \"embedded_keyboard_enabled\" "
-"estas agordita al VERA, por enkorpigi klavaran komponanton en la fenestro. "
-"Ĉi tiu komando implementu XEMBED-kromaĵan interfacon kaj eligu fenestran XID "
-"sur la ĉefeligo."
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The command to invoke when the logout button is clicked. This command should "
-"simply log the user out without any interaction. This key has effect only if "
-"the \"logout_enable\" key is set to TRUE."
-msgstr ""
-"La komando vokata kiam la elsalut-butono estas klakata. Ĉi tiu komando "
-"simple elsalutigas la uzanton sen iu interago. Ĉi tiu klavo nur efikas se la "
-"ŝlosilo \"logout_enable\" estas agordita al VERA."
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes after screensaver activation before locking the screen."
-msgstr ""
-"La nombro da minutoj post aktivigo de ekrankurteno antaŭ ol ŝlosi la ekranon."
-
-#: ../data/gnome-screensaver.schemas.in.h:20
-msgid ""
-"The number of minutes after the screensaver activation before a logout "
-"option will appear in the unlock dialog. This key has effect only if the "
-"\"logout_enable\" key is set to TRUE."
-msgstr ""
-"La nombro da minutoj post aktivigo de la ekrankurteno antaŭ ol elsalut-opcio "
-"aperos en la malŝlosa dialogo. Ĉi tiu ŝlosilo nur efikas se la ŝlosilo "
-"\"logout_enable\" estas agordita al VERA."
-
-#: ../data/gnome-screensaver.schemas.in.h:21
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr ""
-"La nombro da minutoj de senaktiveco antaŭ ol konsideri la seancon kiel "
-"senaktiva."
-
-#: ../data/gnome-screensaver.schemas.in.h:22
-msgid "The number of minutes to run before changing the screensaver theme."
-msgstr "La nombro da minutoj por ruli antaŭ ŝanĝado de la ekrankurtena etoso."
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-msgid ""
-"The number of seconds of inactivity before signalling to power management. "
-"This key is set and maintained by the session power management agent."
-msgstr ""
-"La nombro da sekundoj de neaktiveco antaŭ signalado al energiadministrado. "
-"Ĉi tiu ŝlosilo estas agordita kaj flegado de la seanca energiadministra "
-"agento."
-
-#: ../data/gnome-screensaver.schemas.in.h:24
-msgid ""
-"The selection mode used by screensaver. May be \"blank-only\" to enable the "
-"screensaver without using any theme on activation, \"single\" to enable "
-"screensaver using only one theme on activation (specified in \"themes\" "
-"key), and \"random\" to enable the screensaver using a random theme on "
-"activation."
-msgstr ""
-"La elekta reĝimo uzata de la ekrankurteno. Povas esti \"blank-only\" por "
-"enŝalti la ekrankurtenon ne uzante iun ajn temon je aktivigo, \"single\" por "
-"enŝalti la ekrankurtenon uzante nur unu temon je aktivigo (specifita en la "
-"ŝlosilo \"themes\"), kaj \"random\" por enŝalti la ekrankurtenon uzante "
-"hazardan etoson je aktivigo."
-
-#: ../data/gnome-screensaver.schemas.in.h:25
-msgid "Theme for lock dialog"
-msgstr "Etoso por ŝlosa dialogo"
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Theme to use for the lock dialog."
-msgstr "Etoso uzenda por la ŝlosa dialogo."
-
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid ""
-"This key specifies the list of themes to be used by the screensaver. It's "
-"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
-"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
-"\" is \"random\"."
-msgstr ""
-"Ĉi tiu ŝlosilo specifas la liston de etosoj uzataj de la ekrankurteno. Ĝi "
-"estas ignorata kiam la ŝlosilo \"mode\" estas \"blank-only\", devus provizi "
-"la etosan nomon se la \"mode\" estas \"single\", kaj devus provizi liston de "
-"etosoj kiam \"mode\" estas \"random\"."
-
-#: ../data/gnome-screensaver.schemas.in.h:28
-msgid "Time before locking"
-msgstr "Tempo antaŭ ol ŝlosado"
-
-#: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before logout option"
-msgstr "Tempo antaŭ ol elsalut-opcio"
-
-#: ../data/gnome-screensaver.schemas.in.h:30
-#, fuzzy
-msgid "Time before power management baseline"
-msgstr "Tempo antaŭ energiadministra bazlinio"
-
-#: ../data/gnome-screensaver.schemas.in.h:31
-msgid "Time before session is considered idle"
-msgstr "Tempo antaŭ ol seanco estas konsiderata neaktiva"
-
-#: ../data/gnome-screensaver.schemas.in.h:32
-msgid "Time before theme change"
-msgstr "Tempo antaŭ ol etoso-ŝanĝo"
-
-#: ../data/lock-dialog-default.ui.h:1
-msgid "_Cancel"
-msgstr "_Nuligi"
-
-#: ../data/lock-dialog-default.ui.h:2
-msgid "_Log Out"
-msgstr "E_lsaluti"
-
-#: ../data/lock-dialog-default.ui.h:3
-msgid "_Switch User"
-msgstr "Ŝangi _uzanton"
-
-#: ../data/lock-dialog-default.ui.h:4 ../src/gs-lock-plug.c:1290
-msgid "_Unlock"
-msgstr "_Malŝlosi"
-
-#. Translators: This is the name of a desktop background image that shows outer space images.
-#. You might want to translate it into the equivalent words of your language
-#: ../data/images/cosmos/cosmos.xml.in.in.h:3
-#: ../savers/cosmos-slideshow.desktop.in.in.h:1
-msgid "Cosmos"
-msgstr "Kosmo"
-
-#: ../savers/cosmos-slideshow.desktop.in.in.h:2
-msgid "Display a slideshow of pictures of the cosmos"
-msgstr "Vidigas prezentadon de bildoj de la kosmo"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "Aperadas la GNOMan pieda emblemo ĉirkaŭ la ekrano"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "Flosanta Piedo"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:1
-msgid "Display a slideshow from your Pictures folder"
-msgstr "Vidigas prezentadon de via bildo-dosierujo"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:2
-msgid "Pictures folder"
-msgstr "Bildo-dosierujo"
-
-#: ../savers/popsquares.desktop.in.in.h:1
-msgid "A pop-art-ish grid of pulsing colors."
-msgstr "Pop-arta krado de pulsantaj koloroj."
-
-#: ../savers/popsquares.desktop.in.in.h:2
-msgid "Pop art squares"
-msgstr "Pop-artaj kvadratoj"
-
-#: ../savers/popsquares.c:49 ../savers/floaters.c:1204
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s. Vidu --help por informoj pri uzo.\n"
-
-#: ../savers/floaters.c:88
-msgid "Show paths that images follow"
-msgstr "Vidigi vojojn, kiujn bildoj sekvas"
-
-#: ../savers/floaters.c:91
-msgid "Occasionally rotate images as they move"
-msgstr "Foje turni bildojn dum ili moviĝas"
-
-#: ../savers/floaters.c:94
-msgid "Print out frame rate and other statistics"
-msgstr "Vidigi bildrapidon kaj aliajn statistikojn"
-
-#: ../savers/floaters.c:97
-msgid "The maximum number of images to keep on screen"
-msgstr "Maks. nombro da bildoj restigi en ekrano"
-
-#: ../savers/floaters.c:97
-msgid "MAX_IMAGES"
-msgstr "MAKS_BILDOJ"
-
-#: ../savers/floaters.c:100
-msgid "The initial size and position of window"
-msgstr "La komenca grando kaj loko de fenestro"
-
-#: ../savers/floaters.c:100
-msgid "WIDTHxHEIGHT+X+Y"
-msgstr "LARĜOxALTO+X+Y"
-
-#: ../savers/floaters.c:103
-msgid "The source image to use"
-msgstr "La fontbildo uzenda"
-
-#. translators: the word "image" here
-#. * represents a command line argument
-#.
-#: ../savers/floaters.c:1198
-msgid "image — floats images around the screen"
-msgstr "bildo — flosas bildoj ĉirkaŭ la ekrano"
-
-#: ../savers/floaters.c:1213
-#, c-format
-msgid "You must specify one image.  See --help for usage information.\n"
-msgstr "Vi devas indiki unu bildon. Vidu --help por informoj pri uzo.\n"
-
-#: ../savers/slideshow.c:53
-msgid "Location to get images from"
-msgstr "Loko de kie akiri bildojn"
-
-#: ../savers/slideshow.c:53
-msgid "PATH"
-msgstr "VOJO"
-
-#: ../savers/slideshow.c:55
-msgid "Color to use for image background"
-msgstr "Koloro uzenda por bildfono"
-
-#: ../savers/slideshow.c:55
-msgid "\"#rrggbb\""
-msgstr "\"#rrvvbb\""
-
-#: ../savers/slideshow.c:57
-msgid "Do not randomize pictures from location"
-msgstr "Ne hazardigi bildojn de loko"
-
-#: ../savers/slideshow.c:59
-msgid "Do not try to stretch images on screen"
-msgstr "Ne peni streĉi bildojn en ekrano"
-
-#: ../src/copy-theme-dialog.c:212
-msgid "Copying files"
-msgstr "Kopiado de dosieroj"
-
-#: ../src/copy-theme-dialog.c:230
-msgid "From:"
-msgstr "De:"
-
-#: ../src/copy-theme-dialog.c:234
-msgid "To:"
-msgstr "Al:"
-
-#: ../src/copy-theme-dialog.c:254
-msgid "Copying themes"
-msgstr "Kopias etosojn"
-
-#: ../src/copy-theme-dialog.c:298
-msgid "Invalid screensaver theme"
-msgstr "Nevalida ekrankurtena temo"
-
-#: ../src/copy-theme-dialog.c:301
-#, c-format
-msgid "%s does not appear to be a valid screensaver theme."
-msgstr "%s ne ŝajnas esti valida erankurtena etoso."
-
-#: ../src/copy-theme-dialog.c:481
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Kopiado de dosiero: %u de %u"
-
-#: ../src/gnome-screensaver-command.c:62
+#: ../src/gnome-screensaver-command.c:46
 msgid "Causes the screensaver to exit gracefully"
 msgstr "Kaŭzas al la ekrankurteno finiĝi gracie"
 
-#: ../src/gnome-screensaver-command.c:64
+#: ../src/gnome-screensaver-command.c:48
 msgid "Query the state of the screensaver"
-msgstr "Demandpetu la staton de la ekrankurteno"
+msgstr "Informpeti la staton de la ekrankurteno"
 
-#: ../src/gnome-screensaver-command.c:66
+#: ../src/gnome-screensaver-command.c:50
 msgid "Query the length of time the screensaver has been active"
-msgstr "Informpetu la daŭron dum kiam la ekrankurteno estas aktiva"
+msgstr "Informpeti la daŭron dum kiam la ekrankurteno estas aktiva"
 
-#: ../src/gnome-screensaver-command.c:68
+#: ../src/gnome-screensaver-command.c:52
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "Komandas al la rulata ekrankurtena procezo tuj ŝlosi la ekranon"
 
-#: ../src/gnome-screensaver-command.c:70
-msgid "If the screensaver is active then switch to another graphics demo"
-msgstr "Se la ekrankurteno estas aktiva, tiam saltu al alia grafika demonstro"
-
-#: ../src/gnome-screensaver-command.c:72
+#: ../src/gnome-screensaver-command.c:54
 msgid "Turn the screensaver on (blank the screen)"
-msgstr "Enŝaltu la ekrankurtenon (vualigu la ekranon)"
+msgstr "Enŝalti la ekrankurtenon (plenigi la ekranon)"
 
-#: ../src/gnome-screensaver-command.c:74
+#: ../src/gnome-screensaver-command.c:56
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr ""
-"Se la ekrankurteno estas aktiva, tiam malaktivigu ĝin (senvualigu la ekranon)"
+"Se la ekrankurteno estas aktiva, tiam malaktivigi ĝin (malplenigi la ekranon)"
 
-#: ../src/gnome-screensaver-command.c:76
-msgid "Poke the running screensaver to simulate user activity"
-msgstr "Puŝu la rulatan ekrankurtenon por simuli uzantaktivecon"
-
-#: ../src/gnome-screensaver-command.c:78
-msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
-msgstr ""
-"Baru aktivigon de la ekrankurteno. Komando estas barata dum kiam la barado "
-"estas aktiva."
-
-#: ../src/gnome-screensaver-command.c:80
-msgid "The calling application that is inhibiting the screensaver"
-msgstr "La vokanta aplikaĵo kiu baras la ekrankurtenon"
-
-#: ../src/gnome-screensaver-command.c:82
-msgid "The reason for inhibiting the screensaver"
-msgstr "La kialo por bari la ekrankurtenon"
-
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:59
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
 msgstr "Versio de ĉi tiu aplikaĵo"
 
-#: ../src/gnome-screensaver-command.c:295
+#: ../src/gnome-screensaver-command.c:224
 #, c-format
 msgid "The screensaver is active\n"
 msgstr "Le ekrankurteno estas aktive\n"
 
-#: ../src/gnome-screensaver-command.c:295
+#: ../src/gnome-screensaver-command.c:226
 #, c-format
 msgid "The screensaver is inactive\n"
 msgstr "Le ekrankurteno estas neaktive\n"
 
-#: ../src/gnome-screensaver-command.c:309
+#: ../src/gnome-screensaver-command.c:256
 #, c-format
-msgid "The screensaver is not inhibited\n"
-msgstr "Le ekrankurteno ne estas malebligita\n"
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "La ekrankurteno estas aktiva dum %d sekundo.\n"
+msgstr[1] "La ekrankurteno estas aktiva dum %d sekundoj.\n"
 
-#: ../src/gnome-screensaver-command.c:315
-#, c-format
-msgid "The screensaver is being inhibited by:\n"
-msgstr "Le ekrankurteno estas malebligita de:\n"
-
-#: ../src/gnome-screensaver-command.c:346
-#, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "La ekrankurteno estas aktiva dum %d sekundoj.\n"
-
-#: ../src/gnome-screensaver-command.c:350
+#: ../src/gnome-screensaver-command.c:258
 #, c-format
 msgid "The screensaver is not currently active.\n"
 msgstr "La ekrankurteno ne estas aktive nun.\n"
@@ -525,7 +91,7 @@ msgstr "Komando por voki la elsalut-butonon"
 
 #: ../src/gnome-screensaver-dialog.c:65
 msgid "Show the switch user button"
-msgstr "Vidigi butonon por ŝanĝi uzanton"
+msgstr "Montri butonon por ŝanĝi la uzanton"
 
 #: ../src/gnome-screensaver-dialog.c:67
 msgid "Message to show in the dialog"
@@ -610,81 +176,15 @@ msgstr "Pardonu, pasvortoj ne kongruas"
 
 #: ../src/gnome-screensaver-dialog.c:267
 msgid "Checking…"
-msgstr "Kontrolante..."
+msgstr "Kontrolante…"
 
 #: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
-msgstr "Autentigo malsukcesis."
-
-#: ../src/gnome-screensaver-preferences.c:524
-msgid "Blank screen"
-msgstr "Vakigi ekranon"
-
-#: ../src/gnome-screensaver-preferences.c:530
-msgid "Random"
-msgstr "Hazarde"
-
-#: ../src/gnome-screensaver-preferences.c:980
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d horo"
-msgstr[1] "%d horoj"
-
-#: ../src/gnome-screensaver-preferences.c:983
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d minuto"
-msgstr[1] "%d minutoj"
-
-#: ../src/gnome-screensaver-preferences.c:986
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d sekundo"
-msgstr[1] "%d sekundoj"
-
-#. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:992
-#, c-format
-msgid "%s %s %s"
-msgstr "%s %s %s"
-
-#. hour:minutes
-#. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:995
-#: ../src/gnome-screensaver-preferences.c:1003
-#, c-format
-msgid "%s %s"
-msgstr "%s %s"
-
-#. hour
-#. minutes
-#. seconds
-#: ../src/gnome-screensaver-preferences.c:998
-#: ../src/gnome-screensaver-preferences.c:1006
-#: ../src/gnome-screensaver-preferences.c:1010
-#, c-format
-msgid "%s"
-msgstr "%s"
-
-#: ../src/gnome-screensaver-preferences.c:1025
-#, c-format
-msgid "Never"
-msgstr "Neniam"
-
-#: ../src/gnome-screensaver-preferences.c:1467
-msgid "Could not load the main interface"
-msgstr "Ne eblas ŝargi la ĉefan interfacon"
-
-#: ../src/gnome-screensaver-preferences.c:1469
-msgid "Please make sure that the screensaver is properly installed"
-msgstr "Bonvolu certigu ke la ekrankurteno estas taŭge instalita"
+msgstr "La aŭtentokontrolo fiaskis."
 
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
-msgstr "Ne fariĝu demono"
+msgstr "Ne fariĝi demono"
 
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
@@ -692,7 +192,11 @@ msgstr "Enŝalti sencimigan kodon"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
 msgid "Launch screensaver and locker program"
-msgstr ""
+msgstr "Ruli ekrankurtenon kaj ŝlosprogramaron"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:2
+msgid "Screensaver"
+msgstr "Ekrankurteno"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -716,45 +220,267 @@ msgstr "Ne permesata akiri atingon ĉi-momente."
 msgid "No longer permitted to access the system."
 msgstr "Ne plu permesata por atingi la sistemon."
 
-#: ../src/gs-listener-dbus.c:1912
+#: ../src/gs-listener-dbus.c:1148
 msgid "failed to register with the message bus"
 msgstr "malsukcesis registri kun la mesaĝan buson"
 
-#: ../src/gs-listener-dbus.c:1922
+#: ../src/gs-listener-dbus.c:1158
 msgid "not connected to the message bus"
 msgstr "ne konektita al la mesaĝa buso"
 
-#: ../src/gs-listener-dbus.c:1931
+#: ../src/gs-listener-dbus.c:1167 ../src/gs-listener-dbus.c:1197
 msgid "screensaver already running in this session"
 msgstr "ekrankurteno jam ruladas en ĉi tiu seanco"
 
 #: ../src/gs-lock-plug.c:256
 msgid "Time has expired."
-msgstr "Tempo eksvalidiĝis"
+msgstr "Tempo finiĝis."
 
-#: ../src/gs-lock-plug.c:284
+#: ../src/gs-lock-plug.c:287
+msgid "You have the Caps & Num Lock keys on."
+msgstr "La majuskla kaj la nombra baskuloj estas enŝaltite."
+
+#: ../src/gs-lock-plug.c:290
 msgid "You have the Caps Lock key on."
 msgstr "La majuskla baskulo estas enŝaltita."
 
-#: ../src/gs-lock-plug.c:1270
-msgid "S_witch User…"
-msgstr "Ŝangi _uzanton..."
+#: ../src/gs-lock-plug.c:293
+msgid "You have the Num Lock key on."
+msgstr "La nombra baskulo estas enŝaltite."
 
-#: ../src/gs-lock-plug.c:1279
+#: ../src/gs-lock-plug.c:1350
+msgid "S_witch User…"
+msgstr "Ŝangi la _uzanton…"
+
+#: ../src/gs-lock-plug.c:1359
 msgid "Log _Out"
 msgstr "_Elsaluti"
 
-#. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1455
-msgid "%U on %h"
-msgstr "%U sur %h"
+#: ../src/gs-lock-plug.c:1366
+msgid "_Unlock"
+msgstr "_Malŝlosi"
 
-#: ../src/gs-lock-plug.c:1469
+#: ../src/gs-lock-plug.c:1401
 msgid "_Password:"
 msgstr "_Pasvorto:"
 
+#. Translators, this is the 24h date format used in the panel clock
+#: ../src/gs-window-x11.c:2199
+msgid "%a %R"
+msgstr "%a %R"
+
+#. Translators, this is the 12h date format used in the panel clock
+#: ../src/gs-window-x11.c:2202
+msgid "%a %l:%M %p"
+msgstr "%a %l:%M %p"
+
+#~ msgid "Set your screensaver preferences"
+#~ msgstr "Faru viajn ekrankurtenajn agordojn"
+
 #~ msgid "<b>Screensaver preview</b>"
 #~ msgstr "<b>Ekrankurtena antaŭrigardo</b>"
+
+#~ msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+#~ msgstr "<b>Averto: la ekrano ne estos ŝlosita por la administra uzanto.</b>"
+
+#~ msgid "Power _Management"
+#~ msgstr "Energi_administrado"
+
+#~ msgid "Regard the computer as _idle after:"
+#~ msgstr "Konsideru la komputilon neakt_iva post:"
+
+#~ msgid "Screensaver Preferences"
+#~ msgstr "Ekrankurtenaj agordoj"
+
+#~ msgid "Screensaver Preview"
+#~ msgstr "Ekrankurtena antaŭrigardo"
+
+#~ msgid "_Activate screensaver when computer is idle"
+#~ msgstr "_Aktivigi ekrankurtenon kiam la komputilo estas neaktiva"
+
+#~ msgid "_Lock screen when screensaver is active"
+#~ msgstr "Ŝ_losi ekranon kiam ekrankurteno estas aktiva"
+
+#~ msgid "_Preview"
+#~ msgstr "_Antaŭrigardi"
+
+#~ msgid "_Screensaver theme:"
+#~ msgstr "Ekrankurtena _etoso:"
+
+#~ msgid "Screensaver themes"
+#~ msgstr "Ekrankurtenaj etosoj"
+
+#~ msgid "Screensavers"
+#~ msgstr "Ekrankurtenoj"
+
+#~ msgid "Activate when idle"
+#~ msgstr "Aktivigi dum senaktiveco"
+
+#~ msgid "Allow embedding a keyboard into the window"
+#~ msgstr "Permesi enkorpigo de klavaro en la fenestron"
+
+#~ msgid "Allow logout"
+#~ msgstr "Permesi elsaluton"
+
+#~ msgid "Allow the session status message to be displayed"
+#~ msgstr "Permesi montron de la seanco-stat-mesaĝo"
+
+#~ msgid ""
+#~ "Allow the session status message to be displayed when the screen is "
+#~ "locked."
+#~ msgstr ""
+#~ "Permesi montron de la seanco-stat-mesaĝo kiam la ekrano estas ŝlosite."
+
+#~ msgid "Allow user switching"
+#~ msgstr "Permesi ŝanĝi uzanton"
+
+#~ msgid "Embedded keyboard command"
+#~ msgstr "Enkorpigita klavara komando"
+
+#~ msgid "Lock on activation"
+#~ msgstr "Ŝlosi dum aktivado"
+
+#~ msgid "Logout command"
+#~ msgstr "Elsalut-komando"
+
+#~ msgid "Screensaver theme selection mode"
+#~ msgstr "Reĝimo de elekto de ekrankurtena etoso"
+
+#~ msgid ""
+#~ "Set this to TRUE to activate the screensaver when the session is idle."
+#~ msgstr ""
+#~ "Agordu ĉi tion kiel VERA por aktivigi ekrankurtenon kiam seanco estas "
+#~ "senaktive."
+
+#~ msgid ""
+#~ "Set this to TRUE to allow embedding a keyboard into the window when "
+#~ "trying to unlock. The \"keyboard_command\" key must be set with the "
+#~ "appropriate command."
+#~ msgstr ""
+#~ "Agordu ĉi tion VERA por permesi enkorpigon de klavaro en la fenestron "
+#~ "provante malŝlosi. La ŝlosilo \"keyboard_command\" estu agordita per la "
+#~ "konvena komando."
+
+#~ msgid ""
+#~ "Set this to TRUE to lock the screen when the screensaver goes active."
+#~ msgstr ""
+#~ "Agordu ĉi tion kiel VERA por ŝlosi la ekranon kiam ekrankurteno estas "
+#~ "aktiva."
+
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in the unlock dialog to switch to a "
+#~ "different user account."
+#~ msgstr ""
+#~ "Agordu ĉi tion kiel VERA por proponi en malŝlosa dialogo la eblecon ŝanĝi "
+#~ "al malsaman uzantokonton."
+
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in unlock dialog to logging out after "
+#~ "a delay. The Delay is specified in the \"logout_delay\" key."
+#~ msgstr ""
+#~ "Agordu ĉi tion al VERA por provizi opcion en la malŝlosa dialogo por "
+#~ "adiaŭado post prokrasto. La prokrasto estas specifita en la ŝlosilo "
+#~ "\"logout_delay\"."
+
+#~ msgid ""
+#~ "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+#~ "set to TRUE, to embed a keyboard widget into the window. This command "
+#~ "should implement an XEMBED plug interface and output a window XID on the "
+#~ "standard output."
+#~ msgstr ""
+#~ "La komando kiu estos rulata, se la ŝlosilo \"embedded_keyboard_enabled\" "
+#~ "estas agordita al VERA, por enkorpigi klavaran komponanton en la "
+#~ "fenestro. Ĉi tiu komando implementu XEMBED-kromaĵan interfacon kaj eligu "
+#~ "fenestran XID sur la ĉefeligo."
+
+#~ msgid ""
+#~ "The command to invoke when the logout button is clicked. This command "
+#~ "should simply log the user out without any interaction. This key has "
+#~ "effect only if the \"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "La komando vokata kiam la elsalut-butono estas klakata. Ĉi tiu komando "
+#~ "simple elsalutigas la uzanton sen iu interago. Ĉi tiu klavo nur efikas se "
+#~ "la ŝlosilo \"logout_enable\" estas agordita al VERA."
+
+#~ msgid ""
+#~ "The number of minutes after screensaver activation before locking the "
+#~ "screen."
+#~ msgstr ""
+#~ "La nombro da minutoj post aktivigo de ekrankurteno antaŭ ol ŝlosi la "
+#~ "ekranon."
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation before a logout "
+#~ "option will appear in unlock dialog. This key has effect only if the "
+#~ "\"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "La nombro da minutoj post aktivigo de la ekrankurteno antaŭ ol elsalut-"
+#~ "opcio aperos en la malŝlosa dialogo. Ĉi tiu ŝlosilo nur efikas se la "
+#~ "ŝlosilo \"logout_enable\" estas agordita al VERA."
+
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr ""
+#~ "La nombro da minutoj de senaktiveco antaŭ ol konsideri la seancon kiel "
+#~ "senokupe."
+
+#~ msgid "The number of minutes to run before changing the screensaver theme."
+#~ msgstr ""
+#~ "La nombro de minutoj por ruli antaŭ ŝanĝado de la ekrankurtena etoso."
+
+#~ msgid ""
+#~ "The number of seconds of inactivity before signalling to power-"
+#~ "management. This key is set and maintained by the session power-"
+#~ "management agent."
+#~ msgstr ""
+#~ "La nombro da sekundoj de neaktiveco antaŭ signalado al "
+#~ "energiadministrado. Ĉi tiu ŝlosilo estas agordita kaj flegado de la "
+#~ "seanca energiadministra agento."
+
+#~ msgid ""
+#~ "The selection mode used by screensaver. May be \"blank-only\" to enable "
+#~ "the screensaver without using any theme on activation, \"single\" to "
+#~ "enable screensaver using only one theme on activation (specified in "
+#~ "\"themes\" key), and \"random\" to enable the screensaver using a random "
+#~ "theme on activation."
+#~ msgstr ""
+#~ "La elekta reĝimo uzata de la ekrankurteno. Povas esti \"blank-only\" por "
+#~ "enŝalti la ekrankurtenon ne uzante iun ajn temon je aktivigo, \"single\" "
+#~ "por enŝalti la ekrankurtenon uzante nur unu temon je aktivigo (specifita "
+#~ "en la ŝlosilo \"themes\"), kaj \"random\" por enŝalti la ekrankurtenon "
+#~ "uzante hazardan etoson je aktivigo."
+
+#~ msgid "Theme for lock dialog"
+#~ msgstr "Etoso por ŝlosa dialogo"
+
+#~ msgid "Theme to use for the lock dialog."
+#~ msgstr "Etoso uzenda por la ŝlosa dialogo."
+
+#~ msgid ""
+#~ "This key specifies the list of themes to be used by the screensaver. It's "
+#~ "ignored when \"mode\" key is \"blank-only\", should provide the theme "
+#~ "name when \"mode\" is \"single\", and should provide a list of themes "
+#~ "when \"mode\" is \"random\"."
+#~ msgstr ""
+#~ "Ĉi tiu ŝlosilo specifas la liston de etosoj uzataj de la ekrankurteno. Ĝi "
+#~ "estas ignorata kiam la ŝlosilo \"mode\" estas \"blank-only\", devus "
+#~ "provizi la etosan nomon se la \"mode\" estas \"single\", kaj devus "
+#~ "provizi liston de etosoj kiam \"mode\" estas \"random\"."
+
+#~ msgid "Time before locking"
+#~ msgstr "Tempo antaŭ ol ŝlosado"
+
+#~ msgid "Time before logout option"
+#~ msgstr "Tempo antaŭ ol elsalut-opcio"
+
+#~ msgid "Time before power-management baseline"
+#~ msgstr "Tempo antaŭ energiadministra bazlinio"
+
+#~ msgid "Time before session is considered idle"
+#~ msgstr "La tempo antaŭ ol konsideri la seancon senokupe"
+
+#~ msgid "Time before theme change"
+#~ msgstr "Tempo antaŭ ol etoso-ŝanĝo"
 
 #~ msgid "<b>Leave a message for %R:</b>"
 #~ msgstr "<b>Postlasi mesaĝon por %R:</b>"
@@ -765,8 +491,130 @@ msgstr "_Pasvorto:"
 #~ msgid "<span size=\"x-large\">%R</span>"
 #~ msgstr "<span size=\"x-large\">%R</span>"
 
+#~ msgid "_Cancel"
+#~ msgstr "_Nuligi"
+
 #~ msgid "_Leave Message"
 #~ msgstr "_Postlasi mesaĝon"
+
+#~ msgid "_Log Out"
+#~ msgstr "E_lsaluti"
+
+#~ msgid "Cosmos"
+#~ msgstr "Kosmo"
+
+#~ msgid "Display a slideshow of pictures of the cosmos"
+#~ msgstr "Vidigas prezentadon de bildoj de la kosmo"
+
+#~ msgid "Bubbles the GNOME foot logo around the screen"
+#~ msgstr "Aperadas la GNOMan pieda emblemo ĉirkaŭ la ekrano"
+
+#~ msgid "Floating Feet"
+#~ msgstr "Flosanta Piedo"
+
+#~ msgid "Display a slideshow from your Pictures folder"
+#~ msgstr "Vidigas prezentadon de via bildo-dosierujo"
+
+#~ msgid "Pictures folder"
+#~ msgstr "Bildo-dosierujo"
+
+#~ msgid "A pop-art-ish grid of pulsing colors."
+#~ msgstr "Pop-arta krado de pulsantaj koloroj."
+
+#~ msgid "Pop art squares"
+#~ msgstr "Pop-artaj kvadratoj"
+
+#~ msgid "%s. See --help for usage information.\n"
+#~ msgstr "%s. Vidu --help por informoj pri uzo.\n"
+
+#~ msgid "Show paths that images follow"
+#~ msgstr "Vidigi vojojn, kiujn bildoj sekvas"
+
+#~ msgid "Occasionally rotate images as they move"
+#~ msgstr "Foje turni bildojn dum ili moviĝas"
+
+#~ msgid "Print out frame rate and other statistics"
+#~ msgstr "Vidigi bildrapidon kaj aliajn statistikojn"
+
+#~ msgid "The maximum number of images to keep on screen"
+#~ msgstr "Maks. nombro da bildoj restigi en ekrano"
+
+#~ msgid "MAX_IMAGES"
+#~ msgstr "MAKS_BILDOJ"
+
+#~ msgid "The initial size and position of window"
+#~ msgstr "La komenca grando kaj loko de fenestro"
+
+#~ msgid "WIDTHxHEIGHT+X+Y"
+#~ msgstr "LARĜOxALTO+X+Y"
+
+#~ msgid "The source image to use"
+#~ msgstr "La fontbildo uzenda"
+
+#~ msgid "image - floats images around the screen"
+#~ msgstr "bildo - flosas bildoj ĉirkaŭ la ekrano"
+
+#~ msgid "You must specify one image.  See --help for usage information.\n"
+#~ msgstr "Vi devas indiki unu bildon. Vidu --help por informoj pri uzo.\n"
+
+#~ msgid "Location to get images from"
+#~ msgstr "Loko de kie akiri bildojn"
+
+#~ msgid "PATH"
+#~ msgstr "VOJO"
+
+#~ msgid "Color to use for images background"
+#~ msgstr "Koloro uzenda por bildfono"
+
+#~ msgid "\"#rrggbb\""
+#~ msgstr "\"#rrvvbb\""
+
+#~ msgid "Do not randomize pictures from location"
+#~ msgstr "Ne hazardigi bildojn de loko"
+
+#~ msgid "Do not try to stretch images on screen"
+#~ msgstr "Ne peni streĉi bildojn en ekrano"
+
+#~ msgid "Copying files"
+#~ msgstr "Kopiante dosierojn"
+
+#~ msgid "From:"
+#~ msgstr "De:"
+
+#~ msgid "To:"
+#~ msgstr "Al:"
+
+#~ msgid "Copying themes"
+#~ msgstr "Kopiante etosojn"
+
+#~ msgid "Invalid screensaver theme"
+#~ msgstr "Nevalida ekrankurtena etoso"
+
+#~ msgid "%s does not appear to be a valid screensaver theme."
+#~ msgstr "%s ne ŝajnas esti valida erankurtena etoso."
+
+#~ msgid "Copying file: %u of %u"
+#~ msgstr "Kopiado de dosiero: %u de %u"
+
+#~ msgid "If the screensaver is active then switch to another graphics demo"
+#~ msgstr ""
+#~ "Se la ekrankurteno estas aktiva, tiam saltu al alia grafika demonstro"
+
+#~ msgid "Poke the running screensaver to simulate user activity"
+#~ msgstr "Puŝu la rulatan ekrankurtenon por simuli uzantaktivecon"
+
+#~ msgid ""
+#~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
+#~ "active."
+#~ msgstr ""
+#~ "Baru aktivigon de la ekrankurteno. Komando estas barata dum kiam la "
+#~ "barado estas aktiva."
+
+#~ msgid "The calling application that is inhibiting the screensaver"
+#~ msgstr "La vokanta aplikaĵo kiu baras la ekrankurtenon"
+
+#~ msgid "The reason for inhibiting the screensaver"
+#~ msgstr "La kialo por bari la ekrankurtenon"
 
 #~ msgid "active"
 #~ msgstr "aktive"
@@ -774,5 +622,50 @@ msgstr "_Pasvorto:"
 #~ msgid "inactive"
 #~ msgstr "neaktive"
 
+#~ msgid "The screensaver is not inhibited\n"
+#~ msgstr "Le ekrankurteno ne estas malebligita\n"
+
+#~ msgid "The screensaver is being inhibited by:\n"
+#~ msgstr "Le ekrankurteno estas malebligita de:\n"
+
+#~ msgid "Blank screen"
+#~ msgstr "Vakigi ekranon"
+
+#~ msgid "Random"
+#~ msgstr "Hazarde"
+
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "%d horo"
+#~ msgstr[1] "%d horoj"
+
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d minuto"
+#~ msgstr[1] "%d minutoj"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d sekundo"
+#~ msgstr[1] "%d sekundoj"
+
+#~ msgid "%s %s %s"
+#~ msgstr "%s %s %s"
+
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgid "Never"
+#~ msgstr "Neniam"
+
+#~ msgid "Could not load the main interface"
+#~ msgstr "Ne eblas ŝargi la ĉefan interfacon"
+
+#~ msgid "Please make sure that the screensaver is properly installed"
+#~ msgstr "Bonvole certigu ke la ekrankurteno estas taŭge instalita"
+
 #~ msgid "S_witch User..."
 #~ msgstr "Ŝanĝi _uzanton..."
+
+#~ msgid "%U on %h"
+#~ msgstr "%U sur %h"
