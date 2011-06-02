@@ -9,7 +9,6 @@ themesdir = $(pkgdatadir)/themes
 INCLUDES =							\
 	-I.							\
 	-I$(srcdir)						\
-	-DGMENU_I_KNOW_THIS_IS_UNSTABLE				\
 	$(GNOME_SCREENSAVER_CFLAGS)				\
 	$(GNOME_SCREENSAVER_DIALOG_CFLAGS)			\
 	$(GNOME_SCREENSAVER_CAPPLET_CFLAGS)			\
