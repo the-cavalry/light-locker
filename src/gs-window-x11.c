@@ -26,6 +26,7 @@
 #include <errno.h>
 #include <sys/wait.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
@@ -100,6 +101,8 @@ struct GSWindowPrivate
         guint      watchdog_timer_id;
         guint      info_bar_timer_id;
         guint      clock_update_id;
+
+        gint64     clock_update_time;
 
         gint       lock_pid;
         gint       lock_watch_id;
@@ -2201,7 +2204,8 @@ update_clock (GSWindow *window)
                 /* Translators, this is the 12h date format used in the panel clock */
                 clock_format = _("%a %l:%M %p");
 
-        dt = g_date_time_new_now_local ();
+        window->priv->clock_update_time = g_get_real_time ();
+        dt = g_date_time_new_from_unix_local (window->priv->clock_update_time / G_USEC_PER_SEC);
         text = g_date_time_format (dt, clock_format);
         markup = g_strdup_printf ("<b><span foreground=\"#ccc\">%s</span></b>", text);
         gtk_label_set_markup (GTK_LABEL (window->priv->clock), markup);
@@ -2219,6 +2223,28 @@ update_clock_timer (GSWindow *window)
         return FALSE;
 }
 
+static gboolean
+check_clock_timer (GSWindow *window)
+{
+        /* Update the panel clock when necessary.
+           This happens:
+
+           - Once a minute in the normal case
+           - When the machine resumes from suspend
+           - When the system time is adjusted
+
+           Right now this function is called much more frequently than any of the
+           above 3 events happen (see queue_clock_update ()).
+
+           We can wake up less often if bug 655129 gets fixed.  */
+        if (ABS (g_get_real_time () - window->priv->clock_update_time) > 60 * G_USEC_PER_SEC) {
+                update_clock (window);
+        }
+
+        queue_clock_update (window);
+        return FALSE;
+}
+
 static void
 queue_clock_update (GSWindow *window)
 {
@@ -2228,10 +2254,17 @@ queue_clock_update (GSWindow *window)
         gettimeofday (&tv, NULL);
         timeouttime = (G_USEC_PER_SEC - tv.tv_usec) / 1000 + 1;
 
-        /* timeout of one minute if we don't care about the seconds */
+        /* time until next minute */
         timeouttime += 1000 * (59 - tv.tv_sec % 60);
 
-        window->priv->clock_update_id = g_timeout_add (timeouttime, (GSourceFunc)update_clock_timer, window);
+        /* If we are more than 2.5 seconds from the start of the next minute,
+           schedule less precise but more power friendly 2 second add_seconds
+           timeout to check if the system realtime clock has changed under us. */
+        if (timeouttime > 2500) {
+                window->priv->clock_update_id = g_timeout_add_seconds (2, (GSourceFunc)check_clock_timer, window);
+        } else {
+                window->priv->clock_update_id = g_timeout_add (timeouttime, (GSourceFunc)update_clock_timer, window);
+        }
 }
 
 static char *
