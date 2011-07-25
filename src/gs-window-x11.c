@@ -1120,9 +1120,7 @@ keyboard_command_finish (GSWindow *window)
         gs_debug ("Keyboard finished");
 
         if (window->priv->keyboard_pid > 0) {
-                int exit_status;
-
-                exit_status = wait_on_child (window->priv->keyboard_pid);
+                wait_on_child (window->priv->keyboard_pid);
 
                 g_spawn_close_pid (window->priv->keyboard_pid);
                 window->priv->keyboard_pid = 0;
@@ -1251,9 +1249,7 @@ gs_window_dialog_finish (GSWindow *window)
         kill_dialog_command (window);
 
         if (window->priv->lock_pid > 0) {
-                int exit_status;
-
-                exit_status = wait_on_child (window->priv->lock_pid);
+                wait_on_child (window->priv->lock_pid);
 
                 g_spawn_close_pid (window->priv->lock_pid);
                 window->priv->lock_pid = 0;
