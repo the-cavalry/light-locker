@@ -1,4 +1,15 @@
 ==============
+Version  3.1.5
+==============
+
+- Add back keyboard layout indicator
+- Detect clock skew when resuming or ntp runs and compensate
+- Fix crash in user switcher
+- Drop libgnome-menu dependency
+- Translation updates (Finnish, Thai, Polish, Turkish, Czech,
+  Esperanto, Belarusian, Catalan (Valencian), Persian)
+
+==============
 Version  3.0.0
 ==============
 
