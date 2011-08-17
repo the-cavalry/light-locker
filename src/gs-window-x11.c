@@ -32,8 +32,6 @@
 #include <gtk/gtk.h>
 #include <gtk/gtkx.h>
 
-#include <upower.h>
-
 #include <gdesktop-enums.h>
 
 #include "gs-window.h"
@@ -105,8 +103,6 @@ struct GSWindowPrivate
         guint      clock_update_id;
 
         gint64     clock_update_time;
-        
-        UpClient  *upower_client;
 
         gint       lock_pid;
         gint       lock_watch_id;
@@ -2267,14 +2263,6 @@ queue_clock_update (GSWindow *window)
         }
 }
 
-static void
-on_upower_resume (UpClient    *client,
-                  UpSleepKind  kind,
-                  gpointer     user_data)
-{
-        update_clock (GS_WINDOW (user_data));
-}
-
 static char *
 get_user_display_name (void)
 {
@@ -2441,11 +2429,6 @@ gs_window_init (GSWindow *window)
         window->priv->clock_format = g_settings_get_enum (window->priv->clock_settings, "clock-format");
         g_signal_connect (window->priv->clock_settings, "changed::clock-format",
                           G_CALLBACK (update_clock_format), window);
-        
-        window->priv->upower_client = up_client_new ();
-        g_signal_connect (window->priv->upower_client, "notify-resume",
-                          G_CALLBACK (on_upower_resume), window);
-        
         update_clock (window);
         queue_clock_update (window);
 
