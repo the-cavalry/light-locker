@@ -19,7 +19,6 @@ EXTRA_DIST =			\
 	README			\
 	ChangeLog		\
 	NEWS			\
-	TODO			\
 	HACKING			\
 	intltool-extract.in     \
 	intltool-merge.in       \
