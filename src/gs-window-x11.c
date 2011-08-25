@@ -274,6 +274,7 @@ clear_widget (GtkWidget *widget)
 
         gdk_window_set_background (gtk_widget_get_window (widget),
                                    &color);
+        gtk_widget_modify_bg (widget, GTK_STATE_NORMAL, &color);
         gtk_widget_queue_draw (GTK_WIDGET (widget));
 }
 
