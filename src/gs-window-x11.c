@@ -267,14 +267,12 @@ gs_window_clear_to_background_surface (GSWindow *window)
 static void
 clear_widget (GtkWidget *widget)
 {
-        GdkColor color = { 0, 0x0000, 0x0000, 0x0000 };
+        GdkRGBA rgba = { 0.0, 0.0, 0.0, 1.0 };
 
         if (!gtk_widget_get_realized (widget))
                 return;
 
-        gdk_window_set_background (gtk_widget_get_window (widget),
-                                   &color);
-        gtk_widget_modify_bg (widget, GTK_STATE_NORMAL, &color);
+        gtk_widget_override_background_color (widget, GTK_STATE_FLAG_NORMAL, &rgba);
         gtk_widget_queue_draw (GTK_WIDGET (widget));
 }
 
