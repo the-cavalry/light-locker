@@ -4,7 +4,6 @@ AUTOMAKE_OPTIONS = 1.7
 NULL =
 
 saverdir = $(libexecdir)/gnome-screensaver
-themesdir = $(pkgdatadir)/themes
 
 INCLUDES =							\
 	-I.							\
@@ -21,7 +20,6 @@ INCLUDES =							\
 	-DSYSCONFDIR=\""$(sysconfdir)"\" 			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"		\
 	-DSAVERDIR=\""$(saverdir)"\"				\
-	-DTHEMESDIR=\""$(themesdir)"\"				\
 	-DGTKBUILDERDIR=\"$(pkgdatadir)\"				\
 	-DPAM_SERVICE_NAME=\""gnome-screensaver"\"		\
 	$(WARN_CFLAGS)						\
