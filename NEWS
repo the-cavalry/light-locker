@@ -1,3 +1,10 @@
+===============
+Version  3.1.90
+===============
+
+- Properly set background to black when cancelling unlock
+- Drop the .pc file
+
 ==============
 Version  3.1.5
 ==============
