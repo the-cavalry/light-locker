@@ -662,16 +662,6 @@ AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LDFLAGS)
 
-# Special directories
-# Used for .pc.in file
-
-privlibexecdir='${libexecdir}'/gnome-screensaver
-AC_SUBST(privlibexecdir)
-
-privdatadir='${datadir}'/gnome-screensaver
-AC_SUBST(privdatadir)
-
-
 # Files
 
 AC_OUTPUT([
@@ -680,7 +670,6 @@ po/Makefile.in
 src/Makefile
 src/gnome-screensaver.desktop.in
 data/Makefile
-data/gnome-screensaver.pc
 doc/Makefile
 doc/gnome-screensaver.xml
 ])

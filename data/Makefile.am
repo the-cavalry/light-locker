@@ -7,13 +7,9 @@ man_MANS = 				\
 
 @INTLTOOL_XML_NOMERGE_RULE@
 
-pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = gnome-screensaver.pc
-
 EXTRA_DIST = 				\
 	$(man_MANS)			\
 	gnome-screensaver		\
-	gnome-screensaver.pc.in		\
 	$(NULL)
 
 DISTCLEANFILES = 			\
