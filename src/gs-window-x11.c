@@ -2190,6 +2190,14 @@ update_clock (GSWindow *window)
         g_free (markup);
 }
 
+static void
+on_clock_changed (GnomeWallClock *clock,
+                  GParamSpec     *pspec,
+                  gpointer        user_data)
+{
+        update_clock (GS_WINDOW (user_data));
+}
+
 static char *
 get_user_display_name (void)
 {
@@ -2339,6 +2347,7 @@ gs_window_init (GSWindow *window)
         create_info_bar (window);
 
         window->priv->clock_tracker = g_object_new (GNOME_TYPE_WALL_CLOCK, NULL);
+        g_signal_connect (window->priv->clock_tracker, "notify::clock", G_CALLBACK (on_clock_changed), window);
         update_clock (window);
 
         force_no_pixmap_background (window->priv->drawing_area);
