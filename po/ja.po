@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "screensaver&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-29 13:26+0000\n"
-"PO-Revision-Date: 2011-03-31 21:09+0900\n"
-"Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
+"POT-Creation-Date: 2011-09-09 15:16+0000\n"
+"PO-Revision-Date: 2011-09-11 07:40+0900\n"
+"Last-Translator: Jiro Matsuzawa <jmatsuzawa@src.gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -105,7 +105,7 @@ msgstr "未使用"
 #: ../src/gnome-screensaver-dialog.c:183 ../src/gnome-screensaver-dialog.c:184
 #: ../src/gnome-screensaver-dialog.c:185 ../src/gs-auth-pam.c:698
 msgid "Username:"
-msgstr "ユーザ名:"
+msgstr "ユーザー名:"
 
 #: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
 #: ../src/gs-auth-pam.c:166
@@ -134,7 +134,7 @@ msgstr "パスワードは変更されていません"
 
 #: ../src/gnome-screensaver-dialog.c:193
 msgid "Cannot get username"
-msgstr "ユーザ名を取得できません"
+msgstr "ユーザー名を取得できません"
 
 #: ../src/gnome-screensaver-dialog.c:194
 msgid "Retype new Unix password:"
@@ -244,7 +244,7 @@ msgstr "Num Lock キーが押されています。"
 
 #: ../src/gs-lock-plug.c:1350
 msgid "S_witch User…"
-msgstr "ユーザの切り替え(_W)…"
+msgstr "ユーザーの切り替え(_W)…"
 
 #: ../src/gs-lock-plug.c:1359
 msgid "Log _Out"
@@ -254,19 +254,15 @@ msgstr "ログアウト(_O)"
 msgid "_Unlock"
 msgstr "ロックの解除(_U)"
 
-#: ../src/gs-lock-plug.c:1401
+#: ../src/gs-lock-plug.c:1405
 msgid "_Password:"
 msgstr "パスワード(_P):"
 
-#. Translators, this is the 24h date format used in the panel clock
-#: ../src/gs-window-x11.c:2199
-msgid "%a %R"
-msgstr "%a %R"
+#~ msgid "%a %R"
+#~ msgstr "%a %R"
 
-#. Translators, this is the 12h date format used in the panel clock
-#: ../src/gs-window-x11.c:2202
-msgid "%a %l:%M %p"
-msgstr "%a %p %l:%M"
+#~ msgid "%a %l:%M %p"
+#~ msgstr "%a %p %l:%M"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "お使いのスクリーンセーバーを設定します"
@@ -288,7 +284,7 @@ msgstr "%a %p %l:%M"
 
 #~ msgid "Warning: the screen will not be locked for the root user."
 #~ msgstr ""
-#~ "注意: root ユーザの場合、スクリーンはロックされないので注意してください"
+#~ "注意: root ユーザーの場合、スクリーンはロックされないので注意してください"
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "アイドル状態になったらスクリーンセーバーを起動する(_A)"
@@ -306,7 +302,7 @@ msgstr "%a %p %l:%M"
 #~ msgstr "スクリーンセーバーのテーマ"
 
 #~ msgid "Screensavers"
-#~ msgstr "いろいろなスクリーンセーバーを格納するフォルダ"
+#~ msgstr "いろいろなスクリーンセーバーを格納するフォルダー"
 
 #~ msgid "Activate when idle"
 #~ msgstr "アイドル時に起動するかどうか"
@@ -328,7 +324,7 @@ msgstr "%a %p %l:%M"
 #~ "するかどうかです。"
 
 #~ msgid "Allow user switching"
-#~ msgstr "ユーザ間の切り替えを許可するかどうか"
+#~ msgstr "ユーザー間の切り替えを許可するかどうか"
 
 #~ msgid "Embedded keyboard command"
 #~ msgstr "キーボードを埋め込むコマンド"
@@ -372,8 +368,8 @@ msgstr "%a %p %l:%M"
 #~ "Set this to TRUE to offer an option in the unlock dialog to switch to a "
 #~ "different user account."
 #~ msgstr ""
-#~ "TRUE にすると、ロックを解除するダイアログに、他のユーザ・アカウントへ切り"
-#~ "替えるためのオプションを表示します。"
+#~ "TRUE にすると、ロックを解除するダイアログに、他のユーザー・アカウントへ切"
+#~ "り替えるためのオプションを表示します。"
 
 #~ msgid ""
 #~ "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
@@ -383,8 +379,8 @@ msgstr "%a %p %l:%M"
 #~ msgstr ""
 #~ "\"embedded_keyboard_enabled\" キーを TRUE にした場合、ウィンドウの中にキー"
 #~ "ボードを埋め込む際に使用するコマンドです。ここで指定できるコマンドは "
-#~ "XEMBED プラグイン・インタフェースを実装し、ウィンドウの XID を標準出力に出"
-#~ "力できるものでなくてはなりません。"
+#~ "XEMBED プラグイン・インターフェースを実装し、ウィンドウの XID を標準出力に"
+#~ "出力できるものでなくてはなりません。"
 
 #~ msgid ""
 #~ "The command to invoke when the logout button is clicked. This command "
@@ -392,9 +388,9 @@ msgstr "%a %p %l:%M"
 #~ "effect only if the \"logout_enable\" key is set to TRUE."
 #~ msgstr ""
 #~ "ログアウト・ボタンをクリックしたら呼び出されるコマンドです。このコマンド"
-#~ "は、ユーザに問い合わせを行うことなく単にログアウトするようなコマンドにして"
-#~ "ください。このキーは、\"logout_enable\" キーが TRUE の場合にのみ効果があり"
-#~ "ます。"
+#~ "は、ユーザーに問い合わせを行うことなく単にログアウトするようなコマンドにし"
+#~ "てください。このキーは、\"logout_enable\" キーが TRUE の場合にのみ効果があ"
+#~ "ります。"
 
 #~ msgid ""
 #~ "The number of minutes after screensaver activation before locking the "
@@ -484,10 +480,10 @@ msgstr "%a %p %l:%M"
 
 #~ msgid "Display a slideshow from your Pictures folder"
 #~ msgstr ""
-#~ "これはお気に入りのフォルダにある画像をスライドショー形式で表示します"
+#~ "これはお気に入りのフォルダーにある画像をスライドショー形式で表示します"
 
 #~ msgid "Pictures folder"
-#~ msgstr "画像フォルダ"
+#~ msgstr "画像フォルダー"
 
 #~ msgid "A pop-art-ish grid of pulsing colors."
 #~ msgstr "四角形が脈打つように見えるポップ・アートを表示します"
@@ -577,8 +573,8 @@ msgstr "%a %p %l:%M"
 
 #~ msgid "Poke the running screensaver to simulate user activity"
 #~ msgstr ""
-#~ "ユーザが設定できる機能を模擬するためにスクリーンセーバーをランダムに実行す"
-#~ "る"
+#~ "ユーザーが設定できる機能を模擬するためにスクリーンセーバーをランダムに実行"
+#~ "する"
 
 #~ msgid ""
 #~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
@@ -630,7 +626,7 @@ msgstr "%a %p %l:%M"
 #~ msgstr "しない"
 
 #~ msgid "Could not load the main interface"
-#~ msgstr "Glade インタフェースを読み込めませんでした"
+#~ msgstr "Glade インターフェースを読み込めませんでした"
 
 #~ msgid "Please make sure that the screensaver is properly installed"
 #~ msgstr ""
@@ -673,4 +669,4 @@ msgstr "%a %p %l:%M"
 #~ msgstr "起動されていません"
 
 #~ msgid "S_witch User..."
-#~ msgstr "ユーザの切り替え(_W)..."
+#~ msgstr "ユーザーの切り替え(_W)..."
