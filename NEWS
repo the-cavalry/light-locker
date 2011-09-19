@@ -1,4 +1,12 @@
 ===============
+Version  3.1.92
+===============
+
+- Use maintainer mode by default
+- Fix the clock to actually update every minute
+- Translation updates (Japanese)
+
+===============
 Version  3.1.91
 ===============
 
