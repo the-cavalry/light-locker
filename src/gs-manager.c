@@ -799,6 +799,9 @@ apply_background_to_window (GSManager *manager,
 {
         cairo_surface_t *surface;
         GdkScreen       *screen;
+        GdkWindow       *gdk_window;
+        gint             monitor;
+        GdkRectangle     monitor_geometry;
         int              width;
         int              height;
 
@@ -808,11 +811,14 @@ apply_background_to_window (GSManager *manager,
         }
 
         screen = gs_window_get_screen (window);
-        width = gdk_screen_get_width (screen);
-        height = gdk_screen_get_height (screen);
+        gdk_window = gs_window_get_gdk_window (window);
+        monitor = gdk_screen_get_monitor_at_window (screen, gdk_window);
+        gdk_screen_get_monitor_geometry (screen, monitor, &monitor_geometry);
+        width = monitor_geometry.width;
+        height = monitor_geometry.height;
         gs_debug ("Creating background w:%d h:%d", width, height);
         surface = gnome_bg_create_surface (manager->priv->bg,
-                                           gs_window_get_gdk_window (window),
+                                           gdk_window,
                                            width,
                                            height,
                                            FALSE);
