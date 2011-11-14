@@ -1,0 +1,729 @@
+# Burmese Translations of gnome-screensaver
+# Copyright (C) 2011 Myanmar L10n Team
+# This file is distributed under the same license as the above package.
+# Thura Hlaing <trhura@gmail.com>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"screensaver&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-04-25 13:31+0000\n"
+"PO-Revision-Date: 2011-10-14 00:28+0630\n"
+"Last-Translator: Thura Hlaing <trhura@gmail.com>\n"
+"Language-Team: Burmese <my-l10n-team@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: my\n"
+"X-Poedit-Language: Burmese\n"
+"X-Poedit-Country: MYANMAR\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Narro 0.9.4 on http://translate.libreworks.info\n"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:1
+#: ../src/gnome-screensaver.desktop.in.in.h:2
+msgid "Screensaver"
+msgstr "ဖန်သားပြင်ကန့်လန့်ကာ"
+
+#: ../data/gnome-screensaver-preferences.desktop.in.h:2
+msgid "Set your screensaver preferences"
+msgstr "ဖန်သားပြင်ကန့်လန့်ကာဆက်တင်များစီမံရန်"
+
+#: ../data/gnome-screensaver-preferences.ui.h:1
+msgid "<b>Screensaver preview</b>"
+msgstr "<b>ကန့်လန့်ကာ အကြိုမြင်ကွင်း</b>"
+
+#: ../data/gnome-screensaver-preferences.ui.h:2
+msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+msgstr ""
+
+#: ../data/gnome-screensaver-preferences.ui.h:3
+msgid "Power _Management"
+msgstr "လျှပ်စစ်ဓာတ်အားဆိုင်ရာ"
+
+#: ../data/gnome-screensaver-preferences.ui.h:4
+msgid "Regard the computer as _idle after:"
+msgstr "ကွန်ပျူတာကို ဤမျှအကြာတွင် လေနေသည်ဟု သတ်မှတ်ပါ"
+
+#: ../data/gnome-screensaver-preferences.ui.h:5
+msgid "Screensaver Preferences"
+msgstr "ကန့်လန့်ကာဆိုင်ရာ လိုလားချက်များ"
+
+#: ../data/gnome-screensaver-preferences.ui.h:6
+msgid "Screensaver Preview"
+msgstr "ကန့်လန့်ကာ အကြိုမြင်ကွင်း"
+
+#: ../data/gnome-screensaver-preferences.ui.h:7
+msgid "_Activate screensaver when computer is idle"
+msgstr "_A ကွန်ပျူတာလေနေပါက ကန့်လန့်ကာချပါ"
+
+#: ../data/gnome-screensaver-preferences.ui.h:8
+msgid "_Lock screen when screensaver is active"
+msgstr "_L ကန့်လန့်ကာချပြီးလျှင် ဖန်သားပြင်ကို သော့ခတ်ပါ"
+
+#: ../data/gnome-screensaver-preferences.ui.h:9
+msgid "_Preview"
+msgstr "_P ကြိုကြည့်ရန်"
+
+#: ../data/gnome-screensaver-preferences.ui.h:10
+msgid "_Screensaver theme:"
+msgstr "_S ကန့်လန့်ကာအဆင်-"
+
+#: ../data/gnome-screensaver.directory.in.h:1
+#: ../data/gnome-screensaver.schemas.in.h:11
+msgid "Screensaver themes"
+msgstr "ကန့်လန့်ကာအဆင်များ"
+
+#: ../data/gnome-screensaver.directory.in.h:2
+msgid "Screensavers"
+msgstr "ကန့်လန့်ကာများ"
+
+#: ../data/gnome-screensaver.schemas.in.h:1
+msgid "Activate when idle"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:2
+msgid "Allow embedding a keyboard into the window"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:3
+msgid "Allow logout"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:4
+msgid "Allow the session status message to be displayed"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:5
+msgid ""
+"Allow the session status message to be displayed when the screen is locked."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:6
+msgid "Allow user switching"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:7
+msgid "Embedded keyboard command"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:8
+msgid "Lock on activation"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:9
+msgid "Logout command"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:10
+msgid "Screensaver theme selection mode"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:12
+msgid "Set this to TRUE to activate the screensaver when the session is idle."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:13
+msgid ""
+"Set this to TRUE to allow embedding a keyboard into the window when trying "
+"to unlock. The \"keyboard_command\" key must be set with the appropriate "
+"command."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:14
+msgid "Set this to TRUE to lock the screen when the screensaver goes active."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:15
+msgid ""
+"Set this to TRUE to offer an option in the unlock dialog to switch to a "
+"different user account."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:16
+msgid ""
+"Set this to TRUE to offer an option in unlock dialog to logging out after a "
+"delay. The Delay is specified in the \"logout_delay\" key."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:17
+msgid ""
+"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+"set to TRUE, to embed a keyboard widget into the window. This command should "
+"implement an XEMBED plug interface and output a window XID on the standard "
+"output."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:18
+msgid ""
+"The command to invoke when the logout button is clicked. This command should "
+"simply log the user out without any interaction. This key has effect only if "
+"the \"logout_enable\" key is set to TRUE."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:19
+msgid ""
+"The number of minutes after screensaver activation before locking the screen."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:20
+msgid ""
+"The number of minutes after the screensaver activation before a logout "
+"option will appear in unlock dialog. This key has effect only if the "
+"\"logout_enable\" key is set to TRUE."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:21
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:22
+msgid "The number of minutes to run before changing the screensaver theme."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:23
+msgid ""
+"The number of seconds of inactivity before signalling to power-management. "
+"This key is set and maintained by the session power-management agent."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:24
+msgid ""
+"The selection mode used by screensaver. May be \"blank-only\" to enable the "
+"screensaver without using any theme on activation, \"single\" to enable "
+"screensaver using only one theme on activation (specified in \"themes\" "
+"key), and \"random\" to enable the screensaver using a random theme on "
+"activation."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:25
+msgid "Theme for lock dialog"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:26
+msgid "Theme to use for the lock dialog."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:27
+msgid ""
+"This key specifies the list of themes to be used by the screensaver. It's "
+"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
+"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
+"\" is \"random\"."
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:28
+msgid "Time before locking"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:29
+msgid "Time before logout option"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:30
+msgid "Time before power-management baseline"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:31
+msgid "Time before session is considered idle"
+msgstr ""
+
+#: ../data/gnome-screensaver.schemas.in.h:32
+msgid "Time before theme change"
+msgstr ""
+
+#: ../data/lock-dialog-default.ui.h:2
+#, no-c-format
+msgid "<b>Leave a message for %R:</b>"
+msgstr "<b>%R အတွက် အမှာစကားချန်ထားရန်</b>"
+
+#: ../data/lock-dialog-default.ui.h:4
+#, no-c-format
+msgid "<span size=\"small\">%U on %h</span>"
+msgstr ""
+
+#: ../data/lock-dialog-default.ui.h:6
+#, no-c-format
+msgid "<span size=\"x-large\">%R</span>"
+msgstr ""
+
+#: ../data/lock-dialog-default.ui.h:7
+msgid "_Cancel"
+msgstr "_C နေတော့"
+
+#: ../data/lock-dialog-default.ui.h:8
+msgid "_Leave Message"
+msgstr "_L မှာတမ်းခြွေရန်"
+
+#: ../data/lock-dialog-default.ui.h:9
+msgid "_Log Out"
+msgstr "_L ထွက်ပါ"
+
+#: ../data/lock-dialog-default.ui.h:10
+msgid "_Switch User"
+msgstr "_S အသုံးပြုသူပြောင်းရန်"
+
+#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1372
+msgid "_Unlock"
+msgstr "_U ဖွင့်ပါ"
+
+#. Translators: This is the name of a desktop background image that shows outer space images.
+#. You might want to translate it into the equivalent words of your language
+#: ../data/images/cosmos/cosmos.xml.in.in.h:3
+#: ../savers/cosmos-slideshow.desktop.in.in.h:1
+msgid "Cosmos"
+msgstr ""
+
+#: ../savers/cosmos-slideshow.desktop.in.in.h:2
+msgid "Display a slideshow of pictures of the cosmos"
+msgstr ""
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:1
+msgid "Bubbles the GNOME foot logo around the screen"
+msgstr ""
+
+#: ../savers/footlogo-floaters.desktop.in.in.h:2
+msgid "Floating Feet"
+msgstr ""
+
+#: ../savers/personal-slideshow.desktop.in.in.h:1
+msgid "Display a slideshow from your Pictures folder"
+msgstr ""
+
+#: ../savers/personal-slideshow.desktop.in.in.h:2
+msgid "Pictures folder"
+msgstr "ရုပ်ပုံဖိုင်တွဲ"
+
+#: ../savers/popsquares.desktop.in.in.h:1
+msgid "A pop-art-ish grid of pulsing colors."
+msgstr ""
+
+#: ../savers/popsquares.desktop.in.in.h:2
+msgid "Pop art squares"
+msgstr ""
+
+#: ../savers/popsquares.c:49 ../savers/floaters.c:1204
+#, c-format
+msgid "%s. See --help for usage information.\n"
+msgstr ""
+
+#: ../savers/floaters.c:88
+msgid "Show paths that images follow"
+msgstr ""
+
+#: ../savers/floaters.c:91
+msgid "Occasionally rotate images as they move"
+msgstr ""
+
+#: ../savers/floaters.c:94
+msgid "Print out frame rate and other statistics"
+msgstr ""
+
+#: ../savers/floaters.c:97
+msgid "The maximum number of images to keep on screen"
+msgstr ""
+
+#: ../savers/floaters.c:97
+msgid "MAX_IMAGES"
+msgstr ""
+
+#: ../savers/floaters.c:100
+msgid "The initial size and position of window"
+msgstr ""
+
+#: ../savers/floaters.c:100
+msgid "WIDTHxHEIGHT+X+Y"
+msgstr ""
+
+#: ../savers/floaters.c:103
+msgid "The source image to use"
+msgstr ""
+
+#. translators: the word "image" here
+#. * represents a command line argument
+#.
+#: ../savers/floaters.c:1198
+msgid "image - floats images around the screen"
+msgstr ""
+
+#: ../savers/floaters.c:1213
+#, c-format
+msgid "You must specify one image.  See --help for usage information.\n"
+msgstr ""
+
+#: ../savers/slideshow.c:53
+msgid "Location to get images from"
+msgstr ""
+
+#: ../savers/slideshow.c:53
+msgid "PATH"
+msgstr ""
+
+#: ../savers/slideshow.c:55
+msgid "Color to use for images background"
+msgstr ""
+
+#: ../savers/slideshow.c:55
+msgid "\"#rrggbb\""
+msgstr ""
+
+#: ../savers/slideshow.c:57
+msgid "Do not randomize pictures from location"
+msgstr ""
+
+#: ../savers/slideshow.c:59
+msgid "Do not try to stretch images on screen"
+msgstr ""
+
+#: ../src/copy-theme-dialog.c:212
+msgid "Copying files"
+msgstr ""
+
+#: ../src/copy-theme-dialog.c:230
+msgid "From:"
+msgstr "မှ-"
+
+#: ../src/copy-theme-dialog.c:234
+msgid "To:"
+msgstr "သို့-"
+
+#: ../src/copy-theme-dialog.c:254
+msgid "Copying themes"
+msgstr ""
+
+#: ../src/copy-theme-dialog.c:298
+msgid "Invalid screensaver theme"
+msgstr ""
+
+#: ../src/copy-theme-dialog.c:301
+#, c-format
+msgid "%s does not appear to be a valid screensaver theme."
+msgstr ""
+
+#: ../src/copy-theme-dialog.c:481
+#, c-format
+msgid "Copying file: %u of %u"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:62
+msgid "Causes the screensaver to exit gracefully"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:64
+msgid "Query the state of the screensaver"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:66
+msgid "Query the length of time the screensaver has been active"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:68
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:70
+msgid "If the screensaver is active then switch to another graphics demo"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:72
+msgid "Turn the screensaver on (blank the screen)"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:74
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:76
+msgid "Poke the running screensaver to simulate user activity"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:78
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:80
+msgid "The calling application that is inhibiting the screensaver"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:82
+msgid "The reason for inhibiting the screensaver"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver.c:56
+msgid "Version of this application"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:311
+#, c-format
+msgid "The screensaver is %s\n"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:311
+msgid "active"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:311
+msgid "inactive"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:325
+#, c-format
+msgid "The screensaver is not inhibited\n"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:331
+#, c-format
+msgid "The screensaver is being inhibited by:\n"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:362
+#, c-format
+msgid "The screensaver has been active for %d seconds.\n"
+msgstr ""
+
+#: ../src/gnome-screensaver-command.c:366
+#, c-format
+msgid "The screensaver is not currently active.\n"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:57
+msgid "Show debugging output"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:61
+msgid "Show the logout button"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "Command to invoke from the logout button"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:65
+msgid "Show the switch user button"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:67
+msgid "Message to show in the dialog"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:67 ../src/gnome-screensaver-dialog.c:69
+msgid "MESSAGE"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:69
+msgid "Not used"
+msgstr ""
+
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:179 ../src/gnome-screensaver-dialog.c:180
+#: ../src/gnome-screensaver-dialog.c:181 ../src/gs-auth-pam.c:698
+msgid "Username:"
+msgstr "အသုံးပြုသူအမည်-"
+
+#: ../src/gnome-screensaver-dialog.c:182 ../src/gnome-screensaver-dialog.c:183
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "စကားဝှက်-"
+
+#: ../src/gnome-screensaver-dialog.c:184
+msgid "You are required to change your password immediately (password aged)"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:185
+msgid "You are required to change your password immediately (root enforced)"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:186
+msgid "Your account has expired; please contact your system administrator"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:187
+msgid "No password supplied"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:188
+msgid "Password unchanged"
+msgstr "စကားဝှက်မပြောင်းသွားပါ"
+
+#: ../src/gnome-screensaver-dialog.c:189
+msgid "Can not get username"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:190
+msgid "Retype new UNIX password:"
+msgstr "စကားဝှက်အသစ် ထပ်ရိုက်ပါ-"
+
+#: ../src/gnome-screensaver-dialog.c:191
+msgid "Enter new UNIX password:"
+msgstr "စကားဝှက်အသစ် ရိုက်ပါ-"
+
+#: ../src/gnome-screensaver-dialog.c:192
+msgid "(current) UNIX password:"
+msgstr "လက်ရှိစကားဝှက်-"
+
+#: ../src/gnome-screensaver-dialog.c:193
+msgid "Error while changing NIS password."
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:194
+msgid "You must choose a longer password"
+msgstr "စကားဝှက်ကို ရှည်ရှည်ရွေးပေးပါ"
+
+#: ../src/gnome-screensaver-dialog.c:195
+msgid "Password has been already used. Choose another."
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:196
+msgid "You must wait longer to change your password"
+msgstr ""
+
+#: ../src/gnome-screensaver-dialog.c:197
+msgid "Sorry, passwords do not match"
+msgstr "စကားဝှက်နှစ်ခု မတူကြပါ"
+
+#: ../src/gnome-screensaver-dialog.c:263
+msgid "Checking..."
+msgstr "စစ်ဆေးနေပါတယ်..."
+
+#: ../src/gnome-screensaver-dialog.c:305 ../src/gs-auth-pam.c:457
+msgid "Authentication failed."
+msgstr ""
+
+#: ../src/gnome-screensaver-preferences.c:524
+msgid "Blank screen"
+msgstr "ဖန်သားပြင်ဗြောင်"
+
+#: ../src/gnome-screensaver-preferences.c:530
+msgid "Random"
+msgstr "ကျပန်း"
+
+#: ../src/gnome-screensaver-preferences.c:980
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%Id နာရီ"
+
+#: ../src/gnome-screensaver-preferences.c:983
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%Id မိနစ်"
+
+#: ../src/gnome-screensaver-preferences.c:986
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%Id စက္ကန့်"
+
+#. hour:minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:992
+#, c-format
+msgid "%s %s %s"
+msgstr ""
+
+#. hour:minutes
+#. minutes:seconds
+#: ../src/gnome-screensaver-preferences.c:995
+#: ../src/gnome-screensaver-preferences.c:1003
+#, c-format
+msgid "%s %s"
+msgstr ""
+
+#. hour
+#. minutes
+#. seconds
+#: ../src/gnome-screensaver-preferences.c:998
+#: ../src/gnome-screensaver-preferences.c:1006
+#: ../src/gnome-screensaver-preferences.c:1010
+#, c-format
+msgid "%s"
+msgstr ""
+
+#: ../src/gnome-screensaver-preferences.c:1025
+#, c-format
+msgid "Never"
+msgstr ""
+
+#: ../src/gnome-screensaver-preferences.c:1467
+msgid "Could not load the main interface"
+msgstr ""
+
+#: ../src/gnome-screensaver-preferences.c:1469
+msgid "Please make sure that the screensaver is properly installed"
+msgstr ""
+
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr ""
+
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr ""
+
+#: ../src/gnome-screensaver.desktop.in.in.h:1
+msgid "Launch screen saver and locker program"
+msgstr ""
+
+#: ../src/gs-auth-pam.c:397
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr ""
+
+#: ../src/gs-auth-pam.c:423
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr ""
+
+#: ../src/gs-auth-pam.c:455
+msgid "Incorrect password."
+msgstr "စကားဝှက်မှားနေပါတယ်"
+
+#: ../src/gs-auth-pam.c:471
+msgid "Not permitted to gain access at this time."
+msgstr ""
+
+#: ../src/gs-auth-pam.c:477
+msgid "No longer permitted to access the system."
+msgstr ""
+
+#: ../src/gs-listener-dbus.c:1912
+msgid "failed to register with the message bus"
+msgstr ""
+
+#: ../src/gs-listener-dbus.c:1922
+msgid "not connected to the message bus"
+msgstr ""
+
+#: ../src/gs-listener-dbus.c:1931
+msgid "screensaver already running in this session"
+msgstr ""
+
+#: ../src/gs-lock-plug.c:270
+msgid "Time has expired."
+msgstr "အချိန်ကျော်လွန်သွားပြီ"
+
+#: ../src/gs-lock-plug.c:298
+msgid "You have the Caps Lock key on."
+msgstr "Caps Lock ပွင့်နေတယ်"
+
+#: ../src/gs-lock-plug.c:1352
+msgid "S_witch User..."
+msgstr "_W အသုံးပြုသူပြောင်းရန်"
+
+#: ../src/gs-lock-plug.c:1361
+msgid "Log _Out"
+msgstr "_O ထွက်ရန်"
+
+#. To translators: This expands to USERNAME on HOSTNAME
+#: ../src/gs-lock-plug.c:1537
+msgid "%U on %h"
+msgstr ""
+
+#: ../src/gs-lock-plug.c:1551
+msgid "_Password:"
+msgstr "_P စကားဝှက်-"
