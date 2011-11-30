@@ -60,6 +60,10 @@ gnome_screensaver_command_LDADD =	\
 	$(GNOME_SCREENSAVER_COMMAND_LIBS)	\
 	$(NULL)
 
+AUTH_SOURCES =				\
+	gs-auth-@AUTH_SCHEME@.c		\
+	$(NULL)
+
 test_fade_SOURCES = 			\
 	test-fade.c 			\
 	gs-fade.c	 		\
@@ -76,7 +80,7 @@ test_fade_LDADD =			\
 test_passwd_SOURCES = 			\
 	test-passwd.c 			\
 	gs-auth.h			\
-	gs-auth-pam.c			\
+	$(AUTH_SOURCES)			\
 	setuid.c			\
 	setuid.h			\
 	subprocs.c			\
@@ -134,7 +138,7 @@ gnome_screensaver_dialog_SOURCES = 	\
 	subprocs.c			\
 	subprocs.h			\
 	gs-auth.h			\
-	gs-auth-pam.c			\
+	$(AUTH_SOURCES)			\
 	$(NULL)
 
 gnome_screensaver_dialog_LDADD =	\
@@ -210,8 +214,7 @@ install-exec-hook:
 	@if [ "x@NEED_SETUID@" = "xyes" ]; then \
 	    echo "***" ; \
 	    echo "***  Warning: gnome-screensaver has been compiled with support for" ; \
-	    echo "***           shadow passwords.  If your system actually uses shadow" ; \
-	    echo "***           passwords then it must be installed as a setuid root" ; \
+	    echo "***           bsdauth(3) and must be installed as a setuid root" ; \
 	    echo "***           program in order for locking to work.  To do this, you" ; \
 	    echo "***           must run:" ; \
 	    echo "***" ; \

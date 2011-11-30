@@ -194,6 +194,23 @@ hack_uid (char **nolock_reason,
                         *orig_uid = uid_gid_string (euid, egid);
                 }
 
+#ifdef HAVE_BSDAUTH /* we need to setgid auth to run the bsd_auth(3) login_* helpers */
+                {
+                        struct group *authg = getgrnam("auth");
+                        if (!authg || !authg->gr_name || !*authg->gr_name) {
+                                        reason = g_strdup ("no such group as \"auth\" for bsdauth.");
+
+                                        ret = FALSE;
+                                        goto out;
+                        }
+                        if (! set_ids_by_number (uid, authg->gr_gid, uid_message)) {
+                                        reason = g_strdup ("cannot setgid \"auth\" for bsdauth.");
+
+                                        ret = FALSE;
+                                        goto out;
+                        }
+                }
+#else /* !HAVE_BSDAUTH */
                 if (uid != euid || gid != egid) {
                         if (! set_ids_by_number (uid, gid, uid_message)) {
                                 reason = g_strdup ("unable to discard privileges.");
@@ -202,6 +219,7 @@ hack_uid (char **nolock_reason,
                                 goto out;
                         }
                 }
+#endif
         }
 
 
