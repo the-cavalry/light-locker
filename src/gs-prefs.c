@@ -130,8 +130,8 @@ _gs_prefs_set_lock_timeout (GSPrefs *prefs,
 {
         /* pick a reasonable large number for the
            upper bound */
-        if (value > 480)
-                value = 480;
+        if (value > 28800)
+                value = 28800;
 
         prefs->lock_timeout = value * 1000;
 }
@@ -219,8 +219,8 @@ _gs_prefs_set_logout_timeout (GSPrefs *prefs,
 {
         /* pick a reasonable large number for the
            upper bound */
-        if (value > 480)
-                value = 480;
+        if (value > 28800)
+                value = 28800;
 
         prefs->logout_timeout = value * 1000;
 }
