@@ -128,10 +128,10 @@ static void
 _gs_prefs_set_lock_timeout (GSPrefs *prefs,
                             guint    value)
 {
-        /* pick a reasonable large number for the
-           upper bound */
-        if (value > 28800)
-                value = 28800;
+        /* prevent overflow when converting to milliseconds */
+        if (value > G_MAXUINT / 1000) {
+                value = G_MAXUINT / 1000;
+        }
 
         prefs->lock_timeout = value * 1000;
 }
@@ -217,10 +217,10 @@ static void
 _gs_prefs_set_logout_timeout (GSPrefs *prefs,
                               guint    value)
 {
-        /* pick a reasonable large number for the
-           upper bound */
-        if (value > 28800)
-                value = 28800;
+        /* prevent overflow when converting to milliseconds */
+        if (value > G_MAXUINT / 1000) {
+                value = G_MAXUINT / 1000;
+        }
 
         prefs->logout_timeout = value * 1000;
 }
