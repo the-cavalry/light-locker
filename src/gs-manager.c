@@ -101,7 +101,7 @@ enum {
         PROP_ACTIVE,
 };
 
-#define FADE_TIMEOUT 1000
+#define FADE_TIMEOUT 250
 
 static guint         signals [LAST_SIGNAL] = { 0, };
 

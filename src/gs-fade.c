@@ -693,7 +693,7 @@ static void
 gs_fade_start (GSFade *fade,
                guint   timeout)
 {
-        guint steps_per_sec = 30;
+        guint steps_per_sec = 60;
         guint msecs_per_step;
         struct GSFadeScreenPrivate *screen_priv;
         gboolean active_fade, res;
