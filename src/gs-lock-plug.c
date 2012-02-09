@@ -415,6 +415,13 @@ run_destroy_handler (GSLockPlug *plug,
         ri->destroyed = TRUE;
 }
 
+static void
+run_keymap_handler (GdkKeymap *keymap,
+                    GSLockPlug *plug)
+{
+        kbd_lock_mode_update (plug, get_kbd_lock_mode ());
+}
+
 /* adapted from GTK+ gtkdialog.c */
 int
 gs_lock_plug_run (GSLockPlug *plug)
@@ -425,6 +432,8 @@ gs_lock_plug_run (GSLockPlug *plug)
         gulong unmap_handler;
         gulong destroy_handler;
         gulong delete_handler;
+        gulong keymap_handler;
+        GdkKeymap *keymap;
 
         g_return_val_if_fail (GS_IS_LOCK_PLUG (plug), -1);
 
@@ -438,6 +447,14 @@ gs_lock_plug_run (GSLockPlug *plug)
         if (!gtk_widget_get_visible (GTK_WIDGET (plug))) {
                 gtk_widget_show (GTK_WIDGET (plug));
         }
+
+        keymap = gdk_keymap_get_for_display (gtk_widget_get_display (GTK_WIDGET (plug)));
+
+        keymap_handler =
+                g_signal_connect (keymap,
+                                  "state-changed",
+                                  G_CALLBACK (run_keymap_handler),
+                                  plug);
 
         response_handler =
                 g_signal_connect (plug,
@@ -482,6 +499,7 @@ gs_lock_plug_run (GSLockPlug *plug)
                 g_signal_handler_disconnect (plug, unmap_handler);
                 g_signal_handler_disconnect (plug, delete_handler);
                 g_signal_handler_disconnect (plug, destroy_handler);
+                g_signal_handler_disconnect (plug, keymap_handler);
         }
 
         g_object_unref (plug);
@@ -1295,8 +1313,6 @@ entry_key_press (GtkWidget   *widget,
                  GSLockPlug  *plug)
 {
         restart_cancel_timeout (plug);
-
-        kbd_lock_mode_update (plug, get_kbd_lock_mode ());
 
         /* if the input widget is visible and ready for input
          * then just carry on as usual
