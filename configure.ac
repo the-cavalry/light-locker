@@ -574,6 +574,41 @@ if test "x$have_pam" = "xyes"; then
        )
 fi
 
+dnl ---------------------------------------------------------------------------
+dnl ConsoleKit
+dnl ---------------------------------------------------------------------------
+
+AC_ARG_WITH(console-kit,
+            AS_HELP_STRING([--with-console-kit],
+                           [Add ConsoleKit support]),,
+            with_console_kit=auto)
+
+use_console_kit=no
+if test "x$with_console_kit" != "xno" ; then
+        use_console_kit=yes
+        AC_DEFINE(WITH_CONSOLE_KIT, 1, [ConsoleKit support])
+fi
+AM_CONDITIONAL(WITH_CONSOLE_KIT, test x$use_console_kit = xyes)
+AC_SUBST(WITH_CONSOLE_KIT)
+
+dnl ---------------------------------------------------------------------------
+dnl systemd
+dnl ---------------------------------------------------------------------------
+
+AC_ARG_WITH(systemd,
+            AS_HELP_STRING([--with-systemd],
+                           [Add systemd support]),,
+            with_systemd=auto)
+
+use_systemd=no
+if test "x$with_systemd" != "xno" ; then
+        use_systemd=yes
+        AC_DEFINE(WITH_SYSTEMD, 1, [systemd support])
+
+        PKG_CHECK_MODULES(SYSTEMD, libsystemd-login libsystemd-daemon)
+fi
+AM_CONDITIONAL(WITH_SYSTEMD, test x$use_systemd = xyes)
+AC_SUBST(WITH_SYSTEMD)
 
 dnl ---------------------------------------------------------------------------
 dnl libgnomekbd
@@ -738,6 +773,9 @@ echo "
 
         Screen locking enabled:   ${enable_locking}
         Show keyboard indicator:  ${with_kbd_layout_indicator}
+
+        systemd:                  ${use_systemd}
+        ConsoleKit:               ${use_console_kit}
 "
 
 if test "x$have_pam" = "xyes" ; then

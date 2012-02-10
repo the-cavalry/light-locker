@@ -22,6 +22,14 @@
 #ifndef bus_h
 #define bus_h
 
+/* systemd logind */
+#define SYSTEMD_LOGIND_SERVICE          "org.freedesktop.login1"
+#define SYSTEMD_LOGIND_PATH             "/org/freedesktop/login1"
+#define SYSTEMD_LOGIND_INTERFACE        "org.freedesktop.login1.Manager"
+
+#define SYSTEMD_LOGIND_SESSION_INTERFACE "org.freedesktop.login1.Session"
+#define SYSTEMD_LOGIND_SESSION_PATH     "/org/freedesktop/login1/session"
+
 /* ConsoleKit */
 #define CK_SERVICE                      "org.freedesktop.ConsoleKit"
 #define CK_PATH                         "/org/freedesktop/ConsoleKit"

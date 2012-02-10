@@ -28,6 +28,7 @@ INCLUDES =							\
 	$(DBUS_CFLAGS)						\
 	$(LIBGNOMEKBDUI_CFLAGS)					\
 	$(LIBNOTIFY_CFLAGS)					\
+	$(SYSTEMD_CFLAGS)					\
 	$(NULL)
 
 bin_PROGRAMS = \
@@ -191,6 +192,7 @@ gnome_screensaver_SOURCES =	\
 gnome_screensaver_LDADD =		\
 	$(GNOME_SCREENSAVER_LIBS)	\
 	$(SAVER_LIBS)			\
+	$(SYSTEMD_LIBS)                 \
 	$(NULL)
 
 gnome_screensaver_LDFLAGS = -export-dynamic

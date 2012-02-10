@@ -32,6 +32,11 @@
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
+#ifdef WITH_SYSTEMD
+#include <systemd/sd-daemon.h>
+#include <systemd/sd-login.h>
+#endif
+
 #include "gs-listener-dbus.h"
 #include "gs-marshal.h"
 #include "gs-debug.h"
@@ -70,6 +75,10 @@ struct GSListenerPrivate
         time_t          active_start;
         time_t          session_idle_start;
         char           *session_id;
+
+#ifdef WITH_SYSTEMD
+        gboolean        have_systemd;
+#endif
 };
 
 enum {
@@ -731,19 +740,100 @@ _listener_message_path_is_our_session (GSListener  *listener,
                                        DBusMessage *message)
 {
         const char *ssid;
-        gboolean    ours;
-
-        ours = FALSE;
 
         ssid = dbus_message_get_path (message);
-        if (ssid != NULL
-            && listener->priv->session_id != NULL
-            && strcmp (ssid, listener->priv->session_id) == 0) {
-                ours = TRUE;
+        if (ssid == NULL)
+                return FALSE;
+
+        if (listener->priv->session_id == NULL)
+                return FALSE;
+
+#ifdef WITH_SYSTEMD
+        /* The bus object path is simply the actual session ID
+         * prefixed to make it a bus path */
+        if (listener->priv->have_systemd)
+                return g_str_has_prefix (ssid, SYSTEMD_LOGIND_SESSION_PATH "/")
+                        && strcmp (ssid + sizeof (SYSTEMD_LOGIND_SESSION_PATH),
+                                   listener->priv->session_id) == 0;
+#endif
+
+#ifdef WITH_CONSOLE_KIT
+        if (strcmp (ssid, listener->priv->session_id) == 0)
+                return TRUE;
+#endif
+
+        return FALSE;
+}
+
+#ifdef WITH_SYSTEMD
+static gboolean
+properties_changed_match (DBusMessage *message,
+                          const char  *property)
+{
+        DBusMessageIter iter, sub, sub2;
+
+        /* Checks whether a certain property is listed in the
+         * specified PropertiesChanged message */
+
+        if (!dbus_message_iter_init (message, &iter))
+                goto failure;
+
+        /* Jump over interface name */
+        if (dbus_message_iter_get_arg_type (&iter) != DBUS_TYPE_STRING)
+                goto failure;
+
+        dbus_message_iter_next (&iter);
+
+        /* First, iterate through the changed properties array */
+        if (dbus_message_iter_get_arg_type (&iter) != DBUS_TYPE_ARRAY ||
+            dbus_message_iter_get_element_type (&iter) != DBUS_TYPE_DICT_ENTRY)
+                goto failure;
+
+        dbus_message_iter_recurse (&iter, &sub);
+        while (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_INVALID) {
+                const char *name;
+
+                if (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_DICT_ENTRY)
+                        goto failure;
+
+                dbus_message_iter_recurse (&sub, &sub2);
+                dbus_message_iter_get_basic (&sub2, &name);
+
+                if (strcmp (name, property) == 0)
+                        return TRUE;
+
+                dbus_message_iter_next (&sub);
         }
 
-        return ours;
+        dbus_message_iter_next (&iter);
+
+        /* Second, iterate through the invalidated properties array */
+        if (dbus_message_iter_get_arg_type (&iter) != DBUS_TYPE_ARRAY ||
+            dbus_message_iter_get_element_type (&iter) != DBUS_TYPE_STRING)
+                goto failure;
+
+        dbus_message_iter_recurse (&iter, &sub);
+        while (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_INVALID) {
+                const char *name;
+
+                if (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_STRING)
+                        goto failure;
+
+                dbus_message_iter_get_basic (&sub, &name);
+
+                if (strcmp (name, property) == 0)
+                        return TRUE;
+
+                dbus_message_iter_next (&sub);
+        }
+
+        return FALSE;
+
+failure:
+        gs_debug ("Failed to decode PropertiesChanged message.");
+        return FALSE;
 }
+#endif
 
 static DBusHandlerResult
 listener_dbus_handle_system_message (DBusConnection *connection,
@@ -764,6 +854,52 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                   dbus_message_get_destination (message));
 #endif
 
+#ifdef WITH_SYSTEMD
+
+        if (listener->priv->have_systemd) {
+
+                if (dbus_message_is_signal (message, SYSTEMD_LOGIND_SESSION_INTERFACE, "Unlock")) {
+                        if (_listener_message_path_is_our_session (listener, message)) {
+                                gs_debug ("Console kit requested session unlock");
+                                gs_listener_set_active (listener, FALSE);
+                        }
+
+                        return DBUS_HANDLER_RESULT_HANDLED;
+                } else if (dbus_message_is_signal (message, SYSTEMD_LOGIND_SESSION_INTERFACE, "Lock")) {
+                        if (_listener_message_path_is_our_session (listener, message)) {
+                                gs_debug ("ConsoleKit requested session lock");
+                                g_signal_emit (listener, signals [LOCK], 0);
+                        }
+
+                        return DBUS_HANDLER_RESULT_HANDLED;
+                } else if (dbus_message_is_signal (message, DBUS_INTERFACE_PROPERTIES, "PropertiesChanged")) {
+
+                        if (_listener_message_path_is_our_session (listener, message)) {
+
+                                if (properties_changed_match (message, "Active")) {
+                                        gboolean new_active;
+
+                                        /* Instead of going via the
+                                         * bus to read the new
+                                         * property state, let's
+                                         * shortcut this and ask
+                                         * directly the low-level
+                                         * information */
+
+                                        new_active = sd_session_is_active (listener->priv->session_id) != 0;
+                                        if (new_active)
+                                                g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
+                                }
+                        }
+
+                        return DBUS_HANDLER_RESULT_HANDLED;
+                }
+
+                return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+        }
+#endif
+
+#ifdef WITH_CONSOLE_KIT
         if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "Unlock")) {
                 if (_listener_message_path_is_our_session (listener, message)) {
                         gs_debug ("Console kit requested session unlock");
@@ -810,8 +946,9 @@ listener_dbus_handle_system_message (DBusConnection *connection,
 
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
+#endif
 
-        return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+       return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
 }
 
 static DBusHandlerResult
@@ -1214,7 +1351,32 @@ gs_listener_acquire (GSListener *listener,
                                             listener_dbus_system_filter_function,
                                             listener,
                                             NULL);
+#ifdef WITH_SYSTEMD
+                if (listener->priv->have_systemd) {
+                        dbus_bus_add_match (listener->priv->system_connection,
+                                            "type='signal'"
+                                            ",sender='"SYSTEMD_LOGIND_SERVICE"'"
+                                            ",interface='"SYSTEMD_LOGIND_SESSION_INTERFACE"'"
+                                            ",member='Unlock'",
+                                            NULL);
+                        dbus_bus_add_match (listener->priv->system_connection,
+                                            "type='signal'"
+                                            ",sender='"SYSTEMD_LOGIND_SERVICE"'"
+                                            ",interface='"SYSTEMD_LOGIND_SESSION_INTERFACE"'"
+                                            ",member='Lock'",
+                                            NULL);
+                        dbus_bus_add_match (listener->priv->system_connection,
+                                            "type='signal'"
+                                            ",sender='"SYSTEMD_LOGIND_SERVICE"'"
+                                            ",interface='"DBUS_INTERFACE_PROPERTIES"'"
+                                            ",member='PropertiesChanged'",
+                                            NULL);
 
+                        goto finish;
+                }
+#endif
+
+#ifdef WITH_CONSOLE_KIT
                 dbus_bus_add_match (listener->priv->system_connection,
                                     "type='signal'"
                                     ",interface='"CK_SESSION_INTERFACE"'"
@@ -1230,8 +1392,10 @@ gs_listener_acquire (GSListener *listener,
                                     ",interface='"CK_SESSION_INTERFACE"'"
                                     ",member='ActiveChanged'",
                                     NULL);
+#endif
         }
 
+finish:
         return (res != -1);
 }
 
@@ -1253,6 +1417,26 @@ query_session_id (GSListener *listener)
 
         dbus_error_init (&error);
 
+#ifdef WITH_SYSTEMD
+        if (listener->priv->have_systemd) {
+                char *t;
+                int r;
+
+                r = sd_pid_get_session (0, &t);
+                if (r < 0) {
+                        gs_debug ("Couldn't determine our own session id: %s", strerror (-r));
+                        return NULL;
+                }
+
+                /* t is allocated with malloc(), we need it with g_malloc() */
+                ssid = g_strdup(t);
+                free (t);
+
+                return ssid;
+        }
+#endif
+
+#ifdef WITH_CONSOLE_KIT
         message = dbus_message_new_method_call (CK_SERVICE, CK_MANAGER_PATH, CK_MANAGER_INTERFACE, "GetCurrentSession");
         if (message == NULL) {
                 gs_debug ("Couldn't allocate the dbus message");
@@ -1277,6 +1461,9 @@ query_session_id (GSListener *listener)
         dbus_message_unref (reply);
 
         return g_strdup (ssid);
+#else
+        return NULL;
+#endif
 }
 
 static void
@@ -1291,6 +1478,10 @@ static void
 gs_listener_init (GSListener *listener)
 {
         listener->priv = GS_LISTENER_GET_PRIVATE (listener);
+
+#ifdef WITH_SYSTEMD
+        listener->priv->have_systemd = sd_booted () > 0;
+#endif
 
         gs_listener_dbus_init (listener);
 
