@@ -1,4 +1,16 @@
 ==============
+Version  3.2.1
+==============
+
+- Optionally use systemd instead of ConsoleKit
+- Always lock when asked
+- Fade out quickly on explicit locks
+- Allow arbitrary long idle times
+- Fix background scaling on multi-monitor setups
+- Implement OpenBSD authentication
+- Translation updates (Burmese, Czech, Norwegian bokmål)
+
+==============
 Version  3.2.0
 ==============
 
