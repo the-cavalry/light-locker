@@ -1384,17 +1384,17 @@ create_page_one (GSLockPlug *plug)
         align = gtk_alignment_new (0.5, 0.5, 1, 1);
         gtk_notebook_append_page (GTK_NOTEBOOK (plug->priv->notebook), align, NULL);
 
-        vbox = gtk_vbox_new (FALSE, 12);
+        vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 12);
         gtk_container_add (GTK_CONTAINER (align), vbox);
 
-        hbox = gtk_hbox_new (FALSE, 6);
+        hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
         gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
         plug->priv->auth_face_image = gtk_image_new ();
         gtk_box_pack_start (GTK_BOX (hbox), plug->priv->auth_face_image, FALSE, FALSE, 0);
         gtk_misc_set_alignment (GTK_MISC (plug->priv->auth_face_image), 0, 0);
 
-        vbox2 = gtk_vbox_new (FALSE, 6);
+        vbox2 = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
         gtk_box_pack_start (GTK_BOX (hbox), vbox2, TRUE, TRUE, 0);
         gtk_container_set_border_width (GTK_CONTAINER (vbox2), 10);
 
@@ -1422,7 +1422,7 @@ create_page_one (GSLockPlug *plug)
         gtk_box_pack_start (GTK_BOX (vbox), plug->priv->auth_message_label,
                             FALSE, FALSE, 0);
         /* Buttons */
-        plug->priv->auth_action_area = gtk_hbutton_box_new ();
+        plug->priv->auth_action_area = gtk_button_box_new (GTK_ORIENTATION_HORIZONTAL);
 
         gtk_button_box_set_layout (GTK_BUTTON_BOX (plug->priv->auth_action_area),
                                    GTK_BUTTONBOX_END);
@@ -1483,7 +1483,7 @@ gs_lock_plug_init (GSLockPlug *plug)
         gtk_frame_set_shadow_type (GTK_FRAME (plug->priv->frame), GTK_SHADOW_OUT);
         gtk_container_add (GTK_CONTAINER (plug), plug->priv->frame);
 
-        plug->priv->vbox = gtk_vbox_new (FALSE, 0);
+        plug->priv->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
         gtk_container_add (GTK_CONTAINER (plug->priv->frame), plug->priv->vbox);
 
         plug->priv->auth_prompt_kbd_layout_indicator = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);

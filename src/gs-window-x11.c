@@ -692,7 +692,7 @@ set_info_text_and_icon (GSWindow   *window,
         GtkWidget *primary_label;
         GtkWidget *secondary_label;
 
-        hbox_content = gtk_hbox_new (FALSE, 8);
+        hbox_content = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 8);
         gtk_widget_show (hbox_content);
 
         image = gtk_image_new_from_stock (icon_stock_id, GTK_ICON_SIZE_DIALOG);
@@ -700,7 +700,7 @@ set_info_text_and_icon (GSWindow   *window,
         gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
         gtk_misc_set_alignment (GTK_MISC (image), 0.5, 0);
 
-        vbox = gtk_vbox_new (FALSE, 6);
+        vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
         gtk_widget_show (vbox);
         gtk_box_pack_start (GTK_BOX (hbox_content), vbox, FALSE, FALSE, 0);
 
@@ -2263,7 +2263,7 @@ create_panel (GSWindow *window)
 
         g_signal_connect (window->priv->panel, "draw", G_CALLBACK (on_panel_draw), window);
 
-        left_hbox = gtk_hbox_new (FALSE, 6);
+        left_hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
         gtk_box_pack_start (GTK_BOX (window->priv->panel), left_hbox, TRUE, TRUE, 0);
 
         alignment = gtk_alignment_new (0.5, 0.5, 1, 1);
@@ -2277,7 +2277,7 @@ create_panel (GSWindow *window)
         gtk_alignment_set_padding (GTK_ALIGNMENT (right_alignment),
                                    0, 0, 10, 10);
 
-        right_hbox = gtk_hbox_new (FALSE, 6);
+        right_hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
         gtk_container_add (GTK_CONTAINER (right_alignment), right_hbox);
 
         window->priv->name_label = gtk_label_new (NULL);
@@ -2331,11 +2331,11 @@ gs_window_init (GSWindow *window)
                                | GDK_ENTER_NOTIFY_MASK
                                | GDK_LEAVE_NOTIFY_MASK);
 
-        window->priv->vbox = gtk_vbox_new (FALSE, 0);
+        window->priv->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
         gtk_widget_show (window->priv->vbox);
         gtk_container_add (GTK_CONTAINER (window), window->priv->vbox);
 
-        window->priv->panel = gtk_hbox_new (FALSE, 12);
+        window->priv->panel = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
         gtk_widget_show (window->priv->panel);
         gtk_box_pack_start (GTK_BOX (window->priv->vbox), window->priv->panel, FALSE, FALSE, 0);
         create_panel (window);
