@@ -597,18 +597,32 @@ dnl ---------------------------------------------------------------------------
 
 AC_ARG_WITH(systemd,
             AS_HELP_STRING([--with-systemd],
-                           [Add systemd support]),,
-            with_systemd=auto)
+                           [Add systemd support]),
+            [with_systemd=$withval], [with_systemd=auto])
 
-use_systemd=no
-if test "x$with_systemd" != "xno" ; then
-        use_systemd=yes
-        AC_DEFINE(WITH_SYSTEMD, 1, [systemd support])
+PKG_CHECK_MODULES(SYSTEMD,
+                  [libsystemd-login libsystemd-daemon],
+                  [have_systemd=yes], [have_systemd=no])
 
-        PKG_CHECK_MODULES(SYSTEMD, libsystemd-login libsystemd-daemon)
+if test "x$with_systemd" = "xauto" ; then
+        if test x$have_systemd = xno ; then
+                use_systemd=no
+        else
+                use_systemd=yes
+        fi
+else
+	use_systemd=$with_systemd
 fi
-AM_CONDITIONAL(WITH_SYSTEMD, test x$use_systemd = xyes)
-AC_SUBST(WITH_SYSTEMD)
+
+if test "x$use_systemd" = "xyes"; then
+        if test "x$have_systemd" = "xno"; then
+                AC_MSG_ERROR([Systemd support explicitly required, but systemd not found])
+        fi
+
+        AC_DEFINE(WITH_SYSTEMD, 1, [systemd support])
+fi
+AC_SUBST(SYSTEMD_CFLAGS)
+AC_SUBST(SYSTEMD_LIBS)
 
 dnl ---------------------------------------------------------------------------
 dnl libgnomekbd
