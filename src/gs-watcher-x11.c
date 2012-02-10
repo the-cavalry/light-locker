@@ -340,7 +340,6 @@ static void
 set_status (GSWatcher *watcher,
             guint      status)
 {
-        gboolean res;
         gboolean is_idle;
 
         if (! watcher->priv->active) {
@@ -356,7 +355,7 @@ set_status (GSWatcher *watcher,
         }
 
         if (is_idle) {
-                res = _gs_watcher_set_session_idle_notice (watcher, is_idle);
+                _gs_watcher_set_session_idle_notice (watcher, is_idle);
                 /* queue an activation */
                 if (watcher->priv->idle_id > 0) {
                         g_source_remove (watcher->priv->idle_id);
@@ -369,8 +368,8 @@ set_status (GSWatcher *watcher,
                 if (watcher->priv->idle_id > 0) {
                         g_source_remove (watcher->priv->idle_id);
                 }
-                res = _gs_watcher_set_session_idle (watcher, FALSE);
-                res = _gs_watcher_set_session_idle_notice (watcher, FALSE);
+                _gs_watcher_set_session_idle (watcher, FALSE);
+                _gs_watcher_set_session_idle_notice (watcher, FALSE);
         }
 }
 

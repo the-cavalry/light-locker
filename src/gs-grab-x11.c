@@ -414,9 +414,7 @@ gs_grab_release (GSGrab *grab)
 static void
 request_shell_exit_overview (GSGrab *grab)
 {
-        GDBusMessage *reply;
         GDBusMessage *message;
-        GError *error = NULL;
 
         /* Shouldn't happen, but... */
         if (!grab->priv->session_bus)

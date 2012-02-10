@@ -386,10 +386,9 @@ gamma_fade_set_alpha_gamma (GSFade *fade,
                             gdouble alpha)
 {
         struct GSFadeScreenPrivate *screen_priv;
-        gboolean res;
 
         screen_priv = &fade->priv->screen_priv[screen_idx];
-        res = xf86_whack_gamma (screen_idx, screen_priv, alpha);
+        xf86_whack_gamma (screen_idx, screen_priv, alpha);
 
         return TRUE;
 }
