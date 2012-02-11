@@ -1372,7 +1372,7 @@ gs_listener_acquire (GSListener *listener,
                                             ",member='PropertiesChanged'",
                                             NULL);
 
-                        goto finish;
+                        return (res != -1);
                 }
 #endif
 
@@ -1395,7 +1395,6 @@ gs_listener_acquire (GSListener *listener,
 #endif
         }
 
-finish:
         return (res != -1);
 }
 
