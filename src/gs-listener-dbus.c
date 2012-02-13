@@ -860,14 +860,14 @@ listener_dbus_handle_system_message (DBusConnection *connection,
 
                 if (dbus_message_is_signal (message, SYSTEMD_LOGIND_SESSION_INTERFACE, "Unlock")) {
                         if (_listener_message_path_is_our_session (listener, message)) {
-                                gs_debug ("Console kit requested session unlock");
+                                gs_debug ("systemd requested session unlock");
                                 gs_listener_set_active (listener, FALSE);
                         }
 
                         return DBUS_HANDLER_RESULT_HANDLED;
                 } else if (dbus_message_is_signal (message, SYSTEMD_LOGIND_SESSION_INTERFACE, "Lock")) {
                         if (_listener_message_path_is_our_session (listener, message)) {
-                                gs_debug ("ConsoleKit requested session lock");
+                                gs_debug ("systemd requested session lock");
                                 g_signal_emit (listener, signals [LOCK], 0);
                         }
 
