@@ -1,0 +1,267 @@
+# Xhosa translation for gnome-screensaver.
+# Copyright (C) 2011 gnome-screensaver's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-screensaver package.
+# Andiswa Mvanyashe <andiswamva@gmail.com>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"screensaver&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-02-10 07:15+0000\n"
+"PO-Revision-Date: 2012-01-17 15:28+0200\n"
+"Last-Translator: Andiswa Mvanyashe <andiswamva@gmail.com>\n"
+"Language-Team: translate-discuss-xh@lists.sourceforge.net\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: xh\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Virtaal 0.7.0\n"
+"X-Project-Style: gnome\n"
+
+#: ../src/gnome-screensaver-command.c:46
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Yenza umgcini-skrini aphume ngesihle"
+
+#: ../src/gnome-screensaver-command.c:48
+msgid "Query the state of the screensaver"
+msgstr "Buza isimo somgcini skrini"
+
+#: ../src/gnome-screensaver-command.c:50
+msgid "Query the length of time the screensaver has been active"
+msgstr "Isicelo kubude bexesha lomgcini-skrini luyasebenza"
+
+#: ../src/gnome-screensaver-command.c:52
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr "Xelela umgcini-skrini osebenzayo ukutshixa isikrini ngoko nangoko"
+
+#: ../src/gnome-screensaver-command.c:54
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "Yenza umgcini-skrini alayite (isikrini esingenanto)"
+
+#: ../src/gnome-screensaver-command.c:56
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr ""
+"Ukuba umgcini-skrini uyasebenza kengoko menze angasebenzi (isikrini usebenze "
+"singabikho blank)"
+
+#: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver.c:56
+msgid "Version of this application"
+msgstr "Inguqulelo yale nkqubo"
+
+#: ../src/gnome-screensaver-command.c:224
+#, c-format
+msgid "The screensaver is active\n"
+msgstr "Umgcini-skrini uyasebenza\n"
+
+#: ../src/gnome-screensaver-command.c:226
+#, c-format
+msgid "The screensaver is inactive\n"
+msgstr "Umgcini-skrini akasebenzi\n"
+
+#: ../src/gnome-screensaver-command.c:256
+#, c-format
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "Umgcini-skrini oko esebenza umzuzu oyi-%d.\n"
+msgstr[1] "Umgcini-skrini oko esebenza imizuzu eyi-%d.\n"
+
+#: ../src/gnome-screensaver-command.c:258
+#, c-format
+msgid "The screensaver is not currently active.\n"
+msgstr "Umgcini-skrini okwangoku akasebenzanga.\n"
+
+#: ../src/gnome-screensaver-dialog.c:57
+msgid "Show debugging output"
+msgstr "Bonisa iziphumo zokulungisa isiphene kwinkqubo"
+
+#: ../src/gnome-screensaver-dialog.c:61
+msgid "Show the logout button"
+msgstr "Bonisa iqhosha lokuphuma"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "Command to invoke from the logout button"
+msgstr "Umyalelo ukuvuselela kwiqhosha lokuphuma"
+
+#: ../src/gnome-screensaver-dialog.c:65
+msgid "Show the switch user button"
+msgstr "Bonisa uqosha lokutshintsha umsebenzisi"
+
+#: ../src/gnome-screensaver-dialog.c:67
+msgid "Message to show in the dialog"
+msgstr "Umyalezo oza kukuboniswa kwingxoxo"
+
+#. Translators: This is the example input for the --status-message command line option.
+#. Translators: This is the example input for the --away-message command line option.
+#: ../src/gnome-screensaver-dialog.c:69 ../src/gnome-screensaver-dialog.c:73
+msgid "MESSAGE"
+msgstr "UMYALEZO"
+
+#: ../src/gnome-screensaver-dialog.c:71
+msgid "Not used"
+msgstr "Ayisetyenziswa"
+
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:183 ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:185 ../src/gs-auth-pam.c:698
+msgid "Username:"
+msgstr "Igama lomsebenzisi:"
+
+#: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "Igama lokugqithisela:"
+
+#: ../src/gnome-screensaver-dialog.c:188
+msgid "You are required to change your password immediately (password aged)"
+msgstr ""
+"Kufunwa ukuba utshintshe igama lokugqithisela yakho ngoko nangoko (igama "
+"lokugqithisela iphelelwe)"
+
+#: ../src/gnome-screensaver-dialog.c:189
+#, fuzzy
+msgid "You are required to change your password immediately (root enforced)"
+msgstr ""
+"Kufunwa ukuba utshintshe igama lokugqithisela yakho ngoko nangoko (root "
+"isetyenzisiwe)"
+
+#: ../src/gnome-screensaver-dialog.c:190
+msgid "Your account has expired; please contact your system administrator"
+msgstr ""
+"I-akhawunti yakho iphelile; nceda uqhagamshelane nomlawuli wakho wenkqubo"
+
+#: ../src/gnome-screensaver-dialog.c:191
+msgid "No password supplied"
+msgstr "Akukho gama lokugqithisela linikiweyo"
+
+#: ../src/gnome-screensaver-dialog.c:192
+msgid "Password unchanged"
+msgstr "Igama lokugqithisela elingatshintshwanga"
+
+#: ../src/gnome-screensaver-dialog.c:193
+msgid "Cannot get username"
+msgstr "Awunakulifumana igama lomsebenzisi"
+
+#: ../src/gnome-screensaver-dialog.c:194
+msgid "Retype new Unix password:"
+msgstr "Phinda uchwetheze igama lokugqithisela ye-Unix entsha:"
+
+#: ../src/gnome-screensaver-dialog.c:195
+msgid "Enter new Unix password:"
+msgstr "Ngenisa igama lokugqithisela ye-UNIX entsha:"
+
+#: ../src/gnome-screensaver-dialog.c:196
+msgid "(current) Unix password:"
+msgstr "(eyangoku) igama lokugqithisela Unix:"
+
+#: ../src/gnome-screensaver-dialog.c:197
+msgid "Error while changing NIS password."
+msgstr "Kuye kwakho impazamo ngexa utshintsha igama lokugqithisela le-NIS."
+
+#: ../src/gnome-screensaver-dialog.c:198
+msgid "You must choose a longer password"
+msgstr "Kufuneka ukhethe igama lokugqithisela elide"
+
+#: ../src/gnome-screensaver-dialog.c:199
+msgid "Password has been already used. Choose another."
+msgstr "Igama lokugqithisela sele isetyenzisiwe. Khetha enye."
+
+#: ../src/gnome-screensaver-dialog.c:200
+msgid "You must wait longer to change your password"
+msgstr "Kufuneka ulinde ithuba elidana ukutshintsha igama lokugqithisela yakho"
+
+#: ../src/gnome-screensaver-dialog.c:201
+msgid "Sorry, passwords do not match"
+msgstr "Amagama lokugqithisela awahambelani"
+
+#: ../src/gnome-screensaver-dialog.c:267
+msgid "Checking…"
+msgstr "Iyajonga…"
+
+#: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
+msgid "Authentication failed."
+msgstr "Ububhali abuphumelelanga."
+
+#: ../src/gnome-screensaver.c:57
+#, fuzzy
+msgid "Don't become a daemon"
+msgstr "Sukubayi daemon"
+
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr "Yenza ibe nako ukulungisa isiphene sekhowudi kwinkqubo"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:1
+msgid "Screensaver"
+msgstr "Umgcinisikrini"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:2
+msgid "Launch screensaver and locker program"
+msgstr "Ukhupha umgcini-skrini kunye nenkqubo yotshixa"
+
+#: ../src/gs-auth-pam.c:397
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr "Ayikwazi ukuseka inkonzo %s: %s\n"
+
+#: ../src/gs-auth-pam.c:423
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr "Ayikwazi ukumisela i-PAM_TTY=%s"
+
+#: ../src/gs-auth-pam.c:455
+msgid "Incorrect password."
+msgstr "Igama lokugqithisela alichanekanga."
+
+#: ../src/gs-auth-pam.c:471
+msgid "Not permitted to gain access at this time."
+msgstr "Akavumelekanga ukuba afumane ukufikelela ngeli xesha."
+
+#: ../src/gs-auth-pam.c:477
+msgid "No longer permitted to access the system."
+msgstr "Akasavunyelwanga ukuba afikelele kule nkqubo."
+
+#: ../src/gs-listener-dbus.c:1285
+msgid "failed to register with the message bus"
+msgstr "ayiphumelelnga ukubhalisa kumyalwzo webhasi"
+
+#: ../src/gs-listener-dbus.c:1295
+msgid "not connected to the message bus"
+msgstr "ayiqhakamshelwanga kumyalezo webhasi"
+
+#: ../src/gs-listener-dbus.c:1304 ../src/gs-listener-dbus.c:1334
+msgid "screensaver already running in this session"
+msgstr "umgcini skrini sele sibaleka kwinkqubo"
+
+#: ../src/gs-lock-plug.c:256
+msgid "Time has expired."
+msgstr "Ixesha sele liphelwe."
+
+#: ../src/gs-lock-plug.c:287
+msgid "You have the Caps & Num Lock keys on."
+msgstr "Unamaqhosha e-Caps nele-Num lock elilayitile."
+
+#: ../src/gs-lock-plug.c:290
+msgid "You have the Caps Lock key on."
+msgstr "Iqosha lweCaps lilayitile."
+
+#: ../src/gs-lock-plug.c:293
+msgid "You have the Num Lock key on."
+msgstr "Iqosha lweNum lock lilayitile."
+
+#: ../src/gs-lock-plug.c:1350
+msgid "S_witch User…"
+msgstr "_Tshitsha umsebenzisi…"
+
+#: ../src/gs-lock-plug.c:1359
+msgid "Log _Out"
+msgstr "U_kuphuma"
+
+#: ../src/gs-lock-plug.c:1366
+msgid "_Unlock"
+msgstr "_Vula okutshixiweyo"
+
+#: ../src/gs-lock-plug.c:1405
+msgid "_Password:"
+msgstr "I_gama lokugqithisela:"
