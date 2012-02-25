@@ -1,4 +1,16 @@
 ==============
+Version  3.2.2
+==============
+
+- Fix --with-systemd=auto configure option
+- Stop using deprecated GTK+ API
+- Fix misleading debug messages referring to ConsoleKit
+- Fix a compile warning when compiled with systemd
+- Use correct signature for GetActiveTime D-Bus API
+- Translation updates (Xhosa)
+- Properly turn off caps lock warning
+
+==============
 Version  3.2.1
 ==============
 
