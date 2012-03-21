@@ -726,7 +726,7 @@ gs_fade_start (GSFade *fade,
         if (active_fade) {
                 guint num_steps;
 
-                num_steps = (fade->priv->timeout / 1000) * steps_per_sec;
+                num_steps = (fade->priv->timeout / 1000.) * steps_per_sec;
                 msecs_per_step = 1000 / steps_per_sec;
                 fade->priv->alpha_per_iter = 1.0 / (gdouble)num_steps;
 
