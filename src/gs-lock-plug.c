@@ -54,7 +54,6 @@ enum {
 enum {
         LOCK_NONE = 0,
         LOCK_CAPS = 1 << 0,
-        LOCK_NUM = 1 << 1,
 };
 
 #define FACE_ICON_SIZE 48
@@ -282,15 +281,9 @@ kbd_lock_mode_update (GSLockPlug *plug,
                 return;
         }
 
-        if ((mode & LOCK_CAPS) != 0 && (mode & LOCK_NUM) != 0) {
-                gtk_label_set_text (GTK_LABEL (plug->priv->auth_capslock_label),
-                                    _("You have the Caps & Num Lock keys on."));
-        } else if ((mode & LOCK_CAPS) != 0) {
+        if ((mode & LOCK_CAPS) != 0) {
                 gtk_label_set_text (GTK_LABEL (plug->priv->auth_capslock_label),
                                     _("You have the Caps Lock key on."));
-        } else if ((mode & LOCK_NUM) != 0) {
-                gtk_label_set_text (GTK_LABEL (plug->priv->auth_capslock_label),
-                                    _("You have the Num Lock key on."));
         } else {
                 gtk_label_set_text (GTK_LABEL (plug->priv->auth_capslock_label),
                                     "");
@@ -313,12 +306,6 @@ get_kbd_lock_mode (void)
                 if (res) {
                         mode |= LOCK_CAPS;
                 }
-#if GTK_CHECK_VERSION(2,90,6)
-                res = gdk_keymap_get_num_lock_state (keymap);
-                if (res) {
-                        mode |= LOCK_NUM;
-                }
-#endif
         }
 
         return mode;
