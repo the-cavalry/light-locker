@@ -1,0 +1,251 @@
+# Aragonese translation for gnome-screensaver.
+# Copyright (C) 2012 gnome-screensaver's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-screensaver package.
+# Daniel Martinez <entaltoaragon@gmail.com>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-screensaver master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"screensaver&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-04-05 03:00+0000\n"
+"PO-Revision-Date: 2012-04-13 11:49+0200\n"
+"Last-Translator: Daniel Martinez <entaltoaragon@gmail.com>\n"
+"Language-Team: Aragonés <softaragones@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bits\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: ../src/gnome-screensaver-command.c:46
+msgid "Causes the screensaver to exit gracefully"
+msgstr "Fa que o salvapantallas remate de forma correcta"
+
+#: ../src/gnome-screensaver-command.c:48
+msgid "Query the state of the screensaver"
+msgstr "Consulta l'estau d'o salvapantallas"
+
+#: ../src/gnome-screensaver-command.c:50
+msgid "Query the length of time the screensaver has been active"
+msgstr "Consultar quanto tiempo ha estau activo o salvapantallas"
+
+#: ../src/gnome-screensaver-command.c:52
+msgid "Tells the running screensaver process to lock the screen immediately"
+msgstr ""
+"Le diz a o proceso d'o salvapantallas en execución que bloque a pantalla "
+"immediatament"
+
+#: ../src/gnome-screensaver-command.c:54
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "Activar o salvapantallas (ennegrir a pantalla)"
+
+#: ../src/gnome-screensaver-command.c:56
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr ""
+"Si o salvapantallas ye activo alavez lo desactiva (esennegrir a pantalla)"
+
+#: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:59
+#: ../src/gnome-screensaver.c:56
+msgid "Version of this application"
+msgstr "Versión d'ista aplicación"
+
+#: ../src/gnome-screensaver-command.c:224
+#, c-format
+msgid "The screensaver is active\n"
+msgstr "O salvapantallas ye activo\n"
+
+#: ../src/gnome-screensaver-command.c:226
+#, c-format
+msgid "The screensaver is inactive\n"
+msgstr "O salvapantallas ye inactivo\n"
+
+#: ../src/gnome-screensaver-command.c:256
+#, c-format
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "O salvapantallas ha estau activo %d segundo.\n"
+msgstr[1] "O salvapantallas ha estau activo %d segundos.\n"
+
+#: ../src/gnome-screensaver-command.c:258
+#, c-format
+msgid "The screensaver is not currently active.\n"
+msgstr "Actualment o salvapantallas no ye activo.\n"
+
+#: ../src/gnome-screensaver-dialog.c:57
+msgid "Show debugging output"
+msgstr "Amostrar a salida de depuración"
+
+#: ../src/gnome-screensaver-dialog.c:61
+msgid "Show the logout button"
+msgstr "Amostrar o botón de zarrar sesión"
+
+#: ../src/gnome-screensaver-dialog.c:63
+msgid "Command to invoke from the logout button"
+msgstr "Comando ta invocar dende o botón de zarre de sesión"
+
+#: ../src/gnome-screensaver-dialog.c:65
+msgid "Show the switch user button"
+msgstr "Amostrar o botón de cambeo d'usuario"
+
+#: ../src/gnome-screensaver-dialog.c:67
+msgid "Message to show in the dialog"
+msgstr "Mensache ta amostrar en o dialogo"
+
+#. Translators: This is the example input for the --status-message command line option.
+#. Translators: This is the example input for the --away-message command line option.
+#: ../src/gnome-screensaver-dialog.c:69 ../src/gnome-screensaver-dialog.c:73
+msgid "MESSAGE"
+msgstr "MENSACHE"
+
+#: ../src/gnome-screensaver-dialog.c:71
+msgid "Not used"
+msgstr "No usau"
+
+#. login: is whacked always translate to Username:
+#: ../src/gnome-screensaver-dialog.c:183 ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:185 ../src/gs-auth-pam.c:698
+msgid "Username:"
+msgstr "Usuario:"
+
+#: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
+#: ../src/gs-auth-pam.c:166
+msgid "Password:"
+msgstr "Clau:"
+
+#: ../src/gnome-screensaver-dialog.c:188
+msgid "You are required to change your password immediately (password aged)"
+msgstr "Ha de cambiar a clau immediatament (a clau caducó)"
+
+#: ../src/gnome-screensaver-dialog.c:189
+msgid "You are required to change your password immediately (root enforced)"
+msgstr "Ha de cambiar a clau immediatament (forzau por l'administrador)"
+
+#: ../src/gnome-screensaver-dialog.c:190
+msgid "Your account has expired; please contact your system administrator"
+msgstr "A suya cuenta ha caducado. Contacte con l'administrador d'o sistema"
+
+#: ../src/gnome-screensaver-dialog.c:191
+msgid "No password supplied"
+msgstr "No introdució garra clau"
+
+#: ../src/gnome-screensaver-dialog.c:192
+msgid "Password unchanged"
+msgstr "Clau no cambiada"
+
+#: ../src/gnome-screensaver-dialog.c:193
+msgid "Cannot get username"
+msgstr "No se puede obtener o nombre d'usuario"
+
+#: ../src/gnome-screensaver-dialog.c:194
+msgid "Retype new Unix password:"
+msgstr "Torne a teclear a clau d'UNIX nueva:"
+
+#: ../src/gnome-screensaver-dialog.c:195
+msgid "Enter new Unix password:"
+msgstr "Introduzca una clau UNIX nueva:"
+
+#: ../src/gnome-screensaver-dialog.c:196
+msgid "(current) Unix password:"
+msgstr "Clau UNIX (actual):"
+
+#: ../src/gnome-screensaver-dialog.c:197
+msgid "Error while changing NIS password."
+msgstr "Error en cambiar a clau NIS."
+
+#: ../src/gnome-screensaver-dialog.c:198
+msgid "You must choose a longer password"
+msgstr "Ha de trigar una clau mas larga"
+
+#: ../src/gnome-screensaver-dialog.c:199
+msgid "Password has been already used. Choose another."
+msgstr "A clau ya ha estau usada. Trigue atra."
+
+#: ../src/gnome-screensaver-dialog.c:200
+msgid "You must wait longer to change your password"
+msgstr "Ha d'aguardar mas ta cambiar a suya clau"
+
+#: ../src/gnome-screensaver-dialog.c:201
+msgid "Sorry, passwords do not match"
+msgstr "As claus no coinciden"
+
+#: ../src/gnome-screensaver-dialog.c:267
+msgid "Checking…"
+msgstr "Comprebando…"
+
+#: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
+msgid "Authentication failed."
+msgstr "L'autenticación ha fallau."
+
+#: ../src/gnome-screensaver.c:57
+msgid "Don't become a daemon"
+msgstr "No convertir en un demonio"
+
+#: ../src/gnome-screensaver.c:58
+msgid "Enable debugging code"
+msgstr "Activar codigo de depuración"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:1
+msgid "Screensaver"
+msgstr "Salvapantallas"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:2
+msgid "Launch screensaver and locker program"
+msgstr "Lanzar o salvapantallas y o programa de bloqueyo"
+
+#: ../src/gs-auth-pam.c:397
+#, c-format
+msgid "Unable to establish service %s: %s\n"
+msgstr "Incapaz d'establir o servicio %s: %s\n"
+
+#: ../src/gs-auth-pam.c:423
+#, c-format
+msgid "Can't set PAM_TTY=%s"
+msgstr " No se puede establir PAM_TTY=%s"
+
+#: ../src/gs-auth-pam.c:455
+msgid "Incorrect password."
+msgstr " Clau incorrecta."
+
+#: ../src/gs-auth-pam.c:471
+msgid "Not permitted to gain access at this time."
+msgstr "No le ye permitiu ganar acceso en iste inte."
+
+#: ../src/gs-auth-pam.c:477
+msgid "No longer permitted to access the system."
+msgstr "Ya no se le permite accedir en adebant a iste sistema."
+
+#: ../src/gs-listener-dbus.c:1285
+msgid "failed to register with the message bus"
+msgstr "falló en rechistrar con o bus d'o mensache"
+
+#: ../src/gs-listener-dbus.c:1295
+msgid "not connected to the message bus"
+msgstr "no connectau a o bus de mensaches"
+
+#: ../src/gs-listener-dbus.c:1304 ../src/gs-listener-dbus.c:1334
+msgid "screensaver already running in this session"
+msgstr "ya se ye executando o salvapantallas en ista sesión"
+
+#: ../src/gs-lock-plug.c:255
+msgid "Time has expired."
+msgstr "Tiempo acotolau."
+
+#: ../src/gs-lock-plug.c:286
+msgid "You have the Caps Lock key on."
+msgstr "Tiene a tecla «Bloq Mayús» pretada."
+
+#: ../src/gs-lock-plug.c:1353
+msgid "S_witch User…"
+msgstr "_Cambear usuario…"
+
+#: ../src/gs-lock-plug.c:1362
+msgid "Log _Out"
+msgstr "Zarrar _sesión"
+
+#: ../src/gs-lock-plug.c:1369
+msgid "_Unlock"
+msgstr "_Desbloquiar"
+
+#: ../src/gs-lock-plug.c:1408
+msgid "_Password:"
+msgstr "_Clau:"
