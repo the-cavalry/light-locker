@@ -1,6 +1,15 @@
 ==============
+Version  3.4.2
+==============
+
+- Fix setting black color with recent GTK+
+- Only show panel on primary head
+- Translation updates (French)
+
+==============
 Version  3.4.1
 ==============
+
 - Drop num lock warning
 - Translation updates (Greek, Marathi, Hindi, Aragonese)
 
