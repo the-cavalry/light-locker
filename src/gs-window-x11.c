@@ -192,32 +192,6 @@ gs_window_override_user_time (GSWindow *window)
 }
 
 static void
-force_no_pixmap_background (GtkWidget *widget)
-{
-        static gboolean first_time = TRUE;
-
-        if (first_time) {
-                gtk_rc_parse_string ("\n"
-                                     "   style \"gs-theme-engine-style\"\n"
-                                     "   {\n"
-                                     "      bg_pixmap[NORMAL] = \"<none>\"\n"
-                                     "      bg_pixmap[INSENSITIVE] = \"<none>\"\n"
-                                     "      bg_pixmap[ACTIVE] = \"<none>\"\n"
-                                     "      bg_pixmap[PRELIGHT] = \"<none>\"\n"
-                                     "      bg[NORMAL] = { 0.0, 0.0, 0.0 }\n"
-                                     "      bg[INSENSITIVE] = { 0.0, 0.0, 0.0 }\n"
-                                     "      bg[ACTIVE] = { 0.0, 0.0, 0.0 }\n"
-                                     "      bg[PRELIGHT] = { 0.0, 0.0, 0.0 }\n"
-                                     "   }\n"
-                                     "   widget \"gs-window-drawing-area*\" style : highest \"gs-theme-engine-style\"\n"
-                                     "\n");
-                first_time = FALSE;
-        }
-
-        gtk_widget_set_name (widget, "gs-window-drawing-area");
-}
-
-static void
 gs_window_reset_background_surface (GSWindow *window)
 {
         cairo_pattern_t *pattern;
@@ -2309,6 +2283,8 @@ create_panel (GSWindow *window)
 static void
 gs_window_init (GSWindow *window)
 {
+        GdkRGBA black = { 0.0, 0.0, 0.0, 1.0 };
+
         window->priv = GS_WINDOW_GET_PRIVATE (window);
 
         window->priv->geometry.x      = -1;
@@ -2353,13 +2329,14 @@ gs_window_init (GSWindow *window)
         gtk_widget_show (window->priv->drawing_area);
         gtk_widget_set_app_paintable (window->priv->drawing_area, TRUE);
         gtk_box_pack_start (GTK_BOX (window->priv->vbox), window->priv->drawing_area, TRUE, TRUE, 0);
+        gtk_widget_realize (window->priv->drawing_area);
+        gdk_window_set_background_rgba (gtk_widget_get_window (window->priv->drawing_area), &black);
+
         create_info_bar (window);
 
         window->priv->clock_tracker = g_object_new (GNOME_TYPE_WALL_CLOCK, NULL);
         g_signal_connect (window->priv->clock_tracker, "notify::clock", G_CALLBACK (on_clock_changed), window);
         update_clock (window);
-
-        force_no_pixmap_background (window->priv->drawing_area);
 }
 
 static void
