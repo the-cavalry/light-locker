@@ -12,7 +12,7 @@ msgstr ""
 "POT-Creation-Date: 2011-09-02 20:21+0000\n"
 "PO-Revision-Date: 2011-05-26 19:23+0000\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
-"Language-Team: American English <kde-i18n-doc@kde.org>\n"
+"Language-Team: as_IN <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -63,12 +63,12 @@ msgstr "স্ক্ৰিনছেইভাৰ নিষ্ক্ৰিয়\n"
 msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
 msgstr[0] "স্ক্ৰিনছেইভাৰটো %d ছেকেণ্ড ধৰি সক্ৰিয় হৈ আছে।\n"
-msgstr[1] "স্ক্ৰিনছেইভাৰটো %d ছেকেণ্ডসমূহ ধৰি সক্ৰিয় হৈ আছে।\n"
+msgstr[1] "স্ক্ৰিনছেইভাৰটো %d ছেকেণ্ড ধৰি সক্ৰিয় হৈ আছে।\n"
 
 #: ../src/gnome-screensaver-command.c:258
 #, c-format
 msgid "The screensaver is not currently active.\n"
-msgstr "স্ক্ৰিনছেইভাৰ বৰ্তমানে সক্ৰিয় নহয় ।\n"
+msgstr "স্ক্ৰিনছেইভাৰ বৰ্তমানে সক্ৰিয় নহয়।\n"
 
 #: ../src/gnome-screensaver-dialog.c:57
 msgid "Show debugging output"
@@ -109,28 +109,28 @@ msgstr "ব্যৱহাৰকাৰীৰ নাম:"
 #: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
-msgstr "পাচৱাৰ্ড:"
+msgstr "পাছৱাৰ্ড:"
 
 #: ../src/gnome-screensaver-dialog.c:188
 msgid "You are required to change your password immediately (password aged)"
-msgstr "এই মুহূৰ্তে পাচৱাৰ্ড পৰিবৰ্তন কৰা আবশ্যক (পাচৱাৰ্ডৰ পুৰনি হৈছে)"
+msgstr "এই মুহূৰ্তে পাছৱাৰ্ড পৰিবৰ্তন কৰা আবশ্যক (পাছৱাৰ্ডৰ পুৰনি হৈছে)"
 
 #: ../src/gnome-screensaver-dialog.c:189
 msgid "You are required to change your password immediately (root enforced)"
-msgstr "এই মুহূৰ্তে পাচৱাৰ্ড পৰিবৰ্তন কৰা আবশ্যক (ৰুট দ্বাৰা বলবৎ)"
+msgstr "এই মুহূৰ্তে পাছৱাৰ্ড পৰিবৰ্তন কৰা আবশ্যক (ৰুট দ্বাৰা বলবৎ)"
 
 #: ../src/gnome-screensaver-dialog.c:190
 msgid "Your account has expired; please contact your system administrator"
 msgstr ""
-"আপোনাৰ একাওন্টৰ অৱসান ঘটিছে; অনুগ্ৰহ কৰি চিস্টেম প্ৰশাসকৰ সৈতে যোগাযোগ কৰক ।"
+"আপোনাৰ একাওন্টৰ অৱসান ঘটিছে; অনুগ্ৰহ কৰি চিস্টেম প্ৰশাসকৰ সৈতে যোগাযোগ কৰক।"
 
 #: ../src/gnome-screensaver-dialog.c:191
 msgid "No password supplied"
-msgstr "কোনো পাচৱাৰ্ড প্ৰদান কৰা হোৱা নাই"
+msgstr "কোনো পাছৱাৰ্ড প্ৰদান কৰা হোৱা নাই"
 
 #: ../src/gnome-screensaver-dialog.c:192
 msgid "Password unchanged"
-msgstr "পাচৱাৰ্ড সলনি কৰা হোৱা নাই"
+msgstr "পাছৱাৰ্ড সলনি কৰা হোৱা নাই"
 
 #: ../src/gnome-screensaver-dialog.c:193
 msgid "Cannot get username"
@@ -138,35 +138,35 @@ msgstr "ব্যৱহাৰকাৰীৰ নাম প্ৰাপ্ত ক
 
 #: ../src/gnome-screensaver-dialog.c:194
 msgid "Retype new Unix password:"
-msgstr "নতুন UNIX পাচৱাৰ্ড পুনৰ টাইপ কৰক:"
+msgstr "নতুন UNIX পাছৱাৰ্ড পুনৰ টাইপ কৰক:"
 
 #: ../src/gnome-screensaver-dialog.c:195
 msgid "Enter new Unix password:"
-msgstr "নতুন UNIX পাচৱাৰ্ড সোমাওক:"
+msgstr "নতুন UNIX পাছৱাৰ্ড সুমুৱাওক:"
 
 #: ../src/gnome-screensaver-dialog.c:196
 msgid "(current) Unix password:"
-msgstr "(বৰ্তমান) UNIX পাচৱাৰ্ড:"
+msgstr "(বৰ্তমান) UNIX পাছৱাৰ্ড:"
 
 #: ../src/gnome-screensaver-dialog.c:197
 msgid "Error while changing NIS password."
-msgstr "NIS পাচৱাৰ্ড পৰিৱৰ্তনত ত্ৰুটি।"
+msgstr "NIS পাছৱাৰ্ড পৰিৱৰ্তনত ত্ৰুটি।"
 
 #: ../src/gnome-screensaver-dialog.c:198
 msgid "You must choose a longer password"
-msgstr "আপুনি এটা দীঘল পাচৱাৰ্ড বাছিব লাগিব"
+msgstr "আপুনি এটা দীঘল পাছৱাৰ্ড বাছিব লাগিব"
 
 #: ../src/gnome-screensaver-dialog.c:199
 msgid "Password has been already used. Choose another."
-msgstr "পাচৱাৰ্ড ইতিমধ্যে ব্যৱহাৰ হৈছে। অন্য এটা বাছক।"
+msgstr "পাছৱাৰ্ড ইতিমধ্যে ব্যৱহাৰ হৈছে। অন্য এটা বাছক।"
 
 #: ../src/gnome-screensaver-dialog.c:200
 msgid "You must wait longer to change your password"
-msgstr "পাচৱাৰ্ড সলনি কৰিবলে আপুনি কিছু সময় অপেক্ষা কৰিব লাগিব"
+msgstr "পাছৱাৰ্ড সলনি কৰিবলে আপুনি কিছু সময় অপেক্ষা কৰিব লাগিব"
 
 #: ../src/gnome-screensaver-dialog.c:201
 msgid "Sorry, passwords do not match"
-msgstr "ক্ষমা কৰিব, পাচৱাৰ্ডসমূহ মিল নাখায়"
+msgstr "ক্ষমা কৰিব, পাছৱাৰ্ডসমূহ মিল নাখায়"
 
 #: ../src/gnome-screensaver-dialog.c:267
 msgid "Checking…"
@@ -186,7 +186,7 @@ msgstr "ডিবাগিং সামৰ্থবান কৰক"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
 msgid "Launch screensaver and locker program"
-msgstr "স্ক্ৰিনছেইভাৰ আৰু লকাৰ প্ৰোগ্ৰাম আৰম্ভ কৰক"
+msgstr "স্ক্ৰিনছেইভাৰ আৰু লকাৰ প্ৰগ্ৰাম আৰম্ভ কৰক"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:2
 msgid "Screensaver"
@@ -204,7 +204,7 @@ msgstr "PAM_TTY=%s সংহতি কৰিব নোৱাৰি"
 
 #: ../src/gs-auth-pam.c:455
 msgid "Incorrect password."
-msgstr "ভুল পাচৱাৰ্ড।"
+msgstr "ভুল পাছৱাৰ্ড।"
 
 #: ../src/gs-auth-pam.c:471
 msgid "Not permitted to gain access at this time."
@@ -256,7 +256,7 @@ msgstr "আনলক কৰক (_U)"
 
 #: ../src/gs-lock-plug.c:1405
 msgid "_Password:"
-msgstr "পাচৱাৰ্ড: (_P)"
+msgstr "পাছৱাৰ্ড (_P):"
 
 #~ msgid "%a %R"
 #~ msgstr "%a %R"
@@ -418,7 +418,7 @@ msgstr "পাচৱাৰ্ড: (_P)"
 #~ msgid ""
 #~ "Allow the session status message to be displayed when the screen is "
 #~ "locked."
-#~ msgstr "পৰ্দা লক কৰা হলে, অধিবেশনৰ অৱস্থা সূচনাকাৰী বাৰ্তা প্ৰদৰ্শন কৰা হ'ব ।"
+#~ msgstr "পৰ্দা লক কৰা হলে, অধিবেশনৰ অৱস্থা সূচনাকাৰী বাৰ্তা প্ৰদৰ্শন কৰা হ'ব।"
 
 #~ msgid "Allow user switching"
 #~ msgstr "ব্যৱহাৰকাৰীদেৰ পৰিবৰ্তন অনুমোদন কৰক"
