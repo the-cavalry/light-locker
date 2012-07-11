@@ -1,4 +1,12 @@
 ==============
+Version  3.4.3
+==============
+
+- Revert only show panel on primary head commit.
+  It is causing problems for users.
+- Translation updates (Assamese)
+
+==============
 Version  3.4.2
 ==============
 
