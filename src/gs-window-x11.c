@@ -332,9 +332,6 @@ gs_window_move_resize_window (GSWindow *window,
                               gboolean  resize)
 {
         GtkWidget *widget;
-        GdkScreen *screen;
-        int        monitor;
-        int        primary_monitor;
 
         widget = GTK_WIDGET (window);
 
@@ -362,12 +359,6 @@ gs_window_move_resize_window (GSWindow *window,
                                    window->priv->geometry.width,
                                    window->priv->geometry.height);
         }
-
-        screen = gtk_widget_get_screen (widget);
-        monitor = gdk_screen_get_monitor_at_window (screen,
-                                                    gtk_widget_get_window (widget));
-        primary_monitor = gdk_screen_get_primary_monitor (screen);
-        gtk_widget_set_visible (window->priv->panel, monitor == primary_monitor);
 }
 
 static void
