@@ -2281,10 +2281,17 @@ create_panel (GSWindow *window)
 }
 
 static void
-gs_window_init (GSWindow *window)
+on_drawing_area_realized (GtkWidget *drawing_area)
 {
         GdkRGBA black = { 0.0, 0.0, 0.0, 1.0 };
 
+        gdk_window_set_background_rgba (gtk_widget_get_window (drawing_area),
+                                        &black);
+}
+
+static void
+gs_window_init (GSWindow *window)
+{
         window->priv = GS_WINDOW_GET_PRIVATE (window);
 
         window->priv->geometry.x      = -1;
@@ -2329,8 +2336,10 @@ gs_window_init (GSWindow *window)
         gtk_widget_show (window->priv->drawing_area);
         gtk_widget_set_app_paintable (window->priv->drawing_area, TRUE);
         gtk_box_pack_start (GTK_BOX (window->priv->vbox), window->priv->drawing_area, TRUE, TRUE, 0);
-        gtk_widget_realize (window->priv->drawing_area);
-        gdk_window_set_background_rgba (gtk_widget_get_window (window->priv->drawing_area), &black);
+        g_signal_connect (window->priv->drawing_area,
+                          "realize",
+                          G_CALLBACK (on_drawing_area_realized),
+                          NULL);
 
         create_info_bar (window);
 
