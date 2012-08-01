@@ -469,10 +469,7 @@ gs_lock_plug_run (GSLockPlug *plug)
 
         ri.loop = g_main_loop_new (NULL, FALSE);
 
-        GDK_THREADS_LEAVE ();
         g_main_loop_run (ri.loop);
-        GDK_THREADS_ENTER ();
-
         g_main_loop_unref (ri.loop);
 
         ri.loop = NULL;
