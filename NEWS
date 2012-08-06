@@ -1,4 +1,13 @@
 ==============
+Version  3.5.4
+==============
+
+- Don't use the GDK lock
+- Only autostart in fallback mode
+- Apply bg color setting later
+- Only show panel on primary head
+
+==============
 Version  3.4.3
 ==============
 
