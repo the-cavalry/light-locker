@@ -1,33 +1,34 @@
-# translation of gnome-screensaver.master.po to Galician
-# translation of gnome-screensaver.gl.po to
-# This file is distributed under the same license as the PACKAGE package.
+# Galician translation of gnome-screensaver.
+# This file is distributed under the same license as the gnome-screensaver package.
 # Copyright (C) 2010 Fran Diéguez
 #
+# Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
+# colaborar connosco, podes atopar máis información en http://www.trasno.net
 #
 # Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
 # Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007, 2008.
 # Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
 # Antón Méixome <meixome@mancomun.org>, 2009.
 # Fran Diéguez <frandieguez@gnome.org>, 2009, 2010, 2011.
-#
+# Leandro Regueiro <leandro.regueiro@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-15 15:45+0100\n"
-"PO-Revision-Date: 2011-03-15 15:46+0100\n"
-"Last-Translator: Fran Diéguez <frandieguez@gnome.org>\n"
+"POT-Creation-Date: 2012-08-17 23:33+0200\n"
+"PO-Revision-Date: 2012-08-17 13:41+0200\n"
+"Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.0\n"
 
 #: ../src/gnome-screensaver-command.c:46
 msgid "Causes the screensaver to exit gracefully"
-msgstr "Fai que o protector de pantalla termine correctamente"
+msgstr "Fai que o protector de pantalla saia correctamente"
 
 #: ../src/gnome-screensaver-command.c:48
 msgid "Query the state of the screensaver"
@@ -159,7 +160,7 @@ msgstr "Contrasinal UNIX (actual):"
 
 #: ../src/gnome-screensaver-dialog.c:197
 msgid "Error while changing NIS password."
-msgstr "Produciuse un erro ao modificar o contrasinal NIS."
+msgstr "Produciuse un erro ao cambiar o contrasinal NIS."
 
 #: ../src/gnome-screensaver-dialog.c:198
 msgid "You must choose a longer password"
@@ -194,12 +195,12 @@ msgid "Enable debugging code"
 msgstr "Activar o código de depuración"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
-msgid "Launch screensaver and locker program"
-msgstr "Iniciar o protector de pantallas e o programa de bloqueo"
-
-#: ../src/gnome-screensaver.desktop.in.in.h:2
 msgid "Screensaver"
 msgstr "Protector de pantalla"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:2
+msgid "Launch screensaver and locker program"
+msgstr "Iniciar o protector de pantallas e o programa de bloqueo"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -223,33 +224,25 @@ msgstr "Non está permitido obter o acceso neste momento."
 msgid "No longer permitted to access the system."
 msgstr "Xa non se lle permite acceder máis ao sistema."
 
-#: ../src/gs-listener-dbus.c:1148
+#: ../src/gs-listener-dbus.c:1285
 msgid "failed to register with the message bus"
-msgstr "produciuse un fallo ao rexistrarse no bus de mensaxe"
+msgstr "produciuse un erro ao rexistrarse no bus de mensaxe"
 
-#: ../src/gs-listener-dbus.c:1158
+#: ../src/gs-listener-dbus.c:1295
 msgid "not connected to the message bus"
 msgstr "non está conectado ao bus de mensaxes"
 
-#: ../src/gs-listener-dbus.c:1167 ../src/gs-listener-dbus.c:1197
+#: ../src/gs-listener-dbus.c:1304 ../src/gs-listener-dbus.c:1334
 msgid "screensaver already running in this session"
 msgstr "xa se está executando o protector de pantalla nesta sesión"
 
-#: ../src/gs-lock-plug.c:256
+#: ../src/gs-lock-plug.c:255
 msgid "Time has expired."
 msgstr "O tempo caducou."
 
-#: ../src/gs-lock-plug.c:287
-msgid "You have the Caps & Num Lock keys on."
-msgstr "Vostede ten as teclas Bloq Num e Bloq Maiús activadas."
-
-#: ../src/gs-lock-plug.c:290
+#: ../src/gs-lock-plug.c:286
 msgid "You have the Caps Lock key on."
 msgstr "A tecla Bloq Maiús está activada."
-
-#: ../src/gs-lock-plug.c:293
-msgid "You have the Num Lock key on."
-msgstr "A tecla Bloq Num está activada."
 
 #: ../src/gs-lock-plug.c:1350
 msgid "S_witch User…"
@@ -263,19 +256,21 @@ msgstr "_Saír da sesión"
 msgid "_Unlock"
 msgstr "_Desbloquear"
 
-#: ../src/gs-lock-plug.c:1401
+#: ../src/gs-lock-plug.c:1405
 msgid "_Password:"
 msgstr "Co_ntrasinal:"
 
-#. Translators, this is the 24h date format used in the panel clock
-#: ../src/gs-window-x11.c:2199
-msgid "%a %R"
-msgstr "%a %R"
+#~ msgid "You have the Caps & Num Lock keys on."
+#~ msgstr "Vostede ten as teclas Bloq Num e Bloq Maiús activadas."
 
-#. Translators, this is the 12h date format used in the panel clock
-#: ../src/gs-window-x11.c:2202
-msgid "%a %l:%M %p"
-msgstr "%a %l:%M %p"
+#~ msgid "You have the Num Lock key on."
+#~ msgstr "A tecla Bloq Num está activada."
+
+#~ msgid "%a %R"
+#~ msgstr "%a %R"
+
+#~ msgid "%a %l:%M %p"
+#~ msgstr "%a %l:%M %p"
 
 #~ msgid "Screensaver themes"
 #~ msgstr "Temas do protector de pantalla"
