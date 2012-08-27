@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: as\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "screensaver&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-09-02 20:21+0000\n"
+"POT-Creation-Date: 2012-06-27 16:06+0000\n"
 "PO-Revision-Date: 2011-05-26 19:23+0000\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
 "Language-Team: as_IN <kde-i18n-doc@kde.org>\n"
@@ -46,7 +46,7 @@ msgstr "যদি স্ক্ৰিনছেইভাৰ সক্ৰিয় আ
 #: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:59
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
-msgstr "এই অনুপ্ৰয়োগৰ সংস্কৰণ"
+msgstr "এই এপ্লিকেচনৰ সংস্কৰণ"
 
 #: ../src/gnome-screensaver-command.c:224
 #, c-format
@@ -121,8 +121,7 @@ msgstr "এই মুহূৰ্তে পাছৱাৰ্ড পৰিবৰ
 
 #: ../src/gnome-screensaver-dialog.c:190
 msgid "Your account has expired; please contact your system administrator"
-msgstr ""
-"আপোনাৰ একাওন্টৰ অৱসান ঘটিছে; অনুগ্ৰহ কৰি চিস্টেম প্ৰশাসকৰ সৈতে যোগাযোগ কৰক।"
+msgstr "আপোনাৰ একাওন্টৰ অৱসান ঘটিছে; অনুগ্ৰহ কৰি চিস্টেম প্ৰশাসকৰ সৈতে যোগাযোগ কৰক।"
 
 #: ../src/gnome-screensaver-dialog.c:191
 msgid "No password supplied"
@@ -150,7 +149,7 @@ msgstr "(বৰ্তমান) UNIX পাছৱাৰ্ড:"
 
 #: ../src/gnome-screensaver-dialog.c:197
 msgid "Error while changing NIS password."
-msgstr "NIS পাছৱাৰ্ড পৰিৱৰ্তনত ত্ৰুটি।"
+msgstr "NIS পাছৱাৰ্ড পৰিবৰ্তনত ত্ৰুটি।"
 
 #: ../src/gnome-screensaver-dialog.c:198
 msgid "You must choose a longer password"
@@ -185,12 +184,12 @@ msgid "Enable debugging code"
 msgstr "ডিবাগিং সামৰ্থবান কৰক"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
-msgid "Launch screensaver and locker program"
-msgstr "স্ক্ৰিনছেইভাৰ আৰু লকাৰ প্ৰগ্ৰাম আৰম্ভ কৰক"
-
-#: ../src/gnome-screensaver.desktop.in.in.h:2
 msgid "Screensaver"
 msgstr "স্ক্ৰিনছেইভাৰ"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:2
+msgid "Launch screensaver and locker program"
+msgstr "স্ক্ৰিনছেইভাৰ আৰু লকাৰ প্ৰগ্ৰাম আৰম্ভ কৰক"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -214,49 +213,47 @@ msgstr "এই অভিগম প্ৰাপ্ত কৰাৰ অনুম�
 msgid "No longer permitted to access the system."
 msgstr "চিস্টেমটো অভিগম কৰাৰ আৰু অনুমতি নাই।"
 
-#: ../src/gs-listener-dbus.c:1148
+#: ../src/gs-listener-dbus.c:1285
 msgid "failed to register with the message bus"
 msgstr "বাৰ্তা বাচৰ সৈতে ৰেজিস্টাৰ কৰিবলে ব্যৰ্থ"
 
-#: ../src/gs-listener-dbus.c:1158
+#: ../src/gs-listener-dbus.c:1295
 msgid "not connected to the message bus"
 msgstr "বাৰ্তা বাচৰ সৈতে সংযুক্ত নহয়"
 
-#: ../src/gs-listener-dbus.c:1167 ../src/gs-listener-dbus.c:1197
+#: ../src/gs-listener-dbus.c:1304 ../src/gs-listener-dbus.c:1334
 msgid "screensaver already running in this session"
 msgstr "এই অধিবেশনত স্ক্ৰিনছেইভাৰ ইতিমধ্যে চলি আছে"
 
-#: ../src/gs-lock-plug.c:256
+#: ../src/gs-lock-plug.c:255
 msgid "Time has expired."
 msgstr "সময়ৰ অৱসান ঘটিছে।"
 
-#: ../src/gs-lock-plug.c:287
-msgid "You have the Caps & Num Lock keys on."
-msgstr "আপোনাৰ Caps আৰু NumLock কি দুটা অন হৈ আছে।"
-
-#: ../src/gs-lock-plug.c:290
+#: ../src/gs-lock-plug.c:286
 msgid "You have the Caps Lock key on."
 msgstr "আপোনাৰ Caps Lock কি অন হৈ আছে।"
 
-#: ../src/gs-lock-plug.c:293
-msgid "You have the Num Lock key on."
-msgstr "আপোনাৰ Num Lock কি অন হৈ আছে।"
-
-#: ../src/gs-lock-plug.c:1350
+#: ../src/gs-lock-plug.c:1353
 msgid "S_witch User…"
 msgstr "ব্যৱহাৰকাৰী পৰিবৰ্তন কৰক... (_w)"
 
-#: ../src/gs-lock-plug.c:1359
+#: ../src/gs-lock-plug.c:1362
 msgid "Log _Out"
 msgstr "লগ আউট কৰক (_O)"
 
-#: ../src/gs-lock-plug.c:1366
+#: ../src/gs-lock-plug.c:1369
 msgid "_Unlock"
 msgstr "আনলক কৰক (_U)"
 
-#: ../src/gs-lock-plug.c:1405
+#: ../src/gs-lock-plug.c:1408
 msgid "_Password:"
 msgstr "পাছৱাৰ্ড (_P):"
+
+#~ msgid "You have the Caps & Num Lock keys on."
+#~ msgstr "আপোনাৰ Caps আৰু NumLock কি দুটা অন হৈ আছে।"
+
+#~ msgid "You have the Num Lock key on."
+#~ msgstr "আপোনাৰ Num Lock কি অন হৈ আছে।"
 
 #~ msgid "%a %R"
 #~ msgstr "%a %R"
