@@ -4,12 +4,17 @@
 # pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas:
 # gnomepl@aviary.pl
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# Andrzej Polatyński <andrzej@datatel.net.pl>, 2006.
+# Wadim Dziedzic <wdziedzic@aviary.pl>, 2007-2008.
+# Tomasz Dominikowski <dominikowski@gmail.com>, 2007-2009.
+# Piotr Drąg <piotrdrag@gmail.com>, 2010-2012.
+# Aviary.pl <gnomepl@aviary.pl>, 2007-2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-30 12:38+0200\n"
-"PO-Revision-Date: 2011-04-30 12:39+0200\n"
+"POT-Creation-Date: 2012-09-04 00:02+0200\n"
+"PO-Revision-Date: 2012-09-04 00:03+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -190,12 +195,12 @@ msgid "Enable debugging code"
 msgstr "Włącza kod debugowania"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
-msgid "Launch screensaver and locker program"
-msgstr "Uruchamia wygaszacz ekranu i program blokujący"
-
-#: ../src/gnome-screensaver.desktop.in.in.h:2
 msgid "Screensaver"
 msgstr "Wygaszacz ekranu"
+
+#: ../src/gnome-screensaver.desktop.in.in.h:2
+msgid "Launch screensaver and locker program"
+msgstr "Uruchamia wygaszacz ekranu i program blokujący"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -219,33 +224,25 @@ msgstr "Brak zezwolenia na dostęp w tej chwili."
 msgid "No longer permitted to access the system."
 msgstr "Zezwolenie na dostęp do systemu odwołane."
 
-#: ../src/gs-listener-dbus.c:1148
+#: ../src/gs-listener-dbus.c:1285
 msgid "failed to register with the message bus"
 msgstr "zarejestrowanie w magistrali komunikatów się nie powiodło"
 
-#: ../src/gs-listener-dbus.c:1158
+#: ../src/gs-listener-dbus.c:1295
 msgid "not connected to the message bus"
 msgstr "brak podłączenia do magistrali komunikatów"
 
-#: ../src/gs-listener-dbus.c:1167 ../src/gs-listener-dbus.c:1197
+#: ../src/gs-listener-dbus.c:1304 ../src/gs-listener-dbus.c:1334
 msgid "screensaver already running in this session"
 msgstr "wygaszacz ekranu jest już uruchomiony w tej sesji"
 
-#: ../src/gs-lock-plug.c:256
+#: ../src/gs-lock-plug.c:255
 msgid "Time has expired."
 msgstr "Przekroczono ograniczenie czasu."
 
-#: ../src/gs-lock-plug.c:287
-msgid "You have the Caps & Num Lock keys on."
-msgstr "Klawisze Caps Lock i Num Lock są wciśnięte."
-
-#: ../src/gs-lock-plug.c:290
+#: ../src/gs-lock-plug.c:286
 msgid "You have the Caps Lock key on."
 msgstr "Klawisz Caps Lock jest wciśnięty."
-
-#: ../src/gs-lock-plug.c:293
-msgid "You have the Num Lock key on."
-msgstr "Klawisz Num Lock jest wciśnięty."
 
 #: ../src/gs-lock-plug.c:1350
 msgid "S_witch User…"
@@ -259,16 +256,6 @@ msgstr "_Wyloguj"
 msgid "_Unlock"
 msgstr "_Odblokuj"
 
-#: ../src/gs-lock-plug.c:1401
+#: ../src/gs-lock-plug.c:1405
 msgid "_Password:"
 msgstr "_Hasło:"
-
-#. Translators, this is the 24h date format used in the panel clock
-#: ../src/gs-window-x11.c:2199
-msgid "%a %R"
-msgstr "%a, %R"
-
-#. Translators, this is the 12h date format used in the panel clock
-#: ../src/gs-window-x11.c:2202
-msgid "%a %l:%M %p"
-msgstr "%s, %l:%M %p"
