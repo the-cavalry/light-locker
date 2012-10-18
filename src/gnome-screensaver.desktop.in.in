@@ -5,7 +5,6 @@ _Comment=Launch screensaver and locker program
 Icon=preferences-desktop-screensaver
 Exec=gnome-screensaver
 OnlyShowIn=GNOME;
-AutostartCondition=GNOME3 if-session gnome-fallback
 NoDisplay=true
 X-GNOME-Autostart-Phase=Application
 X-GNOME-Autostart-Notify=true

@@ -47,7 +47,7 @@ noinst_PROGRAMS = 	\
 	test-window	\
 	$(NULL)
 
-desktopdir = $(sysconfdir)/xdg/autostart
+desktopdir = $(datadir)/applications
 desktop_in_files = gnome-screensaver.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
