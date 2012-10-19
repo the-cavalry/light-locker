@@ -726,7 +726,7 @@ listener_dbus_handle_session_message (DBusConnection *connection,
         }
         if (dbus_message_is_method_call (message, GS_SERVICE, "SimulateUserActivity")) {
                 g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
-                return DBUS_HANDLER_RESULT_HANDLED;
+                return send_success_reply (connection, message);
         }
         if (dbus_message_is_method_call (message, "org.freedesktop.DBus.Introspectable", "Introspect")) {
                 return do_introspect (connection, message, local_interface);
