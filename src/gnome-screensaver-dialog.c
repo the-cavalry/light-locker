@@ -363,7 +363,7 @@ auth_check_idle (GSLockPlug *plug)
 
                 if (loop_counter < MAX_FAILURES) {
                         gs_debug ("Authentication failed, retrying (%u)", loop_counter);
-                        g_timeout_add (3000, (GSourceFunc)reset_idle_cb, plug);
+                        g_timeout_add_seconds (3, (GSourceFunc)reset_idle_cb, plug);
                 } else {
                         gs_debug ("Authentication failed, quitting (max failures)");
                         again = FALSE;
@@ -371,7 +371,7 @@ auth_check_idle (GSLockPlug *plug)
                          * terminates us after it has finished the dialog shake. Time out
                          * after 5 seconds and quit anyway if this doesn't happen though */
                         g_idle_add ((GSourceFunc)response_request_quit, NULL);
-                        g_timeout_add (5000, (GSourceFunc)quit_timeout_cb, NULL);
+                        g_timeout_add_seconds (5, (GSourceFunc)quit_timeout_cb, NULL);
                 }
         }
 

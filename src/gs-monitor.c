@@ -151,7 +151,7 @@ watcher_idle_notice_cb (GSWatcher *watcher,
                         if (monitor->priv->release_grab_id != 0) {
                                 g_source_remove (monitor->priv->release_grab_id);
                         }
-                        monitor->priv->release_grab_id = g_timeout_add (1000, (GSourceFunc)release_grab_timeout, monitor);
+                        monitor->priv->release_grab_id = g_timeout_add_seconds (1, (GSourceFunc)release_grab_timeout, monitor);
                 } else {
                         gs_debug ("manager active, skipping fade cancellation");
                 }

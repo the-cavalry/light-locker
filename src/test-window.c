@@ -158,7 +158,7 @@ main (int    argc,
         test_window ();
 
         /* safety valve in case we can't authenticate */
-        g_timeout_add (30000, (GSourceFunc)gtk_main_quit, NULL);
+        g_timeout_add_seconds (30, (GSourceFunc)gtk_main_quit, NULL);
 
         gtk_main ();
 
