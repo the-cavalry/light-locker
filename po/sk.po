@@ -1,719 +1,222 @@
 # Slovak translation for gnome-screensaver.
-# Copyright (C) 2005, 2007, 2008, 2010 Free Software Foundation, Inc.
+# Copyright (C) 2005, 2007, 2008, 2010, 2012 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-screensaver package.
 # Peter Tuharsky <tuharsky@misbb.sk>, 2007.
 # Marcel Telka <marcel@telka.sk>, 2005, 2008, 2010.
+# Dušan Kazik <prescott66@gmail.com>, 2012
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"screensaver&component=general\n"
-"POT-Creation-Date: 2010-02-26 10:06+0000\n"
-"PO-Revision-Date: 2010-02-26 14:28+0100\n"
-"Last-Translator: Marcel Telka <marcel@telka.sk>\n"
+"screensaver&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-10-22 15:20+0000\n"
+"PO-Revision-Date: 2012-11-16 18:26+0000\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
+"X-Generator: Poedit 1.5.4\n"
 
-#: ../data/gnome-screensaver-preferences.desktop.in.h:1
-#: ../src/gnome-screensaver.desktop.in.in.h:2
-msgid "Screensaver"
-msgstr "Šetrič obrazovky"
-
-#: ../data/gnome-screensaver-preferences.desktop.in.h:2
-msgid "Set your screensaver preferences"
-msgstr "Nastaviť predvoľby vášho šetriča obrazovky"
-
-#: ../data/gnome-screensaver-preferences.ui.h:1
-msgid "<b>Screensaver preview</b>"
-msgstr "<b>Ukážka šetriča obrazovky</b>"
-
-#: ../data/gnome-screensaver-preferences.ui.h:2
-msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgstr "<b>Upozornenie: obrazovka sa nezamkne pre používateľa root.</b>"
-
-#: ../data/gnome-screensaver-preferences.ui.h:3
-msgid "Power _Management"
-msgstr "Správa _napájania"
-
-#: ../data/gnome-screensaver-preferences.ui.h:4
-msgid "Regard the computer as _idle after:"
-msgstr "Považovať počítač za neč_inný po:"
-
-#: ../data/gnome-screensaver-preferences.ui.h:5
-msgid "Screensaver Preferences"
-msgstr "Predvoľby šetriča obrazovky"
-
-#: ../data/gnome-screensaver-preferences.ui.h:6
-msgid "Screensaver Preview"
-msgstr "Ukážka šetriča obrazovky"
-
-#: ../data/gnome-screensaver-preferences.ui.h:7
-msgid "_Activate screensaver when computer is idle"
-msgstr "_Aktivovať šetrič obrazovky keď je počítač nečinný"
-
-#: ../data/gnome-screensaver-preferences.ui.h:8
-msgid "_Lock screen when screensaver is active"
-msgstr "_Uzamknúť obrazovku keď je aktívny šetrič obrazovky"
-
-#: ../data/gnome-screensaver-preferences.ui.h:9
-msgid "_Preview"
-msgstr "_Ukážka"
-
-#: ../data/gnome-screensaver-preferences.ui.h:10
-msgid "_Screensaver theme:"
-msgstr "_Téma šetriča obrazovky:"
-
-#: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:11
-msgid "Screensaver themes"
-msgstr "Témy šetriča obrazovky"
-
-#: ../data/gnome-screensaver.directory.in.h:2
-msgid "Screensavers"
-msgstr "Šetriče obrazovky"
-
-#: ../data/gnome-screensaver.schemas.in.h:1
-msgid "Activate when idle"
-msgstr "Aktivovať pri nečinnosti"
-
-#: ../data/gnome-screensaver.schemas.in.h:2
-msgid "Allow embedding a keyboard into the window"
-msgstr "Povoliť zabudovanie klávesnice do okna"
-
-#: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow logout"
-msgstr "Povoliť odhlásenie"
-
-#: ../data/gnome-screensaver.schemas.in.h:4
-msgid "Allow the session status message to be displayed"
-msgstr "Povoliť zobrazenie správy o stave relácie"
-
-#: ../data/gnome-screensaver.schemas.in.h:5
-msgid ""
-"Allow the session status message to be displayed when the screen is locked."
-msgstr "Povoliť zobrazenie správy o stave relácie, keď je obrazovka uzamknutá."
-
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Allow user switching"
-msgstr "Povoliť prepnutie používateľa"
-
-#: ../data/gnome-screensaver.schemas.in.h:7
-msgid "Embedded keyboard command"
-msgstr "Príkaz zabudovanej klávesnice"
-
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Lock on activation"
-msgstr "Uzamknúť pri aktivácii"
-
-#: ../data/gnome-screensaver.schemas.in.h:9
-msgid "Logout command"
-msgstr "Príkaz pre odhlásenie"
-
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Screensaver theme selection mode"
-msgstr "Režim výberu šetriča obrazovky"
-
-#: ../data/gnome-screensaver.schemas.in.h:12
-msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr ""
-"Nastavte toto na TRUE, ak sa má pri nečinnosti relácie aktivovať šetrič "
-"obrazovky."
-
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid ""
-"Set this to TRUE to allow embedding a keyboard into the window when trying "
-"to unlock. The \"keyboard_command\" key must be set with the appropriate "
-"command."
-msgstr ""
-"Nastavte toto na TRUE, ak chcete umožniť zabudovanie klávesnice do okna pri "
-"pokuse o odomknutie. Kľúč \"keyboard_command\" musí byť obsahovať príslušný "
-"príkaz."
-
-#: ../data/gnome-screensaver.schemas.in.h:14
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr ""
-"Nastavte toto na TRUE, ak sa má pri aktivovaní šetriča obrazovky uzamknúť "
-"obrazovka."
-
-#: ../data/gnome-screensaver.schemas.in.h:15
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to switch to a "
-"different user account."
-msgstr ""
-"Nastavte toto na TRUE, aby sa ponúkala možnosť prepnutia na iný "
-"používateľský účet v odomykacom dialógovom okne."
-
-#: ../data/gnome-screensaver.schemas.in.h:16
-msgid ""
-"Set this to TRUE to offer an option in unlock dialog to logging out after a "
-"delay. The Delay is specified in the \"logout_delay\" key."
-msgstr ""
-"Nastavte toto na TRUE, aby sa ponúkala možnosť odhlásenia po vypršaní lehoty "
-"v odomykacom dialógovom okne. Dĺžka trvania lehoty sa nastavuje v kľúči "
-"\"logout_delay\"."
-
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
-"set to TRUE, to embed a keyboard widget into the window. This command should "
-"implement an XEMBED plug interface and output a window XID on the standard "
-"output."
-msgstr ""
-"Príkaz, ktorý sa spustí, ak je kľúč \"embedded_keyboard_enabled\" nastavený "
-"na TRUE, na zabudovanie prvku klávesnice do okna. Tento príkaz musí "
-"implementovať XEMBED zásuvné rozhranie a poslať XID okna na štandardný "
-"výstup."
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The command to invoke when the logout button is clicked. This command should "
-"simply log the user out without any interaction. This key has effect only if "
-"the \"logout_enable\" key is set to TRUE."
-msgstr ""
-"Príkaz, ktorý sa vyvolá po kliknutí na tlačidlo odhlásenia. Tento príkaz "
-"musí jednoducho odhlásiť používateľa bez akýchkoľvek otázok. Tento kľúč je "
-"účinný iba ak je kľúč \"logout_enable\" nastavený na TRUE."
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes after screensaver activation before locking the screen."
-msgstr "Počet minút od aktivácie šetriča obrazovky po zamknutie obrazovky."
-
-#: ../data/gnome-screensaver.schemas.in.h:20
-msgid ""
-"The number of minutes after the screensaver activation before a logout "
-"option will appear in unlock dialog. This key has effect only if the "
-"\"logout_enable\" key is set to TRUE."
-msgstr ""
-"Počet minút od aktivácii šetriča obrazovky po zobrazenie možnosti odhlásenia "
-"v odomykacom dialógovom okne. Tento kľúč je účinný iba ak je kľúč "
-"\"logout_enable\" nastavený na TRUE."
-
-#: ../data/gnome-screensaver.schemas.in.h:21
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr "Počet minút nečinnosti kým sa relácia začne považovať za nečinnú."
-
-#: ../data/gnome-screensaver.schemas.in.h:22
-msgid "The number of minutes to run before changing the screensaver theme."
-msgstr "Počet minút behu, kým sa zmení téma šetriča obrazovky."
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-msgid ""
-"The number of seconds of inactivity before signalling to power-management. "
-"This key is set and maintained by the session power-management agent."
-msgstr ""
-"Počet sekúnd nečinnosti, kým sa odošle signál správe napájania. Tento kľúč "
-"nastavuje agent správy napájania relácie."
-
-#: ../data/gnome-screensaver.schemas.in.h:24
-msgid ""
-"The selection mode used by screensaver. May be \"blank-only\" to enable the "
-"screensaver without using any theme on activation, \"single\" to enable "
-"screensaver using only one theme on activation (specified in \"themes\" "
-"key), and \"random\" to enable the screensaver using a random theme on "
-"activation."
-msgstr ""
-"Výberový režim šetriča obrazovky. \"blank-only\" povolí spustenie šetriča "
-"bez akejkoľvek témy, \"single\" povolí šetrič s jedinou témou (označenou v "
-"kľúči \"themes\"), a \"random\" povolí šetrič s náhodným výberom témy."
-
-#: ../data/gnome-screensaver.schemas.in.h:25
-msgid "Theme for lock dialog"
-msgstr "Téma pre dialógové okno uzamknutia"
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Theme to use for the lock dialog."
-msgstr "Téma pre dialógové okno uzamknutia."
-
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid ""
-"This key specifies the list of themes to be used by the screensaver. It's "
-"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
-"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
-"\" is \"random\"."
-msgstr ""
-"Tento kľúč určuje zoznam tém, ktoré má šetrič orazovky používať. Ignoruje "
-"sa, ak je kľúč \"mode\" nastavený na \"blank-only\", ináč by mal uvádzať "
-"meno témy ak \"mode\" je \"single\", alebo zoznam tém keď \"mode\" je "
-"\"random\"."
-
-#: ../data/gnome-screensaver.schemas.in.h:28
-msgid "Time before locking"
-msgstr "Čas pred uzamknutím"
-
-#: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before logout option"
-msgstr "Čas pred možnosťou odhlásenia"
-
-#: ../data/gnome-screensaver.schemas.in.h:30
-msgid "Time before power-management baseline"
-msgstr "Čas pred základom správy napájania"
-
-#: ../data/gnome-screensaver.schemas.in.h:31
-msgid "Time before session is considered idle"
-msgstr "Čas pred tým, než je relácia považovaná za nečinnú"
-
-#: ../data/gnome-screensaver.schemas.in.h:32
-msgid "Time before theme change"
-msgstr "Čas pred zmenou témy"
-
-#: ../data/lock-dialog-default.ui.h:2
-#, no-c-format
-msgid "<b>Leave a message for %R:</b>"
-msgstr "<b>Zanechať správu pre %R:</b>"
-
-#: ../data/lock-dialog-default.ui.h:4
-#, no-c-format
-msgid "<span size=\"small\">%U on %h</span>"
-msgstr "<span size=\"small\">%U na %h</span>"
-
-#: ../data/lock-dialog-default.ui.h:6
-#, no-c-format
-msgid "<span size=\"x-large\">%R</span>"
-msgstr "<span size=\"x-large\">%R</span>"
-
-#: ../data/lock-dialog-default.ui.h:7
-msgid "_Cancel"
-msgstr "_Zrušiť"
-
-#: ../data/lock-dialog-default.ui.h:8
-msgid "_Leave Message"
-msgstr "_Zanechať správu"
-
-#: ../data/lock-dialog-default.ui.h:9
-msgid "_Log Out"
-msgstr "_Odhlásiť"
-
-#: ../data/lock-dialog-default.ui.h:10
-msgid "_Switch User"
-msgstr "_Prepnúť používateľa"
-
-#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1372
-msgid "_Unlock"
-msgstr "_Odomknúť"
-
-#. Translators: This is the name of a desktop background image that shows outer space images.
-#. You might want to translate it into the equivalent words of your language
-#: ../data/images/cosmos/cosmos.xml.in.in.h:3
-#: ../savers/cosmos-slideshow.desktop.in.in.h:1
-msgid "Cosmos"
-msgstr "Vesmír"
-
-#: ../savers/cosmos-slideshow.desktop.in.in.h:2
-msgid "Display a slideshow of pictures of the cosmos"
-msgstr "Zobraziť prezentáciu z obrázkov vesmíru"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "Vybublinkuje logo nohy GNOME okolo obrazovky"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "Plávajúce nohy"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:1
-msgid "Display a slideshow from your Pictures folder"
-msgstr "Zobraziť prezentáciu z vášho priečinka obrázkov"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:2
-msgid "Pictures folder"
-msgstr "Priečinok s obrázkami"
-
-#: ../savers/popsquares.desktop.in.in.h:1
-msgid "A pop-art-ish grid of pulsing colors."
-msgstr "Pop-artistická matica pulzujúcich farieb"
-
-#: ../savers/popsquares.desktop.in.in.h:2
-msgid "Pop art squares"
-msgstr "Pop-artistické štvorce"
-
-#: ../savers/popsquares.c:49 ../savers/floaters.c:1204
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s. Ak chcete informácie o používaní, pozrite --help.\n"
-
-#: ../savers/floaters.c:88
-msgid "Show paths that images follow"
-msgstr "Zobraziť cesty ktoré sledujú obrázky"
-
-#: ../savers/floaters.c:91
-msgid "Occasionally rotate images as they move"
-msgstr "Občas otočiť obrázky počas pohybu"
-
-#: ../savers/floaters.c:94
-msgid "Print out frame rate and other statistics"
-msgstr "Zobraziť počet snímok za sekundu a iné štatistiky"
-
-#: ../savers/floaters.c:97
-msgid "The maximum number of images to keep on screen"
-msgstr "Maximálny počet obrázkov, ktoré ponechať na obrazovke"
-
-#: ../savers/floaters.c:97
-msgid "MAX_IMAGES"
-msgstr "MAX_OBRÁZKOV"
-
-#: ../savers/floaters.c:100
-msgid "The initial size and position of window"
-msgstr "Úvodná veľkosť a umiestnenie okna"
-
-#: ../savers/floaters.c:100
-msgid "WIDTHxHEIGHT+X+Y"
-msgstr "WIDTHxHEIGHT+X+Y"
-
-#: ../savers/floaters.c:103
-msgid "The source image to use"
-msgstr "Zdrojový obrázok, ktorý použiť"
-
-#. translators: the word "image" here
-#. * represents a command line argument
-#.
-#: ../savers/floaters.c:1198
-msgid "image - floats images around the screen"
-msgstr "image - obrázky plávajú po obrazovke"
-
-#: ../savers/floaters.c:1213
-#, c-format
-msgid "You must specify one image.  See --help for usage information.\n"
-msgstr ""
-"Musíte zadať jeden obrázok. Informácie o používaní nájdete pomocou --help.\n"
-
-#: ../savers/slideshow.c:53
-msgid "Location to get images from"
-msgstr "Umiestnenie, odkiaľ získať obrázky"
-
-#: ../savers/slideshow.c:53
-msgid "PATH"
-msgstr "CESTA"
-
-#: ../savers/slideshow.c:55
-msgid "Color to use for images background"
-msgstr "Farba pozadia obrázkov"
-
-#: ../savers/slideshow.c:55
-msgid "\"#rrggbb\""
-msgstr "\"#rrggbb\""
-
-#: ../savers/slideshow.c:57
-msgid "Do not randomize pictures from location"
-msgstr "Obrázky z miesta nepúšťať náhodne"
-
-#: ../savers/slideshow.c:59
-msgid "Do not try to stretch images on screen"
-msgstr "Nepokúšať sa natiahnuť obrázky na obrazovke"
-
-#: ../src/copy-theme-dialog.c:212
-msgid "Copying files"
-msgstr "Kopírujú sa súbory"
-
-#: ../src/copy-theme-dialog.c:230
-msgid "From:"
-msgstr "Odkiaľ:"
-
-#: ../src/copy-theme-dialog.c:234
-msgid "To:"
-msgstr "Kam:"
-
-#: ../src/copy-theme-dialog.c:254
-msgid "Copying themes"
-msgstr "Kopírujú sa témy"
-
-#: ../src/copy-theme-dialog.c:298
-msgid "Invalid screensaver theme"
-msgstr "Neplatná téma šetriča obrazovky"
-
-#: ../src/copy-theme-dialog.c:301
-#, c-format
-msgid "%s does not appear to be a valid screensaver theme."
-msgstr "%s nevyzerá ako platná téma šetriča obrazovky."
-
-#: ../src/copy-theme-dialog.c:481
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Kopíruje sa súbor: %u z %u"
-
-#: ../src/gnome-screensaver-command.c:62
+# cmd desc
+#: ../src/gnome-screensaver-command.c:46
 msgid "Causes the screensaver to exit gracefully"
 msgstr "Spôsobí korektné ukončenie šetriča obrazovky"
 
-#: ../src/gnome-screensaver-command.c:64
+# cmd desc
+#: ../src/gnome-screensaver-command.c:48
 msgid "Query the state of the screensaver"
-msgstr "Zistiť stav šetriča obrazovky"
+msgstr "Zistí stav šetriča obrazovky"
 
-#: ../src/gnome-screensaver-command.c:66
+# cmd desc
+#: ../src/gnome-screensaver-command.c:50
 msgid "Query the length of time the screensaver has been active"
-msgstr "Zistiť dobu aktivity šetriča obrazovky"
+msgstr "Zistí dobu aktivity šetriča obrazovky"
 
-#: ../src/gnome-screensaver-command.c:68
+# cmd desc
+#: ../src/gnome-screensaver-command.c:52
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr "Požiada bežiaci šetrič obrazovky, aby okamžite uzamkol obrazovku"
 
-#: ../src/gnome-screensaver-command.c:70
-msgid "If the screensaver is active then switch to another graphics demo"
-msgstr "Ak je šetrič obrazovky aktívny, tak prepnúť na iné grafickú ukážku"
-
-#: ../src/gnome-screensaver-command.c:72
+# cmd desc
+#: ../src/gnome-screensaver-command.c:54
 msgid "Turn the screensaver on (blank the screen)"
-msgstr "Zapnúť šetrič obrazovky (vyprázdniť obrazovku)"
+msgstr "Zapne šetrič obrazovky (vyprázdni sa obrazovka)"
 
-#: ../src/gnome-screensaver-command.c:74
+# cmd desc
+#: ../src/gnome-screensaver-command.c:56
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr ""
-"Ak je šetrič obrazovky aktívny, tak ho deaktivovať (opustiť režim prázdnej "
+"Deaktivuje šetrič obrazovky, ak je aktívny (opustí sa režim prázdnej "
 "obrazovky)"
 
-#: ../src/gnome-screensaver-command.c:76
-msgid "Poke the running screensaver to simulate user activity"
-msgstr ""
-"Šťuchnúť do bežiaceho šetriča obrazovky tak, aby sa napodobnila aktivita "
-"používateľa"
-
-#: ../src/gnome-screensaver-command.c:78
-msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
-msgstr ""
-"Potlačiť aktiváciu šetriča obrazovky. Príkaz blokuje, kým je aktívne "
-"potlačenie."
-
-#: ../src/gnome-screensaver-command.c:80
-msgid "The calling application that is inhibiting the screensaver"
-msgstr "Volajúca aplikácia, ktorá potláča šetrič obrazovky"
-
-#: ../src/gnome-screensaver-command.c:82
-msgid "The reason for inhibiting the screensaver"
-msgstr "Dôvod potlačenia šetriča obrazovky"
-
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:59
+# cmd desc
+#: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:59
 #: ../src/gnome-screensaver.c:56
 msgid "Version of this application"
-msgstr "Verzia tejto aplikácie"
+msgstr "Vypíše verziu tejto aplikácie"
 
-#: ../src/gnome-screensaver-command.c:311
+#: ../src/gnome-screensaver-command.c:224
 #, c-format
-msgid "The screensaver is %s\n"
-msgstr "Šetrič obrazovky je %s\n"
+msgid "The screensaver is active\n"
+msgstr "Šetrič obrazovky je aktívny\n"
 
-#: ../src/gnome-screensaver-command.c:311
-msgid "active"
-msgstr "aktívny"
-
-#: ../src/gnome-screensaver-command.c:311
-msgid "inactive"
-msgstr "neaktívny"
-
-#: ../src/gnome-screensaver-command.c:325
+#: ../src/gnome-screensaver-command.c:226
 #, c-format
-msgid "The screensaver is not inhibited\n"
-msgstr "Šetrič obrazovky nie je potlačený\n"
+msgid "The screensaver is inactive\n"
+msgstr "Šetrič obrazovky nie je aktívny\n"
 
-#: ../src/gnome-screensaver-command.c:331
+#: ../src/gnome-screensaver-command.c:256
 #, c-format
-msgid "The screensaver is being inhibited by:\n"
-msgstr "Šetrič obrazovky potlačuje:\n"
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "Doterajšia aktivita šetriča obrazovky trvala %d sekúnd.\n"
+msgstr[1] "Doterajšia aktivita šetriča obrazovky trvala %d sekundu.\n"
+msgstr[2] "Doterajšia aktivita šetriča obrazovky trvala %d sekundy.\n"
 
-#: ../src/gnome-screensaver-command.c:362
-#, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "Doterajšia aktivita šetriča obrazovky trvala %d sekúnd.\n"
-
-#: ../src/gnome-screensaver-command.c:366
+#: ../src/gnome-screensaver-command.c:258
 #, c-format
 msgid "The screensaver is not currently active.\n"
 msgstr "Šetrič obrazovky teraz nie je aktívny.\n"
 
+#  cmd desc
 #: ../src/gnome-screensaver-dialog.c:57
 msgid "Show debugging output"
-msgstr "Zobraziť ladiaci výstup"
+msgstr "Zobrazí výstup pre ladenie"
 
+# cmd desc
 #: ../src/gnome-screensaver-dialog.c:61
 msgid "Show the logout button"
-msgstr "Zobraziť tlačidlo odhlásenia"
+msgstr "Zobrazí tlačidlo odhlásenia"
 
+# cmd desc
 #: ../src/gnome-screensaver-dialog.c:63
 msgid "Command to invoke from the logout button"
-msgstr "Príkaz, ktorý sa má spustiť tlačidlom pre odhlásenie"
+msgstr "Príkaz, ktorý sa spustí tlačidlom pre odhlásenie"
 
+#  cmd desc
 #: ../src/gnome-screensaver-dialog.c:65
 msgid "Show the switch user button"
-msgstr "Zobraziť tlačidlo prepnutia používateľa"
+msgstr "Zobrazí tlačidlo prepnutia používateľa"
 
+# cmd desc
 #: ../src/gnome-screensaver-dialog.c:67
 msgid "Message to show in the dialog"
-msgstr "Správa, ktorá sa má zobraziť v dialógovom okne"
+msgstr "Správa, ktorá sa zobrazí v dialógovom okne"
 
-#: ../src/gnome-screensaver-dialog.c:67 ../src/gnome-screensaver-dialog.c:69
+#. Translators: This is the example input for the --status-message command line option.
+#. Translators: This is the example input for the --away-message command line option.
+#: ../src/gnome-screensaver-dialog.c:69 ../src/gnome-screensaver-dialog.c:73
 msgid "MESSAGE"
 msgstr "SPRÁVA"
 
-#: ../src/gnome-screensaver-dialog.c:69
+#: ../src/gnome-screensaver-dialog.c:71
 msgid "Not used"
 msgstr "Nepoužité"
 
 #. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:179 ../src/gnome-screensaver-dialog.c:180
-#: ../src/gnome-screensaver-dialog.c:181 ../src/gs-auth-pam.c:698
+#: ../src/gnome-screensaver-dialog.c:183 ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:185 ../src/gs-auth-pam.c:698
 msgid "Username:"
 msgstr "Používateľské meno:"
 
-#: ../src/gnome-screensaver-dialog.c:182 ../src/gnome-screensaver-dialog.c:183
+#: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
 #: ../src/gs-auth-pam.c:166
 msgid "Password:"
 msgstr "Heslo:"
 
-#: ../src/gnome-screensaver-dialog.c:184
+#: ../src/gnome-screensaver-dialog.c:188
 msgid "You are required to change your password immediately (password aged)"
 msgstr "Musíte si ihneď zmeniť heslo (je príliš staré)"
 
-#: ../src/gnome-screensaver-dialog.c:185
+#: ../src/gnome-screensaver-dialog.c:189
 msgid "You are required to change your password immediately (root enforced)"
 msgstr "Musíte si ihneď zmeniť heslo (zmenu vyžiadal správca)"
 
-#: ../src/gnome-screensaver-dialog.c:186
+#: ../src/gnome-screensaver-dialog.c:190
 msgid "Your account has expired; please contact your system administrator"
 msgstr "Platnosť vášho účtu vypršala; prosím, kontaktujte správcu systému"
 
-#: ../src/gnome-screensaver-dialog.c:187
+#: ../src/gnome-screensaver-dialog.c:191
 msgid "No password supplied"
 msgstr "Nebolo zadané heslo"
 
-#: ../src/gnome-screensaver-dialog.c:188
+#: ../src/gnome-screensaver-dialog.c:192
 msgid "Password unchanged"
 msgstr "Heslo nezmenené"
 
-#: ../src/gnome-screensaver-dialog.c:189
-msgid "Can not get username"
-msgstr "Nie je možné zistiť používateľské meno"
-
-#: ../src/gnome-screensaver-dialog.c:190
-msgid "Retype new UNIX password:"
-msgstr "Znovu zadajte UNIXové heslo:"
-
-#: ../src/gnome-screensaver-dialog.c:191
-msgid "Enter new UNIX password:"
-msgstr "Zadajte nové UNIXové heslo:"
-
-#: ../src/gnome-screensaver-dialog.c:192
-msgid "(current) UNIX password:"
-msgstr "(aktuálne) UNIXové heslo:"
-
 #: ../src/gnome-screensaver-dialog.c:193
+msgid "Cannot get username"
+msgstr "Nedá sa získať používateľské meno"
+
+#: ../src/gnome-screensaver-dialog.c:194
+msgid "Retype new Unix password:"
+msgstr "Znovu zadajte unixové heslo:"
+
+#: ../src/gnome-screensaver-dialog.c:195
+msgid "Enter new Unix password:"
+msgstr "Zadajte nové unixové heslo:"
+
+#: ../src/gnome-screensaver-dialog.c:196
+msgid "(current) Unix password:"
+msgstr "(aktuálne) unixové heslo:"
+
+#: ../src/gnome-screensaver-dialog.c:197
 msgid "Error while changing NIS password."
 msgstr "Chyba pri zmene hesla NIS."
 
-#: ../src/gnome-screensaver-dialog.c:194
+#: ../src/gnome-screensaver-dialog.c:198
 msgid "You must choose a longer password"
-msgstr "Musíte vybrať dlhšie heslo"
+msgstr "Musíte zvoliť dlhšie heslo"
 
-#: ../src/gnome-screensaver-dialog.c:195
+#: ../src/gnome-screensaver-dialog.c:199
 msgid "Password has been already used. Choose another."
-msgstr "Toto heslo ste už použili. Vyberte iné."
+msgstr "Toto heslo ste už použili. Zvoľte iné."
 
-#: ../src/gnome-screensaver-dialog.c:196
+#: ../src/gnome-screensaver-dialog.c:200
 msgid "You must wait longer to change your password"
 msgstr "Pred zmenou hesla musíte počkať dlhšie"
 
-#: ../src/gnome-screensaver-dialog.c:197
+#: ../src/gnome-screensaver-dialog.c:201
 msgid "Sorry, passwords do not match"
-msgstr "Ľutujem, heslá sa nezhodujú"
+msgstr "Prepáčte, heslá sa nezhodujú"
 
-#: ../src/gnome-screensaver-dialog.c:263
-msgid "Checking..."
-msgstr "Kontrola..."
+# heslo
+#: ../src/gnome-screensaver-dialog.c:267
+msgid "Checking…"
+msgstr "Kontroluje sa…"
 
-#: ../src/gnome-screensaver-dialog.c:305 ../src/gs-auth-pam.c:457
+#: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
 msgid "Authentication failed."
 msgstr "Overenie totožnosti zlyhalo."
 
-#: ../src/gnome-screensaver-preferences.c:524
-msgid "Blank screen"
-msgstr "Prázdna obrazovka"
-
-#: ../src/gnome-screensaver-preferences.c:530
-msgid "Random"
-msgstr "Náhodné"
-
-#: ../src/gnome-screensaver-preferences.c:980
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d hodín"
-msgstr[1] "%d hodina"
-msgstr[2] "%d hodiny"
-
-#: ../src/gnome-screensaver-preferences.c:983
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d minút"
-msgstr[1] "%d minúta"
-msgstr[2] "%d minúty"
-
-#: ../src/gnome-screensaver-preferences.c:986
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d sekúnd"
-msgstr[1] "%d sekunda"
-msgstr[2] "%d sekundy"
-
-#. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:992
-#, c-format
-msgid "%s %s %s"
-msgstr "%s %s %s"
-
-#. hour:minutes
-#. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:995
-#: ../src/gnome-screensaver-preferences.c:1003
-#, c-format
-msgid "%s %s"
-msgstr "%s %s"
-
-#. hour
-#. minutes
-#. seconds
-#: ../src/gnome-screensaver-preferences.c:998
-#: ../src/gnome-screensaver-preferences.c:1006
-#: ../src/gnome-screensaver-preferences.c:1010
-#, c-format
-msgid "%s"
-msgstr "%s"
-
-#: ../src/gnome-screensaver-preferences.c:1025
-#, c-format
-msgid "Never"
-msgstr "Nikdy"
-
-#: ../src/gnome-screensaver-preferences.c:1467
-msgid "Could not load the main interface"
-msgstr "Nepodarilo sa načítať hlavné rozhranie"
-
-#: ../src/gnome-screensaver-preferences.c:1469
-msgid "Please make sure that the screensaver is properly installed"
-msgstr "Prosím, uistite sa, či je šetrič obrazovky správne nainštalovaný"
-
+# cmd desc
 #: ../src/gnome-screensaver.c:57
 msgid "Don't become a daemon"
-msgstr "Nestať sa démonom"
+msgstr "Zakáže spustenie formou démona"
 
+# cmd desc
 #: ../src/gnome-screensaver.c:58
 msgid "Enable debugging code"
-msgstr "Povoliť ladiaci kód"
+msgstr "Povolí ladiaci kód"
 
+# desktop entry name
 #: ../src/gnome-screensaver.desktop.in.in.h:1
-msgid "Launch screen saver and locker program"
-msgstr "Spustiť šetrič obrazovky a uzamykací program"
+msgid "Screensaver"
+msgstr "Šetrič obrazovky"
+
+# desktop entry comment
+#: ../src/gnome-screensaver.desktop.in.in.h:2
+msgid "Launch screensaver and locker program"
+msgstr "Spúšťa šetrič obrazovky a uzamykací program"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
 msgid "Unable to establish service %s: %s\n"
-msgstr "Nepodarilo sa ustanoviť službu %s: %s\n"
+msgstr "Nepodarilo sa zaviesť službu %s: %s\n"
 
 #: ../src/gs-auth-pam.c:423
 #, c-format
@@ -732,45 +235,42 @@ msgstr "V tomto čase nemáte povolený prístup."
 msgid "No longer permitted to access the system."
 msgstr "Už viac nemáte prístup do systému."
 
-#: ../src/gs-listener-dbus.c:1912
+#: ../src/gs-listener-dbus.c:1285
 msgid "failed to register with the message bus"
 msgstr "nepodarilo sa zaregistrovať u zbernice správ"
 
-#: ../src/gs-listener-dbus.c:1922
+#: ../src/gs-listener-dbus.c:1295
 msgid "not connected to the message bus"
 msgstr "bez pripojenia ku zbernici správ"
 
-#: ../src/gs-listener-dbus.c:1931
+#: ../src/gs-listener-dbus.c:1304 ../src/gs-listener-dbus.c:1334
 msgid "screensaver already running in this session"
 msgstr "šetrič obrazovky už v tejto relácii beží"
 
-#: ../src/gs-lock-plug.c:270
+#: ../src/gs-lock-plug.c:255
 msgid "Time has expired."
 msgstr "Čas vypršal."
 
-#: ../src/gs-lock-plug.c:298
+#: ../src/gs-lock-plug.c:286
 msgid "You have the Caps Lock key on."
 msgstr "Máte zapnutý Caps Lock."
 
-#: ../src/gs-lock-plug.c:1352
-msgid "S_witch User..."
-msgstr "_Prepnúť používateľa..."
+# button
+#: ../src/gs-lock-plug.c:1350
+msgid "S_witch User…"
+msgstr "_Prepnúť používateľa…"
 
-#: ../src/gs-lock-plug.c:1361
+# button
+#: ../src/gs-lock-plug.c:1359
 msgid "Log _Out"
 msgstr "_Odhlásiť"
 
-#. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1537
-msgid "%U on %h"
-msgstr "%U na %h"
+# button
+#: ../src/gs-lock-plug.c:1366
+msgid "_Unlock"
+msgstr "_Odomknúť"
 
-#: ../src/gs-lock-plug.c:1551
+# label
+#: ../src/gs-lock-plug.c:1405
 msgid "_Password:"
 msgstr "_Heslo:"
-
-#~ msgid "Reason for being away"
-#~ msgstr "Dôvod neprítomnosti"
-
-#~ msgid "The reason for being away from the computer."
-#~ msgstr "Dôvod vzdialenia sa od počítača."
