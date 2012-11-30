@@ -8,44 +8,43 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver.master.kn\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "screensaver&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-30 22:23+0000\n"
-"PO-Revision-Date: 2012-09-26 15:54+0530\n"
+"POT-Creation-Date: 2012-11-28 14:33+0000\n"
+"PO-Revision-Date: 2012-11-30 15:33+0530\n"
 "Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
 "Language-Team: Kannada <en@li.org>\n"
+"Language: kn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.2\n"
-"Language: kn\n"
+"X-Generator: Lokalize 1.5\n"
 
 #: ../src/gnome-screensaver-command.c:46
 msgid "Causes the screensaver to exit gracefully"
-msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ಆಕರ್ಷಕವಾಗಿ ನಿರ್ಗಮಿಸುವಂತೆ ಮಾಡುತ್ತದೆ"
+msgstr "ರಕ್ಷಣಾತೆರೆಯನ್ನು ಆಕರ್ಷಕವಾಗಿ ನಿರ್ಗಮಿಸುವಂತೆ ಮಾಡುತ್ತದೆ"
 
 #: ../src/gnome-screensaver-command.c:48
 msgid "Query the state of the screensaver"
-msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರಿನ ಸ್ಥಿತಿಗಾಗಿ ಮನವಿ ಸಲ್ಲಿಸಿ"
+msgstr "ರಕ್ಷಣಾತೆರೆ (ಸ್ಕ್ರೀನ್‌ಸೇವರ್) ಸ್ಥಿತಿಗಾಗಿ ಮನವಿ ಸಲ್ಲಿಸಿ"
 
 #: ../src/gnome-screensaver-command.c:50
 msgid "Query the length of time the screensaver has been active"
-msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಸಕ್ರಿಯವಾಗಿರಬೇಕಿರುವ ಸಮಯಕ್ಕಾಗಿ ಮನವಿಸಲ್ಲಿಸಿ"
+msgstr "ರಕ್ಷಣಾತೆರೆ ಸಕ್ರಿಯವಾಗಿರಬೇಕಿರುವ ಸಮಯಕ್ಕಾಗಿ ಮನವಿಸಲ್ಲಿಸಿ"
 
 #: ../src/gnome-screensaver-command.c:52
 msgid "Tells the running screensaver process to lock the screen immediately"
 msgstr ""
-"ಚಾಲನೆಯಲ್ಲಿರುವ ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಪ್ರಕ್ರಿಯೆಗೆ ತಕ್ಷಣವೆ ತೆರೆಯನ್ನು ಲಾಕ್ ಮಾಡುವಂತೆ "
+"ಚಾಲನೆಯಲ್ಲಿರುವ ರಕ್ಷಣಾತೆರೆ ಪ್ರಕ್ರಿಯೆಗೆ ತಕ್ಷಣವೆ ತೆರೆಯನ್ನು ಲಾಕ್ ಮಾಡುವಂತೆ "
 "ತಿಳಿಸುತ್ತದೆ"
 
 #: ../src/gnome-screensaver-command.c:54
 msgid "Turn the screensaver on (blank the screen)"
-msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಅನ್ನು ಆನ್ ಮಾಡು (ತೆರೆಯನ್ನು ಖಾಲಿಯಾಗಿ ಇರಿಸು)"
+msgstr "ರಕ್ಷಣಾತೆರೆಯನ್ನು ಆನ್ ಮಾಡು (ತೆರೆಯನ್ನು ಖಾಲಿಯಾಗಿ ಇರಿಸು)"
 
 #: ../src/gnome-screensaver-command.c:56
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr ""
-"ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಸಕ್ರಿಯವಾಗಿದ್ದರೆ ಅದನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸು (ತೆರೆಯನ್ನು ಖಾಲಿಯಾಗಿ "
-"ಇರಿಸಬೇಡ)"
+"ರಕ್ಷಣಾತೆರೆ ಸಕ್ರಿಯವಾಗಿದ್ದರೆ ಅದನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸು (ತೆರೆಯನ್ನು ಖಾಲಿಯಾಗಿ ಇರಿಸಬೇಡ)"
 
 #: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:59
 #: ../src/gnome-screensaver.c:56
@@ -53,29 +52,29 @@ msgid "Version of this application"
 msgstr "ಈ ಅನ್ವಯದ ಆವೃತ್ತಿ"
 
 #: ../src/gnome-screensaver-command.c:224
-#, fuzzy, c-format
+#, c-format
 #| msgid "The screensaver is %s\n"
 msgid "The screensaver is active\n"
-msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ %s ಆಗಿದೆ\n"
+msgstr "ರಕ್ಷಣಾತೆರೆಯು ಸಕ್ರಿಯವಾಗಿದೆ\n"
 
 #: ../src/gnome-screensaver-command.c:226
-#, fuzzy, c-format
+#, c-format
 #| msgid "The screensaver is %s\n"
 msgid "The screensaver is inactive\n"
-msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ %s ಆಗಿದೆ\n"
+msgstr "ರಕ್ಷಣಾತೆರೆಯು ನಿಷ್ಕ್ರಿಯವಾಗಿದೆ\n"
 
 #: ../src/gnome-screensaver-command.c:256
-#, fuzzy, c-format
+#, c-format
 #| msgid "The screensaver has been active for %d seconds.\n"
 msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ %d ಸೆಕೆಂಡುಗಳ ಕಾಲ ಸಕ್ರಿಯವಾಗಿತ್ತು.\n"
-msgstr[1] "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ %d ಸೆಕೆಂಡುಗಳ ಕಾಲ ಸಕ್ರಿಯವಾಗಿತ್ತು.\n"
+msgstr[0] "ರಕ್ಷಣಾತೆರೆ %d ಸೆಕೆಂಡಿನ ಕಾಲ ಸಕ್ರಿಯವಾಗಿದೆ.\n"
+msgstr[1] "ರಕ್ಷಣಾತೆರೆ %d ಸೆಕೆಂಡುಗಳ ಕಾಲ ಸಕ್ರಿಯವಾಗಿದೆ.\n"
 
 #: ../src/gnome-screensaver-command.c:258
 #, c-format
 msgid "The screensaver is not currently active.\n"
-msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಪ್ರಸಕ್ತ ಸಕ್ರಿಯವಾಗಿಲ್ಲ.\n"
+msgstr "ರಕ್ಷಣಾತೆರೆ ಪ್ರಸಕ್ತ ಸಕ್ರಿಯವಾಗಿಲ್ಲ.\n"
 
 #: ../src/gnome-screensaver-dialog.c:57
 msgid "Show debugging output"
@@ -141,25 +140,21 @@ msgid "Password unchanged"
 msgstr "ಗುಪ್ತಪದವನ್ನು ಬದಲಾಯಿಸಲಾಗಿಲ್ಲ"
 
 #: ../src/gnome-screensaver-dialog.c:193
-#, fuzzy
 #| msgid "Can not get username"
 msgid "Cannot get username"
 msgstr "ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಪಡೆಯಲಾಗಿಲ್ಲ"
 
 #: ../src/gnome-screensaver-dialog.c:194
-#, fuzzy
 #| msgid "Retype new UNIX password:"
 msgid "Retype new Unix password:"
 msgstr "ಹೊಸ UNIX ಗುಪ್ತಪದವನ್ನು ಇನ್ನೊಮ್ಮೆ ನಮೂದಿಸಿ:"
 
 #: ../src/gnome-screensaver-dialog.c:195
-#, fuzzy
 #| msgid "Enter new UNIX password:"
 msgid "Enter new Unix password:"
 msgstr "ಹೊಸ UNIX ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ:"
 
 #: ../src/gnome-screensaver-dialog.c:196
-#, fuzzy
 #| msgid "(current) UNIX password:"
 msgid "(current) Unix password:"
 msgstr "(ಪ್ರಸಕ್ತ) UNIX ಗುಪ್ತಪದ:"
@@ -185,7 +180,6 @@ msgid "Sorry, passwords do not match"
 msgstr "ಕ್ಷಮಿಸಿ, ಗುಪ್ತಪದಗಳು ತಾಳೆಯಾಗುವುದಿಲ್ಲ"
 
 #: ../src/gnome-screensaver-dialog.c:267
-#| msgid "Checking..."
 msgid "Checking…"
 msgstr "ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ..."
 
@@ -203,13 +197,12 @@ msgstr "ದೋಷನಿವಾರಣಾ ಸಂಜ್ಞೆಯನ್ನು ಶಕ�
 
 #: ../src/gnome-screensaver.desktop.in.in.h:1
 msgid "Screensaver"
-msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್"
+msgstr "ರಕ್ಷಣಾತೆರೆ (ಸ್ಕ್ರೀನ್‌ಸೇವರ್)"
 
 #: ../src/gnome-screensaver.desktop.in.in.h:2
-#, fuzzy
 #| msgid "Launch screen saver and locker program"
 msgid "Launch screensaver and locker program"
-msgstr "ಸ್ಕ್ರೀನ್‌ ಸೇವರ್ ಹಾಗು ಲಾಕ್ ಮಾಡುವ ಪ್ರೊಗ್ರಾಮ್ ಅನ್ನು ಆರಂಭಿಸಿ"
+msgstr "ರಕ್ಷಣಾತೆರೆ ಹಾಗು ಲಾಕ್ ಮಾಡುವ ಪ್ರೊಗ್ರಾಮ್ ಅನ್ನು ಆರಂಭಿಸಿ"
 
 #: ../src/gs-auth-pam.c:397
 #, c-format
@@ -243,7 +236,7 @@ msgstr "ಸಂದೇಶ ಬಸ್‌ಗೆ ಸಂಪರ್ಕಿತಗೊಂಡ�
 
 #: ../src/gs-listener-dbus.c:1304 ../src/gs-listener-dbus.c:1334
 msgid "screensaver already running in this session"
-msgstr "ಸ್ಕ್ರೀನ್‌ಸೇವರ್ ಈಗಾಗಲೆ ಈ ಅಧಿವೇಶನದಲ್ಲಿ ಚಾಲನೆಯಲ್ಲಿದೆ"
+msgstr "ರಕ್ಷಣಾತೆರೆ ಈಗಾಗಲೆ ಈ ಅಧಿವೇಶನದಲ್ಲಿ ಚಾಲನೆಯಲ್ಲಿದೆ"
 
 #: ../src/gs-lock-plug.c:255
 msgid "Time has expired."
@@ -253,21 +246,20 @@ msgstr "ಕಾಲಾವಧಿ ಮುಗಿದಿದೆ."
 msgid "You have the Caps Lock key on."
 msgstr "ನಿಮ್ಮ Caps Lock ಕೀಲಿಯು ಆನ್ ಆಗಿದೆ."
 
-#: ../src/gs-lock-plug.c:1353
-#, fuzzy
+#: ../src/gs-lock-plug.c:1350
 #| msgid "_Switch User"
 msgid "S_witch User…"
-msgstr "ಬಳಕೆದಾರನನ್ನು ಬದಲಾಯಿಸು(_S)"
+msgstr "ಬಳಕೆದಾರನನ್ನು ಬದಲಾಯಿಸು (_S)..."
 
-#: ../src/gs-lock-plug.c:1362
+#: ../src/gs-lock-plug.c:1359
 msgid "Log _Out"
 msgstr "ಹೊರ ನಡೆ(_O)"
 
-#: ../src/gs-lock-plug.c:1369
+#: ../src/gs-lock-plug.c:1366
 msgid "_Unlock"
 msgstr "ಅನ್‌ಲಾಕ್ ಮಾಡು(_U)"
 
-#: ../src/gs-lock-plug.c:1408
+#: ../src/gs-lock-plug.c:1405
 msgid "_Password:"
 msgstr "ಗುಪ್ತಪದ(_P):"
 
