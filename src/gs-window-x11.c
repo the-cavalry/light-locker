@@ -34,9 +34,6 @@
 
 #include <gdesktop-enums.h>
 
-#define GNOME_DESKTOP_USE_UNSTABLE_API
-#include <libgnome-desktop/gnome-wall-clock.h>
-
 #include "gs-window.h"
 #include "gs-marshal.h"
 #include "subprocs.h"
@@ -120,7 +117,7 @@ struct GSWindowPrivate
 
         GTimer    *timer;
 
-        GnomeWallClock *clock_tracker;
+        //GnomeWallClock *clock_tracker;
 
 #ifdef HAVE_SHAPE_EXT
         int        shape_event_base;
@@ -217,6 +214,7 @@ gs_window_set_background_surface (GSWindow        *window,
                 gs_window_reset_background_surface (window);
         }
 }
+
 
 static void
 gs_window_clear_to_background_surface (GSWindow *window)
@@ -384,6 +382,7 @@ gs_window_real_unrealize (GtkWidget *widget)
 
 /* copied from gdk */
 extern char **environ;
+
 
 static gchar **
 spawn_make_environment_for_screen (GdkScreen  *screen,
@@ -844,6 +843,7 @@ error_watch (GIOChannel   *source,
         return TRUE;
 }
 
+
 static gboolean
 spawn_on_window (GSWindow *window,
                  char     *command,
@@ -977,6 +977,7 @@ keyboard_socket_destroyed (GtkWidget *widget,
         window->priv->keyboard_socket = NULL;
 }
 
+
 static void
 forward_key_events (GSWindow *window)
 {
@@ -1006,6 +1007,7 @@ remove_key_events (GSWindow *window)
                                                                window->priv->key_events);
         }
 }
+
 
 static void
 lock_socket_show (GtkWidget *widget,
@@ -1056,7 +1058,7 @@ wait_on_child (int pid)
 {
         int status;
 
- wait_again:
+wait_again:
         if (waitpid (pid, &status, 0) < 0) {
                 if (errno == EINTR) {
                         goto wait_again;
@@ -1092,6 +1094,7 @@ static void
 keyboard_command_finish (GSWindow *window)
 {
         g_return_if_fail (GS_IS_WINDOW (window));
+
 
         /* send a signal just in case */
         kill_keyboard_command (window);
@@ -1186,6 +1189,7 @@ embed_keyboard (GSWindow *window)
                 gs_debug ("Could not start command: %s", window->priv->keyboard_command);
         }
 }
+
 
 static void
 create_lock_socket (GSWindow *window,
@@ -1430,6 +1434,7 @@ is_user_switch_enabled (GSWindow *window)
 {
         return window->priv->user_switch_enabled;
 }
+
 
 static void
 popup_dialog (GSWindow *window)
@@ -2163,7 +2168,7 @@ on_panel_draw (GtkWidget    *widget,
         return FALSE;
 }
 
-static void
+/*static void
 update_clock (GSWindow *window)
 {
         char *markup;
@@ -2179,7 +2184,7 @@ on_clock_changed (GnomeWallClock *clock,
                   gpointer        user_data)
 {
         update_clock (GS_WINDOW (user_data));
-}
+}*/
 
 static char *
 get_user_display_name (void)
@@ -2343,9 +2348,9 @@ gs_window_init (GSWindow *window)
 
         create_info_bar (window);
 
-        window->priv->clock_tracker = g_object_new (GNOME_TYPE_WALL_CLOCK, NULL);
+        /*window->priv->clock_tracker = g_object_new (GNOME_TYPE_WALL_CLOCK, NULL);
         g_signal_connect (window->priv->clock_tracker, "notify::clock", G_CALLBACK (on_clock_changed), window);
-        update_clock (window);
+        update_clock (window);*/
 }
 
 static void
@@ -2376,9 +2381,9 @@ gs_window_finalize (GObject *object)
         g_free (window->priv->logout_command);
         g_free (window->priv->keyboard_command);
 
-        if (window->priv->clock_tracker) {
+        /*if (window->priv->clock_tracker) {
                 g_object_unref (window->priv->clock_tracker);
-        }
+        }*/
 
         if (window->priv->info_bar_timer_id > 0) {
                 g_source_remove (window->priv->info_bar_timer_id);

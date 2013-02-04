@@ -40,12 +40,11 @@ libexec_PROGRAMS = \
 	gnome-screensaver-dialog	\
 	$(NULL)
 
-noinst_PROGRAMS = 	\
-	test-fade	\
-	test-passwd	\
-	test-watcher	\
-	test-window	\
-	$(NULL)
+#noinst_PROGRAMS = 	\
+#	test-passwd	\
+#	test-watcher	\
+#	test-window	\
+#	$(NULL)
 
 desktopdir = $(datadir)/applications
 desktop_in_files = gnome-screensaver.desktop.in
@@ -65,68 +64,55 @@ AUTH_SOURCES =				\
 	gs-auth-@AUTH_SCHEME@.c		\
 	$(NULL)
 
-test_fade_SOURCES = 			\
-	test-fade.c 			\
-	gs-fade.c	 		\
-	gs-fade.h	 		\
-	gs-debug.c			\
-	gs-debug.h			\
-	$(NULL)
+#test_passwd_SOURCES = 			\
+#	test-passwd.c 			\
+#	gs-auth.h			\
+#	$(AUTH_SOURCES)			\
+#	setuid.c			\
+#	setuid.h			\
+#	subprocs.c			\
+#	subprocs.h			\
+#	$(NULL)
 
-test_fade_LDADD =			\
-	$(GNOME_SCREENSAVER_LIBS)	\
-	$(SAVER_LIBS)			\
-	$(NULL)
+#test_passwd_LDADD =			\
+#	$(GNOME_SCREENSAVER_DIALOG_LIBS)\
+#	$(AUTH_LIBS)			\
+#	$(NULL)
 
-test_passwd_SOURCES = 			\
-	test-passwd.c 			\
-	gs-auth.h			\
-	$(AUTH_SOURCES)			\
-	setuid.c			\
-	setuid.h			\
-	subprocs.c			\
-	subprocs.h			\
-	$(NULL)
+#test_watcher_SOURCES =			\
+#	test-watcher.c			\
+#	gs-bus.h			\
+#	gs-watcher.h			\
+#	gs-watcher-x11.c		\
+#	gs-marshal.c 			\
+#	gs-marshal.h			\
+#	gs-debug.c			\
+#	gs-debug.h			\
+#	$(NULL)
 
-test_passwd_LDADD =			\
-	$(GNOME_SCREENSAVER_DIALOG_LIBS)\
-	$(AUTH_LIBS)			\
-	$(NULL)
+#test_watcher_LDADD =			\
+#	$(GNOME_SCREENSAVER_LIBS)	\
+#	$(SAVER_LIBS)			\
+#	$(NULL)
 
-test_watcher_SOURCES =			\
-	test-watcher.c			\
-	gs-bus.h			\
-	gs-watcher.h			\
-	gs-watcher-x11.c		\
-	gs-marshal.c 			\
-	gs-marshal.h			\
-	gs-debug.c			\
-	gs-debug.h			\
-	$(NULL)
+#test_window_SOURCES =			\
+#	test-window.c			\
+#	gs-window.h			\
+#	gs-window-x11.c			\
+#	gs-grab-x11.c			\
+#	gs-grab.h			\
+#	gs-marshal.c 			\
+#	gs-marshal.h			\
+#	gs-debug.c			\
+#	gs-debug.h			\
+#	subprocs.c			\
+#	subprocs.h			\
+#	$(NULL)
 
-test_watcher_LDADD =			\
-	$(GNOME_SCREENSAVER_LIBS)	\
-	$(SAVER_LIBS)			\
-	$(NULL)
-
-test_window_SOURCES =			\
-	test-window.c			\
-	gs-window.h			\
-	gs-window-x11.c			\
-	gs-grab-x11.c			\
-	gs-grab.h			\
-	gs-marshal.c 			\
-	gs-marshal.h			\
-	gs-debug.c			\
-	gs-debug.h			\
-	subprocs.c			\
-	subprocs.h			\
-	$(NULL)
-
-test_window_LDADD =			\
-	$(GNOME_SCREENSAVER_LIBS)	\
-	$(SAVER_LIBS)			\
-	$(NULL)
+#test_window_LDADD =			\
+#	$(GNOME_SCREENSAVER_LIBS)	\
+#	$(SAVER_LIBS)			\
+#	$(NULL)
 
 gnome_screensaver_dialog_SOURCES = 	\
 	gnome-screensaver-dialog.c	\
@@ -184,8 +170,6 @@ gnome_screensaver_SOURCES =	\
 	subprocs.h		\
 	gs-grab-x11.c		\
 	gs-grab.h		\
-	gs-fade.c		\
-	gs-fade.h		\
 	$(BUILT_SOURCES)	\
 	$(NULL)
 
