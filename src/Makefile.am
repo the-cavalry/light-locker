@@ -26,7 +26,7 @@ INCLUDES =							\
 	$(AUTH_CFLAGS)						\
 	$(DEBUG_CFLAGS)						\
 	$(DBUS_CFLAGS)						\
-	$(LIBGNOMEKBDUI_CFLAGS)					\
+	#$(LIBGNOMEKBDUI_CFLAGS)					\
 	$(LIBNOTIFY_CFLAGS)					\
 	$(SYSTEMD_CFLAGS)					\
 	$(NULL)
@@ -132,7 +132,7 @@ gnome_screensaver_dialog_LDADD =	\
 	$(GNOME_SCREENSAVER_DIALOG_LIBS)\
 	$(SAVER_LIBS)			\
 	$(AUTH_LIBS)			\
-	$(LIBGNOMEKBDUI_LIBS)		\
+	#$(LIBGNOMEKBDUI_LIBS)		\
 	$(LIBNOTIFY_LIBS)		\
 	$(NULL)
 

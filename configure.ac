@@ -45,7 +45,7 @@ X11_REQUIRED_VERSION=1.0
 GNOME_DESKTOP_REQUIRED_VERSION=3.1.91
 GSETTINGS_DESKTOP_SCHEMAS_REQUIRED_VERSION=0.1.7
 
-LIBGNOMEKBDUI_REQUIRED_VERSION=0.1
+# LIBGNOMEKBDUI_REQUIRED_VERSION=0.1
 
 AC_CHECK_HEADERS(unistd.h)
 AC_CHECK_HEADERS(crypt.h sys/select.h)
@@ -623,25 +623,25 @@ fi
 AC_SUBST(SYSTEMD_CFLAGS)
 AC_SUBST(SYSTEMD_LIBS)
 
-dnl ---------------------------------------------------------------------------
-dnl libgnomekbd
-dnl ---------------------------------------------------------------------------
-
-have_libgnomekbdui=no
-AC_ARG_WITH(kbd-layout-indicator,[  --without-kbd-layout-indicator         disable keyboard layout indicator],
-            [with_kbd_layout_indicator="$withval"],[with_kbd_layout_indicator=yes])
-if test x$with_kbd_layout_indicator != xno; then
-  PKG_CHECK_MODULES(LIBGNOMEKBDUI, libgnomekbdui >= $LIBGNOMEKBDUI_REQUIRED_VERSION libxklavier, have_libgnomekbdui=yes, have_libgnomekbdui=no)
-fi
-if test "x$have_libgnomekbdui" = "xyes"; then
-  AC_SUBST(LIBGNOMEKBDUI_CFLAGS)
-  AC_SUBST(LIBGNOMEKBDUI_LIBS)
-  AC_DEFINE(WITH_KBD_LAYOUT_INDICATOR, 1, [Define if keyboard layout indicator should be built])
-fi
-
-dnl ---------------------------------------------------------------------------
-dnl Finish
-dnl ---------------------------------------------------------------------------
+#dnl ---------------------------------------------------------------------------
+#dnl libgnomekbd
+#dnl ---------------------------------------------------------------------------
+#
+#have_libgnomekbdui=no
+#AC_ARG_WITH(kbd-layout-indicator,[  --without-kbd-layout-indicator         disable keyboard layout indicator],
+#            [with_kbd_layout_indicator="$withval"],[with_kbd_layout_indicator=yes])
+#if test x$with_kbd_layout_indicator != xno; then
+#  PKG_CHECK_MODULES(LIBGNOMEKBDUI, libgnomekbdui >= $LIBGNOMEKBDUI_REQUIRED_VERSION libxklavier, have_libgnomekbdui=yes, have_libgnomekbdui=no)
+#fi
+#if test "x$have_libgnomekbdui" = "xyes"; then
+#  AC_SUBST(LIBGNOMEKBDUI_CFLAGS)
+#  AC_SUBST(LIBGNOMEKBDUI_LIBS)
+#  AC_DEFINE(WITH_KBD_LAYOUT_INDICATOR, 1, [Define if keyboard layout indicator should be built])
+#fi
+#
+#dnl ---------------------------------------------------------------------------
+#dnl Finish
+#dnl ---------------------------------------------------------------------------
 
 AC_SUBST(AUTH_LIBS)
 AC_SUBST(SAVER_LIBS)
