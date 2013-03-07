@@ -43,7 +43,7 @@ static void gs_manager_finalize   (GObject        *object);
 struct GSManagerPrivate
 {
         GSList      *windows;
-        GSettings      *settings;
+        //GSettings      *settings;
         //GnomeBG        *bg;
 
         /* Policy */
@@ -563,6 +563,7 @@ background_settings_change_event_cb (GSettings *settings,
         return FALSE;
 } */
 
+#if 0
 static GSettings *
 get_system_settings (void)
 {
@@ -587,6 +588,7 @@ get_system_settings (void)
 
         return settings;
 }
+#endif
 
 static void
 gs_manager_init (GSManager *manager)
@@ -596,7 +598,7 @@ gs_manager_init (GSManager *manager)
 //        manager->priv->fade = gs_fade_new ();
         manager->priv->grab = gs_grab_new ();
 
-        manager->priv->settings = get_system_settings ();
+        //manager->priv->settings = get_system_settings ();
         //manager->priv->bg = gnome_bg_new ();
 
         /* g_signal_connect (manager->priv->bg,
@@ -1133,10 +1135,10 @@ gs_manager_finalize (GObject *object)
         /*if (manager->priv->bg != NULL) {
                 g_object_unref (manager->priv->bg);
         }*/
-        if (manager->priv->settings != NULL) {
+        /*if (manager->priv->settings != NULL) {
                 g_settings_revert (manager->priv->settings);
                 g_object_unref (manager->priv->settings);
-        }
+        }*/
 
         g_free (manager->priv->logout_command);
         g_free (manager->priv->keyboard_command);

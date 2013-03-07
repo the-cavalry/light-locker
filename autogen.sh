@@ -15,8 +15,13 @@ PKG_NAME=light-locker
     exit 1
 }
 
+which xdt-autogen && {
+    XDT_AUTOGEN_REQUIRED_VERSION="4.7.2" exec xdt-autogen $@
+}
+
 which gnome-autogen.sh || {
-    echo "You need to install gnome-common from the GNOME CVS"
+    echo "You need to install either xfce4-dev-tools from http://www.xfce.org/"
+    echo "or gnome-common from the GNOME CVS"
     exit 1
 }
 
