@@ -3,7 +3,7 @@
 
 <book id="index">
   <bookinfo>
-    <title>GNOME Screensaver @VERSION@ Documentation</title>
+    <title>light-locker @VERSION@ Documentation</title>
     <releaseinfo>Version @VERSION@</releaseinfo>
     <date>6 June, 2006</date>
     <authorgroup>

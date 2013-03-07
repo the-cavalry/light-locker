@@ -4,12 +4,12 @@
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
-PKG_NAME=gnome-screensaver
+PKG_NAME=light-locker
 
 (test -f $srcdir/configure.ac \
   && test -f $srcdir/autogen.sh \
   && test -d $srcdir/src \
-  && test -f $srcdir/src/gnome-screensaver.c) || {
+  && test -f $srcdir/src/light-locker.c) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
     echo " top-level $PKG_NAME directory"
     exit 1

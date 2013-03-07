@@ -1,22 +1,22 @@
 NULL =
 
 SPEC_XML_FILES =			\
-	gnome-screensaver.xml		\
+	light-locker.xml		\
 	dbus-interface.xml		\
 	$(NULL)
 
 if DOCBOOK_DOCS_ENABLED
 
 htmldocdir = $(DOCDIR)/spec
-htmldoc_DATA = gnome-screensaver.html
+htmldoc_DATA = light-locker.html
 
-gnome-screensaver.html : dbus-interface.xml
-	$(XMLTO) html-nochunks -m config.xsl gnome-screensaver.xml
+light-locker.html : dbus-interface.xml
+	$(XMLTO) html-nochunks -m config.xsl light-locker.xml
 
 endif # DOCBOOK_DOCS_ENABLED
 
 EXTRA_DIST =				\
-	gnome-screensaver.xml.in	\
+	light-locker.xml.in		\
 	config.xsl			\
 	docbook.css			\
 	$(SPEC_XML_FILES)
@@ -24,6 +24,6 @@ EXTRA_DIST =				\
 
 clean-local:
 	rm -f *~
-	rm -f gnome-screensaver.html
+	rm -f light-locker.html
 
 -include $(top_srcdir)/git.mk

@@ -20,12 +20,12 @@
  *
  */
 
-#ifndef __GNOME_SCREENSAVER_H
-#define __GNOME_SCREENSAVER_H
+#ifndef __LIGHT_LOCKER_H
+#define __LIGHT_LOCKER_H
 
 G_BEGIN_DECLS
 
-void gnome_screensaver_quit (void);
+void light_locker_quit (void);
 
 G_END_DECLS
 

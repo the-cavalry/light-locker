@@ -3,14 +3,14 @@ AUTOMAKE_OPTIONS = 1.7
 
 NULL =
 
-saverdir = $(libexecdir)/gnome-screensaver
+saverdir = $(libexecdir)/light-locker
 
 INCLUDES =							\
 	-I.							\
 	-I$(srcdir)						\
-	$(GNOME_SCREENSAVER_CFLAGS)				\
-	$(GNOME_SCREENSAVER_DIALOG_CFLAGS)			\
-	$(GNOME_SCREENSAVER_CAPPLET_CFLAGS)			\
+	$(LIGHT_LOCKER_CFLAGS)					\
+	$(LIGHT_LOCKER_DIALOG_CFLAGS)				\
+	$(LIGHT_LOCKER_CAPPLET_CFLAGS)				\
 	$(DISABLE_DEPRECATED_CFLAGS)				\
 	-DPREFIX=\""$(prefix)"\" 				\
 	-DBINDIR=\""$(bindir)"\"				\
@@ -18,10 +18,10 @@ INCLUDES =							\
 	-DLIBEXECDIR=\""$(libexecdir)"\"			\
 	-DDATADIR=\""$(datadir)"\"				\
 	-DSYSCONFDIR=\""$(sysconfdir)"\" 			\
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"		\
+	-DLOCALEDIR=\""$(datadir)/locale"\"			\
 	-DSAVERDIR=\""$(saverdir)"\"				\
-	-DGTKBUILDERDIR=\"$(pkgdatadir)\"				\
-	-DPAM_SERVICE_NAME=\""gnome-screensaver"\"		\
+	-DGTKBUILDERDIR=\"$(pkgdatadir)\"			\
+	-DPAM_SERVICE_NAME=\""light-locker"\"			\
 	$(WARN_CFLAGS)						\
 	$(AUTH_CFLAGS)						\
 	$(DEBUG_CFLAGS)						\
@@ -32,12 +32,12 @@ INCLUDES =							\
 	$(NULL)
 
 bin_PROGRAMS = \
-	gnome-screensaver		\
-	gnome-screensaver-command	\
+	light-locker		\
+	light-locker-command	\
 	$(NULL)
 
 libexec_PROGRAMS = \
-	gnome-screensaver-dialog	\
+	light-locker-dialog	\
 	$(NULL)
 
 #noinst_PROGRAMS = 	\
@@ -47,17 +47,17 @@ libexec_PROGRAMS = \
 #	$(NULL)
 
 desktopdir = $(datadir)/applications
-desktop_in_files = gnome-screensaver.desktop.in
+desktop_in_files = light-locker.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-gnome_screensaver_command_SOURCES = 	\
-	gnome-screensaver-command.c	\
+light_locker_command_SOURCES = 	\
+	light-locker-command.c	\
 	gs-bus.h			\
 	$(NULL)
 
-gnome_screensaver_command_LDADD =	\
-	$(GNOME_SCREENSAVER_COMMAND_LIBS)	\
+light_locker_command_LDADD =	\
+	$(LIGHT_LOCKER_COMMAND_LIBS)	\
 	$(NULL)
 
 AUTH_SOURCES =				\
@@ -75,7 +75,7 @@ AUTH_SOURCES =				\
 #	$(NULL)
 
 #test_passwd_LDADD =			\
-#	$(GNOME_SCREENSAVER_DIALOG_LIBS)\
+#	$(LIGHT_LOCKER_DIALOG_LIBS)	\
 #	$(AUTH_LIBS)			\
 #	$(NULL)
 
@@ -91,7 +91,7 @@ AUTH_SOURCES =				\
 #	$(NULL)
 
 #test_watcher_LDADD =			\
-#	$(GNOME_SCREENSAVER_LIBS)	\
+#	$(LIGTH_LOCKER_LIBS)		\
 #	$(SAVER_LIBS)			\
 #	$(NULL)
 
@@ -110,12 +110,12 @@ AUTH_SOURCES =				\
 #	$(NULL)
 
 #test_window_LDADD =			\
-#	$(GNOME_SCREENSAVER_LIBS)	\
+#	$(LIGTH_LOCKER_LIBS)		\
 #	$(SAVER_LIBS)			\
 #	$(NULL)
 
-gnome_screensaver_dialog_SOURCES = 	\
-	gnome-screensaver-dialog.c	\
+light_locker_dialog_SOURCES = 	\
+	light-locker-dialog.c	\
 	gs-lock-plug.c			\
 	gs-lock-plug.h			\
 	gs-debug.c			\
@@ -128,8 +128,8 @@ gnome_screensaver_dialog_SOURCES = 	\
 	$(AUTH_SOURCES)			\
 	$(NULL)
 
-gnome_screensaver_dialog_LDADD =	\
-	$(GNOME_SCREENSAVER_DIALOG_LIBS)\
+light_locker_dialog_LDADD =	\
+	$(LIGHT_LOCKER_DIALOG_LIBS)	\
 	$(SAVER_LIBS)			\
 	$(AUTH_LIBS)			\
 	#$(LIBGNOMEKBDUI_LIBS)		\
@@ -148,9 +148,9 @@ gs-marshal.c: gs-marshal.list
 gs-marshal.h: gs-marshal.list
 	@GLIB_GENMARSHAL@ $< --prefix=gs_marshal --header > $@
 
-gnome_screensaver_SOURCES =	\
-	gnome-screensaver.c	\
-	gnome-screensaver.h	\
+light_locker_SOURCES =	\
+	light-locker.c		\
+	light-locker.h		\
 	gs-bus.h		\
 	gs-monitor.c		\
 	gs-monitor.h		\
@@ -173,41 +173,41 @@ gnome_screensaver_SOURCES =	\
 	$(BUILT_SOURCES)	\
 	$(NULL)
 
-gnome_screensaver_LDADD =		\
-	$(GNOME_SCREENSAVER_LIBS)	\
+light_locker_LDADD =		\
+	$(LIGHT_LOCKER_LIBS)	\
 	$(SAVER_LIBS)			\
 	$(SYSTEMD_LIBS)                 \
 	$(NULL)
 
-gnome_screensaver_LDFLAGS = -export-dynamic
+light_locker_LDFLAGS = -export-dynamic
 
 EXTRA_DIST =				\
 	debug-screensaver.sh		\
 	gs-marshal.list			\
-	gnome-screensaver.desktop.in	\
+	light-locker.desktop.in		\
 	$(NULL)
 
 CLEANFILES = 				\
 	$(desktop_DATA) 		\
-	gnome-screensaver.desktop.in	\
+	light-locker.desktop.in		\
 	$(BUILT_SOURCES)
 
 MAINTAINERCLEANFILES =			\
 	*~				\
 	Makefile.in
 
-install-exec-hook:
+instags-exec-hook:
 	@if [ "x@NEED_SETUID@" = "xyes" ]; then \
 	    echo "***" ; \
-	    echo "***  Warning: gnome-screensaver has been compiled with support for" ; \
-	    echo "***           bsdauth(3) and must be installed as a setuid root" ; \
+	    echo "***  Warning: light-locker has been compiled with support for" ; \
+	    echo "***           bsdauth(3) and must be instagsed as a setuid root" ; \
 	    echo "***           program in order for locking to work.  To do this, you" ; \
 	    echo "***           must run:" ; \
 	    echo "***" ; \
-	    echo "***           chown root $(DESTDIR)$(libexecdir)/gnome-screensaver-dialog" ; \
-	    echo "***           chmod +s $(DESTDIR)$(libexecdir)/gnome-screensaver-dialog" ; \
+	    echo "***           chown root $(DESTDIR)$(libexecdir)/light-locker-dialog" ; \
+	    echo "***           chmod +s $(DESTDIR)$(libexecdir)/light-locker-dialog" ; \
 	    echo "***" ; \
-	    echo "***           For now, it will be installed non-setuid, which" ; \
+	    echo "***           For now, it wigs be instagsed non-setuid, which" ; \
 	    echo "***           means that locking might not work." ; \
 	    echo "***" ; \
 	fi
