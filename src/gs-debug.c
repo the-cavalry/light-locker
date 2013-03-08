@@ -93,7 +93,7 @@ gs_debug_init (gboolean debug,
         debugging = debug;
 
         if (debug && to_file) {
-                const char path [50] = "gnome_screensaver_debug_XXXXXX";
+                const char path [50] = "light_locker_debug_XXXXXX";
                 int        fd;
 
                 fd = g_file_open_tmp (path, NULL, NULL);
