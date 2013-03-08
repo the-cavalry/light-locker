@@ -7,14 +7,14 @@
     This API is currently unstable and is likely to change in the future.
   </para>
 
-  <sect1 id="gs-intro">
+  <sect1 id="ll-intro">
     <title>Introduction</title>
     <para>
-      GNOME Screensaver exposes a DBUS API for programs to obtain information about
-      the screensaver state and to interact with the screensaver in limited ways.
+      light-locker exposes a DBUS API for programs to obtain information about
+      the screen locker state and to interact with the screen locker in limited ways.
     </para>
     <para>
-      The following constants are used to uniquely refer to the GnomeScreensaver
+      The following constants are used to uniquely refer to the LightLocker
       object when making DBUS method calls:
     </para>
     <informaltable>
@@ -37,13 +37,13 @@
     </informaltable>
   </sect1>
 
-  <sect1 id="gs-methods">
+  <sect1 id="ll-methods">
     <title>Methods</title>
     <para>
       These are the DBUS methods.
     </para>
 
-    <sect2 id="gs-method-Lock">
+    <sect2 id="ll-method-Lock">
       <title>
         <literal>Lock</literal>
       </title>
@@ -52,7 +52,7 @@
       </para>
     </sect2>
 
-    <sect2 id="gs-method-Cycle">
+    <sect2 id="ll-method-Cycle">
       <title>
         <literal>Cycle</literal>
       </title>
@@ -62,7 +62,7 @@
       </para>
     </sect2>
 
-    <sect2 id="gs-method-SimulateUserActivity">
+    <sect2 id="ll-method-SimulateUserActivity">
       <title>
         <literal>SimulateUserActivity</literal>
       </title>
@@ -74,7 +74,7 @@
       </para>
     </sect2>
 
-    <sect2 id="gs-method-Throttle">
+    <sect2 id="ll-method-Throttle">
       <title>
         <literal>Throttle</literal>
       </title>
@@ -115,7 +115,7 @@
       </para>
     </sect2>
 
-    <sect2 id="gs-method-UnThrottle">
+    <sect2 id="ll-method-UnThrottle">
       <title>
         <literal>UnThrottle</literal>
       </title>
@@ -142,7 +142,7 @@
       </informaltable>
     </sect2>
 
-    <sect2 id="gs-method-SetActive">
+    <sect2 id="ll-method-SetActive">
       <title>
         <literal>SetActive</literal>
       </title>
@@ -172,7 +172,7 @@
       </informaltable>
     </sect2>
 
-    <sect2 id="gs-method-GetActive">
+    <sect2 id="ll-method-GetActive">
       <title>
         <literal>GetActive</literal>
       </title>
@@ -199,7 +199,7 @@
       </informaltable>
     </sect2>
 
-    <sect2 id="gs-method-GetActiveTime">
+    <sect2 id="ll-method-GetActiveTime">
       <title>
         <literal>GetActiveTime</literal>
       </title>
@@ -227,7 +227,7 @@
       </informaltable>
     </sect2>
 
-    <sect2 id="gs-method-GetSessionIdle">
+    <sect2 id="ll-method-GetSessionIdle">
       <title>
         <literal>GetSessionIdle</literal>
       </title>
@@ -254,7 +254,7 @@
       </informaltable>
     </sect2>
 
-    <sect2 id="gs-method-GetSessionIdleTime">
+    <sect2 id="ll-method-GetSessionIdleTime">
       <title>
         <literal>GetSessionIdleTime</literal>
       </title>
@@ -283,13 +283,13 @@
     </sect2>
   </sect1>
 
-  <sect1 id="gs-signals">
+  <sect1 id="ll-signals">
     <title>Signals</title>
     <para>
       These are the DBUS signals.
     </para>
 
-    <sect2 id="gs-signal-ActiveChanged">
+    <sect2 id="ll-signal-ActiveChanged">
       <title>
         <literal>ActiveChanged</literal>
       </title>
@@ -316,7 +316,7 @@
       </informaltable>
     </sect2>
 
-    <sect2 id="gs-signal-SessionIdleChanged">
+    <sect2 id="ll-signal-SessionIdleChanged">
       <title>
         <literal>SessionIdleChanged</literal>
       </title>
@@ -343,7 +343,7 @@
       </informaltable>
     </sect2>
 
-    <sect2 id="gs-signal-AuthenticationRequestBegin">
+    <sect2 id="ll-signal-AuthenticationRequestBegin">
       <title>
         <literal>AuthenticationRequestBegin</literal>
       </title>
@@ -352,7 +352,7 @@
       </para>
     </sect2>
 
-    <sect2 id="gs-signal-AuthenticationRequestEnd">
+    <sect2 id="ll-signal-AuthenticationRequestEnd">
       <title>
         <literal>AuthenticationRequestEnd</literal>
       </title>
@@ -362,7 +362,7 @@
     </sect2>
   </sect1>
 
-  <sect1 id="gs-examples">
+  <sect1 id="ll-examples">
     <title>Examples</title>
     <para>
       You can get the number of seconds the screensaver has been active by

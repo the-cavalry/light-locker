@@ -367,7 +367,7 @@ auth_check_idle (GSLockPlug *plug)
                 } else {
                         gs_debug ("Authentication failed, quitting (max failures)");
                         again = FALSE;
-                        /* Don't quit immediately, but rather request that gnome-screensaver
+                        /* Don't quit immediately, but rather request that light-locker
                          * terminates us after it has finished the dialog shake. Time out
                          * after 5 seconds and quit anyway if this doesn't happen though */
                         g_idle_add ((GSourceFunc)response_request_quit, NULL);
@@ -553,7 +553,7 @@ main (int    argc,
         char   *nolock_reason = NULL;
 
 #ifdef ENABLE_NLS
-        bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+        bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 # ifdef HAVE_BIND_TEXTDOMAIN_CODESET
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 # endif

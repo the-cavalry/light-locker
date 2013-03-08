@@ -33,12 +33,12 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#include "gnome-screensaver.h"
+#include "light-locker.h"
 #include "gs-monitor.h"
 #include "gs-debug.h"
 
 void
-gnome_screensaver_quit (void)
+light_locker_quit (void)
 {
         gtk_main_quit ();
 }
@@ -60,7 +60,7 @@ main (int    argc,
         };
 
 #ifdef ENABLE_NLS
-        bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+        bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
 # ifdef HAVE_BIND_TEXTDOMAIN_CODESET
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 # endif
@@ -83,7 +83,7 @@ main (int    argc,
         }
 
         gs_debug_init (debug, FALSE);
-        gs_debug ("initializing gnome-screensaver %s", VERSION);
+        gs_debug ("initializing light-locker %s", VERSION);
 
         monitor = gs_monitor_new ();
 
@@ -106,7 +106,7 @@ main (int    argc,
 
         g_object_unref (monitor);
 
-        gs_debug ("gnome-screensaver finished");
+        gs_debug ("light-locker finished");
 
         gs_debug_shutdown ();
 

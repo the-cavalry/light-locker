@@ -1,11 +1,10 @@
 dnl -*- mode: m4 -*-
 
 AC_PREREQ(2.60)
-AC_INIT([gnome-screensaver],
-        [3.6.1],
-        [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-screensaver])
+AC_INIT([light-locker],
+        [3.6.1])
 
-AC_CONFIG_SRCDIR(src/gnome-screensaver.c)
+AC_CONFIG_SRCDIR(src/light-locker.c)
 
 AM_INIT_AUTOMAKE([1.10 no-dist-gzip dist-xz tar-ustar])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
@@ -29,7 +28,7 @@ AC_SUBST(VERSION)
 # Save flags to aclocal
 ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 
-GETTEXT_PACKAGE=gnome-screensaver
+GETTEXT_PACKAGE=light-locker
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Name of default gettext domain])
 
@@ -55,32 +54,32 @@ AC_CHECK_FUNCS(getresuid)
 AC_TYPE_UID_T
 
 AC_CHECK_FUNCS([setresuid setenv unsetenv clearenv])
-PKG_CHECK_MODULES(GNOME_SCREENSAVER,
+PKG_CHECK_MODULES(LIGHT_LOCKER,
         x11 >= $X11_REQUIRED_VERSION
         gtk+-3.0 >= $GTK_REQUIRED_VERSION
         dbus-glib-1 >= $DBUS_REQUIRED_VERSION
         gsettings-desktop-schemas >= $GSETTINGS_DESKTOP_SCHEMAS_REQUIRED_VERSION)
-AC_SUBST(GNOME_SCREENSAVER_CFLAGS)
-AC_SUBST(GNOME_SCREENSAVER_LIBS)
+AC_SUBST(LIGHT_LOCKER_CFLAGS)
+AC_SUBST(LIGHT_LOCKER_LIBS)
 
-PKG_CHECK_MODULES(GNOME_SCREENSAVER_DIALOG,
+PKG_CHECK_MODULES(LIGHT_LOCKER_DIALOG,
         gthread-2.0
         gtk+-3.0 >= $GTK_REQUIRED_VERSION)
-AC_SUBST(GNOME_SCREENSAVER_DIALOG_CFLAGS)
-AC_SUBST(GNOME_SCREENSAVER_DIALOG_LIBS)
+AC_SUBST(LIGHT_LOCKER_DIALOG_CFLAGS)
+AC_SUBST(LIGHT_LOCKER_DIALOG_LIBS)
 
-PKG_CHECK_MODULES(GNOME_SCREENSAVER_CAPPLET,
+PKG_CHECK_MODULES(LIGHT_LOCKER_CAPPLET,
         gio-2.0 >= $GLIB_REQUIRED_VERSION
         gtk+-3.0 >= $GTK_REQUIRED_VERSION
         gsettings-desktop-schemas >= $GSETTINGS_DESKTOP_SCHEMAS_REQUIRED_VERSION)
-AC_SUBST(GNOME_SCREENSAVER_CAPPLET_CFLAGS)
-AC_SUBST(GNOME_SCREENSAVER_CAPPLET_LIBS)
+AC_SUBST(LIGHT_LOCKER_CAPPLET_CFLAGS)
+AC_SUBST(LIGHT_LOCKER_CAPPLET_LIBS)
 
-PKG_CHECK_MODULES(GNOME_SCREENSAVER_COMMAND,
+PKG_CHECK_MODULES(LIGHT_LOCKER_COMMAND,
         gio-2.0 >= $GLIB_REQUIRED_VERSION
         gobject-2.0 >= $GLIB_REQUIRED_VERSION)
-AC_SUBST(GNOME_SCREENSAVER_COMMAND_CFLAGS)
-AC_SUBST(GNOME_SCREENSAVER_COMMAND_LIBS)
+AC_SUBST(LIGHT_LOCKER_COMMAND_CFLAGS)
+AC_SUBST(LIGHT_LOCKER_COMMAND_LIBS)
 
 AC_PATH_XTRA
 
@@ -95,9 +94,9 @@ GNOME_COMPILE_WARNINGS(yes)
 
 SAVER_MODULES="gthread-2.0 gtk+-3.0 >= $GTK_REQUIRED_VERSION"
 
-PKG_CHECK_MODULES(GNOME_SCREENSAVER_SAVER, $SAVER_MODULES)
-AC_SUBST(GNOME_SCREENSAVER_SAVER_CFLAGS)
-AC_SUBST(GNOME_SCREENSAVER_SAVER_LIBS)
+PKG_CHECK_MODULES(LIGHT_LOCKER_SAVER, $SAVER_MODULES)
+AC_SUBST(LIGHT_LOCKER_SAVER_CFLAGS)
+AC_SUBST(LIGHT_LOCKER_SAVER_LIBS)
 
 # Find out the version of DBUS we're using
 
@@ -140,9 +139,9 @@ AC_ARG_WITH(doc-dir,
               [AC_HELP_STRING([--with-doc-dir=<dir>],
               [directory to install documentation])])
 if ! test -z "$with_doc_dir"; then
-   DOCDIR="$with_doc_dir/gnome-screensaver-$VERSION"
+   DOCDIR="$with_doc_dir/light-locker-$VERSION"
 else
-   DOCDIR="$datadir/doc/gnome-screensaver-$VERSION"
+   DOCDIR="$datadir/doc/light-locker-$VERSION"
 fi
 AC_SUBST(DOCDIR)
 
@@ -759,15 +758,15 @@ AC_OUTPUT([
 Makefile
 po/Makefile.in
 src/Makefile
-src/gnome-screensaver.desktop.in
+src/light-locker.desktop.in
 data/Makefile
 doc/Makefile
-doc/gnome-screensaver.xml
+doc/light-locker.xml
 ])
 
 echo "
-                    gnome-screensaver $VERSION
-                    ========================
+                    light-locker $VERSION
+                    ===================
 
 	prefix:                   ${prefix}
 	exec_prefix:              ${exec_prefix}
@@ -779,7 +778,7 @@ echo "
 	source code location:	  ${srcdir}
 	compiler:		  ${CC}
 	cflags:		          ${CFLAGS}
-        Base libs:                ${GNOME_SCREENSAVER_LIBS}
+        Base libs:                ${LIGHT_LOCKER_LIBS}
         Extension libs:           ${SAVER_LIBS}
         Maintainer mode:          ${USE_MAINTAINER_MODE}
         Docs enabled:             ${enable_docbook_docs}

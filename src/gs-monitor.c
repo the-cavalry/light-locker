@@ -29,7 +29,7 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include "gnome-screensaver.h"
+#include "light-locker.h"
 
 #include "gs-manager.h"
 #include "gs-watcher.h"
@@ -214,7 +214,7 @@ listener_quit_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
         gs_listener_set_active (monitor->priv->listener, FALSE);
-        gnome_screensaver_quit ();
+        light_locker_quit ();
 }
 
 static void

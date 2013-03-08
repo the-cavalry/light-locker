@@ -84,7 +84,7 @@ gs_auth_verify_user (const char       *username,
 	}
 
 	/* authenticate */
-	res = auth_userokay((char *)username, NULL, "auth-gnome-screensaver", password);
+	res = auth_userokay((char *)username, NULL, "auth-light-locker", password);
 
 	return res;
 }
