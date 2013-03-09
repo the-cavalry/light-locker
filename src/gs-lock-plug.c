@@ -36,12 +36,6 @@
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
 
-/*
-#ifdef WITH_KBD_LAYOUT_INDICATOR
-#include <libgnomekbd/gkbd-indicator.h>
-#endif
-*/
-
 #include "gs-lock-plug.h"
 
 #include "gs-debug.h"
@@ -1405,11 +1399,7 @@ create_page_one (GSLockPlug *plug)
         vbox2 = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
         gtk_box_pack_start (GTK_BOX (hbox), vbox2, TRUE, TRUE, 0);
         gtk_container_set_border_width (GTK_CONTAINER (vbox2), 10);
-/*
-#ifdef WITH_KBD_LAYOUT_INDICATOR
-        gtk_box_pack_start (GTK_BOX (hbox), plug->priv->auth_prompt_kbd_layout_indicator, FALSE, FALSE, 0);
-#endif
-*/
+
         plug->priv->auth_prompt_label = gtk_label_new_with_mnemonic (_("_Password:"));
         gtk_misc_set_alignment (GTK_MISC (plug->priv->auth_prompt_label), 0, 0.5);
         gtk_box_pack_start (GTK_BOX (vbox2), plug->priv->auth_prompt_label, FALSE, FALSE, 0);
@@ -1507,35 +1497,6 @@ gs_lock_plug_init (GSLockPlug *plug)
         create_page_one (plug);
 
         gtk_widget_show_all (plug->priv->frame);
-
-        /* Layout indicator */
-/*
-#ifdef WITH_KBD_LAYOUT_INDICATOR
-        if (plug->priv->auth_prompt_kbd_layout_indicator != NULL) {
-                XklEngine *engine;
-
-                engine = xkl_engine_get_instance (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()));
-                if (xkl_engine_get_num_groups (engine) > 1) {
-                        GtkWidget *layout_indicator;
-
-                        layout_indicator = gkbd_indicator_new ();
-                        gkbd_indicator_set_parent_tooltips (GKBD_INDICATOR (layout_indicator), TRUE);
-                        gtk_box_pack_start (GTK_BOX (plug->priv->auth_prompt_kbd_layout_indicator),
-                                            layout_indicator,
-                                            FALSE,
-                                            FALSE,
-                                            6);
-
-                        gtk_widget_show_all (layout_indicator);
-                        gtk_widget_show (plug->priv->auth_prompt_kbd_layout_indicator);
-                } else {
-                        gtk_widget_hide (plug->priv->auth_prompt_kbd_layout_indicator);
-                }
-
-                g_object_unref (engine);
-        }
-#endif
-*/
 
         if (plug->priv->auth_switch_button != NULL) {
                 if (plug->priv->switch_enabled) {

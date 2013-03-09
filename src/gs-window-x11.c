@@ -32,8 +32,6 @@
 #include <gtk/gtk.h>
 #include <gtk/gtkx.h>
 
-//#include <gdesktop-enums.h>
-
 #include "gs-window.h"
 #include "gs-marshal.h"
 #include "subprocs.h"
@@ -116,8 +114,6 @@ struct GSWindowPrivate
         gdouble    last_y;
 
         GTimer    *timer;
-
-        //GnomeWallClock *clock_tracker;
 
 #ifdef HAVE_SHAPE_EXT
         int        shape_event_base;
@@ -2172,24 +2168,6 @@ on_panel_draw (GtkWidget    *widget,
         return FALSE;
 }
 
-/*static void
-update_clock (GSWindow *window)
-{
-        char *markup;
-
-        markup = g_strdup_printf ("<b><span foreground=\"#ccc\">%s</span></b>", gnome_wall_clock_get_clock (window->priv->clock_tracker));
-        gtk_label_set_markup (GTK_LABEL (window->priv->clock), markup);
-        g_free (markup);
-}
-
-static void
-on_clock_changed (GnomeWallClock *clock,
-                  GParamSpec     *pspec,
-                  gpointer        user_data)
-{
-        update_clock (GS_WINDOW (user_data));
-}*/
-
 static char *
 get_user_display_name (void)
 {
@@ -2351,10 +2329,6 @@ gs_window_init (GSWindow *window)
                           NULL);
 
         create_info_bar (window);
-
-        /*window->priv->clock_tracker = g_object_new (GNOME_TYPE_WALL_CLOCK, NULL);
-        g_signal_connect (window->priv->clock_tracker, "notify::clock", G_CALLBACK (on_clock_changed), window);
-        update_clock (window);*/
 }
 
 static void
@@ -2384,10 +2358,6 @@ gs_window_finalize (GObject *object)
 
         g_free (window->priv->logout_command);
         g_free (window->priv->keyboard_command);
-
-        /*if (window->priv->clock_tracker) {
-                g_object_unref (window->priv->clock_tracker);
-        }*/
 
         if (window->priv->info_bar_timer_id > 0) {
                 g_source_remove (window->priv->info_bar_timer_id);

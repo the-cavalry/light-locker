@@ -41,10 +41,6 @@ DBUS_REQUIRED_VERSION=0.30
 GLIB_REQUIRED_VERSION=2.25.6
 GTK_REQUIRED_VERSION=2.99.3
 X11_REQUIRED_VERSION=1.0
-#GNOME_DESKTOP_REQUIRED_VERSION=3.1.91
-#GSETTINGS_DESKTOP_SCHEMAS_REQUIRED_VERSION=0.1.7
-
-# LIBGNOMEKBDUI_REQUIRED_VERSION=0.1
 
 AC_CHECK_HEADERS(unistd.h)
 AC_CHECK_HEADERS(crypt.h sys/select.h)
@@ -58,7 +54,6 @@ PKG_CHECK_MODULES(LIGHT_LOCKER,
         x11 >= $X11_REQUIRED_VERSION
         gtk+-3.0 >= $GTK_REQUIRED_VERSION
         dbus-glib-1 >= $DBUS_REQUIRED_VERSION)
-#        gsettings-desktop-schemas >= $GSETTINGS_DESKTOP_SCHEMAS_REQUIRED_VERSION)
 AC_SUBST(LIGHT_LOCKER_CFLAGS)
 AC_SUBST(LIGHT_LOCKER_LIBS)
 
@@ -67,13 +62,6 @@ PKG_CHECK_MODULES(LIGHT_LOCKER_DIALOG,
         gtk+-3.0 >= $GTK_REQUIRED_VERSION)
 AC_SUBST(LIGHT_LOCKER_DIALOG_CFLAGS)
 AC_SUBST(LIGHT_LOCKER_DIALOG_LIBS)
-
-#PKG_CHECK_MODULES(LIGHT_LOCKER_CAPPLET,
-#        gio-2.0 >= $GLIB_REQUIRED_VERSION
-#        gtk+-3.0 >= $GTK_REQUIRED_VERSION
-#        gsettings-desktop-schemas >= $GSETTINGS_DESKTOP_SCHEMAS_REQUIRED_VERSION)
-#AC_SUBST(LIGHT_LOCKER_CAPPLET_CFLAGS)
-#AC_SUBST(LIGHT_LOCKER_CAPPLET_LIBS)
 
 PKG_CHECK_MODULES(LIGHT_LOCKER_COMMAND,
         gio-2.0 >= $GLIB_REQUIRED_VERSION
@@ -87,8 +75,6 @@ ALL_X_LIBS="$X_LIBS $X_PRE_LIBS -lXext -lX11 $X_EXTRA_LIBS"
 SAVER_LIBS="$ALL_X_LIBS"
 
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
-
-#GNOME_COMPILE_WARNINGS(yes)
 
 # Optional dependencies for the theme engines
 
@@ -622,25 +608,9 @@ fi
 AC_SUBST(SYSTEMD_CFLAGS)
 AC_SUBST(SYSTEMD_LIBS)
 
-#dnl ---------------------------------------------------------------------------
-#dnl libgnomekbd
-#dnl ---------------------------------------------------------------------------
-#
-#have_libgnomekbdui=no
-#AC_ARG_WITH(kbd-layout-indicator,[  --without-kbd-layout-indicator         disable keyboard layout indicator],
-#            [with_kbd_layout_indicator="$withval"],[with_kbd_layout_indicator=yes])
-#if test x$with_kbd_layout_indicator != xno; then
-#  PKG_CHECK_MODULES(LIBGNOMEKBDUI, libgnomekbdui >= $LIBGNOMEKBDUI_REQUIRED_VERSION libxklavier, have_libgnomekbdui=yes, have_libgnomekbdui=no)
-#fi
-#if test "x$have_libgnomekbdui" = "xyes"; then
-#  AC_SUBST(LIBGNOMEKBDUI_CFLAGS)
-#  AC_SUBST(LIBGNOMEKBDUI_LIBS)
-#  AC_DEFINE(WITH_KBD_LAYOUT_INDICATOR, 1, [Define if keyboard layout indicator should be built])
-#fi
-#
-#dnl ---------------------------------------------------------------------------
-#dnl Finish
-#dnl ---------------------------------------------------------------------------
+dnl ---------------------------------------------------------------------------
+dnl Finish
+dnl ---------------------------------------------------------------------------
 
 AC_SUBST(AUTH_LIBS)
 AC_SUBST(SAVER_LIBS)
@@ -784,7 +754,6 @@ echo "
         Docs enabled:             ${enable_docbook_docs}
 
         Screen locking enabled:   ${enable_locking}
-        Show keyboard indicator:  ${with_kbd_layout_indicator}
 
         systemd:                  ${use_systemd}
         ConsoleKit:               ${use_console_kit}

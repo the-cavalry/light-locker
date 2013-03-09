@@ -33,7 +33,6 @@
 
 #include "gs-manager.h"
 #include "gs-watcher.h"
-//#include "gs-fade.h"
 #include "gs-grab.h"
 
 #include "gs-listener-dbus.h"
@@ -53,7 +52,6 @@ struct GSMonitorPrivate
         GSListener     *listener;
         GSManager      *manager;
         GSPrefs        *prefs;
-        //GSFade         *fade;
         GSGrab         *grab;
         guint           release_grab_id;
 };
@@ -118,42 +116,23 @@ watcher_idle_notice_cb (GSWatcher *watcher,
                         gboolean   in_effect,
                         GSMonitor *monitor)
 {
-        gboolean activation_enabled;
         gboolean handled;
 
         gs_debug ("Idle notice signal detected: %d", in_effect);
 
-        /* only fade if screensaver can activate */
-        activation_enabled = gs_listener_get_activation_enabled (monitor->priv->listener);
-
         handled = FALSE;
         if (in_effect) {
-                if (activation_enabled) {
-                        /* start slow fade 
-                        if (gs_grab_grab_offscreen (monitor->priv->grab, FALSE)) {
-                                gs_fade_async (monitor->priv->fade, FADE_TIMEOUT, NULL, NULL);
-                        } else {
-                                gs_debug ("Could not grab the keyboard so not performing idle warning fade-out");
-                        }
-
-                        handled = TRUE; */
-                }
         } else {
                 gboolean manager_active;
 
                 manager_active = gs_manager_get_active (monitor->priv->manager);
                 /* cancel the fade unless manager was activated */
                 if (! manager_active) {
-                        //gs_debug ("manager not active, performing fade cancellation");
-                        //gs_fade_reset (monitor->priv->fade);
-
                         /* don't release the grab immediately to prevent typing passwords into windows */
                         if (monitor->priv->release_grab_id != 0) {
                                 g_source_remove (monitor->priv->release_grab_id);
                         }
                         monitor->priv->release_grab_id = g_timeout_add_seconds (1, (GSourceFunc)release_grab_timeout, monitor);
-                } else {
-                        //gs_debug ("manager active, skipping fade cancellation");
                 }
 
                 handled = TRUE;
@@ -421,7 +400,6 @@ gs_monitor_init (GSMonitor *monitor)
         monitor->priv->listener = gs_listener_new ();
         connect_listener_signals (monitor);
 
-        //monitor->priv->fade = gs_fade_new ();
         monitor->priv->grab = gs_grab_new ();
 
         monitor->priv->watcher = gs_watcher_new ();
@@ -450,7 +428,6 @@ gs_monitor_finalize (GObject *object)
         disconnect_manager_signals (monitor);
         disconnect_prefs_signals (monitor);
 
-        //g_object_unref (monitor->priv->fade);
         g_object_unref (monitor->priv->grab);
         g_object_unref (monitor->priv->watcher);
         g_object_unref (monitor->priv->listener);

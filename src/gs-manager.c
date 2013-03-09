@@ -31,7 +31,6 @@
 #include "gs-manager.h"
 #include "gs-window.h"
 #include "gs-grab.h"
-//#include "gs-fade.h"
 #include "gs-debug.h"
 
 static void gs_manager_class_init (GSManagerClass *klass);
@@ -43,8 +42,6 @@ static void gs_manager_finalize   (GObject        *object);
 struct GSManagerPrivate
 {
         GSList      *windows;
-        //GSettings      *settings;
-        //GnomeBG        *bg;
 
         /* Policy */
         glong        lock_timeout;
@@ -72,8 +69,6 @@ struct GSManagerPrivate
         guint        lock_timeout_id;
 
         GSGrab      *grab;
-//        GSFade      *fade;
-//        guint        unfade_idle_id;
 };
 
 enum {
@@ -539,79 +534,12 @@ gs_manager_class_init (GSManagerClass *klass)
         g_type_class_add_private (klass, sizeof (GSManagerPrivate));
 }
 
-/* static void
-on_bg_changed (GnomeBG   *bg,
-               GSManager *manager)
-{
-        gs_debug ("background changed");
-}
-
-static gboolean
-background_settings_change_event_cb (GSettings *settings,
-                                     gpointer   keys,
-                                     gint       n_keys,
-                                     GSManager   *manager)
-{
-#if 0
-         FIXME: since we bind user settings instead of system ones,
-         *        watching for changes is no longer valid.
-         
-        gnome_bg_load_from_preferences (manager->priv->bg,
-                                        manager->priv->settings);
-#endif
-
-        return FALSE;
-} */
-
-#if 0
-static GSettings *
-get_system_settings (void)
-{
-        GSettings *settings;
-        gchar **keys;
-        gchar **k;
-
-        /* FIXME: we need to bind system settings instead of user but
-         *        that's currently impossible, not implemented yet.
-         *        Hence, reset to system default values.
-         */
-        /* TODO: Ideally we would like to bind some other key, screensaver-specific. */
-        settings = g_settings_new ("org.gnome.desktop.background");
-
-        g_settings_delay (settings);
-
-        keys = g_settings_list_keys (settings);
-        for (k = keys; *k; k++) {
-                g_settings_reset (settings, *k);
-        }
-        g_strfreev (keys);
-
-        return settings;
-}
-#endif
-
 static void
 gs_manager_init (GSManager *manager)
 {
         manager->priv = GS_MANAGER_GET_PRIVATE (manager);
 
-//        manager->priv->fade = gs_fade_new ();
         manager->priv->grab = gs_grab_new ();
-
-        //manager->priv->settings = get_system_settings ();
-        //manager->priv->bg = gnome_bg_new ();
-
-        /* g_signal_connect (manager->priv->bg,
-                          "changed",
-                          G_CALLBACK (on_bg_changed),
-                          manager);
-        g_signal_connect (manager->priv->settings,
-                          "change-event",
-                          G_CALLBACK (background_settings_change_event_cb),
-                          manager);
-
-        gnome_bg_load_from_preferences (manager->priv->bg,
-                                        manager->priv->settings); */
 }
 
 static void
@@ -619,15 +547,6 @@ remove_timers (GSManager *manager)
 {
         remove_lock_timer (manager);
 }
-
-/*static void
-remove_unfade_idle (GSManager *manager)
-{
-        if (manager->priv->unfade_idle_id > 0) {
-                g_source_remove (manager->priv->unfade_idle_id);
-                manager->priv->unfade_idle_id = 0;
-        }
-}*/
 
 
 static gboolean
@@ -762,23 +681,6 @@ window_grab_broken_cb (GSWindow           *window,
         }
 }
 
-/*static gboolean
-unfade_idle (GSManager *manager)
-{
-        gs_debug ("resetting fade");
-        gs_fade_reset (manager->priv->fade);
-        manager->priv->unfade_idle_id = 0;
-        return FALSE;
-}
-
-
-static void
-add_unfade_idle (GSManager *manager)
-{
-        remove_unfade_idle (manager);
-        manager->priv->unfade_idle_id = g_timeout_add (500, (GSourceFunc)unfade_idle, manager);
-}*/
-
 static gboolean
 window_map_event_cb (GSWindow  *window,
                      GdkEvent  *event,
@@ -809,33 +711,7 @@ static void
 apply_background_to_window (GSManager *manager,
                             GSWindow  *window)
 {
-        cairo_surface_t *surface = NULL;
-        GdkScreen       *screen;
-        GdkWindow       *gdk_window;
-        gint             monitor;
-        GdkRectangle     monitor_geometry;
-        int              width;
-        int              height;
-
-        // if (manager->priv->bg == NULL) {
-        //        gs_debug ("No background available");
-                gs_window_set_background_surface (window, NULL);
-        //} 
-
-        screen = gs_window_get_screen (window);
-        gdk_window = gs_window_get_gdk_window (window);
-        monitor = gdk_screen_get_monitor_at_window (screen, gdk_window);
-        gdk_screen_get_monitor_geometry (screen, monitor, &monitor_geometry);
-        width = monitor_geometry.width;
-        height = monitor_geometry.height;
-        gs_debug ("Creating background w:%d h:%d", width, height);
-        /*surface = gnome_bg_create_surface (manager->priv->bg,
-                                           gdk_window,
-                                           width,
-                                           height,
-                                           FALSE);*/
-        gs_window_set_background_surface (window, surface);
-        cairo_surface_destroy (surface);
+	gs_window_set_background_surface (window, NULL);
 }
 
 static void
@@ -850,8 +726,6 @@ manager_show_window (GSManager *manager,
                 remove_lock_timer (manager);
                 add_lock_timer (manager, manager->priv->lock_timeout);
         }
-
-        //add_unfade_idle (manager);
 
         /* FIXME: only emit signal once */
         g_signal_emit (manager, signals [ACTIVATED], 0);
@@ -1145,19 +1019,10 @@ gs_manager_finalize (GObject *object)
 
         g_return_if_fail (manager->priv != NULL);
 
-        /*if (manager->priv->bg != NULL) {
-                g_object_unref (manager->priv->bg);
-        }*/
-        /*if (manager->priv->settings != NULL) {
-                g_settings_revert (manager->priv->settings);
-                g_object_unref (manager->priv->settings);
-        }*/
-
         g_free (manager->priv->logout_command);
         g_free (manager->priv->keyboard_command);
         g_free (manager->priv->status_message);
 
-        //remove_unfade_idle (manager);
         remove_timers (manager);
 
         gs_grab_release (manager->priv->grab);
@@ -1168,7 +1033,6 @@ gs_manager_finalize (GObject *object)
         manager->priv->activate_time = 0;
         manager->priv->lock_enabled = FALSE;
 
-        //g_object_unref (manager->priv->fade);
         g_object_unref (manager->priv->grab);
 
         G_OBJECT_CLASS (gs_manager_parent_class)->finalize (object);
@@ -1245,19 +1109,9 @@ show_windows (GSList *windows)
         }
 }
 
-/*static void
-fade_done_cb (GSFade    *fade,
-              GSManager *manager)
-{
-        gs_debug ("fade completed, showing windows");
-        show_windows (manager->priv->windows);
-        manager->priv->fading = FALSE;
-}*/
-
 static gboolean
 gs_manager_activate (GSManager *manager)
 {
-        //gboolean    do_fade;
         gboolean    res;
 
         g_return_val_if_fail (manager != NULL, FALSE);
@@ -1279,22 +1133,7 @@ gs_manager_activate (GSManager *manager)
 
         manager->priv->active = TRUE;
 
-        /* fade to black and show windows */
-        //do_fade = TRUE;
-        /*if (do_fade) {
-                manager->priv->fading = TRUE;
-                gs_debug ("fading out");
-                gs_fade_async (manager->priv->fade,
-                               FADE_TIMEOUT,
-                               (GSFadeDoneFunc)fade_done_cb,
-                               manager);
-
-                while (manager->priv->fading) {
-                        gtk_main_iteration ();
-                }
-        } else { */
-                show_windows (manager->priv->windows);
-        //}
+	show_windows (manager->priv->windows);
 
         return TRUE;
 }
@@ -1310,8 +1149,6 @@ gs_manager_deactivate (GSManager *manager)
                 return FALSE;
         }
 
-        //remove_unfade_idle (manager);
-        //gs_fade_reset (manager->priv->fade);
         remove_timers (manager);
 
         gs_grab_release (manager->priv->grab);
@@ -1369,11 +1206,6 @@ gs_manager_request_unlock (GSManager *manager)
                 gs_debug ("Request unlock but dialog is already up");
                 return FALSE;
         }
-
-        /*if (manager->priv->fading) {
-                gs_debug ("Request unlock so finishing fade");
-                gs_fade_finish (manager->priv->fade);
-        }*/
 
         if (manager->priv->windows == NULL) {
                 gs_debug ("We don't have any windows!");

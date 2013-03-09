@@ -26,7 +26,6 @@ INCLUDES =							\
 	$(AUTH_CFLAGS)						\
 	$(DEBUG_CFLAGS)						\
 	$(DBUS_CFLAGS)						\
-	#$(LIBGNOMEKBDUI_CFLAGS)					\
 	$(LIBNOTIFY_CFLAGS)					\
 	$(SYSTEMD_CFLAGS)					\
 	$(NULL)
@@ -39,12 +38,6 @@ bin_PROGRAMS = \
 libexec_PROGRAMS = \
 	light-locker-dialog	\
 	$(NULL)
-
-#noinst_PROGRAMS = 	\
-#	test-passwd	\
-#	test-watcher	\
-#	test-window	\
-#	$(NULL)
 
 desktopdir = $(datadir)/applications
 desktop_in_files = light-locker.desktop.in
@@ -64,56 +57,6 @@ AUTH_SOURCES =				\
 	gs-auth-@AUTH_SCHEME@.c		\
 	$(NULL)
 
-#test_passwd_SOURCES = 			\
-#	test-passwd.c 			\
-#	gs-auth.h			\
-#	$(AUTH_SOURCES)			\
-#	setuid.c			\
-#	setuid.h			\
-#	subprocs.c			\
-#	subprocs.h			\
-#	$(NULL)
-
-#test_passwd_LDADD =			\
-#	$(LIGHT_LOCKER_DIALOG_LIBS)	\
-#	$(AUTH_LIBS)			\
-#	$(NULL)
-
-#test_watcher_SOURCES =			\
-#	test-watcher.c			\
-#	gs-bus.h			\
-#	gs-watcher.h			\
-#	gs-watcher-x11.c		\
-#	gs-marshal.c 			\
-#	gs-marshal.h			\
-#	gs-debug.c			\
-#	gs-debug.h			\
-#	$(NULL)
-
-#test_watcher_LDADD =			\
-#	$(LIGTH_LOCKER_LIBS)		\
-#	$(SAVER_LIBS)			\
-#	$(NULL)
-
-#test_window_SOURCES =			\
-#	test-window.c			\
-#	gs-window.h			\
-#	gs-window-x11.c			\
-#	gs-grab-x11.c			\
-#	gs-grab.h			\
-#	gs-marshal.c 			\
-#	gs-marshal.h			\
-#	gs-debug.c			\
-#	gs-debug.h			\
-#	subprocs.c			\
-#	subprocs.h			\
-#	$(NULL)
-
-#test_window_LDADD =			\
-#	$(LIGTH_LOCKER_LIBS)		\
-#	$(SAVER_LIBS)			\
-#	$(NULL)
-
 light_locker_dialog_SOURCES = 	\
 	light-locker-dialog.c	\
 	gs-lock-plug.c			\
@@ -132,7 +75,6 @@ light_locker_dialog_LDADD =	\
 	$(LIGHT_LOCKER_DIALOG_LIBS)	\
 	$(SAVER_LIBS)			\
 	$(AUTH_LIBS)			\
-	#$(LIBGNOMEKBDUI_LIBS)		\
 	$(LIBNOTIFY_LIBS)		\
 	$(NULL)
 

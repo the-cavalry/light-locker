@@ -27,7 +27,6 @@
 #include <glib.h>
 #include <glib-object.h>
 #include <gio/gio.h>
-//#include <gdesktop-enums.h>
 
 #include "gs-prefs.h"
 #include "gs-debug.h"
