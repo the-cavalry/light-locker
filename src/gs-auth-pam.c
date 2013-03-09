@@ -624,9 +624,15 @@ gs_auth_pam_verify_user (pam_handle_t *handle,
         watch_id = g_io_add_watch (channel, G_IO_ERR | G_IO_HUP,
                                    (GIOFunc) gs_auth_loop_quit, &thread_done);
 
+#if GLIB_CHECK_VERSION(2,31,0)
+        auth_thread = g_thread_new ("gs_auth_thread",
+                                    (GThreadFunc) gs_auth_thread_func,
+                                    GINT_TO_POINTER (auth_operation_fds[1]));
+#else
         auth_thread = g_thread_create ((GThreadFunc) gs_auth_thread_func,
                                        GINT_TO_POINTER (auth_operation_fds[1]),
                                        TRUE, NULL);
+#endif
 
         if (auth_thread == NULL) {
                 goto out;
