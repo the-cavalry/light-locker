@@ -23,8 +23,6 @@
 #ifndef __GS_MANAGER_H
 #define __GS_MANAGER_H
 
-#include "gs-prefs.h"
-
 G_BEGIN_DECLS
 
 #define GS_TYPE_MANAGER         (gs_manager_get_type ())

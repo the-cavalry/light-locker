@@ -70,8 +70,6 @@ light_locker_SOURCES =	\
 	gs-manager.h		\
 	gs-window-x11.c		\
 	gs-window.h		\
-	gs-prefs.c		\
-	gs-prefs.h		\
 	gs-debug.c		\
 	gs-debug.h		\
 	gs-grab-x11.c		\

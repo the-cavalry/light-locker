@@ -36,7 +36,6 @@
 
 #include "gs-listener-dbus.h"
 #include "gs-monitor.h"
-#include "gs-prefs.h"
 #include "gs-debug.h"
 
 static void     gs_monitor_class_init (GSMonitorClass *klass);
@@ -49,7 +48,6 @@ struct GSMonitorPrivate
 {
         GSListener     *listener;
         GSManager      *manager;
-        GSPrefs        *prefs;
         GSGrab         *grab;
         guint           release_grab_id;
 };
@@ -138,12 +136,6 @@ listener_simulate_user_activity_cb (GSListener *listener,
 }
 
 static void
-_gs_monitor_update_from_prefs (GSMonitor *monitor,
-                               GSPrefs   *prefs)
-{
-}
-
-static void
 disconnect_listener_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_lock_cb, monitor);
@@ -176,26 +168,10 @@ connect_manager_signals (GSMonitor *monitor)
 }
 
 static void
-disconnect_prefs_signals (GSMonitor *monitor)
-{
-        g_signal_handlers_disconnect_by_func (monitor->priv->prefs, _gs_monitor_update_from_prefs, monitor);
-}
-
-static void
-connect_prefs_signals (GSMonitor *monitor)
-{
-        g_signal_connect_swapped (monitor->priv->prefs, "changed",
-                                  G_CALLBACK (_gs_monitor_update_from_prefs), monitor);
-}
-
-static void
 gs_monitor_init (GSMonitor *monitor)
 {
 
         monitor->priv = GS_MONITOR_GET_PRIVATE (monitor);
-
-        monitor->priv->prefs = gs_prefs_new ();
-        connect_prefs_signals (monitor);
 
         monitor->priv->listener = gs_listener_new ();
         connect_listener_signals (monitor);
@@ -204,8 +180,6 @@ gs_monitor_init (GSMonitor *monitor)
 
         monitor->priv->manager = gs_manager_new ();
         connect_manager_signals (monitor);
-
-        _gs_monitor_update_from_prefs (monitor, monitor->priv->prefs);
 }
 
 static void
@@ -222,12 +196,10 @@ gs_monitor_finalize (GObject *object)
 
         disconnect_listener_signals (monitor);
         disconnect_manager_signals (monitor);
-        disconnect_prefs_signals (monitor);
 
         g_object_unref (monitor->priv->grab);
         g_object_unref (monitor->priv->listener);
         g_object_unref (monitor->priv->manager);
-        g_object_unref (monitor->priv->prefs);
 
         G_OBJECT_CLASS (gs_monitor_parent_class)->finalize (object);
 }

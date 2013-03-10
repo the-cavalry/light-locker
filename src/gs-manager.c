@@ -26,8 +26,6 @@
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 
-#include "gs-prefs.h"        /* for GSSaverMode */
-
 #include "gs-manager.h"
 #include "gs-window.h"
 #include "gs-grab.h"
