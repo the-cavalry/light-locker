@@ -353,9 +353,27 @@ gs_grab_move_mouse (GSGrab    *grab,
 
         /* if the pointer is not grabbed and we have a
            mouse_grab_window defined then we lost the grab */
+#if GTK_CHECK_VERSION(3, 0, 0)
+        GList *list, *link;
+        GdkDisplay *display = gdk_window_get_display (grab->priv->mouse_grab_window);
+        GdkDeviceManager *device_manager = gdk_display_get_device_manager (display);
+        list = gdk_device_manager_list_devices (device_manager, GDK_DEVICE_TYPE_MASTER);
+        for (link = list; link != NULL; link = g_list_next (link)) {
+                GdkDevice *device = GDK_DEVICE (link->data);
+
+                if (gdk_device_get_source (device) != GDK_SOURCE_MOUSE)
+                        continue;
+
+                if (! gdk_display_device_is_grabbed(display, device)) {
+                        gs_grab_mouse_reset (grab);
+                }
+        }
+        g_list_free(list);
+#else
         if (! gdk_pointer_is_grabbed ()) {
                 gs_grab_mouse_reset (grab);
         }
+#endif
 
         if (grab->priv->mouse_grab_window == window) {
                 gs_debug ("Window %X is already grabbed, skipping",
