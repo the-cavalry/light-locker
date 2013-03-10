@@ -640,7 +640,14 @@ gs_grab_grab_root (GSGrab  *grab,
         gs_debug ("Grabbing the root window");
 
         display = gdk_display_get_default ();
+#if GTK_CHECK_VERSION(3, 0, 0)
+        GdkDeviceManager *device_manager = gdk_display_get_device_manager (display);
+        GdkDevice *pointer = gdk_device_manager_get_client_pointer (device_manager);
+        gint x = -1, y = -1;
+        gdk_device_get_position (pointer, &screen, &x, &y);
+#else
         gdk_display_get_pointer (display, &screen, NULL, NULL, NULL);
+#endif
         root = gdk_screen_get_root_window (screen);
 
         res = gs_grab_grab_window (grab, root, screen, hide_cursor);
