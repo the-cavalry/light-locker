@@ -64,6 +64,21 @@
 #endif /* !HAVE_PAM_FAIL_DELAY */
 
 
+#if GLIB_CHECK_VERSION (2, 32, 0)
+#define LIGHT_LOCKER_MUTEX(mtx) GMutex mtx
+#define light_locker_mutex_free(mtx) g_mutex_clear (&(mtx))
+#define light_locker_mutex_lock(mtx) g_mutex_lock (&(mtx))
+#define light_locker_mutex_unlock(mtx) g_mutex_unlock (&(mtx))
+#define light_locker_mutex_create(mtx) g_mutex_init (&(mtx))
+#else
+#define LIGHT_LOCKER_MUTEX(mtx) GMutex *mtx
+#define light_locker_mutex_free(mtx) g_mutex_free (mtx)
+#define light_locker_mutex_lock(mtx) g_mutex_lock (mtx)
+#define light_locker_mutex_unlock(mtx) g_mutex_unlock (mtx)
+#define light_locker_mutex_create(mtx) (mtx) = g_mutex_new ()
+#endif
+
+
 /* On SunOS 5.6, and on Linux with PAM 0.64, pam_strerror() takes two args.
    On some other Linux systems with some other version of PAM (e.g.,
    whichever Debian release comes with a 2.2.5 kernel) it takes one arg.
@@ -96,8 +111,12 @@ typedef struct {
         gboolean           should_interrupt_stack;
 } GsAuthMessageHandlerData;
 
+#if GLIB_CHECK_VERSION (2, 32, 0)
+static GCond message_handled_condition;
+#else
 static GCond  *message_handled_condition;
-static GMutex *message_handler_mutex;
+#endif
+static LIGHT_LOCKER_MUTEX(message_handler_mutex);
 
 GQuark
 gs_auth_error_quark (void)
@@ -187,7 +206,7 @@ gs_auth_queued_message_handler (GsAuthMessageHandlerData *data)
                 g_message ("Waiting for lock");
         }
 
-        g_mutex_lock (message_handler_mutex);
+        light_locker_mutex_lock (message_handler_mutex);
 
         if (gs_auth_get_verbose ()) {
                 g_message ("Waiting for response");
@@ -200,8 +219,13 @@ gs_auth_queued_message_handler (GsAuthMessageHandlerData *data)
 
         data->should_interrupt_stack = res == FALSE;
 
+        #if GLIB_CHECK_VERSION (2, 32, 0)
+        g_cond_signal (&message_handled_condition);
+        #else
         g_cond_signal (message_handled_condition);
-        g_mutex_unlock (message_handler_mutex);
+        #endif
+
+        light_locker_mutex_unlock (message_handler_mutex);
 
         if (gs_auth_get_verbose ()) {
                 g_message ("Got response");
@@ -224,7 +248,7 @@ gs_auth_run_message_handler (struct pam_closure *c,
         data.resp = resp;
         data.should_interrupt_stack = TRUE;
 
-        g_mutex_lock (message_handler_mutex);
+        light_locker_mutex_lock (message_handler_mutex);
 
         /* Queue the callback in the gui (the main) thread
          */
@@ -236,9 +260,14 @@ gs_auth_run_message_handler (struct pam_closure *c,
 
         /* Wait for the response
          */
+        #if GLIB_CHECK_VERSION (2, 32, 0)
+        g_cond_wait (&message_handled_condition,
+                     &message_handler_mutex);
+        #else
         g_cond_wait (message_handled_condition,
                      message_handler_mutex);
-        g_mutex_unlock (message_handler_mutex);
+        #endif
+        light_locker_mutex_unlock (message_handler_mutex);
 
         if (gs_auth_get_verbose ()) {
                 g_message ("Got respose to message style %d: interrupt:%d", style, data.should_interrupt_stack);
@@ -356,15 +385,23 @@ close_pam_handle (int status)
                 }
         }
 
+        #if GLIB_CHECK_VERSION (2, 32, 0)
+        g_cond_clear (&message_handled_condition);
+        #else
         if (message_handled_condition != NULL) {
                 g_cond_free (message_handled_condition);
                 message_handled_condition = NULL;
         }
+        #endif
 
-        if (message_handler_mutex != NULL) {
-                g_mutex_free (message_handler_mutex);
+        #if GLIB_CHECK_VERSION (2, 32, 0)
+        light_locker_mutex_free (message_handler_mutex);
+        #else
+        if (message_handled_condition != NULL) {
+                light_locker_mutex_free (message_handler_mutex);
                 message_handler_mutex = NULL;
         }
+        #endif
 
         return TRUE;
 }
@@ -431,8 +468,12 @@ create_pam_handle (const char      *username,
 	}
 
         ret = TRUE;
-	message_handled_condition = g_cond_new ();
-	message_handler_mutex = g_mutex_new ();
+  #if GLIB_CHECK_VERSION (2, 32, 0)
+  g_cond_init (&message_handled_condition);
+  #else
+  message_handled_condition = g_cond_new ();
+  #endif
+  light_locker_mutex_create (message_handler_mutex);
 
  out:
         if (status_code != NULL) {
