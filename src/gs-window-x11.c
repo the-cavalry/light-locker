@@ -161,7 +161,7 @@ set_invisible_cursor (GdkWindow *window,
         gdk_window_set_cursor (window, cursor);
 
         if (cursor) {
-                gdk_cursor_unref (cursor);
+                g_object_unref (cursor);
         }
 }
 

@@ -1210,7 +1210,7 @@ gs_lock_plug_set_busy (GSLockPlug *plug)
 
         cursor = gdk_cursor_new (GDK_WATCH);
         gdk_window_set_cursor (gtk_widget_get_window (top_level), cursor);
-        gdk_cursor_unref (cursor);
+        g_object_unref (cursor);
 }
 
 void
@@ -1223,7 +1223,7 @@ gs_lock_plug_set_ready (GSLockPlug *plug)
 
         cursor = gdk_cursor_new (GDK_LEFT_PTR);
         gdk_window_set_cursor (gtk_widget_get_window (top_level), cursor);
-        gdk_cursor_unref (cursor);
+        g_object_unref (cursor);
 }
 
 void

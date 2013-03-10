@@ -204,7 +204,7 @@ gs_grab_get_mouse (GSGrab    *grab,
                 grab->priv->mouse_hide_cursor = hide_cursor;
         }
 
-        gdk_cursor_unref (cursor);
+        g_object_unref (cursor);
 
         return status;
 }
