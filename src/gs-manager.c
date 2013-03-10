@@ -44,10 +44,8 @@ struct GSManagerPrivate
         GSList      *windows;
 
         /* Policy */
-        glong        lock_timeout;
         glong        logout_timeout;
 
-        guint        lock_enabled : 1;
         guint        logout_enabled : 1;
         guint        keyboard_enabled : 1;
         guint        user_switch_enabled : 1;
@@ -59,14 +57,11 @@ struct GSManagerPrivate
 
         /* State */
         guint        active : 1;
-        guint        lock_active : 1;
 
         guint        fading : 1;
         guint        dialog_up : 1;
 
         time_t       activate_time;
-
-        guint        lock_timeout_id;
 
         GSGrab      *grab;
 };
@@ -81,11 +76,9 @@ enum {
 
 enum {
         PROP_0,
-        PROP_LOCK_ENABLED,
         PROP_LOGOUT_ENABLED,
         PROP_USER_SWITCH_ENABLED,
         PROP_KEYBOARD_ENABLED,
-        PROP_LOCK_TIMEOUT,
         PROP_LOGOUT_TIMEOUT,
         PROP_LOGOUT_COMMAND,
         PROP_KEYBOARD_COMMAND,
@@ -98,62 +91,6 @@ enum {
 static guint         signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSManager, gs_manager, G_TYPE_OBJECT)
-
-void
-gs_manager_get_lock_active (GSManager *manager,
-                            gboolean  *lock_active)
-{
-        if (lock_active != NULL) {
-                *lock_active = FALSE;
-        }
-
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        *lock_active = manager->priv->lock_active;
-}
-
-void
-gs_manager_set_lock_active (GSManager *manager,
-                            gboolean   lock_active)
-{
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        gs_debug ("Setting lock active: %d", lock_active);
-
-        if (manager->priv->lock_active != lock_active) {
-                GSList *l;
-
-                manager->priv->lock_active = lock_active;
-                for (l = manager->priv->windows; l; l = l->next) {
-                        gs_window_set_lock_enabled (l->data, lock_active);
-                }
-        }
-}
-
-void
-gs_manager_get_lock_enabled (GSManager *manager,
-                             gboolean  *lock_enabled)
-{
-        if (lock_enabled != NULL) {
-                *lock_enabled = FALSE;
-        }
-
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        *lock_enabled = manager->priv->lock_enabled;
-}
-
-void
-gs_manager_set_lock_enabled (GSManager *manager,
-                             gboolean   lock_enabled)
-{
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        if (manager->priv->lock_enabled != lock_enabled) {
-                manager->priv->lock_enabled = lock_enabled;
-                gs_debug ("GSManager: lock-enabled=%d", lock_enabled);
-        }
-}
 
 void
 gs_manager_set_logout_enabled (GSManager *manager,
@@ -199,63 +136,6 @@ gs_manager_set_user_switch_enabled (GSManager *manager,
                 manager->priv->user_switch_enabled = user_switch_enabled;
                 for (l = manager->priv->windows; l; l = l->next) {
                         gs_window_set_user_switch_enabled (l->data, user_switch_enabled);
-                }
-        }
-}
-
-static gboolean
-activate_lock_timeout (GSManager *manager)
-{
-        if (manager->priv->lock_enabled) {
-                gs_manager_set_lock_active (manager, TRUE);
-        }
-
-        manager->priv->lock_timeout_id = 0;
-
-        return FALSE;
-}
-
-static void
-remove_lock_timer (GSManager *manager)
-{
-        if (manager->priv->lock_timeout_id != 0) {
-                g_source_remove (manager->priv->lock_timeout_id);
-                manager->priv->lock_timeout_id = 0;
-        }
-}
-
-static void
-add_lock_timer (GSManager *manager,
-                glong      timeout)
-{
-        manager->priv->lock_timeout_id = g_timeout_add (timeout,
-                                                        (GSourceFunc)activate_lock_timeout,
-                                                        manager);
-}
-
-void
-gs_manager_set_lock_timeout (GSManager *manager,
-                             glong      lock_timeout)
-{
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        if (manager->priv->lock_timeout != lock_timeout) {
-
-                manager->priv->lock_timeout = lock_timeout;
-
-                if (manager->priv->active
-                    && ! manager->priv->lock_active
-                    && (lock_timeout >= 0)) {
-
-                        glong elapsed = (time (NULL) - manager->priv->activate_time) * 1000;
-
-                        remove_lock_timer (manager);
-
-                        if (elapsed >= lock_timeout) {
-                                activate_lock_timeout (manager);
-                        } else {
-                                add_lock_timer (manager, lock_timeout - elapsed);
-                        }
                 }
         }
 }
@@ -346,12 +226,6 @@ gs_manager_set_property (GObject            *object,
         self = GS_MANAGER (object);
 
         switch (prop_id) {
-        case PROP_LOCK_ENABLED:
-                gs_manager_set_lock_enabled (self, g_value_get_boolean (value));
-                break;
-        case PROP_LOCK_TIMEOUT:
-                gs_manager_set_lock_timeout (self, g_value_get_long (value));
-                break;
         case PROP_LOGOUT_ENABLED:
                 gs_manager_set_logout_enabled (self, g_value_get_boolean (value));
                 break;
@@ -390,12 +264,6 @@ gs_manager_get_property (GObject            *object,
         self = GS_MANAGER (object);
 
         switch (prop_id) {
-        case PROP_LOCK_ENABLED:
-                g_value_set_boolean (value, self->priv->lock_enabled);
-                break;
-        case PROP_LOCK_TIMEOUT:
-                g_value_set_long (value, self->priv->lock_timeout);
-                break;
         case PROP_LOGOUT_ENABLED:
                 g_value_set_boolean (value, self->priv->logout_enabled);
                 break;
@@ -484,22 +352,6 @@ gs_manager_class_init (GSManagerClass *klass)
                                                                FALSE,
                                                                G_PARAM_READABLE));
         g_object_class_install_property (object_class,
-                                         PROP_LOCK_ENABLED,
-                                         g_param_spec_boolean ("lock-enabled",
-                                                               NULL,
-                                                               NULL,
-                                                               FALSE,
-                                                               G_PARAM_READWRITE));
-        g_object_class_install_property (object_class,
-                                         PROP_LOCK_TIMEOUT,
-                                         g_param_spec_long ("lock-timeout",
-                                                            NULL,
-                                                            NULL,
-                                                            -1,
-                                                            G_MAXLONG,
-                                                            0,
-                                                            G_PARAM_READWRITE));
-        g_object_class_install_property (object_class,
                                          PROP_LOGOUT_ENABLED,
                                          g_param_spec_boolean ("logout-enabled",
                                                                NULL,
@@ -540,12 +392,6 @@ gs_manager_init (GSManager *manager)
         manager->priv = GS_MANAGER_GET_PRIVATE (manager);
 
         manager->priv->grab = gs_grab_new ();
-}
-
-static void
-remove_timers (GSManager *manager)
-{
-        remove_lock_timer (manager);
 }
 
 
@@ -722,11 +568,6 @@ manager_show_window (GSManager *manager,
 
         manager->priv->activate_time = time (NULL);
 
-        if (manager->priv->lock_timeout >= 0) {
-                remove_lock_timer (manager);
-                add_lock_timer (manager, manager->priv->lock_timeout);
-        }
-
         /* FIXME: only emit signal once */
         g_signal_emit (manager, signals [ACTIVATED], 0);
 }
@@ -889,7 +730,7 @@ gs_manager_create_window_for_monitor (GSManager *manager,
         gs_debug ("Creating window for monitor %d [%d,%d] (%dx%d)",
                   monitor, rect.x, rect.y, rect.width, rect.height);
 
-        window = gs_window_new (screen, monitor, manager->priv->lock_active);
+        window = gs_window_new (screen, monitor);
 
         gs_window_set_user_switch_enabled (window, manager->priv->user_switch_enabled);
         gs_window_set_logout_enabled (window, manager->priv->logout_enabled);
@@ -1023,15 +864,12 @@ gs_manager_finalize (GObject *object)
         g_free (manager->priv->keyboard_command);
         g_free (manager->priv->status_message);
 
-        remove_timers (manager);
-
         gs_grab_release (manager->priv->grab);
 
         gs_manager_destroy_windows (manager);
 
         manager->priv->active = FALSE;
         manager->priv->activate_time = 0;
-        manager->priv->lock_enabled = FALSE;
 
         g_object_unref (manager->priv->grab);
 
@@ -1149,8 +987,6 @@ gs_manager_deactivate (GSManager *manager)
                 return FALSE;
         }
 
-        remove_timers (manager);
-
         gs_grab_release (manager->priv->grab);
 
         gs_manager_destroy_windows (manager);
@@ -1158,7 +994,6 @@ gs_manager_deactivate (GSManager *manager)
         /* reset state */
         manager->priv->active = FALSE;
         manager->priv->activate_time = 0;
-        manager->priv->lock_active = FALSE;
         manager->priv->dialog_up = FALSE;
         manager->priv->fading = FALSE;
 

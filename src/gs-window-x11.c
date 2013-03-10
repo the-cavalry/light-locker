@@ -67,7 +67,6 @@ struct GSWindowPrivate
         guint      obscured : 1;
         guint      dialog_up : 1;
 
-        guint      lock_enabled : 1;
         guint      user_switch_enabled : 1;
         guint      logout_enabled : 1;
         guint      keyboard_enabled : 1;
@@ -130,7 +129,6 @@ enum {
         PROP_0,
         PROP_OBSCURED,
         PROP_DIALOG_UP,
-        PROP_LOCK_ENABLED,
         PROP_LOGOUT_ENABLED,
         PROP_KEYBOARD_ENABLED,
         PROP_KEYBOARD_COMMAND,
@@ -1514,12 +1512,6 @@ gs_window_request_unlock (GSWindow *window)
                 return;
         }
 
-        if (! window->priv->lock_enabled) {
-                add_emit_deactivated_idle (window);
-
-                return;
-        }
-
         if (window->priv->popup_dialog_idle_id == 0) {
                 add_popup_dialog_idle (window);
         }
@@ -1537,20 +1529,6 @@ gs_window_cancel_unlock_request (GSWindow  *window)
         g_return_if_fail (GS_IS_WINDOW (window));
 
         popdown_dialog (window);
-}
-
-void
-gs_window_set_lock_enabled (GSWindow *window,
-                            gboolean  lock_enabled)
-{
-        g_return_if_fail (GS_IS_WINDOW (window));
-
-        if (window->priv->lock_enabled == lock_enabled) {
-                return;
-        }
-
-        window->priv->lock_enabled = lock_enabled;
-        g_object_notify (G_OBJECT (window), "lock-enabled");
 }
 
 void
@@ -1688,9 +1666,6 @@ gs_window_set_property (GObject            *object,
         self = GS_WINDOW (object);
 
         switch (prop_id) {
-        case PROP_LOCK_ENABLED:
-                gs_window_set_lock_enabled (self, g_value_get_boolean (value));
-                break;
         case PROP_KEYBOARD_ENABLED:
                 gs_window_set_keyboard_enabled (self, g_value_get_boolean (value));
                 break;
@@ -1729,9 +1704,6 @@ gs_window_get_property (GObject    *object,
         self = GS_WINDOW (object);
 
         switch (prop_id) {
-        case PROP_LOCK_ENABLED:
-                g_value_set_boolean (value, self->priv->lock_enabled);
-                break;
         case PROP_KEYBOARD_ENABLED:
                 g_value_set_boolean (value, self->priv->keyboard_enabled);
                 break;
@@ -2086,13 +2058,6 @@ gs_window_class_init (GSWindowClass *klass)
                                                                FALSE,
                                                                G_PARAM_READABLE));
         g_object_class_install_property (object_class,
-                                         PROP_LOCK_ENABLED,
-                                         g_param_spec_boolean ("lock-enabled",
-                                                               NULL,
-                                                               NULL,
-                                                               FALSE,
-                                                               G_PARAM_READWRITE));
-        g_object_class_install_property (object_class,
                                          PROP_LOGOUT_ENABLED,
                                          g_param_spec_boolean ("logout-enabled",
                                                                NULL,
@@ -2385,8 +2350,7 @@ gs_window_finalize (GObject *object)
 
 GSWindow *
 gs_window_new (GdkScreen *screen,
-               int        monitor,
-               gboolean   lock_enabled)
+               int        monitor)
 {
         GObject     *result;
 
@@ -2394,7 +2358,6 @@ gs_window_new (GdkScreen *screen,
                                "type", GTK_WINDOW_POPUP,
                                "screen", screen,
                                "monitor", monitor,
-                               "lock-enabled", lock_enabled,
                                "app-paintable", TRUE,
                                NULL);
 

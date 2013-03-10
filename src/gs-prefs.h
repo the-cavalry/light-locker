@@ -41,15 +41,12 @@ typedef struct
         GSPrefsPrivate  *priv;
 
         guint            idle_activation_enabled : 1; /* whether to activate when idle */
-        guint            lock_enabled : 1;              /* whether to lock when active */
         guint            logout_enabled : 1;    /* Whether to offer the logout option */
-        guint            lock_disabled : 1;     /* Whether locking the system is disabled */
         guint            user_switch_disabled : 1;      /* Whether user switching is disabled */
         guint            user_switch_enabled : 1;       /* Whether to offer the user switch option */
         guint            keyboard_enabled : 1;  /* Whether to try to embed a keyboard */
         guint            status_message_enabled : 1; /* show the status message in the lock */
 
-        guint            lock_timeout;          /* how long after activation locking starts */
         guint            logout_timeout;        /* how long until the logout option appears */
 
         char            *logout_command;        /* command to use to logout */

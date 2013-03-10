@@ -61,22 +61,12 @@ gboolean    gs_manager_set_active           (GSManager  *manager,
                                              gboolean    active);
 gboolean    gs_manager_get_active           (GSManager  *manager);
 
-void        gs_manager_get_lock_active      (GSManager  *manager,
-                                             gboolean   *lock_active);
-void        gs_manager_set_lock_active      (GSManager  *manager,
-                                             gboolean    lock_active);
 void        gs_manager_set_keyboard_enabled (GSManager  *manager,
                                              gboolean    enabled);
 void        gs_manager_set_keyboard_command (GSManager  *manager,
                                              const char *command);
 void        gs_manager_set_status_message   (GSManager  *manager,
                                              const char *message);
-void        gs_manager_get_lock_enabled     (GSManager  *manager,
-                                             gboolean   *lock_enabled);
-void        gs_manager_set_lock_enabled     (GSManager  *manager,
-                                             gboolean    lock_enabled);
-void        gs_manager_set_lock_timeout     (GSManager  *manager,
-                                             glong       lock_timeout);
 void        gs_manager_set_logout_enabled   (GSManager  *manager,
                                              gboolean    logout_enabled);
 void        gs_manager_set_user_switch_enabled (GSManager  *manager,

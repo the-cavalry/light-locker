@@ -145,21 +145,13 @@ static void
 gs_monitor_lock_screen (GSMonitor *monitor)
 {
         gboolean res;
-        gboolean locked;
         gboolean active;
 
-        /* set lock flag before trying to activate screensaver
-           in case something tries to react to the ActiveChanged signal */
-
-        gs_manager_get_lock_active (monitor->priv->manager, &locked);
-        gs_manager_set_lock_active (monitor->priv->manager, TRUE);
         active = gs_manager_get_active (monitor->priv->manager);
 
         if (! active) {
                 res = gs_listener_set_active (monitor->priv->listener, TRUE);
                 if (! res) {
-                        /* If we've failed then restore lock status */
-                        gs_manager_set_lock_active (monitor->priv->manager, locked);
                         gs_debug ("Unable to lock the screen");
                 }
         }
@@ -180,12 +172,7 @@ static void
 listener_lock_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
-        if (! monitor->priv->prefs->lock_disabled) {
-                gs_monitor_lock_screen (monitor);
-        } else {
-                gs_debug ("Locking disabled by the administrator");
-        }
-
+        gs_monitor_lock_screen (monitor);
 }
 
 static void
@@ -255,14 +242,10 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
         gboolean idle_detection_active;
         gboolean activate_watch;
         gboolean manager_active;
-        gboolean lock_enabled;
         gboolean user_switch_enabled;
 
-        lock_enabled = (monitor->priv->prefs->lock_enabled && !monitor->priv->prefs->lock_disabled);
         user_switch_enabled = (monitor->priv->prefs->user_switch_enabled && !monitor->priv->prefs->user_switch_disabled);
 
-        gs_manager_set_lock_enabled (monitor->priv->manager, lock_enabled);
-        gs_manager_set_lock_timeout (monitor->priv->manager, monitor->priv->prefs->lock_timeout);
         gs_manager_set_logout_enabled (monitor->priv->manager, monitor->priv->prefs->logout_enabled);
         gs_manager_set_user_switch_enabled (monitor->priv->manager, user_switch_enabled);
         gs_manager_set_keyboard_enabled (monitor->priv->manager, monitor->priv->prefs->keyboard_enabled);

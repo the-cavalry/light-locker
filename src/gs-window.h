@@ -68,8 +68,6 @@ int         gs_window_get_monitor        (GSWindow  *window);
 
 void        gs_window_set_background_surface (GSWindow        *window,
                                               cairo_surface_t *surface);
-void        gs_window_set_lock_enabled   (GSWindow  *window,
-                                          gboolean   lock_enabled);
 void        gs_window_set_logout_enabled (GSWindow  *window,
                                           gboolean   logout_enabled);
 void        gs_window_set_keyboard_enabled (GSWindow  *window,
@@ -93,8 +91,7 @@ void        gs_window_request_unlock     (GSWindow  *window);
 void        gs_window_cancel_unlock_request (GSWindow  *window);
 
 GSWindow  * gs_window_new                (GdkScreen *screen,
-                                          int        monitor,
-                                          gboolean   lock_enabled);
+                                          int        monitor);
 void        gs_window_show               (GSWindow  *window);
 void        gs_window_destroy            (GSWindow  *window);
 GdkWindow * gs_window_get_gdk_window     (GSWindow  *window);
