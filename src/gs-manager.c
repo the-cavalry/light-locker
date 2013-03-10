@@ -43,8 +43,6 @@ struct GSManagerPrivate
 {
         GSList      *windows;
 
-        char        *status_message;
-
         /* State */
         guint        active : 1;
 
@@ -70,37 +68,13 @@ static guint         signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSManager, gs_manager, G_TYPE_OBJECT)
 
-void
-gs_manager_set_status_message (GSManager  *manager,
-                               const char *status_message)
-{
-        GSList *l;
-
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        g_free (manager->priv->status_message);
-
-        manager->priv->status_message = g_strdup (status_message);
-
-        for (l = manager->priv->windows; l; l = l->next) {
-                gs_window_set_status_message (l->data, manager->priv->status_message);
-        }
-}
-
 static void
 gs_manager_set_property (GObject            *object,
                          guint               prop_id,
                          const GValue       *value,
                          GParamSpec         *pspec)
 {
-        GSManager *self;
-
-        self = GS_MANAGER (object);
-
         switch (prop_id) {
-        case PROP_STATUS_MESSAGE:
-                gs_manager_set_status_message (self, g_value_get_string (value));
-                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -118,9 +92,6 @@ gs_manager_get_property (GObject            *object,
         self = GS_MANAGER (object);
 
         switch (prop_id) {
-        case PROP_STATUS_MESSAGE:
-                g_value_set_string (value, self->priv->status_message);
-                break;
         case PROP_ACTIVE:
                 g_value_set_boolean (value, self->priv->active);
                 break;
@@ -403,8 +374,6 @@ gs_manager_create_window_for_monitor (GSManager *manager,
 
         window = gs_window_new (screen, monitor);
 
-        gs_window_set_status_message (window, manager->priv->status_message);
-
         connect_window_signals (manager, window);
 
         manager->priv->windows = g_slist_append (manager->priv->windows, window);
@@ -524,8 +493,6 @@ gs_manager_finalize (GObject *object)
         manager = GS_MANAGER (object);
 
         g_return_if_fail (manager->priv != NULL);
-
-        g_free (manager->priv->status_message);
 
         gs_grab_release (manager->priv->grab);
 

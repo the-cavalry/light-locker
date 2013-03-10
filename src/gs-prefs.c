@@ -38,7 +38,6 @@ static void gs_prefs_finalize   (GObject      *object);
 #define LOCKDOWN_SETTINGS_SCHEMA "org.gnome.desktop.lockdown"
 
 #define GS_SETTINGS_SCHEMA "org.gnome.desktop.screensaver"
-#define KEY_IDLE_ACTIVATION_ENABLED         "idle-activation-enabled"
 #define KEY_STATUS_MESSAGE_ENABLED   "status-message-enabled"
 
 #define GS_PREFS_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_PREFS, GSPrefsPrivate))
@@ -114,13 +113,6 @@ gs_prefs_class_init (GSPrefsClass *klass)
 }
 
 static void
-_gs_prefs_set_idle_activation_enabled (GSPrefs *prefs,
-                                       gboolean value)
-{
-        prefs->idle_activation_enabled = value;
-}
-
-static void
 _gs_prefs_set_status_message_enabled (GSPrefs  *prefs,
                                       gboolean  enabled)
 {
@@ -131,9 +123,6 @@ static void
 gs_prefs_load_from_settings (GSPrefs *prefs)
 {
         gboolean bvalue;
-
-        bvalue = g_settings_get_boolean (prefs->priv->settings, KEY_IDLE_ACTIVATION_ENABLED);
-        _gs_prefs_set_idle_activation_enabled (prefs, bvalue);
 
         bvalue = g_settings_get_boolean (prefs->priv->settings, KEY_STATUS_MESSAGE_ENABLED);
         _gs_prefs_set_status_message_enabled (prefs, bvalue);
@@ -147,14 +136,7 @@ key_changed_cb (GSettings   *settings,
                 const gchar *key,
                 GSPrefs     *prefs)
 {
-        if (strcmp (key, KEY_IDLE_ACTIVATION_ENABLED) == 0) {
-
-                gboolean enabled;
-
-                enabled = g_settings_get_boolean (settings, key);
-                _gs_prefs_set_idle_activation_enabled (prefs, enabled);
-
-        } else if (strcmp (key, KEY_STATUS_MESSAGE_ENABLED) == 0) {
+        if (strcmp (key, KEY_STATUS_MESSAGE_ENABLED) == 0) {
 
                 gboolean enabled;
 
@@ -184,8 +166,6 @@ gs_prefs_init (GSPrefs *prefs)
                           "changed",
                           G_CALLBACK (key_changed_cb),
                           prefs);
-
-        prefs->idle_activation_enabled = TRUE;
 
         gs_prefs_load_from_settings (prefs);
 }

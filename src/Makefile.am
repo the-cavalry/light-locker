@@ -64,8 +64,6 @@ light_locker_SOURCES =	\
 	gs-bus.h		\
 	gs-monitor.c		\
 	gs-monitor.h		\
-	gs-watcher-x11.c	\
-	gs-watcher.h		\
 	gs-listener-dbus.c	\
 	gs-listener-dbus.h	\
 	gs-manager.c		\

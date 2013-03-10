@@ -51,13 +51,5 @@
 #define GS_PATH                         "/org/gnome/ScreenSaver"
 #define GS_INTERFACE                    "org.gnome.ScreenSaver"
 
-/* Gnome Session Manager */
-#define GSM_SERVICE                     "org.gnome.SessionManager"
-#define GSM_PATH                        "/org/gnome/SessionManager"
-#define GSM_INTERFACE                   "org.gnome.SessionManager"
-
-#define GSM_PRESENCE_PATH               GSM_PATH "/Presence"
-#define GSM_PRESENCE_INTERFACE          GSM_INTERFACE ".Presence"
-
 #endif
 

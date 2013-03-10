@@ -68,11 +68,8 @@ struct GSListenerPrivate
         DBusConnection *connection;
         DBusConnection *system_connection;
 
-        guint           session_idle : 1;
         guint           active : 1;
-        guint           activation_enabled : 1;
         time_t          active_start;
-        time_t          session_idle_start;
         char           *session_id;
 
 #ifdef WITH_SYSTEMD
@@ -92,8 +89,6 @@ enum {
 enum {
         PROP_0,
         PROP_ACTIVE,
-        PROP_SESSION_IDLE,
-        PROP_ACTIVATION_ENABLED,
 };
 
 static DBusObjectPathVTable
@@ -186,51 +181,10 @@ gs_listener_send_signal_active_changed (GSListener *listener)
 }
 
 static gboolean
-listener_check_activation (GSListener *listener)
-{
-        gboolean res;
-
-        gs_debug ("Checking for activation");
-
-        if (! listener->priv->activation_enabled) {
-                return TRUE;
-        }
-
-        if (! listener->priv->session_idle) {
-                return TRUE;
-        }
-
-        gs_debug ("Trying to activate");
-        res = gs_listener_set_active (listener, TRUE);
-
-        return res;
-}
-
-static gboolean
-listener_set_session_idle_internal (GSListener *listener,
-                                    gboolean    idle)
-{
-        listener->priv->session_idle = idle;
-
-        if (idle) {
-                listener->priv->session_idle_start = time (NULL);
-        } else {
-                listener->priv->session_idle_start = 0;
-        }
-
-        return TRUE;
-}
-
-static gboolean
 listener_set_active_internal (GSListener *listener,
                               gboolean    active)
 {
         listener->priv->active = active;
-
-        /* if idle not in sync with active, change it */
-        if (listener->priv->session_idle != active) {
-                listener_set_session_idle_internal (listener, active);
-        }
 
         if (active) {
                 listener->priv->active_start = time (NULL);
@@ -263,66 +217,12 @@ gs_listener_set_active (GSListener *listener,
                 /* if the signal is not handled then we haven't changed state */
                 gs_debug ("Active-changed signal not handled");
 
-                /* clear the idle state */
-                if (active) {
-                        listener_set_session_idle_internal (listener, FALSE);
-                }
-
                 return FALSE;
         }
 
         listener_set_active_internal (listener, active);
 
         return TRUE;
-}
-
-gboolean
-gs_listener_set_session_idle (GSListener *listener,
-                              gboolean    idle)
-{
-        gboolean res;
-
-        g_return_val_if_fail (GS_IS_LISTENER (listener), FALSE);
-
-        gs_debug ("Setting session idle: %d", idle);
-
-        if (listener->priv->session_idle == idle) {
-                gs_debug ("Trying to set idle state when already %s",
-                          idle ? "idle" : "not idle");
-                return FALSE;
-        }
-
-        listener->priv->session_idle = idle;
-        res = listener_check_activation (listener);
-
-        /* if activation fails then don't set idle */
-        if (res) {
-                listener_set_session_idle_internal (listener, idle);
-        } else {
-                gs_debug ("Idle activation failed");
-                listener->priv->session_idle = !idle;
-        }
-
-        return res;
-}
-
-gboolean
-gs_listener_get_activation_enabled (GSListener *listener)
-{
-        g_return_val_if_fail (GS_IS_LISTENER (listener), FALSE);
-
-        return listener->priv->activation_enabled;
-}
-
-void
-gs_listener_set_activation_enabled (GSListener *listener,
-                                    gboolean    enabled)
-{
-        g_return_if_fail (GS_IS_LISTENER (listener));
-
-        if (listener->priv->activation_enabled != enabled) {
-                listener->priv->activation_enabled = enabled;
-        }
 }
 
 static dbus_bool_t
@@ -1128,12 +1028,6 @@ gs_listener_set_property (GObject            *object,
         case PROP_ACTIVE:
                 gs_listener_set_active (self, g_value_get_boolean (value));
                 break;
-        case PROP_SESSION_IDLE:
-                gs_listener_set_session_idle (self, g_value_get_boolean (value));
-                break;
-        case PROP_ACTIVATION_ENABLED:
-                gs_listener_set_activation_enabled (self, g_value_get_boolean (value));
-                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -1153,12 +1047,6 @@ gs_listener_get_property (GObject            *object,
         switch (prop_id) {
         case PROP_ACTIVE:
                 g_value_set_boolean (value, self->priv->active);
-                break;
-        case PROP_SESSION_IDLE:
-                g_value_set_boolean (value, self->priv->session_idle);
-                break;
-        case PROP_ACTIVATION_ENABLED:
-                g_value_set_boolean (value, self->priv->activation_enabled);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -1236,13 +1124,6 @@ gs_listener_class_init (GSListenerClass *klass)
                                                                NULL,
                                                                NULL,
                                                                FALSE,
-                                                               G_PARAM_READWRITE));
-        g_object_class_install_property (object_class,
-                                         PROP_ACTIVATION_ENABLED,
-                                         g_param_spec_boolean ("activation-enabled",
-                                                               NULL,
-                                                               NULL,
-                                                               TRUE,
                                                                G_PARAM_READWRITE));
 
         g_type_class_add_private (klass, sizeof (GSListenerPrivate));

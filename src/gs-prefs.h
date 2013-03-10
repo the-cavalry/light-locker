@@ -40,7 +40,6 @@ typedef struct
 
         GSPrefsPrivate  *priv;
 
-        guint            idle_activation_enabled : 1; /* whether to activate when idle */
         guint            status_message_enabled : 1; /* show the status message in the lock */
 } GSPrefs;
 
