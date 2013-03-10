@@ -35,19 +35,6 @@
 static GSGrab *grab = NULL;
 
 static void
-window_deactivated_cb (GSWindow  *window,
-                       gpointer   data)
-{
-        gs_window_destroy (window);
-}
-
-static void
-window_dialog_up_changed_cb (GSWindow  *window,
-                             gpointer   data)
-{
-}
-
-static void
 window_show_cb (GSWindow  *window,
                 gpointer   data)
 {
@@ -75,8 +62,6 @@ disconnect_window_signals (GSWindow *window)
 
         data = NULL;
         g_signal_handlers_disconnect_by_func (window, window_activity_cb, data);
-        g_signal_handlers_disconnect_by_func (window, window_deactivated_cb, data);
-        g_signal_handlers_disconnect_by_func (window, window_dialog_up_changed_cb, data);
         g_signal_handlers_disconnect_by_func (window, window_show_cb, data);
 }
 
@@ -100,10 +85,6 @@ connect_window_signals (GSWindow *window)
                                  G_CALLBACK (window_activity_cb), data, 0);
         g_signal_connect_object (window, "destroy",
                                  G_CALLBACK (window_destroyed_cb), data, 0);
-        g_signal_connect_object (window, "deactivated",
-                                 G_CALLBACK (window_deactivated_cb), data, 0);
-        g_signal_connect_object (window, "notify::dialog-up",
-                                 G_CALLBACK (window_dialog_up_changed_cb), data, 0);
         g_signal_connect_object (window, "show",
                                  G_CALLBACK (window_show_cb), data, 0);
 }
@@ -118,13 +99,10 @@ test_window (void)
         int        monitor;
 
         lock_active = TRUE;
-        user_switch_enabled = TRUE;
         screen = gdk_screen_get_default ();
         monitor = 0;
 
         window = gs_window_new (screen, monitor, lock_active);
-
-        gs_window_set_user_switch_enabled (window, user_switch_enabled);
 
         connect_window_signals (window);
 

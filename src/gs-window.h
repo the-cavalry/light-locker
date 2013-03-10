@@ -57,7 +57,6 @@ typedef struct
 GType       gs_window_get_type           (void);
 
 gboolean    gs_window_is_obscured        (GSWindow  *window);
-gboolean    gs_window_is_dialog_up       (GSWindow  *window);
 
 void        gs_window_set_screen         (GSWindow  *window,
                                           GdkScreen *screen);
@@ -68,18 +67,6 @@ int         gs_window_get_monitor        (GSWindow  *window);
 
 void        gs_window_set_background_surface (GSWindow        *window,
                                               cairo_surface_t *surface);
-void        gs_window_set_logout_enabled (GSWindow  *window,
-                                          gboolean   logout_enabled);
-void        gs_window_set_keyboard_enabled (GSWindow  *window,
-                                            gboolean   enabled);
-void        gs_window_set_keyboard_command (GSWindow   *window,
-                                            const char *command);
-void        gs_window_set_user_switch_enabled (GSWindow  *window,
-                                               gboolean   user_switch_enabled);
-void        gs_window_set_logout_timeout (GSWindow  *window,
-                                          glong      timeout);
-void        gs_window_set_logout_command (GSWindow   *window,
-                                          const char *command);
 void        gs_window_set_status_message   (GSWindow   *window,
                                             const char *status_message);
 void        gs_window_show_message         (GSWindow   *window,

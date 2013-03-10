@@ -9,8 +9,6 @@ INCLUDES =							\
 	-I.							\
 	-I$(srcdir)						\
 	$(LIGHT_LOCKER_CFLAGS)					\
-	$(LIGHT_LOCKER_DIALOG_CFLAGS)				\
-	$(LIGHT_LOCKER_CAPPLET_CFLAGS)				\
 	$(DISABLE_DEPRECATED_CFLAGS)				\
 	-DPREFIX=\""$(prefix)"\" 				\
 	-DBINDIR=\""$(bindir)"\"				\
@@ -23,7 +21,6 @@ INCLUDES =							\
 	-DGTKBUILDERDIR=\"$(pkgdatadir)\"			\
 	-DPAM_SERVICE_NAME=\""light-locker"\"			\
 	$(WARN_CFLAGS)						\
-	$(AUTH_CFLAGS)						\
 	$(DEBUG_CFLAGS)						\
 	$(DBUS_CFLAGS)						\
 	$(LIBNOTIFY_CFLAGS)					\
@@ -33,10 +30,6 @@ INCLUDES =							\
 bin_PROGRAMS = \
 	light-locker		\
 	light-locker-command	\
-	$(NULL)
-
-libexec_PROGRAMS = \
-	light-locker-dialog	\
 	$(NULL)
 
 desktopdir = $(datadir)/applications
@@ -51,31 +44,6 @@ light_locker_command_SOURCES = 	\
 
 light_locker_command_LDADD =	\
 	$(LIGHT_LOCKER_COMMAND_LIBS)	\
-	$(NULL)
-
-AUTH_SOURCES =				\
-	gs-auth-@AUTH_SCHEME@.c		\
-	$(NULL)
-
-light_locker_dialog_SOURCES = 	\
-	light-locker-dialog.c	\
-	gs-lock-plug.c			\
-	gs-lock-plug.h			\
-	gs-debug.c			\
-	gs-debug.h			\
-	setuid.c			\
-	setuid.h			\
-	subprocs.c			\
-	subprocs.h			\
-	gs-auth.h			\
-	$(AUTH_SOURCES)			\
-	$(NULL)
-
-light_locker_dialog_LDADD =	\
-	$(LIGHT_LOCKER_DIALOG_LIBS)	\
-	$(SAVER_LIBS)			\
-	$(AUTH_LIBS)			\
-	$(LIBNOTIFY_LIBS)		\
 	$(NULL)
 
 BUILT_SOURCES = 		\
@@ -108,8 +76,6 @@ light_locker_SOURCES =	\
 	gs-prefs.h		\
 	gs-debug.c		\
 	gs-debug.h		\
-	subprocs.c		\
-	subprocs.h		\
 	gs-grab-x11.c		\
 	gs-grab.h		\
 	$(BUILT_SOURCES)	\
@@ -137,21 +103,5 @@ CLEANFILES = 				\
 MAINTAINERCLEANFILES =			\
 	*~				\
 	Makefile.in
-
-instags-exec-hook:
-	@if [ "x@NEED_SETUID@" = "xyes" ]; then \
-	    echo "***" ; \
-	    echo "***  Warning: light-locker has been compiled with support for" ; \
-	    echo "***           bsdauth(3) and must be instagsed as a setuid root" ; \
-	    echo "***           program in order for locking to work.  To do this, you" ; \
-	    echo "***           must run:" ; \
-	    echo "***" ; \
-	    echo "***           chown root $(DESTDIR)$(libexecdir)/light-locker-dialog" ; \
-	    echo "***           chmod +s $(DESTDIR)$(libexecdir)/light-locker-dialog" ; \
-	    echo "***" ; \
-	    echo "***           For now, it wigs be instagsed non-setuid, which" ; \
-	    echo "***           means that locking might not work." ; \
-	    echo "***" ; \
-	fi
 
 -include $(top_srcdir)/git.mk

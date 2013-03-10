@@ -48,8 +48,6 @@ typedef struct
 
         void            (* activated)          (GSManager *manager);
         void            (* deactivated)        (GSManager *manager);
-        void            (* auth_request_begin) (GSManager *manager);
-        void            (* auth_request_end)   (GSManager *manager);
 
 } GSManagerClass;
 
@@ -61,20 +59,8 @@ gboolean    gs_manager_set_active           (GSManager  *manager,
                                              gboolean    active);
 gboolean    gs_manager_get_active           (GSManager  *manager);
 
-void        gs_manager_set_keyboard_enabled (GSManager  *manager,
-                                             gboolean    enabled);
-void        gs_manager_set_keyboard_command (GSManager  *manager,
-                                             const char *command);
 void        gs_manager_set_status_message   (GSManager  *manager,
                                              const char *message);
-void        gs_manager_set_logout_enabled   (GSManager  *manager,
-                                             gboolean    logout_enabled);
-void        gs_manager_set_user_switch_enabled (GSManager  *manager,
-                                                gboolean    user_switch_enabled);
-void        gs_manager_set_logout_timeout   (GSManager  *manager,
-                                             glong       logout_timeout);
-void        gs_manager_set_logout_command   (GSManager  *manager,
-                                             const char *command);
 void        gs_manager_set_themes           (GSManager  *manager,
                                              GSList     *themes);
 void        gs_manager_show_message         (GSManager  *manager,

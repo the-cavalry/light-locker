@@ -41,16 +41,7 @@ typedef struct
         GSPrefsPrivate  *priv;
 
         guint            idle_activation_enabled : 1; /* whether to activate when idle */
-        guint            logout_enabled : 1;    /* Whether to offer the logout option */
-        guint            user_switch_disabled : 1;      /* Whether user switching is disabled */
-        guint            user_switch_enabled : 1;       /* Whether to offer the user switch option */
-        guint            keyboard_enabled : 1;  /* Whether to try to embed a keyboard */
         guint            status_message_enabled : 1; /* show the status message in the lock */
-
-        guint            logout_timeout;        /* how long until the logout option appears */
-
-        char            *logout_command;        /* command to use to logout */
-        char            *keyboard_command;      /* command to use to embed a keyboard */
 } GSPrefs;
 
 typedef struct

@@ -76,13 +76,6 @@ manager_activated_cb (GSManager *manager,
 {
 }
 
-static void
-manager_deactivated_cb (GSManager *manager,
-                        GSMonitor *monitor)
-{
-        gs_listener_set_active (monitor->priv->listener, FALSE);
-}
-
 static gboolean
 watcher_idle_cb (GSWatcher *watcher,
                  gboolean   is_idle,
@@ -242,16 +235,6 @@ _gs_monitor_update_from_prefs (GSMonitor *monitor,
         gboolean idle_detection_active;
         gboolean activate_watch;
         gboolean manager_active;
-        gboolean user_switch_enabled;
-
-        user_switch_enabled = (monitor->priv->prefs->user_switch_enabled && !monitor->priv->prefs->user_switch_disabled);
-
-        gs_manager_set_logout_enabled (monitor->priv->manager, monitor->priv->prefs->logout_enabled);
-        gs_manager_set_user_switch_enabled (monitor->priv->manager, user_switch_enabled);
-        gs_manager_set_keyboard_enabled (monitor->priv->manager, monitor->priv->prefs->keyboard_enabled);
-        gs_manager_set_logout_timeout (monitor->priv->manager, monitor->priv->prefs->logout_timeout);
-        gs_manager_set_logout_command (monitor->priv->manager, monitor->priv->prefs->logout_command);
-        gs_manager_set_keyboard_command (monitor->priv->manager, monitor->priv->prefs->keyboard_command);
 
         /* enable activation when allowed */
         gs_listener_set_activation_enabled (monitor->priv->listener,
@@ -346,7 +329,6 @@ static void
 disconnect_manager_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->manager, manager_activated_cb, monitor);
-        g_signal_handlers_disconnect_by_func (monitor->priv->manager, manager_deactivated_cb, monitor);
 }
 
 static void
@@ -354,8 +336,6 @@ connect_manager_signals (GSMonitor *monitor)
 {
         g_signal_connect (monitor->priv->manager, "activated",
                           G_CALLBACK (manager_activated_cb), monitor);
-        g_signal_connect (monitor->priv->manager, "deactivated",
-                          G_CALLBACK (manager_deactivated_cb), monitor);
 }
 
 static void

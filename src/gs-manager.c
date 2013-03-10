@@ -43,23 +43,10 @@ struct GSManagerPrivate
 {
         GSList      *windows;
 
-        /* Policy */
-        glong        logout_timeout;
-
-        guint        logout_enabled : 1;
-        guint        keyboard_enabled : 1;
-        guint        user_switch_enabled : 1;
-
-        char        *logout_command;
-        char        *keyboard_command;
-
         char        *status_message;
 
         /* State */
         guint        active : 1;
-
-        guint        fading : 1;
-        guint        dialog_up : 1;
 
         time_t       activate_time;
 
@@ -68,20 +55,11 @@ struct GSManagerPrivate
 
 enum {
         ACTIVATED,
-        DEACTIVATED,
-        AUTH_REQUEST_BEGIN,
-        AUTH_REQUEST_END,
         LAST_SIGNAL
 };
 
 enum {
         PROP_0,
-        PROP_LOGOUT_ENABLED,
-        PROP_USER_SWITCH_ENABLED,
-        PROP_KEYBOARD_ENABLED,
-        PROP_LOGOUT_TIMEOUT,
-        PROP_LOGOUT_COMMAND,
-        PROP_KEYBOARD_COMMAND,
         PROP_STATUS_MESSAGE,
         PROP_ACTIVE,
 };
@@ -91,112 +69,6 @@ enum {
 static guint         signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSManager, gs_manager, G_TYPE_OBJECT)
-
-void
-gs_manager_set_logout_enabled (GSManager *manager,
-                               gboolean   logout_enabled)
-{
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        if (manager->priv->logout_enabled != logout_enabled) {
-                GSList *l;
-
-                manager->priv->logout_enabled = logout_enabled;
-                for (l = manager->priv->windows; l; l = l->next) {
-                        gs_window_set_logout_enabled (l->data, logout_enabled);
-                }
-        }
-}
-
-void
-gs_manager_set_keyboard_enabled (GSManager *manager,
-                                 gboolean   enabled)
-{
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        if (manager->priv->keyboard_enabled != enabled) {
-                GSList *l;
-
-                manager->priv->keyboard_enabled = enabled;
-                for (l = manager->priv->windows; l; l = l->next) {
-                        gs_window_set_keyboard_enabled (l->data, enabled);
-                }
-        }
-}
-
-void
-gs_manager_set_user_switch_enabled (GSManager *manager,
-                                    gboolean   user_switch_enabled)
-{
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        if (manager->priv->user_switch_enabled != user_switch_enabled) {
-                GSList *l;
-
-                manager->priv->user_switch_enabled = user_switch_enabled;
-                for (l = manager->priv->windows; l; l = l->next) {
-                        gs_window_set_user_switch_enabled (l->data, user_switch_enabled);
-                }
-        }
-}
-
-void
-gs_manager_set_logout_timeout (GSManager *manager,
-                               glong      logout_timeout)
-{
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        if (manager->priv->logout_timeout != logout_timeout) {
-                GSList *l;
-
-                manager->priv->logout_timeout = logout_timeout;
-                for (l = manager->priv->windows; l; l = l->next) {
-                        gs_window_set_logout_timeout (l->data, logout_timeout);
-                }
-        }
-}
-
-void
-gs_manager_set_logout_command (GSManager  *manager,
-                               const char *command)
-{
-        GSList *l;
-
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        g_free (manager->priv->logout_command);
-
-        if (command) {
-                manager->priv->logout_command = g_strdup (command);
-        } else {
-                manager->priv->logout_command = NULL;
-        }
-
-        for (l = manager->priv->windows; l; l = l->next) {
-                gs_window_set_logout_command (l->data, manager->priv->logout_command);
-        }
-}
-
-void
-gs_manager_set_keyboard_command (GSManager  *manager,
-                                 const char *command)
-{
-        GSList *l;
-
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        g_free (manager->priv->keyboard_command);
-
-        if (command) {
-                manager->priv->keyboard_command = g_strdup (command);
-        } else {
-                manager->priv->keyboard_command = NULL;
-        }
-
-        for (l = manager->priv->windows; l; l = l->next) {
-                gs_window_set_keyboard_command (l->data, manager->priv->keyboard_command);
-        }
-}
 
 void
 gs_manager_set_status_message (GSManager  *manager,
@@ -226,24 +98,6 @@ gs_manager_set_property (GObject            *object,
         self = GS_MANAGER (object);
 
         switch (prop_id) {
-        case PROP_LOGOUT_ENABLED:
-                gs_manager_set_logout_enabled (self, g_value_get_boolean (value));
-                break;
-        case PROP_KEYBOARD_ENABLED:
-                gs_manager_set_keyboard_enabled (self, g_value_get_boolean (value));
-                break;
-        case PROP_USER_SWITCH_ENABLED:
-                gs_manager_set_user_switch_enabled (self, g_value_get_boolean (value));
-                break;
-        case PROP_LOGOUT_TIMEOUT:
-                gs_manager_set_logout_timeout (self, g_value_get_long (value));
-                break;
-        case PROP_LOGOUT_COMMAND:
-                gs_manager_set_logout_command (self, g_value_get_string (value));
-                break;
-        case PROP_KEYBOARD_COMMAND:
-                gs_manager_set_keyboard_command (self, g_value_get_string (value));
-                break;
         case PROP_STATUS_MESSAGE:
                 gs_manager_set_status_message (self, g_value_get_string (value));
                 break;
@@ -264,24 +118,6 @@ gs_manager_get_property (GObject            *object,
         self = GS_MANAGER (object);
 
         switch (prop_id) {
-        case PROP_LOGOUT_ENABLED:
-                g_value_set_boolean (value, self->priv->logout_enabled);
-                break;
-        case PROP_KEYBOARD_ENABLED:
-                g_value_set_boolean (value, self->priv->keyboard_enabled);
-                break;
-        case PROP_USER_SWITCH_ENABLED:
-                g_value_set_boolean (value, self->priv->user_switch_enabled);
-                break;
-        case PROP_LOGOUT_TIMEOUT:
-                g_value_set_long (value, self->priv->logout_timeout);
-                break;
-        case PROP_LOGOUT_COMMAND:
-                g_value_set_string (value, self->priv->logout_command);
-                break;
-        case PROP_KEYBOARD_COMMAND:
-                g_value_set_string (value, self->priv->keyboard_command);
-                break;
         case PROP_STATUS_MESSAGE:
                 g_value_set_string (value, self->priv->status_message);
                 break;
@@ -313,36 +149,6 @@ gs_manager_class_init (GSManagerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
-        signals [DEACTIVATED] =
-                g_signal_new ("deactivated",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSManagerClass, deactivated),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-        signals [AUTH_REQUEST_BEGIN] =
-                g_signal_new ("auth-request-begin",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSManagerClass, auth_request_begin),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-        signals [AUTH_REQUEST_END] =
-                g_signal_new ("auth-request-end",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSManagerClass, auth_request_end),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
 
         g_object_class_install_property (object_class,
                                          PROP_ACTIVE,
@@ -351,37 +157,6 @@ gs_manager_class_init (GSManagerClass *klass)
                                                                NULL,
                                                                FALSE,
                                                                G_PARAM_READABLE));
-        g_object_class_install_property (object_class,
-                                         PROP_LOGOUT_ENABLED,
-                                         g_param_spec_boolean ("logout-enabled",
-                                                               NULL,
-                                                               NULL,
-                                                               FALSE,
-                                                               G_PARAM_READWRITE));
-        g_object_class_install_property (object_class,
-                                         PROP_USER_SWITCH_ENABLED,
-                                         g_param_spec_boolean ("user-switch-enabled",
-                                                               NULL,
-                                                               NULL,
-                                                               FALSE,
-                                                               G_PARAM_READWRITE));
-
-        g_object_class_install_property (object_class,
-                                         PROP_LOGOUT_TIMEOUT,
-                                         g_param_spec_long ("logout-timeout",
-                                                            NULL,
-                                                            NULL,
-                                                            -1,
-                                                            G_MAXLONG,
-                                                            0,
-                                                            G_PARAM_READWRITE));
-        g_object_class_install_property (object_class,
-                                         PROP_LOGOUT_COMMAND,
-                                         g_param_spec_string ("logout-command",
-                                                              NULL,
-                                                              NULL,
-                                                              NULL,
-                                                              G_PARAM_READWRITE));
 
         g_type_class_add_private (klass, sizeof (GSManagerPrivate));
 }
@@ -394,29 +169,6 @@ gs_manager_init (GSManager *manager)
         manager->priv->grab = gs_grab_new ();
 }
 
-
-static gboolean
-window_deactivated_idle (GSManager *manager)
-{
-        g_return_val_if_fail (manager != NULL, FALSE);
-        g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
-
-        /* don't deactivate directly but only emit a signal
-           so that we let the parent deactivate */
-        g_signal_emit (manager, signals [DEACTIVATED], 0);
-
-        return FALSE;
-}
-
-static void
-window_deactivated_cb (GSWindow  *window,
-                       GSManager *manager)
-{
-        g_return_if_fail (manager != NULL);
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        g_idle_add ((GSourceFunc)window_deactivated_idle, manager);
-}
 
 static GSWindow *
 find_window_at_pointer (GSManager *manager)
@@ -586,81 +338,6 @@ window_show_cb (GSWindow  *window,
         manager_show_window (manager, window);
 }
 
-static void
-handle_window_dialog_up (GSManager *manager,
-                         GSWindow  *window)
-{
-        GSList *l;
-
-        g_return_if_fail (manager != NULL);
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        gs_debug ("Handling dialog up");
-
-        g_signal_emit (manager, signals [AUTH_REQUEST_BEGIN], 0);
-
-        manager->priv->dialog_up = TRUE;
-        /* Make all other windows insensitive so we don't get events */
-        for (l = manager->priv->windows; l; l = l->next) {
-                if (l->data != window) {
-                        gtk_widget_set_sensitive (GTK_WIDGET (l->data), FALSE);
-                }
-        }
-
-        /* Move keyboard and mouse grabs so dialog can be used */
-        gs_grab_move_to_window (manager->priv->grab,
-                                gs_window_get_gdk_window (window),
-                                gs_window_get_screen (window),
-                                FALSE);
-
-        /* Release the pointer grab while dialog is up so that
-           the dialog can be used.  We'll regrab it when the dialog goes down. */
-        gs_grab_release_mouse (manager->priv->grab);
-}
-
-static void
-handle_window_dialog_down (GSManager *manager,
-                           GSWindow  *window)
-{
-        GSList *l;
-
-        g_return_if_fail (manager != NULL);
-        g_return_if_fail (GS_IS_MANAGER (manager));
-
-        gs_debug ("Handling dialog down");
-
-        /* Regrab the mouse */
-        gs_grab_move_to_window (manager->priv->grab,
-                                gs_window_get_gdk_window (window),
-                                gs_window_get_screen (window),
-                                FALSE);
-
-        /* Make all windows sensitive so we get events */
-        for (l = manager->priv->windows; l; l = l->next) {
-                gtk_widget_set_sensitive (GTK_WIDGET (l->data), TRUE);
-        }
-
-        manager->priv->dialog_up = FALSE;
-
-        g_signal_emit (manager, signals [AUTH_REQUEST_END], 0);
-}
-
-static void
-window_dialog_up_changed_cb (GSWindow   *window,
-                             GParamSpec *pspec,
-                             GSManager  *manager)
-{
-        gboolean up;
-
-        up = gs_window_is_dialog_up (window);
-        gs_debug ("Handling window dialog up changed: %s", up ? "up" : "down");
-        if (up) {
-                handle_window_dialog_up (manager, window);
-        } else {
-                handle_window_dialog_down (manager, window);
-        }
-}
-
 static gboolean
 window_activity_cb (GSWindow  *window,
                     GSManager *manager)
@@ -676,12 +353,10 @@ static void
 disconnect_window_signals (GSManager *manager,
                            GSWindow  *window)
 {
-        g_signal_handlers_disconnect_by_func (window, window_deactivated_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_activity_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_show_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_map_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_map_event_cb, manager);
-        g_signal_handlers_disconnect_by_func (window, window_dialog_up_changed_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_unmap_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_grab_broken_cb, manager);
 }
@@ -701,16 +376,12 @@ connect_window_signals (GSManager *manager,
                                  G_CALLBACK (window_destroyed_cb), manager, 0);
         g_signal_connect_object (window, "activity",
                                  G_CALLBACK (window_activity_cb), manager, 0);
-        g_signal_connect_object (window, "deactivated",
-                                 G_CALLBACK (window_deactivated_cb), manager, 0);
         g_signal_connect_object (window, "show",
                                  G_CALLBACK (window_show_cb), manager, G_CONNECT_AFTER);
         g_signal_connect_object (window, "map",
                                  G_CALLBACK (window_map_cb), manager, G_CONNECT_AFTER);
         g_signal_connect_object (window, "map_event",
                                  G_CALLBACK (window_map_event_cb), manager, G_CONNECT_AFTER);
-        g_signal_connect_object (window, "notify::dialog-up",
-                                 G_CALLBACK (window_dialog_up_changed_cb), manager, 0);
         g_signal_connect_object (window, "unmap",
                                  G_CALLBACK (window_unmap_cb), manager, G_CONNECT_AFTER);
         g_signal_connect_object (window, "grab_broken_event",
@@ -732,19 +403,13 @@ gs_manager_create_window_for_monitor (GSManager *manager,
 
         window = gs_window_new (screen, monitor);
 
-        gs_window_set_user_switch_enabled (window, manager->priv->user_switch_enabled);
-        gs_window_set_logout_enabled (window, manager->priv->logout_enabled);
-        gs_window_set_logout_timeout (window, manager->priv->logout_timeout);
-        gs_window_set_logout_command (window, manager->priv->logout_command);
-        gs_window_set_keyboard_enabled (window, manager->priv->keyboard_enabled);
-        gs_window_set_keyboard_command (window, manager->priv->keyboard_command);
         gs_window_set_status_message (window, manager->priv->status_message);
 
         connect_window_signals (manager, window);
 
         manager->priv->windows = g_slist_append (manager->priv->windows, window);
 
-        if (manager->priv->active && !manager->priv->fading) {
+        if (manager->priv->active) {
                 gtk_widget_show (GTK_WIDGET (window));
         }
 }
@@ -860,8 +525,6 @@ gs_manager_finalize (GObject *object)
 
         g_return_if_fail (manager->priv != NULL);
 
-        g_free (manager->priv->logout_command);
-        g_free (manager->priv->keyboard_command);
         g_free (manager->priv->status_message);
 
         gs_grab_release (manager->priv->grab);
@@ -994,8 +657,6 @@ gs_manager_deactivate (GSManager *manager)
         /* reset state */
         manager->priv->active = FALSE;
         manager->priv->activate_time = 0;
-        manager->priv->dialog_up = FALSE;
-        manager->priv->fading = FALSE;
 
         return TRUE;
 }
@@ -1034,11 +695,6 @@ gs_manager_request_unlock (GSManager *manager)
 
         if (! manager->priv->active) {
                 gs_debug ("Request unlock but manager is not active");
-                return FALSE;
-        }
-
-        if (manager->priv->dialog_up) {
-                gs_debug ("Request unlock but dialog is already up");
                 return FALSE;
         }
 
