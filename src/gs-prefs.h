@@ -40,7 +40,6 @@ typedef struct
 
         GSPrefsPrivate  *priv;
 
-        guint            status_message_enabled : 1; /* show the status message in the lock */
 } GSPrefs;
 
 typedef struct

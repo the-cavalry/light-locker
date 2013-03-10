@@ -49,9 +49,6 @@ typedef struct
         GtkWindowClass   parent_class;
 
         gboolean        (* activity)            (GSWindow *window);
-        void            (* deactivated)         (GSWindow *window);
-        void            (* dialog_up)           (GSWindow *window);
-        void            (* dialog_down)         (GSWindow *window);
 } GSWindowClass;
 
 GType       gs_window_get_type           (void);
@@ -69,10 +66,6 @@ void        gs_window_set_background_surface (GSWindow        *window,
                                               cairo_surface_t *surface);
 void        gs_window_set_status_message   (GSWindow   *window,
                                             const char *status_message);
-void        gs_window_show_message         (GSWindow   *window,
-                                            const char *summary,
-                                            const char *body,
-                                            const char *icon);
 
 void        gs_window_request_unlock     (GSWindow  *window);
 void        gs_window_cancel_unlock_request (GSWindow  *window);

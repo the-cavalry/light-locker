@@ -45,35 +45,16 @@ typedef struct
         GObjectClass       parent_class;
 
         void            (* lock)                     (GSListener *listener);
-        void            (* quit)                     (GSListener *listener);
         void            (* simulate_user_activity)   (GSListener *listener);
         gboolean        (* active_changed)           (GSListener *listener,
                                                       gboolean    active);
-        void            (* throttle_changed)         (GSListener *listener,
-                                                      gboolean    throttled);
-        void            (* show_message)             (GSListener *listener,
-                                                      const char *summary,
-                                                      const char *body,
-                                                      const char *icon);
 
 } GSListenerClass;
-
-typedef enum
-{
-        GS_LISTENER_ERROR_SERVICE_UNAVAILABLE,
-        GS_LISTENER_ERROR_ACQUISITION_FAILURE,
-        GS_LISTENER_ERROR_ACTIVATION_FAILURE
-} GSListenerError;
-
-#define GS_LISTENER_ERROR gs_listener_error_quark ()
-
-GQuark      gs_listener_error_quark             (void);
 
 GType       gs_listener_get_type                (void);
 
 GSListener *gs_listener_new                     (void);
-gboolean    gs_listener_acquire                 (GSListener *listener,
-                                                 GError    **error);
+gboolean    gs_listener_acquire                 (GSListener *listener);
 gboolean    gs_listener_set_active              (GSListener *listener,
                                                  gboolean    active);
 

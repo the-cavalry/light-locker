@@ -108,27 +108,6 @@ listener_lock_cb (GSListener *listener,
         gs_monitor_lock_screen (monitor);
 }
 
-static void
-listener_quit_cb (GSListener *listener,
-                  GSMonitor  *monitor)
-{
-        gs_listener_set_active (monitor->priv->listener, FALSE);
-        light_locker_quit ();
-}
-
-static void
-listener_show_message_cb (GSListener *listener,
-                          const char *summary,
-                          const char *body,
-                          const char *icon,
-                          GSMonitor  *monitor)
-{
-        gs_manager_show_message (monitor->priv->manager,
-                                 summary,
-                                 body,
-                                 icon);
-}
-
 static gboolean
 listener_active_changed_cb (GSListener *listener,
                             gboolean    active,
@@ -168,10 +147,8 @@ static void
 disconnect_listener_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_lock_cb, monitor);
-        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_quit_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_active_changed_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_simulate_user_activity_cb, monitor);
-        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_show_message_cb, monitor);
 }
 
 static void
@@ -179,14 +156,10 @@ connect_listener_signals (GSMonitor *monitor)
 {
         g_signal_connect (monitor->priv->listener, "lock",
                           G_CALLBACK (listener_lock_cb), monitor);
-        g_signal_connect (monitor->priv->listener, "quit",
-                          G_CALLBACK (listener_quit_cb), monitor);
         g_signal_connect (monitor->priv->listener, "active-changed",
                           G_CALLBACK (listener_active_changed_cb), monitor);
         g_signal_connect (monitor->priv->listener, "simulate-user-activity",
                           G_CALLBACK (listener_simulate_user_activity_cb), monitor);
-        g_signal_connect (monitor->priv->listener, "show-message",
-                          G_CALLBACK (listener_show_message_cb), monitor);
 }
 
 static void
@@ -275,7 +248,7 @@ gs_monitor_start (GSMonitor *monitor,
 {
         g_return_val_if_fail (GS_IS_MONITOR (monitor), FALSE);
 
-        if (! gs_listener_acquire (monitor->priv->listener, error)) {
+        if (! gs_listener_acquire (monitor->priv->listener)) {
                 return FALSE;
         }
 
