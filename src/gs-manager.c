@@ -665,7 +665,14 @@ find_window_at_pointer (GSManager *manager)
         GSList     *l;
 
         display = gdk_display_get_default ();
+#if GTK_CHECK_VERSION(3, 0, 0)
+        GdkDeviceManager *device_manager = gdk_display_get_device_manager (display);
+        GdkDevice *pointer = gdk_device_manager_get_client_pointer (device_manager);
+        gdk_device_get_position (pointer, &screen, &x, &y);
+#else
         gdk_display_get_pointer (display, &screen, &x, &y, NULL);
+#endif
+
         monitor = gdk_screen_get_monitor_at_point (screen, x, y);
         screen_num = gdk_screen_get_number (screen);
 
@@ -718,7 +725,13 @@ manager_maybe_grab_window (GSManager *manager,
         gboolean    grabbed;
 
         display = gdk_display_get_default ();
+#if GTK_CHECK_VERSION(3, 0, 0)
+        GdkDeviceManager *device_manager = gdk_display_get_device_manager (display);
+        GdkDevice *pointer = gdk_device_manager_get_client_pointer (device_manager);
+        gdk_device_get_position (pointer, &screen, &x, &y);
+#else
         gdk_display_get_pointer (display, &screen, &x, &y, NULL);
+#endif
         monitor = gdk_screen_get_monitor_at_point (screen, x, y);
 
         gdk_flush ();

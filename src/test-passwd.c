@@ -223,9 +223,11 @@ main (int    argc,
         textdomain (GETTEXT_PACKAGE);
 #endif
 
+#if !GLIB_CHECK_VERSION(2,31,0)
         if (! g_thread_supported ()) {
                 g_thread_init (NULL);
         }
+#endif
 
         gs_auth_set_verbose (verbose);
         if (! privileged_initialization ()) {

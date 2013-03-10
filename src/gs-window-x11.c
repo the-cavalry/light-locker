@@ -161,7 +161,7 @@ set_invisible_cursor (GdkWindow *window,
         gdk_window_set_cursor (window, cursor);
 
         if (cursor) {
-                gdk_cursor_unref (cursor);
+                g_object_unref (cursor);
         }
 }
 
@@ -1908,7 +1908,11 @@ gs_window_real_size_request (GtkWidget      *widget,
         bin = GTK_BIN (widget);
 
         if (gtk_bin_get_child (bin) && gtk_widget_get_visible (gtk_bin_get_child (bin))) {
+#if GTK_CHECK_VERSION(3, 0, 0)
+                gtk_widget_get_preferred_size(gtk_bin_get_child (bin), NULL, requisition);
+#else
                 gtk_widget_size_request (gtk_bin_get_child (bin), requisition);
+#endif
         }
 
         old_geometry = window->priv->geometry;
