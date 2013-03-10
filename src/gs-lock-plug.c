@@ -159,7 +159,13 @@ do_user_switch (GSLockPlug *plug)
                                    GDM_FLEXISERVER_ARGS);
 
         error = NULL;
+#if GTK_CHECK_VERSION(3, 0, 0)
+        GdkDisplay *display = gdk_display_get_default ();
+        context = (GAppLaunchContext*)gdk_display_get_app_launch_context (display);
+#else
         context = (GAppLaunchContext*)gdk_app_launch_context_new ();
+#endif
+
         app = g_app_info_create_from_commandline (command, "gdmflexiserver", 0, &error);
         if (app)
                 g_app_info_launch (app, NULL, context, &error);
