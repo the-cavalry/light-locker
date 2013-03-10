@@ -276,7 +276,7 @@ gs_grab_release_keyboard (GSGrab *grab)
 
 #if GTK_CHECK_VERSION(3, 0, 0)
         GList *list, *link;
-        GdkDisplay *display = gdk_window_get_display (grab->priv->keyboard_grab_window);
+        GdkDisplay *display = gdk_display_get_default ();
         GdkDeviceManager *device_manager = gdk_display_get_device_manager (display);
         list = gdk_device_manager_list_devices (device_manager, GDK_DEVICE_TYPE_MASTER);
 
@@ -317,7 +317,7 @@ gs_grab_release_mouse (GSGrab *grab)
 
 #if GTK_CHECK_VERSION(3, 0, 0)
         GList *list, *link;
-        GdkDisplay *display = gdk_window_get_display (grab->priv->mouse_grab_window);
+        GdkDisplay *display = gdk_display_get_default ();
         GdkDeviceManager *device_manager = gdk_display_get_device_manager (display);
         list = gdk_device_manager_list_devices (device_manager, GDK_DEVICE_TYPE_MASTER);
 
@@ -333,7 +333,6 @@ gs_grab_release_mouse (GSGrab *grab)
 #else
         gdk_pointer_ungrab (GDK_CURRENT_TIME);
 #endif
-
 
         gs_grab_mouse_reset (grab);
 
@@ -355,7 +354,7 @@ gs_grab_move_mouse (GSGrab    *grab,
            mouse_grab_window defined then we lost the grab */
 #if GTK_CHECK_VERSION(3, 0, 0)
         GList *list, *link;
-        GdkDisplay *display = gdk_window_get_display (grab->priv->mouse_grab_window);
+        GdkDisplay *display = gdk_display_get_default ();
         GdkDeviceManager *device_manager = gdk_display_get_device_manager (display);
         list = gdk_device_manager_list_devices (device_manager, GDK_DEVICE_TYPE_MASTER);
         for (link = list; link != NULL; link = g_list_next (link)) {
