@@ -145,13 +145,38 @@ gs_grab_get_keyboard (GSGrab    *grab,
                       GdkWindow *window,
                       GdkScreen *screen)
 {
-        GdkGrabStatus status;
+        GdkGrabStatus status = 0;
 
         g_return_val_if_fail (window != NULL, FALSE);
         g_return_val_if_fail (screen != NULL, FALSE);
 
         gs_debug ("Grabbing keyboard widget=%X", (guint32) GDK_WINDOW_XID (window));
+
+#if GTK_CHECK_VERSION(3, 0, 0)
+        GList *list, *link;
+        GdkDisplay *display = gdk_window_get_display (window);
+        GdkDeviceManager *device_manager = gdk_display_get_device_manager (display);
+        list = gdk_device_manager_list_devices (device_manager, GDK_DEVICE_TYPE_MASTER);
+
+        for (link = list; link != NULL; link = g_list_next (link)) {
+                GdkDevice *device = GDK_DEVICE (link->data);
+
+                if (gdk_device_get_source (device) != GDK_SOURCE_KEYBOARD)
+                        continue;
+
+                status = gdk_device_grab (device,
+                                          window,
+                                          GDK_OWNERSHIP_NONE,
+                                          FALSE,
+                                          GDK_KEY_PRESS_MASK |
+                                          GDK_KEY_RELEASE_MASK,
+                                          NULL,
+                                          GDK_CURRENT_TIME);
+        }
+        g_list_free(list);
+#else
         status = gdk_keyboard_grab (window, FALSE, GDK_CURRENT_TIME);
+#endif
 
         if (status == GDK_GRAB_SUCCESS) {
                 if (grab->priv->keyboard_grab_window != NULL) {
@@ -186,6 +211,7 @@ gs_grab_get_mouse (GSGrab    *grab,
         cursor = gdk_cursor_new (GDK_BLANK_CURSOR);
 
         gs_debug ("Grabbing mouse widget=%X", (guint32) GDK_WINDOW_XID (window));
+
         status = gdk_pointer_grab (window, TRUE, 0, NULL,
                                    (hide_cursor ? cursor : NULL),
                                    GDK_CURRENT_TIME);
@@ -224,7 +250,25 @@ static gboolean
 gs_grab_release_keyboard (GSGrab *grab)
 {
         gs_debug ("Ungrabbing keyboard");
+
+#if GTK_CHECK_VERSION(3, 0, 0)
+        GList *list, *link;
+        GdkDisplay *display = gdk_window_get_display (grab->priv->keyboard_grab_window);
+        GdkDeviceManager *device_manager = gdk_display_get_device_manager (display);
+        list = gdk_device_manager_list_devices (device_manager, GDK_DEVICE_TYPE_MASTER);
+
+        for (link = list; link != NULL; link = g_list_next (link)) {
+                GdkDevice *device = GDK_DEVICE (link->data);
+
+                if (gdk_device_get_source (device) != GDK_SOURCE_KEYBOARD)
+                        continue;
+
+                gdk_device_ungrab(device, GDK_CURRENT_TIME);
+        }
+        g_list_free(list);
+#else
         gdk_keyboard_ungrab (GDK_CURRENT_TIME);
+#endif
 
         gs_grab_keyboard_reset (grab);
 
