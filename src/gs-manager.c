@@ -139,50 +139,6 @@ gs_manager_init (GSManager *manager)
 }
 
 
-static GSWindow *
-find_window_at_pointer (GSManager *manager)
-{
-        GdkDisplay *display;
-        GdkScreen  *screen;
-        int         monitor;
-        int         x, y;
-        GSWindow   *window;
-        int         screen_num;
-        GSList     *l;
-
-        display = gdk_display_get_default ();
-#if GTK_CHECK_VERSION(3, 0, 0)
-        GdkDeviceManager *device_manager = gdk_display_get_device_manager (display);
-        GdkDevice *pointer = gdk_device_manager_get_client_pointer (device_manager);
-        gdk_device_get_position (pointer, &screen, &x, &y);
-#else
-        gdk_display_get_pointer (display, &screen, &x, &y, NULL);
-#endif
-
-        monitor = gdk_screen_get_monitor_at_point (screen, x, y);
-        screen_num = gdk_screen_get_number (screen);
-
-        /* Find the gs-window that is on that screen */
-        window = NULL;
-        for (l = manager->priv->windows; l; l = l->next) {
-                GSWindow *win = GS_WINDOW (l->data);
-                if (gs_window_get_screen (win) == screen
-                    && gs_window_get_monitor (win) == monitor) {
-                        window = win;
-                }
-        }
-
-        if (window == NULL) {
-                gs_debug ("WARNING: Could not find the GSWindow for screen %d", screen_num);
-                /* take the first one */
-                window = manager->priv->windows->data;
-        } else {
-                gs_debug ("Requesting unlock for screen %d", screen_num);
-        }
-
-        return window;
-}
-
 static gboolean
 manager_maybe_grab_window (GSManager *manager,
                            GSWindow  *window)
@@ -290,22 +246,10 @@ window_show_cb (GSWindow  *window,
         manager_show_window (manager, window);
 }
 
-static gboolean
-window_activity_cb (GSWindow  *window,
-                    GSManager *manager)
-{
-        gboolean handled;
-
-        handled = gs_manager_request_unlock (manager);
-
-        return handled;
-}
-
 static void
 disconnect_window_signals (GSManager *manager,
                            GSWindow  *window)
 {
-        g_signal_handlers_disconnect_by_func (window, window_activity_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_show_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_map_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_map_event_cb, manager);
@@ -326,8 +270,6 @@ connect_window_signals (GSManager *manager,
 {
         g_signal_connect_object (window, "destroy",
                                  G_CALLBACK (window_destroyed_cb), manager, 0);
-        g_signal_connect_object (window, "activity",
-                                 G_CALLBACK (window_activity_cb), manager, 0);
         g_signal_connect_object (window, "show",
                                  G_CALLBACK (window_show_cb), manager, G_CONNECT_AFTER);
         g_signal_connect_object (window, "map",
@@ -382,23 +324,10 @@ on_screen_monitors_changed (GdkScreen *screen,
 
         if (n_monitors > n_windows) {
 
-                /* Tear down unlock dialog in case we want to move it
-                 * to a new monitor
-                 */
-                l = manager->priv->windows;
-                while (l != NULL) {
-                        gs_window_cancel_unlock_request (GS_WINDOW (l->data));
-                        l = l->next;
-                }
-
                 /* add more windows */
                 for (i = n_windows; i < n_monitors; i++) {
                         gs_manager_create_window_for_monitor (manager, screen, i);
                 }
-
-                /* And put unlock dialog up where ever it's supposed to be
-                 */
-                gs_manager_request_unlock (manager);
         } else {
 
                 gdk_x11_grab_server ();
@@ -417,13 +346,6 @@ on_screen_monitors_changed (GdkScreen *screen,
                                 manager->priv->windows = g_slist_delete_link (manager->priv->windows, l);
                         }
                         l = next;
-                }
-
-                /* make sure there is a lock dialog on a connected monitor,
-                 * and that the keyboard is still properly grabbed after all
-                 * the windows above got destroyed*/
-                if (n_windows > n_monitors) {
-                        gs_manager_request_unlock (manager);
                 }
 
                 gdk_flush ();
@@ -631,29 +553,4 @@ gs_manager_get_active (GSManager *manager)
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
         return manager->priv->active;
-}
-
-gboolean
-gs_manager_request_unlock (GSManager *manager)
-{
-        GSWindow *window;
-
-        g_return_val_if_fail (manager != NULL, FALSE);
-        g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
-
-        if (! manager->priv->active) {
-                gs_debug ("Request unlock but manager is not active");
-                return FALSE;
-        }
-
-        if (manager->priv->windows == NULL) {
-                gs_debug ("We don't have any windows!");
-                return FALSE;
-        }
-
-        /* Find the GSWindow that contains the pointer */
-        window = find_window_at_pointer (manager);
-        gs_window_request_unlock (window);
-
-        return TRUE;
 }

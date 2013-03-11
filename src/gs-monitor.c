@@ -90,16 +90,6 @@ gs_monitor_lock_screen (GSMonitor *monitor)
 }
 
 static void
-gs_monitor_simulate_user_activity (GSMonitor *monitor)
-{
-        /* FIXME: reset the xsync timer? */
-
-        /* request that the manager unlock -
-           will pop up a dialog if necessary */
-        gs_manager_request_unlock (monitor->priv->manager);
-}
-
-static void
 listener_lock_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
@@ -129,18 +119,10 @@ listener_active_changed_cb (GSListener *listener,
 }
 
 static void
-listener_simulate_user_activity_cb (GSListener *listener,
-                                    GSMonitor  *monitor)
-{
-        gs_monitor_simulate_user_activity (monitor);
-}
-
-static void
 disconnect_listener_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_lock_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_active_changed_cb, monitor);
-        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_simulate_user_activity_cb, monitor);
 }
 
 static void
@@ -150,8 +132,6 @@ connect_listener_signals (GSMonitor *monitor)
                           G_CALLBACK (listener_lock_cb), monitor);
         g_signal_connect (monitor->priv->listener, "active-changed",
                           G_CALLBACK (listener_active_changed_cb), monitor);
-        g_signal_connect (monitor->priv->listener, "simulate-user-activity",
-                          G_CALLBACK (listener_simulate_user_activity_cb), monitor);
 }
 
 static void

@@ -56,8 +56,6 @@ gboolean    gs_manager_set_active           (GSManager  *manager,
                                              gboolean    active);
 gboolean    gs_manager_get_active           (GSManager  *manager);
 
-gboolean    gs_manager_request_unlock       (GSManager  *manager);
-
 G_END_DECLS
 
 #endif /* __GS_MANAGER_H */

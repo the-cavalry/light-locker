@@ -62,7 +62,6 @@ struct GSListenerPrivate
 
 enum {
         LOCK,
-        SIMULATE_USER_ACTIVITY,
         ACTIVE_CHANGED,
         LAST_SIGNAL
 };
@@ -134,76 +133,6 @@ _listener_message_path_is_our_session (GSListener  *listener,
         return FALSE;
 }
 
-#ifdef WITH_SYSTEMD
-static gboolean
-properties_changed_match (DBusMessage *message,
-                          const char  *property)
-{
-        DBusMessageIter iter, sub, sub2;
-
-        /* Checks whether a certain property is listed in the
-         * specified PropertiesChanged message */
-
-        if (!dbus_message_iter_init (message, &iter))
-                goto failure;
-
-        /* Jump over interface name */
-        if (dbus_message_iter_get_arg_type (&iter) != DBUS_TYPE_STRING)
-                goto failure;
-
-        dbus_message_iter_next (&iter);
-
-        /* First, iterate through the changed properties array */
-        if (dbus_message_iter_get_arg_type (&iter) != DBUS_TYPE_ARRAY ||
-            dbus_message_iter_get_element_type (&iter) != DBUS_TYPE_DICT_ENTRY)
-                goto failure;
-
-        dbus_message_iter_recurse (&iter, &sub);
-        while (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_INVALID) {
-                const char *name;
-
-                if (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_DICT_ENTRY)
-                        goto failure;
-
-                dbus_message_iter_recurse (&sub, &sub2);
-                dbus_message_iter_get_basic (&sub2, &name);
-
-                if (strcmp (name, property) == 0)
-                        return TRUE;
-
-                dbus_message_iter_next (&sub);
-        }
-
-        dbus_message_iter_next (&iter);
-
-        /* Second, iterate through the invalidated properties array */
-        if (dbus_message_iter_get_arg_type (&iter) != DBUS_TYPE_ARRAY ||
-            dbus_message_iter_get_element_type (&iter) != DBUS_TYPE_STRING)
-                goto failure;
-
-        dbus_message_iter_recurse (&iter, &sub);
-        while (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_INVALID) {
-                const char *name;
-
-                if (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_STRING)
-                        goto failure;
-
-                dbus_message_iter_get_basic (&sub, &name);
-
-                if (strcmp (name, property) == 0)
-                        return TRUE;
-
-                dbus_message_iter_next (&sub);
-        }
-
-        return FALSE;
-
-failure:
-        gs_debug ("Failed to decode PropertiesChanged message.");
-        return FALSE;
-}
-#endif
-
 static DBusHandlerResult
 listener_dbus_handle_system_message (DBusConnection *connection,
                                      DBusMessage    *message,
@@ -241,27 +170,6 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                         }
 
                         return DBUS_HANDLER_RESULT_HANDLED;
-                } else if (dbus_message_is_signal (message, DBUS_INTERFACE_PROPERTIES, "PropertiesChanged")) {
-
-                        if (_listener_message_path_is_our_session (listener, message)) {
-
-                                if (properties_changed_match (message, "Active")) {
-                                        gboolean new_active;
-
-                                        /* Instead of going via the
-                                         * bus to read the new
-                                         * property state, let's
-                                         * shortcut this and ask
-                                         * directly the low-level
-                                         * information */
-
-                                        new_active = sd_session_is_active (listener->priv->session_id) != 0;
-                                        if (new_active)
-                                                g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
-                                }
-                        }
-
-                        return DBUS_HANDLER_RESULT_HANDLED;
                 }
 
                 return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
@@ -280,37 +188,6 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                 if (_listener_message_path_is_our_session (listener, message)) {
                         gs_debug ("ConsoleKit requested session lock");
                         g_signal_emit (listener, signals [LOCK], 0);
-                }
-
-                return DBUS_HANDLER_RESULT_HANDLED;
-        } else if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "ActiveChanged")) {
-                /* NB that `ActiveChanged' refers to the active
-                 * session in ConsoleKit terminology - ie which
-                 * session is currently displayed on the screen.
-                 * light-locker uses `active' to mean `is the
-                 * screensaver active' (ie, is the screen locked) but
-                 * that's not what we're referring to here.
-                 */
-
-                if (_listener_message_path_is_our_session (listener, message)) {
-                        DBusError   error;
-                        dbus_bool_t new_active;
-
-                        dbus_error_init (&error);
-                        if (dbus_message_get_args (message, &error,
-                                                   DBUS_TYPE_BOOLEAN, &new_active,
-                                                   DBUS_TYPE_INVALID)) {
-                                gs_debug ("ConsoleKit notified ActiveChanged %d", new_active);
-
-                                /* when we become active poke the lock */
-                                if (new_active) {
-                                        g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
-                                }
-                        }
-
-                        if (dbus_error_is_set (&error)) {
-                                dbus_error_free (&error);
-                        }
                 }
 
                 return DBUS_HANDLER_RESULT_HANDLED;
@@ -449,16 +326,6 @@ gs_listener_class_init (GSListenerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
-        signals [SIMULATE_USER_ACTIVITY] =
-                g_signal_new ("simulate-user-activity",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, simulate_user_activity),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
         signals [ACTIVE_CHANGED] =
                 g_signal_new ("active-changed",
                               G_TYPE_FROM_CLASS (object_class),
@@ -507,12 +374,6 @@ gs_listener_acquire (GSListener *listener)
                                             ",interface='"SYSTEMD_LOGIND_SESSION_INTERFACE"'"
                                             ",member='Lock'",
                                             NULL);
-                        dbus_bus_add_match (listener->priv->system_connection,
-                                            "type='signal'"
-                                            ",sender='"SYSTEMD_LOGIND_SERVICE"'"
-                                            ",interface='"DBUS_INTERFACE_PROPERTIES"'"
-                                            ",member='PropertiesChanged'",
-                                            NULL);
 
                         return TRUE;
                 }
@@ -528,11 +389,6 @@ gs_listener_acquire (GSListener *listener)
                                     "type='signal'"
                                     ",interface='"CK_SESSION_INTERFACE"'"
                                     ",member='Lock'",
-                                    NULL);
-                dbus_bus_add_match (listener->priv->system_connection,
-                                    "type='signal'"
-                                    ",interface='"CK_SESSION_INTERFACE"'"
-                                    ",member='ActiveChanged'",
                                     NULL);
 #endif
         }

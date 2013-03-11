@@ -81,18 +81,11 @@ struct GSWindowPrivate
 };
 
 enum {
-        ACTIVITY,
-        LAST_SIGNAL
-};
-
-enum {
         PROP_0,
         PROP_OBSCURED,
         PROP_MONITOR,
         PROP_STATUS_MESSAGE
 };
-
-static guint           signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSWindow, gs_window, GTK_TYPE_WINDOW)
 
@@ -546,8 +539,6 @@ gs_window_destroy (GSWindow *window)
 {
         g_return_if_fail (GS_IS_WINDOW (window));
 
-        gs_window_cancel_unlock_request (window);
-
         gtk_widget_destroy (GTK_WIDGET (window));
 }
 
@@ -567,33 +558,6 @@ gs_window_get_drawing_area (GSWindow *window)
         return window->priv->drawing_area;
 }
 
-
-void
-gs_window_request_unlock (GSWindow *window)
-{
-        g_return_if_fail (GS_IS_WINDOW (window));
-
-        gs_debug ("Requesting unlock");
-
-        if (! gtk_widget_get_visible (GTK_WIDGET (window))) {
-                gs_debug ("Request unlock but window is not visible!");
-                return;
-        }
-
-        /* Switch to lightdm */
-}
-
-void
-gs_window_cancel_unlock_request (GSWindow  *window)
-{
-        /* FIXME: This is a bit of a hammer approach...
-         * Maybe we should send a delete-event to
-         * the plug?
-         */
-        g_return_if_fail (GS_IS_WINDOW (window));
-
-        /* Don't switch to lightdm */
-}
 
 void
 gs_window_set_screen (GSWindow  *window,
@@ -699,33 +663,9 @@ gs_window_get_property (GObject    *object,
 }
 
 static gboolean
-maybe_handle_activity (GSWindow *window)
-{
-        gboolean handled;
-
-        handled = FALSE;
-
-        if (gtk_widget_get_sensitive (GTK_WIDGET (window))) {
-                g_signal_emit (window, signals [ACTIVITY], 0, &handled);
-        }
-
-        return handled;
-}
-
-static gboolean
 gs_window_real_key_press_event (GtkWidget   *widget,
                                 GdkEventKey *event)
 {
-        /*g_message ("KEY PRESS state: %u keyval %u", event->state, event->keyval);*/
-
-        /* Ignore brightness keys */
-        if (event->hardware_keycode == 101 || event->hardware_keycode == 212) {
-                gs_debug ("Ignoring brightness keys");
-                return TRUE;
-        }
-
-        maybe_handle_activity (GS_WINDOW (widget));
-
         if (GTK_WIDGET_CLASS (gs_window_parent_class)->key_press_event) {
                 GTK_WIDGET_CLASS (gs_window_parent_class)->key_press_event (widget, event);
         }
@@ -737,36 +677,6 @@ static gboolean
 gs_window_real_motion_notify_event (GtkWidget      *widget,
                                     GdkEventMotion *event)
 {
-        GSWindow  *window;
-        gdouble    distance;
-        gdouble    min_distance;
-        gdouble    min_percentage = 0.1;
-        GdkScreen *screen;
-
-        window = GS_WINDOW (widget);
-
-        screen = gs_window_get_screen (window);
-        min_distance = gdk_screen_get_width (screen) * min_percentage;
-
-        /* if the last position was not set then don't detect motion */
-        if (window->priv->last_x < 0 || window->priv->last_y < 0) {
-                window->priv->last_x = event->x;
-                window->priv->last_y = event->y;
-
-                return FALSE;
-        }
-
-        /* just an approximate distance */
-        distance = MAX (ABS (window->priv->last_x - event->x),
-                        ABS (window->priv->last_y - event->y));
-
-        if (distance > min_distance) {
-                maybe_handle_activity (window);
-
-                window->priv->last_x = -1;
-                window->priv->last_y = -1;
-        }
-
         return FALSE;
 }
 
@@ -774,11 +684,6 @@ static gboolean
 gs_window_real_button_press_event (GtkWidget      *widget,
                                    GdkEventButton *event)
 {
-        GSWindow *window;
-
-        window = GS_WINDOW (widget);
-        maybe_handle_activity (window);
-
         return FALSE;
 }
 
@@ -786,11 +691,6 @@ static gboolean
 gs_window_real_scroll_event (GtkWidget      *widget,
                              GdkEventScroll *event)
 {
-        GSWindow *window;
-
-        window = GS_WINDOW (widget);
-        maybe_handle_activity (window);
-
         return FALSE;
 }
 
@@ -945,17 +845,6 @@ gs_window_class_init (GSWindowClass *klass)
         widget_class->visibility_notify_event = gs_window_real_visibility_notify_event;
 
         g_type_class_add_private (klass, sizeof (GSWindowPrivate));
-
-        signals [ACTIVITY] =
-                g_signal_new ("activity",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSWindowClass, activity),
-                              NULL,
-                              NULL,
-                              gs_marshal_BOOLEAN__VOID,
-                              G_TYPE_BOOLEAN,
-                              0);
 
         g_object_class_install_property (object_class,
                                          PROP_OBSCURED,
