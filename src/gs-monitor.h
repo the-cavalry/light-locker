@@ -50,8 +50,6 @@ GType       gs_monitor_get_type (void);
 GSMonitor * gs_monitor_new              (void);
 gboolean    gs_monitor_start            (GSMonitor *monitor,
                                          GError   **error);
-void        gs_monitor_set_lock_enabled (GSMonitor *monitor,
-                                         gboolean   lock_enabled);
 G_END_DECLS
 
 #endif /* __GS_MONITOR_H */

@@ -23,8 +23,6 @@
 #ifndef __GS_MANAGER_H
 #define __GS_MANAGER_H
 
-#include "gs-prefs.h"
-
 G_BEGIN_DECLS
 
 #define GS_TYPE_MANAGER         (gs_manager_get_type ())
@@ -47,9 +45,6 @@ typedef struct
         GObjectClass     parent_class;
 
         void            (* activated)          (GSManager *manager);
-        void            (* deactivated)        (GSManager *manager);
-        void            (* auth_request_begin) (GSManager *manager);
-        void            (* auth_request_end)   (GSManager *manager);
 
 } GSManagerClass;
 
@@ -60,39 +55,6 @@ GSManager * gs_manager_new                  (void);
 gboolean    gs_manager_set_active           (GSManager  *manager,
                                              gboolean    active);
 gboolean    gs_manager_get_active           (GSManager  *manager);
-
-void        gs_manager_get_lock_active      (GSManager  *manager,
-                                             gboolean   *lock_active);
-void        gs_manager_set_lock_active      (GSManager  *manager,
-                                             gboolean    lock_active);
-void        gs_manager_set_keyboard_enabled (GSManager  *manager,
-                                             gboolean    enabled);
-void        gs_manager_set_keyboard_command (GSManager  *manager,
-                                             const char *command);
-void        gs_manager_set_status_message   (GSManager  *manager,
-                                             const char *message);
-void        gs_manager_get_lock_enabled     (GSManager  *manager,
-                                             gboolean   *lock_enabled);
-void        gs_manager_set_lock_enabled     (GSManager  *manager,
-                                             gboolean    lock_enabled);
-void        gs_manager_set_lock_timeout     (GSManager  *manager,
-                                             glong       lock_timeout);
-void        gs_manager_set_logout_enabled   (GSManager  *manager,
-                                             gboolean    logout_enabled);
-void        gs_manager_set_user_switch_enabled (GSManager  *manager,
-                                                gboolean    user_switch_enabled);
-void        gs_manager_set_logout_timeout   (GSManager  *manager,
-                                             glong       logout_timeout);
-void        gs_manager_set_logout_command   (GSManager  *manager,
-                                             const char *command);
-void        gs_manager_set_themes           (GSManager  *manager,
-                                             GSList     *themes);
-void        gs_manager_show_message         (GSManager  *manager,
-                                             const char *summary,
-                                             const char *body,
-                                             const char *icon);
-gboolean    gs_manager_request_unlock       (GSManager  *manager);
-void        gs_manager_cancel_unlock_request (GSManager *manager);
 
 G_END_DECLS
 

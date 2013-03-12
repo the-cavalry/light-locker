@@ -41,10 +41,6 @@ DBUS_REQUIRED_VERSION=0.30
 GLIB_REQUIRED_VERSION=2.25.6
 GTK_REQUIRED_VERSION=2.99.3
 X11_REQUIRED_VERSION=1.0
-#GNOME_DESKTOP_REQUIRED_VERSION=3.1.91
-#GSETTINGS_DESKTOP_SCHEMAS_REQUIRED_VERSION=0.1.7
-
-# LIBGNOMEKBDUI_REQUIRED_VERSION=0.1
 
 AC_CHECK_HEADERS(unistd.h)
 AC_CHECK_HEADERS(crypt.h sys/select.h)
@@ -58,22 +54,8 @@ PKG_CHECK_MODULES(LIGHT_LOCKER,
         x11 >= $X11_REQUIRED_VERSION
         gtk+-3.0 >= $GTK_REQUIRED_VERSION
         dbus-glib-1 >= $DBUS_REQUIRED_VERSION)
-#        gsettings-desktop-schemas >= $GSETTINGS_DESKTOP_SCHEMAS_REQUIRED_VERSION)
 AC_SUBST(LIGHT_LOCKER_CFLAGS)
 AC_SUBST(LIGHT_LOCKER_LIBS)
-
-PKG_CHECK_MODULES(LIGHT_LOCKER_DIALOG,
-        gthread-2.0
-        gtk+-3.0 >= $GTK_REQUIRED_VERSION)
-AC_SUBST(LIGHT_LOCKER_DIALOG_CFLAGS)
-AC_SUBST(LIGHT_LOCKER_DIALOG_LIBS)
-
-#PKG_CHECK_MODULES(LIGHT_LOCKER_CAPPLET,
-#        gio-2.0 >= $GLIB_REQUIRED_VERSION
-#        gtk+-3.0 >= $GTK_REQUIRED_VERSION
-#        gsettings-desktop-schemas >= $GSETTINGS_DESKTOP_SCHEMAS_REQUIRED_VERSION)
-#AC_SUBST(LIGHT_LOCKER_CAPPLET_CFLAGS)
-#AC_SUBST(LIGHT_LOCKER_CAPPLET_LIBS)
 
 PKG_CHECK_MODULES(LIGHT_LOCKER_COMMAND,
         gio-2.0 >= $GLIB_REQUIRED_VERSION
@@ -87,8 +69,6 @@ ALL_X_LIBS="$X_LIBS $X_PRE_LIBS -lXext -lX11 $X_EXTRA_LIBS"
 SAVER_LIBS="$ALL_X_LIBS"
 
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
-
-#GNOME_COMPILE_WARNINGS(yes)
 
 # Optional dependencies for the theme engines
 
@@ -416,161 +396,6 @@ if test "$have_xf86gamma" = yes -o "$have_xf86vmode" = yes; then
   fi
 fi
 
-dnl ---------------------------------------------------------------------------
-dnl - The --enable-locking option
-dnl ---------------------------------------------------------------------------
-
-AC_ARG_ENABLE(locking,[
-Screen locking options:
-
-  --enable-locking        Compile in support for locking the display.
-  --disable-locking       Do not allow locking at all.],
-  [enable_locking="$enableval"],[enable_locking=yes])
-if test "$enable_locking" = yes; then
-  true
-elif test "$enable_locking" = no; then
-  AC_DEFINE(NO_LOCKING, 1, [Define if screen locking support is disabled])
-else
-  echo "error: must be yes or no: --enable-locking=$enable_locking"
-  exit 1
-fi
-
-# We can't lock on MacOS X, so don't compile in support for it.
-#
-if test "$ac_macosx" = yes; then
-  if test "$enable_locking" = yes; then
-    AC_MSG_RESULT(locking disabled: it doesn't work on MacOS X)
-    enable_locking=no
-    AC_DEFINE(NO_LOCKING, 1, [Define if screen locking support is disabled])
-  fi
-fi
-
-dnl ---------------------------------------------------------------------------
-dnl - Check for bsd_auth(3) (OpenBSD)
-dnl ---------------------------------------------------------------------------
-
-have_bsdauth=no
-with_bsdauth_req=unspecified
-NEED_SETUID=no
-
-case "$host" in                                                                                       
-  *-openbsd*)                                                                                         
-    with_bsdauth=yes
-    AUTH_SCHEME=bsdauth
-    NEED_SETUID=no
-    if test "x$enable_locking" = "xyes"; then
-      with_bsdauth_req=yes
-      NEED_SETUID=yes
-    fi
-esac  
-
-if test "$with_bsdauth" = yes ; then
-  AC_CACHE_CHECK([for BSD Authentication], ac_cv_bsdauth,
-    [AC_TRY_X_COMPILE([#include <stdlib.h>
-                       #include <unistd.h>
-                       #include <sys/types.h>
-                       #include <bsd_auth.h>],
-      [int ok = auth_userokay("x", 0, "x", "x");],
-      [ac_cv_bsdauth=yes],
-      [ac_cv_bsdauth=no])])
-  if test "$ac_cv_bsdauth" = yes; then
-    have_bsdauth=yes
-  fi
-fi
-
-if test "$have_bsdauth" = yes; then
-  AC_DEFINE(HAVE_BSDAUTH, 1, [Define to 1 if using bsd_auth(3) authentication])
-fi
-
-AC_SUBST(NEED_SETUID)
-
-dnl ---------------------------------------------------------------------------
-dnl - Check for PAM
-dnl ---------------------------------------------------------------------------
-
-withval=""
-AC_ARG_WITH(pam-prefix,
-            AS_HELP_STRING([--with-pam-prefix=<prefix>],
-                           [specify where pam files go]),
-            [if test x$withval != x; then
-               AC_MSG_RESULT("PAM files will be installed in prefix ${withval}.")
-             fi])
-
-if test x$withval != x; then
-	PAM_PREFIX="$withval"
-else
-	PAM_PREFIX='${sysconfdir}'
-fi
-AC_SUBST(PAM_PREFIX)
-
-have_pam=no
-if test "x$enable_locking" = "xyes" -a "x$have_bsdauth" = "xno"; then
-AC_CHECK_LIB(pam, pam_start, have_pam=yes)
-fi
-
-if test "x$have_pam" = "xyes"; then
-        AUTH_LIBS="${AUTH_LIBS} -lpam"
-        AUTH_SCHEME=pam
-        # On Linux, sigtimedwait() is in libc; on Solaris, it's in librt.
-        have_timedwait=no
-        AC_CHECK_LIB(c, sigtimedwait, [have_timedwait=yes])
-        if test "$have_timedwait" = no ; then
-                AC_CHECK_LIB(rt, sigtimedwait, [AUTH_LIBS="${AUTH_LIBS} -lrt"])
-        fi
-
-        AC_MSG_CHECKING(how to call pam_strerror)
-        AC_CACHE_VAL(ac_cv_pam_strerror_args,
-         [AC_TRY_COMPILE([#include <stdio.h>
-                          #include <stdlib.h>
-                          #include <security/pam_appl.h>],
-                         [pam_handle_t *pamh = 0;
-                          char *s = pam_strerror(pamh, PAM_SUCCESS);],
-                         [ac_pam_strerror_args=2],
-                         [AC_TRY_COMPILE([#include <stdio.h>
-                                          #include <stdlib.h>
-                                          #include <security/pam_appl.h>],
-                                         [char *s =
-                                           pam_strerror(PAM_SUCCESS);],
-                                         [ac_pam_strerror_args=1],
-                                         [ac_pam_strerror_args=0])])
-          ac_cv_pam_strerror_args=$ac_pam_strerror_args])
-        ac_pam_strerror_args=$ac_cv_pam_strerror_args
-        if test "$ac_pam_strerror_args" = 1 ; then
-          AC_MSG_RESULT(one argument)
-        elif test "$ac_pam_strerror_args" = 2 ; then
-          AC_DEFINE(PAM_STRERROR_TWO_ARGS, 1, [Define if pam_strerror takes two arguments])
-          AC_MSG_RESULT(two arguments)
-        else
-          AC_MSG_RESULT(unknown)
-        fi
-
-elif test "x$have_bsdauth" = "xno"; then
-	AC_MSG_ERROR("PAM libraries not found")
-fi
-AC_SUBST(HAVE_PAM)
-AC_SUBST(AUTH_LIBS)
-AC_SUBST(AUTH_SCHEME)
-
-if test "x$have_pam" = "xyes"; then
-  AC_CHECK_HEADERS([security/pam_modutil.h security/pam_ext.h])
-  AC_CHECK_LIB(pam, pam_syslog, [AC_DEFINE(HAVE_PAM_SYSLOG, [], [Define to 1 if you have the pam_syslog function])])
-fi
-
-dnl test whether struct pam_message is const (Linux) or not (Sun)
-if test "x$have_pam" = "xyes"; then
-   pam_appl_h="$ac_pam_includes/security/pam_appl.h"
-   AC_MSG_CHECKING(for const pam_message)
-   AC_EGREP_HEADER([struct pam_message],
-      $pam_appl_h,
-      [ AC_EGREP_HEADER([const struct pam_message],
-                        $pam_appl_h,
-                        [AC_MSG_RESULT(["const: Linux-type PAM"]) ],
-                        [AC_MSG_RESULT(["nonconst: Sun-type PAM"])
-                        AC_DEFINE(PAM_MESSAGE_NONCONST, 1, [Define if your PAM support takes non-const arguments (Solaris)])]
-                        )],
-       [AC_MSG_RESULT(["not found - assume const, Linux-type PAM"])]
-       )
-fi
 
 dnl ---------------------------------------------------------------------------
 dnl ConsoleKit
@@ -622,27 +447,10 @@ fi
 AC_SUBST(SYSTEMD_CFLAGS)
 AC_SUBST(SYSTEMD_LIBS)
 
-#dnl ---------------------------------------------------------------------------
-#dnl libgnomekbd
-#dnl ---------------------------------------------------------------------------
-#
-#have_libgnomekbdui=no
-#AC_ARG_WITH(kbd-layout-indicator,[  --without-kbd-layout-indicator         disable keyboard layout indicator],
-#            [with_kbd_layout_indicator="$withval"],[with_kbd_layout_indicator=yes])
-#if test x$with_kbd_layout_indicator != xno; then
-#  PKG_CHECK_MODULES(LIBGNOMEKBDUI, libgnomekbdui >= $LIBGNOMEKBDUI_REQUIRED_VERSION libxklavier, have_libgnomekbdui=yes, have_libgnomekbdui=no)
-#fi
-#if test "x$have_libgnomekbdui" = "xyes"; then
-#  AC_SUBST(LIBGNOMEKBDUI_CFLAGS)
-#  AC_SUBST(LIBGNOMEKBDUI_LIBS)
-#  AC_DEFINE(WITH_KBD_LAYOUT_INDICATOR, 1, [Define if keyboard layout indicator should be built])
-#fi
-#
-#dnl ---------------------------------------------------------------------------
-#dnl Finish
-#dnl ---------------------------------------------------------------------------
+dnl ---------------------------------------------------------------------------
+dnl Finish
+dnl ---------------------------------------------------------------------------
 
-AC_SUBST(AUTH_LIBS)
 AC_SUBST(SAVER_LIBS)
 
 
@@ -782,9 +590,6 @@ echo "
         Extension libs:           ${SAVER_LIBS}
         Maintainer mode:          ${USE_MAINTAINER_MODE}
         Docs enabled:             ${enable_docbook_docs}
-
-        Screen locking enabled:   ${enable_locking}
-        Show keyboard indicator:  ${with_kbd_layout_indicator}
 
         systemd:                  ${use_systemd}
         ConsoleKit:               ${use_console_kit}
