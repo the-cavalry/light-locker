@@ -97,10 +97,10 @@ xorg_lock_smasher_set_active (GSGrab  *grab,
 {
         int status, event, error;
 
-	if (!XF86MiscQueryExtension (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), &event, &error)) {
-		gs_debug ("No XFree86-Misc extension present");
-		return;
-	}
+        if (!XF86MiscQueryExtension (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), &event, &error)) {
+                gs_debug ("No XFree86-Misc extension present");
+                return;
+        }
 
         if (active) {
                 gs_debug ("Enabling the x.org grab smasher");
@@ -253,7 +253,11 @@ gs_grab_get_mouse (GSGrab    *grab,
                 grab->priv->mouse_hide_cursor = hide_cursor;
         }
 
+#if GTK_CHECK_VERSION(3, 0, 0)
         g_object_unref (cursor);
+#else
+        gdk_cursor_unref (cursor);
+#endif
 
         return status;
 }
@@ -493,7 +497,11 @@ gs_grab_nuke_focus (void)
 
         XSetInputFocus (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), None, RevertToNone, CurrentTime);
 
+#if GTK_CHECK_VERSION(3, 0, 0)
         gdk_error_trap_pop_ignored ();
+#else
+        gdk_error_trap_pop ();
+#endif
 }
 
 void

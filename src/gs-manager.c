@@ -238,13 +238,29 @@ window_show_cb (GSWindow  *window,
         manager_show_window (manager, window);
 }
 
+#if !GTK_CHECK_VERSION(3, 0, 0)
+static void
+content_expose_cb (GtkWidget *widget,
+                  GdkEvent  *event,
+                  gpointer   user_data)
+{
+        cairo_t *cr = gdk_cairo_create (gtk_widget_get_window (widget));
+        content_draw_cb (widget, cr, user_data);
+        cairo_destroy (cr);
+}
+#endif
+
 static void
 disconnect_window_signals (GSManager *manager,
                            GSWindow  *window)
 {
         GtkWidget *drawing_area = gs_window_get_drawing_area (window);
 
+#if GTK_CHECK_VERSION(3, 0, 0)
         g_signal_handlers_disconnect_by_func (drawing_area, content_draw_cb, NULL);
+#else
+        g_signal_handlers_disconnect_by_func (drawing_area, content_expose_cb, NULL);
+#endif
 
         g_signal_handlers_disconnect_by_func (window, window_show_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_map_cb, manager);
@@ -267,8 +283,13 @@ connect_window_signals (GSManager *manager,
 {
         GtkWidget *drawing_area = gs_window_get_drawing_area (window);
 
+#if GTK_CHECK_VERSION(3, 0, 0)
         g_signal_connect_object (drawing_area, "draw",
                                  G_CALLBACK (content_draw_cb), NULL, 0);
+#else
+        g_signal_connect_object (drawing_area, "expose-event",
+                                 G_CALLBACK (content_expose_cb), NULL, 0);
+#endif
 
         g_signal_connect_object (window, "destroy",
                                  G_CALLBACK (window_destroyed_cb), manager, 0);
