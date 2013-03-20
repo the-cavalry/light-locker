@@ -215,18 +215,9 @@ window_unmap_cb (GSWindow  *window,
 }
 
 static void
-apply_background_to_window (GSManager *manager,
-                            GSWindow  *window)
-{
-        gs_window_set_background_surface (window, NULL);
-}
-
-static void
 manager_show_window (GSManager *manager,
                      GSWindow  *window)
 {
-        apply_background_to_window (manager, window);
-
         manager->priv->activate_time = time (NULL);
 
         /* FIXME: only emit signal once */

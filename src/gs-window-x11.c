@@ -61,11 +61,7 @@ struct GSWindowPrivate
         GdkRectangle geometry;
         guint      obscured : 1;
 
-        char      *status_message;
-
         GtkWidget *drawing_area;
-
-        cairo_surface_t *background_surface;
 
         guint      watchdog_timer_id;
 
@@ -80,8 +76,7 @@ struct GSWindowPrivate
 enum {
         PROP_0,
         PROP_OBSCURED,
-        PROP_MONITOR,
-        PROP_STATUS_MESSAGE
+        PROP_MONITOR
 };
 
 G_DEFINE_TYPE (GSWindow, gs_window, GTK_TYPE_WINDOW)
@@ -124,33 +119,6 @@ gs_window_override_user_time (GSWindow *window)
         }
 
         gdk_x11_window_set_user_time (gtk_widget_get_window (GTK_WIDGET (window)), ev_time);
-}
-
-static void
-gs_window_reset_background_surface (GSWindow *window)
-{
-        cairo_pattern_t *pattern;
-        pattern = cairo_pattern_create_for_surface (window->priv->background_surface);
-        gdk_window_set_background_pattern (gtk_widget_get_window (GTK_WIDGET (window)),
-                                           pattern);
-        cairo_pattern_destroy (pattern);
-        gtk_widget_queue_draw (GTK_WIDGET (window));
-}
-
-void
-gs_window_set_background_surface (GSWindow        *window,
-                                  cairo_surface_t *surface)
-{
-        g_return_if_fail (GS_IS_WINDOW (window));
-
-        if (window->priv->background_surface != NULL) {
-                cairo_surface_destroy (window->priv->background_surface);
-        }
-
-        if (surface != NULL) {
-                window->priv->background_surface = cairo_surface_reference (surface);
-                gs_window_reset_background_surface (window);
-        }
 }
 
 
@@ -567,16 +535,6 @@ gs_window_get_screen (GSWindow  *window)
 }
 
 void
-gs_window_set_status_message (GSWindow   *window,
-                            const char *status_message)
-{
-        g_return_if_fail (GS_IS_WINDOW (window));
-
-        g_free (window->priv->status_message);
-        window->priv->status_message = g_strdup (status_message);
-}
-
-void
 gs_window_set_monitor (GSWindow *window,
                        int       monitor)
 {
@@ -612,9 +570,6 @@ gs_window_set_property (GObject            *object,
         self = GS_WINDOW (object);
 
         switch (prop_id) {
-        case PROP_STATUS_MESSAGE:
-                gs_window_set_status_message (self, g_value_get_string (value));
-                break;
         case PROP_MONITOR:
                 gs_window_set_monitor (self, g_value_get_int (value));
                 break;
@@ -635,9 +590,6 @@ gs_window_get_property (GObject    *object,
         self = GS_WINDOW (object);
 
         switch (prop_id) {
-        case PROP_STATUS_MESSAGE:
-                g_value_set_string (value, self->priv->status_message);
-                break;
         case PROP_MONITOR:
                 g_value_set_int (value, self->priv->monitor);
                 break;
@@ -841,13 +793,6 @@ gs_window_class_init (GSWindowClass *klass)
                                                                NULL,
                                                                FALSE,
                                                                G_PARAM_READABLE));
-        g_object_class_install_property (object_class,
-                                         PROP_STATUS_MESSAGE,
-                                         g_param_spec_string ("status-message",
-                                                              NULL,
-                                                              NULL,
-                                                              NULL,
-                                                              G_PARAM_READWRITE));
 
         g_object_class_install_property (object_class,
                                          PROP_MONITOR,
@@ -927,10 +872,6 @@ gs_window_finalize (GObject *object)
         g_return_if_fail (window->priv != NULL);
 
         remove_watchdog_timer (window);
-
-        if (window->priv->background_surface) {
-               cairo_surface_destroy (window->priv->background_surface);
-        }
 
         G_OBJECT_CLASS (gs_window_parent_class)->finalize (object);
 }

@@ -60,11 +60,6 @@ void        gs_window_set_monitor        (GSWindow  *window,
                                           int        monitor);
 int         gs_window_get_monitor        (GSWindow  *window);
 
-void        gs_window_set_background_surface (GSWindow        *window,
-                                              cairo_surface_t *surface);
-void        gs_window_set_status_message   (GSWindow   *window,
-                                            const char *status_message);
-
 GSWindow  * gs_window_new                (GdkScreen *screen,
                                           int        monitor);
 void        gs_window_show               (GSWindow  *window);
