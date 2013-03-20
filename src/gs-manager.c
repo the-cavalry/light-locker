@@ -29,6 +29,7 @@
 #include "gs-manager.h"
 #include "gs-window.h"
 #include "gs-grab.h"
+#include "gs-content.h"
 #include "gs-debug.h"
 
 static void gs_manager_class_init (GSManagerClass *klass);
@@ -217,7 +218,7 @@ static void
 apply_background_to_window (GSManager *manager,
                             GSWindow  *window)
 {
-	gs_window_set_background_surface (window, NULL);
+        gs_window_set_background_surface (window, NULL);
 }
 
 static void
@@ -250,6 +251,10 @@ static void
 disconnect_window_signals (GSManager *manager,
                            GSWindow  *window)
 {
+        GtkWidget *drawing_area = gs_window_get_drawing_area (window);
+
+        g_signal_handlers_disconnect_by_func (drawing_area, content_draw_cb, NULL);
+
         g_signal_handlers_disconnect_by_func (window, window_show_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_map_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_map_event_cb, manager);
@@ -264,10 +269,16 @@ window_destroyed_cb (GtkWindow *window,
         disconnect_window_signals (manager, GS_WINDOW (window));
 }
 
+
 static void
 connect_window_signals (GSManager *manager,
                         GSWindow  *window)
 {
+        GtkWidget *drawing_area = gs_window_get_drawing_area (window);
+
+        g_signal_connect_object (drawing_area, "draw",
+                                 G_CALLBACK (content_draw_cb), NULL, 0);
+
         g_signal_connect_object (window, "destroy",
                                  G_CALLBACK (window_destroyed_cb), manager, 0);
         g_signal_connect_object (window, "show",
@@ -504,7 +515,7 @@ gs_manager_activate (GSManager *manager)
 
         manager->priv->active = TRUE;
 
-	show_windows (manager->priv->windows);
+        show_windows (manager->priv->windows);
 
         return TRUE;
 }

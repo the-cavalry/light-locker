@@ -63,9 +63,6 @@ struct GSWindowPrivate
 
         char      *status_message;
 
-        GtkWidget *vbox;
-        GtkWidget *panel;
-        GtkWidget *name_label;
         GtkWidget *drawing_area;
 
         cairo_surface_t *background_surface;
@@ -254,9 +251,6 @@ gs_window_move_resize_window (GSWindow *window,
                               gboolean  resize)
 {
         GtkWidget *widget;
-        GdkScreen *screen;
-        int        monitor;
-        int        primary_monitor;
 
         widget = GTK_WIDGET (window);
 
@@ -284,12 +278,6 @@ gs_window_move_resize_window (GSWindow *window,
                                    window->priv->geometry.width,
                                    window->priv->geometry.height);
         }
-
-        screen = gtk_widget_get_screen (widget);
-        monitor = gdk_screen_get_monitor_at_window (screen,
-                                                    gtk_widget_get_window (widget));
-        primary_monitor = gdk_screen_get_primary_monitor (screen);
-        gtk_widget_set_visible (window->priv->panel, monitor == primary_monitor);
 }
 
 static void
@@ -873,109 +861,6 @@ gs_window_class_init (GSWindowClass *klass)
 
 }
 
-static gboolean
-on_panel_draw (GtkWidget    *widget,
-               cairo_t      *cr,
-               GSWindow     *window)
-{
-        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 1.0);
-        cairo_paint (cr);
-
-        return FALSE;
-}
-
-static char *
-get_user_display_name (void)
-{
-        const char *name;
-        char       *utf8_name;
-
-        name = g_get_real_name ();
-
-        if (name == NULL || name[0] == '\0' || strcmp (name, "Unknown") == 0) {
-                name = g_get_user_name ();
-        }
-
-        utf8_name = NULL;
-
-        if (name != NULL) {
-                utf8_name = g_locale_to_utf8 (name, -1, NULL, NULL, NULL);
-        }
-
-        return utf8_name;
-}
-
-static void
-update_name_label (GSWindow *window)
-{
-        char *name;
-        char *markup;
-        name = get_user_display_name ();
-        markup = g_strdup_printf ("<b><span foreground=\"#ccc\">%s</span></b>", name);
-        gtk_label_set_markup (GTK_LABEL (window->priv->name_label), markup);
-        g_free (markup);
-        g_free (name);
-}
-
-static void
-create_panel (GSWindow *window)
-{
-        GtkWidget    *left_hbox;
-        GtkWidget    *right_hbox;
-        GtkWidget    *right_alignment;
-        GtkWidget    *image;
-        GtkSizeGroup *sg;
-        GdkRGBA       bg;
-        GdkRGBA       fg;
-        int           all_states;
-        GIcon        *gicon;
-
-        bg.red = 0;
-        bg.green = 0;
-        bg.blue = 0;
-        bg.alpha = 1.0;
-
-        fg.red = 0.8;
-        fg.green = 0.8;
-        fg.blue = 0.8;
-        fg.alpha = 1.0;
-
-        all_states = 0;
-
-        gtk_widget_override_background_color (window->priv->panel, all_states, &bg);
-        gtk_widget_override_color (window->priv->panel, all_states, &fg);
-        gtk_container_set_border_width (GTK_CONTAINER (window->priv->panel), 0);
-
-        g_signal_connect (window->priv->panel, "draw", G_CALLBACK (on_panel_draw), window);
-
-        left_hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
-        gtk_box_pack_start (GTK_BOX (window->priv->panel), left_hbox, TRUE, TRUE, 0);
-
-        right_alignment = gtk_alignment_new (1, 0.5, 1, 1);
-        gtk_box_pack_end (GTK_BOX (window->priv->panel), right_alignment, TRUE, TRUE, 0);
-        gtk_alignment_set_padding (GTK_ALIGNMENT (right_alignment),
-                                   0, 0, 10, 10);
-
-        right_hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
-        gtk_container_add (GTK_CONTAINER (right_alignment), right_hbox);
-
-        window->priv->name_label = gtk_label_new (NULL);
-        update_name_label (window);
-        gtk_box_pack_end (GTK_BOX (right_hbox), window->priv->name_label, FALSE, FALSE, 0);
-
-        gicon = g_themed_icon_new_with_default_fallbacks ("changes-prevent-symbolic");
-        image = gtk_image_new_from_gicon (gicon, GTK_ICON_SIZE_MENU);
-        gtk_widget_override_color (image, all_states, &fg);
-        g_object_unref (gicon);
-        gtk_box_pack_end (GTK_BOX (right_hbox), image, FALSE, FALSE, 0);
-
-        sg = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
-        gtk_size_group_add_widget (sg, left_hbox);
-        gtk_size_group_add_widget (sg, right_hbox);
-
-        gtk_widget_show_all (window->priv->panel);
-}
-
 static void
 on_drawing_area_realized (GtkWidget *drawing_area)
 {
@@ -1019,19 +904,10 @@ gs_window_init (GSWindow *window)
                                | GDK_ENTER_NOTIFY_MASK
                                | GDK_LEAVE_NOTIFY_MASK);
 
-        window->priv->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-        gtk_widget_show (window->priv->vbox);
-        gtk_container_add (GTK_CONTAINER (window), window->priv->vbox);
-
-        window->priv->panel = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
-        gtk_widget_show (window->priv->panel);
-        gtk_box_pack_start (GTK_BOX (window->priv->vbox), window->priv->panel, FALSE, FALSE, 0);
-        create_panel (window);
-
         window->priv->drawing_area = gtk_drawing_area_new ();
         gtk_widget_show (window->priv->drawing_area);
         gtk_widget_set_app_paintable (window->priv->drawing_area, TRUE);
-        gtk_box_pack_start (GTK_BOX (window->priv->vbox), window->priv->drawing_area, TRUE, TRUE, 0);
+        gtk_container_add (GTK_CONTAINER (window), window->priv->drawing_area);
         g_signal_connect (window->priv->drawing_area,
                           "realize",
                           G_CALLBACK (on_drawing_area_realized),
