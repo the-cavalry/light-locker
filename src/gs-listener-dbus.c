@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <string.h>
+#include <unistd.h>
 
 #include <glib/gi18n.h>
 
@@ -33,7 +34,6 @@
 #include <dbus/dbus-glib-lowlevel.h>
 
 #ifdef WITH_SYSTEMD
-#include <systemd/sd-daemon.h>
 #include <systemd/sd-login.h>
 #endif
 
@@ -1478,7 +1478,8 @@ gs_listener_init (GSListener *listener)
         listener->priv = GS_LISTENER_GET_PRIVATE (listener);
 
 #ifdef WITH_SYSTEMD
-        listener->priv->have_systemd = sd_booted () > 0;
+        /* check if logind is running */
+        listener->priv->have_systemd = (access("/run/systemd/seats/", F_OK) >= 0);
 #endif
 
         gs_listener_dbus_init (listener);
