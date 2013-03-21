@@ -73,6 +73,13 @@ manager_activated_cb (GSManager *manager,
 }
 
 static void
+manager_switch_greeter_cb (GSManager *manager,
+                           GSMonitor *monitor)
+{
+        gs_listener_send_switch_greeter (monitor->priv->listener);
+}
+
+static void
 gs_monitor_lock_screen (GSMonitor *monitor)
 {
         gboolean res;
@@ -94,6 +101,15 @@ listener_lock_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
         gs_monitor_lock_screen (monitor);
+}
+
+static void
+listener_session_switched_cb (GSListener *listener,
+                              gboolean    active,
+                              GSMonitor  *monitor)
+{
+        gs_debug ("Session switched: %d", active);
+        gs_manager_set_session_visible (monitor->priv->manager, active);
 }
 
 static gboolean
@@ -122,6 +138,7 @@ static void
 disconnect_listener_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_lock_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_session_switched_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_active_changed_cb, monitor);
 }
 
@@ -130,6 +147,8 @@ connect_listener_signals (GSMonitor *monitor)
 {
         g_signal_connect (monitor->priv->listener, "lock",
                           G_CALLBACK (listener_lock_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "session-switched",
+                          G_CALLBACK (listener_session_switched_cb), monitor);
         g_signal_connect (monitor->priv->listener, "active-changed",
                           G_CALLBACK (listener_active_changed_cb), monitor);
 }
@@ -138,6 +157,7 @@ static void
 disconnect_manager_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->manager, manager_activated_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->manager, manager_switch_greeter_cb, monitor);
 }
 
 static void
@@ -145,6 +165,8 @@ connect_manager_signals (GSMonitor *monitor)
 {
         g_signal_connect (monitor->priv->manager, "activated",
                           G_CALLBACK (manager_activated_cb), monitor);
+        g_signal_connect (monitor->priv->manager, "switch-greeter",
+                          G_CALLBACK (manager_switch_greeter_cb), monitor);
 }
 
 static void

@@ -45,6 +45,8 @@ typedef struct
         GObjectClass       parent_class;
 
         void            (* lock)                     (GSListener *listener);
+        void            (* session_switched)         (GSListener *listener,
+                                                      gboolean    active);
         gboolean        (* active_changed)           (GSListener *listener,
                                                       gboolean    active);
 
@@ -56,6 +58,7 @@ GSListener *gs_listener_new                     (void);
 gboolean    gs_listener_acquire                 (GSListener *listener);
 gboolean    gs_listener_set_active              (GSListener *listener,
                                                  gboolean    active);
+void        gs_listener_send_switch_greeter     (GSListener *listener);
 
 G_END_DECLS
 

@@ -55,14 +55,17 @@ struct GSListenerPrivate
 
         guint           active : 1;
         char           *session_id;
+        char           *seat_path;
 
 #ifdef WITH_SYSTEMD
         gboolean        have_systemd;
+        char           *sd_session_id;
 #endif
 };
 
 enum {
         LOCK,
+        SESSION_SWITCHED,
         ACTIVE_CHANGED,
         LAST_SIGNAL
 };
@@ -75,6 +78,45 @@ enum {
 static guint         signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSListener, gs_listener, G_TYPE_OBJECT)
+
+void
+gs_listener_send_switch_greeter (GSListener *listener)
+{
+        dbus_bool_t sent;
+        DBusMessage *message;
+
+#ifdef WITH_SYSTEMD
+        /* Compare with 0. On failure this will return < 0.
+         * In the later case we probably aren't using systemd.
+         */
+        if (sd_session_is_active (listener->priv->sd_session_id) == 0) {
+                gs_debug ("Refusing to switch to greeter");
+                return;
+        };
+#endif
+
+        if (listener->priv->system_connection == NULL) {
+                gs_debug ("No connection to the system bus");
+                return;
+        }
+
+        message = dbus_message_new_method_call (DM_SERVICE,
+                                                listener->priv->seat_path,
+                                                DM_SEAT_INTERFACE,
+                                                "SwitchToGreeter");
+        if (message == NULL) {
+                gs_debug ("Couldn't allocate the dbus message");
+                return;
+        }
+
+        sent = dbus_connection_send (listener->priv->system_connection, message, NULL);
+        dbus_message_unref (message);
+
+        if (sent == FALSE) {
+                gs_debug ("Couldn't send the dbus message");
+                return;
+        }
+}
 
 gboolean
 gs_listener_set_active (GSListener *listener,
@@ -123,6 +165,132 @@ _listener_message_path_is_our_session (GSListener  *listener,
         return FALSE;
 }
 
+#ifdef WITH_SYSTEMD
+static gboolean
+query_session_active (GSListener *listener)
+{
+        DBusMessage    *message;
+        DBusMessage    *reply;
+        DBusError       error;
+        DBusMessageIter reply_iter;
+        DBusMessageIter sub_iter;
+        dbus_bool_t     active;
+        const char     *interface;
+        const char     *property;
+
+        if (listener->priv->system_connection == NULL) {
+                gs_debug ("No connection to the system bus");
+                return FALSE;
+        }
+
+        dbus_error_init (&error);
+
+        message = dbus_message_new_method_call (SYSTEMD_LOGIND_SERVICE, listener->priv->session_id, DBUS_PROPERTIES_INTERFACE, "Get");
+        if (message == NULL) {
+                gs_debug ("Couldn't allocate the dbus message");
+                return FALSE;
+        }
+
+        interface = SYSTEMD_LOGIND_SESSION_INTERFACE;
+        property = "Active";
+
+        if (dbus_message_append_args (message, DBUS_TYPE_STRING, &interface, DBUS_TYPE_STRING, &property, DBUS_TYPE_INVALID) == FALSE) {
+                gs_debug ("Couldn't add args to the dbus message");
+                return FALSE;
+        }
+
+        /* FIXME: use async? */
+        reply = dbus_connection_send_with_reply_and_block (listener->priv->system_connection,
+                                                           message,
+                                                           -1, &error);
+        dbus_message_unref (message);
+
+        if (dbus_error_is_set (&error)) {
+                gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
+                dbus_error_free (&error);
+                return FALSE;
+        }
+
+        dbus_message_iter_init (reply, &reply_iter);
+        dbus_message_iter_recurse (&reply_iter, &sub_iter);
+        dbus_message_iter_get_basic (&sub_iter, &active);
+
+        dbus_message_unref (reply);
+
+        return active;
+}
+#endif
+
+#ifdef WITH_SYSTEMD
+static gboolean
+properties_changed_match (DBusMessage *message,
+                          const char  *property)
+{
+        DBusMessageIter iter, sub, sub2;
+
+        /* Checks whether a certain property is listed in the
+         * specified PropertiesChanged message */
+
+        if (!dbus_message_iter_init (message, &iter))
+                goto failure;
+
+        /* Jump over interface name */
+        if (dbus_message_iter_get_arg_type (&iter) != DBUS_TYPE_STRING)
+                goto failure;
+
+        dbus_message_iter_next (&iter);
+
+        /* First, iterate through the changed properties array */
+        if (dbus_message_iter_get_arg_type (&iter) != DBUS_TYPE_ARRAY ||
+            dbus_message_iter_get_element_type (&iter) != DBUS_TYPE_DICT_ENTRY)
+                goto failure;
+
+        dbus_message_iter_recurse (&iter, &sub);
+        while (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_INVALID) {
+                const char *name;
+
+                if (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_DICT_ENTRY)
+                        goto failure;
+
+                dbus_message_iter_recurse (&sub, &sub2);
+                dbus_message_iter_get_basic (&sub2, &name);
+
+                if (strcmp (name, property) == 0)
+                        return TRUE;
+
+                dbus_message_iter_next (&sub);
+        }
+
+        dbus_message_iter_next (&iter);
+
+        /* Second, iterate through the invalidated properties array */
+        if (dbus_message_iter_get_arg_type (&iter) != DBUS_TYPE_ARRAY ||
+            dbus_message_iter_get_element_type (&iter) != DBUS_TYPE_STRING)
+                goto failure;
+
+        dbus_message_iter_recurse (&iter, &sub);
+        while (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_INVALID) {
+                const char *name;
+
+                if (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_STRING)
+                        goto failure;
+
+                dbus_message_iter_get_basic (&sub, &name);
+
+                if (strcmp (name, property) == 0)
+                        return TRUE;
+
+                dbus_message_iter_next (&sub);
+        }
+
+        return FALSE;
+
+failure:
+        gs_debug ("Failed to decode PropertiesChanged message.");
+        return FALSE;
+}
+#endif
+
 static DBusHandlerResult
 listener_dbus_handle_system_message (DBusConnection *connection,
                                      DBusMessage    *message,
@@ -160,6 +328,20 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                         }
 
                         return DBUS_HANDLER_RESULT_HANDLED;
+                } else if (dbus_message_is_signal (message, DBUS_INTERFACE_PROPERTIES, "PropertiesChanged")) {
+
+                        /* Use the seat property ActiveSession.
+                         * The session property Active only seems to be signalled when it becomes active.
+                         */
+                        if (properties_changed_match (message, "ActiveSession")) {
+                                gboolean new_active;
+
+                                /* Do a DBus query, since the sd_session_is_active isn't up to date. */
+                                new_active = query_session_active (listener);
+                                g_signal_emit (listener, signals [SESSION_SWITCHED], 0, new_active);
+                        }
+
+                        return DBUS_HANDLER_RESULT_HANDLED;
                 }
 
                 return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
@@ -178,6 +360,34 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                 if (_listener_message_path_is_our_session (listener, message)) {
                         gs_debug ("ConsoleKit requested session lock");
                         g_signal_emit (listener, signals [LOCK], 0);
+                }
+
+                return DBUS_HANDLER_RESULT_HANDLED;
+        } else if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "ActiveChanged")) {
+                /* NB that `ActiveChanged' refers to the active
+                 * session in ConsoleKit terminology - ie which
+                 * session is currently displayed on the screen.
+                 * light-locker uses `active' to mean `is the
+                 * screensaver active' (ie, is the screen locked) but
+                 * that's not what we're referring to here.
+                 */
+
+                if (_listener_message_path_is_our_session (listener, message)) {
+                        DBusError   error;
+                        dbus_bool_t new_active;
+
+                        dbus_error_init (&error);
+                        if (dbus_message_get_args (message, &error,
+                                                   DBUS_TYPE_BOOLEAN, &new_active,
+                                                   DBUS_TYPE_INVALID)) {
+                                gs_debug ("ConsoleKit notified ActiveChanged %d", new_active);
+
+                                g_signal_emit (listener, signals [SESSION_SWITCHED], 0, new_active);
+                        }
+
+                        if (dbus_error_is_set (&error)) {
+                                dbus_error_free (&error);
+                        }
                 }
 
                 return DBUS_HANDLER_RESULT_HANDLED;
@@ -316,6 +526,17 @@ gs_listener_class_init (GSListenerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
+        signals [SESSION_SWITCHED] =
+                g_signal_new ("session-switched",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, session_switched),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__BOOLEAN,
+                              G_TYPE_NONE,
+                              1,
+                              G_TYPE_BOOLEAN);
         signals [ACTIVE_CHANGED] =
                 g_signal_new ("active-changed",
                               G_TYPE_FROM_CLASS (object_class),
@@ -364,6 +585,12 @@ gs_listener_acquire (GSListener *listener)
                                             ",interface='"SYSTEMD_LOGIND_SESSION_INTERFACE"'"
                                             ",member='Lock'",
                                             NULL);
+                        dbus_bus_add_match (listener->priv->system_connection,
+                                            "type='signal'"
+                                            ",sender='"SYSTEMD_LOGIND_SERVICE"'"
+                                            ",interface='"DBUS_INTERFACE_PROPERTIES"'"
+                                            ",member='PropertiesChanged'",
+                                            NULL);
 
                         return TRUE;
                 }
@@ -379,6 +606,11 @@ gs_listener_acquire (GSListener *listener)
                                     "type='signal'"
                                     ",interface='"CK_SESSION_INTERFACE"'"
                                     ",member='Lock'",
+                                    NULL);
+                dbus_bus_add_match (listener->priv->system_connection,
+                                    "type='signal'"
+                                    ",interface='"CK_SESSION_INTERFACE"'"
+                                    ",member='ActiveChanged'",
                                     NULL);
 #endif
         }
@@ -470,12 +702,103 @@ query_session_id (GSListener *listener)
 #endif
 }
 
+#ifdef WITH_SYSTEMD
+static char *
+query_sd_session_id (GSListener *listener)
+{
+      char *ssid;
+      char *t;
+      int r;
+
+      r = sd_pid_get_session (0, &t);
+      if (r < 0) {
+              gs_debug ("Couldn't determine our own sd session id: %s", strerror (-r));
+              return NULL;
+      }
+
+      ssid = g_strdup (t);
+      free (t);
+
+      return ssid;
+}
+#endif
+
 static void
 init_session_id (GSListener *listener)
 {
         g_free (listener->priv->session_id);
         listener->priv->session_id = query_session_id (listener);
         gs_debug ("Got session-id: %s", listener->priv->session_id);
+
+#ifdef WITH_SYSTEMD
+        g_free (listener->priv->sd_session_id);
+        listener->priv->sd_session_id = query_sd_session_id (listener);
+        gs_debug ("Got sd-session-id: %s", listener->priv->sd_session_id);
+#endif
+}
+
+static char *
+query_seat_path (GSListener *listener)
+{
+        DBusMessage    *message;
+        DBusMessage    *reply;
+        DBusError       error;
+        DBusMessageIter reply_iter;
+        DBusMessageIter sub_iter;
+        char           *seat;
+        const char     *interface;
+        const char     *property;
+
+        if (listener->priv->system_connection == NULL) {
+                gs_debug ("No connection to the system bus");
+                return NULL;
+        }
+
+        seat = NULL;
+
+        dbus_error_init (&error);
+
+        message = dbus_message_new_method_call (DM_SERVICE, DM_SESSION_PATH, DBUS_PROPERTIES_INTERFACE, "Get");
+        if (message == NULL) {
+                gs_debug ("Couldn't allocate the dbus message");
+                return NULL;
+        }
+
+        interface = DM_SESSION_INTERFACE;
+        property = "Seat";
+
+        if (dbus_message_append_args (message, DBUS_TYPE_STRING, &interface, DBUS_TYPE_STRING, &property, DBUS_TYPE_INVALID) == FALSE) {
+                gs_debug ("Couldn't add args to the dbus message");
+                return NULL;
+        }
+
+        /* FIXME: use async? */
+        reply = dbus_connection_send_with_reply_and_block (listener->priv->system_connection,
+                                                           message,
+                                                           -1, &error);
+        dbus_message_unref (message);
+
+        if (dbus_error_is_set (&error)) {
+                gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
+                dbus_error_free (&error);
+                return NULL;
+        }
+
+        dbus_message_iter_init (reply, &reply_iter);
+        dbus_message_iter_recurse (&reply_iter, &sub_iter);
+        dbus_message_iter_get_basic (&sub_iter, &seat);
+
+        dbus_message_unref (reply);
+
+        return g_strdup (seat);
+}
+
+static void
+init_seat_path (GSListener *listener)
+{
+        g_free (listener->priv->seat_path);
+        listener->priv->seat_path = query_seat_path (listener);
+        gs_debug ("Got seat: %s", listener->priv->seat_path);
 }
 
 static void
@@ -490,6 +813,7 @@ gs_listener_init (GSListener *listener)
         gs_listener_dbus_init (listener);
 
         init_session_id (listener);
+        init_seat_path (listener);
 }
 
 static void

@@ -45,6 +45,7 @@ typedef struct
         GObjectClass     parent_class;
 
         void            (* activated)          (GSManager *manager);
+        void            (* switch_greeter)     (GSManager *manager);
 
 } GSManagerClass;
 
@@ -55,6 +56,9 @@ GSManager * gs_manager_new                  (void);
 gboolean    gs_manager_set_active           (GSManager  *manager,
                                              gboolean    active);
 gboolean    gs_manager_get_active           (GSManager  *manager);
+
+void        gs_manager_set_session_visible  (GSManager  *manager,
+                                             gboolean    active);
 
 G_END_DECLS
 

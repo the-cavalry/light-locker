@@ -44,14 +44,18 @@ struct GSManagerPrivate
 
         /* State */
         guint        active : 1;
+        guint        visible : 1;
 
         time_t       activate_time;
+
+        guint        greeter_timeout_id;
 
         GSGrab      *grab;
 };
 
 enum {
         ACTIVATED,
+        SWITCH_GREETER,
         LAST_SIGNAL
 };
 
@@ -114,6 +118,17 @@ gs_manager_class_init (GSManagerClass *klass)
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GSManagerClass, activated),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+
+        signals [SWITCH_GREETER] =
+                g_signal_new ("switch-greeter",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSManagerClass, switch_greeter),
                               NULL,
                               NULL,
                               g_cclosure_marshal_VOID__VOID,
@@ -504,6 +519,44 @@ show_windows (GSList *windows)
 }
 
 static gboolean
+switch_greeter_timeout (GSManager *manager)
+{
+        manager->priv->greeter_timeout_id = 0;
+
+        gs_debug ("Swtich to greeter timeout");
+
+        g_signal_emit (manager, signals [SWITCH_GREETER], 0);
+
+        return FALSE;
+}
+
+static void
+gs_manager_timed_switch (GSManager *manager)
+{
+        if (manager->priv->greeter_timeout_id != 0) {
+                gs_debug ("Trying to start an active swtich to greeter timer");
+                return;
+        }
+
+        gs_debug ("Start swtich to greeter timer");
+
+        manager->priv->greeter_timeout_id = g_timeout_add_seconds (10,
+                                                                   (GSourceFunc)switch_greeter_timeout,
+                                                                   manager);
+}
+
+static void
+gs_manager_stop_switch (GSManager *manager)
+{
+        if (manager->priv->greeter_timeout_id != 0) {
+                gs_debug ("Stop swtich to greeter timer");
+
+                g_source_remove (manager->priv->greeter_timeout_id);
+                manager->priv->greeter_timeout_id = 0;
+        }
+}
+
+static gboolean
 gs_manager_activate (GSManager *manager)
 {
         gboolean    res;
@@ -529,6 +582,10 @@ gs_manager_activate (GSManager *manager)
 
         show_windows (manager->priv->windows);
 
+        if (manager->priv->visible) {
+                gs_manager_timed_switch (manager);
+        }
+
         return TRUE;
 }
 
@@ -546,6 +603,8 @@ gs_manager_deactivate (GSManager *manager)
         gs_grab_release (manager->priv->grab);
 
         gs_manager_destroy_windows (manager);
+
+        gs_manager_stop_switch (manager);
 
         /* reset state */
         manager->priv->active = FALSE;
@@ -576,4 +635,17 @@ gs_manager_get_active (GSManager *manager)
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
         return manager->priv->active;
+}
+
+void
+gs_manager_set_session_visible (GSManager  *manager,
+                                gboolean    visible)
+{
+        manager->priv->visible = visible;
+
+        if (manager->priv->active && visible) {
+                gs_manager_timed_switch (manager);
+        } else {
+                gs_manager_stop_switch (manager);
+        }
 }

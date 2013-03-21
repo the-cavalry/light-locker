@@ -57,8 +57,8 @@ displaymanager_send_message_void (GDBusConnection *connection,
         g_return_val_if_fail (name != NULL, NULL);
 
         message = g_dbus_message_new_method_call (DM_SERVICE,
-                                                  DM_PATH,
-                                                  DM_INTERFACE,
+                                                  DM_SESSION_PATH,
+                                                  DM_SESSION_INTERFACE,
                                                   name);
         if (message == NULL) {
                 g_warning ("Couldn't allocate the dbus message");

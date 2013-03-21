@@ -43,8 +43,13 @@
 
 /* lightDM */
 #define DM_SERVICE                      "org.freedesktop.DisplayManager"
-#define DM_PATH                         getenv("XDG_SESSION_PATH")
-#define DM_INTERFACE                    "org.freedesktop.DisplayManager.Session"
+
+#define DM_SEAT_INTERFACE               "org.freedesktop.DisplayManager.Seat"
+
+#define DM_SESSION_PATH                 getenv("XDG_SESSION_PATH")
+#define DM_SESSION_INTERFACE            "org.freedesktop.DisplayManager.Session"
+
+#define DBUS_PROPERTIES_INTERFACE       "org.freedesktop.DBus.Properties"
 
 #endif
 
