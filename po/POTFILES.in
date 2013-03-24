@@ -1,10 +1,8 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
 src/light-locker-command.c
-src/light-locker-dialog.c
 src/light-locker.c
 src/light-locker.desktop.in.in
-src/gs-auth-pam.c
 src/gs-listener-dbus.c
-src/gs-lock-plug.c
 src/gs-window-x11.c
+src/gs-content.c
