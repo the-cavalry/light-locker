@@ -523,7 +523,7 @@ switch_greeter_timeout (GSManager *manager)
 {
         manager->priv->greeter_timeout_id = 0;
 
-        gs_debug ("Swtich to greeter timeout");
+        gs_debug ("Switch to greeter timeout");
 
         g_signal_emit (manager, signals [SWITCH_GREETER], 0);
 
@@ -534,11 +534,11 @@ static void
 gs_manager_timed_switch (GSManager *manager)
 {
         if (manager->priv->greeter_timeout_id != 0) {
-                gs_debug ("Trying to start an active swtich to greeter timer");
+                gs_debug ("Trying to start an active switch to greeter timer");
                 return;
         }
 
-        gs_debug ("Start swtich to greeter timer");
+        gs_debug ("Start switch to greeter timer");
 
         manager->priv->greeter_timeout_id = g_timeout_add_seconds (10,
                                                                    (GSourceFunc)switch_greeter_timeout,
@@ -549,7 +549,7 @@ static void
 gs_manager_stop_switch (GSManager *manager)
 {
         if (manager->priv->greeter_timeout_id != 0) {
-                gs_debug ("Stop swtich to greeter timer");
+                gs_debug ("Stop switch to greeter timer");
 
                 g_source_remove (manager->priv->greeter_timeout_id);
                 manager->priv->greeter_timeout_id = 0;
