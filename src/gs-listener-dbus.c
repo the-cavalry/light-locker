@@ -344,6 +344,13 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                         return DBUS_HANDLER_RESULT_HANDLED;
                 }
 
+                if (dbus_message_is_signal (message, SYSTEMD_LOGIND_INTERFACE, "PrepareForSleep")) {
+                        gs_debug ("systemd initiating sleep");
+                        g_signal_emit (listener, signals [LOCK], 0);
+
+                        return DBUS_HANDLER_RESULT_HANDLED;
+                }
+
                 return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
         }
 #endif
@@ -389,6 +396,20 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                                 dbus_error_free (&error);
                         }
                 }
+
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+#endif
+
+#ifdef WITH_UPOWER
+        if (dbus_message_is_signal (message, UP_INTERFACE, "Sleeping")) {
+                gs_debug ("UPower initiating sleep");
+                g_signal_emit (listener, signals [LOCK], 0);
+
+                return DBUS_HANDLER_RESULT_HANDLED;
+        } else if (dbus_message_is_signal (message, UP_INTERFACE, "Resuming")) {
+                gs_debug ("UPower initiating resume");
+                g_signal_emit (listener, signals [LOCK], 0);
 
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
@@ -592,6 +613,13 @@ gs_listener_acquire (GSListener *listener)
                                             ",member='PropertiesChanged'",
                                             NULL);
 
+                        dbus_bus_add_match (listener->priv->system_connection,
+                                            "type='signal'"
+                                            ",sender='"SYSTEMD_LOGIND_SERVICE"'"
+                                            ",interface='"SYSTEMD_LOGIND_INTERFACE"'"
+                                            ",member='PrepareForSleep'",
+                                            NULL);
+
                         return TRUE;
                 }
 #endif
@@ -611,6 +639,19 @@ gs_listener_acquire (GSListener *listener)
                                     "type='signal'"
                                     ",interface='"CK_SESSION_INTERFACE"'"
                                     ",member='ActiveChanged'",
+                                    NULL);
+#endif
+
+#ifdef WITH_UPOWER
+                dbus_bus_add_match (listener->priv->system_connection,
+                                    "type='signal'"
+                                    ",interface='"UP_INTERFACE"'"
+                                    ",member='Sleeping'",
+                                    NULL);
+                dbus_bus_add_match (listener->priv->system_connection,
+                                    "type='signal'"
+                                    ",interface='"UP_INTERFACE"'"
+                                    ",member='Resuming'",
                                     NULL);
 #endif
         }

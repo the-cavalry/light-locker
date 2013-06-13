@@ -41,6 +41,10 @@
 #define CK_SESSION_PATH                 CK_PATH "/Session"
 #define CK_SESSION_INTERFACE            CK_INTERFACE ".Session"
 
+/* UPower */
+#define UP_SERVICE                      "org.freedesktop.UPower"
+#define UP_INTERFACE                    "org.freedesktop.UPower"
+
 /* lightDM */
 #define DM_SERVICE                      "org.freedesktop.DisplayManager"
 
