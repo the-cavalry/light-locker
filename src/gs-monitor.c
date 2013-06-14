@@ -97,6 +97,20 @@ gs_monitor_lock_screen (GSMonitor *monitor)
 }
 
 static void
+gs_monitor_lock_session (GSMonitor *monitor)
+{
+        gboolean visible;
+
+        visible = gs_manager_get_session_visible (monitor->priv->manager);
+
+        /* Only swith to greeter is we are the visible session */
+        if (visible) {
+                gs_listener_send_switch_greeter (monitor->priv->listener);
+        }
+
+}
+
+static void
 listener_lock_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
@@ -135,11 +149,31 @@ listener_active_changed_cb (GSListener *listener,
 }
 
 static void
+listener_suspend_cb (GSListener *listener,
+                     GSMonitor  *monitor)
+{
+        /* Show the lock screen until resome.
+         * We lock the screen here even when the displaymanager didn't send the signal.
+         * This means that need tell the displaymanager to lock the session before it can unlock.
+         */
+        gs_monitor_lock_screen (monitor);
+}
+
+static void
+listener_resume_cb (GSListener *listener,
+                    GSMonitor  *monitor)
+{
+        gs_monitor_lock_session (monitor);
+}
+
+static void
 disconnect_listener_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_lock_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_session_switched_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_active_changed_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_suspend_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_resume_cb, monitor);
 }
 
 static void
@@ -151,6 +185,10 @@ connect_listener_signals (GSMonitor *monitor)
                           G_CALLBACK (listener_session_switched_cb), monitor);
         g_signal_connect (monitor->priv->listener, "active-changed",
                           G_CALLBACK (listener_active_changed_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "suspend",
+                          G_CALLBACK (listener_suspend_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "resume",
+                          G_CALLBACK (listener_resume_cb), monitor);
 }
 
 static void

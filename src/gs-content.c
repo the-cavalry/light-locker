@@ -29,7 +29,7 @@
 #include "gs-debug.h"
 
 #define TITLE_FONT "Sans 28"
-#define MESSAGE_FONT "Sans 20"
+#define MESSAGE_FONT "Sans 19"
 
 #define BOX_WIDTH(s)    ((s)*1.2)
 #define BOX_HEIGHT(s)   ((s)*0.9)
@@ -114,7 +114,7 @@ content_draw_cb (GtkWidget *widget,
         g_object_unref (title_layout);
 
         sub_layout = pango_layout_new (context);
-        pango_layout_set_text (sub_layout, _("You'll be redirected to the unlock dialog automatically in 10 seconds."), -1);
+        pango_layout_set_text (sub_layout, _("You'll be redirected to the unlock dialog automatically in a few seconds."), -1);
         pango_layout_set_wrap (sub_layout, PANGO_WRAP_WORD_CHAR);
         pango_layout_set_width (sub_layout, width + 2 * height);
         desc = pango_font_description_from_string (MESSAGE_FONT);

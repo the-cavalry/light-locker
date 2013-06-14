@@ -67,6 +67,8 @@ enum {
         LOCK,
         SESSION_SWITCHED,
         ACTIVE_CHANGED,
+        SUSPEND,
+        RESUME,
         LAST_SIGNAL
 };
 
@@ -345,8 +347,15 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                 }
 
                 if (dbus_message_is_signal (message, SYSTEMD_LOGIND_INTERFACE, "PrepareForSleep")) {
+                        DBusMessageIter message_iter;
+                        dbus_bool_t active;
+
                         gs_debug ("systemd initiating sleep");
-                        g_signal_emit (listener, signals [LOCK], 0);
+
+                        dbus_message_iter_init (message, &message_iter);
+                        dbus_message_iter_get_basic (&message_iter, &active);
+
+                        g_signal_emit (listener, signals [active == TRUE ? SUSPEND : RESUME], 0);
 
                         return DBUS_HANDLER_RESULT_HANDLED;
                 }
@@ -404,12 +413,12 @@ listener_dbus_handle_system_message (DBusConnection *connection,
 #ifdef WITH_UPOWER
         if (dbus_message_is_signal (message, UP_INTERFACE, "Sleeping")) {
                 gs_debug ("UPower initiating sleep");
-                g_signal_emit (listener, signals [LOCK], 0);
+                g_signal_emit (listener, signals [SUSPEND], 0);
 
                 return DBUS_HANDLER_RESULT_HANDLED;
         } else if (dbus_message_is_signal (message, UP_INTERFACE, "Resuming")) {
                 gs_debug ("UPower initiating resume");
-                g_signal_emit (listener, signals [LOCK], 0);
+                g_signal_emit (listener, signals [RESUME], 0);
 
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
@@ -569,6 +578,26 @@ gs_listener_class_init (GSListenerClass *klass)
                               G_TYPE_BOOLEAN,
                               1,
                               G_TYPE_BOOLEAN);
+        signals [SUSPEND] =
+                g_signal_new ("suspend",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, suspend),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals [RESUME] =
+                g_signal_new ("resume",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, resume),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
 
         g_object_class_install_property (object_class,
                                          PROP_ACTIVE,

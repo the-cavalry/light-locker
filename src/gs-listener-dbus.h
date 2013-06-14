@@ -49,6 +49,8 @@ typedef struct
                                                       gboolean    active);
         gboolean        (* active_changed)           (GSListener *listener,
                                                       gboolean    active);
+        void            (* suspend)                  (GSListener *listener);
+        void            (* resume)                   (GSListener *listener);
 
 } GSListenerClass;
 
