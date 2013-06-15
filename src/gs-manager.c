@@ -152,6 +152,9 @@ gs_manager_init (GSManager *manager)
         manager->priv = GS_MANAGER_GET_PRIVATE (manager);
 
         manager->priv->grab = gs_grab_new ();
+
+	/* Assume we are the visible session on start. */
+	manager->priv->visible = TRUE;
 }
 
 

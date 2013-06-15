@@ -152,7 +152,7 @@ static void
 listener_suspend_cb (GSListener *listener,
                      GSMonitor  *monitor)
 {
-        /* Show the lock screen until resome.
+        /* Show the lock screen until resume.
          * We lock the screen here even when the displaymanager didn't send the signal.
          * This means that need tell the displaymanager to lock the session before it can unlock.
          */
