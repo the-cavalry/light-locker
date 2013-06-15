@@ -176,7 +176,7 @@ query_session_active (GSListener *listener)
         DBusError       error;
         DBusMessageIter reply_iter;
         DBusMessageIter sub_iter;
-        dbus_bool_t     active;
+        dbus_bool_t     active = FALSE;
         const char     *interface;
         const char     *property;
 
@@ -198,6 +198,7 @@ query_session_active (GSListener *listener)
 
         if (dbus_message_append_args (message, DBUS_TYPE_STRING, &interface, DBUS_TYPE_STRING, &property, DBUS_TYPE_INVALID) == FALSE) {
                 gs_debug ("Couldn't add args to the dbus message");
+                dbus_message_unref (message);
                 return FALSE;
         }
 
@@ -213,9 +214,19 @@ query_session_active (GSListener *listener)
                 return FALSE;
         }
 
-        dbus_message_iter_init (reply, &reply_iter);
-        dbus_message_iter_recurse (&reply_iter, &sub_iter);
-        dbus_message_iter_get_basic (&sub_iter, &active);
+        if (dbus_message_iter_init (reply, &reply_iter) == TRUE
+            && dbus_message_iter_get_arg_type (&reply_iter) == DBUS_TYPE_VARIANT) {
+
+                dbus_message_iter_recurse (&reply_iter, &sub_iter);
+
+                if (dbus_message_iter_get_arg_type (&sub_iter) == DBUS_TYPE_BOOLEAN) {
+                        dbus_message_iter_get_basic (&sub_iter, &active);
+                } else {
+                        gs_debug ("Unexpected return type");
+                }
+        } else {
+                gs_debug ("Unexpected return type");
+        }
 
         dbus_message_unref (reply);
 
@@ -240,7 +251,8 @@ properties_changed_match (DBusMessage *message,
         if (dbus_message_iter_get_arg_type (&iter) != DBUS_TYPE_STRING)
                 goto failure;
 
-        dbus_message_iter_next (&iter);
+        if (dbus_message_iter_next (&iter) == FALSE)
+                goto failure;
 
         /* First, iterate through the changed properties array */
         if (dbus_message_iter_get_arg_type (&iter) != DBUS_TYPE_ARRAY ||
@@ -249,21 +261,26 @@ properties_changed_match (DBusMessage *message,
 
         dbus_message_iter_recurse (&iter, &sub);
         while (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_INVALID) {
-                const char *name;
+                const char *name = NULL;
 
                 if (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_DICT_ENTRY)
                         goto failure;
 
                 dbus_message_iter_recurse (&sub, &sub2);
+
+                if (dbus_message_iter_get_arg_type (&sub2) != DBUS_TYPE_STRING)
+                        goto failure;
+
                 dbus_message_iter_get_basic (&sub2, &name);
 
-                if (strcmp (name, property) == 0)
+                if (g_strcmp0 (name, property) == 0)
                         return TRUE;
 
                 dbus_message_iter_next (&sub);
         }
 
-        dbus_message_iter_next (&iter);
+        if (dbus_message_iter_next (&iter) == FALSE)
+                goto failure;
 
         /* Second, iterate through the invalidated properties array */
         if (dbus_message_iter_get_arg_type (&iter) != DBUS_TYPE_ARRAY ||
@@ -272,14 +289,14 @@ properties_changed_match (DBusMessage *message,
 
         dbus_message_iter_recurse (&iter, &sub);
         while (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_INVALID) {
-                const char *name;
+                const char *name = NULL;
 
                 if (dbus_message_iter_get_arg_type (&sub) != DBUS_TYPE_STRING)
                         goto failure;
 
                 dbus_message_iter_get_basic (&sub, &name);
 
-                if (strcmp (name, property) == 0)
+                if (g_strcmp0 (name, property) == 0)
                         return TRUE;
 
                 dbus_message_iter_next (&sub);
@@ -347,15 +364,22 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                 }
 
                 if (dbus_message_is_signal (message, SYSTEMD_LOGIND_INTERFACE, "PrepareForSleep")) {
-                        DBusMessageIter message_iter;
-                        dbus_bool_t active;
+                        DBusError   error;
+                        dbus_bool_t new_active;
 
-                        gs_debug ("systemd initiating sleep");
+                        dbus_error_init (&error);
+                        if (dbus_message_get_args (message, &error,
+                                                   DBUS_TYPE_BOOLEAN, &new_active,
+                                                   DBUS_TYPE_INVALID)) {
+                                gs_debug ("systemd initiating %s", new_active ? "sleep" : "resume");
 
-                        dbus_message_iter_init (message, &message_iter);
-                        dbus_message_iter_get_basic (&message_iter, &active);
+                                g_signal_emit (listener, signals [new_active ? SUSPEND : RESUME], 0);
+                        }
 
-                        g_signal_emit (listener, signals [active == TRUE ? SUSPEND : RESUME], 0);
+                        if (dbus_error_is_set (&error)) {
+                                gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
+                                dbus_error_free (&error);
+                        }
 
                         return DBUS_HANDLER_RESULT_HANDLED;
                 }
@@ -402,6 +426,7 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                         }
 
                         if (dbus_error_is_set (&error)) {
+                                gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
                                 dbus_error_free (&error);
                         }
                 }
@@ -480,8 +505,8 @@ listener_dbus_system_filter_function (DBusConnection *connection,
 
         path = dbus_message_get_path (message);
 
-        if (dbus_message_is_signal (message, DBUS_INTERFACE_LOCAL, "Disconnected")
-            && strcmp (path, DBUS_PATH_LOCAL) == 0) {
+        if (dbus_message_is_signal (message, DBUS_INTERFACE_LOCAL, "Disconnected") == TRUE
+            && g_strcmp0 (path, DBUS_PATH_LOCAL) == 0) {
 
                 g_message ("Got disconnected from the system message bus; "
                            "retrying to reconnect every 10 seconds");
@@ -656,16 +681,19 @@ gs_listener_acquire (GSListener *listener)
 #ifdef WITH_CONSOLE_KIT
                 dbus_bus_add_match (listener->priv->system_connection,
                                     "type='signal'"
+                                    ",sender='"CK_SERVICE"'"
                                     ",interface='"CK_SESSION_INTERFACE"'"
                                     ",member='Unlock'",
                                     NULL);
                 dbus_bus_add_match (listener->priv->system_connection,
                                     "type='signal'"
+                                    ",sender='"CK_SERVICE"'"
                                     ",interface='"CK_SESSION_INTERFACE"'"
                                     ",member='Lock'",
                                     NULL);
                 dbus_bus_add_match (listener->priv->system_connection,
                                     "type='signal'"
+                                    ",sender='"CK_SERVICE"'"
                                     ",interface='"CK_SESSION_INTERFACE"'"
                                     ",member='ActiveChanged'",
                                     NULL);
@@ -674,11 +702,13 @@ gs_listener_acquire (GSListener *listener)
 #ifdef WITH_UPOWER
                 dbus_bus_add_match (listener->priv->system_connection,
                                     "type='signal'"
+                                    ",sender='"UP_SERVICE"'"
                                     ",interface='"UP_INTERFACE"'"
                                     ",member='Sleeping'",
                                     NULL);
                 dbus_bus_add_match (listener->priv->system_connection,
                                     "type='signal'"
+                                    ",sender='"UP_SERVICE"'"
                                     ",interface='"UP_INTERFACE"'"
                                     ",member='Resuming'",
                                     NULL);
@@ -694,7 +724,6 @@ query_session_id (GSListener *listener)
         DBusMessage    *message;
         DBusMessage    *reply;
         DBusError       error;
-        DBusMessageIter reply_iter;
         char           *ssid;
 
         if (listener->priv->system_connection == NULL) {
@@ -718,6 +747,7 @@ query_session_id (GSListener *listener)
 
                 if (dbus_message_append_args (message, DBUS_TYPE_UINT32, &pid, DBUS_TYPE_INVALID) == FALSE) {
                         gs_debug ("Couldn't add args to the dbus message");
+                        dbus_message_unref (message);
                         return NULL;
                 }
 
@@ -733,12 +763,23 @@ query_session_id (GSListener *listener)
                         return NULL;
                 }
 
-                dbus_message_iter_init (reply, &reply_iter);
-                dbus_message_iter_get_basic (&reply_iter, &ssid);
+                if (dbus_message_get_args (reply, &error, 
+                                           DBUS_TYPE_OBJECT_PATH, &ssid,
+                                           DBUS_TYPE_INVALID)) {
+                        ssid = g_strdup (ssid);
+                } else {
+                        ssid = NULL;
+                }
 
                 dbus_message_unref (reply);
 
-                return g_strdup (ssid);
+                if (dbus_error_is_set (&error)) {
+                        gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
+                        dbus_error_free (&error);
+                        return NULL;
+                }
+
+                return ssid;
         }
 #endif
 
@@ -761,12 +802,23 @@ query_session_id (GSListener *listener)
                 return NULL;
         }
 
-        dbus_message_iter_init (reply, &reply_iter);
-        dbus_message_iter_get_basic (&reply_iter, &ssid);
+        if (dbus_message_get_args (reply, &error, 
+                                   DBUS_TYPE_OBJECT_PATH, &ssid,
+                                   DBUS_TYPE_INVALID)) {
+                ssid = g_strdup (ssid);
+        } else {
+                ssid = NULL;
+        }
 
         dbus_message_unref (reply);
 
-        return g_strdup (ssid);
+        if (dbus_error_is_set (&error)) {
+                gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
+                dbus_error_free (&error);
+                return NULL;
+        }
+
+        return ssid;
 #else
         return NULL;
 #endif
@@ -839,6 +891,7 @@ query_seat_path (GSListener *listener)
 
         if (dbus_message_append_args (message, DBUS_TYPE_STRING, &interface, DBUS_TYPE_STRING, &property, DBUS_TYPE_INVALID) == FALSE) {
                 gs_debug ("Couldn't add args to the dbus message");
+                dbus_message_unref (message);
                 return NULL;
         }
 
@@ -854,13 +907,24 @@ query_seat_path (GSListener *listener)
                 return NULL;
         }
 
-        dbus_message_iter_init (reply, &reply_iter);
-        dbus_message_iter_recurse (&reply_iter, &sub_iter);
-        dbus_message_iter_get_basic (&sub_iter, &seat);
+        if (dbus_message_iter_init (reply, &reply_iter) == TRUE
+            && dbus_message_iter_get_arg_type (&reply_iter) == DBUS_TYPE_VARIANT) {
+
+                dbus_message_iter_recurse (&reply_iter, &sub_iter);
+
+                if (dbus_message_iter_get_arg_type (&sub_iter) == DBUS_TYPE_OBJECT_PATH) {
+                        dbus_message_iter_get_basic (&sub_iter, &seat);
+                        seat = g_strdup (seat);
+                } else {
+                        gs_debug ("Unexpected return type");
+                }
+        } else {
+                gs_debug ("Unexpected return type");
+        }
 
         dbus_message_unref (reply);
 
-        return g_strdup (seat);
+        return seat;
 }
 
 static void
@@ -899,6 +963,11 @@ gs_listener_finalize (GObject *object)
         g_return_if_fail (listener->priv != NULL);
 
         g_free (listener->priv->session_id);
+        g_free (listener->priv->seat_path);
+
+#ifdef WITH_SYSTEMD
+        g_free (listener->priv->sd_session_id);
+#endif
 
         G_OBJECT_CLASS (gs_listener_parent_class)->finalize (object);
 }
