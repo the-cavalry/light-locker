@@ -152,6 +152,9 @@ gs_manager_init (GSManager *manager)
         manager->priv = GS_MANAGER_GET_PRIVATE (manager);
 
         manager->priv->grab = gs_grab_new ();
+
+	/* Assume we are the visible session on start. */
+	manager->priv->visible = TRUE;
 }
 
 
@@ -648,4 +651,13 @@ gs_manager_set_session_visible (GSManager  *manager,
         } else {
                 gs_manager_stop_switch (manager);
         }
+}
+
+gboolean
+gs_manager_get_session_visible (GSManager *manager)
+{
+        g_return_val_if_fail (manager != NULL, FALSE);
+        g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
+
+        return manager->priv->visible;
 }

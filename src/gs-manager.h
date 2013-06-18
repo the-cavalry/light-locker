@@ -60,6 +60,8 @@ gboolean    gs_manager_get_active           (GSManager  *manager);
 void        gs_manager_set_session_visible  (GSManager  *manager,
                                              gboolean    active);
 
+gboolean    gs_manager_get_session_visible  (GSManager  *manager);
+
 G_END_DECLS
 
 #endif /* __GS_MANAGER_H */

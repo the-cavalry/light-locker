@@ -456,6 +456,23 @@ AC_SUBST(SYSTEMD_CFLAGS)
 AC_SUBST(SYSTEMD_LIBS)
 
 dnl ---------------------------------------------------------------------------
+dnl UPower
+dnl ---------------------------------------------------------------------------
+
+AC_ARG_WITH(upower,
+            AS_HELP_STRING([--with-upower],
+                           [Add UPower support]),,
+            with_upower=auto)
+
+use_upower=no
+if test "x$with_upower" != "xno" ; then
+        use_upower=yes
+        AC_DEFINE(WITH_UPOWER, 1, [UPower support])
+fi
+AM_CONDITIONAL(WITH_UPOWER, test x$use_upower = xyes)
+AC_SUBST(WITH_UPOWER)
+
+dnl ---------------------------------------------------------------------------
 dnl Finish
 dnl ---------------------------------------------------------------------------
 
@@ -601,6 +618,7 @@ echo "
 
         systemd:                  ${use_systemd}
         ConsoleKit:               ${use_console_kit}
+        UPower:                   ${use_upower}
 "
 
 if test "x$have_pam" = "xyes" ; then
