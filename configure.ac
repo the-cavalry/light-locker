@@ -2,7 +2,7 @@ dnl -*- mode: m4 -*-
 
 AC_PREREQ(2.60)
 AC_INIT([light-locker],
-        [3.6.1])
+        [0.1])
 
 AC_CONFIG_SRCDIR(src/light-locker.c)
 
