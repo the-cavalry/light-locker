@@ -28,6 +28,12 @@ AC_SUBST(VERSION)
 # Save flags to aclocal
 ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 
+dnl ******************************
+dnl *** Check for i18n support ***
+dnl ******************************
+dnl the next line will be removed if xdt is missing
+XDT_I18N([@LINGUAS@])
+
 GETTEXT_PACKAGE=light-locker
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE", [Name of default gettext domain])

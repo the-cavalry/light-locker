@@ -6,7 +6,7 @@ test -z "$srcdir" && srcdir=.
 
 PKG_NAME=light-locker
 
-(test -f $srcdir/configure.ac \
+(test -f $srcdir/configure.ac.in \
   && test -f $srcdir/autogen.sh \
   && test -d $srcdir/src \
   && test -f $srcdir/src/light-locker.c) || {
@@ -18,6 +18,9 @@ PKG_NAME=light-locker
 which xdt-autogen && {
     XDT_AUTOGEN_REQUIRED_VERSION="4.7.2" exec xdt-autogen $@
 }
+
+# Remove xdt-autogen m4 macro
+sed -e "/XDT_I18N/d" configure.ac.in > configure.ac
 
 which gnome-autogen.sh || {
     echo "You need to install either xfce4-dev-tools from http://www.xfce.org/"

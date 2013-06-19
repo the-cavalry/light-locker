@@ -37,6 +37,7 @@ MAINTAINERCLEANFILES =		\
 	intltool-*.in		\
 	compile			\
 	configure		\
+	configure.ac		\
 	INSTALL			\
 	install-sh		\
 	missing			\
