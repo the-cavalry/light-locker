@@ -11,204 +11,211 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver MASTER\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"screensaver&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-15 12:22+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-19 23:00+0200\n"
 "PO-Revision-Date: 2011-03-15 15:07+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
+"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Causes the screensaver to exit gracefully"
-msgstr "Ekraanisäästjat töö lõpetamine (ilma veakoodita)"
-
-msgid "Query the state of the screensaver"
-msgstr "Ekraanisäästja oleku küsimine"
-
-msgid "Query the length of time the screensaver has been active"
-msgstr "Ekraanisäästja aktiivse oleku kestuse küsimine"
-
-msgid "Tells the running screensaver process to lock the screen immediately"
+#: ../src/light-locker-command.c:40
+#, fuzzy
+msgid "Tells the running display manager to lock the screen immediately"
 msgstr ""
 "Töötavale ekraanisäästja protsessile kohese ekraanilukustamise käsu saatmine"
 
-msgid "Turn the screensaver on (blank the screen)"
-msgstr "Ekraanisäästja sisselülitamine (ekraani tühjendamine)"
-
-msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
-"Kui ekraanisäästja on aktiivne, siis selle deaktiveerimine (ekraani "
-"taastamine)"
-
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 msgid "Version of this application"
 msgstr "Selle rakenduse versioon"
 
-#, c-format
-msgid "The screensaver is active\n"
-msgstr "Ekraanisäästja on aktiivne\n"
-
-#, c-format
-msgid "The screensaver is inactive\n"
-msgstr "Ekraanisäästja on jõude\n"
-
-#, c-format
-msgid "The screensaver has been active for %d second.\n"
-msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] "Ekraanisäästja on olnud aktiivne %d sekund.\n"
-msgstr[1] "Ekraanisäästja on olnud aktiivne %d sekundit.\n"
-
-#, c-format
-msgid "The screensaver is not currently active.\n"
-msgstr "Ekraanisäästja ei ole hetkel aktiivne.\n"
-
-msgid "Show debugging output"
-msgstr "Silumisväljundi näitamine"
-
-msgid "Show the logout button"
-msgstr "Väljalogimisnupu näitamine"
-
-msgid "Command to invoke from the logout button"
-msgstr "Väljalogimise nupule klõpsamise korral käivitatav käsk"
-
-msgid "Show the switch user button"
-msgstr "Kasutajate vahel lülitumise nupu näitamine"
-
-msgid "Message to show in the dialog"
-msgstr "Dialoogis näidatav sõnum"
-
-#. Translators: This is the example input for the --status-message command line option.
-#. Translators: This is the example input for the --away-message command line option.
-msgid "MESSAGE"
-msgstr "SÕNUM"
-
-msgid "Not used"
-msgstr "Pole kasutusel"
-
-#. login: is whacked always translate to Username:
-msgid "Username:"
-msgstr "Kasutajanimi:"
-
-msgid "Password:"
-msgstr "Parool:"
-
-msgid "You are required to change your password immediately (password aged)"
-msgstr "Sa pead oma parooli koheselt ära vahetama (parool on aegunud)"
-
-msgid "You are required to change your password immediately (root enforced)"
-msgstr "Sa pead oma parooli koheselt ära vahetama (administraatori nõue)"
-
-msgid "Your account has expired; please contact your system administrator"
-msgstr "Sinu konto on aegunud, palun võta ühendust oma süsteemiülemaga"
-
-msgid "No password supplied"
-msgstr "Parooli pole antud"
-
-msgid "Password unchanged"
-msgstr "Parool on muutmata"
-
-msgid "Cannot get username"
-msgstr "Kasutajanime pole võimalik hankida"
-
-msgid "Retype new Unix password:"
-msgstr "Sisesta Unixi parool uuesti:"
-
-msgid "Enter new Unix password:"
-msgstr "Sisesta uus Unixi parool:"
-
-msgid "(current) Unix password:"
-msgstr "(praegune) Unixi parool:"
-
-msgid "Error while changing NIS password."
-msgstr "Viga NIS-parooli muutmisel."
-
-msgid "You must choose a longer password"
-msgstr "Sa pead valima pikema parooli"
-
-msgid "Password has been already used. Choose another."
-msgstr "Parool on juba kasutusel. Vali mõni muu parool."
-
-msgid "You must wait longer to change your password"
-msgstr "Parooli muutmiseks pead sa kauem ootama"
-
-msgid "Sorry, passwords do not match"
-msgstr "Vabandust, paroolid ei klapi omavahel"
-
-msgid "Checking…"
-msgstr "Kontrollimine…"
-
-msgid "Authentication failed."
-msgstr "Tõrge autentimisel."
-
+#: ../src/light-locker.c:57
 msgid "Don't become a daemon"
 msgstr "Deemoniks ei minda"
 
+#: ../src/light-locker.c:58
 msgid "Enable debugging code"
 msgstr "Silumise lubamine"
 
-msgid "Launch screensaver and locker program"
-msgstr "Ekraanisäästmis- ja lukustustamisprogrammi käivitamine"
-
-msgid "Screensaver"
+#: ../src/light-locker.desktop.in.in.h:1
+#, fuzzy
+msgid "Screen Locker"
 msgstr "Ekraanisäästja"
 
-#, c-format
-msgid "Unable to establish service %s: %s\n"
-msgstr "Teenust %s pole võimalik luua: %s\n"
+#: ../src/light-locker.desktop.in.in.h:2
+#, fuzzy
+msgid "Launch screen locker program"
+msgstr "Ekraanisäästmis- ja lukustustamisprogrammi käivitamine"
 
-#, c-format
-msgid "Can't set PAM_TTY=%s"
-msgstr "PAM_TTY=%s pole võimalik seada"
+#: ../src/gs-content.c:95
+msgid "This session is locked."
+msgstr ""
 
-msgid "Incorrect password."
-msgstr "Vale parool."
+#: ../src/gs-content.c:117
+msgid ""
+"You'll be redirected to the unlock dialog automatically in a few seconds."
+msgstr ""
 
-msgid "Not permitted to gain access at this time."
-msgstr "Puuduvad õigused ligipääsuks praegusel kellaajal."
+#~ msgid "Causes the screensaver to exit gracefully"
+#~ msgstr "Ekraanisäästjat töö lõpetamine (ilma veakoodita)"
 
-msgid "No longer permitted to access the system."
-msgstr "Süsteemile ligipääsuks pole enam õiguseid."
+#~ msgid "Query the state of the screensaver"
+#~ msgstr "Ekraanisäästja oleku küsimine"
 
-msgid "failed to register with the message bus"
-msgstr "tõrge sõnumisiinile registreerumisel"
+#~ msgid "Query the length of time the screensaver has been active"
+#~ msgstr "Ekraanisäästja aktiivse oleku kestuse küsimine"
 
-msgid "not connected to the message bus"
-msgstr "sõnumisiiniga pole ühendust"
+#~ msgid "Turn the screensaver on (blank the screen)"
+#~ msgstr "Ekraanisäästja sisselülitamine (ekraani tühjendamine)"
 
-msgid "screensaver already running in this session"
-msgstr "ekraanisäästja töötab juba selle seansi raames"
+#~ msgid ""
+#~ "If the screensaver is active then deactivate it (un-blank the screen)"
+#~ msgstr ""
+#~ "Kui ekraanisäästja on aktiivne, siis selle deaktiveerimine (ekraani "
+#~ "taastamine)"
 
-msgid "Time has expired."
-msgstr "Ajapiirang ületati."
+#~ msgid "The screensaver is active\n"
+#~ msgstr "Ekraanisäästja on aktiivne\n"
 
-msgid "You have the Caps & Num Lock keys on."
-msgstr "Sul on Caps ja Num Lock klahvid sisse lülitatud."
+#~ msgid "The screensaver is inactive\n"
+#~ msgstr "Ekraanisäästja on jõude\n"
 
-msgid "You have the Caps Lock key on."
-msgstr "Sul on Caps Lock klahv sisse lülitatud."
+#~ msgid "The screensaver has been active for %d second.\n"
+#~ msgid_plural "The screensaver has been active for %d seconds.\n"
+#~ msgstr[0] "Ekraanisäästja on olnud aktiivne %d sekund.\n"
+#~ msgstr[1] "Ekraanisäästja on olnud aktiivne %d sekundit.\n"
 
-msgid "You have the Num Lock key on."
-msgstr "Sul on Num Lock klahv sisse lülitatud."
+#~ msgid "The screensaver is not currently active.\n"
+#~ msgstr "Ekraanisäästja ei ole hetkel aktiivne.\n"
 
-msgid "S_witch User…"
-msgstr "Vaheta _kasutajat…"
+#~ msgid "Show debugging output"
+#~ msgstr "Silumisväljundi näitamine"
 
-msgid "Log _Out"
-msgstr "Logi _välja"
+#~ msgid "Show the logout button"
+#~ msgstr "Väljalogimisnupu näitamine"
 
-msgid "_Unlock"
-msgstr "_Võta lukust lahti"
+#~ msgid "Command to invoke from the logout button"
+#~ msgstr "Väljalogimise nupule klõpsamise korral käivitatav käsk"
 
-msgid "_Password:"
-msgstr "_Parool:"
+#~ msgid "Show the switch user button"
+#~ msgstr "Kasutajate vahel lülitumise nupu näitamine"
 
-#. Translators, this is the 24h date format used in the panel clock
-msgid "%a %R"
-msgstr "%a %R"
+#~ msgid "Message to show in the dialog"
+#~ msgstr "Dialoogis näidatav sõnum"
 
-#. Translators, this is the 12h date format used in the panel clock
-msgid "%a %l:%M %p"
-msgstr "%a %l:%M %p"
+#~ msgid "MESSAGE"
+#~ msgstr "SÕNUM"
+
+#~ msgid "Not used"
+#~ msgstr "Pole kasutusel"
+
+#~ msgid "Username:"
+#~ msgstr "Kasutajanimi:"
+
+#~ msgid "Password:"
+#~ msgstr "Parool:"
+
+#~ msgid "You are required to change your password immediately (password aged)"
+#~ msgstr "Sa pead oma parooli koheselt ära vahetama (parool on aegunud)"
+
+#~ msgid "You are required to change your password immediately (root enforced)"
+#~ msgstr "Sa pead oma parooli koheselt ära vahetama (administraatori nõue)"
+
+#~ msgid "Your account has expired; please contact your system administrator"
+#~ msgstr "Sinu konto on aegunud, palun võta ühendust oma süsteemiülemaga"
+
+#~ msgid "No password supplied"
+#~ msgstr "Parooli pole antud"
+
+#~ msgid "Password unchanged"
+#~ msgstr "Parool on muutmata"
+
+#~ msgid "Cannot get username"
+#~ msgstr "Kasutajanime pole võimalik hankida"
+
+#~ msgid "Retype new Unix password:"
+#~ msgstr "Sisesta Unixi parool uuesti:"
+
+#~ msgid "Enter new Unix password:"
+#~ msgstr "Sisesta uus Unixi parool:"
+
+#~ msgid "(current) Unix password:"
+#~ msgstr "(praegune) Unixi parool:"
+
+#~ msgid "Error while changing NIS password."
+#~ msgstr "Viga NIS-parooli muutmisel."
+
+#~ msgid "You must choose a longer password"
+#~ msgstr "Sa pead valima pikema parooli"
+
+#~ msgid "Password has been already used. Choose another."
+#~ msgstr "Parool on juba kasutusel. Vali mõni muu parool."
+
+#~ msgid "You must wait longer to change your password"
+#~ msgstr "Parooli muutmiseks pead sa kauem ootama"
+
+#~ msgid "Sorry, passwords do not match"
+#~ msgstr "Vabandust, paroolid ei klapi omavahel"
+
+#~ msgid "Checking…"
+#~ msgstr "Kontrollimine…"
+
+#~ msgid "Authentication failed."
+#~ msgstr "Tõrge autentimisel."
+
+#~ msgid "Unable to establish service %s: %s\n"
+#~ msgstr "Teenust %s pole võimalik luua: %s\n"
+
+#~ msgid "Can't set PAM_TTY=%s"
+#~ msgstr "PAM_TTY=%s pole võimalik seada"
+
+#~ msgid "Incorrect password."
+#~ msgstr "Vale parool."
+
+#~ msgid "Not permitted to gain access at this time."
+#~ msgstr "Puuduvad õigused ligipääsuks praegusel kellaajal."
+
+#~ msgid "No longer permitted to access the system."
+#~ msgstr "Süsteemile ligipääsuks pole enam õiguseid."
+
+#~ msgid "failed to register with the message bus"
+#~ msgstr "tõrge sõnumisiinile registreerumisel"
+
+#~ msgid "not connected to the message bus"
+#~ msgstr "sõnumisiiniga pole ühendust"
+
+#~ msgid "screensaver already running in this session"
+#~ msgstr "ekraanisäästja töötab juba selle seansi raames"
+
+#~ msgid "Time has expired."
+#~ msgstr "Ajapiirang ületati."
+
+#~ msgid "You have the Caps & Num Lock keys on."
+#~ msgstr "Sul on Caps ja Num Lock klahvid sisse lülitatud."
+
+#~ msgid "You have the Caps Lock key on."
+#~ msgstr "Sul on Caps Lock klahv sisse lülitatud."
+
+#~ msgid "You have the Num Lock key on."
+#~ msgstr "Sul on Num Lock klahv sisse lülitatud."
+
+#~ msgid "S_witch User…"
+#~ msgstr "Vaheta _kasutajat…"
+
+#~ msgid "Log _Out"
+#~ msgstr "Logi _välja"
+
+#~ msgid "_Unlock"
+#~ msgstr "_Võta lukust lahti"
+
+#~ msgid "_Password:"
+#~ msgstr "_Parool:"
+
+#~ msgid "%a %R"
+#~ msgstr "%a %R"
+
+#~ msgid "%a %l:%M %p"
+#~ msgstr "%a %l:%M %p"

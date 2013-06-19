@@ -9,804 +9,635 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ka\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-28 03:46+0200\n"
+"POT-Creation-Date: 2013-06-19 23:00+0200\n"
 "PO-Revision-Date: 2007-09-28 04:01+0200\n"
 "Last-Translator: Vladimer Sichinava ვლადიმერ სიჭინავა <vsichi@gnome.org>\n"
-"Language-Team: Georgian <http://mail.gnome.org/mailman/listinfo/gnome-ge-list>\n"
+"Language-Team: Georgian <http://mail.gnome.org/mailman/listinfo/gnome-ge-"
+"list>\n"
+"Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../data/gnome-screensaver-preferences.desktop.in.h:1
-msgid "Screensaver"
-msgstr "ეკრანმზოგი"
-
-#: ../data/gnome-screensaver-preferences.desktop.in.h:2
-msgid "Set your screensaver preferences"
-msgstr "ეკრანმზოგის პარამეტრების მითითება"
-
-#: ../data/gnome-screensaver-preferences.glade.h:1
-msgid "<b>Screensaver preview</b>"
-msgstr "<b>ეკრანმზოგის გადახედავ</b>"
-
-#: ../data/gnome-screensaver-preferences.glade.h:2
-msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgstr "<b>ეკრანი არ დაიბლოკება root მომხმარებლისთვის.</b>"
-
-#: ../data/gnome-screensaver-preferences.glade.h:3
-msgid "Power _Management"
-msgstr "დენის ?მართვა"
-
-#: ../data/gnome-screensaver-preferences.glade.h:4
+#: ../src/light-locker-command.c:40
 #, fuzzy
-msgid "Regard the computer as _idle after:"
-msgstr "უქმი შემდეგ:"
-
-#: ../data/gnome-screensaver-preferences.glade.h:5
-msgid "Screensaver Preferences"
-msgstr "ეკრანმზოგის პარამეტრები"
-
-#: ../data/gnome-screensaver-preferences.glade.h:6
-msgid "Screensaver Preview"
-msgstr "ეკრანმზოგის გადახედვა"
-
-#: ../data/gnome-screensaver-preferences.glade.h:7
-msgid "_Activate screensaver when computer is idle"
-msgstr "_ეკრანმზოგის გააქტიურება, როცა სისტემა უქმ რეჟიმშია"
-
-#: ../data/gnome-screensaver-preferences.glade.h:8
-msgid "_Lock screen when screensaver is active"
-msgstr "_ეკრანის გამორთვა, როცა ეკრანმზოგი აქტიურია"
-
-#: ../data/gnome-screensaver-preferences.glade.h:9
-msgid "_Preview"
-msgstr "გა_დახედვა"
-
-#: ../data/gnome-screensaver-preferences.glade.h:10
-msgid "_Screensaver theme:"
-msgstr "ეკრანმზოგი_ს გაფორმება:"
-
-#: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Screensaver themes"
-msgstr "ეკრანმზოგის გაფორმების თემები"
-
-#: ../data/gnome-screensaver.directory.in.h:2
-msgid "Screensavers"
-msgstr "ეკრანმზოგები"
-
-#: ../data/gnome-screensaver.schemas.in.h:1
-msgid "Activate when idle"
-msgstr "გააქტიურება, როცა უქმადაა"
-
-#: ../data/gnome-screensaver.schemas.in.h:2
-#, fuzzy
-msgid "Allow embedding a keyboard into the window"
-msgstr "ნების დართვა a ფანჯარა"
-
-#: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow logout"
-msgstr "სესიიდან გასვლის ნების დართვა"
-
-#: ../data/gnome-screensaver.schemas.in.h:4
-msgid "Allow user switching"
-msgstr "მომხმარებლის გადართვის ნების დართვა"
-
-#: ../data/gnome-screensaver.schemas.in.h:5
-msgid "Embedded keyboard command"
-msgstr "ჩაკერებული კლავიატურის ბრძანება"
-
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Lock on activation"
-msgstr "ეკრანის ბლოკირება"
-
-#: ../data/gnome-screensaver.schemas.in.h:7
-msgid "Logout command"
-msgstr "სესიის დახურვის ბრძანება"
-
-#: ../data/gnome-screensaver.schemas.in.h:8
-#, fuzzy
-msgid "Reason for being away"
-msgstr "მიზეზი - გასვლა"
-
-#: ../data/gnome-screensaver.schemas.in.h:9
-msgid "Screensaver theme selection mode"
-msgstr "ეკრანმზოგის თემების არჩევის რეჟიმი"
-
-#: ../data/gnome-screensaver.schemas.in.h:11
-msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr "თუ მინიჭებულია TRUE მნიშვნელობა, ეკრანმზოგის დაიბლოკება სეანსის უქმ მდგომარეობაში ყოფნის დროს."
-
-#: ../data/gnome-screensaver.schemas.in.h:12
-#, fuzzy
-msgid ""
-"Set this to TRUE to allow embedding a keyboard into the window when trying "
-"to unlock. The \"keyboard_command\" key must be set with the appropriate "
-"command."
-msgstr "მითითება -სკენ TRUE -სკენ a ფანჯარა -სკენ გასაღები."
-
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr ""
-"მიენიჭოს მნიშვნელობა TRUE ეკრანის ბლოკირებისათვის როცა გააქტიურებულია "
-"ეკრანმზოგი"
-
-#: ../data/gnome-screensaver.schemas.in.h:14
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to switch to a "
-"different user account."
-msgstr ""
-"მიენიჭოს მნიშვნელობა TRUE განბლოკვის დიალოგში მომხმარებლის გადართვის "
-"ფუნქციისათვის"
-
-#: ../data/gnome-screensaver.schemas.in.h:15
-msgid ""
-"Set this to TRUE to offer an option in unlock dialog to logging out after a "
-"delay. The Delay is specified in the \"logout_delay\" key."
-msgstr ""
-"მიენიჭოს მნიშვნელობა TRUE განბლოკვის დიალოგში დაყოვნების შემდეგ სესიიდან "
-"გამოსვლისათვის. დაყოვნების ხანგრძლივობა მიეთითება გასაღებში \"logout_delay\"."
-
-#: ../data/gnome-screensaver.schemas.in.h:16
-#, fuzzy
-msgid ""
-"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
-"set to TRUE, to embed a keyboard widget into the window. This command should "
-"implement an XEMBED plug interface and output a window XID on the standard "
-"output."
-msgstr "ჩართული გასაღები არის -სკენ TRUE -სკენ a ფანჯარა და გამოტანა a ფანჯარა -ზე გამოტანა."
-
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The command to invoke when the logout button is clicked. This command should "
-"simply log the user out without any interaction. This key has effect only if "
-"the \"logout_enable\" key is set to TRUE."
-msgstr ""
-"სესიის დახურვის ღილაკზე დაჭერისას შესასრულებელი ბრძანება. ეს ბრძანება "
-"უბრალოდ დახურავს მომხმარებლის სესიას რაიმე დიალოგის გარეშე. გასაღები "
-"მოქმედებს, თუ \"logout_enable\" გასაღების მნიშვნელობა არის TRUE."
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid "The number of minutes after screensaver activation before locking the screen."
-msgstr "ეკრანმზოგის გააქტიურებიდან ეკრანის ბლოკირებამდე დროის ხანგრძლივობა, წთ."
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes after the screensaver activation before a logout "
-"option will appear in unlock dialog. This key has effect only if the "
-"\"logout_enable\" key is set to TRUE."
-msgstr ""
-"ეკრანმზოგის გააქტიურებიდან დროის ხანგრძლივობა წუთებში , რომლის შემდეგ "
-"განბლოკვის დიალოგში გამოჩნდება სესიის დახურვის პუნქტი. გასაღები აქტიურია, თუ "
-"\"logout_enable\" გასაღების მნიშვნელობა არის TRUE."
-
-#: ../data/gnome-screensaver.schemas.in.h:20
-msgid "The number of minutes of inactivity before the session is considered idle."
-msgstr "დრო, რომლის შემდეგ სესია გადავა უქმ რეჟიმში, წთ."
-
-#: ../data/gnome-screensaver.schemas.in.h:21
-msgid "The number of minutes to run before changing the screensaver theme."
-msgstr "დრო, რომლის შემდეგ შეიცვლება ეკრანმზოგის თემა, წთ."
-
-#: ../data/gnome-screensaver.schemas.in.h:22
-#, fuzzy
-msgid ""
-"The number of seconds of inactivity before signalling to power-management. "
-"This key is set and maintained by the session power-management agent."
-msgstr "რიცხვი ის წამები ის -სკენ გასაღები არის და -ით სესია."
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-#, fuzzy
-msgid "The reason for being away from the computer."
-msgstr "- გასვლა."
-
-#: ../data/gnome-screensaver.schemas.in.h:24
-msgid ""
-"The selection mode used by screensaver. May be \"blank-only\" to enable the "
-"screensaver without using any theme on activation, \"single\" to enable "
-"screensaver using only one theme on activation (specified in \"themes\" "
-"key), and \"random\" to enable the screensaver using a random theme on "
-"activation."
-msgstr ""
-"ეკრანმზოგის რეჟიმი: \"სუფთა ეკრანი\" - როცა ეკრანმზოგი არ იყენებს არცერთ "
-"თემას, \"ერთი თემა\" - როცა გამოიყენება ერთი რომელიმე თემა, მითითებული "
-"გასაღებში \"თემა\", და \"შემთხვევითი თემა\" - როცა ეკრანმზოგი თავად ცვლის "
-"თემებს შემთხვევითი თანმიმდევრობით."
-
-#: ../data/gnome-screensaver.schemas.in.h:25
-#, fuzzy
-msgid "Theme for lock dialog"
-msgstr "გაფორმება - დიალოგი"
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-#, fuzzy
-msgid "Theme to use for the lock dialog."
-msgstr "გაფორმება -სკენ - დიალოგი."
-
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid ""
-"This key specifies the list of themes to be used by the screensaver. It's "
-"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
-"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
-"\" is \"random\"."
-msgstr ""
-"გასაღებში მიეთითება ეკრანმზოგის მიერ გამოსაყენებელი თემების სია. "
-"იგნორირდება, როცა არჩეულია რეჟიმი \"სუფთა ეკრანი\", \"ერთი თემის\" რეჟიმში "
-"უნდა მიეთითოს თემის სახელი, ხოლო \"შემთხვევითი თემის\" რეჟიმში - თემების სია."
-
-#: ../data/gnome-screensaver.schemas.in.h:28
-msgid "Time before locking"
-msgstr "დრო ბლოკირებამდე"
-
-#: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before logout option"
-msgstr "დრო სესიის დახურვის პუნქტის გამოჩენამდე"
-
-#: ../data/gnome-screensaver.schemas.in.h:30
-#, fuzzy
-msgid "Time before power-management baseline"
-msgstr "დრო"
-
-#: ../data/gnome-screensaver.schemas.in.h:31
-#, fuzzy
-msgid "Time before session is considered idle"
-msgstr "დრო სესია არის უქმი"
-
-#: ../data/gnome-screensaver.schemas.in.h:32
-msgid "Time before theme change"
-msgstr "დრო თემის შეცვლამდე"
-
-#: ../data/lock-dialog-default.glade.h:2
-#, no-c-format
-msgid "<b>Leave a message for %R:</b>"
-msgstr "<b>შეტყობინების დატოვება %R-თვის:</b>"
-
-#: ../data/lock-dialog-default.glade.h:4
-#, no-c-format
-msgid "<span size=\"small\">%U on %h</span>"
-msgstr "<span size=\"small\">%U ~ %h-ში</span>"
-
-#: ../data/lock-dialog-default.glade.h:6
-#, no-c-format
-msgid "<span size=\"x-large\">%R</span>"
-msgstr "<span size=\"x-large\">%R</span>"
-
-#: ../data/lock-dialog-default.glade.h:7
-msgid "_Cancel"
-msgstr "_გაუქმება"
-
-#: ../data/lock-dialog-default.glade.h:8
-msgid "_Leave Message"
-msgstr "შეტყობინების _დატოვება"
-
-#: ../data/lock-dialog-default.glade.h:9
-msgid "_Log Out"
-msgstr "სეანსის დასრუ_ლება"
-
-#: ../data/lock-dialog-default.glade.h:10
-msgid "_Switch User"
-msgstr "_მომხმარებლის გადართვა"
-
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1207
-msgid "_Unlock"
-msgstr "გან_ბლოკვა"
-
-#: ../savers/cosmos-slideshow.desktop.in.in.h:1
-msgid "Cosmos"
-msgstr "კოსმოსი"
-
-#: ../savers/cosmos-slideshow.desktop.in.in.h:2
-msgid "Display a slideshow of pictures of the cosmos"
-msgstr "კოსმოსური სურათების სლაიდშოუ"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "ჯუჯის ნაფეხურები ეკრანის გარშემო"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "მოსრიალე ფეხი"
-
-#: ../savers/personal-slideshow.desktop.in.h:1
-msgid "Display a slideshow from your Pictures folder"
-msgstr "მომხმარებლის სურათების დასტის სლაიდშოუ"
-
-#: ../savers/personal-slideshow.desktop.in.h:2
-msgid "Pictures folder"
-msgstr "სურათების დასტა"
-
-#: ../savers/popsquares.desktop.in.h:1
-msgid "A pop-art-ish grid of pulsing colors."
-msgstr "მფეთქავი ფერები პოპ-არტ-სტილში"
-
-#: ../savers/popsquares.desktop.in.h:2
-msgid "Pop art squares"
-msgstr "კვადრატები პოპ-არტ სტილში"
-
-#: ../savers/floaters.c:84
-#, fuzzy
-msgid "Show paths that images follow"
-msgstr "ჩვენება"
-
-#: ../savers/floaters.c:87
-#, fuzzy
-msgid "Occasionally rotate images as they move"
-msgstr "მოძრაობა"
-
-#: ../savers/floaters.c:90
-#, fuzzy
-msgid "Print out frame rate and other statistics"
-msgstr "ბეჭდვა ჩარჩო სისწრაფე და სხვა"
-
-#: ../savers/floaters.c:93
-#, fuzzy
-msgid "The maximum number of images to keep on screen"
-msgstr "რიცხვი ის -სკენ -ზე"
-
-#: ../savers/floaters.c:93
-#, fuzzy
-msgid "MAX_IMAGES"
-msgstr "MAX"
-
-#: ../savers/floaters.c:96
-#, fuzzy
-msgid "The initial size and position of window"
-msgstr "ზომა და ის ფანჯარა"
-
-#: ../savers/floaters.c:96
-msgid "WIDTHxHEIGHT+X+Y"
-msgstr "სიგანეxსიმაღლე+X+Y"
-
-#: ../savers/floaters.c:99
-#, fuzzy
-msgid "The source image to use"
-msgstr "წყარო ნახატი -სკენ"
-
-#. translators: the word "image" here
-#. * represents a command line argument
-#.
-#: ../savers/floaters.c:1194
-msgid "image - floats images around the screen"
-msgstr "გამოსახულება - მოძრავი გამოსახულება ეკრანზე"
-
-#: ../savers/floaters.c:1200
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s. იხ. დახმარება.\n"
-
-#: ../savers/floaters.c:1209
-#, c-format
-msgid "You must specify one image.  See --help for usage information.\n"
-msgstr "უნდა მიუთითოთ ერთი  გამოსახულება.  იხ. დახმარება \n"
-
-#: ../savers/slideshow.c:53
-msgid "Location to get images from"
-msgstr "გამოსახულების მდებარეობა"
-
-#: ../savers/slideshow.c:53
-msgid "PATH"
-msgstr "გეზი"
-
-#: ../savers/slideshow.c:55
-#, fuzzy
-msgid "Color to use for images background"
-msgstr "ფერი -სკენ -"
-
-#: ../savers/slideshow.c:55
-msgid "\"#rrggbb\""
-msgstr ""
-
-#: ../savers/slideshow.c:57
-#, fuzzy
-msgid "Do not randomize pictures from location"
-msgstr "არა მდებარეობა"
-
-#: ../savers/slideshow.c:59
-#, fuzzy
-msgid "Do not try to stretch images on screen"
-msgstr "არა -სკენ -ზე"
-
-#: ../src/file-transfer-dialog.c:94
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "ფაილის კოპირება: %u - %u"
-
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "კოპირება '%s'"
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "გამომგზავნის URI"
-
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "მიმდინარე გამოგზავნის URI"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "მიმღების URI"
-
-#: ../src/file-transfer-dialog.c:202
-msgid "URI currently transferring to"
-msgstr "მიმდინარე გაგზავნის URI"
-
-#: ../src/file-transfer-dialog.c:209
-msgid "Fraction completed"
-msgstr "დანაწევრება დასრულებულია"
-
-#: ../src/file-transfer-dialog.c:210
-msgid "Fraction of transfer currently completed"
-msgstr "მიმდინარე გზავნილის დანაწევრება დასრულებულია"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "მიმდინარე URI-ინდექსი"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "მიმდინარე URI-ინდექსი - იწყება 1-დან"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "ჯამში URI"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "ჯამში URI რაოდენობა"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
-msgid "Copying files"
-msgstr "ფაილების კოპირება"
-
-#: ../src/file-transfer-dialog.c:345
-msgid "From:"
-msgstr "საიდან:"
-
-#: ../src/file-transfer-dialog.c:349
-msgid "To:"
-msgstr "სად:"
-
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "დაკავშირება..."
-
-#: ../src/gnome-screensaver-command.c:62
-msgid "Causes the screensaver to exit gracefully"
-msgstr "ეკრანმზოგის გრაციოზული დახურვა"
-
-#: ../src/gnome-screensaver-command.c:64
-msgid "Query the state of the screensaver"
-msgstr "ეკრანმზოგის მდგომარეობა"
-
-#: ../src/gnome-screensaver-command.c:66
-#, fuzzy
-msgid "Query the length of time the screensaver has been active"
-msgstr "მოთხოვნა სიგრძე ის დრო აქტიური"
-
-#: ../src/gnome-screensaver-command.c:68
-msgid "Tells the running screensaver process to lock the screen immediately"
+msgid "Tells the running display manager to lock the screen immediately"
 msgstr "ეკრანმზოგის მიერ ეკრანის დაუყოვნებლივ ბლოკირება"
 
-#: ../src/gnome-screensaver-command.c:70
-msgid "If the screensaver is active then switch to another graphics demo"
-msgstr "სხვა სურათზე გადასვლა, თუ ეკრანმზოგი ჩართულია"
-
-#: ../src/gnome-screensaver-command.c:72
-msgid "Turn the screensaver on (blank the screen)"
-msgstr "ეკრანმზოგის ჩართვა (ეკრანის გასუფთავება)"
-
-#: ../src/gnome-screensaver-command.c:74
-msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr "ეკრანმზოგის დახურვა (ეკრანის აღდგენა)"
-
-#: ../src/gnome-screensaver-command.c:76
-msgid "Poke the running screensaver to simulate user activity"
-msgstr "ეკრანმზოგის მიერ მომხმარებლის აქტივობის სიმულირება"
-
-#: ../src/gnome-screensaver-command.c:78
-#, fuzzy
-msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
-msgstr "ბრძანება არის აქტიური."
-
-#: ../src/gnome-screensaver-command.c:80
-#, fuzzy
-msgid "The calling application that is inhibiting the screensaver"
-msgstr "პროგრამა არის"
-
-#: ../src/gnome-screensaver-command.c:82
-#, fuzzy
-msgid "The reason for inhibiting the screensaver"
-msgstr "-"
-
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
-#: ../src/gnome-screensaver.c:56
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 msgid "Version of this application"
 msgstr "პროგრამის ვერსია"
 
-#: ../src/gnome-screensaver-command.c:249
-#, c-format
-msgid "The screensaver is %s\n"
-msgstr "ეკრანმზოგი: %s\n"
-
-#: ../src/gnome-screensaver-command.c:249
-msgid "active"
-msgstr "აქტიური"
-
-#: ../src/gnome-screensaver-command.c:249
-msgid "inactive"
-msgstr "არააქტიური"
-
-#: ../src/gnome-screensaver-command.c:274
-#, fuzzy, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "აქტიური - წამები n"
-
-#: ../src/gnome-screensaver-dialog.c:53
-msgid "Show debugging output"
-msgstr "გამართვის გამონატანის ჩვენება"
-
-#: ../src/gnome-screensaver-dialog.c:57
-msgid "Show the logout button"
-msgstr "სესიის დახურვის ღილაკის ჩვენება"
-
-#: ../src/gnome-screensaver-dialog.c:59
-msgid "Command to invoke from the logout button"
-msgstr "ბრძანება, რომელიც გაიშვება დახურვის ღილაკით"
-
-#: ../src/gnome-screensaver-dialog.c:61
-msgid "Show the switch user button"
-msgstr "მომხმარებლის გადართვის ღილაკის ჩვენება"
-
-#: ../src/gnome-screensaver-dialog.c:63
-#, fuzzy
-msgid "Message to show in the dialog"
-msgstr "შეტყობინება -სკენ დუ დიალოგი"
-
-#: ../src/gnome-screensaver-dialog.c:63
-msgid "MESSAGE"
-msgstr ""
-
-#. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
-#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
-#, fuzzy
-msgid "Username:"
-msgstr "მომხმარებლის სახელი:"
-
-#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
-#: ../src/gs-auth-pam.c:166
-#, fuzzy
-msgid "Password:"
-msgstr "პაროლი:"
-
-#: ../src/gnome-screensaver-dialog.c:178
-#, fuzzy
-msgid "You are required to change your password immediately (password aged)"
-msgstr "თქვენ -სკენ შეცვლა დაუყოვნებლივ"
-
-#: ../src/gnome-screensaver-dialog.c:179
-#, fuzzy
-msgid "You are required to change your password immediately (root enforced)"
-msgstr "თქვენ -სკენ შეცვლა დაუყოვნებლივ root"
-
-#: ../src/gnome-screensaver-dialog.c:180
-#, fuzzy
-msgid "Your account has expired; please contact your system administrator"
-msgstr "ანგარიში"
-
-#: ../src/gnome-screensaver-dialog.c:181
-#, fuzzy
-msgid "No password supplied"
-msgstr "პაროლილ გარეშე"
-
-#: ../src/gnome-screensaver-dialog.c:182
-#, fuzzy
-msgid "Password unchanged"
-msgstr "შეუცვლელი პაროლი"
-
-#: ../src/gnome-screensaver-dialog.c:183
-#, fuzzy
-msgid "Can not get username"
-msgstr "ვერ ვხვდები მომხმარებელი"
-
-#: ../src/gnome-screensaver-dialog.c:184
-#, fuzzy
-msgid "Retype new UNIX password:"
-msgstr "გაიმეორე ახალი UNIX პაროლი:"
-
-#: ../src/gnome-screensaver-dialog.c:185
-#, fuzzy
-msgid "Enter new UNIX password:"
-msgstr "შეიყვანე ახალი UNIX პაროლი:"
-
-#: ../src/gnome-screensaver-dialog.c:186
-#, fuzzy
-msgid "(current) UNIX password:"
-msgstr "(ამჯამინდელი) UNIX პაროლი:"
-
-#: ../src/gnome-screensaver-dialog.c:187
-#, fuzzy
-msgid "Error while changing NIS password."
-msgstr "შეცდომა NIS."
-
-#: ../src/gnome-screensaver-dialog.c:188
-#, fuzzy
-msgid "You must choose a longer password"
-msgstr "თქვენ a"
-
-#: ../src/gnome-screensaver-dialog.c:189
-#, fuzzy
-msgid "Password has been already used. Choose another."
-msgstr "პაროლი."
-
-#: ../src/gnome-screensaver-dialog.c:190
-#, fuzzy
-msgid "You must wait longer to change your password"
-msgstr "თქვენ -სკენ შეცვლა"
-
-#: ../src/gnome-screensaver-dialog.c:191
-#, fuzzy
-msgid "Sorry, passwords do not match"
-msgstr "უკაცრავად არა ემთხვევა"
-
-#: ../src/gnome-screensaver-dialog.c:257
-#, fuzzy
-msgid "Checking..."
-msgstr "მოწმდება..."
-
-#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
-#, fuzzy
-msgid "Authentication failed."
-msgstr "ავტორიზაცია ვერ განხორციალდა."
-
-#: ../src/gnome-screensaver-preferences.c:500
-msgid "Blank screen"
-msgstr "სუფთა ეკრანი"
-
-#: ../src/gnome-screensaver-preferences.c:506
-msgid "Random"
-msgstr "შემთხვევითი"
-
-#: ../src/gnome-screensaver-preferences.c:876
-msgid "Invalid screensaver theme"
-msgstr "დაუშვებელი თემა"
-
-#: ../src/gnome-screensaver-preferences.c:879
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "This file does not appear to be a valid screensaver theme."
-
-#: ../src/gnome-screensaver-preferences.c:1006
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d საათი"
-
-#: ../src/gnome-screensaver-preferences.c:1009
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d წუთი"
-
-#: ../src/gnome-screensaver-preferences.c:1012
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d წამი"
-
-#. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1018
-#, c-format
-msgid "%s %s %s"
-msgstr "%s %s %s"
-
-#. hour:minutes
-#. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:1021
-#: ../src/gnome-screensaver-preferences.c:1029
-#, c-format
-msgid "%s %s"
-msgstr "%s %s"
-
-#. hour
-#. minutes
-#. seconds
-#: ../src/gnome-screensaver-preferences.c:1024
-#: ../src/gnome-screensaver-preferences.c:1032
-#: ../src/gnome-screensaver-preferences.c:1036
-#, c-format
-msgid "%s"
-msgstr "%s"
-
-#: ../src/gnome-screensaver-preferences.c:1051
-#, c-format
-msgid "Never"
-msgstr "არასოდეს"
-
-#: ../src/gnome-screensaver-preferences.c:1450
-msgid "Could not load the main interface"
-msgstr "მთავარი ინტერფეისი არ იტვირთება"
-
-#: ../src/gnome-screensaver-preferences.c:1452
-msgid "Please make sure that the screensaver is properly installed"
-msgstr "შეამოწმეთ, არის თუ არა ეკრანმზოგი სწორად დაყენებული"
-
-#: ../src/gnome-screensaver.c:57
+#: ../src/light-locker.c:57
 msgid "Don't become a daemon"
 msgstr "ნუ გაეშმაკდი მთლათ :)"
 
-#: ../src/gnome-screensaver.c:58
+#: ../src/light-locker.c:58
 msgid "Enable debugging code"
 msgstr "გამართვის გამონატანი კოდის ჩართვა"
 
-#: ../src/gs-auth-pam.c:397
-#, c-format
+#: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
-msgid "Unable to establish service %s: %s\n"
-msgstr "-სკენ წმ წმ n"
+msgid "Screen Locker"
+msgstr "ეკრანმზოგი"
 
-#: ../src/gs-auth-pam.c:423
-#, c-format
+#: ../src/light-locker.desktop.in.in.h:2
+msgid "Launch screen locker program"
+msgstr ""
+
+#: ../src/gs-content.c:95
+msgid "This session is locked."
+msgstr ""
+
+#: ../src/gs-content.c:117
+msgid ""
+"You'll be redirected to the unlock dialog automatically in a few seconds."
+msgstr ""
+
+#~ msgid "Set your screensaver preferences"
+#~ msgstr "ეკრანმზოგის პარამეტრების მითითება"
+
+#~ msgid "<b>Screensaver preview</b>"
+#~ msgstr "<b>ეკრანმზოგის გადახედავ</b>"
+
+#~ msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+#~ msgstr "<b>ეკრანი არ დაიბლოკება root მომხმარებლისთვის.</b>"
+
+#~ msgid "Power _Management"
+#~ msgstr "დენის ?მართვა"
+
 #, fuzzy
-msgid "Can't set PAM_TTY=%s"
-msgstr "კან t PAM წმ"
+#~ msgid "Regard the computer as _idle after:"
+#~ msgstr "უქმი შემდეგ:"
 
-#: ../src/gs-auth-pam.c:455
+#~ msgid "Screensaver Preferences"
+#~ msgstr "ეკრანმზოგის პარამეტრები"
+
+#~ msgid "Screensaver Preview"
+#~ msgstr "ეკრანმზოგის გადახედვა"
+
+#~ msgid "_Activate screensaver when computer is idle"
+#~ msgstr "_ეკრანმზოგის გააქტიურება, როცა სისტემა უქმ რეჟიმშია"
+
+#~ msgid "_Lock screen when screensaver is active"
+#~ msgstr "_ეკრანის გამორთვა, როცა ეკრანმზოგი აქტიურია"
+
+#~ msgid "_Preview"
+#~ msgstr "გა_დახედვა"
+
+#~ msgid "_Screensaver theme:"
+#~ msgstr "ეკრანმზოგი_ს გაფორმება:"
+
+#~ msgid "Screensaver themes"
+#~ msgstr "ეკრანმზოგის გაფორმების თემები"
+
+#~ msgid "Screensavers"
+#~ msgstr "ეკრანმზოგები"
+
+#~ msgid "Activate when idle"
+#~ msgstr "გააქტიურება, როცა უქმადაა"
+
 #, fuzzy
-msgid "Incorrect password."
-msgstr "არასწორი პაროლი."
+#~ msgid "Allow embedding a keyboard into the window"
+#~ msgstr "ნების დართვა a ფანჯარა"
 
-#: ../src/gs-auth-pam.c:471
+#~ msgid "Allow logout"
+#~ msgstr "სესიიდან გასვლის ნების დართვა"
+
+#~ msgid "Allow user switching"
+#~ msgstr "მომხმარებლის გადართვის ნების დართვა"
+
+#~ msgid "Embedded keyboard command"
+#~ msgstr "ჩაკერებული კლავიატურის ბრძანება"
+
+#~ msgid "Lock on activation"
+#~ msgstr "ეკრანის ბლოკირება"
+
+#~ msgid "Logout command"
+#~ msgstr "სესიის დახურვის ბრძანება"
+
 #, fuzzy
-msgid "Not permitted to gain access at this time."
-msgstr "არა -სკენ ეთ დრო."
+#~ msgid "Reason for being away"
+#~ msgstr "მიზეზი - გასვლა"
 
-#: ../src/gs-auth-pam.c:477
+#~ msgid "Screensaver theme selection mode"
+#~ msgstr "ეკრანმზოგის თემების არჩევის რეჟიმი"
+
+#~ msgid ""
+#~ "Set this to TRUE to activate the screensaver when the session is idle."
+#~ msgstr ""
+#~ "თუ მინიჭებულია TRUE მნიშვნელობა, ეკრანმზოგის დაიბლოკება სეანსის უქმ "
+#~ "მდგომარეობაში ყოფნის დროს."
+
 #, fuzzy
-msgid "No longer permitted to access the system."
-msgstr "არა -სკენ."
+#~ msgid ""
+#~ "Set this to TRUE to allow embedding a keyboard into the window when "
+#~ "trying to unlock. The \"keyboard_command\" key must be set with the "
+#~ "appropriate command."
+#~ msgstr "მითითება -სკენ TRUE -სკენ a ფანჯარა -სკენ გასაღები."
 
-#: ../src/gs-listener-dbus.c:1921
-msgid "failed to register with the message bus"
-msgstr "შეტყობინებების მაგისტრალზე რეგისტრირების შეცდომა"
+#~ msgid ""
+#~ "Set this to TRUE to lock the screen when the screensaver goes active."
+#~ msgstr ""
+#~ "მიენიჭოს მნიშვნელობა TRUE ეკრანის ბლოკირებისათვის როცა გააქტიურებულია "
+#~ "ეკრანმზოგი"
 
-#: ../src/gs-listener-dbus.c:1931
-msgid "not connected to the message bus"
-msgstr "არ არის კავშირი შეტყობინებების მაგისტრალთან"
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in the unlock dialog to switch to a "
+#~ "different user account."
+#~ msgstr ""
+#~ "მიენიჭოს მნიშვნელობა TRUE განბლოკვის დიალოგში მომხმარებლის გადართვის "
+#~ "ფუნქციისათვის"
 
-#: ../src/gs-listener-dbus.c:1940
-msgid "screensaver already running in this session"
-msgstr "მიმდინარე სესიაში ეკრანმზოგი უკვე გაშვებულია"
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in unlock dialog to logging out after "
+#~ "a delay. The Delay is specified in the \"logout_delay\" key."
+#~ msgstr ""
+#~ "მიენიჭოს მნიშვნელობა TRUE განბლოკვის დიალოგში დაყოვნების შემდეგ სესიიდან "
+#~ "გამოსვლისათვის. დაყოვნების ხანგრძლივობა მიეთითება გასაღებში \"logout_delay"
+#~ "\"."
 
-#: ../src/gs-lock-plug.c:269
-msgid "Time has expired."
-msgstr "დრო ამოიწურა."
-
-#: ../src/gs-lock-plug.c:297
-msgid "You have the Caps Lock key on."
-msgstr "ჩართულია ზედა რეგისტრის (Caps Lock) ფიქსაცია!"
-
-#: ../src/gs-lock-plug.c:1187
 #, fuzzy
-msgid "S_witch User..."
-msgstr "S მომხმარებელი."
+#~ msgid ""
+#~ "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+#~ "set to TRUE, to embed a keyboard widget into the window. This command "
+#~ "should implement an XEMBED plug interface and output a window XID on the "
+#~ "standard output."
+#~ msgstr ""
+#~ "ჩართული გასაღები არის -სკენ TRUE -სკენ a ფანჯარა და გამოტანა a ფანჯარა -"
+#~ "ზე გამოტანა."
 
-#: ../src/gs-lock-plug.c:1196
-msgid "Log _Out"
-msgstr "_სესიის დახურვა"
+#~ msgid ""
+#~ "The command to invoke when the logout button is clicked. This command "
+#~ "should simply log the user out without any interaction. This key has "
+#~ "effect only if the \"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "სესიის დახურვის ღილაკზე დაჭერისას შესასრულებელი ბრძანება. ეს ბრძანება "
+#~ "უბრალოდ დახურავს მომხმარებლის სესიას რაიმე დიალოგის გარეშე. გასაღები "
+#~ "მოქმედებს, თუ \"logout_enable\" გასაღების მნიშვნელობა არის TRUE."
 
-#. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1373
+#~ msgid ""
+#~ "The number of minutes after screensaver activation before locking the "
+#~ "screen."
+#~ msgstr ""
+#~ "ეკრანმზოგის გააქტიურებიდან ეკრანის ბლოკირებამდე დროის ხანგრძლივობა, წთ."
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation before a logout "
+#~ "option will appear in unlock dialog. This key has effect only if the "
+#~ "\"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "ეკრანმზოგის გააქტიურებიდან დროის ხანგრძლივობა წუთებში , რომლის შემდეგ "
+#~ "განბლოკვის დიალოგში გამოჩნდება სესიის დახურვის პუნქტი. გასაღები აქტიურია, "
+#~ "თუ \"logout_enable\" გასაღების მნიშვნელობა არის TRUE."
+
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr "დრო, რომლის შემდეგ სესია გადავა უქმ რეჟიმში, წთ."
+
+#~ msgid "The number of minutes to run before changing the screensaver theme."
+#~ msgstr "დრო, რომლის შემდეგ შეიცვლება ეკრანმზოგის თემა, წთ."
+
 #, fuzzy
-msgid "%U on %h"
-msgstr "-ზე ს"
+#~ msgid ""
+#~ "The number of seconds of inactivity before signalling to power-"
+#~ "management. This key is set and maintained by the session power-"
+#~ "management agent."
+#~ msgstr "რიცხვი ის წამები ის -სკენ გასაღები არის და -ით სესია."
 
-#: ../src/gs-lock-plug.c:1387
-msgid "_Password:"
-msgstr "_პაროლი:"
+#, fuzzy
+#~ msgid "The reason for being away from the computer."
+#~ msgstr "- გასვლა."
 
+#~ msgid ""
+#~ "The selection mode used by screensaver. May be \"blank-only\" to enable "
+#~ "the screensaver without using any theme on activation, \"single\" to "
+#~ "enable screensaver using only one theme on activation (specified in "
+#~ "\"themes\" key), and \"random\" to enable the screensaver using a random "
+#~ "theme on activation."
+#~ msgstr ""
+#~ "ეკრანმზოგის რეჟიმი: \"სუფთა ეკრანი\" - როცა ეკრანმზოგი არ იყენებს არცერთ "
+#~ "თემას, \"ერთი თემა\" - როცა გამოიყენება ერთი რომელიმე თემა, მითითებული "
+#~ "გასაღებში \"თემა\", და \"შემთხვევითი თემა\" - როცა ეკრანმზოგი თავად ცვლის "
+#~ "თემებს შემთხვევითი თანმიმდევრობით."
+
+#, fuzzy
+#~ msgid "Theme for lock dialog"
+#~ msgstr "გაფორმება - დიალოგი"
+
+#, fuzzy
+#~ msgid "Theme to use for the lock dialog."
+#~ msgstr "გაფორმება -სკენ - დიალოგი."
+
+#~ msgid ""
+#~ "This key specifies the list of themes to be used by the screensaver. It's "
+#~ "ignored when \"mode\" key is \"blank-only\", should provide the theme "
+#~ "name when \"mode\" is \"single\", and should provide a list of themes "
+#~ "when \"mode\" is \"random\"."
+#~ msgstr ""
+#~ "გასაღებში მიეთითება ეკრანმზოგის მიერ გამოსაყენებელი თემების სია. "
+#~ "იგნორირდება, როცა არჩეულია რეჟიმი \"სუფთა ეკრანი\", \"ერთი თემის\" "
+#~ "რეჟიმში უნდა მიეთითოს თემის სახელი, ხოლო \"შემთხვევითი თემის\" რეჟიმში - "
+#~ "თემების სია."
+
+#~ msgid "Time before locking"
+#~ msgstr "დრო ბლოკირებამდე"
+
+#~ msgid "Time before logout option"
+#~ msgstr "დრო სესიის დახურვის პუნქტის გამოჩენამდე"
+
+#, fuzzy
+#~ msgid "Time before power-management baseline"
+#~ msgstr "დრო"
+
+#, fuzzy
+#~ msgid "Time before session is considered idle"
+#~ msgstr "დრო სესია არის უქმი"
+
+#~ msgid "Time before theme change"
+#~ msgstr "დრო თემის შეცვლამდე"
+
+#~ msgid "<b>Leave a message for %R:</b>"
+#~ msgstr "<b>შეტყობინების დატოვება %R-თვის:</b>"
+
+#~ msgid "<span size=\"small\">%U on %h</span>"
+#~ msgstr "<span size=\"small\">%U ~ %h-ში</span>"
+
+#~ msgid "<span size=\"x-large\">%R</span>"
+#~ msgstr "<span size=\"x-large\">%R</span>"
+
+#~ msgid "_Cancel"
+#~ msgstr "_გაუქმება"
+
+#~ msgid "_Leave Message"
+#~ msgstr "შეტყობინების _დატოვება"
+
+#~ msgid "_Log Out"
+#~ msgstr "სეანსის დასრუ_ლება"
+
+#~ msgid "_Switch User"
+#~ msgstr "_მომხმარებლის გადართვა"
+
+#~ msgid "_Unlock"
+#~ msgstr "გან_ბლოკვა"
+
+#~ msgid "Cosmos"
+#~ msgstr "კოსმოსი"
+
+#~ msgid "Display a slideshow of pictures of the cosmos"
+#~ msgstr "კოსმოსური სურათების სლაიდშოუ"
+
+#~ msgid "Bubbles the GNOME foot logo around the screen"
+#~ msgstr "ჯუჯის ნაფეხურები ეკრანის გარშემო"
+
+#~ msgid "Floating Feet"
+#~ msgstr "მოსრიალე ფეხი"
+
+#~ msgid "Display a slideshow from your Pictures folder"
+#~ msgstr "მომხმარებლის სურათების დასტის სლაიდშოუ"
+
+#~ msgid "Pictures folder"
+#~ msgstr "სურათების დასტა"
+
+#~ msgid "A pop-art-ish grid of pulsing colors."
+#~ msgstr "მფეთქავი ფერები პოპ-არტ-სტილში"
+
+#~ msgid "Pop art squares"
+#~ msgstr "კვადრატები პოპ-არტ სტილში"
+
+#, fuzzy
+#~ msgid "Show paths that images follow"
+#~ msgstr "ჩვენება"
+
+#, fuzzy
+#~ msgid "Occasionally rotate images as they move"
+#~ msgstr "მოძრაობა"
+
+#, fuzzy
+#~ msgid "Print out frame rate and other statistics"
+#~ msgstr "ბეჭდვა ჩარჩო სისწრაფე და სხვა"
+
+#, fuzzy
+#~ msgid "The maximum number of images to keep on screen"
+#~ msgstr "რიცხვი ის -სკენ -ზე"
+
+#, fuzzy
+#~ msgid "MAX_IMAGES"
+#~ msgstr "MAX"
+
+#, fuzzy
+#~ msgid "The initial size and position of window"
+#~ msgstr "ზომა და ის ფანჯარა"
+
+#~ msgid "WIDTHxHEIGHT+X+Y"
+#~ msgstr "სიგანეxსიმაღლე+X+Y"
+
+#, fuzzy
+#~ msgid "The source image to use"
+#~ msgstr "წყარო ნახატი -სკენ"
+
+#~ msgid "image - floats images around the screen"
+#~ msgstr "გამოსახულება - მოძრავი გამოსახულება ეკრანზე"
+
+#~ msgid "%s. See --help for usage information.\n"
+#~ msgstr "%s. იხ. დახმარება.\n"
+
+#~ msgid "You must specify one image.  See --help for usage information.\n"
+#~ msgstr "უნდა მიუთითოთ ერთი  გამოსახულება.  იხ. დახმარება \n"
+
+#~ msgid "Location to get images from"
+#~ msgstr "გამოსახულების მდებარეობა"
+
+#~ msgid "PATH"
+#~ msgstr "გეზი"
+
+#, fuzzy
+#~ msgid "Color to use for images background"
+#~ msgstr "ფერი -სკენ -"
+
+#, fuzzy
+#~ msgid "Do not randomize pictures from location"
+#~ msgstr "არა მდებარეობა"
+
+#, fuzzy
+#~ msgid "Do not try to stretch images on screen"
+#~ msgstr "არა -სკენ -ზე"
+
+#~ msgid "Copying file: %u of %u"
+#~ msgstr "ფაილის კოპირება: %u - %u"
+
+#~ msgid "Copying '%s'"
+#~ msgstr "კოპირება '%s'"
+
+#~ msgid "From URI"
+#~ msgstr "გამომგზავნის URI"
+
+#~ msgid "URI currently transferring from"
+#~ msgstr "მიმდინარე გამოგზავნის URI"
+
+#~ msgid "To URI"
+#~ msgstr "მიმღების URI"
+
+#~ msgid "URI currently transferring to"
+#~ msgstr "მიმდინარე გაგზავნის URI"
+
+#~ msgid "Fraction completed"
+#~ msgstr "დანაწევრება დასრულებულია"
+
+#~ msgid "Fraction of transfer currently completed"
+#~ msgstr "მიმდინარე გზავნილის დანაწევრება დასრულებულია"
+
+#~ msgid "Current URI index"
+#~ msgstr "მიმდინარე URI-ინდექსი"
+
+#~ msgid "Current URI index - starts from 1"
+#~ msgstr "მიმდინარე URI-ინდექსი - იწყება 1-დან"
+
+#~ msgid "Total URIs"
+#~ msgstr "ჯამში URI"
+
+#~ msgid "Total number of URIs"
+#~ msgstr "ჯამში URI რაოდენობა"
+
+#~ msgid "Copying files"
+#~ msgstr "ფაილების კოპირება"
+
+#~ msgid "From:"
+#~ msgstr "საიდან:"
+
+#~ msgid "To:"
+#~ msgstr "სად:"
+
+#~ msgid "Connecting..."
+#~ msgstr "დაკავშირება..."
+
+#~ msgid "Causes the screensaver to exit gracefully"
+#~ msgstr "ეკრანმზოგის გრაციოზული დახურვა"
+
+#~ msgid "Query the state of the screensaver"
+#~ msgstr "ეკრანმზოგის მდგომარეობა"
+
+#, fuzzy
+#~ msgid "Query the length of time the screensaver has been active"
+#~ msgstr "მოთხოვნა სიგრძე ის დრო აქტიური"
+
+#~ msgid "If the screensaver is active then switch to another graphics demo"
+#~ msgstr "სხვა სურათზე გადასვლა, თუ ეკრანმზოგი ჩართულია"
+
+#~ msgid "Turn the screensaver on (blank the screen)"
+#~ msgstr "ეკრანმზოგის ჩართვა (ეკრანის გასუფთავება)"
+
+#~ msgid ""
+#~ "If the screensaver is active then deactivate it (un-blank the screen)"
+#~ msgstr "ეკრანმზოგის დახურვა (ეკრანის აღდგენა)"
+
+#~ msgid "Poke the running screensaver to simulate user activity"
+#~ msgstr "ეკრანმზოგის მიერ მომხმარებლის აქტივობის სიმულირება"
+
+#, fuzzy
+#~ msgid ""
+#~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
+#~ "active."
+#~ msgstr "ბრძანება არის აქტიური."
+
+#, fuzzy
+#~ msgid "The calling application that is inhibiting the screensaver"
+#~ msgstr "პროგრამა არის"
+
+#, fuzzy
+#~ msgid "The reason for inhibiting the screensaver"
+#~ msgstr "-"
+
+#~ msgid "The screensaver is %s\n"
+#~ msgstr "ეკრანმზოგი: %s\n"
+
+#~ msgid "active"
+#~ msgstr "აქტიური"
+
+#~ msgid "inactive"
+#~ msgstr "არააქტიური"
+
+#, fuzzy
+#~ msgid "The screensaver has been active for %d seconds.\n"
+#~ msgstr "აქტიური - წამები n"
+
+#~ msgid "Show debugging output"
+#~ msgstr "გამართვის გამონატანის ჩვენება"
+
+#~ msgid "Show the logout button"
+#~ msgstr "სესიის დახურვის ღილაკის ჩვენება"
+
+#~ msgid "Command to invoke from the logout button"
+#~ msgstr "ბრძანება, რომელიც გაიშვება დახურვის ღილაკით"
+
+#~ msgid "Show the switch user button"
+#~ msgstr "მომხმარებლის გადართვის ღილაკის ჩვენება"
+
+#, fuzzy
+#~ msgid "Message to show in the dialog"
+#~ msgstr "შეტყობინება -სკენ დუ დიალოგი"
+
+#, fuzzy
+#~ msgid "Username:"
+#~ msgstr "მომხმარებლის სახელი:"
+
+#, fuzzy
+#~ msgid "Password:"
+#~ msgstr "პაროლი:"
+
+#, fuzzy
+#~ msgid "You are required to change your password immediately (password aged)"
+#~ msgstr "თქვენ -სკენ შეცვლა დაუყოვნებლივ"
+
+#, fuzzy
+#~ msgid "You are required to change your password immediately (root enforced)"
+#~ msgstr "თქვენ -სკენ შეცვლა დაუყოვნებლივ root"
+
+#, fuzzy
+#~ msgid "Your account has expired; please contact your system administrator"
+#~ msgstr "ანგარიში"
+
+#, fuzzy
+#~ msgid "No password supplied"
+#~ msgstr "პაროლილ გარეშე"
+
+#, fuzzy
+#~ msgid "Password unchanged"
+#~ msgstr "შეუცვლელი პაროლი"
+
+#, fuzzy
+#~ msgid "Can not get username"
+#~ msgstr "ვერ ვხვდები მომხმარებელი"
+
+#, fuzzy
+#~ msgid "Retype new UNIX password:"
+#~ msgstr "გაიმეორე ახალი UNIX პაროლი:"
+
+#, fuzzy
+#~ msgid "Enter new UNIX password:"
+#~ msgstr "შეიყვანე ახალი UNIX პაროლი:"
+
+#, fuzzy
+#~ msgid "(current) UNIX password:"
+#~ msgstr "(ამჯამინდელი) UNIX პაროლი:"
+
+#, fuzzy
+#~ msgid "Error while changing NIS password."
+#~ msgstr "შეცდომა NIS."
+
+#, fuzzy
+#~ msgid "You must choose a longer password"
+#~ msgstr "თქვენ a"
+
+#, fuzzy
+#~ msgid "Password has been already used. Choose another."
+#~ msgstr "პაროლი."
+
+#, fuzzy
+#~ msgid "You must wait longer to change your password"
+#~ msgstr "თქვენ -სკენ შეცვლა"
+
+#, fuzzy
+#~ msgid "Sorry, passwords do not match"
+#~ msgstr "უკაცრავად არა ემთხვევა"
+
+#, fuzzy
+#~ msgid "Checking..."
+#~ msgstr "მოწმდება..."
+
+#, fuzzy
+#~ msgid "Authentication failed."
+#~ msgstr "ავტორიზაცია ვერ განხორციალდა."
+
+#~ msgid "Blank screen"
+#~ msgstr "სუფთა ეკრანი"
+
+#~ msgid "Random"
+#~ msgstr "შემთხვევითი"
+
+#~ msgid "Invalid screensaver theme"
+#~ msgstr "დაუშვებელი თემა"
+
+#~ msgid "This file does not appear to be a valid screensaver theme."
+#~ msgstr "This file does not appear to be a valid screensaver theme."
+
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "%d საათი"
+
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d წუთი"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d წამი"
+
+#~ msgid "%s %s %s"
+#~ msgstr "%s %s %s"
+
+#~ msgid "%s %s"
+#~ msgstr "%s %s"
+
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgid "Never"
+#~ msgstr "არასოდეს"
+
+#~ msgid "Could not load the main interface"
+#~ msgstr "მთავარი ინტერფეისი არ იტვირთება"
+
+#~ msgid "Please make sure that the screensaver is properly installed"
+#~ msgstr "შეამოწმეთ, არის თუ არა ეკრანმზოგი სწორად დაყენებული"
+
+#, fuzzy
+#~ msgid "Unable to establish service %s: %s\n"
+#~ msgstr "-სკენ წმ წმ n"
+
+#, fuzzy
+#~ msgid "Can't set PAM_TTY=%s"
+#~ msgstr "კან t PAM წმ"
+
+#, fuzzy
+#~ msgid "Incorrect password."
+#~ msgstr "არასწორი პაროლი."
+
+#, fuzzy
+#~ msgid "Not permitted to gain access at this time."
+#~ msgstr "არა -სკენ ეთ დრო."
+
+#, fuzzy
+#~ msgid "No longer permitted to access the system."
+#~ msgstr "არა -სკენ."
+
+#~ msgid "failed to register with the message bus"
+#~ msgstr "შეტყობინებების მაგისტრალზე რეგისტრირების შეცდომა"
+
+#~ msgid "not connected to the message bus"
+#~ msgstr "არ არის კავშირი შეტყობინებების მაგისტრალთან"
+
+#~ msgid "screensaver already running in this session"
+#~ msgstr "მიმდინარე სესიაში ეკრანმზოგი უკვე გაშვებულია"
+
+#~ msgid "Time has expired."
+#~ msgstr "დრო ამოიწურა."
+
+#~ msgid "You have the Caps Lock key on."
+#~ msgstr "ჩართულია ზედა რეგისტრის (Caps Lock) ფიქსაცია!"
+
+#, fuzzy
+#~ msgid "S_witch User..."
+#~ msgstr "S მომხმარებელი."
+
+#~ msgid "Log _Out"
+#~ msgstr "_სესიის დახურვა"
+
+#, fuzzy
+#~ msgid "%U on %h"
+#~ msgstr "-ზე ს"
+
+#~ msgid "_Password:"
+#~ msgstr "_პაროლი:"

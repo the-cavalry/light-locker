@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-03 18:09+0200\n"
+"POT-Creation-Date: 2013-06-19 23:00+0200\n"
 "PO-Revision-Date: 2011-04-03 18:10+0200\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -26,260 +26,208 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../src/gnome-screensaver-command.c:46
-msgid "Causes the screensaver to exit gracefully"
-msgstr "Zorgt dat de schermbeveiliging netjes afsluit"
-
-#: ../src/gnome-screensaver-command.c:48
-msgid "Query the state of the screensaver"
-msgstr "De toestand van de schermbeveiliging opvragen"
-
-#: ../src/gnome-screensaver-command.c:50
-msgid "Query the length of time the screensaver has been active"
-msgstr "Opvragen hoe lang de schermbeveiliging actief is geweest"
-
-#: ../src/gnome-screensaver-command.c:52
-msgid "Tells the running screensaver process to lock the screen immediately"
+#: ../src/light-locker-command.c:40
+#, fuzzy
+msgid "Tells the running display manager to lock the screen immediately"
 msgstr ""
 "Geeft de actieve schermbeveiliging opdracht om het scherm onmiddellijk te "
 "vergrendelen"
 
-#: ../src/gnome-screensaver-command.c:54
-msgid "Turn the screensaver on (blank the screen)"
-msgstr "De schermbeveiliging activeren (het scherm zwart maken)"
-
-#: ../src/gnome-screensaver-command.c:56
-msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
-"Indien de schermbeveiliging actief is, deze deactiveren (het scherm "
-"zichtbaar maken)"
-
-#: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:59
-#: ../src/gnome-screensaver.c:56
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 msgid "Version of this application"
 msgstr "Versie van deze toepassing"
 
-#: ../src/gnome-screensaver-command.c:224
-#, c-format
-msgid "The screensaver is active\n"
-msgstr "De schermbeveiliging is actief\n"
-
-#: ../src/gnome-screensaver-command.c:226
-#, c-format
-msgid "The screensaver is inactive\n"
-msgstr "De schermbeveiliging is niet actief\n"
-
-#: ../src/gnome-screensaver-command.c:256
-#, c-format
-msgid "The screensaver has been active for %d second.\n"
-msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] "De schermbeveiliging was voor %d seconden actief.\n"
-msgstr[1] "De schermbeveiliging was voor %d seconden actief.\n"
-
-#: ../src/gnome-screensaver-command.c:258
-#, c-format
-msgid "The screensaver is not currently active.\n"
-msgstr "De schermbeveiliging is momenteel niet actief.\n"
-
-#: ../src/gnome-screensaver-dialog.c:57
-msgid "Show debugging output"
-msgstr "Debug uitvoer tonen"
-
-#: ../src/gnome-screensaver-dialog.c:61
-msgid "Show the logout button"
-msgstr "Een knop voor afmelden tonen"
-
-#: ../src/gnome-screensaver-dialog.c:63
-msgid "Command to invoke from the logout button"
-msgstr "Opdracht die wordt uitgevoerd met de knop voor afmelden"
-
-#: ../src/gnome-screensaver-dialog.c:65
-msgid "Show the switch user button"
-msgstr "Een knop tonen met 'wissel gebruiker'"
-
-#: ../src/gnome-screensaver-dialog.c:67
-msgid "Message to show in the dialog"
-msgstr "Te tonen bericht in het dialoogvenster"
-
-#. Translators: This is the example input for the --status-message command line option.
-#. Translators: This is the example input for the --away-message command line option.
-#: ../src/gnome-screensaver-dialog.c:69 ../src/gnome-screensaver-dialog.c:73
-msgid "MESSAGE"
-msgstr "BERICHT"
-
-#: ../src/gnome-screensaver-dialog.c:71
-msgid "Not used"
-msgstr "Niet gebruikt"
-
-#. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:183 ../src/gnome-screensaver-dialog.c:184
-#: ../src/gnome-screensaver-dialog.c:185 ../src/gs-auth-pam.c:698
-msgid "Username:"
-msgstr "Gebruikersnaam:"
-
-#: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
-#: ../src/gs-auth-pam.c:166
-msgid "Password:"
-msgstr "Wachtwoord:"
-
-#: ../src/gnome-screensaver-dialog.c:188
-msgid "You are required to change your password immediately (password aged)"
-msgstr "U dient uw wachtwoord direct te veranderen (wachtwoord verlopen)"
-
-#: ../src/gnome-screensaver-dialog.c:189
-msgid "You are required to change your password immediately (root enforced)"
-msgstr ""
-"U dient uw wachtwoord direct te veranderen (op last van de systeembeheerder)"
-
-#: ../src/gnome-screensaver-dialog.c:190
-msgid "Your account has expired; please contact your system administrator"
-msgstr "Uw account is verlopen; neem contact op met de systeembeheerder"
-
-#: ../src/gnome-screensaver-dialog.c:191
-msgid "No password supplied"
-msgstr "Geen wachtwoord opgegeven"
-
-#: ../src/gnome-screensaver-dialog.c:192
-msgid "Password unchanged"
-msgstr "Wachtwoord ongewijzigd"
-
-#: ../src/gnome-screensaver-dialog.c:193
-msgid "Cannot get username"
-msgstr "Kan gebruikersnaam niet opvragen"
-
-#: ../src/gnome-screensaver-dialog.c:194
-msgid "Retype new Unix password:"
-msgstr "Nieuw Unix-wachtwoord (opnieuw):"
-
-#: ../src/gnome-screensaver-dialog.c:195
-msgid "Enter new Unix password:"
-msgstr "Nieuw Unix-wachtwoord:"
-
-#: ../src/gnome-screensaver-dialog.c:196
-msgid "(current) Unix password:"
-msgstr "Huidig Unix-wachtwoord:"
-
-#: ../src/gnome-screensaver-dialog.c:197
-msgid "Error while changing NIS password."
-msgstr "Fout bij veranderen NIS-wachtwoord."
-
-#: ../src/gnome-screensaver-dialog.c:198
-msgid "You must choose a longer password"
-msgstr "U dient een langer wachtwoord te gebruiken"
-
-#: ../src/gnome-screensaver-dialog.c:199
-msgid "Password has been already used. Choose another."
-msgstr "Dit wachtwoord is al eens gebruikt. Kies een nieuw wachtwoord."
-
-#: ../src/gnome-screensaver-dialog.c:200
-msgid "You must wait longer to change your password"
-msgstr "U dient langer te wachten om uw wachtwoord te veranderen"
-
-#: ../src/gnome-screensaver-dialog.c:201
-msgid "Sorry, passwords do not match"
-msgstr "Helaas, de wachtwoorden komen niet overeen"
-
-#: ../src/gnome-screensaver-dialog.c:267
-msgid "Checking…"
-msgstr "Controle…"
-
-# vrij vertaald (Wouter Bolsterlee)
-#: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
-msgid "Authentication failed."
-msgstr "Controle mislukt."
-
 # vrij vertaald
-#: ../src/gnome-screensaver.c:57
+#: ../src/light-locker.c:57
 msgid "Don't become a daemon"
 msgstr "Niet als daemon uitvoeren"
 
-#: ../src/gnome-screensaver.c:58
+#: ../src/light-locker.c:58
 msgid "Enable debugging code"
 msgstr "Debugging-code gebruiken"
 
-#: ../src/gnome-screensaver.desktop.in.in.h:1
-msgid "Launch screensaver and locker program"
-msgstr "Schermbeveiliging en -vergrendeling opstarten"
-
-#: ../src/gnome-screensaver.desktop.in.in.h:2
-msgid "Screensaver"
+#: ../src/light-locker.desktop.in.in.h:1
+#, fuzzy
+msgid "Screen Locker"
 msgstr "Schermbeveiliging"
 
-#: ../src/gs-auth-pam.c:397
-#, c-format
-msgid "Unable to establish service %s: %s\n"
-msgstr "Instellen van service ‘%s’ mislukt: %s\n"
+#: ../src/light-locker.desktop.in.in.h:2
+#, fuzzy
+msgid "Launch screen locker program"
+msgstr "Schermbeveiliging en -vergrendeling opstarten"
 
-#: ../src/gs-auth-pam.c:423
-#, c-format
-msgid "Can't set PAM_TTY=%s"
-msgstr "Instellen ‘PAM_TTY=%s’ mislukt"
+#: ../src/gs-content.c:95
+msgid "This session is locked."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:455
-msgid "Incorrect password."
-msgstr "Ongeldig wachtwoord."
+#: ../src/gs-content.c:117
+msgid ""
+"You'll be redirected to the unlock dialog automatically in a few seconds."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:471
-msgid "Not permitted to gain access at this time."
-msgstr "U heeft geen toegang op dit moment."
+#~ msgid "Causes the screensaver to exit gracefully"
+#~ msgstr "Zorgt dat de schermbeveiliging netjes afsluit"
 
-#: ../src/gs-auth-pam.c:477
-msgid "No longer permitted to access the system."
-msgstr "U heeft niet langer toegang tot deze computer."
+#~ msgid "Query the state of the screensaver"
+#~ msgstr "De toestand van de schermbeveiliging opvragen"
 
-#: ../src/gs-listener-dbus.c:1148
-msgid "failed to register with the message bus"
-msgstr "kon niet registreren bij de message bus"
+#~ msgid "Query the length of time the screensaver has been active"
+#~ msgstr "Opvragen hoe lang de schermbeveiliging actief is geweest"
 
-#: ../src/gs-listener-dbus.c:1158
-msgid "not connected to the message bus"
-msgstr "kon verbonden met de message bus"
+#~ msgid "Turn the screensaver on (blank the screen)"
+#~ msgstr "De schermbeveiliging activeren (het scherm zwart maken)"
 
-#: ../src/gs-listener-dbus.c:1167 ../src/gs-listener-dbus.c:1197
-msgid "screensaver already running in this session"
-msgstr "schermbeveiliging al actief in deze sessie"
+#~ msgid ""
+#~ "If the screensaver is active then deactivate it (un-blank the screen)"
+#~ msgstr ""
+#~ "Indien de schermbeveiliging actief is, deze deactiveren (het scherm "
+#~ "zichtbaar maken)"
 
-#: ../src/gs-lock-plug.c:256
-msgid "Time has expired."
-msgstr "Tijd is verlopen."
+#~ msgid "The screensaver is active\n"
+#~ msgstr "De schermbeveiliging is actief\n"
 
-#: ../src/gs-lock-plug.c:287
-msgid "You have the Caps & Num Lock keys on."
-msgstr "Caps Lock en Num Lock staan aan."
+#~ msgid "The screensaver is inactive\n"
+#~ msgstr "De schermbeveiliging is niet actief\n"
 
-#: ../src/gs-lock-plug.c:290
-msgid "You have the Caps Lock key on."
-msgstr "Caps Lock staat aan."
+#~ msgid "The screensaver has been active for %d second.\n"
+#~ msgid_plural "The screensaver has been active for %d seconds.\n"
+#~ msgstr[0] "De schermbeveiliging was voor %d seconden actief.\n"
+#~ msgstr[1] "De schermbeveiliging was voor %d seconden actief.\n"
 
-#: ../src/gs-lock-plug.c:293
-msgid "You have the Num Lock key on."
-msgstr "Num Lock staat aan."
+#~ msgid "The screensaver is not currently active.\n"
+#~ msgstr "De schermbeveiliging is momenteel niet actief.\n"
 
-#: ../src/gs-lock-plug.c:1350
-msgid "S_witch User…"
-msgstr "_Gebruiker wisselen…"
+#~ msgid "Show debugging output"
+#~ msgstr "Debug uitvoer tonen"
 
-#: ../src/gs-lock-plug.c:1359
-msgid "Log _Out"
-msgstr "_Afmelden"
+#~ msgid "Show the logout button"
+#~ msgstr "Een knop voor afmelden tonen"
 
-#: ../src/gs-lock-plug.c:1366
-msgid "_Unlock"
-msgstr "_Ontgrendelen"
+#~ msgid "Command to invoke from the logout button"
+#~ msgstr "Opdracht die wordt uitgevoerd met de knop voor afmelden"
 
-#: ../src/gs-lock-plug.c:1401
-msgid "_Password:"
-msgstr "_Wachtwoord:"
+#~ msgid "Show the switch user button"
+#~ msgstr "Een knop tonen met 'wissel gebruiker'"
 
-#. Translators, this is the 24h date format used in the panel clock
-#: ../src/gs-window-x11.c:2199
-msgid "%a %R"
-msgstr "%a, %R"
+#~ msgid "Message to show in the dialog"
+#~ msgstr "Te tonen bericht in het dialoogvenster"
 
-#. Translators, this is the 12h date format used in the panel clock
-#: ../src/gs-window-x11.c:2202
-msgid "%a %l:%M %p"
-msgstr "%a, %I:%M %p"
+#~ msgid "MESSAGE"
+#~ msgstr "BERICHT"
+
+#~ msgid "Not used"
+#~ msgstr "Niet gebruikt"
+
+#~ msgid "Username:"
+#~ msgstr "Gebruikersnaam:"
+
+#~ msgid "Password:"
+#~ msgstr "Wachtwoord:"
+
+#~ msgid "You are required to change your password immediately (password aged)"
+#~ msgstr "U dient uw wachtwoord direct te veranderen (wachtwoord verlopen)"
+
+#~ msgid "You are required to change your password immediately (root enforced)"
+#~ msgstr ""
+#~ "U dient uw wachtwoord direct te veranderen (op last van de "
+#~ "systeembeheerder)"
+
+#~ msgid "Your account has expired; please contact your system administrator"
+#~ msgstr "Uw account is verlopen; neem contact op met de systeembeheerder"
+
+#~ msgid "No password supplied"
+#~ msgstr "Geen wachtwoord opgegeven"
+
+#~ msgid "Password unchanged"
+#~ msgstr "Wachtwoord ongewijzigd"
+
+#~ msgid "Cannot get username"
+#~ msgstr "Kan gebruikersnaam niet opvragen"
+
+#~ msgid "Retype new Unix password:"
+#~ msgstr "Nieuw Unix-wachtwoord (opnieuw):"
+
+#~ msgid "Enter new Unix password:"
+#~ msgstr "Nieuw Unix-wachtwoord:"
+
+#~ msgid "(current) Unix password:"
+#~ msgstr "Huidig Unix-wachtwoord:"
+
+#~ msgid "Error while changing NIS password."
+#~ msgstr "Fout bij veranderen NIS-wachtwoord."
+
+#~ msgid "You must choose a longer password"
+#~ msgstr "U dient een langer wachtwoord te gebruiken"
+
+#~ msgid "Password has been already used. Choose another."
+#~ msgstr "Dit wachtwoord is al eens gebruikt. Kies een nieuw wachtwoord."
+
+#~ msgid "You must wait longer to change your password"
+#~ msgstr "U dient langer te wachten om uw wachtwoord te veranderen"
+
+#~ msgid "Sorry, passwords do not match"
+#~ msgstr "Helaas, de wachtwoorden komen niet overeen"
+
+#~ msgid "Checking…"
+#~ msgstr "Controle…"
+
+# vrij vertaald (Wouter Bolsterlee)
+#~ msgid "Authentication failed."
+#~ msgstr "Controle mislukt."
+
+#~ msgid "Unable to establish service %s: %s\n"
+#~ msgstr "Instellen van service ‘%s’ mislukt: %s\n"
+
+#~ msgid "Can't set PAM_TTY=%s"
+#~ msgstr "Instellen ‘PAM_TTY=%s’ mislukt"
+
+#~ msgid "Incorrect password."
+#~ msgstr "Ongeldig wachtwoord."
+
+#~ msgid "Not permitted to gain access at this time."
+#~ msgstr "U heeft geen toegang op dit moment."
+
+#~ msgid "No longer permitted to access the system."
+#~ msgstr "U heeft niet langer toegang tot deze computer."
+
+#~ msgid "failed to register with the message bus"
+#~ msgstr "kon niet registreren bij de message bus"
+
+#~ msgid "not connected to the message bus"
+#~ msgstr "kon verbonden met de message bus"
+
+#~ msgid "screensaver already running in this session"
+#~ msgstr "schermbeveiliging al actief in deze sessie"
+
+#~ msgid "Time has expired."
+#~ msgstr "Tijd is verlopen."
+
+#~ msgid "You have the Caps & Num Lock keys on."
+#~ msgstr "Caps Lock en Num Lock staan aan."
+
+#~ msgid "You have the Caps Lock key on."
+#~ msgstr "Caps Lock staat aan."
+
+#~ msgid "You have the Num Lock key on."
+#~ msgstr "Num Lock staat aan."
+
+#~ msgid "S_witch User…"
+#~ msgstr "_Gebruiker wisselen…"
+
+#~ msgid "Log _Out"
+#~ msgstr "_Afmelden"
+
+#~ msgid "_Unlock"
+#~ msgstr "_Ontgrendelen"
+
+#~ msgid "_Password:"
+#~ msgstr "_Wachtwoord:"
+
+#~ msgid "%a %R"
+#~ msgstr "%a, %R"
+
+#~ msgid "%a %l:%M %p"
+#~ msgstr "%a, %I:%M %p"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "Voorkeuren voor de schermbeveiliging instellen"

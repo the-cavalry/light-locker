@@ -8,255 +8,206 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"screensaver&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-09-09 15:16+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-19 23:00+0200\n"
 "PO-Revision-Date: 2011-09-11 07:40+0900\n"
 "Last-Translator: Jiro Matsuzawa <jmatsuzawa@src.gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../src/gnome-screensaver-command.c:46
-msgid "Causes the screensaver to exit gracefully"
-msgstr "スクリーンセーバーを強制終了する"
-
-#: ../src/gnome-screensaver-command.c:48
-msgid "Query the state of the screensaver"
-msgstr "スクリーンセーバーの状態を問い合わせる"
-
-#: ../src/gnome-screensaver-command.c:50
-msgid "Query the length of time the screensaver has been active"
-msgstr "スクリーンセーバーが有効になっている時間を問い合わせる"
-
-#: ../src/gnome-screensaver-command.c:52
-msgid "Tells the running screensaver process to lock the screen immediately"
+#: ../src/light-locker-command.c:40
+#, fuzzy
+msgid "Tells the running display manager to lock the screen immediately"
 msgstr "起動中のスクリーンセーバーに今すぐ画面をロックさせる"
 
-#: ../src/gnome-screensaver-command.c:54
-msgid "Turn the screensaver on (blank the screen)"
-msgstr "スクリーンセーバーを有効にする (ブランク・スクリーン)"
-
-#: ../src/gnome-screensaver-command.c:56
-msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
-"有効になっているスクリーンセーバーを無効にする (ブランク・スクリーン解除)"
-
-#: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:59
-#: ../src/gnome-screensaver.c:56
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 msgid "Version of this application"
 msgstr "このアプリケーションのバージョンを表示する"
 
-#: ../src/gnome-screensaver-command.c:224
-#, c-format
-msgid "The screensaver is active\n"
-msgstr "スクリーンセーバーは有効\n"
-
-#: ../src/gnome-screensaver-command.c:226
-#, c-format
-msgid "The screensaver is inactive\n"
-msgstr "スクリーンセーバーは無効\n"
-
-#: ../src/gnome-screensaver-command.c:256
-#, c-format
-msgid "The screensaver has been active for %d second.\n"
-msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] "スクリーンセーバーは %d 秒間有効になっています。\n"
-
-#: ../src/gnome-screensaver-command.c:258
-#, c-format
-msgid "The screensaver is not currently active.\n"
-msgstr "スクリーンセーバーは現在、有効になっていません。\n"
-
-#: ../src/gnome-screensaver-dialog.c:57
-msgid "Show debugging output"
-msgstr "デバッグ出力を表示する"
-
-#: ../src/gnome-screensaver-dialog.c:61
-msgid "Show the logout button"
-msgstr "ログアウト・ボタンを表示する"
-
-#: ../src/gnome-screensaver-dialog.c:63
-msgid "Command to invoke from the logout button"
-msgstr "ログアウト・ボタンから呼び出すコマンド"
-
-#: ../src/gnome-screensaver-dialog.c:65
-msgid "Show the switch user button"
-msgstr "ログアウト・ボタンを表示する"
-
-#: ../src/gnome-screensaver-dialog.c:67
-msgid "Message to show in the dialog"
-msgstr "ダイアログに表示するメッセージ"
-
-#. Translators: This is the example input for the --status-message command line option.
-#. Translators: This is the example input for the --away-message command line option.
-#: ../src/gnome-screensaver-dialog.c:69 ../src/gnome-screensaver-dialog.c:73
-msgid "MESSAGE"
-msgstr "MESSAGE"
-
-#: ../src/gnome-screensaver-dialog.c:71
-msgid "Not used"
-msgstr "未使用"
-
-#. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:183 ../src/gnome-screensaver-dialog.c:184
-#: ../src/gnome-screensaver-dialog.c:185 ../src/gs-auth-pam.c:698
-msgid "Username:"
-msgstr "ユーザー名:"
-
-#: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
-#: ../src/gs-auth-pam.c:166
-msgid "Password:"
-msgstr "パスワード:"
-
-#: ../src/gnome-screensaver-dialog.c:188
-msgid "You are required to change your password immediately (password aged)"
-msgstr "今すぐパスワードの変更が必要です (パスワードは期限切れです)"
-
-#: ../src/gnome-screensaver-dialog.c:189
-msgid "You are required to change your password immediately (root enforced)"
-msgstr "今すぐパスワードの変更が必要です (管理者が強制しています)"
-
-#: ../src/gnome-screensaver-dialog.c:190
-msgid "Your account has expired; please contact your system administrator"
-msgstr "お使いのアカウントは期限切れです; システム管理者に問い合わせてください"
-
-#: ../src/gnome-screensaver-dialog.c:191
-msgid "No password supplied"
-msgstr "パスワードを指定していません"
-
-#: ../src/gnome-screensaver-dialog.c:192
-msgid "Password unchanged"
-msgstr "パスワードは変更されていません"
-
-#: ../src/gnome-screensaver-dialog.c:193
-msgid "Cannot get username"
-msgstr "ユーザー名を取得できません"
-
-#: ../src/gnome-screensaver-dialog.c:194
-msgid "Retype new Unix password:"
-msgstr "新しい UNIX パスワードを再入力:"
-
-#: ../src/gnome-screensaver-dialog.c:195
-msgid "Enter new Unix password:"
-msgstr "新しい UNIX パスワードを入力:"
-
-#: ../src/gnome-screensaver-dialog.c:196
-msgid "(current) Unix password:"
-msgstr "(現在の) UNIX パスワード:"
-
-#: ../src/gnome-screensaver-dialog.c:197
-msgid "Error while changing NIS password."
-msgstr "NIS パスワードを変更する際にエラー。"
-
-#: ../src/gnome-screensaver-dialog.c:198
-msgid "You must choose a longer password"
-msgstr "もっと長いパスワードを選択してください"
-
-#: ../src/gnome-screensaver-dialog.c:199
-msgid "Password has been already used. Choose another."
-msgstr "既にパスワードは使用されているので別のものを選択してください。"
-
-#: ../src/gnome-screensaver-dialog.c:200
-msgid "You must wait longer to change your password"
-msgstr "パスワードを変更するまで待たなければなりません"
-
-#: ../src/gnome-screensaver-dialog.c:201
-msgid "Sorry, passwords do not match"
-msgstr "すみませんが、パスワードが一致しません"
-
-#: ../src/gnome-screensaver-dialog.c:267
-msgid "Checking…"
-msgstr "確認中…"
-
-#: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
-msgid "Authentication failed."
-msgstr "認証に失敗しました。"
-
-#: ../src/gnome-screensaver.c:57
+#: ../src/light-locker.c:57
 msgid "Don't become a daemon"
 msgstr "デーモン化しない"
 
-#: ../src/gnome-screensaver.c:58
+#: ../src/light-locker.c:58
 msgid "Enable debugging code"
 msgstr "デバッグ・モードにする"
 
-#: ../src/gnome-screensaver.desktop.in.in.h:1
-msgid "Launch screensaver and locker program"
-msgstr "スクリーンセーバーおよびロックするプログラムを起動"
-
-#: ../src/gnome-screensaver.desktop.in.in.h:2
-msgid "Screensaver"
+#: ../src/light-locker.desktop.in.in.h:1
+#, fuzzy
+msgid "Screen Locker"
 msgstr "スクリーンセーバー"
 
-#: ../src/gs-auth-pam.c:397
-#, c-format
-msgid "Unable to establish service %s: %s\n"
-msgstr "サービス %s を確立できません: %s\n"
+#: ../src/light-locker.desktop.in.in.h:2
+#, fuzzy
+msgid "Launch screen locker program"
+msgstr "スクリーンセーバーおよびロックするプログラムを起動"
 
-#: ../src/gs-auth-pam.c:423
-#, c-format
-msgid "Can't set PAM_TTY=%s"
-msgstr "PAM_TTY=%s にセットできません"
+#: ../src/gs-content.c:95
+msgid "This session is locked."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:455
-msgid "Incorrect password."
-msgstr "パスワードが間違っています。"
+#: ../src/gs-content.c:117
+msgid ""
+"You'll be redirected to the unlock dialog automatically in a few seconds."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:471
-msgid "Not permitted to gain access at this time."
-msgstr "この時点ではアクセスが拒否されています。"
+#~ msgid "Causes the screensaver to exit gracefully"
+#~ msgstr "スクリーンセーバーを強制終了する"
 
-#: ../src/gs-auth-pam.c:477
-msgid "No longer permitted to access the system."
-msgstr "システムへのアクセスが許可されていません。"
+#~ msgid "Query the state of the screensaver"
+#~ msgstr "スクリーンセーバーの状態を問い合わせる"
 
-#: ../src/gs-listener-dbus.c:1148
-msgid "failed to register with the message bus"
-msgstr "メッセージ・バスへの登録に失敗しました"
+#~ msgid "Query the length of time the screensaver has been active"
+#~ msgstr "スクリーンセーバーが有効になっている時間を問い合わせる"
 
-#: ../src/gs-listener-dbus.c:1158
-msgid "not connected to the message bus"
-msgstr "メッセージ・バスに接続していません"
+#~ msgid "Turn the screensaver on (blank the screen)"
+#~ msgstr "スクリーンセーバーを有効にする (ブランク・スクリーン)"
 
-#: ../src/gs-listener-dbus.c:1167 ../src/gs-listener-dbus.c:1197
-msgid "screensaver already running in this session"
-msgstr "このセッションで既にスクリーンセーバーが実行中です"
+#~ msgid ""
+#~ "If the screensaver is active then deactivate it (un-blank the screen)"
+#~ msgstr ""
+#~ "有効になっているスクリーンセーバーを無効にする (ブランク・スクリーン解除)"
 
-#: ../src/gs-lock-plug.c:256
-msgid "Time has expired."
-msgstr "タイムアウトしました。"
+#~ msgid "The screensaver is active\n"
+#~ msgstr "スクリーンセーバーは有効\n"
 
-#: ../src/gs-lock-plug.c:287
-msgid "You have the Caps & Num Lock keys on."
-msgstr "Caps キーと Num Lock キーが押されています。"
+#~ msgid "The screensaver is inactive\n"
+#~ msgstr "スクリーンセーバーは無効\n"
 
-#: ../src/gs-lock-plug.c:290
-msgid "You have the Caps Lock key on."
-msgstr "Caps Lock キーが押されています。"
+#~ msgid "The screensaver has been active for %d second.\n"
+#~ msgid_plural "The screensaver has been active for %d seconds.\n"
+#~ msgstr[0] "スクリーンセーバーは %d 秒間有効になっています。\n"
 
-#: ../src/gs-lock-plug.c:293
-msgid "You have the Num Lock key on."
-msgstr "Num Lock キーが押されています。"
+#~ msgid "The screensaver is not currently active.\n"
+#~ msgstr "スクリーンセーバーは現在、有効になっていません。\n"
 
-#: ../src/gs-lock-plug.c:1350
-msgid "S_witch User…"
-msgstr "ユーザーの切り替え(_W)…"
+#~ msgid "Show debugging output"
+#~ msgstr "デバッグ出力を表示する"
 
-#: ../src/gs-lock-plug.c:1359
-msgid "Log _Out"
-msgstr "ログアウト(_O)"
+#~ msgid "Show the logout button"
+#~ msgstr "ログアウト・ボタンを表示する"
 
-#: ../src/gs-lock-plug.c:1366
-msgid "_Unlock"
-msgstr "ロックの解除(_U)"
+#~ msgid "Command to invoke from the logout button"
+#~ msgstr "ログアウト・ボタンから呼び出すコマンド"
 
-#: ../src/gs-lock-plug.c:1405
-msgid "_Password:"
-msgstr "パスワード(_P):"
+#~ msgid "Show the switch user button"
+#~ msgstr "ログアウト・ボタンを表示する"
+
+#~ msgid "Message to show in the dialog"
+#~ msgstr "ダイアログに表示するメッセージ"
+
+#~ msgid "MESSAGE"
+#~ msgstr "MESSAGE"
+
+#~ msgid "Not used"
+#~ msgstr "未使用"
+
+#~ msgid "Username:"
+#~ msgstr "ユーザー名:"
+
+#~ msgid "Password:"
+#~ msgstr "パスワード:"
+
+#~ msgid "You are required to change your password immediately (password aged)"
+#~ msgstr "今すぐパスワードの変更が必要です (パスワードは期限切れです)"
+
+#~ msgid "You are required to change your password immediately (root enforced)"
+#~ msgstr "今すぐパスワードの変更が必要です (管理者が強制しています)"
+
+#~ msgid "Your account has expired; please contact your system administrator"
+#~ msgstr ""
+#~ "お使いのアカウントは期限切れです; システム管理者に問い合わせてください"
+
+#~ msgid "No password supplied"
+#~ msgstr "パスワードを指定していません"
+
+#~ msgid "Password unchanged"
+#~ msgstr "パスワードは変更されていません"
+
+#~ msgid "Cannot get username"
+#~ msgstr "ユーザー名を取得できません"
+
+#~ msgid "Retype new Unix password:"
+#~ msgstr "新しい UNIX パスワードを再入力:"
+
+#~ msgid "Enter new Unix password:"
+#~ msgstr "新しい UNIX パスワードを入力:"
+
+#~ msgid "(current) Unix password:"
+#~ msgstr "(現在の) UNIX パスワード:"
+
+#~ msgid "Error while changing NIS password."
+#~ msgstr "NIS パスワードを変更する際にエラー。"
+
+#~ msgid "You must choose a longer password"
+#~ msgstr "もっと長いパスワードを選択してください"
+
+#~ msgid "Password has been already used. Choose another."
+#~ msgstr "既にパスワードは使用されているので別のものを選択してください。"
+
+#~ msgid "You must wait longer to change your password"
+#~ msgstr "パスワードを変更するまで待たなければなりません"
+
+#~ msgid "Sorry, passwords do not match"
+#~ msgstr "すみませんが、パスワードが一致しません"
+
+#~ msgid "Checking…"
+#~ msgstr "確認中…"
+
+#~ msgid "Authentication failed."
+#~ msgstr "認証に失敗しました。"
+
+#~ msgid "Unable to establish service %s: %s\n"
+#~ msgstr "サービス %s を確立できません: %s\n"
+
+#~ msgid "Can't set PAM_TTY=%s"
+#~ msgstr "PAM_TTY=%s にセットできません"
+
+#~ msgid "Incorrect password."
+#~ msgstr "パスワードが間違っています。"
+
+#~ msgid "Not permitted to gain access at this time."
+#~ msgstr "この時点ではアクセスが拒否されています。"
+
+#~ msgid "No longer permitted to access the system."
+#~ msgstr "システムへのアクセスが許可されていません。"
+
+#~ msgid "failed to register with the message bus"
+#~ msgstr "メッセージ・バスへの登録に失敗しました"
+
+#~ msgid "not connected to the message bus"
+#~ msgstr "メッセージ・バスに接続していません"
+
+#~ msgid "screensaver already running in this session"
+#~ msgstr "このセッションで既にスクリーンセーバーが実行中です"
+
+#~ msgid "Time has expired."
+#~ msgstr "タイムアウトしました。"
+
+#~ msgid "You have the Caps & Num Lock keys on."
+#~ msgstr "Caps キーと Num Lock キーが押されています。"
+
+#~ msgid "You have the Caps Lock key on."
+#~ msgstr "Caps Lock キーが押されています。"
+
+#~ msgid "You have the Num Lock key on."
+#~ msgstr "Num Lock キーが押されています。"
+
+#~ msgid "S_witch User…"
+#~ msgstr "ユーザーの切り替え(_W)…"
+
+#~ msgid "Log _Out"
+#~ msgstr "ログアウト(_O)"
+
+#~ msgid "_Unlock"
+#~ msgstr "ロックの解除(_U)"
+
+#~ msgid "_Password:"
+#~ msgstr "パスワード(_P):"
 
 #~ msgid "%a %R"
 #~ msgstr "%a %R"
@@ -404,8 +355,8 @@ msgstr "パスワード(_P):"
 #~ "\"logout_enable\" key is set to TRUE."
 #~ msgstr ""
 #~ "スクリーンセーバーを起動してロックを解除するダイアログにログアウトのオプ"
-#~ "ションが表示されるまでのアイドル時間 (分) です。このキーは、"
-#~ "\"logout_enable\" キーが TRUE の場合にのみ効果があります。"
+#~ "ションが表示されるまでのアイドル時間 (分) です。このキー"
+#~ "は、\"logout_enable\" キーが TRUE の場合にのみ効果があります。"
 
 #~ msgid ""
 #~ "The number of minutes of inactivity before the session is considered idle."

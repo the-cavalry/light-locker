@@ -7,751 +7,591 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-11 12:28+0300\n"
+"POT-Creation-Date: 2013-06-19 23:00+0200\n"
 "PO-Revision-Date: 2008-02-17 00:31+0200\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: i18n@mova.org <i18n@mova.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Belarusian latin\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-
-#: ../data/gnome-screensaver-preferences.desktop.in.h:1
-msgid "Screensaver"
-msgstr "Źbierahalnik ekranu"
-
-#: ../data/gnome-screensaver-preferences.desktop.in.h:2
-msgid "Set your screensaver preferences"
-msgstr "Nałady źbierahalnika ekranu"
-
-#: ../data/gnome-screensaver-preferences.glade.h:1
-msgid "<b>Screensaver preview</b>"
-msgstr "<b>Pieradahlad źbierahalnika ekranu</b>"
-
-#: ../data/gnome-screensaver-preferences.glade.h:2
-msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgstr "<b>Uvaha: ekran nia budzie blakavany dla karystalnika root.</b>"
-
-#: ../data/gnome-screensaver-preferences.glade.h:3
-msgid "Power _Management"
-msgstr "Kiravańnie _enerhijaj"
-
-#: ../data/gnome-screensaver-preferences.glade.h:4
-msgid "Regard the computer as _idle after:"
-msgstr "Pierachod u stan _biaździejańnia paśla:"
-
-#: ../data/gnome-screensaver-preferences.glade.h:5
-msgid "Screensaver Preferences"
-msgstr "Nałady źbierahalnika ekranu"
-
-#: ../data/gnome-screensaver-preferences.glade.h:6
-msgid "Screensaver Preview"
-msgstr "Pieradahlad źbierahalnika ekranu"
-
-#: ../data/gnome-screensaver-preferences.glade.h:7
-msgid "_Activate screensaver when computer is idle"
-msgstr "_Uruchom źbierahalnika ekranu, kali kamputar u stanie biaździejańnia"
-
-#: ../data/gnome-screensaver-preferences.glade.h:8
-msgid "_Lock screen when screensaver is active"
-msgstr "_Blakuj ekran, kali źbierahalnik aktyŭny"
-
-#: ../data/gnome-screensaver-preferences.glade.h:9
-msgid "_Preview"
-msgstr "_Pieradahlad"
-
-#: ../data/gnome-screensaver-preferences.glade.h:10
-msgid "_Screensaver theme:"
-msgstr "_Matyŭ źbierahalnika ekranu:"
-
-#: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Screensaver themes"
-msgstr "Matyvy źbierahalnika ekranu"
-
-#: ../data/gnome-screensaver.directory.in.h:2
-msgid "Screensavers"
-msgstr "Źbierahalniki ekranu"
-
-#: ../data/gnome-screensaver.schemas.in.h:1
-msgid "Activate when idle"
-msgstr "Aktyvizuj u vypadku stanu biaździejańnia"
-
-#: ../data/gnome-screensaver.schemas.in.h:2
-msgid "Allow embedding a keyboard into the window"
-msgstr "Dazvalaj pakazvać klavijaturu ŭ vaknie"
-
-#: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow logout"
-msgstr "Dazvalaj karystalniku vyjści"
-
-#: ../data/gnome-screensaver.schemas.in.h:4
-msgid "Allow user switching"
-msgstr "Dazvalaj pieraklučać karystalnikaŭ"
-
-#: ../data/gnome-screensaver.schemas.in.h:5
-msgid "Embedded keyboard command"
-msgstr "Zahad ekrannaj klavijatury"
-
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Lock on activation"
-msgstr "Blakuj ekran pry aktyvizacyi"
-
-#: ../data/gnome-screensaver.schemas.in.h:7
-msgid "Logout command"
-msgstr "Zahad dla vyjścia karystalnika"
-
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Reason for being away"
-msgstr "Pryčyna adychodu"
-
-#: ../data/gnome-screensaver.schemas.in.h:9
-msgid "Screensaver theme selection mode"
-msgstr "Režym vybaru matyvu źbierahalnika ekranu"
-
-#: ../data/gnome-screensaver.schemas.in.h:11
-msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr ""
-"Zaznač hetuju opcyju, kab aktyvizavać źbierahalnika ekranu ŭ stanie "
-"biaździejańnia."
-
-#: ../data/gnome-screensaver.schemas.in.h:12
-msgid ""
-"Set this to TRUE to allow embedding a keyboard into the window when trying "
-"to unlock. The \"keyboard_command\" key must be set with the appropriate "
-"command."
-msgstr ""
-"Zaznač hetuju opcyju, kab pakazvać klavijaturu na zablakavanym ekranie. U "
-"klučy \"keyboard_command\" musić być naładžany adpaviedny zahad."
-
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr ""
-"Zaznač hetuju opcyju, kab blakavać ekran pry ŭruchamleńni źbierahalnika."
-
-#: ../data/gnome-screensaver.schemas.in.h:14
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to switch to a "
-"different user account."
-msgstr ""
-"Zaznač hetuju opcyju, kab mahčy pieraklučać karystalnikaŭ niepasredna z "
-"zablakavanaha ekranu."
-
-#: ../data/gnome-screensaver.schemas.in.h:15
-msgid ""
-"Set this to TRUE to offer an option in unlock dialog to logging out after a "
-"delay. The Delay is specified in the \"logout_delay\" key."
-msgstr ""
-"Zaznač hetuju opcyju, kab mahčy vyjści karystalnikam niepasredna z "
-"zablakavanaha ekranu paśla zadadzienaha pramiežku času. Hety pramiežak "
-"naładžvajuć u klučy \"logout_delay\"."
-
-#: ../data/gnome-screensaver.schemas.in.h:16
-msgid ""
-"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
-"set to TRUE, to embed a keyboard widget into the window. This command should "
-"implement an XEMBED plug interface and output a window XID on the standard "
-"output."
-msgstr ""
-"Zahad uklučeńnia ekrannaj klavijatury, jaki budzie vykanany, kali kluč "
-"\"embedded_keyboard_enabled\" aktyŭny. Hety zahad pavinien mieć "
-"zaimplementavany interfejs plugina XEMBED i pavinna vyvodzić XID vakna na "
-"standartnaje vyjście."
-
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The command to invoke when the logout button is clicked. This command should "
-"simply log the user out without any interaction. This key has effect only if "
-"the \"logout_enable\" key is set to TRUE."
-msgstr ""
-"Zahad, kab vykanać paśla nacisku knopki \"vyjdzi\". Hety zahad pavinien "
-"vyvieści karystalnika bieź nijakaha jahonaha ŭdziełu. Hety kluč budzie ŭžyty "
-"tolki tady, kali kluč \"logout_enable\" znachodzicca ŭ pazycyi PRAŬDA."
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The number of minutes after screensaver activation before locking the screen."
-msgstr ""
-"Kolkaść chvilin spaźnieńnia blakavańnia ekranu ad času ŭruchamleńnia "
-"źbierahalnika."
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes after the screensaver activation before a logout "
-"option will appear in unlock dialog. This key has effect only if the "
-"\"logout_enable\" key is set to TRUE."
-msgstr ""
-"Čas u chvilinach, paśla jakoha pajavicca opcyja vyjścia, ad času "
-"ŭruchamleńnia źbierahalnika ekranu. Hety kluč budzie ŭžyty tolki tady, kali "
-"kluč \"logout_enable\" u pazycyi PRAŬDA."
-
-#: ../data/gnome-screensaver.schemas.in.h:20
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr ""
-"Čas adsutnaści aktyŭnaści ŭ chvilinach, paśla jakoha adbyvajecca pierachod u "
-"stan biaździejnaści."
-
-#: ../data/gnome-screensaver.schemas.in.h:21
-msgid "The number of minutes to run before changing the screensaver theme."
-msgstr "Kolkaść chvilin pamiž źmienami matyvaŭ źbierahalnika ekranu."
-
-#: ../data/gnome-screensaver.schemas.in.h:22
-msgid ""
-"The number of seconds of inactivity before signalling to power-management. "
-"This key is set and maintained by the session power-management agent."
-msgstr ""
-"Kolkaść sekundaŭ adsutnaści aktyŭnaści, paśla jakoj budzie vysłany syhnał da "
-"kiravańnia enerhijaj. Hety kluč stvarajecca i naładžvajecca ahientam sesii "
-"kiravańnia enerhijaj."
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-msgid "The reason for being away from the computer."
-msgstr "Pryčyna adychodu ad kamputara."
-
-#: ../data/gnome-screensaver.schemas.in.h:24
-msgid ""
-"The selection mode used by screensaver. May be \"blank-only\" to enable the "
-"screensaver without using any theme on activation, \"single\" to enable "
-"screensaver using only one theme on activation (specified in \"themes\" "
-"key), and \"random\" to enable the screensaver using a random theme on "
-"activation."
-msgstr ""
-"Režym vybaru źbierahalnika ekranu. Moža być adnoj z nastupnych vartaściaŭ: "
-"\"blank-only\" – čorny ekran (matyvy vyklučanyja), \"single\" – užyvańnie "
-"adnaho matyvu (abranaha ŭ klučy \"themes\"), \"random\" – vypadkovy vybar "
-"matyvu."
-
-#: ../data/gnome-screensaver.schemas.in.h:25
-msgid "Theme for lock dialog"
-msgstr "Matyŭ zablakavanaha ekranu"
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Theme to use for the lock dialog."
-msgstr "Matyŭ, užyvany dla vakna dyjalohu zablakavanaha ekranu."
-
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid ""
-"This key specifies the list of themes to be used by the screensaver. It's "
-"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
-"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
-"\" is \"random\"."
-msgstr ""
-"Hety kluč akreślivaje, katoryja z matyvaŭ źbierahalnika ekranu buduć "
-"vykarystanyja. Kali kluč \"mode\" maje vartaść \"blank-only\", hety "
-"parametar budzie ihnaravany. U vypadku, kali \"mode\" maje vartaść \"single"
-"\", hety kluč pavinien mieć adnu nazvu matyvu, a ŭ vypadku, kali \"mode\" "
-"maje vartaść \"random\", u im pavinien być śpis nazvaŭ."
-
-#: ../data/gnome-screensaver.schemas.in.h:28
-msgid "Time before locking"
-msgstr "Adstup času pierad zablakavańniem ekranu"
-
-#: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before logout option"
-msgstr "Adstup času pierad aktyvizacyjaj opcyi vyjścia karystalnika"
-
-#: ../data/gnome-screensaver.schemas.in.h:30
-msgid "Time before power-management baseline"
-msgstr "Adstup času pierad aktyvizacyjaj kiravańnia enerhijaj"
-
-#: ../data/gnome-screensaver.schemas.in.h:31
-msgid "Time before session is considered idle"
-msgstr "Čas, paśla jakoha sesija budzie ličycca biaździejnaj"
-
-#: ../data/gnome-screensaver.schemas.in.h:32
-msgid "Time before theme change"
-msgstr "Adstup času pamiž źmienami matyvaŭ"
-
-#: ../data/lock-dialog-default.glade.h:2
-#, no-c-format
-msgid "<b>Leave a message for %R:</b>"
-msgstr "<b>Pakiń paviedamleńnie dla %R:</b>"
-
-#: ../data/lock-dialog-default.glade.h:4
-#, no-c-format
-msgid "<span size=\"small\">%U on %h</span>"
-msgstr "<span size=\"small\">%U na %h</span>"
-
-#: ../data/lock-dialog-default.glade.h:6
-#, no-c-format
-msgid "<span size=\"x-large\">%R</span>"
-msgstr "<span size=\"x-large\">%R</span>"
-
-#: ../data/lock-dialog-default.glade.h:7
-msgid "_Cancel"
-msgstr "_Anuluj"
-
-#: ../data/lock-dialog-default.glade.h:8
-msgid "_Leave Message"
-msgstr "_Pakiń paviedamleńnie"
-
-#: ../data/lock-dialog-default.glade.h:9
-msgid "_Log Out"
-msgstr "_Vyjdzi"
-
-#: ../data/lock-dialog-default.glade.h:10
-msgid "_Switch User"
-msgstr "_Pieraklučy karystalnika"
-
-#: ../data/lock-dialog-default.glade.h:11 ../src/gs-lock-plug.c:1366
-msgid "_Unlock"
-msgstr "_Adblakuj"
-
-#: ../savers/cosmos-slideshow.desktop.in.in.h:1
-msgid "Cosmos"
-msgstr "Kosmas"
-
-#: ../savers/cosmos-slideshow.desktop.in.in.h:2
-msgid "Display a slideshow of pictures of the cosmos"
-msgstr "Pakazvaje zdymki kosmasu"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "Pakazvaje na ekranie stopy (lahatyp GNOME)"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "Latučyja stopy"
-
-#: ../savers/personal-slideshow.desktop.in.h:1
-msgid "Display a slideshow from your Pictures folder"
-msgstr "Pakazvaje vyjavy z tvajoj tečki pad nazvaj Vyjavy"
-
-#: ../savers/personal-slideshow.desktop.in.h:2
-msgid "Pictures folder"
-msgstr "Tečka z vyjavami"
-
-#: ../savers/popsquares.desktop.in.h:1
-msgid "A pop-art-ish grid of pulsing colors."
-msgstr "Pakazvaje sietku kvadrataŭ z pulsavańniem koleraŭ."
-
-#: ../savers/popsquares.desktop.in.h:2
-msgid "Pop art squares"
-msgstr "Kalarovyja kvadraty"
-
-#: ../savers/floaters.c:84
-msgid "Show paths that images follow"
-msgstr "Pakazvaje ściežki, pa jakich ruchajucca vyjavy"
-
-#: ../savers/floaters.c:87
-msgid "Occasionally rotate images as they move"
-msgstr "Vypadkova abaročvaje vyjavy ŭ ruchu"
-
-#: ../savers/floaters.c:90
-msgid "Print out frame rate and other statistics"
-msgstr "Pakazvaje kolkaść kadraŭ na sekundu i inšuju statystyku"
-
-#: ../savers/floaters.c:93
-msgid "The maximum number of images to keep on screen"
-msgstr "Maksymalnaja kolkaść vyjavaŭ, pakazvanaja na ekranie"
-
-#: ../savers/floaters.c:93
-msgid "MAX_IMAGES"
-msgstr "MAKS_VYJAVAŬ"
-
-#: ../savers/floaters.c:96
-msgid "The initial size and position of window"
-msgstr "Pačatkovy pamier i pałažeńnie vakna"
-
-#: ../savers/floaters.c:96
-msgid "WIDTHxHEIGHT+X+Y"
-msgstr "ŠYRYNIAxVYŠYNIA+X+Y"
-
-#: ../savers/floaters.c:99
-msgid "The source image to use"
-msgstr "Vytočnaja vyjava"
-
-#. translators: the word "image" here
-#. * represents a command line argument
-#.
-#: ../savers/floaters.c:1194
-msgid "image - floats images around the screen"
-msgstr "image – pakazvaje na ekranie latučyja vyjavy"
-
-#: ../savers/floaters.c:1200
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s. Skarystaj parametar --help, kab pabačyć instrukcyju.\n"
-
-#: ../savers/floaters.c:1209
-msgid "You must specify one image.  See --help for usage information.\n"
-msgstr ""
-"Treba abrać adnu vyjavu. Skarystaj parametar --help, kab pabačyć "
-"instrukcyju.\n"
-
-#: ../savers/slideshow.c:53
-msgid "Location to get images from"
-msgstr "Pałažeńnie, ź jakoha buduć pachodzić vyjavy"
-
-#: ../savers/slideshow.c:53
-msgid "PATH"
-msgstr "ŚCIEŽKA"
-
-#: ../savers/slideshow.c:55
-msgid "Color to use for images background"
-msgstr "Fonavy koler dla vyjavaŭ"
-
-#: ../savers/slideshow.c:55
-msgid "\"#rrggbb\""
-msgstr "\"#rrggbb\""
-
-#: ../savers/slideshow.c:57
-msgid "Do not randomize pictures from location"
-msgstr "Nie pakazvaj vypadkova vyjavy z pałažeńnia"
-
-#: ../savers/slideshow.c:59
-msgid "Do not try to stretch images on screen"
-msgstr "Nie sprabuj raściahnuć vyjavy na ŭvieś ekran"
-
-#: ../src/copy-theme-dialog.c:212
-msgid "Copying files"
-msgstr "Kapijavańnie fajłaŭ"
-
-#: ../src/copy-theme-dialog.c:230
-msgid "From:"
-msgstr "Z:"
-
-#: ../src/copy-theme-dialog.c:234
-msgid "To:"
-msgstr "Da:"
-
-#: ../src/copy-theme-dialog.c:254
-msgid "Copying themes"
-msgstr "Kapijavańnie matyvaŭ"
-
-#: ../src/copy-theme-dialog.c:298
-msgid "Invalid screensaver theme"
-msgstr "Niapravilny matyŭ źberahalnika ekranu"
-
-#: ../src/copy-theme-dialog.c:301
-#, c-format
-msgid "%s does not appear to be a valid screensaver theme."
-msgstr "%s nie źjaŭlajecca pravilnym matyvam źbierahalnika ekranu."
-
-#: ../src/copy-theme-dialog.c:481
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Kapijavańnie fajłu: %u z %u"
-
-#: ../src/gnome-screensaver-command.c:62
-msgid "Causes the screensaver to exit gracefully"
-msgstr "Vyklučaje źbierahalnik ekranu"
-
-#: ../src/gnome-screensaver-command.c:64
-msgid "Query the state of the screensaver"
-msgstr "Apisvaje stan źbierahalnika ekranu"
-
-#: ../src/gnome-screensaver-command.c:66
-msgid "Query the length of time the screensaver has been active"
-msgstr "Apisvaje čas aktyŭnaści źbierahalnika ekranu"
-
-#: ../src/gnome-screensaver-command.c:68
-msgid "Tells the running screensaver process to lock the screen immediately"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../src/light-locker-command.c:40
+#, fuzzy
+msgid "Tells the running display manager to lock the screen immediately"
 msgstr ""
 "Pryvodzić da nieadkładnaha zablakavańnia ekranu pry ŭruchomlenym "
 "źbierahalniku"
 
-#: ../src/gnome-screensaver-command.c:70
-msgid "If the screensaver is active then switch to another graphics demo"
-msgstr ""
-"Kali źbierahalnik ekranu aktyŭny, pieraklučaje na nastupny hrafičny matyŭ"
-
-#: ../src/gnome-screensaver-command.c:72
-msgid "Turn the screensaver on (blank the screen)"
-msgstr "Aktyvizuje źbierahalnik ekranu"
-
-#: ../src/gnome-screensaver-command.c:74
-msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr "Kali źbierahalnik aktyŭny, pieraklučaje ŭ nieaktyŭny stan"
-
-#: ../src/gnome-screensaver-command.c:76
-msgid "Poke the running screensaver to simulate user activity"
-msgstr "Hieneruje padzieju, jakaja symuluje aktyŭnaść karystalnika"
-
-#: ../src/gnome-screensaver-command.c:78
-msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
-msgstr ""
-"Strymvaj aktyvizacyju źbierahalnika ekranu. Zahady blakavanyja, pakul "
-"ustrymańnie ŭklučanaje."
-
-#: ../src/gnome-screensaver-command.c:80
-msgid "The calling application that is inhibiting the screensaver"
-msgstr "Aplikacyja, jakaja strymvaje aktyvizacyju źbierahalnika ekranu"
-
-#: ../src/gnome-screensaver-command.c:82
-msgid "The reason for inhibiting the screensaver"
-msgstr "Pryčyna ŭstrymvańnia źbierahalnika ekranu"
-
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:57
-#: ../src/gnome-screensaver.c:56
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 msgid "Version of this application"
 msgstr "Apisvaje versiju hetaj aplikacyi"
 
-#: ../src/gnome-screensaver-command.c:307
-#, c-format
-msgid "The screensaver is %s\n"
-msgstr "Źbierahalnikam ekranu źjaŭlajecca %s\n"
-
-#: ../src/gnome-screensaver-command.c:307
-msgid "active"
-msgstr "aktyŭny"
-
-#: ../src/gnome-screensaver-command.c:307
-msgid "inactive"
-msgstr "nieaktyŭny"
-
-#: ../src/gnome-screensaver-command.c:321
-msgid "The screensaver is not inhibited\n"
-msgstr "Źbierahalnik ekranu nia ŭstrymany\n"
-
-#: ../src/gnome-screensaver-command.c:327
-msgid "The screensaver is being inhibited by:\n"
-msgstr "Źbierahalnik ekranu ŭstrymany prahramaju:\n"
-
-#: ../src/gnome-screensaver-command.c:358
-#, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "Źbierahalnik ekranu aktyŭny %d sekundaŭ.\n"
-
-#: ../src/gnome-screensaver-dialog.c:55
-msgid "Show debugging output"
-msgstr "Pakazvaj vyjście debugavańnia"
-
-#: ../src/gnome-screensaver-dialog.c:59
-msgid "Show the logout button"
-msgstr "Pakazvaj knopku vyjścia"
-
-#: ../src/gnome-screensaver-dialog.c:61
-msgid "Command to invoke from the logout button"
-msgstr "Zahad, kab vykanać pry nacisku knopki vyjścia"
-
-#: ../src/gnome-screensaver-dialog.c:63
-msgid "Show the switch user button"
-msgstr "Pakazvaj knopku pieraklučeńnia karystalnikaŭ"
-
-#: ../src/gnome-screensaver-dialog.c:65
-msgid "Message to show in the dialog"
-msgstr "Paviedamleńnie, kab pakazać u vaknie dyjalohu"
-
-#: ../src/gnome-screensaver-dialog.c:65
-msgid "MESSAGE"
-msgstr "PAVIEDAMLEŃNIE"
-
-#. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:175 ../src/gnome-screensaver-dialog.c:176
-#: ../src/gnome-screensaver-dialog.c:177 ../src/gs-auth-pam.c:698
-msgid "Username:"
-msgstr "Karystalnik:"
-
-#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
-#: ../src/gs-auth-pam.c:166
-msgid "Password:"
-msgstr "Parol:"
-
-#: ../src/gnome-screensaver-dialog.c:180
-msgid "You are required to change your password immediately (password aged)"
-msgstr ""
-"Vymahanaja nieadkładnaja źmiena parolu (minuŭ peryjad prydatnaści parolu)"
-
-#: ../src/gnome-screensaver-dialog.c:181
-msgid "You are required to change your password immediately (root enforced)"
-msgstr "Vymahanaja nieadkładnaja źmiena parolu (hetaha vymahaje root)"
-
-#: ../src/gnome-screensaver-dialog.c:182
-msgid "Your account has expired; please contact your system administrator"
-msgstr "Tvoj kont praterminavany; skantaktujsia z administrataram systemy"
-
-#: ../src/gnome-screensaver-dialog.c:183
-msgid "No password supplied"
-msgstr "Parol nia ŭviedzieny"
-
-#: ../src/gnome-screensaver-dialog.c:184
-msgid "Password unchanged"
-msgstr "Parol nia źmienieny"
-
-#: ../src/gnome-screensaver-dialog.c:185
-msgid "Can not get username"
-msgstr "Niemahčyma atrymać nazvy karystalnika"
-
-#: ../src/gnome-screensaver-dialog.c:186
-msgid "Retype new UNIX password:"
-msgstr "Napišy parol UNIX znoŭ:"
-
-#: ../src/gnome-screensaver-dialog.c:187
-msgid "Enter new UNIX password:"
-msgstr "Novy parol UNIX:"
-
-#: ../src/gnome-screensaver-dialog.c:188
-msgid "(current) UNIX password:"
-msgstr "parol UNIX (dzejny):"
-
-#: ../src/gnome-screensaver-dialog.c:189
-msgid "Error while changing NIS password."
-msgstr "Pamyłka pry źmienie parolu NIS."
-
-#: ../src/gnome-screensaver-dialog.c:190
-msgid "You must choose a longer password"
-msgstr "Treba abrać daŭžejšy parol"
-
-#: ../src/gnome-screensaver-dialog.c:191
-msgid "Password has been already used. Choose another."
-msgstr "Hety parol užo byŭ užyvany. Treba abrać inšy."
-
-#: ../src/gnome-screensaver-dialog.c:192
-msgid "You must wait longer to change your password"
-msgstr "Pry źmienie parolu treba pačakać trochi daŭžej"
-
-#: ../src/gnome-screensaver-dialog.c:193
-msgid "Sorry, passwords do not match"
-msgstr "Paroli nie adnolkavyja"
-
-#: ../src/gnome-screensaver-dialog.c:259
-msgid "Checking..."
-msgstr "Pravierka..."
-
-#: ../src/gnome-screensaver-dialog.c:301 ../src/gs-auth-pam.c:457
-msgid "Authentication failed."
-msgstr "Aŭtaryzacyja nie ŭdałasia"
-
-#: ../src/gnome-screensaver-preferences.c:515
-msgid "Blank screen"
-msgstr "Čorny ekran"
-
-#: ../src/gnome-screensaver-preferences.c:521
-msgid "Random"
-msgstr "Vypadkova"
-
-#: ../src/gnome-screensaver-preferences.c:971
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d hadzinu"
-msgstr[1] "%d hadziny"
-msgstr[2] "%d hadzinaŭ"
-
-#: ../src/gnome-screensaver-preferences.c:974
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d chvilinu"
-msgstr[1] "%d chviliny"
-msgstr[2] "%d chvilinaŭ"
-
-#: ../src/gnome-screensaver-preferences.c:977
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d sekundu"
-msgstr[1] "%d sekundy"
-msgstr[2] "%d sekundaŭ"
-
-#. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:983
-#, c-format
-msgid "%s %s %s"
-msgstr "%s %s %s"
-
-#. hour:minutes
-#. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:986
-#: ../src/gnome-screensaver-preferences.c:994
-#, c-format
-msgid "%s %s"
-msgstr "%s %s"
-
-#. hour
-#. minutes
-#. seconds
-#: ../src/gnome-screensaver-preferences.c:989
-#: ../src/gnome-screensaver-preferences.c:997
-#: ../src/gnome-screensaver-preferences.c:1001
-#, c-format
-msgid "%s"
-msgstr "%s"
-
-#: ../src/gnome-screensaver-preferences.c:1016
-msgid "Never"
-msgstr "Nikoli"
-
-#: ../src/gnome-screensaver-preferences.c:1443
-msgid "Could not load the main interface"
-msgstr "Niemahčyma zahruzić hałoŭny interfejs"
-
-#: ../src/gnome-screensaver-preferences.c:1445
-msgid "Please make sure that the screensaver is properly installed"
-msgstr "Upeŭnisia, ci źbierahalnik ekranu pravilna zainstalavany"
-
-#: ../src/gnome-screensaver.c:57
+#: ../src/light-locker.c:57
 msgid "Don't become a daemon"
 msgstr "Nie stanavisia demanam (fonavaj pasłuhaj)"
 
-#: ../src/gnome-screensaver.c:58
+#: ../src/light-locker.c:58
 msgid "Enable debugging code"
 msgstr "Aktyvizuj kod debugavańnia"
 
-#: ../src/gs-auth-pam.c:397
-#, c-format
-msgid "Unable to establish service %s: %s\n"
-msgstr "Niemahčyma ŭstalavać pasłuhu %s: %s\n"
+#: ../src/light-locker.desktop.in.in.h:1
+#, fuzzy
+msgid "Screen Locker"
+msgstr "Źbierahalnik ekranu"
 
-#: ../src/gs-auth-pam.c:423
-#, c-format
-msgid "Can't set PAM_TTY=%s"
-msgstr "Niemahčyma naładzić PAM_TTY=%s"
+#: ../src/light-locker.desktop.in.in.h:2
+msgid "Launch screen locker program"
+msgstr ""
 
-#: ../src/gs-auth-pam.c:455
-msgid "Incorrect password."
-msgstr "Parol niapravilny."
+#: ../src/gs-content.c:95
+msgid "This session is locked."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:471
-msgid "Not permitted to gain access at this time."
-msgstr "U dadzieny momant dostup nie dazvoleny."
+#: ../src/gs-content.c:117
+msgid ""
+"You'll be redirected to the unlock dialog automatically in a few seconds."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:477
-msgid "No longer permitted to access the system."
-msgstr "Dazvoł na dostup da systemy admienieny."
+#~ msgid "Set your screensaver preferences"
+#~ msgstr "Nałady źbierahalnika ekranu"
 
-#: ../src/gs-listener-dbus.c:1921
-msgid "failed to register with the message bus"
-msgstr "niemahčyma zarehistravacca na šynie paviedamleńniaŭ"
+#~ msgid "<b>Screensaver preview</b>"
+#~ msgstr "<b>Pieradahlad źbierahalnika ekranu</b>"
 
-#: ../src/gs-listener-dbus.c:1931
-msgid "not connected to the message bus"
-msgstr "niama padłučeńnia da šyny paviedamleńniaŭ"
+#~ msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+#~ msgstr "<b>Uvaha: ekran nia budzie blakavany dla karystalnika root.</b>"
 
-#: ../src/gs-listener-dbus.c:1940
-msgid "screensaver already running in this session"
-msgstr "źbierahalnik ekranu ŭžo ŭruchomleny ŭ hetaj sesii"
+#~ msgid "Power _Management"
+#~ msgstr "Kiravańnie _enerhijaj"
 
-#: ../src/gs-lock-plug.c:271
-msgid "Time has expired."
-msgstr "Limit času pierakročany."
+#~ msgid "Regard the computer as _idle after:"
+#~ msgstr "Pierachod u stan _biaździejańnia paśla:"
 
-#: ../src/gs-lock-plug.c:299
-msgid "You have the Caps Lock key on."
-msgstr "Klaviša Caps Lock nacisnutaja."
+#~ msgid "Screensaver Preferences"
+#~ msgstr "Nałady źbierahalnika ekranu"
 
-#: ../src/gs-lock-plug.c:1346
-msgid "S_witch User..."
-msgstr "_Pieraklučy karystalnika..."
+#~ msgid "Screensaver Preview"
+#~ msgstr "Pieradahlad źbierahalnika ekranu"
 
-#: ../src/gs-lock-plug.c:1355
-msgid "Log _Out"
-msgstr "_Vyjście"
+#~ msgid "_Activate screensaver when computer is idle"
+#~ msgstr ""
+#~ "_Uruchom źbierahalnika ekranu, kali kamputar u stanie biaździejańnia"
 
-#. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1532
-msgid "%U on %h"
-msgstr "%U na %h"
+#~ msgid "_Lock screen when screensaver is active"
+#~ msgstr "_Blakuj ekran, kali źbierahalnik aktyŭny"
 
-#: ../src/gs-lock-plug.c:1546
-msgid "_Password:"
-msgstr "_Parol:"
+#~ msgid "_Preview"
+#~ msgstr "_Pieradahlad"
+
+#~ msgid "_Screensaver theme:"
+#~ msgstr "_Matyŭ źbierahalnika ekranu:"
+
+#~ msgid "Screensaver themes"
+#~ msgstr "Matyvy źbierahalnika ekranu"
+
+#~ msgid "Screensavers"
+#~ msgstr "Źbierahalniki ekranu"
+
+#~ msgid "Activate when idle"
+#~ msgstr "Aktyvizuj u vypadku stanu biaździejańnia"
+
+#~ msgid "Allow embedding a keyboard into the window"
+#~ msgstr "Dazvalaj pakazvać klavijaturu ŭ vaknie"
+
+#~ msgid "Allow logout"
+#~ msgstr "Dazvalaj karystalniku vyjści"
+
+#~ msgid "Allow user switching"
+#~ msgstr "Dazvalaj pieraklučać karystalnikaŭ"
+
+#~ msgid "Embedded keyboard command"
+#~ msgstr "Zahad ekrannaj klavijatury"
+
+#~ msgid "Lock on activation"
+#~ msgstr "Blakuj ekran pry aktyvizacyi"
+
+#~ msgid "Logout command"
+#~ msgstr "Zahad dla vyjścia karystalnika"
+
+#~ msgid "Reason for being away"
+#~ msgstr "Pryčyna adychodu"
+
+#~ msgid "Screensaver theme selection mode"
+#~ msgstr "Režym vybaru matyvu źbierahalnika ekranu"
+
+#~ msgid ""
+#~ "Set this to TRUE to activate the screensaver when the session is idle."
+#~ msgstr ""
+#~ "Zaznač hetuju opcyju, kab aktyvizavać źbierahalnika ekranu ŭ stanie "
+#~ "biaździejańnia."
+
+#~ msgid ""
+#~ "Set this to TRUE to allow embedding a keyboard into the window when "
+#~ "trying to unlock. The \"keyboard_command\" key must be set with the "
+#~ "appropriate command."
+#~ msgstr ""
+#~ "Zaznač hetuju opcyju, kab pakazvać klavijaturu na zablakavanym ekranie. U "
+#~ "klučy \"keyboard_command\" musić być naładžany adpaviedny zahad."
+
+#~ msgid ""
+#~ "Set this to TRUE to lock the screen when the screensaver goes active."
+#~ msgstr ""
+#~ "Zaznač hetuju opcyju, kab blakavać ekran pry ŭruchamleńni źbierahalnika."
+
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in the unlock dialog to switch to a "
+#~ "different user account."
+#~ msgstr ""
+#~ "Zaznač hetuju opcyju, kab mahčy pieraklučać karystalnikaŭ niepasredna z "
+#~ "zablakavanaha ekranu."
+
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in unlock dialog to logging out after "
+#~ "a delay. The Delay is specified in the \"logout_delay\" key."
+#~ msgstr ""
+#~ "Zaznač hetuju opcyju, kab mahčy vyjści karystalnikam niepasredna z "
+#~ "zablakavanaha ekranu paśla zadadzienaha pramiežku času. Hety pramiežak "
+#~ "naładžvajuć u klučy \"logout_delay\"."
+
+#~ msgid ""
+#~ "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+#~ "set to TRUE, to embed a keyboard widget into the window. This command "
+#~ "should implement an XEMBED plug interface and output a window XID on the "
+#~ "standard output."
+#~ msgstr ""
+#~ "Zahad uklučeńnia ekrannaj klavijatury, jaki budzie vykanany, kali kluč "
+#~ "\"embedded_keyboard_enabled\" aktyŭny. Hety zahad pavinien mieć "
+#~ "zaimplementavany interfejs plugina XEMBED i pavinna vyvodzić XID vakna na "
+#~ "standartnaje vyjście."
+
+#~ msgid ""
+#~ "The command to invoke when the logout button is clicked. This command "
+#~ "should simply log the user out without any interaction. This key has "
+#~ "effect only if the \"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "Zahad, kab vykanać paśla nacisku knopki \"vyjdzi\". Hety zahad pavinien "
+#~ "vyvieści karystalnika bieź nijakaha jahonaha ŭdziełu. Hety kluč budzie "
+#~ "ŭžyty tolki tady, kali kluč \"logout_enable\" znachodzicca ŭ pazycyi "
+#~ "PRAŬDA."
+
+#~ msgid ""
+#~ "The number of minutes after screensaver activation before locking the "
+#~ "screen."
+#~ msgstr ""
+#~ "Kolkaść chvilin spaźnieńnia blakavańnia ekranu ad času ŭruchamleńnia "
+#~ "źbierahalnika."
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation before a logout "
+#~ "option will appear in unlock dialog. This key has effect only if the "
+#~ "\"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "Čas u chvilinach, paśla jakoha pajavicca opcyja vyjścia, ad času "
+#~ "ŭruchamleńnia źbierahalnika ekranu. Hety kluč budzie ŭžyty tolki tady, "
+#~ "kali kluč \"logout_enable\" u pazycyi PRAŬDA."
+
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr ""
+#~ "Čas adsutnaści aktyŭnaści ŭ chvilinach, paśla jakoha adbyvajecca "
+#~ "pierachod u stan biaździejnaści."
+
+#~ msgid "The number of minutes to run before changing the screensaver theme."
+#~ msgstr "Kolkaść chvilin pamiž źmienami matyvaŭ źbierahalnika ekranu."
+
+#~ msgid ""
+#~ "The number of seconds of inactivity before signalling to power-"
+#~ "management. This key is set and maintained by the session power-"
+#~ "management agent."
+#~ msgstr ""
+#~ "Kolkaść sekundaŭ adsutnaści aktyŭnaści, paśla jakoj budzie vysłany syhnał "
+#~ "da kiravańnia enerhijaj. Hety kluč stvarajecca i naładžvajecca ahientam "
+#~ "sesii kiravańnia enerhijaj."
+
+#~ msgid "The reason for being away from the computer."
+#~ msgstr "Pryčyna adychodu ad kamputara."
+
+#~ msgid ""
+#~ "The selection mode used by screensaver. May be \"blank-only\" to enable "
+#~ "the screensaver without using any theme on activation, \"single\" to "
+#~ "enable screensaver using only one theme on activation (specified in "
+#~ "\"themes\" key), and \"random\" to enable the screensaver using a random "
+#~ "theme on activation."
+#~ msgstr ""
+#~ "Režym vybaru źbierahalnika ekranu. Moža być adnoj z nastupnych "
+#~ "vartaściaŭ: \"blank-only\" – čorny ekran (matyvy vyklučanyja), \"single\" "
+#~ "– užyvańnie adnaho matyvu (abranaha ŭ klučy \"themes\"), \"random\" – "
+#~ "vypadkovy vybar matyvu."
+
+#~ msgid "Theme for lock dialog"
+#~ msgstr "Matyŭ zablakavanaha ekranu"
+
+#~ msgid "Theme to use for the lock dialog."
+#~ msgstr "Matyŭ, užyvany dla vakna dyjalohu zablakavanaha ekranu."
+
+#~ msgid ""
+#~ "This key specifies the list of themes to be used by the screensaver. It's "
+#~ "ignored when \"mode\" key is \"blank-only\", should provide the theme "
+#~ "name when \"mode\" is \"single\", and should provide a list of themes "
+#~ "when \"mode\" is \"random\"."
+#~ msgstr ""
+#~ "Hety kluč akreślivaje, katoryja z matyvaŭ źbierahalnika ekranu buduć "
+#~ "vykarystanyja. Kali kluč \"mode\" maje vartaść \"blank-only\", hety "
+#~ "parametar budzie ihnaravany. U vypadku, kali \"mode\" maje vartaść "
+#~ "\"single\", hety kluč pavinien mieć adnu nazvu matyvu, a ŭ vypadku, kali "
+#~ "\"mode\" maje vartaść \"random\", u im pavinien być śpis nazvaŭ."
+
+#~ msgid "Time before locking"
+#~ msgstr "Adstup času pierad zablakavańniem ekranu"
+
+#~ msgid "Time before logout option"
+#~ msgstr "Adstup času pierad aktyvizacyjaj opcyi vyjścia karystalnika"
+
+#~ msgid "Time before power-management baseline"
+#~ msgstr "Adstup času pierad aktyvizacyjaj kiravańnia enerhijaj"
+
+#~ msgid "Time before session is considered idle"
+#~ msgstr "Čas, paśla jakoha sesija budzie ličycca biaździejnaj"
+
+#~ msgid "Time before theme change"
+#~ msgstr "Adstup času pamiž źmienami matyvaŭ"
+
+#~ msgid "<b>Leave a message for %R:</b>"
+#~ msgstr "<b>Pakiń paviedamleńnie dla %R:</b>"
+
+#~ msgid "<span size=\"small\">%U on %h</span>"
+#~ msgstr "<span size=\"small\">%U na %h</span>"
+
+#~ msgid "<span size=\"x-large\">%R</span>"
+#~ msgstr "<span size=\"x-large\">%R</span>"
+
+#~ msgid "_Cancel"
+#~ msgstr "_Anuluj"
+
+#~ msgid "_Leave Message"
+#~ msgstr "_Pakiń paviedamleńnie"
+
+#~ msgid "_Log Out"
+#~ msgstr "_Vyjdzi"
+
+#~ msgid "_Switch User"
+#~ msgstr "_Pieraklučy karystalnika"
+
+#~ msgid "_Unlock"
+#~ msgstr "_Adblakuj"
+
+#~ msgid "Cosmos"
+#~ msgstr "Kosmas"
+
+#~ msgid "Display a slideshow of pictures of the cosmos"
+#~ msgstr "Pakazvaje zdymki kosmasu"
+
+#~ msgid "Bubbles the GNOME foot logo around the screen"
+#~ msgstr "Pakazvaje na ekranie stopy (lahatyp GNOME)"
+
+#~ msgid "Floating Feet"
+#~ msgstr "Latučyja stopy"
+
+#~ msgid "Display a slideshow from your Pictures folder"
+#~ msgstr "Pakazvaje vyjavy z tvajoj tečki pad nazvaj Vyjavy"
+
+#~ msgid "Pictures folder"
+#~ msgstr "Tečka z vyjavami"
+
+#~ msgid "A pop-art-ish grid of pulsing colors."
+#~ msgstr "Pakazvaje sietku kvadrataŭ z pulsavańniem koleraŭ."
+
+#~ msgid "Pop art squares"
+#~ msgstr "Kalarovyja kvadraty"
+
+#~ msgid "Show paths that images follow"
+#~ msgstr "Pakazvaje ściežki, pa jakich ruchajucca vyjavy"
+
+#~ msgid "Occasionally rotate images as they move"
+#~ msgstr "Vypadkova abaročvaje vyjavy ŭ ruchu"
+
+#~ msgid "Print out frame rate and other statistics"
+#~ msgstr "Pakazvaje kolkaść kadraŭ na sekundu i inšuju statystyku"
+
+#~ msgid "The maximum number of images to keep on screen"
+#~ msgstr "Maksymalnaja kolkaść vyjavaŭ, pakazvanaja na ekranie"
+
+#~ msgid "MAX_IMAGES"
+#~ msgstr "MAKS_VYJAVAŬ"
+
+#~ msgid "The initial size and position of window"
+#~ msgstr "Pačatkovy pamier i pałažeńnie vakna"
+
+#~ msgid "WIDTHxHEIGHT+X+Y"
+#~ msgstr "ŠYRYNIAxVYŠYNIA+X+Y"
+
+#~ msgid "The source image to use"
+#~ msgstr "Vytočnaja vyjava"
+
+#~ msgid "image - floats images around the screen"
+#~ msgstr "image – pakazvaje na ekranie latučyja vyjavy"
+
+#~ msgid "%s. See --help for usage information.\n"
+#~ msgstr "%s. Skarystaj parametar --help, kab pabačyć instrukcyju.\n"
+
+#~ msgid "You must specify one image.  See --help for usage information.\n"
+#~ msgstr ""
+#~ "Treba abrać adnu vyjavu. Skarystaj parametar --help, kab pabačyć "
+#~ "instrukcyju.\n"
+
+#~ msgid "Location to get images from"
+#~ msgstr "Pałažeńnie, ź jakoha buduć pachodzić vyjavy"
+
+#~ msgid "PATH"
+#~ msgstr "ŚCIEŽKA"
+
+#~ msgid "Color to use for images background"
+#~ msgstr "Fonavy koler dla vyjavaŭ"
+
+#~ msgid "\"#rrggbb\""
+#~ msgstr "\"#rrggbb\""
+
+#~ msgid "Do not randomize pictures from location"
+#~ msgstr "Nie pakazvaj vypadkova vyjavy z pałažeńnia"
+
+#~ msgid "Do not try to stretch images on screen"
+#~ msgstr "Nie sprabuj raściahnuć vyjavy na ŭvieś ekran"
+
+#~ msgid "Copying files"
+#~ msgstr "Kapijavańnie fajłaŭ"
+
+#~ msgid "From:"
+#~ msgstr "Z:"
+
+#~ msgid "To:"
+#~ msgstr "Da:"
+
+#~ msgid "Copying themes"
+#~ msgstr "Kapijavańnie matyvaŭ"
+
+#~ msgid "Invalid screensaver theme"
+#~ msgstr "Niapravilny matyŭ źberahalnika ekranu"
+
+#~ msgid "%s does not appear to be a valid screensaver theme."
+#~ msgstr "%s nie źjaŭlajecca pravilnym matyvam źbierahalnika ekranu."
+
+#~ msgid "Copying file: %u of %u"
+#~ msgstr "Kapijavańnie fajłu: %u z %u"
+
+#~ msgid "Causes the screensaver to exit gracefully"
+#~ msgstr "Vyklučaje źbierahalnik ekranu"
+
+#~ msgid "Query the state of the screensaver"
+#~ msgstr "Apisvaje stan źbierahalnika ekranu"
+
+#~ msgid "Query the length of time the screensaver has been active"
+#~ msgstr "Apisvaje čas aktyŭnaści źbierahalnika ekranu"
+
+#~ msgid "If the screensaver is active then switch to another graphics demo"
+#~ msgstr ""
+#~ "Kali źbierahalnik ekranu aktyŭny, pieraklučaje na nastupny hrafičny matyŭ"
+
+#~ msgid "Turn the screensaver on (blank the screen)"
+#~ msgstr "Aktyvizuje źbierahalnik ekranu"
+
+#~ msgid ""
+#~ "If the screensaver is active then deactivate it (un-blank the screen)"
+#~ msgstr "Kali źbierahalnik aktyŭny, pieraklučaje ŭ nieaktyŭny stan"
+
+#~ msgid "Poke the running screensaver to simulate user activity"
+#~ msgstr "Hieneruje padzieju, jakaja symuluje aktyŭnaść karystalnika"
+
+#~ msgid ""
+#~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
+#~ "active."
+#~ msgstr ""
+#~ "Strymvaj aktyvizacyju źbierahalnika ekranu. Zahady blakavanyja, pakul "
+#~ "ustrymańnie ŭklučanaje."
+
+#~ msgid "The calling application that is inhibiting the screensaver"
+#~ msgstr "Aplikacyja, jakaja strymvaje aktyvizacyju źbierahalnika ekranu"
+
+#~ msgid "The reason for inhibiting the screensaver"
+#~ msgstr "Pryčyna ŭstrymvańnia źbierahalnika ekranu"
+
+#~ msgid "The screensaver is %s\n"
+#~ msgstr "Źbierahalnikam ekranu źjaŭlajecca %s\n"
+
+#~ msgid "active"
+#~ msgstr "aktyŭny"
+
+#~ msgid "inactive"
+#~ msgstr "nieaktyŭny"
+
+#~ msgid "The screensaver is not inhibited\n"
+#~ msgstr "Źbierahalnik ekranu nia ŭstrymany\n"
+
+#~ msgid "The screensaver is being inhibited by:\n"
+#~ msgstr "Źbierahalnik ekranu ŭstrymany prahramaju:\n"
+
+#~ msgid "The screensaver has been active for %d seconds.\n"
+#~ msgstr "Źbierahalnik ekranu aktyŭny %d sekundaŭ.\n"
+
+#~ msgid "Show debugging output"
+#~ msgstr "Pakazvaj vyjście debugavańnia"
+
+#~ msgid "Show the logout button"
+#~ msgstr "Pakazvaj knopku vyjścia"
+
+#~ msgid "Command to invoke from the logout button"
+#~ msgstr "Zahad, kab vykanać pry nacisku knopki vyjścia"
+
+#~ msgid "Show the switch user button"
+#~ msgstr "Pakazvaj knopku pieraklučeńnia karystalnikaŭ"
+
+#~ msgid "Message to show in the dialog"
+#~ msgstr "Paviedamleńnie, kab pakazać u vaknie dyjalohu"
+
+#~ msgid "MESSAGE"
+#~ msgstr "PAVIEDAMLEŃNIE"
+
+#~ msgid "Username:"
+#~ msgstr "Karystalnik:"
+
+#~ msgid "Password:"
+#~ msgstr "Parol:"
+
+#~ msgid "You are required to change your password immediately (password aged)"
+#~ msgstr ""
+#~ "Vymahanaja nieadkładnaja źmiena parolu (minuŭ peryjad prydatnaści parolu)"
+
+#~ msgid "You are required to change your password immediately (root enforced)"
+#~ msgstr "Vymahanaja nieadkładnaja źmiena parolu (hetaha vymahaje root)"
+
+#~ msgid "Your account has expired; please contact your system administrator"
+#~ msgstr "Tvoj kont praterminavany; skantaktujsia z administrataram systemy"
+
+#~ msgid "No password supplied"
+#~ msgstr "Parol nia ŭviedzieny"
+
+#~ msgid "Password unchanged"
+#~ msgstr "Parol nia źmienieny"
+
+#~ msgid "Can not get username"
+#~ msgstr "Niemahčyma atrymać nazvy karystalnika"
+
+#~ msgid "Retype new UNIX password:"
+#~ msgstr "Napišy parol UNIX znoŭ:"
+
+#~ msgid "Enter new UNIX password:"
+#~ msgstr "Novy parol UNIX:"
+
+#~ msgid "(current) UNIX password:"
+#~ msgstr "parol UNIX (dzejny):"
+
+#~ msgid "Error while changing NIS password."
+#~ msgstr "Pamyłka pry źmienie parolu NIS."
+
+#~ msgid "You must choose a longer password"
+#~ msgstr "Treba abrać daŭžejšy parol"
+
+#~ msgid "Password has been already used. Choose another."
+#~ msgstr "Hety parol užo byŭ užyvany. Treba abrać inšy."
+
+#~ msgid "You must wait longer to change your password"
+#~ msgstr "Pry źmienie parolu treba pačakać trochi daŭžej"
+
+#~ msgid "Sorry, passwords do not match"
+#~ msgstr "Paroli nie adnolkavyja"
+
+#~ msgid "Checking..."
+#~ msgstr "Pravierka..."
+
+#~ msgid "Authentication failed."
+#~ msgstr "Aŭtaryzacyja nie ŭdałasia"
+
+#~ msgid "Blank screen"
+#~ msgstr "Čorny ekran"
+
+#~ msgid "Random"
+#~ msgstr "Vypadkova"
+
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "%d hadzinu"
+#~ msgstr[1] "%d hadziny"
+#~ msgstr[2] "%d hadzinaŭ"
+
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d chvilinu"
+#~ msgstr[1] "%d chviliny"
+#~ msgstr[2] "%d chvilinaŭ"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d sekundu"
+#~ msgstr[1] "%d sekundy"
+#~ msgstr[2] "%d sekundaŭ"
+
+#~ msgid "%s %s %s"
+#~ msgstr "%s %s %s"
+
+#~ msgid "%s %s"
+#~ msgstr "%s %s"
+
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgid "Never"
+#~ msgstr "Nikoli"
+
+#~ msgid "Could not load the main interface"
+#~ msgstr "Niemahčyma zahruzić hałoŭny interfejs"
+
+#~ msgid "Please make sure that the screensaver is properly installed"
+#~ msgstr "Upeŭnisia, ci źbierahalnik ekranu pravilna zainstalavany"
+
+#~ msgid "Unable to establish service %s: %s\n"
+#~ msgstr "Niemahčyma ŭstalavać pasłuhu %s: %s\n"
+
+#~ msgid "Can't set PAM_TTY=%s"
+#~ msgstr "Niemahčyma naładzić PAM_TTY=%s"
+
+#~ msgid "Incorrect password."
+#~ msgstr "Parol niapravilny."
+
+#~ msgid "Not permitted to gain access at this time."
+#~ msgstr "U dadzieny momant dostup nie dazvoleny."
+
+#~ msgid "No longer permitted to access the system."
+#~ msgstr "Dazvoł na dostup da systemy admienieny."
+
+#~ msgid "failed to register with the message bus"
+#~ msgstr "niemahčyma zarehistravacca na šynie paviedamleńniaŭ"
+
+#~ msgid "not connected to the message bus"
+#~ msgstr "niama padłučeńnia da šyny paviedamleńniaŭ"
+
+#~ msgid "screensaver already running in this session"
+#~ msgstr "źbierahalnik ekranu ŭžo ŭruchomleny ŭ hetaj sesii"
+
+#~ msgid "Time has expired."
+#~ msgstr "Limit času pierakročany."
+
+#~ msgid "You have the Caps Lock key on."
+#~ msgstr "Klaviša Caps Lock nacisnutaja."
+
+#~ msgid "S_witch User..."
+#~ msgstr "_Pieraklučy karystalnika..."
+
+#~ msgid "Log _Out"
+#~ msgstr "_Vyjście"
+
+#~ msgid "%U on %h"
+#~ msgstr "%U na %h"
+
+#~ msgid "_Password:"
+#~ msgstr "_Parol:"
 
 #~ msgid "Copying '%s'"
 #~ msgstr "Kapijavańnie \"%s\""

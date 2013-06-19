@@ -6,776 +6,606 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"screensaver&component=general\n"
-"POT-Creation-Date: 2009-10-22 00:01+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-19 23:00+0200\n"
 "PO-Revision-Date: 2009-10-22 18:59+0100\n"
 "Last-Translator: Nils-Christoph Fiedler <linux@medienkompanie.de>\n"
 "Language-Team: Low German <nds-lowgerman@lists.sourceforge.net>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/gnome-screensaver-preferences.desktop.in.h:1
-#: ../src/gnome-screensaver.desktop.in.in.h:2
-msgid "Screensaver"
-msgstr "Billschirmschoner"
-
-#: ../data/gnome-screensaver-preferences.desktop.in.h:2
-msgid "Set your screensaver preferences"
-msgstr "Billschirmschonerinstellens setten"
-
-#: ../data/gnome-screensaver-preferences.ui.h:1
-msgid "<b>Screensaver preview</b>"
-msgstr "<b>Billschirmschonerutblick</b>"
-
-#: ../data/gnome-screensaver-preferences.ui.h:2
-msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgstr "<b>Oppassen: De Billschirm warrt open laten för de root-Bruker.</b>"
-
-#: ../data/gnome-screensaver-preferences.ui.h:3
-msgid "Power _Management"
-msgstr "Strom _Oppasser"
-
-#: ../data/gnome-screensaver-preferences.ui.h:4
-msgid "Regard the computer as _idle after:"
-msgstr "In Leerloop nah'm Räkner kieken nah:"
-
-#: ../data/gnome-screensaver-preferences.ui.h:5
-msgid "Screensaver Preferences"
-msgstr "Billschirmschonerinstellens"
-
-#: ../data/gnome-screensaver-preferences.ui.h:6
-msgid "Screensaver Preview"
-msgstr "Billschirmschonerutblick"
-
-#: ../data/gnome-screensaver-preferences.ui.h:7
-msgid "_Activate screensaver when computer is idle"
-msgstr "_Billschirmschoner in Leerloopmodus aktiveren"
-
-#: ../data/gnome-screensaver-preferences.ui.h:8
-msgid "_Lock screen when screensaver is active"
-msgstr "_Billschirm avsluten, wenn de Billschirmschoner an is"
-
-#: ../data/gnome-screensaver-preferences.ui.h:9
-msgid "_Preview"
-msgstr "_Utblick"
-
-#: ../data/gnome-screensaver-preferences.ui.h:10
-msgid "_Screensaver theme:"
-msgstr "_Billschirmschonerthema:"
-
-#: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:11
-msgid "Screensaver themes"
-msgstr "Billschirmschonerthemen"
-
-#: ../data/gnome-screensaver.directory.in.h:2
-msgid "Screensavers"
-msgstr "Billschirmschoners"
-
-#: ../data/gnome-screensaver.schemas.in.h:1
-msgid "Activate when idle"
-msgstr "In Leerloop aktiveren"
-
-#: ../data/gnome-screensaver.schemas.in.h:2
-msgid "Allow embedding a keyboard into the window"
-msgstr "Tolaten, een Knöppboord in Finster intobinnen"
-
-#: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow logout"
-msgstr "Avmellen tolaten"
-
-#: ../data/gnome-screensaver.schemas.in.h:4
-msgid "Allow the session status message to be displayed"
-msgstr "Tolaten, dat de Törnstatusnahricht opwiest weert."
-
-#: ../data/gnome-screensaver.schemas.in.h:5
-msgid ""
-"Allow the session status message to be displayed when the screen is locked."
-msgstr ""
-"Törnstatusnahrichten künn opwiest werrn, wenn de Billschirm avsluten is."
-
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Allow user switching"
-msgstr "Brukerwessel tolaten"
-
-#: ../data/gnome-screensaver.schemas.in.h:7
-msgid "Embedded keyboard command"
-msgstr "Knöppboordorders infögen"
-
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Lock on activation"
-msgstr "Dicht maken bi Aktiveren"
-
-#: ../data/gnome-screensaver.schemas.in.h:9
-msgid "Logout command"
-msgstr "Avmellensorder"
-
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Screensaver theme selection mode"
-msgstr "Billschirmschonerthemautsöökmodus"
-
-#: ../data/gnome-screensaver.schemas.in.h:12
-msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr ""
-"Düsse Optschoon is to TRUE to setten, um de Billschirmschoner antomaken, "
-"wenn de Törn slopen is."
-
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid ""
-"Set this to TRUE to allow embedding a keyboard into the window when trying "
-"to unlock. The \"keyboard_command\" key must be set with the appropriate "
-"command."
-msgstr ""
-"Düsse Optschoon is to TRUE to setten, um totolaten, dat een Knöppboord in "
-"dat Finster infögt is, wenn allens opslut werrt. De \"keyboard_command\" "
-"Knopp is to de akeraten Order to setten."
-
-#: ../data/gnome-screensaver.schemas.in.h:14
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr ""
-"Düsse Optschoon is to TRUE to setten, um de Billschirm avtosluten, wenn de "
-"Billschirmschoner angeiht."
-
-#: ../data/gnome-screensaver.schemas.in.h:15
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to switch to a "
-"different user account."
-msgstr ""
-"Düsse Optschoon is to TRUE to setten, um eene Optschoon im "
-"Opslutdialogfinster antobeeden, de to een annern Bruker wesselt."
-
-#: ../data/gnome-screensaver.schemas.in.h:16
-msgid ""
-"Set this to TRUE to offer an option in unlock dialog to logging out after a "
-"delay. The Delay is specified in the \"logout_delay\" key."
-msgstr ""
-"Düsse Optschoon is to TRUE to setten, um im Opslutdialogfinster eene "
-"Optschoon antobeeden, de Bruker nah ee'm Fehlversök avtomellen."
-
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
-"set to TRUE, to embed a keyboard widget into the window. This command should "
-"implement an XEMBED plug interface and output a window XID on the standard "
-"output."
-msgstr ""
-"De Order, de utföhrt werrt, wenn de \"embedded_keyboard_enabled\" Knopp is "
-"to TRUE set. um een Knöppboordwidget in een Finster intofögen. Düsse Order "
-"schall eene XEMBED plug Brukeröverfläch implementeeren un een Finster XID op "
-"de Standardutgav utgeven."
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid ""
-"The command to invoke when the logout button is clicked. This command should "
-"simply log the user out without any interaction. This key has effect only if "
-"the \"logout_enable\" key is set to TRUE."
-msgstr ""
-"De Order de uttoföhren is, wenn de Avmellensknopp klickt is. Düsse Order "
-"schall de Bruker ohne jichtenswelche Interaktschoon avmellen. Düsser Knopp "
-"hett just een Effekt wenn de \"logout_enable\" Knoppis to TRUE set."
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-msgid ""
-"The number of minutes after screensaver activation before locking the screen."
-msgstr ""
-"Minuten nah de Billschirmschoneraktiveren, bevor de Billschirm avtosluten is."
-
-#: ../data/gnome-screensaver.schemas.in.h:20
-msgid ""
-"The number of minutes after the screensaver activation before a logout "
-"option will appear in unlock dialog. This key has effect only if the "
-"\"logout_enable\" key is set to TRUE."
-msgstr ""
-"Minuten nah de Billschirmschoneraktiveren, bevor eene Avmellensoptschoon in "
-"ee'm Avmellensdialogfinster opwiest warrt. Düsser Knopp hett just een "
-"Effekt, wenn de \"logout_enable\" Knopp is to TRUE set."
-
-#: ../data/gnome-screensaver.schemas.in.h:21
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr "Minuten de Inaktivität, bevor de Törn slopen gahn schall."
-
-#: ../data/gnome-screensaver.schemas.in.h:22
-msgid "The number of minutes to run before changing the screensaver theme."
-msgstr "De Minuten, bevor dat Billschirmschonerthema ännert werrt."
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-msgid ""
-"The number of seconds of inactivity before signalling to power-management. "
-"This key is set and maintained by the session power-management agent."
-msgstr ""
-"Sekunnen de Inaktivität, bevor de Power-Oppasser kontaktieert werrt. Düsser "
-"Knopp is set un bewarkt bi de Törn-Power-Oppasser."
-
-#: ../data/gnome-screensaver.schemas.in.h:24
-msgid ""
-"The selection mode used by screensaver. May be \"blank-only\" to enable the "
-"screensaver without using any theme on activation, \"single\" to enable "
-"screensaver using only one theme on activation (specified in \"themes\" "
-"key), and \"random\" to enable the screensaver using a random theme on "
-"activation."
-msgstr ""
-"De Utwahlmodus, de de Billschirmschoner brukt. Künn \"blank-only\" sein, um "
-"de Billschirmschoner antomaken, ihle een avtiviertes Theme to gebruken, "
-"\"single\", damit de Billschirmschoner just een Thema bi de Aktiveren brukt "
-"(specified in \"themes\" key), un \"random\", damit de Billschirmschoner "
-"dööreenanner een Thema utwählt."
-
-#: ../data/gnome-screensaver.schemas.in.h:25
-msgid "Theme for lock dialog"
-msgstr "Avmellensdialogfinsterthema"
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Theme to use for the lock dialog."
-msgstr "Avmellensdialogfinsterthema"
-
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid ""
-"This key specifies the list of themes to be used by the screensaver. It's "
-"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
-"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
-"\" is \"random\"."
-msgstr ""
-"Düsser Knopp spezifizeert de List vun Themen, de vu'm Billschirmschoner "
-"brukt ward. Dat werrt ignoriert, wenn de \"mode\" Knopp is \"blank-only\", "
-"schall de Themennoom opwiesen, wenn \"mode\" is \"single\", un schall eene "
-"List vun Themen opwiesen, wenn \"mode\" is \"random\"."
-
-#: ../data/gnome-screensaver.schemas.in.h:28
-msgid "Time before locking"
-msgstr "Tiet vorn Avslut"
-
-#: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before logout option"
-msgstr "Tiet vor Avmellensoptschoon"
-
-#: ../data/gnome-screensaver.schemas.in.h:30
-msgid "Time before power-management baseline"
-msgstr "Tiet vor Power-Oppassergrundline"
-
-#: ../data/gnome-screensaver.schemas.in.h:31
-msgid "Time before session is considered idle"
-msgstr "Tiet bevor de Törn schlopen geiht"
-
-#: ../data/gnome-screensaver.schemas.in.h:32
-msgid "Time before theme change"
-msgstr "Tiet vor Themenännerns"
-
-#: ../data/lock-dialog-default.ui.h:2
-#, no-c-format
-msgid "<b>Leave a message for %R:</b>"
-msgstr "<b>Nahricht dalaten för %R:</b>"
-
-#: ../data/lock-dialog-default.ui.h:4
-#, no-c-format
-msgid "<span size=\"small\">%U on %h</span>"
-msgstr "<span size=\"small\">%U on %h</span>"
-
-#: ../data/lock-dialog-default.ui.h:6
-#, no-c-format
-msgid "<span size=\"x-large\">%R</span>"
-msgstr "<span size=\"x-large\">%R</span>"
-
-#: ../data/lock-dialog-default.ui.h:7
-msgid "_Cancel"
-msgstr "_Avbreken"
-
-#: ../data/lock-dialog-default.ui.h:8
-msgid "_Leave Message"
-msgstr "_Nahricht dalaten"
-
-#: ../data/lock-dialog-default.ui.h:9
-msgid "_Log Out"
-msgstr "_Avmellen"
-
-#: ../data/lock-dialog-default.ui.h:10
-msgid "_Switch User"
-msgstr "_Bruker ännern"
-
-#: ../data/lock-dialog-default.ui.h:11 ../src/gs-lock-plug.c:1382
-msgid "_Unlock"
-msgstr "_Opmaken"
-
-#. Translators: This is the name of a desktop background image that shows outer space images.
-#. You might want to translate it into the equivalent words of your language
-#: ../data/images/cosmos/cosmos.xml.in.in.h:3
-#: ../savers/cosmos-slideshow.desktop.in.in.h:1
-msgid "Cosmos"
-msgstr "Universum"
-
-#: ../savers/cosmos-slideshow.desktop.in.in.h:2
-msgid "Display a slideshow of pictures of the cosmos"
-msgstr "Een Döörloop vun Universumsbillers opwiesen"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "Da fleugt dat GNOME Emblem övern Billschirm"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "Fleugende Fööt"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:1
-msgid "Display a slideshow from your Pictures folder"
-msgstr "Een Döörloop vu'm Billerverteeknis opwiesen"
-
-#: ../savers/personal-slideshow.desktop.in.in.h:2
-msgid "Pictures folder"
-msgstr "Billerverteeknis"
-
-#: ../savers/popsquares.desktop.in.in.h:1
-msgid "A pop-art-ish grid of pulsing colors."
-msgstr "Een net vun dollen Klöörs, de as Popart utsehn."
-
-#: ../savers/popsquares.desktop.in.in.h:2
-msgid "Pop art squares"
-msgstr "Popkunstruten"
-
-#: ../savers/floaters.c:84
-msgid "Show paths that images follow"
-msgstr "Pads opwiesen, de de Billers achtergahn"
-
-#: ../savers/floaters.c:87
-msgid "Occasionally rotate images as they move"
-msgstr "Mannichmol schalln de Billers sik dreihn, as de sik bewegen"
-
-#: ../savers/floaters.c:90
-msgid "Print out frame rate and other statistics"
-msgstr "Kantrate un annere Statistiken utdrucken"
-
-#: ../savers/floaters.c:93
-msgid "The maximum number of images to keep on screen"
-msgstr "De hööchste Tahl vun Billers, de op'm Billschirm blieven schalln"
-
-#: ../savers/floaters.c:93
-msgid "MAX_IMAGES"
-msgstr "MAX_IMAGES"
-
-#: ../savers/floaters.c:96
-msgid "The initial size and position of window"
-msgstr "De Anfangsgrote un Positschoon vu'm Finster"
-
-#: ../savers/floaters.c:96
-msgid "WIDTHxHEIGHT+X+Y"
-msgstr "WIDTHxHEIGHT+X+Y"
-
-#: ../savers/floaters.c:99
-msgid "The source image to use"
-msgstr "Dat Wellbill to bruken"
-
-#. translators: the word "image" here
-#. * represents a command line argument
-#.
-#: ../savers/floaters.c:1194
-msgid "image - floats images around the screen"
-msgstr "Bill - Billers fleugen över de Billschirm"
-
-#: ../savers/floaters.c:1200
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s. Kiek mol nah --Hölp för Brukterinformatschoonen.\n"
-
-#: ../savers/floaters.c:1209
-#, c-format
-msgid "You must specify one image.  See --help for usage information.\n"
-msgstr ""
-"Du mutt een Bill utsöken. Kiek an --Hölp, um de Gebruukinformatschoonen "
-"optowiesen.\n"
-
-#: ../savers/slideshow.c:53
-msgid "Location to get images from"
-msgstr "Billerverteeknis för Billschrimschoner"
-
-#: ../savers/slideshow.c:53
-msgid "PATH"
-msgstr "PADD"
-
-#: ../savers/slideshow.c:55
-msgid "Color to use for images background"
-msgstr "Klöör, de as Achtergrund brukt werrn schall"
-
-#: ../savers/slideshow.c:55
-msgid "\"#rrggbb\""
-msgstr "\"#rrggbb\""
-
-#: ../savers/slideshow.c:57
-msgid "Do not randomize pictures from location"
-msgstr "Schiev de Billers im Verteeknis nich dööreenanner"
-
-#: ../savers/slideshow.c:59
-msgid "Do not try to stretch images on screen"
-msgstr "Versök nich, Billers op'm Billschirm groter to maken, as de sünd"
-
-#: ../src/copy-theme-dialog.c:212
-msgid "Copying files"
-msgstr "Dateien koperen"
-
-#: ../src/copy-theme-dialog.c:230
-msgid "From:"
-msgstr "Vun:"
-
-#: ../src/copy-theme-dialog.c:234
-msgid "To:"
-msgstr "To:"
-
-#: ../src/copy-theme-dialog.c:254
-msgid "Copying themes"
-msgstr "Themen koperen"
-
-#: ../src/copy-theme-dialog.c:298
-msgid "Invalid screensaver theme"
-msgstr "Düsses Billschirmschonerthema is nich akerat"
-
-#: ../src/copy-theme-dialog.c:301
-#, c-format
-msgid "%s does not appear to be a valid screensaver theme."
-msgstr "%s is vermoudlich keen valides Billschirmschonerthema."
-
-#: ../src/copy-theme-dialog.c:481
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "Kopiere Datei: %u vun %u"
-
-#: ../src/gnome-screensaver-command.c:62
-msgid "Causes the screensaver to exit gracefully"
-msgstr "Billschirmschoner scheun sluten"
-
-#: ../src/gnome-screensaver-command.c:64
-msgid "Query the state of the screensaver"
-msgstr "Op'n Tostand vun Billschirmschoner oppassen"
-
-#: ../src/gnome-screensaver-command.c:66
-msgid "Query the length of time the screensaver has been active"
-msgstr "De Tiet rutfinnen, de de Billschirmschoner nu schon an is"
-
-#: ../src/gnome-screensaver-command.c:68
-msgid "Tells the running screensaver process to lock the screen immediately"
+#: ../src/light-locker-command.c:40
+#, fuzzy
+msgid "Tells the running display manager to lock the screen immediately"
 msgstr ""
 "Vertellt de lööpenden Billschirmschoner, dat de Billschirm avslut werrn "
 "schall"
 
-#: ../src/gnome-screensaver-command.c:70
-msgid "If the screensaver is active then switch to another graphics demo"
-msgstr ""
-"Wenn de Billschirmschoner an is, schall to eene annere "
-"Grafikdemonstratschoon wesselt werrn"
-
-#: ../src/gnome-screensaver-command.c:72
-msgid "Turn the screensaver on (blank the screen)"
-msgstr "Billschirmschoner anmaken (Blanker Billschirm)"
-
-#: ../src/gnome-screensaver-command.c:74
-msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
-"Wenn de Billschirmschoner an is, denn schall dat utmakt werrn. (Denn is de "
-"Billschirm nich blank)"
-
-#: ../src/gnome-screensaver-command.c:76
-msgid "Poke the running screensaver to simulate user activity"
-msgstr ""
-"De Räkner schall so doon, as ob he aktiv is, dormit de Billschirmschoner "
-"nich angeiht."
-
-#: ../src/gnome-screensaver-command.c:78
-msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
-msgstr "De Billschirmschoner stoppen, ehe de losgeiht. "
-
-#: ../src/gnome-screensaver-command.c:80
-msgid "The calling application that is inhibiting the screensaver"
-msgstr "Dat Programm, dat bi'n Utföhren vun Billschirmschoner datwüschen funkt"
-
-#: ../src/gnome-screensaver-command.c:82
-msgid "The reason for inhibiting the screensaver"
-msgstr "De Grund, warum de Billschirmschoner stoppt werrn künn"
-
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:58
-#: ../src/gnome-screensaver.c:56
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 msgid "Version of this application"
 msgstr "Verschoon vun düssem Programm"
 
-#: ../src/gnome-screensaver-command.c:311
-#, c-format
-msgid "The screensaver is %s\n"
-msgstr "De Billschirmschoner is %s\n"
-
-#: ../src/gnome-screensaver-command.c:311
-msgid "active"
-msgstr "Aktiv"
-
-#: ../src/gnome-screensaver-command.c:311
-msgid "inactive"
-msgstr "Nich aktiv"
-
-#: ../src/gnome-screensaver-command.c:325
-#, c-format
-msgid "The screensaver is not inhibited\n"
-msgstr "De Billschirmschoner is nich stoppt worrn\n"
-
-#: ../src/gnome-screensaver-command.c:331
-#, c-format
-msgid "The screensaver is being inhibited by:\n"
-msgstr "De Billschirmschoner is stoppt worrn bi:\n"
-
-#: ../src/gnome-screensaver-command.c:362
-#, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr "De Billschirmschoner is nu aktiv siet %d Sekunnen.\n"
-
-#: ../src/gnome-screensaver-command.c:366
-#, c-format
-msgid "The screensaver is not currently active.\n"
-msgstr "De Billschirmschoner is grade nich aktiv.\n"
-
-#: ../src/gnome-screensaver-dialog.c:56
-msgid "Show debugging output"
-msgstr "Debugging-Utgav opwiesen"
-
-#: ../src/gnome-screensaver-dialog.c:60
-msgid "Show the logout button"
-msgstr "Avmellensknopp opwiesen"
-
-#: ../src/gnome-screensaver-dialog.c:62
-msgid "Command to invoke from the logout button"
-msgstr "Order, de döör de Avmellensknopp in Gang kümmt"
-
-#: ../src/gnome-screensaver-dialog.c:64
-msgid "Show the switch user button"
-msgstr "Knopp to'm Brukerwessel opwiesen"
-
-#: ../src/gnome-screensaver-dialog.c:66
-msgid "Message to show in the dialog"
-msgstr "Nahricht, de in'n Dialogfinster opwiest warrn schall"
-
-#: ../src/gnome-screensaver-dialog.c:66 ../src/gnome-screensaver-dialog.c:68
-msgid "MESSAGE"
-msgstr "NAHRICHT"
-
-#: ../src/gnome-screensaver-dialog.c:68
-msgid "Not used"
-msgstr "nich gebrukt"
-
-#. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:178 ../src/gnome-screensaver-dialog.c:179
-#: ../src/gnome-screensaver-dialog.c:180 ../src/gs-auth-pam.c:698
-msgid "Username:"
-msgstr "Brukernaam:"
-
-#: ../src/gnome-screensaver-dialog.c:181 ../src/gnome-screensaver-dialog.c:182
-#: ../src/gs-auth-pam.c:166
-msgid "Password:"
-msgstr "Passwoord:"
-
-#: ../src/gnome-screensaver-dialog.c:183
-msgid "You are required to change your password immediately (password aged)"
-msgstr "Bidde Passwoord ännern! (to ol)"
-
-#: ../src/gnome-screensaver-dialog.c:184
-msgid "You are required to change your password immediately (root enforced)"
-msgstr "Bidde Passwoord ännern (root nödig)"
-
-#: ../src/gnome-screensaver-dialog.c:185
-msgid "Your account has expired; please contact your system administrator"
-msgstr ""
-"Düsses Brukerkonto is avloopen; bidde mit de Systemoppasser Kontakt opnehmen"
-
-#: ../src/gnome-screensaver-dialog.c:186
-msgid "No password supplied"
-msgstr "Keen Passwoord angeven"
-
-#: ../src/gnome-screensaver-dialog.c:187
-msgid "Password unchanged"
-msgstr "Passwoord nich ännert"
-
-#: ../src/gnome-screensaver-dialog.c:188
-msgid "Can not get username"
-msgstr "Kunn de Brukernaam nich rutkregen"
-
-#: ../src/gnome-screensaver-dialog.c:189
-msgid "Retype new UNIX password:"
-msgstr "Nejes UNIX Passwoord to'm tweiten Mol ingeven:"
-
-#: ../src/gnome-screensaver-dialog.c:190
-msgid "Enter new UNIX password:"
-msgstr "Nejes UNIX Passwoord ingeven:"
-
-#: ../src/gnome-screensaver-dialog.c:191
-msgid "(current) UNIX password:"
-msgstr "(Aktuelles) UNIX Passwoord:"
-
-#: ../src/gnome-screensaver-dialog.c:192
-msgid "Error while changing NIS password."
-msgstr "Fehler bi'm Ännern vu'm NIS Passwoord."
-
-#: ../src/gnome-screensaver-dialog.c:193
-msgid "You must choose a longer password"
-msgstr "Dat Passwoord is to kort"
-
-#: ../src/gnome-screensaver-dialog.c:194
-msgid "Password has been already used. Choose another."
-msgstr "Düsses Passwoord givt dat schon. Bidde anneres utsöken."
-
-#: ../src/gnome-screensaver-dialog.c:195
-msgid "You must wait longer to change your password"
-msgstr "Dat düert noch'n beten, bit dat Passwoord ännert weern künn"
-
-#: ../src/gnome-screensaver-dialog.c:196
-msgid "Sorry, passwords do not match"
-msgstr "Dat Passwoord passt nich."
-
-#: ../src/gnome-screensaver-dialog.c:262
-msgid "Checking..."
-msgstr "Döörkieken..."
-
-#: ../src/gnome-screensaver-dialog.c:304 ../src/gs-auth-pam.c:457
-msgid "Authentication failed."
-msgstr "Authentifikatschoon fehlslagen"
-
-#: ../src/gnome-screensaver-preferences.c:524
-msgid "Blank screen"
-msgstr "Blanker Billschirm"
-
-#: ../src/gnome-screensaver-preferences.c:530
-msgid "Random"
-msgstr "Liek"
-
-#: ../src/gnome-screensaver-preferences.c:980
-#, fuzzy, c-format
-#| msgid "%d hour\n"
-#| msgid_plural "%d hours\n"
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d Stunn\n"
-msgstr[1] "%d Stunnen\n"
-
-#: ../src/gnome-screensaver-preferences.c:983
-#, fuzzy, c-format
-#| msgid "%d minute\n"
-#| msgid_plural "%d minutes\n"
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d Minuut\n"
-msgstr[1] "%d Minuten\n"
-
-#: ../src/gnome-screensaver-preferences.c:986
-#, fuzzy, c-format
-#| msgid "%d second\n"
-#| msgid_plural "%d seconds\n"
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d Sekunn\n"
-msgstr[1] "%d Sekunnen\n"
-
-#. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:992
-#, c-format
-msgid "%s %s %s"
-msgstr "%s %s %s"
-
-#. hour:minutes
-#. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:995
-#: ../src/gnome-screensaver-preferences.c:1003
-#, c-format
-msgid "%s %s"
-msgstr "%s %s"
-
-#. hour
-#. minutes
-#. seconds
-#: ../src/gnome-screensaver-preferences.c:998
-#: ../src/gnome-screensaver-preferences.c:1006
-#: ../src/gnome-screensaver-preferences.c:1010
-#, c-format
-msgid "%s"
-msgstr "%s"
-
-#: ../src/gnome-screensaver-preferences.c:1025
-#, c-format
-msgid "Never"
-msgstr "Nie nich"
-
-#: ../src/gnome-screensaver-preferences.c:1467
-msgid "Could not load the main interface"
-msgstr "Kunn de Hööftböverflach nich laden"
-
-#: ../src/gnome-screensaver-preferences.c:1469
-msgid "Please make sure that the screensaver is properly installed"
-msgstr "Bidde rutfinnen, ob de Billschirmschoner akerat installeert is"
-
-#: ../src/gnome-screensaver.c:57
+#: ../src/light-locker.c:57
 msgid "Don't become a daemon"
 msgstr "Keen daemon to kregen"
 
-#: ../src/gnome-screensaver.c:58
+#: ../src/light-locker.c:58
 msgid "Enable debugging code"
 msgstr "Debugging code möglich maken"
 
-#: ../src/gnome-screensaver.desktop.in.in.h:1
-msgid "Launch screen saver and locker program"
+#: ../src/light-locker.desktop.in.in.h:1
+#, fuzzy
+msgid "Screen Locker"
+msgstr "Billschirmschoner"
+
+#: ../src/light-locker.desktop.in.in.h:2
+#, fuzzy
+msgid "Launch screen locker program"
 msgstr "Billschirmschoner un Avslutprogramm laden"
 
-#: ../src/gs-auth-pam.c:397
-#, c-format
-msgid "Unable to establish service %s: %s\n"
+#: ../src/gs-content.c:95
+msgid "This session is locked."
 msgstr ""
-"Nich möglich, de Deenst %s: %s\n"
-" optoboon\n"
 
-#: ../src/gs-auth-pam.c:423
-#, c-format
-msgid "Can't set PAM_TTY=%s"
-msgstr "Kunn PAM_TTY=%s nich setten"
+#: ../src/gs-content.c:117
+msgid ""
+"You'll be redirected to the unlock dialog automatically in a few seconds."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:455
-msgid "Incorrect password."
-msgstr "Passwoord is nich akerat."
+#~ msgid "Set your screensaver preferences"
+#~ msgstr "Billschirmschonerinstellens setten"
 
-#: ../src/gs-auth-pam.c:471
-msgid "Not permitted to gain access at this time."
-msgstr "Togang is just nich togelaten."
+#~ msgid "<b>Screensaver preview</b>"
+#~ msgstr "<b>Billschirmschonerutblick</b>"
 
-#: ../src/gs-auth-pam.c:477
-msgid "No longer permitted to access the system."
-msgstr "Systemtogang is nich mehr togelaten."
+#~ msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+#~ msgstr "<b>Oppassen: De Billschirm warrt open laten för de root-Bruker.</b>"
 
-#: ../src/gs-listener-dbus.c:1851
-msgid "failed to register with the message bus"
-msgstr "Kunn nich bi'm Nahrichtenbus anmellen"
+#~ msgid "Power _Management"
+#~ msgstr "Strom _Oppasser"
 
-#: ../src/gs-listener-dbus.c:1861
-msgid "not connected to the message bus"
-msgstr "Nich mit de Nahrichtenbus verbunnen"
+#~ msgid "Regard the computer as _idle after:"
+#~ msgstr "In Leerloop nah'm Räkner kieken nah:"
 
-#: ../src/gs-listener-dbus.c:1870
-msgid "screensaver already running in this session"
-msgstr "Billschirmschoner lööpt allmal in düssem Törn"
+#~ msgid "Screensaver Preferences"
+#~ msgstr "Billschirmschonerinstellens"
 
-#: ../src/gs-lock-plug.c:270
-msgid "Time has expired."
-msgstr "De Tiet is to Enn."
+#~ msgid "Screensaver Preview"
+#~ msgstr "Billschirmschonerutblick"
 
-#: ../src/gs-lock-plug.c:298
-msgid "You have the Caps Lock key on."
-msgstr "De CapsLock-Knopp is an."
+#~ msgid "_Activate screensaver when computer is idle"
+#~ msgstr "_Billschirmschoner in Leerloopmodus aktiveren"
 
-#: ../src/gs-lock-plug.c:1362
-msgid "S_witch User..."
-msgstr "B_ruker wesseln"
+#~ msgid "_Lock screen when screensaver is active"
+#~ msgstr "_Billschirm avsluten, wenn de Billschirmschoner an is"
 
-#: ../src/gs-lock-plug.c:1371
-msgid "Log _Out"
-msgstr "Av _mellen"
+#~ msgid "_Preview"
+#~ msgstr "_Utblick"
 
-#. To translators: This expands to USERNAME on HOSTNAME
-#: ../src/gs-lock-plug.c:1547
-msgid "%U on %h"
-msgstr "%U on %h"
+#~ msgid "_Screensaver theme:"
+#~ msgstr "_Billschirmschonerthema:"
 
-#: ../src/gs-lock-plug.c:1561
-msgid "_Password:"
-msgstr "_Passwoord:"
+#~ msgid "Screensaver themes"
+#~ msgstr "Billschirmschonerthemen"
+
+#~ msgid "Screensavers"
+#~ msgstr "Billschirmschoners"
+
+#~ msgid "Activate when idle"
+#~ msgstr "In Leerloop aktiveren"
+
+#~ msgid "Allow embedding a keyboard into the window"
+#~ msgstr "Tolaten, een Knöppboord in Finster intobinnen"
+
+#~ msgid "Allow logout"
+#~ msgstr "Avmellen tolaten"
+
+#~ msgid "Allow the session status message to be displayed"
+#~ msgstr "Tolaten, dat de Törnstatusnahricht opwiest weert."
+
+#~ msgid ""
+#~ "Allow the session status message to be displayed when the screen is "
+#~ "locked."
+#~ msgstr ""
+#~ "Törnstatusnahrichten künn opwiest werrn, wenn de Billschirm avsluten is."
+
+#~ msgid "Allow user switching"
+#~ msgstr "Brukerwessel tolaten"
+
+#~ msgid "Embedded keyboard command"
+#~ msgstr "Knöppboordorders infögen"
+
+#~ msgid "Lock on activation"
+#~ msgstr "Dicht maken bi Aktiveren"
+
+#~ msgid "Logout command"
+#~ msgstr "Avmellensorder"
+
+#~ msgid "Screensaver theme selection mode"
+#~ msgstr "Billschirmschonerthemautsöökmodus"
+
+#~ msgid ""
+#~ "Set this to TRUE to activate the screensaver when the session is idle."
+#~ msgstr ""
+#~ "Düsse Optschoon is to TRUE to setten, um de Billschirmschoner antomaken, "
+#~ "wenn de Törn slopen is."
+
+#~ msgid ""
+#~ "Set this to TRUE to allow embedding a keyboard into the window when "
+#~ "trying to unlock. The \"keyboard_command\" key must be set with the "
+#~ "appropriate command."
+#~ msgstr ""
+#~ "Düsse Optschoon is to TRUE to setten, um totolaten, dat een Knöppboord in "
+#~ "dat Finster infögt is, wenn allens opslut werrt. De \"keyboard_command\" "
+#~ "Knopp is to de akeraten Order to setten."
+
+#~ msgid ""
+#~ "Set this to TRUE to lock the screen when the screensaver goes active."
+#~ msgstr ""
+#~ "Düsse Optschoon is to TRUE to setten, um de Billschirm avtosluten, wenn "
+#~ "de Billschirmschoner angeiht."
+
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in the unlock dialog to switch to a "
+#~ "different user account."
+#~ msgstr ""
+#~ "Düsse Optschoon is to TRUE to setten, um eene Optschoon im "
+#~ "Opslutdialogfinster antobeeden, de to een annern Bruker wesselt."
+
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in unlock dialog to logging out after "
+#~ "a delay. The Delay is specified in the \"logout_delay\" key."
+#~ msgstr ""
+#~ "Düsse Optschoon is to TRUE to setten, um im Opslutdialogfinster eene "
+#~ "Optschoon antobeeden, de Bruker nah ee'm Fehlversök avtomellen."
+
+#~ msgid ""
+#~ "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
+#~ "set to TRUE, to embed a keyboard widget into the window. This command "
+#~ "should implement an XEMBED plug interface and output a window XID on the "
+#~ "standard output."
+#~ msgstr ""
+#~ "De Order, de utföhrt werrt, wenn de \"embedded_keyboard_enabled\" Knopp "
+#~ "is to TRUE set. um een Knöppboordwidget in een Finster intofögen. Düsse "
+#~ "Order schall eene XEMBED plug Brukeröverfläch implementeeren un een "
+#~ "Finster XID op de Standardutgav utgeven."
+
+#~ msgid ""
+#~ "The command to invoke when the logout button is clicked. This command "
+#~ "should simply log the user out without any interaction. This key has "
+#~ "effect only if the \"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "De Order de uttoföhren is, wenn de Avmellensknopp klickt is. Düsse Order "
+#~ "schall de Bruker ohne jichtenswelche Interaktschoon avmellen. Düsser "
+#~ "Knopp hett just een Effekt wenn de \"logout_enable\" Knoppis to TRUE set."
+
+#~ msgid ""
+#~ "The number of minutes after screensaver activation before locking the "
+#~ "screen."
+#~ msgstr ""
+#~ "Minuten nah de Billschirmschoneraktiveren, bevor de Billschirm avtosluten "
+#~ "is."
+
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation before a logout "
+#~ "option will appear in unlock dialog. This key has effect only if the "
+#~ "\"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "Minuten nah de Billschirmschoneraktiveren, bevor eene Avmellensoptschoon "
+#~ "in ee'm Avmellensdialogfinster opwiest warrt. Düsser Knopp hett just een "
+#~ "Effekt, wenn de \"logout_enable\" Knopp is to TRUE set."
+
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr "Minuten de Inaktivität, bevor de Törn slopen gahn schall."
+
+#~ msgid "The number of minutes to run before changing the screensaver theme."
+#~ msgstr "De Minuten, bevor dat Billschirmschonerthema ännert werrt."
+
+#~ msgid ""
+#~ "The number of seconds of inactivity before signalling to power-"
+#~ "management. This key is set and maintained by the session power-"
+#~ "management agent."
+#~ msgstr ""
+#~ "Sekunnen de Inaktivität, bevor de Power-Oppasser kontaktieert werrt. "
+#~ "Düsser Knopp is set un bewarkt bi de Törn-Power-Oppasser."
+
+#~ msgid ""
+#~ "The selection mode used by screensaver. May be \"blank-only\" to enable "
+#~ "the screensaver without using any theme on activation, \"single\" to "
+#~ "enable screensaver using only one theme on activation (specified in "
+#~ "\"themes\" key), and \"random\" to enable the screensaver using a random "
+#~ "theme on activation."
+#~ msgstr ""
+#~ "De Utwahlmodus, de de Billschirmschoner brukt. Künn \"blank-only\" sein, "
+#~ "um de Billschirmschoner antomaken, ihle een avtiviertes Theme to "
+#~ "gebruken, \"single\", damit de Billschirmschoner just een Thema bi de "
+#~ "Aktiveren brukt (specified in \"themes\" key), un \"random\", damit de "
+#~ "Billschirmschoner dööreenanner een Thema utwählt."
+
+#~ msgid "Theme for lock dialog"
+#~ msgstr "Avmellensdialogfinsterthema"
+
+#~ msgid "Theme to use for the lock dialog."
+#~ msgstr "Avmellensdialogfinsterthema"
+
+#~ msgid ""
+#~ "This key specifies the list of themes to be used by the screensaver. It's "
+#~ "ignored when \"mode\" key is \"blank-only\", should provide the theme "
+#~ "name when \"mode\" is \"single\", and should provide a list of themes "
+#~ "when \"mode\" is \"random\"."
+#~ msgstr ""
+#~ "Düsser Knopp spezifizeert de List vun Themen, de vu'm Billschirmschoner "
+#~ "brukt ward. Dat werrt ignoriert, wenn de \"mode\" Knopp is \"blank-only"
+#~ "\", schall de Themennoom opwiesen, wenn \"mode\" is \"single\", un schall "
+#~ "eene List vun Themen opwiesen, wenn \"mode\" is \"random\"."
+
+#~ msgid "Time before locking"
+#~ msgstr "Tiet vorn Avslut"
+
+#~ msgid "Time before logout option"
+#~ msgstr "Tiet vor Avmellensoptschoon"
+
+#~ msgid "Time before power-management baseline"
+#~ msgstr "Tiet vor Power-Oppassergrundline"
+
+#~ msgid "Time before session is considered idle"
+#~ msgstr "Tiet bevor de Törn schlopen geiht"
+
+#~ msgid "Time before theme change"
+#~ msgstr "Tiet vor Themenännerns"
+
+#~ msgid "<b>Leave a message for %R:</b>"
+#~ msgstr "<b>Nahricht dalaten för %R:</b>"
+
+#~ msgid "<span size=\"small\">%U on %h</span>"
+#~ msgstr "<span size=\"small\">%U on %h</span>"
+
+#~ msgid "<span size=\"x-large\">%R</span>"
+#~ msgstr "<span size=\"x-large\">%R</span>"
+
+#~ msgid "_Cancel"
+#~ msgstr "_Avbreken"
+
+#~ msgid "_Leave Message"
+#~ msgstr "_Nahricht dalaten"
+
+#~ msgid "_Log Out"
+#~ msgstr "_Avmellen"
+
+#~ msgid "_Switch User"
+#~ msgstr "_Bruker ännern"
+
+#~ msgid "_Unlock"
+#~ msgstr "_Opmaken"
+
+#~ msgid "Cosmos"
+#~ msgstr "Universum"
+
+#~ msgid "Display a slideshow of pictures of the cosmos"
+#~ msgstr "Een Döörloop vun Universumsbillers opwiesen"
+
+#~ msgid "Bubbles the GNOME foot logo around the screen"
+#~ msgstr "Da fleugt dat GNOME Emblem övern Billschirm"
+
+#~ msgid "Floating Feet"
+#~ msgstr "Fleugende Fööt"
+
+#~ msgid "Display a slideshow from your Pictures folder"
+#~ msgstr "Een Döörloop vu'm Billerverteeknis opwiesen"
+
+#~ msgid "Pictures folder"
+#~ msgstr "Billerverteeknis"
+
+#~ msgid "A pop-art-ish grid of pulsing colors."
+#~ msgstr "Een net vun dollen Klöörs, de as Popart utsehn."
+
+#~ msgid "Pop art squares"
+#~ msgstr "Popkunstruten"
+
+#~ msgid "Show paths that images follow"
+#~ msgstr "Pads opwiesen, de de Billers achtergahn"
+
+#~ msgid "Occasionally rotate images as they move"
+#~ msgstr "Mannichmol schalln de Billers sik dreihn, as de sik bewegen"
+
+#~ msgid "Print out frame rate and other statistics"
+#~ msgstr "Kantrate un annere Statistiken utdrucken"
+
+#~ msgid "The maximum number of images to keep on screen"
+#~ msgstr "De hööchste Tahl vun Billers, de op'm Billschirm blieven schalln"
+
+#~ msgid "MAX_IMAGES"
+#~ msgstr "MAX_IMAGES"
+
+#~ msgid "The initial size and position of window"
+#~ msgstr "De Anfangsgrote un Positschoon vu'm Finster"
+
+#~ msgid "WIDTHxHEIGHT+X+Y"
+#~ msgstr "WIDTHxHEIGHT+X+Y"
+
+#~ msgid "The source image to use"
+#~ msgstr "Dat Wellbill to bruken"
+
+#~ msgid "image - floats images around the screen"
+#~ msgstr "Bill - Billers fleugen över de Billschirm"
+
+#~ msgid "%s. See --help for usage information.\n"
+#~ msgstr "%s. Kiek mol nah --Hölp för Brukterinformatschoonen.\n"
+
+#~ msgid "You must specify one image.  See --help for usage information.\n"
+#~ msgstr ""
+#~ "Du mutt een Bill utsöken. Kiek an --Hölp, um de Gebruukinformatschoonen "
+#~ "optowiesen.\n"
+
+#~ msgid "Location to get images from"
+#~ msgstr "Billerverteeknis för Billschrimschoner"
+
+#~ msgid "PATH"
+#~ msgstr "PADD"
+
+#~ msgid "Color to use for images background"
+#~ msgstr "Klöör, de as Achtergrund brukt werrn schall"
+
+#~ msgid "\"#rrggbb\""
+#~ msgstr "\"#rrggbb\""
+
+#~ msgid "Do not randomize pictures from location"
+#~ msgstr "Schiev de Billers im Verteeknis nich dööreenanner"
+
+#~ msgid "Do not try to stretch images on screen"
+#~ msgstr "Versök nich, Billers op'm Billschirm groter to maken, as de sünd"
+
+#~ msgid "Copying files"
+#~ msgstr "Dateien koperen"
+
+#~ msgid "From:"
+#~ msgstr "Vun:"
+
+#~ msgid "To:"
+#~ msgstr "To:"
+
+#~ msgid "Copying themes"
+#~ msgstr "Themen koperen"
+
+#~ msgid "Invalid screensaver theme"
+#~ msgstr "Düsses Billschirmschonerthema is nich akerat"
+
+#~ msgid "%s does not appear to be a valid screensaver theme."
+#~ msgstr "%s is vermoudlich keen valides Billschirmschonerthema."
+
+#~ msgid "Copying file: %u of %u"
+#~ msgstr "Kopiere Datei: %u vun %u"
+
+#~ msgid "Causes the screensaver to exit gracefully"
+#~ msgstr "Billschirmschoner scheun sluten"
+
+#~ msgid "Query the state of the screensaver"
+#~ msgstr "Op'n Tostand vun Billschirmschoner oppassen"
+
+#~ msgid "Query the length of time the screensaver has been active"
+#~ msgstr "De Tiet rutfinnen, de de Billschirmschoner nu schon an is"
+
+#~ msgid "If the screensaver is active then switch to another graphics demo"
+#~ msgstr ""
+#~ "Wenn de Billschirmschoner an is, schall to eene annere "
+#~ "Grafikdemonstratschoon wesselt werrn"
+
+#~ msgid "Turn the screensaver on (blank the screen)"
+#~ msgstr "Billschirmschoner anmaken (Blanker Billschirm)"
+
+#~ msgid ""
+#~ "If the screensaver is active then deactivate it (un-blank the screen)"
+#~ msgstr ""
+#~ "Wenn de Billschirmschoner an is, denn schall dat utmakt werrn. (Denn is "
+#~ "de Billschirm nich blank)"
+
+#~ msgid "Poke the running screensaver to simulate user activity"
+#~ msgstr ""
+#~ "De Räkner schall so doon, as ob he aktiv is, dormit de Billschirmschoner "
+#~ "nich angeiht."
+
+#~ msgid ""
+#~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
+#~ "active."
+#~ msgstr "De Billschirmschoner stoppen, ehe de losgeiht. "
+
+#~ msgid "The calling application that is inhibiting the screensaver"
+#~ msgstr ""
+#~ "Dat Programm, dat bi'n Utföhren vun Billschirmschoner datwüschen funkt"
+
+#~ msgid "The reason for inhibiting the screensaver"
+#~ msgstr "De Grund, warum de Billschirmschoner stoppt werrn künn"
+
+#~ msgid "The screensaver is %s\n"
+#~ msgstr "De Billschirmschoner is %s\n"
+
+#~ msgid "active"
+#~ msgstr "Aktiv"
+
+#~ msgid "inactive"
+#~ msgstr "Nich aktiv"
+
+#~ msgid "The screensaver is not inhibited\n"
+#~ msgstr "De Billschirmschoner is nich stoppt worrn\n"
+
+#~ msgid "The screensaver is being inhibited by:\n"
+#~ msgstr "De Billschirmschoner is stoppt worrn bi:\n"
+
+#~ msgid "The screensaver has been active for %d seconds.\n"
+#~ msgstr "De Billschirmschoner is nu aktiv siet %d Sekunnen.\n"
+
+#~ msgid "The screensaver is not currently active.\n"
+#~ msgstr "De Billschirmschoner is grade nich aktiv.\n"
+
+#~ msgid "Show debugging output"
+#~ msgstr "Debugging-Utgav opwiesen"
+
+#~ msgid "Show the logout button"
+#~ msgstr "Avmellensknopp opwiesen"
+
+#~ msgid "Command to invoke from the logout button"
+#~ msgstr "Order, de döör de Avmellensknopp in Gang kümmt"
+
+#~ msgid "Show the switch user button"
+#~ msgstr "Knopp to'm Brukerwessel opwiesen"
+
+#~ msgid "Message to show in the dialog"
+#~ msgstr "Nahricht, de in'n Dialogfinster opwiest warrn schall"
+
+#~ msgid "MESSAGE"
+#~ msgstr "NAHRICHT"
+
+#~ msgid "Not used"
+#~ msgstr "nich gebrukt"
+
+#~ msgid "Username:"
+#~ msgstr "Brukernaam:"
+
+#~ msgid "Password:"
+#~ msgstr "Passwoord:"
+
+#~ msgid "You are required to change your password immediately (password aged)"
+#~ msgstr "Bidde Passwoord ännern! (to ol)"
+
+#~ msgid "You are required to change your password immediately (root enforced)"
+#~ msgstr "Bidde Passwoord ännern (root nödig)"
+
+#~ msgid "Your account has expired; please contact your system administrator"
+#~ msgstr ""
+#~ "Düsses Brukerkonto is avloopen; bidde mit de Systemoppasser Kontakt "
+#~ "opnehmen"
+
+#~ msgid "No password supplied"
+#~ msgstr "Keen Passwoord angeven"
+
+#~ msgid "Password unchanged"
+#~ msgstr "Passwoord nich ännert"
+
+#~ msgid "Can not get username"
+#~ msgstr "Kunn de Brukernaam nich rutkregen"
+
+#~ msgid "Retype new UNIX password:"
+#~ msgstr "Nejes UNIX Passwoord to'm tweiten Mol ingeven:"
+
+#~ msgid "Enter new UNIX password:"
+#~ msgstr "Nejes UNIX Passwoord ingeven:"
+
+#~ msgid "(current) UNIX password:"
+#~ msgstr "(Aktuelles) UNIX Passwoord:"
+
+#~ msgid "Error while changing NIS password."
+#~ msgstr "Fehler bi'm Ännern vu'm NIS Passwoord."
+
+#~ msgid "You must choose a longer password"
+#~ msgstr "Dat Passwoord is to kort"
+
+#~ msgid "Password has been already used. Choose another."
+#~ msgstr "Düsses Passwoord givt dat schon. Bidde anneres utsöken."
+
+#~ msgid "You must wait longer to change your password"
+#~ msgstr "Dat düert noch'n beten, bit dat Passwoord ännert weern künn"
+
+#~ msgid "Sorry, passwords do not match"
+#~ msgstr "Dat Passwoord passt nich."
+
+#~ msgid "Checking..."
+#~ msgstr "Döörkieken..."
+
+#~ msgid "Authentication failed."
+#~ msgstr "Authentifikatschoon fehlslagen"
+
+#~ msgid "Blank screen"
+#~ msgstr "Blanker Billschirm"
+
+#~ msgid "Random"
+#~ msgstr "Liek"
+
+#, fuzzy
+#~| msgid "%d hour\n"
+#~| msgid_plural "%d hours\n"
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "%d Stunn\n"
+#~ msgstr[1] "%d Stunnen\n"
+
+#, fuzzy
+#~| msgid "%d minute\n"
+#~| msgid_plural "%d minutes\n"
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d Minuut\n"
+#~ msgstr[1] "%d Minuten\n"
+
+#, fuzzy
+#~| msgid "%d second\n"
+#~| msgid_plural "%d seconds\n"
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d Sekunn\n"
+#~ msgstr[1] "%d Sekunnen\n"
+
+#~ msgid "%s %s %s"
+#~ msgstr "%s %s %s"
+
+#~ msgid "%s %s"
+#~ msgstr "%s %s"
+
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgid "Never"
+#~ msgstr "Nie nich"
+
+#~ msgid "Could not load the main interface"
+#~ msgstr "Kunn de Hööftböverflach nich laden"
+
+#~ msgid "Please make sure that the screensaver is properly installed"
+#~ msgstr "Bidde rutfinnen, ob de Billschirmschoner akerat installeert is"
+
+#~ msgid "Unable to establish service %s: %s\n"
+#~ msgstr ""
+#~ "Nich möglich, de Deenst %s: %s\n"
+#~ " optoboon\n"
+
+#~ msgid "Can't set PAM_TTY=%s"
+#~ msgstr "Kunn PAM_TTY=%s nich setten"
+
+#~ msgid "Incorrect password."
+#~ msgstr "Passwoord is nich akerat."
+
+#~ msgid "Not permitted to gain access at this time."
+#~ msgstr "Togang is just nich togelaten."
+
+#~ msgid "No longer permitted to access the system."
+#~ msgstr "Systemtogang is nich mehr togelaten."
+
+#~ msgid "failed to register with the message bus"
+#~ msgstr "Kunn nich bi'm Nahrichtenbus anmellen"
+
+#~ msgid "not connected to the message bus"
+#~ msgstr "Nich mit de Nahrichtenbus verbunnen"
+
+#~ msgid "screensaver already running in this session"
+#~ msgstr "Billschirmschoner lööpt allmal in düssem Törn"
+
+#~ msgid "Time has expired."
+#~ msgstr "De Tiet is to Enn."
+
+#~ msgid "You have the Caps Lock key on."
+#~ msgstr "De CapsLock-Knopp is an."
+
+#~ msgid "S_witch User..."
+#~ msgstr "B_ruker wesseln"
+
+#~ msgid "Log _Out"
+#~ msgstr "Av _mellen"
+
+#~ msgid "%U on %h"
+#~ msgstr "%U on %h"
+
+#~ msgid "_Password:"
+#~ msgstr "_Passwoord:"

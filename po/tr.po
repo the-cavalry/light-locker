@@ -7,278 +7,226 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"screensaver&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-15 12:22+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-19 23:00+0200\n"
 "PO-Revision-Date: 2011-07-08 01:54+0300\n"
 "Last-Translator: Muhammet Kara <muhammet.k@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"Language: tr\n"
 "X-Generator: Lokalize 1.2\n"
 
-#: ../src/gnome-screensaver-command.c:46
-msgid "Causes the screensaver to exit gracefully"
-msgstr "Ekran koruyucudan nazikçe çıkmasına sebep olur"
-
-#: ../src/gnome-screensaver-command.c:48
-msgid "Query the state of the screensaver"
-msgstr "Ekran koruyucunun durumunu sorgula"
-
-#: ../src/gnome-screensaver-command.c:50
-msgid "Query the length of time the screensaver has been active"
-msgstr "Ekran koruyucusunun etkin olduğu zamanı sorgula"
-
-#: ../src/gnome-screensaver-command.c:52
-msgid "Tells the running screensaver process to lock the screen immediately"
+#: ../src/light-locker-command.c:40
+#, fuzzy
+msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Çalışan ekran koruyucu sürecine ekranı hemen kilitlemesini söyle"
 
-#: ../src/gnome-screensaver-command.c:54
-msgid "Turn the screensaver on (blank the screen)"
-msgstr "Ekran koruyucuyu aç (ekranı boş bırak)"
-
-#: ../src/gnome-screensaver-command.c:56
-msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr "Eğer ekran koruyucu etkin ise etkinliğini kaldır (ekranı boş bırakma)"
-
-#: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:59
-#: ../src/gnome-screensaver.c:56
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 msgid "Version of this application"
 msgstr "Bu uygulamanın sürümü"
 
-#: ../src/gnome-screensaver-command.c:224
-#, c-format
-#| msgid "The screensaver is %s\n"
-msgid "The screensaver is active\n"
-msgstr "Ekran koruyucu etkin\n"
-
-#: ../src/gnome-screensaver-command.c:226
-#, c-format
-#| msgid "The screensaver is %s\n"
-msgid "The screensaver is inactive\n"
-msgstr "Ekran koruyucu devre dışı\n"
-
-#: ../src/gnome-screensaver-command.c:256
-#, c-format
-#| msgid "The screensaver has been active for %d seconds.\n"
-msgid "The screensaver has been active for %d second.\n"
-msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] "Ekran koruyucu %d saniyedir etkin.\n"
-
-#: ../src/gnome-screensaver-command.c:258
-#, c-format
-#| msgid "The screensaver is not inhibited\n"
-msgid "The screensaver is not currently active.\n"
-msgstr "Ekran koruyucu şu anda etkin değil.\n"
-
-#: ../src/gnome-screensaver-dialog.c:57
-msgid "Show debugging output"
-msgstr "Hata ayıklama çıktısını göster"
-
-#: ../src/gnome-screensaver-dialog.c:61
-msgid "Show the logout button"
-msgstr "Çıkış düğmesini göster"
-
-#: ../src/gnome-screensaver-dialog.c:63
-msgid "Command to invoke from the logout button"
-msgstr "Oturumu kapat düğmesinden çağrılacak komut"
-
-#: ../src/gnome-screensaver-dialog.c:65
-msgid "Show the switch user button"
-msgstr "Kullanıcı değiştir düğmesini göster"
-
-#: ../src/gnome-screensaver-dialog.c:67
-msgid "Message to show in the dialog"
-msgstr "Pencerede gösterilecek mesaj"
-
-#. Translators: This is the example input for the --status-message command line option.
-#. Translators: This is the example input for the --away-message command line option.
-#: ../src/gnome-screensaver-dialog.c:69 ../src/gnome-screensaver-dialog.c:73
-msgid "MESSAGE"
-msgstr "MESAJ"
-
-#: ../src/gnome-screensaver-dialog.c:71
-msgid "Not used"
-msgstr "Kullanılmıyor"
-
-#. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:183 ../src/gnome-screensaver-dialog.c:184
-#: ../src/gnome-screensaver-dialog.c:185 ../src/gs-auth-pam.c:698
-msgid "Username:"
-msgstr "Kullanıcı adı:"
-
-#: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
-#: ../src/gs-auth-pam.c:166
-msgid "Password:"
-msgstr "Parola:"
-
-#: ../src/gnome-screensaver-dialog.c:188
-msgid "You are required to change your password immediately (password aged)"
-msgstr "Hemen parolanızı değiştirmeniz gerekiyor (parolanız eskidi)"
-
-#: ../src/gnome-screensaver-dialog.c:189
-msgid "You are required to change your password immediately (root enforced)"
-msgstr "Parolanızı hemen değiştirmeniz gerekiyor (root zorluyor)"
-
-#: ../src/gnome-screensaver-dialog.c:190
-msgid "Your account has expired; please contact your system administrator"
-msgstr "Hesabınızın süresi dolmuş; lütfen sistem yöneticiniz ile temasa geçin"
-
-#: ../src/gnome-screensaver-dialog.c:191
-msgid "No password supplied"
-msgstr "Bir parola sağlanmadı"
-
-#: ../src/gnome-screensaver-dialog.c:192
-msgid "Password unchanged"
-msgstr "Parola değişmedi"
-
-#: ../src/gnome-screensaver-dialog.c:193
-#| msgid "Can not get username"
-msgid "Cannot get username"
-msgstr "Kullanıcı adı alınamıyor"
-
-#: ../src/gnome-screensaver-dialog.c:194
-#| msgid "Retype new UNIX password:"
-msgid "Retype new Unix password:"
-msgstr "Yeni Unix parolanızı yeniden yazın:"
-
-#: ../src/gnome-screensaver-dialog.c:195
-#| msgid "Enter new UNIX password:"
-msgid "Enter new Unix password:"
-msgstr "Yeni Unix parolanızı girin:"
-
-#: ../src/gnome-screensaver-dialog.c:196
-#| msgid "(current) UNIX password:"
-msgid "(current) Unix password:"
-msgstr "(şimdiki) Unix parolanız:"
-
-#: ../src/gnome-screensaver-dialog.c:197
-msgid "Error while changing NIS password."
-msgstr "NIS parolası değiştirilirken hata"
-
-#: ../src/gnome-screensaver-dialog.c:198
-msgid "You must choose a longer password"
-msgstr "Daha uzun bir parola seçmelisiniz"
-
-#: ../src/gnome-screensaver-dialog.c:199
-msgid "Password has been already used. Choose another."
-msgstr "Parola kullanılmaktadır. Başka bir tane seçin."
-
-#: ../src/gnome-screensaver-dialog.c:200
-msgid "You must wait longer to change your password"
-msgstr "Parolanızı değiştirmek için daha uzun beklemelisiniz"
-
-#: ../src/gnome-screensaver-dialog.c:201
-msgid "Sorry, passwords do not match"
-msgstr "Üzgünüm, parolalar uyuşmuyor"
-
-#: ../src/gnome-screensaver-dialog.c:267
-#| msgid "Checking..."
-msgid "Checking…"
-msgstr "Kontrol ediyor..."
-
-#: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
-msgid "Authentication failed."
-msgstr "Kimlik kontrolü başarısız."
-
-#: ../src/gnome-screensaver.c:57
+#: ../src/light-locker.c:57
 msgid "Don't become a daemon"
 msgstr "Bir servis haline gelme"
 
-#: ../src/gnome-screensaver.c:58
+#: ../src/light-locker.c:58
 msgid "Enable debugging code"
 msgstr "Hata ayıklama kodunu etkinleştir"
 
-#: ../src/gnome-screensaver.desktop.in.in.h:1
-msgid "Launch screensaver and locker program"
-msgstr "Ekran koruyucu ve kilitleyici programı başlat"
-
-#: ../src/gnome-screensaver.desktop.in.in.h:2
-msgid "Screensaver"
+#: ../src/light-locker.desktop.in.in.h:1
+#, fuzzy
+msgid "Screen Locker"
 msgstr "Ekran koruyucu"
 
-#: ../src/gs-auth-pam.c:397
-#, c-format
-msgid "Unable to establish service %s: %s\n"
-msgstr "Servis %s kurulamadı: %s\n"
+#: ../src/light-locker.desktop.in.in.h:2
+#, fuzzy
+msgid "Launch screen locker program"
+msgstr "Ekran koruyucu ve kilitleyici programı başlat"
 
-#: ../src/gs-auth-pam.c:423
-#, c-format
-msgid "Can't set PAM_TTY=%s"
-msgstr "PAM_TTY=%s yapılamadı"
+#: ../src/gs-content.c:95
+msgid "This session is locked."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:455
-msgid "Incorrect password."
-msgstr "Yanlış parola."
+#: ../src/gs-content.c:117
+msgid ""
+"You'll be redirected to the unlock dialog automatically in a few seconds."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:471
-msgid "Not permitted to gain access at this time."
-msgstr "Şu an erişim kazanmaya izinli değil."
+#~ msgid "Causes the screensaver to exit gracefully"
+#~ msgstr "Ekran koruyucudan nazikçe çıkmasına sebep olur"
 
-#: ../src/gs-auth-pam.c:477
-msgid "No longer permitted to access the system."
-msgstr "Sisteme erişimine artık izin verilmiyor."
+#~ msgid "Query the state of the screensaver"
+#~ msgstr "Ekran koruyucunun durumunu sorgula"
 
-#: ../src/gs-listener-dbus.c:1148
-msgid "failed to register with the message bus"
-msgstr "mesaj veri yoluna kayıt başarısız"
+#~ msgid "Query the length of time the screensaver has been active"
+#~ msgstr "Ekran koruyucusunun etkin olduğu zamanı sorgula"
 
-#: ../src/gs-listener-dbus.c:1158
-msgid "not connected to the message bus"
-msgstr "mesaj veri yoluna bağlı değil"
+#~ msgid "Turn the screensaver on (blank the screen)"
+#~ msgstr "Ekran koruyucuyu aç (ekranı boş bırak)"
 
-#: ../src/gs-listener-dbus.c:1167 ../src/gs-listener-dbus.c:1197
-msgid "screensaver already running in this session"
-msgstr "Bu oturumda ekran koruyucu zaten çalışmakta"
+#~ msgid ""
+#~ "If the screensaver is active then deactivate it (un-blank the screen)"
+#~ msgstr ""
+#~ "Eğer ekran koruyucu etkin ise etkinliğini kaldır (ekranı boş bırakma)"
 
-#: ../src/gs-lock-plug.c:256
-msgid "Time has expired."
-msgstr "Süre doldu."
+#~| msgid "The screensaver is %s\n"
+#~ msgid "The screensaver is active\n"
+#~ msgstr "Ekran koruyucu etkin\n"
 
-#: ../src/gs-lock-plug.c:287
-#| msgid "You have the Caps Lock key on."
-msgid "You have the Caps & Num Lock keys on."
-msgstr "Caps ve Num Lock tuşlarınız açık."
+#~| msgid "The screensaver is %s\n"
+#~ msgid "The screensaver is inactive\n"
+#~ msgstr "Ekran koruyucu devre dışı\n"
 
-#: ../src/gs-lock-plug.c:290
-msgid "You have the Caps Lock key on."
-msgstr "Büyük harf kilidi tuşunuz açık."
+#~| msgid "The screensaver has been active for %d seconds.\n"
+#~ msgid "The screensaver has been active for %d second.\n"
+#~ msgid_plural "The screensaver has been active for %d seconds.\n"
+#~ msgstr[0] "Ekran koruyucu %d saniyedir etkin.\n"
 
-#: ../src/gs-lock-plug.c:293
-#| msgid "You have the Caps Lock key on."
-msgid "You have the Num Lock key on."
-msgstr "Num Lock tuşunuz açık."
+#~| msgid "The screensaver is not inhibited\n"
+#~ msgid "The screensaver is not currently active.\n"
+#~ msgstr "Ekran koruyucu şu anda etkin değil.\n"
 
-#: ../src/gs-lock-plug.c:1350
-#| msgid "_Switch User"
-msgid "S_witch User…"
-msgstr "_Kullanıcı Değiştir..."
+#~ msgid "Show debugging output"
+#~ msgstr "Hata ayıklama çıktısını göster"
 
-#: ../src/gs-lock-plug.c:1359
-msgid "Log _Out"
-msgstr "_Oturumu Kapat"
+#~ msgid "Show the logout button"
+#~ msgstr "Çıkış düğmesini göster"
 
-#: ../src/gs-lock-plug.c:1366
-msgid "_Unlock"
-msgstr "_Kilidi aç"
+#~ msgid "Command to invoke from the logout button"
+#~ msgstr "Oturumu kapat düğmesinden çağrılacak komut"
 
-#: ../src/gs-lock-plug.c:1401
-msgid "_Password:"
-msgstr "_Parola:"
+#~ msgid "Show the switch user button"
+#~ msgstr "Kullanıcı değiştir düğmesini göster"
 
-#. Translators, this is the 24h date format used in the panel clock
-#: ../src/gs-window-x11.c:2199
-#| msgid "%s %s"
-msgid "%a %R"
-msgstr "%a %R"
+#~ msgid "Message to show in the dialog"
+#~ msgstr "Pencerede gösterilecek mesaj"
 
-#. Translators, this is the 12h date format used in the panel clock
-#: ../src/gs-window-x11.c:2202
-msgid "%a %l:%M %p"
-msgstr "%a %l:%M %p"
+#~ msgid "MESSAGE"
+#~ msgstr "MESAJ"
+
+#~ msgid "Not used"
+#~ msgstr "Kullanılmıyor"
+
+#~ msgid "Username:"
+#~ msgstr "Kullanıcı adı:"
+
+#~ msgid "Password:"
+#~ msgstr "Parola:"
+
+#~ msgid "You are required to change your password immediately (password aged)"
+#~ msgstr "Hemen parolanızı değiştirmeniz gerekiyor (parolanız eskidi)"
+
+#~ msgid "You are required to change your password immediately (root enforced)"
+#~ msgstr "Parolanızı hemen değiştirmeniz gerekiyor (root zorluyor)"
+
+#~ msgid "Your account has expired; please contact your system administrator"
+#~ msgstr ""
+#~ "Hesabınızın süresi dolmuş; lütfen sistem yöneticiniz ile temasa geçin"
+
+#~ msgid "No password supplied"
+#~ msgstr "Bir parola sağlanmadı"
+
+#~ msgid "Password unchanged"
+#~ msgstr "Parola değişmedi"
+
+#~| msgid "Can not get username"
+#~ msgid "Cannot get username"
+#~ msgstr "Kullanıcı adı alınamıyor"
+
+#~| msgid "Retype new UNIX password:"
+#~ msgid "Retype new Unix password:"
+#~ msgstr "Yeni Unix parolanızı yeniden yazın:"
+
+#~| msgid "Enter new UNIX password:"
+#~ msgid "Enter new Unix password:"
+#~ msgstr "Yeni Unix parolanızı girin:"
+
+#~| msgid "(current) UNIX password:"
+#~ msgid "(current) Unix password:"
+#~ msgstr "(şimdiki) Unix parolanız:"
+
+#~ msgid "Error while changing NIS password."
+#~ msgstr "NIS parolası değiştirilirken hata"
+
+#~ msgid "You must choose a longer password"
+#~ msgstr "Daha uzun bir parola seçmelisiniz"
+
+#~ msgid "Password has been already used. Choose another."
+#~ msgstr "Parola kullanılmaktadır. Başka bir tane seçin."
+
+#~ msgid "You must wait longer to change your password"
+#~ msgstr "Parolanızı değiştirmek için daha uzun beklemelisiniz"
+
+#~ msgid "Sorry, passwords do not match"
+#~ msgstr "Üzgünüm, parolalar uyuşmuyor"
+
+#~| msgid "Checking..."
+#~ msgid "Checking…"
+#~ msgstr "Kontrol ediyor..."
+
+#~ msgid "Authentication failed."
+#~ msgstr "Kimlik kontrolü başarısız."
+
+#~ msgid "Unable to establish service %s: %s\n"
+#~ msgstr "Servis %s kurulamadı: %s\n"
+
+#~ msgid "Can't set PAM_TTY=%s"
+#~ msgstr "PAM_TTY=%s yapılamadı"
+
+#~ msgid "Incorrect password."
+#~ msgstr "Yanlış parola."
+
+#~ msgid "Not permitted to gain access at this time."
+#~ msgstr "Şu an erişim kazanmaya izinli değil."
+
+#~ msgid "No longer permitted to access the system."
+#~ msgstr "Sisteme erişimine artık izin verilmiyor."
+
+#~ msgid "failed to register with the message bus"
+#~ msgstr "mesaj veri yoluna kayıt başarısız"
+
+#~ msgid "not connected to the message bus"
+#~ msgstr "mesaj veri yoluna bağlı değil"
+
+#~ msgid "screensaver already running in this session"
+#~ msgstr "Bu oturumda ekran koruyucu zaten çalışmakta"
+
+#~ msgid "Time has expired."
+#~ msgstr "Süre doldu."
+
+#~| msgid "You have the Caps Lock key on."
+#~ msgid "You have the Caps & Num Lock keys on."
+#~ msgstr "Caps ve Num Lock tuşlarınız açık."
+
+#~ msgid "You have the Caps Lock key on."
+#~ msgstr "Büyük harf kilidi tuşunuz açık."
+
+#~| msgid "You have the Caps Lock key on."
+#~ msgid "You have the Num Lock key on."
+#~ msgstr "Num Lock tuşunuz açık."
+
+#~| msgid "_Switch User"
+#~ msgid "S_witch User…"
+#~ msgstr "_Kullanıcı Değiştir..."
+
+#~ msgid "Log _Out"
+#~ msgstr "_Oturumu Kapat"
+
+#~ msgid "_Unlock"
+#~ msgstr "_Kilidi aç"
+
+#~ msgid "_Password:"
+#~ msgstr "_Parola:"
+
+#~| msgid "%s %s"
+#~ msgid "%a %R"
+#~ msgstr "%a %R"
+
+#~ msgid "%a %l:%M %p"
+#~ msgstr "%a %l:%M %p"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "Ekran koruyucunuzun tercihlerini belirtin"
@@ -753,8 +701,8 @@ msgstr "%a %l:%M %p"
 #~ msgid ""
 #~ "The number of the virtual console this display can be found on, or %-1."
 #~ msgstr ""
-#~ "Bu görüntünün üzerinde bulunabileceği sanal terminallerin sayısı, veya %-"
-#~ "1."
+#~ "Bu görüntünün üzerinde bulunabileceği sanal terminallerin sayısı, veya "
+#~ "%-1."
 
 #~ msgid "Nested"
 #~ msgstr "İç içe"

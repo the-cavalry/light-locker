@@ -6,264 +6,214 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver GNOME TRUNK\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"screensaver&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-26 06:49+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-19 23:00+0200\n"
 "PO-Revision-Date: 2011-04-01 20:31+0700\n"
 "Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: LocFactoryEditor 1.8\n"
 
-#: ../src/gnome-screensaver-command.c:56
-msgid "Causes the screensaver to exit gracefully"
-msgstr "Làm cho bộ bảo vệ màn hình thoát êm đẹp"
-
-#: ../src/gnome-screensaver-command.c:58
-msgid "Query the state of the screensaver"
-msgstr "Truy vấn tình trạng của bộ bảo vệ màn hình"
-
-#: ../src/gnome-screensaver-command.c:60
-msgid "Query the length of time the screensaver has been active"
-msgstr "Truy vấn khoảng thời gian hoạt động của bộ bảo vệ màn hình"
-
-#: ../src/gnome-screensaver-command.c:62
-msgid "Tells the running screensaver process to lock the screen immediately"
+#: ../src/light-locker-command.c:40
+#, fuzzy
+msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Báo tiến trình bảo vệ màn hình đang chạy phải khoá ngay màn hình"
 
-#: ../src/gnome-screensaver-command.c:64
-msgid "Turn the screensaver on (blank the screen)"
-msgstr "Khởi chạy bộ bảo vệ màn hình (làm trắng màn hình)"
-
-#: ../src/gnome-screensaver-command.c:66
-msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr "Nếu bộ bảo vệ màn hình có hoạt động thì tắt nó (bỏ trắng màn hình)"
-
-#: ../src/gnome-screensaver-command.c:68 ../src/gnome-screensaver-dialog.c:59
-#: ../src/gnome-screensaver.c:56
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 msgid "Version of this application"
 msgstr "Phiên bản ứng dụng này"
 
-#: ../src/gnome-screensaver-command.c:198
-#, c-format
-msgid "The screensaver is active\n"
-msgstr "Bộ bảo vệ màn hình đang hoạt động\n"
-
-#: ../src/gnome-screensaver-command.c:198
-#, c-format
-msgid "The screensaver is inactive\n"
-msgstr "Bộ bảo vệ màn hình không hoạt động\n"
-
-#: ../src/gnome-screensaver-command.c:223
-#, c-format
-#| msgid "The screensaver has been active for %d seconds.\n"
-msgid "The screensaver has been active for %d second.\n"
-msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] "Bộ bảo vệ màn hình đã hoạt động trong %d giây.\n"
-
-#: ../src/gnome-screensaver-command.c:227
-#, c-format
-msgid "The screensaver is not currently active.\n"
-msgstr "Bộ bảo vệ màn hình hiện thời không hoạt động.\n"
-
-#: ../src/gnome-screensaver-dialog.c:57
-msgid "Show debugging output"
-msgstr "Hiện dữ liệu xuất gỡ lỗi"
-
-#: ../src/gnome-screensaver-dialog.c:61
-msgid "Show the logout button"
-msgstr "Hiện nút đăng xuất"
-
-#: ../src/gnome-screensaver-dialog.c:63
-msgid "Command to invoke from the logout button"
-msgstr "Lệnh cần chạy từ nút đăng xuất"
-
-#: ../src/gnome-screensaver-dialog.c:65
-msgid "Show the switch user button"
-msgstr "Hiện nút chuyển đổi người dùng"
-
-#: ../src/gnome-screensaver-dialog.c:67
-msgid "Message to show in the dialog"
-msgstr "Thông điệp cần hiển thị trong hộp thoại"
-
-#. Translators: This is the example input for the --status-message command line option.
-#. Translators: This is the example input for the --away-message command line option.
-#: ../src/gnome-screensaver-dialog.c:69 ../src/gnome-screensaver-dialog.c:73
-msgid "MESSAGE"
-msgstr "THÔNG ĐIỆP"
-
-#: ../src/gnome-screensaver-dialog.c:71
-msgid "Not used"
-msgstr "Chưa sử dụng"
-
-#. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:183 ../src/gnome-screensaver-dialog.c:184
-#: ../src/gnome-screensaver-dialog.c:185 ../src/gs-auth-pam.c:698
-msgid "Username:"
-msgstr "Tên người dùng:"
-
-#: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
-#: ../src/gs-auth-pam.c:166
-msgid "Password:"
-msgstr "Mật khẩu:"
-
-#: ../src/gnome-screensaver-dialog.c:188
-msgid "You are required to change your password immediately (password aged)"
-msgstr "Bạn phải thay đổi ngay mật khẩu (mật khẩu quá cũ)"
-
-#: ../src/gnome-screensaver-dialog.c:189
-msgid "You are required to change your password immediately (root enforced)"
-msgstr "Bạn phải thay đổi ngay mật khẩu (người dùng root ép buộc)"
-
-#: ../src/gnome-screensaver-dialog.c:190
-msgid "Your account has expired; please contact your system administrator"
-msgstr "Tài khoản của bạn đã hết hạn dùng: hãy liên lạc với quản trị hệ thống"
-
-#: ../src/gnome-screensaver-dialog.c:191
-msgid "No password supplied"
-msgstr "Chưa cung cấp mật khẩu"
-
-#: ../src/gnome-screensaver-dialog.c:192
-msgid "Password unchanged"
-msgstr "Mật khẩu không đổi"
-
-#: ../src/gnome-screensaver-dialog.c:193
-msgid "Cannot get username"
-msgstr "Không thể lấy tên người dùng"
-
-#: ../src/gnome-screensaver-dialog.c:194
-msgid "Retype new Unix password:"
-msgstr "Gõ lại mật khẩu UNIX mới:"
-
-#: ../src/gnome-screensaver-dialog.c:195
-msgid "Enter new Unix password:"
-msgstr "Nhập mật khẩu UNIX mới:"
-
-#: ../src/gnome-screensaver-dialog.c:196
-msgid "(current) Unix password:"
-msgstr "Mật khẩu UNIX (hiện tại):"
-
-#: ../src/gnome-screensaver-dialog.c:197
-msgid "Error while changing NIS password."
-msgstr "Gặp lỗi khi thay đổi mật khẩu NIS."
-
-#: ../src/gnome-screensaver-dialog.c:198
-msgid "You must choose a longer password"
-msgstr "Bạn phải chọn mật khẩu dài hơn"
-
-#: ../src/gnome-screensaver-dialog.c:199
-msgid "Password has been already used. Choose another."
-msgstr "Mật khẩu đã được dùng rồi. Hãy chọn cái khác."
-
-#: ../src/gnome-screensaver-dialog.c:200
-msgid "You must wait longer to change your password"
-msgstr "Bạn phải đợi lâu hơn để thay đổi mật khẩu"
-
-#: ../src/gnome-screensaver-dialog.c:201
-msgid "Sorry, passwords do not match"
-msgstr "Tiếc là hai mật khẩu không khớp"
-
-#: ../src/gnome-screensaver-dialog.c:267
-msgid "Checking…"
-msgstr "Đang kiểm tra…"
-
-#: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
-msgid "Authentication failed."
-msgstr "Lỗi xác thực."
-
-#: ../src/gnome-screensaver.c:57
+#: ../src/light-locker.c:57
 msgid "Don't become a daemon"
 msgstr "Đừng chạy trong nền"
 
-#: ../src/gnome-screensaver.c:58
+#: ../src/light-locker.c:58
 msgid "Enable debugging code"
 msgstr "Bật chạy mã gỡ lỗi"
 
-#: ../src/gnome-screensaver.desktop.in.in.h:1
-msgid "Launch screensaver and locker program"
-msgstr "Chạy chương trình bảo vệ và khóa màn hình"
-
-#: ../src/gnome-screensaver.desktop.in.in.h:2
-msgid "Screensaver"
+#: ../src/light-locker.desktop.in.in.h:1
+#, fuzzy
+msgid "Screen Locker"
 msgstr "Bộ bảo vệ màn hình"
 
-#: ../src/gs-auth-pam.c:397
-#, c-format
-msgid "Unable to establish service %s: %s\n"
-msgstr "Không thể thiết lập dịch vụ %s: %s\n"
+#: ../src/light-locker.desktop.in.in.h:2
+#, fuzzy
+msgid "Launch screen locker program"
+msgstr "Chạy chương trình bảo vệ và khóa màn hình"
 
-#: ../src/gs-auth-pam.c:423
-#, c-format
-msgid "Can't set PAM_TTY=%s"
-msgstr "Không thể đặt PAM_TTY=%s"
+#: ../src/gs-content.c:95
+msgid "This session is locked."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:455
-msgid "Incorrect password."
-msgstr "Mật khẩu không đúng."
+#: ../src/gs-content.c:117
+msgid ""
+"You'll be redirected to the unlock dialog automatically in a few seconds."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:471
-msgid "Not permitted to gain access at this time."
-msgstr "Không cho phép truy cập vào lúc này."
+#~ msgid "Causes the screensaver to exit gracefully"
+#~ msgstr "Làm cho bộ bảo vệ màn hình thoát êm đẹp"
 
-#: ../src/gs-auth-pam.c:477
-msgid "No longer permitted to access the system."
-msgstr "Không còn có quyền truy cập lại hệ thống."
+#~ msgid "Query the state of the screensaver"
+#~ msgstr "Truy vấn tình trạng của bộ bảo vệ màn hình"
 
-#: ../src/gs-listener-dbus.c:1183
-msgid "failed to register with the message bus"
-msgstr "lỗi đăng ký với mạch nối thông điệp"
+#~ msgid "Query the length of time the screensaver has been active"
+#~ msgstr "Truy vấn khoảng thời gian hoạt động của bộ bảo vệ màn hình"
 
-#: ../src/gs-listener-dbus.c:1193
-msgid "not connected to the message bus"
-msgstr "chưa kết nối đến mạch nối thông điệp"
+#~ msgid "Turn the screensaver on (blank the screen)"
+#~ msgstr "Khởi chạy bộ bảo vệ màn hình (làm trắng màn hình)"
 
-#: ../src/gs-listener-dbus.c:1202 ../src/gs-listener-dbus.c:1232
-msgid "screensaver already running in this session"
-msgstr "bộ bảo vệ màn hình đang chạy trong phiên làm việc này"
+#~ msgid ""
+#~ "If the screensaver is active then deactivate it (un-blank the screen)"
+#~ msgstr "Nếu bộ bảo vệ màn hình có hoạt động thì tắt nó (bỏ trắng màn hình)"
 
-#: ../src/gs-lock-plug.c:256
-msgid "Time has expired."
-msgstr "Quá giờ."
+#~ msgid "The screensaver is active\n"
+#~ msgstr "Bộ bảo vệ màn hình đang hoạt động\n"
 
-#: ../src/gs-lock-plug.c:287
-msgid "You have the Caps & Num Lock keys on."
-msgstr "Phím chữ hoa (CapsLock) và phím số (Num Lock) đang bật."
+#~ msgid "The screensaver is inactive\n"
+#~ msgstr "Bộ bảo vệ màn hình không hoạt động\n"
 
-#: ../src/gs-lock-plug.c:290
-msgid "You have the Caps Lock key on."
-msgstr "Bạn đã bật phím Khoá Chữ Hoa (CapsLock)."
+#~| msgid "The screensaver has been active for %d seconds.\n"
+#~ msgid "The screensaver has been active for %d second.\n"
+#~ msgid_plural "The screensaver has been active for %d seconds.\n"
+#~ msgstr[0] "Bộ bảo vệ màn hình đã hoạt động trong %d giây.\n"
 
-#: ../src/gs-lock-plug.c:293
-msgid "You have the Num Lock key on."
-msgstr "Phím số (Num Lock) đang bật."
+#~ msgid "The screensaver is not currently active.\n"
+#~ msgstr "Bộ bảo vệ màn hình hiện thời không hoạt động.\n"
 
-#: ../src/gs-lock-plug.c:1350
-msgid "S_witch User…"
-msgstr "_Chuyển người dùng…"
+#~ msgid "Show debugging output"
+#~ msgstr "Hiện dữ liệu xuất gỡ lỗi"
 
-#: ../src/gs-lock-plug.c:1359
-msgid "Log _Out"
-msgstr "Đăng _xuất"
+#~ msgid "Show the logout button"
+#~ msgstr "Hiện nút đăng xuất"
 
-#: ../src/gs-lock-plug.c:1366
-msgid "_Unlock"
-msgstr "_Bỏ khoá"
+#~ msgid "Command to invoke from the logout button"
+#~ msgstr "Lệnh cần chạy từ nút đăng xuất"
 
-#: ../src/gs-lock-plug.c:1401
-msgid "_Password:"
-msgstr "_Mật khẩu:"
+#~ msgid "Show the switch user button"
+#~ msgstr "Hiện nút chuyển đổi người dùng"
 
-#: ../src/gs-window-x11.c:2195
-#| msgid "%s %s"
-msgid "%a %R"
-msgstr "%a %R"
+#~ msgid "Message to show in the dialog"
+#~ msgstr "Thông điệp cần hiển thị trong hộp thoại"
 
-#: ../src/gs-window-x11.c:2197
-msgid "%a %l:%M %p"
-msgstr "%a %l:%M %p"
+#~ msgid "MESSAGE"
+#~ msgstr "THÔNG ĐIỆP"
+
+#~ msgid "Not used"
+#~ msgstr "Chưa sử dụng"
+
+#~ msgid "Username:"
+#~ msgstr "Tên người dùng:"
+
+#~ msgid "Password:"
+#~ msgstr "Mật khẩu:"
+
+#~ msgid "You are required to change your password immediately (password aged)"
+#~ msgstr "Bạn phải thay đổi ngay mật khẩu (mật khẩu quá cũ)"
+
+#~ msgid "You are required to change your password immediately (root enforced)"
+#~ msgstr "Bạn phải thay đổi ngay mật khẩu (người dùng root ép buộc)"
+
+#~ msgid "Your account has expired; please contact your system administrator"
+#~ msgstr ""
+#~ "Tài khoản của bạn đã hết hạn dùng: hãy liên lạc với quản trị hệ thống"
+
+#~ msgid "No password supplied"
+#~ msgstr "Chưa cung cấp mật khẩu"
+
+#~ msgid "Password unchanged"
+#~ msgstr "Mật khẩu không đổi"
+
+#~ msgid "Cannot get username"
+#~ msgstr "Không thể lấy tên người dùng"
+
+#~ msgid "Retype new Unix password:"
+#~ msgstr "Gõ lại mật khẩu UNIX mới:"
+
+#~ msgid "Enter new Unix password:"
+#~ msgstr "Nhập mật khẩu UNIX mới:"
+
+#~ msgid "(current) Unix password:"
+#~ msgstr "Mật khẩu UNIX (hiện tại):"
+
+#~ msgid "Error while changing NIS password."
+#~ msgstr "Gặp lỗi khi thay đổi mật khẩu NIS."
+
+#~ msgid "You must choose a longer password"
+#~ msgstr "Bạn phải chọn mật khẩu dài hơn"
+
+#~ msgid "Password has been already used. Choose another."
+#~ msgstr "Mật khẩu đã được dùng rồi. Hãy chọn cái khác."
+
+#~ msgid "You must wait longer to change your password"
+#~ msgstr "Bạn phải đợi lâu hơn để thay đổi mật khẩu"
+
+#~ msgid "Sorry, passwords do not match"
+#~ msgstr "Tiếc là hai mật khẩu không khớp"
+
+#~ msgid "Checking…"
+#~ msgstr "Đang kiểm tra…"
+
+#~ msgid "Authentication failed."
+#~ msgstr "Lỗi xác thực."
+
+#~ msgid "Unable to establish service %s: %s\n"
+#~ msgstr "Không thể thiết lập dịch vụ %s: %s\n"
+
+#~ msgid "Can't set PAM_TTY=%s"
+#~ msgstr "Không thể đặt PAM_TTY=%s"
+
+#~ msgid "Incorrect password."
+#~ msgstr "Mật khẩu không đúng."
+
+#~ msgid "Not permitted to gain access at this time."
+#~ msgstr "Không cho phép truy cập vào lúc này."
+
+#~ msgid "No longer permitted to access the system."
+#~ msgstr "Không còn có quyền truy cập lại hệ thống."
+
+#~ msgid "failed to register with the message bus"
+#~ msgstr "lỗi đăng ký với mạch nối thông điệp"
+
+#~ msgid "not connected to the message bus"
+#~ msgstr "chưa kết nối đến mạch nối thông điệp"
+
+#~ msgid "screensaver already running in this session"
+#~ msgstr "bộ bảo vệ màn hình đang chạy trong phiên làm việc này"
+
+#~ msgid "Time has expired."
+#~ msgstr "Quá giờ."
+
+#~ msgid "You have the Caps & Num Lock keys on."
+#~ msgstr "Phím chữ hoa (CapsLock) và phím số (Num Lock) đang bật."
+
+#~ msgid "You have the Caps Lock key on."
+#~ msgstr "Bạn đã bật phím Khoá Chữ Hoa (CapsLock)."
+
+#~ msgid "You have the Num Lock key on."
+#~ msgstr "Phím số (Num Lock) đang bật."
+
+#~ msgid "S_witch User…"
+#~ msgstr "_Chuyển người dùng…"
+
+#~ msgid "Log _Out"
+#~ msgstr "Đăng _xuất"
+
+#~ msgid "_Unlock"
+#~ msgstr "_Bỏ khoá"
+
+#~ msgid "_Password:"
+#~ msgstr "_Mật khẩu:"
+
+#~| msgid "%s %s"
+#~ msgid "%a %R"
+#~ msgstr "%a %R"
+
+#~ msgid "%a %l:%M %p"
+#~ msgstr "%a %l:%M %p"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "Lập các tùy thích cho trình bảo vệ màn hình"
@@ -333,7 +283,8 @@ msgstr "%a %l:%M %p"
 
 #~ msgid "%s. See --help for usage information.\n"
 #~ msgstr ""
-#~ "%s: Hãy chạy lệnh « --help » (trợ giúp) để xem thông tin về cách sử dụng.\n"
+#~ "%s: Hãy chạy lệnh « --help » (trợ giúp) để xem thông tin về cách sử "
+#~ "dụng.\n"
 
 #~ msgid "Show paths that images follow"
 #~ msgstr "Hiển thị các đường dẫn mà ảnh theo"
@@ -551,10 +502,10 @@ msgstr "%a %l:%M %p"
 #~ "should implement an XEMBED plug interface and output a window XID on the "
 #~ "standard output."
 #~ msgstr ""
-#~ "Lệnh sẽ được chạy, nếu khoá « embedded_keyboard_enabled » được đặt là ĐÚNG "
-#~ "(true), để nhúng ô điều khiển bàn phím trong cửa sổ. Lệnh này nên thực "
-#~ "hiện một giao diện nút XEMBED và xuất một XID cửa sổ ra thiết bị xuất "
-#~ "chuẩn."
+#~ "Lệnh sẽ được chạy, nếu khoá « embedded_keyboard_enabled » được đặt là "
+#~ "ĐÚNG (true), để nhúng ô điều khiển bàn phím trong cửa sổ. Lệnh này nên "
+#~ "thực hiện một giao diện nút XEMBED và xuất một XID cửa sổ ra thiết bị "
+#~ "xuất chuẩn."
 
 #~ msgid ""
 #~ "The command to invoke when the logout button is clicked. This command "
@@ -626,8 +577,8 @@ msgstr "%a %l:%M %p"
 #~ "Khoá này ghi rõ danh sách các sắc thái cho bộ bảo vệ màn hình dùng. Nó\n"
 #~ " • bị bỏ qua khi khoá « mode » (chế độ) chỉ trắng (« blank only »)\n"
 #~ " • nên cung cấp tên sắc thái khi « mode » (chế độ) là đơn (« single »)\n"
-#~ " • nên cung cấp danh sách các sắc thái khi « mode » (chế độ) là ngẫu nhiên "
-#~ "(« random »)."
+#~ " • nên cung cấp danh sách các sắc thái khi « mode » (chế độ) là ngẫu "
+#~ "nhiên (« random »)."
 
 #~ msgid "Time before locking"
 #~ msgstr "Thời gian trước khi khoá"

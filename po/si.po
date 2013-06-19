@@ -7,759 +7,518 @@ msgid ""
 msgstr ""
 "Project-Id-Version: si\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-07 03:39+0100\n"
+"POT-Creation-Date: 2013-06-19 23:00+0200\n"
 "PO-Revision-Date: 2007-09-17 12:27+0530\n"
 "Last-Translator: Danishka Navin <snavin@redhat.com>\n"
 "Language-Team: Sinhala <en@li.org>\n"
+"Language: si\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../data/gnome-screensaver-preferences.desktop.in.h:1
-msgid "Screensaver"
-msgstr "තිරආවරකය"
-
-#: ../data/gnome-screensaver-preferences.desktop.in.h:2
-msgid "Set your screensaver preferences"
-msgstr "ඔබගේ තිරආවරක අභිප්‍රේත සකසන්න"
-
-#: ../data/gnome-screensaver-preferences.glade.h:1
-msgid "<b>Screensaver preview</b>"
-msgstr "<b>තිරආවරකය පෙන්වන්න</b>"
-
-#: ../data/gnome-screensaver-preferences.glade.h:2
-msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-msgstr "<b>අවවාදය: තිරය පද්ධති පරිපාලක (root පරිශිලක) සඳහා අගුලැමට නොහැකිය.</b>"
-
-#: ../data/gnome-screensaver-preferences.glade.h:3
-msgid "Power _Management"
-msgstr "ශක්ති කළමණාකරනය (_M)"
-
-#: ../data/gnome-screensaver-preferences.glade.h:4
-msgid "Regard the computer as _idle after:"
-msgstr ""
-
-#: ../data/gnome-screensaver-preferences.glade.h:5
-msgid "Screensaver Preferences"
-msgstr "තිරආවරක අභිප්‍රේතයන්"
-
-#: ../data/gnome-screensaver-preferences.glade.h:6
-msgid "Screensaver Preview"
-msgstr "තිරආවරකය පෙන්වන්න"
-
-#: ../data/gnome-screensaver-preferences.glade.h:7
-msgid "_Activate screensaver when computer is idle"
-msgstr "පරිගණකය අභාවිත වනවිට තිරආවරකය සක්‍රිය කරන්න (_A)"
-
-#: ../data/gnome-screensaver-preferences.glade.h:8
-msgid "_Lock screen when screensaver is active"
-msgstr "තිරආවරකය සක්‍රිය වන විට තිරය අගුලු දමන්න (_L)"
-
-#: ../data/gnome-screensaver-preferences.glade.h:9
-msgid "_Preview"
-msgstr "පෙන්වන්න (_P)"
-
-#: ../data/gnome-screensaver-preferences.glade.h:10
-msgid "_Screensaver theme:"
-msgstr "තිරආවරකයේ තේමාව: (_S)"
-
-#: ../data/gnome-screensaver.directory.in.h:1
-#: ../data/gnome-screensaver.schemas.in.h:10
-msgid "Screensaver themes"
-msgstr "තිරආවරකයේ තේමා"
-
-#: ../data/gnome-screensaver.directory.in.h:2
-msgid "Screensavers"
-msgstr "තිරආවරක"
-
-#: ../data/gnome-screensaver.schemas.in.h:1
-msgid "Activate when idle"
-msgstr "අභාවිත විට සක්‍රිය කරන්න"
-
-#: ../data/gnome-screensaver.schemas.in.h:2
+#: ../src/light-locker-command.c:40
 #, fuzzy
-msgid "Allow embedding a keyboard into the window"
-msgstr "කවුළුව තුලට  යතුරු පුවරුව කාවැදීම අනුමතයී"
-
-#: ../data/gnome-screensaver.schemas.in.h:3
-msgid "Allow logout"
-msgstr "ඉවත්විමට ඉඩ දෙන්න"
-
-#: ../data/gnome-screensaver.schemas.in.h:4
-msgid "Allow user switching"
-msgstr "පරිශිලක හුවමාරුවට ඉඩ දෙන්න "
-
-#: ../data/gnome-screensaver.schemas.in.h:5
-msgid "Embedded keyboard command"
-msgstr "කාවැදුනු යතුරු පුවරු විධානය"
-
-#: ../data/gnome-screensaver.schemas.in.h:6
-msgid "Lock on activation"
-msgstr "සක්‍රිය විටදි අගුලු දමන්න"
-
-#: ../data/gnome-screensaver.schemas.in.h:7
-msgid "Logout command"
-msgstr "ඉවත් වීමෙ විධානය"
-
-#: ../data/gnome-screensaver.schemas.in.h:8
-msgid "Reason for being away"
-msgstr "ඉවතට යාමට හේතුව"
-
-#: ../data/gnome-screensaver.schemas.in.h:9
-msgid "Screensaver theme selection mode"
-msgstr "තිරආවරකයේ තේමාව තොරා ගැනිමේ ආකාරය"
-
-#: ../data/gnome-screensaver.schemas.in.h:11
-msgid "Set this to TRUE to activate the screensaver when the session is idle."
-msgstr "සැසිය අභාවිත විටදී තිරආවරකය සක්‍රිය වීමට මෙය සත්‍ය අගයට සකසන්න."
-
-#: ../data/gnome-screensaver.schemas.in.h:12
-msgid ""
-"Set this to TRUE to allow embedding a keyboard into the window when trying "
-"to unlock. The \"keyboard_command\" key must be set with the appropriate "
-"command."
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:13
-msgid "Set this to TRUE to lock the screen when the screensaver goes active."
-msgstr "තිරආවරකය සක්‍රිය වීමේදි තිරය අගුලුලෑමට මෙය සත්‍ය අගයට සකසන්න."
-
-#: ../data/gnome-screensaver.schemas.in.h:14
-#, fuzzy
-msgid ""
-"Set this to TRUE to offer an option in the unlock dialog to switch to a "
-"different user account."
-msgstr ""
-"වෙනත් පරිශ්‍රක ගිණුමක් වෙත මාරු වීම සඳහා අගුලු-අරින සංවාද කොටුවේ විකල්පයක් "
-"ලබා දීමට මෙය සත්‍ය අගයට සකසන්න."
-
-#: ../data/gnome-screensaver.schemas.in.h:15
-msgid ""
-"Set this to TRUE to offer an option in unlock dialog to logging out after a "
-"delay. The Delay is specified in the \"logout_delay\" key."
-msgstr ""
-"මදක් ප්‍රමාදවි පිවිසීමම සඳහා අගුලු-අරින සංවාද කොටුවේ විකල්පයක් "
-"ලබා දීමට මෙය සත්‍ය අගයට සකසන්න ප්‍රමාදය \"logout_delay\" "
-"යතුරෙහි විශේෂිතව දක්වා ඇත.."
-
-#: ../data/gnome-screensaver.schemas.in.h:16
-msgid ""
-"The command that will be run, if the \"embedded_keyboard_enabled\" key is "
-"set to TRUE, to embed a keyboard widget into the window. This command should "
-"implement an XEMBED plug interface and output a window XID on the standard "
-"output."
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:17
-msgid ""
-"The command to invoke when the logout button is clicked. This command should "
-"simply log the user out without any interaction. This key has effect only if "
-"the \"logout_enable\" key is set to TRUE."
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:18
-msgid "The number of minutes after screensaver activation before locking the screen."
-msgstr "තිරආවරකය ක්‍රියාත්මකවු පසු තිරය අගුලු ලැමට ගතවන මිනිත්තු ගණන."
-
-#: ../data/gnome-screensaver.schemas.in.h:19
-#, fuzzy
-msgid ""
-"The number of minutes after the screensaver activation before a logout "
-"option will appear in unlock dialog. This key has effect only if the "
-"\"logout_enable\" key is set to TRUE."
-msgstr ""
-"The number of minutes after the screensaver activation before a logout "
-"option will appear in unlock dialog. මෙම යතුර ක්‍රියාත්මක වන්නේ "
-"\"logout_enable\" යතුර සත්‍ය අගයට සැකසුවහොත් පමණි."
-
-#: ../data/gnome-screensaver.schemas.in.h:20
-msgid "The number of minutes of inactivity before the session is considered idle."
-msgstr "සැසිය අභාවිත ලෙස සැලකීමට පෙර කාළය අක්‍රියව පවතින මිනිත්තු ගණන."
-
-#: ../data/gnome-screensaver.schemas.in.h:21
-msgid "The number of minutes to run before changing the screensaver theme."
-msgstr "තිරආවරක තේමාව වෙනස් වීමට පෙර ක්‍රියාත්මක වියයුතු මිනිත්තු ගණන."
-
-#: ../data/gnome-screensaver.schemas.in.h:22
-msgid ""
-"The number of seconds of inactivity before signalling to power-management. "
-"This key is set and maintained by the session power-management agent."
-msgstr ""
-"ශක්ති-කළමණාකරනයට සංඥා කිරිමට ප්‍රථම අක්‍රිය වන තත්පර ගණන."
-"සැසි ශක්ති-කළමණාකරනය නියොජිතයා මෙම යතුර සැකසීම සහ නඩත්තු කටයුතු සිදු කරයි."
-
-#: ../data/gnome-screensaver.schemas.in.h:23
-msgid "The reason for being away from the computer."
-msgstr "ඔබගේ පරිගණකය වෙතින් ඉවත්ව යාමට හේතුව"
-
-#: ../data/gnome-screensaver.schemas.in.h:24
-msgid ""
-"The selection mode used by screensaver. May be \"blank-only\" to enable the "
-"screensaver without using any theme on activation, \"single\" to enable "
-"screensaver using only one theme on activation (specified in \"themes\" "
-"key), and \"random\" to enable the screensaver using a random theme on "
-"activation."
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:25
-msgid "Theme for lock dialog"
-msgstr "අගුලු සංවාද කොටුව සඳහා තේමාව"
-
-#: ../data/gnome-screensaver.schemas.in.h:26
-msgid "Theme to use for the lock dialog."
-msgstr "අගුලු සංවාද කොටුව සඳහා බාවිතා කලයුතු තේමාව."
-
-#: ../data/gnome-screensaver.schemas.in.h:27
-msgid ""
-"This key specifies the list of themes to be used by the screensaver. It's "
-"ignored when \"mode\" key is \"blank-only\", should provide the theme name "
-"when \"mode\" is \"single\", and should provide a list of themes when \"mode"
-"\" is \"random\"."
-msgstr ""
-
-#: ../data/gnome-screensaver.schemas.in.h:28
-msgid "Time before locking"
-msgstr "අගුලුලෑමට පෙර කාලය"
-
-#: ../data/gnome-screensaver.schemas.in.h:29
-msgid "Time before logout option"
-msgstr "ඉවත් වීමේ විකල්පයට පෙර කාළය"
-
-#: ../data/gnome-screensaver.schemas.in.h:30
-#, fuzzy
-msgid "Time before power-management baseline"
-msgstr "ශක්ති කළමණාකරන සීමා රේඛාවට පැමිණිමට පෙර කාළය"
-
-#: ../data/gnome-screensaver.schemas.in.h:31
-msgid "Time before session is considered idle"
-msgstr "සැසිය අභාවිත ලෙස සැලකීමට පෙර කාළය"
-
-#: ../data/gnome-screensaver.schemas.in.h:32
-msgid "Time before theme change"
-msgstr "තේමාව වෙනස් වීමට පෙර කාළය"
-
-#: ../data/lock-dialog-default.glade.h:2
-#, no-c-format
-msgid "<b>Leave a message for %R:</b>"
-msgstr "<b>%R වෙත පණිවිඩයක් තබන්න:</b>"
-
-#: ../data/lock-dialog-default.glade.h:4
-#, no-c-format
-#, fuzzy
-msgid "<span size=\"small\">%U on %h</span>"
-msgstr "<span size=\"small\">%U on %h</span>"
-
-#: ../data/lock-dialog-default.glade.h:6
-#, no-c-format
-msgid "<span size=\"x-large\">%R</span>"
-msgstr "<span size=\"x-large\">%R</span>"
-
-#: ../data/lock-dialog-default.glade.h:7
-msgid "Authentication"
-msgstr "තහවුරු කර ගැනීම"
-
-#: ../data/lock-dialog-default.glade.h:8
-msgid "Note"
-msgstr "සටහන"
-
-#: ../data/lock-dialog-default.glade.h:9
-msgid "_Cancel"
-msgstr "අවලංගු කරන්න (_C)"
-
-#: ../data/lock-dialog-default.glade.h:10
-msgid "_Leave Message"
-msgstr "පණිවිඩයක් තබන්න (_L)"
-
-#: ../data/lock-dialog-default.glade.h:11
-msgid "_Log Out"
-msgstr "ඉවත් වීම (_L)"
-
-#: ../data/lock-dialog-default.glade.h:12
-#, fuzzy
-msgid "_Switch User"
-msgstr "පරිශිලක මාරුව (_S)"
-
-#: ../data/lock-dialog-default.glade.h:13 ../src/gs-lock-plug.c:1207
-msgid "_Unlock"
-msgstr "අගුලු අරින්න (_U)"
-
-#: ../savers/cosmos-slideshow.desktop.in.in.h:1
-msgid "Cosmos"
-msgstr "Cosmos"
-
-#: ../savers/cosmos-slideshow.desktop.in.in.h:2
-msgid "Display a slideshow of pictures of the cosmos"
-msgstr "cosmos පිංතුර මගින් තිරපෙන්නූමක් දර්ශණය කරන්න"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:1
-#, fuzzy
-msgid "Bubbles the GNOME foot logo around the screen"
-msgstr "GNOME පාද සළකුණ තිරය පුරා  බුබුලණය කරන්න"
-
-#: ../savers/footlogo-floaters.desktop.in.in.h:2
-msgid "Floating Feet"
-msgstr "පාවෙන පාද"
-
-#: ../savers/personal-slideshow.desktop.in.h:1
-msgid "Display a slideshow from your Pictures folder"
-msgstr "ඔබගේ පිංතුර බහලුමෙන් තිරපෙන්නූමක් දර්ශණය කරන්න"
-
-#: ../savers/personal-slideshow.desktop.in.h:2
-msgid "Pictures folder"
-msgstr "පිංතුර බහලුම"
-
-#: ../savers/popsquares.desktop.in.h:1
-msgid "A pop-art-ish grid of pulsing colors."
-msgstr ""
-
-#: ../savers/popsquares.desktop.in.h:2
-msgid "Pop art squares"
-msgstr "චිත්‍ර කොටු මතු කරන්න"
-
-#: ../savers/floaters.c:1166
-msgid "show paths that images follow"
-msgstr ""
-
-#: ../savers/floaters.c:1173
-msgid "occasionally rotate images as they move"
-msgstr "කලාතුරකින් පිළිඹිබු චලනය වන ලෙස කර කවන්න"
-
-#: ../savers/floaters.c:1180
-msgid "print out frame rate and other statistics"
-msgstr "රාමු ශිඝ්‍රතාව සහ වෙනත් සංඛ්‍යන දත්ත මුද්‍රණය කරන්න"
-
-#: ../savers/floaters.c:1188
-msgid "the maximum number of images to keep on screen"
-msgstr "තිරය මත තිබිය යුතු උපරිම පිළිඹිබු ගණන"
-
-#. translators: this should be translated to be symbolic of a generic
-#. * number.  e.g, "the screen saver should keep N images on the screen"
-#.
-#: ../savers/floaters.c:1192
-msgid "N"
-msgstr "N"
-
-#: ../savers/floaters.c:1199
-msgid "the source image to use"
-msgstr "භවිතා කලයුතු මුලාශ්‍ර පිළිඹිබුව"
-
-#: ../savers/floaters.c:1206
-msgid "the initial size and position of window"
-msgstr "කවුළුවේ ආරම්භක ප්‍රමාණය සහ පිහිටීම"
-
-#. translators: this is an X geometry spec.  WIDTH, HEIGHT, X, and Y
-#. * can be translated, but the 'x' area indicator and '+' offset indicators
-#. * need to be untranslated and can't be rearranged.
-#.
-#: ../savers/floaters.c:1211
-msgid "WIDTHxHEIGHT+X+Y"
-msgstr "පළලxඋස+X+Y"
-
-#. translators: the word "image" here
-#. * represents a command line argument
-#.
-#: ../savers/floaters.c:1229
-msgid "image - floats images around the screen"
-msgstr ""
-
-#: ../savers/floaters.c:1239
-#, c-format
-msgid "%s. See --help for usage information.\n"
-msgstr "%s.  භවිතය පිළිබද තොරතුරුතර සඳහා --help බලන්න.\n"
-
-#: ../savers/floaters.c:1248
-msgid "You must specify one image.  See --help for usage information.\n"
-msgstr "ඔබ විසින් එක් පිළිඹිබුවක් විශේෂිතව දැක්විය යුතුයි.  භාවිතය පිළිබද තොරතුරු සඳහා --help බලන්න.\n"
-
-#: ../savers/slideshow.c:49
-msgid "Location to get images from"
-msgstr "පිළිඹිබු ගතයුතු ස්තානය"
-
-#: ../savers/slideshow.c:49
-msgid "PATH"
-msgstr "මාර්‍ගය"
-
-#: ../src/file-transfer-dialog.c:94
-#, c-format
-msgid "Copying file: %u of %u"
-msgstr "ගොනු පිටපත් කරමින් සිටී: %u of %u"
-
-#: ../src/file-transfer-dialog.c:122
-#, c-format
-msgid "Copying '%s'"
-msgstr "පිටපත් කරමින් සිටී '%s'"
-
-#: ../src/file-transfer-dialog.c:193
-msgid "From URI"
-msgstr "URI වෙතින්"
-
-#: ../src/file-transfer-dialog.c:194
-msgid "URI currently transferring from"
-msgstr "URI දැනට වෙතින් මාරුවෙමින් පවතින්නේ"
-
-#: ../src/file-transfer-dialog.c:201
-msgid "To URI"
-msgstr "URI වෙත"
-
-#: ../src/file-transfer-dialog.c:202
-#, fuzzy
-msgid "URI currently transferring to"
-msgstr "URI දැනට මාරුවන්නේ"
-
-#: ../src/file-transfer-dialog.c:209
-#, fuzzy
-msgid "Fraction completed"
-msgstr "සුළු කොටස සම්පුර්ණ විය"
-
-#: ../src/file-transfer-dialog.c:210
-#, fuzzy
-msgid "Fraction of transfer currently completed"
-msgstr "මාරු කිරිමේ සුළු කොටස දැනට සම්පුර්ණයි"
-
-#: ../src/file-transfer-dialog.c:217
-msgid "Current URI index"
-msgstr "දැනට ඇති URI පටුන"
-
-#: ../src/file-transfer-dialog.c:218
-msgid "Current URI index - starts from 1"
-msgstr "වර්තමාන URI පටුණ - 1න් පටන් ගන්න"
-
-#: ../src/file-transfer-dialog.c:225
-msgid "Total URIs"
-msgstr "සියළුම URIs"
-
-#: ../src/file-transfer-dialog.c:226
-msgid "Total number of URIs"
-msgstr "URI එකතුව"
-
-#: ../src/file-transfer-dialog.c:327 ../src/file-transfer-dialog.c:369
-msgid "Copying files"
-msgstr "ගොනු පිටපත් කරමින් සිටී"
-
-#: ../src/file-transfer-dialog.c:345
-#, fuzzy
-msgid "From:"
-msgstr "ආපසු:"
-
-#: ../src/file-transfer-dialog.c:349
-#, fuzzy
-msgid "To:"
-msgstr "යායුතු:"
-
-#: ../src/file-transfer-dialog.c:448
-msgid "Connecting..."
-msgstr "සම්බන්ද වෙමින්..."
-
-#: ../src/gnome-screensaver-command.c:62
-#, fuzzy
-msgid "Causes the screensaver to exit gracefully"
-msgstr "ප්‍රසන්න ලෙස තිරආවරකයට ඉවත්වීමට සැලසීය"
-
-#: ../src/gnome-screensaver-command.c:64
-#, fuzzy
-msgid "Query the state of the screensaver"
-msgstr "තිරආවරකයේ තත්වය විමසන්න"
-
-#: ../src/gnome-screensaver-command.c:66
-msgid "Query the length of time the screensaver has been active"
-msgstr ""
-
-#: ../src/gnome-screensaver-command.c:68
-#, fuzzy
-msgid "Tells the running screensaver process to lock the screen immediately"
+msgid "Tells the running display manager to lock the screen immediately"
 msgstr "ක්‍රියාත්මක වෙමින් පවතින තිරආවරක වැඩසටහනට හැකි ඉක්මනින් තිරය වැසීමට පවසන්න"
 
-#: ../src/gnome-screensaver-command.c:70
-msgid "If the screensaver is active then switch to another graphics demo"
-msgstr "තිරආවරකය ක්‍රියාකරි නම් වෙනත් චිත්‍රක ප්‍රදර්ශකයක් වෙතට මාරු වන්න"
-
-#: ../src/gnome-screensaver-command.c:72
-msgid "Turn the screensaver on (blank the screen)"
-msgstr "තිරආවරකය ක්‍රියාත්මක කරන්න (තිරය හිස් කරන්න)"
-
-#: ../src/gnome-screensaver-command.c:74
-msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr "තිරආවරකය සක්‍රිය නම් එය අක්‍රිය කරන්න (තිරය හිස් නොකරන්න)"
-
-#: ../src/gnome-screensaver-command.c:76
-msgid "Poke the running screensaver to simulate user activity"
-msgstr ""
-
-#: ../src/gnome-screensaver-command.c:78
-msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
-msgstr ""
-
-#: ../src/gnome-screensaver-command.c:80
-msgid "The calling application that is inhibiting the screensaver"
-msgstr ""
-
-#: ../src/gnome-screensaver-command.c:82
-msgid "The reason for inhibiting the screensaver"
-msgstr ""
-
-#: ../src/gnome-screensaver-command.c:84 ../src/gnome-screensaver-dialog.c:55
-#: ../src/gnome-screensaver.c:56
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 msgid "Version of this application"
 msgstr "මෙම යෙදුමෙ වෙළුම"
 
-#: ../src/gnome-screensaver-command.c:249
-#, c-format
-msgid "The screensaver is %s\n"
-msgstr "තිරආවරකය වන්නේ %s\n"
-
-#: ../src/gnome-screensaver-command.c:249
-msgid "active"
-msgstr "සක්‍රිය"
-
-#: ../src/gnome-screensaver-command.c:249
-msgid "inactive"
-msgstr "අක්‍රිය"
-
-#: ../src/gnome-screensaver-command.c:274
-#, c-format
-msgid "The screensaver has been active for %d seconds.\n"
-msgstr ""
-
-#: ../src/gnome-screensaver-dialog.c:53
-msgid "Show debugging output"
-msgstr "දෝෂහරිණ ප්‍රථිධානය පෙන්වන්න"
-
-#: ../src/gnome-screensaver-dialog.c:57
-msgid "Show the logout button"
-msgstr "ඉවත් වීමේ බොත්තම පෙන් වන්න"
-
-#: ../src/gnome-screensaver-dialog.c:59
-msgid "Command to invoke from the logout button"
-msgstr "ඉවත් වීමෙ බොත්තමෙන් ඉල්ලා සිටින විධානය"
-
-#: ../src/gnome-screensaver-dialog.c:61
-msgid "Show the switch user button"
-msgstr "පරිශිලක හුවමාරු බොත්තම පෙන්වන්න"
-
-#: ../src/gnome-screensaver-dialog.c:63
-msgid "Message to show in the dialog"
-msgstr "සංවාද කොටුවේ පෙන් විය යුතු පණිවිඩවේ"
-
-#: ../src/gnome-screensaver-dialog.c:63
-msgid "MESSAGE"
-msgstr "පණිවිවිඩය"
-
-#. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:173 ../src/gnome-screensaver-dialog.c:174
-#: ../src/gnome-screensaver-dialog.c:175 ../src/gs-auth-pam.c:698
-msgid "Username:"
-msgstr "පරිශිලක නම:"
-
-#: ../src/gnome-screensaver-dialog.c:176 ../src/gnome-screensaver-dialog.c:177
-#: ../src/gs-auth-pam.c:166
-msgid "Password:"
-msgstr "රහස්පදය:"
-
-#: ../src/gnome-screensaver-dialog.c:178
-msgid "You are required to change your password immediately (password aged)"
-msgstr "ඔබ හැකි ඉක්මනින් රහස් පදය වෙනස් කළයුතුවේ (රහස්පදය පරණයි)"
-
-#: ../src/gnome-screensaver-dialog.c:179
-msgid "You are required to change your password immediately (root enforced)"
-msgstr "ඔබ හැකි ඉක්මනින් රහස්පදය වෙනස් කළයුතුවේ (root බලකරයි)"
-
-#: ../src/gnome-screensaver-dialog.c:180
-msgid "Your account has expired; please contact your system administrator"
-msgstr "ඔබගේ ගිණුම අවලංගු වී ඇත; කරුණාකර ඔබගේ පද්ධති පරිපාලක හමුවන්න"
-
-#: ../src/gnome-screensaver-dialog.c:181
-msgid "No password supplied"
-msgstr "රහස්පදයක් සපයා නැත"
-
-#: ../src/gnome-screensaver-dialog.c:182
-msgid "Password unchanged"
-msgstr "රහස්පදය වෙනස් නොවුනී"
-
-#: ../src/gnome-screensaver-dialog.c:183
-msgid "Can not get username"
-msgstr "පරිශීලක නාමය ගත නොහැක"
-
-#: ../src/gnome-screensaver-dialog.c:184
-msgid "Retype new UNIX password:"
-msgstr "නව UNIX රහස්පදයක් නැවත යොදන්න:"
-
-#: ../src/gnome-screensaver-dialog.c:185
-msgid "Enter new UNIX password:"
-msgstr "නව UNIX රහස්පදයක් ඇතුලත් කරන්න:"
-
-#: ../src/gnome-screensaver-dialog.c:186
-msgid "(current) UNIX password:"
-msgstr "(දැනට ඇති) UNIX රහස්පදය:"
-
-#: ../src/gnome-screensaver-dialog.c:187
-msgid "Error while changing NIS password."
-msgstr "NIS රහස්පදය වෙනස් කිරීමේදි දෝෂයක්."
-
-#: ../src/gnome-screensaver-dialog.c:188
-msgid "You must choose a longer password"
-msgstr "ඔබ විසින් වඩා දිගු රහස්පදයක් තෝරාගත යුතුමවේ"
-
-#: ../src/gnome-screensaver-dialog.c:189
-msgid "Password has been already used. Choose another."
-msgstr "රහස්පදය මීට පෙර භාවිතා කර ඇත. වෙත් එකක් තොරන්න."
-
-#: ../src/gnome-screensaver-dialog.c:190
-msgid "You must wait longer to change your password"
-msgstr "රහස්පදය වෙනස් කිරිමට ඔබ බොහෝ වේලාවක් රැදී සිටිය යුතුමයි"
-
-#: ../src/gnome-screensaver-dialog.c:191
-msgid "Sorry, passwords do not match"
-msgstr "සමාවන්න, රහස්පද නොගැලපේ"
-
-#: ../src/gnome-screensaver-dialog.c:257
-msgid "Checking..."
-msgstr "පරික්‍ෂාකරමින්..."
-
-#: ../src/gnome-screensaver-dialog.c:299 ../src/gs-auth-pam.c:457
-msgid "Authentication failed."
-msgstr "තහවුරු කර ගැනීම අසමත්විය."
-
-#: ../src/gnome-screensaver-preferences.c:461
-msgid "Blank screen"
-msgstr "හිස් තිරය"
-
-#: ../src/gnome-screensaver-preferences.c:467
-msgid "Random"
-msgstr "අහබු"
-
-#: ../src/gnome-screensaver-preferences.c:837
-msgid "Invalid screensaver theme"
-msgstr "සාවද්‍ය තිරආවරක තේමාවක්"
-
-#: ../src/gnome-screensaver-preferences.c:840
-msgid "This file does not appear to be a valid screensaver theme."
-msgstr "මෙම ගොනුව නිරවද්‍ය තිරආවරක තේමාවක් ලෙස නොදැක්වේ."
-
-#: ../src/gnome-screensaver-preferences.c:967
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "පැය %d යි"
-msgstr[1] "පැය %d යි"
-
-#: ../src/gnome-screensaver-preferences.c:970
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "විනාඩි %d යි"
-msgstr[1] "විනාඩි %d යි"
-
-#: ../src/gnome-screensaver-preferences.c:973
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "තත්පර %d යි"
-msgstr[1] "තත්පර %d යි"
-
-#. hour:minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:979
-#, c-format
-msgid "%s %s %s"
-msgstr "%s %s %s"
-
-#. hour:minutes
-#. minutes:seconds
-#: ../src/gnome-screensaver-preferences.c:982
-#: ../src/gnome-screensaver-preferences.c:990
-#, c-format
-msgid "%s %s"
-msgstr "%s %s"
-
-#. hour
-#. minutes
-#. seconds
-#: ../src/gnome-screensaver-preferences.c:985
-#: ../src/gnome-screensaver-preferences.c:993
-#: ../src/gnome-screensaver-preferences.c:997
-#, c-format
-msgid "%s"
-msgstr "%s"
-
-#: ../src/gnome-screensaver-preferences.c:1012
-#, fuzzy
-msgid "Never"
-msgstr "කිසිදාක නැත"
-
-#: ../src/gnome-screensaver-preferences.c:1411
-msgid "Could not load the main interface"
-msgstr "ප්‍රධාන මුහුණත පුරණය කළ නොහැක"
-
-#: ../src/gnome-screensaver-preferences.c:1413
-msgid "Please make sure that the screensaver is properly installed"
-msgstr "කරුණාකර තිරආවරකය නිසි ලෙස ස්ථාපනය කළ ඇති දැයි තහවුරු කරගන්න."
-
-#: ../src/gnome-screensaver.c:57
+#: ../src/light-locker.c:57
 msgid "Don't become a daemon"
 msgstr "විබුද්ධකයකු නොවන්න"
 
-#: ../src/gnome-screensaver.c:58
+#: ../src/light-locker.c:58
 msgid "Enable debugging code"
 msgstr "දෝෂහරිණ කේත සක්‍රිය කරන්න"
 
-#: ../src/gs-auth-pam.c:397
-#, c-format
-msgid "Unable to establish service %s: %s\n"
-msgstr "%s සේවය ස්ථාපනය කළ නොහැක: %s\n"
+#: ../src/light-locker.desktop.in.in.h:1
+#, fuzzy
+msgid "Screen Locker"
+msgstr "තිරආවරකය"
 
-#: ../src/gs-auth-pam.c:423
-#, c-format
-msgid "Can't set PAM_TTY=%s"
-msgstr "PAM_TTY=%s සැකසීමට නොහැකිය "
+#: ../src/light-locker.desktop.in.in.h:2
+msgid "Launch screen locker program"
+msgstr ""
 
-#: ../src/gs-auth-pam.c:455
-msgid "Incorrect password."
-msgstr "සාවද්‍ය රහස්පදයකී."
+#: ../src/gs-content.c:95
+msgid "This session is locked."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:471
-msgid "Not permitted to gain access at this time."
-msgstr "මෙම අවස්තාවේ භාවිතයට අවසර නැත."
+#: ../src/gs-content.c:117
+msgid ""
+"You'll be redirected to the unlock dialog automatically in a few seconds."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:477
-msgid "No longer permitted to access the system."
-msgstr "වැඩිදුරටත් භාවිතයට අවසර නැත."
+#~ msgid "Set your screensaver preferences"
+#~ msgstr "ඔබගේ තිරආවරක අභිප්‍රේත සකසන්න"
 
-#: ../src/gs-listener-dbus.c:1817
-msgid "failed to register with the message bus"
-msgstr "පණිවිඩ බසය සමඟ ලියාපදිංචිම අපහසු විය"
+#~ msgid "<b>Screensaver preview</b>"
+#~ msgstr "<b>තිරආවරකය පෙන්වන්න</b>"
 
-#: ../src/gs-listener-dbus.c:1827
-msgid "not connected to the message bus"
-msgstr "පණිවිඩ බසයට සම්බන්ද නොවුනි"
+#~ msgid "<b>Warning: the screen will not be locked for the root user.</b>"
+#~ msgstr "<b>අවවාදය: තිරය පද්ධති පරිපාලක (root පරිශිලක) සඳහා අගුලැමට නොහැකිය.</b>"
 
-#: ../src/gs-listener-dbus.c:1836
-msgid "screensaver already running in this session"
-msgstr "මෙම සැසියේ තිරආවරකය මේවන විටත් ක්‍රියාත්මකව ඇත"
+#~ msgid "Power _Management"
+#~ msgstr "ශක්ති කළමණාකරනය (_M)"
 
-#: ../src/gs-lock-plug.c:269
-msgid "Time has expired."
-msgstr "කාළය අවසන් විය."
+#~ msgid "Screensaver Preferences"
+#~ msgstr "තිරආවරක අභිප්‍රේතයන්"
 
-#: ../src/gs-lock-plug.c:297
-msgid "You have the Caps Lock key on."
-msgstr "ඔබ Caps Lock යතුර ක්‍රියා කරවා ඇත."
+#~ msgid "Screensaver Preview"
+#~ msgstr "තිරආවරකය පෙන්වන්න"
 
-#: ../src/gs-lock-plug.c:1187
-msgid "S_witch User..."
-msgstr "පරිශිලක හුවමාරුව... (_w)"
+#~ msgid "_Activate screensaver when computer is idle"
+#~ msgstr "පරිගණකය අභාවිත වනවිට තිරආවරකය සක්‍රිය කරන්න (_A)"
 
-#: ../src/gs-lock-plug.c:1196
-msgid "Log _Out"
-msgstr "ඉවත් වීම (_O)"
+#~ msgid "_Lock screen when screensaver is active"
+#~ msgstr "තිරආවරකය සක්‍රිය වන විට තිරය අගුලු දමන්න (_L)"
 
-#: ../src/gs-lock-plug.c:1372
-msgid "%U on %h"
-msgstr "%h මත %U"
+#~ msgid "_Preview"
+#~ msgstr "පෙන්වන්න (_P)"
 
-#: ../src/gs-lock-plug.c:1386
-msgid "_Password:"
-msgstr "රහස්පදය: (_P)"
+#~ msgid "_Screensaver theme:"
+#~ msgstr "තිරආවරකයේ තේමාව: (_S)"
 
+#~ msgid "Screensaver themes"
+#~ msgstr "තිරආවරකයේ තේමා"
+
+#~ msgid "Screensavers"
+#~ msgstr "තිරආවරක"
+
+#~ msgid "Activate when idle"
+#~ msgstr "අභාවිත විට සක්‍රිය කරන්න"
+
+#, fuzzy
+#~ msgid "Allow embedding a keyboard into the window"
+#~ msgstr "කවුළුව තුලට  යතුරු පුවරුව කාවැදීම අනුමතයී"
+
+#~ msgid "Allow logout"
+#~ msgstr "ඉවත්විමට ඉඩ දෙන්න"
+
+#~ msgid "Allow user switching"
+#~ msgstr "පරිශිලක හුවමාරුවට ඉඩ දෙන්න "
+
+#~ msgid "Embedded keyboard command"
+#~ msgstr "කාවැදුනු යතුරු පුවරු විධානය"
+
+#~ msgid "Lock on activation"
+#~ msgstr "සක්‍රිය විටදි අගුලු දමන්න"
+
+#~ msgid "Logout command"
+#~ msgstr "ඉවත් වීමෙ විධානය"
+
+#~ msgid "Reason for being away"
+#~ msgstr "ඉවතට යාමට හේතුව"
+
+#~ msgid "Screensaver theme selection mode"
+#~ msgstr "තිරආවරකයේ තේමාව තොරා ගැනිමේ ආකාරය"
+
+#~ msgid ""
+#~ "Set this to TRUE to activate the screensaver when the session is idle."
+#~ msgstr "සැසිය අභාවිත විටදී තිරආවරකය සක්‍රිය වීමට මෙය සත්‍ය අගයට සකසන්න."
+
+#~ msgid ""
+#~ "Set this to TRUE to lock the screen when the screensaver goes active."
+#~ msgstr "තිරආවරකය සක්‍රිය වීමේදි තිරය අගුලුලෑමට මෙය සත්‍ය අගයට සකසන්න."
+
+#, fuzzy
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in the unlock dialog to switch to a "
+#~ "different user account."
+#~ msgstr ""
+#~ "වෙනත් පරිශ්‍රක ගිණුමක් වෙත මාරු වීම සඳහා අගුලු-අරින සංවාද කොටුවේ විකල්පයක් ලබා දීමට මෙය "
+#~ "සත්‍ය අගයට සකසන්න."
+
+#~ msgid ""
+#~ "Set this to TRUE to offer an option in unlock dialog to logging out after "
+#~ "a delay. The Delay is specified in the \"logout_delay\" key."
+#~ msgstr ""
+#~ "මදක් ප්‍රමාදවි පිවිසීමම සඳහා අගුලු-අරින සංවාද කොටුවේ විකල්පයක් ලබා දීමට මෙය සත්‍ය අගයට "
+#~ "සකසන්න ප්‍රමාදය \"logout_delay\" යතුරෙහි විශේෂිතව දක්වා ඇත.."
+
+#~ msgid ""
+#~ "The number of minutes after screensaver activation before locking the "
+#~ "screen."
+#~ msgstr "තිරආවරකය ක්‍රියාත්මකවු පසු තිරය අගුලු ලැමට ගතවන මිනිත්තු ගණන."
+
+#, fuzzy
+#~ msgid ""
+#~ "The number of minutes after the screensaver activation before a logout "
+#~ "option will appear in unlock dialog. This key has effect only if the "
+#~ "\"logout_enable\" key is set to TRUE."
+#~ msgstr ""
+#~ "The number of minutes after the screensaver activation before a logout "
+#~ "option will appear in unlock dialog. මෙම යතුර ක්‍රියාත්මක වන්නේ \"logout_enable"
+#~ "\" යතුර සත්‍ය අගයට සැකසුවහොත් පමණි."
+
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr "සැසිය අභාවිත ලෙස සැලකීමට පෙර කාළය අක්‍රියව පවතින මිනිත්තු ගණන."
+
+#~ msgid "The number of minutes to run before changing the screensaver theme."
+#~ msgstr "තිරආවරක තේමාව වෙනස් වීමට පෙර ක්‍රියාත්මක වියයුතු මිනිත්තු ගණන."
+
+#~ msgid ""
+#~ "The number of seconds of inactivity before signalling to power-"
+#~ "management. This key is set and maintained by the session power-"
+#~ "management agent."
+#~ msgstr ""
+#~ "ශක්ති-කළමණාකරනයට සංඥා කිරිමට ප්‍රථම අක්‍රිය වන තත්පර ගණන.සැසි ශක්ති-කළමණාකරනය නියොජිතයා "
+#~ "මෙම යතුර සැකසීම සහ නඩත්තු කටයුතු සිදු කරයි."
+
+#~ msgid "The reason for being away from the computer."
+#~ msgstr "ඔබගේ පරිගණකය වෙතින් ඉවත්ව යාමට හේතුව"
+
+#~ msgid "Theme for lock dialog"
+#~ msgstr "අගුලු සංවාද කොටුව සඳහා තේමාව"
+
+#~ msgid "Theme to use for the lock dialog."
+#~ msgstr "අගුලු සංවාද කොටුව සඳහා බාවිතා කලයුතු තේමාව."
+
+#~ msgid "Time before locking"
+#~ msgstr "අගුලුලෑමට පෙර කාලය"
+
+#~ msgid "Time before logout option"
+#~ msgstr "ඉවත් වීමේ විකල්පයට පෙර කාළය"
+
+#, fuzzy
+#~ msgid "Time before power-management baseline"
+#~ msgstr "ශක්ති කළමණාකරන සීමා රේඛාවට පැමිණිමට පෙර කාළය"
+
+#~ msgid "Time before session is considered idle"
+#~ msgstr "සැසිය අභාවිත ලෙස සැලකීමට පෙර කාළය"
+
+#~ msgid "Time before theme change"
+#~ msgstr "තේමාව වෙනස් වීමට පෙර කාළය"
+
+#~ msgid "<b>Leave a message for %R:</b>"
+#~ msgstr "<b>%R වෙත පණිවිඩයක් තබන්න:</b>"
+
+#, fuzzy
+#~ msgid "<span size=\"small\">%U on %h</span>"
+#~ msgstr "<span size=\"small\">%U on %h</span>"
+
+#~ msgid "<span size=\"x-large\">%R</span>"
+#~ msgstr "<span size=\"x-large\">%R</span>"
+
+#~ msgid "Authentication"
+#~ msgstr "තහවුරු කර ගැනීම"
+
+#~ msgid "Note"
+#~ msgstr "සටහන"
+
+#~ msgid "_Cancel"
+#~ msgstr "අවලංගු කරන්න (_C)"
+
+#~ msgid "_Leave Message"
+#~ msgstr "පණිවිඩයක් තබන්න (_L)"
+
+#~ msgid "_Log Out"
+#~ msgstr "ඉවත් වීම (_L)"
+
+#, fuzzy
+#~ msgid "_Switch User"
+#~ msgstr "පරිශිලක මාරුව (_S)"
+
+#~ msgid "_Unlock"
+#~ msgstr "අගුලු අරින්න (_U)"
+
+#~ msgid "Cosmos"
+#~ msgstr "Cosmos"
+
+#~ msgid "Display a slideshow of pictures of the cosmos"
+#~ msgstr "cosmos පිංතුර මගින් තිරපෙන්නූමක් දර්ශණය කරන්න"
+
+#, fuzzy
+#~ msgid "Bubbles the GNOME foot logo around the screen"
+#~ msgstr "GNOME පාද සළකුණ තිරය පුරා  බුබුලණය කරන්න"
+
+#~ msgid "Floating Feet"
+#~ msgstr "පාවෙන පාද"
+
+#~ msgid "Display a slideshow from your Pictures folder"
+#~ msgstr "ඔබගේ පිංතුර බහලුමෙන් තිරපෙන්නූමක් දර්ශණය කරන්න"
+
+#~ msgid "Pictures folder"
+#~ msgstr "පිංතුර බහලුම"
+
+#~ msgid "Pop art squares"
+#~ msgstr "චිත්‍ර කොටු මතු කරන්න"
+
+#~ msgid "occasionally rotate images as they move"
+#~ msgstr "කලාතුරකින් පිළිඹිබු චලනය වන ලෙස කර කවන්න"
+
+#~ msgid "print out frame rate and other statistics"
+#~ msgstr "රාමු ශිඝ්‍රතාව සහ වෙනත් සංඛ්‍යන දත්ත මුද්‍රණය කරන්න"
+
+#~ msgid "the maximum number of images to keep on screen"
+#~ msgstr "තිරය මත තිබිය යුතු උපරිම පිළිඹිබු ගණන"
+
+#~ msgid "N"
+#~ msgstr "N"
+
+#~ msgid "the source image to use"
+#~ msgstr "භවිතා කලයුතු මුලාශ්‍ර පිළිඹිබුව"
+
+#~ msgid "the initial size and position of window"
+#~ msgstr "කවුළුවේ ආරම්භක ප්‍රමාණය සහ පිහිටීම"
+
+#~ msgid "WIDTHxHEIGHT+X+Y"
+#~ msgstr "පළලxඋස+X+Y"
+
+#~ msgid "%s. See --help for usage information.\n"
+#~ msgstr "%s.  භවිතය පිළිබද තොරතුරුතර සඳහා --help බලන්න.\n"
+
+#~ msgid "You must specify one image.  See --help for usage information.\n"
+#~ msgstr ""
+#~ "ඔබ විසින් එක් පිළිඹිබුවක් විශේෂිතව දැක්විය යුතුයි.  භාවිතය පිළිබද තොරතුරු සඳහා --help බලන්න.\n"
+
+#~ msgid "Location to get images from"
+#~ msgstr "පිළිඹිබු ගතයුතු ස්තානය"
+
+#~ msgid "PATH"
+#~ msgstr "මාර්‍ගය"
+
+#~ msgid "Copying file: %u of %u"
+#~ msgstr "ගොනු පිටපත් කරමින් සිටී: %u of %u"
+
+#~ msgid "Copying '%s'"
+#~ msgstr "පිටපත් කරමින් සිටී '%s'"
+
+#~ msgid "From URI"
+#~ msgstr "URI වෙතින්"
+
+#~ msgid "URI currently transferring from"
+#~ msgstr "URI දැනට වෙතින් මාරුවෙමින් පවතින්නේ"
+
+#~ msgid "To URI"
+#~ msgstr "URI වෙත"
+
+#, fuzzy
+#~ msgid "URI currently transferring to"
+#~ msgstr "URI දැනට මාරුවන්නේ"
+
+#, fuzzy
+#~ msgid "Fraction completed"
+#~ msgstr "සුළු කොටස සම්පුර්ණ විය"
+
+#, fuzzy
+#~ msgid "Fraction of transfer currently completed"
+#~ msgstr "මාරු කිරිමේ සුළු කොටස දැනට සම්පුර්ණයි"
+
+#~ msgid "Current URI index"
+#~ msgstr "දැනට ඇති URI පටුන"
+
+#~ msgid "Current URI index - starts from 1"
+#~ msgstr "වර්තමාන URI පටුණ - 1න් පටන් ගන්න"
+
+#~ msgid "Total URIs"
+#~ msgstr "සියළුම URIs"
+
+#~ msgid "Total number of URIs"
+#~ msgstr "URI එකතුව"
+
+#~ msgid "Copying files"
+#~ msgstr "ගොනු පිටපත් කරමින් සිටී"
+
+#, fuzzy
+#~ msgid "From:"
+#~ msgstr "ආපසු:"
+
+#, fuzzy
+#~ msgid "To:"
+#~ msgstr "යායුතු:"
+
+#~ msgid "Connecting..."
+#~ msgstr "සම්බන්ද වෙමින්..."
+
+#, fuzzy
+#~ msgid "Causes the screensaver to exit gracefully"
+#~ msgstr "ප්‍රසන්න ලෙස තිරආවරකයට ඉවත්වීමට සැලසීය"
+
+#, fuzzy
+#~ msgid "Query the state of the screensaver"
+#~ msgstr "තිරආවරකයේ තත්වය විමසන්න"
+
+#~ msgid "If the screensaver is active then switch to another graphics demo"
+#~ msgstr "තිරආවරකය ක්‍රියාකරි නම් වෙනත් චිත්‍රක ප්‍රදර්ශකයක් වෙතට මාරු වන්න"
+
+#~ msgid "Turn the screensaver on (blank the screen)"
+#~ msgstr "තිරආවරකය ක්‍රියාත්මක කරන්න (තිරය හිස් කරන්න)"
+
+#~ msgid ""
+#~ "If the screensaver is active then deactivate it (un-blank the screen)"
+#~ msgstr "තිරආවරකය සක්‍රිය නම් එය අක්‍රිය කරන්න (තිරය හිස් නොකරන්න)"
+
+#~ msgid "The screensaver is %s\n"
+#~ msgstr "තිරආවරකය වන්නේ %s\n"
+
+#~ msgid "active"
+#~ msgstr "සක්‍රිය"
+
+#~ msgid "inactive"
+#~ msgstr "අක්‍රිය"
+
+#~ msgid "Show debugging output"
+#~ msgstr "දෝෂහරිණ ප්‍රථිධානය පෙන්වන්න"
+
+#~ msgid "Show the logout button"
+#~ msgstr "ඉවත් වීමේ බොත්තම පෙන් වන්න"
+
+#~ msgid "Command to invoke from the logout button"
+#~ msgstr "ඉවත් වීමෙ බොත්තමෙන් ඉල්ලා සිටින විධානය"
+
+#~ msgid "Show the switch user button"
+#~ msgstr "පරිශිලක හුවමාරු බොත්තම පෙන්වන්න"
+
+#~ msgid "Message to show in the dialog"
+#~ msgstr "සංවාද කොටුවේ පෙන් විය යුතු පණිවිඩවේ"
+
+#~ msgid "MESSAGE"
+#~ msgstr "පණිවිවිඩය"
+
+#~ msgid "Username:"
+#~ msgstr "පරිශිලක නම:"
+
+#~ msgid "Password:"
+#~ msgstr "රහස්පදය:"
+
+#~ msgid "You are required to change your password immediately (password aged)"
+#~ msgstr "ඔබ හැකි ඉක්මනින් රහස් පදය වෙනස් කළයුතුවේ (රහස්පදය පරණයි)"
+
+#~ msgid "You are required to change your password immediately (root enforced)"
+#~ msgstr "ඔබ හැකි ඉක්මනින් රහස්පදය වෙනස් කළයුතුවේ (root බලකරයි)"
+
+#~ msgid "Your account has expired; please contact your system administrator"
+#~ msgstr "ඔබගේ ගිණුම අවලංගු වී ඇත; කරුණාකර ඔබගේ පද්ධති පරිපාලක හමුවන්න"
+
+#~ msgid "No password supplied"
+#~ msgstr "රහස්පදයක් සපයා නැත"
+
+#~ msgid "Password unchanged"
+#~ msgstr "රහස්පදය වෙනස් නොවුනී"
+
+#~ msgid "Can not get username"
+#~ msgstr "පරිශීලක නාමය ගත නොහැක"
+
+#~ msgid "Retype new UNIX password:"
+#~ msgstr "නව UNIX රහස්පදයක් නැවත යොදන්න:"
+
+#~ msgid "Enter new UNIX password:"
+#~ msgstr "නව UNIX රහස්පදයක් ඇතුලත් කරන්න:"
+
+#~ msgid "(current) UNIX password:"
+#~ msgstr "(දැනට ඇති) UNIX රහස්පදය:"
+
+#~ msgid "Error while changing NIS password."
+#~ msgstr "NIS රහස්පදය වෙනස් කිරීමේදි දෝෂයක්."
+
+#~ msgid "You must choose a longer password"
+#~ msgstr "ඔබ විසින් වඩා දිගු රහස්පදයක් තෝරාගත යුතුමවේ"
+
+#~ msgid "Password has been already used. Choose another."
+#~ msgstr "රහස්පදය මීට පෙර භාවිතා කර ඇත. වෙත් එකක් තොරන්න."
+
+#~ msgid "You must wait longer to change your password"
+#~ msgstr "රහස්පදය වෙනස් කිරිමට ඔබ බොහෝ වේලාවක් රැදී සිටිය යුතුමයි"
+
+#~ msgid "Sorry, passwords do not match"
+#~ msgstr "සමාවන්න, රහස්පද නොගැලපේ"
+
+#~ msgid "Checking..."
+#~ msgstr "පරික්‍ෂාකරමින්..."
+
+#~ msgid "Authentication failed."
+#~ msgstr "තහවුරු කර ගැනීම අසමත්විය."
+
+#~ msgid "Blank screen"
+#~ msgstr "හිස් තිරය"
+
+#~ msgid "Random"
+#~ msgstr "අහබු"
+
+#~ msgid "Invalid screensaver theme"
+#~ msgstr "සාවද්‍ය තිරආවරක තේමාවක්"
+
+#~ msgid "This file does not appear to be a valid screensaver theme."
+#~ msgstr "මෙම ගොනුව නිරවද්‍ය තිරආවරක තේමාවක් ලෙස නොදැක්වේ."
+
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "පැය %d යි"
+#~ msgstr[1] "පැය %d යි"
+
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "විනාඩි %d යි"
+#~ msgstr[1] "විනාඩි %d යි"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "තත්පර %d යි"
+#~ msgstr[1] "තත්පර %d යි"
+
+#~ msgid "%s %s %s"
+#~ msgstr "%s %s %s"
+
+#~ msgid "%s %s"
+#~ msgstr "%s %s"
+
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#, fuzzy
+#~ msgid "Never"
+#~ msgstr "කිසිදාක නැත"
+
+#~ msgid "Could not load the main interface"
+#~ msgstr "ප්‍රධාන මුහුණත පුරණය කළ නොහැක"
+
+#~ msgid "Please make sure that the screensaver is properly installed"
+#~ msgstr "කරුණාකර තිරආවරකය නිසි ලෙස ස්ථාපනය කළ ඇති දැයි තහවුරු කරගන්න."
+
+#~ msgid "Unable to establish service %s: %s\n"
+#~ msgstr "%s සේවය ස්ථාපනය කළ නොහැක: %s\n"
+
+#~ msgid "Can't set PAM_TTY=%s"
+#~ msgstr "PAM_TTY=%s සැකසීමට නොහැකිය "
+
+#~ msgid "Incorrect password."
+#~ msgstr "සාවද්‍ය රහස්පදයකී."
+
+#~ msgid "Not permitted to gain access at this time."
+#~ msgstr "මෙම අවස්තාවේ භාවිතයට අවසර නැත."
+
+#~ msgid "No longer permitted to access the system."
+#~ msgstr "වැඩිදුරටත් භාවිතයට අවසර නැත."
+
+#~ msgid "failed to register with the message bus"
+#~ msgstr "පණිවිඩ බසය සමඟ ලියාපදිංචිම අපහසු විය"
+
+#~ msgid "not connected to the message bus"
+#~ msgstr "පණිවිඩ බසයට සම්බන්ද නොවුනි"
+
+#~ msgid "screensaver already running in this session"
+#~ msgstr "මෙම සැසියේ තිරආවරකය මේවන විටත් ක්‍රියාත්මකව ඇත"
+
+#~ msgid "Time has expired."
+#~ msgstr "කාළය අවසන් විය."
+
+#~ msgid "You have the Caps Lock key on."
+#~ msgstr "ඔබ Caps Lock යතුර ක්‍රියා කරවා ඇත."
+
+#~ msgid "S_witch User..."
+#~ msgstr "පරිශිලක හුවමාරුව... (_w)"
+
+#~ msgid "Log _Out"
+#~ msgstr "ඉවත් වීම (_O)"
+
+#~ msgid "%U on %h"
+#~ msgstr "%h මත %U"
+
+#~ msgid "_Password:"
+#~ msgstr "රහස්පදය: (_P)"

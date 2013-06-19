@@ -6,269 +6,216 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-16 14:38+0200\n"
+"POT-Creation-Date: 2013-06-19 23:00+0200\n"
 "PO-Revision-Date: 2011-03-16 14:37+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Virtaal 0.6.1\n"
 
-#: ../src/gnome-screensaver-command.c:46
-msgid "Causes the screensaver to exit gracefully"
-msgstr "يسبب خروج حافظة الشاشة بسلام"
-
-#: ../src/gnome-screensaver-command.c:48
-msgid "Query the state of the screensaver"
-msgstr "أظهر حالة حافظة الشاشة"
-
-#: ../src/gnome-screensaver-command.c:50
-msgid "Query the length of time the screensaver has been active"
-msgstr "استعلم عن مدّة الزمن التي كانت فيها حافظة الشاشة نشطة"
-
-#: ../src/gnome-screensaver-command.c:52
-msgid "Tells the running screensaver process to lock the screen immediately"
+#: ../src/light-locker-command.c:40
+#, fuzzy
+msgid "Tells the running display manager to lock the screen immediately"
 msgstr "تخبر عملية حافظة الشاشة التي تعمل بقفل الشاشة مباشرة "
 
-#: ../src/gnome-screensaver-command.c:54
-msgid "Turn the screensaver on (blank the screen)"
-msgstr "شغّل حافظة الشاشة (أفرغ الشاشة)"
-
-#: ../src/gnome-screensaver-command.c:56
-msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr "أوقف حافظة الشاشة إذا كانت نشِطة (الغي إفراغ الشاشة)"
-
-#: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:59
-#: ../src/gnome-screensaver.c:56
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 msgid "Version of this application"
 msgstr "نسخة هذا التّطبيق"
 
-#: ../src/gnome-screensaver-command.c:224
-#, c-format
-msgid "The screensaver is active\n"
-msgstr "حافظة الشاشة ka'm\n"
-
-#: ../src/gnome-screensaver-command.c:226
-#, c-format
-msgid "The screensaver is inactive\n"
-msgstr "حافظة الشاشة غير نشطة\n"
-
-#: ../src/gnome-screensaver-command.c:256
-#, c-format
-msgid "The screensaver has been active for %d second.\n"
-msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] "حافظة الشاشة نشِطة منذ %d ثواني.\n"
-msgstr[1] "حافظة الشاشة نشِطة منذ ثانية.\n"
-msgstr[2] "حافظة الشاشة نشِطة منذ ثانيتين.\n"
-msgstr[3] "حافظة الشاشة نشِطة منذ %d ثوان.\n"
-msgstr[4] "حافظة الشاشة نشِطة منذ %d ثانية.\n"
-msgstr[5] "حافظة الشاشة نشِطة منذ %d ثانية.\n"
-
-#: ../src/gnome-screensaver-command.c:258
-#, c-format
-msgid "The screensaver is not currently active.\n"
-msgstr "حافظة الشاشة غير غير نشطة حاليا\n"
-
-#: ../src/gnome-screensaver-dialog.c:57
-msgid "Show debugging output"
-msgstr "أظهر خرْجَ التنقيح"
-
-#: ../src/gnome-screensaver-dialog.c:61
-msgid "Show the logout button"
-msgstr "أظهر زر الخروج"
-
-#: ../src/gnome-screensaver-dialog.c:63
-msgid "Command to invoke from the logout button"
-msgstr "الأمر عند الضغط على زر الخروج"
-
-#: ../src/gnome-screensaver-dialog.c:65
-msgid "Show the switch user button"
-msgstr "أظهر زر تبديل المستخدم"
-
-#: ../src/gnome-screensaver-dialog.c:67
-msgid "Message to show in the dialog"
-msgstr "الرسالة التي ستظهر في نافذة الحوار"
-
-#. Translators: This is the example input for the --status-message command line option.
-#. Translators: This is the example input for the --away-message command line option.
-#: ../src/gnome-screensaver-dialog.c:69 ../src/gnome-screensaver-dialog.c:73
-msgid "MESSAGE"
-msgstr "الرسالة"
-
-#: ../src/gnome-screensaver-dialog.c:71
-msgid "Not used"
-msgstr "غير مُستخدَمة"
-
-#. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:183 ../src/gnome-screensaver-dialog.c:184
-#: ../src/gnome-screensaver-dialog.c:185 ../src/gs-auth-pam.c:698
-msgid "Username:"
-msgstr "اسم المستخدم:"
-
-#: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
-#: ../src/gs-auth-pam.c:166
-msgid "Password:"
-msgstr "كلمة السر:"
-
-#: ../src/gnome-screensaver-dialog.c:188
-msgid "You are required to change your password immediately (password aged)"
-msgstr "يجب أن تغير كلمة سرك حالا (كلمة السر قديمة)"
-
-#: ../src/gnome-screensaver-dialog.c:189
-msgid "You are required to change your password immediately (root enforced)"
-msgstr "يجب أن تغير كلمة سرك حالا (فرض الجذر ذلك)"
-
-#: ../src/gnome-screensaver-dialog.c:190
-msgid "Your account has expired; please contact your system administrator"
-msgstr "انقضى حسابك، الرجاء الاتصال بمدير النظام"
-
-#: ../src/gnome-screensaver-dialog.c:191
-msgid "No password supplied"
-msgstr "لم تمدّ كلمة سر جديدة"
-
-#: ../src/gnome-screensaver-dialog.c:192
-msgid "Password unchanged"
-msgstr "لم تغير كلمة السر"
-
-#: ../src/gnome-screensaver-dialog.c:193
-msgid "Cannot get username"
-msgstr "تعذّر معرفة اسم المستخدم"
-
-#: ../src/gnome-screensaver-dialog.c:194
-msgid "Retype new Unix password:"
-msgstr "أعد كتابة كلمة سر يونكس الجديدة:"
-
-#: ../src/gnome-screensaver-dialog.c:195
-msgid "Enter new Unix password:"
-msgstr "أدخل كلمة سر يونكس جديدة:"
-
-#: ../src/gnome-screensaver-dialog.c:196
-msgid "(current) Unix password:"
-msgstr "كلمة سر يونكس (الحالية):"
-
-#: ../src/gnome-screensaver-dialog.c:197
-msgid "Error while changing NIS password."
-msgstr "خطأ أثناء تغيير كلمة سر NIS."
-
-#: ../src/gnome-screensaver-dialog.c:198
-msgid "You must choose a longer password"
-msgstr "يجب أن تختار كلمة سر أطول"
-
-#: ../src/gnome-screensaver-dialog.c:199
-msgid "Password has been already used. Choose another."
-msgstr "كلمة السر مستخدمة. الرجاء اختيار كلمة مغايرة."
-
-#: ../src/gnome-screensaver-dialog.c:200
-msgid "You must wait longer to change your password"
-msgstr "يجب أن تنتظر مدة أطول لتتمكن من تغيير كلمة سرك"
-
-#: ../src/gnome-screensaver-dialog.c:201
-msgid "Sorry, passwords do not match"
-msgstr "عفوا، كلمتا السر لا تتطابقان"
-
-#: ../src/gnome-screensaver-dialog.c:267
-msgid "Checking…"
-msgstr "يفحص…"
-
-#: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
-msgid "Authentication failed."
-msgstr "فشل الاستيثاق."
-
-#: ../src/gnome-screensaver.c:57
+#: ../src/light-locker.c:57
 msgid "Don't become a daemon"
 msgstr "لا تصبح عفريتا"
 
-#: ../src/gnome-screensaver.c:58
+#: ../src/light-locker.c:58
 msgid "Enable debugging code"
 msgstr "فعّل التنقيح"
 
-#: ../src/gnome-screensaver.desktop.in.in.h:1
-msgid "Launch screensaver and locker program"
-msgstr "شغّل برنامج حافظة الشاشة"
-
-#: ../src/gnome-screensaver.desktop.in.in.h:2
-msgid "Screensaver"
+#: ../src/light-locker.desktop.in.in.h:1
+#, fuzzy
+msgid "Screen Locker"
 msgstr "حافظة الشاشة"
 
-#: ../src/gs-auth-pam.c:397
-#, c-format
-msgid "Unable to establish service %s: %s\n"
-msgstr "تعذّر تنصيب الخدمة %s: %s\n"
+#: ../src/light-locker.desktop.in.in.h:2
+#, fuzzy
+msgid "Launch screen locker program"
+msgstr "شغّل برنامج حافظة الشاشة"
 
-#: ../src/gs-auth-pam.c:423
-#, c-format
-msgid "Can't set PAM_TTY=%s"
-msgstr "تعذّر ضبط PAM_TTY=%s"
+#: ../src/gs-content.c:95
+msgid "This session is locked."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:455
-msgid "Incorrect password."
-msgstr "كلمة السر غير صحيحة."
+#: ../src/gs-content.c:117
+msgid ""
+"You'll be redirected to the unlock dialog automatically in a few seconds."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:471
-msgid "Not permitted to gain access at this time."
-msgstr "منع المستخدم من النفاذ الآن."
+#~ msgid "Causes the screensaver to exit gracefully"
+#~ msgstr "يسبب خروج حافظة الشاشة بسلام"
 
-#: ../src/gs-auth-pam.c:477
-msgid "No longer permitted to access the system."
-msgstr "لم يعد يسمح بالنفاذ إلى النظام."
+#~ msgid "Query the state of the screensaver"
+#~ msgstr "أظهر حالة حافظة الشاشة"
 
-#: ../src/gs-listener-dbus.c:1148
-msgid "failed to register with the message bus"
-msgstr "فشل الاتصال بمخرج الرسائل"
+#~ msgid "Query the length of time the screensaver has been active"
+#~ msgstr "استعلم عن مدّة الزمن التي كانت فيها حافظة الشاشة نشطة"
 
-#: ../src/gs-listener-dbus.c:1158
-msgid "not connected to the message bus"
-msgstr "غير متصل بمخرج الرسائل"
+#~ msgid "Turn the screensaver on (blank the screen)"
+#~ msgstr "شغّل حافظة الشاشة (أفرغ الشاشة)"
 
-#: ../src/gs-listener-dbus.c:1167 ../src/gs-listener-dbus.c:1197
-msgid "screensaver already running in this session"
-msgstr "حافظة الشاشة مشتغلة مسبقا في هذه الجلسة"
+#~ msgid ""
+#~ "If the screensaver is active then deactivate it (un-blank the screen)"
+#~ msgstr "أوقف حافظة الشاشة إذا كانت نشِطة (الغي إفراغ الشاشة)"
 
-#: ../src/gs-lock-plug.c:256
-msgid "Time has expired."
-msgstr "انتهت المدة."
+#~ msgid "The screensaver is active\n"
+#~ msgstr "حافظة الشاشة ka'm\n"
 
-#: ../src/gs-lock-plug.c:287
-msgid "You have the Caps & Num Lock keys on."
-msgstr "مفتاح الحروف الكبيرة ومفتاح الأرقام مضغوط."
+#~ msgid "The screensaver is inactive\n"
+#~ msgstr "حافظة الشاشة غير نشطة\n"
 
-#: ../src/gs-lock-plug.c:290
-msgid "You have the Caps Lock key on."
-msgstr "مفتاح الحروف الكبيرة مضغوط."
+#~ msgid "The screensaver has been active for %d second.\n"
+#~ msgid_plural "The screensaver has been active for %d seconds.\n"
+#~ msgstr[0] "حافظة الشاشة نشِطة منذ %d ثواني.\n"
+#~ msgstr[1] "حافظة الشاشة نشِطة منذ ثانية.\n"
+#~ msgstr[2] "حافظة الشاشة نشِطة منذ ثانيتين.\n"
+#~ msgstr[3] "حافظة الشاشة نشِطة منذ %d ثوان.\n"
+#~ msgstr[4] "حافظة الشاشة نشِطة منذ %d ثانية.\n"
+#~ msgstr[5] "حافظة الشاشة نشِطة منذ %d ثانية.\n"
 
-#: ../src/gs-lock-plug.c:293
-msgid "You have the Num Lock key on."
-msgstr "مفتاح الأرقام مضغوط."
+#~ msgid "The screensaver is not currently active.\n"
+#~ msgstr "حافظة الشاشة غير غير نشطة حاليا\n"
 
-#: ../src/gs-lock-plug.c:1350
-msgid "S_witch User…"
-msgstr "_بدّل المستخدم…"
+#~ msgid "Show debugging output"
+#~ msgstr "أظهر خرْجَ التنقيح"
 
-#: ../src/gs-lock-plug.c:1359
-msgid "Log _Out"
-msgstr "ا_خرج"
+#~ msgid "Show the logout button"
+#~ msgstr "أظهر زر الخروج"
 
-#: ../src/gs-lock-plug.c:1366
-msgid "_Unlock"
-msgstr "ا_فتح القفل"
+#~ msgid "Command to invoke from the logout button"
+#~ msgstr "الأمر عند الضغط على زر الخروج"
 
-#: ../src/gs-lock-plug.c:1401
-msgid "_Password:"
-msgstr "_كلمة السر:"
+#~ msgid "Show the switch user button"
+#~ msgstr "أظهر زر تبديل المستخدم"
 
-#. Translators, this is the 24h date format used in the panel clock
-#: ../src/gs-window-x11.c:2199
-msgid "%a %R"
-msgstr "%A %R"
+#~ msgid "Message to show in the dialog"
+#~ msgstr "الرسالة التي ستظهر في نافذة الحوار"
 
-#. Translators, this is the 12h date format used in the panel clock
-#: ../src/gs-window-x11.c:2202
-msgid "%a %l:%M %p"
-msgstr "%A %l:%M %p"
+#~ msgid "MESSAGE"
+#~ msgstr "الرسالة"
+
+#~ msgid "Not used"
+#~ msgstr "غير مُستخدَمة"
+
+#~ msgid "Username:"
+#~ msgstr "اسم المستخدم:"
+
+#~ msgid "Password:"
+#~ msgstr "كلمة السر:"
+
+#~ msgid "You are required to change your password immediately (password aged)"
+#~ msgstr "يجب أن تغير كلمة سرك حالا (كلمة السر قديمة)"
+
+#~ msgid "You are required to change your password immediately (root enforced)"
+#~ msgstr "يجب أن تغير كلمة سرك حالا (فرض الجذر ذلك)"
+
+#~ msgid "Your account has expired; please contact your system administrator"
+#~ msgstr "انقضى حسابك، الرجاء الاتصال بمدير النظام"
+
+#~ msgid "No password supplied"
+#~ msgstr "لم تمدّ كلمة سر جديدة"
+
+#~ msgid "Password unchanged"
+#~ msgstr "لم تغير كلمة السر"
+
+#~ msgid "Cannot get username"
+#~ msgstr "تعذّر معرفة اسم المستخدم"
+
+#~ msgid "Retype new Unix password:"
+#~ msgstr "أعد كتابة كلمة سر يونكس الجديدة:"
+
+#~ msgid "Enter new Unix password:"
+#~ msgstr "أدخل كلمة سر يونكس جديدة:"
+
+#~ msgid "(current) Unix password:"
+#~ msgstr "كلمة سر يونكس (الحالية):"
+
+#~ msgid "Error while changing NIS password."
+#~ msgstr "خطأ أثناء تغيير كلمة سر NIS."
+
+#~ msgid "You must choose a longer password"
+#~ msgstr "يجب أن تختار كلمة سر أطول"
+
+#~ msgid "Password has been already used. Choose another."
+#~ msgstr "كلمة السر مستخدمة. الرجاء اختيار كلمة مغايرة."
+
+#~ msgid "You must wait longer to change your password"
+#~ msgstr "يجب أن تنتظر مدة أطول لتتمكن من تغيير كلمة سرك"
+
+#~ msgid "Sorry, passwords do not match"
+#~ msgstr "عفوا، كلمتا السر لا تتطابقان"
+
+#~ msgid "Checking…"
+#~ msgstr "يفحص…"
+
+#~ msgid "Authentication failed."
+#~ msgstr "فشل الاستيثاق."
+
+#~ msgid "Unable to establish service %s: %s\n"
+#~ msgstr "تعذّر تنصيب الخدمة %s: %s\n"
+
+#~ msgid "Can't set PAM_TTY=%s"
+#~ msgstr "تعذّر ضبط PAM_TTY=%s"
+
+#~ msgid "Incorrect password."
+#~ msgstr "كلمة السر غير صحيحة."
+
+#~ msgid "Not permitted to gain access at this time."
+#~ msgstr "منع المستخدم من النفاذ الآن."
+
+#~ msgid "No longer permitted to access the system."
+#~ msgstr "لم يعد يسمح بالنفاذ إلى النظام."
+
+#~ msgid "failed to register with the message bus"
+#~ msgstr "فشل الاتصال بمخرج الرسائل"
+
+#~ msgid "not connected to the message bus"
+#~ msgstr "غير متصل بمخرج الرسائل"
+
+#~ msgid "screensaver already running in this session"
+#~ msgstr "حافظة الشاشة مشتغلة مسبقا في هذه الجلسة"
+
+#~ msgid "Time has expired."
+#~ msgstr "انتهت المدة."
+
+#~ msgid "You have the Caps & Num Lock keys on."
+#~ msgstr "مفتاح الحروف الكبيرة ومفتاح الأرقام مضغوط."
+
+#~ msgid "You have the Caps Lock key on."
+#~ msgstr "مفتاح الحروف الكبيرة مضغوط."
+
+#~ msgid "You have the Num Lock key on."
+#~ msgstr "مفتاح الأرقام مضغوط."
+
+#~ msgid "S_witch User…"
+#~ msgstr "_بدّل المستخدم…"
+
+#~ msgid "Log _Out"
+#~ msgstr "ا_خرج"
+
+#~ msgid "_Unlock"
+#~ msgstr "ا_فتح القفل"
+
+#~ msgid "_Password:"
+#~ msgstr "_كلمة السر:"
+
+#~ msgid "%a %R"
+#~ msgstr "%A %R"
+
+#~ msgid "%a %l:%M %p"
+#~ msgstr "%A %l:%M %p"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "اضبط خصائص حافظة الشاشة"

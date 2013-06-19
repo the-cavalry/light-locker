@@ -9,266 +9,213 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.master.ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-03 08:49+0530\n"
+"POT-Creation-Date: 2013-06-19 23:00+0200\n"
 "PO-Revision-Date: 2011-04-03 08:51+0530\n"
 "Last-Translator: \n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\\n"
-"\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\\n\n"
 "\n"
 "\n"
 "X-Generator: Lokalize 1.0\n"
 
-#: ../src/gnome-screensaver-command.c:46
-msgid "Causes the screensaver to exit gracefully"
-msgstr "திரை சேமிப்பினை வெளியேற்றுகிறது"
-
-#: ../src/gnome-screensaver-command.c:48
-msgid "Query the state of the screensaver"
-msgstr "திரை சேமிப்பியின் நிலையை கேட்கிறது"
-
-#: ../src/gnome-screensaver-command.c:50
-msgid "Query the length of time the screensaver has been active"
-msgstr "திரை சேமிப்பி செயல்பட்ட நேரத்தை கேள்"
-
-#: ../src/gnome-screensaver-command.c:52
-msgid "Tells the running screensaver process to lock the screen immediately"
+#: ../src/light-locker-command.c:40
+#, fuzzy
+msgid "Tells the running display manager to lock the screen immediately"
 msgstr "இயங்கும் திரை சேமிப்பி செயலை உடனே திரையை பூட்டச் சொல்லுகிறது."
 
-#: ../src/gnome-screensaver-command.c:54
-msgid "Turn the screensaver on (blank the screen)"
-msgstr "திரை சேமிப்பினை செயல்படுத்தவும் (திரையை வெறுமையாக்கவும்)"
-
-#: ../src/gnome-screensaver-command.c:56
-msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr "திரைசேமிப்பி இயங்கினால் அதை செயல் நீக்குக. (திரையை வெற்றாக ஆக்காதே)"
-
-#: ../src/gnome-screensaver-command.c:58 ../src/gnome-screensaver-dialog.c:59
-#: ../src/gnome-screensaver.c:56
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 msgid "Version of this application"
 msgstr "இந்த பயன்பாட்டின் பதிப்பு"
 
-#: ../src/gnome-screensaver-command.c:224
-#, c-format
-msgid "The screensaver is active\n"
-msgstr "திரைசேமிப்பி செயலிலுள்ளது\n"
-
-#: ../src/gnome-screensaver-command.c:226
-#, c-format
-msgid "The screensaver is inactive\n"
-msgstr "திரைசேமிப்பி செயலில் இல்லை\n"
-
-#: ../src/gnome-screensaver-command.c:256
-#, c-format
-msgid "The screensaver has been active for %d second.\n"
-msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] "திரை சேமிப்பி %d வினாடியாக செயல்படுகிறது\n"
-msgstr[1] "திரை சேமிப்பி %d வினாடிகளாக செயல்படுகிறது.\n"
-
-#: ../src/gnome-screensaver-command.c:258
-#, c-format
-msgid "The screensaver is not currently active.\n"
-msgstr "திரைசேமிப்பி தற்போது செயலிலுள்ளது.\n"
-
-#: ../src/gnome-screensaver-dialog.c:57
-msgid "Show debugging output"
-msgstr "பிழைத்திருத்த வெளியீட்டை காட்டு"
-
-#: ../src/gnome-screensaver-dialog.c:61
-msgid "Show the logout button"
-msgstr "வெளிச்செல் பொத்தானை காட்டு"
-
-#: ../src/gnome-screensaver-dialog.c:63
-msgid "Command to invoke from the logout button"
-msgstr "வெளியேறு பொத்தானிலிருந்து கடைபிடிக்க வேண்டிய கட்டளை"
-
-#: ../src/gnome-screensaver-dialog.c:65
-msgid "Show the switch user button"
-msgstr "பயனர் மாற்றி பொத்தானை காட்டவும்"
-
-#: ../src/gnome-screensaver-dialog.c:67
-msgid "Message to show in the dialog"
-msgstr "உரையாடலில் காட்டப்படும் செய்தி"
-
-#. Translators: This is the example input for the --status-message command line option.
-#. Translators: This is the example input for the --away-message command line option.
-#: ../src/gnome-screensaver-dialog.c:69 ../src/gnome-screensaver-dialog.c:73
-msgid "MESSAGE"
-msgstr "MESSAGE"
-
-#: ../src/gnome-screensaver-dialog.c:71
-msgid "Not used"
-msgstr "பயன்படுத்தவில்லை"
-
-#. login: is whacked always translate to Username:
-#: ../src/gnome-screensaver-dialog.c:183 ../src/gnome-screensaver-dialog.c:184
-#: ../src/gnome-screensaver-dialog.c:185 ../src/gs-auth-pam.c:698
-msgid "Username:"
-msgstr "பயனர் பெயர்:"
-
-#: ../src/gnome-screensaver-dialog.c:186 ../src/gnome-screensaver-dialog.c:187
-#: ../src/gs-auth-pam.c:166
-msgid "Password:"
-msgstr "கடவுச்சொல்:"
-
-#: ../src/gnome-screensaver-dialog.c:188
-msgid "You are required to change your password immediately (password aged)"
-msgstr "நீங்கள் உங்கள் கடவுச்சொல்லை மாற்ற வேண்டும் (கடவுச்சொல் பழையதானதால்)"
-
-#: ../src/gnome-screensaver-dialog.c:189
-msgid "You are required to change your password immediately (root enforced)"
-msgstr "நீங்கள் உங்கள் கடவுச்சொல்லை மாற்ற வேண்டும் (ரூட் வலியுறுத்துகிறது)"
-
-#: ../src/gnome-screensaver-dialog.c:190
-msgid "Your account has expired; please contact your system administrator"
-msgstr "உங்கள் கணக்கு முடிவடைந்தது; உங்கள் கணினி நிர்வாகியை அணுகவும்"
-
-#: ../src/gnome-screensaver-dialog.c:191
-msgid "No password supplied"
-msgstr "கடவுச்சொல் கொடுக்கப்படவில்லை"
-
-#: ../src/gnome-screensaver-dialog.c:192
-msgid "Password unchanged"
-msgstr "கடவுச்சொல் மாற்றப்படவில்லை"
-
-#: ../src/gnome-screensaver-dialog.c:193
-msgid "Cannot get username"
-msgstr "பயனர் பெயர் பெற முடியவில்லை"
-
-#: ../src/gnome-screensaver-dialog.c:194
-msgid "Retype new Unix password:"
-msgstr "புதிய Unix கடவுச்சொல்லை மீண்டும் தட்டச்சு செய்யவும்:"
-
-#: ../src/gnome-screensaver-dialog.c:195
-msgid "Enter new Unix password:"
-msgstr "புதிய Unix கடவுச்சொல்லை உள்ளிடவும்:"
-
-#: ../src/gnome-screensaver-dialog.c:196
-msgid "(current) Unix password:"
-msgstr "(நடப்பு) Unix கடவுச்சொல்:"
-
-#: ../src/gnome-screensaver-dialog.c:197
-msgid "Error while changing NIS password."
-msgstr "NIS கடவுச்சொல்லை மாற்றும் போது பிழை."
-
-#: ../src/gnome-screensaver-dialog.c:198
-msgid "You must choose a longer password"
-msgstr "பெரிய கடவுச்சொல்லை தேர்ந்தெடுக்கவும்"
-
-#: ../src/gnome-screensaver-dialog.c:199
-msgid "Password has been already used. Choose another."
-msgstr "கடவுச்சொல் ஏற்கனவே பயன்படுத்தப்பட்டுள்ளது. வேறொன்றை தேர்வு செய்யவும்."
-
-#: ../src/gnome-screensaver-dialog.c:200
-msgid "You must wait longer to change your password"
-msgstr "கடவுச்சொல்லை மாற்ற நீங்கள் காத்திருக்க வேண்டும்"
-
-#: ../src/gnome-screensaver-dialog.c:201
-msgid "Sorry, passwords do not match"
-msgstr "கடவுச்சொல் பொருத்தமானதாக இல்லை"
-
-#: ../src/gnome-screensaver-dialog.c:267
-msgid "Checking…"
-msgstr "சோதிக்கிறது..."
-
-#: ../src/gnome-screensaver-dialog.c:309 ../src/gs-auth-pam.c:457
-msgid "Authentication failed."
-msgstr "அங்கீகாரம் இல்லை."
-
-#: ../src/gnome-screensaver.c:57
+#: ../src/light-locker.c:57
 msgid "Don't become a daemon"
 msgstr "ஒரு டீமானாக ஆக வேண்டாம்"
 
-#: ../src/gnome-screensaver.c:58
+#: ../src/light-locker.c:58
 msgid "Enable debugging code"
 msgstr "பிழைத்திருத்த குறியீட்டை செயல்படுத்து"
 
-#: ../src/gnome-screensaver.desktop.in.in.h:1
-msgid "Launch screensaver and locker program"
-msgstr "திரைசேமிப்பு மற்றும் பூட்டு நிரலை துவக்கு"
-
-#: ../src/gnome-screensaver.desktop.in.in.h:2
-msgid "Screensaver"
+#: ../src/light-locker.desktop.in.in.h:1
+#, fuzzy
+msgid "Screen Locker"
 msgstr "திரை சேமிப்பி"
 
-#: ../src/gs-auth-pam.c:397
-#, c-format
-msgid "Unable to establish service %s: %s\n"
-msgstr "சேவையை வழங்க முடியவில்லை %s: %s\n"
+#: ../src/light-locker.desktop.in.in.h:2
+#, fuzzy
+msgid "Launch screen locker program"
+msgstr "திரைசேமிப்பு மற்றும் பூட்டு நிரலை துவக்கு"
 
-#: ../src/gs-auth-pam.c:423
-#, c-format
-msgid "Can't set PAM_TTY=%s"
-msgstr "PAM_TTY=%s ஐ அமைக்க முடியவில்லை"
+#: ../src/gs-content.c:95
+msgid "This session is locked."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:455
-msgid "Incorrect password."
-msgstr "தவறான கடவுச்சொல்"
+#: ../src/gs-content.c:117
+msgid ""
+"You'll be redirected to the unlock dialog automatically in a few seconds."
+msgstr ""
 
-#: ../src/gs-auth-pam.c:471
-msgid "Not permitted to gain access at this time."
-msgstr "இந்த நேரத்தில் அணுகல் பெற அனுமதி இல்லை."
+#~ msgid "Causes the screensaver to exit gracefully"
+#~ msgstr "திரை சேமிப்பினை வெளியேற்றுகிறது"
 
-#: ../src/gs-auth-pam.c:477
-msgid "No longer permitted to access the system."
-msgstr "கணினியை அணுக அனுமதி இல்லை."
+#~ msgid "Query the state of the screensaver"
+#~ msgstr "திரை சேமிப்பியின் நிலையை கேட்கிறது"
 
-#: ../src/gs-listener-dbus.c:1148
-msgid "failed to register with the message bus"
-msgstr "செய்தி வடத்துடன் பதிவு செய்ய முடியவில்லை"
+#~ msgid "Query the length of time the screensaver has been active"
+#~ msgstr "திரை சேமிப்பி செயல்பட்ட நேரத்தை கேள்"
 
-#: ../src/gs-listener-dbus.c:1158
-msgid "not connected to the message bus"
-msgstr "செய்தி வடத்துடன் இணைக்கவில்லை"
+#~ msgid "Turn the screensaver on (blank the screen)"
+#~ msgstr "திரை சேமிப்பினை செயல்படுத்தவும் (திரையை வெறுமையாக்கவும்)"
 
-#: ../src/gs-listener-dbus.c:1167 ../src/gs-listener-dbus.c:1197
-msgid "screensaver already running in this session"
-msgstr "இந்த அமர்வில் திரைசேமிப்பு ஏற்கனவே இயங்குகிறது"
+#~ msgid ""
+#~ "If the screensaver is active then deactivate it (un-blank the screen)"
+#~ msgstr "திரைசேமிப்பி இயங்கினால் அதை செயல் நீக்குக. (திரையை வெற்றாக ஆக்காதே)"
 
-#: ../src/gs-lock-plug.c:256
-msgid "Time has expired."
-msgstr "நேரம் முடிந்தது"
+#~ msgid "The screensaver is active\n"
+#~ msgstr "திரைசேமிப்பி செயலிலுள்ளது\n"
 
-#: ../src/gs-lock-plug.c:287
-msgid "You have the Caps & Num Lock keys on."
-msgstr "நீங்கள் உயர் நிலை எழுத்து எண்கள் பூட்டு விசைகளை செயலாக்கி உள்ளீர்கள்."
+#~ msgid "The screensaver is inactive\n"
+#~ msgstr "திரைசேமிப்பி செயலில் இல்லை\n"
 
-#: ../src/gs-lock-plug.c:290
-msgid "You have the Caps Lock key on."
-msgstr "நீங்கள் உயர் நிலை எழுத்து பூட்டு விசையை செயலாக்கி உள்ளீர்கள்."
+#~ msgid "The screensaver has been active for %d second.\n"
+#~ msgid_plural "The screensaver has been active for %d seconds.\n"
+#~ msgstr[0] "திரை சேமிப்பி %d வினாடியாக செயல்படுகிறது\n"
+#~ msgstr[1] "திரை சேமிப்பி %d வினாடிகளாக செயல்படுகிறது.\n"
 
-#: ../src/gs-lock-plug.c:293
-msgid "You have the Num Lock key on."
-msgstr "நீங்கள் எண் பூட்டு விசையை செயலாக்கி உள்ளீர்கள்."
+#~ msgid "The screensaver is not currently active.\n"
+#~ msgstr "திரைசேமிப்பி தற்போது செயலிலுள்ளது.\n"
 
-#: ../src/gs-lock-plug.c:1350
-msgid "S_witch User…"
-msgstr "_w பயனரை மாற்றுக..."
+#~ msgid "Show debugging output"
+#~ msgstr "பிழைத்திருத்த வெளியீட்டை காட்டு"
 
-#: ../src/gs-lock-plug.c:1359
-msgid "Log _Out"
-msgstr "வெளிச்சொல் (_O)"
+#~ msgid "Show the logout button"
+#~ msgstr "வெளிச்செல் பொத்தானை காட்டு"
 
-#: ../src/gs-lock-plug.c:1366
-msgid "_Unlock"
-msgstr "பூட்டு நீக்கு (_U)"
+#~ msgid "Command to invoke from the logout button"
+#~ msgstr "வெளியேறு பொத்தானிலிருந்து கடைபிடிக்க வேண்டிய கட்டளை"
 
-#: ../src/gs-lock-plug.c:1401
-msgid "_Password:"
-msgstr "கடவுச்சொல்: (_P)"
+#~ msgid "Show the switch user button"
+#~ msgstr "பயனர் மாற்றி பொத்தானை காட்டவும்"
 
-#. Translators, this is the 24h date format used in the panel clock
-#: ../src/gs-window-x11.c:2199
-msgid "%a %R"
-msgstr "%a %R"
+#~ msgid "Message to show in the dialog"
+#~ msgstr "உரையாடலில் காட்டப்படும் செய்தி"
 
-#. Translators, this is the 12h date format used in the panel clock
-#: ../src/gs-window-x11.c:2202
-msgid "%a %l:%M %p"
-msgstr "%a %l:%M %p"
+#~ msgid "MESSAGE"
+#~ msgstr "MESSAGE"
+
+#~ msgid "Not used"
+#~ msgstr "பயன்படுத்தவில்லை"
+
+#~ msgid "Username:"
+#~ msgstr "பயனர் பெயர்:"
+
+#~ msgid "Password:"
+#~ msgstr "கடவுச்சொல்:"
+
+#~ msgid "You are required to change your password immediately (password aged)"
+#~ msgstr "நீங்கள் உங்கள் கடவுச்சொல்லை மாற்ற வேண்டும் (கடவுச்சொல் பழையதானதால்)"
+
+#~ msgid "You are required to change your password immediately (root enforced)"
+#~ msgstr "நீங்கள் உங்கள் கடவுச்சொல்லை மாற்ற வேண்டும் (ரூட் வலியுறுத்துகிறது)"
+
+#~ msgid "Your account has expired; please contact your system administrator"
+#~ msgstr "உங்கள் கணக்கு முடிவடைந்தது; உங்கள் கணினி நிர்வாகியை அணுகவும்"
+
+#~ msgid "No password supplied"
+#~ msgstr "கடவுச்சொல் கொடுக்கப்படவில்லை"
+
+#~ msgid "Password unchanged"
+#~ msgstr "கடவுச்சொல் மாற்றப்படவில்லை"
+
+#~ msgid "Cannot get username"
+#~ msgstr "பயனர் பெயர் பெற முடியவில்லை"
+
+#~ msgid "Retype new Unix password:"
+#~ msgstr "புதிய Unix கடவுச்சொல்லை மீண்டும் தட்டச்சு செய்யவும்:"
+
+#~ msgid "Enter new Unix password:"
+#~ msgstr "புதிய Unix கடவுச்சொல்லை உள்ளிடவும்:"
+
+#~ msgid "(current) Unix password:"
+#~ msgstr "(நடப்பு) Unix கடவுச்சொல்:"
+
+#~ msgid "Error while changing NIS password."
+#~ msgstr "NIS கடவுச்சொல்லை மாற்றும் போது பிழை."
+
+#~ msgid "You must choose a longer password"
+#~ msgstr "பெரிய கடவுச்சொல்லை தேர்ந்தெடுக்கவும்"
+
+#~ msgid "Password has been already used. Choose another."
+#~ msgstr "கடவுச்சொல் ஏற்கனவே பயன்படுத்தப்பட்டுள்ளது. வேறொன்றை தேர்வு செய்யவும்."
+
+#~ msgid "You must wait longer to change your password"
+#~ msgstr "கடவுச்சொல்லை மாற்ற நீங்கள் காத்திருக்க வேண்டும்"
+
+#~ msgid "Sorry, passwords do not match"
+#~ msgstr "கடவுச்சொல் பொருத்தமானதாக இல்லை"
+
+#~ msgid "Checking…"
+#~ msgstr "சோதிக்கிறது..."
+
+#~ msgid "Authentication failed."
+#~ msgstr "அங்கீகாரம் இல்லை."
+
+#~ msgid "Unable to establish service %s: %s\n"
+#~ msgstr "சேவையை வழங்க முடியவில்லை %s: %s\n"
+
+#~ msgid "Can't set PAM_TTY=%s"
+#~ msgstr "PAM_TTY=%s ஐ அமைக்க முடியவில்லை"
+
+#~ msgid "Incorrect password."
+#~ msgstr "தவறான கடவுச்சொல்"
+
+#~ msgid "Not permitted to gain access at this time."
+#~ msgstr "இந்த நேரத்தில் அணுகல் பெற அனுமதி இல்லை."
+
+#~ msgid "No longer permitted to access the system."
+#~ msgstr "கணினியை அணுக அனுமதி இல்லை."
+
+#~ msgid "failed to register with the message bus"
+#~ msgstr "செய்தி வடத்துடன் பதிவு செய்ய முடியவில்லை"
+
+#~ msgid "not connected to the message bus"
+#~ msgstr "செய்தி வடத்துடன் இணைக்கவில்லை"
+
+#~ msgid "screensaver already running in this session"
+#~ msgstr "இந்த அமர்வில் திரைசேமிப்பு ஏற்கனவே இயங்குகிறது"
+
+#~ msgid "Time has expired."
+#~ msgstr "நேரம் முடிந்தது"
+
+#~ msgid "You have the Caps & Num Lock keys on."
+#~ msgstr "நீங்கள் உயர் நிலை எழுத்து எண்கள் பூட்டு விசைகளை செயலாக்கி உள்ளீர்கள்."
+
+#~ msgid "You have the Caps Lock key on."
+#~ msgstr "நீங்கள் உயர் நிலை எழுத்து பூட்டு விசையை செயலாக்கி உள்ளீர்கள்."
+
+#~ msgid "You have the Num Lock key on."
+#~ msgstr "நீங்கள் எண் பூட்டு விசையை செயலாக்கி உள்ளீர்கள்."
+
+#~ msgid "S_witch User…"
+#~ msgstr "_w பயனரை மாற்றுக..."
+
+#~ msgid "Log _Out"
+#~ msgstr "வெளிச்சொல் (_O)"
+
+#~ msgid "_Unlock"
+#~ msgstr "பூட்டு நீக்கு (_U)"
+
+#~ msgid "_Password:"
+#~ msgstr "கடவுச்சொல்: (_P)"
+
+#~ msgid "%a %R"
+#~ msgstr "%a %R"
+
+#~ msgid "%a %l:%M %p"
+#~ msgstr "%a %l:%M %p"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "உங்கள் திரை சேமிப்பி முன்னுரிமைகளை அமைக்கவும்"
