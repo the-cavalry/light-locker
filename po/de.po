@@ -58,12 +58,12 @@ msgstr "Bildschirmschoner und Bildschirmsperrung starten"
 
 #: ../src/gs-content.c:95
 msgid "This session is locked."
-msgstr ""
+msgstr "Diese Sitzung ist gesperrt."
 
 #: ../src/gs-content.c:117
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds."
-msgstr ""
+msgstr "Automatische Weiterleitung zum Entsperr-Dialog in wenigen Sekunden."
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Den Bildschirmschoner beenden"
