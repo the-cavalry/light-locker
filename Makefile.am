@@ -8,7 +8,6 @@ SUBDIRS =			\
 	src			\
 	po 			\
 	data			\
-	doc			\
 	$(NULL)
 
 EXTRA_DIST =			\
