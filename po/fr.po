@@ -57,12 +57,13 @@ msgstr "Lancer l'économiseur d'écran et le programme de verrouillage"
 
 #: ../src/gs-content.c:95
 msgid "This session is locked."
-msgstr ""
+msgstr "Cette session est vérouillée."
 
 #: ../src/gs-content.c:117
+#, fuzzy
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds."
-msgstr ""
+msgstr "Vous allez être automatiquement redirigés vers la fenêtre de déverrouillage dans quelques secondes."
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Demande à l'économiseur d'écran de quitter proprement"
