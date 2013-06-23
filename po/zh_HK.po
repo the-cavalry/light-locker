@@ -49,12 +49,12 @@ msgstr "啟動螢幕保護程式並鎖定程式"
 
 #: ../src/gs-content.c:95
 msgid "This session is locked."
-msgstr ""
+msgstr "本對話被鎖定。"
 
 #: ../src/gs-content.c:117
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds."
-msgstr ""
+msgstr "您會於幾秒内自動重新定向到解鎖方塊。"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "令螢幕保護程式正常結束"
