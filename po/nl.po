@@ -58,12 +58,14 @@ msgstr "Schermbeveiliging en -vergrendeling opstarten"
 
 #: ../src/gs-content.c:95
 msgid "This session is locked."
-msgstr ""
+msgstr "Deze sessie is vergrendeld."
 
 #: ../src/gs-content.c:117
+#, fuzzy
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds."
 msgstr ""
+"Automatische doorgesturing naar het ontgrendel scherm, over enkele seconden."
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Zorgt dat de schermbeveiliging netjes afsluit"
