@@ -50,12 +50,12 @@ msgstr "加载屏幕保护并锁定程序"
 
 #: ../src/gs-content.c:95
 msgid "This session is locked."
-msgstr ""
+msgstr "本对话被锁定。"
 
 #: ../src/gs-content.c:117
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds."
-msgstr ""
+msgstr "您会于幾秒內自动重新定向到解锁方块。"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "使屏幕保护程序正常退出"
