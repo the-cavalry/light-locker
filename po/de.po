@@ -61,6 +61,7 @@ msgid "This session is locked."
 msgstr "Diese Sitzung ist gesperrt."
 
 #: ../src/gs-content.c:117
+#, fuzzy
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds."
 msgstr "Automatische Weiterleitung zum Entsperr-Dialog in wenigen Sekunden."
