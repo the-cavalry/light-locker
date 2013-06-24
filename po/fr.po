@@ -59,8 +59,8 @@ msgstr "Lancer l'économiseur d'écran et le programme de verrouillage"
 msgid "This session is locked"
 msgstr "Cette session est vérouillée"
 
+# traduit librement
 #: ../src/gs-content.c:118
-#, fuzzy
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
