@@ -5,7 +5,7 @@ NULL =
 
 saverdir = $(libexecdir)/light-locker
 
-INCLUDES =							\
+AM_CPPFLAGS =							\
 	-I.							\
 	-I$(srcdir)						\
 	$(LIGHT_LOCKER_CFLAGS)					\

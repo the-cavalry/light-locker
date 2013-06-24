@@ -6,7 +6,7 @@ AC_INIT([light-locker],
 
 AC_CONFIG_SRCDIR(src/light-locker.c)
 
-AM_INIT_AUTOMAKE([1.10 no-dist-gzip dist-xz tar-ustar])
+AM_INIT_AUTOMAKE([1.10 no-dist-gzip dist-bzip2 tar-ustar])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 AC_CONFIG_HEADERS(config.h)
