@@ -26,11 +26,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+# is er een beter woord voor display manager
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
 msgstr ""
-"Geeft de actieve schermbeveiliging opdracht om het scherm onmiddellijk te "
+"Geeft de actieve display manager opdracht om het scherm onmiddellijk te "
 "vergrendelen"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
@@ -47,21 +47,19 @@ msgid "Enable debugging code"
 msgstr "Debugging-code gebruiken"
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Schermbeveiliging"
+msgstr "Schermvergrendeling"
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Schermbeveiliging en -vergrendeling opstarten"
+msgstr "Schermvergrendeling opstarten"
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
 msgstr "Deze sessie is vergrendeld"
 
+# vrij vertaald
 #: ../src/gs-content.c:118
-#, fuzzy
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
