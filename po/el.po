@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-19 23:00+0200\n"
+"POT-Creation-Date: 2013-06-24 23:29+0200\n"
 "PO-Revision-Date: 2011-10-18 18:14+0300\n"
 "Last-Translator: Ioannis Zampoukas <ioza1964@yahoo.gr>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
@@ -53,13 +53,13 @@ msgid "Launch screen locker program"
 msgstr ""
 "Έναρξη της προφύλαξης οθόνης και του προγράμματος κλειδώματος υπολογιστή"
 
-#: ../src/gs-content.c:95
-msgid "This session is locked."
+#: ../src/gs-content.c:96
+msgid "This session is locked"
 msgstr ""
 
-#: ../src/gs-content.c:117
+#: ../src/gs-content.c:118
 msgid ""
-"You'll be redirected to the unlock dialog automatically in a few seconds."
+"You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
 
 #~ msgid "Causes the screensaver to exit gracefully"

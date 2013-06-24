@@ -93,7 +93,7 @@ content_draw_cb (GtkWidget *widget,
         context = gdk_pango_context_get_for_screen (gtk_widget_get_screen (widget));
 
         title_layout = pango_layout_new (context);
-        pango_layout_set_text (title_layout, _("This session is locked."), -1);
+        pango_layout_set_text (title_layout, _("This session is locked"), -1);
         desc = pango_font_description_from_string (TITLE_FONT);
         pango_layout_set_font_description (title_layout, desc);
         pango_font_description_free (desc);
@@ -115,7 +115,7 @@ content_draw_cb (GtkWidget *widget,
         g_object_unref (title_layout);
 
         sub_layout = pango_layout_new (context);
-        pango_layout_set_text (sub_layout, _("You'll be redirected to the unlock dialog automatically in a few seconds."), -1);
+        pango_layout_set_text (sub_layout, _("You'll be redirected to the unlock dialog automatically in a few seconds"), -1);
         pango_layout_set_wrap (sub_layout, PANGO_WRAP_WORD_CHAR);
         pango_layout_set_width (sub_layout, width + 2 * height);
         desc = pango_font_description_from_string (MESSAGE_FONT);

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-19 23:00+0200\n"
+"POT-Creation-Date: 2013-06-24 23:29+0200\n"
 "PO-Revision-Date: 2011-03-31 15:43+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
@@ -49,13 +49,13 @@ msgstr "Pantaila-babeslea"
 msgid "Launch screen locker program"
 msgstr "Abiarazi pantaila-babeslea edo programa blokeatzailea"
 
-#: ../src/gs-content.c:95
-msgid "This session is locked."
+#: ../src/gs-content.c:96
+msgid "This session is locked"
 msgstr ""
 
-#: ../src/gs-content.c:117
+#: ../src/gs-content.c:118
 msgid ""
-"You'll be redirected to the unlock dialog automatically in a few seconds."
+"You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
 
 #~ msgid "Causes the screensaver to exit gracefully"

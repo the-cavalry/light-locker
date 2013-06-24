@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-19 23:00+0200\n"
+"POT-Creation-Date: 2013-06-24 23:29+0200\n"
 "PO-Revision-Date: 2011-03-17 14:55+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -56,15 +56,15 @@ msgstr "Bildschirmschoner"
 msgid "Launch screen locker program"
 msgstr "Bildschirmschoner und Bildschirmsperrung starten"
 
-#: ../src/gs-content.c:95
-msgid "This session is locked."
-msgstr "Diese Sitzung ist gesperrt."
+#: ../src/gs-content.c:96
+msgid "This session is locked"
+msgstr "Diese Sitzung ist gesperrt"
 
-#: ../src/gs-content.c:117
+#: ../src/gs-content.c:118
 #, fuzzy
 msgid ""
-"You'll be redirected to the unlock dialog automatically in a few seconds."
-msgstr "Automatische Weiterleitung zum Entsperr-Dialog in wenigen Sekunden."
+"You'll be redirected to the unlock dialog automatically in a few seconds"
+msgstr "Automatische Weiterleitung zum Entsperr-Dialog in wenigen Sekunden"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Den Bildschirmschoner beenden"

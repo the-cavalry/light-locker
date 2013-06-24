@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-19 23:00+0200\n"
+"POT-Creation-Date: 2013-06-24 23:29+0200\n"
 "PO-Revision-Date: 2009-10-22 18:59+0100\n"
 "Last-Translator: Nils-Christoph Fiedler <linux@medienkompanie.de>\n"
 "Language-Team: Low German <nds-lowgerman@lists.sourceforge.net>\n"
@@ -46,13 +46,13 @@ msgstr "Billschirmschoner"
 msgid "Launch screen locker program"
 msgstr "Billschirmschoner un Avslutprogramm laden"
 
-#: ../src/gs-content.c:95
-msgid "This session is locked."
+#: ../src/gs-content.c:96
+msgid "This session is locked"
 msgstr ""
 
-#: ../src/gs-content.c:117
+#: ../src/gs-content.c:118
 msgid ""
-"You'll be redirected to the unlock dialog automatically in a few seconds."
+"You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
 
 #~ msgid "Set your screensaver preferences"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 2.16.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-19 23:00+0200\n"
+"POT-Creation-Date: 2013-06-24 23:29+0200\n"
 "PO-Revision-Date: 2008-04-04 16:23+0200\n"
 "Last-Translator: Eskild Hustvedt <eskildh@gnome.org>\n"
 "Language-Team: Norwegian Nynorsk <i18n-no@lister.ping.uio.no>\n"
@@ -43,13 +43,13 @@ msgstr "Skjermsparar"
 msgid "Launch screen locker program"
 msgstr ""
 
-#: ../src/gs-content.c:95
-msgid "This session is locked."
+#: ../src/gs-content.c:96
+msgid "This session is locked"
 msgstr ""
 
-#: ../src/gs-content.c:117
+#: ../src/gs-content.c:118
 msgid ""
-"You'll be redirected to the unlock dialog automatically in a few seconds."
+"You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
 
 #~ msgid "Set your screensaver preferences"

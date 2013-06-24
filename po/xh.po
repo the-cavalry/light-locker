@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-19 23:00+0200\n"
+"POT-Creation-Date: 2013-06-24 23:29+0200\n"
 "PO-Revision-Date: 2012-01-17 15:28+0200\n"
 "Last-Translator: Andiswa Mvanyashe <andiswamva@gmail.com>\n"
 "Language-Team: translate-discuss-xh@lists.sourceforge.net\n"
@@ -46,13 +46,13 @@ msgstr "Umgcinisikrini"
 msgid "Launch screen locker program"
 msgstr "Ukhupha umgcini-skrini kunye nenkqubo yotshixa"
 
-#: ../src/gs-content.c:95
-msgid "This session is locked."
+#: ../src/gs-content.c:96
+msgid "This session is locked"
 msgstr ""
 
-#: ../src/gs-content.c:117
+#: ../src/gs-content.c:118
 msgid ""
-"You'll be redirected to the unlock dialog automatically in a few seconds."
+"You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
 
 #~ msgid "Causes the screensaver to exit gracefully"

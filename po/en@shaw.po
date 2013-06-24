@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: metacity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-19 23:00+0200\n"
+"POT-Creation-Date: 2013-06-24 23:29+0200\n"
 "PO-Revision-Date: 2010-05-12 18:36 -0400\n"
 "Last-Translator: Thomas Thurman <tthurman@gnome.org>\n"
 "Language-Team: Shavian <ubuntu-l10n-en-shaw@launchpad.net>\n"
@@ -42,13 +42,13 @@ msgstr "𐑕𐑒𐑮𐑰𐑯𐑕𐑱𐑝𐑼"
 msgid "Launch screen locker program"
 msgstr "𐑤𐑷𐑯𐑗 𐑕𐑒𐑮𐑰𐑯 𐑕𐑱𐑝𐑼 𐑯 𐑤𐑪𐑒𐑼 𐑐𐑮𐑴𐑜𐑮𐑨𐑥"
 
-#: ../src/gs-content.c:95
-msgid "This session is locked."
+#: ../src/gs-content.c:96
+msgid "This session is locked"
 msgstr ""
 
-#: ../src/gs-content.c:117
+#: ../src/gs-content.c:118
 msgid ""
-"You'll be redirected to the unlock dialog automatically in a few seconds."
+"You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
 
 #~ msgid "Set your screensaver preferences"

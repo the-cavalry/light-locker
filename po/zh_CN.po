@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-19 23:00+0200\n"
+"POT-Creation-Date: 2013-06-24 23:29+0200\n"
 "PO-Revision-Date: 2011-03-28 17:30+0800\n"
 "Last-Translator: liwei <lw124124@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
@@ -48,14 +48,14 @@ msgstr "屏幕保护程序"
 msgid "Launch screen locker program"
 msgstr "加载屏幕保护并锁定程序"
 
-#: ../src/gs-content.c:95
-msgid "This session is locked."
-msgstr "本对话被锁定。"
+#: ../src/gs-content.c:96
+msgid "This session is locked"
+msgstr "本对话被锁定"
 
-#: ../src/gs-content.c:117
+#: ../src/gs-content.c:118
 msgid ""
-"You'll be redirected to the unlock dialog automatically in a few seconds."
-msgstr "您会于幾秒內自动重新定向到解锁方块。"
+"You'll be redirected to the unlock dialog automatically in a few seconds"
+msgstr "您会于幾秒內自动重新定向到解锁方块"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "使屏幕保护程序正常退出"
