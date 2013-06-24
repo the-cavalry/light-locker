@@ -29,7 +29,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
 msgstr ""
 "Den Bildschirm über den laufenden Bildschirmschonerprozess sofort sperren"
@@ -47,21 +46,18 @@ msgid "Enable debugging code"
 msgstr "Fehlerdiagnosefunktionen aktivieren"
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Bildschirmschoner"
+msgstr "Bildschirmsperre"
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Bildschirmschoner und Bildschirmsperrung starten"
+msgstr "Bildschirmsperre starten"
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
 msgstr "Diese Sitzung ist gesperrt"
 
 #: ../src/gs-content.c:118
-#, fuzzy
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr "Automatische Weiterleitung zum Entsperr-Dialog in wenigen Sekunden"
