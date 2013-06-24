@@ -6,3 +6,4 @@ src/light-locker.desktop.in.in
 src/gs-listener-dbus.c
 src/gs-window-x11.c
 src/gs-content.c
+src/preview.c
