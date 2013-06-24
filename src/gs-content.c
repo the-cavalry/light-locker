@@ -80,6 +80,7 @@ content_draw_cb (GtkWidget *widget,
         PangoLayout *sub_layout;
         PangoFontDescription *desc;
         int width, height;
+        int sub_width;
 
         cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 1.0);
         cairo_paint (cr);
@@ -124,9 +125,10 @@ content_draw_cb (GtkWidget *widget,
         cairo_set_source_rgba (cr, 0.6, 0.6, 0.6, 1.0);
 
         pango_cairo_update_layout (cr, sub_layout);
-        pango_layout_get_size (sub_layout, &width, NULL);
+        pango_layout_get_size (sub_layout, &sub_width, NULL);
 
-        cairo_move_to (cr, - width / PANGO_SCALE / 2, height / PANGO_SCALE);
+        cairo_move_to (cr, - (width + 2 * height) / PANGO_SCALE / 2, height / PANGO_SCALE);
+        cairo_scale (cr, (width + 2 * height) / (gdouble)sub_width, (width + 2 * height) / (gdouble)sub_width);
         pango_cairo_show_layout (cr, sub_layout);
 
         g_object_unref (sub_layout);
