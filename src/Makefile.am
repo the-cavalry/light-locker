@@ -32,6 +32,10 @@ bin_PROGRAMS = \
 	light-locker-command	\
 	$(NULL)
 
+noinst_PROGRAMS = \
+	preview
+	$(NULL)
+
 desktopdir = $(datadir)/applications
 desktop_in_files = light-locker.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
@@ -86,6 +90,19 @@ light_locker_LDADD =		\
 	$(NULL)
 
 light_locker_LDFLAGS = -export-dynamic
+
+preview_SOURCES =	\
+	preview.c		\
+	gs-debug.c		\
+	gs-debug.h		\
+	gs-content.c		\
+	gs-content.h		\
+	$(NULL)
+
+preview_LDADD =		\
+	$(LIGHT_LOCKER_LIBS)	\
+	$(SAVER_LIBS)			\
+	$(NULL)
 
 EXTRA_DIST =				\
 	debug-screensaver.sh		\
