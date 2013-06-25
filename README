@@ -5,7 +5,7 @@ light-locker is a simple locker (forked from gnome-screensaver) that aims to hav
 It relies on lightdm for locking and unlocking your session via ConsoleKit/UPower or logind/systemd.
 
 
-Installation
+Requirements
 ============
 
-See the file 'INSTALL'
+To use light-locker, you need at least lightdm 1.7.0.
