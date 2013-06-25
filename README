@@ -8,4 +8,4 @@ It relies on lightdm for locking and unlocking your session via ConsoleKit/UPowe
 Requirements
 ============
 
-To use light-locker, you need at least lightdm 1.7.0.
+To use light-locker with systemd, you need at least lightdm 1.7.0.
