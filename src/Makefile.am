@@ -36,9 +36,9 @@ noinst_PROGRAMS = \
 	preview
 	$(NULL)
 
-desktopdir = $(datadir)/applications
+autostartdir = $(sysconfdir)/xdg/autostart
 desktop_in_files = light-locker.desktop.in
-desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+autostart_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
 light_locker_command_SOURCES = 	\
