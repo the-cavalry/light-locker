@@ -9,3 +9,4 @@ Requirements
 ============
 
 To use light-locker with systemd, you need at least lightdm 1.7.0.
+light-locker doesn't work with lightdm version 1.7.5-1.7.9
