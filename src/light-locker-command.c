@@ -33,14 +33,11 @@
 #include "gs-bus.h"
 
 static gboolean do_lock       = FALSE;
-static gboolean do_unlock     = FALSE;
 static gboolean do_version    = FALSE;
 
 static GOptionEntry entries [] = {
         { "lock", 'l', 0, G_OPTION_ARG_NONE, &do_lock,
           N_("Tells the running display manager to lock the screen immediately"), NULL },
-        { "unlock", 'd', 0, G_OPTION_ARG_NONE, &do_unlock,
-          N_("Tells the running display manager to switch to this session immediately"), NULL },
         { "version", 'V', 0, G_OPTION_ARG_NONE, &do_version,
           N_("Version of this application"), NULL },
         { NULL }
@@ -50,8 +47,8 @@ static GMainLoop *loop = NULL;
 
 static GDBusMessage *
 displaymanager_send_message_void (GDBusConnection *connection,
-                                  const char      *name,
-                                  gboolean         expect_reply)
+                               const char      *name,
+                               gboolean         expect_reply)
 {
         GDBusMessage *message, *reply;
         GError       *error;
@@ -105,67 +102,6 @@ displaymanager_send_message_void (GDBusConnection *connection,
         return reply;
 }
 
-static GDBusMessage *
-displaymanager_send_message_str_str (GDBusConnection *connection,
-                                     const char      *name,
-                                     const char      *value1,
-                                     const char      *value2,
-                                     gboolean         expect_reply)
-{
-        GDBusMessage *message, *reply;
-        GError       *error;
-
-        g_return_val_if_fail (connection != NULL, NULL);
-        g_return_val_if_fail (name != NULL, NULL);
-
-        message = g_dbus_message_new_method_call (DM_SERVICE,
-                                                  DM_SEAT_PATH,
-                                                  DM_SEAT_INTERFACE,
-                                                  name);
-        if (message == NULL) {
-                g_warning ("Couldn't allocate the dbus message");
-                return NULL;
-        }
-
-        g_dbus_message_set_body (message, g_variant_new ("(ss)", value1, value2));
-
-        error = NULL;
-
-        if (! expect_reply) {
-                reply = NULL;
-
-                g_dbus_connection_send_message (connection,
-                                                message,
-                                                G_DBUS_SEND_MESSAGE_FLAGS_NONE,
-                                                NULL,
-                                                &error);
-
-        } else {
-                reply = g_dbus_connection_send_message_with_reply_sync (connection,
-                                                                        message,
-                                                                        G_DBUS_SEND_MESSAGE_FLAGS_NONE,
-                                                                        -1,
-                                                                        NULL,
-                                                                        NULL,
-                                                                        &error);
-        }
-
-        if (error != NULL) {
-                g_warning ("unable to send message: %s", error->message);
-                g_clear_error (&error);
-        }
-
-        g_dbus_connection_flush_sync (connection, NULL, &error);
-        if (error != NULL) {
-                g_warning ("unable to flush message queue: %s", error->message);
-                g_clear_error (&error);
-        }
-
-        g_object_unref (message);
-
-        return reply;
-}
-
 static gboolean
 do_command (GDBusConnection *connection)
 {
@@ -173,11 +109,6 @@ do_command (GDBusConnection *connection)
 
         if (do_lock) {
                 reply = displaymanager_send_message_void (connection, "Lock", FALSE);
-                g_assert (reply == NULL);
-        }
-
-        if (do_unlock) {
-                reply = displaymanager_send_message_str_str (connection, "SwitchToUser", g_get_user_name (), "", FALSE);
                 g_assert (reply == NULL);
         }
 
