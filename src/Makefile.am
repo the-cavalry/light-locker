@@ -111,7 +111,7 @@ EXTRA_DIST =				\
 	$(NULL)
 
 CLEANFILES = 				\
-	$(desktop_DATA) 		\
+	$(autostart_DATA) 		\
 	light-locker.desktop.in		\
 	$(BUILT_SOURCES)
 
