@@ -35,6 +35,7 @@
 #include "gs-grab.h"
 
 #include "gs-listener-dbus.h"
+#include "gs-listener-x11.h"
 #include "gs-monitor.h"
 #include "gs-debug.h"
 
@@ -47,6 +48,7 @@ static void     gs_monitor_finalize   (GObject        *object);
 struct GSMonitorPrivate
 {
         GSListener     *listener;
+        GSListenerX11  *listener_x11;
         GSManager      *manager;
         GSGrab         *grab;
         guint           release_grab_id;
@@ -103,7 +105,7 @@ gs_monitor_lock_session (GSMonitor *monitor)
 
         visible = gs_manager_get_session_visible (monitor->priv->manager);
 
-        /* Only swith to greeter is we are the visible session */
+        /* Only swith to greeter if we are the visible session */
         if (visible) {
                 gs_listener_send_switch_greeter (monitor->priv->listener);
         }
@@ -167,6 +169,13 @@ listener_resume_cb (GSListener *listener,
 }
 
 static void
+listener_x11_lock_cb (GSListenerX11 *listener,
+                      GSMonitor  *monitor)
+{
+        gs_listener_send_lock_session (monitor->priv->listener);
+}
+
+static void
 disconnect_listener_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_lock_cb, monitor);
@@ -174,6 +183,8 @@ disconnect_listener_signals (GSMonitor *monitor)
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_active_changed_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_suspend_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_resume_cb, monitor);
+
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener_x11, listener_lock_cb, monitor);
 }
 
 static void
@@ -189,6 +200,9 @@ connect_listener_signals (GSMonitor *monitor)
                           G_CALLBACK (listener_suspend_cb), monitor);
         g_signal_connect (monitor->priv->listener, "resume",
                           G_CALLBACK (listener_resume_cb), monitor);
+
+        g_signal_connect (monitor->priv->listener_x11, "lock",
+                          G_CALLBACK (listener_x11_lock_cb), monitor);
 }
 
 static void
@@ -214,6 +228,7 @@ gs_monitor_init (GSMonitor *monitor)
         monitor->priv = GS_MONITOR_GET_PRIVATE (monitor);
 
         monitor->priv->listener = gs_listener_new ();
+        monitor->priv->listener_x11 = gs_listener_x11_new ();
         connect_listener_signals (monitor);
 
         monitor->priv->grab = gs_grab_new ();
@@ -239,17 +254,20 @@ gs_monitor_finalize (GObject *object)
 
         g_object_unref (monitor->priv->grab);
         g_object_unref (monitor->priv->listener);
+        g_object_unref (monitor->priv->listener_x11);
         g_object_unref (monitor->priv->manager);
 
         G_OBJECT_CLASS (gs_monitor_parent_class)->finalize (object);
 }
 
 GSMonitor *
-gs_monitor_new (void)
+gs_monitor_new (gint lock_after_screensaver)
 {
         GSMonitor *monitor;
 
         monitor = g_object_new (GS_TYPE_MONITOR, NULL);
+
+        gs_listener_x11_set_lock_after (monitor->priv->listener_x11, lock_after_screensaver);
 
         return GS_MONITOR (monitor);
 }
@@ -263,6 +281,8 @@ gs_monitor_start (GSMonitor *monitor,
         if (! gs_listener_acquire (monitor->priv->listener)) {
                 return FALSE;
         }
+
+        gs_listener_x11_acquire (monitor->priv->listener_x11);
 
         return TRUE;
 }

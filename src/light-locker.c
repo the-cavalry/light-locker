@@ -50,12 +50,12 @@ main (int    argc,
         GSMonitor          *monitor;
         GError             *error = NULL;
         static gboolean     show_version = FALSE;
-        static gboolean     no_daemon    = TRUE;
         static gboolean     debug        = FALSE;
+        static gint         lock_after_screensaver = 5;
         static GOptionEntry entries []   = {
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
-                { "no-daemon", 0, 0, G_OPTION_ARG_NONE, &no_daemon, N_("Don't become a daemon"), NULL },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
+                { "lock-after-screensaver", 0, 0, G_OPTION_ARG_INT, &lock_after_screensaver, N_("Lock the screen S seconds after the screensaver started"), "S" },
                 { NULL }
         };
 
@@ -85,7 +85,7 @@ main (int    argc,
         gs_debug_init (debug, FALSE);
         gs_debug ("initializing light-locker %s", VERSION);
 
-        monitor = gs_monitor_new ();
+        monitor = gs_monitor_new (lock_after_screensaver);
 
         if (monitor == NULL) {
                 exit (1);

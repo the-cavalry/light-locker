@@ -119,6 +119,45 @@ gs_listener_send_switch_greeter (GSListener *listener)
         }
 }
 
+void
+gs_listener_send_lock_session (GSListener *listener)
+{
+        dbus_bool_t sent;
+        DBusMessage *message;
+
+#ifdef WITH_SYSTEMD
+        /* Compare with 0. On failure this will return < 0.
+         * In the later case we probably aren't using systemd.
+         */
+        if (sd_session_is_active (listener->priv->sd_session_id) == 0) {
+                gs_debug ("Refusing to lock session");
+                return;
+        };
+#endif
+
+        if (listener->priv->system_connection == NULL) {
+                gs_debug ("No connection to the system bus");
+                return;
+        }
+
+        message = dbus_message_new_method_call (DM_SERVICE,
+                                                DM_SESSION_PATH,
+                                                DM_SESSION_INTERFACE,
+                                                "Lock");
+        if (message == NULL) {
+                gs_debug ("Couldn't allocate the dbus message");
+                return;
+        }
+
+        sent = dbus_connection_send (listener->priv->system_connection, message, NULL);
+        dbus_message_unref (message);
+
+        if (sent == FALSE) {
+                gs_debug ("Couldn't send the dbus message");
+                return;
+        }
+}
+
 gboolean
 gs_listener_set_active (GSListener *listener,
                         gboolean    active)
