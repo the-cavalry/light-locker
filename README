@@ -1,5 +1,5 @@
 light-locker
-=================
+============
 
 light-locker is a simple locker (forked from gnome-screensaver) that aims to have simple, sane, secure defaults and be well integrated with the desktop while not carrying any desktop-specific dependencies.
 It relies on lightdm for locking and unlocking your session via ConsoleKit/UPower or logind/systemd.
@@ -10,3 +10,12 @@ Requirements
 
 To use light-locker with systemd, you need at least lightdm 1.7.0.
 light-locker doesn't work with lightdm version 1.7.5-1.7.9
+
+
+Usage
+=====
+
+After installing light-locker, it will auto start along your session and you will be able to lock your session with "light-locker -l".
+This will redirect you to VT8 (assuming that your open session was on VT7 and is now kept safe by light-locker) and present LightDM's greeter for unlocking your session again.
+On suspend/resume light-locker will lock the active session and redirect to the LightDM's greeter for unlocking the session again.
+There is no support for gnome-settings-daemon in order to keep things slim, so you might have to add a custom keyboard-shortcut for this to work.
