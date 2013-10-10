@@ -70,6 +70,8 @@ light_locker_SOURCES =	\
 	gs-monitor.h		\
 	gs-listener-dbus.c	\
 	gs-listener-dbus.h	\
+	gs-listener-x11.c	\
+	gs-listener-x11.h	\
 	gs-manager.c		\
 	gs-manager.h		\
 	gs-window-x11.c		\

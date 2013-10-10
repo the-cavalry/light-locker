@@ -61,6 +61,7 @@ gboolean    gs_listener_acquire                 (GSListener *listener);
 gboolean    gs_listener_set_active              (GSListener *listener,
                                                  gboolean    active);
 void        gs_listener_send_switch_greeter     (GSListener *listener);
+void        gs_listener_send_lock_session       (GSListener *listener);
 
 G_END_DECLS
 

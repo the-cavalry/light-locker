@@ -40,10 +40,6 @@
 #include "gs-marshal.h"
 #include "gs-debug.h"
 
-#ifdef HAVE_SHAPE_EXT
-#include <X11/extensions/shape.h>
-#endif
-
 static void gs_window_class_init (GSWindowClass *klass);
 static void gs_window_init       (GSWindow      *window);
 static void gs_window_finalize   (GObject       *object);
@@ -71,10 +67,6 @@ struct GSWindowPrivate
 
         gdouble    last_x;
         gdouble    last_y;
-
-#ifdef HAVE_SHAPE_EXT
-        int        shape_event_base;
-#endif
 };
 
 enum {
@@ -353,17 +345,6 @@ x11_window_is_ours (Window window)
         return ret;
 }
 
-#ifdef HAVE_SHAPE_EXT
-static void
-unshape_window (GSWindow *window)
-{
-        gdk_window_shape_combine_region (gtk_widget_get_window (GTK_WIDGET (window)),
-                                         NULL,
-                                         0,
-                                         0);
-}
-#endif
-
 static void
 gs_window_xevent (GSWindow  *window,
                   GdkXEvent *xevent)
@@ -401,13 +382,6 @@ gs_window_xevent (GSWindow  *window,
                 }
         default:
                 /* extension events */
-#ifdef HAVE_SHAPE_EXT
-                if (ev->xany.type == (window->priv->shape_event_base + ShapeNotify)) {
-                        /*XShapeEvent *xse = (XShapeEvent *) ev;*/
-                        unshape_window (window);
-                        gs_debug ("Window was reshaped!");
-                }
-#endif
 
                 break;
         }
@@ -446,28 +420,6 @@ select_popup_events (void)
 }
 
 static void
-window_select_shape_events (GSWindow *window)
-{
-#ifdef HAVE_SHAPE_EXT
-        unsigned long events;
-        int           shape_error_base;
-
-        gdk_error_trap_push ();
-
-        if (XShapeQueryExtension (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), &window->priv->shape_event_base, &shape_error_base)) {
-                events = ShapeNotifyMask;
-                XShapeSelectInput (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), GDK_WINDOW_XID (gtk_widget_get_window (GTK_WIDGET (window))), events);
-        }
-
-#if GTK_CHECK_VERSION(3, 0, 0)
-        gdk_error_trap_pop_ignored ();
-#else
-        gdk_error_trap_pop ();
-#endif
-#endif
-}
-
-static void
 gs_window_real_show (GtkWidget *widget)
 {
         GSWindow *window;
@@ -486,7 +438,6 @@ gs_window_real_show (GtkWidget *widget)
         add_watchdog_timer (window, 30);
 
         select_popup_events ();
-        window_select_shape_events (window);
         gdk_window_add_filter (NULL, (GdkFilterFunc)xevent_filter, window);
 }
 
