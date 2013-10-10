@@ -89,6 +89,7 @@ gs_listener_x11_class_init (GSListenerX11Class *klass)
         g_type_class_add_private (klass, sizeof (GSListenerX11Private));
 }
 
+#ifdef HAVE_MIT_SAVER_EXTENSION /* Added to suppress warnings */
 static gboolean
 lock_after_timer (GSListenerX11 *listener)
 {
@@ -100,7 +101,9 @@ lock_after_timer (GSListenerX11 *listener)
 
         return FALSE;
 }
+#endif
 
+#ifdef HAVE_MIT_SAVER_EXTENSION /* Added to suppress warnings */
 static void
 remove_lock_after_timer (GSListenerX11 *listener)
 {
@@ -109,7 +112,9 @@ remove_lock_after_timer (GSListenerX11 *listener)
                 listener->priv->lock_after_timer_id = 0;
         }
 }
+#endif
 
+#ifdef HAVE_MIT_SAVER_EXTENSION /* Added to suppress warnings */
 static void
 add_lock_after_timer (GSListenerX11 *listener,
                       glong          timeout)
@@ -118,19 +123,24 @@ add_lock_after_timer (GSListenerX11 *listener,
                                                                      (GSourceFunc)lock_after_timer,
                                                                      listener);
 }
+#endif
 
 static GdkFilterReturn
 xroot_filter (GdkXEvent *xevent,
               GdkEvent  *event,
               gpointer  data)
 {
+#ifdef HAVE_MIT_SAVER_EXTENSION /* Added to suppress warnings */
         GSListenerX11 *listener;
+#endif
         XEvent *ev;
 
         g_return_val_if_fail (data != NULL, GDK_FILTER_CONTINUE);
         g_return_val_if_fail (GS_IS_LISTENER_X11 (data), GDK_FILTER_CONTINUE);
 
+#ifdef HAVE_MIT_SAVER_EXTENSION /* Added to suppress warnings */
         listener = GS_LISTENER_X11 (data);
+#endif
 
         ev = xevent;
 
@@ -166,9 +176,11 @@ xroot_filter (GdkXEvent *xevent,
 gboolean
 gs_listener_x11_acquire (GSListenerX11 *listener)
 {
+#ifdef HAVE_MIT_SAVER_EXTENSION /* Added to suppress warnings */
         GdkDisplay *display;
         GdkScreen *screen;
         GdkWindow *window;
+#endif
 #ifdef HAVE_MIT_SAVER_EXTENSION
         int scrnsaver_error_base;
         unsigned long events;
@@ -176,9 +188,11 @@ gs_listener_x11_acquire (GSListenerX11 *listener)
 
         g_return_val_if_fail (listener != NULL, FALSE);
 
+#ifdef HAVE_MIT_SAVER_EXTENSION /* Added to suppress warnings */
         display = gdk_display_get_default ();
         screen = gdk_display_get_default_screen (display);
         window = gdk_screen_get_root_window (screen);
+#endif
 
 #ifdef HAVE_MIT_SAVER_EXTENSION
         gdk_error_trap_push ();

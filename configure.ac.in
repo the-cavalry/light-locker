@@ -553,7 +553,7 @@ data/Makefile
 
 echo "
                     light-locker $VERSION
-                    ===================
+                    ==================
 
 	prefix:                   ${prefix}
 	exec_prefix:              ${exec_prefix}
@@ -569,9 +569,15 @@ echo "
         Extension libs:           ${SAVER_LIBS}
         Maintainer mode:          ${USE_MAINTAINER_MODE}
 
+                    Platform:
+                    ---------
         systemd:                  ${use_systemd}
         ConsoleKit:               ${use_console_kit}
         UPower:                   ${use_upower}
+
+                    Features:
+                    ---------
+        lock-after-screensaver:   ${have_mit}
 "
 
 if test "x$have_pam" = "xyes" ; then

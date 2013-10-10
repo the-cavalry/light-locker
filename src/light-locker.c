@@ -55,7 +55,9 @@ main (int    argc,
         static GOptionEntry entries []   = {
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
+#ifdef HAVE_MIT_SAVER_EXTENSION /* Remove the flag this feature is not supported */
                 { "lock-after-screensaver", 0, 0, G_OPTION_ARG_INT, &lock_after_screensaver, N_("Lock the screen S seconds after the screensaver started"), "S" },
+#endif
                 { NULL }
         };
 
