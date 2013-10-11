@@ -43,9 +43,8 @@ msgid "Enable debugging code"
 msgstr "Debugging-code gebruiken"
 
 #: ../src/light-locker.c:59
-#, fuzzy
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr "_Scherm vergrendelen wanneer schermbeveiliging is geactiveerd"
+msgstr "Vergrendel het scherm S seconden nadat de schermbeveiliging is geactiveerd"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
@@ -64,15 +63,15 @@ msgstr "Deze sessie is vergrendeld"
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
-"Automatische doorgesturing naar het ontgrendel scherm, over enkele seconden"
+"Automatische door sturing naar het ontgrendel scherm, over enkele seconden"
 
 #: ../src/preview.c:72
 msgid "Preview screen width"
-msgstr ""
+msgstr "Voorbeeld scherm breedte"
 
 #: ../src/preview.c:73
 msgid "Preview screen height"
-msgstr ""
+msgstr "Voorbeeld scherm hoogte"
 
 # vrij vertaald
 #~ msgid "Don't become a daemon"
