@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-03-16 00:25+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
@@ -25,16 +25,18 @@ msgstr ""
 "imediatamente"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Versão desta aplicação"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Não executar como daemon"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Activar a depuração de código"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "_Trancar o ecrã quando o protector de ecrã está activo"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -54,6 +56,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Não executar como daemon"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Força o protector de ecrã a terminar graciosamente"
@@ -239,9 +252,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "_Activar o protector de ecrã quando o computador estiver inactivo"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "_Trancar o ecrã quando o protector de ecrã está activo"
 
 #~ msgid "_Preview"
 #~ msgstr "_Antevisão"

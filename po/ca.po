@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2013-07-06 14:01+0600\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitoschido@ubuntu.com>\n"
 "Language-Team: Català <ca@li.org>\n"
@@ -25,16 +25,17 @@ msgstr ""
 "pantalla immediatament"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Versió d'aquesta aplicació"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "No esdevinguis un dimoni"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Habilita el codi de depuració"
+
+#: ../src/light-locker.c:59
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
@@ -51,5 +52,15 @@ msgstr "Aquesta sessió està bloquejada"
 #: ../src/gs-content.c:118
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
+msgstr "Se us redirigirà al diàleg de desblocatge automàticament en uns segons"
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
 msgstr ""
-"Se us redirigirà al diàleg de desblocatge automàticament en uns segons"
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "No esdevinguis un dimoni"

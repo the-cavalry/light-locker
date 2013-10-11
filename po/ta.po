@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.master.ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-04-03 08:51+0530\n"
 "Last-Translator: \n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
@@ -28,16 +28,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "இயங்கும் திரை சேமிப்பி செயலை உடனே திரையை பூட்டச் சொல்லுகிறது."
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "இந்த பயன்பாட்டின் பதிப்பு"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "ஒரு டீமானாக ஆக வேண்டாம்"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "பிழைத்திருத்த குறியீட்டை செயல்படுத்து"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "திரை சேமிப்பி செயலில் இருப்பின் திரையை பூட்டவும்."
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -57,6 +59,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "ஒரு டீமானாக ஆக வேண்டாம்"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "திரை சேமிப்பினை வெளியேற்றுகிறது"
@@ -240,9 +253,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "கணினி சும்மாயிருப்பின் திரை சேமிப்பியை செயல்படுத்துக"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "திரை சேமிப்பி செயலில் இருப்பின் திரையை பூட்டவும்."
 
 #~ msgid "_Preview"
 #~ msgstr "முன்பார்வை (_P)"

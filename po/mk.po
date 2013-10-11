@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2008-08-29 11:33+0200\n"
 "Last-Translator: Arangel Angov <ufo@linux.net.mk>\n"
 "Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
@@ -27,16 +27,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Му кажува на чуварот на екранот да го заклучи екранот веднаш"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Верзија на оваа апликација"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Не станувај Демон"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Овозможи дебагирачки код"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "_Заклучи екран кога чуварот на екранот е активен"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -55,6 +57,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Не станувај Демон"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "Поставете ги преференциите за чуварот на екранот"
@@ -79,9 +92,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "_Активирај чувар на екранот кога сесијата е неактивна"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "_Заклучи екран кога чуварот на екранот е активен"
 
 #~ msgid "_Preview"
 #~ msgstr "_Преглед"

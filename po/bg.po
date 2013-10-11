@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-03-25 21:47+0200\n"
 "Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
@@ -28,16 +28,17 @@ msgstr ""
 "                             веднага да заключи екрана"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Версия на програмата"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Да не се преминава в режим на демон"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Да се включи режим на изчистване на грешки"
+
+#: ../src/light-locker.c:59
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -57,6 +58,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Да не се преминава в режим на демон"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Кара екранният предпазител да се затвори"

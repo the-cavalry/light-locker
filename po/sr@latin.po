@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-03-18 22:39+0100\n"
 "Last-Translator: Miloš Popović <gpopac@gmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
@@ -26,16 +26,17 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Govori pokrenutom procesu čuvara ekrana da odmah zaključa ekran"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Verzija ovog programa"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Nemoj biti pozadinski proces"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Omogući ispis za traženje grešaka"
+
+#: ../src/light-locker.c:59
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -55,6 +56,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Nemoj biti pozadinski proces"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Čini da čuvar ekrana bude zaustavljen prirodno"

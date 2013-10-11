@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: po_gnome-screensaver-km\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2012-08-07 12:19+0000\n"
 "Last-Translator: Launchpad Translations Administrators <Unknown>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -27,16 +27,17 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "ប្រាប់​ពី​ដំណើរការ​ធាតុ​រក្សា​អេក្រង់​​ដែល​ត្រូវ​ទប់ស្កាត់​អេក្រង់​​រំពេច​នេះ"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "កំណែ​របស់​កម្មវិធី​នេះ"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "កុំ​ជា​ដេមិន"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "បើក​​កូដ​ដែល​បំបាត់​កំហុស"
+
+#: ../src/light-locker.c:59
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -56,6 +57,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "កុំ​ជា​ដេមិន"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "បុព្វហេតុ​​ធាតុ​រក្សា​អេក្រង់​​ចេញ​ដោយ​សមរម្យ"

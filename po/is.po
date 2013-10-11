@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2008-05-07 00:24+0000\n"
 "Last-Translator: Anna Jonna Ármannsdóttir <annajonna@gmail.com>\n"
 "Language-Team: Icelandic\n"
@@ -22,16 +22,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Skipa núverandi skjáhvílu að læsa skjánum strax"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Útgáfa þessa forrits"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Ekki verða að þjónustu"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Virkja aflúsunarham"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "_Læsa skjá þegar skjáhvíla er í gangi"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -50,6 +52,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Ekki verða að þjónustu"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "Stilltu valmöguleika fyrir skjávhvíluna"
@@ -74,9 +87,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "_Virkja skjáhvílu þegar tölva er iðjulaus"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "_Læsa skjá þegar skjáhvíla er í gangi"
 
 #~ msgid "_Preview"
 #~ msgstr "_Forsýning"

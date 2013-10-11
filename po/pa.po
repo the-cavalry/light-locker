@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-03-26 23:44+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -26,16 +26,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "ਚੱਲਦੇ ਸਕਰੀਨ-ਸੇਵਰ ਕਾਰਵਾਈ ਨੂੰ ਸਕਰੀਨ ਨੂੰ ਤੁਰੰਤ ਲਾਕ ਕਰਨ ਦਾ ਸੰਕੇਤ ਦਿਓ"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "ਇਹ ਐਪਲੀਕੇਸ਼ਨ ਦਾ ਵਰਜਨ"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "ਇੱਕ ਡੈਮਨ ਨਾ ਬਣਾਓ"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "ਡੀਬੱਗ ਕੋਡ ਨੂੰ ਯੋਗ"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "ਜਦੋਂ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਵੇ ਤਾਂ ਸਕਰੀਨ ਲਾਕ ਕਰੋ(_L)"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -55,6 +57,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "ਇੱਕ ਡੈਮਨ ਨਾ ਬਣਾਓ"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "ਸਕਰੀਨ-ਸੇਵਰ ਨੂੰ ਮਾਣ ਨਾਲ ਬੰਦ ਕਰਨ ਦਾ ਕਾਰਨ ਬਣਦਾ ਹੈ"
@@ -242,9 +255,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "ਜਦੋਂ ਕੰਪਿਊਟਰ ਵੇਹਲਾ ਹੋਵੇ ਤਾਂ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਕਰੋ(_A)"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "ਜਦੋਂ ਸਕਰੀਨ-ਸੇਵਰ ਸਰਗਰਮ ਹੋਵੇ ਤਾਂ ਸਕਰੀਨ ਲਾਕ ਕਰੋ(_L)"
 
 #~ msgid "_Preview"
 #~ msgstr "ਝਲਕ(_P)"

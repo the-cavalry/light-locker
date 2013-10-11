@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2012-11-16 18:26+0000\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
@@ -28,18 +28,18 @@ msgstr "Požiada bežiaci šetrič obrazovky, aby okamžite uzamkol obrazovku"
 
 # cmd desc
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Vypíše verziu tejto aplikácie"
 
 # cmd desc
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Zakáže spustenie formou démona"
-
-# cmd desc
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Povolí ladiaci kód"
+
+#: ../src/light-locker.c:59
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr ""
 
 # desktop entry name
 #: ../src/light-locker.desktop.in.in.h:1
@@ -61,6 +61,18 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+# cmd desc
+#~ msgid "Don't become a daemon"
+#~ msgstr "Zakáže spustenie formou démona"
 
 # cmd desc
 #~ msgid "Causes the screensaver to exit gracefully"

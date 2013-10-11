@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.HEAD.ne\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2007-11-07 11:47+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -27,16 +27,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "पर्दामा तत्काल ताल्चा लगाउनका लागि चलिरहेको स्क्रिनसेभरलाई सुझाव दिन्छ"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "यस अनुप्रयोगको संस्करण"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "डेइमोन नहुनुहोस्"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "त्रुटि सच्याउने कोड सक्षम पार्नुहोस्"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "स्क्रिनसेभर सक्रिय भएपछि पर्दामा ताल्चा लगाउनुहोस्"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -55,6 +57,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "डेइमोन नहुनुहोस्"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "स्क्रिनसेभर प्राथमिकता सेट गर्नुहोस्"
@@ -79,9 +92,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "कम्प्युटर निस्क्रिय हुदा स्क्रिनसेभर सक्रिय पार्नुहोस्"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "स्क्रिनसेभर सक्रिय भएपछि पर्दामा ताल्चा लगाउनुहोस्"
 
 #~ msgid "_Preview"
 #~ msgstr "पूर्वावलोकन"

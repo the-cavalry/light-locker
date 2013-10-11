@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-03-28 17:30+0800\n"
 "Last-Translator: liwei <lw124124@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
@@ -27,16 +27,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "通知正在运行的屏幕保护程序进程立即锁定屏幕"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "此应用程序的版本"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "不成为守护进程"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "启用调试代码"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "屏幕保护程序激活时锁定屏幕(_L)"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -56,6 +58,17 @@ msgstr "本对话被锁定"
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr "您会于幾秒內自动重新定向到解锁方块"
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "不成为守护进程"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "使屏幕保护程序正常退出"
@@ -343,9 +356,6 @@ msgstr "您会于幾秒內自动重新定向到解锁方块"
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "计算机空闲时激活屏幕保护程序(_A)"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "屏幕保护程序激活时锁定屏幕(_L)"
 
 #~ msgid "_Preview"
 #~ msgstr "预览(_P)"

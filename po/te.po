@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.master.te\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-07-12 10:41+0530\n"
 "Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
 "Language-Team: Telugu <indlinux-telugu@lists.sourceforge.net>\n"
@@ -27,16 +27,17 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "నడుస్తున్న తెరకాపరి ప్రక్రియకు వెంటనే తెరకు తాళం వేయమని చెబుతుంది"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "ఈ అనువర్తనము యొక్క రూపాంతరం"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "సూత్రదారి అవ్వకు"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "దోషనిర్మూలన కోడ్‌ని చేతనపరుచు"
+
+#: ../src/light-locker.c:59
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -56,6 +57,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "సూత్రదారి అవ్వకు"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "తెరకాపరిని అందంగా వెళ్లిపోయేట్టు చేస్తుంది"

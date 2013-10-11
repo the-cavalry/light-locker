@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: metacity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2010-05-12 18:36 -0400\n"
 "Last-Translator: Thomas Thurman <tthurman@gnome.org>\n"
 "Language-Team: Shavian <ubuntu-l10n-en-shaw@launchpad.net>\n"
@@ -21,16 +21,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "𐑑𐑧𐑤𐑟 𐑞 𐑮𐑳𐑯𐑦𐑙 𐑕𐑒𐑮𐑰𐑯𐑕𐑱𐑝𐑼 𐑐𐑮𐑴𐑕𐑧𐑕 𐑑 𐑤𐑪𐑒 𐑞 𐑕𐑒𐑮𐑰𐑯 𐑦𐑥𐑰𐑛𐑾𐑑𐑤𐑰"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "𐑝𐑻𐑠𐑩𐑯 𐑝 𐑞𐑦𐑕 𐑩𐑐𐑤𐑦𐑒𐑱𐑕𐑩𐑯"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "𐑛𐑴𐑯𐑑 𐑚𐑦𐑒𐑳𐑥 𐑩 𐑛𐑰𐑥𐑩𐑯"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "𐑦𐑯𐑱𐑚𐑩𐑤 𐑛𐑰𐑚𐑳𐑜𐑦𐑙 𐑒𐑴𐑛"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "_𐑤𐑪𐑒 𐑕𐑒𐑮𐑰𐑯 𐑢𐑧𐑯 𐑕𐑒𐑮𐑰𐑯𐑕𐑱𐑝𐑼 𐑦𐑟 𐑨𐑒𐑑𐑦𐑝"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -50,6 +52,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "𐑛𐑴𐑯𐑑 𐑚𐑦𐑒𐑳𐑥 𐑩 𐑛𐑰𐑥𐑩𐑯"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "𐑕𐑧𐑑 𐑿𐑼 𐑕𐑒𐑮𐑰𐑯𐑕𐑱𐑝𐑼 𐑐𐑮𐑧𐑓𐑼𐑩𐑯𐑕𐑩𐑟"
@@ -74,9 +87,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "_𐑨𐑒𐑑𐑦𐑝𐑱𐑑 𐑕𐑒𐑮𐑰𐑯𐑕𐑱𐑝𐑼 𐑢𐑧𐑯 𐑒𐑩𐑥𐑐𐑿𐑑𐑼 𐑦𐑟 𐑲𐑛𐑩𐑤"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "_𐑤𐑪𐑒 𐑕𐑒𐑮𐑰𐑯 𐑢𐑧𐑯 𐑕𐑒𐑮𐑰𐑯𐑕𐑱𐑝𐑼 𐑦𐑟 𐑨𐑒𐑑𐑦𐑝"
 
 #~ msgid "_Preview"
 #~ msgstr "_𐑐𐑮𐑰𐑝𐑿"

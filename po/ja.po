@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-09-11 07:40+0900\n"
 "Last-Translator: Jiro Matsuzawa <jmatsuzawa@src.gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -25,16 +25,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "起動中のスクリーンセーバーに今すぐ画面をロックさせる"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "このアプリケーションのバージョンを表示する"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "デーモン化しない"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "デバッグ・モードにする"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "スクリーンセーバーを起動したら画面をロックする(_L):"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -54,6 +56,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "デーモン化しない"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "スクリーンセーバーを強制終了する"
@@ -239,9 +252,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "アイドル状態になったらスクリーンセーバーを起動する(_A)"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "スクリーンセーバーを起動したら画面をロックする(_L):"
 
 #~ msgid "_Preview"
 #~ msgstr "プレビュー(_P)"

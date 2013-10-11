@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2008-10-16 20:53+0000\n"
 "Last-Translator: Astur <malditoastur@gmail.com>\n"
 "Language-Team: Asturian <gnome@softastur.org>\n"
@@ -29,16 +29,18 @@ msgstr ""
 "intre"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Versión d'esta aplicación"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Nun convertise nun daemon"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Activar códigu de depuración"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "B_loquiar la pantalla cuando'l curiapantalles tea activu"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -57,6 +59,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Nun convertise nun daemon"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "Afite les sos preferencies pal curiapantalles"
@@ -81,9 +94,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "_Activar el curiapantalles cuando l'equipu tea inactivu"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "B_loquiar la pantalla cuando'l curiapantalles tea activu"
 
 #~ msgid "_Preview"
 #~ msgstr "Vista _previa"

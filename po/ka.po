@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ka\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2007-09-28 04:01+0200\n"
 "Last-Translator: Vladimer Sichinava ვლადიმერ სიჭინავა <vsichi@gnome.org>\n"
 "Language-Team: Georgian <http://mail.gnome.org/mailman/listinfo/gnome-ge-"
@@ -27,16 +27,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "ეკრანმზოგის მიერ ეკრანის დაუყოვნებლივ ბლოკირება"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "პროგრამის ვერსია"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "ნუ გაეშმაკდი მთლათ :)"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "გამართვის გამონატანი კოდის ჩართვა"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "_ეკრანის გამორთვა, როცა ეკრანმზოგი აქტიურია"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -55,6 +57,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "ნუ გაეშმაკდი მთლათ :)"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "ეკრანმზოგის პარამეტრების მითითება"
@@ -80,9 +93,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "_ეკრანმზოგის გააქტიურება, როცა სისტემა უქმ რეჟიმშია"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "_ეკრანის გამორთვა, როცა ეკრანმზოგი აქტიურია"
 
 #~ msgid "_Preview"
 #~ msgstr "გა_დახედვა"

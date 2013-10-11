@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver GNOME TRUNK\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-04-01 20:31+0700\n"
 "Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
@@ -24,16 +24,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Báo tiến trình bảo vệ màn hình đang chạy phải khoá ngay màn hình"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Phiên bản ứng dụng này"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Đừng chạy trong nền"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Bật chạy mã gỡ lỗi"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "_Khoá màn hình khi bộ bảo vệ màn hình hoạt động"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -53,6 +55,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Đừng chạy trong nền"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Làm cho bộ bảo vệ màn hình thoát êm đẹp"
@@ -240,9 +253,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "_Kích hoạt bộ bảo vệ màn hình khi máy tính nghỉ"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "_Khoá màn hình khi bộ bảo vệ màn hình hoạt động"
 
 #~ msgid "_Preview"
 #~ msgstr "_Xem thử"

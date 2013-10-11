@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: si\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2007-09-17 12:27+0530\n"
 "Last-Translator: Danishka Navin <snavin@redhat.com>\n"
 "Language-Team: Sinhala <en@li.org>\n"
@@ -24,16 +24,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "ක්‍රියාත්මක වෙමින් පවතින තිරආවරක වැඩසටහනට හැකි ඉක්මනින් තිරය වැසීමට පවසන්න"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "මෙම යෙදුමෙ වෙළුම"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "විබුද්ධකයකු නොවන්න"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "දෝෂහරිණ කේත සක්‍රිය කරන්න"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "තිරආවරකය සක්‍රිය වන විට තිරය අගුලු දමන්න (_L)"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -52,6 +54,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "විබුද්ධකයකු නොවන්න"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "ඔබගේ තිරආවරක අභිප්‍රේත සකසන්න"
@@ -73,9 +86,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "පරිගණකය අභාවිත වනවිට තිරආවරකය සක්‍රිය කරන්න (_A)"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "තිරආවරකය සක්‍රිය වන විට තිරය අගුලු දමන්න (_L)"
 
 #~ msgid "_Preview"
 #~ msgstr "පෙන්වන්න (_P)"

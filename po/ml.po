@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.master.ml\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2012-09-18 20:55+0000\n"
 "Last-Translator: Ani Peter <apeter@redhat.com>\n"
 "Language-Team: Malayalam <discuss@lists.smc.org.in>\n"
@@ -27,16 +27,18 @@ msgstr ""
 "ഉടന്‍ തന്നെ സ്ക്രീന്‍ പൂട്ടുന്നതിനായി പ്രവര്‍ത്തിച്ചുകൊണ്ടിരിക്കുന്ന സ്ക്രീന്‍സേവര്‍ പ്രക്രിയയോട് പറയുന്നു"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "ഈ പ്രയോഗത്തിന്റെ ലക്കം"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "ഒരു നിരന്തരപ്രക്രിയയാകേണ്ടതില്ല"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "പിഴവ് തിരുത്തുന്നതിന് സഹായകമായ കോഡ് പ്രവര്‍ത്തികമാക്കുക"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "സ്ക്രീന്‍സേവര്‍ സജീവമാകുമ്പോള്‍ സ്ക്രീന്‍ _പൂട്ടുക"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -56,6 +58,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "ഒരു നിരന്തരപ്രക്രിയയാകേണ്ടതില്ല"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "സ്ക്രീന്‍സേവറില്‍ നിന്നും നല്ലനിലയില്‍ പുറത്ത് കടക്കുന്നുതിനു കാരണമാകുന്നു"
@@ -238,9 +251,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "കമ്പ്യൂട്ടര്‍ ആലസ്യത്തിലാകുമ്പോള്‍ സ്ക്രീന്‍സേവര്‍ _സജീവമാക്കുക"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "സ്ക്രീന്‍സേവര്‍ സജീവമാകുമ്പോള്‍ സ്ക്രീന്‍ _പൂട്ടുക"
 
 #~ msgid "_Preview"
 #~ msgstr "_കണ്ടു നോക്കുക"

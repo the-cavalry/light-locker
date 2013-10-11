@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bn_IN\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2012-09-21 15:24+0530\n"
 "Last-Translator: Runa Bhattacharjee <runab@redhat.com>\n"
 "Language-Team: Bengali (India) <anubad@lists.ankur.org.in>\n"
@@ -26,16 +26,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "এর ফলে, স্ক্রিন-সেভার পরিসেবাকে অবিলম্বে পর্দা লক করার নির্দেশ দেওয়া হয়"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "এই অ্যাপলিকেশনটির সংস্করণ"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "ডেমন তৈরি করা হবে না"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "কোড ডিবাগের ব্যবস্থা সক্রিয় করা হবে"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "স্ক্রিন-সেভার সক্রিয় হলে পর্দা লক করা হবে (_L)"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -55,6 +57,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "ডেমন তৈরি করা হবে না"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "এর ফলে, স্ক্রিন-সেভার সঠিকরূপে বন্ধ হবে"
@@ -238,9 +251,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "কর্মহীন অবস্থায় কম্পিউটারে স্ক্রিন-সেভার সক্রিয় করা হবে (_A)"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "স্ক্রিন-সেভার সক্রিয় হলে পর্দা লক করা হবে (_L)"
 
 #~ msgid "_Preview"
 #~ msgstr "পূর্বরূপ প্রদর্শন (_P)"

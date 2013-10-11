@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-SCREENSAVER 2.16\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2006-07-17 20:55+0300\n"
 "Last-Translator: Fano Rajaonarisoa <rajfanhar@yahoo.fr>\n"
 "Language-Team: Malagasy <i18n-malagasy-gnome@gna.org>\n"
@@ -23,16 +23,18 @@ msgstr ""
 "Milaza ny asan'ny sary mitsitsy mandeha mba hangeja ny efijery avy hatrany"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Ny kinovan'io rindranasa io"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Aza mivadika daemon"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Mandefa ny fangon'ny debugging"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "_Gejao ny efijery rehefa mandeha ny sary mitsitsy"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -51,6 +53,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Aza mivadika daemon"
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "Mamaritra ny safidy manokan'ny sary mitsitsy"
@@ -73,9 +86,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "_Alefaso ny sary mitsitsy rehefa tsy miasa ny solosaina"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "_Gejao ny efijery rehefa mandeha ny sary mitsitsy"
 
 #~ msgid "_Preview"
 #~ msgstr "_Topimaso"

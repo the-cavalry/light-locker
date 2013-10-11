@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-03-17 14:55+0100\n"
 "Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -34,16 +34,18 @@ msgstr ""
 "Den Bildschirm über den laufenden Bildschirmschonerprozess sofort sperren"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Version dieser Anwendung"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Kein Hintergrundprozess"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Fehlerdiagnosefunktionen aktivieren"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "Bildschirm _sperren, wenn der Bildschirmschoner aktiv ist"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
@@ -61,6 +63,17 @@ msgstr "Diese Sitzung ist gesperrt"
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr "Automatische Weiterleitung zum Entsperr-Dialog in wenigen Sekunden"
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Kein Hintergrundprozess"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Den Bildschirmschoner beenden"
@@ -252,9 +265,6 @@ msgstr "Automatische Weiterleitung zum Entsperr-Dialog in wenigen Sekunden"
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "_Bildschirmschoner aktivieren, wenn der Benutzer untätig ist"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "Bildschirm _sperren, wenn der Bildschirmschoner aktiv ist"
 
 #~ msgid "_Preview"
 #~ msgstr "_Vorschau"

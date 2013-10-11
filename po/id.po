@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-02-22 05:59+0700\n"
 "Last-Translator: Dirgita <dirgitadevina@yahoo.co.id>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
@@ -26,16 +26,17 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Meminta proses pengaman layar untuk mengunci layar dengan segera"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Versi aplikasi ini"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Jangan menjadi daemon"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Mengaktifkan kode debug"
+
+#: ../src/light-locker.c:59
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -55,6 +56,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Jangan menjadi daemon"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Menyebabkan screensaver keluar dengan baik"

@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2012-05-20 14:32+0200\n"
 "Last-Translator: Bruno Brouard <annoa.b@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -34,16 +34,17 @@ msgstr ""
 "l'écran immédiatement"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Version de cette application"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Ne pas devenir un « daemon » (démon)"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Activer le code de débogage"
+
+#: ../src/light-locker.c:59
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -66,6 +67,17 @@ msgid ""
 msgstr ""
 "Vous allez être automatiquement redirigés vers la fenêtre de déverrouillage "
 "dans quelques secondes"
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Ne pas devenir un « daemon » (démon)"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Demande à l'économiseur d'écran de quitter proprement"

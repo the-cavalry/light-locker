@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2006-08-15 00:03+0200\n"
 "Last-Translator: Badral <badral@openmn.org>\n"
 "Language-Team: Mongolian <openmn-translation@lists.sourceforge.net>\n"
@@ -27,16 +27,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Ажиллаж байгаа скринсевер дэлгэцийг хурдан түгжихийг сануулж байна."
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Энэ програмын хувилбар"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Сервер программ болохгүй байна."
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Шалгах код идэвхижүүлэх."
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "_Дэлгэц гамнагч идэвхитэй байх үед дэлгэц түгжигддэг"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -55,6 +57,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Сервер программ болохгүй байна."
 
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "Дэлгэц гамнагчийн тохиргоонуудыг байрлуул."
@@ -78,9 +91,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Комьпютер дээр ямар нэг үйлдэл хийлгүй тодорхой хугацаа өнгөрөхөд "
 #~ "скринсевер _идэвхиждэг."
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "_Дэлгэц гамнагч идэвхитэй байх үед дэлгэц түгжигддэг"
 
 #~ msgid "_Preview"
 #~ msgstr "_Урьдчилан харах"

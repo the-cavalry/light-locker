@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2012-01-17 15:28+0200\n"
 "Last-Translator: Andiswa Mvanyashe <andiswamva@gmail.com>\n"
 "Language-Team: translate-discuss-xh@lists.sourceforge.net\n"
@@ -24,17 +24,17 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Xelela umgcini-skrini osebenzayo ukutshixa isikrini ngoko nangoko"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Inguqulelo yale nkqubo"
 
-#: ../src/light-locker.c:57
-#, fuzzy
-msgid "Don't become a daemon"
-msgstr "Sukubayi daemon"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Yenza ibe nako ukulungisa isiphene sekhowudi kwinkqubo"
+
+#: ../src/light-locker.c:59
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -54,6 +54,18 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Don't become a daemon"
+#~ msgstr "Sukubayi daemon"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Yenza umgcini-skrini aphume ngesihle"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 0.0.21\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-04-24 22:36+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -23,16 +23,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "บอกโพรเซสโปรแกรมรักษาหน้าจอที่กำลังทำงานอยู่ให้ล็อคหน้าจอทันที"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "รุ่นของโปรแกรมนี้"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "ไม่ต้องเป็นดีมอน"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "เปิดใช้โค้ดส่วนดีบั๊ก"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "_ล็อคหน้าจอเมื่อโปรแกรมรักษาหน้าจอทำงาน"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -52,6 +54,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "ไม่ต้องเป็นดีมอน"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "ทำให้โปรแกรมรักษาหน้าจอจบอย่างนุ่มนวล"
@@ -234,9 +247,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "แ_สดงโปรแกรมรักษาหน้าจอเมื่อเครื่องไม่ถูกใช้งาน"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "_ล็อคหน้าจอเมื่อโปรแกรมรักษาหน้าจอทำงาน"
 
 #~ msgid "_Preview"
 #~ msgstr "ภาพ_ตัวอย่าง"

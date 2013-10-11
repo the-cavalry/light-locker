@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2012-08-17 13:41+0200\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
@@ -34,16 +34,18 @@ msgstr ""
 "pantalla inmediatamente"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Versión deste aplicativo"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Non converter nun daemon"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Activar o código de depuración"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "_Bloquear a pantalla cando o protector de pantalla estea activo"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -63,6 +65,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Non converter nun daemon"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Fai que o protector de pantalla saia correctamente"
@@ -361,9 +374,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "_Activar o protector de pantalla cando o computador estea inactivo"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "_Bloquear a pantalla cando o protector de pantalla estea activo"
 
 #~ msgid "_Preview"
 #~ msgstr "_Previsualización"

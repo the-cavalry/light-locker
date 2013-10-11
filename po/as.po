@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: as\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-05-26 19:23+0000\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
 "Language-Team: as_IN <kde-i18n-doc@kde.org>\n"
@@ -25,16 +25,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "চলি থকা স্ক্ৰিছেইভাৰ প্ৰক্ৰিয়াক পৰ্দা তৎক্ষনাত লক কৰিবলে কয়"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "এই এপ্লিকেচনৰ সংস্কৰণ"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "এটা ডিমন নবনিব"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "ডিবাগিং সামৰ্থবান কৰক"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "লক কৰা হ'ব হলো সক্ৰিয়"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -54,6 +56,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "এটা ডিমন নবনিব"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "স্ক্ৰিনছেইভাৰক সঠিকভাৱে প্ৰস্থান কৰায়"
@@ -344,9 +357,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "_Activate screensaver when computer is idle"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "লক কৰা হ'ব হলো সক্ৰিয়"
 
 #~ msgid "_Preview"
 #~ msgstr "পূৰ্বৰূপ (_P)"

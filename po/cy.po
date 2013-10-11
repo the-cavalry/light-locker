@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-backgrounds\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2006-03-08 12:10-0000\n"
 "Last-Translator: Rhys Jones <rhys@sucs.org>\n"
 "Language-Team: Welsh <gnome-cy@lists.linux.org.uk>\n"
@@ -23,16 +23,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Gorchymyn i'r broses arbedwr sgrin sy'n rhedeg i gloi'r sgrin yn syth"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Fersiwn y rhaglen"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Peidio â throi'n ellyll"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Galluogi cod datnamu"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "_Cloi'r sgrin pan mae'r arbedwr sgrin ar waith"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -52,6 +54,17 @@ msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
 
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Peidio â throi'n ellyll"
+
 #~ msgid "Set your screensaver preferences"
 #~ msgstr "Gosod eich hoffterau arbedwr sgrin"
 
@@ -63,9 +76,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when session is idle"
 #~ msgstr "_Dechrau'r arbedwr sgrin pan fo'r sesiwn yn segur"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "_Cloi'r sgrin pan mae'r arbedwr sgrin ar waith"
 
 #~ msgid "_Screensaver"
 #~ msgstr "_Arbedwr Sgrin"

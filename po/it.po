@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver 2.9x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-03-16 15:08+0100\n"
 "Last-Translator: Luca Ferretti <lferrett@gnome.org>\n"
 "Language-Team: Italiano <tp@lists.linux.it>\n"
@@ -32,16 +32,18 @@ msgstr ""
 "lo schermo"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Versione di questa applicazione"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Non diventare un demone"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Abilitare il codice di debug"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "_Bloccare lo schermo quando il salvaschermo viene avviato"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -61,6 +63,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Non diventare un demone"
 
 # sarebbe, credo, non violenta... Ci debbo pensare meglio -Luca
 #~ msgid "Causes the screensaver to exit gracefully"
@@ -258,9 +271,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "_Avviare il salvaschermo quando il computer è inattivo"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "_Bloccare lo schermo quando il salvaschermo viene avviato"
 
 #~ msgid "_Preview"
 #~ msgstr "Ante_prima"

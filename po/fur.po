@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver gnome-3-6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2012-12-28 09:35+0100\n"
 "Last-Translator: TmTFx <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
@@ -23,16 +23,17 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Dîs al process in vore dal salvevisôr che al blochi il visôr subite"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Version de aplicazion"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "No sta diventâ un demoni"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Abilite il codiç di debug"
+
+#: ../src/light-locker.c:59
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -52,6 +53,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "No sta diventâ un demoni"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Al fas jessi dolcementri il salvevisôr"

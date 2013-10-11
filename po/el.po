@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-10-18 18:14+0300\n"
 "Last-Translator: Ioannis Zampoukas <ioza1964@yahoo.gr>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
@@ -31,16 +31,18 @@ msgstr ""
 "άμεσα"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Η έκδοση αυτής της εφαρμογής"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Να μη γίνει daemon"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Ενεργοποίηση κώδικα αποσφαλμάτωσης"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "_Κλείδωμα οθόνης όταν η προστασία οθόνης είναι ενεργή"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -61,6 +63,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Να μη γίνει daemon"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Προκαλεί την έξοδο της προστασίας οθόνης"
@@ -241,9 +254,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "Ε_νεργοποίηση προστασίας οθόνης όταν ο υπολογιστής είναι αδρανής"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "_Κλείδωμα οθόνης όταν η προστασία οθόνης είναι ενεργή"
 
 #~ msgid "_Preview"
 #~ msgstr "_Προεπισκόπηση"

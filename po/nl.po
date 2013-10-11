@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-04-03 18:10+0200\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -34,17 +34,18 @@ msgstr ""
 "vergrendelen"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Versie van deze toepassing"
 
-# vrij vertaald
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Niet als daemon uitvoeren"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Debugging-code gebruiken"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "_Scherm vergrendelen wanneer schermbeveiliging is geactiveerd"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
@@ -64,6 +65,18 @@ msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
 "Automatische doorgesturing naar het ontgrendel scherm, over enkele seconden"
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+# vrij vertaald
+#~ msgid "Don't become a daemon"
+#~ msgstr "Niet als daemon uitvoeren"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Zorgt dat de schermbeveiliging netjes afsluit"
@@ -253,9 +266,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "Schermbeveiliging inschakelen wanneer de computer inactief is"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "_Scherm vergrendelen wanneer schermbeveiliging is geactiveerd"
 
 #~ msgid "_Preview"
 #~ msgstr "_Voorbeeld"

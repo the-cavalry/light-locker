@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-03-19 23:08+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
@@ -23,16 +23,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "실행 중인 화면 보호기 프로세스에게 바로 화면을 잠그도록 합니다"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "이 프로그램의 버전"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "데몬이 되지 않았습니다"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "디버깅 코드 사용"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "화면 보호기가 켜지면 화면 잠그기(_L)"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -52,6 +54,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "데몬이 되지 않았습니다"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "화면 보호기를 정상적으로 끝냅니다"
@@ -340,9 +353,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "입력이 없는 상태일 때 화면 보호기 켜기(_A)"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "화면 보호기가 켜지면 화면 잠그기(_L)"
 
 #~ msgid "_Preview"
 #~ msgstr "미리 보기(_P)"

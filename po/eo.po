@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-05-21 18:39+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <ubuntu-l10n-eo@lists.launchpad.net>\n"
@@ -30,16 +30,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Komandas al la rulata ekrankurtena procezo tuj ŝlosi la ekranon"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Versio de ĉi tiu aplikaĵo"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Ne fariĝi demono"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Enŝalti sencimigan kodon"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "Ŝ_losi ekranon kiam ekrankurteno estas aktiva"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -59,6 +61,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Ne fariĝi demono"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Kaŭzas al la ekrankurteno finiĝi gracie"
@@ -244,9 +257,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "_Aktivigi ekrankurtenon kiam la komputilo estas neaktiva"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "Ŝ_losi ekranon kiam ekrankurteno estas aktiva"
 
 #~ msgid "_Preview"
 #~ msgstr "_Antaŭrigardi"

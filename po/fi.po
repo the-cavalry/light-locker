@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 23:29+0200\n"
+"POT-Creation-Date: 2013-10-11 19:51+0200\n"
 "PO-Revision-Date: 2011-06-07 15:24+0300\n"
 "Last-Translator: Tommi Vainikainen <thv@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -26,16 +26,18 @@ msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Lukitse näyttö heti käynnissä olevan näytönsäästäjäprosessin avulla"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
+#: ../src/preview.c:70
 msgid "Version of this application"
 msgstr "Tämän ohjelman versio"
 
-#: ../src/light-locker.c:57
-msgid "Don't become a daemon"
-msgstr "Älä käynnistä palvelinprosessina"
-
-#: ../src/light-locker.c:58
+#: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
 msgstr "Käytä debuggauskoodia"
+
+#: ../src/light-locker.c:59
+#, fuzzy
+msgid "Lock the screen S seconds after the screensaver started"
+msgstr "_Lukitse näyttö, kun näytönsäästäjä on aktiivinen"
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -55,6 +57,17 @@ msgstr ""
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+
+#: ../src/preview.c:72
+msgid "Preview screen width"
+msgstr ""
+
+#: ../src/preview.c:73
+msgid "Preview screen height"
+msgstr ""
+
+#~ msgid "Don't become a daemon"
+#~ msgstr "Älä käynnistä palvelinprosessina"
 
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Sammuta näytönsäästäjäohjelma kokonaan"
@@ -239,9 +252,6 @@ msgstr ""
 
 #~ msgid "_Activate screensaver when computer is idle"
 #~ msgstr "_Käynnistä näytönsäästäjä, kun tietokone on joutilas"
-
-#~ msgid "_Lock screen when screensaver is active"
-#~ msgstr "_Lukitse näyttö, kun näytönsäästäjä on aktiivinen"
 
 #~ msgid "_Preview"
 #~ msgstr "_Esikatselu"
