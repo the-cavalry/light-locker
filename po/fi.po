@@ -11,19 +11,21 @@ msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2011-06-07 15:24+0300\n"
-"Last-Translator: Tommi Vainikainen <thv@iki.fi>\n"
+"PO-Revision-Date: 2013-11-04 01:51+0200\n"
+"Last-Translator: Pasi Lallinaho <pasi@shimmerproject.org>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr "Lukitse näyttö heti käynnissä olevan näytönsäästäjäprosessin avulla"
+msgstr ""
+"Kertoo käynnissä olevalle näytön hallintaohjelmalle lukitsemaan näytön "
+"välittömästi"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -35,36 +37,34 @@ msgid "Enable debugging code"
 msgstr "Käytä debuggauskoodia"
 
 #: ../src/light-locker.c:59
-#, fuzzy
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr "_Lukitse näyttö, kun näytönsäästäjä on aktiivinen"
+msgstr "Lukitse näyttö S sekuntia näytönsäästäjän käynnistämisen jälkeen"
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Näytönsäästäjä"
+msgstr "Näytön lukitusohjelma"
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Käynnistä näytönsäästäjä ja lukitusohjelma"
+msgstr "Käynnistä näytön lukitusohjelma"
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
-msgstr ""
+msgstr "Tämä sessio on lukittu"
 
 #: ../src/gs-content.c:118
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
+"Sinut ohjataan lukituksen poistoon automaattisesti muutamassa sekunnissa"
 
 #: ../src/preview.c:72
 msgid "Preview screen width"
-msgstr ""
+msgstr "Esikatseluikkunan leveys"
 
 #: ../src/preview.c:73
 msgid "Preview screen height"
-msgstr ""
+msgstr "Esikatseluikkunan korkeus"
 
 #~ msgid "Don't become a daemon"
 #~ msgstr "Älä käynnistä palvelinprosessina"
