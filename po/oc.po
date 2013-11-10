@@ -1,21 +1,20 @@
-# Translation of oc.po to Occitan
-# Occitan translation of gnome-screensaver.
-# Copyright (C) 2005-2006, 2007 The Free Software Foundation, Inc.
-# This file is distributed under the same license as the gnome-screensaver package.
-#
-# Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>, 2006-2008
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: oc\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2008-02-26 23:09+0100\n"
-"Last-Translator: Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>\n"
-"Language-Team: Occitan <ubuntu-l10n-oci@lists.ubuntu.com>\n"
-"Language: oc\n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:40+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Occitan (post 1500) (http://www.transifex.com/projects/p/light-locker/language/oc/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: oc\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../src/light-locker-command.c:40
@@ -36,9 +35,8 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Estalviaire d'ecran"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
@@ -60,123 +58,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Set your screensaver preferences"
-#~ msgstr "Definir vòstras preferéncias per l'estalviaire d'ecran"
-
-#~ msgid "Screensaver Preferences"
-#~ msgstr "Preferéncias del estalviaire d'ecran"
-
-#~ msgid "_Preview"
-#~ msgstr "_Previsualizacion"
-
-#~ msgid "_Screensaver theme:"
-#~ msgstr "Tèma del estalviaire d'_ecran :"
-
-#~ msgid "Screensaver themes"
-#~ msgstr "Tèmas d'estalviaire d'ecran"
-
-#~ msgid "Screensavers"
-#~ msgstr "Estalviaires d'ecran"
-
-#~ msgid "Time before theme change"
-#~ msgstr "Temps abans cambi de tèma"
-
-#~ msgid "<span size=\"x-large\">%R</span>"
-#~ msgstr "<span size=\"x-large\">%R</span>"
-
-#~ msgid "_Cancel"
-#~ msgstr "_Anullar"
-
-#~ msgid "_Log Out"
-#~ msgstr "_Terminar la session"
-
-#~ msgid "_Switch User"
-#~ msgstr "_Cambiar d'utilizaire"
-
-#~ msgid "_Unlock"
-#~ msgstr "_Desvarrolhar"
-
-#~ msgid "Pictures folder"
-#~ msgstr "Repertòri d'imatges"
-
-#~ msgid "WIDTHxHEIGHT+X+Y"
-#~ msgstr "LARGORxNAUTOR+X+Y"
-
-#~ msgid "Location to get images from"
-#~ msgstr "Emplaçament del repertòri d'imatges"
-
-#~ msgid "PATH"
-#~ msgstr "CAMIN"
-
-#~ msgid "Copying files"
-#~ msgstr "Còpia de fichièrs"
-
-#~ msgid "From:"
-#~ msgstr "Expedidor :"
-
-#~ msgid "To:"
-#~ msgstr "Destinatari :"
-
-#~ msgid "Copying themes"
-#~ msgstr "Còpia de tèmas"
-
-#~ msgid "Copying file: %u of %u"
-#~ msgstr "Còpia del fichièr : %u sus %u"
-
-#~ msgid "active"
-#~ msgstr "actiu"
-
-#~ msgid "inactive"
-#~ msgstr "inactiu"
-
-#~ msgid "MESSAGE"
-#~ msgstr "MESSATGE"
-
-#~ msgid "Username:"
-#~ msgstr "Nom d'utilizaire :"
-
-#~ msgid "Password:"
-#~ msgstr "Mot de pas :"
-
-#~ msgid "Can not get username"
-#~ msgstr "Impossible d'obténer un nom d'utilizaire"
-
-#~ msgid "Random"
-#~ msgstr "Aleatòri"
-
-#~ msgid "%d hour"
-#~ msgid_plural "%d hours"
-#~ msgstr[0] "%d ora"
-#~ msgstr[1] "%d oras"
-
-#~ msgid "%d minute"
-#~ msgid_plural "%d minutes"
-#~ msgstr[0] "%d minuta"
-#~ msgstr[1] "%d minutas"
-
-#~ msgid "%d second"
-#~ msgid_plural "%d seconds"
-#~ msgstr[0] "%d segonda"
-#~ msgstr[1] "%d segonda"
-
-#~ msgid "%s %s %s"
-#~ msgstr "%s %s %s"
-
-#~ msgid "%s %s"
-#~ msgstr "%s %s"
-
-#~ msgid "%s"
-#~ msgstr "%s"
-
-#~ msgid "Never"
-#~ msgstr "Jamai"
-
-#~ msgid "Could not load the main interface"
-#~ msgstr "Impossible de cargar l'interfaç principala"
-
-#~ msgid "%U on %h"
-#~ msgstr "%U sus %h"
-
-#~ msgid "_Password:"
-#~ msgstr "Mot de _pas :"

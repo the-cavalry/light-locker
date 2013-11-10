@@ -1,48 +1,28 @@
-# translation of gu.po to Gujarati
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
-#
-# Ankit Patel <ankit644@yahoo.com>, 2005, 2006.
-# Ankit Patel <ankit@redhat.com>, 2006, 2007.
-# Sweta Kothari <swkothar@redhat.com>, 2008, 2009, 2010, 2011.
+# 
+# Translators:
+# Ankit Patel <ankit644@yahoo.com>, 2005-2006
+# Ankit Patel <ankit@redhat.com>, 2006-2007
+# sweta <swkothar@redhat.com>, 2008-2011
 msgid ""
 msgstr ""
-"Project-Id-Version: gu\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2011-09-20 15:14+0000\n"
-"Last-Translator: \n"
-"Language-Team: gu_IN <kde-i18n-doc@kde.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:27+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Gujarati (http://www.transifex.com/projects/p/light-locker/language/gu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"X-Generator: Lokalize 1.0\n"
+"Language: gu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr "ચાલી રહેલ સ્ક્રીનસેવર પ્રક્રિયાને સ્ક્રીન તુરંત જ તાળું મારવા માટે કહે છે"
+msgstr ""
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -58,14 +38,12 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "સ્ક્રીનસેવર"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "સ્ક્રીન સેવર અને લોકર પ્રક્રિયાને શરૂ કરો"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -83,276 +61,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "ડિમન બનશો નહિં"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "સ્ક્રીનસેવરને સારી રીતે બંધ કરવાનું કારણ બને છે"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "સ્ક્રીનસેવરની સ્થિતિને પ્રશ્ન પૂછે છે"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "સ્ક્રીનસેવર જેટલા સમયથી સક્રિય છે તેટલા સમયની લંબાઈનો પ્રશ્ન"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "સ્ક્રીનસેવરને ચાલુ કરો (સ્ક્રીન કોરી કરો)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr "જો સ્ક્રીનસેવર સક્રિય હોય તો પછી તેને અસક્રિય કરો (સ્ક્રીનને કોરી-નહિં રાખો)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "સ્ક્રીનસેવર એ સક્રિય છે\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "સ્ક્રીનસેવર એ નિષ્ક્રિય છે\n"
-
-#~| msgid "The screensaver has been active for %d seconds.\n"
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "સ્ક્રીનસેવર %d સેકંડ માટે સક્રિય કરી દેવામાં આવ્યુ છે.\n"
-#~ msgstr[1] "સ્ક્રીનસેવર %d સેકંડો માટે સક્રિય કરી દેવામાં આવ્યુ છે.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "સ્ક્રીનસેવર એ હમણાં સક્રિય નથી.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "ડિબગીંગ આઉટપુટ બતાવો"
-
-#~ msgid "Show the logout button"
-#~ msgstr "બહાર નીકળો બટન બતાવો"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "બહાર નીકળો બટનમાંથી ચલાવવાનો આદેશ"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "વપરાશકર્તા બદલો બટન બતાવો"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "સંવાદમાં બતાવવા માટેનો સંદેશો"
-
-#~ msgid "MESSAGE"
-#~ msgstr "MESSAGE"
-
-#~ msgid "Not used"
-#~ msgstr "વપરાયેલ નથી"
-
-#~ msgid "Username:"
-#~ msgstr "વપરાશકર્તાનામ:"
-
-#~ msgid "Password:"
-#~ msgstr "પાસવર્ડ:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr "તમે તમારો પાસવર્ડ તુરંત બદલવા માટે આગ્રહ કરવામાં આવે છે (પાસવર્ડની આયુ)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr "તમે તમારો પાસવર્ડ તુરંત બદલવા માટે આગ્રહ કરવામાં આવે છે (રુટ દ્વારા દબાણ)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr ""
-#~ "તમારા ખાતાની સમયમર્યાદા સમાપ્ત થઈ ગઈ; મહેરબાની કરીને તમારા સિસ્ટમ સંચાલકનો સંપર્ક "
-#~ "કરો"
-
-#~ msgid "No password supplied"
-#~ msgstr "કોઈ પાસવર્ડો પૂરા પાડવામાં આવેલ નથી"
-
-#~ msgid "Password unchanged"
-#~ msgstr "પાસવર્ડ બદલાયેલ નથી"
-
-#~ msgid "Cannot get username"
-#~ msgstr "વપરાશકર્તાનામ મેળવી શકતુ નથી"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "નવો Unix પાસવર્ડ ફરી લખો:"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "નવો Unix પાસવર્ડ દાખલ કરો:"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "(વર્તમાન) Unix પાસવર્ડ:"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "NIS પાસવર્ડ બદલતી વખતે ભૂલ."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "તમારે લાંબો પાસવર્ડ જ પસંદ કરવો જોઈએ"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "પાસવર્ડ પહેલાથી જ વપરાઈ ગયેલ છે. અન્ય પસંદ કરો."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "તમારે તમારો પાસવર્ડ બદલવા માટે લાંબે સુધી રાહ જોવી જ પડશે"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "માફ કરજો, પાસવર્ડો બંધ બેસતા નથી"
-
-#~ msgid "Checking…"
-#~ msgstr "ચકાસી રહ્યા છીએ..."
-
-#~ msgid "Authentication failed."
-#~ msgstr "સત્તાધિકરણ નિષ્ફળ."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "સેવા %s અધિષ્ઠાપિત કરવામાં અસમર્થ: %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "PAM_TTY=%s સુયોજિત કરી શકતા નથી"
-
-#~ msgid "Incorrect password."
-#~ msgstr "અયોગ્ય પાસવર્ડ."
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "આ સમયે વપરાશની પરવાનગી નથી."
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "સિસ્ટમના વપરાશની લાંબા સમય સુધી પરવાનગી નથી."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "સંદેશા બસ સાથે રજીસ્ટર કરવામાં નિષ્ફળ"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "સંદેશા બસમાં જોડાયેલ નથી"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "આ સત્રમાં સ્ક્રીનસેવર પહેલાથી જ ચાલી રહ્યું છે"
-
-#~ msgid "Time has expired."
-#~ msgstr "સમય સમાપ્ત થઈ ગયો."
-
-#~ msgid "You have the Caps & Num Lock keys on."
-#~ msgstr "તમારી પાસે Caps અને Num Lock કી ચાલુ છે."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "તમારી Caps Lock કી ચાલુ છે."
-
-#~ msgid "You have the Num Lock key on."
-#~ msgstr "તમારી પાસે Num Lock કી ચાલુ છે."
-
-#~ msgid "S_witch User…"
-#~ msgstr "વપરાશકર્તા બદલો (_w)..."
-
-#~ msgid "Log _Out"
-#~ msgstr "બહાર નીકળો (_O)"
-
-#~ msgid "_Unlock"
-#~ msgstr "તાળું ખોલો (_U)"
-
-#~ msgid "_Password:"
-#~ msgstr "પાસવર્ડ (_P):"
-
-#~ msgid "Screensaver themes"
-#~ msgstr "સ્ક્રીનસેવર થીમો"
-
-#~ msgid "Screensavers"
-#~ msgstr "સ્ક્રીનસેવરો"
-
-#~ msgid "Cosmos"
-#~ msgstr "કોસમોસ"
-
-#~ msgid "Display a slideshow of pictures of the cosmos"
-#~ msgstr "કોસમોસના ચિત્રોનો સ્લાઈડશો દર્શાવો"
-
-#~ msgid "Bubbles the GNOME foot logo around the screen"
-#~ msgstr "સ્ક્રીનની ફરતે GNOME પગનો લોગો બબલ કરે છે"
-
-#~ msgid "Floating Feet"
-#~ msgstr "તરતો પગ"
-
-#~ msgid "Display a slideshow from your Pictures folder"
-#~ msgstr "તમારા ચિત્રો ફોલ્ડરમાંથી સ્લાઈડશો દર્શાવો"
-
-#~ msgid "Pictures folder"
-#~ msgstr "ચિત્રો ફોલ્ડર"
-
-#~ msgid "A pop-art-ish grid of pulsing colors."
-#~ msgstr "રંગોના કંપન માટે pop-art-ish જાળી."
-
-#~ msgid "Pop art squares"
-#~ msgstr "ઝબૂકતા ચોકઠાઓ"
-
-#~ msgid "%s. See --help for usage information.\n"
-#~ msgstr "%s. વપરાશ જાણકારી માટે --help જુઓ.\n"
-
-#~ msgid "Show paths that images follow"
-#~ msgstr "ચિત્રો જેને અનુસરે તે પાથ બતાવો"
-
-#~ msgid "Occasionally rotate images as they move"
-#~ msgstr "ઘટનાકીય રીતે ચિત્રો ફેરવો જેમ તેઓ ખસે"
-
-#~ msgid "Print out frame rate and other statistics"
-#~ msgstr "ચોકઠાં દર અને અન્ય પરિસ્થિતિ છાપો"
-
-#~ msgid "The maximum number of images to keep on screen"
-#~ msgstr "સ્ક્રીન પર રાખવા માટેના ચિત્રોની મહત્તમ સંખ્યા"
-
-#~ msgid "MAX_IMAGES"
-#~ msgstr "MAX_IMAGES"
-
-#~ msgid "The initial size and position of window"
-#~ msgstr "વિન્ડોનું આરંભિક માપ અને સ્થાન"
-
-#~ msgid "WIDTHxHEIGHT+X+Y"
-#~ msgstr "WIDTHxHEIGHT+X+Y"
-
-#~ msgid "The source image to use"
-#~ msgstr "વાપરવા માટેનું સ્રોત ચિત્ર"
-
-#~| msgid "image - floats images around the screen"
-#~ msgid "image — floats images around the screen"
-#~ msgstr "ચિત્ર — સ્ક્રીનની ફરતે ચિત્રો તરે છે"
-
-#~ msgid "You must specify one image.  See --help for usage information.\n"
-#~ msgstr "તમારે એક ચિત્ર સ્પષ્ટ કરવું જ પડશે.  વપરાશ જાણકારી માટે --help જુઓ.\n"
-
-#~ msgid "Location to get images from"
-#~ msgstr "ચિત્રો મેળવવા માટેનું સ્થાન"
-
-#~ msgid "PATH"
-#~ msgstr "PATH"
-
-#~| msgid "Color to use for images background"
-#~ msgid "Color to use for image background"
-#~ msgstr "ચિત્ર પાશ્ર્વભાગ માટે વપરાતો રંગ"
-
-#~ msgid "\"#rrggbb\""
-#~ msgstr "\"#rrggbb\""
-
-#~ msgid "Do not randomize pictures from location"
-#~ msgstr "સ્થાનમાંથી ચિત્રો રેન્ડમાઈઝ કરો નહિં"
-
-#~ msgid "Do not try to stretch images on screen"
-#~ msgstr "સ્ક્રીન પર ચિત્રો ખેંચવાનો પ્રયાસ કરો નહિં"
-
-#~ msgid "If the screensaver is active then switch to another graphics demo"
-#~ msgstr "જો સ્ક્રીનસેવર સક્રિય હોય તો પછી અન્ય ગ્રાફિક્સ ડેમોમાં બદલાવ"
-
-#~ msgid "Poke the running screensaver to simulate user activity"
-#~ msgstr "વપરાશકર્તા ક્રિયા સિમ્યુલેટ કરવા માટે ચાલી રહેલ સ્ક્રીનસેવરને ધક્કો મારો"
-
-#~ msgid ""
-#~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
-#~ "active."
-#~ msgstr ""
-#~ "સ્ક્રીનસેવરને સક્રિય કરવાથી બચાવવું.  જ્યારે બચાવવાનું સક્રિય હોય ત્યારે આદેશો અટકાવે છે."
-
-#~ msgid "The calling application that is inhibiting the screensaver"
-#~ msgstr "બોલાવી રહેલ કાર્યક્રમ કે જે સ્ક્રીનસેવરને અટકાવી રહ્યો છે"
-
-#~ msgid "The reason for inhibiting the screensaver"
-#~ msgstr "સ્ક્રીનસેવરને બચાવવા માટેનું કારણ"
-
-#~ msgid "The screensaver is not inhibited\n"
-#~ msgstr "સ્ક્રીનસેવર એ અટકાવાયેલ છે\n"
-
-#~ msgid "The screensaver is being inhibited by:\n"
-#~ msgstr "સ્ક્રીનસેવર એ અટકાવી દેવામાં આવ્યું છે:\n"
-
-#~| msgid "%s %s"
-#~ msgid "%a %R"
-#~ msgstr "%a %R"
-
-#~ msgid "%a %l:%M %p"
-#~ msgstr "%a %l:%M %p"

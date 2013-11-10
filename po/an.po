@@ -1,28 +1,26 @@
-# Aragonese translation for gnome-screensaver.
-# Copyright (C) 2012 gnome-screensaver's COPYRIGHT HOLDER
-# This file is distributed under the same license as the gnome-screensaver package.
-# Daniel Martinez <entaltoaragon@gmail.com>, 2012.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# jesmar <entaltoaragon@gmail.com>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver master\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2012-04-13 11:49+0200\n"
-"Last-Translator: Daniel Martinez <entaltoaragon@gmail.com>\n"
-"Language-Team: Aragonés <softaragones@googlegroups.com>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:23+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Aragonese (http://www.transifex.com/projects/p/light-locker/language/an/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: an\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
 msgstr ""
-"Le diz a o proceso d'o salvapantallas en execución que bloque a pantalla "
-"immediatament"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -38,14 +36,12 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Salvapantallas"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Lanzar o salvapantallas y o programa de bloqueyo"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -63,154 +59,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "No convertir en un demonio"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "Fa que o salvapantallas remate de forma correcta"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "Consulta l'estau d'o salvapantallas"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "Consultar quanto tiempo ha estau activo o salvapantallas"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "Activar o salvapantallas (ennegrir a pantalla)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr ""
-#~ "Si o salvapantallas ye activo alavez lo desactiva (esennegrir a pantalla)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "O salvapantallas ye activo\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "O salvapantallas ye inactivo\n"
-
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "O salvapantallas ha estau activo %d segundo.\n"
-#~ msgstr[1] "O salvapantallas ha estau activo %d segundos.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "Actualment o salvapantallas no ye activo.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "Amostrar a salida de depuración"
-
-#~ msgid "Show the logout button"
-#~ msgstr "Amostrar o botón de zarrar sesión"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "Comando ta invocar dende o botón de zarre de sesión"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "Amostrar o botón de cambeo d'usuario"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "Mensache ta amostrar en o dialogo"
-
-#~ msgid "MESSAGE"
-#~ msgstr "MENSACHE"
-
-#~ msgid "Not used"
-#~ msgstr "No usau"
-
-#~ msgid "Username:"
-#~ msgstr "Usuario:"
-
-#~ msgid "Password:"
-#~ msgstr "Clau:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr "Ha de cambiar a clau immediatament (a clau caducó)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr "Ha de cambiar a clau immediatament (forzau por l'administrador)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr "A suya cuenta ha caducado. Contacte con l'administrador d'o sistema"
-
-#~ msgid "No password supplied"
-#~ msgstr "No introdució garra clau"
-
-#~ msgid "Password unchanged"
-#~ msgstr "Clau no cambiada"
-
-#~ msgid "Cannot get username"
-#~ msgstr "No se puede obtener o nombre d'usuario"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "Torne a teclear a clau d'UNIX nueva:"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "Introduzca una clau UNIX nueva:"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "Clau UNIX (actual):"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "Error en cambiar a clau NIS."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "Ha de trigar una clau mas larga"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "A clau ya ha estau usada. Trigue atra."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "Ha d'aguardar mas ta cambiar a suya clau"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "As claus no coinciden"
-
-#~ msgid "Checking…"
-#~ msgstr "Comprebando…"
-
-#~ msgid "Authentication failed."
-#~ msgstr "L'autenticación ha fallau."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "Incapaz d'establir o servicio %s: %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr " No se puede establir PAM_TTY=%s"
-
-#~ msgid "Incorrect password."
-#~ msgstr " Clau incorrecta."
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "No le ye permitiu ganar acceso en iste inte."
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "Ya no se le permite accedir en adebant a iste sistema."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "falló en rechistrar con o bus d'o mensache"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "no connectau a o bus de mensaches"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "ya se ye executando o salvapantallas en ista sesión"
-
-#~ msgid "Time has expired."
-#~ msgstr "Tiempo acotolau."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "Tiene a tecla «Bloq Mayús» pretada."
-
-#~ msgid "S_witch User…"
-#~ msgstr "_Cambear usuario…"
-
-#~ msgid "Log _Out"
-#~ msgstr "Zarrar _sesión"
-
-#~ msgid "_Unlock"
-#~ msgstr "_Desbloquiar"
-
-#~ msgid "_Password:"
-#~ msgstr "_Clau:"

@@ -1,27 +1,26 @@
-# Xhosa translation for gnome-screensaver.
-# Copyright (C) 2011 gnome-screensaver's COPYRIGHT HOLDER
-# This file is distributed under the same license as the gnome-screensaver package.
-# Andiswa Mvanyashe <andiswamva@gmail.com>, 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Andiswa Mvanyashe <andiswamva@gmail.com>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver master\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2012-01-17 15:28+0200\n"
-"Last-Translator: Andiswa Mvanyashe <andiswamva@gmail.com>\n"
-"Language-Team: translate-discuss-xh@lists.sourceforge.net\n"
-"Language: xh\n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:40+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Xhosa (http://www.transifex.com/projects/p/light-locker/language/xh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Virtaal 0.7.0\n"
-"X-Project-Style: gnome\n"
+"Language: xh\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr "Xelela umgcini-skrini osebenzayo ukutshixa isikrini ngoko nangoko"
+msgstr ""
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -37,14 +36,12 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Umgcinisikrini"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Ukhupha umgcini-skrini kunye nenkqubo yotshixa"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -62,169 +59,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Don't become a daemon"
-#~ msgstr "Sukubayi daemon"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "Yenza umgcini-skrini aphume ngesihle"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "Buza isimo somgcini skrini"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "Isicelo kubude bexesha lomgcini-skrini luyasebenza"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "Yenza umgcini-skrini alayite (isikrini esingenanto)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr ""
-#~ "Ukuba umgcini-skrini uyasebenza kengoko menze angasebenzi (isikrini "
-#~ "usebenze singabikho blank)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "Umgcini-skrini uyasebenza\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "Umgcini-skrini akasebenzi\n"
-
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "Umgcini-skrini oko esebenza umzuzu oyi-%d.\n"
-#~ msgstr[1] "Umgcini-skrini oko esebenza imizuzu eyi-%d.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "Umgcini-skrini okwangoku akasebenzanga.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "Bonisa iziphumo zokulungisa isiphene kwinkqubo"
-
-#~ msgid "Show the logout button"
-#~ msgstr "Bonisa iqhosha lokuphuma"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "Umyalelo ukuvuselela kwiqhosha lokuphuma"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "Bonisa uqosha lokutshintsha umsebenzisi"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "Umyalezo oza kukuboniswa kwingxoxo"
-
-#~ msgid "MESSAGE"
-#~ msgstr "UMYALEZO"
-
-#~ msgid "Not used"
-#~ msgstr "Ayisetyenziswa"
-
-#~ msgid "Username:"
-#~ msgstr "Igama lomsebenzisi:"
-
-#~ msgid "Password:"
-#~ msgstr "Igama lokugqithisela:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr ""
-#~ "Kufunwa ukuba utshintshe igama lokugqithisela yakho ngoko nangoko (igama "
-#~ "lokugqithisela iphelelwe)"
-
-#, fuzzy
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr ""
-#~ "Kufunwa ukuba utshintshe igama lokugqithisela yakho ngoko nangoko (root "
-#~ "isetyenzisiwe)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr ""
-#~ "I-akhawunti yakho iphelile; nceda uqhagamshelane nomlawuli wakho wenkqubo"
-
-#~ msgid "No password supplied"
-#~ msgstr "Akukho gama lokugqithisela linikiweyo"
-
-#~ msgid "Password unchanged"
-#~ msgstr "Igama lokugqithisela elingatshintshwanga"
-
-#~ msgid "Cannot get username"
-#~ msgstr "Awunakulifumana igama lomsebenzisi"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "Phinda uchwetheze igama lokugqithisela ye-Unix entsha:"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "Ngenisa igama lokugqithisela ye-UNIX entsha:"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "(eyangoku) igama lokugqithisela Unix:"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "Kuye kwakho impazamo ngexa utshintsha igama lokugqithisela le-NIS."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "Kufuneka ukhethe igama lokugqithisela elide"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "Igama lokugqithisela sele isetyenzisiwe. Khetha enye."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr ""
-#~ "Kufuneka ulinde ithuba elidana ukutshintsha igama lokugqithisela yakho"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "Amagama lokugqithisela awahambelani"
-
-#~ msgid "Checking…"
-#~ msgstr "Iyajonga…"
-
-#~ msgid "Authentication failed."
-#~ msgstr "Ububhali abuphumelelanga."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "Ayikwazi ukuseka inkonzo %s: %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "Ayikwazi ukumisela i-PAM_TTY=%s"
-
-#~ msgid "Incorrect password."
-#~ msgstr "Igama lokugqithisela alichanekanga."
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "Akavumelekanga ukuba afumane ukufikelela ngeli xesha."
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "Akasavunyelwanga ukuba afikelele kule nkqubo."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "ayiphumelelnga ukubhalisa kumyalwzo webhasi"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "ayiqhakamshelwanga kumyalezo webhasi"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "umgcini skrini sele sibaleka kwinkqubo"
-
-#~ msgid "Time has expired."
-#~ msgstr "Ixesha sele liphelwe."
-
-#~ msgid "You have the Caps & Num Lock keys on."
-#~ msgstr "Unamaqhosha e-Caps nele-Num lock elilayitile."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "Iqosha lweCaps lilayitile."
-
-#~ msgid "You have the Num Lock key on."
-#~ msgstr "Iqosha lweNum lock lilayitile."
-
-#~ msgid "S_witch User…"
-#~ msgstr "_Tshitsha umsebenzisi…"
-
-#~ msgid "Log _Out"
-#~ msgstr "U_kuphuma"
-
-#~ msgid "_Unlock"
-#~ msgstr "_Vula okutshixiweyo"
-
-#~ msgid "_Password:"
-#~ msgstr "I_gama lokugqithisela:"

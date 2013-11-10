@@ -1,30 +1,28 @@
-# translation of gnome-screensaver.master.te.po to Telugu
-# Telugu translation of gnome-screensaver.
-# Copyright (C) 2011 Gnome-Screensaver
-# This file is distributed under the same license as the gnome-screensaver package.
-#
-# Srinivas Chary <srinu.kolpur@gmail.com>, 2007.
-# Krishna Babu K <kkrothap@redhat.com>, 2008, 2009.
-# Praveen Illa <mail2ipn@gmail.com>, 2011.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Krishnababu Krothapalli <kkrothap@redhat.com>, 2008-2009
+# ప్రవీణ్ ఇళ్ళ <mail2ipn@gmail.com>, 2011
+# Srinivas Chary <srinu.kolpur@gmail.com>, 2007
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver.master.te\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2011-07-12 10:41+0530\n"
-"Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
-"Language-Team: Telugu <indlinux-telugu@lists.sourceforge.net>\n"
-"Language: te\n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:33+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Telugu (http://www.transifex.com/projects/p/light-locker/language/te/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: te\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr "నడుస్తున్న తెరకాపరి ప్రక్రియకు వెంటనే తెరకు తాళం వేయమని చెబుతుంది"
+msgstr ""
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -40,14 +38,12 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "తెరకాపరి"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "తెరకాపరిని మరియు తాళంవేయు ప్రోగ్రామును ప్రారంభించు"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -65,159 +61,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "సూత్రదారి అవ్వకు"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "తెరకాపరిని అందంగా వెళ్లిపోయేట్టు చేస్తుంది"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "తెరకాపరి యొక్క స్థితిని ప్రశ్నించు"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "తెరకాపరి ఎంత సమయం వరకు  చురుకుగా ఉందో ప్రశ్నించు"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "తెరకాపరిని ఆన్ చేయి (ఖాళీ తెర)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr "ఒకవేళ తెరకాపరి క్రియాశీలముగా ఉంటే అపుడు దానిని అక్రియాత్మకము చేయి (ఖాళీ తెర కాదు)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "తెరకాపరి క్రియాశీలముగా ఉన్నది\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "తెరకాపరి అక్రియాత్మకముగా ఉన్నది\n"
-
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "తెరకాపరి %d సెకను క్రియాశీలముగా ఉంది.\n"
-#~ msgstr[1] "తెరకాపరి %d సెకన్లు క్రియాశీలముగా ఉంది.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "తెరకాపరి ప్రస్తుతం క్రియాశీలముగా లేదు.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "దోషనిర్మూలన అవుట్‌పుట్‌ని చూపించు"
-
-#~ msgid "Show the logout button"
-#~ msgstr "నిష్ర్కమణం బటన్ని చూపించు"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "నిష్ర్కమణం బటన్ నుంచి పిలుచుటకు ఆదేశం"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "వాడుకరిని మార్చే బటన్ని చూపించు"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "వివరణలో చూపటానికి సందేశం"
-
-#~ msgid "MESSAGE"
-#~ msgstr "సందేశం"
-
-#~ msgid "Not used"
-#~ msgstr "వాడబడలేదు"
-
-#~ msgid "Username:"
-#~ msgstr "వాడుకరి పేరు:"
-
-#~ msgid "Password:"
-#~ msgstr "సంకేతపదం:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr "మీరు వెంటనే సంకేతపదాన్ని మార్చమని కోరడమైనది (సంకేతపదము పాతదైనది)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr "మీ సంకేతపదాన్ని సత్వరమే మార్చుకోమని కోరడమైనది (మూలం బలవంతంగా )"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr "మీ ఖాతా కాలం ముగిసినది; దయచేసి మీ వ్యవస్థ నిర్వాహకుడిని సంప్రదించండి"
-
-#~ msgid "No password supplied"
-#~ msgstr "ఏ సంకేతపదం ఇవ్వబడలేదు"
-
-#~ msgid "Password unchanged"
-#~ msgstr "సంకేతపదం మార్చబడలేదు"
-
-#~ msgid "Cannot get username"
-#~ msgstr "వాడుకరి పేరు పొందలేదు"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "కొత్త యూనిక్స్  సంకేతపదాన్ని మళ్ళీ టైపుచేయండి:"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "కొత్త యూనిక్స్  సంకేతపదాన్ని ప్రవేశపెట్టండి:"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "(ప్రస్తుత) యూనిక్స్  సంకేతపదం:"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "NIS సంకేతపదాన్ని మార్చేటప్పుడు దోషము జరిగినది."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "మీరు ఒక పెద్ద సంకేతపదాన్ని ఎంచుకోవాలి"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "సంకేతపదం ఇదివరకే వాడుకలో ఉంది. వేరేదాన్ని ఎంచుకోండి."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "మీ సంకేతపదాన్ని మార్చుకోవటానికి చాలా సమయం నిరీక్షించివుండాలి"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "క్షమించండి, సంకేతపదాలు సరిపోలడం లేదు"
-
-#~ msgid "Checking…"
-#~ msgstr "తనిఖీచేస్తోంది..."
-
-#~ msgid "Authentication failed."
-#~ msgstr "ప్రామాణీకరణ విఫలమైంది."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "%s సేవను స్థాపించలేకపోతుంది: %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "PAM_TTY=%s అమర్చుట వీలుకాదు"
-
-#~ msgid "Incorrect password."
-#~ msgstr "సంకేతపదం తప్పు."
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "ఈ సమయంలో ప్రవేశసౌలభ్యతను పొందుట అనుమతించబడదు."
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "ఇక ఏ మాత్రము వ్యవస్థ ప్రవేశసౌలభ్యతకు అనుమతించబడదు."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "సందేశ వాహకముతో నమోదు చేయలేకపోయింది"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "సందేశ వాహకానికి అనుసంధానించబడిలేదు"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "ఈ చర్యాకాలంలో తెరకాపరి ఇంతకుముందు నుంచే నడుస్తున్నది"
-
-#~ msgid "Time has expired."
-#~ msgstr "సమయం ముగిసినది"
-
-#~ msgid "You have the Caps & Num Lock keys on."
-#~ msgstr "Caps & Num Lock keys ఆన్‌లో ఉన్నాయి."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "Caps Lock key ఆన్‌లో ఉంది"
-
-#~ msgid "You have the Num Lock key on."
-#~ msgstr "Num Lock key ఆన్‌లో ఉంది"
-
-#~ msgid "S_witch User…"
-#~ msgstr "వాడుకరిని మార్చు...(_w)"
-
-#~ msgid "Log _Out"
-#~ msgstr "నిష్క్రమించు (_O)"
-
-#~ msgid "_Unlock"
-#~ msgstr "తెరువు (_U)"
-
-#~ msgid "_Password:"
-#~ msgstr "సంకేతపదం (_P):"

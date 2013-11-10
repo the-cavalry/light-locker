@@ -1,30 +1,27 @@
-# translation of po_gnome-screensaver-km.po to Khmer
-# Khmer translation for gnome-screensaver
-# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
-# This file is distributed under the same license as the gnome-screensaver package.
-#
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
-# Khoem Sokhem <khoemsokhem@khmeros.info>, 2012.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009
+# Khoem Sokhem <khoemsokhem@khmeros.info>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: po_gnome-screensaver-km\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2012-08-07 12:19+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
-"Language-Team: Khmer <support@khmeros.info>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:29+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Khmer (http://www.transifex.com/projects/p/light-locker/language/km/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: km\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Launchpad-Export-Date: 2012-09-03 23:41+0000\n"
-"X-Generator: Launchpad (build 15890)\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr "ប្រាប់​ពី​ដំណើរការ​ធាតុ​រក្សា​អេក្រង់​​ដែល​ត្រូវ​ទប់ស្កាត់​អេក្រង់​​រំពេច​នេះ"
+msgstr ""
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -40,14 +37,12 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "ធាតុ​រក្សា​អេក្រង់"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "បើក​ដំណើរការ​កម្មវិធី​រក្សា​ធាតុ​អេក្រង់ និង​កម្មវិធី​ចាក់សោ"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -65,152 +60,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "កុំ​ជា​ដេមិន"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "បុព្វហេតុ​​ធាតុ​រក្សា​អេក្រង់​​ចេញ​ដោយ​សមរម្យ"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "សំណួរ​​ស្ថានភាព​របស់​ធាតុ​រក្សា​អេក្រង់"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "សំណួរ​ប្រវែង​ពេលវេលា​ធាតុ​រក្សា​អេក្រង់​ត្រូវ​បាន​ធ្វើ​ឲ្យ​សកម្ម"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "បើក​ធាតុ​រក្សា​អេក្រង់​​លើ (​អេក្រង់​ទទេ)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr "ប្រសិនបើ​ធាតុ​រក្សា​អេក្រង់​​​​សកម្ម​ បន្ទាប់​ពី​ធ្វើ​ឲ្យ​អសកម្ម (អេក្រង់​មិន​ទទេ​ឡើយ)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "ធាតុ​អេក្រង់​សកម្ម\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "ធាតុ​រក្សា​អេក្រង់​អសកម្ម\n"
-
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "ធាតុ​រក្សាអេក្រង់​ត្រូវ​បាន​ធ្វើ​ឲ្យ​សកម្ម %d វិនាទី ។\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "បច្ចុប្បន្ន​​ធាតុ​រក្សា​អេក្រង់​​មិន​សកម្ម​ឡើយ ។\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "បង្ហាញ​លទ្ធផល​ដែល​បំបាត់​កំហុស"
-
-#~ msgid "Show the logout button"
-#~ msgstr "បង្ហាញ​ប៊ូតុង​ចេញ"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "ពាក្យ​បញ្ជា​ដែល​ត្រូវ​ហៅ​ពី​ប៊ូតុង​ចេញ"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "បង្ហាញ​ការ​ប្ដូរ​ប៊ូតុង​អ្នក​ប្រើ"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "សារ​ត្រូវ​បង្ហាញ​ក្នុង​ប្រអប់"
-
-#~ msgid "MESSAGE"
-#~ msgstr "សារ"
-
-#~ msgid "Not used"
-#~ msgstr "មិន​ត្រូវ​ប្រើ"
-
-#~ msgid "Username:"
-#~ msgstr "ឈ្មោះ​អ្នក​ប្រើ ៖"
-
-#~ msgid "Password:"
-#~ msgstr "ពាក្យ​សម្ងាត់ ៖"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr "អ្នក​ត្រូវ​បាន​ទាមទារ​ឲ្យ​​​​ផ្លាស់​ប្ដូរ​ពាក្យ​សម្ងាត់​របស់​អ្នក​​រំពេច​នេះ (ពាក្យ​សម្ងាត់​ចាស់)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr "អ្នក​ត្រូវ​បាន​ទាមទារ​ឲ្យ​​ផ្លាស់ប្ដូរ​ពាក្យ​សម្ងាត់​របស់​អ្នក​រំពេច​នេះ (បាន​បង្ខំ root)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr "គណនី​របស់​អ្នក​ផុត​កំណត់​ហើយ សូម​ទាក់​ទង​អ្នក​គ្រប់គ្រង​ប្រព័ន្ធ​របស់​អ្នក"
-
-#~ msgid "No password supplied"
-#~ msgstr "គ្មាន​ពាក្យ​សម្ងាត់​ដែល​ផ្គូផ្គង​ឡើយ"
-
-#~ msgid "Password unchanged"
-#~ msgstr "ពាក្យ​សម្ងាត់​ដែល​មិន​ផ្លាស់ប្ដូរ"
-
-#~ msgid "Cannot get username"
-#~ msgstr "មិន​អាច​យក​ឈ្មោះ​អ្នក​ប្រើ​បានទេ"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "វាយ​ពាក្យ​សម្ងាត់​យូនីក​ថ្មី​ម្តងទៀត ៖"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "បញ្ចូល​ពាក្យ​សម្ងាត់​យូនីក​ថ្មី ៖"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "ពាក្យ​សម្ងាត់​យូនីក​បច្ចុប្បន្ន ៖"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "កំហុស​ខណៈ​ពេល​ប្ដូរ​ពាក្យ​សម្ងាត់ NIS ។"
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "អ្នក​ត្រូវ​តែ​ជ្រើស​ពាក្យ​សម្ងាត់​វែង"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "ពាក្យ​សម្ងាត់​ត្រូវ​បាន​ប្រើ​រួច​ហើយ ។ ជ្រើស​​ពាក្យ​សម្ងាត់​ផ្សេង ។"
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "អ្នក​ត្រូវ​តែ​រង់ចាំ ដើម្បី​ប្ដូរ​ពាក្យ​សម្ងាត់​របស់​អ្នក"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "សូមទោស ពាក្យ​សម្ងាត់​មិន​ផ្គូផ្គង​ឡើយ"
-
-#~ msgid "Checking…"
-#~ msgstr "ពិនិត្យ​មើល…"
-
-#~ msgid "Authentication failed."
-#~ msgstr "បាន​បរាជ័យ​ក្នុង​ការ​ផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ ។"
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "មិន​អាច​បង្កើត​សេវាកម្ម​ %s ៖ %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "មិន​អាច​កំណត់ PAM_TTY=%s"
-
-#~ msgid "Incorrect password."
-#~ msgstr "ពាក្យសម្ងាត់​មិន​ត្រឹមត្រូវ​ឡើយ ។"
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "មិន​ត្រូវ​បាន​អនុញ្ញាត​ឲ្យ​ចូល​ដំណើរការ​នៅ​ពេល​នេះ​ទេ ។"
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "មិន​ត្រូវ​បាន​អនុញ្ញាត​ឲ្យ​ចូល​ដំណើរការ​ប្រព័ន្ធ​បាន​ទេ​ទេ ។"
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "បាន​បរាជ័យ​ក្នុង​ការ​ចុះ​ឈ្មោះ​ជាមួយ​ខ្សែ​បញ្ជូន​សារ"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "មិន​ត្រូវ​បាន​តភ្ជាប់​ទៅកាន់​ខ្សែ​​បញ្ជូន​សារ​ឡើយ"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "ធាតុ​រក្សា​អេក្រង់​កំពុង​ដំណើរការ​ក្នុង​សម័យ​នេះ​ហើយ"
-
-#~ msgid "Time has expired."
-#~ msgstr "ពេលវេលា​បាន​ផុត​កំណត់ ។"
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "អ្នក​មាន​គ្រាប់ចុច​ប្ដូរ​ជាប់ (Caps Lock) នៅ ។"
-
-#~ msgid "S_witch User…"
-#~ msgstr "ប្ដូរ​អ្នក​ប្រើ…"
-
-#~ msgid "Log _Out"
-#~ msgstr "ចេញ"
-
-#~ msgid "_Unlock"
-#~ msgstr "ដោះសោ"
-
-#~ msgid "_Password:"
-#~ msgstr "ពាក្យ​សម្ងាត់ ៖"

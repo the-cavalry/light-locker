@@ -1,31 +1,27 @@
-# translation of eu.po to Basque
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
-# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2006, 2007, 2008, 2009, 2010, 2011.
-# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2007.
+# 
+# Translators:
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2006-2011
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2007
 msgid ""
 msgstr ""
-"Project-Id-Version: eu\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2011-03-31 15:43+0200\n"
-"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
-"Language-Team: Basque <itzulpena@euskalgnu.org>\n"
-"Language: eu\n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:27+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Basque (http://www.transifex.com/projects/p/light-locker/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
 msgstr ""
-"Exekutatzen ari den pantaila-babeslearen prozesuari pantaila berehala "
-"blokeatzeko esaten dio."
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -41,14 +37,12 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Pantaila-babeslea"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Abiarazi pantaila-babeslea edo programa blokeatzailea"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -66,169 +60,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "Ez ezarri daemon gisa"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "Pantaila-babeslea ongi amaitzea eragiten du"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "Pantaila-babeslearen egoeraren kontsulta"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "Kontsultatu zenbat denbora egon den pantaila-babeslea aktibo"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "Aktibatu pantaila-babeslea (belztu pantaila)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr ""
-#~ "Pantaila-babeslea aktibo egonez gero, desaktibatu (kendu pantaila beltza)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "Pantaila-babeslea aktibo dago\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "Pantaila-babeslea ez dago aktibo\n"
-
-#~| msgid "The screensaver has been active for %d seconds.\n"
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "Pantaila-babeslea segundo %d egon da aktibo.\n"
-#~ msgstr[1] "Pantaila-babeslea %d segundo egon da aktibo.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "Pantaila-babeslea ez dago unean aktibo.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "Erakutsi arazteko irteera"
-
-#~ msgid "Show the logout button"
-#~ msgstr "Erakutsi saioa amaitzeko botoia"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "Komandoa, saioa amaitzeko botoiari deitzeko"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "Erakutsi erabiltzailez aldatzeko botoia"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "Mezua elkarrizketa-koadroan erakusteko"
-
-#~ msgid "MESSAGE"
-#~ msgstr "MEZUA"
-
-#~ msgid "Not used"
-#~ msgstr "Erabili gabe"
-
-#~ msgid "Username:"
-#~ msgstr "Erabiltzaile-izena:"
-
-#~ msgid "Password:"
-#~ msgstr "Pasahitza:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr "Pasahitza berehala aldatu behar duzu (pasahitza zaharkituta)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr "Pasahitza berehala aldatu behar duzu (erroak behartuta)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr ""
-#~ "Zure kontua iraungitu da; jarri harremanetan sistemako "
-#~ "administratzailearekin"
-
-#~ msgid "No password supplied"
-#~ msgstr "Ez da pasahitzik eman"
-
-#~ msgid "Password unchanged"
-#~ msgstr "Pasahitza ez da aldatu"
-
-#~ msgid "Cannot get username"
-#~ msgstr "Ezin da erabiltzaile-izena lortu"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "Idatzi berriro UNIXeko pasahitz berria:"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "Idatzi UNIXeko pasahitz berria:"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "(uneko) UNIXeko pasahitza:"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "Errorea gertatu da NIS pasahitza aldatzean."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "Pasahitz luzeagoa aukeratu behar duzu"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "Pasahitz hori erabilita dago. Aukeratu beste bat."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "Gehiago itxaron behar duzu pasahitza aldatzeko"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "Pasahitzak ez datoz bat"
-
-#~ msgid "Checking…"
-#~ msgstr "Egiaztatzen..."
-
-#~ msgid "Authentication failed."
-#~ msgstr "Autentifikazioak huts egin du."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "Ezin izan da %s zerbitzua ezarri: %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "Ezin da PAM_TTY=%s konfiguratu"
-
-#~ msgid "Incorrect password."
-#~ msgstr "Okerreko pasahitza."
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "Ez duzu sarbidetzeko baimenik une honetan."
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "Ez duzu baimenik aurrerantzean sistemara sarbidetzeko."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "huts egin du mezuaren deia erregistratzean"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "ez da mezuaren deira konektatu"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "pantaila-babeslea jadanik exekutatzen dago saio honetan"
-
-#~ msgid "Time has expired."
-#~ msgstr "Denbora iraungitu egin da."
-
-#~ msgid "You have the Caps & Num Lock keys on."
-#~ msgstr "Blok. Maius. eta Blok. Zenb. aktibatuta daude."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "Blok.maius. aktibatuta dago"
-
-#~ msgid "You have the Num Lock key on."
-#~ msgstr "Blok. Zenb. aktibatuta dago"
-
-#~ msgid "S_witch User…"
-#~ msgstr "_Aldatu erabiltzailez..."
-
-#~ msgid "Log _Out"
-#~ msgstr "_Amaitu saioa..."
-
-#~ msgid "_Unlock"
-#~ msgstr "_Desblokeatu"
-
-#~ msgid "_Password:"
-#~ msgstr "_Pasahitza:"
-
-#~ msgid "%a %R"
-#~ msgstr "%a %R"
-
-#~ msgid "%a %l:%M %p"
-#~ msgstr "%a %l:%M %p"

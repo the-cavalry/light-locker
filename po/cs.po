@@ -1,35 +1,30 @@
-# Czech translation of gnome-screensaver.
-# Copyright (C) 2005, 2007, 2008, 2009, 2010 the author(s) of gnome-screensaver.
-# Copyright (C) 2005 Miloslav Trmac <mitr@volny.cz>.
-# Copyright (C) 2006 Lukas Novotny <lukasnov@cvs.gnome.org>.
-# This file is distributed under the same license as the gnome-screensaver package.
-#
-# Miloslav Trmac <mitr@volny.cz>, 2005.
-# Lukas Novotny <lukasnov@cvs.gnome.org>, 2006.
-# Petr Tomeš <ptomes@gmail.com>, 2006.
-# Jakub Friedl <jfriedl@suse.cz>, 2006.
-# Petr Kovar <pknbe@volny.cz>, 2007, 2008, 2009, 2010, 2011.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Jakub Friedl <jfriedl@suse.cz>, 2006
+# Lukas Novotny <lukasnov@cvs.gnome.org>, 2006
+# Miloslav Trmač <mitr@volny.cz>, 2005
+# Petr Kovar <pknbe@volny.cz>, 2007-2011
+# Petr Tomeš <ptomes@gmail.com>, 2006
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2011-04-03 16:12+0200\n"
-"Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
-"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
-"Language: cs\n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:25+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Czech (http://www.transifex.com/projects/p/light-locker/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 1.1\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
 msgstr ""
-"Oznámí běžícímu procesu šetřiče obrazovky, že má okamžitě uzamknout obrazovku"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -45,14 +40,12 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Šetřič obrazovky"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Spustí šetřič obrazovky a program uzamknutí"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -70,168 +63,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "Nestane se démonem"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "Způsobí běžné ukončení šetřiče obrazovky"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "Dotáže se na stav šetřiče obrazovky"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "Dotáže se na dobu, po kterou byl šetřič obrazovky aktivní"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "Zapne šetřič obrazovky (ztmaví obrazovku)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr ""
-#~ "Jestliže je šetřič obrazovky aktivní, deaktivuje jej (zruší ztmavení "
-#~ "obrazovky)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "Šetřič obrazovky je aktivní\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "Šetřič obrazovky je neaktivní\n"
-
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "Šetřič obrazovky byl aktivní po dobu %d sekundy.\n"
-#~ msgstr[1] "Šetřič obrazovky byl aktivní po dobu %d sekund.\n"
-#~ msgstr[2] "Šetřič obrazovky byl aktivní po dobu %d sekund.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "Šetřič obrazovky není právě aktivní.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "Zobrazovat ladicí výstup"
-
-#~ msgid "Show the logout button"
-#~ msgstr "Zobrazovat tlačítko odhlášení"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "Příkaz, který spustit tlačítkem odhlášení"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "Zobrazovat tlačítko přepnutí uživatele"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "Zpráva, kterou zobrazit v dialogovém okně"
-
-#~ msgid "MESSAGE"
-#~ msgstr "ZPRÁVA"
-
-#~ msgid "Not used"
-#~ msgstr "Nepoužito"
-
-#~ msgid "Username:"
-#~ msgstr "Uživatelské jméno:"
-
-#~ msgid "Password:"
-#~ msgstr "Heslo:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr "Je nutné si okamžitě změnit heslo (heslo je staré)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr "Je nutné si okamžitě změnit heslo (vyžadováno superuživatelem)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr "Váš účet vypršel; kontaktujte prosím správce systému"
-
-#~ msgid "No password supplied"
-#~ msgstr "Nebylo zadáno žádné heslo"
-
-#~ msgid "Password unchanged"
-#~ msgstr "Heslo nezměněno"
-
-#~ msgid "Cannot get username"
-#~ msgstr "Nelze získat uživatelské jméno"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "Zadejte znovu nové unixové heslo:"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "Zadejte nové unixové heslo:"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "(aktuální) unixové heslo:"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "Chyba při změně hesla NIS."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "Je nutné si zvolit delší heslo"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "Heslo již bylo použito. Zvolte prosím jiné."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "Ke změně hesla je nutné vyčkat déle"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "Hesla bohužel nesouhlasí"
-
-#~ msgid "Checking…"
-#~ msgstr "Probíhá kontrola…"
-
-#~ msgid "Authentication failed."
-#~ msgstr "Ověření selhalo."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "Nelze zavést službu %s: %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "Nelze nastavit PAM_TTY=%s"
-
-#~ msgid "Incorrect password."
-#~ msgstr "Nesprávné heslo."
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "V tento okamžik není povoleno získat přístup."
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "K tomuto systému již nadále není dovoleno přistupovat."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "nelze se zaregistrovat u sběrnice zpráv"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "nepřipojen ke sběrnici zpráv"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "šetřič obrazovky již v tomto sezení běží"
-
-#~ msgid "Time has expired."
-#~ msgstr "Čas vypršel."
-
-#~ msgid "You have the Caps & Num Lock keys on."
-#~ msgstr "Je zapnuta funkce Caps Lock a Num Lock."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "Je zapnuta klávesa Caps Lock."
-
-#~ msgid "You have the Num Lock key on."
-#~ msgstr "Je zapnuta klávesa Num Lock."
-
-#~ msgid "S_witch User…"
-#~ msgstr "_Přepnout uživatele…"
-
-#~ msgid "Log _Out"
-#~ msgstr "_Odhlásit"
-
-#~ msgid "_Unlock"
-#~ msgstr "_Odemknout"
-
-#~ msgid "_Password:"
-#~ msgstr "_Heslo:"
-
-#~ msgid "%a %R"
-#~ msgstr "%a, %R"
-
-#~ msgid "%a %l:%M %p"
-#~ msgstr "%a, %l:%M %p"

@@ -1,22 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: Gnome\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2008-03-09 17:59-0800\n"
-"Last-Translator: Zabeeh Khan <zabeehkhan@gmail.com>\n"
-"Language-Team: Pashto <pakhtosoft@gmail.com>\n"
-"Language: ps\n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:31+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Pushto (http://www.transifex.com/projects/p/light-locker/language/ps/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Pashto, Pushto\n"
-"X-Poedit-Country: AFGHANISTAN\n"
+"Language: ps\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/light-locker-command.c:40
 msgid "Tells the running display manager to lock the screen immediately"
@@ -32,14 +31,12 @@ msgid "Enable debugging code"
 msgstr "کړاتمبونې کوډ وړول"
 
 #: ../src/light-locker.c:59
-#, fuzzy
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr "د سولګر د چارندېدو پر مهال پرده کولپول_"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "پرده ساتونکی"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
@@ -61,298 +58,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "ډاېمون مه جوړېږه"
-
-#~ msgid "Set your screensaver preferences"
-#~ msgstr "د خپل پرده ساتونکي غوراوي وټاکئ"
-
-#~ msgid "<b>Screensaver preview</b>"
-#~ msgstr "<b>د پرده ساتونکي مخليد</b>"
-
-#~ msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-#~ msgstr "<b>.خبرتيا: پرده به د ولي کارن لپاره نه کولپيږي</b>"
-
-#~ msgid "Power _Management"
-#~ msgstr "برېښنا سمبالښت"
-
-#~ msgid "Regard the computer as _idle after:"
-#~ msgstr ":سولګر لکه _وزګار شمېرل وروسته له"
-
-#~ msgid "Screensaver Preferences"
-#~ msgstr "د پرده ساتونکي غوراوي"
-
-#~ msgid "Screensaver Preview"
-#~ msgstr "د پرده ساتونکي مخليد"
-
-#~ msgid "_Activate screensaver when computer is idle"
-#~ msgstr "د سولګر د وزګارېدو پر مهال پرده ساتونکی چارندول_"
-
-#~ msgid "_Preview"
-#~ msgstr "مخليد_"
-
-#~ msgid "_Screensaver theme:"
-#~ msgstr ":د پرده ساتونکي کوندې_"
-
-#~ msgid "Screensaver themes"
-#~ msgstr "د پرده ساتونکي کوندې"
-
-#~ msgid "Screensavers"
-#~ msgstr "پرده ساتونکي"
-
-#~ msgid "Activate when idle"
-#~ msgstr "د وزګارېدو پر مهال چارندول"
-
-#~ msgid "Allow logout"
-#~ msgstr "وتون پرېښل"
-
-#~ msgid "Allow user switching"
-#~ msgstr "کارن ونجونه پرېښل"
-
-#~ msgid "Embedded keyboard command"
-#~ msgstr "راتاوه کيليدړه بولۍ"
-
-#~ msgid "Lock on activation"
-#~ msgstr "پر چارندېدو کولپول"
-
-#~ msgid "Logout command"
-#~ msgstr "وتون بولۍ"
-
-#~ msgid "Reason for being away"
-#~ msgstr "د لېرې پاتې کېدو لامل"
-
-#~ msgid "Screensaver theme selection mode"
-#~ msgstr "د پرده ساتونکي کوندې ټاکنې اکر"
-
-#~ msgid "The reason for being away from the computer."
-#~ msgstr ".د سولګر نه د لېرې پاتې کېدو لامل"
-
-#~ msgid "Theme for lock dialog"
-#~ msgstr "د کولپ کړکۍ کونده"
-
-#~ msgid "Theme to use for the lock dialog."
-#~ msgstr ".د کولپ کړکۍ لپاره د کارولو کونده"
-
-#~ msgid "Time before locking"
-#~ msgstr "د کولپېدو مخکښې مهال"
-
-#~ msgid "Time before theme change"
-#~ msgstr "د کوندې بدلېدو مخکښې مهال"
-
-#~ msgid "<b>Leave a message for %R:</b>"
-#~ msgstr "<b>:لپاره استوزه پرېښودل %R د</b>"
-
-#~ msgid "<span size=\"small\">%U on %h</span>"
-#~ msgstr "<span size=\"small\">کښې %h په %U</span>"
-
-#~ msgid "<span size=\"x-large\">%R</span>"
-#~ msgstr "<span size=\"x-large\">%R</span>"
-
-#~ msgid "_Cancel"
-#~ msgstr "بندول_"
-
-#~ msgid "_Leave Message"
-#~ msgstr "استوزه پرېښودل_"
-
-#~ msgid "_Log Out"
-#~ msgstr "وتون_"
-
-#~ msgid "_Switch User"
-#~ msgstr "کارن ونجول_"
-
-#~ msgid "_Unlock"
-#~ msgstr "ناکولپول_"
-
-#~ msgid "Pictures folder"
-#~ msgstr "انځورونه پوښۍ"
-
-#~ msgid "MAX_IMAGES"
-#~ msgstr "ټولوجګه_انځورونه"
-
-#~ msgid "The initial size and position of window"
-#~ msgstr "د کړکۍ لمړنی کچ او ځای"
-
-#~ msgid "WIDTHxHEIGHT+X+Y"
-#~ msgstr "Y+X+اوږدوالیxپلنوالی"
-
-#~ msgid "The source image to use"
-#~ msgstr "هغه سرچينه انځور چې وکارول شي"
-
-#~ msgid "Location to get images from"
-#~ msgstr "هغه ځای چې انځورونه ترې واخېستل شي"
-
-#~ msgid "PATH"
-#~ msgstr "يونلور"
-
-#~ msgid "Color to use for images background"
-#~ msgstr "هغه رنګ چې د انځورونو د شاليد په توګه وکارول شي"
-
-#~ msgid "\"#rrggbb\""
-#~ msgstr "\"#rrggbb\""
-
-#~ msgid "Do not try to stretch images on screen"
-#~ msgstr "په پرده د انځورونو د غځولو هڅه مه کوه"
-
-#~ msgid "Copying files"
-#~ msgstr "دوتنې لمېسل کيږي"
-
-#~ msgid "From:"
-#~ msgstr ":له"
-
-#~ msgid "To:"
-#~ msgstr ":ته"
-
-#~ msgid "Copying themes"
-#~ msgstr "کوندې لمېسل کيږي"
-
-#~ msgid "Invalid screensaver theme"
-#~ msgstr "ناسمه پرده ساتونکي کونده"
-
-#~ msgid "%s does not appear to be a valid screensaver theme."
-#~ msgstr ".سم پرده ساتونکي کونده نه ښکاري %s"
-
-#~ msgid "Copying file: %u of %u"
-#~ msgstr "%u له %u :دوتنه لمېسل کيږي"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "په سمه توګه پرده ساتونکی بندوي"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "د پرده ساتونکي انکړ پوښتل"
-
-#~ msgid "The screensaver is %s\n"
-#~ msgstr "دی %s پرده ساتونکی\n"
-
-#~ msgid "active"
-#~ msgstr "چارنده"
-
-#~ msgid "inactive"
-#~ msgstr "ناچارنده"
-
-#~ msgid "The screensaver has been active for %d seconds.\n"
-#~ msgstr ".سېکېنډو لپاره چارند وو %d پرده ساتونکی د\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "د کړاوتمبونې وتنی ښودل"
-
-#~ msgid "Show the logout button"
-#~ msgstr "وتون تڼۍ ښودل"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "کارن ونجول تڼۍ ښودل"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "هغه استوزه چې په کړکۍ کښې وښودل شي"
-
-#~ msgid "MESSAGE"
-#~ msgstr "استوزه"
-
-#~ msgid "Username:"
-#~ msgstr ":کارننوم"
-
-#~ msgid "Password:"
-#~ msgstr "تېرنويې"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr ""
-#~ "ستاسو د ګڼون مهال بشپړ شوی؛ مهرباني وکړﺉ خپل غونډال پازوال سره اړيکه ونيسئ"
-
-#~ msgid "No password supplied"
-#~ msgstr "تېرنويې نه ده ټاکل شوې"
-
-#~ msgid "Password unchanged"
-#~ msgstr "تېرنويې نه ده بدله شوې"
-
-#~ msgid "Can not get username"
-#~ msgstr "کارننوم نه شي اخېستلی"
-
-#~ msgid "Retype new UNIX password:"
-#~ msgstr ":تېرنويې بيا ليکل UNIX نوې"
-
-#~ msgid "Enter new UNIX password:"
-#~ msgstr ":تېرنويې ليکل UNIX نوې"
-
-#~ msgid "(current) UNIX password:"
-#~ msgstr ":تېرنويې UNIX (اوسنۍ)"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr ".تېرنويې بدلولو پر مهال تېروتنهNISد"
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "تاسو بايد يوه اوږده تېرنويې وټاکئ"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr ".تېرنويې له مخکښې نه کارول شوې ده. له وټاکئ"
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "خپلې تېرنويې بدلولو لپاره بايد تاسو ډېره تمه وکړئ"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "بښنه غواړو، تېرنويې سره نه لګيږي"
-
-#~ msgid "Checking..."
-#~ msgstr "...کتل کيږي"
-
-#~ msgid "Authentication failed."
-#~ msgstr ".کرونه پاتې راغله"
-
-#~ msgid "Blank screen"
-#~ msgstr "توره پرده"
-
-#~ msgid "Random"
-#~ msgstr "ناټاکلي"
-
-#~ msgid "%s %s %s"
-#~ msgstr "%s %s %s"
-
-#~ msgid "%s %s"
-#~ msgstr "%s %s"
-
-#~ msgid "%s"
-#~ msgstr "%s"
-
-#~ msgid "Never"
-#~ msgstr "هېڅکله"
-
-#~ msgid "Could not load the main interface"
-#~ msgstr "ار برسېر نه شي لېښلی"
-
-#~ msgid "Please make sure that the screensaver is properly installed"
-#~ msgstr "مهرباني وکړﺉ ځان ډاډمن کړﺉ چې پرده ساتونکی په سمه توګه لګول شوی"
-
-#~ msgid "Incorrect password."
-#~ msgstr ".ناسمه تېرنويې"
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr ".دا مهال د لاس رسي پرېښلې نشته"
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr ".نور د غونډال لاس رسي ته پرېښلې نه لرﺉ"
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "استوزه بس سره نومکښلو کښې پاتې راغی"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "استوزه بس سره نه دی نښتی"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "پرده ساتونکی دمخه په دې ناستې کښې ځغلي"
-
-#~ msgid "Time has expired."
-#~ msgstr ".مهال تېر شوی"
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr ".کيلۍ مو بله ده Caps Lock"
-
-#~ msgid "S_witch User..."
-#~ msgstr "...ک_ارن ونجول"
-
-#~ msgid "Log _Out"
-#~ msgstr "وتو_ن"
-
-#~ msgid "%U on %h"
-#~ msgstr "کښې %h په %U"
-
-#~ msgid "_Password:"
-#~ msgstr ":تېرنويې_"

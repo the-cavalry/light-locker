@@ -1,22 +1,22 @@
-# Breton translation for gnome-screensaver
-# Copyright (c) (c) 2006 Canonical Ltd, and Rosetta Contributors 2006
-# This file is distributed under the same license as the gnome-screensaver package.
-# Giulia Fraboulet <djoulia@gmail.com>, 2006.
-#
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Giulia Fraboulet <djoulia@gmail.com>, 2006
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2009-09-17 11:18+0100\n"
-"Last-Translator: Giulia <Unknwon>\n"
-"Language-Team: Breton <br@li.org>\n"
-"Language: br\n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:25+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Breton (http://www.transifex.com/projects/p/light-locker/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"Language: br\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../src/light-locker-command.c:40
 msgid "Tells the running display manager to lock the screen immediately"
@@ -32,14 +32,12 @@ msgid "Enable debugging code"
 msgstr "Gweredekaat ar boneg diveugañ"
 
 #: ../src/light-locker.c:59
-#, fuzzy
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr "_Prennañ ar skramm p'emañ an damanter skramm war enaou"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Damanter skramm"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
@@ -61,296 +59,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Set your screensaver preferences"
-#~ msgstr "Arventenniñ gwellvezioù ho tamanter skramm"
-
-#, fuzzy
-#~ msgid "<b>Screensaver preview</b>"
-#~ msgstr "<b>Alberz an damanter skramm<b>"
-
-#~ msgid "<b>Warning: the screen will not be locked for the root user.</b>"
-#~ msgstr "<b>Diwallit: Ne vo ket prennet ar skramm evit an arveriad root.</b>"
-
-#~ msgid "Power _Management"
-#~ msgstr "Merour _Energiezh"
-
-#~ msgid "Regard the computer as _idle after:"
-#~ msgstr "Sell pizh an urzhiataer ouzh dizoberiant goude:"
-
-#~ msgid "Screensaver Preferences"
-#~ msgstr "Gwellvezioù an damanter skramm"
-
-#~ msgid "Screensaver Preview"
-#~ msgstr "Alberz an damanter skramm"
-
-#~ msgid "_Activate screensaver when computer is idle"
-#~ msgstr "_Gweredekaat an damanter skramm pa z'eo dizoberiant an urzhiataer"
-
-#~ msgid "_Preview"
-#~ msgstr "_Alberz"
-
-#~ msgid "_Screensaver theme:"
-#~ msgstr "_Tem skramm kousk:"
-
-#~ msgid "Screensaver themes"
-#~ msgstr "Neuzioù an damanter skramm"
-
-#~ msgid "Screensavers"
-#~ msgstr "Damanterioù skramm"
-
-#, fuzzy
-#~ msgid "Activate when idle"
-#~ msgstr "Enaouiñ p'emañ dizoberiant"
-
-#~ msgid "Allow embedding a keyboard into the window"
-#~ msgstr "Aotren enkorfañ ar c'hlavier er prenestr"
-
-#~ msgid "Allow logout"
-#~ msgstr "Aotren an dilugañ"
-
-#~ msgid "Allow user switching"
-#~ msgstr "Aotren ar c'hemm-arveriad-ez"
-
-#~ msgid "Embedded keyboard command"
-#~ msgstr "Arc'had ar c'hlavier enkorfet"
-
-#~ msgid "Lock on activation"
-#~ msgstr "Prennañ en ur enaouiñ"
-
-#~ msgid "Logout command"
-#~ msgstr "Arc'had an dilugañ"
-
-#~ msgid "Screensaver theme selection mode"
-#~ msgstr "Mod dibab neuz an damanter skramm"
-
-#~ msgid ""
-#~ "Set this to TRUE to activate the screensaver when the session is idle."
-#~ msgstr ""
-#~ "Lakait an dra-mañ da TRUE evit enaouiñ ar skramm-kousk p'emañ dizoberiant "
-#~ "an estez"
-
-#~ msgid ""
-#~ "Set this to TRUE to allow embedding a keyboard into the window when "
-#~ "trying to unlock. The \"keyboard_command\" key must be set with the "
-#~ "appropriate command."
-#~ msgstr ""
-#~ "Lakaat GWIR a-benn aotren toueziañs ur c'hlavier e kreiz ar prenestr e-"
-#~ "pad an easañ divorailhañ. Ret eo bezañ an alc'hwez \"keyboard_command\" "
-#~ "termenet gant an urzh jaojet."
-
-#~ msgid ""
-#~ "Set this to TRUE to lock the screen when the screensaver goes active."
-#~ msgstr ""
-#~ "Lakait an dra-mañ da TRUE evit prennañ ar skramm pa grog ar skramm-kousk."
-
-#~ msgid ""
-#~ "Set this to TRUE to offer an option in the unlock dialog to switch to a "
-#~ "different user account."
-#~ msgstr ""
-#~ "Lakait an dra-mañ da TRUE evit kinnig un dibab er c'hendiviz dilugañ, a-"
-#~ "benn  mont war ur gont-arveriad-ez all."
-
-#~ msgid ""
-#~ "Set this to TRUE to offer an option in unlock dialog to logging out after "
-#~ "a delay. The Delay is specified in the \"logout_delay\" key."
-#~ msgstr ""
-#~ "Lakaat GWIR a-benn reiñ un dibarzh er voest merour divorailhañ evit en em "
-#~ "digennaskañ war-lerc'h un amzer resis. Skrivet eo an amzer en alc'hwez "
-#~ "\"logout_delay\"."
-
-#~ msgid ""
-#~ "The command that will be run, if the \"embedded_keyboard_enabled\" key is "
-#~ "set to TRUE, to embed a keyboard widget into the window. This command "
-#~ "should implement an XEMBED plug interface and output a window XID on the "
-#~ "standard output."
-#~ msgstr ""
-#~ "An urzh a vo bezañ lañset, Ma z'eo an alc'hwez \"embedded_keyboard_enabled"
-#~ "\" zo lakaat GWIR, evit toueziañ ur widget c'hlavier er prenestr. Ret eo "
-#~ "vefe ouzhpenn ur merour kennask XEMBED an urzh mañ ha diskouez ur "
-#~ "prenestr XID war an ec'hank skouer."
-
-#~ msgid "The number of minutes to run before changing the screensaver theme."
-#~ msgstr "An niver a vunut etre bep cheñchamant skramm kousk."
-
-#~ msgid "Time before locking"
-#~ msgstr "Koulzad a-raok prennañ"
-
-#~ msgid "Time before logout option"
-#~ msgstr "Koulzad a-raok an dibab dilugañ"
-
-#~ msgid "Time before theme change"
-#~ msgstr "Koulzad a-raok kemmañ an neuz"
-
-#~ msgid "<b>Leave a message for %R:</b>"
-#~ msgstr "<b>Skrivañ ur gemenn evit %R:</b>"
-
-#~ msgid "<span size=\"small\">%U on %h</span>"
-#~ msgstr "<span size=\"small\">%U war %h</span>"
-
-#~ msgid "<span size=\"x-large\">%R</span>"
-#~ msgstr "<span size=\"x-large\">%R</span>"
-
-#~ msgid "_Cancel"
-#~ msgstr "_Nullañ"
-
-#~ msgid "_Leave Message"
-#~ msgstr "_Skrivañ ur gemenn"
-
-#~ msgid "_Log Out"
-#~ msgstr "Di_lugañ"
-
-#~ msgid "_Switch User"
-#~ msgstr "_Kemmañ an arveriad"
-
-#~ msgid "_Unlock"
-#~ msgstr "_Dibrennañ"
-
-#~ msgid "Cosmos"
-#~ msgstr "Kosmos"
-
-#~ msgid "Bubbles the GNOME foot logo around the screen"
-#~ msgstr "Al logo GNOME mont war wel tu pe du ar skramm"
-
-#~ msgid "Pictures folder"
-#~ msgstr "Teuliad ar skeudennoù"
-
-#~ msgid "MAX_IMAGES"
-#~ msgstr "MAX_IMAGES"
-
-#~ msgid "WIDTHxHEIGHT+X+Y"
-#~ msgstr "WIDTHxHEIGHT+X+Y"
-
-#~ msgid "The source image to use"
-#~ msgstr "Tarzh ar skeudenn da arverañ"
-
-#~ msgid "%s. See --help for usage information.\n"
-#~ msgstr "%s. Grit --help evit gouzout hiroc'h.\n"
-
-#~ msgid "You must specify one image.  See --help for usage information.\n"
-#~ msgstr ""
-#~ "Ret eo deoc'h erspizañ ur skeudenn.  Grit --help evit gouzout hiroc'h.\n"
-
-#~ msgid "PATH"
-#~ msgstr "TREUG"
-
-#~ msgid "Color to use for images background"
-#~ msgstr "Liv da implij evit drekleur ar skeudennoù"
-
-#~ msgid "Copying files"
-#~ msgstr "O eilañ restroù"
-
-#~ msgid "From:"
-#~ msgstr "Eus:"
-
-#~ msgid "To:"
-#~ msgstr "Ouzh:"
-
-#~ msgid "Copying themes"
-#~ msgstr "Oc'h eilañ an neuzioù"
-
-#~ msgid "Invalid screensaver theme"
-#~ msgstr "Didalvoudek eo neuz an damnter skramm"
-
-#~ msgid "Copying file: %u of %u"
-#~ msgstr "O kopiañ ar restr: %u eus %u"
-
-#~ msgid "The screensaver is %s\n"
-#~ msgstr "%s eo an damanter skramm\n"
-
-#~ msgid "active"
-#~ msgstr "oberiat"
-
-#~ msgid "inactive"
-#~ msgstr "dizoberiant"
-
-#~ msgid "MESSAGE"
-#~ msgstr "KEMENNADENN"
-
-#~ msgid "Username:"
-#~ msgstr "Anv an arveriad :"
-
-#~ msgid "Password:"
-#~ msgstr "Ger-tremen :"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr "Diamzeret eo ho kont ; kit e darempred gant hoc'h ardoer reizhiad"
-
-#~ msgid "No password supplied"
-#~ msgstr "N'eus ket ger-tremen"
-
-#~ msgid "Password unchanged"
-#~ msgstr "N'eo ket kemmet ar ger-tremen"
-
-#~ msgid "Can not get username"
-#~ msgstr "N'eus ket tu da gaout un anv implijour"
-
-#~ msgid "Enter new UNIX password:"
-#~ msgstr "Roit ur ger-tremen UNIX nevez :"
-
-#~ msgid "(current) UNIX password:"
-#~ msgstr "Ger-tremen UNIX (a-vremañ):"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "Digarez, ne glot ket ar ger-tremen"
-
-#~ msgid "Checking..."
-#~ msgstr "O wiriañ..."
-
-#~ msgid "Authentication failed."
-#~ msgstr "Dilesadur sac'het."
-
-#, fuzzy
-#~ msgid "Blank screen"
-#~ msgstr "Skramm gwenn"
-
-#~ msgid "Random"
-#~ msgstr "Dargouezhek"
-
-#~ msgid "%d hour"
-#~ msgid_plural "%d hours"
-#~ msgstr[0] "%d eurvezh"
-#~ msgstr[1] "%d eurvezh"
-
-#~ msgid "%d minute"
-#~ msgid_plural "%d minutes"
-#~ msgstr[0] "%d vunutenn"
-#~ msgstr[1] "%d a vunutennoù"
-
-#~ msgid "%d second"
-#~ msgid_plural "%d seconds"
-#~ msgstr[0] "%d eilenn"
-#~ msgstr[1] "%d eilennoù"
-
-#~ msgid "%s %s %s"
-#~ msgstr "%s %s %s"
-
-#~ msgid "%s %s"
-#~ msgstr "%s %s"
-
-#~ msgid "%s"
-#~ msgstr "%s"
-
-#~ msgid "Never"
-#~ msgstr "Morse"
-
-#~ msgid "Could not load the main interface"
-#~ msgstr "N'eus ket tu da gargañ ar c'hetal pennañ"
-
-#~ msgid "Incorrect password."
-#~ msgstr "Ger-tremen dreizh."
-
-#~ msgid "Time has expired."
-#~ msgstr "Echu eo an amzer."
-
-#~ msgid "S_witch User..."
-#~ msgstr "_Kemmañ an arveriad..."
-
-#~ msgid "Log _Out"
-#~ msgstr "En em di_gennaskañ"
-
-#~ msgid "%U on %h"
-#~ msgstr "%U war %h"
-
-#~ msgid "_Password:"
-#~ msgstr "Ger-_tremen :"

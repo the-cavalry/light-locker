@@ -1,28 +1,27 @@
-# Afrikaans translation for gnome-screensaver.
-# Copyright (C) 2011
-# This file is distributed under the same license as the gnome-screensaver package.
-# Hermien <hermienbos@gmail.com>, 2011.
-# F Wolff <friedel@translate.org.za>, 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# F Wolff <friedel@translate.org.za>, 2011
+# Hermien <hermienbos@gmail.com>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver gnome-2-30\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2011-03-14 21:18+0200\n"
-"Last-Translator: F Wolff <friedel@translate.org.za>\n"
-"Language-Team: translate-discuss-af@lists.sourceforge.net\n"
-"Language: af\n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:22+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Afrikaans (http://www.transifex.com/projects/p/light-locker/language/af/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: af\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.0-beta4\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
 msgstr ""
-"Sê aan die lopende sluimerskermproses om die skerm onmiddellik te sluit"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -38,14 +37,12 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Sluimerskerm"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Lanseer sluimerskerm en sluitprogram"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -63,162 +60,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "Veroorsaak dat die sluimerskerm grasieus afsluit"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "Doen navraag oor die sluimerskermstatus"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "Doen navraag oor die tydsduur wat die sluimerskerm aktief was"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "Skakel die sluimerskerm aan (maak die skerm skoon)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr ""
-#~ "Indien die sluimerskerm aktief is, deaktiveer dit (teken die skerm weer)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "Die sluimerskerm is aktief\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "Die sluimerskerm is onaktief\n"
-
-#~ msgid "The screensaver has been active for %d seconds.\n"
-#~ msgstr "Die sluimerskerm was aktief vir %d sekondes.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "Die sluimerskerm is nie tans aktief nie.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "Wys afvoer vir ontfouting"
-
-#~ msgid "Show the logout button"
-#~ msgstr "Wys die afmeldknoppie"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "Opdrag wat die afmeldknoppie moet uitvoer"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "Wys die knoppie om gebruiker te wissel"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "Boodskap om in die dialoog te wys"
-
-#~ msgid "MESSAGE"
-#~ msgstr "BOODSKAP"
-
-#~ msgid "Not used"
-#~ msgstr "Nie gebruik nie"
-
-#~ msgid "Username:"
-#~ msgstr "Gebruikernaam:"
-
-#~ msgid "Password:"
-#~ msgstr "Wagwoord:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr "U moet u wagwoord onmiddelik te verander (wagwoord is verouderd)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr "U moet u wagwoord onmiddelik te verander (deur root afgedwing)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr "U rekening het verval; kontak asseblief die stelseladministrateur"
-
-#~ msgid "No password supplied"
-#~ msgstr "Geen wagwoord verskaf nie"
-
-#~ msgid "Password unchanged"
-#~ msgstr "Wagwoord onveranderd"
-
-#~ msgid "Cannot get username"
-#~ msgstr "Kan nie gebruikernaam kry nie"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "Tik nuwe UNIX-wagwoord in (weer):"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "Tik nuwe UNIX-wagwoord in:"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "(huidige) UNIX-wagwoord:"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "Fout tydens verandering van NIS-wagwoord."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "U moet 'n langer wagwoord kies"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "Wagwoord is reeds gebruik. Kies 'n ander een."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "U moet langer wag om u wagwoord te verander"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "Jammer, wagwoorde verskil"
-
-#~ msgid "Checking…"
-#~ msgstr "Kontroleer tans…"
-
-#, fuzzy
-#~ msgid "Authentication failed."
-#~ msgstr "Geldigheidsverklaring gevaal."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "Kan nie diens %s vestig nie: %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "Kan nie PAM_TTY=%s stel nie"
-
-#~ msgid "Incorrect password."
-#~ msgstr "Verkeerde wagwoord."
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "Mag nie tans toegang kry nie."
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "Mag nie meer toegang tot stelsel hê nie."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "kon nie registreer met die boodskapbus nie"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "nie gekoppel nie aan die boodskapbus nie"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "sluimerskerm loop reeds in hierdie sessie"
-
-#~ msgid "Time has expired."
-#~ msgstr "Tyd is verstreke."
-
-#~ msgid "You have the Caps & Num Lock keys on."
-#~ msgstr "Die hoofletter- en syferslot is aan."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "Die hoofletterslot is aan."
-
-#~ msgid "You have the Num Lock key on."
-#~ msgstr "Die syferslot is aan."
-
-#~ msgid "S_witch User…"
-#~ msgstr "_Wissel gebruiker…"
-
-#~ msgid "Log _Out"
-#~ msgstr "Meld _af"
-
-#~ msgid "_Unlock"
-#~ msgstr "Sl_uit oop"
-
-#~ msgid "_Password:"
-#~ msgstr "_Wagwoord:"
-
-#~ msgid "%a %R"
-#~ msgstr "%a %R"
-
-#~ msgid "%a %l:%M %p"
-#~ msgstr "%a %l:%M %p"

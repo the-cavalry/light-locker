@@ -1,31 +1,28 @@
-# Russian translation of gnome-screensaver.
-# Copyright (C) 2006 Free Software Foundation
-# This file is distributed under the same license as the gnome-screensaver package.
-#
-# Sergio Kvantos <kvantos@plotinka.ru>, 2006.
-# Leonid Kanter <leon@asplinux.ru>, 2006.
-# Alexander Saprykin <xelfium@gmail.com>, 2009.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Alexander Saprykin <xelfium@gmail.com>, 2009
+# Leonid Kanter <leon@asplinux.ru>, 2006
+# Sergio Kvantos <kvantos@plotinka.ru>, 2006
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver trunk\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2011-03-23 23:51+0400\n"
-"Last-Translator: Yuri Myaseodov <omerta13@yandex.ru>\n"
-"Language-Team: Russian <gnome-cyr@gnome.org>\n"
-"Language: ru\n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:32+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/light-locker/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
 msgstr ""
-"Указывает запущенному процессу хранителя экрана заблокировать экран "
-"немедленно"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -41,14 +38,12 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Хранитель экрана"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Запустить хранитель экрана и программу блокировки"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -66,174 +61,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "Не становиться демоном"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "Приводит к корректному завершению работы хранителя экрана"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "Запрашивает состояние хранителя экрана"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr ""
-#~ "Запрашивает промежуток времени, в течение которого работал хранитель "
-#~ "экрана"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "Включить хранитель экрана (чёрный экран)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr ""
-#~ "Если хранитель экрана активен, деактивировать его (восстановить экран)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "Хранитель экрана включён\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "Хранитель экрана выключен\n"
-
-#~| msgid "The screensaver has been active for %d seconds.\n"
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "Хранитель экрана работал в течение %d секунды.\n"
-#~ msgstr[1] "Хранитель экрана работал в течение %d секунд.\n"
-#~ msgstr[2] "Хранитель экрана работал в течение %d секунд.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "Хранитель экрана сейчас неактивен.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "Показывать отладочный вывод"
-
-#~ msgid "Show the logout button"
-#~ msgstr "Показывать кнопку выхода из сеанса"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "Команда, вызываемая при нажатии кнопки выхода"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "Показывать кнопку переключения пользователя"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "Показывать сообщение в диалоговом окне"
-
-#~ msgid "MESSAGE"
-#~ msgstr "СООБЩЕНИЕ"
-
-#~ msgid "Not used"
-#~ msgstr "Не использовано"
-
-#~ msgid "Username:"
-#~ msgstr "Имя пользователя:"
-
-#~ msgid "Password:"
-#~ msgstr "Пароль:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr ""
-#~ "Вам необходимо сменить ваш пароль немедленно (срок действия пароля истёк)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr ""
-#~ "Вам необходимо сменить пароль немедленно (требование администратора)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr ""
-#~ "Срок действия вашей учетной записи истёк, свяжитесь со своим системным "
-#~ "администратором"
-
-#~ msgid "No password supplied"
-#~ msgstr "Пароль не введён"
-
-#~ msgid "Password unchanged"
-#~ msgstr "Пароль оставлен без изменения"
-
-#~ msgid "Cannot get username"
-#~ msgstr "Не удалось получить получить имя пользователя"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "Повторите новый пароль UNIX:"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "Введите новый пароль UNIX:"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "(текущий) пароль UNIX:"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "Ошибка при изменении пароля NIS."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "Вы должны выбрать более длинный пароль"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "Этот пароль уже был использован. Выберите другой пароль."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "Вы должны подождать дольше, чтобы сменить ваш пароль"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "Пароли не совпадают"
-
-#~ msgid "Checking…"
-#~ msgstr "Проверка…"
-
-#~ msgid "Authentication failed."
-#~ msgstr "Сбой аутентификации."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "Не удалось установить службу %s: %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "Не удалось установить PAM_TTY=%s"
-
-#~ msgid "Incorrect password."
-#~ msgstr "Неверный пароль."
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "Нет доступа к системе в это время."
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "Больше нет доступа к этой системе."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "ошибка регистрации на шине сообщений"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "не подключён к шине сообщений"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "хранитель экрана уже запущен в этом сеансе"
-
-#~ msgid "Time has expired."
-#~ msgstr "Время истекло."
-
-#~ msgid "You have the Caps & Num Lock keys on."
-#~ msgstr "Включены режимы Caps Lock и Num Lock."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "Включён режим Caps Lock."
-
-#~ msgid "You have the Num Lock key on."
-#~ msgstr "Включён режим Num Lock."
-
-#~ msgid "S_witch User…"
-#~ msgstr "Пе_реключить пользователя…"
-
-#~ msgid "Log _Out"
-#~ msgstr "Завершить _сеанс"
-
-#~ msgid "_Unlock"
-#~ msgstr "_Разблокировать"
-
-#~ msgid "_Password:"
-#~ msgstr "_Пароль:"
-
-#~ msgid "%a %R"
-#~ msgstr "%a %R"
-
-#~ msgid "%a %l:%M %p"
-#~ msgstr "%a %l:%M %p"

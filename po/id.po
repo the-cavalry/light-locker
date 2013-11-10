@@ -1,29 +1,28 @@
-# Translation of gnome-screensaver.master.po to Bahasa Indonesia
-# Copyright (C) 2006 THE gnome-screensaver'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the gnome-screensaver package.
-#
-# ahmad riza h nst <rizahnst@id.gnome.org>, 2006.
-# Dichi Al Faridi <dichi@alfaridi.info>, 2010.
-# Dirgita <dirgitadevina@yahoo.co.id>, 2010, 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# ahmad riza h nst <rizahnst@id.gnome.org>, 2006
+# Dichi Al Faridi <dichi@alfaridi.info>, 2010
+# dirgita <dirgitadevina@yahoo.co.id>, 2010-2011
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver.master\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2011-02-22 05:59+0700\n"
-"Last-Translator: Dirgita <dirgitadevina@yahoo.co.id>\n"
-"Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
-"Language: id\n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:28+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Indonesian (http://www.transifex.com/projects/p/light-locker/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 1.1\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr "Meminta proses pengaman layar untuk mengunci layar dengan segera"
+msgstr ""
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -39,14 +38,12 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Pengaman Layar"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Menjalankan pengaman layar serta mengunci program"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -64,277 +61,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "Jangan menjadi daemon"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "Menyebabkan screensaver keluar dengan baik"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "Query keadaan dari screensaver"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "Kuiri lamanya pengaman layar telah aktif"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "Mengaktifkan pengaman layar (layar menjadi gelap)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr ""
-#~ "Apabila pengaman layar aktif, maka dinonaktifkan (membuat layar tidak "
-#~ "lagi gelap)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "Pengaman layar aktif\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "Pengaman layar tidak aktif\n"
-
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "Pengaman layar telah aktif selama %d detik.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "Pengaman layar saat ini aktif.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "Menampilkan informasi debug"
-
-#~ msgid "Show the logout button"
-#~ msgstr "Menampilkan tombol untuk keluar"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "Perintah untuk tombol keluar"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "Menampilkan tombol untuk pindah pengguna"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "Pesan yang tampil pada dialog"
-
-#~ msgid "MESSAGE"
-#~ msgstr "PESAN"
-
-#~ msgid "Not used"
-#~ msgstr "Tidak digunakan"
-
-#~ msgid "Username:"
-#~ msgstr "Pengguna:"
-
-#~ msgid "Password:"
-#~ msgstr "Sandi:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr "Anda diharuskan segera mengubah sandi (sandi telah usang)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr "Anda diharuskan mengganti sandi segera (dipaksa root)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr "Akun Anda telah kedaluwarsa, hubungilah administrator sistem Anda"
-
-#~ msgid "No password supplied"
-#~ msgstr "Tidak ada sandi yang diberikan"
-
-#~ msgid "Password unchanged"
-#~ msgstr "Sandi tidak berubah"
-
-#~ msgid "Cannot get username"
-#~ msgstr "Tidak dapat memperoleh nama pengguna"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "Ketik ulang sandi Unix yang baru:"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "Masukkan sandi Unix yang baru:"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "(saat ini) Sandi Unix:"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "Galat ketika mengubah sandi NIS."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "Anda harus memilih sandi yang lebih panjang"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "Sandi sudah digunakan. Pilih yang lain."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "Anda harus menunggu lebih lama untuk mengubah sandi"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "Maaf, sandi tidak cocok"
-
-#~ msgid "Checking…"
-#~ msgstr "Memeriksa..."
-
-#~ msgid "Authentication failed."
-#~ msgstr "Otentikasi gagal."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "Tidak dapat menetapkan layanan %s: %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "Tidak dapat menyetel PAM_TTY=%s"
-
-#~ msgid "Incorrect password."
-#~ msgstr "Sandi salah."
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "Tidak diizinkan memperoleh akses untuk saat ini."
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "Tidak lagi diizinkan mengakses system."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "gagal mendaftar dengan bus pesan"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "tidak terhubung pada bus pesan"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "pengaman layar sudah berjalan pada sesi ini"
-
-#~ msgid "Time has expired."
-#~ msgstr "Waktu telah habis."
-
-#~ msgid "You have the Caps & Num Lock keys on."
-#~ msgstr "Tombol Caps & Num Lock menyala."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "Tombol Caps Lock menyala."
-
-#~ msgid "You have the Num Lock key on."
-#~ msgstr "Tombol Num Lock menyala."
-
-#~ msgid "S_witch User…"
-#~ msgstr "_Pindah Pengguna..."
-
-#~ msgid "Log _Out"
-#~ msgstr "Kel_uar"
-
-#~ msgid "_Unlock"
-#~ msgstr "B_uka Kunci"
-
-#~ msgid "_Password:"
-#~ msgstr "_Sandi:"
-
-#~ msgid "%a %R"
-#~ msgstr "%a %R"
-
-#~ msgid "%a %l:%M %p"
-#~ msgstr "%a %l:%M"
-
-#~ msgid "Screensaver themes"
-#~ msgstr "Tema pengaman layar"
-
-#~ msgid "Screensavers"
-#~ msgstr "Pengaman Layar"
-
-#~ msgid "Cosmos"
-#~ msgstr "Kosmos"
-
-#~ msgid "Display a slideshow of pictures of the cosmos"
-#~ msgstr "Menampilkan deret gambar kosmos"
-
-#~ msgid "Bubbles the GNOME foot logo around the screen"
-#~ msgstr "Logo kaki GNOME yang mengapung di sekitar layar"
-
-#~ msgid "Floating Feet"
-#~ msgstr "Kaki Mengapung"
-
-#~ msgid "Display a slideshow from your Pictures folder"
-#~ msgstr "Menampilkan deret gambar dari folder Gambar"
-
-#~ msgid "Pictures folder"
-#~ msgstr "Folder gambar"
-
-#~ msgid "A pop-art-ish grid of pulsing colors."
-#~ msgstr "Warna berpendar kisi pop-art."
-
-#~ msgid "Pop art squares"
-#~ msgstr "Kotak-kotak pop art"
-
-#~ msgid "%s. See --help for usage information.\n"
-#~ msgstr "%s. Lihat --help untuk informasi penggunaan.\n"
-
-#~ msgid "Show paths that images follow"
-#~ msgstr "Menampilkan jalur gambar yang diikuti"
-
-#~ msgid "Occasionally rotate images as they move"
-#~ msgstr "Sesekali putar gambar ketika berpindah"
-
-#~ msgid "Print out frame rate and other statistics"
-#~ msgstr "Menampilkan laju gambar dan statistik yang lain"
-
-#~ msgid "The maximum number of images to keep on screen"
-#~ msgstr "Jumlah maksimal gambar yang tampil pada layar"
-
-#~ msgid "MAX_IMAGES"
-#~ msgstr "MAKS_GAMBAR"
-
-#~ msgid "The initial size and position of window"
-#~ msgstr "Ukuran dan posisi awal jendela"
-
-#~ msgid "WIDTHxHEIGHT+X+Y"
-#~ msgstr "LEBARxTINGGI+X+Y"
-
-#~ msgid "The source image to use"
-#~ msgstr "Sumber gambar yang hendak dipakai"
-
-#~ msgid "image — floats images around the screen"
-#~ msgstr "gambar — gambar mengapung di sekitar layar"
-
-#~ msgid "You must specify one image.  See --help for usage information.\n"
-#~ msgstr ""
-#~ "Anda harus menentukan satu gambar.  Lihat --help untuk informasi "
-#~ "penggunaan.\n"
-
-#~ msgid "Location to get images from"
-#~ msgstr "Lokasi untuk memperoleh gambar"
-
-#~ msgid "PATH"
-#~ msgstr "LOKASI"
-
-#~ msgid "Color to use for image background"
-#~ msgstr "Warna untuk gambar latar belakang"
-
-#~ msgid "\"#rrggbb\""
-#~ msgstr "\"#rrggbb\""
-
-#~ msgid "Do not randomize pictures from location"
-#~ msgstr "Jangan mengacak gambar dari lokasi"
-
-#~ msgid "Do not try to stretch images on screen"
-#~ msgstr "Jangan merentangkan gambar"
-
-#~ msgid "If the screensaver is active then switch to another graphics demo"
-#~ msgstr ""
-#~ "Apabila pengaman layar aktif, maka berpindah ke demo grafik yang lain"
-
-#~ msgid "Poke the running screensaver to simulate user activity"
-#~ msgstr ""
-#~ "Senggol screensaver yang sedang berjalan untuk mensimulasikan aktivitas "
-#~ "pengguna"
-
-#~ msgid ""
-#~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
-#~ "active."
-#~ msgstr ""
-#~ "Cegah screensaver diaktifkan. Perintah menghalangi ketika pencegahan "
-#~ "aktif."
-
-#~ msgid "The calling application that is inhibiting the screensaver"
-#~ msgstr "Aplikasi pemanggil yang mencegah screensaver"
-
-#~ msgid "The reason for inhibiting the screensaver"
-#~ msgstr "Alasan menghalangi/mencegah pengaman layar"
-
-#~ msgid "The screensaver is not inhibited\n"
-#~ msgstr "Pengaman layar tidak dihalangi\n"
-
-#~ msgid "The screensaver is being inhibited by:\n"
-#~ msgstr "Pengaman layar dihalangi oleh:\n"

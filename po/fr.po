@@ -1,37 +1,32 @@
-# French translation of gnome-screensaver.
-# Copyright (C) 2005-2012 The Free Software Foundation, Inc.
-# This file is distributed under the same license as the gnome-screensaver package.
-#
-# Eric Maeker <eric.maeker@free.fr>, 2005.
-# Davy Defaud <davy.defaud@posteasy.com>, 2005.
-# Benoît Dejean <benoit@placenet.org>, 2006.
-# Robert-André Mauchin <zebob.m@pengzone.org>, 2006-2008.
-# Christophe Merlet <redfox@redfoxcenter.org>, 2006.
-# Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007.
-# Jonathan Ernst <jonathan@ernstfamily.ch>, 2007.
-# Claude Paroz <claude@2xlibre.net>, 2010.
-# Bruno Brouard <annoa.b@gmail.com>, 2011-2012
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Benoît Dejean <benoit@placenet.org>, 2006
+# Christophe Merlet <redfox@redfoxcenter.org>, 2006
+# claudep <claude@2xlibre.net>, 2010
+# Davy Defaud <davy.defaud@posteasy.com>, 2005
+# Eric Maeker <eric.maeker@free.fr>, 2005
+# Jonathan Ernst <jonathan@ernstfamily.ch>, 2007
+# Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver master\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2012-05-20 14:32+0200\n"
-"Last-Translator: Bruno Brouard <annoa.b@gmail.com>\n"
-"Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 20:59+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/light-locker/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n>1;\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
 msgstr ""
-"Demande à l'économiseur d'écran en cours de fonctionnement de verrouiller "
-"l'écran immédiatement"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -47,26 +42,21 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Économiseur d'écran"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Lancer l'économiseur d'écran et le programme de verrouillage"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
 msgstr "Cette session est vérouillée"
 
-# traduit librement
 #: ../src/gs-content.c:118
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr ""
-"Vous allez être automatiquement redirigés vers la fenêtre de déverrouillage "
-"dans quelques secondes"
+msgstr "Vous allez être automatiquement redirigés vers la fenêtre de déverrouillage dans quelques secondes"
 
 #: ../src/preview.c:72
 msgid "Preview screen width"
@@ -75,159 +65,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "Ne pas devenir un « daemon » (démon)"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "Demande à l'économiseur d'écran de quitter proprement"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "Indique l'état de l'économiseur d'écran"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "Indique la durée pendant laquelle l'économiseur d'écran a été actif"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "Démarre l'économiseur d'écran (efface l'écran)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr "Désactive l'économiseur d'écran s'il est actif (réaffiche l'écran)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "L'économiseur d'écran est actif\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "L'économiseur d'écran est inactif\n"
-
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "L'économiseur d'écran a été actif pendant %d seconde.\n"
-#~ msgstr[1] "L'économiseur d'écran a été actif pendant %d secondes.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "L'économiseur d'écran n'est actuellement pas actif.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "Affiche la sortie de débogage"
-
-#~ msgid "Show the logout button"
-#~ msgstr "Affiche le bouton de déconnexion"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "Commande à invoquer depuis le bouton de déconnexion"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "Affiche le bouton de changement d'utilisateur"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "Message à afficher dans la boîte de dialogue"
-
-#~ msgid "MESSAGE"
-#~ msgstr "MESSAGE"
-
-#~ msgid "Not used"
-#~ msgstr "Non utilisé"
-
-#~ msgid "Username:"
-#~ msgstr "Utilisateur :"
-
-#~ msgid "Password:"
-#~ msgstr "Mot de passe :"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr ""
-#~ "Vous devez modifier votre mot de passe immédiatement (mot de passe ancien)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr ""
-#~ "Vous devez modifier votre mot de passe immédiatement (à la demande de "
-#~ "l'administrateur)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr ""
-#~ "Votre compte a expiré ; veuillez contacter votre administrateur système"
-
-#~ msgid "No password supplied"
-#~ msgstr "Aucun mot de passe fourni"
-
-#~ msgid "Password unchanged"
-#~ msgstr "Mot de passe non modifié"
-
-#~ msgid "Cannot get username"
-#~ msgstr "Impossible d'obtenir un nom d'utilisateur"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "Ressaisissez un nouveau mot de passe Unix :"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "Saisissez un nouveau mot de passe Unix :"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "Mot de passe Unix (actuel) :"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "Erreur lors de la modification du mot de passe NIS."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "Vous devez choisir un mot de passe plus long"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "Le mot de passe a déjà été utilisé. Choisissez en un autre."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "Vous devez attendre plus longtemps pour modifier votre mot de passe"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "Désolé, les mots de passe ne correspondent pas"
-
-#~ msgid "Checking…"
-#~ msgstr "Vérification en cours…"
-
-#~ msgid "Authentication failed."
-#~ msgstr "L'authentification a échoué."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "Impossible d'établir le service %s : %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "Impossible de définir PAM_TTY=%s"
-
-#~ msgid "Incorrect password."
-#~ msgstr "Mot de passe non valide."
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "Vous n'êtes pas autorisé à accéder au système à cette heure."
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "Vous n'êtes plus autorisé à accéder au système."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "l'enregistrement sur le bus de message a échoué"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "non connecté au bus de message"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr ""
-#~ "l'économiseur d'écran est déjà en cours de fonctionnement pour cette "
-#~ "session"
-
-#~ msgid "Time has expired."
-#~ msgstr "Délai expiré."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "La touche Verr. Maj. est enfoncée."
-
-#~ msgid "S_witch User…"
-#~ msgstr "Changer d'_utilisateur…"
-
-#~ msgid "Log _Out"
-#~ msgstr "Se _déconnecter"
-
-#~ msgid "_Unlock"
-#~ msgstr "_Déverrouiller"
-
-#~ msgid "_Password:"
-#~ msgstr "_Mot de passe :"

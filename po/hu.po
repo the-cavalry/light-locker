@@ -1,29 +1,27 @@
-# Hungarian translation of gnome-screensaver
-# Copyright (C) 2005, 2006, 2007, 2008, 2009, 2010, 2011. Free Software Foundation, Inc.
-# This file is distributed under the same license as the gnome-screensaver package.
-#
-# Szilveszter Farkas <szilveszter.farkas at gmail dot com>, 2005.
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2005, 2006, 2007, 2008, 2009, 2010, 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2005-2011
+# Szilveszter Farkas <szilveszter.farkas at gmail dot com>, 2005
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver master\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2011-03-15 15:56+0100\n"
-"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
-"Language-Team: Hungarian <gnome at fsf dot hu>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:28+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Hungarian (http://www.transifex.com/projects/p/light-locker/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Rosetta-Version: 0.1\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.11.4\n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr "A futó képernyővédő-folyamatot kéri a képernyő azonnali zárolására"
+msgstr ""
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -39,14 +37,12 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Képernyővédő"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Képernyővédő és -zároló program indítása"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -64,167 +60,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "Ne démonként fusson"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "A képernyővédő „elegáns” bezárása"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "A képernyővédő állapotának lekérdezése"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "Azon időtartam lekérdezése, amíg a képernyővédő aktív volt"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "Képernyővédő bekapcsolása (képernyő elsötétítése)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr ""
-#~ "Ha a képernyővédő aktív, akkor deaktiválja (képernyő visszaállítása)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "A képernyővédő aktív\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "A képernyővédő inaktív\n"
-
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "A képernyővédő %d másodpercig volt aktív.\n"
-#~ msgstr[1] "A képernyővédő %d másodpercig volt aktív.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "A képernyővédő jelenleg nem aktív.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "Hibakeresési kimenet megjelenítése"
-
-#~ msgid "Show the logout button"
-#~ msgstr "Kijelentkezés gomb megjelenítése"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "A kijelentkezés gomb által meghívandó parancs"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "Felhasználóváltás gomb megjelenítése"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "A párbeszédablakban megjelenítendő üzenet"
-
-#~ msgid "MESSAGE"
-#~ msgstr "ÜZENET"
-
-#~ msgid "Not used"
-#~ msgstr "Nincs használatban"
-
-#~ msgid "Username:"
-#~ msgstr "Felhasználónév:"
-
-#~ msgid "Password:"
-#~ msgstr "Jelszó:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr "Azonnal meg kell változtatnia a jelszavát (a régi jelszó lejárt)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr "Azonnal meg kell változtatnia a jelszavát (a rendszergazda kérése)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr ""
-#~ "Az Ön felhasználói fiókja lejárt; lépjen kapcsolatba a rendszergazdával"
-
-#~ msgid "No password supplied"
-#~ msgstr "Nincs jelszó megadva"
-
-#~ msgid "Password unchanged"
-#~ msgstr "A jelszó nem változott"
-
-#~ msgid "Cannot get username"
-#~ msgstr "A felhasználónév nem kérhető le"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "Adja meg ismét az új Unix jelszót:"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "Adja meg az új Unix jelszót:"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "(jelenlegi) Unix jelszó:"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "Hiba a NIS jelszó módosítása közben."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "Válasszon hosszabb jelszót"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "A megadott jelszót már használta. Adjon meg egy másikat."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "Még várnia kell a jelszó megváltoztatásával"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "Sajnálom, a megadott jelszavak nem egyeznek meg"
-
-#~ msgid "Checking…"
-#~ msgstr "Ellenőrzés…"
-
-#~ msgid "Authentication failed."
-#~ msgstr "A hitelesítés meghiúsult."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "Nem sikerült elindítani a(z) %s szolgáltatást: %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "Nem állítható be a PAM_TTY=%s változó"
-
-#~ msgid "Incorrect password."
-#~ msgstr "Helytelen jelszó."
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "Jelenleg nincs engedélye hozzáférést szerezni."
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "Már nem engedélyezett a rendszer elérése."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "nem sikerült regisztrálni az üzenetbusszal"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "nincs kapcsolat az üzenetbusszal"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "már fut képernyővédő ebben a munkamenetben"
-
-#~ msgid "Time has expired."
-#~ msgstr "Az idő lejárt."
-
-#~ msgid "You have the Caps & Num Lock keys on."
-#~ msgstr "A Caps Lock és Num Lock be van kapcsolva."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "A Caps Lock be van kapcsolva."
-
-#~ msgid "You have the Num Lock key on."
-#~ msgstr "A Num Lock be van kapcsolva."
-
-#~ msgid "S_witch User…"
-#~ msgstr "Felhasználó_váltás…"
-
-#~ msgid "Log _Out"
-#~ msgstr "_Kijelentkezés"
-
-#~ msgid "_Unlock"
-#~ msgstr "_Feloldás"
-
-#~ msgid "_Password:"
-#~ msgstr "_Jelszó:"
-
-#~ msgid "%a %R"
-#~ msgstr "%a %H.%M"
-
-#~ msgid "%a %l:%M %p"
-#~ msgstr "%a %l.%M %p"

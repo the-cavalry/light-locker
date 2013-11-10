@@ -1,24 +1,21 @@
-# Burmese Translations of gnome-screensaver
-# Copyright (C) 2011 Myanmar L10n Team
-# This file is distributed under the same license as the above package.
-# Thura Hlaing <trhura@gmail.com>, 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2011-10-14 00:28+0630\n"
-"Last-Translator: Thura Hlaing <trhura@gmail.com>\n"
-"Language-Team: Burmese <my-l10n-team@googlegroups.com>\n"
-"Language: my\n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:30+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Burmese (http://www.transifex.com/projects/p/light-locker/language/my/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Burmese\n"
-"X-Poedit-Country: MYANMAR\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"Language: my\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Narro 0.9.4 on http://translate.libreworks.info\n"
 
 #: ../src/light-locker-command.c:40
 msgid "Tells the running display manager to lock the screen immediately"
@@ -34,14 +31,12 @@ msgid "Enable debugging code"
 msgstr ""
 
 #: ../src/light-locker.c:59
-#, fuzzy
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr "_L ကန့်လန့်ကာချပြီးလျှင် ဖန်သားပြင်ကို သော့ခတ်ပါ"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "ဖန်သားပြင်ကန့်လန့်ကာ"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
@@ -63,126 +58,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Set your screensaver preferences"
-#~ msgstr "ဖန်သားပြင်ကန့်လန့်ကာဆက်တင်များစီမံရန်"
-
-#~ msgid "<b>Screensaver preview</b>"
-#~ msgstr "<b>ကန့်လန့်ကာ အကြိုမြင်ကွင်း</b>"
-
-#~ msgid "Power _Management"
-#~ msgstr "လျှပ်စစ်ဓာတ်အားဆိုင်ရာ"
-
-#~ msgid "Regard the computer as _idle after:"
-#~ msgstr "ကွန်ပျူတာကို ဤမျှအကြာတွင် လေနေသည်ဟု သတ်မှတ်ပါ"
-
-#~ msgid "Screensaver Preferences"
-#~ msgstr "ကန့်လန့်ကာဆိုင်ရာ လိုလားချက်များ"
-
-#~ msgid "Screensaver Preview"
-#~ msgstr "ကန့်လန့်ကာ အကြိုမြင်ကွင်း"
-
-#~ msgid "_Activate screensaver when computer is idle"
-#~ msgstr "_A ကွန်ပျူတာလေနေပါက ကန့်လန့်ကာချပါ"
-
-#~ msgid "_Preview"
-#~ msgstr "_P ကြိုကြည့်ရန်"
-
-#~ msgid "_Screensaver theme:"
-#~ msgstr "_S ကန့်လန့်ကာအဆင်-"
-
-#~ msgid "Screensaver themes"
-#~ msgstr "ကန့်လန့်ကာအဆင်များ"
-
-#~ msgid "Screensavers"
-#~ msgstr "ကန့်လန့်ကာများ"
-
-#~ msgid "<b>Leave a message for %R:</b>"
-#~ msgstr "<b>%R အတွက် အမှာစကားချန်ထားရန်</b>"
-
-#~ msgid "_Cancel"
-#~ msgstr "_C နေတော့"
-
-#~ msgid "_Leave Message"
-#~ msgstr "_L မှာတမ်းခြွေရန်"
-
-#~ msgid "_Log Out"
-#~ msgstr "_L ထွက်ပါ"
-
-#~ msgid "_Switch User"
-#~ msgstr "_S အသုံးပြုသူပြောင်းရန်"
-
-#~ msgid "_Unlock"
-#~ msgstr "_U ဖွင့်ပါ"
-
-#~ msgid "Pictures folder"
-#~ msgstr "ရုပ်ပုံဖိုင်တွဲ"
-
-#~ msgid "From:"
-#~ msgstr "မှ-"
-
-#~ msgid "To:"
-#~ msgstr "သို့-"
-
-#~ msgid "Username:"
-#~ msgstr "အသုံးပြုသူအမည်-"
-
-#~ msgid "Password:"
-#~ msgstr "စကားဝှက်-"
-
-#~ msgid "Password unchanged"
-#~ msgstr "စကားဝှက်မပြောင်းသွားပါ"
-
-#~ msgid "Retype new UNIX password:"
-#~ msgstr "စကားဝှက်အသစ် ထပ်ရိုက်ပါ-"
-
-#~ msgid "Enter new UNIX password:"
-#~ msgstr "စကားဝှက်အသစ် ရိုက်ပါ-"
-
-#~ msgid "(current) UNIX password:"
-#~ msgstr "လက်ရှိစကားဝှက်-"
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "စကားဝှက်ကို ရှည်ရှည်ရွေးပေးပါ"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "စကားဝှက်နှစ်ခု မတူကြပါ"
-
-#~ msgid "Checking..."
-#~ msgstr "စစ်ဆေးနေပါတယ်..."
-
-#~ msgid "Blank screen"
-#~ msgstr "ဖန်သားပြင်ဗြောင်"
-
-#~ msgid "Random"
-#~ msgstr "ကျပန်း"
-
-#~ msgid "%d hour"
-#~ msgid_plural "%d hours"
-#~ msgstr[0] "%Id နာရီ"
-
-#~ msgid "%d minute"
-#~ msgid_plural "%d minutes"
-#~ msgstr[0] "%Id မိနစ်"
-
-#~ msgid "%d second"
-#~ msgid_plural "%d seconds"
-#~ msgstr[0] "%Id စက္ကန့်"
-
-#~ msgid "Incorrect password."
-#~ msgstr "စကားဝှက်မှားနေပါတယ်"
-
-#~ msgid "Time has expired."
-#~ msgstr "အချိန်ကျော်လွန်သွားပြီ"
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "Caps Lock ပွင့်နေတယ်"
-
-#~ msgid "S_witch User..."
-#~ msgstr "_W အသုံးပြုသူပြောင်းရန်"
-
-#~ msgid "Log _Out"
-#~ msgstr "_O ထွက်ရန်"
-
-#~ msgid "_Password:"
-#~ msgstr "_P စကားဝှက်-"

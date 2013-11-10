@@ -1,35 +1,26 @@
-# Italian Translation of gnome-screensaver
-# Copyright (C) 2005, 2006, 2007, 2008, 2009, 2010, 2011 Free Software Foundation Inc.
-# This file is distributed under the same license as the gnome-screensaver package.
-#
-#   idle -> inattivo/a
-#   activate --> avvia (per evitare attiva quando inattivo)
-#   inactive --> assenza di attività (o simile)
-#
-# Le traduzioni di alcuni messaggi cut-and-paste (dal
-# modulo fast-user-switch-applet) sono di Luca Cavalli
-#
-# Luca Ferretti <lferrett@gnome.org>, 2006, 2007, 2008, 2009, 2010, 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Luca Ferretti <lferrett@gnome.org>, 2006-2011
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver 2.9x\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2011-03-16 15:08+0100\n"
-"Last-Translator: Luca Ferretti <lferrett@gnome.org>\n"
-"Language-Team: Italiano <tp@lists.linux.it>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:28+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Italian (http://www.transifex.com/projects/p/light-locker/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
 msgstr ""
-"Comunica al processo salvaschermo in esecuzione di bloccare immediatamente "
-"lo schermo"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -41,19 +32,16 @@ msgid "Enable debugging code"
 msgstr "Abilitare il codice di debug"
 
 #: ../src/light-locker.c:59
-#, fuzzy
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr "_Bloccare lo schermo quando il salvaschermo viene avviato"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Salvaschermo"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Lancia il programma per salvaschermo e per blocco schermo"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -71,401 +59,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "Non diventare un demone"
-
-# sarebbe, credo, non violenta... Ci debbo pensare meglio -Luca
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "Causa l'uscita non forzosa del salvaschermo"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "Interroga lo stato del salvaschermo"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "Interroga l'intervallo di tempo di esecuzione del salvaschermo"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "Avvia il salvaschermo (blanking dello schermo)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr ""
-#~ "Se il salvaschermo è in esecuzione lo arresta (unblanking dello schermo)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "Il salvaschermo è attivo\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "Il salvaschermo è inattivo\n"
-
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "Il salvaschermo è rimasto attivo per %d secondo.\n"
-#~ msgstr[1] "Il salvaschermo è rimasto attivo per %d secondi.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "l salvaschermo non è attivo al momento.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "Mostra l'outptut di debug"
-
-#~ msgid "Show the logout button"
-#~ msgstr "Mostra il pulsante per terminare la sessione"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "Comando da invocare col pulsante di termine sessione"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "Mostra il pulsante cambia utente"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "Messaggio da mostrare nel dialogo"
-
-#~ msgid "MESSAGE"
-#~ msgstr "MESSAGGIO"
-
-#~ msgid "Not used"
-#~ msgstr "Non usato"
-
-#~ msgid "Username:"
-#~ msgstr "Nome utente:"
-
-#~ msgid "Password:"
-#~ msgstr "Password:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr ""
-#~ "È necessario cambiare immediatamente la propria password (password "
-#~ "scaduta)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr ""
-#~ "È necessario cambiare immediatamente la propria password (imposto da root)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr ""
-#~ "Il proprio account è scaduto; contattare l'amministratore di sistema"
-
-#~ msgid "No password supplied"
-#~ msgstr "Nessuna password fornita"
-
-#~ msgid "Password unchanged"
-#~ msgstr "Password non cambiata"
-
-#~ msgid "Cannot get username"
-#~ msgstr "Impossibile ottenere il nome utente"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "Digitare di nuovo la nuova password UNIX:"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "Inserire la nuova password UNIX:"
-
-# non sono sicuro, ma credo che la maiuscola all'inizio ci vada -Luca
-#
-#~ msgid "(current) Unix password:"
-#~ msgstr "Password UNIX (attuale):"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "Errore durante il cambiamento della password NIS."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "È necessario scegliere una password più lunga."
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "La password è stata già usata. Sceglierne un'altra."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr ""
-#~ "È necessario attendere ancora prima di poter cambiare la propria password"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "Le password non corrispondono"
-
-#~ msgid "Checking…"
-#~ msgstr "Controllo..."
-
-#~ msgid "Authentication failed."
-#~ msgstr "Autenticazione non riuscita."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "Impossibile stabilire il servizio %s: %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "Impossibile impostare PAM_TTY=%s"
-
-#~ msgid "Incorrect password."
-#~ msgstr "Password non corretta."
-
-# credo indichi l'intervallo di inibizione dopo N tentativi falliti. -Luca
-#
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "Per ora non è più concesso ottenere l'accesso."
-
-# Ho rigirato la frase. Mi pare sia una forma migliore e più chiara, in italiano, 
-# di "non è più concesso ..." -Luca
-#
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "L'accesso al sistema è stato perennemente revocato."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "registrazione col bus di messaggi non riuscita"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "non connesso al bus di messaggi"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "salvaschermo già in esecuzione in questa sessione"
-
-#~ msgid "Time has expired."
-#~ msgstr "Tempo scaduto!"
-
-#~ msgid "You have the Caps & Num Lock keys on."
-#~ msgstr "I tasti BlocMaiusc e BlocNum sono attivi."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "Il tasto BlocMaiusc è attivo."
-
-#~ msgid "You have the Num Lock key on."
-#~ msgstr "Il tasto BlocNum è attivo."
-
-#~ msgid "S_witch User…"
-#~ msgstr "_Cambia utente..."
-
-#~ msgid "Log _Out"
-#~ msgstr "_Termina sessione"
-
-#~ msgid "_Unlock"
-#~ msgstr "S_blocca"
-
-#~ msgid "_Password:"
-#~ msgstr "Pass_word:"
-
-#~ msgid "%a %R"
-#~ msgstr "%a %k.%M"
-
-#~ msgid "%a %l:%M %p"
-#~ msgstr "%a %l.%M %P"
-
-#~ msgid "Set your screensaver preferences"
-#~ msgstr "Imposta le preferenze del salvaschermo"
-
-#~ msgid "Power _Management"
-#~ msgstr "_Gestione alimentazione"
-
-#~ msgid "Regard the computer as _idle after:"
-#~ msgstr "C_onsiderare il computer come inattivo dopo:"
-
-#~ msgid "Screensaver Preferences"
-#~ msgstr "Preferenze del salvaschermo"
-
-#~ msgid "Screensaver Preview"
-#~ msgstr "Anteprima del salvaschermo"
-
-#~ msgid "Screensaver preview"
-#~ msgstr "Anteprima del salvaschermo"
-
-#~ msgid "Warning: the screen will not be locked for the root user."
-#~ msgstr "Attenzione: lo schermo non verrà bloccato per l'utente root."
-
-#~ msgid "_Activate screensaver when computer is idle"
-#~ msgstr "_Avviare il salvaschermo quando il computer è inattivo"
-
-#~ msgid "_Preview"
-#~ msgstr "Ante_prima"
-
-#~ msgid "_Screensaver theme:"
-#~ msgstr "Tema del _salvaschermo:"
-
-#~ msgid "Screensaver themes"
-#~ msgstr "Temi del salvaschermo"
-
-#~ msgid "Screensavers"
-#~ msgstr "Salvaschermo"
-
-#~ msgid "Cosmos"
-#~ msgstr "Cosmo"
-
-#~ msgid "Display a slideshow of pictures of the cosmos"
-#~ msgstr "Mostra una sequenza di immagini del cosmo"
-
-#~ msgid "Bubbles the GNOME foot logo around the screen"
-#~ msgstr "Fa rimbalzare l'impronta del logo di GNOME sullo schermo"
-
-#~ msgid "Floating Feet"
-#~ msgstr "Orma fluttuante"
-
-# Nota su Pictures --> Immagini
-#   Se si sta usando xdg-user-dirs, gnome-screensaver sarà in grado
-#   di leggere dalla directory $HOME/Immagini
-#
-#   Visto che xdg-user-dirs *deve* essere usato (altrimenti vi mandiamo
-#   le forze dell'ordine in casa) è inutile mantenere la compatibilità
-#   all'indietro in questa traduzione.
-#
-#   --Luca, vostro benevolente dittatore.
-#
-#~ msgid "Display a slideshow from your Pictures folder"
-#~ msgstr "Mostra una sequenza dalla propria cartella Immagini"
-
-# Cfr commento sopra
-#
-#~ msgid "Pictures folder"
-#~ msgstr "Cartella Immagini"
-
-#~ msgid "A pop-art-ish grid of pulsing colors."
-#~ msgstr "Una griglia in stile pop-art di colori pulsanti."
-
-#~ msgid "Pop art squares"
-#~ msgstr "Quadrati pop-art"
-
-#~ msgid "%s. See --help for usage information.\n"
-#~ msgstr "%s. Usare --help per informazioni sull'uso.\n"
-
-#~ msgid "Show paths that images follow"
-#~ msgstr "Mostra i percorsi seguiti dalla immagini"
-
-#~ msgid "Occasionally rotate images as they move"
-#~ msgstr "Occasionalmente ruota le immagini durante lo spostamento"
-
-#~ msgid "Print out frame rate and other statistics"
-#~ msgstr "Stampa frame rate e altre statistiche"
-
-#~ msgid "The maximum number of images to keep on screen"
-#~ msgstr "Il numero massimo di immagini da tenere sullo schermo"
-
-#~ msgid "MAX_IMAGES"
-#~ msgstr "MAX_IMMAGINI"
-
-#~ msgid "The initial size and position of window"
-#~ msgstr "La dimensione e posizione iniziale della finestra"
-
-#~ msgid "WIDTHxHEIGHT+X+Y"
-#~ msgstr "LARGxALT+X+Y"
-
-#~ msgid "The source image to use"
-#~ msgstr "L'immagine sorgente da usare"
-
-#~ msgid "image — floats images around the screen"
-#~ msgstr "IMMAGINE — fa fluttuare immagini sullo schermo"
-
-#~ msgid "You must specify one image.  See --help for usage information.\n"
-#~ msgstr ""
-#~ "È necessario specificare una immagine. Usare --help per informazioni "
-#~ "sull'uso.\n"
-
-# spiegazione per parametro --location
-#~ msgid "Location to get images from"
-#~ msgstr "Posizione da cui prelevare le immagini"
-
-#~ msgid "PATH"
-#~ msgstr "PERCORSO"
-
-# spiegazione per parametro --background-color
-#~ msgid "Color to use for image background"
-#~ msgstr "Colore da usare per sfondo immagini"
-
-#~ msgid "\"#rrggbb\""
-#~ msgstr "\"#RRGGBB\""
-
-# spiegazione per parametro --sort-images
-#~ msgid "Do not randomize pictures from location"
-#~ msgstr "Non recupera a caso le immagini dalla posizione"
-
-# spiegazione per parametro --no-stretch
-# resa un po' libera...
-#~ msgid "Do not try to stretch images on screen"
-#~ msgstr "Non tenta di adattare le immagini allo schermo"
-
-#~ msgid "Copying files"
-#~ msgstr "Copia dei file"
-
-#~ msgid "From:"
-#~ msgstr "Da:"
-
-#~ msgid "To:"
-#~ msgstr "A:"
-
-#~ msgid "Copying themes"
-#~ msgstr "Copia dei temi"
-
-#~ msgid "Invalid screensaver theme"
-#~ msgstr "Tema di salvaschermo non valido"
-
-#~ msgid "%s does not appear to be a valid screensaver theme."
-#~ msgstr "Sembra che «%s» non sia un tema di salvaschermo valido."
-
-#~ msgid "Copying file: %u of %u"
-#~ msgstr "Copia del file: %u di %u"
-
-# sarebbe quello che prima è stato definito tema? 
-#
-# Mi sa che apro un bug -Luca
-#~ msgid "If the screensaver is active then switch to another graphics demo"
-#~ msgstr "Se il salvaschermo è in esecuzione passa ad altra demo grafica"
-
-# qui ci stava bene "stuzzica"  :-)
-#~ msgid "Poke the running screensaver to simulate user activity"
-#~ msgstr ""
-#~ "Simula al salvaschermo in esecuzione una segnalazione di attività utente"
-
-# più una interpretazione che una traduzione.... --Luca
-#~ msgid ""
-#~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
-#~ "active."
-#~ msgstr ""
-#~ "Inibisce l'avvio del salvaschermo. I comandi sono bloccati mentre "
-#~ "l'inibizione è attiva."
-
-#~ msgid "The calling application that is inhibiting the screensaver"
-#~ msgstr "L'applicazione chiamante che sta inibendo il salvaschermo"
-
-#~ msgid "The reason for inhibiting the screensaver"
-#~ msgstr "Il motivo dell'inibizione del salvaschermo"
-
-# GNOME-2-24
-#~ msgid "The screensaver is not inhibited\n"
-#~ msgstr "Il salvaschermo non è inibito\n"
-
-#~ msgid "The screensaver is being inhibited by:\n"
-#~ msgstr "Il salvaschermo sta per essere inibito da:\n"
-
-#~ msgid "Blank screen"
-#~ msgstr "Schermo vuoto"
-
-#~ msgid "Random"
-#~ msgstr "Casuale"
-
-#~ msgid "%d hour"
-#~ msgid_plural "%d hours"
-#~ msgstr[0] "%d ora"
-#~ msgstr[1] "%d ore"
-
-#~ msgid "%d minute"
-#~ msgid_plural "%d minutes"
-#~ msgstr[0] "%d minuto"
-#~ msgstr[1] "%d minuti"
-
-#~ msgid "%d second"
-#~ msgid_plural "%d seconds"
-#~ msgstr[0] "%d secondo"
-#~ msgstr[1] "%d secondi"
-
-#~ msgid "%s %s %s"
-#~ msgstr "%s, %s e %s"
-
-#~ msgid "%s %s"
-#~ msgstr "%s e %s"
-
-#~ msgid "%s"
-#~ msgstr "%s"
-
-#~ msgid "Never"
-#~ msgstr "Mai"
-
-#~ msgid "Could not load the main interface"
-#~ msgstr "Impossibile caricare l'interfaccia principale"
-
-#~ msgid "Please make sure that the screensaver is properly installed"
-#~ msgstr "Assicurarsi che il salvaschermo sia installato in modo corretto"

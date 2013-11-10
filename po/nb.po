@@ -1,26 +1,26 @@
-# Norwegian bokmål translation of gnome-screensaver.
-# Copyright (C) 1998-2004 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@gnome.org>, 1998-2012.
-# Torstein Adolf Winterseth <kvikende@fsfe.org>, 2010.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Torstein Adolf Winterseth <kvikende@fsfe.org>, 2010
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver 3.3.x\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2012-01-25 20:14+0100\n"
-"Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
-"Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
-"Language: no\n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:40+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/light-locker/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr "Ber kjørende skjermsparerprosess om å låse skjermen med det samme"
+msgstr ""
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -36,14 +36,12 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Skjermsparer"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Start skjermsparer og låsprogram"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -61,159 +59,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "Ikke kjør som en tjeneste"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "Lar skjermsparer avslutte på riktig måte"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "Spør om skjermsparers tilstand"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "Spør om hvor lenge skjermsparer har vært aktiv"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "Slå på skjermsparer (blank skjermen)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr "Slå av skjermsparer hvis den er aktiv (ikke blank skjermen)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "Skjermsparer er aktiv\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "Skjermsparer er ikke aktiv\n"
-
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "Skjermsparer har vært aktiv i %d sekund.\n"
-#~ msgstr[1] "Skjermsparer har vært aktiv i %d sekunder.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "Skjermsparer er ikke aktiv.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "Vis feilsøkingsinformasjon"
-
-#~ msgid "Show the logout button"
-#~ msgstr "Vis logg ut-knappen"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "Kommando som skal kjøres fra «Logg ut»-knappen"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "Vis knapp for å bytte bruker"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "Melding som skal vises i dialogen"
-
-#~ msgid "MESSAGE"
-#~ msgstr "MELDING"
-
-#~ msgid "Not used"
-#~ msgstr "Ikke brukt"
-
-#~ msgid "Username:"
-#~ msgstr "Brukernavn:"
-
-#~ msgid "Password:"
-#~ msgstr "Passord:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr "Du må bytte passordet ditt med det samme (passordet er gammelt)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr "Du må bytte passordet ditt med det samme (tvunget av root)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr "Kontoen din har utløpt. Vennligst kontakt systemadministrator"
-
-#~ msgid "No password supplied"
-#~ msgstr "Passord ikke oppgitt"
-
-#~ msgid "Password unchanged"
-#~ msgstr "Passordet ble ikke endret"
-
-#~ msgid "Cannot get username"
-#~ msgstr "Fant ikke brukernavn"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "Skriv Unix-passord på nytt:"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "Oppgi nytt Unix-passord:"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "(nåværende) Unix-passord:"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "Feil under bytte av NIS-passord."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "Du må velge et passord med flere tegn"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "Passordet er allerede brukt. Velg et annet."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "Du må vente lenger før du bytter passordet ditt"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "Beklager. Passordene er ikke like"
-
-#~ msgid "Checking…"
-#~ msgstr "Sjekker …"
-
-#~ msgid "Authentication failed."
-#~ msgstr "Autentisering feilet."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "Kan ikke etablere tjeneste %s: %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "Kan ikke sette PAM_TTY=%s"
-
-#~ msgid "Incorrect password."
-#~ msgstr "Ugyldig passord."
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "Ingen rettigheter til å få tilgang nå."
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "Har ikke rettigheter til å aksessere systemet lenger."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "klarte ikke å registrere på meldingsbussen"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "ikke koblet til meldingsbussen"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "skjermsparer kjører allerede i denne sesjonen"
-
-#~ msgid "Time has expired."
-#~ msgstr "Tiden har løpt ut."
-
-#~ msgid "You have the Caps & Num Lock keys on."
-#~ msgstr "Du har Caps Lock- og Num Lock-tastene på."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "Du har Caps Lock-tasten på."
-
-#~ msgid "You have the Num Lock key on."
-#~ msgstr "Du har Num Lock-tasten på."
-
-#~ msgid "S_witch User…"
-#~ msgstr "_Bytt bruker …"
-
-#~ msgid "Log _Out"
-#~ msgstr "L_ogg ut"
-
-#~ msgid "_Unlock"
-#~ msgstr "Lås _opp"
-
-#~ msgid "_Password:"
-#~ msgstr "_Passord:"

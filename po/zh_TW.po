@@ -1,29 +1,30 @@
-# Chinese (Taiwan) translation of gnome-screensaver.
-# Copyright (C) 2005, 06, 07 Free Software Foundation, Inc.
-# Abel Cheung <abel@oaka.org>, 2005.
-# Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>, 2006, 2010.
-# Ching-Hung Lin <billlin@wshlab2.ee.kuas.edu.tw>, 2006.
-# Woodman Tuen <wmtuen@gmail.com>, 2007.
-# Wei-Lun Chao <chaoweilun@gmail.com>, 2010.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Abel Cheung <abel@oaka.org>, 2005
+# Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>, 2006,2010
+# Ching-Hung Lin <billlin@wshlab2.ee.kuas.edu.tw>, 2006
+# chaoweilun <chaoweilun@gmail.com>, 2010
+# Woodman Tuen <wmtuen@gmail.com>, 2007
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver 2.91.93\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2011-03-29 16:07+0800\n"
-"Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
-"Language-Team: Chinese (Taiwan) <zh-l10n@lists.linux.org.tw>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:34+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/light-locker/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr "要求螢幕保護程式立刻鎖定畫定"
+msgstr ""
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -35,19 +36,16 @@ msgid "Enable debugging code"
 msgstr "啟用除錯碼"
 
 #: ../src/light-locker.c:59
-#, fuzzy
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr "當螢幕保護程式作用時鎖定螢幕(_L)"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "螢幕保護程式"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "啟動螢幕保護程式並鎖定程式"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -65,304 +63,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "不要成為服務程式"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "令螢幕保護程式正常結束"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "查詢螢幕保護程式狀態"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "查詢螢幕保護程式已啟動的時間"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "啟動螢幕保護程式（畫面變黑）"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr "如果螢幕保護程已經啟動，立刻回復狀態 (不變黑)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "螢幕保護程式使用中\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "螢幕保護程式並未使用\n"
-
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "螢幕保護程式已啟動了 %d 秒。\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "螢幕保護程式目前並未使用。\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "顯示詳細偵錯訊息"
-
-#~ msgid "Show the logout button"
-#~ msgstr "顯示「登出」按鈕"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "「登出」按鈕呼叫的指令"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "顯示「切換使用者」按鈕"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "要在對話視窗顯示的留言"
-
-#~ msgid "MESSAGE"
-#~ msgstr "MESSAGE"
-
-#~ msgid "Not used"
-#~ msgstr "並未使用"
-
-#~ msgid "Username:"
-#~ msgstr "使用者名稱:"
-
-#~ msgid "Password:"
-#~ msgstr "密碼:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr "您必須立即變更密碼（密碼過期）"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr "您必須立即變更密碼（root 強制執行）"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr "您的帳戶已經過期，請連絡系統管理員"
-
-#~ msgid "No password supplied"
-#~ msgstr "沒有提供密碼"
-
-#~ msgid "Password unchanged"
-#~ msgstr "密碼沒有變更"
-
-#~ msgid "Cannot get username"
-#~ msgstr "不能取得使用者名稱"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "再輸入一次新的 Unix 密碼："
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "輸入新的 Unix 密碼："
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "（目前的）Unix 密碼："
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "變更 NIS 密碼時發生錯誤。"
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "您必須選用一個較長的密碼"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "密碼已經使用，請選用另一個。"
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "變更密碼需要等候較長時間"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "對不起，密碼不符"
-
-#~ msgid "Checking…"
-#~ msgstr "檢查中…"
-
-#~ msgid "Authentication failed."
-#~ msgstr "認證失敗。"
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "無法建構服務 %s：%s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "無法設定 PAM_TTY=%s"
-
-#~ msgid "Incorrect password."
-#~ msgstr "密碼錯誤。"
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "現在不允許存取。"
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "不再允許存取系統。"
-
-# (Abel) 我真是無恥，連 dbus 的運作也未清楚就譯了
-#~ msgid "failed to register with the message bus"
-#~ msgstr "無法向 message bus 登記"
-
-# (Abel) 我真是無恥，連 dbus 的運作也未清楚就譯了
-#~ msgid "not connected to the message bus"
-#~ msgstr "無法連接到 message bus"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "螢幕保護程式正在執行中"
-
-#~ msgid "Time has expired."
-#~ msgstr "已經逾時了。"
-
-#~ msgid "You have the Caps & Num Lock keys on."
-#~ msgstr "您按下了 Caps & Num Lock 鍵。"
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "您按下了 Caps Lock 鍵。"
-
-#~ msgid "You have the Num Lock key on."
-#~ msgstr "您的 Num Lock 是開啟的。"
-
-#~ msgid "S_witch User…"
-#~ msgstr "切換使用者(_W)…"
-
-#~ msgid "Log _Out"
-#~ msgstr "登出(_O)"
-
-#~ msgid "_Unlock"
-#~ msgstr "解除鎖定(_U)"
-
-#~ msgid "_Password:"
-#~ msgstr "密碼(_P):"
-
-#~ msgid "%a %R"
-#~ msgstr "%a %R"
-
-#~ msgid "%a %l:%M %p"
-#~ msgstr "%a %p %l:%M"
-
-#~ msgid "Set your screensaver preferences"
-#~ msgstr "設定螢幕保護程式"
-
-#~ msgid "Power _Management"
-#~ msgstr "電源管理(_M)"
-
-#~ msgid "Regard the computer as _idle after:"
-#~ msgstr "在此時間之後將電腦設為閒置(_I)"
-
-#~ msgid "Screensaver Preferences"
-#~ msgstr "螢幕保護程式偏好設定"
-
-#~ msgid "Screensaver Preview"
-#~ msgstr "螢幕保護程式預覽"
-
-#~ msgid "Screensaver preview"
-#~ msgstr "螢幕保護程式預覽"
-
-#~ msgid "Warning: the screen will not be locked for the root user."
-#~ msgstr "警告：root 使用者的畫面不會鎖上。"
-
-#~ msgid "_Activate screensaver when computer is idle"
-#~ msgstr "當作業階段閒置時啟用螢幕保護程式(_A)"
-
-#~ msgid "_Preview"
-#~ msgstr "預覽(_P)"
-
-#~ msgid "_Screensaver theme:"
-#~ msgstr "螢幕保護程式佈景主題(_S):"
-
-#~ msgid "Screensaver themes"
-#~ msgstr "螢幕保護程式佈景主題"
-
-#~ msgid "Screensavers"
-#~ msgstr "螢幕保護程式"
-
-#~ msgid "Cosmos"
-#~ msgstr "宇宙"
-
-#~ msgid "Display a slideshow of pictures of the cosmos"
-#~ msgstr "顯示宇宙圖片的幻燈片放映"
-
-#~ msgid "Bubbles the GNOME foot logo around the screen"
-#~ msgstr "讓 GNOME 大腳標誌圍繞畫面"
-
-#~ msgid "Floating Feet"
-#~ msgstr "浮動大腳"
-
-#~ msgid "Display a slideshow from your Pictures folder"
-#~ msgstr "顯示圖片資料夾的幻燈片放映"
-
-#~ msgid "Pictures folder"
-#~ msgstr "圖片資料夾"
-
-#~ msgid "A pop-art-ish grid of pulsing colors."
-#~ msgstr "一個交替轉換深淺色的方陣。"
-
-#~ msgid "Pop art squares"
-#~ msgstr "閃方陣"
-
-#~ msgid "%s. See --help for usage information.\n"
-#~ msgstr "%s。參閱 --help 以取得更多資訊。\n"
-
-#~ msgid "Show paths that images follow"
-#~ msgstr "顯示圖片的路徑"
-
-#~ msgid "Occasionally rotate images as they move"
-#~ msgstr "當移動圖片時斷續旋轉它們"
-
-#~ msgid "Print out frame rate and other statistics"
-#~ msgstr "列出畫面速率及其他統計數據"
-
-#~ msgid "The maximum number of images to keep on screen"
-#~ msgstr "保留在畫面上的最大圖片數"
-
-#~ msgid "MAX_IMAGES"
-#~ msgstr "MAX_IMAGES"
-
-#~ msgid "The initial size and position of window"
-#~ msgstr "視窗的初始大小與位置"
-
-#~ msgid "WIDTHxHEIGHT+X+Y"
-#~ msgstr "WIDTHxHEIGHT+X+Y"
-
-#~ msgid "The source image to use"
-#~ msgstr "要使用的來源圖片"
-
-#~ msgid "image — floats images around the screen"
-#~ msgstr "圖片 — 圖片圍繞畫面"
-
-#~ msgid "You must specify one image.  See --help for usage information.\n"
-#~ msgstr "您必須指定一張圖片。請參閱 --help 以取得更多資訊。\n"
-
-#~ msgid "Location to get images from"
-#~ msgstr "取得圖片的位置"
-
-#~ msgid "PATH"
-#~ msgstr "路徑"
-
-#~ msgid "Color to use for image background"
-#~ msgstr "用作圖片背景的顏色"
-
-#~ msgid "\"#rrggbb\""
-#~ msgstr "\"#rrggbb\""
-
-#~ msgid "Do not randomize pictures from location"
-#~ msgstr "不使用亂數圖片的位置"
-
-#~ msgid "Do not try to stretch images on screen"
-#~ msgstr "不延伸圖片的螢幕"
-
-#~ msgid "Copying files"
-#~ msgstr "複製檔案"
-
-#~ msgid "From:"
-#~ msgstr "從:"
-
-#~ msgid "To:"
-#~ msgstr "到:"
-
-#~ msgid "Copying themes"
-#~ msgstr "複製主題"
-
-#~ msgid "Invalid screensaver theme"
-#~ msgstr "螢幕保護程式主題無效"
-
-#~ msgid "%s does not appear to be a valid screensaver theme."
-#~ msgstr "%s 似乎不是有效的螢幕保護程式主題檔案。"
-
-#~ msgid "Copying file: %u of %u"
-#~ msgstr "複製檔案：%2$u 之 %1$u"
-
-#~ msgid "If the screensaver is active then switch to another graphics demo"
-#~ msgstr "如果螢幕保護程已經啟動，立刻切換直另一種畫面"
-
-#~ msgid "Poke the running screensaver to simulate user activity"
-#~ msgstr "模擬用家使用電腦，令螢幕保護程式重設計時器"

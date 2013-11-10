@@ -1,35 +1,26 @@
-# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-# Aviary.pl
-# Jeśli masz jakiekolwiek uwagi odnoszące się do tłumaczenia lub chcesz
-# pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas:
-# gnomepl@aviary.pl
-# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-# Andrzej Polatyński <andrzej@datatel.net.pl>, 2006.
-# Wadim Dziedzic <wdziedzic@aviary.pl>, 2007-2008.
-# Tomasz Dominikowski <dominikowski@gmail.com>, 2007-2009.
-# Piotr Drąg <piotrdrag@gmail.com>, 2010-2012.
-# Aviary.pl <gnomepl@aviary.pl>, 2007-2012.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Andrzej Polatyński <andrzej@datatel.net.pl>, 2006
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2012-09-04 00:03+0200\n"
-"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
-"Language-Team: Polish <gnomepl@aviary.pl>\n"
-"Language: pl\n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:31+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Polish (http://www.transifex.com/projects/p/light-locker/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>20) ? 1 : 2);\n"
-"X-Poedit-Language: Polish\n"
-"X-Poedit-Country: Poland\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr "Powoduje natychmiastowe zablokowanie ekranu w uruchomionym wygaszaczu"
+msgstr ""
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -45,14 +36,12 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Wygaszacz ekranu"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Uruchamia wygaszacz ekranu i program blokujący"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -70,159 +59,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "Uruchamia program bez przełączania do pracy w tle"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "Wyłącza wygaszacz ekranu"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "Wyświetla stan wygaszacza ekranu"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "Wyświetla czas aktywności wygaszacza ekranu"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "Aktywuje wygaszacz ekranu"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr "Jeżeli wygaszacz jest aktywny, to przełącza w stan nieaktywny"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "Wygaszacz ekranu jest aktywny\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "Wygaszacz ekranu jest nieaktywny\n"
-
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "Wygaszacz ekranu jest aktywny od %d sekundy.\n"
-#~ msgstr[1] "Wygaszacz ekranu jest aktywny od %d sekund.\n"
-#~ msgstr[2] "Wygaszacz ekranu jest aktywny od %d sekund.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "Wygaszacz ekranu nie jest obecnie aktywny.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "Wyświetla komunikaty debugowania"
-
-#~ msgid "Show the logout button"
-#~ msgstr "Wyświetla przycisk wylogowania"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "Polecenie wykonywane po naciśnięciu przycisku wylogowania"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "Wyświetla przycisk przełączenia użytkownika"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "Wiadomość do wyświetlenia w oknie dialogowym"
-
-#~ msgid "MESSAGE"
-#~ msgstr "WIADOMOŚĆ"
-
-#~ msgid "Not used"
-#~ msgstr "Nieużywane"
-
-#~ msgid "Username:"
-#~ msgstr "Użytkownik:"
-
-#~ msgid "Password:"
-#~ msgstr "Hasło:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr ""
-#~ "Wymagana jest natychmiastowa zmiana hasła (minął okres ważności hasła)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr ""
-#~ "Wymagana jest natychmiastowa zmiana hasła (zmiana wymuszona przez "
-#~ "administratora)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr ""
-#~ "Minął okres ważności konta. Proszę skontaktować się z administratorem "
-#~ "systemu"
-
-#~ msgid "No password supplied"
-#~ msgstr "Nie wprowadzono hasła"
-
-#~ msgid "Password unchanged"
-#~ msgstr "Hasło niezmienione"
-
-#~ msgid "Cannot get username"
-#~ msgstr "Nie można uzyskać nazwy użytkownika"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "Powtórzenie hasła UNIX:"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "Nowe hasło UNIX:"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "Hasło UNIX (bieżące):"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "Błąd podczas zmieniania hasła NIS."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "Należy wybrać dłuższe hasło"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "To hasło było już używane. Należy wybrać inne."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "Podczas zmiany hasła należy poczekać dłużej"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "Hasła nie są zgodne"
-
-#~ msgid "Checking…"
-#~ msgstr "Sprawdzanie…"
-
-#~ msgid "Authentication failed."
-#~ msgstr "Uwierzytelnienie się nie powiodło."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "Nie można ustanowić usługi %s: %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "Nie można ustawić PAM_TTY=%s"
-
-#~ msgid "Incorrect password."
-#~ msgstr "Niepoprawne hasło."
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "Brak zezwolenia na dostęp w tej chwili."
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "Zezwolenie na dostęp do systemu odwołane."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "zarejestrowanie w magistrali komunikatów się nie powiodło"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "brak podłączenia do magistrali komunikatów"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "wygaszacz ekranu jest już uruchomiony w tej sesji"
-
-#~ msgid "Time has expired."
-#~ msgstr "Przekroczono ograniczenie czasu."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "Klawisz Caps Lock jest wciśnięty."
-
-#~ msgid "S_witch User…"
-#~ msgstr "_Przełącz użytkownika…"
-
-#~ msgid "Log _Out"
-#~ msgstr "_Wyloguj"
-
-#~ msgid "_Unlock"
-#~ msgstr "_Odblokuj"
-
-#~ msgid "_Password:"
-#~ msgstr "_Hasło:"

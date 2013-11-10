@@ -1,33 +1,29 @@
-# Romanian translation of gnome-screensaver.
-# Copyright (C) 2007 - 2008 Free Software Foundation
-# This file is distributed under the same license as the gnome-screensaver package.
-# Alexandru Szasz <alexxed@gmail.com>, 2007.
-# Mișu Moldovan <dumol@gnome.ro>, 2008.
-# Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2009, 2010, 2011.
-# Daniel Șerbănescu <cyber19rider@gmail.com>, 2010, 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Alexandru Szasz <alexxed@gmail.com>, 2007
+# Daniel Șerbănescu <cyber19rider@gmail.com>, 2010-2011
+# Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2009-2011
+# Mișu Moldovan <dumol@gnome.ro>, 2008
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver HEAD\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2011-03-16 18:43+0200\n"
-"Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
-"Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
-"Language: ro\n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:32+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Romanian (http://www.transifex.com/projects/p/light-locker/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2);;\n"
-"X-Generator: Virtaal 0.6.1\n"
-"X-Launchpad-Export-Date: 2009-08-02 14:40+0000\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
 msgstr ""
-"Transmite procesului de protecție a ecranului pornit o comandă de blocare "
-"imediată a ecranului"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -43,14 +39,12 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Protector de ecran"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Lansează programul de blocare și protejare a ecranului"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -68,295 +62,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "Nu deveni serviciu"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "Determină protectorul de ecran să se închidă normal"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "Interoghează starea protectorului de ecran"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "Obține durata de rulare a protectorului de ecran"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "Pornește protectorul de ecran (înnegrește ecranul)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr "Dacă protectorul de ecran este activ, atunci îl dezactivează"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "Protectorul de ecran este activ\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "Protectorul de ecran este inactiv\n"
-
-#~| msgid "The screensaver has been active for %d seconds.\n"
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "Protectorul de ecran a fost activ pentru %d secundă.\n"
-#~ msgstr[1] "Protectorul de ecran a fost activ pentru %d secunde.\n"
-#~ msgstr[2] "Protectorul de ecran a fost activ pentru %d de secunde.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "Protectorul de ecran nu este activ în acest moment.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "Arată informații de depanare"
-
-#~ msgid "Show the logout button"
-#~ msgstr "Arată butonul de ieșire din sesiune"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "Comandă de invocat pentru butonul de ieșire din sesiune"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "Afișează butonul de schimbare a utilizatorului"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "Mesajul de afișat în dialog"
-
-#~ msgid "MESSAGE"
-#~ msgstr "MESAJ"
-
-#~ msgid "Not used"
-#~ msgstr "Nefolosit"
-
-#~ msgid "Username:"
-#~ msgstr "Utilizator:"
-
-#~ msgid "Password:"
-#~ msgstr "Parolă:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr ""
-#~ "Este necesar să vă schimbați parola imediat (parola este prea veche)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr ""
-#~ "Este necesar să vă schimbați parola imediat (vă obligă administratorul)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr ""
-#~ "Contul dumneavoastră a expirat, contactați administratorul de sistem"
-
-#~ msgid "No password supplied"
-#~ msgstr "Nu ați introdus o parolă"
-
-#~ msgid "Password unchanged"
-#~ msgstr "Parolă neschimbată"
-
-#~ msgid "Cannot get username"
-#~ msgstr "Nu se poate obține numele utilizatorului"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "Retastați noua parolă Unix:"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "Introduceți noua parolă Unix:"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "Parola (curentă) Unix:"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "Eroare la schimbarea parolei NIS."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "Trebuie să alegeți o parolă mai lungă"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "Parola a fost deja folosită. Alegeți alta."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "Trebuie să așteptați mai mult pentru a vă schimba parola"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "Parolele nu se potrivesc"
-
-#~ msgid "Checking…"
-#~ msgstr "Se verifică…"
-
-#~ msgid "Authentication failed."
-#~ msgstr "Autentificarea a eșuat."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "Nu se poate stabili serviciul %s: %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "Nu se poate definii PAM_TTY=%s"
-
-#~ msgid "Incorrect password."
-#~ msgstr "Parolă incorectă."
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "Deocamdată nu vă este permis accesul."
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "Nu vă mai este permis accesul la sistem."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "eșec la înregistrarea la magistrala de mesaje"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "deconectat de la magistrala de mesaje"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "protectorul de ecran rulează deja în această sesiune"
-
-#~ msgid "Time has expired."
-#~ msgstr "Timpul a expirat."
-
-#~ msgid "You have the Caps & Num Lock keys on."
-#~ msgstr "Tastele Caps Lock și Num Lock sunt active."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "Caps Lock este activ."
-
-#~ msgid "You have the Num Lock key on."
-#~ msgstr "Num Lock este activ."
-
-#~ msgid "S_witch User…"
-#~ msgstr "Sc_himbă utilizatorul…"
-
-#~ msgid "Log _Out"
-#~ msgstr "_Ieșire din sesiune"
-
-#~ msgid "_Unlock"
-#~ msgstr "_Deblocare"
-
-#~ msgid "_Password:"
-#~ msgstr "_Parolă:"
-
-#~ msgid "%a %R"
-#~ msgstr "%a %R"
-
-#~ msgid "%a %l:%M %p"
-#~ msgstr "%a %I:%M %p"
-
-#~ msgid "Screensaver themes"
-#~ msgstr "Teme pentru protectorul de ecran"
-
-#~ msgid "Screensavers"
-#~ msgstr "Protector de ecran"
-
-#~ msgid "Cosmos"
-#~ msgstr "Cosmos"
-
-#~ msgid "Display a slideshow of pictures of the cosmos"
-#~ msgstr "Arată un set de imagini din Cosmos"
-
-#~ msgid "Bubbles the GNOME foot logo around the screen"
-#~ msgstr "Sigla GNOME este afișată pe ecran multiplicată"
-
-#~ msgid "Floating Feet"
-#~ msgstr "Tălpi plutitoare"
-
-#~ msgid "Display a slideshow from your Pictures folder"
-#~ msgstr "Arată un set de imagini din dosarul cu poze"
-
-#~ msgid "Pictures folder"
-#~ msgstr "Dosar cu poze"
-
-#~ msgid "A pop-art-ish grid of pulsing colors."
-#~ msgstr "O grilă de culori care pulsează într-un stil pop-art."
-
-#~ msgid "Pop art squares"
-#~ msgstr "Pătrate pop-art"
-
-#~ msgid "%s. See --help for usage information.\n"
-#~ msgstr "%s. Consultați --help pentru informații despre utilizare.\n"
-
-#, fuzzy
-#~ msgid "Show paths that images follow"
-#~ msgstr "Arată căile urmate de imagini"
-
-#~ msgid "Occasionally rotate images as they move"
-#~ msgstr "Rotește ocazional imaginile în timp ce se mișcă"
-
-#~ msgid "Print out frame rate and other statistics"
-#~ msgstr "Arată numărul de cadre pe secundă și alte statistici"
-
-#~ msgid "The maximum number of images to keep on screen"
-#~ msgstr "Numărul maxim de imagini de păstrat pe ecran"
-
-#~ msgid "MAX_IMAGES"
-#~ msgstr "MAX_IMAGES"
-
-#~ msgid "The initial size and position of window"
-#~ msgstr "Mărimea inițială și poziția ferestrei"
-
-#~ msgid "WIDTHxHEIGHT+X+Y"
-#~ msgstr "WIDTHxHEIGHT+X+Y"
-
-#~ msgid "The source image to use"
-#~ msgstr "Imaginea sursă de utilizat"
-
-#~ msgid "image — floats images around the screen"
-#~ msgstr "imagine — imagini plutind pe ecran"
-
-#~ msgid "You must specify one image.  See --help for usage information.\n"
-#~ msgstr ""
-#~ "E necesară specificarea unei imagini. Consultați --help pentru detalii.\n"
-
-#~ msgid "Location to get images from"
-#~ msgstr "Locația de unde se iau imaginile"
-
-#~ msgid "PATH"
-#~ msgstr "CALE"
-
-#~ msgid "Color to use for image background"
-#~ msgstr "Culoare de utilizat pentru fundalul imaginilor"
-
-#~ msgid "\"#rrggbb\""
-#~ msgstr "\"#rrggbb\""
-
-#~ msgid "Do not randomize pictures from location"
-#~ msgstr "Nu amesteca aleator imaginile din locația"
-
-#~ msgid "Do not try to stretch images on screen"
-#~ msgstr "Nu încerca să întinzi imaginile pe ecran"
-
-#~ msgid "If the screensaver is active then switch to another graphics demo"
-#~ msgstr ""
-#~ "Dacă protectorul de ecran este activ, atunci schimbă la alt demo de "
-#~ "grafică"
-
-#~ msgid "Poke the running screensaver to simulate user activity"
-#~ msgstr "Păcălește protectorul de ecran simulând activitate de utilizator"
-
-#~ msgid ""
-#~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
-#~ "active."
-#~ msgstr ""
-#~ "Inhibă activarea protectorului de ecran. Comanda este suspendată în timp "
-#~ "ce inhibarea este activă."
-
-#~ msgid "The calling application that is inhibiting the screensaver"
-#~ msgstr "Aplicația care va inhiba protectorul de ecran"
-
-#~ msgid "The reason for inhibiting the screensaver"
-#~ msgstr "Motivul pentru inhibarea protectorului de ecran"
-
-#~ msgid "The screensaver is not inhibited\n"
-#~ msgstr "Protectorul de ecran nu e întrerupt de nimic\n"
-
-#~ msgid "The screensaver is being inhibited by:\n"
-#~ msgstr "Protectorul de ecran este întrerupt de:\n"
-
-#~ msgid "Set your screensaver preferences"
-#~ msgstr "Schimbați opțiunile economizorului de ecran"
-
-#~ msgid "Power _Management"
-#~ msgstr "Gestionare ali_mentare"
-
-#~ msgid "Regard the computer as _idle after:"
-#~ msgstr "Calculatorul este considerat _inactiv după:"
-
-#~ msgid "Screensaver Preferences"
-#~ msgstr "Preferințe pentru economizorul de ecran"
-
-#~ msgid "Screensaver Preview"
-#~ msgstr "Previzualizare economizor"

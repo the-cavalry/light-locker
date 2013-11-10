@@ -1,29 +1,27 @@
-# Serbian translation of gnome-screensaver
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2006 -2009.
-# This file is distributed under the same license as the gnome-screensaver package.
-# Maintainer: Слободан Д. Средојевић <ssl@uns.ns.ac.yu>
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011.
-# Милош Поповић <gpopac@gmail.com>, 2010, 2011.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Miloš Popović <gpopac@gmail.com>, 2010-2011
+# MirosNik <miroslavnikolic@rocketmail.com>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-screensaver\n"
+"Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
-"PO-Revision-Date: 2011-03-18 22:39+0100\n"
-"Last-Translator: Милош Поповић <gpopac@gmail.com>\n"
-"Language-Team: Serbian <gnom@prevod.org>\n"
-"Language: Serbian (sr)\n"
+"POT-Creation-Date: 2013-10-31 20:58+0100\n"
+"PO-Revision-Date: 2013-10-31 21:32+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
+"Language-Team: Serbian (http://www.transifex.com/projects/p/light-locker/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4;    plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 :    n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Language: sr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../src/light-locker-command.c:40
-#, fuzzy
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr "Говори покренутом процесу чувара екрана да одмах закључа екран"
+msgstr ""
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -39,14 +37,12 @@ msgid "Lock the screen S seconds after the screensaver started"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
-#, fuzzy
 msgid "Screen Locker"
-msgstr "Чувар екрана"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
-#, fuzzy
 msgid "Launch screen locker program"
-msgstr "Покреће чувара екрана и програм за закључавање екрана"
+msgstr ""
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -64,185 +60,3 @@ msgstr ""
 #: ../src/preview.c:73
 msgid "Preview screen height"
 msgstr ""
-
-#~ msgid "Don't become a daemon"
-#~ msgstr "Немој бити позадински процес"
-
-#~ msgid "Causes the screensaver to exit gracefully"
-#~ msgstr "Чини да чувар екрана буде заустављен природно"
-
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "Испитај стање чувара екрана"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "Испитуј време за које је чувар екрана био активан"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "Укључи чувара екрана (очисти екран)"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr ""
-#~ "Ако је чувар екрана присутан, прекини га (врати пређашњу слику на екрану)"
-
-#~ msgid "The screensaver is active\n"
-#~ msgstr "Чувар екрана је покренут\n"
-
-#~ msgid "The screensaver is inactive\n"
-#~ msgstr "Чувар екрана је искључен\n"
-
-#~| msgid "The screensaver has been active for %d seconds.\n"
-#~ msgid "The screensaver has been active for %d second.\n"
-#~ msgid_plural "The screensaver has been active for %d seconds.\n"
-#~ msgstr[0] "Чувар екрана је активан %d секунду.\n"
-#~ msgstr[1] "Чувар екрана је активан %d секунде.\n"
-#~ msgstr[2] "Чувар екрана је активан %d секунди.\n"
-#~ msgstr[3] "Чувар екрана је активан %d секунду.\n"
-
-#~ msgid "The screensaver is not currently active.\n"
-#~ msgstr "Чувар екрана је тренутно заустављен.\n"
-
-#~ msgid "Show debugging output"
-#~ msgstr "Прикажи испис за тражење грешака"
-
-#~ msgid "Show the logout button"
-#~ msgstr "Прикажи дугме за одјаву"
-
-#~ msgid "Command to invoke from the logout button"
-#~ msgstr "Наредба која се позива притиском на дугме за одјаву"
-
-#~ msgid "Show the switch user button"
-#~ msgstr "Прикажи дугме за промену корисника"
-
-#~ msgid "Message to show in the dialog"
-#~ msgstr "Порука за приказ у прозорчету"
-
-#~ msgid "MESSAGE"
-#~ msgstr "ПОРУКА"
-
-#~ msgid "Not used"
-#~ msgstr "Није коришћено"
-
-#~ msgid "Username:"
-#~ msgstr "Корисничко име:"
-
-#~ msgid "Password:"
-#~ msgstr "Лозинка:"
-
-#~ msgid "You are required to change your password immediately (password aged)"
-#~ msgstr "Потребно је да одмах промените вашу лозинку (лозинка је стара)"
-
-#~ msgid "You are required to change your password immediately (root enforced)"
-#~ msgstr ""
-#~ "Потребно је да одмах промените вашу лозинку (приморан је администратор)"
-
-#~ msgid "Your account has expired; please contact your system administrator"
-#~ msgstr "Ваш налог је истекао; потражите вашег администратора система"
-
-#~ msgid "No password supplied"
-#~ msgstr "Није достављена шифра"
-
-#~ msgid "Password unchanged"
-#~ msgstr "Шифра је непромењена"
-
-#~ msgid "Cannot get username"
-#~ msgstr "Не могу да добијем корисничко име"
-
-#~ msgid "Retype new Unix password:"
-#~ msgstr "Поновите Униксову лозинку:"
-
-#~ msgid "Enter new Unix password:"
-#~ msgstr "Унесите нову Униксову лозинку:"
-
-#~ msgid "(current) Unix password:"
-#~ msgstr "(тренутна) Униксова лозинка:"
-
-#~ msgid "Error while changing NIS password."
-#~ msgstr "Грешка при промени НИС лозинке."
-
-#~ msgid "You must choose a longer password"
-#~ msgstr "Морате да одаберете дужу лозинку"
-
-#~ msgid "Password has been already used. Choose another."
-#~ msgstr "Лозинка је већ у употреби. Изаберите другу."
-
-#~ msgid "You must wait longer to change your password"
-#~ msgstr "Морате да чекате дуже за промену ваше шифре"
-
-#~ msgid "Sorry, passwords do not match"
-#~ msgstr "Лозинке се не поклапају"
-
-#~ msgid "Checking…"
-#~ msgstr "Проверавам…"
-
-#~ msgid "Authentication failed."
-#~ msgstr "Идентификација неуспела."
-
-#~ msgid "Unable to establish service %s: %s\n"
-#~ msgstr "Не могу да успоставим сервис %s: %s\n"
-
-#~ msgid "Can't set PAM_TTY=%s"
-#~ msgstr "Не могу да поставим PAM_TTY=%s"
-
-#~ msgid "Incorrect password."
-#~ msgstr "Неисиправна лозинка"
-
-#~ msgid "Not permitted to gain access at this time."
-#~ msgstr "Приступ у ово време није дозвољен."
-
-#~ msgid "No longer permitted to access the system."
-#~ msgstr "Више немате дозволу за приступ систему."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "неуспела пријава на магистралу порука"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "није повезан на магистралу порука"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "чувар екрана је већ покренут у овој сесији"
-
-#~ msgid "Time has expired."
-#~ msgstr "Време је истекло."
-
-#~ msgid "You have the Caps & Num Lock keys on."
-#~ msgstr "Укључен је тастер за велика слова и нумерички тастер."
-
-#~ msgid "You have the Caps Lock key on."
-#~ msgstr "Укључен је тастер за сва велика слова."
-
-#~ msgid "You have the Num Lock key on."
-#~ msgstr "Укључен је нумерички тастер."
-
-#~ msgid "S_witch User…"
-#~ msgstr "Промени _корисника…"
-
-#~ msgid "Log _Out"
-#~ msgstr "Одја_ва"
-
-#~ msgid "_Unlock"
-#~ msgstr "От_кључај"
-
-#~ msgid "_Password:"
-#~ msgstr "_Лозинка:"
-
-#~ msgid "%a %R"
-#~ msgstr "%a %R"
-
-#~ msgid "%a %l:%M %p"
-#~ msgstr "%a %l:%M %p"
-
-#~ msgid "Set your screensaver preferences"
-#~ msgstr "Сопствене поставке чувара екрана"
-
-#~ msgid "Power _Management"
-#~ msgstr "_Управник потрошње"
-
-#~ msgid "Regard the computer as _idle after:"
-#~ msgstr "Посматрај рачунар као неактиван након:"
-
-#~ msgid "Screensaver Preferences"
-#~ msgstr "Поставке чувара екрана"
-
-#~ msgid "Screensaver Preview"
-#~ msgstr "Преглед чувара екрана"
