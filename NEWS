@@ -1,4 +1,11 @@
 ==============
+Version  1.1.0
+==============
+
+- Lock the session after the X11 screen saver kicks in
+
+
+==============
 Version  1.0.0
 ==============
 

@@ -19,6 +19,7 @@ After installing light-locker, it will auto start along your session and you wil
 This will redirect you to VT8 (assuming that your open session was on VT7 and is now kept safe by light-locker) and present LightDM's greeter for unlocking your session again.
 On suspend/resume light-locker will lock the active session and redirect to the LightDM's greeter for unlocking the session again.
 There is no support for gnome-settings-daemon in order to keep things slim, so you might have to add a custom keyboard-shortcut for this to work.
+light-locker will automatically lock the session shortly after the X11 screen saver kicks in. The timeout can be set with --lock-after-screensaver. With xset the X11 screen saver can be adjusted.
 
 
 Building
