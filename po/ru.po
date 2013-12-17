@@ -35,7 +35,7 @@ msgstr "Включить режим отладки"
 
 #: ../src/light-locker.c:59
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr "Заблокировать экран через 5 секунд после запуска хранителя экрана"
+msgstr "Заблокировать экран через S секунд после запуска хранителя экрана"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
@@ -52,7 +52,7 @@ msgstr "Сессия заблокирована"
 #: ../src/gs-content.c:118
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr "Вы будете перенаправлены на диалог разблокировки автоматически в течении нескольких секунд"
+msgstr "Вы будете перенаправлены на диалог разблокировки автоматически в течение нескольких секунд"
 
 #: ../src/preview.c:72
 msgid "Preview screen width"
