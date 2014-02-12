@@ -3,58 +3,59 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-31 20:58+0100\n"
 "PO-Revision-Date: 2013-11-20 10:39+0000\n"
-"Last-Translator: cavalier <peter@xfce.org>\n"
-"Language-Team: Burmese (http://www.transifex.com/projects/p/light-locker/language/my/)\n"
+"Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
+"Language-Team: Kazakh (http://www.transifex.com/projects/p/light-locker/language/kk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: my\n"
+"Language: kk\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../src/light-locker-command.c:40
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr ""
+msgstr "Орындалып тұрған экран басқарушысына экранды дәл қазір блоктауды айтады"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
 msgid "Version of this application"
-msgstr ""
+msgstr "Бұл қолданба нұсқасы"
 
 #: ../src/light-locker.c:57 ../src/preview.c:71
 msgid "Enable debugging code"
-msgstr ""
+msgstr "Жөндеу кодын іске қосу"
 
 #: ../src/light-locker.c:59
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr ""
+msgstr "Экранды экран қорғаушысы жөнелтілгеннен кейін S секундтан кейін блоктау"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
-msgstr ""
+msgstr "Экран блоктаушысы"
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
-msgstr ""
+msgstr "Экранды блоктау бағдарламасын жөнелту"
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
-msgstr ""
+msgstr "Бұл сессия блокталған"
 
 #: ../src/gs-content.c:118
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr ""
+msgstr "Сіз экранды блоктаудан босату сұхбатына біренеше секундтан кейін ауысасыз"
 
 #: ../src/preview.c:72
 msgid "Preview screen width"
-msgstr ""
+msgstr "Экран енін алдын-ала қарау"
 
 #: ../src/preview.c:73
 msgid "Preview screen height"
-msgstr ""
+msgstr "Экран биіктігін алдын-ала қарау"

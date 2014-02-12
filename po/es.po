@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-31 20:58+0100\n"
-"PO-Revision-Date: 2013-10-31 21:15+0000\n"
-"Last-Translator: cavalier <peter@xfce.org>\n"
+"PO-Revision-Date: 2013-11-20 10:39+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitoschido@ubuntu.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/light-locker/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +34,7 @@ msgstr "Activar el código de depuración"
 
 #: ../src/light-locker.c:59
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr ""
+msgstr "Bloquear la pantalla S segundos tras el inicio del salvapantallas"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
@@ -55,8 +55,8 @@ msgstr "Se le redigirirá al diálogo de desbloqueo automáticamente en unos seg
 
 #: ../src/preview.c:72
 msgid "Preview screen width"
-msgstr ""
+msgstr "Anchura de previsualización de pantalla"
 
 #: ../src/preview.c:73
 msgid "Preview screen height"
-msgstr ""
+msgstr "Altura de previsualización de pantalla"

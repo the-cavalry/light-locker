@@ -9,14 +9,15 @@
 # Davy Defaud <davy.defaud@posteasy.com>, 2005
 # Eric Maeker <eric.maeker@free.fr>, 2005
 # Jonathan Ernst <jonathan@ernstfamily.ch>, 2007
+# alucryd <alucryd@gmail.com>, 2013
 # Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-31 20:58+0100\n"
-"PO-Revision-Date: 2013-10-31 20:59+0000\n"
-"Last-Translator: cavalier <peter@xfce.org>\n"
+"PO-Revision-Date: 2013-11-20 10:39+0000\n"
+"Last-Translator: alucryd <alucryd@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/light-locker/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgstr ""
 
 #: ../src/light-locker-command.c:40
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr ""
+msgstr "Force le gestionnaire de connexions actif à immédiatement vérouiller l'écran"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -39,15 +40,15 @@ msgstr "Activer le code de débogage"
 
 #: ../src/light-locker.c:59
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr ""
+msgstr "Vérouiller l'écran S secondes après le démarrage de l'écran de veille"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
-msgstr ""
+msgstr "Vérouilleur d'écran"
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
-msgstr ""
+msgstr "Lancer le vérouilleur d'écran"
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
@@ -56,12 +57,12 @@ msgstr "Cette session est vérouillée"
 #: ../src/gs-content.c:118
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr "Vous allez être automatiquement redirigés vers la fenêtre de déverrouillage dans quelques secondes"
+msgstr "Vous serez redirigé automatiquement vers la fenêtre de déverrouillage dans quelques secondes"
 
 #: ../src/preview.c:72
 msgid "Preview screen width"
-msgstr ""
+msgstr "Aperçu de la largeur de l'écran"
 
 #: ../src/preview.c:73
 msgid "Preview screen height"
-msgstr ""
+msgstr "Aperçu de la hauteur de l'écran"

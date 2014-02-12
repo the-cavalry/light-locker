@@ -5,14 +5,15 @@
 # Translators:
 # Ankit Patel <ankit644@yahoo.com>, 2005-2006
 # Ankit Patel <ankit@redhat.com>, 2006-2007
+# Tenebr050 <wizard.darshak@gmail.com>, 2013
 # sweta <swkothar@redhat.com>, 2008-2011
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-31 20:58+0100\n"
-"PO-Revision-Date: 2013-10-31 21:27+0000\n"
-"Last-Translator: cavalier <peter@xfce.org>\n"
+"PO-Revision-Date: 2013-11-20 10:39+0000\n"
+"Last-Translator: Tenebr050 <wizard.darshak@gmail.com>\n"
 "Language-Team: Gujarati (http://www.transifex.com/projects/p/light-locker/language/gu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +23,7 @@ msgstr ""
 
 #: ../src/light-locker-command.c:40
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr ""
+msgstr "ચાલી રહેલ સ્ક્રીનસેવરને સ્ક્રીન તર્ત જ લૉક કરવા માટે કહે છે"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -35,29 +36,29 @@ msgstr "ડિબગીંગ કોડ સક્રિય કરો"
 
 #: ../src/light-locker.c:59
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr ""
+msgstr "સ્ક્રીનસેવર શરુ થયા ના S સેકંડ બાદ સ્ક્રીન લૉક કરો"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
-msgstr ""
+msgstr "સ્ક્રીન લૉકર"
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
-msgstr ""
+msgstr "સ્ક્રીન લૉકર પ્રક્રિયાને શરુ કરો"
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
-msgstr ""
+msgstr "આ સેશન લૉક કરેલ છે"
 
 #: ../src/gs-content.c:118
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr ""
+msgstr "થોડા સમય બાદ આપોઆપ અનલૉક ડાયલોગ ખુલશે"
 
 #: ../src/preview.c:72
 msgid "Preview screen width"
-msgstr ""
+msgstr "સ્ક્રીન ની પહોળાઈ ચકાસી જુઓ"
 
 #: ../src/preview.c:73
 msgid "Preview screen height"
-msgstr ""
+msgstr "સ્ક્રીન ની લંબાઈ ચકાસી જુઓ"
