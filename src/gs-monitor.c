@@ -98,7 +98,7 @@ gs_monitor_lock_screen (GSMonitor *monitor)
 
 }
 
-static void
+static gboolean
 gs_monitor_lock_session (GSMonitor *monitor)
 {
         gboolean visible;
@@ -110,6 +110,7 @@ gs_monitor_lock_session (GSMonitor *monitor)
                 gs_listener_send_switch_greeter (monitor->priv->listener);
         }
 
+        return FALSE;
 }
 
 static void
@@ -165,7 +166,12 @@ static void
 listener_resume_cb (GSListener *listener,
                     GSMonitor  *monitor)
 {
-        gs_monitor_lock_session (monitor);
+        /* Add a 1s delay for resume to complete.
+         * This seems to fix backlight issues.
+         */
+        g_timeout_add_seconds (1,
+                               (GSourceFunc)gs_monitor_lock_session,
+                               monitor);
 }
 
 static void
