@@ -1,4 +1,12 @@
 ==============
+Version  1.2.0
+==============
+
+- Delay VT switch 1s after resuming from suspend
+- Translations update
+
+
+==============
 Version  1.1.0
 ==============
 
