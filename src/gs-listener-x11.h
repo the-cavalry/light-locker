@@ -44,7 +44,7 @@ typedef struct
 {
         GObjectClass       parent_class;
 
-        void            (* lock)                     (GSListenerX11 *listener);
+        void            (* blanking_changed)         (GSListenerX11 *listener, gboolean active);
 
 } GSListenerX11Class;
 
@@ -52,8 +52,6 @@ GType          gs_listener_x11_get_type          (void);
 
 GSListenerX11 *gs_listener_x11_new               (void);
 gboolean       gs_listener_x11_acquire           (GSListenerX11 *listener);
-void           gs_listener_x11_set_lock_after    (GSListenerX11 *listener,
-                                                  gint lock_after);
 
 G_END_DECLS
 

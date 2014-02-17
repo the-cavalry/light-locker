@@ -82,6 +82,13 @@ manager_switch_greeter_cb (GSManager *manager,
 }
 
 static void
+manager_lock_cb (GSManager *manager,
+                 GSMonitor *monitor)
+{
+        gs_listener_send_lock_session (monitor->priv->listener);
+}
+
+static void
 gs_monitor_lock_screen (GSMonitor *monitor)
 {
         gboolean res;
@@ -175,10 +182,12 @@ listener_resume_cb (GSListener *listener,
 }
 
 static void
-listener_x11_lock_cb (GSListenerX11 *listener,
-                      GSMonitor  *monitor)
+listener_x11_blanking_changed_cb (GSListenerX11 *listener,
+                                  gboolean    active,
+                                  GSMonitor  *monitor)
 {
-        gs_listener_send_lock_session (monitor->priv->listener);
+        gs_debug ("Blanking changed: %d", active);
+        gs_manager_set_blank_screen (monitor->priv->manager, active);
 }
 
 static void
@@ -190,7 +199,7 @@ disconnect_listener_signals (GSMonitor *monitor)
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_suspend_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_resume_cb, monitor);
 
-        g_signal_handlers_disconnect_by_func (monitor->priv->listener_x11, listener_lock_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener_x11, listener_x11_blanking_changed_cb, monitor);
 }
 
 static void
@@ -207,8 +216,8 @@ connect_listener_signals (GSMonitor *monitor)
         g_signal_connect (monitor->priv->listener, "resume",
                           G_CALLBACK (listener_resume_cb), monitor);
 
-        g_signal_connect (monitor->priv->listener_x11, "lock",
-                          G_CALLBACK (listener_x11_lock_cb), monitor);
+        g_signal_connect (monitor->priv->listener_x11, "blanking-changed",
+                          G_CALLBACK (listener_x11_blanking_changed_cb), monitor);
 }
 
 static void
@@ -225,6 +234,8 @@ connect_manager_signals (GSMonitor *monitor)
                           G_CALLBACK (manager_activated_cb), monitor);
         g_signal_connect (monitor->priv->manager, "switch-greeter",
                           G_CALLBACK (manager_switch_greeter_cb), monitor);
+        g_signal_connect (monitor->priv->manager, "lock",
+                          G_CALLBACK (manager_lock_cb), monitor);
 }
 
 static void
@@ -273,7 +284,7 @@ gs_monitor_new (gint lock_after_screensaver)
 
         monitor = g_object_new (GS_TYPE_MONITOR, NULL);
 
-        gs_listener_x11_set_lock_after (monitor->priv->listener_x11, lock_after_screensaver);
+        gs_manager_set_lock_after (monitor->priv->manager, lock_after_screensaver);
 
         return GS_MONITOR (monitor);
 }
