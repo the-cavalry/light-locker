@@ -32,7 +32,6 @@
 #include "light-locker.h"
 
 #include "gs-manager.h"
-#include "gs-grab.h"
 
 #include "gs-listener-dbus.h"
 #include "gs-listener-x11.h"
@@ -50,8 +49,9 @@ struct GSMonitorPrivate
         GSListener     *listener;
         GSListenerX11  *listener_x11;
         GSManager      *manager;
-        GSGrab         *grab;
-        guint           release_grab_id;
+
+        guint           late_locking : 1;
+        guint           perform_lock : 1;
 };
 
 #define FADE_TIMEOUT 10000
@@ -66,26 +66,6 @@ gs_monitor_class_init (GSMonitorClass *klass)
         object_class->finalize = gs_monitor_finalize;
 
         g_type_class_add_private (klass, sizeof (GSMonitorPrivate));
-}
-
-static void
-manager_activated_cb (GSManager *manager,
-                      GSMonitor *monitor)
-{
-}
-
-static void
-manager_switch_greeter_cb (GSManager *manager,
-                           GSMonitor *monitor)
-{
-        gs_listener_send_switch_greeter (monitor->priv->listener);
-}
-
-static void
-manager_lock_cb (GSManager *manager,
-                 GSMonitor *monitor)
-{
-        gs_listener_send_lock_session (monitor->priv->listener);
 }
 
 static void
@@ -112,7 +92,7 @@ gs_monitor_lock_session (GSMonitor *monitor)
 
         visible = gs_manager_get_session_visible (monitor->priv->manager);
 
-        /* Only swith to greeter if we are the visible session */
+        /* Only switch to greeter if we are the visible session */
         if (visible) {
                 gs_listener_send_switch_greeter (monitor->priv->listener);
         }
@@ -121,10 +101,36 @@ gs_monitor_lock_session (GSMonitor *monitor)
 }
 
 static void
+manager_activated_cb (GSManager *manager,
+                      GSMonitor *monitor)
+{
+}
+
+static void
+manager_switch_greeter_cb (GSManager *manager,
+                           GSMonitor *monitor)
+{
+        gs_listener_send_switch_greeter (monitor->priv->listener);
+}
+
+static void
+manager_lock_cb (GSManager *manager,
+                 GSMonitor *monitor)
+{
+        if (monitor->priv->late_locking) {
+                gs_monitor_lock_screen (monitor);
+                monitor->priv->perform_lock = TRUE;
+        } else if (gs_manager_get_session_visible (monitor->priv->manager)) {
+                gs_listener_send_lock_session (monitor->priv->listener);
+        }
+}
+
+static void
 listener_lock_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
         gs_monitor_lock_screen (monitor);
+        monitor->priv->perform_lock = FALSE;
 }
 
 static void
@@ -188,6 +194,11 @@ listener_x11_blanking_changed_cb (GSListenerX11 *listener,
 {
         gs_debug ("Blanking changed: %d", active);
         gs_manager_set_blank_screen (monitor->priv->manager, active);
+
+        if (!active && monitor->priv->perform_lock && gs_manager_get_session_visible (monitor->priv->manager)) {
+                gs_listener_send_lock_session (monitor->priv->listener);
+        }
+        monitor->priv->perform_lock = FALSE;
 }
 
 static void
@@ -244,11 +255,13 @@ gs_monitor_init (GSMonitor *monitor)
 
         monitor->priv = GS_MONITOR_GET_PRIVATE (monitor);
 
+#ifdef WITH_LATE_LOCKING
+        monitor->priv->late_locking = WITH_LATE_LOCKING;
+#endif
+
         monitor->priv->listener = gs_listener_new ();
         monitor->priv->listener_x11 = gs_listener_x11_new ();
         connect_listener_signals (monitor);
-
-        monitor->priv->grab = gs_grab_new ();
 
         monitor->priv->manager = gs_manager_new ();
         connect_manager_signals (monitor);
@@ -269,7 +282,6 @@ gs_monitor_finalize (GObject *object)
         disconnect_listener_signals (monitor);
         disconnect_manager_signals (monitor);
 
-        g_object_unref (monitor->priv->grab);
         g_object_unref (monitor->priv->listener);
         g_object_unref (monitor->priv->listener_x11);
         g_object_unref (monitor->priv->manager);
@@ -278,11 +290,13 @@ gs_monitor_finalize (GObject *object)
 }
 
 GSMonitor *
-gs_monitor_new (gint lock_after_screensaver)
+gs_monitor_new (gint lock_after_screensaver, gboolean late_locking)
 {
         GSMonitor *monitor;
 
         monitor = g_object_new (GS_TYPE_MONITOR, NULL);
+
+        monitor->priv->late_locking = late_locking;
 
         gs_manager_set_lock_after (monitor->priv->manager, lock_after_screensaver);
 

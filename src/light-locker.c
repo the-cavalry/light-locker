@@ -52,11 +52,16 @@ main (int    argc,
         static gboolean     show_version = FALSE;
         static gboolean     debug        = FALSE;
         static gint         lock_after_screensaver = 5;
+        static gboolean     late_locking = WITH_LATE_LOCKING;
         static GOptionEntry entries []   = {
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
-#ifdef HAVE_MIT_SAVER_EXTENSION /* Remove the flag this feature is not supported */
+#ifdef HAVE_MIT_SAVER_EXTENSION /* Remove the flag if this feature is not supported */
                 { "lock-after-screensaver", 0, 0, G_OPTION_ARG_INT, &lock_after_screensaver, N_("Lock the screen S seconds after the screensaver started"), "S" },
+#ifdef WITH_LATE_LOCKING
+                { "late-locking", 0, 0, G_OPTION_ARG_NONE, &late_locking, N_("Lock the screen on screensaver deactivation"), NULL },
+                { "no-late-locking", 0, G_OPTION_FLAG_REVERSE, G_OPTION_ARG_NONE, &late_locking, N_("Lock the screen on screensaver activation"), NULL },
+#endif
 #endif
                 { NULL }
         };
@@ -87,7 +92,7 @@ main (int    argc,
         gs_debug_init (debug, FALSE);
         gs_debug ("initializing light-locker %s", VERSION);
 
-        monitor = gs_monitor_new (lock_after_screensaver);
+        monitor = gs_monitor_new (lock_after_screensaver, late_locking);
 
         if (monitor == NULL) {
                 exit (1);
