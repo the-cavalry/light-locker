@@ -71,6 +71,8 @@ gboolean    gs_manager_get_blank_screen     (GSManager  *manager);
 void        gs_manager_set_lock_after       (GSManager  *manager,
                                              guint       lock_after);
 
+void        gs_manager_show_content         (GSManager  *manager);
+
 G_END_DECLS
 
 #endif /* __GS_MANAGER_H */

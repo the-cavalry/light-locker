@@ -49,6 +49,7 @@ struct GSManagerPrivate
         guint        active : 1;
         guint        visible : 1;
         guint        blank : 1;
+        guint        show_content : 1;
 
         time_t       activate_time;
 
@@ -275,14 +276,26 @@ window_show_cb (GSWindow  *window,
         manager_show_window (manager, window);
 }
 
+static void
+content_draw_cb (GtkWidget *widget,
+                 cairo_t   *cr,
+                 GSManager *manager)
+{
+        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 1.0);
+        cairo_paint (cr);
+
+        if (manager->priv->show_content)
+                content_draw (widget, cr);
+}
+
 #if !GTK_CHECK_VERSION(3, 0, 0)
 static void
 content_expose_cb (GtkWidget *widget,
                   GdkEvent  *event,
-                  gpointer   user_data)
+                  GSManager *manager)
 {
         cairo_t *cr = gdk_cairo_create (gtk_widget_get_window (widget));
-        content_draw_cb (widget, cr, user_data);
+        content_draw_cb (widget, cr, manager);
         cairo_destroy (cr);
 }
 #endif
@@ -294,9 +307,9 @@ disconnect_window_signals (GSManager *manager,
         GtkWidget *drawing_area = gs_window_get_drawing_area (window);
 
 #if GTK_CHECK_VERSION(3, 0, 0)
-        g_signal_handlers_disconnect_by_func (drawing_area, content_draw_cb, NULL);
+        g_signal_handlers_disconnect_by_func (drawing_area, content_draw_cb, manager);
 #else
-        g_signal_handlers_disconnect_by_func (drawing_area, content_expose_cb, NULL);
+        g_signal_handlers_disconnect_by_func (drawing_area, content_expose_cb, manager);
 #endif
 
         g_signal_handlers_disconnect_by_func (window, window_show_cb, manager);
@@ -322,10 +335,10 @@ connect_window_signals (GSManager *manager,
 
 #if GTK_CHECK_VERSION(3, 0, 0)
         g_signal_connect_object (drawing_area, "draw",
-                                 G_CALLBACK (content_draw_cb), NULL, 0);
+                                 G_CALLBACK (content_draw_cb), manager, 0);
 #else
         g_signal_connect_object (drawing_area, "expose-event",
-                                 G_CALLBACK (content_expose_cb), NULL, 0);
+                                 G_CALLBACK (content_expose_cb), manager, 0);
 #endif
 
         g_signal_connect_object (window, "destroy",
@@ -683,6 +696,7 @@ gs_manager_deactivate (GSManager *manager)
         /* reset state */
         manager->priv->active = FALSE;
         manager->priv->activate_time = 0;
+        manager->priv->show_content = FALSE;
 
         return TRUE;
 }
@@ -763,4 +777,19 @@ gs_manager_set_lock_after (GSManager *manager,
                            guint      lock_after)
 {
         manager->priv->lock_after = lock_after;
+}
+
+void
+gs_manager_show_content (GSManager *manager)
+{
+        GSList *l;
+
+        if (manager->priv->show_content)
+                return;
+
+        manager->priv->show_content = TRUE;
+
+        for (l = manager->priv->windows; l; l = l->next) {
+                gtk_widget_queue_draw (gs_window_get_drawing_area (l->data));
+        }
 }

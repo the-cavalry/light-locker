@@ -50,7 +50,11 @@ content_expose_cb (GtkWidget *widget,
                   gpointer   user_data)
 {
         cairo_t *cr = gdk_cairo_create (gtk_widget_get_window (widget));
-        content_draw_cb (widget, cr, user_data);
+
+        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 1.0);
+        cairo_paint (cr);
+
+        content_draw (widget, cr);
         cairo_destroy (cr);
 }
 #endif

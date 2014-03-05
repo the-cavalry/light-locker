@@ -129,6 +129,7 @@ static void
 listener_lock_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
+        gs_manager_show_content (monitor->priv->manager);
         gs_monitor_lock_screen (monitor);
         monitor->priv->perform_lock = FALSE;
 }
