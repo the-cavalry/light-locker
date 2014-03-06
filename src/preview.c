@@ -43,6 +43,17 @@ preview_quit (void)
         gtk_main_quit ();
 }
 
+static void
+content_draw_cb (GtkWidget *widget,
+                 cairo_t   *cr,
+                 gpointer   user_data)
+{
+        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 1.0);
+        cairo_paint (cr);
+
+        content_draw (widget, cr);
+}
+
 #if !GTK_CHECK_VERSION(3, 0, 0)
 static void
 content_expose_cb (GtkWidget *widget,
@@ -51,10 +62,7 @@ content_expose_cb (GtkWidget *widget,
 {
         cairo_t *cr = gdk_cairo_create (gtk_widget_get_window (widget));
 
-        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 1.0);
-        cairo_paint (cr);
-
-        content_draw (widget, cr);
+        content_draw_cb (widget, cr, user_data);
         cairo_destroy (cr);
 }
 #endif
