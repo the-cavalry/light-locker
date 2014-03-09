@@ -229,7 +229,7 @@ gs_grab_get_mouse (GSGrab    *grab,
                                           FALSE,
                                           GDK_KEY_PRESS_MASK |
                                           GDK_KEY_RELEASE_MASK,
-                                          NULL,
+                                          (hide_cursor ? cursor : NULL),
                                           GDK_CURRENT_TIME);
         }
         g_list_free(list);
