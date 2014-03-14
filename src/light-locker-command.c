@@ -116,6 +116,99 @@ do_command (GDBusConnection *connection)
         return FALSE;
 }
 
+static gboolean
+screensaver_is_running (void)
+{
+#if __linux__
+    /* Return TRUE if there is a running instance of light-locker */
+    gboolean exists = FALSE;
+
+    GDir* proc = NULL;
+    GError* error = NULL;
+    gchar* subdir = "a";
+    gchar* dir_path = NULL;
+    gchar* file_path = NULL;
+    gchar* contents = NULL;
+    gchar** paths = NULL;
+    gchar* path = NULL;
+    gsize length;
+    guint i = 0;
+
+    /* Check the /proc directory for pids */
+    proc = g_dir_open("/proc", 0, &error);
+    if (error)
+    {
+        g_critical("%s", error->message);
+        g_error_free(error);
+        return FALSE;
+    }
+
+    /* Iterate through each file, the PIDs are directories */
+    while (subdir != NULL)
+    {
+        subdir = g_strdup(g_dir_read_name(proc));
+        dir_path = g_build_filename("/proc", subdir, (gchar*)NULL);
+
+        /* If its a directory, check it out. */
+        if (g_file_test(dir_path, G_FILE_TEST_IS_DIR))
+        {
+            /* Check for the cmdline file, which has the command. */
+            file_path = g_build_filename(dir_path, "cmdline", (gchar*)NULL);
+            if (g_file_test(file_path, G_FILE_TEST_EXISTS)) {
+                if (g_file_get_contents(g_strdup(file_path), &contents, &length, &error))
+                {
+                    /* Check if light-locker is running */
+                    if (g_str_has_suffix(contents, "light-locker"))
+                    {
+                        /* Check for just "light-locker" */
+                        if (g_strcmp0(contents, "light-locker") == 0)
+                        {
+                            exists = TRUE;
+                        }
+                        if (!exists)
+                        {
+                            /* Check if executable in path */
+                            paths = g_strsplit(g_getenv("PATH"), ":", 0);
+                            for (i = 0; i < g_strv_length(paths); i++) {
+                                path = g_strdup(g_build_filename(paths[i], "light-locker", NULL));
+                                if (g_strcmp0(contents, path) == 0)
+                                {
+                                    exists = TRUE;
+                                    g_free(path);
+                                    break;
+                                }
+                                g_free(path);
+                            }
+                            g_strfreev(paths);
+                        }
+                    }
+                }
+                g_free(contents);
+                if (error)
+                {
+                    g_error_free(error);
+                    error = NULL;
+                }
+            }
+            g_free(file_path);
+        }
+        g_free(dir_path);
+
+        /* If found, stop the loop */
+        if (exists)
+        {
+            g_free(subdir);
+            subdir = NULL;
+        }
+    }
+    g_dir_close(proc);
+
+    return exists;
+#else
+    return TRUE;
+#endif
+}
+
 int
 main (int    argc,
       char **argv)
@@ -166,6 +259,11 @@ main (int    argc,
                 g_message ("Failed to get session bus: %s", error->message);
                 g_error_free (error);
                 return EXIT_FAILURE;
+        }
+
+        if (!screensaver_is_running()) {
+            g_message ("light-locker is not running");
+            return EXIT_FAILURE;
         }
 
         g_idle_add ((GSourceFunc) do_command, connection);
