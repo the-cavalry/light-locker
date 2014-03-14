@@ -128,7 +128,10 @@ screensaver_is_running (void)
     gchar* dir_path = NULL;
     gchar* file_path = NULL;
     gchar* contents = NULL;
+    gchar** paths = NULL;
+    gchar* path = NULL;
     gsize length;
+    guint i = 0;
 
     /* Check the /proc directory for pids */
     proc = g_dir_open("/proc", 0, &error);
@@ -156,7 +159,27 @@ screensaver_is_running (void)
                     /* Check if light-locker is running */
                     if (g_str_has_suffix(contents, "light-locker"))
                     {
-                        exists = TRUE;
+                        /* Check for just "light-locker" */
+                        if (g_strcmp0(contents, "light-locker") == 0)
+                        {
+                            exists = TRUE;
+                        }
+                        if (!exists)
+                        {
+                            /* Check if executable in path */
+                            paths = g_strsplit(g_getenv("PATH"), ":", 0);
+                            for (i = 0; i < g_strv_length(paths); i++) {
+                                path = g_strdup(g_build_filename(paths[i], "light-locker", NULL));
+                                if (g_strcmp0(contents, path) == 0)
+                                {
+                                    exists = TRUE;
+                                    g_free(path);
+                                    break;
+                                }
+                                g_free(path);
+                            }
+                            g_strfreev(paths);
+                        }
                     }
                 }
                 g_free(contents);
