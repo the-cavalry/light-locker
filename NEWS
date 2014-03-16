@@ -1,4 +1,12 @@
 ==============
+Version  1.2.1
+==============
+
+- light-locker-command checks if light-locker is running (linux only)
+- Translations update
+
+
+==============
 Version  1.2.0
 ==============
 
