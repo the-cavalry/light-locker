@@ -52,7 +52,18 @@ main (int    argc,
         static gboolean     show_version = FALSE;
         static gboolean     debug        = FALSE;
         static gint         lock_after_screensaver = 5;
-        static gboolean     late_locking = WITH_LATE_LOCKING;
+#ifdef WITH_LATE_LOCKING
+#define LATE_LOCKING_VAL WITH_LATE_LOCKING
+#else
+#define LATE_LOCKING_VAL FALSE
+#endif
+        static gboolean     late_locking = LATE_LOCKING_VAL;
+#ifdef WITH_LOCK_ON_SUSPEND
+#define LOCK_ON_SUSPEND_VAL WITH_LOCK_ON_SUSPEND
+#else
+#define LOCK_ON_SUSPEND_VAL FALSE
+#endif
+        static gboolean     lock_on_suspend = LOCK_ON_SUSPEND_VAL;
         static GOptionEntry entries []   = {
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
@@ -62,6 +73,10 @@ main (int    argc,
                 { "late-locking", 0, 0, G_OPTION_ARG_NONE, &late_locking, N_("Lock the screen on screensaver deactivation"), NULL },
                 { "no-late-locking", 0, G_OPTION_FLAG_REVERSE, G_OPTION_ARG_NONE, &late_locking, N_("Lock the screen on screensaver activation"), NULL },
 #endif
+#endif
+#ifdef WITH_LOCK_ON_SUSPEND
+                { "lock-on-suspend", 0, 0, G_OPTION_ARG_NONE, &lock_on_suspend, N_("Lock the screen on suspend/resume"), NULL },
+                { "no-lock-on-suspend", 0, G_OPTION_FLAG_REVERSE, G_OPTION_ARG_NONE, &lock_on_suspend, N_("Do not lock the screen on suspend/resume"), NULL },
 #endif
                 { NULL }
         };
@@ -92,7 +107,7 @@ main (int    argc,
         gs_debug_init (debug, FALSE);
         gs_debug ("initializing light-locker %s", VERSION);
 
-        monitor = gs_monitor_new (lock_after_screensaver, late_locking);
+        monitor = gs_monitor_new (lock_after_screensaver, late_locking, lock_on_suspend);
 
         if (monitor == NULL) {
                 exit (1);

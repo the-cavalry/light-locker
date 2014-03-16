@@ -401,6 +401,7 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                         return DBUS_HANDLER_RESULT_HANDLED;
                 }
 
+#ifdef WITH_LOCK_ON_SUSPEND
                 if (dbus_message_is_signal (message, SYSTEMD_LOGIND_INTERFACE, "PrepareForSleep")) {
                         DBusError   error;
                         dbus_bool_t new_active;
@@ -421,6 +422,7 @@ listener_dbus_handle_system_message (DBusConnection *connection,
 
                         return DBUS_HANDLER_RESULT_HANDLED;
                 }
+#endif
 
                 return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
         }
@@ -474,6 +476,7 @@ listener_dbus_handle_system_message (DBusConnection *connection,
 #endif
 
 #ifdef WITH_UPOWER
+#ifdef WITH_LOCK_ON_SUSPEND
         if (dbus_message_is_signal (message, UP_INTERFACE, "Sleeping")) {
                 gs_debug ("UPower initiating sleep");
                 g_signal_emit (listener, signals [SUSPEND], 0);
@@ -485,6 +488,7 @@ listener_dbus_handle_system_message (DBusConnection *connection,
 
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
+#endif
 #endif
 
        return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
@@ -705,12 +709,14 @@ gs_listener_acquire (GSListener *listener)
                                             ",member='PropertiesChanged'",
                                             NULL);
 
+#ifdef WITH_LOCK_ON_SUSPEND
                         dbus_bus_add_match (listener->priv->system_connection,
                                             "type='signal'"
                                             ",sender='"SYSTEMD_LOGIND_SERVICE"'"
                                             ",interface='"SYSTEMD_LOGIND_INTERFACE"'"
                                             ",member='PrepareForSleep'",
                                             NULL);
+#endif
 
                         return TRUE;
                 }
@@ -738,6 +744,7 @@ gs_listener_acquire (GSListener *listener)
 #endif
 
 #ifdef WITH_UPOWER
+#ifdef WITH_LOCK_ON_SUSPEND
                 dbus_bus_add_match (listener->priv->system_connection,
                                     "type='signal'"
                                     ",sender='"UP_SERVICE"'"
@@ -750,6 +757,7 @@ gs_listener_acquire (GSListener *listener)
                                     ",interface='"UP_INTERFACE"'"
                                     ",member='Resuming'",
                                     NULL);
+#endif
 #endif
         }
 

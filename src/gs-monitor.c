@@ -51,6 +51,7 @@ struct GSMonitorPrivate
         GSManager      *manager;
 
         guint           late_locking : 1;
+        guint           lock_on_suspend : 1;
         guint           perform_lock : 1;
 };
 
@@ -169,6 +170,8 @@ static void
 listener_suspend_cb (GSListener *listener,
                      GSMonitor  *monitor)
 {
+        if (! monitor->priv->lock_on_suspend)
+                return;
         /* Show the lock screen until resume.
          * We lock the screen here even when the displaymanager didn't send the signal.
          * This means that need tell the displaymanager to lock the session before it can unlock.
@@ -180,6 +183,8 @@ static void
 listener_resume_cb (GSListener *listener,
                     GSMonitor  *monitor)
 {
+        if (! monitor->priv->lock_on_suspend)
+                return;
         /* Add a 1s delay for resume to complete.
          * This seems to fix backlight issues.
          */
@@ -291,13 +296,16 @@ gs_monitor_finalize (GObject *object)
 }
 
 GSMonitor *
-gs_monitor_new (gint lock_after_screensaver, gboolean late_locking)
+gs_monitor_new (gint lock_after_screensaver,
+                gboolean late_locking,
+                gboolean lock_on_suspend)
 {
         GSMonitor *monitor;
 
         monitor = g_object_new (GS_TYPE_MONITOR, NULL);
 
         monitor->priv->late_locking = late_locking;
+        monitor->priv->lock_on_suspend = lock_on_suspend;
 
         gs_manager_set_lock_after (monitor->priv->manager, lock_after_screensaver);
 

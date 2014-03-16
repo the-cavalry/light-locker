@@ -483,20 +483,29 @@ dnl ---------------------------------------------------------------------------
 dnl Features
 dnl ---------------------------------------------------------------------------
 
-AC_ARG_ENABLE(late-locking, [AC_HELP_STRING([--enable-late-locking=[no/yes/on]], [Enable the --late-locking command option, on means this options is used by default])],, enable_late_locking=yes)
+AC_ARG_ENABLE(late-locking, [AC_HELP_STRING([--enable-late-locking=[no/yes/on/off]], [Enable the --late-locking command option, on means this options is used by default])],, enable_late_locking=yes)
 with_late_locking_val=no
 if test "x$have_mit" != "xyes"; then
   enable_late_locking=no
   with_late_locking_val=no
-elif test "x$enable_late_locking" = "xyes"; then
-  with_late_locking_val=FALSE
 else
-  if test "x$enable_late_locking" = "xon"; then
-    with_late_locking_val=TRUE
-  fi
+  case $enable_late_locking in
+    on) with_late_locking_val=TRUE ;;
+    off|yes) with_late_locking_val=FALSE ;;
+  esac
 fi
 if test "x$with_late_locking_val" != "xno"; then
   AC_DEFINE_UNQUOTED(WITH_LATE_LOCKING, [$with_late_locking_val], [Late locking support, TRUE default on FALSE default off])
+fi
+
+AC_ARG_ENABLE(lock-on-suspend, [AC_HELP_STRING([--enable-lock-on-suspend=[no/yes/on/off]], [Enable the --lock-on-suspend command option, off means this options is not used by default])],, enable_lock_on_suspend=yes)
+with_lock_on_suspend_val=no
+case $enable_lock_on_suspend in
+  on|yes) with_lock_on_suspend_val=TRUE ;;
+  off) with_lock_on_suspend_val=FALSE ;;
+esac
+if test "x$with_lock_on_suspend_val" != "xno"; then
+  AC_DEFINE_UNQUOTED(WITH_LOCK_ON_SUSPEND, [$with_lock_on_suspend_val], [Lock on suspend, TRUE default on FALSE default off])
 fi
 
 
@@ -600,6 +609,7 @@ echo "
                     ---------
         lock-after-screensaver:   ${have_mit}
         late-locking:             ${enable_late_locking}
+        lock-on-suspend:          ${enable_lock_on_suspend}
 "
 
 if test "x$have_pam" = "xyes" ; then
