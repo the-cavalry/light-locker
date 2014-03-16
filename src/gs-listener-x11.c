@@ -55,12 +55,11 @@ struct GSListenerX11Private
         int scrnsaver_event_base;
 #endif
 
-        gint lock_after_timeout;
-        guint lock_after_timer_id;
+        gboolean active;
 };
 
 enum {
-        LOCK,
+        BLANKING_CHANGED,
         LAST_SIGNAL
 };
 
@@ -75,55 +74,20 @@ gs_listener_x11_class_init (GSListenerX11Class *klass)
 
         object_class->finalize     = gs_listener_x11_finalize;
 
-        signals [LOCK] =
-                g_signal_new ("lock",
+        signals [BLANKING_CHANGED] =
+                g_signal_new ("blanking-changed",
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerX11Class, lock),
+                              G_STRUCT_OFFSET (GSListenerX11Class, blanking_changed),
                               NULL,
                               NULL,
-                              g_cclosure_marshal_VOID__VOID,
+                              g_cclosure_marshal_VOID__BOOLEAN,
                               G_TYPE_NONE,
-                              0);
+                              1,
+			      G_TYPE_BOOLEAN);
 
         g_type_class_add_private (klass, sizeof (GSListenerX11Private));
 }
-
-#ifdef HAVE_MIT_SAVER_EXTENSION /* Added to suppress warnings */
-static gboolean
-lock_after_timer (GSListenerX11 *listener)
-{
-        listener->priv->lock_after_timer_id = 0;
-
-        gs_debug ("Lock after timer");
-
-	g_signal_emit (listener, signals [LOCK], 0);
-
-        return FALSE;
-}
-#endif
-
-#ifdef HAVE_MIT_SAVER_EXTENSION /* Added to suppress warnings */
-static void
-remove_lock_after_timer (GSListenerX11 *listener)
-{
-        if (listener->priv->lock_after_timer_id != 0) {
-                g_source_remove (listener->priv->lock_after_timer_id);
-                listener->priv->lock_after_timer_id = 0;
-        }
-}
-#endif
-
-#ifdef HAVE_MIT_SAVER_EXTENSION /* Added to suppress warnings */
-static void
-add_lock_after_timer (GSListenerX11 *listener,
-                      glong          timeout)
-{
-        listener->priv->lock_after_timer_id = g_timeout_add_seconds (timeout,
-                                                                     (GSourceFunc)lock_after_timer,
-                                                                     listener);
-}
-#endif
 
 static GdkFilterReturn
 xroot_filter (GdkXEvent *xevent,
@@ -153,15 +117,17 @@ xroot_filter (GdkXEvent *xevent,
                         switch (xssne->state) {
                         case ScreenSaverOff:
                         case ScreenSaverDisabled:
-                                gs_debug ("ScreenSaver timer stopped");
-                                remove_lock_after_timer (listener);
+                                gs_debug ("ScreenSaver stopped");
+                                if (listener->priv->active)
+                                        g_signal_emit (listener, signals [BLANKING_CHANGED], 0, FALSE);
+                                listener->priv->active = FALSE;
                                 break;
 
                         case ScreenSaverOn:
-                                if (listener->priv->lock_after_timeout >= 0) {
-                                        gs_debug ("ScreenSaver timer started: %d", listener->priv->lock_after_timeout);
-                                        add_lock_after_timer (listener, listener->priv->lock_after_timeout);
-                                }
+                                gs_debug ("ScreenSaver started");
+                                if (!listener->priv->active)
+                                        g_signal_emit (listener, signals [BLANKING_CHANGED], 0, TRUE);
+                                listener->priv->active = TRUE;
                                 break;
                         }
                 }
@@ -216,19 +182,10 @@ gs_listener_x11_acquire (GSListenerX11 *listener)
         return TRUE;
 }
 
-void
-gs_listener_x11_set_lock_after (GSListenerX11 *listener,
-                                gint lock_after)
-{
-        listener->priv->lock_after_timeout = lock_after;
-}
-
 static void
 gs_listener_x11_init (GSListenerX11 *listener)
 {
         listener->priv = GS_LISTENER_X11_GET_PRIVATE (listener);
-
-        listener->priv->lock_after_timeout = 5;
 }
 
 static void

@@ -46,6 +46,7 @@ typedef struct
 
         void            (* activated)          (GSManager *manager);
         void            (* switch_greeter)     (GSManager *manager);
+        void            (* lock)               (GSManager *manager);
 
 } GSManagerClass;
 
@@ -61,6 +62,16 @@ void        gs_manager_set_session_visible  (GSManager  *manager,
                                              gboolean    active);
 
 gboolean    gs_manager_get_session_visible  (GSManager  *manager);
+
+void        gs_manager_set_blank_screen     (GSManager  *manager,
+                                             gboolean    active);
+
+gboolean    gs_manager_get_blank_screen     (GSManager  *manager);
+
+void        gs_manager_set_lock_after       (GSManager  *manager,
+                                             guint       lock_after);
+
+void        gs_manager_show_content         (GSManager  *manager);
 
 G_END_DECLS
 

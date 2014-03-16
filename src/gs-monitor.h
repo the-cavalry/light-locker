@@ -47,7 +47,8 @@ typedef struct
 
 GType       gs_monitor_get_type (void);
 
-GSMonitor * gs_monitor_new              (gint lock_after_screensaver);
+GSMonitor * gs_monitor_new              (gint       lock_after_screensaver,
+                                         gboolean   late_locking);
 gboolean    gs_monitor_start            (GSMonitor *monitor,
                                          GError   **error);
 G_END_DECLS

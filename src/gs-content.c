@@ -71,9 +71,8 @@ draw_lock_icon (cairo_t *cr,
 }
 
 void
-content_draw_cb (GtkWidget *widget,
-                 cairo_t   *cr,
-                 gpointer   user_data)
+content_draw (GtkWidget *widget,
+              cairo_t   *cr)
 {
         PangoContext *context;
         PangoLayout *title_layout;
@@ -81,9 +80,6 @@ content_draw_cb (GtkWidget *widget,
         PangoFontDescription *desc;
         int width, height;
         int sub_width;
-
-        cairo_set_source_rgba (cr, 0.0, 0.0, 0.0, 1.0);
-        cairo_paint (cr);
 
         width = gdk_window_get_width (gtk_widget_get_window (widget));
         height = gdk_window_get_height (gtk_widget_get_window (widget));

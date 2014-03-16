@@ -27,9 +27,8 @@
 
 G_BEGIN_DECLS
 
-void content_draw_cb (GtkWidget *widget,
-                      cairo_t   *cr,
-                      gpointer   user_data);
+void content_draw (GtkWidget *widget,
+                   cairo_t   *cr);
 
 G_END_DECLS
 
