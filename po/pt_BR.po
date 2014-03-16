@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-31 20:58+0100\n"
-"PO-Revision-Date: 2013-11-20 10:39+0000\n"
-"Last-Translator: cavalier <peter@xfce.org>\n"
+"PO-Revision-Date: 2014-03-14 13:47+0000\n"
+"Last-Translator: kenzo.matuzawa <kenzo.matuzawa@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/light-locker/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #: ../src/light-locker-command.c:40
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr ""
+msgstr "Diz ao gerenciador de tela para bloquear a tela imediatamente"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:56
 #: ../src/preview.c:70
@@ -39,29 +39,29 @@ msgstr "Habilitar depuração de código"
 
 #: ../src/light-locker.c:59
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr ""
+msgstr "Bloqueia a tela S segundos depois que o protetor de tela iniciar"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
-msgstr ""
+msgstr "Bloqueio de Tela"
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
-msgstr ""
+msgstr "Iniciar o programa de bloqueio de tela"
 
 #: ../src/gs-content.c:96
 msgid "This session is locked"
-msgstr ""
+msgstr "Esta sessão está bloqueada"
 
 #: ../src/gs-content.c:118
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr ""
+msgstr "Você será redirecionado ao diálogto de desbloqueio automaticamente em poucos segundos"
 
 #: ../src/preview.c:72
 msgid "Preview screen width"
-msgstr ""
+msgstr "Largura da tela de pré-visualização"
 
 #: ../src/preview.c:73
 msgid "Preview screen height"
-msgstr ""
+msgstr "Altura da tela de pré-visualização"

@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Adolfo Jayme Barrientos <fitoschido@ubuntu.com>, 2013
+# Adolfo Jayme Barrientos <fitoschido@ubuntu.com>, 2014
 # Copyright (C) 2013 The light-locker Authors, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-31 20:58+0100\n"
-"PO-Revision-Date: 2013-11-20 10:39+0000\n"
+"PO-Revision-Date: 2014-02-21 08:54+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitoschido@ubuntu.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/light-locker/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +52,7 @@ msgstr "Esta sesión está bloqueada"
 #: ../src/gs-content.c:118
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr "Se le redigirirá al diálogo de desbloqueo automáticamente en unos segundos"
+msgstr "Se le redirigirá al diálogo de desbloqueo automáticamente en unos segundos"
 
 #: ../src/preview.c:72
 msgid "Preview screen width"
