@@ -20,6 +20,8 @@ This will redirect you to VT8 (assuming that your open session was on VT7 and is
 On suspend/resume light-locker will lock the active session and redirect to the LightDM's greeter for unlocking the session again.
 There is no support for gnome-settings-daemon in order to keep things slim, so you might have to add a custom keyboard-shortcut for this to work.
 light-locker will automatically lock the session shortly after the X11 screen saver kicks in. The timeout can be set with --lock-after-screensaver. With xset the X11 screen saver can be adjusted.
+Use --late-locking to avoid some of the negative effects of VT switching. This will lock the session on the deactivation of X11 screen saver instead of activation.
+light-locker will automatically lock the session on suspend/resume. To disable this behaviour with --no-lock-on-suspend.
 
 
 Building
@@ -33,4 +35,7 @@ Here is a list of the different dependencies and there configuration flags:
   --with-console-kit: This adds the support for ConsoleKit.
   --with-upower: This adds the support for UPower.
   --with-mit-ext: This enables the lock-after-screensaver feature. This options requires the X11 Screen Saver extension development files to be installed.
+Many of the light-locker features can be disabled/enabled and configured at build time. Here is a list of these configuration flag:
+  --enable-late-locking: Enables --late-locking and --no-late-locking. Default enabled with --no-late-locking. This requires mit-ext.
+  --enable-lock-on-suspend: Enables --lock-on-suspend and --no-lock-on-suspend. Default enabled with --lock-on-suspend. This requires either systemd or upower.
 

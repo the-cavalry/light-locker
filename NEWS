@@ -1,4 +1,12 @@
 ==============
+Version  1.3.0
+==============
+
+- Added late locking support
+- Made lock on suspend optional
+
+
+==============
 Version  1.2.1
 ==============
 
