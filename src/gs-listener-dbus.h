@@ -45,20 +45,20 @@ typedef struct
         GObjectClass       parent_class;
 
         void            (* lock)                     (GSListener *listener);
+        void            (* locked)                   (GSListener *listener);
         void            (* session_switched)         (GSListener *listener,
                                                       gboolean    active);
         gboolean        (* active_changed)           (GSListener *listener,
                                                       gboolean    active);
         void            (* suspend)                  (GSListener *listener);
         void            (* resume)                   (GSListener *listener);
+        void            (* simulate_user_activity)   (GSListener *listener);
 
 } GSListenerClass;
 
 typedef enum
 {
-        GS_LISTENER_ERROR_SERVICE_UNAVAILABLE,
         GS_LISTENER_ERROR_ACQUISITION_FAILURE,
-        GS_LISTENER_ERROR_ACTIVATION_FAILURE
 } GSListenerError;
 
 #define GS_LISTENER_ERROR gs_listener_error_quark ()

@@ -182,6 +182,20 @@ gs_listener_x11_acquire (GSListenerX11 *listener)
         return TRUE;
 }
 
+void
+gs_listener_x11_simulate_activity (GSListenerX11 *listener)
+{
+#ifdef HAVE_MIT_SAVER_EXTENSION
+        GdkDisplay *display;
+
+        display = gdk_display_get_default ();
+
+        /* Reset the timers */
+        XScreenSaverSuspend (GDK_DISPLAY_XDISPLAY (display), True);
+        XScreenSaverSuspend (GDK_DISPLAY_XDISPLAY (display), False);
+#endif
+}
+
 static void
 gs_listener_x11_init (GSListenerX11 *listener)
 {

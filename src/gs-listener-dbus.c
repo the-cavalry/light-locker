@@ -33,6 +33,16 @@
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
+#ifdef HAVE_MIT_SAVER_EXTENSION
+#include <gtk/gtk.h>
+#if GTK_CHECK_VERSION(3, 0, 0)
+#include <gtk/gtkx.h>
+#else
+#include <gdk/gdkx.h>
+#endif
+#include <X11/extensions/scrnsaver.h>
+#endif
+
 #ifdef WITH_SYSTEMD
 #include <systemd/sd-login.h>
 #endif
@@ -78,10 +88,12 @@ struct GSListenerPrivate
 
 enum {
         LOCK,
+        LOCKED,
         SESSION_SWITCHED,
         ACTIVE_CHANGED,
         SUSPEND,
         RESUME,
+        SIMULATE_USER_ACTIVITY,
         LAST_SIGNAL
 };
 
@@ -480,6 +492,60 @@ listener_get_active_time (GSListener     *listener,
 }
 
 static DBusHandlerResult
+listener_get_idle_time (GSListener     *listener,
+                        DBusConnection *connection,
+                        DBusMessage    *message)
+{
+#ifdef HAVE_MIT_SAVER_EXTENSION
+        GdkDisplay *display;
+        GdkScreen *screen;
+        GdkWindow *window;
+	XScreenSaverInfo scrnsaver_info;
+#endif
+        DBusMessageIter iter;
+        DBusMessage    *reply;
+        dbus_uint32_t    secs = 0;
+
+        reply = dbus_message_new_method_return (message);
+
+        dbus_message_iter_init_append (reply, &iter);
+
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+#ifdef HAVE_MIT_SAVER_EXTENSION
+        display = gdk_display_get_default ();
+        screen = gdk_display_get_default_screen (display);
+        window = gdk_screen_get_root_window (screen);
+
+        gdk_error_trap_push ();
+        if (XScreenSaverQueryInfo (GDK_DISPLAY_XDISPLAY (display), GDK_WINDOW_XID (window), &scrnsaver_info)) {
+                secs = scrnsaver_info.idle / 1000;
+        } else {
+                gs_debug ("ScreenSaverExtension not found");
+        }
+
+#if GTK_CHECK_VERSION(3, 0, 0)
+        gdk_error_trap_pop_ignored ();
+#else
+        gdk_error_trap_pop ();
+#endif
+#endif
+
+        gs_debug ("Returning session idle for %u seconds", secs);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &secs);
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
 do_introspect (DBusConnection *connection,
                DBusMessage    *message,
                dbus_bool_t     local_interface)
@@ -579,7 +645,7 @@ listener_dbus_handle_session_message (DBusConnection *connection,
 {
         GSListener *listener = GS_LISTENER (user_data);
 
-#if 0
+#if 1
         g_message ("obj_path=%s interface=%s method=%s destination=%s",
                    dbus_message_get_path (message),
                    dbus_message_get_interface (message),
@@ -604,9 +670,10 @@ listener_dbus_handle_session_message (DBusConnection *connection,
                 return listener_get_active_time (listener, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_SERVICE, "GetSessionIdleTime")) {
+                return listener_get_idle_time (listener, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_SERVICE, "SimulateUserActivity")) {
-                //g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
+                g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
                 return send_success_reply (connection, message);
         }
         if (dbus_message_is_method_call (message, "org.freedesktop.DBus.Introspectable", "Introspect")) {
@@ -811,7 +878,7 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                 } else if (dbus_message_is_signal (message, SYSTEMD_LOGIND_SESSION_INTERFACE, "Lock")) {
                         if (_listener_message_path_is_our_session (listener, message)) {
                                 gs_debug ("systemd requested session lock");
-                                g_signal_emit (listener, signals [LOCK], 0);
+                                g_signal_emit (listener, signals [LOCKED], 0);
                         }
 
                         return DBUS_HANDLER_RESULT_HANDLED;
@@ -869,7 +936,7 @@ listener_dbus_handle_system_message (DBusConnection *connection,
         } else if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "Lock")) {
                 if (_listener_message_path_is_our_session (listener, message)) {
                         gs_debug ("ConsoleKit requested session lock");
-                        g_signal_emit (listener, signals [LOCK], 0);
+                        g_signal_emit (listener, signals [LOCKED], 0);
                 }
 
                 return DBUS_HANDLER_RESULT_HANDLED;
@@ -1121,6 +1188,16 @@ gs_listener_class_init (GSListenerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
+        signals [LOCKED] =
+                g_signal_new ("locked",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, locked),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
         signals [SESSION_SWITCHED] =
                 g_signal_new ("session-switched",
                               G_TYPE_FROM_CLASS (object_class),
@@ -1158,6 +1235,16 @@ gs_listener_class_init (GSListenerClass *klass)
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GSListenerClass, resume),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals [SIMULATE_USER_ACTIVITY] =
+                g_signal_new ("simulate-user-activity",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, simulate_user_activity),
                               NULL,
                               NULL,
                               g_cclosure_marshal_VOID__VOID,
