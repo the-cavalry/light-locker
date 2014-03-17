@@ -55,5 +55,15 @@
 
 #define DBUS_PROPERTIES_INTERFACE       "org.freedesktop.DBus.Properties"
 
+/* DBus */
+#define DBUS_SERVICE                    "org.freedesktop.DBus"
+#define DBUS_PATH                       "/org/freedesktop/DBus"
+#define DBUS_INTERFACE                  "org.freedesktop.DBus"
+
+/* Screensaver */
+#define GS_SERVICE                      "org.freedesktop.ScreenSaver"
+#define GS_PATH                         "/org/freedesktop/ScreenSaver"
+#define GS_INTERFACE                    "org.freedesktop.ScreenSaver"
+
 #endif
 

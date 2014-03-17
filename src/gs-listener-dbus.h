@@ -54,10 +54,22 @@ typedef struct
 
 } GSListenerClass;
 
+typedef enum
+{
+        GS_LISTENER_ERROR_SERVICE_UNAVAILABLE,
+        GS_LISTENER_ERROR_ACQUISITION_FAILURE,
+        GS_LISTENER_ERROR_ACTIVATION_FAILURE
+} GSListenerError;
+
+#define GS_LISTENER_ERROR gs_listener_error_quark ()
+
+GQuark      gs_listener_error_quark             (void);
+
 GType       gs_listener_get_type                (void);
 
 GSListener *gs_listener_new                     (void);
-gboolean    gs_listener_acquire                 (GSListener *listener);
+gboolean    gs_listener_acquire                 (GSListener *listener,
+                                                 GError    **error);
 gboolean    gs_listener_set_active              (GSListener *listener,
                                                  gboolean    active);
 void        gs_listener_send_switch_greeter     (GSListener *listener);

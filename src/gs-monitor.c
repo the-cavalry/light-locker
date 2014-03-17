@@ -318,7 +318,7 @@ gs_monitor_start (GSMonitor *monitor,
 {
         g_return_val_if_fail (GS_IS_MONITOR (monitor), FALSE);
 
-        if (! gs_listener_acquire (monitor->priv->listener)) {
+        if (! gs_listener_acquire (monitor->priv->listener, error)) {
                 return FALSE;
         }
 

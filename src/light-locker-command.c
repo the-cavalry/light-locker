@@ -32,12 +32,28 @@
 
 #include "gs-bus.h"
 
+static gboolean do_quit       = FALSE;
 static gboolean do_lock       = FALSE;
+static gboolean do_activate   = FALSE;
+static gboolean do_deactivate = FALSE;
 static gboolean do_version    = FALSE;
 
+static gboolean do_query      = FALSE;
+static gboolean do_time       = FALSE;
+
 static GOptionEntry entries [] = {
+        { "exit", 0, 0, G_OPTION_ARG_NONE, &do_quit,
+          N_("Causes the screensaver to exit gracefully"), NULL },
+        { "query", 'q', 0, G_OPTION_ARG_NONE, &do_query,
+          N_("Query the state of the screensaver"), NULL },
+        { "time", 't', 0, G_OPTION_ARG_NONE, &do_time,
+          N_("Query the length of time the screensaver has been active"), NULL },
         { "lock", 'l', 0, G_OPTION_ARG_NONE, &do_lock,
-          N_("Tells the running display manager to lock the screen immediately"), NULL },
+          N_("Tells the running screensaver process to lock the screen immediately"), NULL },
+        { "activate", 'a', 0, G_OPTION_ARG_NONE, &do_activate,
+          N_("Turn the screensaver on (blank the screen)"), NULL },
+        { "deactivate", 'd', 0, G_OPTION_ARG_NONE, &do_deactivate,
+          N_("If the screensaver is active then deactivate it (un-blank the screen)"), NULL },
         { "version", 'V', 0, G_OPTION_ARG_NONE, &do_version,
           N_("Version of this application"), NULL },
         { NULL }
@@ -46,7 +62,53 @@ static GOptionEntry entries [] = {
 static GMainLoop *loop = NULL;
 
 static GDBusMessage *
-displaymanager_send_message_void (GDBusConnection *connection,
+screensaver_send_message_bool (GDBusConnection *connection,
+                               const char      *name,
+                               gboolean         value)
+{
+        GDBusMessage *message, *reply;
+        GError       *error;
+
+        g_return_val_if_fail (connection != NULL, NULL);
+        g_return_val_if_fail (name != NULL, NULL);
+
+        message = g_dbus_message_new_method_call (GS_SERVICE,
+                                                  GS_PATH,
+                                                  GS_INTERFACE,
+                                                  name);
+        if (message == NULL) {
+                g_warning ("Couldn't allocate the dbus message");
+                return NULL;
+        }
+
+        g_dbus_message_set_body (message, g_variant_new ("(b)", value));
+
+        error = NULL;
+        reply = g_dbus_connection_send_message_with_reply_sync (connection,
+                                                                message,
+                                                                G_DBUS_SEND_MESSAGE_FLAGS_NONE,
+                                                                -1,
+                                                                NULL,
+                                                                NULL,
+                                                                &error);
+        if (error != NULL) {
+                g_warning ("unable to send message: %s", error->message);
+                g_clear_error (&error);
+        }
+
+        g_dbus_connection_flush_sync (connection, NULL, &error);
+        if (error != NULL) {
+                g_warning ("unable to flush message queue: %s", error->message);
+                g_clear_error (&error);
+        }
+
+        g_object_unref (message);
+
+        return reply;
+}
+
+static GDBusMessage *
+screensaver_send_message_void (GDBusConnection *connection,
                                const char      *name,
                                gboolean         expect_reply)
 {
@@ -103,110 +165,126 @@ displaymanager_send_message_void (GDBusConnection *connection,
 }
 
 static gboolean
+screensaver_is_running (GDBusConnection *connection)
+{
+        GVariant *reply;
+        gboolean exists = FALSE;
+
+        g_return_val_if_fail (connection != NULL, FALSE);
+
+        reply = g_dbus_connection_call_sync (connection,
+                                             DBUS_SERVICE,
+                                             DBUS_PATH,
+                                             DBUS_INTERFACE,
+                                             "GetNameOwner",
+                                             g_variant_new ("(s)", GS_SERVICE),
+                                             NULL,
+                                             G_DBUS_CALL_FLAGS_NO_AUTO_START,
+                                             -1,
+                                             NULL,
+                                             NULL);
+        if (reply != NULL) {
+                exists = TRUE;
+                g_variant_unref (reply);
+        }
+
+        return exists;
+}
+
+static gboolean
 do_command (GDBusConnection *connection)
 {
         GDBusMessage *reply;
 
+        if (do_quit) {
+                reply = screensaver_send_message_void (connection, "Quit", FALSE);
+                goto done;
+        }
+
+        if (do_query) {
+                GVariant     *body;
+                gboolean      v;
+
+                if (! screensaver_is_running (connection)) {
+                        g_message ("Screensaver is not running!");
+                        goto done;
+                }
+
+                reply = screensaver_send_message_void (connection, "GetActive", TRUE);
+                if (reply == NULL) {
+                        g_message ("Did not receive a reply from the screensaver.");
+                        goto done;
+                }
+
+                body = g_dbus_message_get_body (reply);
+                g_variant_get (body, "(b)", &v);
+                g_object_unref (reply);
+
+                if (v)  {
+                        g_print (_("The screensaver is active\n"));
+                } else {
+                        g_print (_("The screensaver is inactive\n"));
+                }
+        }
+
+        if (do_time) {
+                GVariant *body;
+                gboolean  v;
+                gint32    t;
+
+                reply = screensaver_send_message_void (connection, "GetActive", TRUE);
+                if (reply == NULL) {
+                        g_message ("Did not receive a reply from the screensaver.");
+                        goto done;
+                }
+
+                body = g_dbus_message_get_body (reply);
+                g_variant_get (body, "(b)", &v);
+                g_object_unref (reply);
+
+                if (v) {
+                        reply = screensaver_send_message_void (connection, "GetActiveTime", TRUE);
+                        if (reply == NULL) {
+                                g_message ("Did not receive a reply from the screensaver.");
+                                goto done;
+                        }
+
+                        body = g_dbus_message_get_body (reply);
+                        g_variant_get (body, "(u)", &t);
+                        g_object_unref (reply);
+
+                        g_print (ngettext ("The screensaver has been active for %d second.\n", "The screensaver has been active for %d seconds.\n", t), t);
+                } else {
+                        g_print (_("The screensaver is not currently active.\n"));
+                }
+        }
+
         if (do_lock) {
-                reply = displaymanager_send_message_void (connection, "Lock", FALSE);
+                reply = screensaver_send_message_void (connection, "Lock", FALSE);
                 g_assert (reply == NULL);
         }
 
+        if (do_activate) {
+                reply = screensaver_send_message_bool (connection, "SetActive", TRUE);
+                if (reply == NULL) {
+                        g_message ("Did not receive a reply from the screensaver.");
+                        goto done;
+                }
+                g_object_unref (reply);
+        }
+
+        if (do_deactivate) {
+                reply = screensaver_send_message_bool (connection, "SetActive", FALSE);
+                if (reply == NULL) {
+                        g_message ("Did not receive a reply from the screensaver.");
+                        goto done;
+                }
+                g_object_unref (reply);
+        }
+
+ done:
         g_main_loop_quit (loop);
         return FALSE;
-}
-
-static gboolean
-screensaver_is_running (void)
-{
-#if __linux__
-    /* Return TRUE if there is a running instance of light-locker */
-    gboolean exists = FALSE;
-
-    GDir* proc = NULL;
-    GError* error = NULL;
-    gchar* subdir = "a";
-    gchar* dir_path = NULL;
-    gchar* file_path = NULL;
-    gchar* contents = NULL;
-    gchar** paths = NULL;
-    gchar* path = NULL;
-    gsize length;
-    guint i = 0;
-
-    /* Check the /proc directory for pids */
-    proc = g_dir_open("/proc", 0, &error);
-    if (error)
-    {
-        g_critical("%s", error->message);
-        g_error_free(error);
-        return FALSE;
-    }
-
-    /* Iterate through each file, the PIDs are directories */
-    while (subdir != NULL)
-    {
-        subdir = g_strdup(g_dir_read_name(proc));
-        dir_path = g_build_filename("/proc", subdir, (gchar*)NULL);
-
-        /* If its a directory, check it out. */
-        if (g_file_test(dir_path, G_FILE_TEST_IS_DIR))
-        {
-            /* Check for the cmdline file, which has the command. */
-            file_path = g_build_filename(dir_path, "cmdline", (gchar*)NULL);
-            if (g_file_test(file_path, G_FILE_TEST_EXISTS)) {
-                if (g_file_get_contents(g_strdup(file_path), &contents, &length, &error))
-                {
-                    /* Check if light-locker is running */
-                    if (g_str_has_suffix(contents, "light-locker"))
-                    {
-                        /* Check for just "light-locker" */
-                        if (g_strcmp0(contents, "light-locker") == 0)
-                        {
-                            exists = TRUE;
-                        }
-                        if (!exists)
-                        {
-                            /* Check if executable in path */
-                            paths = g_strsplit(g_getenv("PATH"), ":", 0);
-                            for (i = 0; i < g_strv_length(paths); i++) {
-                                path = g_strdup(g_build_filename(paths[i], "light-locker", NULL));
-                                if (g_strcmp0(contents, path) == 0)
-                                {
-                                    exists = TRUE;
-                                    g_free(path);
-                                    break;
-                                }
-                                g_free(path);
-                            }
-                            g_strfreev(paths);
-                        }
-                    }
-                }
-                g_free(contents);
-                if (error)
-                {
-                    g_error_free(error);
-                    error = NULL;
-                }
-            }
-            g_free(file_path);
-        }
-        g_free(dir_path);
-
-        /* If found, stop the loop */
-        if (exists)
-        {
-            g_free(subdir);
-            subdir = NULL;
-        }
-    }
-    g_dir_close(proc);
-
-    return exists;
-#else
-    return TRUE;
-#endif
 }
 
 int
@@ -254,16 +332,11 @@ main (int    argc,
                 return EXIT_SUCCESS;
         }
 
-        connection = g_bus_get_sync (G_BUS_TYPE_SYSTEM, NULL, &error);
+        connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
         if (connection == NULL) {
                 g_message ("Failed to get session bus: %s", error->message);
                 g_error_free (error);
                 return EXIT_FAILURE;
-        }
-
-        if (!screensaver_is_running()) {
-            g_message ("light-locker is not running");
-            return EXIT_FAILURE;
         }
 
         g_idle_add ((GSourceFunc) do_command, connection);

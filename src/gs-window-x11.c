@@ -62,8 +62,11 @@ struct GSWindowPrivate
         guint      obscured : 1;
 
         GtkWidget *drawing_area;
+        GtkWidget *info_bar;
+        GtkWidget *info_content;
 
         guint      watchdog_timer_id;
+        guint      info_bar_timer_id;
 
         gdouble    last_x;
         gdouble    last_y;
@@ -858,6 +861,10 @@ gs_window_finalize (GObject *object)
         window = GS_WINDOW (object);
 
         g_return_if_fail (window->priv != NULL);
+
+        if (window->priv->info_bar_timer_id > 0) {
+                g_source_remove (window->priv->info_bar_timer_id);
+        }
 
         remove_watchdog_timer (window);
 
