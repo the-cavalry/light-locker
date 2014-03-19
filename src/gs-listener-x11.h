@@ -53,6 +53,8 @@ GType          gs_listener_x11_get_type          (void);
 GSListenerX11 *gs_listener_x11_new               (void);
 gboolean       gs_listener_x11_acquire           (GSListenerX11 *listener);
 void           gs_listener_x11_simulate_activity (GSListenerX11 *listener);
+gboolean       gs_listener_x11_force_blanking    (GSListenerX11 *listener,
+                                                  gboolean       active);
 
 G_END_DECLS
 

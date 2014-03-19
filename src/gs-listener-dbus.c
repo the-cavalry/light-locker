@@ -94,6 +94,7 @@ enum {
         SUSPEND,
         RESUME,
         SIMULATE_USER_ACTIVITY,
+        BLANKING,
         LAST_SIGNAL
 };
 
@@ -308,27 +309,6 @@ gs_listener_set_active (GSListener *listener,
         return TRUE;
 }
 
-static dbus_bool_t
-listener_property_set_bool (GSListener *listener,
-                            guint       prop_id,
-                            dbus_bool_t value)
-{
-        dbus_bool_t ret;
-
-        ret = FALSE;
-
-        switch (prop_id) {
-        case PROP_ACTIVE:
-                gs_listener_set_active (listener, value);
-                ret = TRUE;
-                break;
-        default:
-                break;
-        }
-
-        return ret;
-}
-
 static void
 raise_property_type_error (DBusConnection *connection,
                            DBusMessage    *in_reply_to,
@@ -356,46 +336,42 @@ raise_property_type_error (DBusConnection *connection,
 }
 
 static DBusHandlerResult
-listener_set_property (GSListener     *listener,
-                       DBusConnection *connection,
-                       DBusMessage    *message,
-                       guint           prop_id)
+listener_set_active (GSListener     *listener,
+                     DBusConnection *connection,
+                     DBusMessage    *message)
 {
         const char     *path;
         int             type;
-        gboolean        rc;
         DBusMessageIter iter;
         DBusMessage    *reply;
+        gboolean        new_state, res;
+        dbus_bool_t     v;
 
         path = dbus_message_get_path (message);
 
         dbus_message_iter_init (message, &iter);
         type = dbus_message_iter_get_arg_type (&iter);
-        rc = FALSE;
 
-        switch (type) {
-        case DBUS_TYPE_BOOLEAN:
-                {
-                        dbus_bool_t v;
-                        dbus_message_iter_get_basic (&iter, &v);
-                        rc = listener_property_set_bool (listener, prop_id, v);
-                        break;
-                }
-        default:
+        if (type != DBUS_TYPE_BOOLEAN) {
                 gs_debug ("Unsupported property type %d", type);
-                break;
-        }
-
-        if (! rc) {
                 raise_property_type_error (connection, message, path);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
 
+        dbus_message_iter_get_basic (&iter, &v);
+        new_state = v;
+        g_signal_emit (listener, signals [BLANKING], 0, new_state, &res);
+        v = res;
+
         reply = dbus_message_new_method_return (message);
+
+        dbus_message_iter_init_append (reply, &iter);
 
         if (reply == NULL) {
                 g_error ("No memory");
         }
+
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &v);
 
         if (! dbus_connection_send (connection, reply, NULL)) {
                 g_error ("No memory");
@@ -661,7 +637,7 @@ listener_dbus_handle_session_message (DBusConnection *connection,
                 return send_success_reply (connection, message);
         }
         if (dbus_message_is_method_call (message, GS_SERVICE, "SetActive")) {
-                return listener_set_property (listener, connection, message, PROP_ACTIVE);
+                return listener_set_active (listener, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_SERVICE, "GetActive")) {
                 return listener_get_property (listener, connection, message, PROP_ACTIVE);
@@ -1250,6 +1226,17 @@ gs_listener_class_init (GSListenerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
+        signals [BLANKING] =
+                g_signal_new ("blanking",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, blanking),
+                              NULL,
+                              NULL,
+                              gs_marshal_BOOLEAN__BOOLEAN,
+                              G_TYPE_BOOLEAN,
+                              1,
+                              G_TYPE_BOOLEAN);
 
         g_object_class_install_property (object_class,
                                          PROP_ACTIVE,

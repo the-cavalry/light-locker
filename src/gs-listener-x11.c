@@ -196,6 +196,14 @@ gs_listener_x11_simulate_activity (GSListenerX11 *listener)
 #endif
 }
 
+gboolean
+gs_listener_x11_force_blanking (GSListenerX11 *listener,
+                                gboolean       active)
+{
+        /* TODO */
+        return FALSE;
+}
+
 static void
 gs_listener_x11_init (GSListenerX11 *listener)
 {

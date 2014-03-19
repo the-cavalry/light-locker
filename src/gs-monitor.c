@@ -239,6 +239,21 @@ listener_simulate_user_activity_cb (GSListener *listener,
         gs_listener_x11_simulate_activity (monitor->priv->listener_x11);
 }
 
+static gboolean
+listener_blanking_cb (GSListener *listener,
+                      gboolean    active,
+                      GSMonitor  *monitor)
+{
+        if (! active)
+        {
+                /* Don't deactivate the screensaver if we are locked */
+                if (gs_manager_get_active (monitor->priv->manager))
+                        return FALSE;
+        }
+
+        return gs_listener_x11_force_blanking (monitor->priv->listener_x11, active);
+}
+
 static void
 listener_x11_blanking_changed_cb (GSListenerX11 *listener,
                                   gboolean    active,
@@ -263,6 +278,7 @@ disconnect_listener_signals (GSMonitor *monitor)
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_suspend_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_resume_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_simulate_user_activity_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_blanking_cb, monitor);
 
         g_signal_handlers_disconnect_by_func (monitor->priv->listener_x11, listener_x11_blanking_changed_cb, monitor);
 }
@@ -284,6 +300,8 @@ connect_listener_signals (GSMonitor *monitor)
                           G_CALLBACK (listener_resume_cb), monitor);
         g_signal_connect (monitor->priv->listener, "simulate-user-activity",
                           G_CALLBACK (listener_simulate_user_activity_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "blanking",
+                          G_CALLBACK (listener_blanking_cb), monitor);
 
         g_signal_connect (monitor->priv->listener_x11, "blanking-changed",
                           G_CALLBACK (listener_x11_blanking_changed_cb), monitor);

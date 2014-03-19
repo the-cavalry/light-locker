@@ -53,6 +53,8 @@ typedef struct
         void            (* suspend)                  (GSListener *listener);
         void            (* resume)                   (GSListener *listener);
         void            (* simulate_user_activity)   (GSListener *listener);
+        gboolean        (* blanking)                 (GSListener *listener,
+                                                      gboolean    active);
 
 } GSListenerClass;
 
