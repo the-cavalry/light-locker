@@ -1,4 +1,5 @@
 .\" Copyright (C) 2007 Sven Arvidsson <sa@whiz.se>
+.\" Copyright (C) 2014 Peter de Ridder <peter@xfce.org>
 .\"
 .\" This is free software; you may redistribute it and/or modify
 .\" it under the terms of the GNU General Public License as
@@ -13,7 +14,7 @@
 .\"You should have received a copy of the GNU General Public License along
 .\"with this program; if not, write to the Free Software Foundation, Inc.,
 .\"51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-.TH light-locker-command 1 "2007\-09\-27" "GNOME"
+.TH LIGHT-LOCKER-COMMAND 1 "2014\-03\-23" "The Cavalry"
 .SH NAME
 light-locker-command \- controls light-locker
 .SH SYNOPSIS
@@ -22,33 +23,14 @@ light-locker-command \- controls light-locker
 .SH DESCRIPTION
 light-locker-command is a tool for controlling an already
 running instance of light-locker.
+This is done though LightDM which doesn't ensure light-locker is running.
 .SH OPTIONS
 .TP
-.B \-\-exit
-Causes the screen locker to exit gracefully
-.TP
-.B \-q, \-\-query
-Query the state of the screen locker
-.TP
-.B \-t, \-\-time
-Query the length of time the screen locker has been active
-.TP
 .B \-l, \-\-lock
-Tells the running screen locker process to lock the screen immediately
-.TP
-.B \-a, \-\-activate
-Turn the screen locker on (blank the screen)
-.TP
-.B \-d, \-\-deactivate
-If the screen locker is active then deactivate it (un-blank the screen)
+Tells the running display manager to lock the screen immediately
 .TP
 .B \-V, \-\-version
 Version of this application
-.SH AUTHORS
-.B gnome-screensaver-command
-is written by William Jon McCann <mccann@jhu.edu>.
-.P
-This manual page was written by Sven Arvidsson <sa@whiz.se>.
 .SH SEE ALSO
 .BR "light-locker" (1)
 

@@ -1,4 +1,5 @@
 .\" Copyright (C) 2007 Sven Arvidsson <sa@whiz.se>
+.\" Copyright (C) 2014 Peter de Ridder <peter@xfce.org>
 .\"
 .\" This is free software; you may redistribute it and/or modify
 .\" it under the terms of the GNU General Public License as
@@ -13,31 +14,36 @@
 .\"You should have received a copy of the GNU General Public License along
 .\"with this program; if not, write to the Free Software Foundation, Inc.,
 .\"51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-.TH light-locker 1 "2007\-09\-27" "GNOME"
+.TH LIGHT\-LOCKER 1 "2014\-03\-23" "The Cavalry"
 .SH NAME
-light-locker \- screen locker
+light\-locker \- screen locker
 .SH SYNOPSIS
-.B light-locker
+.B light\-locker
 .RI [ OPTIONS... ]
 .SH DESCRIPTION
-light-locker is a simple locker (forked from gnome-screensaver)
+light\-locker is a simple locker (forked from gnome\-screensaver)
 that aims to have a simple, sane, secure defaults and be well
-integrated with the desktop while not carrying any desktop-specific
-deoendencies.
+integrated with the desktop while not carrying any desktop\-specific
+dependencies.
 .SH OPTIONS
-.TP
-.B \-\-no\-daemon
-Don't become a daemon
 .TP
 .B \-\-debug
 Enable debugging code
+.TP
+.BI \-\-lock\-after\-screensaver\fR=\fIS
+Lock the screen S seconds after the screensaver started.
+Use 0 to disable this
+.TP
+.B \-\-late\-locking
+Lock the screen on screensaver deactivation
+.TP
+.B \-\-late\-locking
+Lock the screen on screensaver activation
+.TP
+.B \-\-lock\-on\-suspend
+Lock the screen on suspend/resume
 .P
 This program also accepts the standard GTK options.
-.SH AUTHORS
-.B gnome-screensaver
-is written by William Jon McCann <mccann@jhu.edu>.
-.P
-This manual page was written by Sven Arvidsson <sa@whiz.se>.
 .SH SEE ALSO
 .BR "gtk-options" (7)
 
