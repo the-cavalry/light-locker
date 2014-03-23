@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-31 20:58+0100\n"
-"PO-Revision-Date: 2013-11-20 10:39+0000\n"
-"Last-Translator: Tenebr050 <wizard.darshak@gmail.com>\n"
+"POT-Creation-Date: 2014-03-18 00:20+0100\n"
+"PO-Revision-Date: 2014-03-17 23:21+0000\n"
+"Last-Translator: cavalier <peter@xfce.org>\n"
 "Language-Team: Gujarati (http://www.transifex.com/projects/p/light-locker/language/gu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,18 +25,34 @@ msgstr ""
 msgid "Tells the running display manager to lock the screen immediately"
 msgstr "ચાલી રહેલ સ્ક્રીનસેવરને સ્ક્રીન તર્ત જ લૉક કરવા માટે કહે છે"
 
-#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
-#: ../src/preview.c:70
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:68
+#: ../src/preview.c:82
 msgid "Version of this application"
 msgstr "આ કાર્યક્રમની આવૃત્તિ"
 
-#: ../src/light-locker.c:57 ../src/preview.c:71
+#: ../src/light-locker.c:69 ../src/preview.c:83
 msgid "Enable debugging code"
 msgstr "ડિબગીંગ કોડ સક્રિય કરો"
 
-#: ../src/light-locker.c:59
+#: ../src/light-locker.c:71
 msgid "Lock the screen S seconds after the screensaver started"
 msgstr "સ્ક્રીનસેવર શરુ થયા ના S સેકંડ બાદ સ્ક્રીન લૉક કરો"
+
+#: ../src/light-locker.c:73
+msgid "Lock the screen on screensaver deactivation"
+msgstr ""
+
+#: ../src/light-locker.c:74
+msgid "Lock the screen on screensaver activation"
+msgstr ""
+
+#: ../src/light-locker.c:78
+msgid "Lock the screen on suspend/resume"
+msgstr ""
+
+#: ../src/light-locker.c:79
+msgid "Do not lock the screen on suspend/resume"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
@@ -46,19 +62,19 @@ msgstr "સ્ક્રીન લૉકર"
 msgid "Launch screen locker program"
 msgstr "સ્ક્રીન લૉકર પ્રક્રિયાને શરુ કરો"
 
-#: ../src/gs-content.c:96
+#: ../src/gs-content.c:92
 msgid "This session is locked"
 msgstr "આ સેશન લૉક કરેલ છે"
 
-#: ../src/gs-content.c:118
+#: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr "થોડા સમય બાદ આપોઆપ અનલૉક ડાયલોગ ખુલશે"
 
-#: ../src/preview.c:72
+#: ../src/preview.c:84
 msgid "Preview screen width"
 msgstr "સ્ક્રીન ની પહોળાઈ ચકાસી જુઓ"
 
-#: ../src/preview.c:73
+#: ../src/preview.c:85
 msgid "Preview screen height"
 msgstr "સ્ક્રીન ની લંબાઈ ચકાસી જુઓ"

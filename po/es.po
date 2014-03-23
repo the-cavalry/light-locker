@@ -6,12 +6,13 @@
 # Adolfo Jayme Barrientos <fitoschido@ubuntu.com>, 2013
 # Adolfo Jayme Barrientos <fitoschido@ubuntu.com>, 2014
 # Copyright (C) 2013 The light-locker Authors, 2013
+# edwinpm5 <edwinpm5@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-31 20:58+0100\n"
-"PO-Revision-Date: 2014-02-21 08:54+0000\n"
+"POT-Creation-Date: 2014-03-18 00:20+0100\n"
+"PO-Revision-Date: 2014-03-21 04:05+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitoschido@ubuntu.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/light-locker/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -24,18 +25,34 @@ msgstr ""
 msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Indica al proceso del gestor de sesiones en ejecución que bloquee la pantalla de inmediato"
 
-#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
-#: ../src/preview.c:70
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:68
+#: ../src/preview.c:82
 msgid "Version of this application"
 msgstr "Versión de esta aplicación"
 
-#: ../src/light-locker.c:57 ../src/preview.c:71
+#: ../src/light-locker.c:69 ../src/preview.c:83
 msgid "Enable debugging code"
 msgstr "Activar el código de depuración"
 
-#: ../src/light-locker.c:59
+#: ../src/light-locker.c:71
 msgid "Lock the screen S seconds after the screensaver started"
 msgstr "Bloquear la pantalla S segundos tras el inicio del salvapantallas"
+
+#: ../src/light-locker.c:73
+msgid "Lock the screen on screensaver deactivation"
+msgstr "Bloquear la pantalla al desactivarse el salvapantallas"
+
+#: ../src/light-locker.c:74
+msgid "Lock the screen on screensaver activation"
+msgstr "Bloquear la pantalla al activarse el salvapantallas"
+
+#: ../src/light-locker.c:78
+msgid "Lock the screen on suspend/resume"
+msgstr "Bloquear la pantalla al suspender/reanudar"
+
+#: ../src/light-locker.c:79
+msgid "Do not lock the screen on suspend/resume"
+msgstr "No bloquear la pantalla al suspender/reanudar"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
@@ -45,19 +62,19 @@ msgstr "Bloqueador de pantalla"
 msgid "Launch screen locker program"
 msgstr "Abrir el programa de bloqueo de pantalla"
 
-#: ../src/gs-content.c:96
+#: ../src/gs-content.c:92
 msgid "This session is locked"
 msgstr "Esta sesión está bloqueada"
 
-#: ../src/gs-content.c:118
+#: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr "Se le redirigirá al diálogo de desbloqueo automáticamente en unos segundos"
 
-#: ../src/preview.c:72
+#: ../src/preview.c:84
 msgid "Preview screen width"
 msgstr "Anchura de previsualización de pantalla"
 
-#: ../src/preview.c:73
+#: ../src/preview.c:85
 msgid "Preview screen height"
 msgstr "Altura de previsualización de pantalla"

@@ -5,14 +5,15 @@
 # Translators:
 # Andrzej Polatyński <andrzej@datatel.net.pl>, 2006
 # Hajdzik <iker95@gmail.com>, 2013
+# OSWorld <michal.olber@osworld.pl>, 2014
 # Piotr Strębski <strebski@o2.pl>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-31 20:58+0100\n"
-"PO-Revision-Date: 2014-03-03 11:11+0000\n"
-"Last-Translator: Piotr Strębski <strebski@o2.pl>\n"
+"POT-Creation-Date: 2014-03-18 00:20+0100\n"
+"PO-Revision-Date: 2014-03-21 12:41+0000\n"
+"Last-Translator: OSWorld <michal.olber@osworld.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/light-locker/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,18 +25,34 @@ msgstr ""
 msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Powoduje natychmiastowe zablokowanie ekranu w uruchomionym menedżerze ekranu"
 
-#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
-#: ../src/preview.c:70
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:68
+#: ../src/preview.c:82
 msgid "Version of this application"
 msgstr "Wersja tego programu"
 
-#: ../src/light-locker.c:57 ../src/preview.c:71
+#: ../src/light-locker.c:69 ../src/preview.c:83
 msgid "Enable debugging code"
 msgstr "Włącza kod debugowania"
 
-#: ../src/light-locker.c:59
+#: ../src/light-locker.c:71
 msgid "Lock the screen S seconds after the screensaver started"
 msgstr "Zablokuj ekran S sekund po uruchomieniu wygaszacza ekranu"
+
+#: ../src/light-locker.c:73
+msgid "Lock the screen on screensaver deactivation"
+msgstr "Zablokuj ekran przy wyłączaniu wygaszacza ekranu"
+
+#: ../src/light-locker.c:74
+msgid "Lock the screen on screensaver activation"
+msgstr "Zablokuj ekran przy uruchomieniu wygaszacza ekranu"
+
+#: ../src/light-locker.c:78
+msgid "Lock the screen on suspend/resume"
+msgstr "Zablokuj ekran po uśpieniu/wybudzeniu maszyny"
+
+#: ../src/light-locker.c:79
+msgid "Do not lock the screen on suspend/resume"
+msgstr "Nie blokuj ekranu podczas usypiania/wybudzania maszyny"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
@@ -45,19 +62,19 @@ msgstr "Blokada ekranu"
 msgid "Launch screen locker program"
 msgstr "Uruchom program blokady ekranu"
 
-#: ../src/gs-content.c:96
+#: ../src/gs-content.c:92
 msgid "This session is locked"
 msgstr "Ta sesja jest zablokowana"
 
-#: ../src/gs-content.c:118
+#: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr "W przeciągu kilku sekund zostaniesz automatycznie przekierowany do okna odblokowania"
 
-#: ../src/preview.c:72
+#: ../src/preview.c:84
 msgid "Preview screen width"
-msgstr "Szerokość podglądu ekranu"
+msgstr "Szerokość ekranu podglądu"
 
-#: ../src/preview.c:73
+#: ../src/preview.c:85
 msgid "Preview screen height"
-msgstr "Wysokość podglądu ekranu"
+msgstr "Wysokość ekranu podglądu"

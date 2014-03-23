@@ -6,13 +6,14 @@
 # Chandan kumar <chandankumar.093047@gmail.com>, 2012
 # Rajesh Ranjan <rajesh672@gmail.com>, 2009
 # Rajesh Ranjan <rranjan@redhat.com>, 2006,2009
+# satya164 <satyajit.happy@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-31 20:58+0100\n"
-"PO-Revision-Date: 2013-11-20 10:39+0000\n"
-"Last-Translator: cavalier <peter@xfce.org>\n"
+"POT-Creation-Date: 2014-03-18 00:20+0100\n"
+"PO-Revision-Date: 2014-03-20 17:28+0000\n"
+"Last-Translator: satya164 <satyajit.happy@gmail.com>\n"
 "Language-Team: Hindi (http://www.transifex.com/projects/p/light-locker/language/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,42 +23,58 @@ msgstr ""
 
 #: ../src/light-locker-command.c:40
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr ""
+msgstr "डिस्प्ले मेनेजर को तुरंत परदा अबरोधन करने के लिए संदेश देता है"
 
-#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
-#: ../src/preview.c:70
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:68
+#: ../src/preview.c:82
 msgid "Version of this application"
 msgstr "इस अनुप्रयोग का संस्करण"
 
-#: ../src/light-locker.c:57 ../src/preview.c:71
+#: ../src/light-locker.c:69 ../src/preview.c:83
 msgid "Enable debugging code"
 msgstr "डिबगिंग कोड सक्रिय करें"
 
-#: ../src/light-locker.c:59
+#: ../src/light-locker.c:71
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr ""
+msgstr "स्क्रीनसेवर शुरू होने के S सेकंड बाद परदा अवरोधित करें"
+
+#: ../src/light-locker.c:73
+msgid "Lock the screen on screensaver deactivation"
+msgstr "स्क्रीनसेवर बंद होने पर परदा अवरोधित करें"
+
+#: ../src/light-locker.c:74
+msgid "Lock the screen on screensaver activation"
+msgstr "स्क्रीनसेवर चालू होने पर परदा अवरोधित करें"
+
+#: ../src/light-locker.c:78
+msgid "Lock the screen on suspend/resume"
+msgstr "ससपेंड / रिज्यूम पर परदा अवरोधित करें"
+
+#: ../src/light-locker.c:79
+msgid "Do not lock the screen on suspend/resume"
+msgstr "ससपेंड / रिज्यूम पर परदा अवरोधित न करें"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
-msgstr ""
+msgstr "परदा अबरोधक"
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
-msgstr ""
+msgstr "परदा अबरोधक प्रोग्राम आरम्भ करें"
 
-#: ../src/gs-content.c:96
+#: ../src/gs-content.c:92
 msgid "This session is locked"
-msgstr ""
+msgstr "यह अधिवेशन अवरोधित है"
 
-#: ../src/gs-content.c:118
+#: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr ""
+msgstr "आप को कुछ ही क्षण में स्वतः अनलॉक डायलॉग पर भेज दिया जाएगा"
 
-#: ../src/preview.c:72
+#: ../src/preview.c:84
 msgid "Preview screen width"
-msgstr ""
+msgstr "परदे की चौडाई का पूर्वावलोकन करें"
 
-#: ../src/preview.c:73
+#: ../src/preview.c:85
 msgid "Preview screen height"
-msgstr ""
+msgstr "परदे की ऊंचाई का पूर्वावलोकन करें"

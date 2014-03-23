@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# slickymaster <slickymaster@gmail.com>, 2014
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2006-2011
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-31 20:58+0100\n"
-"PO-Revision-Date: 2013-11-20 10:39+0000\n"
-"Last-Translator: cavalier <peter@xfce.org>\n"
+"POT-Creation-Date: 2014-03-18 00:20+0100\n"
+"PO-Revision-Date: 2014-03-20 10:46+0000\n"
+"Last-Translator: slickymaster <slickymaster@gmail.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/projects/p/light-locker/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,42 +21,58 @@ msgstr ""
 
 #: ../src/light-locker-command.c:40
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr ""
+msgstr "Indica ao gestor de protecção de ecrã em execução para bloquear o ecrã imediatamente"
 
-#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
-#: ../src/preview.c:70
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:68
+#: ../src/preview.c:82
 msgid "Version of this application"
 msgstr "Versão desta aplicação"
 
-#: ../src/light-locker.c:57 ../src/preview.c:71
+#: ../src/light-locker.c:69 ../src/preview.c:83
 msgid "Enable debugging code"
-msgstr "Activar a depuração de código"
+msgstr "Habilitar depuração de código"
 
-#: ../src/light-locker.c:59
+#: ../src/light-locker.c:71
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr ""
+msgstr "Bloquear o ecrã S segundos após o início da protecção de ecrã"
+
+#: ../src/light-locker.c:73
+msgid "Lock the screen on screensaver deactivation"
+msgstr "Bloquear o ecrã na desativação da protecção de ecrã"
+
+#: ../src/light-locker.c:74
+msgid "Lock the screen on screensaver activation"
+msgstr "Bloquear o ecrã na ativação da protecção de ecrã"
+
+#: ../src/light-locker.c:78
+msgid "Lock the screen on suspend/resume"
+msgstr "Bloquear o ecrã ao suspender/resumir"
+
+#: ../src/light-locker.c:79
+msgid "Do not lock the screen on suspend/resume"
+msgstr "Não bloquear o ecrã ao suspender/resumir"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
-msgstr ""
+msgstr "Bloqueio de Ecrã"
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
-msgstr ""
+msgstr "Lançar o programa de bloqueio do ecrã"
 
-#: ../src/gs-content.c:96
+#: ../src/gs-content.c:92
 msgid "This session is locked"
-msgstr ""
+msgstr "Esta sessão está bloqueada"
 
-#: ../src/gs-content.c:118
+#: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr ""
+msgstr "Será redirecionado automaticamente para a caixa de diálogo de desbloqueio em poucos segundos"
 
-#: ../src/preview.c:72
+#: ../src/preview.c:84
 msgid "Preview screen width"
-msgstr ""
+msgstr "Largura do ecrã de pré-visualização"
 
-#: ../src/preview.c:73
+#: ../src/preview.c:85
 msgid "Preview screen height"
-msgstr ""
+msgstr "Altura do ecrã de pré-visualização"

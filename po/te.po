@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-31 20:58+0100\n"
-"PO-Revision-Date: 2013-11-20 10:39+0000\n"
+"POT-Creation-Date: 2014-03-18 00:20+0100\n"
+"PO-Revision-Date: 2014-03-17 23:21+0000\n"
 "Last-Translator: cavalier <peter@xfce.org>\n"
 "Language-Team: Telugu (http://www.transifex.com/projects/p/light-locker/language/te/)\n"
 "MIME-Version: 1.0\n"
@@ -24,17 +24,33 @@ msgstr ""
 msgid "Tells the running display manager to lock the screen immediately"
 msgstr ""
 
-#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
-#: ../src/preview.c:70
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:68
+#: ../src/preview.c:82
 msgid "Version of this application"
 msgstr "ఈ అనువర్తనము యొక్క రూపాంతరం"
 
-#: ../src/light-locker.c:57 ../src/preview.c:71
+#: ../src/light-locker.c:69 ../src/preview.c:83
 msgid "Enable debugging code"
 msgstr "దోషనిర్మూలన కోడ్‌ని చేతనపరుచు"
 
-#: ../src/light-locker.c:59
+#: ../src/light-locker.c:71
 msgid "Lock the screen S seconds after the screensaver started"
+msgstr ""
+
+#: ../src/light-locker.c:73
+msgid "Lock the screen on screensaver deactivation"
+msgstr ""
+
+#: ../src/light-locker.c:74
+msgid "Lock the screen on screensaver activation"
+msgstr ""
+
+#: ../src/light-locker.c:78
+msgid "Lock the screen on suspend/resume"
+msgstr ""
+
+#: ../src/light-locker.c:79
+msgid "Do not lock the screen on suspend/resume"
 msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
@@ -45,19 +61,19 @@ msgstr ""
 msgid "Launch screen locker program"
 msgstr ""
 
-#: ../src/gs-content.c:96
+#: ../src/gs-content.c:92
 msgid "This session is locked"
 msgstr ""
 
-#: ../src/gs-content.c:118
+#: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
 
-#: ../src/preview.c:72
+#: ../src/preview.c:84
 msgid "Preview screen width"
 msgstr ""
 
-#: ../src/preview.c:73
+#: ../src/preview.c:85
 msgid "Preview screen height"
 msgstr ""

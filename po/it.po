@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# edmael <edoardo.elidoro@gmail.com>, 2013
+# edmael <edoardo.elidoro@gmail.com>, 2013-2014
 # Luca Ferretti <lferrett@gnome.org>, 2006-2011
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-31 20:58+0100\n"
-"PO-Revision-Date: 2013-11-20 10:39+0000\n"
+"POT-Creation-Date: 2014-03-18 00:20+0100\n"
+"PO-Revision-Date: 2014-03-20 11:36+0000\n"
 "Last-Translator: edmael <edoardo.elidoro@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/light-locker/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -23,18 +23,34 @@ msgstr ""
 msgid "Tells the running display manager to lock the screen immediately"
 msgstr "Comunica al display manager in esecuzione di bloccare immediatamente lo schermo"
 
-#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
-#: ../src/preview.c:70
+#: ../src/light-locker-command.c:42 ../src/light-locker.c:68
+#: ../src/preview.c:82
 msgid "Version of this application"
 msgstr "Versione di questa applicazione"
 
-#: ../src/light-locker.c:57 ../src/preview.c:71
+#: ../src/light-locker.c:69 ../src/preview.c:83
 msgid "Enable debugging code"
 msgstr "Abilitare il codice di debug"
 
-#: ../src/light-locker.c:59
+#: ../src/light-locker.c:71
 msgid "Lock the screen S seconds after the screensaver started"
 msgstr "Blocca lo schermo S secondi dopo che il salvaschermo è stato avviato"
+
+#: ../src/light-locker.c:73
+msgid "Lock the screen on screensaver deactivation"
+msgstr "Blocca lo schermo alla disattivazione dello screensaver"
+
+#: ../src/light-locker.c:74
+msgid "Lock the screen on screensaver activation"
+msgstr "Blocca lo schermo all'attivazione dello screensaver"
+
+#: ../src/light-locker.c:78
+msgid "Lock the screen on suspend/resume"
+msgstr "Blocca lo schermo alla sospensione/risveglio"
+
+#: ../src/light-locker.c:79
+msgid "Do not lock the screen on suspend/resume"
+msgstr "Non bloccare lo schermo alla sospensione/risveglio"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
@@ -44,19 +60,19 @@ msgstr "Blocca schermo"
 msgid "Launch screen locker program"
 msgstr "Lancia il programma blocca schermo"
 
-#: ../src/gs-content.c:96
+#: ../src/gs-content.c:92
 msgid "This session is locked"
 msgstr "Questa sessione è bloccata"
 
-#: ../src/gs-content.c:118
+#: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr "Sarai reindirizzato alla finestra di sblocco automaticamente in pochi secondi"
 
-#: ../src/preview.c:72
+#: ../src/preview.c:84
 msgid "Preview screen width"
 msgstr "Anteprima della larghezza dello schermo"
 
-#: ../src/preview.c:73
+#: ../src/preview.c:85
 msgid "Preview screen height"
 msgstr "Anteprima dell'altezza dello schermo"
