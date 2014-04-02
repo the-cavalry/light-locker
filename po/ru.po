@@ -39,19 +39,19 @@ msgstr "Заблокировать экран через S секунд посл
 
 #: ../src/light-locker.c:73
 msgid "Lock the screen on screensaver deactivation"
-msgstr ""
+msgstr "Заблокировать экран при выключении хранителя экрана"
 
 #: ../src/light-locker.c:74
 msgid "Lock the screen on screensaver activation"
-msgstr ""
+msgstr "Заблокировать экран при включении хранителя экрана"
 
 #: ../src/light-locker.c:78
 msgid "Lock the screen on suspend/resume"
-msgstr ""
+msgstr "Заблокировать экран при спящем/ждущем режимах"
 
 #: ../src/light-locker.c:79
 msgid "Do not lock the screen on suspend/resume"
-msgstr ""
+msgstr "Не блокировать экран при спящем/ждущем режимах"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
