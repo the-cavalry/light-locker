@@ -323,6 +323,9 @@ gs_grab_release_mouse (GSGrab *grab)
         GList *list, *link;
         GdkDisplay *display = gdk_display_get_default ();
         GdkDeviceManager *device_manager = gdk_display_get_device_manager (display);
+        GdkScreen *screen;
+        GdkWindow *root;
+        GdkCursor *cursor;
         list = gdk_device_manager_list_devices (device_manager, GDK_DEVICE_TYPE_MASTER);
 
         for (link = list; link != NULL; link = g_list_next (link)) {
@@ -334,6 +337,12 @@ gs_grab_release_mouse (GSGrab *grab)
                 gdk_device_ungrab(device, GDK_CURRENT_TIME);
         }
         g_list_free(list);
+
+        cursor = gdk_cursor_new (GDK_LEFT_PTR);
+        screen = gdk_display_get_default_screen (display);
+        root = gdk_screen_get_root_window (screen);
+        gdk_window_set_cursor (root, cursor);
+        g_object_unref (cursor);
 #else
         gdk_pointer_ungrab (GDK_CURRENT_TIME);
 #endif
