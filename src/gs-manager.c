@@ -206,7 +206,7 @@ manager_maybe_grab_window (GSManager *manager,
                 gs_grab_move_to_window (manager->priv->grab,
                                         gs_window_get_gdk_window (window),
                                         gs_window_get_screen (window),
-                                        TRUE);
+                                        FALSE);
                 grabbed = TRUE;
         }
 

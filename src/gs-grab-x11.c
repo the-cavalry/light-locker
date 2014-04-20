@@ -168,8 +168,7 @@ gs_grab_get_keyboard (GSGrab    *grab,
                                           window,
                                           GDK_OWNERSHIP_NONE,
                                           FALSE,
-                                          GDK_KEY_PRESS_MASK |
-                                          GDK_KEY_RELEASE_MASK,
+                                          0,
                                           NULL,
                                           GDK_CURRENT_TIME);
         }
@@ -226,9 +225,8 @@ gs_grab_get_mouse (GSGrab    *grab,
                 status = gdk_device_grab (device,
                                           window,
                                           GDK_OWNERSHIP_NONE,
-                                          FALSE,
-                                          GDK_KEY_PRESS_MASK |
-                                          GDK_KEY_RELEASE_MASK,
+                                          TRUE,
+                                          0,
                                           (hide_cursor ? cursor : NULL),
                                           GDK_CURRENT_TIME);
         }
