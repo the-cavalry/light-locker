@@ -84,6 +84,9 @@ struct GSListenerPrivate
         gboolean        have_systemd;
         char           *sd_session_id;
 #endif
+
+        dbus_uint32_t   inhibit_last_cookie;
+        GSequence      *inhibit_list;
 };
 
 enum {
@@ -309,6 +312,83 @@ gs_listener_set_active (GSListener *listener,
         return TRUE;
 }
 
+static gint
+compare_cookie (gconstpointer a,
+                gconstpointer b,
+                gpointer      user_data)
+{
+        const dbus_uint32_t *ca = a;
+        const dbus_uint32_t *cb = b;
+
+        return *ca - *cb;
+}
+
+static dbus_uint32_t
+g_listener_add_inhibit (GSListener *listener)
+{
+        dbus_uint32_t *cookie;
+
+        cookie = g_new (dbus_uint32_t, 1);
+        if (cookie == NULL) {
+                g_error ("No memory");
+        }
+
+        *cookie = ++listener->priv->inhibit_last_cookie;
+
+#ifdef HAVE_MIT_SAVER_EXTENSION
+        if (g_sequence_get_length (listener->priv->inhibit_list) == 0) {
+                GdkDisplay *display;
+
+                display = gdk_display_get_default ();
+
+                gdk_error_trap_push ();
+                XScreenSaverSuspend (GDK_DISPLAY_XDISPLAY (display), TRUE);
+
+#if GTK_CHECK_VERSION(3, 0, 0)
+                gdk_error_trap_pop_ignored ();
+#else
+                gdk_error_trap_pop ();
+#endif
+        }
+#endif
+
+        g_sequence_insert_sorted (listener->priv->inhibit_list, cookie, compare_cookie, NULL);
+
+        return *cookie;
+}
+
+static void
+g_listener_remove_inhibit (GSListener *listener,
+                           dbus_uint32_t cookie)
+{
+        GSequenceIter *iter;
+
+        iter = g_sequence_lookup (listener->priv->inhibit_list, &cookie, compare_cookie, NULL);
+
+        if (iter == NULL) {
+                return;
+        }
+
+        g_sequence_remove (iter);
+
+#ifdef HAVE_MIT_SAVER_EXTENSION
+        if (g_sequence_get_length (listener->priv->inhibit_list) == 0) {
+                GdkDisplay *display;
+
+                display = gdk_display_get_default ();
+
+                gdk_error_trap_push ();
+                XScreenSaverSuspend (GDK_DISPLAY_XDISPLAY (display), FALSE);
+
+#if GTK_CHECK_VERSION(3, 0, 0)
+                gdk_error_trap_pop_ignored ();
+#else
+                gdk_error_trap_pop ();
+#endif
+        }
+#endif
+}
+
 static void
 raise_property_type_error (DBusConnection *connection,
                            DBusMessage    *in_reply_to,
@@ -333,6 +413,30 @@ raise_property_type_error (DBusConnection *connection,
         }
 
         dbus_message_unref (reply);
+}
+
+static DBusHandlerResult
+send_success_reply (DBusConnection  *connection,
+                    DBusMessage     *message)
+{
+        DBusMessage *reply;
+
+        if (dbus_message_get_no_reply (message)) {
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+
+        reply = dbus_message_new_method_return (message);
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
 }
 
 static DBusHandlerResult
@@ -365,11 +469,11 @@ listener_set_active (GSListener     *listener,
 
         reply = dbus_message_new_method_return (message);
 
-        dbus_message_iter_init_append (reply, &iter);
-
         if (reply == NULL) {
                 g_error ("No memory");
         }
+
+        dbus_message_iter_init_append (reply, &iter);
 
         dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &v);
 
@@ -522,6 +626,97 @@ listener_get_idle_time (GSListener     *listener,
 }
 
 static DBusHandlerResult
+listener_inhibit (GSListener     *listener,
+                  DBusConnection *connection,
+                  DBusMessage    *message)
+{
+        const char     *path;
+        int             type;
+        DBusMessageIter iter;
+        DBusMessage    *reply;
+        dbus_uint32_t   cookie;
+        const char     *application;
+        const char     *reason;
+
+        path = dbus_message_get_path (message);
+
+        dbus_message_iter_init (message, &iter);
+        type = dbus_message_iter_get_arg_type (&iter);
+
+        if (type != DBUS_TYPE_STRING) {
+                gs_debug ("Unsupported property type %d", type);
+                raise_property_type_error (connection, message, path);
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+
+        dbus_message_iter_get_basic (&iter, &application);
+
+        dbus_message_iter_next (&iter);
+        type = dbus_message_iter_get_arg_type (&iter);
+
+        if (type != DBUS_TYPE_STRING) {
+                gs_debug ("Unsupported property type %d", type);
+                raise_property_type_error (connection, message, path);
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+
+        dbus_message_iter_get_basic (&iter, &reason);
+
+        gs_debug ("Inhibit requested: %s '%s'", application, type);
+
+        cookie = g_listener_add_inhibit (listener);
+
+        reply = dbus_message_new_method_return (message);
+
+        dbus_message_iter_init_append (reply, &iter);
+
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        gs_debug ("Returning inhibit cookie %u", cookie);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &cookie);
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
+listener_uninhibit (GSListener     *listener,
+                    DBusConnection *connection,
+                    DBusMessage    *message)
+{
+        const char     *path;
+        int             type;
+        DBusMessageIter iter;
+        dbus_uint32_t   cookie = 0;
+
+        path = dbus_message_get_path (message);
+
+        dbus_message_iter_init (message, &iter);
+        type = dbus_message_iter_get_arg_type (&iter);
+
+        if (type != DBUS_TYPE_UINT32) {
+                gs_debug ("Unsupported property type %d", type);
+                raise_property_type_error (connection, message, path);
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+
+        dbus_message_iter_get_basic (&iter, &cookie);
+
+        gs_debug ("Uninhibit requested: %u'", cookie);
+
+        g_listener_remove_inhibit (listener, cookie);
+
+        return send_success_reply (connection, message);
+}
+
+static DBusHandlerResult
 do_introspect (DBusConnection *connection,
                DBusMessage    *message,
                dbus_bool_t     local_interface)
@@ -560,6 +755,14 @@ do_introspect (DBusConnection *connection,
                                "      <arg direction=\"out\" type=\"b\"/>\n"
                                "      <arg name=\"e\" direction=\"in\" type=\"b\"/>\n"
                                "    </method>\n"
+                               "    <method name=\"Inhibit\">\n"
+                               "      <arg direction=\"out\" type=\"u\"/>\n"
+                               "      <arg name=\"application_name\" direction=\"in\" type=\"s\"/>\n"
+                               "      <arg name=\"reason_for_inhibit\" direction=\"in\" type=\"s\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"UnInhibit\">\n"
+                               "      <arg name=\"cookie\" direction=\"in\" type=\"u\"/>\n"
+                               "    </method>\n"
                                "    <signal name=\"ActiveChanged\">\n"
                                "      <arg type=\"b\"/>\n"
                                "    </signal>\n"
@@ -576,30 +779,6 @@ do_introspect (DBusConnection *connection,
 
         g_free (xml_string);
 
-        if (reply == NULL) {
-                g_error ("No memory");
-        }
-
-        if (! dbus_connection_send (connection, reply, NULL)) {
-                g_error ("No memory");
-        }
-
-        dbus_message_unref (reply);
-
-        return DBUS_HANDLER_RESULT_HANDLED;
-}
-
-static DBusHandlerResult
-send_success_reply (DBusConnection  *connection,
-                    DBusMessage     *message)
-{
-        DBusMessage *reply;
-
-        if (dbus_message_get_no_reply (message)) {
-                return DBUS_HANDLER_RESULT_HANDLED;
-        }
-
-        reply = dbus_message_new_method_return (message);
         if (reply == NULL) {
                 g_error ("No memory");
         }
@@ -651,6 +830,12 @@ listener_dbus_handle_session_message (DBusConnection *connection,
         if (dbus_message_is_method_call (message, GS_SERVICE, "SimulateUserActivity")) {
                 g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
                 return send_success_reply (connection, message);
+        }
+        if (dbus_message_is_method_call (message, GS_SERVICE, "Inhibit")) {
+                return listener_inhibit (listener, connection, message);
+        }
+        if (dbus_message_is_method_call (message, GS_SERVICE, "UnInhibit")) {
+                return listener_uninhibit (listener, connection, message);
         }
         if (dbus_message_is_method_call (message, "org.freedesktop.DBus.Introspectable", "Introspect")) {
                 return do_introspect (connection, message, local_interface);
@@ -1651,6 +1836,8 @@ gs_listener_init (GSListener *listener)
 
         init_session_id (listener);
         init_seat_path (listener);
+
+        listener->priv->inhibit_list = g_sequence_new (g_free);
 }
 
 static void
