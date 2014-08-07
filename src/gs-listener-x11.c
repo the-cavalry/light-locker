@@ -39,6 +39,10 @@
 #include <X11/extensions/scrnsaver.h>
 #endif
 
+#ifdef HAVE_DPMS_EXTENSION
+#include <X11/extensions/dpms.h>
+#endif
+
 #include "gs-listener-x11.h"
 #include "gs-marshal.h"
 #include "gs-debug.h"
@@ -200,7 +204,18 @@ gboolean
 gs_listener_x11_force_blanking (GSListenerX11 *listener,
                                 gboolean       active)
 {
-        /* TODO */
+        GdkDisplay *display;
+
+        display = gdk_display_get_default ();
+
+	if (active) {
+		XActivateScreenSaver (GDK_DISPLAY_XDISPLAY (display));
+	} else {
+		XResetScreenSaver (GDK_DISPLAY_XDISPLAY (display));
+#ifdef HAVE_DPMS_EXTENSION
+		DPMSForceLevel (GDK_DISPLAY_XDISPLAY (display), DPMSModeOff);
+#endif
+	}
         return FALSE;
 }
 
