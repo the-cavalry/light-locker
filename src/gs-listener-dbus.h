@@ -55,6 +55,11 @@ typedef struct
         void            (* simulate_user_activity)   (GSListener *listener);
         gboolean        (* blanking)                 (GSListener *listener,
                                                       gboolean    active);
+        void            (* inhibit)                  (GSListener *listener,
+                                                      gboolean    active);
+        gboolean        (* is_blanked)               (GSListener *listener);
+        gulong          (* blanked_time)             (GSListener *listener);
+        gulong          (* idle_time)                (GSListener *listener);
 
 } GSListenerClass;
 

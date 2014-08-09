@@ -98,6 +98,10 @@ enum {
         RESUME,
         SIMULATE_USER_ACTIVITY,
         BLANKING,
+        INHIBIT,
+        IS_BLANKED,
+        BLANKED_TIME,
+        IDLE_TIME,
         LAST_SIGNAL
 };
 
@@ -335,22 +339,9 @@ g_listener_add_inhibit (GSListener *listener)
 
         *cookie = ++listener->priv->inhibit_last_cookie;
 
-#ifdef HAVE_MIT_SAVER_EXTENSION
         if (g_sequence_get_length (listener->priv->inhibit_list) == 0) {
-                GdkDisplay *display;
-
-                display = gdk_display_get_default ();
-
-                gdk_error_trap_push ();
-                XScreenSaverSuspend (GDK_DISPLAY_XDISPLAY (display), TRUE);
-
-#if GTK_CHECK_VERSION(3, 0, 0)
-                gdk_error_trap_pop_ignored ();
-#else
-                gdk_error_trap_pop ();
-#endif
+                g_signal_emit (listener, signals [INHIBIT], 0, TRUE);
         }
-#endif
 
         g_sequence_insert_sorted (listener->priv->inhibit_list, cookie, compare_cookie, NULL);
 
@@ -371,22 +362,9 @@ g_listener_remove_inhibit (GSListener *listener,
 
         g_sequence_remove (iter);
 
-#ifdef HAVE_MIT_SAVER_EXTENSION
         if (g_sequence_get_length (listener->priv->inhibit_list) == 0) {
-                GdkDisplay *display;
-
-                display = gdk_display_get_default ();
-
-                gdk_error_trap_push ();
-                XScreenSaverSuspend (GDK_DISPLAY_XDISPLAY (display), FALSE);
-
-#if GTK_CHECK_VERSION(3, 0, 0)
-                gdk_error_trap_pop_ignored ();
-#else
-                gdk_error_trap_pop ();
-#endif
+                g_signal_emit (listener, signals [INHIBIT], 0, FALSE);
         }
-#endif
 }
 
 static void
@@ -487,134 +465,48 @@ listener_set_active (GSListener     *listener,
 }
 
 static DBusHandlerResult
-listener_get_property (GSListener     *listener,
-                       DBusConnection *connection,
-                       DBusMessage    *message,
-                       guint           prop_id)
+listener_get_info (GSListener     *listener,
+                   DBusConnection *connection,
+                   DBusMessage    *message,
+                   int signal)
 {
         DBusMessageIter iter;
         DBusMessage    *reply;
 
         reply = dbus_message_new_method_return (message);
 
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
         dbus_message_iter_init_append (reply, &iter);
 
-        if (reply == NULL)
-                g_error ("No memory");
-
-        switch (prop_id) {
-        case PROP_ACTIVE:
+        switch (signal) {
+        case IS_BLANKED:
                 {
                         dbus_bool_t b;
-                        b = listener->priv->active;
+                        gboolean    res;
+                        g_signal_emit (listener, signals [signal], 0, &res);
+                        b = res;
                         dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &b);
+                        break;
                 }
-                break;
+
+        case BLANKED_TIME:
+        case IDLE_TIME:
+                {
+                        dbus_uint32_t v;
+                        gulong        res;
+                        g_signal_emit (listener, signals [signal], 0, &res);
+                        v = res;
+                        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &v);
+                        break;
+                }
+
         default:
-                gs_debug ("Unsupported property id %u", prop_id);
+                gs_debug ("Unsupported signal id %d", signal);
                 break;
         }
-
-        if (! dbus_connection_send (connection, reply, NULL)) {
-                g_error ("No memory");
-        }
-
-        dbus_message_unref (reply);
-
-        return DBUS_HANDLER_RESULT_HANDLED;
-}
-
-static DBusHandlerResult
-listener_get_active_time (GSListener     *listener,
-                          DBusConnection *connection,
-                          DBusMessage    *message)
-{
-        DBusMessageIter iter;
-        DBusMessage    *reply;
-        dbus_uint32_t    secs;
-
-        reply = dbus_message_new_method_return (message);
-
-        dbus_message_iter_init_append (reply, &iter);
-
-        if (reply == NULL) {
-                g_error ("No memory");
-        }
-
-        if (listener->priv->active) {
-                time_t now = time (NULL);
-
-                if (now < listener->priv->active_start) {
-                        /* shouldn't happen */
-                        gs_debug ("Active start time is in the future");
-                        secs = 0;
-                } else if (listener->priv->active_start <= 0) {
-                        /* shouldn't happen */
-                        gs_debug ("Active start time was not set");
-                        secs = 0;
-                } else {
-                        secs = now - listener->priv->active_start;
-                }
-        } else {
-                secs = 0;
-        }
-
-        gs_debug ("Returning screensaver active for %u seconds", secs);
-        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &secs);
-
-        if (! dbus_connection_send (connection, reply, NULL)) {
-                g_error ("No memory");
-        }
-
-        dbus_message_unref (reply);
-
-        return DBUS_HANDLER_RESULT_HANDLED;
-}
-
-static DBusHandlerResult
-listener_get_idle_time (GSListener     *listener,
-                        DBusConnection *connection,
-                        DBusMessage    *message)
-{
-#ifdef HAVE_MIT_SAVER_EXTENSION
-        GdkDisplay *display;
-        GdkScreen *screen;
-        GdkWindow *window;
-	XScreenSaverInfo scrnsaver_info;
-#endif
-        DBusMessageIter iter;
-        DBusMessage    *reply;
-        dbus_uint32_t    secs = 0;
-
-        reply = dbus_message_new_method_return (message);
-
-        dbus_message_iter_init_append (reply, &iter);
-
-        if (reply == NULL) {
-                g_error ("No memory");
-        }
-
-#ifdef HAVE_MIT_SAVER_EXTENSION
-        display = gdk_display_get_default ();
-        screen = gdk_display_get_default_screen (display);
-        window = gdk_screen_get_root_window (screen);
-
-        gdk_error_trap_push ();
-        if (XScreenSaverQueryInfo (GDK_DISPLAY_XDISPLAY (display), GDK_WINDOW_XID (window), &scrnsaver_info)) {
-                secs = scrnsaver_info.idle / 1000;
-        } else {
-                gs_debug ("ScreenSaverExtension not found");
-        }
-
-#if GTK_CHECK_VERSION(3, 0, 0)
-        gdk_error_trap_pop_ignored ();
-#else
-        gdk_error_trap_pop ();
-#endif
-#endif
-
-        gs_debug ("Returning session idle for %u seconds", secs);
-        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &secs);
 
         if (! dbus_connection_send (connection, reply, NULL)) {
                 g_error ("No memory");
@@ -819,13 +711,13 @@ listener_dbus_handle_session_message (DBusConnection *connection,
                 return listener_set_active (listener, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_SERVICE, "GetActive")) {
-                return listener_get_property (listener, connection, message, PROP_ACTIVE);
+                return listener_get_info (listener, connection, message, IS_BLANKED);
         }
         if (dbus_message_is_method_call (message, GS_SERVICE, "GetActiveTime")) {
-                return listener_get_active_time (listener, connection, message);
+                return listener_get_info (listener, connection, message, BLANKED_TIME);
         }
         if (dbus_message_is_method_call (message, GS_SERVICE, "GetSessionIdleTime")) {
-                return listener_get_idle_time (listener, connection, message);
+                return listener_get_info (listener, connection, message, IDLE_TIME);
         }
         if (dbus_message_is_method_call (message, GS_SERVICE, "SimulateUserActivity")) {
                 g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
@@ -1422,6 +1314,47 @@ gs_listener_class_init (GSListenerClass *klass)
                               G_TYPE_BOOLEAN,
                               1,
                               G_TYPE_BOOLEAN);
+        signals [INHIBIT] =
+                g_signal_new ("inhibit",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, inhibit),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__BOOLEAN,
+                              G_TYPE_NONE,
+                              1,
+                              G_TYPE_BOOLEAN);
+        signals [IS_BLANKED] =
+                g_signal_new ("is-blanked",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, is_blanked),
+                              NULL,
+                              NULL,
+                              gs_marshal_BOOLEAN__VOID,
+                              G_TYPE_BOOLEAN,
+                              0);
+        signals [BLANKED_TIME] =
+                g_signal_new ("blanked-time",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, blanked_time),
+                              NULL,
+                              NULL,
+                              gs_marshal_ULONG__VOID,
+                              G_TYPE_ULONG,
+                              0);
+        signals [IDLE_TIME] =
+                g_signal_new ("idle-time",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, idle_time),
+                              NULL,
+                              NULL,
+                              gs_marshal_ULONG__VOID,
+                              G_TYPE_ULONG,
+                              0);
 
         g_object_class_install_property (object_class,
                                          PROP_ACTIVE,

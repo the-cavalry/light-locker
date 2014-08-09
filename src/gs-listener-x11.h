@@ -55,6 +55,9 @@ gboolean       gs_listener_x11_acquire           (GSListenerX11 *listener);
 void           gs_listener_x11_simulate_activity (GSListenerX11 *listener);
 gboolean       gs_listener_x11_force_blanking    (GSListenerX11 *listener,
                                                   gboolean       active);
+void           gs_listener_x11_inhibit           (GSListenerX11 *listener,
+                                                  gboolean       active);
+gulong         gs_listener_x11_idle_time         (GSListenerX11 *listener);
 
 G_END_DECLS
 
