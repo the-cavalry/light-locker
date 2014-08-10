@@ -554,7 +554,7 @@ listener_inhibit (GSListener     *listener,
 
         dbus_message_iter_get_basic (&iter, &reason);
 
-        gs_debug ("Inhibit requested: %s '%s'", application, type);
+        gs_debug ("Inhibit requested: %s '%s'", application, reason);
 
         cookie = g_listener_add_inhibit (listener);
 
@@ -601,7 +601,7 @@ listener_uninhibit (GSListener     *listener,
 
         dbus_message_iter_get_basic (&iter, &cookie);
 
-        gs_debug ("Uninhibit requested: %u'", cookie);
+        gs_debug ("Uninhibit requested: %u", cookie);
 
         g_listener_remove_inhibit (listener, cookie);
 
