@@ -36,9 +36,14 @@ static gboolean do_lock       = FALSE;
 static gboolean do_activate   = FALSE;
 static gboolean do_deactivate = FALSE;
 static gboolean do_version    = FALSE;
+static gboolean do_poke       = FALSE;
+static gboolean do_inhibit    = FALSE;
 
 static gboolean do_query      = FALSE;
 static gboolean do_time       = FALSE;
+
+static char    *inhibit_reason      = NULL;
+static char    *inhibit_application = NULL;
 
 static GOptionEntry entries [] = {
         { "query", 'q', 0, G_OPTION_ARG_NONE, &do_query,
@@ -51,12 +56,67 @@ static GOptionEntry entries [] = {
           N_("Turn the screensaver on (blank the screen)"), NULL },
         { "deactivate", 'd', 0, G_OPTION_ARG_NONE, &do_deactivate,
           N_("If the screensaver is active then deactivate it (un-blank the screen)"), NULL },
+        { "poke", 'p', 0, G_OPTION_ARG_NONE, &do_poke,
+          N_("Poke the running locker to simulate user activity"), NULL },
+        { "inhibit", 'i', 0, G_OPTION_ARG_NONE, &do_inhibit,
+          N_("Inhibit the screensaver from activating.  Command blocks while inhibit is active."), NULL },
+        { "application-name", 'n', 0, G_OPTION_ARG_STRING, &inhibit_application,
+          N_("The calling application that is inhibiting the screensaver"), NULL },
+        { "reason", 'r', 0, G_OPTION_ARG_STRING, &inhibit_reason,
+          N_("The reason for inhibiting the screensaver"), NULL },
         { "version", 'V', 0, G_OPTION_ARG_NONE, &do_version,
           N_("Version of this application"), NULL },
         { NULL }
 };
 
 static GMainLoop *loop = NULL;
+
+static GDBusMessage *
+screensaver_send_message_inhibit (GDBusConnection *connection,
+                                  const char      *application,
+                                  const char      *reason)
+{
+        GDBusMessage *message, *reply;
+        GError       *error;
+
+        g_return_val_if_fail (connection != NULL, NULL);
+        g_return_val_if_fail (application != NULL, NULL);
+        g_return_val_if_fail (reason != NULL, NULL);
+
+        message = g_dbus_message_new_method_call (GS_SERVICE,
+                                                  GS_PATH,
+                                                  GS_INTERFACE,
+                                                  "Inhibit");
+        if (message == NULL) {
+                g_warning ("Couldn't allocate the dbus message");
+                return NULL;
+        }
+
+        g_dbus_message_set_body (message, g_variant_new ("(ss)", application, reason));
+
+        error = NULL;
+        reply = g_dbus_connection_send_message_with_reply_sync (connection,
+                                                                message,
+                                                                G_DBUS_SEND_MESSAGE_FLAGS_NONE,
+                                                                -1,
+                                                                NULL,
+                                                                NULL,
+                                                                &error);
+        if (error != NULL) {
+                g_warning ("unable to send message: %s", error->message);
+                g_clear_error (&error);
+        }
+
+        g_dbus_connection_flush_sync (connection, NULL, &error);
+        if (error != NULL) {
+                g_warning ("unable to flush message queue: %s", error->message);
+                g_clear_error (&error);
+        }
+
+        g_object_unref (message);
+
+        return reply;
+}
 
 static GDBusMessage *
 screensaver_send_message_bool (GDBusConnection *connection,
@@ -268,21 +328,67 @@ do_command (GDBusConnection *connection)
         }
 
         if (do_activate) {
+                GVariant     *body;
+                gboolean      v;
+
                 reply = screensaver_send_message_bool (connection, "SetActive", TRUE);
                 if (reply == NULL) {
                         g_message ("Did not receive a reply from the locker.");
                         goto done;
                 }
+                body = g_dbus_message_get_body (reply);
+                g_variant_get (body, "(b)", &v);
                 g_object_unref (reply);
+
+                if (!v)  {
+                        g_message ("The screensaver failed to activate.");
+                        goto done;
+                }
         }
 
         if (do_deactivate) {
+                GVariant     *body;
+                gboolean      v;
+
                 reply = screensaver_send_message_bool (connection, "SetActive", FALSE);
                 if (reply == NULL) {
                         g_message ("Did not receive a reply from the locker.");
                         goto done;
                 }
+                body = g_dbus_message_get_body (reply);
+                g_variant_get (body, "(b)", &v);
                 g_object_unref (reply);
+
+                if (!v)  {
+                        g_message ("The screensaver failed to deactivate.");
+                        goto done;
+                }
+        }
+
+        if (do_poke) {
+                reply = screensaver_send_message_void (connection, "SimulateUserActivity", FALSE);
+                g_assert (reply == NULL);
+        }
+
+        if (do_inhibit) {
+                GVariant *body;
+                gint32    c;
+
+                reply = screensaver_send_message_inhibit (connection,
+                                                          inhibit_application ? inhibit_application : "Unknown",
+                                                          inhibit_reason ? inhibit_reason : "Unknown");
+                if (! reply) {
+                        g_message ("Did not receive a reply from the locker.");
+                        goto done;
+                }
+
+                body = g_dbus_message_get_body (reply);
+                g_variant_get (body, "(u)", &c);
+                g_object_unref (reply);
+
+                g_print (_("The screensaver has been inhibited with cookie %d\n"), c);
+
+                return FALSE;
         }
 
  done:
