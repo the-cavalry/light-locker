@@ -50,8 +50,6 @@ struct GSMonitorPrivate
         GSListenerX11  *listener_x11;
         GSManager      *manager;
 
-        gint64          blank_start;
-
         guint           late_locking : 1;
         guint           lock_on_suspend : 1;
         guint           perform_lock : 1;
@@ -264,39 +262,6 @@ listener_inhibit_cb (GSListener *listener,
         gs_listener_x11_inhibit (monitor->priv->listener_x11, active);
 }
 
-static gboolean
-listener_is_blanked_cb (GSListener *listener,
-                        GSMonitor  *monitor)
-{
-        /* As long as we are locked, we tell that the screensaver is active */
-        if (gs_manager_get_active (monitor->priv->manager))
-                return TRUE;
-
-        return gs_manager_get_blank_screen (monitor->priv->manager);
-}
-
-static gulong
-listener_blanked_time_cb (GSListener *listener,
-                          GSMonitor  *monitor)
-{
-        gulong secs = 0;
-
-        /* The time is only valid if we are blanked */
-        if (listener_is_blanked_cb (listener, monitor))
-        {
-                gint64 now = g_get_real_time ();
-                if (G_UNLIKELY (now < monitor->priv->blank_start)) {
-                        gs_debug ("Blank start time is in the future");
-                } else if (G_UNLIKELY (monitor->priv->blank_start <= 0)) {
-                        gs_debug ("Blank start time was not set");
-                } else {
-                        secs = (now - monitor->priv->blank_start) / 1000000;
-                }
-        }
-
-        return secs;
-}
-
 static gulong
 listener_idle_time_cb (GSListener *listener,
                        GSMonitor  *monitor)
@@ -311,9 +276,7 @@ listener_x11_blanking_changed_cb (GSListenerX11 *listener,
 {
         gs_debug ("Blanking changed: %d", active);
         gs_manager_set_blank_screen (monitor->priv->manager, active);
-
-        if (active)
-                monitor->priv->blank_start = g_get_real_time ();
+        gs_listener_set_blanked (monitor->priv->listener, active);
 
         if (!active && monitor->priv->perform_lock && gs_manager_get_session_visible (monitor->priv->manager)) {
                 gs_listener_send_lock_session (monitor->priv->listener);
@@ -333,8 +296,6 @@ disconnect_listener_signals (GSMonitor *monitor)
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_simulate_user_activity_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_blanking_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_inhibit_cb, monitor);
-        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_is_blanked_cb, monitor);
-        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_blanked_time_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_idle_time_cb, monitor);
 
         g_signal_handlers_disconnect_by_func (monitor->priv->listener_x11, listener_x11_blanking_changed_cb, monitor);
@@ -361,10 +322,6 @@ connect_listener_signals (GSMonitor *monitor)
                           G_CALLBACK (listener_blanking_cb), monitor);
         g_signal_connect (monitor->priv->listener, "inhibit",
                           G_CALLBACK (listener_inhibit_cb), monitor);
-        g_signal_connect (monitor->priv->listener, "is-blanked",
-                          G_CALLBACK (listener_is_blanked_cb), monitor);
-        g_signal_connect (monitor->priv->listener, "blanked-time",
-                          G_CALLBACK (listener_blanked_time_cb), monitor);
         g_signal_connect (monitor->priv->listener, "idle-time",
                           G_CALLBACK (listener_idle_time_cb), monitor);
 

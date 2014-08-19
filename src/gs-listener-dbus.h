@@ -77,6 +77,8 @@ GType       gs_listener_get_type                (void);
 GSListener *gs_listener_new                     (void);
 gboolean    gs_listener_acquire                 (GSListener *listener,
                                                  GError    **error);
+void        gs_listener_set_blanked             (GSListener *listener,
+                                                 gboolean    active);
 gboolean    gs_listener_set_active              (GSListener *listener,
                                                  gboolean    active);
 void        gs_listener_send_switch_greeter     (GSListener *listener);

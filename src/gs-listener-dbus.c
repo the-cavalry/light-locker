@@ -76,7 +76,8 @@ struct GSListenerPrivate
         DBusConnection *system_connection;
 
         guint           active : 1;
-        time_t          active_start;
+        guint           blanked : 1;
+        time_t          blanked_start;
         char           *session_id;
         char           *seat_path;
 
@@ -99,8 +100,6 @@ enum {
         SIMULATE_USER_ACTIVITY,
         BLANKING,
         INHIBIT,
-        IS_BLANKED,
-        BLANKED_TIME,
         IDLE_TIME,
         LAST_SIGNAL
 };
@@ -261,31 +260,30 @@ send_dbus_boolean_signal (GSListener *listener,
 }
 
 static void
-gs_listener_send_signal_active_changed (GSListener *listener)
+gs_listener_send_signal_active_changed (GSListener *listener,
+                                        gboolean    active)
 {
         g_return_if_fail (listener != NULL);
 
         gs_debug ("Sending the ActiveChanged(%s) signal on the session bus",
-                  listener->priv->active ? "TRUE" : "FALSE");
+                  active ? "TRUE" : "FALSE");
 
-        send_dbus_boolean_signal (listener, "ActiveChanged", listener->priv->active);
+        send_dbus_boolean_signal (listener, "ActiveChanged", active);
 }
 
-static gboolean
-listener_set_active_internal (GSListener *listener,
-                              gboolean    active)
+void
+gs_listener_set_blanked (GSListener *listener,
+                         gboolean    active)
 {
-        listener->priv->active = active;
+        listener->priv->blanked = active;
 
         if (active) {
-                listener->priv->active_start = time (NULL);
+                listener->priv->blanked_start = time (NULL);
         } else {
-                listener->priv->active_start = 0;
+                listener->priv->blanked_start = 0;
         }
 
-        gs_listener_send_signal_active_changed (listener);
-
-        return TRUE;
+        gs_listener_send_signal_active_changed (listener, active);
 }
 
 gboolean
@@ -311,7 +309,7 @@ gs_listener_set_active (GSListener *listener,
                 return FALSE;
         }
 
-        listener_set_active_internal (listener, active);
+        listener->priv->active = active;
 
         return TRUE;
 }
@@ -465,10 +463,76 @@ listener_set_active (GSListener     *listener,
 }
 
 static DBusHandlerResult
+listener_get_bool (GSListener     *listener,
+                   DBusConnection *connection,
+                   DBusMessage    *message,
+                   dbus_bool_t     v)
+{
+        DBusMessageIter iter;
+        DBusMessage    *reply;
+
+        reply = dbus_message_new_method_return (message);
+
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        dbus_message_iter_init_append (reply, &iter);
+
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &v);
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
+listener_get_time (GSListener     *listener,
+                   DBusConnection *connection,
+                   DBusMessage    *message,
+                   time_t          t)
+{
+        DBusMessageIter iter;
+        DBusMessage    *reply;
+        dbus_uint32_t   secs = 0;
+        time_t          now;
+
+        reply = dbus_message_new_method_return (message);
+
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        dbus_message_iter_init_append (reply, &iter);
+
+        now = time (NULL);
+        if (G_UNLIKELY (now < t)) {
+                gs_debug ("Time is in the future");
+        } else if (G_UNLIKELY (t<= 0)) {
+                //gs_debug ("Time was not set");
+        } else {
+                secs = now - t;
+        }
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &secs);
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
 listener_get_info (GSListener     *listener,
                    DBusConnection *connection,
                    DBusMessage    *message,
-                   int signal)
+                   int             signal)
 {
         DBusMessageIter iter;
         DBusMessage    *reply;
@@ -482,17 +546,6 @@ listener_get_info (GSListener     *listener,
         dbus_message_iter_init_append (reply, &iter);
 
         switch (signal) {
-        case IS_BLANKED:
-                {
-                        dbus_bool_t b;
-                        gboolean    res;
-                        g_signal_emit (listener, signals [signal], 0, &res);
-                        b = res;
-                        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &b);
-                        break;
-                }
-
-        case BLANKED_TIME:
         case IDLE_TIME:
                 {
                         dbus_uint32_t v;
@@ -711,10 +764,10 @@ listener_dbus_handle_session_message (DBusConnection *connection,
                 return listener_set_active (listener, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_SERVICE, "GetActive")) {
-                return listener_get_info (listener, connection, message, IS_BLANKED);
+                return listener_get_bool (listener, connection, message, listener->priv->blanked);
         }
         if (dbus_message_is_method_call (message, GS_SERVICE, "GetActiveTime")) {
-                return listener_get_info (listener, connection, message, BLANKED_TIME);
+                return listener_get_time (listener, connection, message, listener->priv->blanked_start);
         }
         if (dbus_message_is_method_call (message, GS_SERVICE, "GetSessionIdleTime")) {
                 return listener_get_info (listener, connection, message, IDLE_TIME);
@@ -1325,26 +1378,6 @@ gs_listener_class_init (GSListenerClass *klass)
                               G_TYPE_NONE,
                               1,
                               G_TYPE_BOOLEAN);
-        signals [IS_BLANKED] =
-                g_signal_new ("is-blanked",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, is_blanked),
-                              NULL,
-                              NULL,
-                              gs_marshal_BOOLEAN__VOID,
-                              G_TYPE_BOOLEAN,
-                              0);
-        signals [BLANKED_TIME] =
-                g_signal_new ("blanked-time",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, blanked_time),
-                              NULL,
-                              NULL,
-                              gs_marshal_ULONG__VOID,
-                              G_TYPE_ULONG,
-                              0);
         signals [IDLE_TIME] =
                 g_signal_new ("idle-time",
                               G_TYPE_FROM_CLASS (object_class),
