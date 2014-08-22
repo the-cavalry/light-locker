@@ -87,7 +87,7 @@ struct GSListenerPrivate
 #endif
 
         dbus_uint32_t   inhibit_last_cookie;
-        GSequence      *inhibit_list;
+        GHashTable     *inhibit_list;
 };
 
 enum {
@@ -314,19 +314,9 @@ gs_listener_set_active (GSListener *listener,
         return TRUE;
 }
 
-static gint
-compare_cookie (gconstpointer a,
-                gconstpointer b,
-                gpointer      user_data)
-{
-        const dbus_uint32_t *ca = a;
-        const dbus_uint32_t *cb = b;
-
-        return *ca - *cb;
-}
-
 static dbus_uint32_t
-g_listener_add_inhibit (GSListener *listener)
+gs_listener_add_inhibit (GSListener *listener,
+                         const char *owner)
 {
         dbus_uint32_t *cookie;
 
@@ -337,30 +327,61 @@ g_listener_add_inhibit (GSListener *listener)
 
         *cookie = ++listener->priv->inhibit_last_cookie;
 
-        if (g_sequence_get_length (listener->priv->inhibit_list) == 0) {
+        if (g_hash_table_size (listener->priv->inhibit_list) == 0) {
                 g_signal_emit (listener, signals [INHIBIT], 0, TRUE);
         }
 
-        g_sequence_insert_sorted (listener->priv->inhibit_list, cookie, compare_cookie, NULL);
+        g_hash_table_insert (listener->priv->inhibit_list, cookie, g_strdup (owner));
 
         return *cookie;
 }
 
 static void
-g_listener_remove_inhibit (GSListener *listener,
-                           dbus_uint32_t cookie)
+gs_listener_remove_inhibit (GSListener    *listener,
+                            dbus_uint32_t  cookie,
+                            const char    *owner)
 {
-        GSequenceIter *iter;
+        gpointer *owned;
 
-        iter = g_sequence_lookup (listener->priv->inhibit_list, &cookie, compare_cookie, NULL);
+        owned = g_hash_table_lookup (listener->priv->inhibit_list, &cookie);
 
-        if (iter == NULL) {
+        if (owned == NULL) {
                 return;
         }
 
-        g_sequence_remove (iter);
+        if (strcmp (owner, owned) == 0) {
+                return;
+        }
 
-        if (g_sequence_get_length (listener->priv->inhibit_list) == 0) {
+        g_hash_table_remove (listener->priv->inhibit_list, &cookie);
+
+        if (g_hash_table_size (listener->priv->inhibit_list) == 0) {
+                g_signal_emit (listener, signals [INHIBIT], 0, FALSE);
+        }
+}
+
+static gboolean
+compare_owner (gpointer key,
+               gpointer value,
+               gpointer user_data)
+{
+        const gchar *oa = value;
+        const char *ob = user_data;
+
+        return strcmp (oa, ob) == 0;;
+}
+
+static void
+gs_listener_disonnect_inhibit (GSListener  *listener,
+                               const char  *owner)
+{
+        guint count;
+
+        count = g_hash_table_foreach_remove (listener->priv->inhibit_list, compare_owner, (gpointer)owner);
+
+        gs_debug ("Inhibitor disconnected: %s (%u)", owner, count);
+
+        if (count > 0 && g_hash_table_size (listener->priv->inhibit_list) == 0) {
                 g_signal_emit (listener, signals [INHIBIT], 0, FALSE);
         }
 }
@@ -609,7 +630,7 @@ listener_inhibit (GSListener     *listener,
 
         gs_debug ("Inhibit requested: %s '%s'", application, reason);
 
-        cookie = g_listener_add_inhibit (listener);
+        cookie = gs_listener_add_inhibit (listener, dbus_message_get_sender (message));
 
         reply = dbus_message_new_method_return (message);
 
@@ -656,7 +677,7 @@ listener_uninhibit (GSListener     *listener,
 
         gs_debug ("Uninhibit requested: %u", cookie);
 
-        g_listener_remove_inhibit (listener, cookie);
+        gs_listener_remove_inhibit (listener, cookie, dbus_message_get_sender (message));
 
         return send_success_reply (connection, message);
 }
@@ -738,14 +759,12 @@ do_introspect (DBusConnection *connection,
 }
 
 static DBusHandlerResult
-listener_dbus_handle_session_message (DBusConnection *connection,
+listener_dbus_handle_session_message (GSListener     *listener,
+                                      DBusConnection *connection,
                                       DBusMessage    *message,
-                                      void           *user_data,
                                       dbus_bool_t     local_interface)
 {
-        GSListener *listener = GS_LISTENER (user_data);
-
-#if 1
+#if 0
         g_message ("obj_path=%s interface=%s method=%s destination=%s",
                    dbus_message_get_path (message),
                    dbus_message_get_interface (message),
@@ -787,6 +806,29 @@ listener_dbus_handle_session_message (DBusConnection *connection,
         }
 
         return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+}
+
+static void
+listener_dbus_handle_owner_changed (GSListener     *listener,
+                                    DBusConnection *connection,
+                                    DBusMessage    *message)
+{
+        DBusMessageIter  iter;
+        int              type;
+        const char      *old_owner;
+
+        dbus_message_iter_init (message, &iter);
+        dbus_message_iter_next (&iter);
+        type = dbus_message_iter_get_arg_type (&iter);
+
+        if (type != DBUS_TYPE_STRING) {
+                gs_debug ("Invalid NameOwnerChanged message");
+                return;
+        }
+
+        dbus_message_iter_get_basic (&iter, &old_owner);
+
+        gs_listener_disonnect_inhibit (listener, old_owner);
 }
 
 static gboolean
@@ -1119,7 +1161,7 @@ gs_listener_message_handler (DBusConnection *connection,
 
                 return DBUS_HANDLER_RESULT_HANDLED;
         } else {
-                return listener_dbus_handle_session_message (connection, message, user_data, TRUE);
+                return listener_dbus_handle_session_message (GS_LISTENER (user_data), connection, user_data, TRUE);
         }
 }
 
@@ -1201,8 +1243,13 @@ listener_dbus_filter_function (DBusConnection *connection,
                 listener->priv->connection = NULL;
 
                 g_timeout_add (10000, (GSourceFunc)reinit_dbus, listener);
+        } else if (dbus_message_is_signal (message,
+                                           DBUS_INTERFACE_DBUS,
+                                           "NameOwnerChanged")) {
+                if (g_hash_table_size (listener->priv->inhibit_list) > 0)
+                        listener_dbus_handle_owner_changed (listener, connection, message);
         } else {
-                return listener_dbus_handle_session_message (connection, message, user_data, FALSE);
+                return listener_dbus_handle_session_message (listener, connection, message, FALSE);
         }
 
         return DBUS_HANDLER_RESULT_HANDLED;
@@ -1489,6 +1536,13 @@ gs_listener_acquire (GSListener *listener,
         dbus_error_free (&buserror);
 
         dbus_connection_add_filter (listener->priv->connection, listener_dbus_filter_function, listener, NULL);
+
+        dbus_bus_add_match (listener->priv->connection,
+                            "type='signal'"
+                            ",interface='"DBUS_INTERFACE_DBUS"'"
+                            ",sender='"DBUS_SERVICE_DBUS"'"
+                            ",member='NameOwnerChanged'",
+                            NULL);
 
         if (listener->priv->system_connection != NULL) {
                 dbus_connection_add_filter (listener->priv->system_connection,
@@ -1803,7 +1857,7 @@ gs_listener_init (GSListener *listener)
         init_session_id (listener);
         init_seat_path (listener);
 
-        listener->priv->inhibit_list = g_sequence_new (g_free);
+        listener->priv->inhibit_list = g_hash_table_new_full (g_int_hash, g_int_equal, g_free, g_free);
 }
 
 static void
