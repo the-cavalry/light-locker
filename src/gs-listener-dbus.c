@@ -349,7 +349,7 @@ gs_listener_remove_inhibit (GSListener    *listener,
                 return;
         }
 
-        if (strcmp (owner, owned) == 0) {
+        if (strcmp (owner, owned) != 0) {
                 return;
         }
 

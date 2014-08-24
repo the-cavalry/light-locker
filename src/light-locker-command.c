@@ -29,6 +29,7 @@
 #include <glib.h>
 #include <gio/gio.h>
 #include <glib/gi18n.h>
+#include <glib-unix.h>
 
 #include "gs-bus.h"
 
@@ -38,12 +39,15 @@ static gboolean do_deactivate = FALSE;
 static gboolean do_version    = FALSE;
 static gboolean do_poke       = FALSE;
 static gboolean do_inhibit    = FALSE;
+static gboolean do_uninhibit  = FALSE;
 
 static gboolean do_query      = FALSE;
 static gboolean do_time       = FALSE;
 
 static char    *inhibit_reason      = NULL;
 static char    *inhibit_application = NULL;
+
+static gint32   uninhibit_cookie = 0;
 
 static GOptionEntry entries [] = {
         { "query", 'q', 0, G_OPTION_ARG_NONE, &do_query,
@@ -116,6 +120,46 @@ screensaver_send_message_inhibit (GDBusConnection *connection,
         g_object_unref (message);
 
         return reply;
+}
+
+static void
+screensaver_send_message_uninhibit (GDBusConnection *connection,
+                                    gint32 cookie)
+{
+        GDBusMessage *message;
+        GError       *error;
+
+        g_return_val_if_fail (connection != NULL, NULL);
+
+        message = g_dbus_message_new_method_call (GS_SERVICE,
+                                                  GS_PATH,
+                                                  GS_INTERFACE,
+                                                  "UnInhibit");
+        if (message == NULL) {
+                g_warning ("Couldn't allocate the dbus message");
+                return;
+        }
+
+        g_dbus_message_set_body (message, g_variant_new ("(u)", cookie));
+
+        error = NULL;
+        g_dbus_connection_send_message (connection,
+                                        message,
+                                        G_DBUS_SEND_MESSAGE_FLAGS_NONE,
+                                        NULL,
+                                        &error);
+        if (error != NULL) {
+                g_warning ("unable to send message: %s", error->message);
+                g_clear_error (&error);
+        }
+
+        g_dbus_connection_flush_sync (connection, NULL, &error);
+        if (error != NULL) {
+                g_warning ("unable to flush message queue: %s", error->message);
+                g_clear_error (&error);
+        }
+
+        g_object_unref (message);
 }
 
 static GDBusMessage *
@@ -249,6 +293,13 @@ screensaver_is_running (GDBusConnection *connection)
 }
 
 static gboolean
+handle_term (gpointer user_data)
+{
+        g_main_loop_quit (loop);
+        return FALSE;
+}
+
+static gboolean
 do_command (GDBusConnection *connection)
 {
         GDBusMessage *reply;
@@ -372,7 +423,6 @@ do_command (GDBusConnection *connection)
 
         if (do_inhibit) {
                 GVariant *body;
-                gint32    c;
 
                 reply = screensaver_send_message_inhibit (connection,
                                                           inhibit_application ? inhibit_application : "Unknown",
@@ -383,11 +433,16 @@ do_command (GDBusConnection *connection)
                 }
 
                 body = g_dbus_message_get_body (reply);
-                g_variant_get (body, "(u)", &c);
+                g_variant_get (body, "(u)", &uninhibit_cookie);
                 g_object_unref (reply);
 
-                g_print (_("The screensaver has been inhibited with cookie %d\n"), c);
+                do_uninhibit = TRUE;
 
+                g_print (_("The screensaver has been inhibited with cookie %d\n"), uninhibit_cookie);
+
+                g_unix_signal_add (SIGTERM, handle_term, NULL);
+                g_unix_signal_add (SIGINT, handle_term, NULL);
+                g_unix_signal_add (SIGHUP, handle_term, NULL);
                 return FALSE;
         }
 
@@ -452,6 +507,12 @@ main (int    argc,
 
         loop = g_main_loop_new (NULL, FALSE);
         g_main_loop_run (loop);
+
+        if (do_uninhibit) {
+                screensaver_send_message_uninhibit (connection, uninhibit_cookie);
+
+                g_print (_("Send uninhibit to The screensaver with cookie %d\n"), uninhibit_cookie);
+        }
 
         g_object_unref (connection);
 
