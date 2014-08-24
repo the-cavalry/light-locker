@@ -1161,7 +1161,7 @@ gs_listener_message_handler (DBusConnection *connection,
 
                 return DBUS_HANDLER_RESULT_HANDLED;
         } else {
-                return listener_dbus_handle_session_message (GS_LISTENER (user_data), connection, user_data, TRUE);
+                return listener_dbus_handle_session_message (GS_LISTENER (user_data), connection, message, TRUE);
         }
 }
 
@@ -1249,8 +1249,9 @@ listener_dbus_filter_function (DBusConnection *connection,
                 if (g_hash_table_size (listener->priv->inhibit_list) > 0)
                         listener_dbus_handle_owner_changed (listener, connection, message);
         } else {
-                return listener_dbus_handle_session_message (listener, connection, message, FALSE);
+                return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
         }
+
 
         return DBUS_HANDLER_RESULT_HANDLED;
 }
