@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="light-locker">
+
+  <enum id="apps.light-locker.screensaver_options">
+    <value nick="off" value="1"/>
+    <value nick="activate" value="2"/>
+    <value nick="deactivate" value="3"/>
+  </enum>
+
+  <schema id="apps.light-locker" path="/apps/light-locker/">
+
+    <key name="lock-on-suspend" type="b">
+      <default>false</default>
+      <summary>Lock on Suspend</summary>
+      <description>Lock the screen when the computer is suspended.</description>
+    </key>
+
+    <key name="lock-on-screensaver" enum="apps.light-locker.screensaver_options">
+      <default>"off"</default>
+      <summary>Lock on screensaver event</summary>
+      <description>Lock on screensaver event. "off" disables, "activate" locks
+      when the screensaver is activated, "deactivate" locks when the screensaver
+      is deactivated.</description>
+    </key>
+
+    <key name="lock-after-screensaver" type="i">
+      <range min="0" max="3600" />
+      <default>0</default>
+      <summary>Seconds after screensaver to lock</summary>
+      <description>Lock the screen after the screensaver has been active for
+      this number of seconds.</description>
+    </key>
+
+  </schema>
+</schemalist>
