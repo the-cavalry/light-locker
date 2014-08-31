@@ -35,6 +35,7 @@ Here is a list of the different dependencies and there configuration flags:
   --with-console-kit: This adds the support for ConsoleKit.
   --with-upower: This adds the support for UPower.
   --with-mit-ext: This enables the lock-after-screensaver feature. This options requires the X11 Screen Saver extension development files to be installed.
+  --with-dpms-ext: This adds the support for DPMS. This is used to turn on the display on screen saver deactivation.
 Many of the light-locker features can be disabled/enabled and configured at build time. Here is a list of these configuration flag:
   --enable-late-locking: Enables --late-locking and --no-late-locking. Default enabled with --no-late-locking. This requires mit-ext.
   --enable-lock-on-suspend: Enables --lock-on-suspend and --no-lock-on-suspend. Default enabled with --lock-on-suspend. This requires either systemd or upower.
