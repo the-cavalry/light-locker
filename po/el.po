@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Translators:
 # Ioannis Zampoukas <ioza1964@yahoo.gr>, 2011
 # Jennie Petoumenou <epetoumenou@gmail.com>, 2009
 # Kostas Papadimas <pkst@gnome.org>, 2006,2008
@@ -12,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-18 00:20+0100\n"
-"PO-Revision-Date: 2014-03-17 23:21+0000\n"
+"POT-Creation-Date: 2014-08-31 18:37+0200\n"
+"PO-Revision-Date: 2014-08-31 16:39+0000\n"
 "Last-Translator: Peter de Ridder <peter@xfce.org>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/light-locker/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -22,14 +21,87 @@ msgstr ""
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../src/light-locker-command.c:40
-msgid "Tells the running display manager to lock the screen immediately"
+#: ../src/light-locker-command.c:54
+msgid "Query the state of the locker"
 msgstr ""
 
-#: ../src/light-locker-command.c:42 ../src/light-locker.c:68
+#: ../src/light-locker-command.c:56
+msgid "Query the length of time the locker has been active"
+msgstr ""
+
+#: ../src/light-locker-command.c:58
+msgid "Tells the running locker process to lock the screen immediately"
+msgstr ""
+
+#: ../src/light-locker-command.c:60
+msgid "Turn the screensaver on (blank the screen)"
+msgstr ""
+
+#: ../src/light-locker-command.c:62
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr ""
+
+#: ../src/light-locker-command.c:64
+msgid "Poke the running locker to simulate user activity"
+msgstr ""
+
+#: ../src/light-locker-command.c:66
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr ""
+
+#: ../src/light-locker-command.c:68
+msgid "The calling application that is inhibiting the screensaver"
+msgstr ""
+
+#: ../src/light-locker-command.c:70
+msgid "The reason for inhibiting the screensaver"
+msgstr ""
+
+#: ../src/light-locker-command.c:72 ../src/light-locker.c:68
 #: ../src/preview.c:82
 msgid "Version of this application"
 msgstr "Η έκδοση αυτής της εφαρμογής"
+
+#: ../src/light-locker-command.c:327
+#, c-format
+msgid "The screensaver is active\n"
+msgstr ""
+
+#: ../src/light-locker-command.c:329
+#, c-format
+msgid "The screensaver is inactive\n"
+msgstr ""
+
+#: ../src/light-locker-command.c:359
+#, c-format
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/light-locker-command.c:371
+#, c-format
+msgid "The screensaver is not currently active.\n"
+msgstr ""
+
+#: ../src/light-locker-command.c:372
+#, c-format
+msgid "The session has been idle for %d second.\n"
+msgid_plural "The session has been idle for %d seconds.\n"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/light-locker-command.c:441
+#, c-format
+msgid "The screensaver has been inhibited with cookie %d\n"
+msgstr ""
+
+#: ../src/light-locker-command.c:514
+#, c-format
+msgid "Send uninhibit to The screensaver with cookie %d\n"
+msgstr ""
 
 #: ../src/light-locker.c:69 ../src/preview.c:83
 msgid "Enable debugging code"
@@ -61,6 +133,18 @@ msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
+msgstr ""
+
+#: ../src/gs-listener-dbus.c:1484
+msgid "failed to register with the message bus"
+msgstr ""
+
+#: ../src/gs-listener-dbus.c:1494
+msgid "not connected to the message bus"
+msgstr ""
+
+#: ../src/gs-listener-dbus.c:1503 ../src/gs-listener-dbus.c:1533
+msgid "screensaver already running in this session"
 msgstr ""
 
 #: ../src/gs-content.c:92

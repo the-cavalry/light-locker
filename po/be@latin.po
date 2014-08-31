@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-screensaver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 19:51+0200\n"
+"POT-Creation-Date: 2014-08-31 18:37+0200\n"
 "PO-Revision-Date: 2008-02-17 00:31+0200\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: i18n@mova.org <i18n@mova.org>\n"
@@ -19,26 +19,124 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../src/light-locker-command.c:40
+#: ../src/light-locker-command.c:54
 #, fuzzy
-msgid "Tells the running display manager to lock the screen immediately"
+msgid "Query the state of the locker"
+msgstr "Apisvaje stan źbierahalnika ekranu"
+
+#: ../src/light-locker-command.c:56
+#, fuzzy
+msgid "Query the length of time the locker has been active"
+msgstr "Apisvaje čas aktyŭnaści źbierahalnika ekranu"
+
+#: ../src/light-locker-command.c:58
+#, fuzzy
+msgid "Tells the running locker process to lock the screen immediately"
 msgstr ""
 "Pryvodzić da nieadkładnaha zablakavańnia ekranu pry ŭruchomlenym "
 "źbierahalniku"
 
-#: ../src/light-locker-command.c:42 ../src/light-locker.c:56
-#: ../src/preview.c:70
+#: ../src/light-locker-command.c:60
+msgid "Turn the screensaver on (blank the screen)"
+msgstr "Aktyvizuje źbierahalnik ekranu"
+
+#: ../src/light-locker-command.c:62
+msgid "If the screensaver is active then deactivate it (un-blank the screen)"
+msgstr "Kali źbierahalnik aktyŭny, pieraklučaje ŭ nieaktyŭny stan"
+
+#: ../src/light-locker-command.c:64
+#, fuzzy
+msgid "Poke the running locker to simulate user activity"
+msgstr "Hieneruje padzieju, jakaja symuluje aktyŭnaść karystalnika"
+
+#: ../src/light-locker-command.c:66
+msgid ""
+"Inhibit the screensaver from activating.  Command blocks while inhibit is "
+"active."
+msgstr ""
+"Strymvaj aktyvizacyju źbierahalnika ekranu. Zahady blakavanyja, pakul "
+"ustrymańnie ŭklučanaje."
+
+#: ../src/light-locker-command.c:68
+msgid "The calling application that is inhibiting the screensaver"
+msgstr "Aplikacyja, jakaja strymvaje aktyvizacyju źbierahalnika ekranu"
+
+#: ../src/light-locker-command.c:70
+msgid "The reason for inhibiting the screensaver"
+msgstr "Pryčyna ŭstrymvańnia źbierahalnika ekranu"
+
+#: ../src/light-locker-command.c:72 ../src/light-locker.c:68
+#: ../src/preview.c:82
 msgid "Version of this application"
 msgstr "Apisvaje versiju hetaj aplikacyi"
 
-#: ../src/light-locker.c:57 ../src/preview.c:71
+#: ../src/light-locker-command.c:327
+#, fuzzy, c-format
+msgid "The screensaver is active\n"
+msgstr "Źbierahalnikam ekranu źjaŭlajecca %s\n"
+
+#: ../src/light-locker-command.c:329
+#, fuzzy, c-format
+msgid "The screensaver is inactive\n"
+msgstr "Źbierahalnikam ekranu źjaŭlajecca %s\n"
+
+#: ../src/light-locker-command.c:359
+#, fuzzy, c-format
+msgid "The screensaver has been active for %d second.\n"
+msgid_plural "The screensaver has been active for %d seconds.\n"
+msgstr[0] "Źbierahalnik ekranu aktyŭny %d sekundaŭ.\n"
+msgstr[1] "Źbierahalnik ekranu aktyŭny %d sekundaŭ.\n"
+msgstr[2] "Źbierahalnik ekranu aktyŭny %d sekundaŭ.\n"
+
+#: ../src/light-locker-command.c:371
+#, fuzzy, c-format
+msgid "The screensaver is not currently active.\n"
+msgstr "Źbierahalnik ekranu nia ŭstrymany\n"
+
+#: ../src/light-locker-command.c:372
+#, fuzzy, c-format
+msgid "The session has been idle for %d second.\n"
+msgid_plural "The session has been idle for %d seconds.\n"
+msgstr[0] "Źbierahalnik ekranu aktyŭny %d sekundaŭ.\n"
+msgstr[1] "Źbierahalnik ekranu aktyŭny %d sekundaŭ.\n"
+msgstr[2] "Źbierahalnik ekranu aktyŭny %d sekundaŭ.\n"
+
+#: ../src/light-locker-command.c:441
+#, fuzzy, c-format
+msgid "The screensaver has been inhibited with cookie %d\n"
+msgstr "Źbierahalnik ekranu ŭstrymany prahramaju:\n"
+
+#: ../src/light-locker-command.c:514
+#, c-format
+msgid "Send uninhibit to The screensaver with cookie %d\n"
+msgstr ""
+
+#: ../src/light-locker.c:69 ../src/preview.c:83
 msgid "Enable debugging code"
 msgstr "Aktyvizuj kod debugavańnia"
 
-#: ../src/light-locker.c:59
+#: ../src/light-locker.c:71
 #, fuzzy
 msgid "Lock the screen S seconds after the screensaver started"
 msgstr "_Blakuj ekran, kali źbierahalnik aktyŭny"
+
+#: ../src/light-locker.c:73
+#, fuzzy
+msgid "Lock the screen on screensaver deactivation"
+msgstr "_Blakuj ekran, kali źbierahalnik aktyŭny"
+
+#: ../src/light-locker.c:74
+#, fuzzy
+msgid "Lock the screen on screensaver activation"
+msgstr "_Blakuj ekran, kali źbierahalnik aktyŭny"
+
+#: ../src/light-locker.c:78
+msgid "Lock the screen on suspend/resume"
+msgstr ""
+
+#: ../src/light-locker.c:79
+msgid "Do not lock the screen on suspend/resume"
+msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
 #, fuzzy
@@ -49,20 +147,32 @@ msgstr "Źbierahalnik ekranu"
 msgid "Launch screen locker program"
 msgstr ""
 
-#: ../src/gs-content.c:96
+#: ../src/gs-listener-dbus.c:1484
+msgid "failed to register with the message bus"
+msgstr "niemahčyma zarehistravacca na šynie paviedamleńniaŭ"
+
+#: ../src/gs-listener-dbus.c:1494
+msgid "not connected to the message bus"
+msgstr "niama padłučeńnia da šyny paviedamleńniaŭ"
+
+#: ../src/gs-listener-dbus.c:1503 ../src/gs-listener-dbus.c:1533
+msgid "screensaver already running in this session"
+msgstr "źbierahalnik ekranu ŭžo ŭruchomleny ŭ hetaj sesii"
+
+#: ../src/gs-content.c:92
 msgid "This session is locked"
 msgstr ""
 
-#: ../src/gs-content.c:118
+#: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
 msgstr ""
 
-#: ../src/preview.c:72
+#: ../src/preview.c:84
 msgid "Preview screen width"
 msgstr ""
 
-#: ../src/preview.c:73
+#: ../src/preview.c:85
 msgid "Preview screen height"
 msgstr ""
 
@@ -395,56 +505,15 @@ msgstr ""
 #~ msgid "Causes the screensaver to exit gracefully"
 #~ msgstr "Vyklučaje źbierahalnik ekranu"
 
-#~ msgid "Query the state of the screensaver"
-#~ msgstr "Apisvaje stan źbierahalnika ekranu"
-
-#~ msgid "Query the length of time the screensaver has been active"
-#~ msgstr "Apisvaje čas aktyŭnaści źbierahalnika ekranu"
-
 #~ msgid "If the screensaver is active then switch to another graphics demo"
 #~ msgstr ""
 #~ "Kali źbierahalnik ekranu aktyŭny, pieraklučaje na nastupny hrafičny matyŭ"
-
-#~ msgid "Turn the screensaver on (blank the screen)"
-#~ msgstr "Aktyvizuje źbierahalnik ekranu"
-
-#~ msgid ""
-#~ "If the screensaver is active then deactivate it (un-blank the screen)"
-#~ msgstr "Kali źbierahalnik aktyŭny, pieraklučaje ŭ nieaktyŭny stan"
-
-#~ msgid "Poke the running screensaver to simulate user activity"
-#~ msgstr "Hieneruje padzieju, jakaja symuluje aktyŭnaść karystalnika"
-
-#~ msgid ""
-#~ "Inhibit the screensaver from activating.  Command blocks while inhibit is "
-#~ "active."
-#~ msgstr ""
-#~ "Strymvaj aktyvizacyju źbierahalnika ekranu. Zahady blakavanyja, pakul "
-#~ "ustrymańnie ŭklučanaje."
-
-#~ msgid "The calling application that is inhibiting the screensaver"
-#~ msgstr "Aplikacyja, jakaja strymvaje aktyvizacyju źbierahalnika ekranu"
-
-#~ msgid "The reason for inhibiting the screensaver"
-#~ msgstr "Pryčyna ŭstrymvańnia źbierahalnika ekranu"
-
-#~ msgid "The screensaver is %s\n"
-#~ msgstr "Źbierahalnikam ekranu źjaŭlajecca %s\n"
 
 #~ msgid "active"
 #~ msgstr "aktyŭny"
 
 #~ msgid "inactive"
 #~ msgstr "nieaktyŭny"
-
-#~ msgid "The screensaver is not inhibited\n"
-#~ msgstr "Źbierahalnik ekranu nia ŭstrymany\n"
-
-#~ msgid "The screensaver is being inhibited by:\n"
-#~ msgstr "Źbierahalnik ekranu ŭstrymany prahramaju:\n"
-
-#~ msgid "The screensaver has been active for %d seconds.\n"
-#~ msgstr "Źbierahalnik ekranu aktyŭny %d sekundaŭ.\n"
 
 #~ msgid "Show debugging output"
 #~ msgstr "Pakazvaj vyjście debugavańnia"
@@ -575,15 +644,6 @@ msgstr ""
 
 #~ msgid "No longer permitted to access the system."
 #~ msgstr "Dazvoł na dostup da systemy admienieny."
-
-#~ msgid "failed to register with the message bus"
-#~ msgstr "niemahčyma zarehistravacca na šynie paviedamleńniaŭ"
-
-#~ msgid "not connected to the message bus"
-#~ msgstr "niama padłučeńnia da šyny paviedamleńniaŭ"
-
-#~ msgid "screensaver already running in this session"
-#~ msgstr "źbierahalnik ekranu ŭžo ŭruchomleny ŭ hetaj sesii"
 
 #~ msgid "Time has expired."
 #~ msgstr "Limit času pierakročany."
