@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Translators:
 # Miloš Popović <gpopac@gmail.com>, 2010-2011
-# MirosNik <miroslavnikolic@rocketmail.com>, 2011
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 00:20+0100\n"
 "PO-Revision-Date: 2014-03-17 23:21+0000\n"
-"Last-Translator: cavalier <peter@xfce.org>\n"
+"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
 "Language-Team: Serbian (http://www.transifex.com/projects/p/light-locker/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"

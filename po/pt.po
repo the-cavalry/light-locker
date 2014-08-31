@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Translators:
 # slickymaster <slickymaster@gmail.com>, 2014
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2006-2011
 msgid ""

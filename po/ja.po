@@ -3,14 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Translators:
+# AWASHIRO Ikuya <ikunya@gmail.com>, 2014
 # Satoru SATOH <ss@gnome.gr.jp>, 2006
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 00:20+0100\n"
-"PO-Revision-Date: 2014-03-17 23:21+0000\n"
-"Last-Translator: cavalier <peter@xfce.org>\n"
+"PO-Revision-Date: 2014-03-30 03:45+0000\n"
+"Last-Translator: AWASHIRO Ikuya <ikunya@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/light-locker/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +22,7 @@ msgstr ""
 
 #: ../src/light-locker-command.c:40
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr ""
+msgstr "実行中のディスプレイマネージャーを即座にロックする"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:68
 #: ../src/preview.c:82
@@ -29,11 +31,11 @@ msgstr "このアプリケーションのバージョンを表示する"
 
 #: ../src/light-locker.c:69 ../src/preview.c:83
 msgid "Enable debugging code"
-msgstr "デバッグ・モードにする"
+msgstr "デバックコードを有効にする"
 
 #: ../src/light-locker.c:71
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr ""
+msgstr "スクリーンセーバーを開始して S 秒後に画面をロックする"
 
 #: ../src/light-locker.c:73
 msgid "Lock the screen on screensaver deactivation"
@@ -53,25 +55,25 @@ msgstr ""
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
-msgstr ""
+msgstr "スクリーンのロック"
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
-msgstr ""
+msgstr "スクリーンロックのプログラムを実行する"
 
 #: ../src/gs-content.c:92
 msgid "This session is locked"
-msgstr ""
+msgstr "このセッションはロックされています"
 
 #: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr ""
+msgstr "数秒後に自動的にロック解除ダイアログにリダイレクトします"
 
 #: ../src/preview.c:84
 msgid "Preview screen width"
-msgstr ""
+msgstr "スクリーン幅のプレビュー"
 
 #: ../src/preview.c:85
 msgid "Preview screen height"
-msgstr ""
+msgstr "スクリーン高のプレビュー"

@@ -3,22 +3,24 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Translators:
 # Benoît Dejean <benoit@placenet.org>, 2006
 # Christophe Merlet <redfox@redfoxcenter.org>, 2006
-# claudep <claude@2xlibre.net>, 2010
-# tintou <tintou@mailoo.org>, 2014
+# Claude Paroz <claude@2xlibre.net>, 2010
+# Corentin Noël <tintou@mailoo.org>, 2014
 # Davy Defaud <davy.defaud@posteasy.com>, 2005
 # Eric Maeker <eric.maeker@free.fr>, 2005
 # Jonathan Ernst <jonathan@ernstfamily.ch>, 2007
-# alucryd <alucryd@gmail.com>, 2013
+# Maxime Gauduin <alucryd@gmail.com>, 2013
 # Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007
+# Yannick Le Guen <leguen.yannick@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 00:20+0100\n"
-"PO-Revision-Date: 2014-03-22 08:27+0000\n"
-"Last-Translator: tintou <tintou@mailoo.org>\n"
+"PO-Revision-Date: 2014-06-21 15:58+0000\n"
+"Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/light-locker/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,11 +55,11 @@ msgstr "Verrouiller l'écran au démarrage de l'écran de veille"
 
 #: ../src/light-locker.c:78
 msgid "Lock the screen on suspend/resume"
-msgstr ""
+msgstr "Verrouiller l'écran lors de la mise en veille"
 
 #: ../src/light-locker.c:79
 msgid "Do not lock the screen on suspend/resume"
-msgstr ""
+msgstr "Ne pas verrouiller l'écran lors de la mise en veille"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
@@ -65,7 +67,7 @@ msgstr "Verrouilleur d'écran"
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
-msgstr "Lancer le vérouilleur d'écran"
+msgstr "Lancer le verrouilleur d'écran"
 
 #: ../src/gs-content.c:92
 msgid "This session is locked"

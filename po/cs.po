@@ -3,18 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Translators:
 # Jakub Friedl <jfriedl@suse.cz>, 2006
 # Lukas Novotny <lukasnov@cvs.gnome.org>, 2006
 # Miloslav Trmač <mitr@volny.cz>, 2005
 # Petr Kovar <pknbe@volny.cz>, 2007-2011
+# Petr Šimáček <petr.simacek@gmail.com>, 2014
 # Petr Tomeš <ptomes@gmail.com>, 2006
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 00:20+0100\n"
-"PO-Revision-Date: 2014-03-17 23:21+0000\n"
-"Last-Translator: cavalier <peter@xfce.org>\n"
+"PO-Revision-Date: 2014-08-13 08:46+0000\n"
+"Last-Translator: Petr Šimáček <petr.simacek@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/light-locker/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +26,7 @@ msgstr ""
 
 #: ../src/light-locker-command.c:40
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr ""
+msgstr "Oznámí správci oken, aby okamžitě zamkl obrazovku"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:68
 #: ../src/preview.c:82
@@ -37,45 +39,45 @@ msgstr "Povolí ladící kód"
 
 #: ../src/light-locker.c:71
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr ""
+msgstr "Uzamkne obrazovku S sekund poté, co se aktivoval spořič obrazovky"
 
 #: ../src/light-locker.c:73
 msgid "Lock the screen on screensaver deactivation"
-msgstr ""
+msgstr "Uzamknout obrazovku při vypnutém spořiči obrazovky"
 
 #: ../src/light-locker.c:74
 msgid "Lock the screen on screensaver activation"
-msgstr ""
+msgstr "Uzamknout obrazovku při zapnutém spořiči obrazovky"
 
 #: ../src/light-locker.c:78
 msgid "Lock the screen on suspend/resume"
-msgstr ""
+msgstr "Zamknout obrazovku při uspání/probuzení"
 
 #: ../src/light-locker.c:79
 msgid "Do not lock the screen on suspend/resume"
-msgstr ""
+msgstr "Nezamykat obrazovku při uspání/probuzení"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
-msgstr ""
+msgstr "Uzamykač obrazovky"
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
-msgstr ""
+msgstr "Spustit Uzamykač obrazovky"
 
 #: ../src/gs-content.c:92
 msgid "This session is locked"
-msgstr ""
+msgstr "Toto sezení je uzamčeno"
 
 #: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr ""
+msgstr "Na dialog odemčení budete přesměrováni automaticky během několika sekund"
 
 #: ../src/preview.c:84
 msgid "Preview screen width"
-msgstr ""
+msgstr "Náhled šířky obrazovky"
 
 #: ../src/preview.c:85
 msgid "Preview screen height"
-msgstr ""
+msgstr "Náhled výšky obrazovky."

@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Translators:
 # Manoj Kumar Giri <mgiri@redhat.com>, 2009-2012
 # satya164 <satyajit.happy@gmail.com>, 2014
 # Subhransu Behera <arya_subhransu@yahoo.co.in>, 2006

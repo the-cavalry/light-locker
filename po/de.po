@@ -3,19 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Translators:
 # Andre Klapper <ak-47@gmx.net>, 2007-2008
 # Christian <Christian.Kirbach@googlemail.com>, 2009
 # Frank Arnold <frank@scirocco-5v-turbo.de>, 2005
 # Hendrik Brandt  <heb@gnome-de.org>, 2006
 # Hendrik Richter <hendrikr@gnome.org>, 2005-2008
-# ochosi <simon.steinbeiss@gmail.com>, 2013-2014
+# Simon Steinbeiß <simon.steinbeiss@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 00:20+0100\n"
 "PO-Revision-Date: 2014-03-18 19:16+0000\n"
-"Last-Translator: ochosi <simon.steinbeiss@gmail.com>\n"
+"Last-Translator: Simon Steinbeiß <simon.steinbeiss@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/light-locker/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"

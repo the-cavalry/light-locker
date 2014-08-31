@@ -3,17 +3,19 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Adolfo Jayme Barrientos <fitoschido@ubuntu.com>, 2013
-# Adolfo Jayme Barrientos <fitoschido@ubuntu.com>, 2014
+# Translators:
+# Adolfo Jayme Barrientos <fitoschido@ubuntu.com>, 2013
+# Adolfo Jayme Barrientos <fitoschido@ubuntu.com>, 2014
 # Copyright (C) 2013 The light-locker Authors, 2013
-# edwinpm5 <edwinpm5@gmail.com>, 2014
+# Edwin Pujols <edwinpm5@gmail.com>, 2014
+# Edwin Pujols <edwinpm5@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-18 00:20+0100\n"
-"PO-Revision-Date: 2014-03-21 04:05+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitoschido@ubuntu.com>\n"
+"PO-Revision-Date: 2014-03-23 23:15+0000\n"
+"Last-Translator: Edwin Pujols <edwinpm5@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/light-locker/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +25,7 @@ msgstr ""
 
 #: ../src/light-locker-command.c:40
 msgid "Tells the running display manager to lock the screen immediately"
-msgstr "Indica al proceso del gestor de sesiones en ejecución que bloquee la pantalla de inmediato"
+msgstr "Indica al gestor de sesiones que bloquee la pantalla de inmediato"
 
 #: ../src/light-locker-command.c:42 ../src/light-locker.c:68
 #: ../src/preview.c:82
@@ -69,12 +71,12 @@ msgstr "Esta sesión está bloqueada"
 #: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr "Se le redirigirá al diálogo de desbloqueo automáticamente en unos segundos"
+msgstr "Se le redirigirá al diálogo de desbloqueo en unos segundos"
 
 #: ../src/preview.c:84
 msgid "Preview screen width"
-msgstr "Anchura de previsualización de pantalla"
+msgstr "Ancho de la previsualización de pantalla"
 
 #: ../src/preview.c:85
 msgid "Preview screen height"
-msgstr "Altura de previsualización de pantalla"
+msgstr "Altura de la previsualización de pantalla"
