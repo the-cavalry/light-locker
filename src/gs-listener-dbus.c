@@ -341,7 +341,7 @@ gs_listener_remove_inhibit (GSListener    *listener,
                             dbus_uint32_t  cookie,
                             const char    *owner)
 {
-        gpointer *owned;
+        const gchar *owned;
 
         owned = g_hash_table_lookup (listener->priv->inhibit_list, &cookie);
 
