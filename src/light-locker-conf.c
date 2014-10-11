@@ -13,7 +13,7 @@ enum
 {
     PROP_0,
     PROP_LOCK_ON_SUSPEND,
-    PROP_LOCK_ON_SCREENSAVER,
+    PROP_LATE_LOCKING,
     PROP_LOCK_AFTER_SCREENSAVER,
     N_PROP
 };
@@ -32,7 +32,7 @@ static void light_locker_conf_prop_changed  (GSettings        *settings,
                                              const gchar      *prop_name,
                                              LightLockerConf  *conf);
 GVariant *gvalue_to_gvariant                (const GValue *gvalue);
-gboolean gvariant_to_gvalue                 (GVariant *variant, 
+gboolean gvariant_to_gvalue                 (GVariant *variant,
                                              GValue *out_gvalue);
 
 
@@ -54,43 +54,43 @@ G_DEFINE_TYPE (LightLockerConf, light_locker_conf, G_TYPE_OBJECT)
 GVariant *gvalue_to_gvariant (const GValue *value)
 {
     GVariant *variant = NULL;
-    
+
     if (G_VALUE_HOLDS_BOOLEAN (value))
         variant = g_variant_new ("b", g_value_get_boolean(value));
-    
+
     else if (G_VALUE_HOLDS_INT (value))
         variant = g_variant_new ("i", g_value_get_int(value));
-        
+
     else if (G_VALUE_HOLDS_STRING (value))
         variant = g_variant_new ("s", g_value_get_string(value));
-    
+
     else
         g_warning ("Unable to convert GValue to GVariant");
-    
+
     return variant;
 }
 
 gboolean gvariant_to_gvalue (GVariant *variant, GValue *out_gvalue)
 {
     const GVariantType *type = g_variant_get_type (variant);
-    
+
     if (g_variant_type_equal (type, G_VARIANT_TYPE_BOOLEAN))
         g_value_init (out_gvalue, G_TYPE_BOOLEAN);
-        
+
     else if (g_variant_type_equal (type, G_VARIANT_TYPE_INT32))
         g_value_init (out_gvalue, G_TYPE_INT);
-        
+
     else if (g_variant_type_equal (type, G_VARIANT_TYPE_STRING))
         g_value_init (out_gvalue, G_TYPE_STRING);
-        
+
     else
     {
         g_warning ("Unable to convert GVariant to GValue");
         return FALSE;
     }
-    
+
     g_dbus_gvariant_to_gvalue (variant, out_gvalue);
-    
+
     return TRUE;
 }
 
@@ -280,17 +280,17 @@ light_locker_conf_class_init (LightLockerConfClass *klass)
                                                            G_PARAM_READWRITE));
 
     /**
-     * LightLockerConf:lock-on-screensaver:
+     * LightLockerConf:late-locking:
      *
-     * Lock on screensaver event
+     * Lock after screensaver has ended.
      **/
     g_object_class_install_property (object_class,
-                                     PROP_LOCK_ON_SCREENSAVER,
-                                     g_param_spec_string ("lock-on-screensaver",
-                                                          "/apps/light-locker/lock-on-screensaver",
-                                                          NULL,
-                                                          "off",
-                                                          G_PARAM_READWRITE));
+                                     PROP_LATE_LOCKING,
+                                     g_param_spec_boolean ("late-locking",
+                                                           "/apps/light-locker/late-locking",
+                                                           NULL,
+                                                           FALSE,
+                                                           G_PARAM_READWRITE));
 
     /**
      * LightLockerConf:lock-after-screensaver:
@@ -299,13 +299,13 @@ light_locker_conf_class_init (LightLockerConfClass *klass)
      **/
     g_object_class_install_property (object_class,
                                      PROP_LOCK_AFTER_SCREENSAVER,
-                                     g_param_spec_int ("lock-after-screensaver",
+                                     g_param_spec_uint ("lock-after-screensaver",
                                                        "/apps/light-locker/lock-after-screensaver",
-                                                       NULL,
-                                                       0,
-                                                       3600,
-                                                       0,
-                                                       G_PARAM_READWRITE));
+                                                        NULL,
+                                                        0,
+                                                        3600,
+                                                        0,
+                                                        G_PARAM_READWRITE));
 
 }
 

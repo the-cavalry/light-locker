@@ -30,6 +30,7 @@
 #include <glib-object.h>
 
 #include "light-locker.h"
+#include "light-locker-conf.h"
 
 #include "gs-manager.h"
 
@@ -46,13 +47,14 @@ static void     gs_monitor_finalize   (GObject        *object);
 
 struct GSMonitorPrivate
 {
-        GSListener     *listener;
-        GSListenerX11  *listener_x11;
-        GSManager      *manager;
+        GSListener      *listener;
+        GSListenerX11   *listener_x11;
+        GSManager       *manager;
+        LightLockerConf *conf;
 
-        guint           late_locking : 1;
-        guint           lock_on_suspend : 1;
-        guint           perform_lock : 1;
+        guint            late_locking : 1;
+        guint            lock_on_suspend : 1;
+        guint            perform_lock : 1;
 };
 
 #define FADE_TIMEOUT 10000
@@ -149,8 +151,66 @@ manager_lock_cb (GSManager *manager,
 }
 
 static void
+conf_lock_on_suspend_cb (LightLockerConf *conf,
+                         GSMonitor       *monitor)
+{
+        gboolean lock_on_suspend = FALSE;
+
+        g_object_get (G_OBJECT(conf),
+                      "lock-on-suspend", &lock_on_suspend,
+                      NULL);
+
+        monitor->priv->lock_on_suspend = lock_on_suspend;
+}
+
+static void
+conf_late_locking_cb (LightLockerConf *conf,
+                      GSMonitor       *monitor)
+{
+        gboolean late_locking = FALSE;
+
+        g_object_get (G_OBJECT(conf),
+                      "late-locking", &late_locking,
+                      NULL);
+
+        monitor->priv->late_locking = late_locking;
+}
+
+static void
+conf_lock_after_screensaver_cb (LightLockerConf *conf,
+                                GSMonitor       *monitor)
+{
+        guint lock_after_screensaver = 5;
+
+        g_object_get (G_OBJECT(conf),
+                      "lock-after-screensaver", &lock_after_screensaver,
+                      NULL);
+
+        gs_manager_set_lock_after (monitor->priv->manager, lock_after_screensaver);
+}
+
+static void
+disconnect_conf_signals (GSMonitor *monitor)
+{
+        g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_lock_on_suspend_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_late_locking_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_lock_after_screensaver_cb, monitor);
+}
+
+static void
+connect_conf_signals (GSMonitor *monitor)
+{
+        g_signal_connect (monitor->priv->conf, "notify::lock-on-suspend",
+                          G_CALLBACK (conf_lock_on_suspend_cb), monitor);
+        g_signal_connect (monitor->priv->conf, "notify::late-locking",
+                          G_CALLBACK (conf_late_locking_cb), monitor);
+        g_signal_connect (monitor->priv->conf, "notify::lock-after-screensaver",
+                          G_CALLBACK (conf_lock_after_screensaver_cb), monitor);
+}
+
+static void
 listener_locked_cb (GSListener *listener,
-                  GSMonitor  *monitor)
+                    GSMonitor  *monitor)
 {
         gs_manager_show_content (monitor->priv->manager);
         gs_monitor_lock_screen (monitor);
@@ -361,6 +421,9 @@ gs_monitor_init (GSMonitor *monitor)
         monitor->priv->lock_on_suspend = WITH_LOCK_ON_SUSPEND;
 #endif
 
+        monitor->priv->conf = light_locker_conf_new ();
+        connect_conf_signals (monitor);
+
         monitor->priv->listener = gs_listener_new ();
         monitor->priv->listener_x11 = gs_listener_x11_new ();
         connect_listener_signals (monitor);
@@ -381,9 +444,11 @@ gs_monitor_finalize (GObject *object)
 
         g_return_if_fail (monitor->priv != NULL);
 
+        disconnect_conf_signals (monitor);
         disconnect_listener_signals (monitor);
         disconnect_manager_signals (monitor);
 
+        g_object_unref (monitor->priv->conf);
         g_object_unref (monitor->priv->listener);
         g_object_unref (monitor->priv->listener_x11);
         g_object_unref (monitor->priv->manager);

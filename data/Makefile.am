@@ -1,5 +1,8 @@
 NULL =
 
+gsettings_SCHEMAS = apps.light-locker.gschema.xml
+@GSETTINGS_RULES@
+
 man_MANS = 				\
 	light-locker.1			\
 	light-locker-command.1		\
