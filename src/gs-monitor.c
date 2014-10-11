@@ -152,6 +152,7 @@ manager_lock_cb (GSManager *manager,
 
 static void
 conf_lock_on_suspend_cb (LightLockerConf *conf,
+                         GParamSpec      *pspec,
                          GSMonitor       *monitor)
 {
         gboolean lock_on_suspend = FALSE;
@@ -165,6 +166,7 @@ conf_lock_on_suspend_cb (LightLockerConf *conf,
 
 static void
 conf_late_locking_cb (LightLockerConf *conf,
+                      GParamSpec      *pspec,
                       GSMonitor       *monitor)
 {
         gboolean late_locking = FALSE;
@@ -178,6 +180,7 @@ conf_late_locking_cb (LightLockerConf *conf,
 
 static void
 conf_lock_after_screensaver_cb (LightLockerConf *conf,
+                                GParamSpec      *pspec,
                                 GSMonitor       *monitor)
 {
         guint lock_after_screensaver = 5;

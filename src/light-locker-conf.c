@@ -58,11 +58,8 @@ GVariant *gvalue_to_gvariant (const GValue *value)
     if (G_VALUE_HOLDS_BOOLEAN (value))
         variant = g_variant_new ("b", g_value_get_boolean(value));
 
-    else if (G_VALUE_HOLDS_INT (value))
-        variant = g_variant_new ("i", g_value_get_int(value));
-
-    else if (G_VALUE_HOLDS_STRING (value))
-        variant = g_variant_new ("s", g_value_get_string(value));
+    else if (G_VALUE_HOLDS_UINT (value))
+        variant = g_variant_new ("u", g_value_get_uint(value));
 
     else
         g_warning ("Unable to convert GValue to GVariant");
@@ -77,11 +74,8 @@ gboolean gvariant_to_gvalue (GVariant *variant, GValue *out_gvalue)
     if (g_variant_type_equal (type, G_VARIANT_TYPE_BOOLEAN))
         g_value_init (out_gvalue, G_TYPE_BOOLEAN);
 
-    else if (g_variant_type_equal (type, G_VARIANT_TYPE_INT32))
-        g_value_init (out_gvalue, G_TYPE_INT);
-
-    else if (g_variant_type_equal (type, G_VARIANT_TYPE_STRING))
-        g_value_init (out_gvalue, G_TYPE_STRING);
+    else if (g_variant_type_equal (type, G_VARIANT_TYPE_UINT32))
+        g_value_init (out_gvalue, G_TYPE_UINT);
 
     else
     {
