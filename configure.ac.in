@@ -2,7 +2,7 @@ dnl -*- mode: m4 -*-
 
 AC_PREREQ(2.60)
 AC_INIT([light-locker],
-        [1.4.0])
+        [1.5.0])
 
 AC_CONFIG_SRCDIR(src/light-locker.c)
 
@@ -280,6 +280,42 @@ if test "$with_mit" = yes; then
 
 elif test "$with_mit" != no; then
   echo "error: must be yes or no: --with-mit-ext=$with_mit"
+  exit 1
+fi
+
+dnl ---------------------------------------------------------------------------
+dnl - Check for the DPMS server extension.
+dnl ---------------------------------------------------------------------------
+
+have_dpms=no
+with_dpms_req=unspecified
+AC_ARG_WITH(dpms-ext,
+[  --with-dpms-ext         Include support for the DPMS extension.],
+  [with_dpms="$withval"; with_dmps_req="$withval"],[with_dpms=yes])
+
+HANDLE_X_PATH_ARG(with_dpms, --with-dpms-ext, MIT-SCREEN-SAVER)
+
+if test "$with_dpms" = yes; then
+  AC_CHECK_X_HEADER(X11/extensions/dpms.h, [have_dpms=yes],,
+                    [#include <X11/Xlib.h>])
+
+  if test "$have_dpms" = yes; then
+    AC_CHECK_X_LIB(Xext, DPMSForceLevel, [true], [have_dpms=no], -lm)
+
+    if test "$have_dpms" = no; then
+      AC_CHECK_X_LIB(XExExt, DPMSForceLevel,
+                     [have_dmps=yes; SAVER_LIBS="$SAVER_LIBS -lXExExt"],
+                     [true], -lX11 -lXext -lm)
+    fi
+
+  if test "$have_dpms" = yes; then
+    AC_DEFINE(HAVE_DPMS_EXTENSION, 1, [Define if the DPMS extension is available])
+  fi
+
+  fi
+
+elif test "$with_dpms" != no; then
+  echo "error: must be yes or no: --with-dpms-ext=$with_dpms"
   exit 1
 fi
 

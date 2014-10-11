@@ -33,6 +33,16 @@
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
+#ifdef HAVE_MIT_SAVER_EXTENSION
+#include <gtk/gtk.h>
+#if GTK_CHECK_VERSION(3, 0, 0)
+#include <gtk/gtkx.h>
+#else
+#include <gdk/gdkx.h>
+#endif
+#include <X11/extensions/scrnsaver.h>
+#endif
+
 #ifdef WITH_SYSTEMD
 #include <systemd/sd-login.h>
 #endif
@@ -42,17 +52,32 @@
 #include "gs-debug.h"
 #include "gs-bus.h"
 
+/* this is for dbus < 0.3 */
+#if ((DBUS_VERSION_MAJOR == 0) && (DBUS_VERSION_MINOR < 30))
+#define dbus_bus_name_has_owner(connection, name, err)      dbus_bus_service_exists(connection, name, err)
+#define dbus_bus_request_name(connection, name, flags, err) dbus_bus_acquire_service(connection, name, flags, err)
+#endif
+
 static void              gs_listener_class_init         (GSListenerClass *klass);
 static void              gs_listener_init               (GSListener      *listener);
 static void              gs_listener_finalize           (GObject         *object);
+
+static DBusHandlerResult gs_listener_message_handler    (DBusConnection  *connection,
+                                                         DBusMessage     *message,
+                                                         void            *user_data);
+
+#define TYPE_MISMATCH_ERROR  GS_INTERFACE ".TypeMismatch"
 
 #define GS_LISTENER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_LISTENER, GSListenerPrivate))
 
 struct GSListenerPrivate
 {
+        DBusConnection *connection;
         DBusConnection *system_connection;
 
         guint           active : 1;
+        guint           blanked : 1;
+        time_t          blanked_start;
         char           *session_id;
         char           *seat_path;
 
@@ -60,14 +85,22 @@ struct GSListenerPrivate
         gboolean        have_systemd;
         char           *sd_session_id;
 #endif
+
+        dbus_uint32_t   inhibit_last_cookie;
+        GHashTable     *inhibit_list;
 };
 
 enum {
         LOCK,
+        LOCKED,
         SESSION_SWITCHED,
         ACTIVE_CHANGED,
         SUSPEND,
         RESUME,
+        SIMULATE_USER_ACTIVITY,
+        BLANKING,
+        INHIBIT,
+        IDLE_TIME,
         LAST_SIGNAL
 };
 
@@ -75,6 +108,14 @@ enum {
         PROP_0,
         PROP_ACTIVE,
 };
+
+static DBusObjectPathVTable
+gs_listener_vtable = { NULL,
+                       &gs_listener_message_handler,
+                       NULL,
+                       NULL,
+                       NULL,
+                       NULL };
 
 static guint         signals [LAST_SIGNAL] = { 0, };
 
@@ -158,6 +199,93 @@ gs_listener_send_lock_session (GSListener *listener)
         }
 }
 
+GQuark
+gs_listener_error_quark (void)
+{
+        static GQuark quark = 0;
+        if (!quark) {
+                quark = g_quark_from_static_string ("gs_listener_error");
+        }
+
+        return quark;
+}
+
+static gboolean
+send_dbus_message (DBusConnection *connection,
+                   DBusMessage    *message)
+{
+        gboolean is_connected;
+        gboolean sent;
+
+        g_return_val_if_fail (message != NULL, FALSE);
+
+        if (! connection) {
+                gs_debug ("There is no valid connection to the message bus");
+                return FALSE;
+        }
+
+        is_connected = dbus_connection_get_is_connected (connection);
+        if (! is_connected) {
+                gs_debug ("Not connected to the message bus");
+                return FALSE;
+        }
+
+        sent = dbus_connection_send (connection, message, NULL);
+
+        return sent;
+}
+
+static void
+send_dbus_boolean_signal (GSListener *listener,
+                          const char *name,
+                          gboolean    value)
+{
+        DBusMessage    *message;
+        DBusMessageIter iter;
+
+        g_return_if_fail (listener != NULL);
+
+        message = dbus_message_new_signal (GS_PATH,
+                                           GS_SERVICE,
+                                           name);
+
+        dbus_message_iter_init_append (message, &iter);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &value);
+
+        if (! send_dbus_message (listener->priv->connection, message)) {
+                gs_debug ("Could not send %s signal", name);
+        }
+
+        dbus_message_unref (message);
+}
+
+static void
+gs_listener_send_signal_active_changed (GSListener *listener,
+                                        gboolean    active)
+{
+        g_return_if_fail (listener != NULL);
+
+        gs_debug ("Sending the ActiveChanged(%s) signal on the session bus",
+                  active ? "TRUE" : "FALSE");
+
+        send_dbus_boolean_signal (listener, "ActiveChanged", active);
+}
+
+void
+gs_listener_set_blanked (GSListener *listener,
+                         gboolean    active)
+{
+        listener->priv->blanked = active;
+
+        if (active) {
+                listener->priv->blanked_start = time (NULL);
+        } else {
+                listener->priv->blanked_start = 0;
+        }
+
+        gs_listener_send_signal_active_changed (listener, active);
+}
+
 gboolean
 gs_listener_set_active (GSListener *listener,
                         gboolean    active)
@@ -184,6 +312,523 @@ gs_listener_set_active (GSListener *listener,
         listener->priv->active = active;
 
         return TRUE;
+}
+
+static dbus_uint32_t
+gs_listener_add_inhibit (GSListener *listener,
+                         const char *owner)
+{
+        dbus_uint32_t *cookie;
+
+        cookie = g_new (dbus_uint32_t, 1);
+        if (cookie == NULL) {
+                g_error ("No memory");
+        }
+
+        *cookie = ++listener->priv->inhibit_last_cookie;
+
+        if (g_hash_table_size (listener->priv->inhibit_list) == 0) {
+                g_signal_emit (listener, signals [INHIBIT], 0, TRUE);
+        }
+
+        g_hash_table_insert (listener->priv->inhibit_list, cookie, g_strdup (owner));
+
+        return *cookie;
+}
+
+static void
+gs_listener_remove_inhibit (GSListener    *listener,
+                            dbus_uint32_t  cookie,
+                            const char    *owner)
+{
+        const gchar *owned;
+
+        owned = g_hash_table_lookup (listener->priv->inhibit_list, &cookie);
+
+        if (owned == NULL) {
+                return;
+        }
+
+        if (strcmp (owner, owned) != 0) {
+                return;
+        }
+
+        g_hash_table_remove (listener->priv->inhibit_list, &cookie);
+
+        if (g_hash_table_size (listener->priv->inhibit_list) == 0) {
+                g_signal_emit (listener, signals [INHIBIT], 0, FALSE);
+        }
+}
+
+static gboolean
+compare_owner (gpointer key,
+               gpointer value,
+               gpointer user_data)
+{
+        const gchar *oa = value;
+        const char *ob = user_data;
+
+        return strcmp (oa, ob) == 0;;
+}
+
+static void
+gs_listener_disonnect_inhibit (GSListener  *listener,
+                               const char  *owner)
+{
+        guint count;
+
+        count = g_hash_table_foreach_remove (listener->priv->inhibit_list, compare_owner, (gpointer)owner);
+
+        gs_debug ("Inhibitor disconnected: %s (%u)", owner, count);
+
+        if (count > 0 && g_hash_table_size (listener->priv->inhibit_list) == 0) {
+                g_signal_emit (listener, signals [INHIBIT], 0, FALSE);
+        }
+}
+
+static void
+raise_property_type_error (DBusConnection *connection,
+                           DBusMessage    *in_reply_to,
+                           const char     *device_id)
+{
+        char         buf [512];
+        DBusMessage *reply;
+
+        snprintf (buf, 511,
+                  "Type mismatch setting property with id %s",
+                  device_id);
+        gs_debug (buf);
+
+        reply = dbus_message_new_error (in_reply_to,
+                                        TYPE_MISMATCH_ERROR,
+                                        buf);
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+}
+
+static DBusHandlerResult
+send_success_reply (DBusConnection  *connection,
+                    DBusMessage     *message)
+{
+        DBusMessage *reply;
+
+        if (dbus_message_get_no_reply (message)) {
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+
+        reply = dbus_message_new_method_return (message);
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
+listener_set_active (GSListener     *listener,
+                     DBusConnection *connection,
+                     DBusMessage    *message)
+{
+        const char     *path;
+        int             type;
+        DBusMessageIter iter;
+        DBusMessage    *reply;
+        gboolean        new_state, res;
+        dbus_bool_t     v;
+
+        path = dbus_message_get_path (message);
+
+        dbus_message_iter_init (message, &iter);
+        type = dbus_message_iter_get_arg_type (&iter);
+
+        if (type != DBUS_TYPE_BOOLEAN) {
+                gs_debug ("Unsupported property type %d", type);
+                raise_property_type_error (connection, message, path);
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+
+        dbus_message_iter_get_basic (&iter, &v);
+        new_state = v;
+        g_signal_emit (listener, signals [BLANKING], 0, new_state, &res);
+        v = res;
+
+        reply = dbus_message_new_method_return (message);
+
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        dbus_message_iter_init_append (reply, &iter);
+
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &v);
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
+listener_get_bool (GSListener     *listener,
+                   DBusConnection *connection,
+                   DBusMessage    *message,
+                   dbus_bool_t     v)
+{
+        DBusMessageIter iter;
+        DBusMessage    *reply;
+
+        reply = dbus_message_new_method_return (message);
+
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        dbus_message_iter_init_append (reply, &iter);
+
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &v);
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
+listener_get_time (GSListener     *listener,
+                   DBusConnection *connection,
+                   DBusMessage    *message,
+                   time_t          t)
+{
+        DBusMessageIter iter;
+        DBusMessage    *reply;
+        dbus_uint32_t   secs = 0;
+        time_t          now;
+
+        reply = dbus_message_new_method_return (message);
+
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        dbus_message_iter_init_append (reply, &iter);
+
+        now = time (NULL);
+        if (G_UNLIKELY (now < t)) {
+                gs_debug ("Time is in the future");
+        } else if (G_UNLIKELY (t<= 0)) {
+                //gs_debug ("Time was not set");
+        } else {
+                secs = now - t;
+        }
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &secs);
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
+listener_get_info (GSListener     *listener,
+                   DBusConnection *connection,
+                   DBusMessage    *message,
+                   int             signal)
+{
+        DBusMessageIter iter;
+        DBusMessage    *reply;
+
+        reply = dbus_message_new_method_return (message);
+
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        dbus_message_iter_init_append (reply, &iter);
+
+        switch (signal) {
+        case IDLE_TIME:
+                {
+                        dbus_uint32_t v;
+                        gulong        res;
+                        g_signal_emit (listener, signals [signal], 0, &res);
+                        v = res;
+                        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &v);
+                        break;
+                }
+
+        default:
+                gs_debug ("Unsupported signal id %d", signal);
+                break;
+        }
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
+listener_inhibit (GSListener     *listener,
+                  DBusConnection *connection,
+                  DBusMessage    *message)
+{
+        const char     *path;
+        int             type;
+        DBusMessageIter iter;
+        DBusMessage    *reply;
+        dbus_uint32_t   cookie;
+        const char     *application;
+        const char     *reason;
+
+        path = dbus_message_get_path (message);
+
+        dbus_message_iter_init (message, &iter);
+        type = dbus_message_iter_get_arg_type (&iter);
+
+        if (type != DBUS_TYPE_STRING) {
+                gs_debug ("Unsupported property type %d", type);
+                raise_property_type_error (connection, message, path);
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+
+        dbus_message_iter_get_basic (&iter, &application);
+
+        dbus_message_iter_next (&iter);
+        type = dbus_message_iter_get_arg_type (&iter);
+
+        if (type != DBUS_TYPE_STRING) {
+                gs_debug ("Unsupported property type %d", type);
+                raise_property_type_error (connection, message, path);
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+
+        dbus_message_iter_get_basic (&iter, &reason);
+
+        gs_debug ("Inhibit requested: %s '%s'", application, reason);
+
+        cookie = gs_listener_add_inhibit (listener, dbus_message_get_sender (message));
+
+        reply = dbus_message_new_method_return (message);
+
+        dbus_message_iter_init_append (reply, &iter);
+
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        gs_debug ("Returning inhibit cookie %u", cookie);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &cookie);
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
+listener_uninhibit (GSListener     *listener,
+                    DBusConnection *connection,
+                    DBusMessage    *message)
+{
+        const char     *path;
+        int             type;
+        DBusMessageIter iter;
+        dbus_uint32_t   cookie = 0;
+
+        path = dbus_message_get_path (message);
+
+        dbus_message_iter_init (message, &iter);
+        type = dbus_message_iter_get_arg_type (&iter);
+
+        if (type != DBUS_TYPE_UINT32) {
+                gs_debug ("Unsupported property type %d", type);
+                raise_property_type_error (connection, message, path);
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+
+        dbus_message_iter_get_basic (&iter, &cookie);
+
+        gs_debug ("Uninhibit requested: %u", cookie);
+
+        gs_listener_remove_inhibit (listener, cookie, dbus_message_get_sender (message));
+
+        return send_success_reply (connection, message);
+}
+
+static DBusHandlerResult
+do_introspect (DBusConnection *connection,
+               DBusMessage    *message,
+               dbus_bool_t     local_interface)
+{
+        DBusMessage *reply;
+        GString     *xml;
+        char        *xml_string;
+
+        /* standard header */
+        xml = g_string_new ("<!DOCTYPE node PUBLIC \"-//freedesktop//DTD D-BUS Object Introspection 1.0//EN\"\n"
+                            "\"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd\">\n"
+                            "<node>\n"
+                            "  <interface name=\"org.freedesktop.DBus.Introspectable\">\n"
+                            "    <method name=\"Introspect\">\n"
+                            "      <arg name=\"data\" direction=\"out\" type=\"s\"/>\n"
+                            "    </method>\n"
+                            "  </interface>\n");
+
+        /* ScreenSaver interface */
+        xml = g_string_append (xml,
+                               "  <interface name=\""GS_INTERFACE"\">\n"
+                               "    <method name=\"Lock\">\n"
+                               "    </method>\n"
+                               "    <method name=\"SimulateUserActivity\">\n"
+                               "    </method>\n"
+                               "    <method name=\"GetActive\">\n"
+                               "      <arg direction=\"out\" type=\"b\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"GetActiveTime\">\n"
+                               "      <arg name=\"seconds\" direction=\"out\" type=\"u\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"GetSessionIdleTime\">\n"
+                               "      <arg name=\"seconds\" direction=\"out\" type=\"u\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"SetActive\">\n"
+                               "      <arg direction=\"out\" type=\"b\"/>\n"
+                               "      <arg name=\"e\" direction=\"in\" type=\"b\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"Inhibit\">\n"
+                               "      <arg direction=\"out\" type=\"u\"/>\n"
+                               "      <arg name=\"application_name\" direction=\"in\" type=\"s\"/>\n"
+                               "      <arg name=\"reason_for_inhibit\" direction=\"in\" type=\"s\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"UnInhibit\">\n"
+                               "      <arg name=\"cookie\" direction=\"in\" type=\"u\"/>\n"
+                               "    </method>\n"
+                               "    <signal name=\"ActiveChanged\">\n"
+                               "      <arg type=\"b\"/>\n"
+                               "    </signal>\n"
+                               "  </interface>\n");
+
+        reply = dbus_message_new_method_return (message);
+
+        xml = g_string_append (xml, "</node>\n");
+        xml_string = g_string_free (xml, FALSE);
+
+        dbus_message_append_args (reply,
+                                  DBUS_TYPE_STRING, &xml_string,
+                                  DBUS_TYPE_INVALID);
+
+        g_free (xml_string);
+
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+
+        return DBUS_HANDLER_RESULT_HANDLED;
+}
+
+static DBusHandlerResult
+listener_dbus_handle_session_message (GSListener     *listener,
+                                      DBusConnection *connection,
+                                      DBusMessage    *message,
+                                      dbus_bool_t     local_interface)
+{
+#if 0
+        g_message ("obj_path=%s interface=%s method=%s destination=%s",
+                   dbus_message_get_path (message),
+                   dbus_message_get_interface (message),
+                   dbus_message_get_member (message),
+                   dbus_message_get_destination (message));
+#endif
+
+        g_return_val_if_fail (connection != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
+        g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
+
+        if (dbus_message_is_method_call (message, GS_SERVICE, "Lock")) {
+                g_signal_emit (listener, signals [LOCK], 0);
+                return send_success_reply (connection, message);
+        }
+        if (dbus_message_is_method_call (message, GS_SERVICE, "SetActive")) {
+                return listener_set_active (listener, connection, message);
+        }
+        if (dbus_message_is_method_call (message, GS_SERVICE, "GetActive")) {
+                return listener_get_bool (listener, connection, message, listener->priv->blanked);
+        }
+        if (dbus_message_is_method_call (message, GS_SERVICE, "GetActiveTime")) {
+                return listener_get_time (listener, connection, message, listener->priv->blanked_start);
+        }
+        if (dbus_message_is_method_call (message, GS_SERVICE, "GetSessionIdleTime")) {
+                return listener_get_info (listener, connection, message, IDLE_TIME);
+        }
+        if (dbus_message_is_method_call (message, GS_SERVICE, "SimulateUserActivity")) {
+                g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
+                return send_success_reply (connection, message);
+        }
+        if (dbus_message_is_method_call (message, GS_SERVICE, "Inhibit")) {
+                return listener_inhibit (listener, connection, message);
+        }
+        if (dbus_message_is_method_call (message, GS_SERVICE, "UnInhibit")) {
+                return listener_uninhibit (listener, connection, message);
+        }
+        if (dbus_message_is_method_call (message, "org.freedesktop.DBus.Introspectable", "Introspect")) {
+                return do_introspect (connection, message, local_interface);
+        }
+
+        return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+}
+
+static void
+listener_dbus_handle_owner_changed (GSListener     *listener,
+                                    DBusConnection *connection,
+                                    DBusMessage    *message)
+{
+        DBusMessageIter  iter;
+        int              type;
+        const char      *old_owner;
+
+        dbus_message_iter_init (message, &iter);
+        dbus_message_iter_next (&iter);
+        type = dbus_message_iter_get_arg_type (&iter);
+
+        if (type != DBUS_TYPE_STRING) {
+                gs_debug ("Invalid NameOwnerChanged message");
+                return;
+        }
+
+        dbus_message_iter_get_basic (&iter, &old_owner);
+
+        gs_listener_disonnect_inhibit (listener, old_owner);
 }
 
 static gboolean
@@ -381,7 +1026,7 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                 } else if (dbus_message_is_signal (message, SYSTEMD_LOGIND_SESSION_INTERFACE, "Lock")) {
                         if (_listener_message_path_is_our_session (listener, message)) {
                                 gs_debug ("systemd requested session lock");
-                                g_signal_emit (listener, signals [LOCK], 0);
+                                g_signal_emit (listener, signals [LOCKED], 0);
                         }
 
                         return DBUS_HANDLER_RESULT_HANDLED;
@@ -439,7 +1084,7 @@ listener_dbus_handle_system_message (DBusConnection *connection,
         } else if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "Lock")) {
                 if (_listener_message_path_is_our_session (listener, message)) {
                         gs_debug ("ConsoleKit requested session lock");
-                        g_signal_emit (listener, signals [LOCK], 0);
+                        g_signal_emit (listener, signals [LOCKED], 0);
                 }
 
                 return DBUS_HANDLER_RESULT_HANDLED;
@@ -494,12 +1139,53 @@ listener_dbus_handle_system_message (DBusConnection *connection,
        return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
 }
 
+static DBusHandlerResult
+gs_listener_message_handler (DBusConnection *connection,
+                             DBusMessage    *message,
+                             void           *user_data)
+{
+        g_return_val_if_fail (connection != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
+        g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
+
+#if 0
+        g_message ("obj_path=%s interface=%s method=%s destination=%s",
+                   dbus_message_get_path (message),
+                   dbus_message_get_interface (message),
+                   dbus_message_get_member (message),
+                   dbus_message_get_destination (message));
+#endif
+
+        if (dbus_message_is_signal (message, DBUS_INTERFACE_LOCAL, "Disconnected") &&
+                   strcmp (dbus_message_get_path (message), DBUS_PATH_LOCAL) == 0) {
+                dbus_connection_unref (connection);
+
+                return DBUS_HANDLER_RESULT_HANDLED;
+        } else {
+                return listener_dbus_handle_session_message (GS_LISTENER (user_data), connection, message, TRUE);
+        }
+}
+
 static gboolean
 gs_listener_dbus_init (GSListener *listener)
 {
         DBusError error;
 
         dbus_error_init (&error);
+
+        if (listener->priv->connection == NULL) {
+                listener->priv->connection = dbus_bus_get (DBUS_BUS_SESSION, &error);
+                if (listener->priv->connection == NULL) {
+                        if (dbus_error_is_set (&error)) {
+                                gs_debug ("couldn't connect to session bus: %s",
+                                          error.message);
+                                dbus_error_free (&error);
+                        }
+                        return FALSE;
+                }
+
+                dbus_connection_setup_with_g_main (listener->priv->connection, NULL);
+                dbus_connection_set_exit_on_disconnect (listener->priv->connection, FALSE);
+        }
 
         if (listener->priv->system_connection == NULL) {
                 listener->priv->system_connection = dbus_bus_get (DBUS_BUS_SYSTEM, &error);
@@ -535,6 +1221,39 @@ reinit_dbus (GSListener *listener)
         try_again = !initialized;
 
         return try_again;
+}
+
+static DBusHandlerResult
+listener_dbus_filter_function (DBusConnection *connection,
+                               DBusMessage    *message,
+                               void           *user_data)
+{
+        GSListener *listener = GS_LISTENER (user_data);
+        const char *path;
+
+        path = dbus_message_get_path (message);
+
+        if (dbus_message_is_signal (message, DBUS_INTERFACE_LOCAL, "Disconnected")
+            && strcmp (path, DBUS_PATH_LOCAL) == 0) {
+
+                g_message ("Got disconnected from the session message bus; "
+                           "retrying to reconnect every 10 seconds");
+
+                dbus_connection_unref (connection);
+                listener->priv->connection = NULL;
+
+                g_timeout_add (10000, (GSourceFunc)reinit_dbus, listener);
+        } else if (dbus_message_is_signal (message,
+                                           DBUS_INTERFACE_DBUS,
+                                           "NameOwnerChanged")) {
+                if (g_hash_table_size (listener->priv->inhibit_list) > 0)
+                        listener_dbus_handle_owner_changed (listener, connection, message);
+        } else {
+                return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+        }
+
+
+        return DBUS_HANDLER_RESULT_HANDLED;
 }
 
 static DBusHandlerResult
@@ -623,6 +1342,16 @@ gs_listener_class_init (GSListenerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
+        signals [LOCKED] =
+                g_signal_new ("locked",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, locked),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
         signals [SESSION_SWITCHED] =
                 g_signal_new ("session-switched",
                               G_TYPE_FROM_CLASS (object_class),
@@ -665,6 +1394,48 @@ gs_listener_class_init (GSListenerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
+        signals [SIMULATE_USER_ACTIVITY] =
+                g_signal_new ("simulate-user-activity",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, simulate_user_activity),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals [BLANKING] =
+                g_signal_new ("blanking",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, blanking),
+                              NULL,
+                              NULL,
+                              gs_marshal_BOOLEAN__BOOLEAN,
+                              G_TYPE_BOOLEAN,
+                              1,
+                              G_TYPE_BOOLEAN);
+        signals [INHIBIT] =
+                g_signal_new ("inhibit",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, inhibit),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__BOOLEAN,
+                              G_TYPE_NONE,
+                              1,
+                              G_TYPE_BOOLEAN);
+        signals [IDLE_TIME] =
+                g_signal_new ("idle-time",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GSListenerClass, idle_time),
+                              NULL,
+                              NULL,
+                              gs_marshal_ULONG__VOID,
+                              G_TYPE_ULONG,
+                              0);
 
         g_object_class_install_property (object_class,
                                          PROP_ACTIVE,
@@ -678,10 +1449,101 @@ gs_listener_class_init (GSListenerClass *klass)
 }
 
 
-gboolean
-gs_listener_acquire (GSListener *listener)
+static gboolean
+screensaver_is_running (DBusConnection *connection)
 {
+        DBusError error;
+        gboolean  exists;
+
+        g_return_val_if_fail (connection != NULL, FALSE);
+
+        dbus_error_init (&error);
+        exists = dbus_bus_name_has_owner (connection, GS_SERVICE, &error);
+        if (dbus_error_is_set (&error)) {
+                dbus_error_free (&error);
+        }
+
+        return exists;
+}
+
+gboolean
+gs_listener_acquire (GSListener *listener,
+                     GError    **error)
+{
+        int       res;
+        DBusError buserror;
+        gboolean  is_connected;
+
         g_return_val_if_fail (listener != NULL, FALSE);
+
+        if (! listener->priv->connection) {
+                g_set_error (error,
+                             GS_LISTENER_ERROR,
+                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
+                             "%s",
+                             _("failed to register with the message bus"));
+                return FALSE;
+        }
+
+        is_connected = dbus_connection_get_is_connected (listener->priv->connection);
+        if (! is_connected) {
+                g_set_error (error,
+                             GS_LISTENER_ERROR,
+                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
+                             "%s",
+                             _("not connected to the message bus"));
+                return FALSE;
+        }
+
+        if (screensaver_is_running (listener->priv->connection)) {
+                g_set_error (error,
+                             GS_LISTENER_ERROR,
+                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
+                             "%s",
+                             _("screensaver already running in this session"));
+                return FALSE;
+        }
+
+        dbus_error_init (&buserror);
+
+        if (dbus_connection_register_object_path (listener->priv->connection,
+                                                  GS_PATH,
+                                                  &gs_listener_vtable,
+                                                  listener) == FALSE) {
+                g_critical ("out of memory registering object path");
+                return FALSE;
+        }
+
+        res = dbus_bus_request_name (listener->priv->connection,
+                                     GS_SERVICE,
+                                     DBUS_NAME_FLAG_DO_NOT_QUEUE,
+                                     &buserror);
+        if (dbus_error_is_set (&buserror)) {
+                g_set_error (error,
+                             GS_LISTENER_ERROR,
+                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
+                             "%s",
+                             buserror.message);
+        }
+        if (res == DBUS_REQUEST_NAME_REPLY_EXISTS) {
+                g_set_error (error,
+                             GS_LISTENER_ERROR,
+                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
+                             "%s",
+                             _("screensaver already running in this session"));
+                return FALSE;
+        }
+
+        dbus_error_free (&buserror);
+
+        dbus_connection_add_filter (listener->priv->connection, listener_dbus_filter_function, listener, NULL);
+
+        dbus_bus_add_match (listener->priv->connection,
+                            "type='signal'"
+                            ",interface='"DBUS_INTERFACE_DBUS"'"
+                            ",sender='"DBUS_SERVICE_DBUS"'"
+                            ",member='NameOwnerChanged'",
+                            NULL);
 
         if (listener->priv->system_connection != NULL) {
                 dbus_connection_add_filter (listener->priv->system_connection,
@@ -718,7 +1580,7 @@ gs_listener_acquire (GSListener *listener)
                                             NULL);
 #endif
 
-                        return TRUE;
+                        return (res != -1);
                 }
 #endif
 
@@ -761,7 +1623,7 @@ gs_listener_acquire (GSListener *listener)
 #endif
         }
 
-        return TRUE;
+        return (res != -1);
 }
 
 static char *
@@ -995,6 +1857,8 @@ gs_listener_init (GSListener *listener)
 
         init_session_id (listener);
         init_seat_path (listener);
+
+        listener->priv->inhibit_list = g_hash_table_new_full (g_int_hash, g_int_equal, g_free, g_free);
 }
 
 static void

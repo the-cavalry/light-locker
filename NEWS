@@ -1,4 +1,12 @@
 ==============
+Version  1.5.0
+==============
+
+- Added DBus interface to communicate with the running light-locker
+- New translations
+
+
+==============
 Version  1.4.0
 ==============
 

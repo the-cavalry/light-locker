@@ -95,6 +95,21 @@ gs_monitor_lock_session (GSMonitor *monitor)
 
         /* Only switch to greeter if we are the visible session */
         if (visible) {
+                gs_listener_send_lock_session (monitor->priv->listener);
+        }
+
+        return FALSE;
+}
+
+static gboolean
+gs_monitor_switch_greeter (GSMonitor *monitor)
+{
+        gboolean visible;
+
+        visible = gs_manager_get_session_visible (monitor->priv->manager);
+
+        /* Only switch to greeter if we are the visible session */
+        if (visible) {
                 gs_listener_send_switch_greeter (monitor->priv->listener);
         }
 
@@ -118,21 +133,45 @@ static void
 manager_lock_cb (GSManager *manager,
                  GSMonitor *monitor)
 {
+        gs_monitor_lock_screen (monitor);
         if (monitor->priv->late_locking) {
-                gs_monitor_lock_screen (monitor);
                 monitor->priv->perform_lock = TRUE;
         } else if (gs_manager_get_session_visible (monitor->priv->manager)) {
-                gs_listener_send_lock_session (monitor->priv->listener);
+                /* Add a 1s delay for VT switching.
+                 * This seems to preserved content exposure.
+                 */
+                g_timeout_add_seconds (1,
+                                       (GSourceFunc)gs_monitor_lock_session,
+                                       monitor);
+        } else {
+                gs_manager_show_content (monitor->priv->manager);
         }
+}
+
+static void
+listener_locked_cb (GSListener *listener,
+                  GSMonitor  *monitor)
+{
+        gs_manager_show_content (monitor->priv->manager);
+        gs_monitor_lock_screen (monitor);
+        monitor->priv->perform_lock = FALSE;
 }
 
 static void
 listener_lock_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
-        gs_manager_show_content (monitor->priv->manager);
         gs_monitor_lock_screen (monitor);
-        monitor->priv->perform_lock = FALSE;
+        if (gs_manager_get_session_visible (monitor->priv->manager)) {
+                /* Add a 1s delay for VT switching.
+                 * This seems to preserved content exposure.
+                 */
+                g_timeout_add_seconds (1,
+                                       (GSourceFunc)gs_monitor_lock_session,
+                                       monitor);
+        } else {
+                gs_manager_show_content (monitor->priv->manager);
+        }
 }
 
 static void
@@ -189,8 +228,45 @@ listener_resume_cb (GSListener *listener,
          * This seems to fix backlight issues.
          */
         g_timeout_add_seconds (1,
-                               (GSourceFunc)gs_monitor_lock_session,
+                               (GSourceFunc)gs_monitor_switch_greeter,
                                monitor);
+}
+
+static void
+listener_simulate_user_activity_cb (GSListener *listener,
+                                    GSMonitor  *monitor)
+{
+        gs_listener_x11_simulate_activity (monitor->priv->listener_x11);
+}
+
+static gboolean
+listener_blanking_cb (GSListener *listener,
+                      gboolean    active,
+                      GSMonitor  *monitor)
+{
+        if (! active)
+        {
+                /* Don't deactivate the screensaver if we are locked */
+                if (gs_manager_get_active (monitor->priv->manager))
+                        return FALSE;
+        }
+
+        return gs_listener_x11_force_blanking (monitor->priv->listener_x11, active);
+}
+
+static void
+listener_inhibit_cb (GSListener *listener,
+                     gboolean    active,
+                     GSMonitor  *monitor)
+{
+        gs_listener_x11_inhibit (monitor->priv->listener_x11, active);
+}
+
+static gulong
+listener_idle_time_cb (GSListener *listener,
+                       GSMonitor  *monitor)
+{
+        return gs_listener_x11_idle_time (monitor->priv->listener_x11);
 }
 
 static void
@@ -200,6 +276,7 @@ listener_x11_blanking_changed_cb (GSListenerX11 *listener,
 {
         gs_debug ("Blanking changed: %d", active);
         gs_manager_set_blank_screen (monitor->priv->manager, active);
+        gs_listener_set_blanked (monitor->priv->listener, active);
 
         if (!active && monitor->priv->perform_lock && gs_manager_get_session_visible (monitor->priv->manager)) {
                 gs_listener_send_lock_session (monitor->priv->listener);
@@ -210,11 +287,16 @@ listener_x11_blanking_changed_cb (GSListenerX11 *listener,
 static void
 disconnect_listener_signals (GSMonitor *monitor)
 {
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_locked_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_lock_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_session_switched_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_active_changed_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_suspend_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_resume_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_simulate_user_activity_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_blanking_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_inhibit_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_idle_time_cb, monitor);
 
         g_signal_handlers_disconnect_by_func (monitor->priv->listener_x11, listener_x11_blanking_changed_cb, monitor);
 }
@@ -222,6 +304,8 @@ disconnect_listener_signals (GSMonitor *monitor)
 static void
 connect_listener_signals (GSMonitor *monitor)
 {
+        g_signal_connect (monitor->priv->listener, "locked",
+                          G_CALLBACK (listener_locked_cb), monitor);
         g_signal_connect (monitor->priv->listener, "lock",
                           G_CALLBACK (listener_lock_cb), monitor);
         g_signal_connect (monitor->priv->listener, "session-switched",
@@ -232,6 +316,14 @@ connect_listener_signals (GSMonitor *monitor)
                           G_CALLBACK (listener_suspend_cb), monitor);
         g_signal_connect (monitor->priv->listener, "resume",
                           G_CALLBACK (listener_resume_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "simulate-user-activity",
+                          G_CALLBACK (listener_simulate_user_activity_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "blanking",
+                          G_CALLBACK (listener_blanking_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "inhibit",
+                          G_CALLBACK (listener_inhibit_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "idle-time",
+                          G_CALLBACK (listener_idle_time_cb), monitor);
 
         g_signal_connect (monitor->priv->listener_x11, "blanking-changed",
                           G_CALLBACK (listener_x11_blanking_changed_cb), monitor);
@@ -242,6 +334,7 @@ disconnect_manager_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->manager, manager_activated_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->manager, manager_switch_greeter_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->manager, manager_lock_cb, monitor);
 }
 
 static void
@@ -263,6 +356,9 @@ gs_monitor_init (GSMonitor *monitor)
 
 #ifdef WITH_LATE_LOCKING
         monitor->priv->late_locking = WITH_LATE_LOCKING;
+#endif
+#ifdef WITH_LOCK_ON_SUSPEND
+        monitor->priv->lock_on_suspend = WITH_LOCK_ON_SUSPEND;
 #endif
 
         monitor->priv->listener = gs_listener_new ();
@@ -318,7 +414,7 @@ gs_monitor_start (GSMonitor *monitor,
 {
         g_return_val_if_fail (GS_IS_MONITOR (monitor), FALSE);
 
-        if (! gs_listener_acquire (monitor->priv->listener)) {
+        if (! gs_listener_acquire (monitor->priv->listener, error)) {
                 return FALSE;
         }
 

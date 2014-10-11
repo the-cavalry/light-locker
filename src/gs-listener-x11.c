@@ -39,6 +39,10 @@
 #include <X11/extensions/scrnsaver.h>
 #endif
 
+#ifdef HAVE_DPMS_EXTENSION
+#include <X11/extensions/dpms.h>
+#endif
+
 #include "gs-listener-x11.h"
 #include "gs-marshal.h"
 #include "gs-debug.h"
@@ -84,7 +88,7 @@ gs_listener_x11_class_init (GSListenerX11Class *klass)
                               g_cclosure_marshal_VOID__BOOLEAN,
                               G_TYPE_NONE,
                               1,
-			      G_TYPE_BOOLEAN);
+                              G_TYPE_BOOLEAN);
 
         g_type_class_add_private (klass, sizeof (GSListenerX11Private));
 }
@@ -180,6 +184,99 @@ gs_listener_x11_acquire (GSListenerX11 *listener)
         gdk_window_add_filter (NULL, (GdkFilterFunc)xroot_filter, listener);
 
         return TRUE;
+}
+
+void
+gs_listener_x11_simulate_activity (GSListenerX11 *listener)
+{
+        GdkDisplay *display;
+
+        display = gdk_display_get_default ();
+
+        gdk_error_trap_push ();
+        XResetScreenSaver (GDK_DISPLAY_XDISPLAY (display));
+#ifdef HAVE_DPMS_EXTENSION
+        DPMSForceLevel (GDK_DISPLAY_XDISPLAY (display), DPMSModeOn);
+#endif
+#if GTK_CHECK_VERSION(3, 0, 0)
+        gdk_error_trap_pop_ignored ();
+#else
+        gdk_error_trap_pop ();
+#endif
+}
+
+gboolean
+gs_listener_x11_force_blanking (GSListenerX11 *listener,
+                                gboolean       active)
+{
+        GdkDisplay *display;
+
+        display = gdk_display_get_default ();
+
+        gdk_error_trap_push ();
+        if (active) {
+                XActivateScreenSaver (GDK_DISPLAY_XDISPLAY (display));
+        } else {
+                XResetScreenSaver (GDK_DISPLAY_XDISPLAY (display));
+#ifdef HAVE_DPMS_EXTENSION
+                DPMSForceLevel (GDK_DISPLAY_XDISPLAY (display), DPMSModeOn);
+#endif
+        }
+#if GTK_CHECK_VERSION(3, 0, 0)
+        gdk_error_trap_pop_ignored ();
+#else
+        gdk_error_trap_pop ();
+#endif
+        return FALSE;
+}
+
+void
+gs_listener_x11_inhibit (GSListenerX11 *listener,
+                         gboolean       active)
+{
+#ifdef HAVE_MIT_SAVER_EXTENSION
+        GdkDisplay *display;
+
+        display = gdk_display_get_default ();
+
+        gdk_error_trap_push ();
+        XScreenSaverSuspend (GDK_DISPLAY_XDISPLAY (display), active);
+
+#if GTK_CHECK_VERSION(3, 0, 0)
+        gdk_error_trap_pop_ignored ();
+#else
+        gdk_error_trap_pop ();
+#endif
+#endif
+}
+
+gulong
+gs_listener_x11_idle_time (GSListenerX11 *listener)
+{
+        gulong secs = 0;
+#ifdef HAVE_MIT_SAVER_EXTENSION
+        GdkDisplay *display;
+        GdkScreen *screen;
+        GdkWindow *window;
+        XScreenSaverInfo scrnsaver_info;
+
+        display = gdk_display_get_default ();
+        screen = gdk_display_get_default_screen (display);
+        window = gdk_screen_get_root_window (screen);
+
+        gdk_error_trap_push ();
+        if (XScreenSaverQueryInfo (GDK_DISPLAY_XDISPLAY (display), GDK_WINDOW_XID (window), &scrnsaver_info)) {
+                secs = scrnsaver_info.idle / 1000;
+        } else {
+                gs_debug ("ScreenSaverExtension not found");
+        }
+#if GTK_CHECK_VERSION(3, 0, 0)
+        gdk_error_trap_pop_ignored ();
+#else
+        gdk_error_trap_pop ();
+#endif
+#endif
+        return secs;
 }
 
 static void
