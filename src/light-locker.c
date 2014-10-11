@@ -34,6 +34,7 @@
 #include <gtk/gtk.h>
 
 #include "light-locker.h"
+#include "light-locker-conf.h"
 #include "gs-monitor.h"
 #include "gs-debug.h"
 
@@ -51,19 +52,27 @@ main (int    argc,
         GError             *error = NULL;
         static gboolean     show_version = FALSE;
         static gboolean     debug        = FALSE;
-        static gint         lock_after_screensaver = 5;
-#ifdef WITH_LATE_LOCKING
-#define LATE_LOCKING_VAL WITH_LATE_LOCKING
-#else
-#define LATE_LOCKING_VAL FALSE
+
+        LightLockerConf    *conf = light_locker_conf_new ();
+        static gint         lock_after_screensaver;
+        static gboolean     late_locking;
+        static gboolean     lock_on_suspend;
+
+        /* Get user settings or default from LightLockerConf. */
+        g_object_get (G_OBJECT(conf),
+                      "lock-on-suspend", &lock_on_suspend,
+                      "late-locking", &late_locking,
+                      "lock-after-screensaver", &lock_after_screensaver,
+                      NULL);
+
+#ifndef WITH_LATE_LOCKING
+        late_locking = FALSE;
 #endif
-        static gboolean     late_locking = LATE_LOCKING_VAL;
-#ifdef WITH_LOCK_ON_SUSPEND
-#define LOCK_ON_SUSPEND_VAL WITH_LOCK_ON_SUSPEND
-#else
-#define LOCK_ON_SUSPEND_VAL FALSE
+
+#ifndef WITH_LOCK_ON_SUSPEND
+        lock_on_suspend = FALSE;
 #endif
-        static gboolean     lock_on_suspend = LOCK_ON_SUSPEND_VAL;
+
         static GOptionEntry entries []   = {
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
@@ -99,6 +108,13 @@ main (int    argc,
                 exit (1);
         }
 
+        /* Update values in LightLockerConf. */
+        g_object_set (G_OBJECT(conf),
+                      "lock-on-suspend", lock_on_suspend,
+                      "late-locking", late_locking,
+                      "lock-after-screensaver", lock_after_screensaver,
+                      NULL);
+
         if (show_version) {
                 g_print ("%s %s\n", argv [0], VERSION);
                 exit (1);
@@ -126,6 +142,7 @@ main (int    argc,
 
         gtk_main ();
 
+        g_object_unref (conf);
         g_object_unref (monitor);
 
         gs_debug ("light-locker finished");

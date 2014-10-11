@@ -300,7 +300,6 @@ light_locker_conf_class_init (LightLockerConfClass *klass)
                                                         3600,
                                                         0,
                                                         G_PARAM_READWRITE));
-
 }
 
 /**
