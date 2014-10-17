@@ -34,7 +34,7 @@
 #include <gtk/gtk.h>
 
 #include "light-locker.h"
-#include "light-locker-conf.h"
+#include "ll-config.h"
 #include "gs-monitor.h"
 #include "gs-debug.h"
 
@@ -53,7 +53,7 @@ main (int    argc,
         static gboolean     show_version = FALSE;
         static gboolean     debug        = FALSE;
 
-        LightLockerConf    *conf = light_locker_conf_new ();
+        LLConfig	    *conf = ll_config_new ();
         static gint         lock_after_screensaver;
         static gboolean     late_locking;
         static gboolean     lock_on_suspend;
@@ -122,6 +122,10 @@ main (int    argc,
 
         gs_debug_init (debug, FALSE);
         gs_debug ("initializing light-locker %s", VERSION);
+
+        gs_debug ("lock after screensaver %d", lock_after_screensaver);
+        gs_debug ("late locking %d", late_locking);
+        gs_debug ("lock on suspend %d", lock_on_suspend);
 
         monitor = gs_monitor_new (lock_after_screensaver, late_locking, lock_on_suspend);
 

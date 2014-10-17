@@ -65,8 +65,8 @@ gs-marshal.h: gs-marshal.list
 light_locker_SOURCES =	\
 	light-locker.c		\
 	light-locker.h		\
-	light-locker-conf.c	\
-	light-locker-conf.h	\
+	ll-config.c		\
+	ll-config.h		\
 	gs-bus.h		\
 	gs-monitor.c		\
 	gs-monitor.h		\
