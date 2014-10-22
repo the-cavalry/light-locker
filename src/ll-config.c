@@ -1,4 +1,4 @@
-#include "light-locker-conf.h"
+#include "ll-config.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,7 +6,7 @@
 
 #include <gio/gio.h>
 
-static gpointer light_locker_conf_object = NULL;
+static gpointer ll_config_object = NULL;
 
 /* Property identifiers */
 enum
@@ -19,36 +19,36 @@ enum
 };
 
 
-static void light_locker_conf_finalize      (GObject        *object);
-static void light_locker_conf_get_property  (GObject        *object,
-                                             guint           prop_id,
-                                             GValue         *value,
-                                             GParamSpec     *pspec);
-static void light_locker_conf_set_property  (GObject        *object,
-                                             guint           prop_id,
-                                             const GValue   *value,
-                                             GParamSpec     *pspec);
-static void light_locker_conf_prop_changed  (GSettings        *settings,
-                                             const gchar      *prop_name,
-                                             LightLockerConf  *conf);
-GVariant *gvalue_to_gvariant                (const GValue *gvalue);
-gboolean gvariant_to_gvalue                 (GVariant *variant,
-                                             GValue *out_gvalue);
+static void ll_config_finalize      (GObject        *object);
+static void ll_config_get_property  (GObject        *object,
+                                     guint           prop_id,
+                                     GValue         *value,
+                                     GParamSpec     *pspec);
+static void ll_config_set_property  (GObject        *object,
+                                     guint           prop_id,
+                                     const GValue   *value,
+                                     GParamSpec     *pspec);
+static void ll_config_prop_changed  (GSettings      *settings,
+                                     const gchar    *prop_name,
+                                     LLConfig       *conf);
+GVariant *gvalue_to_gvariant        (const GValue *gvalue);
+gboolean gvariant_to_gvalue         (GVariant *variant,
+                                     GValue *out_gvalue);
 
 
-struct _LightLockerConfClass
+struct _LLConfigClass
 {
     GObjectClass __parent__;
 };
 
-struct _LightLockerConf
+struct _LLConfig
 {
     GObject    __parent__;
     GSettings *settings;
     gulong     property_changed_id;
 };
 
-G_DEFINE_TYPE (LightLockerConf, light_locker_conf, G_TYPE_OBJECT)
+G_DEFINE_TYPE (LLConfig, ll_config, G_TYPE_OBJECT)
 
 
 GVariant *gvalue_to_gvariant (const GValue *value)
@@ -89,22 +89,22 @@ gboolean gvariant_to_gvalue (GVariant *variant, GValue *out_gvalue)
 }
 
 /**
- * light_locker_conf_set_property:
- * @object  : a #LightLockerConf instance passed as #GObject.
+ * ll_config_set_property:
+ * @object  : a #LLConfig instance passed as #GObject.
  * @prop_id : the ID of the property being set.
  * @value   : the value of the property being set.
  * @pspec   : the property #GParamSpec.
  *
  * Write property-values to GSettings.
  **/
-static void light_locker_conf_set_property (GObject *object,
+static void ll_config_set_property (GObject *object,
                                             guint prop_id,
                                             const GValue *value,
                                             GParamSpec *pspec)
 {
-    LightLockerConf  *conf = LIGHT_LOCKER_CONF (object);
-    GVariant         *variant;
-    gchar             prop_name[64];
+    LLConfig  *conf = LL_CONFIG (object);
+    GVariant  *variant;
+    gchar      prop_name[64];
 
     /* leave if the channel is not set */
     if (G_UNLIKELY (conf->settings == NULL))
@@ -123,24 +123,24 @@ static void light_locker_conf_set_property (GObject *object,
     /* thaw */
     g_signal_handler_unblock (conf->settings, conf->property_changed_id);
 
-    light_locker_conf_prop_changed(conf->settings, prop_name, conf);
+    ll_config_prop_changed(conf->settings, prop_name, conf);
 }
 
 /**
- * light_locker_conf_get_property:
- * @object  : a #LightLockerConf instance passed as #GObject.
+ * ll_config_get_property:
+ * @object  : a #LLConfig instance passed as #GObject.
  * @prop_id : the ID of the property being retrieved.
  * @value   : the return variable for the value of the property being retrieved.
  * @pspec   : the property #GParamSpec.
  *
  * Read property-values from GSettings.
  **/
-static void light_locker_conf_get_property (GObject *object,
+static void ll_config_get_property (GObject *object,
                                             guint prop_id,
                                             GValue *value,
                                             GParamSpec *pspec)
 {
-    LightLockerConf  *conf = LIGHT_LOCKER_CONF (object);
+    LLConfig  *conf = LL_CONFIG (object);
     GVariant         *variant = NULL;
     GValue            src = { 0, };
     gchar             prop_name[64];
@@ -172,16 +172,16 @@ static void light_locker_conf_get_property (GObject *object,
 }
 
 /**
- * light_locker_conf_prop_changed:
+ * ll_config_prop_changed:
  * @channel   : the #XfconfChannel where settings are stored.
  * @prop_name : the name of the property being modified.
  * @conf      : the #ParoleConf instance.
  *
  * Event handler for when a property is modified.
  **/
-static void light_locker_conf_prop_changed    (GSettings        *settings,
-                                               const gchar      *prop_name,
-                                               LightLockerConf  *conf)
+static void ll_config_prop_changed    (GSettings   *settings,
+                                               const gchar *prop_name,
+                                               LLConfig    *conf)
 {
     GParamSpec *pspec;
 
@@ -194,20 +194,20 @@ static void light_locker_conf_prop_changed    (GSettings        *settings,
 }
 
 /**
- * light_locker_conf_finalize:
- * @object : a #LightLockerConf instance passed as #GObject.
+ * ll_config_finalize:
+ * @object : a #LLConfig instance passed as #GObject.
  *
- * Finalize a #LightLockerConf instance.
+ * Finalize a #LLConfig instance.
  **/
 static void
-light_locker_conf_finalize (GObject *object)
+ll_config_finalize (GObject *object)
 {
-    LightLockerConf *conf = LIGHT_LOCKER_CONF (object);
+    LLConfig *conf = LL_CONFIG (object);
 
     /* disconnect from the updates */
     g_signal_handler_disconnect (conf->settings, conf->property_changed_id);
 
-    (*G_OBJECT_CLASS (light_locker_conf_parent_class)->finalize) (object);
+    (*G_OBJECT_CLASS (ll_config_parent_class)->finalize) (object);
 }
 
 /**
@@ -239,20 +239,20 @@ transform_string_to_int (const GValue *src,
 }
 
 /**
- * light_locker_conf_class_init:
- * @klass : a #LightLockerConfClass to initialize.
+ * ll_config_class_init:
+ * @klass : a #LLConfigClass to initialize.
  *
- * Initialize a base #LightLockerConfClass instance.
+ * Initialize a base #LLConfigClass instance.
  **/
 static void
-light_locker_conf_class_init (LightLockerConfClass *klass)
+ll_config_class_init (LLConfigClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-    object_class->finalize = light_locker_conf_finalize;
+    object_class->finalize = ll_config_finalize;
 
-    object_class->get_property = light_locker_conf_get_property;
-    object_class->set_property = light_locker_conf_set_property;
+    object_class->get_property = ll_config_get_property;
+    object_class->set_property = ll_config_set_property;
 
     if (!g_value_type_transformable (G_TYPE_STRING, G_TYPE_INT))
         g_value_register_transform_func (G_TYPE_STRING, G_TYPE_INT, transform_string_to_int);
@@ -261,7 +261,7 @@ light_locker_conf_class_init (LightLockerConfClass *klass)
         g_value_register_transform_func (G_TYPE_STRING, G_TYPE_BOOLEAN, transform_string_to_boolean);
 
     /**
-     * LightLockerConf:lock-on-suspend:
+     * LLConfig:lock-on-suspend:
      *
      * Enable lock-on-suspend
      **/
@@ -274,7 +274,7 @@ light_locker_conf_class_init (LightLockerConfClass *klass)
                                                            G_PARAM_READWRITE));
 
     /**
-     * LightLockerConf:late-locking:
+     * LLConfig:late-locking:
      *
      * Lock after screensaver has ended.
      **/
@@ -287,7 +287,7 @@ light_locker_conf_class_init (LightLockerConfClass *klass)
                                                            G_PARAM_READWRITE));
 
     /**
-     * LightLockerConf:lock-after-screensaver:
+     * LLConfig:lock-after-screensaver:
      *
      * Seconds after screensaver to lock
      **/
@@ -303,38 +303,38 @@ light_locker_conf_class_init (LightLockerConfClass *klass)
 }
 
 /**
- * light_locker_conf_init:
- * @conf : a #LightLockerConf instance.
+ * ll_config_init:
+ * @conf : a #LLConfig instance.
  *
- * Initialize a #LightLockerConf instance.
+ * Initialize a #LLConfig instance.
  **/
 static void
-light_locker_conf_init (LightLockerConf *conf)
+ll_config_init (LLConfig *conf)
 {
     conf->settings = g_settings_new("apps.light-locker");
 
     conf->property_changed_id =
     g_signal_connect (G_OBJECT (conf->settings), "changed",
-                      G_CALLBACK (light_locker_conf_prop_changed), conf);
+                      G_CALLBACK (ll_config_prop_changed), conf);
 }
 
 /**
- * light_locker_conf_new:
+ * ll_config_new:
  *
- * Create a new #LightLockerConf instance.
+ * Create a new #LLConfig instance.
  **/
-LightLockerConf *
-light_locker_conf_new (void)
+LLConfig *
+ll_config_new (void)
 {
-    if ( light_locker_conf_object != NULL )
+    if ( ll_config_object != NULL )
     {
-        g_object_ref (light_locker_conf_object);
+        g_object_ref (ll_config_object);
     }
     else
     {
-        light_locker_conf_object = g_object_new (LIGHT_LOCKER_TYPE_CONF, NULL);
-        g_object_add_weak_pointer (light_locker_conf_object, &light_locker_conf_object);
+        ll_config_object = g_object_new (LL_TYPE_CONFIG, NULL);
+        g_object_add_weak_pointer (ll_config_object, &ll_config_object);
     }
 
-    return LIGHT_LOCKER_CONF (light_locker_conf_object);
+    return LL_CONFIG (ll_config_object);
 }

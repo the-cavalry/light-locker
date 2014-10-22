@@ -30,7 +30,7 @@
 #include <glib-object.h>
 
 #include "light-locker.h"
-#include "light-locker-conf.h"
+#include "ll-config.h"
 
 #include "gs-manager.h"
 
@@ -50,7 +50,7 @@ struct GSMonitorPrivate
         GSListener      *listener;
         GSListenerX11   *listener_x11;
         GSManager       *manager;
-        LightLockerConf *conf;
+        LLConfig        *conf;
 
         guint            late_locking : 1;
         guint            lock_on_suspend : 1;
@@ -151,9 +151,9 @@ manager_lock_cb (GSManager *manager,
 }
 
 static void
-conf_lock_on_suspend_cb (LightLockerConf *conf,
-                         GParamSpec      *pspec,
-                         GSMonitor       *monitor)
+conf_lock_on_suspend_cb (LLConfig    *conf,
+                         GParamSpec  *pspec,
+                         GSMonitor   *monitor)
 {
         gboolean lock_on_suspend = FALSE;
 
@@ -165,9 +165,9 @@ conf_lock_on_suspend_cb (LightLockerConf *conf,
 }
 
 static void
-conf_late_locking_cb (LightLockerConf *conf,
-                      GParamSpec      *pspec,
-                      GSMonitor       *monitor)
+conf_late_locking_cb (LLConfig    *conf,
+                      GParamSpec  *pspec,
+                      GSMonitor   *monitor)
 {
         gboolean late_locking = FALSE;
 
@@ -179,9 +179,9 @@ conf_late_locking_cb (LightLockerConf *conf,
 }
 
 static void
-conf_lock_after_screensaver_cb (LightLockerConf *conf,
-                                GParamSpec      *pspec,
-                                GSMonitor       *monitor)
+conf_lock_after_screensaver_cb (LLConfig    *conf,
+                                GParamSpec  *pspec,
+                                GSMonitor   *monitor)
 {
         guint lock_after_screensaver = 5;
 
@@ -424,7 +424,7 @@ gs_monitor_init (GSMonitor *monitor)
         monitor->priv->lock_on_suspend = WITH_LOCK_ON_SUSPEND;
 #endif
 
-        monitor->priv->conf = light_locker_conf_new ();
+        monitor->priv->conf = ll_config_new ();
         connect_conf_signals (monitor);
 
         monitor->priv->listener = gs_listener_new ();
