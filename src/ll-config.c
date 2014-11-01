@@ -105,25 +105,25 @@ static void ll_config_set_property (GObject      *object,
                                     GParamSpec   *pspec)
 {
     LLConfig  *conf = LL_CONFIG (object);
-    GVariant  *variant;
     gchar      prop_name[64];
-
-    /* leave if the channel is not set */
-    if (G_UNLIKELY (conf->settings == NULL))
-        return;
 
     /* build property name */
     g_snprintf (prop_name, sizeof (prop_name), "%s", g_param_spec_get_name (pspec));
 
-    /* freeze */
-    g_signal_handler_block (conf->settings, conf->property_changed_id);
+    if (conf->settings)
+    {
+        GVariant  *variant;
 
-    /* convert and write */
-    variant = gvalue_to_gvariant(value);
-    g_settings_set_value (conf->settings, prop_name, variant);
+        /* freeze */
+        g_signal_handler_block (conf->settings, conf->property_changed_id);
 
-    /* thaw */
-    g_signal_handler_unblock (conf->settings, conf->property_changed_id);
+        /* convert and write */
+        variant = gvalue_to_gvariant(value);
+        g_settings_set_value (conf->settings, prop_name, variant);
+
+        /* thaw */
+        g_signal_handler_unblock (conf->settings, conf->property_changed_id);
+    }
 
     ll_config_prop_changed(conf->settings, prop_name, conf);
 }
@@ -143,34 +143,32 @@ static void ll_config_get_property (GObject    *object,
                                     GParamSpec *pspec)
 {
     LLConfig  *conf = LL_CONFIG (object);
-    GVariant         *variant = NULL;
-    GValue            src = { 0, };
-    gchar             prop_name[64];
 
-    /* only set defaults if channel is not set */
-    if (G_UNLIKELY (conf->settings == NULL))
+    if (conf->settings)
     {
-        g_param_value_set_default (pspec, value);
-        return;
+        GVariant         *variant = NULL;
+        GValue            src = { 0, };
+        gchar             prop_name[64];
+
+        /* build property name */
+        g_snprintf (prop_name, sizeof (prop_name), "%s", g_param_spec_get_name (pspec));
+
+        variant = g_settings_get_value (conf->settings, prop_name);
+        if (gvariant_to_gvalue(variant, &src))
+        {
+            if (G_VALUE_TYPE (value) == G_VALUE_TYPE (&src))
+                g_value_copy (&src, value);
+
+            else if (!g_value_transform (&src, value))
+                g_printerr ("Failed to transform property %s\n", prop_name);
+
+            g_value_unset (&src);
+            return;
+        }
     }
 
-    /* build property name */
-    g_snprintf (prop_name, sizeof (prop_name), "%s", g_param_spec_get_name (pspec));
-
-    variant = g_settings_get_value (conf->settings, prop_name);
-    if (gvariant_to_gvalue(variant, &src))
-    {
-        if (G_VALUE_TYPE (value) == G_VALUE_TYPE (&src))
-            g_value_copy (&src, value);
-        else if (!g_value_transform (&src, value))
-            g_printerr ("Failed to transform property %s\n", prop_name);
-        g_value_unset (&src);
-    }
-    else
-    {
-        /* value is not found, return default */
-        g_param_value_set_default (pspec, value);
-    }
+    /* value is not found, return default */
+    g_param_value_set_default (pspec, value);
 }
 
 /**
@@ -192,7 +190,7 @@ static void ll_config_prop_changed (GSettings   *settings,
     if (G_LIKELY (pspec != NULL))
         g_object_notify_by_pspec (G_OBJECT (conf), pspec);
 
-    g_debug("Propchange:%s,%p", prop_name, pspec);
+    g_debug("Property changed: %s,%p", prop_name, pspec);
 }
 
 /**
@@ -207,7 +205,8 @@ ll_config_finalize (GObject *object)
     LLConfig *conf = LL_CONFIG (object);
 
     /* disconnect from the updates */
-    g_signal_handler_disconnect (conf->settings, conf->property_changed_id);
+    if (conf->settings)
+        g_signal_handler_disconnect (conf->settings, conf->property_changed_id);
 
     (*G_OBJECT_CLASS (ll_config_parent_class)->finalize) (object);
 }
@@ -321,16 +320,18 @@ ll_config_init (LLConfig *conf)
     if (schema != NULL)
     {
         conf->settings = g_settings_new(LIGHT_LOCKER_SCHEMA);
+
         conf->property_changed_id =
         g_signal_connect (G_OBJECT (conf->settings), "changed",
                           G_CALLBACK (ll_config_prop_changed), conf);
-    } else
+
+        g_settings_schema_unref (schema);
+    }
+    else
     {
         g_warning("Schema \"%s\" not found. Not storing runtime settings.", LIGHT_LOCKER_SCHEMA);
     }
 
-    if (schema)
-        g_settings_schema_unref (schema);
     /* FIXME: Segfault if trying to free the schema source
      * (process:21551): GLib-GIO-ERROR **: g_settings_schema_source_unref() called too many times on the default schema source */
     /* if (schema_source)

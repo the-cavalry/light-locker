@@ -15,9 +15,9 @@ typedef struct _LLConfig      LLConfig;
 #define LL_IS_CONFIG_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), LL_TYPE_CONFIG))
 #define LL_CONFIG_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), LL_TYPE_CONFIG, LLConfigClass))
 
-GType              ll_config_get_type           (void) G_GNUC_CONST;
+GType           ll_config_get_type (void) G_GNUC_CONST;
 
-LLConfig	   *ll_config_new                (void);
+LLConfig       *ll_config_new      (void);
 
 
 G_END_DECLS;
