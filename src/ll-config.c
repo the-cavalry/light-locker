@@ -6,6 +6,8 @@
 
 #include <gio/gio.h>
 
+#define LIGHT_LOCKER_SCHEMA          "apps.light-locker"
+
 static gpointer ll_config_object = NULL;
 
 /* Property identifiers */
@@ -31,9 +33,9 @@ static void ll_config_set_property  (GObject        *object,
 static void ll_config_prop_changed  (GSettings      *settings,
                                      const gchar    *prop_name,
                                      LLConfig       *conf);
-GVariant *gvalue_to_gvariant        (const GValue *gvalue);
-gboolean gvariant_to_gvalue         (GVariant *variant,
-                                     GValue *out_gvalue);
+GVariant *gvalue_to_gvariant        (const GValue   *gvalue);
+gboolean gvariant_to_gvalue         (GVariant       *variant,
+                                     GValue         *out_gvalue);
 
 
 struct _LLConfigClass
@@ -97,10 +99,10 @@ gboolean gvariant_to_gvalue (GVariant *variant, GValue *out_gvalue)
  *
  * Write property-values to GSettings.
  **/
-static void ll_config_set_property (GObject *object,
-                                            guint prop_id,
-                                            const GValue *value,
-                                            GParamSpec *pspec)
+static void ll_config_set_property (GObject      *object,
+                                    guint         prop_id,
+                                    const GValue *value,
+                                    GParamSpec   *pspec)
 {
     LLConfig  *conf = LL_CONFIG (object);
     GVariant  *variant;
@@ -135,10 +137,10 @@ static void ll_config_set_property (GObject *object,
  *
  * Read property-values from GSettings.
  **/
-static void ll_config_get_property (GObject *object,
-                                            guint prop_id,
-                                            GValue *value,
-                                            GParamSpec *pspec)
+static void ll_config_get_property (GObject    *object,
+                                    guint       prop_id,
+                                    GValue     *value,
+                                    GParamSpec *pspec)
 {
     LLConfig  *conf = LL_CONFIG (object);
     GVariant         *variant = NULL;
@@ -173,15 +175,15 @@ static void ll_config_get_property (GObject *object,
 
 /**
  * ll_config_prop_changed:
- * @channel   : the #XfconfChannel where settings are stored.
+ * @settings  : the #GSettings instance where settings are stored.
  * @prop_name : the name of the property being modified.
- * @conf      : the #ParoleConf instance.
+ * @conf      : the #LLConfig instance.
  *
  * Event handler for when a property is modified.
  **/
-static void ll_config_prop_changed    (GSettings   *settings,
-                                               const gchar *prop_name,
-                                               LLConfig    *conf)
+static void ll_config_prop_changed (GSettings   *settings,
+                                    const gchar *prop_name,
+                                    LLConfig    *conf)
 {
     GParamSpec *pspec;
 
@@ -311,11 +313,28 @@ ll_config_class_init (LLConfigClass *klass)
 static void
 ll_config_init (LLConfig *conf)
 {
-    conf->settings = g_settings_new("apps.light-locker");
+    GSettingsSchemaSource *schema_source;
+    GSettingsSchema *schema;
 
-    conf->property_changed_id =
-    g_signal_connect (G_OBJECT (conf->settings), "changed",
-                      G_CALLBACK (ll_config_prop_changed), conf);
+    schema_source = g_settings_schema_source_get_default();
+    schema = g_settings_schema_source_lookup (schema_source, LIGHT_LOCKER_SCHEMA, FALSE);
+    if (schema != NULL)
+    {
+        conf->settings = g_settings_new(LIGHT_LOCKER_SCHEMA);
+        conf->property_changed_id =
+        g_signal_connect (G_OBJECT (conf->settings), "changed",
+                          G_CALLBACK (ll_config_prop_changed), conf);
+    } else
+    {
+        g_warning("Schema \"%s\" not found. Not storing runtime settings.", LIGHT_LOCKER_SCHEMA);
+    }
+
+    if (schema)
+        g_settings_schema_unref (schema);
+    /* FIXME: Segfault if trying to free the schema source
+     * (process:21551): GLib-GIO-ERROR **: g_settings_schema_source_unref() called too many times on the default schema source */
+    /* if (schema_source)
+       g_settings_schema_source_unref (schema_source); */
 }
 
 /**
