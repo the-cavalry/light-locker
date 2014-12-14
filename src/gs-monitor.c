@@ -57,8 +57,6 @@ struct GSMonitorPrivate
         guint            perform_lock : 1;
 };
 
-#define FADE_TIMEOUT 10000
-
 G_DEFINE_TYPE (GSMonitor, gs_monitor, G_TYPE_OBJECT)
 
 static void
@@ -424,9 +422,6 @@ gs_monitor_init (GSMonitor *monitor)
         monitor->priv->lock_on_suspend = WITH_LOCK_ON_SUSPEND;
 #endif
 
-        monitor->priv->conf = ll_config_new ();
-        connect_conf_signals (monitor);
-
         monitor->priv->listener = gs_listener_new ();
         monitor->priv->listener_x11 = gs_listener_x11_new ();
         connect_listener_signals (monitor);
@@ -460,13 +455,24 @@ gs_monitor_finalize (GObject *object)
 }
 
 GSMonitor *
-gs_monitor_new (gint lock_after_screensaver,
-                gboolean late_locking,
-                gboolean lock_on_suspend)
+gs_monitor_new (LLConfig *config)
 {
         GSMonitor *monitor;
+        gboolean late_locking = FALSE;
+        gboolean lock_on_suspend = FALSE;
+        guint lock_after_screensaver = 5;
 
         monitor = g_object_new (GS_TYPE_MONITOR, NULL);
+
+        monitor->priv->conf = config;
+
+        connect_conf_signals (monitor);
+
+        g_object_get (G_OBJECT (config),
+                      "late-locking", &late_locking,
+                      "lock-on-suspend", &lock_on_suspend,
+                      "lock-after-screensaver", &lock_after_screensaver,
+                      NULL);
 
         monitor->priv->late_locking = late_locking;
         monitor->priv->lock_on_suspend = lock_on_suspend;

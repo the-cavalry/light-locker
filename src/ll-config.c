@@ -10,8 +10,6 @@
 
 #define LIGHT_LOCKER_SCHEMA          "apps.light-locker"
 
-static gpointer ll_config_object = NULL;
-
 /* Property identifiers */
 enum
 {
@@ -238,15 +236,5 @@ ll_config_init (LLConfig *conf)
 LLConfig *
 ll_config_new (void)
 {
-    if ( ll_config_object != NULL )
-    {
-        g_object_ref (ll_config_object);
-    }
-    else
-    {
-        ll_config_object = g_object_new (LL_TYPE_CONFIG, NULL);
-        g_object_add_weak_pointer (ll_config_object, &ll_config_object);
-    }
-
-    return LL_CONFIG (ll_config_object);
+    return g_object_new (LL_TYPE_CONFIG, NULL);
 }

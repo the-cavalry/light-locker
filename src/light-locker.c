@@ -53,25 +53,10 @@ main (int    argc,
         static gboolean     show_version = FALSE;
         static gboolean     debug        = FALSE;
 
-        LLConfig	    *conf = ll_config_new ();
+        LLConfig           *conf;
         static gint         lock_after_screensaver;
         static gboolean     late_locking;
         static gboolean     lock_on_suspend;
-
-        /* Get user settings or default from LightLockerConf. */
-        g_object_get (G_OBJECT(conf),
-                      "lock-on-suspend", &lock_on_suspend,
-                      "late-locking", &late_locking,
-                      "lock-after-screensaver", &lock_after_screensaver,
-                      NULL);
-
-#ifndef WITH_LATE_LOCKING
-        late_locking = FALSE;
-#endif
-
-#ifndef WITH_LOCK_ON_SUSPEND
-        lock_on_suspend = FALSE;
-#endif
 
         static GOptionEntry entries []   = {
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
@@ -98,6 +83,23 @@ main (int    argc,
         textdomain (GETTEXT_PACKAGE);
 #endif
 
+        conf = ll_config_new ();
+
+        /* Get user settings or default from LightLockerConf. */
+        g_object_get (G_OBJECT(conf),
+                      "lock-on-suspend", &lock_on_suspend,
+                      "late-locking", &late_locking,
+                      "lock-after-screensaver", &lock_after_screensaver,
+                      NULL);
+
+#ifndef WITH_LATE_LOCKING
+        late_locking = FALSE;
+#endif
+
+#ifndef WITH_LOCK_ON_SUSPEND
+        lock_on_suspend = FALSE;
+#endif
+
         if (! gtk_init_with_args (&argc, &argv, NULL, entries, NULL, &error)) {
                 if (error) {
                         g_warning ("%s", error->message);
@@ -108,17 +110,17 @@ main (int    argc,
                 exit (1);
         }
 
+        if (show_version) {
+                g_print ("%s %s\n", argv [0], VERSION);
+                exit (1);
+        }
+
         /* Update values in LightLockerConf. */
         g_object_set (G_OBJECT(conf),
                       "lock-on-suspend", lock_on_suspend,
                       "late-locking", late_locking,
                       "lock-after-screensaver", lock_after_screensaver,
                       NULL);
-
-        if (show_version) {
-                g_print ("%s %s\n", argv [0], VERSION);
-                exit (1);
-        }
 
         gs_debug_init (debug, FALSE);
         gs_debug ("initializing light-locker %s", VERSION);
@@ -127,7 +129,7 @@ main (int    argc,
         gs_debug ("late locking %d", late_locking);
         gs_debug ("lock on suspend %d", lock_on_suspend);
 
-        monitor = gs_monitor_new (lock_after_screensaver, late_locking, lock_on_suspend);
+        monitor = gs_monitor_new (conf);
 
         if (monitor == NULL) {
                 exit (1);
