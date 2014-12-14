@@ -1,6 +1,7 @@
 NULL =
 
-gsettings_SCHEMAS = apps.light-locker.gschema.xml
+schema_in_files=apps.light-locker.gschema.xml.in
+gsettings_SCHEMAS = $(schema_in_files:.xml.in=.xml)
 @GSETTINGS_RULES@
 
 man_MANS = 				\
@@ -16,10 +17,12 @@ EXTRA_DIST = 				\
 
 DISTCLEANFILES = 			\
 	$(desktop_DATA)			\
+	$(gsettings_SCHEMAS)		\
 	$(NULL)
 
 MAINTAINERCLEANFILES =			\
 	*~				\
+	apps.light-locker.gschema.xml.in\
 	Makefile.in
 
 -include $(top_srcdir)/git.mk

@@ -4,13 +4,13 @@
   <schema id="apps.light-locker" path="/apps/light-locker/">
 
     <key name="lock-on-suspend" type="b">
-      <default>false</default>
+      <default>@LOCK_ON_SUSPEND_DEFAULT@</default>
       <summary>Lock on Suspend</summary>
       <description>Lock the screen when the computer is suspended.</description>
     </key>
 
     <key name="late-locking" type="b">
-      <default>false</default>
+      <default>@LATE_LOCKING_DEFAULT@</default>
       <summary>Lock after screensaver ends</summary>
       <description>Lock after screensaver has ended.</description>
     </key>
