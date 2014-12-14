@@ -1,10 +1,12 @@
-#include "ll-config.h"
+#include "config.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include <gio/gio.h>
+
+#include "ll-config.h"
 
 #define LIGHT_LOCKER_SCHEMA          "apps.light-locker"
 
@@ -185,22 +187,30 @@ ll_config_class_init (LLConfigClass *klass)
 static void
 ll_config_init (LLConfig *conf)
 {
+#ifdef WITH_SETTINGS_BACKEND
     GSettingsSchemaSource *schema_source;
     GSettingsSchema       *schema;
     GParamSpec           **prop_list;
     guint                  i, n_prop;
+#endif
 
+    conf->lock_after_screensaver = 5;
+#ifdef WITH_LATE_LOCKING
+    conf->late_locking = WITH_LATE_LOCKING;
+#endif
+#ifdef WITH_LOCK_ON_SUSPEND
+    conf->lock_on_suspend = WITH_LOCK_ON_SUSPEND;
+#endif
+
+#ifdef WITH_SETTINGS_BACKEND
+#define GSETTINGS 1
+#if WITH_SETTINGS_BACKEND == GSETTINGS
     schema_source = g_settings_schema_source_get_default();
     schema = g_settings_schema_source_lookup (schema_source, LIGHT_LOCKER_SCHEMA, FALSE);
     if (schema != NULL)
     {
         conf->settings = g_settings_new(LIGHT_LOCKER_SCHEMA);
 
-#if 0
-        g_settings_bind (conf->settings, "late-locking", conf, "late-locking", G_SETTINGS_BIND_DEFAULT);
-        g_settings_bind (conf->settings, "lock-after-screensaver", conf, "lock-after-screensaver", G_SETTINGS_BIND_DEFAULT);
-        g_settings_bind (conf->settings, "lock-on-suspend", conf, "lock-on-suspend", G_SETTINGS_BIND_DEFAULT);
-#else
         prop_list = g_object_class_list_properties (G_OBJECT_GET_CLASS (conf), &n_prop);
         for (i = 0; i < n_prop; i++)
         {
@@ -208,7 +218,6 @@ ll_config_init (LLConfig *conf)
             g_settings_bind (conf->settings, name, conf, name, G_SETTINGS_BIND_DEFAULT);
         }
         g_free (prop_list);
-#endif
 
         g_settings_schema_unref (schema);
     }
@@ -216,11 +225,9 @@ ll_config_init (LLConfig *conf)
     {
         g_warning("Schema \"%s\" not found. Not storing runtime settings.", LIGHT_LOCKER_SCHEMA);
     }
-
-    /* FIXME: Segfault if trying to free the schema source
-     * (process:21551): GLib-GIO-ERROR **: g_settings_schema_source_unref() called too many times on the default schema source */
-    /* if (schema_source)
-       g_settings_schema_source_unref (schema_source); */
+#endif
+#undef GSETTINGS
+#endif
 }
 
 /**
