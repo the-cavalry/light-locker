@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-31 18:37+0200\n"
-"PO-Revision-Date: 2014-08-31 16:39+0000\n"
-"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
+"PO-Revision-Date: 2014-09-11 07:55+0000\n"
+"Last-Translator: Petr Šimáček <petr.simacek@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/light-locker/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,41 +25,41 @@ msgstr ""
 
 #: ../src/light-locker-command.c:54
 msgid "Query the state of the locker"
-msgstr ""
+msgstr "Dotaz na stav lockeru"
 
 #: ../src/light-locker-command.c:56
 msgid "Query the length of time the locker has been active"
-msgstr ""
+msgstr "Dotaz na dobu, jakou byl locker aktivní"
 
 #: ../src/light-locker-command.c:58
 msgid "Tells the running locker process to lock the screen immediately"
-msgstr ""
+msgstr "Oznámit běžícímu lockeru, aby okamžitě zamkl obrazovku"
 
 #: ../src/light-locker-command.c:60
 msgid "Turn the screensaver on (blank the screen)"
-msgstr ""
+msgstr "Zapnout spořič obrazovky (prázdná obrazovka)"
 
 #: ../src/light-locker-command.c:62
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
+msgstr "Pokud je spořič obrazovky aktivní, vypněte ho (nevyprázdnit obrazovku)"
 
 #: ../src/light-locker-command.c:64
 msgid "Poke the running locker to simulate user activity"
-msgstr ""
+msgstr "Nechat běžící locker simulovat činnost uživatele"
 
 #: ../src/light-locker-command.c:66
 msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
-msgstr ""
+msgstr "Blokovat spořič obrazovky před aktivací. Příkaz blokuje, zatímco blokování je aktivní."
 
 #: ../src/light-locker-command.c:68
 msgid "The calling application that is inhibiting the screensaver"
-msgstr ""
+msgstr "Aktivní aplikace, která blokuje spořič obrazovky"
 
 #: ../src/light-locker-command.c:70
 msgid "The reason for inhibiting the screensaver"
-msgstr ""
+msgstr "Důvod pro blokování spořiče obrazovky"
 
 #: ../src/light-locker-command.c:72 ../src/light-locker.c:68
 #: ../src/preview.c:82
@@ -69,43 +69,43 @@ msgstr "Verze této aplikace"
 #: ../src/light-locker-command.c:327
 #, c-format
 msgid "The screensaver is active\n"
-msgstr ""
+msgstr "Spořič obrazovky je aktivní\n"
 
 #: ../src/light-locker-command.c:329
 #, c-format
 msgid "The screensaver is inactive\n"
-msgstr ""
+msgstr "Spořič obrazovky není aktivní\n"
 
 #: ../src/light-locker-command.c:359
 #, c-format
 msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Spořič obrazovky byl aktivní na %d sekundu.\n"
+msgstr[1] "Spořič obrazovky byl aktivován na %d sekundy.\n"
+msgstr[2] "Spořič obrazovky byl aktivován na %d sekund.\n"
 
 #: ../src/light-locker-command.c:371
 #, c-format
 msgid "The screensaver is not currently active.\n"
-msgstr ""
+msgstr "Spořič obrazovky není v tuto chvíli zapnutý.\n\n"
 
 #: ../src/light-locker-command.c:372
 #, c-format
 msgid "The session has been idle for %d second.\n"
 msgid_plural "The session has been idle for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Relace byla nečinná %d sekundu.\n"
+msgstr[1] "Relace byla nečinná %d sekundy.\n"
+msgstr[2] "Relace byla nečinná %d sekund.\n"
 
 #: ../src/light-locker-command.c:441
 #, c-format
 msgid "The screensaver has been inhibited with cookie %d\n"
-msgstr ""
+msgstr "Spořič obrazovky byl potlačen soubory cookie %d.\n"
 
 #: ../src/light-locker-command.c:514
 #, c-format
 msgid "Send uninhibit to The screensaver with cookie %d\n"
-msgstr ""
+msgstr "Poslat nepotlačený spořič obrazovky se soubory cookie %d\n"
 
 #: ../src/light-locker.c:69 ../src/preview.c:83
 msgid "Enable debugging code"
@@ -141,15 +141,15 @@ msgstr "Spustit Uzamykač obrazovky"
 
 #: ../src/gs-listener-dbus.c:1484
 msgid "failed to register with the message bus"
-msgstr ""
+msgstr "nepodařilo se zaregistrovat ve sběrnici zpráv"
 
 #: ../src/gs-listener-dbus.c:1494
 msgid "not connected to the message bus"
-msgstr ""
+msgstr "nepřipojeno ke sběrnici zpráv"
 
 #: ../src/gs-listener-dbus.c:1503 ../src/gs-listener-dbus.c:1533
 msgid "screensaver already running in this session"
-msgstr ""
+msgstr "spořič obrazovky v této relaci stále běží"
 
 #: ../src/gs-content.c:92
 msgid "This session is locked"

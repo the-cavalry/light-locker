@@ -3,8 +3,8 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Adolfo Jayme Barrientos <fitoschido@ubuntu.com>, 2013
-# Adolfo Jayme Barrientos <fitoschido@ubuntu.com>, 2014
+# Adolfo Jayme Barrientos <fito@libreoffice.org>, 2013
+# Adolfo Jayme Barrientos <fito@libreoffice.org>, 2014
 # Copyright (C) 2013 The light-locker Authors, 2013
 # Edwin Pujols <edwinpm5@gmail.com>, 2014
 # Edwin Pujols <edwinpm5@gmail.com>, 2014
