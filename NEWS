@@ -1,4 +1,12 @@
 ==============
+Version  1.5.1
+==============
+
+- Added gsettings backend to store light-locker configuration
+- Translations update
+
+
+==============
 Version  1.5.0
 ==============
 
