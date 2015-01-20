@@ -5,13 +5,14 @@
 # Translators:
 # Edoardo Maria Elidoro <edoardo.elidoro@gmail.com>, 2013-2014
 # Luca Ferretti <lferrett@gnome.org>, 2006-2011
+# Marco <marco.sting@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-31 18:37+0200\n"
-"PO-Revision-Date: 2014-08-31 16:39+0000\n"
-"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
+"PO-Revision-Date: 2015-01-07 15:28+0000\n"
+"Last-Translator: Marco <marco.sting@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/light-locker/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,41 +22,41 @@ msgstr ""
 
 #: ../src/light-locker-command.c:54
 msgid "Query the state of the locker"
-msgstr ""
+msgstr "Analizza lo stato del blocco"
 
 #: ../src/light-locker-command.c:56
 msgid "Query the length of time the locker has been active"
-msgstr ""
+msgstr "Analizza da quanto tempo il blocco è attivo"
 
 #: ../src/light-locker-command.c:58
 msgid "Tells the running locker process to lock the screen immediately"
-msgstr ""
+msgstr "Ordina al processo di blocco attivo di bloccare lo schermo immediatamente"
 
 #: ../src/light-locker-command.c:60
 msgid "Turn the screensaver on (blank the screen)"
-msgstr ""
+msgstr "Attiva il salvaschermo (spegni lo schermo)"
 
 #: ../src/light-locker-command.c:62
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
+msgstr "Se il salvaschermo è attivo, lo disattiva (riaccendi lo schermo)"
 
 #: ../src/light-locker-command.c:64
 msgid "Poke the running locker to simulate user activity"
-msgstr ""
+msgstr "Interagisce con il blocco in esecuzione per simulare attività utente"
 
 #: ../src/light-locker-command.c:66
 msgid ""
 "Inhibit the screensaver from activating.  Command blocks while inhibit is "
 "active."
-msgstr ""
+msgstr "Impedisce l'attivazione del salvaschermo. Il comando di blocco durante l'inibizione rimane attivo"
 
 #: ../src/light-locker-command.c:68
 msgid "The calling application that is inhibiting the screensaver"
-msgstr ""
+msgstr "L'applicazione che sta impedendo l'attivazione del salvaschermo"
 
 #: ../src/light-locker-command.c:70
 msgid "The reason for inhibiting the screensaver"
-msgstr ""
+msgstr "La ragione dell'inibizione del salvaschermo"
 
 #: ../src/light-locker-command.c:72 ../src/light-locker.c:68
 #: ../src/preview.c:82
@@ -65,31 +66,31 @@ msgstr "Versione di questa applicazione"
 #: ../src/light-locker-command.c:327
 #, c-format
 msgid "The screensaver is active\n"
-msgstr ""
+msgstr "Il salvaschermo è attivo\n"
 
 #: ../src/light-locker-command.c:329
 #, c-format
 msgid "The screensaver is inactive\n"
-msgstr ""
+msgstr "Il salvaschermo non è attivo\n"
 
 #: ../src/light-locker-command.c:359
 #, c-format
 msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "il salvaschermo è attività da %d secondo\n"
+msgstr[1] "il salvaschermo è attività da %d secondi\n"
 
 #: ../src/light-locker-command.c:371
 #, c-format
 msgid "The screensaver is not currently active.\n"
-msgstr ""
+msgstr "Il salvaschermo non è al momento attivo\n"
 
 #: ../src/light-locker-command.c:372
 #, c-format
 msgid "The session has been idle for %d second.\n"
 msgid_plural "The session has been idle for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "La sessione è inattiva da %d secondo\n"
+msgstr[1] "La sessione è inattiva da %d secondi\n"
 
 #: ../src/light-locker-command.c:441
 #, c-format
