@@ -59,11 +59,17 @@
 #define DBUS_SERVICE                    "org.freedesktop.DBus"
 #define DBUS_PATH                       "/org/freedesktop/DBus"
 #define DBUS_INTERFACE                  "org.freedesktop.DBus"
+#define DBUS_INTROSPECTABLE_INTERFACE   "org.freedesktop.DBus.Introspectable"
 
 /* Screensaver */
 #define GS_SERVICE                      "org.freedesktop.ScreenSaver"
 #define GS_PATH                         "/org/freedesktop/ScreenSaver"
+#define GS_PATH_KDE                     "/ScreenSaver"
 #define GS_INTERFACE                    "org.freedesktop.ScreenSaver"
+
+#define GS_SERVICE_GNOME                "org.gnome.ScreenSaver"
+#define GS_PATH_GNOME                   "/org/gnome/ScreenSaver"
+#define GS_INTERFACE_GNOME              "org.gnome.ScreenSaver"
 
 #endif
 

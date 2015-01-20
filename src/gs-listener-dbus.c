@@ -246,7 +246,35 @@ send_dbus_boolean_signal (GSListener *listener,
         g_return_if_fail (listener != NULL);
 
         message = dbus_message_new_signal (GS_PATH,
-                                           GS_SERVICE,
+                                           GS_INTERFACE,
+                                           name);
+
+        dbus_message_iter_init_append (message, &iter);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &value);
+
+        if (! send_dbus_message (listener->priv->connection, message)) {
+                gs_debug ("Could not send %s signal", name);
+        }
+
+        dbus_message_unref (message);
+
+        /* Emit the signal on the KDE path */
+        message = dbus_message_new_signal (GS_PATH_KDE,
+                                           GS_INTERFACE,
+                                           name);
+
+        dbus_message_iter_init_append (message, &iter);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &value);
+
+        if (! send_dbus_message (listener->priv->connection, message)) {
+                gs_debug ("Could not send %s signal", name);
+        }
+
+        dbus_message_unref (message);
+
+        /* Emit the signal on the GNOME interface */
+        message = dbus_message_new_signal (GS_PATH_GNOME,
+                                           GS_INTERFACE_GNOME,
                                            name);
 
         dbus_message_iter_init_append (message, &iter);
@@ -439,7 +467,8 @@ send_success_reply (DBusConnection  *connection,
 static DBusHandlerResult
 listener_set_active (GSListener     *listener,
                      DBusConnection *connection,
-                     DBusMessage    *message)
+                     DBusMessage    *message,
+                     gboolean        send_reply)
 {
         const char     *path;
         int             type;
@@ -463,6 +492,10 @@ listener_set_active (GSListener     *listener,
         new_state = v;
         g_signal_emit (listener, signals [BLANKING], 0, new_state, &res);
         v = res;
+
+        if (send_reply == FALSE) {
+            return DBUS_HANDLER_RESULT_HANDLED;
+        }
 
         reply = dbus_message_new_method_return (message);
 
@@ -734,6 +767,27 @@ do_introspect (DBusConnection *connection,
                                "    </signal>\n"
                                "  </interface>\n");
 
+        /* ScreenSaver interface GNOME */
+        xml = g_string_append (xml,
+                               "  <interface name=\""GS_INTERFACE_GNOME"\">\n"
+                               "    <method name=\"Lock\">\n"
+                               "    </method>\n"
+                               "    <method name=\"SimulateUserActivity\">\n"
+                               "    </method>\n"
+                               "    <method name=\"GetActive\">\n"
+                               "      <arg direction=\"out\" type=\"b\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"GetActiveTime\">\n"
+                               "      <arg name=\"seconds\" direction=\"out\" type=\"u\"/>\n"
+                               "    </method>\n"
+                               "    <method name=\"SetActive\">\n"
+                               "      <arg name=\"e\" direction=\"in\" type=\"b\"/>\n"
+                               "    </method>\n"
+                               "    <signal name=\"ActiveChanged\">\n"
+                               "      <arg type=\"b\"/>\n"
+                               "    </signal>\n"
+                               "  </interface>\n");
+
         reply = dbus_message_new_method_return (message);
 
         xml = g_string_append (xml, "</node>\n");
@@ -775,33 +829,51 @@ listener_dbus_handle_session_message (GSListener     *listener,
         g_return_val_if_fail (connection != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
         g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
 
-        if (dbus_message_is_method_call (message, GS_SERVICE, "Lock")) {
+        if (dbus_message_is_method_call (message, GS_INTERFACE, "Lock")) {
                 g_signal_emit (listener, signals [LOCK], 0);
                 return send_success_reply (connection, message);
         }
-        if (dbus_message_is_method_call (message, GS_SERVICE, "SetActive")) {
-                return listener_set_active (listener, connection, message);
+        if (dbus_message_is_method_call (message, GS_INTERFACE, "SetActive")) {
+                return listener_set_active (listener, connection, message, TRUE);
         }
-        if (dbus_message_is_method_call (message, GS_SERVICE, "GetActive")) {
+        if (dbus_message_is_method_call (message, GS_INTERFACE, "GetActive")) {
                 return listener_get_bool (listener, connection, message, listener->priv->blanked);
         }
-        if (dbus_message_is_method_call (message, GS_SERVICE, "GetActiveTime")) {
+        if (dbus_message_is_method_call (message, GS_INTERFACE, "GetActiveTime")) {
                 return listener_get_time (listener, connection, message, listener->priv->blanked_start);
         }
-        if (dbus_message_is_method_call (message, GS_SERVICE, "GetSessionIdleTime")) {
+        if (dbus_message_is_method_call (message, GS_INTERFACE, "GetSessionIdleTime")) {
                 return listener_get_info (listener, connection, message, IDLE_TIME);
         }
-        if (dbus_message_is_method_call (message, GS_SERVICE, "SimulateUserActivity")) {
+        if (dbus_message_is_method_call (message, GS_INTERFACE, "SimulateUserActivity")) {
                 g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
                 return send_success_reply (connection, message);
         }
-        if (dbus_message_is_method_call (message, GS_SERVICE, "Inhibit")) {
+        if (dbus_message_is_method_call (message, GS_INTERFACE, "Inhibit")) {
                 return listener_inhibit (listener, connection, message);
         }
-        if (dbus_message_is_method_call (message, GS_SERVICE, "UnInhibit")) {
+        if (dbus_message_is_method_call (message, GS_INTERFACE, "UnInhibit")) {
                 return listener_uninhibit (listener, connection, message);
         }
-        if (dbus_message_is_method_call (message, "org.freedesktop.DBus.Introspectable", "Introspect")) {
+        if (dbus_message_is_method_call (message, GS_INTERFACE_GNOME, "Lock")) {
+                g_signal_emit (listener, signals [LOCK], 0);
+                return send_success_reply (connection, message);
+        }
+        if (dbus_message_is_method_call (message, GS_INTERFACE_GNOME, "SetActive")) {
+                listener_set_active (listener, connection, message, FALSE);
+                return send_success_reply (connection, message);
+        }
+        if (dbus_message_is_method_call (message, GS_INTERFACE_GNOME, "GetActive")) {
+                return listener_get_bool (listener, connection, message, listener->priv->blanked);
+        }
+        if (dbus_message_is_method_call (message, GS_INTERFACE_GNOME, "GetActiveTime")) {
+                return listener_get_time (listener, connection, message, listener->priv->blanked_start);
+        }
+        if (dbus_message_is_method_call (message, GS_INTERFACE_GNOME, "SimulateUserActivity")) {
+                g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
+                return send_success_reply (connection, message);
+        }
+        if (dbus_message_is_method_call (message, DBUS_INTROSPECTABLE_INTERFACE, "Introspect")) {
                 return do_introspect (connection, message, local_interface);
         }
 
@@ -1463,6 +1535,15 @@ screensaver_is_running (DBusConnection *connection)
                 dbus_error_free (&error);
         }
 
+        if (exists == FALSE) {
+                /* Also check for the GNOME screensaver */
+                dbus_error_init (&error);
+                exists = dbus_bus_name_has_owner (connection, GS_SERVICE_GNOME, &error);
+                if (dbus_error_is_set (&error)) {
+                        dbus_error_free (&error);
+                }
+        }
+
         return exists;
 }
 
@@ -1514,6 +1595,24 @@ gs_listener_acquire (GSListener *listener,
                 return FALSE;
         }
 
+        /* Register KDE path */
+        if (dbus_connection_register_object_path (listener->priv->connection,
+                                                  GS_PATH_KDE,
+                                                  &gs_listener_vtable,
+                                                  listener) == FALSE) {
+                g_critical ("out of memory registering object path");
+                return FALSE;
+        }
+
+        /* Register GNOME interface */
+        if (dbus_connection_register_object_path (listener->priv->connection,
+                                                  GS_PATH_GNOME,
+                                                  &gs_listener_vtable,
+                                                  listener) == FALSE) {
+                g_critical ("out of memory registering object path");
+                return FALSE;
+        }
+
         res = dbus_bus_request_name (listener->priv->connection,
                                      GS_SERVICE,
                                      DBUS_NAME_FLAG_DO_NOT_QUEUE,
@@ -1531,6 +1630,28 @@ gs_listener_acquire (GSListener *listener,
                              GS_LISTENER_ERROR_ACQUISITION_FAILURE,
                              "%s",
                              _("screensaver already running in this session"));
+                return FALSE;
+        }
+
+        dbus_error_free (&buserror);
+
+        res = dbus_bus_request_name (listener->priv->connection,
+                                     GS_SERVICE_GNOME,
+                                     DBUS_NAME_FLAG_DO_NOT_QUEUE,
+                                     &buserror);
+        if (dbus_error_is_set (&buserror)) {
+                g_set_error (error,
+                             GS_LISTENER_ERROR,
+                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
+                             "%s",
+                             buserror.message);
+        }
+        if (res == DBUS_REQUEST_NAME_REPLY_EXISTS) {
+                g_set_error (error,
+                             GS_LISTENER_ERROR,
+                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
+                             "%s",
+                             _("GNOME screensaver already running in this session"));
                 return FALSE;
         }
 
