@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Usage:
+# Upload the pot file to transifex.
+
+[ -f "po/light-locker.pot" ] || { echo "pot file not found. Run make -C po update-po" ; exit 1 ; }
+
+if [ -r .transifex-user ] ; then
+  USERNAME=$(< .transifex-user)
+else
+  read -p "Username [$USER]: " USERNAME
+  echo ${USERNAME:=$USER} > .transifex-user
+fi
+
+echo Uploading new pot file...
+curl -i -L --user "$USERNAME" -F "file=@po/light-locker.pot" -X PUT "http://www.transifex.com/api/2/project/light-locker/resource/light-lockerpot/content/"
+echo

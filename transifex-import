@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Usage: <language> [new <coordinators>]
+# Upload the language po file to transifex.
+# If new is given the lagnuage will first be created on transifex.
+# If coordinators is given this comma separated and quoted list is used as coordinators of the new language.
+# If no coordinators are given the default coordinators will be used for the new language.
+
+[ -f "po/$1.po" ] || { echo "Usage: $0 <language> [new <coordinators>]" ; exit 1 ; }
+
+if [ -r .transifex-user ] ; then
+  USERNAME=$(< .transifex-user)
+else
+  read -p "Username [$USER]: " USERNAME
+  echo ${USERNAME:=$USER} > .transifex-user
+fi
+
+if [ x"$2" = x"new" ] ; then
+  echo Creating new language...
+  curl -i -L --user "$USERNAME" -H "Content-Type: application/json" -d "{\"language_code\":\"$1\",\"coordinators\":[${3:-\"cavalier\",\"ochosi\"}]}" -X POST "http://www.transifex.com/api/2/project/light-locker/languages/"
+  echo
+fi
+
+echo Uploading new po file...
+curl -i -L --user "$USERNAME" -F "file=@po/$1.po" -X PUT "http://www.transifex.com/api/2/project/light-locker/resource/light-lockerpot/translation/$1/"
+echo
