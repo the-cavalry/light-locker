@@ -63,7 +63,7 @@ static GOptionEntry entries [] = {
         { "poke", 'p', 0, G_OPTION_ARG_NONE, &do_poke,
           N_("Poke the running locker to simulate user activity"), NULL },
         { "inhibit", 'i', 0, G_OPTION_ARG_NONE, &do_inhibit,
-          N_("Inhibit the screensaver from activating.  Command blocks while inhibit is active."), NULL },
+          N_("Inhibit the screensaver from activating. Terminate the light-locker-command process to end inhibition."), NULL },
         { "application-name", 'n', 0, G_OPTION_ARG_STRING, &inhibit_application,
           N_("The calling application that is inhibiting the screensaver"), NULL },
         { "reason", 'r', 0, G_OPTION_ARG_STRING, &inhibit_reason,
@@ -511,7 +511,7 @@ main (int    argc,
         if (do_uninhibit) {
                 screensaver_send_message_uninhibit (connection, uninhibit_cookie);
 
-                g_print (_("Send uninhibit to The screensaver with cookie %d\n"), uninhibit_cookie);
+                g_print (_("Send uninhibit to the screensaver with cookie %d\n"), uninhibit_cookie);
         }
 
         g_object_unref (connection);
