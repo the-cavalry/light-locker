@@ -18,6 +18,7 @@ if [ -n "$1" ] ; then
 else
   echo Enter your password once or skip this and enter your password for every file.
   read -p "Password:" -s PASSWORD
+  echo
   [ -n "$PASSWORD" ] && PASSWORD=":$PASSWORD"
   echo Collecting all languages...
   LANGUAGES=$(curl -s -L --user "$USERNAME$PASSWORD" -X GET "http://www.transifex.com/api/2/project/light-locker/languages/" | jshon -a -e "language_code" -u)
