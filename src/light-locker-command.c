@@ -48,6 +48,8 @@ static char    *inhibit_reason      = NULL;
 static char    *inhibit_application = NULL;
 
 static gint32   uninhibit_cookie = 0;
+static int      exit_status = EXIT_SUCCESS;
+static gchar  **command_argv = NULL;
 
 static GOptionEntry entries [] = {
         { "query", 'q', 0, G_OPTION_ARG_NONE, &do_query,
@@ -292,6 +294,14 @@ screensaver_is_running (GDBusConnection *connection)
         return exists;
 }
 
+static void
+child_term (GPid pid, gint status, gpointer user_data)
+{
+        g_spawn_close_pid (pid);
+        g_main_loop_quit (loop);
+        exit_status = status;
+}
+
 static gboolean
 handle_term (gpointer user_data)
 {
@@ -440,9 +450,30 @@ do_command (GDBusConnection *connection)
 
                 g_print (_("The screensaver has been inhibited with cookie %d\n"), uninhibit_cookie);
 
-                g_unix_signal_add (SIGTERM, handle_term, NULL);
-                g_unix_signal_add (SIGINT, handle_term, NULL);
-                g_unix_signal_add (SIGHUP, handle_term, NULL);
+                if (command_argv)
+                {
+                        GError *error = NULL;
+                        GPid pid;
+                        if (! g_spawn_async (NULL,
+                                             command_argv,
+                                             NULL,
+                                             G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH | G_SPAWN_CHILD_INHERITS_STDIN,
+                                             NULL, NULL,
+                                             &pid,
+                                             &error))
+                        {
+                                g_warning ("%s", error->message);
+                                g_clear_error (&error);
+                                goto done;
+                        }
+                        g_child_watch_add (pid, child_term, NULL);
+                }
+                else
+                {
+                        g_unix_signal_add (SIGTERM, handle_term, NULL);
+                        g_unix_signal_add (SIGINT, handle_term, NULL);
+                        g_unix_signal_add (SIGHUP, handle_term, NULL);
+                }
                 return FALSE;
         }
 
@@ -503,10 +534,20 @@ main (int    argc,
                 return EXIT_FAILURE;
         }
 
+        if (do_inhibit && argc > 1) {
+                argv[argc] = NULL;
+                command_argv = g_strdupv (argv + 1);
+                if (inhibit_application == NULL) {
+                        inhibit_application = g_strjoinv (" ", command_argv);
+                }
+        }
+
         g_idle_add ((GSourceFunc) do_command, connection);
 
         loop = g_main_loop_new (NULL, FALSE);
         g_main_loop_run (loop);
+
+        g_strfreev (command_argv);
 
         if (do_uninhibit) {
                 screensaver_send_message_uninhibit (connection, uninhibit_cookie);
@@ -516,6 +557,6 @@ main (int    argc,
 
         g_object_unref (connection);
 
-        return EXIT_SUCCESS;
+        return exit_status;
 }
 
