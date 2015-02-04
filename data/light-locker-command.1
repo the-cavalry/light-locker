@@ -26,8 +26,32 @@ running instance of light-locker.
 This is done through LightDM which doesn't ensure light-locker is running.
 .SH OPTIONS
 .TP
+.B \-q, \-\-query
+Query the state of the locker
+.TP
+.B \-t, \-\-time
+Query the length of time the locker has been active
+.TP
 .B \-l, \-\-lock
-Tells the running display manager to lock the screen immediately
+Tells the running locker process to lock the screen immediately
+.TP
+.B \-a, \-\-activate
+Turn the screensaver on (blank the screen)
+.TP
+.B \-d, \-\-deactivate
+If the screensaver is active then deactivate it (un-blank the screen)
+.TP
+.B \-p, \-\-poke
+Poke the running locker to simulate user activity
+.TP
+.B \-i, \-\-inhibit
+Inhibit the screensaver from activating. Terminate the light-locker-command process to end inhibition.
+.TP
+.B \-n, \-\-application-name
+The calling application that is inhibiting the screensaver
+.TP
+.B \-r, \-\-reason
+The reason for inhibiting the screensaver
 .TP
 .B \-V, \-\-version
 Version of this application
