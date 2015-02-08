@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Allan Nordhøy <comradekingu@gmail.com>, 2015
 # Torstein Adolf Winterseth <kvikende@fsfe.org>, 2010
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-31 18:37+0200\n"
-"PO-Revision-Date: 2014-08-31 16:39+0000\n"
-"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
+"POT-Creation-Date: 2015-01-22 17:53+0100\n"
+"PO-Revision-Date: 2015-02-08 12:07+0000\n"
+"Last-Translator: Allan Nordhøy <comradekingu@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/light-locker/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,43 +21,43 @@ msgstr ""
 
 #: ../src/light-locker-command.c:54
 msgid "Query the state of the locker"
-msgstr ""
+msgstr "Sjekk låsestatus"
 
 #: ../src/light-locker-command.c:56
 msgid "Query the length of time the locker has been active"
-msgstr ""
+msgstr "Sjekk hvor lenge låsen har vært på"
 
 #: ../src/light-locker-command.c:58
 msgid "Tells the running locker process to lock the screen immediately"
-msgstr ""
+msgstr "Gir låseprosessen beskjed om umiddelbar låsing"
 
 #: ../src/light-locker-command.c:60
 msgid "Turn the screensaver on (blank the screen)"
-msgstr ""
+msgstr "Skru på skjermsparer (dekker skjermen)"
 
 #: ../src/light-locker-command.c:62
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
+msgstr "Deaktiver skjermsparer hvis på (avdekker skjermen)"
 
 #: ../src/light-locker-command.c:64
 msgid "Poke the running locker to simulate user activity"
-msgstr ""
+msgstr "Simuler aktivitet under gjeldende lås"
 
 #: ../src/light-locker-command.c:66
 msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
-msgstr ""
+"Inhibit the screensaver from activating. Terminate the light-locker-command "
+"process to end inhibition."
+msgstr "Forhindre skjermspareren fra å aktivere. Omgjør light-locker-kommando for å avslutte forbud."
 
 #: ../src/light-locker-command.c:68
 msgid "The calling application that is inhibiting the screensaver"
-msgstr ""
+msgstr "Påkalt program som forhindrer skjermsparer"
 
 #: ../src/light-locker-command.c:70
 msgid "The reason for inhibiting the screensaver"
-msgstr ""
+msgstr "Grunn til forhindring av skjermspareren"
 
-#: ../src/light-locker-command.c:72 ../src/light-locker.c:68
+#: ../src/light-locker-command.c:72 ../src/light-locker.c:62
 #: ../src/preview.c:82
 msgid "Version of this application"
 msgstr "Versjon av dette programmet"
@@ -64,99 +65,103 @@ msgstr "Versjon av dette programmet"
 #: ../src/light-locker-command.c:327
 #, c-format
 msgid "The screensaver is active\n"
-msgstr ""
+msgstr "Skjermsparer påslått\n"
 
 #: ../src/light-locker-command.c:329
 #, c-format
 msgid "The screensaver is inactive\n"
-msgstr ""
+msgstr "Skjermspareren er inaktiv\n"
 
 #: ../src/light-locker-command.c:359
 #, c-format
 msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Denne skjermspareren har vært inaktiv i %d sekund.\n"
+msgstr[1] "Denne skjermspareren har vært inaktiv i %d sekunder.\n"
 
 #: ../src/light-locker-command.c:371
 #, c-format
 msgid "The screensaver is not currently active.\n"
-msgstr ""
+msgstr "Skjermsparer er for tiden inaktiv.\n"
 
 #: ../src/light-locker-command.c:372
 #, c-format
 msgid "The session has been idle for %d second.\n"
 msgid_plural "The session has been idle for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Denne økta har vært inaktiv i %d sekund.\n"
+msgstr[1] "Denne økta har vært inaktiv i %d sekunder.\n"
 
 #: ../src/light-locker-command.c:441
 #, c-format
 msgid "The screensaver has been inhibited with cookie %d\n"
-msgstr ""
+msgstr "Skjermspareren har blitt forhindret med informasjonskapsel %d\n"
 
 #: ../src/light-locker-command.c:514
 #, c-format
-msgid "Send uninhibit to The screensaver with cookie %d\n"
-msgstr ""
+msgid "Send uninhibit to the screensaver with cookie %d\n"
+msgstr "Send forhindring av skjermspareren ved bruk av informasjonskapsel %d\n"
 
-#: ../src/light-locker.c:69 ../src/preview.c:83
+#: ../src/light-locker.c:63 ../src/preview.c:83
 msgid "Enable debugging code"
 msgstr "Aktiver feilsøkingskode"
 
-#: ../src/light-locker.c:71
+#: ../src/light-locker.c:65
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr ""
+msgstr "Lås skjermen S sekunder etter at skjermspareren har startet"
+
+#: ../src/light-locker.c:67
+msgid "Lock the screen on screensaver deactivation"
+msgstr "Lås skjermen ved deaktivering av skjermspareren"
+
+#: ../src/light-locker.c:68
+msgid "Lock the screen on screensaver activation"
+msgstr "Lås skjermen ved aktivering av skjermsparer"
+
+#: ../src/light-locker.c:72
+msgid "Lock the screen on suspend/resume"
+msgstr "Lås skjermen ved hvilemodus/igangsetting"
 
 #: ../src/light-locker.c:73
-msgid "Lock the screen on screensaver deactivation"
-msgstr ""
-
-#: ../src/light-locker.c:74
-msgid "Lock the screen on screensaver activation"
-msgstr ""
-
-#: ../src/light-locker.c:78
-msgid "Lock the screen on suspend/resume"
-msgstr ""
-
-#: ../src/light-locker.c:79
 msgid "Do not lock the screen on suspend/resume"
-msgstr ""
+msgstr "Ikke lås skjermen ved hvilemodus/igangsetting"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
-msgstr ""
+msgstr "Skjermlås"
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
-msgstr ""
+msgstr "Kjør skjermlåsningsprogram"
 
-#: ../src/gs-listener-dbus.c:1484
+#: ../src/gs-listener-dbus.c:1565
 msgid "failed to register with the message bus"
-msgstr ""
+msgstr "Registrering med meldingsbuss mislyktes"
 
-#: ../src/gs-listener-dbus.c:1494
+#: ../src/gs-listener-dbus.c:1575
 msgid "not connected to the message bus"
-msgstr ""
+msgstr "ikke tilkoblet meldingsbuss"
 
-#: ../src/gs-listener-dbus.c:1503 ../src/gs-listener-dbus.c:1533
+#: ../src/gs-listener-dbus.c:1584 ../src/gs-listener-dbus.c:1632
 msgid "screensaver already running in this session"
-msgstr ""
+msgstr "skjermsparer kjører allerede i denne økta"
+
+#: ../src/gs-listener-dbus.c:1654
+msgid "GNOME screensaver already running in this session"
+msgstr "GNOME-skjermsparer kjører allerede i denne økta"
 
 #: ../src/gs-content.c:92
 msgid "This session is locked"
-msgstr ""
+msgstr "Denne økta er låst"
 
 #: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr ""
+msgstr "Du vil bli omdirigert til opplåsningsdialogen automatisk om noen sekunder"
 
 #: ../src/preview.c:84
 msgid "Preview screen width"
-msgstr ""
+msgstr "Forhåndsvis skjermbredde"
 
 #: ../src/preview.c:85
 msgid "Preview screen height"
-msgstr ""
+msgstr "Forhåndsvis skjermhøyde"

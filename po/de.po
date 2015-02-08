@@ -9,14 +9,14 @@
 # Hendrik Brandt  <heb@gnome-de.org>, 2006
 # Hendrik Richter <hendrikr@gnome.org>, 2005-2008
 # Simon Steinbeiß <simon.steinbeiss@gmail.com>, 2013-2014
-# Tobias Bannert <tobannert@gmail.com>, 2014
+# Tobias Bannert <tobannert@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-31 18:37+0200\n"
-"PO-Revision-Date: 2014-12-01 18:11+0000\n"
-"Last-Translator: Tobias Bannert <tobannert@gmail.com>\n"
+"POT-Creation-Date: 2015-01-22 17:53+0100\n"
+"PO-Revision-Date: 2015-01-22 16:52+0000\n"
+"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/light-locker/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,39 +30,39 @@ msgstr "Den Zustand der Sperre abfragen"
 
 #: ../src/light-locker-command.c:56
 msgid "Query the length of time the locker has been active"
-msgstr ""
+msgstr "Die Aktivitätsdauer der Bildschirmsperre abfragen"
 
 #: ../src/light-locker-command.c:58
 msgid "Tells the running locker process to lock the screen immediately"
-msgstr ""
+msgstr "Teilt dem laufenden Sperrprozess mit, den Bildschirm sofort zu sperren"
 
 #: ../src/light-locker-command.c:60
 msgid "Turn the screensaver on (blank the screen)"
-msgstr ""
+msgstr "Den Bildschirmschoner aktivieren (Bildschirm abdunkeln)"
 
 #: ../src/light-locker-command.c:62
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
+msgstr "Wenn Bildschirmschoners aktiv ist, dann deaktivieren (Bildschirmabdunkelung aufheben)"
 
 #: ../src/light-locker-command.c:64
 msgid "Poke the running locker to simulate user activity"
-msgstr ""
+msgstr "Die laufende Bildschirmsperre anstoßen, um Benutzeraktivität zu simulieren"
 
 #: ../src/light-locker-command.c:66
 msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
+"Inhibit the screensaver from activating. Terminate the light-locker-command "
+"process to end inhibition."
 msgstr ""
 
 #: ../src/light-locker-command.c:68
 msgid "The calling application that is inhibiting the screensaver"
-msgstr ""
+msgstr "Die aufrufende Anwendung, die den Bildschirmschoner unterdrückt"
 
 #: ../src/light-locker-command.c:70
 msgid "The reason for inhibiting the screensaver"
-msgstr ""
+msgstr "Der Grund für das Unterdrücken des Bildschirmschoners"
 
-#: ../src/light-locker-command.c:72 ../src/light-locker.c:68
+#: ../src/light-locker-command.c:72 ../src/light-locker.c:62
 #: ../src/preview.c:82
 msgid "Version of this application"
 msgstr "Version dieser Anwendung"
@@ -81,52 +81,52 @@ msgstr "Der Bildschirmschoner ist untätig\n"
 #, c-format
 msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Der Bildschirmschoner war für %d Sekunde aktiv.\n"
+msgstr[1] "Der Bildschirmschoner war für %d Sekunden aktiv.\n"
 
 #: ../src/light-locker-command.c:371
 #, c-format
 msgid "The screensaver is not currently active.\n"
-msgstr ""
+msgstr "Der Bildschirmschoner ist derzeit aktiv.\n"
 
 #: ../src/light-locker-command.c:372
 #, c-format
 msgid "The session has been idle for %d second.\n"
 msgid_plural "The session has been idle for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Die Sitzung war im Leerlauf für %d Sekunde.\n"
+msgstr[1] "Die Sitzung war im Leerlauf für %d Sekunden.\n"
 
 #: ../src/light-locker-command.c:441
 #, c-format
 msgid "The screensaver has been inhibited with cookie %d\n"
-msgstr ""
+msgstr "Der Bildschirmschoner wurde mit Profildatei %d unterdrückt\n"
 
 #: ../src/light-locker-command.c:514
 #, c-format
-msgid "Send uninhibit to The screensaver with cookie %d\n"
+msgid "Send uninhibit to the screensaver with cookie %d\n"
 msgstr ""
 
-#: ../src/light-locker.c:69 ../src/preview.c:83
+#: ../src/light-locker.c:63 ../src/preview.c:83
 msgid "Enable debugging code"
 msgstr "Fehlerdiagnosefunktionen aktivieren"
 
-#: ../src/light-locker.c:71
+#: ../src/light-locker.c:65
 msgid "Lock the screen S seconds after the screensaver started"
 msgstr "Bildschirm S Sekunden nach der Aktivierung des Bildschirmschoners sperren"
 
-#: ../src/light-locker.c:73
+#: ../src/light-locker.c:67
 msgid "Lock the screen on screensaver deactivation"
 msgstr "Bildschirm bei Deaktivierung des Bildschirmschoners sperren"
 
-#: ../src/light-locker.c:74
+#: ../src/light-locker.c:68
 msgid "Lock the screen on screensaver activation"
 msgstr "Bildschirm bei Aktivierung des Bildschirmschoners sperren"
 
-#: ../src/light-locker.c:78
+#: ../src/light-locker.c:72
 msgid "Lock the screen on suspend/resume"
 msgstr "Bildschirm im/nach dem Bereitschaftsmodus sperren"
 
-#: ../src/light-locker.c:79
+#: ../src/light-locker.c:73
 msgid "Do not lock the screen on suspend/resume"
 msgstr "Bildschirm im/nach dem Bereitschaftsmodus nicht sperren"
 
@@ -138,17 +138,21 @@ msgstr "Bildschirmsperre"
 msgid "Launch screen locker program"
 msgstr "Bildschirmsperre starten"
 
-#: ../src/gs-listener-dbus.c:1484
+#: ../src/gs-listener-dbus.c:1565
 msgid "failed to register with the message bus"
-msgstr ""
+msgstr "Registrierung am Benachrichtigungssystem fehlgeschlagen"
 
-#: ../src/gs-listener-dbus.c:1494
+#: ../src/gs-listener-dbus.c:1575
 msgid "not connected to the message bus"
-msgstr ""
+msgstr "Keine Verbindung zum Benachrichtigungssystem"
 
-#: ../src/gs-listener-dbus.c:1503 ../src/gs-listener-dbus.c:1533
+#: ../src/gs-listener-dbus.c:1584 ../src/gs-listener-dbus.c:1632
 msgid "screensaver already running in this session"
-msgstr ""
+msgstr "Der Bildschirmschoner läuft bereits in dieser Sitzung"
+
+#: ../src/gs-listener-dbus.c:1654
+msgid "GNOME screensaver already running in this session"
+msgstr "Der GNOME-Bildschirmschoner läuft bereits in dieser Sitzung"
 
 #: ../src/gs-content.c:92
 msgid "This session is locked"
@@ -157,7 +161,7 @@ msgstr "Diese Sitzung ist gesperrt"
 #: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr "Sie werden in wenigen Sekunden automatische zum Entsperrdialog weitergeleitet."
+msgstr "Sie werden in wenigen Sekunden automatisch zum Entsperrdialog weitergeleitet."
 
 #: ../src/preview.c:84
 msgid "Preview screen width"

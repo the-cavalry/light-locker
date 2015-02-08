@@ -6,15 +6,15 @@
 # Andrzej Polatyński <andrzej@datatel.net.pl>, 2006
 # Karol Hajda <iker95@gmail.com>, 2013
 # Michał Olber <michal.olber@osworld.pl>, 2014
-# Piotr Sokół <psokol@jabster.pl>, 2014
+# Piotr Sokół <psokol@jabster.pl>, 2014-2015
 # Piotr Strębski <strebski@o2.pl>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-31 18:37+0200\n"
-"PO-Revision-Date: 2014-11-21 09:52+0000\n"
-"Last-Translator: Piotr Strębski <strebski@o2.pl>\n"
+"POT-Creation-Date: 2015-01-22 17:53+0100\n"
+"PO-Revision-Date: 2015-01-24 13:29+0000\n"
+"Last-Translator: Piotr Sokół <psokol@jabster.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/light-locker/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,43 +24,43 @@ msgstr ""
 
 #: ../src/light-locker-command.c:54
 msgid "Query the state of the locker"
-msgstr ""
+msgstr "Wypisuje stan blokady ekranu"
 
 #: ../src/light-locker-command.c:56
 msgid "Query the length of time the locker has been active"
-msgstr ""
+msgstr "Wypisuje czas aktywności blokady ekranu"
 
 #: ../src/light-locker-command.c:58
 msgid "Tells the running locker process to lock the screen immediately"
-msgstr ""
+msgstr "Natychmiastowo blokuje ekran"
 
 #: ../src/light-locker-command.c:60
 msgid "Turn the screensaver on (blank the screen)"
-msgstr "Włącz wygaszacz ekranu (wygaś ekran)"
+msgstr "Wygasza ekran"
 
 #: ../src/light-locker-command.c:62
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
+msgstr "Wyłącza wygaszenie ekranu jeśli jest wygaszony"
 
 #: ../src/light-locker-command.c:64
 msgid "Poke the running locker to simulate user activity"
-msgstr ""
+msgstr "Wysyła do programu blokady informacje o aktywności użytkownika"
 
 #: ../src/light-locker-command.c:66
 msgid ""
-"Inhibit the screensaver from activating.  Command blocks while inhibit is "
-"active."
-msgstr ""
+"Inhibit the screensaver from activating. Terminate the light-locker-command "
+"process to end inhibition."
+msgstr "Wstrzymuje uruchomienie wygaszacza ekranu. Proszę zakończyć działanie procesu light-locker-command, aby przerwać wstrzymywanie."
 
 #: ../src/light-locker-command.c:68
 msgid "The calling application that is inhibiting the screensaver"
-msgstr ""
+msgstr "Określa program wstrzymujący wygaszanie ekranu"
 
 #: ../src/light-locker-command.c:70
 msgid "The reason for inhibiting the screensaver"
-msgstr ""
+msgstr "Określa powód wstrzymania wygaszania ekranu"
 
-#: ../src/light-locker-command.c:72 ../src/light-locker.c:68
+#: ../src/light-locker-command.c:72 ../src/light-locker.c:62
 #: ../src/preview.c:82
 msgid "Version of this application"
 msgstr "Wypisuje wersję programu"
@@ -68,67 +68,67 @@ msgstr "Wypisuje wersję programu"
 #: ../src/light-locker-command.c:327
 #, c-format
 msgid "The screensaver is active\n"
-msgstr "Wygaszacz ekranu jest aktywny\n"
+msgstr "Ekran jest wygaszony\n"
 
 #: ../src/light-locker-command.c:329
 #, c-format
 msgid "The screensaver is inactive\n"
-msgstr "Wygaszacz ekranu jest nieaktywny\n"
+msgstr "Ekran nie jest wygaszony\n"
 
 #: ../src/light-locker-command.c:359
 #, c-format
 msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ekran jest wygaszony od %d sekundy.\n"
+msgstr[1] "Ekran jest wygaszony od %d sekund.\n"
+msgstr[2] "Ekran jest wygaszony od %d sekund.\n"
 
 #: ../src/light-locker-command.c:371
 #, c-format
 msgid "The screensaver is not currently active.\n"
-msgstr "Wygaszacz ekranu jest obecnie nieaktywny.\n"
+msgstr "Ekran nie jest obecnie wygaszony.\n"
 
 #: ../src/light-locker-command.c:372
 #, c-format
 msgid "The session has been idle for %d second.\n"
 msgid_plural "The session has been idle for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Sesja jest wstrzymana od %d sekundy.\n"
+msgstr[1] "Sesja jest wstrzymana od %d sekund.\n"
+msgstr[2] "Sesja jest wstrzymana od %d sekund.\n"
 
 #: ../src/light-locker-command.c:441
 #, c-format
 msgid "The screensaver has been inhibited with cookie %d\n"
-msgstr ""
+msgstr "Zablokowano wygaszanie ekranu używając pliku cookie %d\n"
 
 #: ../src/light-locker-command.c:514
 #, c-format
-msgid "Send uninhibit to The screensaver with cookie %d\n"
-msgstr ""
+msgid "Send uninhibit to the screensaver with cookie %d\n"
+msgstr "Odblokowano wygaszanie ekranu używając pliku cookie %d\n"
 
-#: ../src/light-locker.c:69 ../src/preview.c:83
+#: ../src/light-locker.c:63 ../src/preview.c:83
 msgid "Enable debugging code"
 msgstr "Włącza kod diagnozowania błędów"
 
-#: ../src/light-locker.c:71
+#: ../src/light-locker.c:65
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr "Blokuje ekran po czasie S sekund od uruchomienia wygaszacza ekranu"
+msgstr "Blokuje ekran po czasie S sekund od wygaszenia"
+
+#: ../src/light-locker.c:67
+msgid "Lock the screen on screensaver deactivation"
+msgstr "Blokuje ekran podczas wyłączania wygaszenia"
+
+#: ../src/light-locker.c:68
+msgid "Lock the screen on screensaver activation"
+msgstr "Blokuje ekran podczas wygaszania"
+
+#: ../src/light-locker.c:72
+msgid "Lock the screen on suspend/resume"
+msgstr "Blokuje ekran podczas wstrzymania/wznowienia działania komputera"
 
 #: ../src/light-locker.c:73
-msgid "Lock the screen on screensaver deactivation"
-msgstr "Blokuje ekran podczas wyłączenia wygaszacza ekranu"
-
-#: ../src/light-locker.c:74
-msgid "Lock the screen on screensaver activation"
-msgstr "Blokuje ekran podczas uruchomienia wygaszacza ekranu"
-
-#: ../src/light-locker.c:78
-msgid "Lock the screen on suspend/resume"
-msgstr "Blokuje ekran podczas wstrzymania/wznowienia działania"
-
-#: ../src/light-locker.c:79
 msgid "Do not lock the screen on suspend/resume"
-msgstr "Pomija blokowanie ekranu podczas wstrzymania/wznowienia działania"
+msgstr "Pomija blokowanie ekranu podczas wstrzymania/wznowienia działania komputera"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
@@ -138,26 +138,30 @@ msgstr "Blokada ekranu"
 msgid "Launch screen locker program"
 msgstr "Uruchamia program blokady ekranu"
 
-#: ../src/gs-listener-dbus.c:1484
+#: ../src/gs-listener-dbus.c:1565
 msgid "failed to register with the message bus"
-msgstr ""
+msgstr "nie udało się zarejestrować przy użyciu magistrali komunikacyjnej"
 
-#: ../src/gs-listener-dbus.c:1494
+#: ../src/gs-listener-dbus.c:1575
 msgid "not connected to the message bus"
-msgstr ""
+msgstr "nie podłączono do magistrali komunikacyjnej"
 
-#: ../src/gs-listener-dbus.c:1503 ../src/gs-listener-dbus.c:1533
+#: ../src/gs-listener-dbus.c:1584 ../src/gs-listener-dbus.c:1632
 msgid "screensaver already running in this session"
 msgstr "wygaszacz ekranu jest już uruchomiony w tej sesji"
 
+#: ../src/gs-listener-dbus.c:1654
+msgid "GNOME screensaver already running in this session"
+msgstr "Wygaszacz ekranu GNOME już jest uruchomiony w tej sesji"
+
 #: ../src/gs-content.c:92
 msgid "This session is locked"
-msgstr "Ta sesja została zablokowana"
+msgstr "Zablokowano tę sesję"
 
 #: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr "W przeciągu kilku sekund nastąpi automatyczne przekierowananie do okna odblokowania ekranu"
+msgstr "W przeciągu kilku sekund nastąpi automatyczne przekierowanie do okna odblokowania ekranu"
 
 #: ../src/preview.c:84
 msgid "Preview screen width"
