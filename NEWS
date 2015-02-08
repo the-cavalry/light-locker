@@ -1,4 +1,15 @@
 ==============
+Version  1.6.0
+==============
+
+- DBus compatibility with KDE and Gnome
+- Optionally execute command with lock inhibition taken
+- Man page update
+- Translations update
+- New translations
+
+
+==============
 Version  1.5.1
 ==============
 
