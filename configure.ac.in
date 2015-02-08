@@ -626,7 +626,6 @@ AC_OUTPUT([
 Makefile
 po/Makefile.in
 src/Makefile
-src/light-locker.desktop.in
 data/Makefile
 data/apps.light-locker.gschema.xml.in
 ])

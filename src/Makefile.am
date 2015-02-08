@@ -111,6 +111,7 @@ preview_LDADD =		\
 EXTRA_DIST =				\
 	debug-screensaver.sh		\
 	gs-marshal.list			\
+	$(desktop_in_files)		\
 	$(NULL)
 
 CLEANFILES = 				\
@@ -119,7 +120,6 @@ CLEANFILES = 				\
 
 MAINTAINERCLEANFILES =			\
 	*~				\
-	light-locker.desktop.in		\
 	Makefile.in
 
 -include $(top_srcdir)/git.mk
