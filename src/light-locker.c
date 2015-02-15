@@ -57,6 +57,7 @@ main (int    argc,
         static gint         lock_after_screensaver;
         static gboolean     late_locking;
         static gboolean     lock_on_suspend;
+        static gboolean     lock_on_lid;
 
         static GOptionEntry entries []   = {
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
@@ -71,6 +72,10 @@ main (int    argc,
 #ifdef WITH_LOCK_ON_SUSPEND
                 { "lock-on-suspend", 0, 0, G_OPTION_ARG_NONE, &lock_on_suspend, N_("Lock the screen on suspend/resume"), NULL },
                 { "no-lock-on-suspend", 0, G_OPTION_FLAG_REVERSE, G_OPTION_ARG_NONE, &lock_on_suspend, N_("Do not lock the screen on suspend/resume"), NULL },
+#endif
+#ifdef WITH_LOCK_ON_LID
+                { "lock-on-lid", 0, 0, G_OPTION_ARG_NONE, &lock_on_lid, N_("Lock the screen on lid close"), NULL },
+                { "no-lock-on-lid", 0, G_OPTION_FLAG_REVERSE, G_OPTION_ARG_NONE, &lock_on_lid, N_("Do not lock the screen on lid close"), NULL },
 #endif
                 { NULL }
         };
@@ -90,6 +95,7 @@ main (int    argc,
                       "lock-on-suspend", &lock_on_suspend,
                       "late-locking", &late_locking,
                       "lock-after-screensaver", &lock_after_screensaver,
+                      "lock-on-lid", &lock_on_lid,
                       NULL);
 
 #ifndef WITH_LATE_LOCKING
@@ -98,6 +104,10 @@ main (int    argc,
 
 #ifndef WITH_LOCK_ON_SUSPEND
         lock_on_suspend = FALSE;
+#endif
+
+#ifndef WITH_LOCK_ON_LID
+        lock_on_lid = FALSE;
 #endif
 
         if (! gtk_init_with_args (&argc, &argv, NULL, entries, NULL, &error)) {
@@ -120,6 +130,7 @@ main (int    argc,
                       "lock-on-suspend", lock_on_suspend,
                       "late-locking", late_locking,
                       "lock-after-screensaver", lock_after_screensaver,
+                      "lock-on-lid", lock_on_lid,
                       NULL);
 
         gs_debug_init (debug, FALSE);
@@ -128,6 +139,7 @@ main (int    argc,
         gs_debug ("lock after screensaver %d", lock_after_screensaver);
         gs_debug ("late locking %d", late_locking);
         gs_debug ("lock on suspend %d", lock_on_suspend);
+        gs_debug ("lock on lid %d", lock_on_lid);
 
         monitor = gs_monitor_new (conf);
 
