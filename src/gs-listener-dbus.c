@@ -1189,8 +1189,19 @@ listener_dbus_handle_system_message (DBusConnection *connection,
 
                                 /* Do a DBus query, since the sd_session_is_active isn't up to date. */
                                 new_active = query_session_active (listener);
+                                gs_debug ("systemd notified ActiveSession %d", new_active);
                                 g_signal_emit (listener, signals [SESSION_SWITCHED], 0, new_active);
                         }
+
+#ifdef WITH_UPOWER
+#ifdef WITH_LOCK_ON_LID
+                        if (properties_changed_match (message, "LidIsClosed")) {
+                                listener->priv->lid_closed = query_lid_closed (listener);
+                                gs_debug ("UPower notified LidIsClosed %d", (int)listener->priv->lid_closed);
+                                g_object_notify (G_OBJECT (listener), "lid-closed");
+                        }
+#endif
+#endif
 
                         return DBUS_HANDLER_RESULT_HANDLED;
                 }
@@ -1288,6 +1299,7 @@ listener_dbus_handle_system_message (DBusConnection *connection,
 
                 if (properties_changed_match (message, "LidIsClosed")) {
                         listener->priv->lid_closed = query_lid_closed (listener);
+                        gs_debug ("UPower notified LidIsClosed %d", (int)listener->priv->lid_closed);
                         g_object_notify (G_OBJECT (listener), "lid-closed");
                 }
 
@@ -1797,6 +1809,17 @@ gs_listener_acquire (GSListener *listener,
                                             ",interface='"SYSTEMD_LOGIND_INTERFACE"'"
                                             ",member='PrepareForSleep'",
                                             NULL);
+#endif
+
+#ifdef WITH_UPOWER
+#ifdef WITH_LOCK_ON_LID
+                        dbus_bus_add_match (listener->priv->system_connection,
+                                            "type='signal'"
+                                            ",sender='"UP_SERVICE"'"
+                                            ",interface='"DBUS_INTERFACE_PROPERTIES"'"
+                                            ",member='PropertiesChanged'",
+                                            NULL);
+#endif
 #endif
 
                         return (res != -1);

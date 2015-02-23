@@ -442,7 +442,7 @@ connect_listener_signals (GSMonitor *monitor)
                           G_CALLBACK (listener_inhibit_cb), monitor);
         g_signal_connect (monitor->priv->listener, "idle-time",
                           G_CALLBACK (listener_idle_time_cb), monitor);
-        g_signal_connect (monitor->priv->conf, "notify::lid-closed",
+        g_signal_connect (monitor->priv->listener, "notify::lid-closed",
                           G_CALLBACK (listener_lid_closed_cb), monitor);
 
         g_signal_connect (monitor->priv->listener_x11, "blanking-changed",
