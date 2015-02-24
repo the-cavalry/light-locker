@@ -355,7 +355,9 @@ listener_lid_closed_cb (GSListener *listener,
                         GParamSpec  *pspec,
                         GSMonitor   *monitor)
 {
-        if (monitor->priv->perform_lock && ! gs_listener_is_lid_closed (listener))
+        gboolean closed = gs_listener_is_lid_closed (listener);
+
+        if (monitor->priv->perform_lock && ! closed)
         {
                 if (gs_manager_get_session_visible (monitor->priv->manager)) {
                         gs_listener_send_lock_session (monitor->priv->listener);
@@ -364,10 +366,12 @@ listener_lid_closed_cb (GSListener *listener,
                 return;
         }
 
+        gs_manager_set_lid_closed (monitor->priv->manager, closed);
+
         if (! monitor->priv->lock_on_lid)
                 return;
 
-        if (gs_listener_is_lid_closed (listener))
+        if (closed)
         {
                 /* Show the lock screen until lid open.
                  * We lock the screen here even when the displaymanager didn't send the signal.

@@ -68,6 +68,9 @@ void        gs_manager_set_blank_screen     (GSManager  *manager,
 
 gboolean    gs_manager_get_blank_screen     (GSManager  *manager);
 
+void        gs_manager_set_lid_closed       (GSManager *manager,
+                                             gboolean   closed);
+
 void        gs_manager_set_lock_after       (GSManager  *manager,
                                              guint       lock_after);
 
