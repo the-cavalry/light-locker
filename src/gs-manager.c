@@ -424,6 +424,15 @@ on_screen_monitors_changed (GdkScreen *screen,
                 gdk_flush ();
                 gdk_x11_ungrab_server ();
         }
+
+	for (l = manager->priv->windows; l != NULL; l = l->next) {
+		GdkScreen *this_screen;
+
+		this_screen = gs_window_get_screen (GS_WINDOW (l->data));
+		if (this_screen == screen) {
+			gtk_widget_queue_resize (GTK_WIDGET (l->data));
+		}
+	}
 }
 
 static void
