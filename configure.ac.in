@@ -94,7 +94,7 @@ AC_SUBST(LIGHT_LOCKER_SAVER_LIBS)
 
 # Find out the version of DBUS we're using
 
-dbus_version=`pkg-config --modversion dbus-1`
+dbus_version=`${PKG_CONFIG:-pkg-config} --modversion dbus-1`
 DBUS_VERSION_MAJOR=`echo $dbus_version | awk -F. '{print $1}'`
 DBUS_VERSION_MINOR=`echo $dbus_version | awk -F. '{print $2}'`
 DBUS_VERSION_MICRO=`echo $dbus_version | awk -F. '{print $3}'`
