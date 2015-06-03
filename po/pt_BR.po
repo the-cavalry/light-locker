@@ -161,7 +161,7 @@ msgstr "Esta sessão está bloqueada"
 #: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr "Você será redirecionado ao diálogto de desbloqueio automaticamente em poucos segundos"
+msgstr "Você será redirecionado ao diálogo de desbloqueio automaticamente em poucos segundos"
 
 #: ../src/preview.c:84
 msgid "Preview screen width"
