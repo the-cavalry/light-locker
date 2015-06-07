@@ -1,0 +1,15 @@
+# vim:syntax=apparmor
+
+#include <tunables/global>
+
+"/usr/bin/light-locker-command" {
+  #include <abstractions/base>
+
+  #include <abstractions/dbus-session-strict>
+
+  dbus send
+       bus=session
+       path=/org/freedesktop/ScreenSaver
+       interface=org.freedesktop.ScreenSaver
+       peer=(name=org.freedesktop.ScreenSaver),
+}
