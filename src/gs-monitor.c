@@ -97,6 +97,9 @@ gs_monitor_lock_session (GSMonitor *monitor)
         /* Only switch to greeter if we are the visible session */
         if (visible) {
                 gs_listener_send_lock_session (monitor->priv->listener);
+        } else {
+                /* Show the content in case the session gets visible again. */
+                gs_manager_show_content (monitor->priv->manager);
         }
 
         return FALSE;
@@ -112,6 +115,9 @@ gs_monitor_switch_greeter (GSMonitor *monitor)
         /* Only switch to greeter if we are the visible session */
         if (visible) {
                 gs_listener_send_switch_greeter (monitor->priv->listener);
+        } else {
+                /* Show the content in case the session gets visible again. */
+                gs_manager_show_content (monitor->priv->manager);
         }
 
         return FALSE;
@@ -242,6 +248,7 @@ listener_lock_cb (GSListener *listener,
 {
         gs_monitor_lock_screen (monitor);
         if (gs_listener_is_lid_closed (listener)) {
+                /* Don't switch VT while the lid is closed. */
                 monitor->priv->perform_lock = TRUE;
         } else if (gs_manager_get_session_visible (monitor->priv->manager)) {
                 /* Add a 1s delay for VT switching.
@@ -305,12 +312,20 @@ listener_resume_cb (GSListener *listener,
 {
         if (! monitor->priv->lock_on_suspend)
                 return;
-        /* Add a 1s delay for resume to complete.
-         * This seems to fix backlight issues.
-         */
-        g_timeout_add_seconds (1,
-                               (GSourceFunc)gs_monitor_switch_greeter,
-                               monitor);
+        if (gs_listener_is_lid_closed (monitor->priv->listener)) {
+                /* This will become a lock instead of a switch.
+                 * As a corner case this is ok.
+                 */
+                /* Don't switch VT while the lid is closed. */
+                monitor->piv->perform_lock = TRUE;
+        } else {
+                /* Add a 1s delay for resume to complete.
+                 * This seems to fix backlight issues.
+                 */
+                g_timeout_add_seconds (1,
+                                       (GSourceFunc)gs_monitor_switch_greeter,
+                                       monitor);
+        }
 }
 
 static void
@@ -357,11 +372,20 @@ listener_lid_closed_cb (GSListener *listener,
 {
         gboolean closed = gs_listener_is_lid_closed (listener);
 
-        if (monitor->priv->perform_lock && ! closed)
+        /* If the manager requested a lock when the lid was closed.
+         * We don't take the reason of the lock into account.
+         * That would only complicate it.
+         * In case of resume the switch would become a lock.
+         * And in case of late locking, the screen saver state isn't taken into account.
+         */
+        if (monitor->priv->perform_lock && !closed)
         {
-                if (gs_manager_get_session_visible (monitor->priv->manager)) {
-                        gs_listener_send_lock_session (monitor->priv->listener);
-                }
+                /* Add a 1s delay for resume to complete.
+                 * This seems to fix backlight issues.
+                 */
+                g_timeout_add_seconds (1,
+                                       (GSourceFunc)gs_monitor_lock_session,
+                                       monitor);
                 monitor->priv->perform_lock = FALSE;
                 return;
         }
@@ -399,10 +423,11 @@ listener_x11_blanking_changed_cb (GSListenerX11 *listener,
         gs_manager_set_blank_screen (monitor->priv->manager, active);
         gs_listener_set_blanked (monitor->priv->listener, active);
 
-        if (!active && monitor->priv->perform_lock && gs_manager_get_session_visible (monitor->priv->manager)) {
-                gs_listener_send_lock_session (monitor->priv->listener);
+        /* If late locking is enabled only lock the session if the lid isn't closed. */
+        if (!active && !gs_listener_is_lid_closed (monitor->priv->listener) && monitor->priv->perform_lock) {
+                gs_monitor_lock_session (monitor);
+                monitor->priv->perform_lock = FALSE;
         }
-        monitor->priv->perform_lock = FALSE;
 }
 
 static void
