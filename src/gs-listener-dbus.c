@@ -84,6 +84,7 @@ struct GSListenerPrivate
 #ifdef WITH_SYSTEMD
         gboolean        have_systemd;
         char           *sd_session_id;
+        int             delay_fd;
 #endif
 
         dbus_uint32_t   inhibit_last_cookie;
@@ -340,6 +341,88 @@ gs_listener_set_active (GSListener *listener,
         listener->priv->active = active;
 
         return TRUE;
+}
+
+void
+gs_listener_delay_suspend (GSListener *listener)
+{
+#ifdef WITH_SYSTEMD
+        DBusMessage    *message;
+        DBusMessage    *reply;
+        DBusError       error;
+        const char     *what;
+        const char     *who;
+        const char     *why;
+        const char     *mode;
+        int             fd;
+
+        if (listener->priv->system_connection == NULL) {
+                gs_debug ("No connection to the system bus");
+                return;
+        }
+
+        dbus_error_init (&error);
+
+        message = dbus_message_new_method_call (SYSTEMD_LOGIND_SERVICE, SYSTEMD_LOGIND_PATH, SYSTEMD_LOGIND_INTERFACE, "Inhibit");
+        if (message == NULL) {
+                gs_debug ("Couldn't allocate the dbus message");
+                return;
+        }
+
+        what = "sleep";
+        who  = _("Screen Locker");
+        why  = _("Lock the screen on suspend/resume");
+        mode = "delay";
+
+        if (dbus_message_append_args (message,
+                                      DBUS_TYPE_STRING, &what,
+                                      DBUS_TYPE_STRING, &who,
+                                      DBUS_TYPE_STRING, &why,
+                                      DBUS_TYPE_STRING, &mode,
+                                      DBUS_TYPE_INVALID) == FALSE) {
+                gs_debug ("Couldn't add args to the dbus message");
+                dbus_message_unref (message);
+                return;
+        }
+
+        reply = dbus_connection_send_with_reply_and_block (listener->priv->system_connection,
+                                                           message,
+                                                           -1, &error);
+        dbus_message_unref (message);
+
+        if (dbus_error_is_set (&error)) {
+                gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
+                dbus_error_free (&error);
+                return;
+        }
+
+        if (dbus_message_get_args (reply, &error,
+                                   DBUS_TYPE_UNIX_FD, &fd,
+                                   DBUS_TYPE_INVALID) == FALSE) {
+                fd = -1;
+        }
+
+        dbus_message_unref (reply);
+
+        if (dbus_error_is_set (&error)) {
+                gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
+                dbus_error_free (&error);
+                return;
+        }
+
+        listener->priv->delay_fd = fd;
+#endif
+}
+
+void
+gs_listener_resume_suspend (GSListener *listener)
+{
+#ifdef WITH_SYSTEMD
+        if (listener->priv->delay_fd >= 0) {
+                close (listener->priv->delay_fd);
+                listener->priv->delay_fd = -1;
+        }
+#endif
 }
 
 static dbus_uint32_t
@@ -1792,7 +1875,7 @@ query_session_id (GSListener *listener)
                         return NULL;
                 }
 
-                if (dbus_message_get_args (reply, &error, 
+                if (dbus_message_get_args (reply, &error,
                                            DBUS_TYPE_OBJECT_PATH, &ssid,
                                            DBUS_TYPE_INVALID)) {
                         ssid = g_strdup (ssid);
@@ -1831,7 +1914,7 @@ query_session_id (GSListener *listener)
                 return NULL;
         }
 
-        if (dbus_message_get_args (reply, &error, 
+        if (dbus_message_get_args (reply, &error,
                                    DBUS_TYPE_OBJECT_PATH, &ssid,
                                    DBUS_TYPE_INVALID)) {
                 ssid = g_strdup (ssid);
@@ -1972,6 +2055,7 @@ gs_listener_init (GSListener *listener)
 #ifdef WITH_SYSTEMD
         /* check if logind is running */
         listener->priv->have_systemd = (access("/run/systemd/seats/", F_OK) >= 0);
+        listener->priv->delay_fd = -1;
 #endif
 
         gs_listener_dbus_init (listener);

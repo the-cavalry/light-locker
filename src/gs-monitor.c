@@ -120,6 +120,7 @@ static void
 manager_activated_cb (GSManager *manager,
                       GSMonitor *monitor)
 {
+        gs_listener_resume_suspend (monitor->priv->listener);
 }
 
 static void
@@ -160,6 +161,12 @@ conf_lock_on_suspend_cb (LLConfig    *conf,
                       NULL);
 
         monitor->priv->lock_on_suspend = lock_on_suspend;
+
+        if (lock_on_suspend) {
+                gs_listener_delay_suspend (monitor->priv->listener);
+        } else {
+                gs_listener_resume_suspend (monitor->priv->listener);
+        }
 }
 
 static void
@@ -251,6 +258,10 @@ listener_active_changed_cb (GSListener *listener,
 {
         gboolean res;
         gboolean ret;
+
+        if (monitor->priv->lock_on_suspend && !active) {
+                gs_listener_delay_suspend (monitor->priv->listener);
+        }
 
         res = gs_manager_set_active (monitor->priv->manager, active);
         if (! res) {
@@ -478,6 +489,10 @@ gs_monitor_new (LLConfig *config)
         monitor->priv->lock_on_suspend = lock_on_suspend;
 
         gs_manager_set_lock_after (monitor->priv->manager, lock_after_screensaver);
+
+        if (lock_on_suspend) {
+              gs_listener_delay_suspend (monitor->priv->listener);
+        }
 
         return GS_MONITOR (monitor);
 }

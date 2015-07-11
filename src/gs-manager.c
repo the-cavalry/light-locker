@@ -51,8 +51,6 @@ struct GSManagerPrivate
         guint        blank : 1;
         guint        show_content : 1;
 
-        time_t       activate_time;
-
         guint        greeter_timeout_id;
         guint        lock_timeout_id;
 
@@ -233,47 +231,12 @@ window_map_event_cb (GSWindow  *window,
 {
         gs_debug ("Handling window map_event event");
 
+        /* FIXME: only emit signal once */
+        g_signal_emit (manager, signals [ACTIVATED], 0);
+
         manager_maybe_grab_window (manager, window);
 
         return FALSE;
-}
-
-static void
-window_map_cb (GSWindow  *window,
-               GSManager *manager)
-{
-        gs_debug ("Handling window map event");
-}
-
-static void
-window_unmap_cb (GSWindow  *window,
-                 GSManager *manager)
-{
-        gs_debug ("window unmapped!");
-}
-
-static void
-manager_show_window (GSManager *manager,
-                     GSWindow  *window)
-{
-        manager->priv->activate_time = time (NULL);
-
-        /* FIXME: only emit signal once */
-        g_signal_emit (manager, signals [ACTIVATED], 0);
-}
-
-static void
-window_show_cb (GSWindow  *window,
-                GSManager *manager)
-{
-
-        g_return_if_fail (manager != NULL);
-        g_return_if_fail (GS_IS_MANAGER (manager));
-        g_return_if_fail (window != NULL);
-        g_return_if_fail (GS_IS_WINDOW (window));
-
-        gs_debug ("Handling window show");
-        manager_show_window (manager, window);
 }
 
 static void
@@ -312,10 +275,7 @@ disconnect_window_signals (GSManager *manager,
         g_signal_handlers_disconnect_by_func (drawing_area, content_expose_cb, manager);
 #endif
 
-        g_signal_handlers_disconnect_by_func (window, window_show_cb, manager);
-        g_signal_handlers_disconnect_by_func (window, window_map_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_map_event_cb, manager);
-        g_signal_handlers_disconnect_by_func (window, window_unmap_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_grab_broken_cb, manager);
 }
 
@@ -343,14 +303,8 @@ connect_window_signals (GSManager *manager,
 
         g_signal_connect_object (window, "destroy",
                                  G_CALLBACK (window_destroyed_cb), manager, 0);
-        g_signal_connect_object (window, "show",
-                                 G_CALLBACK (window_show_cb), manager, G_CONNECT_AFTER);
-        g_signal_connect_object (window, "map",
-                                 G_CALLBACK (window_map_cb), manager, G_CONNECT_AFTER);
         g_signal_connect_object (window, "map_event",
                                  G_CALLBACK (window_map_event_cb), manager, G_CONNECT_AFTER);
-        g_signal_connect_object (window, "unmap",
-                                 G_CALLBACK (window_unmap_cb), manager, G_CONNECT_AFTER);
         g_signal_connect_object (window, "grab_broken_event",
                                  G_CALLBACK (window_grab_broken_cb), manager, G_CONNECT_AFTER);
 }
@@ -565,7 +519,6 @@ gs_manager_finalize (GObject *object)
         gs_manager_destroy_windows (manager);
 
         manager->priv->active = FALSE;
-        manager->priv->activate_time = 0;
 
         gs_manager_stop_switch (manager);
         gs_manager_stop_lock (manager);
@@ -704,7 +657,6 @@ gs_manager_deactivate (GSManager *manager)
 
         /* reset state */
         manager->priv->active = FALSE;
-        manager->priv->activate_time = 0;
         manager->priv->show_content = FALSE;
 
         return TRUE;
