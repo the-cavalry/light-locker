@@ -1,0 +1,18 @@
+# vim:syntax=apparmor
+
+#include <tunables/global>
+
+"/usr/bin/light-locker" {
+  #include <abstractions/gnome>
+  /usr/share/glib-2.0/**     r,
+  owner @{HOME}/.config/gtk-3.0/**    r,
+
+  #include <abstractions/dconf>
+  owner /{,var/}run/user/*/dconf/user rw,
+
+  @{PROC}/1/cgroup                    r,
+  owner @{PROC}/@{pid}/cgroup         r,
+
+  /{,var/}run/systemd/sessions/       r,
+  /{,var/}run/systemd/sessions/**     r,
+}

@@ -13,6 +13,8 @@ man_MANS = 				\
 
 EXTRA_DIST = 				\
 	$(man_MANS)			\
+	usr.bin.light-locker		\
+	usr.bin.light-locker-command	\
 	$(NULL)
 
 DISTCLEANFILES = 			\
