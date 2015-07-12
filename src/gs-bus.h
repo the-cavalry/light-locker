@@ -28,7 +28,6 @@
 #define SYSTEMD_LOGIND_INTERFACE        "org.freedesktop.login1.Manager"
 
 #define SYSTEMD_LOGIND_SESSION_INTERFACE "org.freedesktop.login1.Session"
-#define SYSTEMD_LOGIND_SESSION_PATH     "/org/freedesktop/login1/session"
 
 /* ConsoleKit */
 #define CK_SERVICE                      "org.freedesktop.ConsoleKit"

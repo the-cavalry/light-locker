@@ -128,6 +128,8 @@ gs_listener_send_switch_greeter (GSListener *listener)
         dbus_bool_t sent;
         DBusMessage *message;
 
+        gs_debug ("Send switch greeter");
+
 #ifdef WITH_SYSTEMD
         /* Compare with 0. On failure this will return < 0.
          * In the later case we probably aren't using systemd.
@@ -166,6 +168,8 @@ gs_listener_send_lock_session (GSListener *listener)
 {
         dbus_bool_t sent;
         DBusMessage *message;
+
+        gs_debug ("Send lock session");
 
 #ifdef WITH_SYSTEMD
         /* Compare with 0. On failure this will return < 0.
@@ -344,6 +348,47 @@ gs_listener_set_active (GSListener *listener,
 }
 
 void
+gs_listener_set_idle_hint (GSListener *listener, gboolean idle)
+{
+#ifdef WITH_SYSTEMD
+        dbus_bool_t sent;
+        DBusMessage *message;
+
+        gs_debug ("Send idle hint: %d", idle);
+
+        if (listener->priv->system_connection == NULL) {
+                gs_debug ("No connection to the system bus");
+                return;
+        }
+
+        message = dbus_message_new_method_call (SYSTEMD_LOGIND_SERVICE,
+                                                listener->priv->session_id,
+                                                SYSTEMD_LOGIND_SESSION_INTERFACE,
+                                                "SetIdleHint");
+        if (message == NULL) {
+                gs_debug ("Couldn't allocate the dbus message");
+                return;
+        }
+
+        if (dbus_message_append_args (message,
+                                      DBUS_TYPE_BOOLEAN, &idle,
+                                      DBUS_TYPE_INVALID) == FALSE) {
+                gs_debug ("Couldn't add args to the dbus message");
+                dbus_message_unref (message);
+                return;
+        }
+
+        sent = dbus_connection_send (listener->priv->system_connection, message, NULL);
+        dbus_message_unref (message);
+
+        if (sent == FALSE) {
+                gs_debug ("Couldn't send the dbus message");
+                return;
+        }
+#endif
+}
+
+void
 gs_listener_delay_suspend (GSListener *listener)
 {
 #ifdef WITH_SYSTEMD
@@ -355,6 +400,8 @@ gs_listener_delay_suspend (GSListener *listener)
         const char     *why;
         const char     *mode;
         int             fd;
+
+        gs_debug ("Delay suspend");
 
         if (listener->priv->system_connection == NULL) {
                 gs_debug ("No connection to the system bus");
@@ -418,6 +465,8 @@ void
 gs_listener_resume_suspend (GSListener *listener)
 {
 #ifdef WITH_SYSTEMD
+        gs_debug ("Resume suspend: fd=%d", listener->priv->delay_fd);
+
         if (listener->priv->delay_fd >= 0) {
                 close (listener->priv->delay_fd);
                 listener->priv->delay_fd = -1;

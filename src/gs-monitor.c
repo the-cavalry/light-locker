@@ -349,6 +349,7 @@ listener_x11_blanking_changed_cb (GSListenerX11 *listener,
         gs_debug ("Blanking changed: %d", active);
         gs_manager_set_blank_screen (monitor->priv->manager, active);
         gs_listener_set_blanked (monitor->priv->listener, active);
+        gs_listener_set_idle_hint (monitor->priv->listener, active);
 
         if (!active && monitor->priv->perform_lock && gs_manager_get_session_visible (monitor->priv->manager)) {
                 gs_listener_send_lock_session (monitor->priv->listener);
