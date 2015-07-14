@@ -22,6 +22,7 @@ There is no support for gnome-settings-daemon in order to keep things slim, so y
 light-locker will automatically lock the session shortly after the X11 screen saver kicks in. The timeout can be set with --lock-after-screensaver. With xset the X11 screen saver can be adjusted.
 Use --late-locking to avoid some of the negative effects of VT switching. This will lock the session on the deactivation of X11 screen saver instead of activation.
 light-locker will automatically lock the session on suspend/resume. To disable this behaviour with --no-lock-on-suspend.
+With logind sessions can have an idle hint. This is used to perform some action after a timeout. Use --idle-hint to let light-locker set the idle hint, in case nothing else does.
 
 
 Building

@@ -17,6 +17,7 @@ enum
     PROP_LOCK_ON_SUSPEND,
     PROP_LATE_LOCKING,
     PROP_LOCK_AFTER_SCREENSAVER,
+    PROP_IDLE_HINT,
     N_PROP
 };
 
@@ -43,6 +44,7 @@ struct _LLConfig
     guint      lock_after_screensaver;
     gboolean   late_locking : 1;
     gboolean   lock_on_suspend : 1;
+    gboolean   idle_hint : 1;
 };
 
 G_DEFINE_TYPE (LLConfig, ll_config, G_TYPE_OBJECT)
@@ -76,6 +78,10 @@ static void ll_config_set_property (GObject      *object,
 
         case PROP_LOCK_ON_SUSPEND:
             conf->lock_on_suspend = g_value_get_boolean(value);
+            break;
+
+        case PROP_IDLE_HINT:
+            conf->idle_hint = g_value_get_boolean(value);
             break;
 
         default:
@@ -112,6 +118,10 @@ static void ll_config_get_property (GObject    *object,
 
         case PROP_LOCK_ON_SUSPEND:
             g_value_set_boolean(value, conf->lock_on_suspend);
+            break;
+
+        case PROP_IDLE_HINT:
+            g_value_set_boolean(value, conf->idle_hint);
             break;
 
         default:
@@ -174,6 +184,19 @@ ll_config_class_init (LLConfigClass *klass)
                                                         3600,
                                                         0,
                                                         G_PARAM_READWRITE));
+
+    /**
+     * LLConfig:idle-hint:
+     *
+     * Set idle hint during screensaver
+     **/
+    g_object_class_install_property (object_class,
+                                     PROP_IDLE_HINT,
+                                     g_param_spec_boolean ("idle-hint",
+                                                           NULL,
+                                                           NULL,
+                                                           FALSE,
+                                                           G_PARAM_READWRITE));
 }
 
 /**
@@ -199,6 +222,7 @@ ll_config_init (LLConfig *conf)
 #ifdef WITH_LOCK_ON_SUSPEND
     conf->lock_on_suspend = WITH_LOCK_ON_SUSPEND;
 #endif
+    conf->idle_hint = FALSE;
 
 #ifdef WITH_SETTINGS_BACKEND
 #define GSETTINGS 1

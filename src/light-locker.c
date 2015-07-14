@@ -57,6 +57,7 @@ main (int    argc,
         static gint         lock_after_screensaver;
         static gboolean     late_locking;
         static gboolean     lock_on_suspend;
+        static gboolean     idle_hint;
 
         static GOptionEntry entries []   = {
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
@@ -72,6 +73,8 @@ main (int    argc,
                 { "lock-on-suspend", 0, 0, G_OPTION_ARG_NONE, &lock_on_suspend, N_("Lock the screen on suspend/resume"), NULL },
                 { "no-lock-on-suspend", 0, G_OPTION_FLAG_REVERSE, G_OPTION_ARG_NONE, &lock_on_suspend, N_("Do not lock the screen on suspend/resume"), NULL },
 #endif
+                { "idle-hint", 0, 0, G_OPTION_ARG_NONE, &idle_hint, N_("Set idle hint during screensaver"), NULL },
+                { "no-idle-hint", 0, G_OPTION_FLAG_REVERSE, G_OPTION_ARG_NONE, &idle_hint, N_("Let something else handle the idle hint"), NULL },
                 { NULL }
         };
 
@@ -90,6 +93,7 @@ main (int    argc,
                       "lock-on-suspend", &lock_on_suspend,
                       "late-locking", &late_locking,
                       "lock-after-screensaver", &lock_after_screensaver,
+                      "idle-hint", &idle_hint,
                       NULL);
 
 #ifndef WITH_LATE_LOCKING
@@ -120,6 +124,7 @@ main (int    argc,
                       "lock-on-suspend", lock_on_suspend,
                       "late-locking", late_locking,
                       "lock-after-screensaver", lock_after_screensaver,
+                      "idle-hint", idle_hint,
                       NULL);
 
         gs_debug_init (debug, FALSE);
@@ -128,6 +133,7 @@ main (int    argc,
         gs_debug ("lock after screensaver %d", lock_after_screensaver);
         gs_debug ("late locking %d", late_locking);
         gs_debug ("lock on suspend %d", lock_on_suspend);
+        gs_debug ("idle hint %d", idle_hint);
 
         monitor = gs_monitor_new (conf);
 
