@@ -350,20 +350,57 @@ gs_listener_set_active (GSListener *listener,
 void
 gs_listener_set_idle_hint (GSListener *listener, gboolean idle)
 {
-#ifdef WITH_SYSTEMD
         dbus_bool_t sent;
         DBusMessage *message;
 
         gs_debug ("Send idle hint: %d", idle);
 
+#ifdef WITH_SYSTEMD
+        if (listener->priv->have_systemd) {
+
+                if (listener->priv->system_connection == NULL) {
+                        gs_debug ("No connection to the system bus");
+                        return;
+                }
+
+                message = dbus_message_new_method_call (SYSTEMD_LOGIND_SERVICE,
+                                                        listener->priv->session_id,
+                                                        SYSTEMD_LOGIND_SESSION_INTERFACE,
+                                                        "SetIdleHint");
+                if (message == NULL) {
+                        gs_debug ("Couldn't allocate the dbus message");
+                        return;
+                }
+
+                if (dbus_message_append_args (message,
+                                              DBUS_TYPE_BOOLEAN, &idle,
+                                              DBUS_TYPE_INVALID) == FALSE) {
+                        gs_debug ("Couldn't add args to the dbus message");
+                        dbus_message_unref (message);
+                        return;
+                }
+
+                sent = dbus_connection_send (listener->priv->system_connection, message, NULL);
+                dbus_message_unref (message);
+
+                if (sent == FALSE) {
+                        gs_debug ("Couldn't send the dbus message");
+                        return;
+                }
+
+                return;
+        }
+#endif
+
+#ifdef WITH_CONSOLE_KIT
         if (listener->priv->system_connection == NULL) {
                 gs_debug ("No connection to the system bus");
                 return;
         }
 
-        message = dbus_message_new_method_call (SYSTEMD_LOGIND_SERVICE,
+        message = dbus_message_new_method_call (CK_SERVICE,
                                                 listener->priv->session_id,
-                                                SYSTEMD_LOGIND_SESSION_INTERFACE,
+                                                CK_SESSION_INTERFACE,
                                                 "SetIdleHint");
         if (message == NULL) {
                 gs_debug ("Couldn't allocate the dbus message");
