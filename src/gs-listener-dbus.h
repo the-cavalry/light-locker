@@ -88,6 +88,9 @@ gboolean    gs_listener_is_lid_closed           (GSListener *listener);
 void        gs_listener_delay_suspend           (GSListener *listener);
 void        gs_listener_resume_suspend          (GSListener *listener);
 
+void        gs_listener_set_idle_hint           (GSListener *listener,
+                                                 gboolean    idle);
+
 G_END_DECLS
 
 #endif /* __GS_LISTENER_H */

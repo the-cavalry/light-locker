@@ -18,6 +18,7 @@ enum
     PROP_LATE_LOCKING,
     PROP_LOCK_AFTER_SCREENSAVER,
     PROP_LOCK_ON_LID,
+    PROP_IDLE_HINT,
     N_PROP
 };
 
@@ -45,6 +46,7 @@ struct _LLConfig
     gboolean   late_locking : 1;
     gboolean   lock_on_suspend : 1;
     gboolean   lock_on_lid : 1;
+    gboolean   idle_hint : 1;
 };
 
 G_DEFINE_TYPE (LLConfig, ll_config, G_TYPE_OBJECT)
@@ -82,6 +84,10 @@ static void ll_config_set_property (GObject      *object,
 
         case PROP_LOCK_ON_LID:
             conf->lock_on_lid = g_value_get_boolean(value);
+            break;
+
+        case PROP_IDLE_HINT:
+            conf->idle_hint = g_value_get_boolean(value);
             break;
 
         default:
@@ -122,6 +128,10 @@ static void ll_config_get_property (GObject    *object,
 
         case PROP_LOCK_ON_LID:
             g_value_set_boolean(value, conf->lock_on_lid);
+            break;
+
+        case PROP_IDLE_HINT:
+            g_value_set_boolean(value, conf->idle_hint);
             break;
 
         default:
@@ -197,6 +207,19 @@ ll_config_class_init (LLConfigClass *klass)
                                                            NULL,
                                                            FALSE,
                                                            G_PARAM_READWRITE));
+
+    /**
+     * LLConfig:idle-hint:
+     *
+     * Set idle hint during screensaver
+     **/
+    g_object_class_install_property (object_class,
+                                     PROP_IDLE_HINT,
+                                     g_param_spec_boolean ("idle-hint",
+                                                           NULL,
+                                                           NULL,
+                                                           FALSE,
+                                                           G_PARAM_READWRITE));
 }
 
 /**
@@ -225,6 +248,7 @@ ll_config_init (LLConfig *conf)
 #ifdef WITH_LOCK_ON_LID
     conf->lock_on_lid = WITH_LOCK_ON_LID;
 #endif
+    conf->idle_hint = FALSE;
 
 #ifdef WITH_SETTINGS_BACKEND
 #define GSETTINGS 1

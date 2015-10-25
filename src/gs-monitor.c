@@ -54,6 +54,7 @@ struct GSMonitorPrivate
 
         guint            late_locking : 1;
         guint            lock_on_suspend : 1;
+        guint            idle_hint : 1;
         guint            perform_lock : 1;
         guint            lock_on_lid : 1;
 };
@@ -219,12 +220,30 @@ conf_lock_on_lid_cb (LLConfig    *conf,
 }
 
 static void
+conf_idle_hint_cb (LLConfig    *conf,
+                   GParamSpec  *pspec,
+                   GSMonitor   *monitor)
+{
+        gboolean idle_hint = FALSE;
+
+        g_object_get (G_OBJECT(conf),
+                      "idle_hint", &idle_hint,
+                      NULL);
+
+        monitor->priv->idle_hint = idle_hint;
+
+        gs_listener_set_idle_hint (monitor->priv->listener,
+                                   idle_hint && gs_manager_get_blank_screen (monitor->priv->manager));
+}
+
+static void
 disconnect_conf_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_lock_on_suspend_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_late_locking_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_lock_after_screensaver_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_lock_on_lid_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_idle_hint_cb, monitor);
 }
 
 static void
@@ -238,6 +257,8 @@ connect_conf_signals (GSMonitor *monitor)
                           G_CALLBACK (conf_lock_after_screensaver_cb), monitor);
         g_signal_connect (monitor->priv->conf, "notify::lock-on-lid",
                           G_CALLBACK (conf_lock_on_lid_cb), monitor);
+        g_signal_connect (monitor->priv->conf, "notify::idle-hint",
+                          G_CALLBACK (conf_idle_hint_cb), monitor);
 }
 
 static void
@@ -433,6 +454,9 @@ listener_x11_blanking_changed_cb (GSListenerX11 *listener,
         gs_debug ("Blanking changed: %d", active);
         gs_manager_set_blank_screen (monitor->priv->manager, active);
         gs_listener_set_blanked (monitor->priv->listener, active);
+        if (monitor->priv->idle_hint) {
+                gs_listener_set_idle_hint (monitor->priv->listener, active);
+        }
 
         /* If late locking is enabled only lock the session if the lid isn't closed. */
         if (!active && !gs_listener_is_lid_closed (monitor->priv->listener) && monitor->priv->perform_lock) {
@@ -523,6 +547,7 @@ gs_monitor_init (GSMonitor *monitor)
 #ifdef WITH_LOCK_ON_LID
         monitor->priv->lock_on_lid = WITH_LOCK_ON_LID;
 #endif
+        monitor->priv->idle_hint = FALSE;
 
         monitor->priv->listener = gs_listener_new ();
         monitor->priv->listener_x11 = gs_listener_x11_new ();
@@ -564,6 +589,7 @@ gs_monitor_new (LLConfig *config)
         gboolean lock_on_suspend = FALSE;
         gboolean lock_on_lid = FALSE;
         guint lock_after_screensaver = 5;
+        gboolean idle_hint = FALSE;
 
         monitor = g_object_new (GS_TYPE_MONITOR, NULL);
 
@@ -576,11 +602,13 @@ gs_monitor_new (LLConfig *config)
                       "lock-on-suspend", &lock_on_suspend,
                       "lock-on-lid", &lock_on_lid,
                       "lock-after-screensaver", &lock_after_screensaver,
+                      "idle-hint", &idle_hint,
                       NULL);
 
         monitor->priv->late_locking = late_locking;
         monitor->priv->lock_on_suspend = lock_on_suspend;
         monitor->priv->lock_on_lid = lock_on_lid;
+        monitor->priv->idle_hint = idle_hint;
 
         gs_manager_set_lock_after (monitor->priv->manager, lock_after_screensaver);
 

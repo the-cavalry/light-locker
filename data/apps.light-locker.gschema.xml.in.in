@@ -30,5 +30,12 @@
       <description>Lock the screen when lid of the computer is closed.</description>
     </key>
 
+    <key name="idle-hint" type="b">
+      <default>false</default>
+      <summary>Set idle hint during screensaver</summary>
+      <description>Set the session idle hint while the screensaver is active.
+      </description>
+    </key>
+
   </schema>
 </schemalist>
