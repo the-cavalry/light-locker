@@ -131,7 +131,7 @@ screensaver_send_message_uninhibit (GDBusConnection *connection,
         GDBusMessage *message;
         GError       *error;
 
-        g_return_val_if_fail (connection != NULL, NULL);
+        g_return_if_fail (connection != NULL);
 
         message = g_dbus_message_new_method_call (GS_SERVICE,
                                                   GS_PATH,

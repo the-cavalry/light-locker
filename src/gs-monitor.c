@@ -349,7 +349,7 @@ listener_resume_cb (GSListener *listener,
                  * As a corner case this is ok.
                  */
                 /* Don't switch VT while the lid is closed. */
-                monitor->piv->perform_lock = TRUE;
+                monitor->priv->perform_lock = TRUE;
         } else {
                 /* Add a 1s delay for resume to complete.
                  * This seems to fix backlight issues.
