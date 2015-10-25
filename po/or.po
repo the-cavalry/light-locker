@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-22 17:53+0100\n"
-"PO-Revision-Date: 2015-01-22 16:52+0000\n"
+"POT-Creation-Date: 2015-10-25 13:44+0100\n"
+"PO-Revision-Date: 2015-10-25 12:49+0000\n"
 "Last-Translator: Peter de Ridder <peter@xfce.org>\n"
 "Language-Team: Oriya (http://www.transifex.com/the_cavalry/light-locker/language/or/)\n"
 "MIME-Version: 1.0\n"
@@ -21,133 +21,149 @@ msgstr ""
 "Language: or\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../src/light-locker-command.c:54
+#: ../src/light-locker-command.c:56
 msgid "Query the state of the locker"
 msgstr ""
 
-#: ../src/light-locker-command.c:56
+#: ../src/light-locker-command.c:58
 msgid "Query the length of time the locker has been active"
 msgstr ""
 
-#: ../src/light-locker-command.c:58
+#: ../src/light-locker-command.c:60
 msgid "Tells the running locker process to lock the screen immediately"
 msgstr ""
 
-#: ../src/light-locker-command.c:60
+#: ../src/light-locker-command.c:62
 msgid "Turn the screensaver on (blank the screen)"
 msgstr ""
 
-#: ../src/light-locker-command.c:62
+#: ../src/light-locker-command.c:64
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
 msgstr ""
 
-#: ../src/light-locker-command.c:64
+#: ../src/light-locker-command.c:66
 msgid "Poke the running locker to simulate user activity"
 msgstr ""
 
-#: ../src/light-locker-command.c:66
+#: ../src/light-locker-command.c:68
 msgid ""
 "Inhibit the screensaver from activating. Terminate the light-locker-command "
 "process to end inhibition."
 msgstr ""
 
-#: ../src/light-locker-command.c:68
+#: ../src/light-locker-command.c:70
 msgid "The calling application that is inhibiting the screensaver"
 msgstr ""
 
-#: ../src/light-locker-command.c:70
+#: ../src/light-locker-command.c:72
 msgid "The reason for inhibiting the screensaver"
 msgstr ""
 
-#: ../src/light-locker-command.c:72 ../src/light-locker.c:62
+#: ../src/light-locker-command.c:74 ../src/light-locker.c:64
 #: ../src/preview.c:82
 msgid "Version of this application"
 msgstr "ଏହି ପ୍ରୟୋଗର ସଂସ୍କରଣ"
 
-#: ../src/light-locker-command.c:327
+#: ../src/light-locker-command.c:337
 #, c-format
 msgid "The screensaver is active\n"
 msgstr ""
 
-#: ../src/light-locker-command.c:329
+#: ../src/light-locker-command.c:339
 #, c-format
 msgid "The screensaver is inactive\n"
 msgstr ""
 
-#: ../src/light-locker-command.c:359
+#: ../src/light-locker-command.c:369
 #, c-format
 msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/light-locker-command.c:371
+#: ../src/light-locker-command.c:381
 #, c-format
 msgid "The screensaver is not currently active.\n"
 msgstr ""
 
-#: ../src/light-locker-command.c:372
+#: ../src/light-locker-command.c:382
 #, c-format
 msgid "The session has been idle for %d second.\n"
 msgid_plural "The session has been idle for %d seconds.\n"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/light-locker-command.c:441
+#: ../src/light-locker-command.c:451
 #, c-format
 msgid "The screensaver has been inhibited with cookie %d\n"
 msgstr ""
 
-#: ../src/light-locker-command.c:514
+#: ../src/light-locker-command.c:555
 #, c-format
 msgid "Send uninhibit to the screensaver with cookie %d\n"
 msgstr ""
 
-#: ../src/light-locker.c:63 ../src/preview.c:83
+#: ../src/light-locker.c:65 ../src/preview.c:83
 msgid "Enable debugging code"
 msgstr "ତ୍ରୁଟି ନିବାରଣ ସଂକେତକୁ ସକ୍ରିୟ କରନ୍ତୁ"
 
-#: ../src/light-locker.c:65
+#: ../src/light-locker.c:67
 msgid "Lock the screen S seconds after the screensaver started"
 msgstr "ସ୍କ୍ରିନସେବର୍ ଆରମ୍ଭ ହେବାର S ସେକେଣ୍ଡ୍ ପରେ ପରଦା ଅବରୋଧିତ କରନ୍ତୁ"
 
-#: ../src/light-locker.c:67
+#: ../src/light-locker.c:69
 msgid "Lock the screen on screensaver deactivation"
 msgstr "ସ୍କ୍ରିନସେବର୍ ବଂଦ ହେଲେ ପରଦା ଅବରୋଧିତ କରନ୍ତୁ ନାହିଁ"
 
-#: ../src/light-locker.c:68
+#: ../src/light-locker.c:70
 msgid "Lock the screen on screensaver activation"
 msgstr "ସ୍କ୍ରିନସେବର୍ ଆରମ୍ଭ ହେଲେ ପରଦା ଅବରୋଧିତ କରନ୍ତୁ ନାହିଁ"
 
-#: ../src/light-locker.c:72
+#: ../src/light-locker.c:74 ../src/gs-listener-dbus.c:466
 msgid "Lock the screen on suspend/resume"
 msgstr "ସସପେଣ୍ଡ୍ / ରିଜୟୁମ୍ ବେଳେ ପରଦା ଅବରୋଧିତ କରନ୍ତୁ"
 
-#: ../src/light-locker.c:73
+#: ../src/light-locker.c:75
 msgid "Do not lock the screen on suspend/resume"
 msgstr "ସସପେଣ୍ଡ୍ / ରିଜୟୁମ୍ ବେଳେ ପରଦା ଅବରୋଧିତ କରନ୍ତୁ ନାହିଁ"
 
-#: ../src/light-locker.desktop.in.in.h:1
+#: ../src/light-locker.c:78
+msgid "Lock the screen on lid close"
+msgstr ""
+
+#: ../src/light-locker.c:79
+msgid "Do not lock the screen on lid close"
+msgstr ""
+
+#: ../src/light-locker.c:81
+msgid "Set idle hint during screensaver"
+msgstr ""
+
+#: ../src/light-locker.c:82
+msgid "Let something else handle the idle hint"
+msgstr ""
+
+#: ../src/light-locker.desktop.in.h:1 ../src/gs-listener-dbus.c:465
 msgid "Screen Locker"
 msgstr "ପରଦା ଅବରୋଧକ"
 
-#: ../src/light-locker.desktop.in.in.h:2
+#: ../src/light-locker.desktop.in.h:2
 msgid "Launch screen locker program"
 msgstr "ପରଦା ଅବରୋଧକ ଆରମ୍ଭ କରନ୍ତୁ"
 
-#: ../src/gs-listener-dbus.c:1565
+#: ../src/gs-listener-dbus.c:1844
 msgid "failed to register with the message bus"
 msgstr ""
 
-#: ../src/gs-listener-dbus.c:1575
+#: ../src/gs-listener-dbus.c:1854
 msgid "not connected to the message bus"
 msgstr ""
 
-#: ../src/gs-listener-dbus.c:1584 ../src/gs-listener-dbus.c:1632
+#: ../src/gs-listener-dbus.c:1863 ../src/gs-listener-dbus.c:1911
 msgid "screensaver already running in this session"
 msgstr ""
 
-#: ../src/gs-listener-dbus.c:1654
+#: ../src/gs-listener-dbus.c:1933
 msgid "GNOME screensaver already running in this session"
 msgstr ""
 
