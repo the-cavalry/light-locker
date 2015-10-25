@@ -15,9 +15,9 @@ msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-22 17:53+0100\n"
-"PO-Revision-Date: 2015-01-22 16:52+0000\n"
-"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
-"Language-Team: German (http://www.transifex.com/projects/p/light-locker/language/de/)\n"
+"PO-Revision-Date: 2015-02-09 14:11+0000\n"
+"Last-Translator: Tobias Bannert <tobannert@gmail.com>\n"
+"Language-Team: German (http://www.transifex.com/the_cavalry/light-locker/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -52,7 +52,7 @@ msgstr "Die laufende Bildschirmsperre anstoßen, um Benutzeraktivität zu simuli
 msgid ""
 "Inhibit the screensaver from activating. Terminate the light-locker-command "
 "process to end inhibition."
-msgstr ""
+msgstr "Die Aktivierung des Bildschirmschoners unterdrücken. Den »light-locker-command«-Prozess beenden, um das Unterdrücken zu beenden."
 
 #: ../src/light-locker-command.c:68
 msgid "The calling application that is inhibiting the screensaver"
@@ -104,7 +104,7 @@ msgstr "Der Bildschirmschoner wurde mit Profildatei %d unterdrückt\n"
 #: ../src/light-locker-command.c:514
 #, c-format
 msgid "Send uninhibit to the screensaver with cookie %d\n"
-msgstr ""
+msgstr "Freigeben zum Bildschirmschoner mit Profildatei %d senden\n"
 
 #: ../src/light-locker.c:63 ../src/preview.c:83
 msgid "Enable debugging code"

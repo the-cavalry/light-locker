@@ -5,6 +5,7 @@
 # Translators:
 # Abel Cheung <abel@oaka.org>, 2005
 # Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>, 2006,2010
+# chaoweilun <inactive+chaoweilun@transifex.com>, 2010
 # Ching-Hung Lin <billlin@wshlab2.ee.kuas.edu.tw>, 2006
 # chaoweilun <inactive+chaoweilun@transifex.com>, 2010
 # Woodman Tuen <wmtuen@gmail.com>, 2007
@@ -13,9 +14,9 @@ msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-22 17:53+0100\n"
-"PO-Revision-Date: 2015-01-22 16:52+0000\n"
-"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/light-locker/language/zh_TW/)\n"
+"PO-Revision-Date: 2015-03-16 12:18+0000\n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/the_cavalry/light-locker/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,41 +25,41 @@ msgstr ""
 
 #: ../src/light-locker-command.c:54
 msgid "Query the state of the locker"
-msgstr ""
+msgstr "查詢鎖定的狀態"
 
 #: ../src/light-locker-command.c:56
 msgid "Query the length of time the locker has been active"
-msgstr ""
+msgstr "查詢鎖定已使用的時間長度"
 
 #: ../src/light-locker-command.c:58
 msgid "Tells the running locker process to lock the screen immediately"
-msgstr ""
+msgstr "告訴執行中的鎖定程序立即鎖定螢幕"
 
 #: ../src/light-locker-command.c:60
 msgid "Turn the screensaver on (blank the screen)"
-msgstr ""
+msgstr "開啟螢幕保護程式 (螢幕轉黑)"
 
 #: ../src/light-locker-command.c:62
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
+msgstr "如果螢幕保護程式在使用中，那麼請將之停用 (取消螢幕轉黑)"
 
 #: ../src/light-locker-command.c:64
 msgid "Poke the running locker to simulate user activity"
-msgstr ""
+msgstr "戳弄執行中的鎖定程式以模擬使用者活動"
 
 #: ../src/light-locker-command.c:66
 msgid ""
 "Inhibit the screensaver from activating. Terminate the light-locker-command "
 "process to end inhibition."
-msgstr ""
+msgstr "遏止螢幕保護程式啟動。終止 light-locker-command 程式以結束遏止。"
 
 #: ../src/light-locker-command.c:68
 msgid "The calling application that is inhibiting the screensaver"
-msgstr ""
+msgstr "遏止螢幕保護程式的呼叫程式"
 
 #: ../src/light-locker-command.c:70
 msgid "The reason for inhibiting the screensaver"
-msgstr ""
+msgstr "遏止螢幕保護程式的原因"
 
 #: ../src/light-locker-command.c:72 ../src/light-locker.c:62
 #: ../src/preview.c:82
@@ -68,39 +69,39 @@ msgstr "本程式的版本"
 #: ../src/light-locker-command.c:327
 #, c-format
 msgid "The screensaver is active\n"
-msgstr ""
+msgstr "螢幕保護程式使用中\n"
 
 #: ../src/light-locker-command.c:329
 #, c-format
 msgid "The screensaver is inactive\n"
-msgstr ""
+msgstr "螢幕保護程式非使用中\n"
 
 #: ../src/light-locker-command.c:359
 #, c-format
 msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] ""
+msgstr[0] "螢幕保護程式已經使用 %d 秒。\n"
 
 #: ../src/light-locker-command.c:371
 #, c-format
 msgid "The screensaver is not currently active.\n"
-msgstr ""
+msgstr "螢幕保護程式目前並未使用中。\n"
 
 #: ../src/light-locker-command.c:372
 #, c-format
 msgid "The session has been idle for %d second.\n"
 msgid_plural "The session has been idle for %d seconds.\n"
-msgstr[0] ""
+msgstr[0] "本作業階段已經閒置 %d 秒。\n"
 
 #: ../src/light-locker-command.c:441
 #, c-format
 msgid "The screensaver has been inhibited with cookie %d\n"
-msgstr ""
+msgstr "螢幕保護程式已被 Cookie %d 遏止\n"
 
 #: ../src/light-locker-command.c:514
 #, c-format
 msgid "Send uninhibit to the screensaver with cookie %d\n"
-msgstr ""
+msgstr "傳送取消遏止的訊息給附帶 Cookie %d 的螢幕保護程式\n"
 
 #: ../src/light-locker.c:63 ../src/preview.c:83
 msgid "Enable debugging code"
@@ -108,47 +109,47 @@ msgstr "啟用除錯碼"
 
 #: ../src/light-locker.c:65
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr ""
+msgstr "在螢幕保護程式啟動 S 秒後鎖定螢幕"
 
 #: ../src/light-locker.c:67
 msgid "Lock the screen on screensaver deactivation"
-msgstr ""
+msgstr "螢幕保護程式停用時鎖定螢幕"
 
 #: ../src/light-locker.c:68
 msgid "Lock the screen on screensaver activation"
-msgstr ""
+msgstr "螢幕保護程式啟動時鎖定螢幕"
 
 #: ../src/light-locker.c:72
 msgid "Lock the screen on suspend/resume"
-msgstr ""
+msgstr "暫停/喚起時鎖定螢幕"
 
 #: ../src/light-locker.c:73
 msgid "Do not lock the screen on suspend/resume"
-msgstr ""
+msgstr "暫停/喚起時不要鎖定螢幕"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
-msgstr ""
+msgstr "螢幕鎖定"
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
-msgstr ""
+msgstr "啟動螢幕鎖定程式"
 
 #: ../src/gs-listener-dbus.c:1565
 msgid "failed to register with the message bus"
-msgstr ""
+msgstr "無法註冊訊息匯流排"
 
 #: ../src/gs-listener-dbus.c:1575
 msgid "not connected to the message bus"
-msgstr ""
+msgstr "未連接到訊息匯流排"
 
 #: ../src/gs-listener-dbus.c:1584 ../src/gs-listener-dbus.c:1632
 msgid "screensaver already running in this session"
-msgstr ""
+msgstr "螢幕保護程式已在此作業階段中執行"
 
 #: ../src/gs-listener-dbus.c:1654
 msgid "GNOME screensaver already running in this session"
-msgstr ""
+msgstr "GNOME 螢幕保護程式已在此作業階段中執行"
 
 #: ../src/gs-content.c:92
 msgid "This session is locked"
@@ -157,12 +158,12 @@ msgstr "本對話被鎖定"
 #: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr "您會於幾秒内自動重新定向到解鎖方塊"
+msgstr "您會於幾秒内自動重新導引到解鎖對話方塊"
 
 #: ../src/preview.c:84
 msgid "Preview screen width"
-msgstr ""
+msgstr "預覽畫面寬度"
 
 #: ../src/preview.c:85
 msgid "Preview screen height"
-msgstr ""
+msgstr "預覽畫面高度"

@@ -5,15 +5,16 @@
 # Translators:
 # aurisc4 <aurisc4@gmail.com>, 2010
 # Gintautas Miliauskas <gintas@akl.lt>, 2006-2008
+# Moo, 2015
 # Rimas Kudelis <rq@akl.lt>, 2010
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-22 17:53+0100\n"
-"PO-Revision-Date: 2015-01-22 16:52+0000\n"
-"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
-"Language-Team: Lithuanian (http://www.transifex.com/projects/p/light-locker/language/lt/)\n"
+"PO-Revision-Date: 2015-04-07 23:33+0000\n"
+"Last-Translator: Moo\n"
+"Language-Team: Lithuanian (http://www.transifex.com/the_cavalry/light-locker/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,41 +23,41 @@ msgstr ""
 
 #: ../src/light-locker-command.c:54
 msgid "Query the state of the locker"
-msgstr ""
+msgstr "Užklausti užrakinimo būseną"
 
 #: ../src/light-locker-command.c:56
 msgid "Query the length of time the locker has been active"
-msgstr ""
+msgstr "Užklausti kiek laiko buvo aktyvus užrakinimas"
 
 #: ../src/light-locker-command.c:58
 msgid "Tells the running locker process to lock the screen immediately"
-msgstr ""
+msgstr "Nurodo vykdomam užrakinimo procesui nedelsiant užrakinti ekraną"
 
 #: ../src/light-locker-command.c:60
 msgid "Turn the screensaver on (blank the screen)"
-msgstr ""
+msgstr "Įjungti ekrano užsklandą (užtamsinti ekraną)"
 
 #: ../src/light-locker-command.c:62
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
+msgstr "Jei ekrano užsklanda yra aktyvi, tuomet ją pasyvinti (išjungti ekrano užtamsinimą)"
 
 #: ../src/light-locker-command.c:64
 msgid "Poke the running locker to simulate user activity"
-msgstr ""
+msgstr "Drumsti vykdomą užrakinimą, siekiant imituoti naudotojo veiklą"
 
 #: ../src/light-locker-command.c:66
 msgid ""
 "Inhibit the screensaver from activating. Terminate the light-locker-command "
 "process to end inhibition."
-msgstr ""
+msgstr "Drausti aktyvuoti ekrano užsklandą. Nutraukite light-locker-command procesą, norėdami sustabdyti draudimą."
 
 #: ../src/light-locker-command.c:68
 msgid "The calling application that is inhibiting the screensaver"
-msgstr ""
+msgstr "Besikreipianti programa, draudžianti ekrano užsklandą"
 
 #: ../src/light-locker-command.c:70
 msgid "The reason for inhibiting the screensaver"
-msgstr ""
+msgstr "Ekrano užsklandos draudimo priežastis"
 
 #: ../src/light-locker-command.c:72 ../src/light-locker.c:62
 #: ../src/preview.c:82
@@ -66,43 +67,43 @@ msgstr "Šios programos versija"
 #: ../src/light-locker-command.c:327
 #, c-format
 msgid "The screensaver is active\n"
-msgstr ""
+msgstr "Ekrano užsklanda yra aktyvi\n"
 
 #: ../src/light-locker-command.c:329
 #, c-format
 msgid "The screensaver is inactive\n"
-msgstr ""
+msgstr "Ekrano užsklanda nėra aktyvi\n"
 
 #: ../src/light-locker-command.c:359
 #, c-format
 msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ekrano užsklanda buvo aktyvi %d sekundę.\n"
+msgstr[1] "Ekrano užsklanda buvo aktyvi %d sekundes.\n"
+msgstr[2] "Ekrano užsklanda buvo aktyvi %d sekundžių.\n"
 
 #: ../src/light-locker-command.c:371
 #, c-format
 msgid "The screensaver is not currently active.\n"
-msgstr ""
+msgstr "Šiuo metu ekrano užsklanda nėra aktyvi.\n"
 
 #: ../src/light-locker-command.c:372
 #, c-format
 msgid "The session has been idle for %d second.\n"
 msgid_plural "The session has been idle for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Seansas buvo neveiklus %d sekundę.\n"
+msgstr[1] "Seansas buvo neveiklus %d sekundes.\n"
+msgstr[2] "Seansas buvo neveiklus %d sekundžių.\n"
 
 #: ../src/light-locker-command.c:441
 #, c-format
 msgid "The screensaver has been inhibited with cookie %d\n"
-msgstr ""
+msgstr "Ekrano užsklanda buvo draudžiama %d slapuko pagalba\n"
 
 #: ../src/light-locker-command.c:514
 #, c-format
 msgid "Send uninhibit to the screensaver with cookie %d\n"
-msgstr ""
+msgstr "Siųsti ekrano užsklandos draudimo sustabdymą %d slapuko pagalba\n"
 
 #: ../src/light-locker.c:63 ../src/preview.c:83
 msgid "Enable debugging code"
@@ -110,61 +111,61 @@ msgstr "Įjungti derinimo kodą"
 
 #: ../src/light-locker.c:65
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr ""
+msgstr "Užrakinti ekraną po S sekundžių nuo ekrano užsklandos paleidimo"
 
 #: ../src/light-locker.c:67
 msgid "Lock the screen on screensaver deactivation"
-msgstr ""
+msgstr "Užrakinti ekraną, pasyvinus ekrano užsklandą"
 
 #: ../src/light-locker.c:68
 msgid "Lock the screen on screensaver activation"
-msgstr ""
+msgstr "Užrakinti ekraną, aktyvavus ekrano užsklandą"
 
 #: ../src/light-locker.c:72
 msgid "Lock the screen on suspend/resume"
-msgstr ""
+msgstr "Užrakinti ekraną sustabdant/tęsiant sistemą"
 
 #: ../src/light-locker.c:73
 msgid "Do not lock the screen on suspend/resume"
-msgstr ""
+msgstr "Neužrakinti ekrano, sustabdant/tęsiant sistemą"
 
 #: ../src/light-locker.desktop.in.in.h:1
 msgid "Screen Locker"
-msgstr ""
+msgstr "Ekrano Užrakinimas"
 
 #: ../src/light-locker.desktop.in.in.h:2
 msgid "Launch screen locker program"
-msgstr ""
+msgstr "Paleisti ekrano užrakinimo programą"
 
 #: ../src/gs-listener-dbus.c:1565
 msgid "failed to register with the message bus"
-msgstr ""
+msgstr "nepavyko prisiregistruoti prie pranešimų magistralės"
 
 #: ../src/gs-listener-dbus.c:1575
 msgid "not connected to the message bus"
-msgstr ""
+msgstr "neprisijungta prie pranešimų magistralės"
 
 #: ../src/gs-listener-dbus.c:1584 ../src/gs-listener-dbus.c:1632
 msgid "screensaver already running in this session"
-msgstr ""
+msgstr "Šiame seanse ekrano užsklanda jau yra vykdoma"
 
 #: ../src/gs-listener-dbus.c:1654
 msgid "GNOME screensaver already running in this session"
-msgstr ""
+msgstr "Šiame seanse jau yra vykdoma GNOME ekrano užsklanda"
 
 #: ../src/gs-content.c:92
 msgid "This session is locked"
-msgstr ""
+msgstr "Šis seansas yra užrakintas"
 
 #: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr ""
+msgstr "Po kelių sekundžių, jūs būsite automatiškai nukreipti į atrakinimo dialogo langelį"
 
 #: ../src/preview.c:84
 msgid "Preview screen width"
-msgstr ""
+msgstr "Peržiūros ekrano plotis"
 
 #: ../src/preview.c:85
 msgid "Preview screen height"
-msgstr ""
+msgstr "Peržiūros ekrano aukštis"

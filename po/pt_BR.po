@@ -6,6 +6,7 @@
 # André Gondim <andregondim@ubuntu.com>, 2009
 # Antonio Fernandes C. Neto <fernandes@pelivre.org>, 2010
 # Henrique Grolli Bassotto <henrique.grolli@gmail.com>, 2006
+# João Henrique de Andrade Bruni <joaohbruni@yahoo.com.br>, 2015
 # Krix Apolinário <krixapolinario@gmail.com>, 2009
 # Leonardo Ferreira Fontenelle <leo.fontenelle@gmail.com>, 2006
 # Og Maciel <ogmaciel@ubuntu.com>, 2007
@@ -15,9 +16,9 @@ msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-22 17:53+0100\n"
-"PO-Revision-Date: 2015-01-22 16:52+0000\n"
-"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/light-locker/language/pt_BR/)\n"
+"PO-Revision-Date: 2015-06-03 00:10+0000\n"
+"Last-Translator: João Henrique de Andrade Bruni <joaohbruni@yahoo.com.br>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/the_cavalry/light-locker/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -116,11 +117,11 @@ msgstr "Bloqueia a tela S segundos depois que o protetor de tela iniciar"
 
 #: ../src/light-locker.c:67
 msgid "Lock the screen on screensaver deactivation"
-msgstr ""
+msgstr "Bloquear a tela ao desativar a proteção de tela"
 
 #: ../src/light-locker.c:68
 msgid "Lock the screen on screensaver activation"
-msgstr ""
+msgstr "Bloquear a tela ao ativar a proteção de tela"
 
 #: ../src/light-locker.c:72
 msgid "Lock the screen on suspend/resume"
@@ -161,7 +162,7 @@ msgstr "Esta sessão está bloqueada"
 #: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr "Você será redirecionado ao diálogto de desbloqueio automaticamente em poucos segundos"
+msgstr "Você será redirecionado ao diálogo de desbloqueio automaticamente em poucos segundos"
 
 #: ../src/preview.c:84
 msgid "Preview screen width"
