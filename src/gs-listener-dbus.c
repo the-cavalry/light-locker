@@ -76,6 +76,7 @@ struct GSListenerPrivate
         DBusConnection *system_connection;
 
         guint           active : 1;
+        guint           lid_closed : 1;
         guint           blanked : 1;
         time_t          blanked_start;
         char           *session_id;
@@ -108,6 +109,7 @@ enum {
 enum {
         PROP_0,
         PROP_ACTIVE,
+        PROP_LID_CLOSED,
 };
 
 static DBusObjectPathVTable
@@ -121,6 +123,12 @@ gs_listener_vtable = { NULL,
 static guint         signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSListener, gs_listener, G_TYPE_OBJECT)
+
+gboolean
+gs_listener_is_lid_closed (GSListener *listener)
+{
+        return listener->priv->lid_closed;
+}
 
 void
 gs_listener_send_switch_greeter (GSListener *listener)
@@ -1072,7 +1080,76 @@ query_session_active (GSListener *listener)
 }
 #endif
 
-#ifdef WITH_SYSTEMD
+#ifdef WITH_UPOWER
+#ifdef WITH_LOCK_ON_LID
+static gboolean
+query_lid_closed (GSListener *listener)
+{
+        DBusMessage    *message;
+        DBusMessage    *reply;
+        DBusError       error;
+        DBusMessageIter reply_iter;
+        DBusMessageIter sub_iter;
+        dbus_bool_t     active = FALSE;
+        const char     *interface;
+        const char     *property;
+
+        if (listener->priv->system_connection == NULL) {
+                gs_debug ("No connection to the system bus");
+                return FALSE;
+        }
+
+        dbus_error_init (&error);
+
+        message = dbus_message_new_method_call (UP_SERVICE, UP_PATH, DBUS_PROPERTIES_INTERFACE, "Get");
+        if (message == NULL) {
+                gs_debug ("Couldn't allocate the dbus message");
+                return FALSE;
+        }
+
+        interface = UP_INTERFACE;
+        property = "LidIsClosed";
+
+        if (dbus_message_append_args (message, DBUS_TYPE_STRING, &interface, DBUS_TYPE_STRING, &property, DBUS_TYPE_INVALID) == FALSE) {
+                gs_debug ("Couldn't add args to the dbus message");
+                dbus_message_unref (message);
+                return FALSE;
+        }
+
+        /* FIXME: use async? */
+        reply = dbus_connection_send_with_reply_and_block (listener->priv->system_connection,
+                                                           message,
+                                                           -1, &error);
+        dbus_message_unref (message);
+
+        if (dbus_error_is_set (&error)) {
+                gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
+                dbus_error_free (&error);
+                return FALSE;
+        }
+
+        if (dbus_message_iter_init (reply, &reply_iter) == TRUE
+            && dbus_message_iter_get_arg_type (&reply_iter) == DBUS_TYPE_VARIANT) {
+
+                dbus_message_iter_recurse (&reply_iter, &sub_iter);
+
+                if (dbus_message_iter_get_arg_type (&sub_iter) == DBUS_TYPE_BOOLEAN) {
+                        dbus_message_iter_get_basic (&sub_iter, &active);
+                } else {
+                        gs_debug ("Unexpected return type");
+                }
+        } else {
+                gs_debug ("Unexpected return type");
+        }
+
+        dbus_message_unref (reply);
+
+        return active;
+}
+#endif
+#endif
+
+#if defined(WITH_SYSTEMD) || (defined(WITH_UPOWER) && defined(WITH_LOCK_ON_LID))
 static gboolean
 properties_changed_match (DBusMessage *message,
                           const char  *property)
@@ -1195,8 +1272,19 @@ listener_dbus_handle_system_message (DBusConnection *connection,
 
                                 /* Do a DBus query, since the sd_session_is_active isn't up to date. */
                                 new_active = query_session_active (listener);
+                                gs_debug ("systemd notified ActiveSession %d", new_active);
                                 g_signal_emit (listener, signals [SESSION_SWITCHED], 0, new_active);
                         }
+
+#ifdef WITH_UPOWER
+#ifdef WITH_LOCK_ON_LID
+                        if (properties_changed_match (message, "LidIsClosed")) {
+                                listener->priv->lid_closed = query_lid_closed (listener);
+                                gs_debug ("UPower notified LidIsClosed %d", (int)listener->priv->lid_closed);
+                                g_object_notify (G_OBJECT (listener), "lid-closed");
+                        }
+#endif
+#endif
 
                         return DBUS_HANDLER_RESULT_HANDLED;
                 }
@@ -1285,6 +1373,18 @@ listener_dbus_handle_system_message (DBusConnection *connection,
         } else if (dbus_message_is_signal (message, UP_INTERFACE, "Resuming")) {
                 gs_debug ("UPower initiating resume");
                 g_signal_emit (listener, signals [RESUME], 0);
+
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+#endif
+#ifdef WITH_LOCK_ON_LID
+        if (dbus_message_is_signal (message, DBUS_INTERFACE_PROPERTIES, "PropertiesChanged")) {
+
+                if (properties_changed_match (message, "LidIsClosed")) {
+                        listener->priv->lid_closed = query_lid_closed (listener);
+                        gs_debug ("UPower notified LidIsClosed %d", (int)listener->priv->lid_closed);
+                        g_object_notify (G_OBJECT (listener), "lid-closed");
+                }
 
                 return DBUS_HANDLER_RESULT_HANDLED;
         }
@@ -1472,6 +1572,9 @@ gs_listener_get_property (GObject            *object,
         case PROP_ACTIVE:
                 g_value_set_boolean (value, self->priv->active);
                 break;
+        case PROP_LID_CLOSED:
+                g_value_set_boolean (value, self->priv->lid_closed);
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -1599,6 +1702,13 @@ gs_listener_class_init (GSListenerClass *klass)
                                                                NULL,
                                                                FALSE,
                                                                G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_LID_CLOSED,
+                                         g_param_spec_boolean ("lid-closed",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READABLE));
 
         g_type_class_add_private (klass, sizeof (GSListenerPrivate));
 }
@@ -1784,6 +1894,17 @@ gs_listener_acquire (GSListener *listener,
                                             NULL);
 #endif
 
+#ifdef WITH_UPOWER
+#ifdef WITH_LOCK_ON_LID
+                        dbus_bus_add_match (listener->priv->system_connection,
+                                            "type='signal'"
+                                            ",sender='"UP_SERVICE"'"
+                                            ",interface='"DBUS_INTERFACE_PROPERTIES"'"
+                                            ",member='PropertiesChanged'",
+                                            NULL);
+#endif
+#endif
+
                         return (res != -1);
                 }
 #endif
@@ -1822,6 +1943,14 @@ gs_listener_acquire (GSListener *listener,
                                     ",sender='"UP_SERVICE"'"
                                     ",interface='"UP_INTERFACE"'"
                                     ",member='Resuming'",
+                                    NULL);
+#endif
+#ifdef WITH_LOCK_ON_LID
+                dbus_bus_add_match (listener->priv->system_connection,
+                                    "type='signal'"
+                                    ",sender='"UP_SERVICE"'"
+                                    ",interface='"DBUS_INTERFACE_PROPERTIES"'"
+                                    ",member='PropertiesChanged'",
                                     NULL);
 #endif
 #endif

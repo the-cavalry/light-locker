@@ -43,6 +43,7 @@
 
 /* UPower */
 #define UP_SERVICE                      "org.freedesktop.UPower"
+#define UP_PATH                         "/org/freedesktop/UPower"
 #define UP_INTERFACE                    "org.freedesktop.UPower"
 
 /* lightDM */

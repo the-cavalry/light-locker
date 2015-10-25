@@ -55,6 +55,7 @@ struct GSMonitorPrivate
         guint            late_locking : 1;
         guint            lock_on_suspend : 1;
         guint            perform_lock : 1;
+        guint            lock_on_lid : 1;
 };
 
 G_DEFINE_TYPE (GSMonitor, gs_monitor, G_TYPE_OBJECT)
@@ -96,6 +97,9 @@ gs_monitor_lock_session (GSMonitor *monitor)
         /* Only switch to greeter if we are the visible session */
         if (visible) {
                 gs_listener_send_lock_session (monitor->priv->listener);
+        } else {
+                /* Show the content in case the session gets visible again. */
+                gs_manager_show_content (monitor->priv->manager);
         }
 
         return FALSE;
@@ -111,6 +115,9 @@ gs_monitor_switch_greeter (GSMonitor *monitor)
         /* Only switch to greeter if we are the visible session */
         if (visible) {
                 gs_listener_send_switch_greeter (monitor->priv->listener);
+        } else {
+                /* Show the content in case the session gets visible again. */
+                gs_manager_show_content (monitor->priv->manager);
         }
 
         return FALSE;
@@ -198,11 +205,26 @@ conf_lock_after_screensaver_cb (LLConfig    *conf,
 }
 
 static void
+conf_lock_on_lid_cb (LLConfig    *conf,
+                     GParamSpec  *pspec,
+                     GSMonitor   *monitor)
+{
+        gboolean lock_on_lid = FALSE;
+
+        g_object_get (G_OBJECT(conf),
+                      "lock-on-lid", &lock_on_lid,
+                      NULL);
+
+        monitor->priv->lock_on_lid = lock_on_lid;
+}
+
+static void
 disconnect_conf_signals (GSMonitor *monitor)
 {
         g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_lock_on_suspend_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_late_locking_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_lock_after_screensaver_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_lock_on_lid_cb, monitor);
 }
 
 static void
@@ -214,6 +236,8 @@ connect_conf_signals (GSMonitor *monitor)
                           G_CALLBACK (conf_late_locking_cb), monitor);
         g_signal_connect (monitor->priv->conf, "notify::lock-after-screensaver",
                           G_CALLBACK (conf_lock_after_screensaver_cb), monitor);
+        g_signal_connect (monitor->priv->conf, "notify::lock-on-lid",
+                          G_CALLBACK (conf_lock_on_lid_cb), monitor);
 }
 
 static void
@@ -230,7 +254,10 @@ listener_lock_cb (GSListener *listener,
                   GSMonitor  *monitor)
 {
         gs_monitor_lock_screen (monitor);
-        if (gs_manager_get_session_visible (monitor->priv->manager)) {
+        if (gs_listener_is_lid_closed (listener)) {
+                /* Don't switch VT while the lid is closed. */
+                monitor->priv->perform_lock = TRUE;
+        } else if (gs_manager_get_session_visible (monitor->priv->manager)) {
                 /* Add a 1s delay for VT switching.
                  * This seems to preserved content exposure.
                  */
@@ -296,12 +323,20 @@ listener_resume_cb (GSListener *listener,
 {
         if (! monitor->priv->lock_on_suspend)
                 return;
-        /* Add a 1s delay for resume to complete.
-         * This seems to fix backlight issues.
-         */
-        g_timeout_add_seconds (1,
-                               (GSourceFunc)gs_monitor_switch_greeter,
-                               monitor);
+        if (gs_listener_is_lid_closed (monitor->priv->listener)) {
+                /* This will become a lock instead of a switch.
+                 * As a corner case this is ok.
+                 */
+                /* Don't switch VT while the lid is closed. */
+                monitor->piv->perform_lock = TRUE;
+        } else {
+                /* Add a 1s delay for resume to complete.
+                 * This seems to fix backlight issues.
+                 */
+                g_timeout_add_seconds (1,
+                                       (GSourceFunc)gs_monitor_switch_greeter,
+                                       monitor);
+        }
 }
 
 static void
@@ -342,6 +377,55 @@ listener_idle_time_cb (GSListener *listener,
 }
 
 static void
+listener_lid_closed_cb (GSListener *listener,
+                        GParamSpec  *pspec,
+                        GSMonitor   *monitor)
+{
+        gboolean closed = gs_listener_is_lid_closed (listener);
+
+        /* If the manager requested a lock when the lid was closed.
+         * We don't take the reason of the lock into account.
+         * That would only complicate it.
+         * In case of resume the switch would become a lock.
+         * And in case of late locking, the screen saver state isn't taken into account.
+         */
+        if (monitor->priv->perform_lock && !closed)
+        {
+                /* Add a 1s delay for resume to complete.
+                 * This seems to fix backlight issues.
+                 */
+                g_timeout_add_seconds (1,
+                                       (GSourceFunc)gs_monitor_lock_session,
+                                       monitor);
+                monitor->priv->perform_lock = FALSE;
+                return;
+        }
+
+        gs_manager_set_lid_closed (monitor->priv->manager, closed);
+
+        if (! monitor->priv->lock_on_lid)
+                return;
+
+        if (closed)
+        {
+                /* Show the lock screen until lid open.
+                 * We lock the screen here even when the displaymanager didn't send the signal.
+                 * This means that need tell the displaymanager to lock the session before it can unlock.
+                 */
+                gs_monitor_lock_screen (monitor);
+        }
+        else
+        {
+                /* Add a 1s delay for resume to complete.
+                 * This seems to fix backlight issues.
+                 */
+                g_timeout_add_seconds (1,
+                                       (GSourceFunc)gs_monitor_switch_greeter,
+                                       monitor);
+        }
+}
+
+static void
 listener_x11_blanking_changed_cb (GSListenerX11 *listener,
                                   gboolean    active,
                                   GSMonitor  *monitor)
@@ -350,10 +434,11 @@ listener_x11_blanking_changed_cb (GSListenerX11 *listener,
         gs_manager_set_blank_screen (monitor->priv->manager, active);
         gs_listener_set_blanked (monitor->priv->listener, active);
 
-        if (!active && monitor->priv->perform_lock && gs_manager_get_session_visible (monitor->priv->manager)) {
-                gs_listener_send_lock_session (monitor->priv->listener);
+        /* If late locking is enabled only lock the session if the lid isn't closed. */
+        if (!active && !gs_listener_is_lid_closed (monitor->priv->listener) && monitor->priv->perform_lock) {
+                gs_monitor_lock_session (monitor);
+                monitor->priv->perform_lock = FALSE;
         }
-        monitor->priv->perform_lock = FALSE;
 }
 
 static void
@@ -369,6 +454,7 @@ disconnect_listener_signals (GSMonitor *monitor)
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_blanking_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_inhibit_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_idle_time_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->listener, listener_lid_closed_cb, monitor);
 
         g_signal_handlers_disconnect_by_func (monitor->priv->listener_x11, listener_x11_blanking_changed_cb, monitor);
 }
@@ -396,6 +482,8 @@ connect_listener_signals (GSMonitor *monitor)
                           G_CALLBACK (listener_inhibit_cb), monitor);
         g_signal_connect (monitor->priv->listener, "idle-time",
                           G_CALLBACK (listener_idle_time_cb), monitor);
+        g_signal_connect (monitor->priv->listener, "notify::lid-closed",
+                          G_CALLBACK (listener_lid_closed_cb), monitor);
 
         g_signal_connect (monitor->priv->listener_x11, "blanking-changed",
                           G_CALLBACK (listener_x11_blanking_changed_cb), monitor);
@@ -431,6 +519,9 @@ gs_monitor_init (GSMonitor *monitor)
 #endif
 #ifdef WITH_LOCK_ON_SUSPEND
         monitor->priv->lock_on_suspend = WITH_LOCK_ON_SUSPEND;
+#endif
+#ifdef WITH_LOCK_ON_LID
+        monitor->priv->lock_on_lid = WITH_LOCK_ON_LID;
 #endif
 
         monitor->priv->listener = gs_listener_new ();
@@ -471,6 +562,7 @@ gs_monitor_new (LLConfig *config)
         GSMonitor *monitor;
         gboolean late_locking = FALSE;
         gboolean lock_on_suspend = FALSE;
+        gboolean lock_on_lid = FALSE;
         guint lock_after_screensaver = 5;
 
         monitor = g_object_new (GS_TYPE_MONITOR, NULL);
@@ -482,11 +574,13 @@ gs_monitor_new (LLConfig *config)
         g_object_get (G_OBJECT (config),
                       "late-locking", &late_locking,
                       "lock-on-suspend", &lock_on_suspend,
+                      "lock-on-lid", &lock_on_lid,
                       "lock-after-screensaver", &lock_after_screensaver,
                       NULL);
 
         monitor->priv->late_locking = late_locking;
         monitor->priv->lock_on_suspend = lock_on_suspend;
+        monitor->priv->lock_on_lid = lock_on_lid;
 
         gs_manager_set_lock_after (monitor->priv->manager, lock_after_screensaver);
 

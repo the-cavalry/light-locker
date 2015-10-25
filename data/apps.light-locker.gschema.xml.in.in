@@ -5,7 +5,7 @@
 
     <key name="lock-on-suspend" type="b">
       <default>@LOCK_ON_SUSPEND_DEFAULT@</default>
-      <summary>Lock on Suspend</summary>
+      <summary>Lock on suspend</summary>
       <description>Lock the screen when the computer is suspended.</description>
     </key>
 
@@ -22,6 +22,12 @@
       <description>Lock the screen after the screensaver has been active for
       this number of seconds. If 0, locking after the screensaver is
       disabled.</description>
+    </key>
+
+    <key name="lock-on-lid" type="b">
+      <default>@LOCK_ON_LID_DEFAULT@</default>
+      <summary>Lock on lid close</summary>
+      <description>Lock the screen when lid of the computer is closed.</description>
     </key>
 
   </schema>

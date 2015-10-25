@@ -49,6 +49,7 @@ struct GSManagerPrivate
         guint        active : 1;
         guint        visible : 1;
         guint        blank : 1;
+        guint        closed : 1;
         guint        show_content : 1;
 
         guint        greeter_timeout_id;
@@ -625,7 +626,7 @@ gs_manager_activate (GSManager *manager)
 
         show_windows (manager->priv->windows);
 
-        if (manager->priv->visible && !manager->priv->blank) {
+        if (manager->priv->visible && !manager->priv->blank && !manager->priv->closed) {
                 gs_manager_timed_switch (manager);
         }
 
@@ -692,7 +693,7 @@ gs_manager_set_session_visible (GSManager *manager,
 {
         manager->priv->visible = visible;
 
-        if (manager->priv->active && visible && !manager->priv->blank) {
+        if (manager->priv->active && visible && !manager->priv->blank && !manager->priv->closed) {
                 gs_manager_timed_switch (manager);
         } else {
                 gs_manager_stop_switch (manager);
@@ -718,7 +719,7 @@ gs_manager_set_blank_screen (GSManager *manager,
                 gs_manager_timed_lock (manager);
         } else {
                 gs_manager_stop_lock (manager);
-                if (manager->priv->active && manager->priv->visible) {
+                if (manager->priv->active && manager->priv->visible && !manager->priv->closed) {
                         gs_manager_timed_switch (manager);
                 }
         }
@@ -731,6 +732,19 @@ gs_manager_get_blank_screen (GSManager *manager)
         g_return_val_if_fail (GS_IS_MANAGER (manager), FALSE);
 
         return manager->priv->blank;
+}
+
+void
+gs_manager_set_lid_closed (GSManager *manager,
+                           gboolean   closed)
+{
+        manager->priv->closed = closed;
+
+        if (manager->priv->active && manager->priv->visible && !manager->priv->blank && !closed) {
+                gs_manager_timed_switch (manager);
+        } else {
+                gs_manager_stop_switch (manager);
+        }
 }
 
 void
