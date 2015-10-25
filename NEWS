@@ -1,4 +1,16 @@
 ==============
+Version  1.7.0
+==============
+
+- Use lid status for locking and VT switching
+- Use systemd suspend delay to lock on suspend
+- Set systemd IdleHint
+- More small changes
+- Translations update
+- New translations
+
+
+==============
 Version  1.6.0
 ==============
 
