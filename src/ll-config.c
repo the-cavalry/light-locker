@@ -254,7 +254,7 @@ ll_config_init (LLConfig *conf)
 #define GSETTINGS 1
 #if WITH_SETTINGS_BACKEND == GSETTINGS
     schema_source = g_settings_schema_source_get_default();
-    schema = g_settings_schema_source_lookup (schema_source, LIGHT_LOCKER_SCHEMA, FALSE);
+    schema = g_settings_schema_source_lookup (schema_source, LIGHT_LOCKER_SCHEMA, TRUE);
     if (schema != NULL)
     {
         conf->settings = g_settings_new(LIGHT_LOCKER_SCHEMA);
