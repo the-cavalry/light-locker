@@ -74,6 +74,9 @@ void        gs_manager_set_lid_closed       (GSManager *manager,
 void        gs_manager_set_lock_after       (GSManager  *manager,
                                              guint       lock_after);
 
+void        gs_manager_set_lock_wait        (GSManager  *manager,
+                                             guint       lock_wait);
+
 void        gs_manager_show_content         (GSManager  *manager);
 
 G_END_DECLS

@@ -44,6 +44,7 @@ struct GSManagerPrivate
 
         /* Configuration */
         guint        lock_after;
+        guint        lock_wait;
 
         /* State */
         guint        active : 1;
@@ -174,6 +175,7 @@ gs_manager_init (GSManager *manager)
         manager->priv->visible = TRUE;
 
         manager->priv->lock_after = 5;
+        manager->priv->lock_wait = 10;
 }
 
 
@@ -442,9 +444,9 @@ gs_manager_timed_switch (GSManager *manager)
                 return;
         }
 
-        gs_debug ("Start switch to greeter timer");
+        gs_debug ("Switch to greeter in %u seconds", manager->priv->lock_wait);
 
-        manager->priv->greeter_timeout_id = g_timeout_add_seconds (10,
+        manager->priv->greeter_timeout_id = g_timeout_add_seconds (manager->priv->lock_wait,
                                                                    (GSourceFunc)switch_greeter_timeout,
                                                                    manager);
 }
@@ -753,6 +755,14 @@ gs_manager_set_lock_after (GSManager *manager,
 {
         manager->priv->lock_after = lock_after;
 }
+
+void
+gs_manager_set_lock_wait (GSManager *manager,
+                          guint      lock_wait)
+{
+        manager->priv->lock_wait = lock_wait;
+}
+
 
 void
 gs_manager_show_content (GSManager *manager)
