@@ -2203,6 +2203,10 @@ query_seat_path (GSListener *listener)
                 return NULL;
         }
 
+        if (DM_SESSION_PATH == NULL) {
+                g_error ("Environment variable XDG_SESSION_PATH not set. Is LightDM running?");
+        }
+
         seat = NULL;
 
         dbus_error_init (&error);

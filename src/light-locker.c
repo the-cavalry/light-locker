@@ -140,6 +140,60 @@ main (int    argc,
 
         gs_debug_init (debug, FALSE);
         gs_debug ("initializing light-locker %s", VERSION);
+        gs_debug ("Platform:\n"
+                  "gtk:        %d\n"
+                  "systemd:    %s\n"
+                  "ConsoleKit: %s\n"
+                  "UPower:     %s",
+                  GTK_MAJOR_VERSION,
+#ifdef WITH_SYSTEMD
+                  "yes",
+#else
+                  "no",
+#endif
+#ifdef WITH_CONSOLE_KIT
+                  "yes",
+#else
+                  "no",
+#endif
+#ifdef WITH_UPOWER
+                  "yes"
+#else
+                  "no"
+#endif
+                  );
+        gs_debug ("Features:\n"
+                  "lock-after-screensaver: %s\n"
+                  "late-locking:           %s\n"
+                  "lock-on-suspend:        %s\n"
+                  "lock-on-lid:            %s\n"
+                  "settings backend:       %s",
+#ifdef HAVE_MIT_SAVER_EXTENSION
+                  "yes",
+#else
+                  "no",
+#endif
+#ifdef WITH_LATE_LOCKING
+                  "yes",
+#else
+                  "no",
+#endif
+#ifdef WITH_LOCK_ON_SUSPEND
+                  "yes",
+#else
+                  "no",
+#endif
+#ifdef WITH_LOCK_ON_LID
+                  "yes",
+#else
+                  "no",
+#endif
+#ifdef WITH_SETTINGS_BACKEND
+                  G_STRINGIFY (WITH_SETTINGS_BACKEND)
+#else
+                  "no"
+#endif
+                  );
 
         gs_debug ("lock after screensaver %d", lock_after_screensaver);
         gs_debug ("late locking %d", late_locking);
