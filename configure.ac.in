@@ -1,6 +1,7 @@
 dnl -*- mode: m4 -*-
 
 AC_PREREQ(2.60)
+LT_PREREQ([2.4])
 AC_INIT([light-locker],
         [1.7.0])
 
@@ -18,7 +19,6 @@ AC_ISC_POSIX
 AC_PROG_CC
 AM_PROG_CC_C_O
 AC_STDC_HEADERS
-AC_PROG_LIBTOOL
 AC_CANONICAL_HOST
 
 AC_HEADER_STDC
@@ -424,7 +424,7 @@ AC_ARG_WITH(systemd,
             [with_systemd=$withval], [with_systemd=auto])
 
 PKG_CHECK_MODULES(SYSTEMD,
-                  [libsystemd-login],
+                  [libsystemd],
                   [have_systemd=yes], [have_systemd=no])
 
 if test "x$with_systemd" = "xauto" ; then
