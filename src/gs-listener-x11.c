@@ -227,7 +227,8 @@ gs_listener_x11_force_blanking (GSListenerX11 *listener,
 #else
         gdk_error_trap_pop ();
 #endif
-        return FALSE;
+        /* TODO: what should the return value be? */
+        return active;
 }
 
 void

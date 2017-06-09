@@ -1007,46 +1007,59 @@ listener_dbus_handle_session_message (GSListener     *listener,
         g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
 
         if (dbus_message_is_method_call (message, GS_INTERFACE, "Lock")) {
+                gs_debug ("Received Lock request");
                 g_signal_emit (listener, signals [LOCK], 0);
                 return send_success_reply (connection, message);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE, "SetActive")) {
+                gs_debug ("Received SetActive request");
                 return listener_set_active (listener, connection, message, TRUE);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE, "GetActive")) {
+                gs_debug ("Received GetActive request: %d", listener->priv->blanked);
                 return listener_get_bool (listener, connection, message, listener->priv->blanked);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE, "GetActiveTime")) {
+                gs_debug ("Received GetActiveTime request: %d", listener->priv->blanked_start);
                 return listener_get_time (listener, connection, message, listener->priv->blanked_start);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE, "GetSessionIdleTime")) {
+                gs_debug ("Received GetSessionIdleTime request");
                 return listener_get_info (listener, connection, message, IDLE_TIME);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE, "SimulateUserActivity")) {
+                gs_debug ("Received SimulateUserActivity request");
                 g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
                 return send_success_reply (connection, message);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE, "Inhibit")) {
+                gs_debug ("Received Inhibit request");
                 return listener_inhibit (listener, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE, "UnInhibit")) {
+                gs_debug ("Received UnInhibit request");
                 return listener_uninhibit (listener, connection, message);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE_GNOME, "Lock")) {
+                gs_debug ("Received Lock request");
                 g_signal_emit (listener, signals [LOCK], 0);
                 return send_success_reply (connection, message);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE_GNOME, "SetActive")) {
+                gs_debug ("Received SetActive request");
                 listener_set_active (listener, connection, message, FALSE);
                 return send_success_reply (connection, message);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE_GNOME, "GetActive")) {
+                gs_debug ("Received GetActive request: %d", listener->priv->blanked);
                 return listener_get_bool (listener, connection, message, listener->priv->blanked);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE_GNOME, "GetActiveTime")) {
+                gs_debug ("Received GetActiveTime request: %d", listener->priv->blanked_start);
                 return listener_get_time (listener, connection, message, listener->priv->blanked_start);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE_GNOME, "SimulateUserActivity")) {
+                gs_debug ("Received SimulateUserActivity request");
                 g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
                 return send_success_reply (connection, message);
         }

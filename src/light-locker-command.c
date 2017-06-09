@@ -212,8 +212,7 @@ screensaver_send_message_bool (GDBusConnection *connection,
 
 static GDBusMessage *
 screensaver_send_message_void (GDBusConnection *connection,
-                               const char      *name,
-                               gboolean         expect_reply)
+                               const char      *name)
 {
         GDBusMessage *message, *reply;
         GError       *error;
@@ -231,26 +230,13 @@ screensaver_send_message_void (GDBusConnection *connection,
         }
 
         error = NULL;
-
-        if (! expect_reply) {
-                reply = NULL;
-
-                g_dbus_connection_send_message (connection,
-                                                message,
-                                                G_DBUS_SEND_MESSAGE_FLAGS_NONE,
-                                                NULL,
-                                                &error);
-
-        } else {
-                reply = g_dbus_connection_send_message_with_reply_sync (connection,
-                                                                        message,
-                                                                        G_DBUS_SEND_MESSAGE_FLAGS_NONE,
-                                                                        -1,
-                                                                        NULL,
-                                                                        NULL,
-                                                                        &error);
-        }
-
+        reply = g_dbus_connection_send_message_with_reply_sync (connection,
+                                                                message,
+                                                                G_DBUS_SEND_MESSAGE_FLAGS_NONE,
+                                                                -1,
+                                                                NULL,
+                                                                NULL,
+                                                                &error);
         if (error != NULL) {
                 g_warning ("unable to send message: %s", error->message);
                 g_clear_error (&error);
@@ -297,9 +283,15 @@ screensaver_is_running (GDBusConnection *connection)
 static void
 child_term (GPid pid, gint status, gpointer user_data)
 {
+        GError *error = NULL;
+        if (!g_spawn_check_exit_status (status, &error)) {
+                exit_status = EXIT_FAILURE;
+                if (error->domain == G_SPAWN_EXIT_ERROR) {
+                        exit_status = error->code;
+                }
+        }
         g_spawn_close_pid (pid);
         g_main_loop_quit (loop);
-        exit_status = status;
 }
 
 static gboolean
@@ -310,28 +302,71 @@ handle_term (gpointer user_data)
 }
 
 static gboolean
+parse_reply (GDBusMessage *reply, const gchar *format_string, ...)
+{
+        va_list   ap;
+        GVariant *body;
+        GError   *error = NULL;
+
+	if (reply == NULL) {
+                g_message ("Did not receive a reply from the locker.");
+                return FALSE;
+	}
+
+        if (g_dbus_message_to_gerror (reply, &error)) {
+                g_message ("Received error message from the locker: %s", error->message);
+                g_error_free (error);
+                g_object_unref (reply);
+                return FALSE;
+        }
+
+        body = g_dbus_message_get_body (reply);
+        if (format_string == NULL) {
+                if (body != NULL) {
+                        g_warning ("Expected empty message");
+                }
+                g_object_unref (reply);
+                return TRUE;
+        }
+        else if (body == NULL) {
+                g_warning ("Received empty message");
+                g_object_unref (reply);
+                return FALSE;
+        }
+
+        if (!g_variant_check_format_string (body, format_string, TRUE)) {
+                g_warning ("Received incompatible reply");
+                g_object_unref (reply);
+                return FALSE;
+        }
+
+        va_start (ap, format_string);
+        g_variant_get_va (body, format_string, NULL, &ap);
+        va_end (ap);
+
+        g_object_unref (reply);
+
+        return TRUE;
+}
+
+static gboolean
 do_command (GDBusConnection *connection)
 {
         GDBusMessage *reply;
+        gint          status = EXIT_FAILURE;
 
         if (do_query) {
-                GVariant     *body;
-                gboolean      v;
+                gboolean v;
 
                 if (! screensaver_is_running (connection)) {
                         g_message ("Locker is not running!");
                         goto done;
                 }
 
-                reply = screensaver_send_message_void (connection, "GetActive", TRUE);
-                if (reply == NULL) {
-                        g_message ("Did not receive a reply from the locker.");
+                reply = screensaver_send_message_void (connection, "GetActive");
+                if (!parse_reply (reply, "(b)", &v)) {
                         goto done;
                 }
-
-                body = g_dbus_message_get_body (reply);
-                g_variant_get (body, "(b)", &v);
-                g_object_unref (reply);
 
                 if (v)  {
                         g_print (_("The screensaver is active\n"));
@@ -341,42 +376,26 @@ do_command (GDBusConnection *connection)
         }
 
         if (do_time) {
-                GVariant *body;
                 gboolean  v;
                 gint32    t;
 
-                reply = screensaver_send_message_void (connection, "GetActive", TRUE);
-                if (reply == NULL) {
-                        g_message ("Did not receive a reply from the locker.");
+                reply = screensaver_send_message_void (connection, "GetActive");
+                if (!parse_reply (reply, "(b)", &v)) {
                         goto done;
                 }
 
-                body = g_dbus_message_get_body (reply);
-                g_variant_get (body, "(b)", &v);
-                g_object_unref (reply);
-
                 if (v) {
-                        reply = screensaver_send_message_void (connection, "GetActiveTime", TRUE);
-                        if (reply == NULL) {
-                                g_message ("Did not receive a reply from the locker.");
+                        reply = screensaver_send_message_void (connection, "GetActiveTime");
+                        if (!parse_reply (reply, "(u)", &t)) {
                                 goto done;
                         }
-
-                        body = g_dbus_message_get_body (reply);
-                        g_variant_get (body, "(u)", &t);
-                        g_object_unref (reply);
 
                         g_print (ngettext ("The screensaver has been active for %d second.\n", "The screensaver has been active for %d seconds.\n", t), t);
                 } else {
-                        reply = screensaver_send_message_void (connection, "GetSessionIdleTime", TRUE);
-                        if (reply == NULL) {
-                                g_message ("Did not receive a reply from the locker.");
+                        reply = screensaver_send_message_void (connection, "GetSessionIdleTime");
+                        if (!parse_reply (reply, "(u)", &t)) {
                                 goto done;
                         }
-
-                        body = g_dbus_message_get_body (reply);
-                        g_variant_get (body, "(u)", &t);
-                        g_object_unref (reply);
 
                         g_print (_("The screensaver is not currently active.\n"));
                         g_print (ngettext ("The session has been idle for %d second.\n", "The session has been idle for %d seconds.\n", t), t);
@@ -384,23 +403,21 @@ do_command (GDBusConnection *connection)
         }
 
         if (do_lock) {
-                reply = screensaver_send_message_void (connection, "Lock", FALSE);
-                g_assert (reply == NULL);
+                reply = screensaver_send_message_void (connection, "Lock");
+                if (!parse_reply (reply, NULL)) {
+                        goto done;
+                }
         }
 
         if (do_activate) {
-                GVariant     *body;
                 gboolean      v;
 
                 reply = screensaver_send_message_bool (connection, "SetActive", TRUE);
-                if (reply == NULL) {
-                        g_message ("Did not receive a reply from the locker.");
+                if (!parse_reply (reply, "(b)", &v)) {
                         goto done;
                 }
-                body = g_dbus_message_get_body (reply);
-                g_variant_get (body, "(b)", &v);
-                g_object_unref (reply);
 
+                /* TODO: what should the return value be? */
                 if (!v)  {
                         g_message ("The screensaver failed to activate.");
                         goto done;
@@ -408,43 +425,34 @@ do_command (GDBusConnection *connection)
         }
 
         if (do_deactivate) {
-                GVariant     *body;
                 gboolean      v;
 
                 reply = screensaver_send_message_bool (connection, "SetActive", FALSE);
-                if (reply == NULL) {
-                        g_message ("Did not receive a reply from the locker.");
+                if (!parse_reply (reply, "(b)", &v)) {
                         goto done;
                 }
-                body = g_dbus_message_get_body (reply);
-                g_variant_get (body, "(b)", &v);
-                g_object_unref (reply);
 
-                if (!v)  {
+                /* TODO: what should the return value be? */
+                if (v)  {
                         g_message ("The screensaver failed to deactivate.");
                         goto done;
                 }
         }
 
         if (do_poke) {
-                reply = screensaver_send_message_void (connection, "SimulateUserActivity", FALSE);
-                g_assert (reply == NULL);
+                reply = screensaver_send_message_void (connection, "SimulateUserActivity");
+                if (!parse_reply (reply, NULL)) {
+                        goto done;
+                }
         }
 
         if (do_inhibit) {
-                GVariant *body;
-
                 reply = screensaver_send_message_inhibit (connection,
                                                           inhibit_application ? inhibit_application : "Unknown",
                                                           inhibit_reason ? inhibit_reason : "Unknown");
-                if (! reply) {
-                        g_message ("Did not receive a reply from the locker.");
+                if (!parse_reply (reply, "(u)", &uninhibit_cookie)) {
                         goto done;
                 }
-
-                body = g_dbus_message_get_body (reply);
-                g_variant_get (body, "(u)", &uninhibit_cookie);
-                g_object_unref (reply);
 
                 do_uninhibit = TRUE;
 
@@ -477,7 +485,9 @@ do_command (GDBusConnection *connection)
                 return FALSE;
         }
 
+        status = EXIT_SUCCESS;
  done:
+        exit_status = status;
         g_main_loop_quit (loop);
         return FALSE;
 }
@@ -535,8 +545,12 @@ main (int    argc,
         }
 
         if (do_inhibit && argc > 1) {
+                gint arg = 1;
                 argv[argc] = NULL;
-                command_argv = g_strdupv (argv + 1);
+                if (strcmp (argv[arg], "--") == 0) {
+                        arg += 1;
+                }
+                command_argv = g_strdupv (argv + arg);
                 if (inhibit_application == NULL) {
                         inhibit_application = g_strjoinv (" ", command_argv);
                 }
