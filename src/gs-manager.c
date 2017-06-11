@@ -44,7 +44,7 @@ struct GSManagerPrivate
 
         /* Configuration */
         guint        lock_after;
-        guint        lock_wait;
+        guint        switch_time;
 
         /* State */
         guint        active : 1;
@@ -175,7 +175,7 @@ gs_manager_init (GSManager *manager)
         manager->priv->visible = TRUE;
 
         manager->priv->lock_after = 5;
-        manager->priv->lock_wait = 10;
+        manager->priv->switch_time = 10;
 }
 
 
@@ -437,16 +437,21 @@ switch_greeter_timeout (GSManager *manager)
 }
 
 static void
-gs_manager_timed_switch (GSManager *manager)
+gs_manager_timed_switch (GSManager *manager, guint min_time)
 {
+        guint switch_time = manager->priv->switch_time;
+
         if (manager->priv->greeter_timeout_id != 0) {
                 gs_debug ("Trying to start an active switch to greeter timer");
                 return;
         }
 
-        gs_debug ("Switch to greeter in %u seconds", manager->priv->lock_wait);
+        if (switch_time < min_time)
+                switch_time = min_time;
 
-        manager->priv->greeter_timeout_id = g_timeout_add_seconds (manager->priv->lock_wait,
+        gs_debug ("Switch to greeter in %u seconds", switch_time);
+
+        manager->priv->greeter_timeout_id = g_timeout_add_seconds (switch_time,
                                                                    (GSourceFunc)switch_greeter_timeout,
                                                                    manager);
 }
@@ -629,7 +634,7 @@ gs_manager_activate (GSManager *manager)
         show_windows (manager->priv->windows);
 
         if (manager->priv->visible && !manager->priv->blank && !manager->priv->closed) {
-                gs_manager_timed_switch (manager);
+                gs_manager_timed_switch (manager, 2);
         }
 
         gs_manager_stop_lock (manager);
@@ -696,7 +701,7 @@ gs_manager_set_session_visible (GSManager *manager,
         manager->priv->visible = visible;
 
         if (manager->priv->active && visible && !manager->priv->blank && !manager->priv->closed) {
-                gs_manager_timed_switch (manager);
+                gs_manager_timed_switch (manager, 0);
         } else {
                 gs_manager_stop_switch (manager);
         }
@@ -722,7 +727,7 @@ gs_manager_set_blank_screen (GSManager *manager,
         } else {
                 gs_manager_stop_lock (manager);
                 if (manager->priv->active && manager->priv->visible && !manager->priv->closed) {
-                        gs_manager_timed_switch (manager);
+                        gs_manager_timed_switch (manager, manager->priv->show_content ? 0 : 2);
                 }
         }
 }
@@ -743,7 +748,7 @@ gs_manager_set_lid_closed (GSManager *manager,
         manager->priv->closed = closed;
 
         if (manager->priv->active && manager->priv->visible && !manager->priv->blank && !closed) {
-                gs_manager_timed_switch (manager);
+                gs_manager_timed_switch (manager, 2);
         } else {
                 gs_manager_stop_switch (manager);
         }
@@ -757,10 +762,10 @@ gs_manager_set_lock_after (GSManager *manager,
 }
 
 void
-gs_manager_set_lock_wait (GSManager *manager,
-                          guint      lock_wait)
+gs_manager_set_switch_time (GSManager *manager,
+                            guint      switch_time)
 {
-        manager->priv->lock_wait = lock_wait;
+        manager->priv->switch_time = switch_time;
 }
 
 

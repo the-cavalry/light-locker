@@ -216,7 +216,7 @@ conf_locked_message_cb (LLConfig    *conf,
                       "locked-message", &locked_message,
                       NULL);
 
-        gs_manager_set_lock_wait (monitor->priv->manager, locked_message);
+        gs_manager_set_switch_time (monitor->priv->manager, locked_message);
 }
 
 static void
@@ -421,6 +421,8 @@ listener_lid_closed_cb (GSListener *listener,
 {
         gboolean closed = gs_listener_is_lid_closed (listener);
 
+        gs_manager_set_lid_closed (monitor->priv->manager, closed);
+
         /* If the manager requested a lock when the lid was closed.
          * We don't take the reason of the lock into account.
          * That would only complicate it.
@@ -438,8 +440,6 @@ listener_lid_closed_cb (GSListener *listener,
                 monitor->priv->perform_lock = FALSE;
                 return;
         }
-
-        gs_manager_set_lid_closed (monitor->priv->manager, closed);
 
         if (! monitor->priv->lock_on_lid)
                 return;
@@ -630,7 +630,7 @@ gs_monitor_new (LLConfig *config)
         monitor->priv->idle_hint = idle_hint;
 
         gs_manager_set_lock_after (monitor->priv->manager, lock_after_screensaver);
-        gs_manager_set_lock_wait (monitor->priv->manager, locked_message);
+        gs_manager_set_switch_time (monitor->priv->manager, locked_message);
 
         if (lock_on_suspend) {
               gs_listener_delay_suspend (monitor->priv->listener);
