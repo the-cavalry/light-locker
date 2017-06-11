@@ -57,7 +57,6 @@ struct GSMonitorPrivate
         guint            idle_hint : 1;
         guint            perform_lock : 1;
         guint            lock_on_lid : 1;
-        guint            lock_wait;
 };
 
 G_DEFINE_TYPE (GSMonitor, gs_monitor, G_TYPE_OBJECT)
@@ -207,17 +206,17 @@ conf_lock_after_screensaver_cb (LLConfig    *conf,
 }
 
 static void
-conf_lock_wait_cb (LLConfig    *conf,
+conf_locked_message_cb (LLConfig    *conf,
                                 GParamSpec  *pspec,
                                 GSMonitor   *monitor)
 {
-        guint lock_wait = 10;
+        guint locked_message = 10;
 
         g_object_get (G_OBJECT(conf),
-                      "lock-wait", &lock_wait,
+                      "locked-message", &locked_message,
                       NULL);
 
-        gs_manager_set_lock_wait (monitor->priv->manager, lock_wait);
+        gs_manager_set_lock_wait (monitor->priv->manager, locked_message);
 }
 
 static void
@@ -259,7 +258,7 @@ disconnect_conf_signals (GSMonitor *monitor)
         g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_lock_after_screensaver_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_lock_on_lid_cb, monitor);
         g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_idle_hint_cb, monitor);
-        g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_lock_wait_cb, monitor);
+        g_signal_handlers_disconnect_by_func (monitor->priv->conf, conf_locked_message_cb, monitor);
 }
 
 static void
@@ -276,7 +275,7 @@ connect_conf_signals (GSMonitor *monitor)
         g_signal_connect (monitor->priv->conf, "notify::idle-hint",
                           G_CALLBACK (conf_idle_hint_cb), monitor);
         g_signal_connect (monitor->priv->conf, "notify::lock-wait",
-                          G_CALLBACK (conf_lock_wait_cb), monitor);
+                          G_CALLBACK (conf_locked_message_cb), monitor);
 }
 
 static void
@@ -607,7 +606,7 @@ gs_monitor_new (LLConfig *config)
         gboolean lock_on_suspend = FALSE;
         gboolean lock_on_lid = FALSE;
         guint lock_after_screensaver = 5;
-        guint lock_wait = 10;
+        guint locked_message = 10;
         gboolean idle_hint = FALSE;
 
         monitor = g_object_new (GS_TYPE_MONITOR, NULL);
@@ -622,17 +621,16 @@ gs_monitor_new (LLConfig *config)
                       "lock-on-lid", &lock_on_lid,
                       "lock-after-screensaver", &lock_after_screensaver,
                       "idle-hint", &idle_hint,
-                      "lock-wait", &lock_wait,
+                      "locked-message", &locked_message,
                       NULL);
 
         monitor->priv->late_locking = late_locking;
         monitor->priv->lock_on_suspend = lock_on_suspend;
         monitor->priv->lock_on_lid = lock_on_lid;
         monitor->priv->idle_hint = idle_hint;
-        monitor->priv->lock_wait = lock_wait;
 
         gs_manager_set_lock_after (monitor->priv->manager, lock_after_screensaver);
-        gs_manager_set_lock_wait (monitor->priv->manager, lock_wait);
+        gs_manager_set_lock_wait (monitor->priv->manager, locked_message);
 
         if (lock_on_suspend) {
               gs_listener_delay_suspend (monitor->priv->listener);

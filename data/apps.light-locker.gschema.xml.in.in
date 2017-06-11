@@ -37,5 +37,14 @@
       </description>
     </key>
 
+    <key name="locked-message" type="u">
+      <range min="0" max="30" />
+      <default>10</default>
+      <summary>Seconds locked message is shown</summary>
+      <description>Switch to the greeter after this mumber of seconds. Durings
+      this time the session is locked message is shown. This time gives the
+      user time to read the message and understand what is going on.</description>
+    </key>
+
   </schema>
 </schemalist>

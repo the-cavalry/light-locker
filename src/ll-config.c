@@ -19,7 +19,7 @@ enum
     PROP_LOCK_AFTER_SCREENSAVER,
     PROP_LOCK_ON_LID,
     PROP_IDLE_HINT,
-    PROP_LOCK_WAIT,
+    PROP_LOCKED_MESSAGE,
     N_PROP
 };
 
@@ -48,7 +48,7 @@ struct _LLConfig
     gboolean   lock_on_suspend : 1;
     gboolean   lock_on_lid : 1;
     gboolean   idle_hint : 1;
-    guint      lock_wait;
+    guint      locked_message;
 };
 
 G_DEFINE_TYPE (LLConfig, ll_config, G_TYPE_OBJECT)
@@ -92,8 +92,8 @@ static void ll_config_set_property (GObject      *object,
             conf->idle_hint = g_value_get_boolean(value);
             break;
 
-        case PROP_LOCK_WAIT:
-            conf->lock_wait = g_value_get_uint(value);
+        case PROP_LOCKED_MESSAGE:
+            conf->locked_message = g_value_get_uint(value);
             break;
 
         default:
@@ -140,8 +140,8 @@ static void ll_config_get_property (GObject    *object,
             g_value_set_boolean(value, conf->idle_hint);
             break;
 
-        case PROP_LOCK_WAIT:
-            g_value_set_uint(value, conf->lock_wait);
+        case PROP_LOCKED_MESSAGE:
+            g_value_set_uint(value, conf->locked_message);
             break;
 
         default:
@@ -232,18 +232,18 @@ ll_config_class_init (LLConfigClass *klass)
                                                            G_PARAM_READWRITE));
 
     /**
-     * LLConfig:lock-wait:
+     * LLConfig:locked-message:
      *
-     * Seconds to force user to wait while displaying the "session locked" screen
+     * Seconds locked message is shown
      **/
     g_object_class_install_property (object_class,
-                                     PROP_LOCK_WAIT,
-                                     g_param_spec_uint ("lock-wait",
+                                     PROP_LOCKED_MESSAGE,
+                                     g_param_spec_uint ("locked-message",
                                                         NULL,
                                                         NULL,
                                                         0,
+                                                        30,
                                                         10,
-                                                        0,
                                                         G_PARAM_READWRITE));
 
 }
@@ -265,7 +265,7 @@ ll_config_init (LLConfig *conf)
 #endif
 
     conf->lock_after_screensaver = 5;
-    conf->lock_wait = 10;
+    conf->locked_message = 10;
 #ifdef WITH_LATE_LOCKING
     conf->late_locking = WITH_LATE_LOCKING;
 #endif

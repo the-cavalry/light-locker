@@ -55,7 +55,7 @@ main (int    argc,
 
         LLConfig           *conf;
         static gint         lock_after_screensaver;
-        static gint         lock_wait;
+        static gint         locked_message;
         static gboolean     late_locking;
         static gboolean     lock_on_suspend;
         static gboolean     lock_on_lid;
@@ -81,7 +81,7 @@ main (int    argc,
 #endif
                 { "idle-hint", 0, 0, G_OPTION_ARG_NONE, &idle_hint, N_("Set idle hint during screensaver"), NULL },
                 { "no-idle-hint", 0, G_OPTION_FLAG_REVERSE, G_OPTION_ARG_NONE, &idle_hint, N_("Let something else handle the idle hint"), NULL },
-                { "wait", 0, 0, G_OPTION_ARG_INT, &lock_wait, N_("Wait S seconds on session-locked screen"), "S" },
+                { "locked-message", 0, 0, G_OPTION_ARG_INT, &locked_message, N_("Wait S seconds on session-locked screen"), "S" },
                 { NULL }
         };
 
@@ -102,7 +102,7 @@ main (int    argc,
                       "lock-after-screensaver", &lock_after_screensaver,
                       "lock-on-lid", &lock_on_lid,
                       "idle-hint", &idle_hint,
-                      "lock-wait", &lock_wait,
+                      "locked-message", &locked_message,
                       NULL);
 
 #ifndef WITH_LATE_LOCKING
@@ -135,8 +135,8 @@ main (int    argc,
         /* Constrain durations */
         if (lock_after_screensaver < 0)
           lock_after_screensaver = 0;
-        if (lock_wait < 2)
-          lock_wait = 2;
+        if (locked_message < 0)
+          locked_message = 0;
 
         /* Update values in LightLockerConf. */
         g_object_set (G_OBJECT(conf),
@@ -145,7 +145,7 @@ main (int    argc,
                       "lock-after-screensaver", lock_after_screensaver,
                       "lock-on-lid", lock_on_lid,
                       "idle-hint", idle_hint,
-                      "lock-wait", lock_wait,
+                      "locked-message", locked_message,
                       NULL);
 
         gs_debug_init (debug, FALSE);
@@ -156,7 +156,7 @@ main (int    argc,
         gs_debug ("lock on suspend %d", lock_on_suspend);
         gs_debug ("lock on lid %d", lock_on_lid);
         gs_debug ("idle hint %d", idle_hint);
-        gs_debug ("lock wait %d", lock_wait);
+        gs_debug ("locked message %d", locked_message);
 
         monitor = gs_monitor_new (conf);
 
