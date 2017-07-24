@@ -9,14 +9,14 @@
 # Hendrik Brandt  <heb@gnome-de.org>, 2006
 # Hendrik Richter <hendrikr@gnome.org>, 2005-2008
 # Simon Steinbeiß <simon.steinbeiss@gmail.com>, 2013-2014
-# Tobias Bannert <tobannert@gmail.com>, 2014-2015
+# Tobias Bannert <tobannert@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-25 13:44+0100\n"
-"PO-Revision-Date: 2015-10-25 12:49+0000\n"
-"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
+"PO-Revision-Date: 2016-05-26 13:05+0000\n"
+"Last-Translator: Tobias Bannert <tobannert@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/the_cavalry/light-locker/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -132,19 +132,19 @@ msgstr "Bildschirm im/nach dem Bereitschaftsmodus nicht sperren"
 
 #: ../src/light-locker.c:78
 msgid "Lock the screen on lid close"
-msgstr ""
+msgstr "Bildschirm beim Schließen der Klappe sperren"
 
 #: ../src/light-locker.c:79
 msgid "Do not lock the screen on lid close"
-msgstr ""
+msgstr "Bildschirm nicht beim Schließen der Klappe sperren"
 
 #: ../src/light-locker.c:81
 msgid "Set idle hint during screensaver"
-msgstr ""
+msgstr "Leerlaufhinweis während des Bildschirmschoners festlegen"
 
 #: ../src/light-locker.c:82
 msgid "Let something else handle the idle hint"
-msgstr ""
+msgstr "Etwas anderes soll den Leerlaufhinweis handhaben"
 
 #: ../src/light-locker.desktop.in.h:1 ../src/gs-listener-dbus.c:465
 msgid "Screen Locker"

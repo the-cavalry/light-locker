@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Peter de Ridder <peter@xfce.org>, 2014
-# Pjotr <pjotrvertaalt@gmail.com>, 2014
+# Pjotr <pjotrvertaalt@gmail.com>, 2014,2017
+# Ronald Hoogenboom <ronald.hoogenboom30@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-25 13:44+0100\n"
-"PO-Revision-Date: 2015-10-25 12:49+0000\n"
-"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
+"PO-Revision-Date: 2017-07-02 20:25+0000\n"
+"Last-Translator: Pjotr <pjotrvertaalt@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/the_cavalry/light-locker/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,41 +22,41 @@ msgstr ""
 
 #: ../src/light-locker-command.c:56
 msgid "Query the state of the locker"
-msgstr ""
+msgstr "Vraag de status op van de vergrendeling"
 
 #: ../src/light-locker-command.c:58
 msgid "Query the length of time the locker has been active"
-msgstr ""
+msgstr "Vraag op hoe lang de vergrendeling actief is geweest"
 
 #: ../src/light-locker-command.c:60
 msgid "Tells the running locker process to lock the screen immediately"
-msgstr ""
+msgstr "Geeft het lopende vergrendelingsproces de opdracht om het scherm onmiddellijk te vergrendelen"
 
 #: ../src/light-locker-command.c:62
 msgid "Turn the screensaver on (blank the screen)"
-msgstr ""
+msgstr "Schakel de schermbeveiliging in (maak het scherm zwart)"
 
 #: ../src/light-locker-command.c:64
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
+msgstr "Als de schermbeveiliging actief is, schakel hem dan uit (activeer het scherm)"
 
 #: ../src/light-locker-command.c:66
 msgid "Poke the running locker to simulate user activity"
-msgstr ""
+msgstr "Por de lopende vergrendeling op om gebruikersactiviteit na te bootsen"
 
 #: ../src/light-locker-command.c:68
 msgid ""
 "Inhibit the screensaver from activating. Terminate the light-locker-command "
 "process to end inhibition."
-msgstr ""
+msgstr "Belemmer dat de schermbeveiliging actief wordt. Staak het light-locker-command-proces om de belemmering te beëindigen."
 
 #: ../src/light-locker-command.c:70
 msgid "The calling application that is inhibiting the screensaver"
-msgstr ""
+msgstr "De aanroepende toepassing die de schermbeveiliging belemmert"
 
 #: ../src/light-locker-command.c:72
 msgid "The reason for inhibiting the screensaver"
-msgstr ""
+msgstr "De reden voor het belemmeren van de schermbeveiliging"
 
 #: ../src/light-locker-command.c:74 ../src/light-locker.c:64
 #: ../src/preview.c:82
@@ -65,41 +66,41 @@ msgstr "Versie van deze toepassing"
 #: ../src/light-locker-command.c:337
 #, c-format
 msgid "The screensaver is active\n"
-msgstr ""
+msgstr "De schermbeveiliging is actief\n"
 
 #: ../src/light-locker-command.c:339
 #, c-format
 msgid "The screensaver is inactive\n"
-msgstr ""
+msgstr "De schermbeveiliging is niet actief\n"
 
 #: ../src/light-locker-command.c:369
 #, c-format
 msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "De screensaver is al %d seconde actief.\n"
+msgstr[1] "De schermbeveiliging is al %d seconden actief.\n"
 
 #: ../src/light-locker-command.c:381
 #, c-format
 msgid "The screensaver is not currently active.\n"
-msgstr ""
+msgstr "De schermbeveiliging is nu niet actief.\n"
 
 #: ../src/light-locker-command.c:382
 #, c-format
 msgid "The session has been idle for %d second.\n"
 msgid_plural "The session has been idle for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Er gebeurt al %d seconde niets in de sessie.\n"
+msgstr[1] "Er gebeurt al %d seconden niets in de sessie.\n"
 
 #: ../src/light-locker-command.c:451
 #, c-format
 msgid "The screensaver has been inhibited with cookie %d\n"
-msgstr ""
+msgstr "De schermbeveiliging is belemmerd met cookie %d\n"
 
 #: ../src/light-locker-command.c:555
 #, c-format
 msgid "Send uninhibit to the screensaver with cookie %d\n"
-msgstr ""
+msgstr "Zend einde-belemmering naar de schermbeveiliging met cookie %d\n"
 
 #: ../src/light-locker.c:65 ../src/preview.c:83
 msgid "Enable debugging code"
@@ -107,39 +108,39 @@ msgstr "Foutopsporingscode inschakelen"
 
 #: ../src/light-locker.c:67
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr "Vergrendel het scherm S seconden nadat de schermbeveiliging is geactiveerd"
+msgstr "Vergrendel het scherm S seconden nadat de schermbeveiliging is ingeschakeld"
 
 #: ../src/light-locker.c:69
 msgid "Lock the screen on screensaver deactivation"
-msgstr "Vergrendel het scherm bij schermbeveilging deactivatie"
+msgstr "Vergrendel het scherm bij uitschakeling van de schermbeveiliging"
 
 #: ../src/light-locker.c:70
 msgid "Lock the screen on screensaver activation"
-msgstr "Vergrendel het scherm bij schermbeveilging activatie"
+msgstr "Vergrendel het scherm bij activatie van de schermbeveiliging"
 
 #: ../src/light-locker.c:74 ../src/gs-listener-dbus.c:466
 msgid "Lock the screen on suspend/resume"
-msgstr "Vergrendel het scherm bij pauzeren/hervatten"
+msgstr "Vergrendel het scherm bij pauzestand/hervatten"
 
 #: ../src/light-locker.c:75
 msgid "Do not lock the screen on suspend/resume"
-msgstr "Vergrendel het scherm bij niet pauzeren/hervatten"
+msgstr "Vergrendel het scherm niet bij pauzestand/hervatten"
 
 #: ../src/light-locker.c:78
 msgid "Lock the screen on lid close"
-msgstr ""
+msgstr "Vergrendel het scherm bij het sluiten van het laptopdeksel"
 
 #: ../src/light-locker.c:79
 msgid "Do not lock the screen on lid close"
-msgstr ""
+msgstr "Vergrendel het scherm niet bij het sluiten van het laptopdeksel"
 
 #: ../src/light-locker.c:81
 msgid "Set idle hint during screensaver"
-msgstr ""
+msgstr "Plaats een 'geen activiteit'-toespeling als de schermbeveiliging actief is"
 
 #: ../src/light-locker.c:82
 msgid "Let something else handle the idle hint"
-msgstr ""
+msgstr "Laat iets anders de 'geen activiteit'-toespeling afhandelen"
 
 #: ../src/light-locker.desktop.in.h:1 ../src/gs-listener-dbus.c:465
 msgid "Screen Locker"
@@ -151,19 +152,19 @@ msgstr "Schermvergrendelingsprogramma starten"
 
 #: ../src/gs-listener-dbus.c:1844
 msgid "failed to register with the message bus"
-msgstr ""
+msgstr "kon niet registreren bij de message bus"
 
 #: ../src/gs-listener-dbus.c:1854
 msgid "not connected to the message bus"
-msgstr ""
+msgstr "niet verbonden met de message bus"
 
 #: ../src/gs-listener-dbus.c:1863 ../src/gs-listener-dbus.c:1911
 msgid "screensaver already running in this session"
-msgstr ""
+msgstr "schermbeveiliging is reeds actief in deze sessie"
 
 #: ../src/gs-listener-dbus.c:1933
 msgid "GNOME screensaver already running in this session"
-msgstr ""
+msgstr "GNOME-schermbeveiliging is reeds actief in deze sessie"
 
 #: ../src/gs-content.c:92
 msgid "This session is locked"
@@ -172,7 +173,7 @@ msgstr "Deze sessie is vergrendeld"
 #: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr "Over enkele seconden wordt u automatisch doorgestuurd naar het dialoogvenster voor ontgrendeling"
+msgstr "Over enkele seconden zal automatisch het dialoogvenster voor ontgrendeling verschijnen"
 
 #: ../src/preview.c:84
 msgid "Preview screen width"

@@ -3,16 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Adolfo Jayme Barrientos, 2013
-# Adolfo Jayme Barrientos, 2014
+# Adolfo Jayme-Barrientos, 2013
+# Adolfo Jayme-Barrientos, 2014
 # Copyright (C) 2013 The light-locker Authors, 2013
+# Davidmp <medipas@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-25 13:44+0100\n"
-"PO-Revision-Date: 2015-10-25 12:49+0000\n"
-"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
+"PO-Revision-Date: 2016-11-14 17:31+0000\n"
+"Last-Translator: Davidmp <medipas@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/the_cavalry/light-locker/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,85 +23,85 @@ msgstr ""
 
 #: ../src/light-locker-command.c:56
 msgid "Query the state of the locker"
-msgstr ""
+msgstr "Consulta l'estat del bloquejador"
 
 #: ../src/light-locker-command.c:58
 msgid "Query the length of time the locker has been active"
-msgstr ""
+msgstr "Consulta l'estona que el bloquejador ha estat actiu"
 
 #: ../src/light-locker-command.c:60
 msgid "Tells the running locker process to lock the screen immediately"
-msgstr ""
+msgstr "Indica al procés local del bloquejador que bloquegi la pantalla immediatament"
 
 #: ../src/light-locker-command.c:62
 msgid "Turn the screensaver on (blank the screen)"
-msgstr ""
+msgstr "Activa l'estalvi de pantalla (pantalla en negre)"
 
 #: ../src/light-locker-command.c:64
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
+msgstr "Si l'estalvi de pantalla està activat, es desactiva (pantalla no en negre)"
 
 #: ../src/light-locker-command.c:66
 msgid "Poke the running locker to simulate user activity"
-msgstr ""
+msgstr "Burxa el bloquejador en execució per simular l'activitat de l'usuari"
 
 #: ../src/light-locker-command.c:68
 msgid ""
 "Inhibit the screensaver from activating. Terminate the light-locker-command "
 "process to end inhibition."
-msgstr ""
+msgstr "Inhibeix l'activació de l'estalvi de pantalla. Mateu el procés light-locker-command per acabar la inhibició."
 
 #: ../src/light-locker-command.c:70
 msgid "The calling application that is inhibiting the screensaver"
-msgstr ""
+msgstr "L'aplicació que està inhibint l'estalvi de pantalla"
 
 #: ../src/light-locker-command.c:72
 msgid "The reason for inhibiting the screensaver"
-msgstr ""
+msgstr "La raó per inhibir l'estalvi de pantalla"
 
 #: ../src/light-locker-command.c:74 ../src/light-locker.c:64
 #: ../src/preview.c:82
 msgid "Version of this application"
-msgstr "Versió d'aquesta aplicació"
+msgstr "La versió d'aquesta aplicació"
 
 #: ../src/light-locker-command.c:337
 #, c-format
 msgid "The screensaver is active\n"
-msgstr ""
+msgstr "L'estalvi de pantalla està actiu.\n"
 
 #: ../src/light-locker-command.c:339
 #, c-format
 msgid "The screensaver is inactive\n"
-msgstr ""
+msgstr "L'estalvi de pantalla no està actiu.\n"
 
 #: ../src/light-locker-command.c:369
 #, c-format
 msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "L'estalvi de pantalla ha estat actiu durant %d segon.\n"
+msgstr[1] "L'estalvi de pantalla ha estat actiu durant %d segons.\n"
 
 #: ../src/light-locker-command.c:381
 #, c-format
 msgid "The screensaver is not currently active.\n"
-msgstr ""
+msgstr "L'estalvi de pantalla ara no està actiu.\n"
 
 #: ../src/light-locker-command.c:382
 #, c-format
 msgid "The session has been idle for %d second.\n"
 msgid_plural "The session has been idle for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "La sessió ha estat inactiva durant %d segon.\n"
+msgstr[1] "La sessió ha estat inactiva durant %d segons.\n\n"
 
 #: ../src/light-locker-command.c:451
 #, c-format
 msgid "The screensaver has been inhibited with cookie %d\n"
-msgstr ""
+msgstr "El protector de pantalla s'ha inhibit amb la galeta %d\n"
 
 #: ../src/light-locker-command.c:555
 #, c-format
 msgid "Send uninhibit to the screensaver with cookie %d\n"
-msgstr ""
+msgstr "Envia la desinhibició a l'estalvi de pantalla amb la galeta %d\n"
 
 #: ../src/light-locker.c:65 ../src/preview.c:83
 msgid "Enable debugging code"
@@ -112,35 +113,35 @@ msgstr "Bloca la pantalla S segons després de l’inici de l’estalvi de panta
 
 #: ../src/light-locker.c:69
 msgid "Lock the screen on screensaver deactivation"
-msgstr ""
+msgstr "Bloqueja la pantalla quan es desactivi l'estalvi"
 
 #: ../src/light-locker.c:70
 msgid "Lock the screen on screensaver activation"
-msgstr ""
+msgstr "Bloqueja la pantalla quan s'activi l'estalvi"
 
 #: ../src/light-locker.c:74 ../src/gs-listener-dbus.c:466
 msgid "Lock the screen on suspend/resume"
-msgstr ""
+msgstr "Bloqueja la pantalla en suspendre / continuar"
 
 #: ../src/light-locker.c:75
 msgid "Do not lock the screen on suspend/resume"
-msgstr ""
+msgstr "No bloquegis la pantalla en suspendre / continuar"
 
 #: ../src/light-locker.c:78
 msgid "Lock the screen on lid close"
-msgstr ""
+msgstr "Bloqueja la pantalla en tancar la tapa"
 
 #: ../src/light-locker.c:79
 msgid "Do not lock the screen on lid close"
-msgstr ""
+msgstr "No bloquegis la pantalla en tancar la tapa"
 
 #: ../src/light-locker.c:81
 msgid "Set idle hint during screensaver"
-msgstr ""
+msgstr "Estableix el suggeriment d'inactivitat durant l'estalvi de pantalla"
 
 #: ../src/light-locker.c:82
 msgid "Let something else handle the idle hint"
-msgstr ""
+msgstr "Permet que alguna altra cosa gestioni el suggeriment d'inactivitat"
 
 #: ../src/light-locker.desktop.in.h:1 ../src/gs-listener-dbus.c:465
 msgid "Screen Locker"
@@ -148,23 +149,23 @@ msgstr "Bloquejador de pantalla"
 
 #: ../src/light-locker.desktop.in.h:2
 msgid "Launch screen locker program"
-msgstr "Obre el programa de blocatge de la pantalla"
+msgstr "Obre el programa de bloqueig de la pantalla"
 
 #: ../src/gs-listener-dbus.c:1844
 msgid "failed to register with the message bus"
-msgstr ""
+msgstr "ha fallat el registre amb el bus de missatge"
 
 #: ../src/gs-listener-dbus.c:1854
 msgid "not connected to the message bus"
-msgstr ""
+msgstr "no connectat al bus de missatge"
 
 #: ../src/gs-listener-dbus.c:1863 ../src/gs-listener-dbus.c:1911
 msgid "screensaver already running in this session"
-msgstr ""
+msgstr "L'estalvi de pantalla ja s'executa en aquesta sessió."
 
 #: ../src/gs-listener-dbus.c:1933
 msgid "GNOME screensaver already running in this session"
-msgstr ""
+msgstr "L'estalvi de pantalla del GNOME ja s'executa en aquesta sessió"
 
 #: ../src/gs-content.c:92
 msgid "This session is locked"
@@ -173,12 +174,12 @@ msgstr "Aquesta sessió està bloquejada"
 #: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr "Se us redirigirà al diàleg de desblocatge automàticament en uns segons"
+msgstr "D'aquí uns segons se us redirigirà al diàleg de desbloqueig automàticament"
 
 #: ../src/preview.c:84
 msgid "Preview screen width"
-msgstr "Amplada de la previsualització de la pantalla"
+msgstr "Amplada de la pantalla de previsualització"
 
 #: ../src/preview.c:85
 msgid "Preview screen height"
-msgstr "Alçada de la previsualització de la pantalla"
+msgstr "Alçada de la pantalla de la previsualització"

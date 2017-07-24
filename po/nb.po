@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Allan Nordhøy <epost@anotheragency.no>, 2015
+# Allan Nordhøy <epost@anotheragency.no>, 2017
 # Torstein Adolf Winterseth <kvikende@fsfe.org>, 2010
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-25 13:44+0100\n"
-"PO-Revision-Date: 2015-10-25 12:49+0000\n"
-"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
+"PO-Revision-Date: 2017-02-26 20:59+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/the_cavalry/light-locker/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,19 +128,19 @@ msgstr "Ikke lås skjermen ved hvilemodus/igangsetting"
 
 #: ../src/light-locker.c:78
 msgid "Lock the screen on lid close"
-msgstr ""
+msgstr "Lås skjermen når skjermlokket lukkes"
 
 #: ../src/light-locker.c:79
 msgid "Do not lock the screen on lid close"
-msgstr ""
+msgstr "Ikke lås skjermen når skjermlokket lukkes"
 
 #: ../src/light-locker.c:81
 msgid "Set idle hint during screensaver"
-msgstr ""
+msgstr "Sett et lediggangshint i bruk av skjermsparer"
 
 #: ../src/light-locker.c:82
 msgid "Let something else handle the idle hint"
-msgstr ""
+msgstr "La noe annet handtere lediggangshintet"
 
 #: ../src/light-locker.desktop.in.h:1 ../src/gs-listener-dbus.c:465
 msgid "Screen Locker"

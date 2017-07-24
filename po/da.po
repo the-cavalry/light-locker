@@ -4,14 +4,14 @@
 # 
 # Translators:
 # David Nielsen <david@lovesunix.net>, 2006
-# Joe Hansen <joedalton2@yahoo.dk>, 2014
+# Joe Hansen <joedalton2@yahoo.dk>, 2014,2016
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-25 13:44+0100\n"
-"PO-Revision-Date: 2015-10-25 12:49+0000\n"
-"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
+"PO-Revision-Date: 2016-08-16 13:37+0000\n"
+"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
 "Language-Team: Danish (http://www.transifex.com/the_cavalry/light-locker/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,7 +47,7 @@ msgstr "Stik til det kørende låseprogram for at simulere brugeraktivitet"
 msgid ""
 "Inhibit the screensaver from activating. Terminate the light-locker-command "
 "process to end inhibition."
-msgstr ""
+msgstr "Forhindr pauseskærmens aktivering. Afslut processen ligth-locker-commando for at afslutte forhindringen."
 
 #: ../src/light-locker-command.c:70
 msgid "The calling application that is inhibiting the screensaver"
@@ -99,7 +99,7 @@ msgstr "Pauseskærmen er blevet forhindret med cookie %d\n"
 #: ../src/light-locker-command.c:555
 #, c-format
 msgid "Send uninhibit to the screensaver with cookie %d\n"
-msgstr ""
+msgstr "Send fjern forhindr til pauseskærmen med cookie %d\n"
 
 #: ../src/light-locker.c:65 ../src/preview.c:83
 msgid "Enable debugging code"
@@ -127,19 +127,19 @@ msgstr "Lås ikke skærmen ved dvale/genoptag"
 
 #: ../src/light-locker.c:78
 msgid "Lock the screen on lid close"
-msgstr ""
+msgstr "Lås skærmen når låget lukkes"
 
 #: ../src/light-locker.c:79
 msgid "Do not lock the screen on lid close"
-msgstr ""
+msgstr "Lås ikke skærmen når låget lukkes"
 
 #: ../src/light-locker.c:81
 msgid "Set idle hint during screensaver"
-msgstr ""
+msgstr "Sæt ledig antydning ved pauseskærm"
 
 #: ../src/light-locker.c:82
 msgid "Let something else handle the idle hint"
-msgstr ""
+msgstr "Lad noget andet håndtere den ledige antydning"
 
 #: ../src/light-locker.desktop.in.h:1 ../src/gs-listener-dbus.c:465
 msgid "Screen Locker"
@@ -163,7 +163,7 @@ msgstr "pauseskærm kører allerede i denne session"
 
 #: ../src/gs-listener-dbus.c:1933
 msgid "GNOME screensaver already running in this session"
-msgstr ""
+msgstr "GNOME-pauseskærm kører allerede i denne session"
 
 #: ../src/gs-content.c:92
 msgid "This session is locked"

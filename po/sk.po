@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Dušan Kazik <prescott66@gmail.com>, 2012
+# Dušan Kazik <prescott66@gmail.com>, 2012,2015
 # Marcel Telka <marcel@telka.sk>, 2005,2008,2010
 # Peter Tuharsky <tuharsky@misbb.sk>, 2007
 msgid ""
@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-25 13:44+0100\n"
-"PO-Revision-Date: 2015-10-25 12:49+0000\n"
-"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
+"PO-Revision-Date: 2015-11-05 21:43+0000\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/the_cavalry/light-locker/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,41 +22,41 @@ msgstr ""
 
 #: ../src/light-locker-command.c:56
 msgid "Query the state of the locker"
-msgstr ""
+msgstr "Požiada o stav uzamykača"
 
 #: ../src/light-locker-command.c:58
 msgid "Query the length of time the locker has been active"
-msgstr ""
+msgstr "Požiada o dobu trvania aktivity uzamykača"
 
 #: ../src/light-locker-command.c:60
 msgid "Tells the running locker process to lock the screen immediately"
-msgstr ""
+msgstr "Povie spustenému procesu uzamykača, aby uzamkol obrazovku okamžite"
 
 #: ../src/light-locker-command.c:62
 msgid "Turn the screensaver on (blank the screen)"
-msgstr ""
+msgstr "Zapne šetrič obrazovky (vyprázdni obrazovku)"
 
 #: ../src/light-locker-command.c:64
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
+msgstr "Ak je šetrič obrazovky aktívny, tak ho deaktivuje (zruší vyprázdnenie obrazovky)"
 
 #: ../src/light-locker-command.c:66
 msgid "Poke the running locker to simulate user activity"
-msgstr ""
+msgstr "Napomenutím spusteného uzamykača nasimuluje aktivitu používateľa"
 
 #: ../src/light-locker-command.c:68
 msgid ""
 "Inhibit the screensaver from activating. Terminate the light-locker-command "
 "process to end inhibition."
-msgstr ""
+msgstr "Zabráni aktivácii šetriča obrazovky. Skončením procesu príkazu light-locker ukončíte zabránenie."
 
 #: ../src/light-locker-command.c:70
 msgid "The calling application that is inhibiting the screensaver"
-msgstr ""
+msgstr "Volajúca aplikácia, ktorá zabraňuje aktivácii šetriča obrazovky"
 
 #: ../src/light-locker-command.c:72
 msgid "The reason for inhibiting the screensaver"
-msgstr ""
+msgstr "Dôvod zabráneniu aktivácie šetriča obrazovky"
 
 #: ../src/light-locker-command.c:74 ../src/light-locker.c:64
 #: ../src/preview.c:82
@@ -66,43 +66,43 @@ msgstr "Vypíše verziu tejto aplikácie"
 #: ../src/light-locker-command.c:337
 #, c-format
 msgid "The screensaver is active\n"
-msgstr ""
+msgstr "Šetrič obrazovky je aktívny\n"
 
 #: ../src/light-locker-command.c:339
 #, c-format
 msgid "The screensaver is inactive\n"
-msgstr ""
+msgstr "Šetrič obrazovky nie je aktívny\n"
 
 #: ../src/light-locker-command.c:369
 #, c-format
 msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Šetrič obrazovky bol aktívny po dobu %d sekundy\n"
+msgstr[1] "Šetrič obrazovky bol aktívny po dobu %d sekúnd\n"
+msgstr[2] "Šetrič obrazovky bol aktívny po dobu %d sekúnd\n"
 
 #: ../src/light-locker-command.c:381
 #, c-format
 msgid "The screensaver is not currently active.\n"
-msgstr ""
+msgstr "Šetrič obrazovky momentálne nie je aktívny.\n"
 
 #: ../src/light-locker-command.c:382
 #, c-format
 msgid "The session has been idle for %d second.\n"
 msgid_plural "The session has been idle for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Relácia bola nečinná po dobu %d sekundy\n"
+msgstr[1] "Relácia bola nečinná po dobu %d sekúnd\n"
+msgstr[2] "Relácia bola nečinná po dobu %d sekúnd\n"
 
 #: ../src/light-locker-command.c:451
 #, c-format
 msgid "The screensaver has been inhibited with cookie %d\n"
-msgstr ""
+msgstr "Aktivácii šetriča obrazovky bolo zabránené kvôli cookie %d\n"
 
 #: ../src/light-locker-command.c:555
 #, c-format
 msgid "Send uninhibit to the screensaver with cookie %d\n"
-msgstr ""
+msgstr "Odoslať zrušenie zabráneniu aktivácii šetriča obrazovky kvôli cookie %d\n"
 
 #: ../src/light-locker.c:65 ../src/preview.c:83
 msgid "Enable debugging code"
@@ -110,77 +110,77 @@ msgstr "Povolí ladiaci kód"
 
 #: ../src/light-locker.c:67
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr ""
+msgstr "Uzamkne obrazovku S sekúnd po spustení šetriča obrazovky"
 
 #: ../src/light-locker.c:69
 msgid "Lock the screen on screensaver deactivation"
-msgstr ""
+msgstr "Uzamkne obrazovku pri deaktivovaní šetriča obrazovky"
 
 #: ../src/light-locker.c:70
 msgid "Lock the screen on screensaver activation"
-msgstr ""
+msgstr "Uzamkne obrazovku pri aktivácii šetriča obrazovky"
 
 #: ../src/light-locker.c:74 ../src/gs-listener-dbus.c:466
 msgid "Lock the screen on suspend/resume"
-msgstr ""
+msgstr "Uzamkne obrazovku pri uspaní/prebudení zo spánku"
 
 #: ../src/light-locker.c:75
 msgid "Do not lock the screen on suspend/resume"
-msgstr ""
+msgstr "Neuzamkne obrazovku pri uspaní/prebudení zo spánku"
 
 #: ../src/light-locker.c:78
 msgid "Lock the screen on lid close"
-msgstr ""
+msgstr "Uzamkne obrazovku pri zavretí krytu"
 
 #: ../src/light-locker.c:79
 msgid "Do not lock the screen on lid close"
-msgstr ""
+msgstr "Neuzamkne obrazovku pri zavretí krytu"
 
 #: ../src/light-locker.c:81
 msgid "Set idle hint during screensaver"
-msgstr ""
+msgstr "Nastaví radu pre nečinnosť počas šetriča obrazovky"
 
 #: ../src/light-locker.c:82
 msgid "Let something else handle the idle hint"
-msgstr ""
+msgstr "Umožní niečomu inému ovládať radu pre nečinnosť"
 
 #: ../src/light-locker.desktop.in.h:1 ../src/gs-listener-dbus.c:465
 msgid "Screen Locker"
-msgstr ""
+msgstr "Uzamykač obrazovky"
 
 #: ../src/light-locker.desktop.in.h:2
 msgid "Launch screen locker program"
-msgstr ""
+msgstr "Spúšťa program na uzamknutie obrazovky"
 
 #: ../src/gs-listener-dbus.c:1844
 msgid "failed to register with the message bus"
-msgstr ""
+msgstr "zlyhala registrácia so zbernicou správ"
 
 #: ../src/gs-listener-dbus.c:1854
 msgid "not connected to the message bus"
-msgstr ""
+msgstr "bez pripojenia k zbernici správ"
 
 #: ../src/gs-listener-dbus.c:1863 ../src/gs-listener-dbus.c:1911
 msgid "screensaver already running in this session"
-msgstr ""
+msgstr "v tejto relácii už je spustený šetrič obrazovky"
 
 #: ../src/gs-listener-dbus.c:1933
 msgid "GNOME screensaver already running in this session"
-msgstr ""
+msgstr "Šetrič obrazovky prostredia GNOME je už spustený v tejto relácii"
 
 #: ../src/gs-content.c:92
 msgid "This session is locked"
-msgstr ""
+msgstr "Táto relácia je uzamknutá"
 
 #: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr ""
+msgstr "O niekoľko sekúnd budete automaticky presmerovaný na dialógové okno odomknutia"
 
 #: ../src/preview.c:84
 msgid "Preview screen width"
-msgstr ""
+msgstr "Šírka obrazovky náhľadu"
 
 #: ../src/preview.c:85
 msgid "Preview screen height"
-msgstr ""
+msgstr "Výška obrazovky náhľadu"
