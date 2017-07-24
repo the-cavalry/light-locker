@@ -1,4 +1,14 @@
 ==============
+Version  1.8.0
+==============
+
+- Build against newer systemd
+- Added information for debugging
+- Proper exit codes for light-locker-command
+- Translations update
+
+
+==============
 Version  1.7.0
 ==============
 
