@@ -47,6 +47,10 @@
 #include <systemd/sd-login.h>
 #endif
 
+#ifdef WITH_ELOGIND
+#include <elogind/systemd/sd-login.h>
+#endif
+
 #include "gs-listener-dbus.h"
 #include "gs-marshal.h"
 #include "gs-debug.h"
@@ -82,7 +86,7 @@ struct GSListenerPrivate
         char           *session_id;
         char           *seat_path;
 
-#ifdef WITH_SYSTEMD
+#if defined(WITH_SYSTEMD) || defined(WITH_ELOGIND)
         gboolean        have_systemd;
         char           *sd_session_id;
         int             delay_fd;
@@ -138,7 +142,7 @@ gs_listener_send_switch_greeter (GSListener *listener)
 
         gs_debug ("Send switch greeter");
 
-#ifdef WITH_SYSTEMD
+#if defined(WITH_SYSTEMD) || defined(WITH_ELOGIND)
         /* Compare with 0. On failure this will return < 0.
          * In the later case we probably aren't using systemd.
          */
@@ -179,7 +183,7 @@ gs_listener_send_lock_session (GSListener *listener)
 
         gs_debug ("Send lock session");
 
-#ifdef WITH_SYSTEMD
+#if defined(WITH_SYSTEMD) || defined(WITH_ELOGIND)
         /* Compare with 0. On failure this will return < 0.
          * In the later case we probably aren't using systemd.
          */
@@ -363,7 +367,7 @@ gs_listener_set_idle_hint (GSListener *listener, gboolean idle)
 
         gs_debug ("Send idle hint: %d", idle);
 
-#ifdef WITH_SYSTEMD
+#if defined(WITH_SYSTEMD) || defined(WITH_ELOGIND)
         if (listener->priv->have_systemd) {
 
                 if (listener->priv->system_connection == NULL) {
@@ -436,7 +440,7 @@ gs_listener_set_idle_hint (GSListener *listener, gboolean idle)
 void
 gs_listener_delay_suspend (GSListener *listener)
 {
-#ifdef WITH_SYSTEMD
+#if defined(WITH_SYSTEMD) || defined(WITH_ELOGIND)
         DBusMessage    *message;
         DBusMessage    *reply;
         DBusError       error;
@@ -509,7 +513,7 @@ gs_listener_delay_suspend (GSListener *listener)
 void
 gs_listener_resume_suspend (GSListener *listener)
 {
-#ifdef WITH_SYSTEMD
+#if defined(WITH_SYSTEMD) || defined(WITH_ELOGIND)
         gs_debug ("Resume suspend: fd=%d", listener->priv->delay_fd);
 
         if (listener->priv->delay_fd >= 0) {
@@ -1112,7 +1116,7 @@ _listener_message_path_is_our_session (GSListener  *listener,
         return FALSE;
 }
 
-#ifdef WITH_SYSTEMD
+#if defined(WITH_SYSTEMD) || defined(WITH_ELOGIND)
 static gboolean
 query_session_active (GSListener *listener)
 {
@@ -1248,7 +1252,7 @@ query_lid_closed (GSListener *listener)
 #endif
 #endif
 
-#if defined(WITH_SYSTEMD) || (defined(WITH_UPOWER) && defined(WITH_LOCK_ON_LID))
+#if defined(WITH_SYSTEMD) || defined(WITH_ELOGIND) || (defined(WITH_UPOWER) && defined(WITH_LOCK_ON_LID))
 static gboolean
 properties_changed_match (DBusMessage *message,
                           const char  *property)
@@ -1343,7 +1347,7 @@ listener_dbus_handle_system_message (DBusConnection *connection,
                   dbus_message_get_destination (message));
 #endif
 
-#ifdef WITH_SYSTEMD
+#if defined(WITH_SYSTEMD) || defined(WITH_ELOGIND)
 
         if (listener->priv->have_systemd) {
 
@@ -1963,7 +1967,7 @@ gs_listener_acquire (GSListener *listener,
                                             listener_dbus_system_filter_function,
                                             listener,
                                             NULL);
-#ifdef WITH_SYSTEMD
+#if defined(WITH_SYSTEMD) || defined(WITH_ELOGIND)
                 if (listener->priv->have_systemd) {
                         dbus_bus_add_match (listener->priv->system_connection,
                                             "type='signal'"
@@ -2075,7 +2079,7 @@ query_session_id (GSListener *listener)
 
         dbus_error_init (&error);
 
-#ifdef WITH_SYSTEMD
+#if defined(WITH_SYSTEMD) || defined(WITH_ELOGIND)
         if (listener->priv->have_systemd) {
                 dbus_uint32_t pid = getpid();
 
@@ -2164,7 +2168,7 @@ query_session_id (GSListener *listener)
 #endif
 }
 
-#ifdef WITH_SYSTEMD
+#if defined(WITH_SYSTEMD) || defined(WITH_ELOGIND)
 static char *
 query_sd_session_id (GSListener *listener)
 {
@@ -2192,7 +2196,7 @@ init_session_id (GSListener *listener)
         listener->priv->session_id = query_session_id (listener);
         gs_debug ("Got session-id: %s", listener->priv->session_id);
 
-#ifdef WITH_SYSTEMD
+#if defined(WITH_SYSTEMD) || defined(WITH_ELOGIND)
         g_free (listener->priv->sd_session_id);
         listener->priv->sd_session_id = query_sd_session_id (listener);
         gs_debug ("Got sd-session-id: %s", listener->priv->sd_session_id);
@@ -2284,7 +2288,7 @@ gs_listener_init (GSListener *listener)
 {
         listener->priv = GS_LISTENER_GET_PRIVATE (listener);
 
-#ifdef WITH_SYSTEMD
+#if defined(WITH_SYSTEMD) || defined(WITH_ELOGIND)
         /* check if logind is running */
         listener->priv->have_systemd = (access("/run/systemd/seats/", F_OK) >= 0);
         listener->priv->delay_fd = -1;
@@ -2313,7 +2317,7 @@ gs_listener_finalize (GObject *object)
         g_free (listener->priv->session_id);
         g_free (listener->priv->seat_path);
 
-#ifdef WITH_SYSTEMD
+#if defined(WITH_SYSTEMD) || defined(WITH_ELOGIND)
         g_free (listener->priv->sd_session_id);
 #endif
 

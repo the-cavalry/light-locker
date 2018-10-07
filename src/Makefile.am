@@ -90,7 +90,8 @@ light_locker_SOURCES =	\
 light_locker_LDADD =		\
 	$(LIGHT_LOCKER_LIBS)	\
 	$(SAVER_LIBS)			\
-	$(SYSTEMD_LIBS)                 \
+	$(SYSTEMD_LIBS)		\
+	$(ELOGIND_LIBS)		\
 	$(NULL)
 
 light_locker_LDFLAGS = -export-dynamic

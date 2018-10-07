@@ -144,7 +144,8 @@ main (int    argc,
                   "gtk:        %d\n"
                   "systemd:    %s\n"
                   "ConsoleKit: %s\n"
-                  "UPower:     %s",
+                  "UPower:     %s\n"
+                  "elogind:    %s",
                   GTK_MAJOR_VERSION,
 #ifdef WITH_SYSTEMD
                   "yes",
@@ -157,6 +158,11 @@ main (int    argc,
                   "no",
 #endif
 #ifdef WITH_UPOWER
+                  "yes"
+#else
+                  "no"
+#endif
+#ifdef WITH_ELOGIND
                   "yes"
 #else
                   "no"
