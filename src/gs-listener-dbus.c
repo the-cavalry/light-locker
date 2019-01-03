@@ -2195,6 +2195,11 @@ init_session_id (GSListener *listener)
 #ifdef WITH_SYSTEMD
         g_free (listener->priv->sd_session_id);
         listener->priv->sd_session_id = query_sd_session_id (listener);
+        if (listener->priv->sd_session_id == NULL)
+        {
+                gs_debug ("Falling back to XDG_SESSION_ID environment variable");
+                listener->priv->sd_session_id = g_strdup(getenv("XDG_SESSION_ID"));
+        }
         gs_debug ("Got sd-session-id: %s", listener->priv->sd_session_id);
 #endif
 }
