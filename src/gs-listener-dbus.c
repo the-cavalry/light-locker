@@ -2190,11 +2190,19 @@ init_session_id (GSListener *listener)
 {
         g_free (listener->priv->session_id);
         listener->priv->session_id = query_session_id (listener);
-        gs_debug ("Got session-id: %s", listener->priv->session_id);
+        if (listener->priv->session_id == NULL)
+                g_error ("session_id is not set, is /proc mounted with hidepid>0?");
+        else
+                gs_debug ("Got session-id: %s", listener->priv->session_id);
 
 #ifdef WITH_SYSTEMD
         g_free (listener->priv->sd_session_id);
         listener->priv->sd_session_id = query_sd_session_id (listener);
+        if (listener->priv->sd_session_id == NULL)
+        {
+                gs_debug ("Falling back to XDG_SESSION_ID environment variable");
+                listener->priv->sd_session_id = g_strdup(getenv("XDG_SESSION_ID"));
+        }
         gs_debug ("Got sd-session-id: %s", listener->priv->sd_session_id);
 #endif
 }
