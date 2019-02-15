@@ -34,6 +34,7 @@ Most of these configurations will be enabled automatically when their dependenci
 Here is a list of the different dependencies and there configuration flags:
   --with-gtk2: This decides between the Gtk+-3.0 and Gtk+-2.0 dependency.
   --with-systemd: This adds the support for systemd logind. This option requires the development files to be installed.
+  --with-elogind: This adds support for elogind, a standalone version of systemd's logind daemon. Requires the elogind development files be installed. This option cannot be enabled at the same time as the --with-systemd option above.
   --with-console-kit: This adds the support for ConsoleKit.
   --with-upower: This adds the support for UPower.
   --with-mit-ext: This enables the lock-after-screensaver feature. This options requires the X11 Screen Saver extension development files to be installed.
