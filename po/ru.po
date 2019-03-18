@@ -49,7 +49,7 @@ msgstr "Указать запущенному процессу блокиров�
 msgid ""
 "Inhibit the screensaver from activating. Terminate the light-locker-command "
 "process to end inhibition."
-msgstr "Препятствует активации хранителя экрана. Для отключения выполните процесс light-locker-command"
+msgstr "Препятствует активации хранителя экрана. Для отключения завершите процесс light-locker-command"
 
 #: ../src/light-locker-command.c:70
 msgid "The calling application that is inhibiting the screensaver"
