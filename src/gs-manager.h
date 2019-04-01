@@ -25,32 +25,8 @@
 
 G_BEGIN_DECLS
 
-#define GS_TYPE_MANAGER         (gs_manager_get_type ())
-#define GS_MANAGER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GS_TYPE_MANAGER, GSManager))
-#define GS_MANAGER_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GS_TYPE_MANAGER, GSManagerClass))
-#define GS_IS_MANAGER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GS_TYPE_MANAGER))
-#define GS_IS_MANAGER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GS_TYPE_MANAGER))
-#define GS_MANAGER_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GS_TYPE_MANAGER, GSManagerClass))
-
-typedef struct GSManagerPrivate GSManagerPrivate;
-
-typedef struct
-{
-        GObject          parent;
-        GSManagerPrivate *priv;
-} GSManager;
-
-typedef struct
-{
-        GObjectClass     parent_class;
-
-        void            (* activated)          (GSManager *manager);
-        void            (* switch_greeter)     (GSManager *manager);
-        void            (* lock)               (GSManager *manager);
-
-} GSManagerClass;
-
-GType       gs_manager_get_type             (void);
+#define GS_TYPE_MANAGER gs_manager_get_type ()
+G_DECLARE_FINAL_TYPE (GSManager, gs_manager, GS, MANAGER, GObject)
 
 GSManager * gs_manager_new                  (void);
 
