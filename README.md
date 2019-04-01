@@ -51,3 +51,10 @@ Many of the light-locker features can be disabled/enabled and configured at buil
   --enable-lock-on-suspend: Enables --lock-on-suspend and --no-lock-on-suspend. Default enabled with --lock-on-suspend. This requires either systemd or upower.
 
   --enable-lock-on-lid: Enables --lock-on-lid and --no-lock-on-lid. Default enabled with --no-lock-on-suspend. This requires upower.
+
+## Users
+
+Known users of light-locker are:
+
+  * elementary OS
+  * XFCE
