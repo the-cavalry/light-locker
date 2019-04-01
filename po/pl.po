@@ -7,13 +7,14 @@
 # Karol Hajda <iker95@gmail.com>, 2013
 # Michał Olber <michal@olber.pl>, 2014
 # Piotr Sokół <psokol.l10n@gmail.com>, 2014-2015
+# Piotr Strębski <strebski@gmail.com>, 2018
 # Piotr Strębski <strebski@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-25 13:44+0100\n"
-"PO-Revision-Date: 2015-11-03 14:40+0000\n"
+"PO-Revision-Date: 2018-05-16 22:09+0000\n"
 "Last-Translator: Piotr Strębski <strebski@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/the_cavalry/light-locker/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -142,11 +143,11 @@ msgstr "Nie blokuj ekranu przy zamkniętej pokrywie"
 
 #: ../src/light-locker.c:81
 msgid "Set idle hint during screensaver"
-msgstr ""
+msgstr "Ustaw bezczynną wskazówkę podczas wygaszacza ekranu"
 
 #: ../src/light-locker.c:82
 msgid "Let something else handle the idle hint"
-msgstr ""
+msgstr "Niech coś innego poradzi sobie z bezczynną wskazówką"
 
 #: ../src/light-locker.desktop.in.h:1 ../src/gs-listener-dbus.c:465
 msgid "Screen Locker"

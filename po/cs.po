@@ -14,14 +14,14 @@ msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-25 13:44+0100\n"
-"PO-Revision-Date: 2015-10-25 12:49+0000\n"
+"PO-Revision-Date: 2017-09-19 20:50+0000\n"
 "Last-Translator: Peter de Ridder <peter@xfce.org>\n"
 "Language-Team: Czech (http://www.transifex.com/the_cavalry/light-locker/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #: ../src/light-locker-command.c:56
 msgid "Query the state of the locker"
@@ -83,6 +83,7 @@ msgid_plural "The screensaver has been active for %d seconds.\n"
 msgstr[0] "Spořič obrazovky byl aktivní na %d sekundu.\n"
 msgstr[1] "Spořič obrazovky byl aktivován na %d sekundy.\n"
 msgstr[2] "Spořič obrazovky byl aktivován na %d sekund.\n"
+msgstr[3] "Spořič obrazovky byl aktivován na %d sekund.\n"
 
 #: ../src/light-locker-command.c:381
 #, c-format
@@ -96,6 +97,7 @@ msgid_plural "The session has been idle for %d seconds.\n"
 msgstr[0] "Relace byla nečinná %d sekundu.\n"
 msgstr[1] "Relace byla nečinná %d sekundy.\n"
 msgstr[2] "Relace byla nečinná %d sekund.\n"
+msgstr[3] "Relace byla nečinná %d sekund.\n"
 
 #: ../src/light-locker-command.c:451
 #, c-format

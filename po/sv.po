@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Anders Jonsson <transifex@norsjovallen.se>, 2017
 # Christian Rose <menthos@menthos.com>, 2005
 # Daniel Nylander <po@danielnylander.se>, 2006-2011
 msgid ""
@@ -10,8 +11,8 @@ msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-25 13:44+0100\n"
-"PO-Revision-Date: 2015-10-25 12:49+0000\n"
-"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
+"PO-Revision-Date: 2017-10-16 22:40+0000\n"
+"Last-Translator: Anders Jonsson <transifex@norsjovallen.se>\n"
 "Language-Team: Swedish (http://www.transifex.com/the_cavalry/light-locker/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,41 +22,41 @@ msgstr ""
 
 #: ../src/light-locker-command.c:56
 msgid "Query the state of the locker"
-msgstr ""
+msgstr "Fråga efter låsarens tillstånd"
 
 #: ../src/light-locker-command.c:58
 msgid "Query the length of time the locker has been active"
-msgstr ""
+msgstr "Fråga efter tidslängden som låsaren har varit aktiv"
 
 #: ../src/light-locker-command.c:60
 msgid "Tells the running locker process to lock the screen immediately"
-msgstr ""
+msgstr "Säger till den körande låsprocessen att låsa skärmen omedelbart"
 
 #: ../src/light-locker-command.c:62
 msgid "Turn the screensaver on (blank the screen)"
-msgstr ""
+msgstr "Slå på skärmsläckaren (gör skärmen svart)"
 
 #: ../src/light-locker-command.c:64
 msgid "If the screensaver is active then deactivate it (un-blank the screen)"
-msgstr ""
+msgstr "Inaktivera skärmsläckaren om den är aktiv (få skärmen att sluta vara svart)"
 
 #: ../src/light-locker-command.c:66
 msgid "Poke the running locker to simulate user activity"
-msgstr ""
+msgstr "Peta på den körande låsaren för att simulera användaraktivitet"
 
 #: ../src/light-locker-command.c:68
 msgid ""
 "Inhibit the screensaver from activating. Terminate the light-locker-command "
 "process to end inhibition."
-msgstr ""
+msgstr "Förhindra skärmsläckaren från att aktiveras. Avsluta processen light-locker-command för att avsluta förhindrandet."
 
 #: ../src/light-locker-command.c:70
 msgid "The calling application that is inhibiting the screensaver"
-msgstr ""
+msgstr "Det anropande programmet som hindrar skärmsläckaren"
 
 #: ../src/light-locker-command.c:72
 msgid "The reason for inhibiting the screensaver"
-msgstr ""
+msgstr "Orsaken till att skärmsläckaren hindras"
 
 #: ../src/light-locker-command.c:74 ../src/light-locker.c:64
 #: ../src/preview.c:82
@@ -65,41 +66,41 @@ msgstr "Detta programs versionsnummer"
 #: ../src/light-locker-command.c:337
 #, c-format
 msgid "The screensaver is active\n"
-msgstr ""
+msgstr "Skärmsläckaren är aktiv\n"
 
 #: ../src/light-locker-command.c:339
 #, c-format
 msgid "The screensaver is inactive\n"
-msgstr ""
+msgstr "Skärmsläckaren är inaktiv\n"
 
 #: ../src/light-locker-command.c:369
 #, c-format
 msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Skärmsläckaren har varit aktiv %d sekund.\n"
+msgstr[1] "Skärmsläckaren har varit aktiv %d sekunder.\n"
 
 #: ../src/light-locker-command.c:381
 #, c-format
 msgid "The screensaver is not currently active.\n"
-msgstr ""
+msgstr "Skärmsläckaren är för närvarande inte aktiv.\n"
 
 #: ../src/light-locker-command.c:382
 #, c-format
 msgid "The session has been idle for %d second.\n"
 msgid_plural "The session has been idle for %d seconds.\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sessionen har varit inaktiv %d sekund.\n"
+msgstr[1] "Sessionen har varit inaktiv %d sekunder.\n"
 
 #: ../src/light-locker-command.c:451
 #, c-format
 msgid "The screensaver has been inhibited with cookie %d\n"
-msgstr ""
+msgstr "Skärmsläckaren har hindrats med kaka %d\n"
 
 #: ../src/light-locker-command.c:555
 #, c-format
 msgid "Send uninhibit to the screensaver with cookie %d\n"
-msgstr ""
+msgstr "Skicka slut på hindrande till skärmsläckaren med kaka %d\n"
 
 #: ../src/light-locker.c:65 ../src/preview.c:83
 msgid "Enable debugging code"
@@ -107,77 +108,77 @@ msgstr "Aktivera felsökningskod"
 
 #: ../src/light-locker.c:67
 msgid "Lock the screen S seconds after the screensaver started"
-msgstr ""
+msgstr "Lås skärmen S sekunder efter skärmsläckaren startade"
 
 #: ../src/light-locker.c:69
 msgid "Lock the screen on screensaver deactivation"
-msgstr ""
+msgstr "Lås skärmen då skärmsläckaren inaktiveras"
 
 #: ../src/light-locker.c:70
 msgid "Lock the screen on screensaver activation"
-msgstr ""
+msgstr "Lås skärmen då skärmsläckaren aktiveras"
 
 #: ../src/light-locker.c:74 ../src/gs-listener-dbus.c:466
 msgid "Lock the screen on suspend/resume"
-msgstr ""
+msgstr "Lås skärmen vid vänteläge/uppvaknande"
 
 #: ../src/light-locker.c:75
 msgid "Do not lock the screen on suspend/resume"
-msgstr ""
+msgstr "Lås inte skärmen vid vänteläge/uppvaknande"
 
 #: ../src/light-locker.c:78
 msgid "Lock the screen on lid close"
-msgstr ""
+msgstr "Lås skärmen då locket stängs"
 
 #: ../src/light-locker.c:79
 msgid "Do not lock the screen on lid close"
-msgstr ""
+msgstr "Lås inte skärmen då locket stängs"
 
 #: ../src/light-locker.c:81
 msgid "Set idle hint during screensaver"
-msgstr ""
+msgstr "Ställ in ett inaktivitetstips under skärmsläckare"
 
 #: ../src/light-locker.c:82
 msgid "Let something else handle the idle hint"
-msgstr ""
+msgstr "Låt något annat hantera inaktivitetstipset"
 
 #: ../src/light-locker.desktop.in.h:1 ../src/gs-listener-dbus.c:465
 msgid "Screen Locker"
-msgstr ""
+msgstr "Skärmlåsare"
 
 #: ../src/light-locker.desktop.in.h:2
 msgid "Launch screen locker program"
-msgstr ""
+msgstr "Kör skärmlåsarprogram"
 
 #: ../src/gs-listener-dbus.c:1844
 msgid "failed to register with the message bus"
-msgstr ""
+msgstr "misslyckades att registrera mot meddelandebussen"
 
 #: ../src/gs-listener-dbus.c:1854
 msgid "not connected to the message bus"
-msgstr ""
+msgstr "inte ansluten till meddelandebussen"
 
 #: ../src/gs-listener-dbus.c:1863 ../src/gs-listener-dbus.c:1911
 msgid "screensaver already running in this session"
-msgstr ""
+msgstr "skärmsläckare körs redan för denna session"
 
 #: ../src/gs-listener-dbus.c:1933
 msgid "GNOME screensaver already running in this session"
-msgstr ""
+msgstr "GNOME-skärmsläckaren körs redan för denna session"
 
 #: ../src/gs-content.c:92
 msgid "This session is locked"
-msgstr ""
+msgstr "Denna session är låst"
 
 #: ../src/gs-content.c:114
 msgid ""
 "You'll be redirected to the unlock dialog automatically in a few seconds"
-msgstr ""
+msgstr "Du kommer automatiskt att omdirigeras till upplåsningsdialogen om några sekunder"
 
 #: ../src/preview.c:84
 msgid "Preview screen width"
-msgstr ""
+msgstr "Bredd på förhandsvisningsskärm"
 
 #: ../src/preview.c:85
 msgid "Preview screen height"
-msgstr ""
+msgstr "Höjd på förhandsvisningsskärm"

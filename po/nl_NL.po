@@ -3,22 +3,19 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Anas El Husseini <linux.anas@gmail.com>, 2007
-# Djihed Afifi <djihed@gmail.com>, 2006
-# Khaled Hosny, 2006,2008-2011
 msgid ""
 msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-25 13:44+0100\n"
-"PO-Revision-Date: 2017-09-19 20:50+0000\n"
-"Last-Translator: Peter de Ridder <peter@xfce.org>\n"
-"Language-Team: Arabic (http://www.transifex.com/the_cavalry/light-locker/language/ar/)\n"
+"PO-Revision-Date: 2013-10-31 20:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Dutch (Netherlands) (http://www.transifex.com/the_cavalry/light-locker/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ar\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../src/light-locker-command.c:56
 msgid "Query the state of the locker"
@@ -61,7 +58,7 @@ msgstr ""
 #: ../src/light-locker-command.c:74 ../src/light-locker.c:64
 #: ../src/preview.c:82
 msgid "Version of this application"
-msgstr "نسخة هذا التّطبيق"
+msgstr ""
 
 #: ../src/light-locker-command.c:337
 #, c-format
@@ -79,10 +76,6 @@ msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: ../src/light-locker-command.c:381
 #, c-format
@@ -95,10 +88,6 @@ msgid "The session has been idle for %d second.\n"
 msgid_plural "The session has been idle for %d seconds.\n"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: ../src/light-locker-command.c:451
 #, c-format
@@ -112,7 +101,7 @@ msgstr ""
 
 #: ../src/light-locker.c:65 ../src/preview.c:83
 msgid "Enable debugging code"
-msgstr "فعّل التنقيح"
+msgstr ""
 
 #: ../src/light-locker.c:67
 msgid "Lock the screen S seconds after the screensaver started"

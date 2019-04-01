@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: light-locker\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-25 13:44+0100\n"
-"PO-Revision-Date: 2015-10-25 12:49+0000\n"
+"PO-Revision-Date: 2017-09-19 21:28+0000\n"
 "Last-Translator: Peter de Ridder <peter@xfce.org>\n"
 "Language-Team: Kazakh (http://www.transifex.com/the_cavalry/light-locker/language/kk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: kk\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../src/light-locker-command.c:56
 msgid "Query the state of the locker"
@@ -76,6 +76,7 @@ msgstr ""
 msgid "The screensaver has been active for %d second.\n"
 msgid_plural "The screensaver has been active for %d seconds.\n"
 msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/light-locker-command.c:381
 #, c-format
@@ -87,6 +88,7 @@ msgstr ""
 msgid "The session has been idle for %d second.\n"
 msgid_plural "The session has been idle for %d seconds.\n"
 msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/light-locker-command.c:451
 #, c-format
