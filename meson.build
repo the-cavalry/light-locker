@@ -81,11 +81,6 @@ if get_option('xf86gamma-ext')
   add_project_arguments('-DHAVE_XF86VMODE_GAMMA=1', language: 'c')
 endif
 
-# ConsoleKit
-if get_option('console-kit')
-  add_project_arguments('-DWITH_CONSOLE_KIT=1', language: 'c')
-endif
-
 # systemd
 libsystemd = []
 if get_option('systemd')

@@ -395,38 +395,6 @@ gs_listener_set_idle_hint (GSListener *listener, gboolean idle)
                 return;
         }
 #endif
-
-#ifdef WITH_CONSOLE_KIT
-        if (listener->priv->system_connection == NULL) {
-                gs_debug ("No connection to the system bus");
-                return;
-        }
-
-        message = dbus_message_new_method_call (CK_SERVICE,
-                                                listener->priv->session_id,
-                                                CK_SESSION_INTERFACE,
-                                                "SetIdleHint");
-        if (message == NULL) {
-                gs_debug ("Couldn't allocate the dbus message");
-                return;
-        }
-
-        if (dbus_message_append_args (message,
-                                      DBUS_TYPE_BOOLEAN, &idle,
-                                      DBUS_TYPE_INVALID) == FALSE) {
-                gs_debug ("Couldn't add args to the dbus message");
-                dbus_message_unref (message);
-                return;
-        }
-
-        sent = dbus_connection_send (listener->priv->system_connection, message, NULL);
-        dbus_message_unref (message);
-
-        if (sent == FALSE) {
-                gs_debug ("Couldn't send the dbus message");
-                return;
-        }
-#endif
 }
 
 void
@@ -1411,53 +1379,6 @@ listener_dbus_handle_system_message (DBusConnection *connection,
         }
 #endif
 
-#ifdef WITH_CONSOLE_KIT
-        if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "Unlock")) {
-                if (_listener_message_path_is_our_session (listener, message)) {
-                        gs_debug ("Console kit requested session unlock");
-                        gs_listener_set_active (listener, FALSE);
-                }
-
-                return DBUS_HANDLER_RESULT_HANDLED;
-        } else if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "Lock")) {
-                if (_listener_message_path_is_our_session (listener, message)) {
-                        gs_debug ("ConsoleKit requested session lock");
-                        g_signal_emit (listener, signals [LOCKED], 0);
-                }
-
-                return DBUS_HANDLER_RESULT_HANDLED;
-        } else if (dbus_message_is_signal (message, CK_SESSION_INTERFACE, "ActiveChanged")) {
-                /* NB that `ActiveChanged' refers to the active
-                 * session in ConsoleKit terminology - ie which
-                 * session is currently displayed on the screen.
-                 * light-locker uses `active' to mean `is the
-                 * screensaver active' (ie, is the screen locked) but
-                 * that's not what we're referring to here.
-                 */
-
-                if (_listener_message_path_is_our_session (listener, message)) {
-                        DBusError   error;
-                        dbus_bool_t new_active;
-
-                        dbus_error_init (&error);
-                        if (dbus_message_get_args (message, &error,
-                                                   DBUS_TYPE_BOOLEAN, &new_active,
-                                                   DBUS_TYPE_INVALID)) {
-                                gs_debug ("ConsoleKit notified ActiveChanged %d", new_active);
-
-                                g_signal_emit (listener, signals [SESSION_SWITCHED], 0, new_active);
-                        }
-
-                        if (dbus_error_is_set (&error)) {
-                                gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
-                                dbus_error_free (&error);
-                        }
-                }
-
-                return DBUS_HANDLER_RESULT_HANDLED;
-        }
-#endif
-
 #ifdef WITH_UPOWER
 #ifdef WITH_LOCK_ON_SUSPEND
         if (dbus_message_is_signal (message, UP_INTERFACE, "Sleeping")) {
@@ -2004,27 +1925,6 @@ gs_listener_acquire (GSListener *listener,
                 }
 #endif
 
-#ifdef WITH_CONSOLE_KIT
-                dbus_bus_add_match (listener->priv->system_connection,
-                                    "type='signal'"
-                                    ",sender='"CK_SERVICE"'"
-                                    ",interface='"CK_SESSION_INTERFACE"'"
-                                    ",member='Unlock'",
-                                    NULL);
-                dbus_bus_add_match (listener->priv->system_connection,
-                                    "type='signal'"
-                                    ",sender='"CK_SERVICE"'"
-                                    ",interface='"CK_SESSION_INTERFACE"'"
-                                    ",member='Lock'",
-                                    NULL);
-                dbus_bus_add_match (listener->priv->system_connection,
-                                    "type='signal'"
-                                    ",sender='"CK_SERVICE"'"
-                                    ",interface='"CK_SESSION_INTERFACE"'"
-                                    ",member='ActiveChanged'",
-                                    NULL);
-#endif
-
 #ifdef WITH_UPOWER
 #ifdef WITH_LOCK_ON_SUSPEND
                 dbus_bus_add_match (listener->priv->system_connection,
@@ -2119,45 +2019,7 @@ query_session_id (GSListener *listener)
         }
 #endif
 
-#ifdef WITH_CONSOLE_KIT
-        message = dbus_message_new_method_call (CK_SERVICE, CK_MANAGER_PATH, CK_MANAGER_INTERFACE, "GetCurrentSession");
-        if (message == NULL) {
-                gs_debug ("Couldn't allocate the dbus message");
-                return NULL;
-        }
-
-        /* FIXME: use async? */
-        reply = dbus_connection_send_with_reply_and_block (listener->priv->system_connection,
-                                                           message,
-                                                           -1, &error);
-        dbus_message_unref (message);
-
-        if (dbus_error_is_set (&error)) {
-                gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
-                dbus_error_free (&error);
-                return NULL;
-        }
-
-        if (dbus_message_get_args (reply, &error,
-                                   DBUS_TYPE_OBJECT_PATH, &ssid,
-                                   DBUS_TYPE_INVALID)) {
-                ssid = g_strdup (ssid);
-        } else {
-                ssid = NULL;
-        }
-
-        dbus_message_unref (reply);
-
-        if (dbus_error_is_set (&error)) {
-                gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
-                dbus_error_free (&error);
-                return NULL;
-        }
-
-        return ssid;
-#else
         return NULL;
-#endif
 }
 
 #ifdef WITH_SYSTEMD

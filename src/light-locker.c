@@ -139,15 +139,9 @@ main (int    argc,
         gs_debug ("Platform:\n"
                   "gtk:        %d\n"
                   "systemd:    %s\n"
-                  "ConsoleKit: %s\n"
                   "UPower:     %s",
                   GTK_MAJOR_VERSION,
 #ifdef WITH_SYSTEMD
-                  "yes",
-#else
-                  "no",
-#endif
-#ifdef WITH_CONSOLE_KIT
                   "yes",
 #else
                   "no",

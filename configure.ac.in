@@ -388,24 +388,6 @@ if test "$have_xf86gamma" = yes -o "$have_xf86vmode" = yes; then
   fi
 fi
 
-
-dnl ---------------------------------------------------------------------------
-dnl ConsoleKit
-dnl ---------------------------------------------------------------------------
-
-AC_ARG_WITH(console-kit,
-            AS_HELP_STRING([--with-console-kit],
-                           [Add ConsoleKit support]),,
-            with_console_kit=auto)
-
-use_console_kit=no
-if test "x$with_console_kit" != "xno" ; then
-        use_console_kit=yes
-        AC_DEFINE(WITH_CONSOLE_KIT, 1, [ConsoleKit support])
-fi
-AM_CONDITIONAL(WITH_CONSOLE_KIT, test x$use_console_kit = xyes)
-AC_SUBST(WITH_CONSOLE_KIT)
-
 dnl ---------------------------------------------------------------------------
 dnl systemd
 dnl ---------------------------------------------------------------------------
@@ -658,7 +640,6 @@ echo "
                     Platform:
                     ---------
         systemd:                  ${use_systemd}
-        ConsoleKit:               ${use_console_kit}
         UPower:                   ${use_upower}
 
                     Features:
