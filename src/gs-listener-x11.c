@@ -29,11 +29,7 @@
 
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#if GTK_CHECK_VERSION(3, 0, 0)
 #include <gtk/gtkx.h>
-#else
-#include <gdk/gdkx.h>
-#endif
 
 #ifdef HAVE_MIT_SAVER_EXTENSION
 #include <X11/extensions/scrnsaver.h>
@@ -174,11 +170,7 @@ gs_listener_x11_acquire (GSListenerX11 *listener)
                 gs_debug ("ScreenSaverExtension not found");
         }
 
-#if GTK_CHECK_VERSION(3, 0, 0)
         gdk_error_trap_pop_ignored ();
-#else
-        gdk_error_trap_pop ();
-#endif
 #endif
 
         gdk_window_add_filter (NULL, (GdkFilterFunc)xroot_filter, listener);
@@ -198,11 +190,7 @@ gs_listener_x11_simulate_activity (GSListenerX11 *listener)
 #ifdef HAVE_DPMS_EXTENSION
         DPMSForceLevel (GDK_DISPLAY_XDISPLAY (display), DPMSModeOn);
 #endif
-#if GTK_CHECK_VERSION(3, 0, 0)
         gdk_error_trap_pop_ignored ();
-#else
-        gdk_error_trap_pop ();
-#endif
 }
 
 gboolean
@@ -222,11 +210,7 @@ gs_listener_x11_force_blanking (GSListenerX11 *listener,
                 DPMSForceLevel (GDK_DISPLAY_XDISPLAY (display), DPMSModeOn);
 #endif
         }
-#if GTK_CHECK_VERSION(3, 0, 0)
         gdk_error_trap_pop_ignored ();
-#else
-        gdk_error_trap_pop ();
-#endif
         /* TODO: what should the return value be? */
         return active;
 }
@@ -243,11 +227,7 @@ gs_listener_x11_inhibit (GSListenerX11 *listener,
         gdk_error_trap_push ();
         XScreenSaverSuspend (GDK_DISPLAY_XDISPLAY (display), active);
 
-#if GTK_CHECK_VERSION(3, 0, 0)
         gdk_error_trap_pop_ignored ();
-#else
-        gdk_error_trap_pop ();
-#endif
 #endif
 }
 
@@ -271,11 +251,7 @@ gs_listener_x11_idle_time (GSListenerX11 *listener)
         } else {
                 gs_debug ("ScreenSaverExtension not found");
         }
-#if GTK_CHECK_VERSION(3, 0, 0)
         gdk_error_trap_pop_ignored ();
-#else
-        gdk_error_trap_pop ();
-#endif
 #endif
         return secs;
 }

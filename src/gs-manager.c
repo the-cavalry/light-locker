@@ -188,13 +188,9 @@ manager_maybe_grab_window (GSManager *manager,
         gboolean    grabbed;
 
         display = gdk_display_get_default ();
-#if GTK_CHECK_VERSION(3, 0, 0)
         GdkDeviceManager *device_manager = gdk_display_get_device_manager (display);
         GdkDevice *pointer = gdk_device_manager_get_client_pointer (device_manager);
         gdk_device_get_position (pointer, &screen, &x, &y);
-#else
-        gdk_display_get_pointer (display, &screen, &x, &y, NULL);
-#endif
         monitor = gdk_screen_get_monitor_at_point (screen, x, y);
 
         gdk_flush ();
@@ -252,29 +248,13 @@ content_draw_cb (GtkWidget *widget,
                 content_draw (widget, cr);
 }
 
-#if !GTK_CHECK_VERSION(3, 0, 0)
-static void
-content_expose_cb (GtkWidget *widget,
-                  GdkEvent  *event,
-                  GSManager *manager)
-{
-        cairo_t *cr = gdk_cairo_create (gtk_widget_get_window (widget));
-        content_draw_cb (widget, cr, manager);
-        cairo_destroy (cr);
-}
-#endif
-
 static void
 disconnect_window_signals (GSManager *manager,
                            GSWindow  *window)
 {
         GtkWidget *drawing_area = gs_window_get_drawing_area (window);
 
-#if GTK_CHECK_VERSION(3, 0, 0)
         g_signal_handlers_disconnect_by_func (drawing_area, content_draw_cb, manager);
-#else
-        g_signal_handlers_disconnect_by_func (drawing_area, content_expose_cb, manager);
-#endif
 
         g_signal_handlers_disconnect_by_func (window, window_map_event_cb, manager);
         g_signal_handlers_disconnect_by_func (window, window_grab_broken_cb, manager);
@@ -294,13 +274,8 @@ connect_window_signals (GSManager *manager,
 {
         GtkWidget *drawing_area = gs_window_get_drawing_area (window);
 
-#if GTK_CHECK_VERSION(3, 0, 0)
         g_signal_connect_object (drawing_area, "draw",
                                  G_CALLBACK (content_draw_cb), manager, 0);
-#else
-        g_signal_connect_object (drawing_area, "expose-event",
-                                 G_CALLBACK (content_expose_cb), manager, 0);
-#endif
 
         g_signal_connect_object (window, "destroy",
                                  G_CALLBACK (window_destroyed_cb), manager, 0);

@@ -1,4 +1,3 @@
-option('gtk2', type : 'boolean', value : false, description : 'Use gtk+-2.0 instead of gtk+-3.0')
 option('mit-ext', type : 'boolean', value : true, description : 'MIT-SCREEN-SAVER extension support')
 option('dpms-ext', type : 'boolean', value : true, description : 'DPMS extension support')
 option('xf86gamma-ext', type : 'boolean', value : true, description : 'XFree86 gamma fading support')

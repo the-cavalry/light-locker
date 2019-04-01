@@ -30,11 +30,7 @@
 
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#if GTK_CHECK_VERSION(3, 0, 0)
 #include <gtk/gtkx.h>
-#else
-#include <gdk/gdkx.h>
-#endif
 
 #include "gs-window.h"
 #include "gs-marshal.h"
@@ -93,11 +89,7 @@ set_invisible_cursor (GdkWindow *window,
         gdk_window_set_cursor (window, cursor);
 
         if (cursor) {
-#if GTK_CHECK_VERSION(3, 0, 0)
                 g_object_unref (cursor);
-#else
-                gdk_cursor_unref (cursor);
-#endif
         }
 }
 
@@ -128,20 +120,12 @@ gs_window_override_user_time (GSWindow *window)
 static void
 clear_widget (GtkWidget *widget)
 {
-#if GTK_CHECK_VERSION(3, 0, 0)
         GdkRGBA rgba = { 0.0, 0.0, 0.0, 1.0 };
-#else
-        GdkColor rgba = { 0, 0, 0, 0 };
-#endif
 
         if (!gtk_widget_get_realized (widget))
                 return;
 
-#if GTK_CHECK_VERSION(3, 0, 0)
         gtk_widget_override_background_color (widget, GTK_STATE_FLAG_NORMAL, &rgba);
-#else
-        gtk_widget_modify_bg (widget, GTK_STATE_NORMAL, &rgba);
-#endif
         gtk_widget_queue_draw (GTK_WIDGET (widget));
 }
 
@@ -415,11 +399,7 @@ select_popup_events (void)
         events = SubstructureNotifyMask | attr.your_event_mask;
         XSelectInput (GDK_DISPLAY_XDISPLAY (gdk_display_get_default ()), GDK_ROOT_WINDOW (), events);
 
-#if GTK_CHECK_VERSION(3, 0, 0)
         gdk_error_trap_pop_ignored ();
-#else
-        gdk_error_trap_pop ();
-#endif
 }
 
 static void
@@ -626,11 +606,7 @@ gs_window_real_size_request (GtkWidget      *widget,
         bin = GTK_BIN (widget);
 
         if (gtk_bin_get_child (bin) && gtk_widget_get_visible (gtk_bin_get_child (bin))) {
-#if GTK_CHECK_VERSION(3, 0, 0)
                 gtk_widget_get_preferred_size(gtk_bin_get_child (bin), NULL, requisition);
-#else
-                gtk_widget_size_request (gtk_bin_get_child (bin), requisition);
-#endif
         }
 
         old_geometry = window->priv->geometry;
@@ -715,7 +691,6 @@ gs_window_real_visibility_notify_event (GtkWidget          *widget,
         return FALSE;
 }
 
-#if GTK_CHECK_VERSION(3, 0, 0)
 static void
 gs_window_real_get_preferred_width (GtkWidget *widget,
                                gint      *minimal_width,
@@ -739,7 +714,6 @@ gs_window_real_get_preferred_height (GtkWidget *widget,
 
         *minimal_height = *natural_height = requisition.height;
 }
-#endif
 
 static void
 gs_window_class_init (GSWindowClass *klass)
@@ -759,12 +733,8 @@ gs_window_class_init (GSWindowClass *klass)
         widget_class->motion_notify_event = gs_window_real_motion_notify_event;
         widget_class->button_press_event  = gs_window_real_button_press_event;
         widget_class->scroll_event        = gs_window_real_scroll_event;
-#if GTK_CHECK_VERSION(3, 0, 0)
         widget_class->get_preferred_width        = gs_window_real_get_preferred_width;
         widget_class->get_preferred_height       = gs_window_real_get_preferred_height;
-#else
-        widget_class->size_request        = gs_window_real_size_request;
-#endif
         widget_class->grab_broken_event   = gs_window_real_grab_broken;
         widget_class->visibility_notify_event = gs_window_real_visibility_notify_event;
 
@@ -793,17 +763,10 @@ gs_window_class_init (GSWindowClass *klass)
 static void
 on_drawing_area_realized (GtkWidget *drawing_area)
 {
-#if GTK_CHECK_VERSION(3, 0, 0)
         GdkRGBA black = { 0.0, 0.0, 0.0, 1.0 };
 
         gdk_window_set_background_rgba (gtk_widget_get_window (drawing_area),
                                         &black);
-#else
-        GdkColor black = { 0, 0, 0, 0 };
-
-        gdk_window_set_background (gtk_widget_get_window (drawing_area),
-                                   &black);
-#endif
 }
 
 static void
