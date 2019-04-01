@@ -41,17 +41,11 @@ static void     gs_grab_class_init (GSGrabClass *klass);
 static void     gs_grab_init       (GSGrab      *grab);
 static void     gs_grab_finalize   (GObject        *object);
 
-#define GS_GRAB_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_GRAB, GSGrabPrivate))
-
-G_DEFINE_TYPE (GSGrab, gs_grab, G_TYPE_OBJECT)
-
-static gpointer grab_object = NULL;
-
-struct GSGrabPrivate
+struct _GSGrab
 {
         GDBusConnection *session_bus;
 
-        guint      mouse_hide_cursor : 1;
+        gboolean   mouse_hide_cursor;
         GdkWindow *mouse_grab_window;
         GdkWindow *keyboard_grab_window;
         GdkScreen *mouse_grab_screen;
@@ -59,6 +53,8 @@ struct GSGrabPrivate
 
         GtkWidget *invisible;
 };
+
+G_DEFINE_TYPE (GSGrab, gs_grab, G_TYPE_OBJECT)
 
 static const char *
 grab_string (int status)
@@ -179,16 +175,16 @@ gs_grab_get_keyboard (GSGrab    *grab,
 #endif
 
         if (status == GDK_GRAB_SUCCESS) {
-                if (grab->priv->keyboard_grab_window != NULL) {
-                        g_object_remove_weak_pointer (G_OBJECT (grab->priv->keyboard_grab_window),
-                                                      (gpointer *) &grab->priv->keyboard_grab_window);
+                if (grab->keyboard_grab_window != NULL) {
+                        g_object_remove_weak_pointer (G_OBJECT (grab->keyboard_grab_window),
+                                                      (gpointer *) &grab->keyboard_grab_window);
                 }
-                grab->priv->keyboard_grab_window = window;
+                grab->keyboard_grab_window = window;
 
-                g_object_add_weak_pointer (G_OBJECT (grab->priv->keyboard_grab_window),
-                                           (gpointer *) &grab->priv->keyboard_grab_window);
+                g_object_add_weak_pointer (G_OBJECT (grab->keyboard_grab_window),
+                                           (gpointer *) &grab->keyboard_grab_window);
 
-                grab->priv->keyboard_grab_screen = screen;
+                grab->keyboard_grab_screen = screen;
         } else {
                 gs_debug ("Couldn't grab keyboard!  (%s)", grab_string (status));
         }
@@ -240,17 +236,17 @@ gs_grab_get_mouse (GSGrab    *grab,
 #endif
 
         if (status == GDK_GRAB_SUCCESS) {
-                if (grab->priv->mouse_grab_window != NULL) {
-                        g_object_remove_weak_pointer (G_OBJECT (grab->priv->mouse_grab_window),
-                                                      (gpointer *) &grab->priv->mouse_grab_window);
+                if (grab->mouse_grab_window != NULL) {
+                        g_object_remove_weak_pointer (G_OBJECT (grab->mouse_grab_window),
+                                                      (gpointer *) &grab->mouse_grab_window);
                 }
-                grab->priv->mouse_grab_window = window;
+                grab->mouse_grab_window = window;
 
-                g_object_add_weak_pointer (G_OBJECT (grab->priv->mouse_grab_window),
-                                           (gpointer *) &grab->priv->mouse_grab_window);
+                g_object_add_weak_pointer (G_OBJECT (grab->mouse_grab_window),
+                                           (gpointer *) &grab->mouse_grab_window);
 
-                grab->priv->mouse_grab_screen = screen;
-                grab->priv->mouse_hide_cursor = hide_cursor;
+                grab->mouse_grab_screen = screen;
+                grab->mouse_hide_cursor = hide_cursor;
         }
 
 #if GTK_CHECK_VERSION(3, 0, 0)
@@ -265,12 +261,12 @@ gs_grab_get_mouse (GSGrab    *grab,
 void
 gs_grab_keyboard_reset (GSGrab *grab)
 {
-        if (grab->priv->keyboard_grab_window != NULL) {
-                g_object_remove_weak_pointer (G_OBJECT (grab->priv->keyboard_grab_window),
-                                              (gpointer *) &grab->priv->keyboard_grab_window);
+        if (grab->keyboard_grab_window != NULL) {
+                g_object_remove_weak_pointer (G_OBJECT (grab->keyboard_grab_window),
+                                              (gpointer *) &grab->keyboard_grab_window);
         }
-        grab->priv->keyboard_grab_window = NULL;
-        grab->priv->keyboard_grab_screen = NULL;
+        grab->keyboard_grab_window = NULL;
+        grab->keyboard_grab_screen = NULL;
 }
 
 static gboolean
@@ -305,13 +301,13 @@ gs_grab_release_keyboard (GSGrab *grab)
 void
 gs_grab_mouse_reset (GSGrab *grab)
 {
-        if (grab->priv->mouse_grab_window != NULL) {
-                g_object_remove_weak_pointer (G_OBJECT (grab->priv->mouse_grab_window),
-                                              (gpointer *) &grab->priv->mouse_grab_window);
+        if (grab->mouse_grab_window != NULL) {
+                g_object_remove_weak_pointer (G_OBJECT (grab->mouse_grab_window),
+                                              (gpointer *) &grab->mouse_grab_window);
         }
 
-        grab->priv->mouse_grab_window = NULL;
-        grab->priv->mouse_grab_screen = NULL;
+        grab->mouse_grab_window = NULL;
+        grab->mouse_grab_screen = NULL;
 }
 
 gboolean
@@ -378,9 +374,9 @@ gs_grab_move_mouse (GSGrab    *grab,
         }
 #endif
 
-        if (grab->priv->mouse_grab_window == window) {
+        if (grab->mouse_grab_window == window) {
                 gs_debug ("Window %X is already grabbed, skipping",
-                          (guint32) GDK_WINDOW_XID (grab->priv->mouse_grab_window));
+                          (guint32) GDK_WINDOW_XID (grab->mouse_grab_window));
                 return TRUE;
         }
 
@@ -389,9 +385,9 @@ gs_grab_move_mouse (GSGrab    *grab,
         /* FIXME: GTK doesn't like having the pointer grabbed */
         return TRUE;
 #else
-        if (grab->priv->mouse_grab_window) {
+        if (grab->mouse_grab_window) {
                 gs_debug ("Moving pointer grab from %X to %X",
-                          (guint32) GDK_WINDOW_XID (grab->priv->mouse_grab_window),
+                          (guint32) GDK_WINDOW_XID (grab->mouse_grab_window),
                           (guint32) GDK_WINDOW_XID (window));
         } else {
                 gs_debug ("Getting pointer grab on %X",
@@ -402,9 +398,9 @@ gs_grab_move_mouse (GSGrab    *grab,
         gs_debug ("*** doing X server grab");
         gdk_x11_grab_server ();
 
-        old_window = grab->priv->mouse_grab_window;
-        old_screen = grab->priv->mouse_grab_screen;
-        old_hide_cursor = grab->priv->mouse_hide_cursor;
+        old_window = grab->mouse_grab_window;
+        old_screen = grab->mouse_grab_screen;
+        old_hide_cursor = grab->mouse_hide_cursor;
 
         if (old_window) {
                 gs_grab_release_mouse (grab);
@@ -438,15 +434,15 @@ gs_grab_move_keyboard (GSGrab    *grab,
         GdkWindow *old_window;
         GdkScreen *old_screen;
 
-        if (grab->priv->keyboard_grab_window == window) {
+        if (grab->keyboard_grab_window == window) {
                 gs_debug ("Window %X is already grabbed, skipping",
-                          (guint32) GDK_WINDOW_XID (grab->priv->keyboard_grab_window));
+                          (guint32) GDK_WINDOW_XID (grab->keyboard_grab_window));
                 return TRUE;
         }
 
-        if (grab->priv->keyboard_grab_window != NULL) {
+        if (grab->keyboard_grab_window != NULL) {
                 gs_debug ("Moving keyboard grab from %X to %X",
-                          (guint32) GDK_WINDOW_XID (grab->priv->keyboard_grab_window),
+                          (guint32) GDK_WINDOW_XID (grab->keyboard_grab_window),
                           (guint32) GDK_WINDOW_XID (window));
         } else {
                 gs_debug ("Getting keyboard grab on %X",
@@ -457,8 +453,8 @@ gs_grab_move_keyboard (GSGrab    *grab,
         gs_debug ("*** doing X server grab");
         gdk_x11_grab_server ();
 
-        old_window = grab->priv->keyboard_grab_window;
-        old_screen = grab->priv->keyboard_grab_screen;
+        old_window = grab->keyboard_grab_window;
+        old_screen = grab->keyboard_grab_screen;
 
         if (old_window) {
                 gs_grab_release_keyboard (grab);
@@ -528,7 +524,7 @@ request_shell_exit_overview (GSGrab *grab)
         GDBusMessage *message;
 
         /* Shouldn't happen, but... */
-        if (!grab->priv->session_bus)
+        if (!grab->session_bus)
                 return;
 
         message = g_dbus_message_new_method_call ("org.gnome.Shell",
@@ -542,7 +538,7 @@ request_shell_exit_overview (GSGrab *grab)
                                                 g_variant_new ("b",
                                                                FALSE)));
 
-        g_dbus_connection_send_message (grab->priv->session_bus,
+        g_dbus_connection_send_message (grab->session_bus,
                                         message,
                                         G_DBUS_SEND_MESSAGE_FLAGS_NONE,
                                         NULL,
@@ -561,6 +557,8 @@ gs_grab_grab_window (GSGrab    *grab,
         int      i;
         int      retries = 4;
         gboolean focus_fuckus = FALSE;
+
+        g_return_val_if_fail (GS_IS_GRAB (grab), FALSE);
 
         /* First, have stuff we control in GNOME un-grab */
         request_shell_exit_overview (grab);
@@ -644,6 +642,8 @@ gs_grab_grab_root (GSGrab  *grab,
         GdkScreen  *screen;
         gboolean    res;
 
+        g_return_val_if_fail (GS_IS_GRAB (grab), FALSE);
+
         gs_debug ("Grabbing the root window");
 
         display = gdk_display_get_default ();
@@ -670,10 +670,12 @@ gs_grab_grab_offscreen (GSGrab *grab,
         GdkScreen *screen;
         gboolean   res;
 
+        g_return_val_if_fail (GS_IS_GRAB (grab), FALSE);
+
         gs_debug ("Grabbing an offscreen window");
 
-        screen = gtk_invisible_get_screen (GTK_INVISIBLE (grab->priv->invisible));
-        res = gs_grab_grab_window (grab, gtk_widget_get_window (grab->priv->invisible), screen, hide_cursor);
+        screen = gtk_invisible_get_screen (GTK_INVISIBLE (grab->invisible));
+        res = gs_grab_grab_window (grab, gtk_widget_get_window (grab->invisible), screen, hide_cursor);
 
         return res;
 }
@@ -708,37 +710,25 @@ gs_grab_class_init (GSGrabClass *klass)
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
 
         object_class->finalize = gs_grab_finalize;
-
-        g_type_class_add_private (klass, sizeof (GSGrabPrivate));
 }
 
 static void
 gs_grab_init (GSGrab *grab)
 {
-        grab->priv = GS_GRAB_GET_PRIVATE (grab);
+        grab->session_bus = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
 
-        grab->priv->session_bus = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
-
-        grab->priv->mouse_hide_cursor = FALSE;
-        grab->priv->invisible = gtk_invisible_new ();
-        gtk_widget_show (grab->priv->invisible);
+        grab->mouse_hide_cursor = FALSE;
+        grab->invisible = gtk_invisible_new ();
+        gtk_widget_show (grab->invisible);
 }
 
 static void
 gs_grab_finalize (GObject *object)
 {
-        GSGrab *grab;
+        GSGrab *grab = GS_GRAB (object);
 
-        g_return_if_fail (object != NULL);
-        g_return_if_fail (GS_IS_GRAB (object));
-
-        grab = GS_GRAB (object);
-
-        g_object_unref (grab->priv->session_bus);
-
-        g_return_if_fail (grab->priv != NULL);
-
-        gtk_widget_destroy (grab->priv->invisible);
+        g_clear_object (&grab->session_bus);
+        gtk_widget_destroy (grab->invisible);
 
         G_OBJECT_CLASS (gs_grab_parent_class)->finalize (object);
 }
@@ -746,6 +736,7 @@ gs_grab_finalize (GObject *object)
 GSGrab *
 gs_grab_new (void)
 {
+        static gpointer grab_object = NULL;
         if (grab_object) {
                 g_object_ref (grab_object);
         } else {

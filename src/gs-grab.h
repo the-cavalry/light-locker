@@ -28,28 +28,8 @@
 
 G_BEGIN_DECLS
 
-#define GS_TYPE_GRAB         (gs_grab_get_type ())
-#define GS_GRAB(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GS_TYPE_GRAB, GSGrab))
-#define GS_GRAB_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GS_TYPE_GRAB, GSGrabClass))
-#define GS_IS_GRAB(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GS_TYPE_GRAB))
-#define GS_IS_GRAB_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GS_TYPE_GRAB))
-#define GS_GRAB_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GS_TYPE_GRAB, GSGrabClass))
-
-typedef struct GSGrabPrivate GSGrabPrivate;
-
-typedef struct
-{
-        GObject        parent;
-        GSGrabPrivate *priv;
-} GSGrab;
-
-typedef struct
-{
-        GObjectClass   parent_class;
-
-} GSGrabClass;
-
-GType     gs_grab_get_type         (void);
+#define GS_TYPE_GRAB gs_grab_get_type ()
+G_DECLARE_FINAL_TYPE (GSGrab, gs_grab, GS, GRAB, GObject)
 
 GSGrab  * gs_grab_new              (void);
 
