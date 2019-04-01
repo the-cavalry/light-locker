@@ -52,14 +52,13 @@ enum {
 #define MAX_QUEUED_EVENTS 16
 #define INFO_BAR_SECONDS 30
 
-#define GS_WINDOW_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_WINDOW, GSWindowPrivate))
-
-struct GSWindowPrivate
+struct _GSWindow
 {
-        int        monitor;
+        GObject parent_instance;
+        int     monitor;
 
         GdkRectangle geometry;
-        guint      obscured : 1;
+        gboolean     obscured;
 
         GtkWidget *drawing_area;
         GtkWidget *info_bar;
@@ -73,12 +72,14 @@ struct GSWindowPrivate
 };
 
 enum {
-        PROP_0,
-        PROP_OBSCURED,
-        PROP_MONITOR
+        PROP_OBSCURED = 1,
+        PROP_MONITOR,
+        N_PROPERTIES
 };
 
 G_DEFINE_TYPE (GSWindow, gs_window, GTK_TYPE_WINDOW)
+
+static GParamSpec *obj_properties[N_PROPERTIES] = { NULL, };
 
 static void
 set_invisible_cursor (GdkWindow *window,
@@ -151,7 +152,7 @@ gs_window_clear (GSWindow *window)
         g_return_if_fail (GS_IS_WINDOW (window));
 
         clear_widget (GTK_WIDGET (window));
-        clear_widget (window->priv->drawing_area);
+        clear_widget (window->drawing_area);
 }
 
 static cairo_region_t *
@@ -161,12 +162,12 @@ get_outside_region (GSWindow *window)
         cairo_region_t *region;
 
         region = cairo_region_create ();
-        for (i = 0; i < window->priv->monitor; i++) {
+        for (i = 0; i < window->monitor; i++) {
                 GdkRectangle geometry;
                 cairo_rectangle_int_t rectangle;
 
                 gdk_screen_get_monitor_geometry (gtk_window_get_screen (GTK_WINDOW (window)),
-                                                   i, &geometry);
+                                                 i, &geometry);
                 rectangle.x = geometry.x;
                 rectangle.y = geometry.y;
                 rectangle.width = geometry.width;
@@ -187,10 +188,10 @@ update_geometry (GSWindow *window)
         outside_region = get_outside_region (window);
 
         gdk_screen_get_monitor_geometry (gtk_window_get_screen (GTK_WINDOW (window)),
-                                         window->priv->monitor,
+                                         window->monitor,
                                          &geometry);
         gs_debug ("got geometry for monitor %d: x=%d y=%d w=%d h=%d",
-                  window->priv->monitor,
+                  window->monitor,
                   geometry.x,
                   geometry.y,
                   geometry.width,
@@ -203,16 +204,16 @@ update_geometry (GSWindow *window)
         cairo_region_destroy (monitor_region);
 
         gs_debug ("using geometry for monitor %d: x=%d y=%d w=%d h=%d",
-                  window->priv->monitor,
+                  window->monitor,
                   geometry.x,
                   geometry.y,
                   geometry.width,
                   geometry.height);
 
-        window->priv->geometry.x = geometry.x;
-        window->priv->geometry.y = geometry.y;
-        window->priv->geometry.width = geometry.width;
-        window->priv->geometry.height = geometry.height;
+        window->geometry.x = geometry.x;
+        window->geometry.y = geometry.y;
+        window->geometry.width = geometry.width;
+        window->geometry.height = geometry.height;
 }
 
 static void
@@ -236,26 +237,26 @@ gs_window_move_resize_window (GSWindow *window,
         g_assert (gtk_widget_get_realized (widget));
 
         gs_debug ("Move and/or resize window on monitor %d: x=%d y=%d w=%d h=%d",
-                  window->priv->monitor,
-                  window->priv->geometry.x,
-                  window->priv->geometry.y,
-                  window->priv->geometry.width,
-                  window->priv->geometry.height);
+                  window->monitor,
+                  window->geometry.x,
+                  window->geometry.y,
+                  window->geometry.width,
+                  window->geometry.height);
 
         if (move && resize) {
                 gdk_window_move_resize (gtk_widget_get_window (widget),
-                                        window->priv->geometry.x,
-                                        window->priv->geometry.y,
-                                        window->priv->geometry.width,
-                                        window->priv->geometry.height);
+                                        window->geometry.x,
+                                        window->geometry.y,
+                                        window->geometry.width,
+                                        window->geometry.height);
         } else if (move) {
                 gdk_window_move (gtk_widget_get_window (widget),
-                                 window->priv->geometry.x,
-                                 window->priv->geometry.y);
+                                 window->geometry.x,
+                                 window->geometry.y);
         } else if (resize) {
                 gdk_window_resize (gtk_widget_get_window (widget),
-                                   window->priv->geometry.width,
-                                   window->priv->geometry.height);
+                                   window->geometry.width,
+                                   window->geometry.height);
         }
 }
 
@@ -303,9 +304,9 @@ watchdog_timer (GSWindow *window)
 static void
 remove_watchdog_timer (GSWindow *window)
 {
-        if (window->priv->watchdog_timer_id != 0) {
-                g_source_remove (window->priv->watchdog_timer_id);
-                window->priv->watchdog_timer_id = 0;
+        if (window->watchdog_timer_id != 0) {
+                g_source_remove (window->watchdog_timer_id);
+                window->watchdog_timer_id = 0;
         }
 }
 
@@ -313,9 +314,9 @@ static void
 add_watchdog_timer (GSWindow *window,
                     glong     timeout)
 {
-        window->priv->watchdog_timer_id = g_timeout_add_seconds (timeout,
-                                                                 (GSourceFunc)watchdog_timer,
-                                                                 window);
+        window->watchdog_timer_id = g_timeout_add_seconds (timeout,
+                                                           (GSourceFunc)watchdog_timer,
+                                                           window);
 }
 
 static void
@@ -489,7 +490,7 @@ gs_window_get_drawing_area (GSWindow *window)
 {
         g_return_val_if_fail (GS_IS_WINDOW (window), NULL);
 
-        return window->priv->drawing_area;
+        return window->drawing_area;
 }
 
 
@@ -518,11 +519,11 @@ gs_window_set_monitor (GSWindow *window,
 {
         g_return_if_fail (GS_IS_WINDOW (window));
 
-        if (window->priv->monitor == monitor) {
+        if (window->monitor == monitor) {
                 return;
         }
 
-        window->priv->monitor = monitor;
+        window->monitor = monitor;
 
         gtk_widget_queue_resize (GTK_WIDGET (window));
 
@@ -534,7 +535,7 @@ gs_window_get_monitor (GSWindow *window)
 {
         g_return_val_if_fail (GS_IS_WINDOW (window), -1);
 
-        return window->priv->monitor;
+        return window->monitor;
 }
 
 static void
@@ -569,10 +570,10 @@ gs_window_get_property (GObject    *object,
 
         switch (prop_id) {
         case PROP_MONITOR:
-                g_value_set_int (value, self->priv->monitor);
+                g_value_set_int (value, self->monitor);
                 break;
         case PROP_OBSCURED:
-                g_value_set_boolean (value, self->priv->obscured);
+                g_value_set_boolean (value, self->obscured);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -633,24 +634,24 @@ gs_window_real_size_request (GtkWidget      *widget,
 #endif
         }
 
-        old_geometry = window->priv->geometry;
+        old_geometry = window->geometry;
 
         update_geometry (window);
 
-        requisition->width  = window->priv->geometry.width;
-        requisition->height = window->priv->geometry.height;
+        requisition->width  = window->geometry.width;
+        requisition->height = window->geometry.height;
 
         if (!gtk_widget_get_realized (widget)) {
                 return;
         }
 
-        if (old_geometry.width  != window->priv->geometry.width ||
-            old_geometry.height != window->priv->geometry.height) {
+        if (old_geometry.width  != window->geometry.width ||
+            old_geometry.height != window->geometry.height) {
                 size_changed = TRUE;
         }
 
-        if (old_geometry.x != window->priv->geometry.x ||
-            old_geometry.y != window->priv->geometry.y) {
+        if (old_geometry.x != window->geometry.x ||
+            old_geometry.y != window->geometry.y) {
                 position_changed = TRUE;
         }
 
@@ -680,18 +681,18 @@ gs_window_is_obscured (GSWindow *window)
 {
         g_return_val_if_fail (GS_IS_WINDOW (window), FALSE);
 
-        return window->priv->obscured;
+        return window->obscured;
 }
 
 static void
 window_set_obscured (GSWindow *window,
                      gboolean  obscured)
 {
-        if (window->priv->obscured == obscured) {
+        if (window->obscured == obscured) {
                 return;
         }
 
-        window->priv->obscured = obscured;
+        window->obscured = obscured;
         g_object_notify (G_OBJECT (window), "obscured");
 }
 
@@ -768,25 +769,23 @@ gs_window_class_init (GSWindowClass *klass)
         widget_class->grab_broken_event   = gs_window_real_grab_broken;
         widget_class->visibility_notify_event = gs_window_real_visibility_notify_event;
 
-        g_type_class_add_private (klass, sizeof (GSWindowPrivate));
+        obj_properties[PROP_OBSCURED] =
+                g_param_spec_boolean ("obscured",
+                                      NULL,
+                                      NULL,
+                                      FALSE,
+                                      G_PARAM_READABLE);
 
-        g_object_class_install_property (object_class,
-                                         PROP_OBSCURED,
-                                         g_param_spec_boolean ("obscured",
-                                                               NULL,
-                                                               NULL,
-                                                               FALSE,
-                                                               G_PARAM_READABLE));
+        obj_properties[PROP_MONITOR] =
+                g_param_spec_int ("monitor",
+                                  "Xinerama monitor",
+                                  "The monitor (in terms of Xinerama) which the window is on",
+                                  0, G_MAXINT, 0,
+                                  G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 
-        g_object_class_install_property (object_class,
-                                         PROP_MONITOR,
-                                         g_param_spec_int ("monitor",
-                                                           "Xinerama monitor",
-                                                           "The monitor (in terms of Xinerama) which the window is on",
-                                                           0,
-                                                           G_MAXINT,
-                                                           0,
-                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+        g_object_class_install_properties (object_class,
+                                           N_PROPERTIES,
+                                           obj_properties);
 
 }
 
@@ -809,15 +808,13 @@ on_drawing_area_realized (GtkWidget *drawing_area)
 static void
 gs_window_init (GSWindow *window)
 {
-        window->priv = GS_WINDOW_GET_PRIVATE (window);
+        window->geometry.x      = -1;
+        window->geometry.y      = -1;
+        window->geometry.width  = -1;
+        window->geometry.height = -1;
 
-        window->priv->geometry.x      = -1;
-        window->priv->geometry.y      = -1;
-        window->priv->geometry.width  = -1;
-        window->priv->geometry.height = -1;
-
-        window->priv->last_x = -1;
-        window->priv->last_y = -1;
+        window->last_x = -1;
+        window->last_y = -1;
 
         gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
 
@@ -840,11 +837,11 @@ gs_window_init (GSWindow *window)
                                | GDK_ENTER_NOTIFY_MASK
                                | GDK_LEAVE_NOTIFY_MASK);
 
-        window->priv->drawing_area = gtk_drawing_area_new ();
-        gtk_widget_show (window->priv->drawing_area);
-        gtk_widget_set_app_paintable (window->priv->drawing_area, TRUE);
-        gtk_container_add (GTK_CONTAINER (window), window->priv->drawing_area);
-        g_signal_connect (window->priv->drawing_area,
+        window->drawing_area = gtk_drawing_area_new ();
+        gtk_widget_show (window->drawing_area);
+        gtk_widget_set_app_paintable (window->drawing_area, TRUE);
+        gtk_container_add (GTK_CONTAINER (window), window->drawing_area);
+        g_signal_connect (window->drawing_area,
                           "realize",
                           G_CALLBACK (on_drawing_area_realized),
                           NULL);
@@ -853,17 +850,11 @@ gs_window_init (GSWindow *window)
 static void
 gs_window_finalize (GObject *object)
 {
-        GSWindow *window;
+        GSWindow *window = GS_WINDOW (object);
 
-        g_return_if_fail (object != NULL);
-        g_return_if_fail (GS_IS_WINDOW (object));
-
-        window = GS_WINDOW (object);
-
-        g_return_if_fail (window->priv != NULL);
-
-        if (window->priv->info_bar_timer_id > 0) {
-                g_source_remove (window->priv->info_bar_timer_id);
+        if (window->info_bar_timer_id > 0) {
+                g_source_remove (window->info_bar_timer_id);
+                window->info_bar_timer_id = 0;
         }
 
         remove_watchdog_timer (window);

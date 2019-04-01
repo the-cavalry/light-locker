@@ -28,28 +28,8 @@
 
 G_BEGIN_DECLS
 
-#define GS_TYPE_WINDOW         (gs_window_get_type ())
-#define GS_WINDOW(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GS_TYPE_WINDOW, GSWindow))
-#define GS_WINDOW_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GS_TYPE_WINDOW, GSWindowClass))
-#define GS_IS_WINDOW(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GS_TYPE_WINDOW))
-#define GS_IS_WINDOW_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GS_TYPE_WINDOW))
-#define GS_WINDOW_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GS_TYPE_WINDOW, GSWindowClass))
-
-typedef struct GSWindowPrivate GSWindowPrivate;
-
-typedef struct
-{
-        GtkWindow        window;
-
-        GSWindowPrivate *priv;
-} GSWindow;
-
-typedef struct
-{
-        GtkWindowClass   parent_class;
-} GSWindowClass;
-
-GType       gs_window_get_type           (void);
+#define GS_TYPE_WINDOW gs_window_get_type ()
+G_DECLARE_FINAL_TYPE (GSWindow, gs_window, GS, WINDOW, GObject)
 
 gboolean    gs_window_is_obscured        (GSWindow  *window);
 
