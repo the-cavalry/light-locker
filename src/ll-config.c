@@ -13,13 +13,12 @@
 /* Property identifiers */
 enum
 {
-    PROP_0,
-    PROP_LOCK_ON_SUSPEND,
+    PROP_LOCK_ON_SUSPEND = 1,
     PROP_LATE_LOCKING,
     PROP_LOCK_AFTER_SCREENSAVER,
     PROP_LOCK_ON_LID,
     PROP_IDLE_HINT,
-    N_PROP
+    N_PROPERTIES
 };
 
 
@@ -32,15 +31,9 @@ static void ll_config_set_property  (GObject        *object,
                                      const GValue   *value,
                                      GParamSpec     *pspec);
 
-
-struct _LLConfigClass
-{
-    GObjectClass __parent__;
-};
-
 struct _LLConfig
 {
-    GObject    __parent__;
+    GObject    parent_instance;
     GSettings *settings;
     guint      lock_after_screensaver;
     gboolean   late_locking : 1;
@@ -51,6 +44,7 @@ struct _LLConfig
 
 G_DEFINE_TYPE (LLConfig, ll_config, G_TYPE_OBJECT)
 
+static GParamSpec *obj_properties[N_PROPERTIES] = { NULL, };
 
 /**
  * ll_config_set_property:
@@ -159,67 +153,64 @@ ll_config_class_init (LLConfigClass *klass)
      *
      * Enable lock-on-suspend
      **/
-    g_object_class_install_property (object_class,
-                                     PROP_LOCK_ON_SUSPEND,
-                                     g_param_spec_boolean ("lock-on-suspend",
-                                                           NULL,
-                                                           NULL,
-                                                           FALSE,
-                                                           G_PARAM_READWRITE));
+    obj_properties[PROP_LOCK_ON_SUSPEND] =
+            g_param_spec_boolean ("lock-on-suspend",
+                                  NULL,
+                                  NULL,
+                                  FALSE,
+                                  G_PARAM_READWRITE);
 
     /**
      * LLConfig:late-locking:
      *
      * Lock after screensaver has ended.
      **/
-    g_object_class_install_property (object_class,
-                                     PROP_LATE_LOCKING,
-                                     g_param_spec_boolean ("late-locking",
-                                                           NULL,
-                                                           NULL,
-                                                           FALSE,
-                                                           G_PARAM_READWRITE));
+    obj_properties[PROP_LATE_LOCKING] =
+            g_param_spec_boolean ("late-locking",
+                                  NULL,
+                                  NULL,
+                                  FALSE,
+                                  G_PARAM_READWRITE);
 
     /**
      * LLConfig:lock-after-screensaver:
      *
      * Seconds after screensaver to lock
      **/
-    g_object_class_install_property (object_class,
-                                     PROP_LOCK_AFTER_SCREENSAVER,
-                                     g_param_spec_uint ("lock-after-screensaver",
-                                                        NULL,
-                                                        NULL,
-                                                        0,
-                                                        3600,
-                                                        0,
-                                                        G_PARAM_READWRITE));
+    obj_properties[PROP_LOCK_AFTER_SCREENSAVER] =
+            g_param_spec_uint ("lock-after-screensaver",
+                               NULL,
+                               NULL,
+                               0, 3600, 0,
+                               G_PARAM_READWRITE);
 
     /**
      * LLConfig:lock-on-lid:
      *
      * Enable lock-on-lid
      **/
-    g_object_class_install_property (object_class,
-                                     PROP_LOCK_ON_LID,
-                                     g_param_spec_boolean ("lock-on-lid",
-                                                           NULL,
-                                                           NULL,
-                                                           FALSE,
-                                                           G_PARAM_READWRITE));
+    obj_properties[PROP_LOCK_ON_LID] =
+            g_param_spec_boolean ("lock-on-lid",
+                                  NULL,
+                                  NULL,
+                                  FALSE,
+                                  G_PARAM_READWRITE);
 
     /**
      * LLConfig:idle-hint:
      *
      * Set idle hint during screensaver
      **/
-    g_object_class_install_property (object_class,
-                                     PROP_IDLE_HINT,
-                                     g_param_spec_boolean ("idle-hint",
-                                                           NULL,
-                                                           NULL,
-                                                           FALSE,
-                                                           G_PARAM_READWRITE));
+    obj_properties[PROP_IDLE_HINT] =
+            g_param_spec_boolean ("idle-hint",
+                                  NULL,
+                                  NULL,
+                                  FALSE,
+                                  G_PARAM_READWRITE);
+
+    g_object_class_install_properties (object_class,
+                                       N_PROPERTIES,
+                                       obj_properties);
 }
 
 /**
