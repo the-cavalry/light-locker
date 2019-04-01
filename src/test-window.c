@@ -115,13 +115,9 @@ main (int    argc,
 {
         GError *error = NULL;
 
-#ifdef ENABLE_NLS
         bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
-# ifdef HAVE_BIND_TEXTDOMAIN_CODESET
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-# endif
         textdomain (GETTEXT_PACKAGE);
-#endif
 
         if (! gtk_init_with_args (&argc, &argv, NULL, NULL, NULL, &error)) {
                 fprintf (stderr, "%s", error->message);

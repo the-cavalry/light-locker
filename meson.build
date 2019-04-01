@@ -121,6 +121,7 @@ endif
 
 conf = configuration_data()
 conf.set_quoted('GETTEXT_PACKAGE', 'light-locker')
+conf.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('localedir')))
 conf.set_quoted('VERSION', meson.project_version())
 
 config_header = configure_file(

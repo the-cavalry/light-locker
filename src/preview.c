@@ -76,8 +76,8 @@ main (int    argc,
         GError             *error = NULL;
         static gboolean     show_version = FALSE;
         static gboolean     debug        = FALSE;
-	static gint         width        = 640;
-	static gint         height       = 480;
+        static gint         width        = 640;
+        static gint         height       = 480;
         static GOptionEntry entries []   = {
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
@@ -86,13 +86,9 @@ main (int    argc,
                 { NULL }
         };
 
-#ifdef ENABLE_NLS
         bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
-# ifdef HAVE_BIND_TEXTDOMAIN_CODESET
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-# endif
         textdomain (GETTEXT_PACKAGE);
-#endif
 
         if (! gtk_init_with_args (&argc, &argv, NULL, entries, NULL, &error)) {
                 if (error) {
