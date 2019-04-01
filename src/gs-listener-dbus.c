@@ -54,20 +54,16 @@
 #define dbus_bus_request_name(connection, name, flags, err) dbus_bus_acquire_service(connection, name, flags, err)
 #endif
 
-static void              gs_listener_class_init         (GSListenerClass *klass);
-static void              gs_listener_init               (GSListener      *listener);
-static void              gs_listener_finalize           (GObject         *object);
-
 static DBusHandlerResult gs_listener_message_handler    (DBusConnection  *connection,
                                                          DBusMessage     *message,
                                                          void            *user_data);
 
 #define TYPE_MISMATCH_ERROR  GS_INTERFACE ".TypeMismatch"
 
-#define GS_LISTENER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_LISTENER, GSListenerPrivate))
-
-struct GSListenerPrivate
+struct _GSListener
 {
+        GObject parent_instance;
+
         DBusConnection *connection;
         DBusConnection *system_connection;
 
@@ -103,8 +99,7 @@ enum {
 };
 
 enum {
-        PROP_0,
-        PROP_ACTIVE,
+        PROP_ACTIVE = 1,
         PROP_LID_CLOSED,
 };
 
@@ -123,7 +118,7 @@ G_DEFINE_TYPE (GSListener, gs_listener, G_TYPE_OBJECT)
 gboolean
 gs_listener_is_lid_closed (GSListener *listener)
 {
-        return listener->priv->lid_closed;
+        return listener->lid_closed;
 }
 
 void
@@ -138,19 +133,19 @@ gs_listener_send_switch_greeter (GSListener *listener)
         /* Compare with 0. On failure this will return < 0.
          * In the later case we probably aren't using systemd.
          */
-        if (sd_session_is_active (listener->priv->sd_session_id) == 0) {
+        if (sd_session_is_active (listener->sd_session_id) == 0) {
                 gs_debug ("Refusing to switch to greeter");
                 return;
         };
 #endif
 
-        if (listener->priv->system_connection == NULL) {
+        if (listener->system_connection == NULL) {
                 gs_debug ("No connection to the system bus");
                 return;
         }
 
         message = dbus_message_new_method_call (DM_SERVICE,
-                                                listener->priv->seat_path,
+                                                listener->seat_path,
                                                 DM_SEAT_INTERFACE,
                                                 "SwitchToGreeter");
         if (message == NULL) {
@@ -158,7 +153,7 @@ gs_listener_send_switch_greeter (GSListener *listener)
                 return;
         }
 
-        sent = dbus_connection_send (listener->priv->system_connection, message, NULL);
+        sent = dbus_connection_send (listener->system_connection, message, NULL);
         dbus_message_unref (message);
 
         if (sent == FALSE) {
@@ -179,13 +174,13 @@ gs_listener_send_lock_session (GSListener *listener)
         /* Compare with 0. On failure this will return < 0.
          * In the later case we probably aren't using systemd.
          */
-        if (sd_session_is_active (listener->priv->sd_session_id) == 0) {
+        if (sd_session_is_active (listener->sd_session_id) == 0) {
                 gs_debug ("Refusing to lock session");
                 return;
         };
 #endif
 
-        if (listener->priv->system_connection == NULL) {
+        if (listener->system_connection == NULL) {
                 gs_debug ("No connection to the system bus");
                 return;
         }
@@ -199,7 +194,7 @@ gs_listener_send_lock_session (GSListener *listener)
                 return;
         }
 
-        sent = dbus_connection_send (listener->priv->system_connection, message, NULL);
+        sent = dbus_connection_send (listener->system_connection, message, NULL);
         dbus_message_unref (message);
 
         if (sent == FALSE) {
@@ -261,7 +256,7 @@ send_dbus_boolean_signal (GSListener *listener,
         dbus_message_iter_init_append (message, &iter);
         dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &value);
 
-        if (! send_dbus_message (listener->priv->connection, message)) {
+        if (! send_dbus_message (listener->connection, message)) {
                 gs_debug ("Could not send %s signal", name);
         }
 
@@ -275,7 +270,7 @@ send_dbus_boolean_signal (GSListener *listener,
         dbus_message_iter_init_append (message, &iter);
         dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &value);
 
-        if (! send_dbus_message (listener->priv->connection, message)) {
+        if (! send_dbus_message (listener->connection, message)) {
                 gs_debug ("Could not send %s signal", name);
         }
 
@@ -289,7 +284,7 @@ send_dbus_boolean_signal (GSListener *listener,
         dbus_message_iter_init_append (message, &iter);
         dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &value);
 
-        if (! send_dbus_message (listener->priv->connection, message)) {
+        if (! send_dbus_message (listener->connection, message)) {
                 gs_debug ("Could not send %s signal", name);
         }
 
@@ -312,12 +307,12 @@ void
 gs_listener_set_blanked (GSListener *listener,
                          gboolean    active)
 {
-        listener->priv->blanked = active;
+        listener->blanked = active;
 
         if (active) {
-                listener->priv->blanked_start = time (NULL);
+                listener->blanked_start = time (NULL);
         } else {
-                listener->priv->blanked_start = 0;
+                listener->blanked_start = 0;
         }
 
         gs_listener_send_signal_active_changed (listener, active);
@@ -331,7 +326,7 @@ gs_listener_set_active (GSListener *listener,
 
         g_return_val_if_fail (GS_IS_LISTENER (listener), FALSE);
 
-        if (listener->priv->active == active) {
+        if (listener->active == active) {
                 gs_debug ("Trying to set active state when already: %s",
                           active ? "active" : "inactive");
                 return FALSE;
@@ -346,7 +341,7 @@ gs_listener_set_active (GSListener *listener,
                 return FALSE;
         }
 
-        listener->priv->active = active;
+        listener->active = active;
 
         return TRUE;
 }
@@ -360,15 +355,15 @@ gs_listener_set_idle_hint (GSListener *listener, gboolean idle)
         gs_debug ("Send idle hint: %d", idle);
 
 #ifdef WITH_SYSTEMD
-        if (listener->priv->have_systemd) {
+        if (listener->have_systemd) {
 
-                if (listener->priv->system_connection == NULL) {
+                if (listener->system_connection == NULL) {
                         gs_debug ("No connection to the system bus");
                         return;
                 }
 
                 message = dbus_message_new_method_call (SYSTEMD_LOGIND_SERVICE,
-                                                        listener->priv->session_id,
+                                                        listener->session_id,
                                                         SYSTEMD_LOGIND_SESSION_INTERFACE,
                                                         "SetIdleHint");
                 if (message == NULL) {
@@ -384,7 +379,7 @@ gs_listener_set_idle_hint (GSListener *listener, gboolean idle)
                         return;
                 }
 
-                sent = dbus_connection_send (listener->priv->system_connection, message, NULL);
+                sent = dbus_connection_send (listener->system_connection, message, NULL);
                 dbus_message_unref (message);
 
                 if (sent == FALSE) {
@@ -397,13 +392,13 @@ gs_listener_set_idle_hint (GSListener *listener, gboolean idle)
 #endif
 
 #ifdef WITH_CONSOLE_KIT
-        if (listener->priv->system_connection == NULL) {
+        if (listener->system_connection == NULL) {
                 gs_debug ("No connection to the system bus");
                 return;
         }
 
         message = dbus_message_new_method_call (CK_SERVICE,
-                                                listener->priv->session_id,
+                                                listener->session_id,
                                                 CK_SESSION_INTERFACE,
                                                 "SetIdleHint");
         if (message == NULL) {
@@ -419,7 +414,7 @@ gs_listener_set_idle_hint (GSListener *listener, gboolean idle)
                 return;
         }
 
-        sent = dbus_connection_send (listener->priv->system_connection, message, NULL);
+        sent = dbus_connection_send (listener->system_connection, message, NULL);
         dbus_message_unref (message);
 
         if (sent == FALSE) {
@@ -444,7 +439,7 @@ gs_listener_delay_suspend (GSListener *listener)
 
         gs_debug ("Delay suspend");
 
-        if (listener->priv->system_connection == NULL) {
+        if (listener->system_connection == NULL) {
                 gs_debug ("No connection to the system bus");
                 return;
         }
@@ -473,7 +468,7 @@ gs_listener_delay_suspend (GSListener *listener)
                 return;
         }
 
-        reply = dbus_connection_send_with_reply_and_block (listener->priv->system_connection,
+        reply = dbus_connection_send_with_reply_and_block (listener->system_connection,
                                                            message,
                                                            -1, &error);
         dbus_message_unref (message);
@@ -498,7 +493,7 @@ gs_listener_delay_suspend (GSListener *listener)
                 return;
         }
 
-        listener->priv->delay_fd = fd;
+        listener->delay_fd = fd;
 #endif
 }
 
@@ -506,11 +501,11 @@ void
 gs_listener_resume_suspend (GSListener *listener)
 {
 #ifdef WITH_SYSTEMD
-        gs_debug ("Resume suspend: fd=%d", listener->priv->delay_fd);
+        gs_debug ("Resume suspend: fd=%d", listener->delay_fd);
 
-        if (listener->priv->delay_fd >= 0) {
-                close (listener->priv->delay_fd);
-                listener->priv->delay_fd = -1;
+        if (listener->delay_fd >= 0) {
+                close (listener->delay_fd);
+                listener->delay_fd = -1;
         }
 #endif
 }
@@ -526,13 +521,13 @@ gs_listener_add_inhibit (GSListener *listener,
                 g_error ("No memory");
         }
 
-        *cookie = ++listener->priv->inhibit_last_cookie;
+        *cookie = ++listener->inhibit_last_cookie;
 
-        if (g_hash_table_size (listener->priv->inhibit_list) == 0) {
+        if (g_hash_table_size (listener->inhibit_list) == 0) {
                 g_signal_emit (listener, signals [INHIBIT], 0, TRUE);
         }
 
-        g_hash_table_insert (listener->priv->inhibit_list, cookie, g_strdup (owner));
+        g_hash_table_insert (listener->inhibit_list, cookie, g_strdup (owner));
 
         return *cookie;
 }
@@ -544,7 +539,7 @@ gs_listener_remove_inhibit (GSListener    *listener,
 {
         const gchar *owned;
 
-        owned = g_hash_table_lookup (listener->priv->inhibit_list, &cookie);
+        owned = g_hash_table_lookup (listener->inhibit_list, &cookie);
 
         if (owned == NULL) {
                 return;
@@ -554,9 +549,9 @@ gs_listener_remove_inhibit (GSListener    *listener,
                 return;
         }
 
-        g_hash_table_remove (listener->priv->inhibit_list, &cookie);
+        g_hash_table_remove (listener->inhibit_list, &cookie);
 
-        if (g_hash_table_size (listener->priv->inhibit_list) == 0) {
+        if (g_hash_table_size (listener->inhibit_list) == 0) {
                 g_signal_emit (listener, signals [INHIBIT], 0, FALSE);
         }
 }
@@ -578,11 +573,11 @@ gs_listener_disonnect_inhibit (GSListener  *listener,
 {
         guint count;
 
-        count = g_hash_table_foreach_remove (listener->priv->inhibit_list, compare_owner, (gpointer)owner);
+        count = g_hash_table_foreach_remove (listener->inhibit_list, compare_owner, (gpointer)owner);
 
         gs_debug ("Inhibitor disconnected: %s (%u)", owner, count);
 
-        if (count > 0 && g_hash_table_size (listener->priv->inhibit_list) == 0) {
+        if (count > 0 && g_hash_table_size (listener->inhibit_list) == 0) {
                 g_signal_emit (listener, signals [INHIBIT], 0, FALSE);
         }
 }
@@ -1012,12 +1007,12 @@ listener_dbus_handle_session_message (GSListener     *listener,
                 return listener_set_active (listener, connection, message, TRUE);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE, "GetActive")) {
-                gs_debug ("Received GetActive request: %d", listener->priv->blanked);
-                return listener_get_bool (listener, connection, message, listener->priv->blanked);
+                gs_debug ("Received GetActive request: %d", listener->blanked);
+                return listener_get_bool (listener, connection, message, listener->blanked);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE, "GetActiveTime")) {
-                gs_debug ("Received GetActiveTime request: %d", listener->priv->blanked_start);
-                return listener_get_time (listener, connection, message, listener->priv->blanked_start);
+                gs_debug ("Received GetActiveTime request: %d", listener->blanked_start);
+                return listener_get_time (listener, connection, message, listener->blanked_start);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE, "GetSessionIdleTime")) {
                 gs_debug ("Received GetSessionIdleTime request");
@@ -1047,12 +1042,12 @@ listener_dbus_handle_session_message (GSListener     *listener,
                 return send_success_reply (connection, message);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE_GNOME, "GetActive")) {
-                gs_debug ("Received GetActive request: %d", listener->priv->blanked);
-                return listener_get_bool (listener, connection, message, listener->priv->blanked);
+                gs_debug ("Received GetActive request: %d", listener->blanked);
+                return listener_get_bool (listener, connection, message, listener->blanked);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE_GNOME, "GetActiveTime")) {
-                gs_debug ("Received GetActiveTime request: %d", listener->priv->blanked_start);
-                return listener_get_time (listener, connection, message, listener->priv->blanked_start);
+                gs_debug ("Received GetActiveTime request: %d", listener->blanked_start);
+                return listener_get_time (listener, connection, message, listener->blanked_start);
         }
         if (dbus_message_is_method_call (message, GS_INTERFACE_GNOME, "SimulateUserActivity")) {
                 gs_debug ("Received SimulateUserActivity request");
@@ -1099,10 +1094,10 @@ _listener_message_path_is_our_session (GSListener  *listener,
         if (ssid == NULL)
                 return FALSE;
 
-        if (listener->priv->session_id == NULL)
+        if (listener->session_id == NULL)
                 return FALSE;
 
-        if (strcmp (ssid, listener->priv->session_id) == 0)
+        if (strcmp (ssid, listener->session_id) == 0)
                 return TRUE;
 
         return FALSE;
@@ -1121,14 +1116,14 @@ query_session_active (GSListener *listener)
         const char     *interface;
         const char     *property;
 
-        if (listener->priv->system_connection == NULL) {
+        if (listener->system_connection == NULL) {
                 gs_debug ("No connection to the system bus");
                 return FALSE;
         }
 
         dbus_error_init (&error);
 
-        message = dbus_message_new_method_call (SYSTEMD_LOGIND_SERVICE, listener->priv->session_id, DBUS_PROPERTIES_INTERFACE, "Get");
+        message = dbus_message_new_method_call (SYSTEMD_LOGIND_SERVICE, listener->session_id, DBUS_PROPERTIES_INTERFACE, "Get");
         if (message == NULL) {
                 gs_debug ("Couldn't allocate the dbus message");
                 return FALSE;
@@ -1144,7 +1139,7 @@ query_session_active (GSListener *listener)
         }
 
         /* FIXME: use async? */
-        reply = dbus_connection_send_with_reply_and_block (listener->priv->system_connection,
+        reply = dbus_connection_send_with_reply_and_block (listener->system_connection,
                                                            message,
                                                            -1, &error);
         dbus_message_unref (message);
@@ -1189,7 +1184,7 @@ query_lid_closed (GSListener *listener)
         const char     *interface;
         const char     *property;
 
-        if (listener->priv->system_connection == NULL) {
+        if (listener->system_connection == NULL) {
                 gs_debug ("No connection to the system bus");
                 return FALSE;
         }
@@ -1212,7 +1207,7 @@ query_lid_closed (GSListener *listener)
         }
 
         /* FIXME: use async? */
-        reply = dbus_connection_send_with_reply_and_block (listener->priv->system_connection,
+        reply = dbus_connection_send_with_reply_and_block (listener->system_connection,
                                                            message,
                                                            -1, &error);
         dbus_message_unref (message);
@@ -1341,7 +1336,7 @@ listener_dbus_handle_system_message (DBusConnection *connection,
 
 #ifdef WITH_SYSTEMD
 
-        if (listener->priv->have_systemd) {
+        if (listener->have_systemd) {
 
                 if (dbus_message_is_signal (message, SYSTEMD_LOGIND_SESSION_INTERFACE, "Unlock")) {
                         if (_listener_message_path_is_our_session (listener, message)) {
@@ -1374,8 +1369,8 @@ listener_dbus_handle_system_message (DBusConnection *connection,
 #ifdef WITH_UPOWER
 #ifdef WITH_LOCK_ON_LID
                         if (properties_changed_match (message, "LidIsClosed")) {
-                                listener->priv->lid_closed = query_lid_closed (listener);
-                                gs_debug ("UPower notified LidIsClosed %d", (int)listener->priv->lid_closed);
+                                listener->lid_closed = query_lid_closed (listener);
+                                gs_debug ("UPower notified LidIsClosed %d", (int)listener->lid_closed);
                                 g_object_notify (G_OBJECT (listener), "lid-closed");
                         }
 #endif
@@ -1476,8 +1471,8 @@ listener_dbus_handle_system_message (DBusConnection *connection,
         if (dbus_message_is_signal (message, DBUS_INTERFACE_PROPERTIES, "PropertiesChanged")) {
 
                 if (properties_changed_match (message, "LidIsClosed")) {
-                        listener->priv->lid_closed = query_lid_closed (listener);
-                        gs_debug ("UPower notified LidIsClosed %d", (int)listener->priv->lid_closed);
+                        listener->lid_closed = query_lid_closed (listener);
+                        gs_debug ("UPower notified LidIsClosed %d", (int)listener->lid_closed);
                         g_object_notify (G_OBJECT (listener), "lid-closed");
                 }
 
@@ -1522,9 +1517,9 @@ gs_listener_dbus_init (GSListener *listener)
 
         dbus_error_init (&error);
 
-        if (listener->priv->connection == NULL) {
-                listener->priv->connection = dbus_bus_get (DBUS_BUS_SESSION, &error);
-                if (listener->priv->connection == NULL) {
+        if (listener->connection == NULL) {
+                listener->connection = dbus_bus_get (DBUS_BUS_SESSION, &error);
+                if (listener->connection == NULL) {
                         if (dbus_error_is_set (&error)) {
                                 gs_debug ("couldn't connect to session bus: %s",
                                           error.message);
@@ -1533,13 +1528,13 @@ gs_listener_dbus_init (GSListener *listener)
                         return FALSE;
                 }
 
-                dbus_connection_setup_with_g_main (listener->priv->connection, NULL);
-                dbus_connection_set_exit_on_disconnect (listener->priv->connection, FALSE);
+                dbus_connection_setup_with_g_main (listener->connection, NULL);
+                dbus_connection_set_exit_on_disconnect (listener->connection, FALSE);
         }
 
-        if (listener->priv->system_connection == NULL) {
-                listener->priv->system_connection = dbus_bus_get (DBUS_BUS_SYSTEM, &error);
-                if (listener->priv->system_connection == NULL) {
+        if (listener->system_connection == NULL) {
+                listener->system_connection = dbus_bus_get (DBUS_BUS_SYSTEM, &error);
+                if (listener->system_connection == NULL) {
                         if (dbus_error_is_set (&error)) {
                                 gs_debug ("couldn't connect to system bus: %s",
                                           error.message);
@@ -1548,8 +1543,8 @@ gs_listener_dbus_init (GSListener *listener)
                         return FALSE;
                 }
 
-                dbus_connection_setup_with_g_main (listener->priv->system_connection, NULL);
-                dbus_connection_set_exit_on_disconnect (listener->priv->system_connection, FALSE);
+                dbus_connection_setup_with_g_main (listener->system_connection, NULL);
+                dbus_connection_set_exit_on_disconnect (listener->system_connection, FALSE);
         }
 
         return TRUE;
@@ -1590,13 +1585,13 @@ listener_dbus_filter_function (DBusConnection *connection,
                            "retrying to reconnect every 10 seconds");
 
                 dbus_connection_unref (connection);
-                listener->priv->connection = NULL;
+                listener->connection = NULL;
 
                 g_timeout_add (10000, (GSourceFunc)reinit_dbus, listener);
         } else if (dbus_message_is_signal (message,
                                            DBUS_INTERFACE_DBUS,
                                            "NameOwnerChanged")) {
-                if (g_hash_table_size (listener->priv->inhibit_list) > 0)
+                if (g_hash_table_size (listener->inhibit_list) > 0)
                         listener_dbus_handle_owner_changed (listener, connection, message);
         } else {
                 return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
@@ -1623,7 +1618,7 @@ listener_dbus_system_filter_function (DBusConnection *connection,
                            "retrying to reconnect every 10 seconds");
 
                 dbus_connection_unref (connection);
-                listener->priv->system_connection = NULL;
+                listener->system_connection = NULL;
 
                 g_timeout_add (10000, (GSourceFunc)reinit_dbus, listener);
         } else {
@@ -1665,147 +1660,15 @@ gs_listener_get_property (GObject            *object,
 
         switch (prop_id) {
         case PROP_ACTIVE:
-                g_value_set_boolean (value, self->priv->active);
+                g_value_set_boolean (value, self->active);
                 break;
         case PROP_LID_CLOSED:
-                g_value_set_boolean (value, self->priv->lid_closed);
+                g_value_set_boolean (value, self->lid_closed);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
         }
-}
-
-static void
-gs_listener_class_init (GSListenerClass *klass)
-{
-        GObjectClass   *object_class = G_OBJECT_CLASS (klass);
-
-        object_class->finalize     = gs_listener_finalize;
-        object_class->get_property = gs_listener_get_property;
-        object_class->set_property = gs_listener_set_property;
-
-        signals [LOCK] =
-                g_signal_new ("lock",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, lock),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-        signals [LOCKED] =
-                g_signal_new ("locked",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, locked),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-        signals [SESSION_SWITCHED] =
-                g_signal_new ("session-switched",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, session_switched),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__BOOLEAN,
-                              G_TYPE_NONE,
-                              1,
-                              G_TYPE_BOOLEAN);
-        signals [ACTIVE_CHANGED] =
-                g_signal_new ("active-changed",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, active_changed),
-                              NULL,
-                              NULL,
-                              gs_marshal_BOOLEAN__BOOLEAN,
-                              G_TYPE_BOOLEAN,
-                              1,
-                              G_TYPE_BOOLEAN);
-        signals [SUSPEND] =
-                g_signal_new ("suspend",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, suspend),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-        signals [RESUME] =
-                g_signal_new ("resume",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, resume),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-        signals [SIMULATE_USER_ACTIVITY] =
-                g_signal_new ("simulate-user-activity",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, simulate_user_activity),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-        signals [BLANKING] =
-                g_signal_new ("blanking",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, blanking),
-                              NULL,
-                              NULL,
-                              gs_marshal_BOOLEAN__BOOLEAN,
-                              G_TYPE_BOOLEAN,
-                              1,
-                              G_TYPE_BOOLEAN);
-        signals [INHIBIT] =
-                g_signal_new ("inhibit",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, inhibit),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__BOOLEAN,
-                              G_TYPE_NONE,
-                              1,
-                              G_TYPE_BOOLEAN);
-        signals [IDLE_TIME] =
-                g_signal_new ("idle-time",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerClass, idle_time),
-                              NULL,
-                              NULL,
-                              gs_marshal_ULONG__VOID,
-                              G_TYPE_ULONG,
-                              0);
-
-        g_object_class_install_property (object_class,
-                                         PROP_ACTIVE,
-                                         g_param_spec_boolean ("active",
-                                                               NULL,
-                                                               NULL,
-                                                               FALSE,
-                                                               G_PARAM_READWRITE));
-        g_object_class_install_property (object_class,
-                                         PROP_LID_CLOSED,
-                                         g_param_spec_boolean ("lid-closed",
-                                                               NULL,
-                                                               NULL,
-                                                               FALSE,
-                                                               G_PARAM_READABLE));
-
-        g_type_class_add_private (klass, sizeof (GSListenerPrivate));
 }
 
 
@@ -1845,7 +1708,7 @@ gs_listener_acquire (GSListener *listener,
 
         g_return_val_if_fail (listener != NULL, FALSE);
 
-        if (! listener->priv->connection) {
+        if (! listener->connection) {
                 g_set_error (error,
                              GS_LISTENER_ERROR,
                              GS_LISTENER_ERROR_ACQUISITION_FAILURE,
@@ -1854,7 +1717,7 @@ gs_listener_acquire (GSListener *listener,
                 return FALSE;
         }
 
-        is_connected = dbus_connection_get_is_connected (listener->priv->connection);
+        is_connected = dbus_connection_get_is_connected (listener->connection);
         if (! is_connected) {
                 g_set_error (error,
                              GS_LISTENER_ERROR,
@@ -1864,7 +1727,7 @@ gs_listener_acquire (GSListener *listener,
                 return FALSE;
         }
 
-        if (screensaver_is_running (listener->priv->connection)) {
+        if (screensaver_is_running (listener->connection)) {
                 g_set_error (error,
                              GS_LISTENER_ERROR,
                              GS_LISTENER_ERROR_ACQUISITION_FAILURE,
@@ -1875,7 +1738,7 @@ gs_listener_acquire (GSListener *listener,
 
         dbus_error_init (&buserror);
 
-        if (dbus_connection_register_object_path (listener->priv->connection,
+        if (dbus_connection_register_object_path (listener->connection,
                                                   GS_PATH,
                                                   &gs_listener_vtable,
                                                   listener) == FALSE) {
@@ -1884,7 +1747,7 @@ gs_listener_acquire (GSListener *listener,
         }
 
         /* Register KDE path */
-        if (dbus_connection_register_object_path (listener->priv->connection,
+        if (dbus_connection_register_object_path (listener->connection,
                                                   GS_PATH_KDE,
                                                   &gs_listener_vtable,
                                                   listener) == FALSE) {
@@ -1893,7 +1756,7 @@ gs_listener_acquire (GSListener *listener,
         }
 
         /* Register GNOME interface */
-        if (dbus_connection_register_object_path (listener->priv->connection,
+        if (dbus_connection_register_object_path (listener->connection,
                                                   GS_PATH_GNOME,
                                                   &gs_listener_vtable,
                                                   listener) == FALSE) {
@@ -1901,7 +1764,7 @@ gs_listener_acquire (GSListener *listener,
                 return FALSE;
         }
 
-        res = dbus_bus_request_name (listener->priv->connection,
+        res = dbus_bus_request_name (listener->connection,
                                      GS_SERVICE,
                                      DBUS_NAME_FLAG_DO_NOT_QUEUE,
                                      &buserror);
@@ -1923,7 +1786,7 @@ gs_listener_acquire (GSListener *listener,
 
         dbus_error_free (&buserror);
 
-        res = dbus_bus_request_name (listener->priv->connection,
+        res = dbus_bus_request_name (listener->connection,
                                      GS_SERVICE_GNOME,
                                      DBUS_NAME_FLAG_DO_NOT_QUEUE,
                                      &buserror);
@@ -1945,35 +1808,35 @@ gs_listener_acquire (GSListener *listener,
 
         dbus_error_free (&buserror);
 
-        dbus_connection_add_filter (listener->priv->connection, listener_dbus_filter_function, listener, NULL);
+        dbus_connection_add_filter (listener->connection, listener_dbus_filter_function, listener, NULL);
 
-        dbus_bus_add_match (listener->priv->connection,
+        dbus_bus_add_match (listener->connection,
                             "type='signal'"
                             ",interface='"DBUS_INTERFACE_DBUS"'"
                             ",sender='"DBUS_SERVICE_DBUS"'"
                             ",member='NameOwnerChanged'",
                             NULL);
 
-        if (listener->priv->system_connection != NULL) {
-                dbus_connection_add_filter (listener->priv->system_connection,
+        if (listener->system_connection != NULL) {
+                dbus_connection_add_filter (listener->system_connection,
                                             listener_dbus_system_filter_function,
                                             listener,
                                             NULL);
 #ifdef WITH_SYSTEMD
-                if (listener->priv->have_systemd) {
-                        dbus_bus_add_match (listener->priv->system_connection,
+                if (listener->have_systemd) {
+                        dbus_bus_add_match (listener->system_connection,
                                             "type='signal'"
                                             ",sender='"SYSTEMD_LOGIND_SERVICE"'"
                                             ",interface='"SYSTEMD_LOGIND_SESSION_INTERFACE"'"
                                             ",member='Unlock'",
                                             NULL);
-                        dbus_bus_add_match (listener->priv->system_connection,
+                        dbus_bus_add_match (listener->system_connection,
                                             "type='signal'"
                                             ",sender='"SYSTEMD_LOGIND_SERVICE"'"
                                             ",interface='"SYSTEMD_LOGIND_SESSION_INTERFACE"'"
                                             ",member='Lock'",
                                             NULL);
-                        dbus_bus_add_match (listener->priv->system_connection,
+                        dbus_bus_add_match (listener->system_connection,
                                             "type='signal'"
                                             ",sender='"SYSTEMD_LOGIND_SERVICE"'"
                                             ",interface='"DBUS_INTERFACE_PROPERTIES"'"
@@ -1981,7 +1844,7 @@ gs_listener_acquire (GSListener *listener,
                                             NULL);
 
 #ifdef WITH_LOCK_ON_SUSPEND
-                        dbus_bus_add_match (listener->priv->system_connection,
+                        dbus_bus_add_match (listener->system_connection,
                                             "type='signal'"
                                             ",sender='"SYSTEMD_LOGIND_SERVICE"'"
                                             ",interface='"SYSTEMD_LOGIND_INTERFACE"'"
@@ -1991,7 +1854,7 @@ gs_listener_acquire (GSListener *listener,
 
 #ifdef WITH_UPOWER
 #ifdef WITH_LOCK_ON_LID
-                        dbus_bus_add_match (listener->priv->system_connection,
+                        dbus_bus_add_match (listener->system_connection,
                                             "type='signal'"
                                             ",sender='"UP_SERVICE"'"
                                             ",interface='"DBUS_INTERFACE_PROPERTIES"'"
@@ -2005,19 +1868,19 @@ gs_listener_acquire (GSListener *listener,
 #endif
 
 #ifdef WITH_CONSOLE_KIT
-                dbus_bus_add_match (listener->priv->system_connection,
+                dbus_bus_add_match (listener->system_connection,
                                     "type='signal'"
                                     ",sender='"CK_SERVICE"'"
                                     ",interface='"CK_SESSION_INTERFACE"'"
                                     ",member='Unlock'",
                                     NULL);
-                dbus_bus_add_match (listener->priv->system_connection,
+                dbus_bus_add_match (listener->system_connection,
                                     "type='signal'"
                                     ",sender='"CK_SERVICE"'"
                                     ",interface='"CK_SESSION_INTERFACE"'"
                                     ",member='Lock'",
                                     NULL);
-                dbus_bus_add_match (listener->priv->system_connection,
+                dbus_bus_add_match (listener->system_connection,
                                     "type='signal'"
                                     ",sender='"CK_SERVICE"'"
                                     ",interface='"CK_SESSION_INTERFACE"'"
@@ -2027,13 +1890,13 @@ gs_listener_acquire (GSListener *listener,
 
 #ifdef WITH_UPOWER
 #ifdef WITH_LOCK_ON_SUSPEND
-                dbus_bus_add_match (listener->priv->system_connection,
+                dbus_bus_add_match (listener->system_connection,
                                     "type='signal'"
                                     ",sender='"UP_SERVICE"'"
                                     ",interface='"UP_INTERFACE"'"
                                     ",member='Sleeping'",
                                     NULL);
-                dbus_bus_add_match (listener->priv->system_connection,
+                dbus_bus_add_match (listener->system_connection,
                                     "type='signal'"
                                     ",sender='"UP_SERVICE"'"
                                     ",interface='"UP_INTERFACE"'"
@@ -2041,7 +1904,7 @@ gs_listener_acquire (GSListener *listener,
                                     NULL);
 #endif
 #ifdef WITH_LOCK_ON_LID
-                dbus_bus_add_match (listener->priv->system_connection,
+                dbus_bus_add_match (listener->system_connection,
                                     "type='signal'"
                                     ",sender='"UP_SERVICE"'"
                                     ",interface='"DBUS_INTERFACE_PROPERTIES"'"
@@ -2062,7 +1925,7 @@ query_session_id (GSListener *listener)
         DBusError       error;
         char           *ssid;
 
-        if (listener->priv->system_connection == NULL) {
+        if (listener->system_connection == NULL) {
                 gs_debug ("No connection to the system bus");
                 return NULL;
         }
@@ -2072,7 +1935,7 @@ query_session_id (GSListener *listener)
         dbus_error_init (&error);
 
 #ifdef WITH_SYSTEMD
-        if (listener->priv->have_systemd) {
+        if (listener->have_systemd) {
                 dbus_uint32_t pid = getpid();
 
                 message = dbus_message_new_method_call (SYSTEMD_LOGIND_SERVICE, SYSTEMD_LOGIND_PATH, SYSTEMD_LOGIND_INTERFACE, "GetSessionByPID");
@@ -2088,7 +1951,7 @@ query_session_id (GSListener *listener)
                 }
 
                 /* FIXME: use async? */
-                reply = dbus_connection_send_with_reply_and_block (listener->priv->system_connection,
+                reply = dbus_connection_send_with_reply_and_block (listener->system_connection,
                                                                    message,
                                                                    -1, &error);
                 dbus_message_unref (message);
@@ -2127,7 +1990,7 @@ query_session_id (GSListener *listener)
         }
 
         /* FIXME: use async? */
-        reply = dbus_connection_send_with_reply_and_block (listener->priv->system_connection,
+        reply = dbus_connection_send_with_reply_and_block (listener->system_connection,
                                                            message,
                                                            -1, &error);
         dbus_message_unref (message);
@@ -2184,22 +2047,22 @@ query_sd_session_id (GSListener *listener)
 static void
 init_session_id (GSListener *listener)
 {
-        g_free (listener->priv->session_id);
-        listener->priv->session_id = query_session_id (listener);
-        if (listener->priv->session_id == NULL)
+        g_free (listener->session_id);
+        listener->session_id = query_session_id (listener);
+        if (listener->session_id == NULL)
                 g_error ("session_id is not set, is /proc mounted with hidepid>0?");
         else
-                gs_debug ("Got session-id: %s", listener->priv->session_id);
+                gs_debug ("Got session-id: %s", listener->session_id);
 
 #ifdef WITH_SYSTEMD
-        g_free (listener->priv->sd_session_id);
-        listener->priv->sd_session_id = query_sd_session_id (listener);
-        if (listener->priv->sd_session_id == NULL)
+        g_free (listener->sd_session_id);
+        listener->sd_session_id = query_sd_session_id (listener);
+        if (listener->sd_session_id == NULL)
         {
                 gs_debug ("Falling back to XDG_SESSION_ID environment variable");
-                listener->priv->sd_session_id = g_strdup(getenv("XDG_SESSION_ID"));
+                listener->sd_session_id = g_strdup(getenv("XDG_SESSION_ID"));
         }
-        gs_debug ("Got sd-session-id: %s", listener->priv->sd_session_id);
+        gs_debug ("Got sd-session-id: %s", listener->sd_session_id);
 #endif
 }
 
@@ -2215,7 +2078,7 @@ query_seat_path (GSListener *listener)
         const char     *interface;
         const char     *property;
 
-        if (listener->priv->system_connection == NULL) {
+        if (listener->system_connection == NULL) {
                 gs_debug ("No connection to the system bus");
                 return NULL;
         }
@@ -2244,7 +2107,7 @@ query_seat_path (GSListener *listener)
         }
 
         /* FIXME: use async? */
-        reply = dbus_connection_send_with_reply_and_block (listener->priv->system_connection,
+        reply = dbus_connection_send_with_reply_and_block (listener->system_connection,
                                                            message,
                                                            -1, &error);
         dbus_message_unref (message);
@@ -2278,20 +2141,18 @@ query_seat_path (GSListener *listener)
 static void
 init_seat_path (GSListener *listener)
 {
-        g_free (listener->priv->seat_path);
-        listener->priv->seat_path = query_seat_path (listener);
-        gs_debug ("Got seat: %s", listener->priv->seat_path);
+        g_free (listener->seat_path);
+        listener->seat_path = query_seat_path (listener);
+        gs_debug ("Got seat: %s", listener->seat_path);
 }
 
 static void
 gs_listener_init (GSListener *listener)
 {
-        listener->priv = GS_LISTENER_GET_PRIVATE (listener);
-
 #ifdef WITH_SYSTEMD
         /* check if logind is running */
-        listener->priv->have_systemd = (access("/run/systemd/seats/", F_OK) >= 0);
-        listener->priv->delay_fd = -1;
+        listener->have_systemd = (access("/run/systemd/seats/", F_OK) >= 0);
+        listener->delay_fd = -1;
 #endif
 
         gs_listener_dbus_init (listener);
@@ -2299,29 +2160,152 @@ gs_listener_init (GSListener *listener)
         init_session_id (listener);
         init_seat_path (listener);
 
-        listener->priv->inhibit_list = g_hash_table_new_full (g_int_hash, g_int_equal, g_free, g_free);
+        listener->inhibit_list = g_hash_table_new_full (g_int_hash, g_int_equal, g_free, g_free);
 }
 
 static void
 gs_listener_finalize (GObject *object)
 {
-        GSListener *listener;
+        GSListener *listener = GS_LISTENER (object);
 
-        g_return_if_fail (object != NULL);
-        g_return_if_fail (GS_IS_LISTENER (object));
-
-        listener = GS_LISTENER (object);
-
-        g_return_if_fail (listener->priv != NULL);
-
-        g_free (listener->priv->session_id);
-        g_free (listener->priv->seat_path);
+        g_free (listener->session_id);
+        g_free (listener->seat_path);
 
 #ifdef WITH_SYSTEMD
-        g_free (listener->priv->sd_session_id);
+        g_free (listener->sd_session_id);
 #endif
 
         G_OBJECT_CLASS (gs_listener_parent_class)->finalize (object);
+}
+
+static void
+gs_listener_class_init (GSListenerClass *klass)
+{
+        GObjectClass   *object_class = G_OBJECT_CLASS (klass);
+
+        object_class->finalize     = gs_listener_finalize;
+        object_class->get_property = gs_listener_get_property;
+        object_class->set_property = gs_listener_set_property;
+
+        signals [LOCK] =
+                g_signal_new ("lock",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals [LOCKED] =
+                g_signal_new ("locked",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals [SESSION_SWITCHED] =
+                g_signal_new ("session-switched",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__BOOLEAN,
+                              G_TYPE_NONE,
+                              1,
+                              G_TYPE_BOOLEAN);
+        signals [ACTIVE_CHANGED] =
+                g_signal_new ("active-changed",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL,
+                              NULL,
+                              gs_marshal_BOOLEAN__BOOLEAN,
+                              G_TYPE_BOOLEAN,
+                              1,
+                              G_TYPE_BOOLEAN);
+        signals [SUSPEND] =
+                g_signal_new ("suspend",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals [RESUME] =
+                g_signal_new ("resume",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals [SIMULATE_USER_ACTIVITY] =
+                g_signal_new ("simulate-user-activity",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals [BLANKING] =
+                g_signal_new ("blanking",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL,
+                              NULL,
+                              gs_marshal_BOOLEAN__BOOLEAN,
+                              G_TYPE_BOOLEAN,
+                              1,
+                              G_TYPE_BOOLEAN);
+        signals [INHIBIT] =
+                g_signal_new ("inhibit",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__BOOLEAN,
+                              G_TYPE_NONE,
+                              1,
+                              G_TYPE_BOOLEAN);
+        signals [IDLE_TIME] =
+                g_signal_new ("idle-time",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL,
+                              NULL,
+                              gs_marshal_ULONG__VOID,
+                              G_TYPE_ULONG,
+                              0);
+
+        g_object_class_install_property (object_class,
+                                         PROP_ACTIVE,
+                                         g_param_spec_boolean ("active",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_LID_CLOSED,
+                                         g_param_spec_boolean ("lid-closed",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READABLE));
 }
 
 GSListener *

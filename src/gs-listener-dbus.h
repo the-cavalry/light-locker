@@ -25,43 +25,8 @@
 
 G_BEGIN_DECLS
 
-#define GS_TYPE_LISTENER         (gs_listener_get_type ())
-#define GS_LISTENER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GS_TYPE_LISTENER, GSListener))
-#define GS_LISTENER_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GS_TYPE_LISTENER, GSListenerClass))
-#define GS_IS_LISTENER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GS_TYPE_LISTENER))
-#define GS_IS_LISTENER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GS_TYPE_LISTENER))
-#define GS_LISTENER_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GS_TYPE_LISTENER, GSListenerClass))
-
-typedef struct GSListenerPrivate GSListenerPrivate;
-
-typedef struct
-{
-        GObject            parent;
-        GSListenerPrivate *priv;
-} GSListener;
-
-typedef struct
-{
-        GObjectClass       parent_class;
-
-        void            (* lock)                     (GSListener *listener);
-        void            (* locked)                   (GSListener *listener);
-        void            (* session_switched)         (GSListener *listener,
-                                                      gboolean    active);
-        gboolean        (* active_changed)           (GSListener *listener,
-                                                      gboolean    active);
-        void            (* suspend)                  (GSListener *listener);
-        void            (* resume)                   (GSListener *listener);
-        void            (* simulate_user_activity)   (GSListener *listener);
-        gboolean        (* blanking)                 (GSListener *listener,
-                                                      gboolean    active);
-        void            (* inhibit)                  (GSListener *listener,
-                                                      gboolean    active);
-        gboolean        (* is_blanked)               (GSListener *listener);
-        gulong          (* blanked_time)             (GSListener *listener);
-        gulong          (* idle_time)                (GSListener *listener);
-
-} GSListenerClass;
+#define GS_TYPE_LISTENER gs_listener_get_type ()
+G_DECLARE_FINAL_TYPE (GSListener, gs_listener, GS, LISTENER, GObject)
 
 typedef enum
 {
@@ -71,8 +36,6 @@ typedef enum
 #define GS_LISTENER_ERROR gs_listener_error_quark ()
 
 GQuark      gs_listener_error_quark             (void);
-
-GType       gs_listener_get_type                (void);
 
 GSListener *gs_listener_new                     (void);
 gboolean    gs_listener_acquire                 (GSListener *listener,
