@@ -11,17 +11,12 @@ dbus_glib_dep = dependency('dbus-glib-1', version: '>=0.30')
 x11_dep = dependency('x11', version: '>=1.0')
 xext_dep = dependency('xext', required: false)
 xscrnsaver_dep = dependency('xscrnsaver', required: false)
+gtk_dep = dependency('gtk+-3.0', version: '>=3.0')
 x_org_dep = [
   x11_dep,
   xext_dep,
   xscrnsaver_dep
 ]
-
-if get_option('gtk2')
-  gtk_dep = dependency('gtk+-2.0', version: '>=2.24.0')
-else
-  gtk_dep = dependency('gtk+-3.0', version: '>=2.99.3')
-endif
 
 dbus_dep = dependency('dbus-1')
 dbus_version_parts = dbus_dep.version().split('.')

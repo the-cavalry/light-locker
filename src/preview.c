@@ -54,19 +54,6 @@ content_draw_cb (GtkWidget *widget,
         content_draw (widget, cr);
 }
 
-#if !GTK_CHECK_VERSION(3, 0, 0)
-static void
-content_expose_cb (GtkWidget *widget,
-                  GdkEvent  *event,
-                  gpointer   user_data)
-{
-        cairo_t *cr = gdk_cairo_create (gtk_widget_get_window (widget));
-
-        content_draw_cb (widget, cr, user_data);
-        cairo_destroy (cr);
-}
-#endif
-
 int
 main (int    argc,
       char **argv)
@@ -108,28 +95,23 @@ main (int    argc,
         gs_debug_init (debug, FALSE);
         gs_debug ("initializing preview %s", VERSION);
 
-	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-	gtk_window_set_default_size (GTK_WINDOW (window), width, height);
+        window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+        gtk_window_set_default_size (GTK_WINDOW (window), width, height);
 
         g_signal_connect (window,
                           "destroy",
                           G_CALLBACK (preview_quit),
                           NULL);
 
-	drawing_area = gtk_drawing_area_new ();
-	gtk_widget_show (drawing_area);
-	gtk_widget_set_app_paintable (drawing_area, TRUE);
-	gtk_container_add (GTK_CONTAINER (window), drawing_area);
+        drawing_area = gtk_drawing_area_new ();
+        gtk_widget_show (drawing_area);
+        gtk_widget_set_app_paintable (drawing_area, TRUE);
+        gtk_container_add (GTK_CONTAINER (window), drawing_area);
 
-#if GTK_CHECK_VERSION(3, 0, 0)
         g_signal_connect_object (drawing_area, "draw",
                                  G_CALLBACK (content_draw_cb), NULL, 0);
-#else
-        g_signal_connect_object (drawing_area, "expose-event",
-                                 G_CALLBACK (content_expose_cb), NULL, 0);
-#endif
 
-	gtk_widget_show (window);
+        gtk_widget_show (window);
 
         gtk_main ();
 

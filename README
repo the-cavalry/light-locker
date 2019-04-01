@@ -32,7 +32,6 @@ Building
 light-locker different configurable dependencies and some of these require the development files to be installed.
 Most of these configurations will be enabled automatically when their dependencies are available.
 Here is a list of the different dependencies and their configuration flags:
-  --with-gtk2: This decides between the Gtk+-3.0 and Gtk+-2.0 dependency.
   --with-systemd: This adds the support for systemd logind. This option requires the development files to be installed.
   --with-console-kit: This adds the support for ConsoleKit.
   --with-upower: This adds the support for UPower.
