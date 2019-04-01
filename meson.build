@@ -3,7 +3,7 @@ project('light-locker', 'c', version: '1.8.0', meson_version: '>=0.44.0')
 gnome = import('gnome')
 i18n = import('i18n')
 
-glib_required_version = '2.25.6'
+glib_required_version = '2.44'
 glib_dep = dependency('glib-2.0', version: '>='+glib_required_version)
 gio_dep = dependency('gio-2.0', version: '>='+glib_required_version)
 gobject_dep = dependency('gobject-2.0', version: '>='+glib_required_version)

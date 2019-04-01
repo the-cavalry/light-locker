@@ -50,7 +50,7 @@ AS_IF([test "x$with_gtk2" = "xyes"],
       [GTK_PKG=gtk+-3.0])
 
 DBUS_REQUIRED_VERSION=0.30
-GLIB_REQUIRED_VERSION=2.25.6
+GLIB_REQUIRED_VERSION=2.44
 AS_IF([test "x$with_gtk2" = "xyes"],
       [GTK_REQUIRED_VERSION=2.24.0],
       [GTK_REQUIRED_VERSION=2.99.3])
