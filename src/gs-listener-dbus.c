@@ -35,11 +35,7 @@
 
 #ifdef HAVE_MIT_SAVER_EXTENSION
 #include <gtk/gtk.h>
-#if GTK_CHECK_VERSION(3, 0, 0)
 #include <gtk/gtkx.h>
-#else
-#include <gdk/gdkx.h>
-#endif
 #include <X11/extensions/scrnsaver.h>
 #endif
 
