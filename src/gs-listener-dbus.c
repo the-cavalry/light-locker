@@ -48,6 +48,13 @@
 #include "gs-debug.h"
 #include "gs-bus.h"
 
+#include "fdo-screensaver.h"
+#include "gnome-screensaver.h"
+#ifdef WITH_SYSTEMD
+#include "fdo-session.h"
+#include "fdo-manager.h"
+#endif
+
 /* this is for dbus < 0.3 */
 #if ((DBUS_VERSION_MAJOR == 0) && (DBUS_VERSION_MINOR < 30))
 #define dbus_bus_name_has_owner(connection, name, err)      dbus_bus_service_exists(connection, name, err)
@@ -1698,124 +1705,343 @@ screensaver_is_running (DBusConnection *connection)
         return exists;
 }
 
+/*
+ * Freedesktop Screensaver methods
+ */
+
+static gboolean
+on_handle_fdo_get_active (GSListener            *listener,
+                          GDBusMethodInvocation *invocation,
+                          FDOScreenSaver        *object)
+{
+    fdo_screen_saver_complete_get_active (object, invocation, listener->blanked);
+    return TRUE;
+}
+
+static gboolean
+on_handle_fdo_set_active (GSListener            *listener,
+                          GDBusMethodInvocation *invocation,
+                          gboolean               active,
+                          FDOScreenSaver        *object)
+{
+    gboolean res;
+
+    g_signal_emit (listener, signals [BLANKING], 0, active, &res);
+    fdo_screen_saver_complete_set_active (object, invocation, res);
+    return TRUE;
+}
+
+static gboolean
+on_handle_fdo_get_active_time (GSListener            *listener,
+                               GDBusMethodInvocation *invocation,
+                               FDOScreenSaver        *object)
+{
+    time_t now = time (NULL);
+    guint secs = 0;
+
+    if (G_UNLIKELY (now < listener->blanked_start)) {
+            gs_debug ("Time is in the future");
+            return FALSE;
+    } else if (G_UNLIKELY (listener->blanked_start <= 0)) {
+            //gs_debug ("Time was not set");
+            return FALSE;
+    } else {
+            secs = now - listener->blanked_start;
+            fdo_screen_saver_complete_get_active_time (object, invocation, secs);
+            return TRUE;
+    }
+}
+
+static gboolean
+on_handle_fdo_session_idle_time (GSListener            *listener,
+                                 GDBusMethodInvocation *invocation,
+                                 FDOScreenSaver        *object)
+{
+    gulong res;
+
+    g_signal_emit (listener, signals [IDLE_TIME], 0, &res);
+    fdo_screen_saver_complete_get_session_idle_time (object, invocation, (guint)res);
+    return TRUE;
+}
+
+static gboolean
+on_handle_fdo_simulate_user_activity (GSListener            *listener,
+                                      GDBusMethodInvocation *invocation,
+                                      FDOScreenSaver        *object)
+{
+    g_signal_emit (listener, signals [SIMULATE_USER_ACTIVITY], 0);
+    fdo_screen_saver_complete_simulate_user_activity (object, invocation);
+    return TRUE;
+}
+
+static gboolean
+on_handle_fdo_inhibit (GSListener            *listener,
+                       GDBusMethodInvocation *invocation,
+                       const gchar           *application_name,
+                       const gchar           *reason_for_inhibit,
+                       FDOScreenSaver        *object)
+{
+    guint cookie = gs_listener_add_inhibit (listener, g_dbus_method_invocation_get_sender (invocation));
+    fdo_screen_saver_complete_inhibit (object, invocation, cookie);
+    return TRUE;
+}
+
+static gboolean
+on_handle_fdo_un_inhibit (GSListener            *listener,
+                          GDBusMethodInvocation *invocation,
+                          guint                  cookie,
+                          FDOScreenSaver        *object)
+{
+    gs_listener_remove_inhibit (listener, cookie, g_dbus_method_invocation_get_sender (invocation));
+    fdo_screen_saver_complete_un_inhibit (object, invocation);
+    return TRUE;
+}
+
+static gboolean
+on_handle_fdo_lock (GSListener            *listener,
+                    GDBusMethodInvocation *invocation,
+                    FDOScreenSaver        *object)
+{
+    g_signal_emit (listener, signals [LOCK], 0);
+    fdo_screen_saver_complete_lock (object, invocation);
+    return TRUE;
+}
+
+/*
+ * GNOME Screensaver methods
+ */
+
+static gboolean
+on_handle_gnome_get_active (GSListener            *listener,
+                            GDBusMethodInvocation *invocation,
+                            GNOMEScreenSaver      *object)
+{
+    gnome_screen_saver_complete_get_active (object, invocation, listener->blanked);
+    return TRUE;
+}
+
+static gboolean
+on_handle_gnome_set_active (GSListener            *listener,
+                            GDBusMethodInvocation *invocation,
+                            gboolean               active,
+                            GNOMEScreenSaver      *object)
+{
+    gboolean res;
+
+    g_signal_emit (listener, signals [BLANKING], 0, active, &res);
+    gnome_screen_saver_complete_set_active (object, invocation);
+    return TRUE;
+}
+
+static gboolean
+on_handle_gnome_get_active_time (GSListener            *listener,
+                                 GDBusMethodInvocation *invocation,
+                                 GNOMEScreenSaver      *object)
+{
+    time_t now = time (NULL);
+    guint secs = 0;
+
+    if (G_UNLIKELY (now < listener->blanked_start)) {
+            gs_debug ("Time is in the future");
+            return FALSE;
+    } else if (G_UNLIKELY (listener->blanked_start <= 0)) {
+            //gs_debug ("Time was not set");
+            return FALSE;
+    } else {
+            secs = now - listener->blanked_start;
+            gnome_screen_saver_complete_get_active_time (object, invocation, secs);
+            return TRUE;
+    }
+}
+
+static gboolean
+on_handle_gnome_lock (GSListener            *listener,
+                      GDBusMethodInvocation *invocation,
+                      GNOMEScreenSaver      *object)
+{
+    g_signal_emit (listener, signals [LOCK], 0);
+    gnome_screen_saver_complete_lock (object, invocation);
+    return TRUE;
+}
+
 gboolean
 gs_listener_acquire (GSListener *listener,
                      GError    **error)
 {
-        int       res;
-        DBusError buserror;
-        gboolean  is_connected;
+        GDBusConnection *connection;
+        FDOScreenSaver *fdo_screensaver;
+        FDOScreenSaver *fdo_screensaver_kde;
+        GNOMEScreenSaver *gnome_screensaver;
+        FDOSession *fdo_session;
 
         g_return_val_if_fail (listener != NULL, FALSE);
 
-        if (! listener->connection) {
-                g_set_error (error,
-                             GS_LISTENER_ERROR,
-                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
-                             "%s",
-                             _("failed to register with the message bus"));
+        connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, error);
+        if (connection == NULL) {
                 return FALSE;
         }
 
-        is_connected = dbus_connection_get_is_connected (listener->connection);
-        if (! is_connected) {
-                g_set_error (error,
-                             GS_LISTENER_ERROR,
-                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
-                             "%s",
-                             _("not connected to the message bus"));
-                return FALSE;
-        }
+        fdo_screensaver = fdo_screen_saver_skeleton_new ();
 
-        if (screensaver_is_running (listener->connection)) {
-                g_set_error (error,
-                             GS_LISTENER_ERROR,
-                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
-                             "%s",
-                             _("screensaver already running in this session"));
-                return FALSE;
-        }
+        g_signal_connect_swapped (fdo_screensaver,
+                                  "handle-get-active",
+                                  G_CALLBACK (on_handle_fdo_get_active),
+                                  listener);
 
-        dbus_error_init (&buserror);
+        g_signal_connect_swapped (fdo_screensaver,
+                                  "handle-set-active",
+                                  G_CALLBACK (on_handle_fdo_set_active),
+                                  listener);
 
-        if (dbus_connection_register_object_path (listener->connection,
-                                                  GS_PATH,
-                                                  &gs_listener_vtable,
-                                                  listener) == FALSE) {
-                g_critical ("out of memory registering object path");
-                return FALSE;
-        }
+        g_signal_connect_swapped (fdo_screensaver,
+                                  "handle-get-active-time",
+                                  G_CALLBACK (on_handle_fdo_get_active_time),
+                                  listener);
 
-        /* Register KDE path */
-        if (dbus_connection_register_object_path (listener->connection,
-                                                  GS_PATH_KDE,
-                                                  &gs_listener_vtable,
-                                                  listener) == FALSE) {
-                g_critical ("out of memory registering object path");
-                return FALSE;
-        }
+        g_signal_connect_swapped (fdo_screensaver,
+                                  "handle-get-session-idle-time",
+                                  G_CALLBACK (on_handle_fdo_session_idle_time),
+                                  listener);
 
-        /* Register GNOME interface */
-        if (dbus_connection_register_object_path (listener->connection,
-                                                  GS_PATH_GNOME,
-                                                  &gs_listener_vtable,
-                                                  listener) == FALSE) {
-                g_critical ("out of memory registering object path");
-                return FALSE;
-        }
+        g_signal_connect_swapped (fdo_screensaver,
+                                  "handle-simulate-user-activity",
+                                  G_CALLBACK (on_handle_fdo_simulate_user_activity),
+                                  listener);
 
-        res = dbus_bus_request_name (listener->connection,
-                                     GS_SERVICE,
-                                     DBUS_NAME_FLAG_DO_NOT_QUEUE,
-                                     &buserror);
-        if (dbus_error_is_set (&buserror)) {
-                g_set_error (error,
-                             GS_LISTENER_ERROR,
-                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
-                             "%s",
-                             buserror.message);
-        }
-        if (res == DBUS_REQUEST_NAME_REPLY_EXISTS) {
-                g_set_error (error,
-                             GS_LISTENER_ERROR,
-                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
-                             "%s",
-                             _("screensaver already running in this session"));
-                return FALSE;
-        }
+        g_signal_connect_swapped (fdo_screensaver,
+                                  "handle-inhibit",
+                                  G_CALLBACK (on_handle_fdo_inhibit),
+                                  listener);
 
-        dbus_error_free (&buserror);
+        g_signal_connect_swapped (fdo_screensaver,
+                                  "handle-un-inhibit",
+                                  G_CALLBACK (on_handle_fdo_un_inhibit),
+                                  listener);
 
-        res = dbus_bus_request_name (listener->connection,
-                                     GS_SERVICE_GNOME,
-                                     DBUS_NAME_FLAG_DO_NOT_QUEUE,
-                                     &buserror);
-        if (dbus_error_is_set (&buserror)) {
-                g_set_error (error,
-                             GS_LISTENER_ERROR,
-                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
-                             "%s",
-                             buserror.message);
-        }
-        if (res == DBUS_REQUEST_NAME_REPLY_EXISTS) {
-                g_set_error (error,
-                             GS_LISTENER_ERROR,
-                             GS_LISTENER_ERROR_ACQUISITION_FAILURE,
-                             "%s",
-                             _("GNOME screensaver already running in this session"));
-                return FALSE;
-        }
+        g_signal_connect_swapped (fdo_screensaver,
+                                  "handle-lock",
+                                  G_CALLBACK (on_handle_fdo_lock),
+                                  listener);
 
-        dbus_error_free (&buserror);
+        if (!g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (fdo_screensaver),
+                                               connection,
+                                               GS_PATH,
+                                               error))
+          {
+            return FALSE;
+          }
 
-        dbus_connection_add_filter (listener->connection, listener_dbus_filter_function, listener, NULL);
+        fdo_screensaver_kde = fdo_screen_saver_skeleton_new ();
 
-        dbus_bus_add_match (listener->connection,
-                            "type='signal'"
-                            ",interface='"DBUS_INTERFACE_DBUS"'"
-                            ",sender='"DBUS_SERVICE_DBUS"'"
-                            ",member='NameOwnerChanged'",
-                            NULL);
+        g_signal_connect_swapped (fdo_screensaver_kde,
+                                  "handle-get-active",
+                                  G_CALLBACK (on_handle_fdo_get_active),
+                                  listener);
+
+        g_signal_connect_swapped (fdo_screensaver_kde,
+                                  "handle-set-active",
+                                  G_CALLBACK (on_handle_fdo_set_active),
+                                  listener);
+
+        g_signal_connect_swapped (fdo_screensaver_kde,
+                                  "handle-get-active-time",
+                                  G_CALLBACK (on_handle_fdo_get_active_time),
+                                  listener);
+
+        g_signal_connect_swapped (fdo_screensaver_kde,
+                                  "handle-get-session-idle-time",
+                                  G_CALLBACK (on_handle_fdo_session_idle_time),
+                                  listener);
+
+        g_signal_connect_swapped (fdo_screensaver_kde,
+                                  "handle-simulate-user-activity",
+                                  G_CALLBACK (on_handle_fdo_simulate_user_activity),
+                                  listener);
+
+        g_signal_connect_swapped (fdo_screensaver_kde,
+                                  "handle-inhibit",
+                                  G_CALLBACK (on_handle_fdo_inhibit),
+                                  listener);
+
+        g_signal_connect_swapped (fdo_screensaver_kde,
+                                  "handle-un-inhibit",
+                                  G_CALLBACK (on_handle_fdo_un_inhibit),
+                                  listener);
+
+        g_signal_connect_swapped (fdo_screensaver_kde,
+                                  "handle-lock",
+                                  G_CALLBACK (on_handle_fdo_lock),
+                                  listener);
+
+        if (!g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (fdo_screensaver_kde),
+                                               connection,
+                                               GS_PATH_KDE,
+                                               error))
+          {
+            return FALSE;
+          }
+
+        gnome_screensaver = gnome_screen_saver_skeleton_new ();
+
+        g_signal_connect_swapped (gnome_screensaver,
+                                  "handle-get-active",
+                                  G_CALLBACK (on_handle_gnome_get_active),
+                                  listener);
+
+        g_signal_connect_swapped (gnome_screensaver,
+                                  "handle-set-active",
+                                  G_CALLBACK (on_handle_gnome_set_active),
+                                  listener);
+
+        g_signal_connect_swapped (gnome_screensaver,
+                                  "handle-get-active-time",
+                                  G_CALLBACK (on_handle_gnome_get_active_time),
+                                  listener);
+
+        g_signal_connect_swapped (gnome_screensaver,
+                                  "handle-lock",
+                                  G_CALLBACK (on_handle_gnome_lock),
+                                  listener);
+
+        if (!g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (gnome_screensaver),
+                                               connection,
+                                               GS_PATH_GNOME,
+                                               error))
+          {
+            return FALSE;
+          }
+
+        fdo_session = fdo_session_proxy_new_for_bus_sync (
+                    G_BUS_TYPE_SYSTEM,
+                    G_DBUS_PROXY_FLAGS_GET_INVALIDATED_PROPERTIES,
+                    "org.freedesktop.login1.Session",
+                    "/org/freedesktop/login1",
+                    NULL,
+                    error);
+
+        g_signal_connect_swapped (fdo_session,
+                                  "unlock",
+                                  G_CALLBACK (on_handle_gnome_lock),
+                                  listener);
+
+        g_signal_connect_swapped (fdo_session,
+                                  "lock",
+                                  G_CALLBACK (on_handle_gnome_lock),
+                                  listener);
+
+        fdo_manager = fdo_manager_proxy_new_for_bus_sync (
+                    G_BUS_TYPE_SYSTEM,
+                    G_DBUS_PROXY_FLAGS_GET_INVALIDATED_PROPERTIES,
+                    "org.freedesktop.login1.Manager",
+                    "/org/freedesktop/login1",
+                    NULL,
+                    error);
+
+        g_signal_connect_swapped (fdo_manager,
+                                  "prepare-for-sleep",
+                                  G_CALLBACK (on_handle_gnome_lock),
+                                  listener);
+
 
         if (listener->system_connection != NULL) {
                 dbus_connection_add_filter (listener->system_connection,
