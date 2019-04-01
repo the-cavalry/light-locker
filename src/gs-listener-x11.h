@@ -25,30 +25,8 @@
 
 G_BEGIN_DECLS
 
-#define GS_TYPE_LISTENER_X11         (gs_listener_x11_get_type ())
-#define GS_LISTENER_X11(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GS_TYPE_LISTENER_X11, GSListenerX11))
-#define GS_LISTENER_X11_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GS_TYPE_LISTENER_X11, GSListenerX11Class))
-#define GS_IS_LISTENER_X11(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GS_TYPE_LISTENER_X11))
-#define GS_IS_LISTENER_X11_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GS_TYPE_LISTENER_X11))
-#define GS_LISTENER_X11_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GS_TYPE_LISTENER_X11, GSListenerX11Class))
-
-typedef struct GSListenerX11Private GSListenerX11Private;
-
-typedef struct
-{
-        GObject               parent;
-        GSListenerX11Private *priv;
-} GSListenerX11;
-
-typedef struct
-{
-        GObjectClass       parent_class;
-
-        void            (* blanking_changed)         (GSListenerX11 *listener, gboolean active);
-
-} GSListenerX11Class;
-
-GType          gs_listener_x11_get_type          (void);
+#define GS_TYPE_LISTENER_X11 gs_listener_x11_get_type ()
+G_DECLARE_FINAL_TYPE (GSListenerX11, gs_listener_x11, GS, LISTENER_X11, GObject)
 
 GSListenerX11 *gs_listener_x11_new               (void);
 gboolean       gs_listener_x11_acquire           (GSListenerX11 *listener);

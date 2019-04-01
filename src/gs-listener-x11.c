@@ -43,14 +43,10 @@
 #include "gs-marshal.h"
 #include "gs-debug.h"
 
-static void              gs_listener_x11_class_init         (GSListenerX11Class *klass);
-static void              gs_listener_x11_init               (GSListenerX11      *listener);
-static void              gs_listener_x11_finalize           (GObject            *object);
-
-#define GS_LISTENER_X11_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GS_TYPE_LISTENER_X11, GSListenerX11Private))
-
-struct GSListenerX11Private
+struct _GSListenerX11
 {
+        GObject parent_instance;
+
 #ifdef HAVE_MIT_SAVER_EXTENSION
         int scrnsaver_event_base;
 #endif
@@ -66,28 +62,6 @@ enum {
 static guint         signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GSListenerX11, gs_listener_x11, G_TYPE_OBJECT)
-
-static void
-gs_listener_x11_class_init (GSListenerX11Class *klass)
-{
-        GObjectClass   *object_class = G_OBJECT_CLASS (klass);
-
-        object_class->finalize     = gs_listener_x11_finalize;
-
-        signals [BLANKING_CHANGED] =
-                g_signal_new ("blanking-changed",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GSListenerX11Class, blanking_changed),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__BOOLEAN,
-                              G_TYPE_NONE,
-                              1,
-                              G_TYPE_BOOLEAN);
-
-        g_type_class_add_private (klass, sizeof (GSListenerX11Private));
-}
 
 static GdkFilterReturn
 xroot_filter (GdkXEvent *xevent,
@@ -112,22 +86,22 @@ xroot_filter (GdkXEvent *xevent,
         default:
                 /* extension events */
 #ifdef HAVE_MIT_SAVER_EXTENSION
-                if (ev->xany.type == (listener->priv->scrnsaver_event_base + ScreenSaverNotify)) {
+                if (ev->xany.type == (listener->scrnsaver_event_base + ScreenSaverNotify)) {
                         XScreenSaverNotifyEvent *xssne = (XScreenSaverNotifyEvent *) ev;
                         switch (xssne->state) {
                         case ScreenSaverOff:
                         case ScreenSaverDisabled:
                                 gs_debug ("ScreenSaver stopped");
-                                if (listener->priv->active)
+                                if (listener->active)
                                         g_signal_emit (listener, signals [BLANKING_CHANGED], 0, FALSE);
-                                listener->priv->active = FALSE;
+                                listener->active = FALSE;
                                 break;
 
                         case ScreenSaverOn:
                                 gs_debug ("ScreenSaver started");
-                                if (!listener->priv->active)
+                                if (!listener->active)
                                         g_signal_emit (listener, signals [BLANKING_CHANGED], 0, TRUE);
-                                listener->priv->active = TRUE;
+                                listener->active = TRUE;
                                 break;
                         }
                 }
@@ -162,7 +136,7 @@ gs_listener_x11_acquire (GSListenerX11 *listener)
 
 #ifdef HAVE_MIT_SAVER_EXTENSION
         gdk_error_trap_push ();
-        if (XScreenSaverQueryExtension (GDK_DISPLAY_XDISPLAY (display), &listener->priv->scrnsaver_event_base, &scrnsaver_error_base)) {
+        if (XScreenSaverQueryExtension (GDK_DISPLAY_XDISPLAY (display), &listener->scrnsaver_event_base, &scrnsaver_error_base)) {
                 events = ScreenSaverNotifyMask;
                 XScreenSaverSelectInput (GDK_DISPLAY_XDISPLAY (display), GDK_WINDOW_XID (window), events);
                 gs_debug ("ScreenSaver Registered");
@@ -261,24 +235,34 @@ gs_listener_x11_idle_time (GSListenerX11 *listener)
 static void
 gs_listener_x11_init (GSListenerX11 *listener)
 {
-        listener->priv = GS_LISTENER_X11_GET_PRIVATE (listener);
 }
 
 static void
 gs_listener_x11_finalize (GObject *object)
 {
-        GSListenerX11 *listener;
-
-        g_return_if_fail (object != NULL);
-        g_return_if_fail (GS_IS_LISTENER_X11 (object));
-
-        listener = GS_LISTENER_X11 (object);
-
-        g_return_if_fail (listener->priv != NULL);
-
         gdk_window_remove_filter (NULL, (GdkFilterFunc)xroot_filter, NULL);
 
         G_OBJECT_CLASS (gs_listener_x11_parent_class)->finalize (object);
+}
+
+static void
+gs_listener_x11_class_init (GSListenerX11Class *klass)
+{
+        GObjectClass   *object_class = G_OBJECT_CLASS (klass);
+
+        object_class->finalize     = gs_listener_x11_finalize;
+
+        signals [BLANKING_CHANGED] =
+                g_signal_new ("blanking-changed",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              0,
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__BOOLEAN,
+                              G_TYPE_NONE,
+                              1,
+                              G_TYPE_BOOLEAN);
 }
 
 GSListenerX11 *
