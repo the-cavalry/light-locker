@@ -25,27 +25,8 @@
 
 G_BEGIN_DECLS
 
-#define GS_TYPE_MONITOR         (gs_monitor_get_type ())
-#define GS_MONITOR(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GS_TYPE_MONITOR, GSMonitor))
-#define GS_MONITOR_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GS_TYPE_MONITOR, GSMonitorClass))
-#define GS_IS_MONITOR(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GS_TYPE_MONITOR))
-#define GS_IS_MONITOR_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GS_TYPE_MONITOR))
-#define GS_MONITOR_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GS_TYPE_MONITOR, GSMonitorClass))
-
-typedef struct GSMonitorPrivate GSMonitorPrivate;
-
-typedef struct
-{
-        GObject          parent;
-        GSMonitorPrivate *priv;
-} GSMonitor;
-
-typedef struct
-{
-        GObjectClass     parent_class;
-} GSMonitorClass;
-
-GType       gs_monitor_get_type (void);
+#define GS_TYPE_MONITOR gs_monitor_get_type ()
+G_DECLARE_FINAL_TYPE (GSMonitor, gs_monitor, GS, MONITOR, GObject)
 
 GSMonitor * gs_monitor_new              (LLConfig  *config);
 gboolean    gs_monitor_start            (GSMonitor *monitor,
