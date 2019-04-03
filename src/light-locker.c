@@ -122,7 +122,7 @@ main (int    argc,
 
         if (show_version) {
                 g_print ("%s %s\n", argv [0], VERSION);
-                exit (1);
+                exit (0);
         }
 
         /* Update values in LightLockerConf. */
