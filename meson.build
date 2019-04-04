@@ -1,4 +1,4 @@
-project('light-locker', 'c', version: '1.8.0', meson_version: '>=0.44.0')
+project('light-locker', 'c', version: '1.9.0', meson_version: '>=0.44.0')
 
 gnome = import('gnome')
 i18n = import('i18n')
