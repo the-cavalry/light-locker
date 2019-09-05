@@ -1380,19 +1380,6 @@ listener_dbus_handle_system_message (DBusConnection *connection,
 #endif
 
 #ifdef WITH_UPOWER
-#ifdef WITH_LOCK_ON_SUSPEND
-        if (dbus_message_is_signal (message, UP_INTERFACE, "Sleeping")) {
-                gs_debug ("UPower initiating sleep");
-                g_signal_emit (listener, signals [SUSPEND], 0);
-
-                return DBUS_HANDLER_RESULT_HANDLED;
-        } else if (dbus_message_is_signal (message, UP_INTERFACE, "Resuming")) {
-                gs_debug ("UPower initiating resume");
-                g_signal_emit (listener, signals [RESUME], 0);
-
-                return DBUS_HANDLER_RESULT_HANDLED;
-        }
-#endif
 #ifdef WITH_LOCK_ON_LID
         if (dbus_message_is_signal (message, DBUS_INTERFACE_PROPERTIES, "PropertiesChanged")) {
 
@@ -1926,20 +1913,6 @@ gs_listener_acquire (GSListener *listener,
 #endif
 
 #ifdef WITH_UPOWER
-#ifdef WITH_LOCK_ON_SUSPEND
-                dbus_bus_add_match (listener->priv->system_connection,
-                                    "type='signal'"
-                                    ",sender='"UP_SERVICE"'"
-                                    ",interface='"UP_INTERFACE"'"
-                                    ",member='Sleeping'",
-                                    NULL);
-                dbus_bus_add_match (listener->priv->system_connection,
-                                    "type='signal'"
-                                    ",sender='"UP_SERVICE"'"
-                                    ",interface='"UP_INTERFACE"'"
-                                    ",member='Resuming'",
-                                    NULL);
-#endif
 #ifdef WITH_LOCK_ON_LID
                 dbus_bus_add_match (listener->priv->system_connection,
                                     "type='signal'"
