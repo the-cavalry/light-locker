@@ -54,6 +54,8 @@
 #define dbus_bus_request_name(connection, name, flags, err) dbus_bus_acquire_service(connection, name, flags, err)
 #endif
 
+#define SYSTEMD_SESSION_REQUIRE_ONLINE 0
+
 static void              gs_listener_class_init         (GSListenerClass *klass);
 static void              gs_listener_init               (GSListener      *listener);
 static void              gs_listener_finalize           (GObject         *object);
@@ -1995,6 +1997,181 @@ query_session_id (GSListener *listener)
 }
 
 #ifdef WITH_SYSTEMD
+static gboolean session_is_graphical (char const *session_id)
+{
+    char const *const graphical_session_types[] = { "wayland", "x11", "mir", NULL };
+
+    int error_code;
+    char *type;
+
+    error_code = sd_session_get_type(session_id, &type);
+    if (error_code < 0)
+    {
+        g_warning (
+            "Couldn't get type for session '%s': %s",
+            session_id,
+            g_strerror (-error_code));
+
+        return FALSE;
+    }
+
+    if (!g_strv_contains (graphical_session_types, type))
+    {
+        g_debug (
+            "Session '%s' is not a graphical session (type: '%s')",
+            session_id,
+            type);
+
+        free (type);
+
+        return FALSE;
+    }
+
+    free (type);
+
+    return TRUE;
+}
+
+static gboolean session_is_active (char const *session_id)
+{
+    char const *const active_states[] = { "active", "online", NULL };
+
+    int error_code;
+    char *state;
+
+    error_code = sd_session_get_state (session_id, &state);
+    if (error_code < 0)
+    {
+        g_warning (
+            "Couldn't get state for session '%s': %s",
+            session_id,
+            g_strerror (-error_code));
+
+        return FALSE;
+    }
+
+    if (!g_strv_contains (active_states, state))
+    {
+        g_debug ("Session '%s' is not active or online", session_id);
+
+        free (state);
+
+        return FALSE;
+    }
+
+    free (state);
+
+    return TRUE;
+}
+
+static char *
+find_graphical_session (GSListener *listener)
+{
+    DBusMessage *message, *reply;
+    DBusError error;
+
+    char **sessions;
+    int session_count;
+    char *found_session;
+
+    gs_debug ("Finding a graphical session for user %d", getuid());
+
+    session_count = sd_uid_get_sessions (
+        getuid(),
+        SYSTEMD_SESSION_REQUIRE_ONLINE,
+        &sessions);
+
+    if (session_count < 0)
+    {
+        gs_debug ("Failed to get sessions for user %d", getuid());
+        return NULL;
+    }
+
+    for (int i = 0; i < session_count; ++i)
+    {
+        g_debug ("Trying session '%s'", sessions[i]);
+
+        if (!session_is_graphical (sessions[i]))
+            continue;
+
+        if (!session_is_active (sessions[i]))
+            continue;
+
+        found_session = sessions[i];
+    }
+
+    if (found_session)
+    {
+        dbus_error_init(&error); /* FIXME: potential leak? */
+
+        message = dbus_message_new_method_call (
+            SYSTEMD_LOGIND_SERVICE,
+            SYSTEMD_LOGIND_PATH,
+            SYSTEMD_LOGIND_INTERFACE,
+            "GetSession");
+
+        if (message == NULL)
+        {
+            gs_debug ("Couldn't allocate dbus message");
+            found_session = NULL;
+            goto cleanup;
+        }
+
+        if (dbus_message_append_args (
+                message,
+                DBUS_TYPE_STRING,
+                &found_session,
+                DBUS_TYPE_INVALID) == FALSE)
+        {
+            gs_debug ("Couldn't add args to the dbus message");
+            dbus_message_unref (message);
+            found_session = NULL;
+            goto cleanup;
+        }
+
+        /* FIXME: use async? */
+        reply = dbus_connection_send_with_reply_and_block (
+            listener->priv->system_connection,
+            message,
+            -1,
+            &error);
+        dbus_message_unref (message);
+
+        if (dbus_error_is_set (&error))
+        {
+            gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
+            dbus_error_free (&error);
+            found_session = NULL;
+            goto cleanup;
+        }
+
+        if (dbus_message_get_args(
+                reply,
+                &error,
+                DBUS_TYPE_OBJECT_PATH,
+                &found_session,
+                DBUS_TYPE_INVALID))
+            found_session = g_strdup (found_session);
+
+        dbus_message_unref (reply);
+
+        if (dbus_error_is_set (&error))
+        {
+            gs_debug ("%s raised:\n %s\n\n", error.name, error.message);
+            dbus_error_free (&error);
+            found_session = NULL;
+        }
+    }
+
+cleanup:
+    for (int i = 0; i < session_count; ++i)
+        free (sessions[i]);
+
+    free (sessions);
+
+    return found_session;
+}
+
 static char *
 query_sd_session_id (GSListener *listener)
 {
@@ -2002,10 +2179,14 @@ query_sd_session_id (GSListener *listener)
       char *t;
       int r;
 
-      r = sd_pid_get_session (0, &t);
-      if (r < 0) {
-              gs_debug ("Couldn't determine our own sd session id: %s", strerror (-r));
-              return NULL;
+      r = sd_pid_get_session (getpid(), &t);
+      if (r < 0)
+      {
+              gs_debug (
+                  "Couldn't determine our own sd session id directly: %s",
+                  strerror (-r));
+
+              return find_graphical_session (listener);
       }
 
       ssid = g_strdup (t);
