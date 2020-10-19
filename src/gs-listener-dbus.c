@@ -80,7 +80,6 @@ struct GSListenerPrivate
 
 #ifdef WITH_SYSTEMD
         gboolean        have_systemd;
-        char           *sd_session_id;
         int             delay_fd;
 #endif
 
@@ -138,7 +137,7 @@ gs_listener_send_switch_greeter (GSListener *listener)
         /* Compare with 0. On failure this will return < 0.
          * In the later case we probably aren't using systemd.
          */
-        if (sd_session_is_active (listener->priv->sd_session_id) == 0) {
+        if (sd_session_is_active (listener->priv->session_id) == 0) {
                 gs_debug ("Refusing to switch to greeter");
                 return;
         };
@@ -179,7 +178,7 @@ gs_listener_send_lock_session (GSListener *listener)
         /* Compare with 0. On failure this will return < 0.
          * In the later case we probably aren't using systemd.
          */
-        if (sd_session_is_active (listener->priv->sd_session_id) == 0) {
+        if (sd_session_is_active (listener->priv->session_id) == 0) {
                 gs_debug ("Refusing to lock session");
                 return;
         };
@@ -2027,14 +2026,14 @@ init_session_id (GSListener *listener)
                 gs_debug ("Got session-id: %s", listener->priv->session_id);
 
 #ifdef WITH_SYSTEMD
-        g_free (listener->priv->sd_session_id);
-        listener->priv->sd_session_id = query_sd_session_id (listener);
-        if (listener->priv->sd_session_id == NULL)
+        g_free (listener->priv->session_id);
+        listener->priv->session_id = query_sd_session_id (listener);
+        if (listener->priv->session_id == NULL)
         {
                 gs_debug ("Falling back to XDG_SESSION_ID environment variable");
-                listener->priv->sd_session_id = g_strdup(getenv("XDG_SESSION_ID"));
+                listener->priv->session_id = g_strdup(getenv("XDG_SESSION_ID"));
         }
-        gs_debug ("Got sd-session-id: %s", listener->priv->sd_session_id);
+        gs_debug ("Got sd-session-id: %s", listener->priv->session_id);
 #endif
 }
 
@@ -2151,10 +2150,6 @@ gs_listener_finalize (GObject *object)
 
         g_free (listener->priv->session_id);
         g_free (listener->priv->seat_path);
-
-#ifdef WITH_SYSTEMD
-        g_free (listener->priv->sd_session_id);
-#endif
 
         G_OBJECT_CLASS (gs_listener_parent_class)->finalize (object);
 }
