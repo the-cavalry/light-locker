@@ -2208,7 +2208,8 @@ init_session_id (GSListener *listener)
 
 #ifdef WITH_SYSTEMD
         g_free (listener->priv->session_id);
-        listener->priv->session_id = query_sd_session_id (listener);
+        /* FIXME: WMs like i3 might want to use the DBus method instead, needs testing */
+        listener->priv->session_id = find_graphical_session (listener);
         if (listener->priv->session_id == NULL)
         {
                 gs_debug ("Falling back to XDG_SESSION_ID environment variable");
